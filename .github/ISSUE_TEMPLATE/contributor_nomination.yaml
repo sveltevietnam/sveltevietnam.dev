@@ -1,0 +1,57 @@
+name: Contributor Nomination
+description: Nominate a member with significant contribution to be listed at https://sveltevietnam.com/people
+title: "Nominate: <Name of member>"
+labels:
+  - content
+assignees:
+  - vnphanquang
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for being part of the community. Let's fill out some information so we can better consider your nomination.
+  - type: dropdown
+    id: self
+    attributes:
+      label: Self-nomination
+      description: Are you nominating yourself?
+      options:
+        - "No"
+        - "Yes"
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: Nominee Name
+      description: What is the name of the person you are nominating?
+      placeholder: Nguyen Van A
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: Nominee Contact
+      description: How can we contact this member for verification?
+      placeholder: nguyenvana@gmail.com or github.com/nguyenvana
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Nominee Contributions
+      description: What are the contributions from this member that are significant to you and the community?
+    validations:
+      required: true
+  - type: textarea
+    id: others
+    attributes:
+      label: Other Information
+      description: Any other things that you want us to know. You may also tag others to upvote this nomination.
+  - type: markdown
+    attributes:
+      value: |
+        Thank you!
+
+        We will review your nomination and update the progress in this issue. If approved, the nominee will be recognized
+        at https://sveltevietnam.com/people and given a shout-out in the Svelte Vietnam Discord.
