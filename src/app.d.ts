@@ -3,8 +3,6 @@
 /// <reference types="vite/client" />
 /// <reference types="@types/gtag.js" />
 
-import type { TocDataAttributes } from '@svelte-put/toc';
-
 import type { ColorScheme, Language } from '$shared/types';
 
 // See https://kit.svelte.dev/docs/types#app
@@ -49,7 +47,7 @@ declare global {
 
 declare namespace svelteHTML {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-interface
-  interface HTMLAttributes<T> extends TocDataAttributes {}
+  interface HTMLAttributes<T> {}
 }
 
 declare module '*.svelte';
