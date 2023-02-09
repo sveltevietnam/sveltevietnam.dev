@@ -3,14 +3,16 @@ import { tBuild } from 'static-tree';
 export const { node: APP_ROUTE_TREE } = tBuild('APP_ROUTE_TREE', {
   pathResolver: () => '',
   build: (builder) =>
-    builder
-      // FIXME: support dynamic route <lang>: https://github.com/vnphanquang/static-tree/issues/7
-      .addChild('events')
-      .addChild('jobs')
-      .addChild('impact')
-      .addChild('people')
-      .addChild('sponsor')
-      .addChild('code-of-conduct'),
+    builder.addChild(':lang', {
+      build: (builder) =>
+        builder
+          .addChild('events')
+          .addChild('jobs')
+          .addChild('impact')
+          .addChild('people')
+          .addChild('sponsor')
+          .addChild('code-of-conduct'),
+    }),
 });
 
 export const LOAD_DEPENDENCIES = {
@@ -18,3 +20,13 @@ export const LOAD_DEPENDENCIES = {
 } as const;
 
 export const LANGUAGES = ['en', 'vi'] as const;
+
+export type A = 'a' | 'b' | never;
+export type B = A | 'c';
+export type R = Record<B, string>;
+
+export const r: R = {
+  a: '',
+  b: '',
+  c: '',
+};
