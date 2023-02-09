@@ -6,7 +6,7 @@ const config = {
   preprocess: [vitePreprocess()],
   kit: {
     adapter: adapter({
-      edge: true,
+      runtime: 'edge',
     }),
     alias: {
       $routes: 'src/routes',
