@@ -2,7 +2,8 @@ name: Contributor Nomination
 description: Nominate a member with significant contribution to be listed at https://sveltevietnam.com/people
 title: "Nominate: <Name of member>"
 labels:
-  - content
+  - "page:people"
+  - "type:content"
 assignees:
   - vnphanquang
 body:
