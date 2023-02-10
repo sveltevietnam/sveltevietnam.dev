@@ -1,3 +1,4 @@
+import type { Config } from '@sveltejs/adapter-vercel';
 import { redirect } from '@sveltejs/kit';
 
 import {
@@ -27,4 +28,8 @@ export const load: LayoutServerLoad = async ({ url, locals, depends, cookies }) 
     colorScheme: locals.colorScheme,
     language: locals.language,
   };
+};
+
+export const config: Config = {
+  runtime: 'edge',
 };

@@ -5,9 +5,7 @@ import { vitePreprocess } from '@sveltejs/kit/vite';
 const config = {
   preprocess: [vitePreprocess()],
   kit: {
-    adapter: adapter({
-      runtime: 'edge',
-    }),
+    adapter: adapter(),
     alias: {
       $routes: 'src/routes',
       $client: 'src/lib/client',

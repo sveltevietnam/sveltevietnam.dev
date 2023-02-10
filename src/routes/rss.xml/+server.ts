@@ -1,3 +1,4 @@
+import type { Config } from '@sveltejs/adapter-vercel';
 import Handlebars from 'handlebars';
 
 import { BUILD_TIMESTAMP } from '$env/static/private';
@@ -39,4 +40,8 @@ export const GET: RequestHandler = () => {
     'Content-Type': 'application/xml',
   };
   return new Response(xml, { headers });
+};
+
+export const config: Config = {
+  runtime: 'nodejs16.x',
 };
