@@ -18,15 +18,3 @@ export const { node: APP_ROUTE_TREE } = tBuild('APP_ROUTE_TREE', {
 export const LOAD_DEPENDENCIES = {
   COLOR_SCHEME: 'app:color-scheme',
 } as const;
-
-export const LANGUAGES = ['en', 'vi'] as const;
-
-export type A = 'a' | 'b' | never;
-export type B = A | 'c';
-export type R = Record<B, string>;
-
-export const r: R = {
-  a: '',
-  b: '',
-  c: '',
-};

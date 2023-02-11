@@ -6,6 +6,7 @@
   import { dev, browser } from '$app/environment';
   import { page } from '$app/stores';
   import { PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID, PUBLIC_ROOT_URL } from '$env/static/public';
+  import { localizeUrl, LANGUAGES } from '$shared/services/i18n';
 
   import '../lib/client/styles/app.css';
 
@@ -75,6 +76,12 @@
   <link href={ogUrl} rel="canonical" />
   <link type="text/plain" rel="author" href="{PUBLIC_ROOT_URL}/humans.txt" />
 
+  <!-- alternative localized links -->
+  {#each LANGUAGES.filter((l) => l !== $page.data.language) as lang}
+    <link rel="alternate" hreflang={lang} href={localizeUrl($page.url, lang).toString()} />
+  {/each}
+  <link rel="alternate" hreflang="x-default" href={localizeUrl($page.url, 'vi').toString()} />
+
   <!-- partytown scripts -->
   <script>
     partytown = {
@@ -98,8 +105,6 @@
       gtag('js', new Date());
     </script>
   {/if}
-
-  <!-- partytown scripts -->
 </svelte:head>
 
 <slot />

@@ -3,7 +3,8 @@
 /// <reference types="vite/client" />
 /// <reference types="@types/gtag.js" />
 
-import type { ColorScheme, Language } from '$shared/types';
+import type { Language } from '$shared/services/i18n';
+import type { ColorScheme } from '$shared/types';
 
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
@@ -18,6 +19,7 @@ declare global {
     interface PageData {
       colorScheme: ColorScheme;
       vercelAnalyticsId?: string;
+      language: Language;
       meta?: {
         title?: string;
         description?: string;
