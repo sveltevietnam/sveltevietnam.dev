@@ -2,6 +2,6 @@
 
 # sveltevietnam.dev
 
-in development, reach out to admin@sveltevietnam.dev for more info
+in development, reach out to contact@sveltevietnam.dev for more info
 
 </div>
