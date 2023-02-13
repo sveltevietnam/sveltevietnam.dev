@@ -4,6 +4,7 @@ export const { node: APP_ROUTE_TREE } = tBuild('APP_ROUTE_TREE', {
   pathResolver: () => '',
   build: (builder) =>
     builder.addChild(':lang', {
+      pathResolver: (_, lang) => lang,
       build: (builder) =>
         builder
           .addChild('events')
