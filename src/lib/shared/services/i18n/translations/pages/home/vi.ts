@@ -1,4 +1,4 @@
-export const homeVi = {
+export const vi = {
   introduction: {
     title: 'Giới thiệu',
     svelte:

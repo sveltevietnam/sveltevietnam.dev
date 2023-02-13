@@ -1,6 +1,6 @@
-import type { homeVi } from './home.vi';
+import type { vi } from './vi';
 
-export const homeEn = {
+export const en = {
   introduction: {
     title: 'Introduction',
     svelte:
@@ -48,4 +48,4 @@ export const homeEn = {
       viewMore: 'See more',
     },
   },
-} satisfies typeof homeVi;
+} satisfies typeof vi;

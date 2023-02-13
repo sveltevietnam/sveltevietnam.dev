@@ -1,9 +1,9 @@
-export const headerVi = {
+export const vi = {
   navigation: {
     events: 'Sự kiện',
     jobs: 'Việc làm',
     impact: 'Tác động',
     people: 'Con người',
-    sponsors: 'Tài trợ',
+    sponsor: 'Tài trợ',
   },
 };
