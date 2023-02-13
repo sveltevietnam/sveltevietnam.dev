@@ -30,6 +30,7 @@ module.exports = {
         ignoreFunctions: ['theme'],
       },
     ],
+    'declaration-block-no-redundant-longhand-properties': null,
   },
   ignoreFiles: ['**/app.html', '**/*.template.html'],
 };
