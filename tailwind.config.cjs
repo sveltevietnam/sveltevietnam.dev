@@ -27,10 +27,14 @@ const sveltevietnam = plugin(
     addComponents({
       '.c-container': {
         'max-width': '1200px',
-        'padding-left': theme('spacing.8'),
-        'padding-right': theme('spacing.8'),
+        'padding-left': theme('spacing.6'),
+        'padding-right': theme('spacing.6'),
         'margin-left': 'auto',
         'margin-right': 'auto',
+        [`@media (min-width: ${theme('screens.md')})`]: {
+          'padding-left': theme('spacing.8'),
+          'padding-right': theme('spacing.8'),
+        },
       },
     });
   },

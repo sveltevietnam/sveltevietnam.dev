@@ -6,9 +6,8 @@
   $: t = data.translations.page;
 </script>
 
-<h1>SVELTE VIETNAM</h1>
-
-<main class="h-screen">
+<main class="c-container mt-header h-screen">
+  <h1>SVELTE VIETNAM</h1>
   <section id="introduction">
     <h2 hidden>Introduction</h2>
     <article>
