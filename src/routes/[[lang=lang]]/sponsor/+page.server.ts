@@ -1,5 +1,5 @@
 import type { Language } from '$shared/services/i18n';
-import { translations } from '$shared/services/i18n/translations/pages/home';
+import { translations } from '$shared/services/i18n/translations/pages/sponsor';
 
 import type { PageServerLoad } from './$types';
 

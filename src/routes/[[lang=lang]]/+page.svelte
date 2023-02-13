@@ -3,12 +3,12 @@
 
   export let data: PageData;
 
-  $: t = data.translations;
+  $: t = data.translations.page;
 </script>
 
 <h1>SVELTE VIETNAM</h1>
 
-<main>
+<main class="h-screen">
   <section id="introduction">
     <h2 hidden>Introduction</h2>
     <article>
@@ -29,10 +29,4 @@
     <h2>{t.community.title}</h2>
     <p>{t.community.description}</p>
   </section>
-
-  <a
-    href={data.language === 'en' ? '/vi' : '/en'}
-    data-sveltekit-preload-data="hover"
-    data-sveltekit-noscroll>To other language version</a
-  >
 </main>
