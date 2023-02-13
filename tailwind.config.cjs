@@ -2,7 +2,9 @@ const postcss = require('postcss');
 const plugin = require('tailwindcss/plugin');
 
 const sveltevietnam = plugin(
-  ({  addVariant }) => {
+  ({ addVariant }) => {
+    addVariant('data-current', '&[data-current]:not([data-current="false"])');
+    addVariant('aria-current', '&[aria-current]:not([aria-current="false"])');
     addVariant('dark', [
       ':merge(html[data-color-scheme="dark"]) &',
       ({ container }) => {
@@ -24,7 +26,14 @@ const sveltevietnam = plugin(
   },
   {
     theme: {
-      extend: {},
+      extend: {
+        fontSize: {
+          '2xs': '0.625rem',
+        },
+        fontFamily: {
+          inter: ['Inter', 'sans-serif'],
+        },
+      },
     },
   },
 );

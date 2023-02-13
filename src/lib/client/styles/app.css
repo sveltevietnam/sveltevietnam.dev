@@ -7,6 +7,7 @@
 @layer base {
   html {
     height: 100%;
+    font-family: theme('fontFamily.inter');
   }
 
   body {
