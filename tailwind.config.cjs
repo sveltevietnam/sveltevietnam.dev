@@ -3,7 +3,8 @@ const plugin = require('tailwindcss/plugin');
 
 const sveltevietnam = plugin(
   ({ addVariant, addComponents, theme }) => {
-    addVariant('data-current', '&[data-current]:not([data-current="false"])');
+    const dataCurrent = '&[data-current]:not([data-current="false"])';
+    addVariant('data-current', dataCurrent);
     addVariant('aria-current', '&[aria-current]:not([aria-current="false"])');
     addVariant('dark', [
       ':merge(html[data-color-scheme="dark"]) &',
@@ -34,6 +35,32 @@ const sveltevietnam = plugin(
         [`@media (min-width: ${theme('screens.md')})`]: {
           'padding-left': theme('spacing.8'),
           'padding-right': theme('spacing.8'),
+        },
+      },
+      '.c-link': {
+        '& :is(img, svg)': {
+          transition: 'transform 200ms ease-in-out',
+        },
+        '&:hover': {
+          // FIXME: put in primary color when there is one
+          color: theme('colors.svelte'),
+          '& :is(img, svg)': {
+            transform: 'scale(1.05)',
+          },
+        },
+        '&:active': {
+          '& :is(img, svg)': {
+            transform: 'scale(0.95)',
+          },
+        },
+        [dataCurrent]: {
+          color: theme('colors.svelte'),
+        },
+      },
+      '* .c-link:not(:has(:is(img, svg))) ': {
+        color: theme('colors.svelte'),
+        '&:hover': {
+          'text-decoration-line': 'underline',
         },
       },
     });
@@ -83,6 +110,7 @@ const sveltevietnam = plugin(
             300: 'var(--color-bg-300)',
             400: 'var(--color-bg-400)',
           },
+          svelte: '#ef4623',
         },
       },
     },

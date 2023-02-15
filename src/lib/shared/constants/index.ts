@@ -19,3 +19,10 @@ export const { node: APP_ROUTE_TREE } = tBuild('APP_ROUTE_TREE', {
 export const LOAD_DEPENDENCIES = {
   COLOR_SCHEME: 'site:color-scheme',
 } as const;
+
+export const SOCIAL_LINKS = {
+  github: 'https://github.com/sveltevietnam',
+  discord: 'https://discord.gg/Rtv2xwhz7d',
+  twitter: 'https://twitter.com/sveltevietnam',
+  facebook: 'https://facebook.com/sveltevietnam',
+} as const;
