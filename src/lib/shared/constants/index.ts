@@ -26,3 +26,12 @@ export const SOCIAL_LINKS = {
   twitter: 'https://twitter.com/sveltevietnam',
   facebook: 'https://facebook.com/sveltevietnam',
 } as const;
+
+export const EMAILS = {
+  admin: 'admin@sveltevietnam.dev',
+  coc: 'coc@sveltevietnam.dev',
+  contact: 'contact@sveltevietnam.dev',
+  events: 'events@sveltevietnam.dev',
+  impact: 'impact@sveltevietnam.dev',
+  sponsor: 'sponsor@sveltevietnam.dev',
+} as const;
