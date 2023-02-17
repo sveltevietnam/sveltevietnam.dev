@@ -65,7 +65,7 @@
         <span>RSS</span>
       </a>
       <!-- svelte-ignore security-anchor-rel-noreferrer -->
-      <a href={codeOfConductLink} class="c-link flex space-x-1" target="_blank">
+      <a href={codeOfConductLink} class="c-link flex space-x-1">
         <Diversity height="16" width="16" />
         <span class:font-bold={$page.url.pathname === codeOfConductLink}>{t.codeOfConduct}</span>
       </a>

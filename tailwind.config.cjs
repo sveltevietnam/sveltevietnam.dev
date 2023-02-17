@@ -63,6 +63,21 @@ const sveltevietnam = plugin(
           'text-decoration-line': 'underline',
         },
       },
+      '.c-btn': {
+        display: 'grid',
+        'column-gap': theme('spacing.2'),
+        padding: `${theme('spacing.2')} ${theme('spacing.3')}`,
+        'border-radius': theme('borderRadius.DEFAULT'),
+        '&:has(:is(img, svg))': {
+          'grid-template-columns': 'auto auto',
+        },
+        '&:not([data-ctype]), &[data-ctype="default"]': {
+          'background-color': theme('colors.bg.300'),
+        },
+        '&[data-ctype="outline"]': {
+          border: `1px solid ${theme('colors.bg.300')}`,
+        },
+      },
     });
   },
   {
