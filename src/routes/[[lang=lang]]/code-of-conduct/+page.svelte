@@ -20,10 +20,10 @@
     <p class="notice-description">{@html t.notice.description}</p>
     <p class="notice-action">{t.notice.action}</p>
 
-    <div class="notice-ctas flex items-center justify-center space-x-10">
+    <div class="notice-ctas">
       <a href={SOCIAL_LINKS.discord} target="_blank" rel="noreferrer" class="c-btn">
         {t.notice.ctas.discord}
-        <Discord width="24" height="24" />
+        <Discord width="24" height="24" class="max-md:h-4 max-md:w-4" />
       </a>
       <a href={EMAILS.coc} target="_blank" rel="noreferrer" class="c-btn" data-ctype="outline"
         >{t.notice.ctas.email}</a
@@ -59,10 +59,14 @@
     row-gap: theme('spacing.4');
     column-gap: theme('spacing.4');
 
-    padding: theme('spacing.10');
+    padding: theme('spacing.6');
 
     background-color: theme('colors.bg.200');
     border-radius: theme('borderRadius.DEFAULT');
+
+    @screen md {
+      padding: theme('spacing.10');
+    }
 
     & .notice-icon {
       grid-area: icon;
@@ -77,7 +81,22 @@
     }
 
     & .notice-ctas {
+      display: flex;
       grid-area: ctas;
+
+      @media (max-width: theme('screens.md')) {
+        flex-direction: column;
+        font-size: theme('fontSize.sm');
+
+        @apply space-y-4;
+      }
+
+      @screen md {
+        @apply space-x-8;
+
+        align-items: center;
+        justify-content: center;
+      }
     }
   }
 
