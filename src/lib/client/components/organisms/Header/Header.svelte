@@ -3,6 +3,7 @@
   import { createEventDispatcher } from 'svelte';
   import { fly, slide, fade } from 'svelte/transition';
 
+  import { afterNavigate } from '$app/navigation';
   import { page } from '$app/stores';
   import DarkMode from '$client/components/icons/google/DarkMode.svelte';
   import LightMode from '$client/components/icons/google/LightMode.svelte';
@@ -71,6 +72,10 @@
   function toggleMobileOverlay() {
     mobileOverlayOpen = !mobileOverlayOpen;
   }
+
+  afterNavigate(() => {
+    mobileOverlayOpen = false;
+  });
 </script>
 
 <header class="sticky top-0 bg-bg-200">
