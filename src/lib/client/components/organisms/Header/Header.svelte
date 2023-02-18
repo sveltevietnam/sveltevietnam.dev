@@ -1,13 +1,43 @@
 <script lang="ts">
-  import { fly } from 'svelte/transition';
+  import { clickoutside } from '@svelte-put/clickoutside';
+  import { createEventDispatcher } from 'svelte';
+  import { fly, slide, fade } from 'svelte/transition';
 
   import { page } from '$app/stores';
+  import DarkMode from '$client/components/icons/google/DarkMode.svelte';
+  import LightMode from '$client/components/icons/google/LightMode.svelte';
   import SettingsSuggest from '$client/components/icons/google/SettingsSuggest.svelte';
   import { APP_ROUTE_TREE } from '$shared/constants';
   import { localizeUrl, type Language, LANGUAGES } from '$shared/services/i18n';
   import { translations } from '$shared/services/i18n/translations/header';
+  import type { ColorScheme } from '$shared/types';
 
   export let lang: Language;
+  export let colorScheme: ColorScheme;
+
+  const dispatch = createEventDispatcher<{ colorSchemeChange: ColorScheme }>();
+
+  const SCHEMES = {
+    light: {
+      scheme: 'light',
+      icon: LightMode,
+    },
+    dark: {
+      scheme: 'dark',
+      icon: DarkMode,
+    },
+    system: {
+      scheme: 'system',
+      icon: SettingsSuggest,
+    },
+  } as const;
+  let themeMenuOpen = false;
+  function toggleThemeMenu() {
+    themeMenuOpen = !themeMenuOpen;
+  }
+  function changeColorScheme(_scheme: ColorScheme) {
+    dispatch('colorSchemeChange', _scheme);
+  }
 
   $: t = translations[lang];
   $: navLinks = {
@@ -37,9 +67,9 @@
     document.documentElement.setAttribute('lang', lang);
   }
 
-  let mobileOpen = false;
+  let mobileOverlayOpen = false;
   function toggleMobileOverlay() {
-    mobileOpen = !mobileOpen;
+    mobileOverlayOpen = !mobileOverlayOpen;
   }
 </script>
 
@@ -51,8 +81,41 @@
         <span class="w-max font-bold">Svelte Vietnam</span>
       </a>
     </div>
-    <div class="theme">
-      <SettingsSuggest height="24" width="24" />
+    <div class="theme relative grid place-items-center" aria-expanded={themeMenuOpen}>
+      {#key colorScheme}
+        <button
+          class="hover:text-primary"
+          on:click|stopPropagation={toggleThemeMenu}
+          in:fade|local={{ duration: 150 }}
+        >
+          <svelte:component this={SCHEMES[colorScheme].icon} height="24" width="24" />
+        </button>
+      {/key}
+      {#key themeMenuOpen}
+        <div
+          class="absolute top-full right-0 z-popup mt-1 flex flex-col items-end shadow-lg"
+          class:hidden={!themeMenuOpen}
+          transition:slide|local={{ duration: 150 }}
+          use:clickoutside={{ enabled: themeMenuOpen }}
+          on:clickoutside={toggleThemeMenu}
+        >
+          <div class="triangle mr-2 triangle-t triangle-bg-100" />
+          <ul class="bg-bg-100 py-1">
+            {#each Object.values(SCHEMES) as s}
+              <li>
+                <button
+                  on:click={() => changeColorScheme(s.scheme)}
+                  class="flex w-full items-center space-x-2 py-2 px-4 text-sm font-bold hover:bg-bg-200 hover:text-primary"
+                  class:text-primary={colorScheme === s.scheme}
+                >
+                  <svelte:component this={s.icon} height="24" width="24" />
+                  <span class="whitespace-nowrap">{t.colorScheme[s.scheme]}</span>
+                </button>
+              </li>
+            {/each}
+          </ul>
+        </div>
+      {/key}
     </div>
     <button class="mobile-open" on:click={toggleMobileOverlay}>
       <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -77,15 +140,19 @@
         </defs>
       </svg>
     </button>
-    {#key mobileOpen}
-      <div class="mobile-wrapper" data-open={mobileOpen} transition:fly={{ duration: 200, x: 50 }}>
+    {#key mobileOverlayOpen}
+      <div
+        class="mobile-wrapper"
+        data-open={mobileOverlayOpen}
+        transition:fly={{ duration: 200, x: 50 }}
+      >
         <nav aria-label="languages" data-sveltekit-preload-data="hover" data-sveltekit-noscroll>
           <ul>
             {#each LANGUAGES as language, i}
               {@const current = language === lang}
               <li>
                 <a
-                  class="aria-current:font-bold"
+                  class="hover:text-primary aria-current:font-bold"
                   aria-current={current}
                   href={localizeUrl($page.url, language).toString()}
                   on:click={() => changeLanguage(language)}
@@ -104,7 +171,7 @@
             {#each Object.values(navLinks) as { text, href }}
               {@const current = href === $page.url.pathname}
               <li>
-                <a class="hover:font-medium aria-current:font-bold" aria-current={current} {href}
+                <a class="hover:text-primary aria-current:font-bold" aria-current={current} {href}
                   >{text}</a
                 >
               </li>
@@ -133,9 +200,9 @@
 <style lang="postcss">
   header > div {
     display: grid;
-    grid-gap: theme('spacing.2');
     grid-template-areas: 'logo theme mobile-open';
     grid-template-columns: 1fr auto auto;
+    column-gap: theme('spacing.4');
     align-items: center;
 
     height: theme('spacing.header');
@@ -200,6 +267,7 @@
 
   .mobile-wrapper {
     position: fixed;
+    z-index: theme('zIndex.overlay');
     inset: 0;
 
     display: none;

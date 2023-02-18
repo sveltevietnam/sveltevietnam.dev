@@ -43,7 +43,7 @@ const sveltevietnam = plugin(
         },
         '&:hover': {
           // FIXME: put in primary color when there is one
-          color: theme('colors.svelte'),
+          color: theme('colors.primary'),
           '& :is(img, svg)': {
             transform: 'scale(1.05)',
           },
@@ -54,11 +54,11 @@ const sveltevietnam = plugin(
           },
         },
         [dataCurrent]: {
-          color: theme('colors.svelte'),
+          color: theme('colors.primary'),
         },
       },
       '* .c-link:not(:has(:is(img, svg))) ': {
-        color: theme('colors.svelte'),
+        color: theme('colors.primary'),
         '&:hover': {
           'text-decoration-line': 'underline',
         },
@@ -127,7 +127,18 @@ const sveltevietnam = plugin(
             300: 'var(--color-bg-300)',
             400: 'var(--color-bg-400)',
           },
+          primary: '#ef4623',
           svelte: '#ef4623',
+        },
+        zIndex: {
+          px: '1',
+          modal: '80', // a modal/dialog
+          // sidebar: '92', // sidebar
+          // float: '100', // floating buttons and such
+          popup: '120', // tooltip, dropdown, popover etc
+          overlay: '150', // a full screen overlay
+          // command: '200', // command palette
+          // notification: '300', // notification
         },
       },
     },
@@ -138,7 +149,7 @@ const sveltevietnam = plugin(
 const config = {
   darkMode: '',
   content: ['./src/**/*.{html,js,svelte,ts,md}', 'svelte.config.js'],
-  plugins: [sveltevietnam],
+  plugins: [require('@tailwindash/triangle'), sveltevietnam],
 };
 
 module.exports = config;

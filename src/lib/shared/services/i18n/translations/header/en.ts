@@ -8,4 +8,9 @@ export const en = {
     people: 'People',
     sponsor: 'Sponsor',
   },
+  colorScheme: {
+    dark: 'Dark',
+    light: 'Light',
+    system: 'System',
+  },
 } satisfies typeof vi;

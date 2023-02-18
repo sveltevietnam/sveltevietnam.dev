@@ -2,8 +2,10 @@ lockfileVersion: 5.4
 
 specifiers:
   '@builder.io/partytown': ^0.7.5
+  '@svelte-put/clickoutside': ^2.0.0
   '@sveltejs/adapter-vercel': ^2.0.2
   '@sveltejs/kit': ^1.7.1
+  '@tailwindash/triangle': ^1.0.5
   '@types/cookie': ^0.5.1
   '@types/gtag.js': ^0.0.12
   '@types/postcss-mixins': ^9.0.0
@@ -52,8 +54,10 @@ dependencies:
   web-vitals: 3.1.1
 
 devDependencies:
+  '@svelte-put/clickoutside': 2.0.0
   '@sveltejs/adapter-vercel': 2.0.2_@sveltejs+kit@1.7.1
   '@sveltejs/kit': 1.7.1_svelte@3.55.1+vite@4.1.2
+  '@tailwindash/triangle': 1.0.5_tailwindcss@3.2.7
   '@types/cookie': 0.5.1
   '@types/gtag.js': 0.0.12
   '@types/postcss-mixins': 9.0.0
@@ -456,6 +460,10 @@ packages:
       picomatch: 2.3.1
     dev: true
 
+  /@svelte-put/clickoutside/2.0.0:
+    resolution: {integrity: sha512-04xYxOT5Ti+VlP70+uY/a5tGnVWl3XFgnRiO9bMSHbkwOlzHxSgXyM1NCS4NV09B3i41LRuShgeMrbgU0J5cPg==}
+    dev: true
+
   /@sveltejs/adapter-vercel/2.0.2_@sveltejs+kit@1.7.1:
     resolution: {integrity: sha512-Mn80jy3rPNWB9iBp93MHXWwOh1qyxNzMNal0Dd80rD3As5Qi5L3lGhr1cIZ3T3Y3giwAVxzjMiHEflaUb8sjqg==}
     peerDependencies:
@@ -514,6 +522,14 @@ packages:
       vitefu: 0.2.4_vite@4.1.2
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@tailwindash/triangle/1.0.5_tailwindcss@3.2.7:
+    resolution: {integrity: sha512-NKXOMqhMTZwpt9Nv4Qqm37UwjmhpWUnrq+1jabDl4y9jcMZKtohaajr+ay+fYe6VFx1bjZFvl1CXobwGsv+7gg==}
+    peerDependencies:
+      tailwindcss: ^3.1.0
+    dependencies:
+      tailwindcss: 3.2.7_postcss@8.4.21
     dev: true
 
   /@trysound/sax/0.2.0:
