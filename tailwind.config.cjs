@@ -73,10 +73,13 @@ const sveltevietnam = plugin(
         '&:has(:is(img, svg))': {
           'grid-template-columns': 'auto auto',
         },
-        '&:not([data-ctype]), &[data-ctype="default"]': {
+        '&:not(:has(:is(img, svg)))': {
+          'text-align': 'center',
+        },
+        '&:where(:not([data-ctype])), &:where([data-ctype="default"])': {
           'background-color': theme('colors.bg.300'),
         },
-        '&[data-ctype="outline"]': {
+        '&:where([data-ctype="outlined"])': {
           border: `1px solid ${theme('colors.bg.300')}`,
         },
       },
