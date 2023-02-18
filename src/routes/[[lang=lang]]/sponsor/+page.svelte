@@ -1,10 +1,53 @@
 <script lang="ts">
+  import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
+
   import type { PageData } from './$types';
   export let data: PageData;
 
   $: t = data.translations.page;
 </script>
 
-<main>
-  <h1>Page Skeleton</h1>
+<main class="c-container grid gap-y-10 pb-20 md:gap-y-20">
+  <section class="page-header">
+    <h1 class="text-center text-6xl font-bold uppercase">{t.title}</h1>
+  </section>
+
+  <section>
+    <h2 hidden>Introduction</h2>
+    <p>{@html t.intro}</p>
+  </section>
+
+  <section class="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-10">
+    <h2 hidden>Call to Action</h2>
+    <a href={SOCIAL_LINKS.openCollective} class="c-btn h-24">{@html t.ctas.sponsor}</a>
+    <a
+      href="mailto:{EMAILS.sponsor}"
+      target="_blank"
+      rel="noreferrer"
+      class="c-btn h-24"
+      data-ctype="outlined"
+    >
+      <span>{@html t.ctas.question}</span>
+    </a>
+  </section>
+
+  <section class="space-y-4">
+    <h2 class="text-3xl font-bold">{t.why.title}</h2>
+    <p>{@html t.why.description}</p>
+  </section>
+
+  <a
+    href={SOCIAL_LINKS.openCollective}
+    target="_blank"
+    rel="noreferrer"
+    class="c-btn justify-self-center bg-bg-200">{t.sponsors.cta}</a
+  >
 </main>
+
+<style lang="postcss">
+  .page-header {
+    display: grid;
+    place-items: center;
+    height: 600px;
+  }
+</style>
