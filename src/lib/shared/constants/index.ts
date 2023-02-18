@@ -25,6 +25,7 @@ export const SOCIAL_LINKS = {
   discord: 'https://discord.gg/Rtv2xwhz7d',
   twitter: 'https://twitter.com/sveltevietnam',
   facebook: 'https://facebook.com/sveltevietnam',
+  openCollective: 'https://opencollective.com/sveltevietnam',
 } as const;
 
 export const EMAILS = {
