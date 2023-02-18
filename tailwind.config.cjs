@@ -67,6 +67,8 @@ const sveltevietnam = plugin(
         display: 'grid',
         'column-gap': theme('spacing.2'),
         padding: `${theme('spacing.2')} ${theme('spacing.3')}`,
+        'justify-content': 'center',
+        'align-items': 'center',
         'border-radius': theme('borderRadius.DEFAULT'),
         '&:has(:is(img, svg))': {
           'grid-template-columns': 'auto auto',
