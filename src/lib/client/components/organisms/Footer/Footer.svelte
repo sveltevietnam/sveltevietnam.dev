@@ -62,7 +62,6 @@
     <section class="links flex space-x-2 md:space-x-4">
       <a href="/sitemap.xml" class="c-link flex space-x-1" target="_blank">
         <AccountTree title="Sitemap" height="20" width="20" class="max-md:h-4 max-md:w-4" />
-        <!-- FIXME: add a tooltip here on md -->
         <span class="md:hidden">Sitemap</span>
       </a>
       <a href="/rss.xml" class="c-link flex space-x-1" target="_blank">
@@ -71,7 +70,7 @@
       </a>
       <!-- svelte-ignore security-anchor-rel-noreferrer -->
       <a href={codeOfConductLink} class="c-link flex space-x-1">
-        <Diversity height="20" width="20" class="max-md:h-4 max-md:w-4" />
+        <Diversity height="20" width="20" class="max-md:h-4 max-md:w-4" title={t.codeOfConduct} />
         <span class="md:hidden" class:font-bold={$page.url.pathname === codeOfConductLink}
           >{t.codeOfConduct}</span
         >
