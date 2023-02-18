@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Info from '$client/components/icons/google/Info.svelte';
+  import ShieldWithHeart from '$client/components/icons/google/ShieldWithHeart.svelte';
   import Discord from '$client/components/icons/simpleicons/Discord.svelte';
   import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
 
@@ -9,14 +9,16 @@
   $: t = data.translations.page;
 </script>
 
-<main class="c-container">
-  <section id="page-header">
+<main class="c-container grid gap-y-10 pb-20 md:gap-y-20">
+  <section class="page-header">
     <h1 class="text-center text-6xl font-bold uppercase">{t.title}</h1>
   </section>
 
   <section class="notice">
     <h2 hidden>Description</h2>
-    <Info height="24" width="24" class="notice-icon" />
+    <div class="notice-icon">
+      <ShieldWithHeart height="24" width="24" />
+    </div>
     <p class="notice-description">{@html t.notice.description}</p>
     <p class="notice-action">{t.notice.action}</p>
 
@@ -25,13 +27,17 @@
         {t.notice.ctas.discord}
         <Discord width="24" height="24" class="max-md:h-4 max-md:w-4" />
       </a>
-      <a href={EMAILS.coc} target="_blank" rel="noreferrer" class="c-btn" data-ctype="outline"
-        >{t.notice.ctas.email}</a
+      <a
+        href="mailto:{EMAILS.coc}"
+        target="_blank"
+        rel="noreferrer"
+        class="c-btn"
+        data-ctype="outlined"><span>{@html t.notice.ctas.email}</span></a
       >
     </div>
   </section>
 
-  <section class="space-y-10 py-20">
+  <section class="space-y-10">
     <h2 hidden>Excerpt</h2>
     <p>{t.excerpt.intro}</p>
     <figure class="excerpt">
@@ -44,7 +50,7 @@
 </main>
 
 <style lang="postcss">
-  #page-header {
+  .page-header {
     display: grid;
     place-items: center;
     height: 600px;

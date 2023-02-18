@@ -3,7 +3,7 @@ import { EMAILS } from '$shared/constants';
 import type { vi } from './vi';
 
 export const en = {
-  title: 'CODE OF CONDUCT',
+  title: 'Code of Conduct',
   notice: {
     description:
       'All members (individuals and organizations) participating in the Svelte Vietnam community must follow the “Code of Conduct” of <a href="https://github.com/sveltejs/community/blob/main/CODE_OF_CONDUCT.md" target="_blank" rel="noreferrer" class="c-link">sveltejs/community</a> and <a href="https://sveltesociety.dev/about" target="_blank" rel="noreferrer" class="c-link">Svelte Society</a>.',
@@ -11,7 +11,7 @@ export const en = {
       'For reports, feedback, and questions, please reach out through the following channels. Thank you!',
     ctas: {
       discord: 'Contact moderator at dicsord',
-      email: `Email ${EMAILS.coc}`,
+      email: `Email <em>${EMAILS.coc}</em>`,
     },
   },
   excerpt: {

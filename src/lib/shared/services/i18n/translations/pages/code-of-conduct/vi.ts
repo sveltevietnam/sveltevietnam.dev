@@ -1,14 +1,14 @@
 import { EMAILS } from '$shared/constants';
 
 export const vi = {
-  title: 'QUY TẮC ỨNG XỬ',
+  title: 'Quy tắc ứng xử',
   notice: {
     description:
       'Mọi thành viên (cá nhân hoặc tổ chức) tham gia cộng đồng Svelte Vietnam cần tuân theo các quy tắc ứng xử đã được đề ra trong văn bản “Code of Conduct” của <a href="https://github.com/sveltejs/community/blob/main/CODE_OF_CONDUCT.md" target="_blank" rel="noreferrer" class="c-link">sveltejs/community</a> và <a href="https://sveltesociety.dev/about" target="_blank" rel="noreferrer" class="c-link">Svelte Society</a>.',
     action: 'Vui lòng gởi khiếu nại, góp ý, và thắc mắc thông qua các kênh dưới đây. Xin cảm ơn!',
     ctas: {
       discord: 'Liên hệ với quản trị qua Discord',
-      email: `Email ${EMAILS.coc}`,
+      email: `Email <em>${EMAILS.coc}</em>`,
     },
   },
   excerpt: {
