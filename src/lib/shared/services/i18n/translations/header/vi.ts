@@ -6,4 +6,9 @@ export const vi = {
     people: 'Con người',
     sponsor: 'Tài trợ',
   },
+  colorScheme: {
+    dark: 'Tối',
+    light: 'Sáng',
+    system: 'Hệ thống',
+  },
 };
