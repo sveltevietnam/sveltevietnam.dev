@@ -65,6 +65,6 @@
   "packageManager": "pnpm@7.26.3",
   "engines": {
     "pnpm": ">=7.26.0",
-    "node": ">=16.16.0"
+    "node": ">=18.14.0"
   }
 }
