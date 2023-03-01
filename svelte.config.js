@@ -1,9 +1,19 @@
+import inlineSvg from '@svelte-put/preprocess-inline-svg';
 import adapter from '@sveltejs/adapter-vercel';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-  preprocess: [vitePreprocess()],
+  preprocess: [
+    vitePreprocess(),
+    inlineSvg({
+      directories: ['src/lib/shared/assets/images/svg'],
+      attributes: {
+        height: 24,
+        width: 24,
+      },
+    }),
+  ],
   kit: {
     adapter: adapter(),
     alias: {

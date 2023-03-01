@@ -5,13 +5,12 @@
 
   import { afterNavigate } from '$app/navigation';
   import { page } from '$app/stores';
-  import DarkMode from '$client/components/icons/google/DarkMode.svelte';
-  import LightMode from '$client/components/icons/google/LightMode.svelte';
-  import SettingsSuggest from '$client/components/icons/google/SettingsSuggest.svelte';
   import { APP_ROUTE_TREE } from '$shared/constants';
   import { localizeUrl, type Language, LANGUAGES } from '$shared/services/i18n';
   import { translations } from '$shared/services/i18n/translations/header';
   import type { ColorScheme } from '$shared/types';
+
+  import ColorSchemeIcon from './ColorSchemeIcon.svelte';
 
   export let lang: Language;
   export let colorScheme: ColorScheme;
@@ -21,15 +20,12 @@
   const SCHEMES = {
     light: {
       scheme: 'light',
-      icon: LightMode,
     },
     dark: {
       scheme: 'dark',
-      icon: DarkMode,
     },
     system: {
       scheme: 'system',
-      icon: SettingsSuggest,
     },
   } as const;
   let themeMenuOpen = false;
@@ -93,7 +89,7 @@
           on:click|stopPropagation={toggleThemeMenu}
           in:fade|local={{ duration: 150 }}
         >
-          <svelte:component this={SCHEMES[colorScheme].icon} height="24" width="24" />
+          <ColorSchemeIcon scheme={SCHEMES[colorScheme].scheme} />
         </button>
       {/key}
       {#key themeMenuOpen}
@@ -113,7 +109,7 @@
                   class="flex w-full items-center space-x-2 py-2 px-4 text-sm font-bold hover:bg-bg-200 hover:text-primary"
                   class:text-primary={colorScheme === s.scheme}
                 >
-                  <svelte:component this={s.icon} height="24" width="24" />
+                  <ColorSchemeIcon scheme={s.scheme} />
                   <span class="whitespace-nowrap">{t.colorScheme[s.scheme]}</span>
                 </button>
               </li>
