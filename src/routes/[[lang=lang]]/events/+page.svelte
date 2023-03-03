@@ -1,9 +1,11 @@
 <script lang="ts">
+  import { enhance } from '$app/forms';
   import { EventCard } from '$client/components/organisms/EventCard';
   import { APP_ROUTE_TREE, EMAILS, SOCIAL_LINKS } from '$shared/constants';
 
-  import type { PageData } from './$types';
+  import type { ActionData, PageData } from './$types';
   export let data: PageData;
+  export let form: ActionData;
 
   $: t = data.translations.page;
 
@@ -47,16 +49,44 @@
       <div class="c-graphic" />
       <h2 class="c-page@h2">{t.actions.participate.title}</h2>
       <p>{t.actions.participate.description}</p>
-      <form class="notification-form">
-        <input class="c-input" type="text" placeholder={t.actions.participate.form.name} />
-        <input class="c-input" type="text" placeholder="Email" />
+      <form class="notification-form" method="POST" use:enhance action="?/notify" autocomplete="on">
+        <div class="relative">
+          {#if form?.error?.form?.name?.[0]}
+            <p class="absolute bottom-full left-0 pb-0.5 text-2xs italic text-status-error">
+              {form.error?.form?.name?.[0]}
+            </p>
+          {/if}
+          <input
+            class="c-input"
+            type="text"
+            name="name"
+            value={form?.data?.name ?? ''}
+            placeholder={t.actions.participate.form.name}
+            required
+          />
+        </div>
+        <div class="relative">
+          {#if form?.error?.form?.email?.[0]}
+            <p class="absolute bottom-full left-0 pb-0.5 text-2xs italic text-status-error">
+              {form.error?.form?.email?.[0]}
+            </p>
+          {/if}
+          <input
+            class="c-input"
+            type="email"
+            name="email"
+            value={form?.data?.email ?? ''}
+            placeholder="Email"
+            required
+          />
+        </div>
         <button type="submit" class="c-btn">{t.actions.participate.form.cta}</button>
       </form>
     </section>
 
     <a
       href={SOCIAL_LINKS.discord}
-      class="c-btn c-btn--outlined w-fit justify-self-center md:col-span-2"
+      class="c-btn--outlined c-btn w-fit justify-self-center md:col-span-2"
     >
       {t.actions.discord.cta}
       <svg data-inline-src="simpleicon/discord" />
@@ -96,6 +126,7 @@
     padding: theme('spacing.10');
 
     background-color: theme('colors.bg.200');
+    border-radius: theme('borderRadius.DEFAULT');
 
     & > p {
       text-align: center;
