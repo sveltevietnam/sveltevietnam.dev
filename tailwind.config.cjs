@@ -2,7 +2,7 @@ const postcss = require('postcss');
 const plugin = require('tailwindcss/plugin');
 
 const sveltevietnam = plugin(
-  ({ addVariant, addComponents, theme }) => {
+  ({ addVariant, addComponents, theme, addUtilities }) => {
     const dataCurrent = '&[data-current]:not([data-current="false"])';
     addVariant('data-current', dataCurrent);
     addVariant('aria-current', '&[aria-current]:not([aria-current="false"])');
@@ -24,6 +24,14 @@ const sveltevietnam = plugin(
         container.append(mediaRule);
       },
     ]);
+
+    addUtilities({
+      '.square': {
+        'aspect-ratio': '1 / 1',
+        'min-height': '0',
+        'min-width': '0',
+      },
+    });
 
     addComponents({
       '.c-container': {
@@ -81,6 +89,27 @@ const sveltevietnam = plugin(
         },
         '&:where([data-ctype="outlined"])': {
           border: `1px solid ${theme('colors.bg.300')}`,
+        },
+        '&:where([data-ctype="text"])': {
+          position: 'relative',
+          padding: `0 0 ${theme('spacing.1')}`,
+          'font-weight': theme('fontWeight.medium'),
+          '&::after': {
+            content: '""',
+            display: 'block',
+            position: 'absolute',
+            top: '100%',
+            left: '0',
+            width: '100%',
+            height: 1,
+            background: theme('colors.fg.200'),
+            transition: `transform 250ms ${theme('transitionTimingFunction.DEFAULT')}`,
+            'transform-origin': 'left center',
+            transform: 'scaleX(0)',
+          },
+          '&:hover::after': {
+            transform: 'scaleX(1)',
+          },
         },
       },
     });
