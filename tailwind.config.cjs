@@ -71,7 +71,8 @@ const sveltevietnam = plugin(
       '.c-btn': {
         display: 'grid',
         'column-gap': theme('spacing.2'),
-        padding: `${theme('spacing.2')} ${theme('spacing.3')}`,
+        padding: `0 ${theme('spacing.3')}`,
+        height: '40px',
         'justify-content': 'center',
         'align-items': 'center',
         'border-radius': theme('borderRadius.DEFAULT'),
@@ -135,9 +136,19 @@ const sveltevietnam = plugin(
       },
 
       '.c-input': {
-        padding: `${theme('spacing.2')} ${theme('spacing.3')}`,
+        padding: `0 ${theme('spacing.3')}`,
+        height: '40px',
         'border-radius': theme('borderRadius.DEFAULT'),
         'min-width': 0,
+        width: '100%',
+        'background-color': 'transparent',
+        border: `1px solid ${theme('colors.fg.200')}`,
+        '&:focus': {
+          outline: `1px solid ${theme('colors.fg.200')}`,
+        },
+        '&:invalid:not(:placeholder-shown)': {
+          'border-color': `${theme('colors.status.error')}`,
+        },
       },
 
       // page level components

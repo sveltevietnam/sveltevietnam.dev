@@ -21,6 +21,19 @@ export const en = {
       form: {
         name: 'Name',
         cta: 'Notify me',
+        validation: {
+          error: {
+            email: {
+              required: 'Email is required',
+              invalid: 'Email is invalid',
+            },
+            name: {
+              required: 'Name is required',
+              invalid: 'Name is invalid',
+            },
+          },
+          success: 'Registered successfully',
+        },
       },
     },
     discord: {
