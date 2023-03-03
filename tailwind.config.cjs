@@ -66,10 +66,7 @@ const sveltevietnam = plugin(
         },
       },
       '* .c-link:not(:has(:is(img, svg))) ': {
-        color: theme('colors.primary'),
-        '&:hover': {
-          'text-decoration-line': 'underline',
-        },
+        'text-decoration-line': 'underline',
       },
       '.c-btn': {
         display: 'grid',
@@ -84,13 +81,14 @@ const sveltevietnam = plugin(
         '&:not(:has(:is(img, svg)))': {
           'text-align': 'center',
         },
-        '&:where(:not([data-ctype])), &:where([data-ctype="default"])': {
+        '&:not(:is(.c-btn--outlined, .c-btn--text)), &.c-btn--default': {
           'background-color': theme('colors.bg.300'),
+          'white-space': 'nowrap',
         },
-        '&:where([data-ctype="outlined"])': {
+        '&.c-btn--outlined': {
           border: `1px solid ${theme('colors.bg.300')}`,
         },
-        '&:where([data-ctype="text"])': {
+        '&.c-btn--text': {
           position: 'relative',
           padding: `0 0 ${theme('spacing.1')}`,
           'font-weight': theme('fontWeight.medium'),
@@ -113,6 +111,35 @@ const sveltevietnam = plugin(
         },
       },
 
+      '.c-graphic': {
+        'aspect-ratio': '1 / 1',
+        width: '120px',
+        height: '120px',
+        'background-color': theme('colors.bg.300'),
+        'border-radius': theme('borderRadius.DEFAULT'),
+      },
+
+      '.c-avatar': {
+        'aspect-ratio': '1 / 1',
+        width: '40px',
+        height: '40px',
+        'background-color': theme('colors.bg.300'),
+        'border-radius': theme('borderRadius.full'),
+      },
+
+      '.c-sponsor': {
+        height: '40px',
+        width: 'auto',
+        'background-color': theme('colors.bg.300'),
+        'border-radius': theme('borderRadius.DEFAULT'),
+      },
+
+      '.c-input': {
+        padding: `${theme('spacing.2')} ${theme('spacing.3')}`,
+        'border-radius': theme('borderRadius.DEFAULT'),
+        'min-width': 0,
+      },
+
       // page level components
       '.c-page': {
         '@apply c-container': {},
@@ -124,15 +151,21 @@ const sveltevietnam = plugin(
         },
       },
       '.c-page\\@header': {
+        '@apply space-y-6': {},
         display: 'flex',
+        'flex-direction': 'column',
         'justify-content': 'center',
         'align-items': 'center',
         height: '600px',
+        'text-align': 'center',
       },
       '.c-page\\@h1': {
         'font-size': theme('fontSize.6xl'),
         'font-weight': theme('fontWeight.bold'),
         'text-transform': 'uppercase',
+      },
+      '.c-page\\@h1-sub': {
+        'font-size': '32px',
       },
       '.c-page\\@h2': {
         'font-size': '32px',

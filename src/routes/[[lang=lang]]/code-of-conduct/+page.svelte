@@ -30,12 +30,8 @@
           class="max-md:h-4 max-md:w-4"
         />
       </a>
-      <a
-        href="mailto:{EMAILS.coc}"
-        target="_blank"
-        rel="noreferrer"
-        class="c-btn"
-        data-ctype="outlined"><span>{@html t.notice.ctas.email}</span></a
+      <a href="mailto:{EMAILS.coc}" target="_blank" rel="noreferrer" class="c-btn c-btn--outlined"
+        ><span>{@html t.notice.ctas.email}</span></a
       >
     </div>
   </section>
