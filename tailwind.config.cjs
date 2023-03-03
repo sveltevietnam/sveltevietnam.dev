@@ -112,6 +112,32 @@ const sveltevietnam = plugin(
           },
         },
       },
+
+      // page level components
+      '.c-page': {
+        '@apply c-container': {},
+        display: 'grid',
+        'row-gap': theme('spacing.10'),
+        'padding-bottom': theme('spacing.20'),
+        '@screen md': {
+          'row-gap': theme('spacing.20'),
+        },
+      },
+      '.c-page\\@header': {
+        display: 'flex',
+        'justify-content': 'center',
+        'align-items': 'center',
+        height: '600px',
+      },
+      '.c-page\\@h1': {
+        'font-size': theme('fontSize.6xl'),
+        'font-weight': theme('fontWeight.bold'),
+        'text-transform': 'uppercase',
+      },
+      '.c-page\\@h2': {
+        'font-size': '32px',
+        'font-weight': theme('fontWeight.bold'),
+      },
     });
   },
   {
