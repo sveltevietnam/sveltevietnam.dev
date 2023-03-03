@@ -24,15 +24,14 @@
       href="mailto:{EMAILS.sponsor}"
       target="_blank"
       rel="noreferrer"
-      class="c-btn h-24"
-      data-ctype="outlined"
+      class="c-btn c-btn--outlined h-24"
     >
       <span>{@html t.ctas.question}</span>
     </a>
   </section>
 
   <section class="space-y-4">
-    <h2 class="c-page@h2">{t.why.title}</h2>
+    <h2 class="c-page@h2" id="why">{t.why.title}</h2>
     <p>{@html t.why.description}</p>
   </section>
 

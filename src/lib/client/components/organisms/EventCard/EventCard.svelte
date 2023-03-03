@@ -45,8 +45,10 @@
 </script>
 
 <article class="event-card space-y-6 {cls}">
-  <section class="flex items-center space-x-10">
-    <div class="w-fit shrink-0 rounded border border-fg-100 p-3 text-center square">
+  <section class="flex max-md:flex-col max-md:space-y-10 md:items-center md:space-x-10">
+    <div
+      class="flex w-32 shrink-0 flex-col items-center justify-center space-y-1 rounded border border-fg-100 text-center square max-md:self-center"
+    >
       <p class="text-2xl">{rStartDate.getDate()}</p>
       <p class="text-xl font-bold">{monthFormatter.format(rStartDate)}</p>
       <p>{rStartDate.getFullYear()}</p>
@@ -74,22 +76,23 @@
   {#if event.highlights.length}
     <section class="space-y-4">
       <p class="text-xl font-bold">Highlights</p>
-      <ul class="grid w-fit grid-cols-[auto,auto,auto] items-center gap-4">
+      <ul class="grid w-fit grid-cols-[auto,1fr] items-center gap-4 md:grid-cols-[auto,auto,auto]">
         {#each event.highlights as { image, title, description }}
           <li class="contents">
             {#if image}
-              <img
+              <!-- <img
                 src={image}
                 alt={title}
                 class="aspect-square object-contain"
                 height="50"
                 width="50"
-              />
+              /> -->
+              <div class="c-avatar" />
             {:else}
               <div aria-disabled />
             {/if}
             <p class="font-medium">{title}</p>
-            <p>{description}</p>
+            <p class="max-md:hidden">{description}</p>
           </li>
         {/each}
       </ul>
@@ -98,8 +101,8 @@
 
   {#if event.sponsors.length}
     <section class="space-y-4">
-      <p class="text-2xl font-bold">Sponsors</p>
-      <ul class="flex items-center space-x-4">
+      <p class="text-xl font-bold">Sponsors</p>
+      <ul class="flex max-md:flex-col max-md:space-y-4 md:items-center md:space-x-4">
         {#each event.sponsors as { href, image, name }}
           <li>
             <a {href} title={name}>
@@ -111,7 +114,7 @@
     </section>
   {/if}
 
-  <a href={event.href} class="c-btn w-fit" data-ctype="text">
+  <a href={event.href} class="c-btn c-btn--text w-fit">
     <span>View Details</span>
     <svg height="16" width="16" data-inline-src="google/arrow-right-alt" />
   </a>

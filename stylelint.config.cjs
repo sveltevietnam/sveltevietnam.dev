@@ -31,6 +31,7 @@ module.exports = {
       },
     ],
     'declaration-block-no-redundant-longhand-properties': null,
+    'selector-class-pattern': null,
   },
   ignoreFiles: ['**/app.html', '**/*.template.html'],
 };
