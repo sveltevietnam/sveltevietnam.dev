@@ -7,9 +7,9 @@
   $: t = data.translations.page;
 </script>
 
-<main class="c-container grid gap-y-10 pb-20 md:gap-y-20">
-  <section class="page-header">
-    <h1 class="text-center text-6xl font-bold uppercase">{t.title}</h1>
+<main class="c-page">
+  <section class="c-page@header">
+    <h1 class="c-page@h1">{t.title}</h1>
   </section>
 
   <section>
@@ -32,7 +32,7 @@
   </section>
 
   <section class="space-y-4">
-    <h2 class="text-3xl font-bold">{t.why.title}</h2>
+    <h2 class="c-page@h2">{t.why.title}</h2>
     <p>{@html t.why.description}</p>
   </section>
 
@@ -43,11 +43,3 @@
     class="c-btn justify-self-center bg-bg-200">{t.sponsors.cta}</a
   >
 </main>
-
-<style lang="postcss">
-  .page-header {
-    display: grid;
-    place-items: center;
-    height: 600px;
-  }
-</style>
