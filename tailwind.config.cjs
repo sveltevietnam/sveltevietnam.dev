@@ -114,22 +114,22 @@ const sveltevietnam = plugin(
 
       '.c-graphic': {
         'aspect-ratio': '1 / 1',
-        width: '120px',
-        height: '120px',
+        'min-width': '120px',
+        'min-height': '120px',
         'background-color': theme('colors.bg.300'),
         'border-radius': theme('borderRadius.DEFAULT'),
       },
 
       '.c-avatar': {
         'aspect-ratio': '1 / 1',
-        width: '40px',
-        height: '40px',
+        'min-width': '40px',
+        'min-height': '40px',
         'background-color': theme('colors.bg.300'),
         'border-radius': theme('borderRadius.full'),
       },
 
       '.c-sponsor': {
-        height: '40px',
+        'min-height': '40px',
         width: 'auto',
         'background-color': theme('colors.bg.300'),
         'border-radius': theme('borderRadius.DEFAULT'),
@@ -181,6 +181,22 @@ const sveltevietnam = plugin(
       '.c-page\\@h2': {
         'font-size': '32px',
         'font-weight': theme('fontWeight.bold'),
+      },
+
+      // action card
+      '.c-action-card': {
+        display: 'grid',
+        'grid-template-columns': '1fr',
+        'grid-auto-rows': 'min-content',
+        gap: theme('spacing.6'),
+        'justify-content': 'center',
+        'justify-items': 'center',
+        padding: theme('spacing.10'),
+        'background-color': theme('colors.bg.200'),
+        'border-radius': theme('borderRadius.DEFAULT'),
+        '& > p': {
+          'text-align': 'center',
+        },
       },
     });
   },
