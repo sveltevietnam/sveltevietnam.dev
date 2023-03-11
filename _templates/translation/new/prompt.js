@@ -22,16 +22,10 @@ module.exports = {
         type: 'select',
         name: 'domain',
         message: 'Pick a domain:',
-        choices: ['page', 'default'],
+        choices: ['page', 'action', 'component'],
         required: true,
       }));
-      switch (domain) {
-        case 'page':
-          domain = 'pages/';
-          break;
-        case 'default':
-        default:
-      }
+      domain = `${domain}s/`;
     }
 
     return { name, domain };

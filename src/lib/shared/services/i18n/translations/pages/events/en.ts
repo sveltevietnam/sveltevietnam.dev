@@ -18,23 +18,6 @@ export const en = {
     participate: {
       title: 'Participate',
       description: 'Register to receive email notification about upcoming Svelte Vietnam meetups',
-      form: {
-        name: 'Name',
-        cta: 'Notify me',
-        validation: {
-          error: {
-            email: {
-              required: 'Email is required',
-              invalid: 'Email is invalid',
-            },
-            name: {
-              required: 'Name is required',
-              invalid: 'Name is invalid',
-            },
-          },
-          success: 'Registered successfully',
-        },
-      },
     },
     discord: {
       cta: 'Join the community now in Discord',

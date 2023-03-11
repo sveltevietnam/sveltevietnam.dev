@@ -23,3 +23,14 @@ export interface Sponsor {
   name: string;
   href: string;
 }
+
+export interface Job {
+  title: string;
+  company: string;
+  salary?: string;
+  location?: string;
+  locationPolicy?: 'remote' | 'hybrid';
+  createdAt: string;
+  expiresAt?: string;
+  sponsored: boolean;
+}

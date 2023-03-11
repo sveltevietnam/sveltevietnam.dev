@@ -1,4 +1,4 @@
-import type { Event } from '$shared/types';
+import type { Event, Job } from '$shared/types';
 
 export function createMockedEvent() {
   return {
@@ -42,4 +42,56 @@ export function createMockedEvent() {
 
 export function createMockedEvents(length: number) {
   return new Array(length).fill(createMockedEvent());
+}
+
+export function createMockedJobs(sponsored = false, length?: number) {
+  const expiresAt = new Date(new Date().setDate(new Date().getDate() + 1)).toISOString();
+  const createdAt = new Date().toISOString();
+  const jobs: Job[] = [
+    {
+      title: 'Senior Frontend Developer - Svelte',
+      company: 'Company Name - Vietnam Subsidiary',
+      createdAt,
+      sponsored,
+    },
+    {
+      title: 'Job With No Location',
+      company: 'Company Name - Vietnam Subsidiary',
+      expiresAt,
+      createdAt,
+      salary: '$1000-$2000',
+      locationPolicy: 'remote',
+      sponsored,
+    },
+    {
+      title: 'Job With No Location Policy',
+      company: 'Company Name - Vietnam Subsidiary',
+      createdAt,
+      salary: 'Negotiable',
+      location: 'Ho Chi Minh',
+      sponsored,
+    },
+    {
+      title: 'Job With No Salary Detail',
+      company: 'Company Name - Vietnam Subsidiary',
+      expiresAt,
+      createdAt,
+      locationPolicy: 'remote',
+      sponsored,
+    },
+    {
+      title: 'Job With No Salary Detail',
+      company: 'Company Name - Vietnam Subsidiary',
+      expiresAt,
+      createdAt,
+      salary: '$1000 - $2000',
+      locationPolicy: 'hybrid',
+      location: 'Ha Noi',
+      sponsored,
+    },
+  ];
+  if (length) {
+    return jobs.slice(0, length);
+  }
+  return jobs;
 }
