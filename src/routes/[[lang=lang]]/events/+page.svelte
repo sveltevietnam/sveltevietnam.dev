@@ -1,13 +1,15 @@
 <script lang="ts">
-  import { enhance } from '$app/forms';
   import { EventCard } from '$client/components/organisms/EventCard';
+  import { MailRegistrationForm } from '$client/components/organisms/MailRegistrationForm';
   import { APP_ROUTE_TREE, EMAILS, SOCIAL_LINKS } from '$shared/constants';
 
   import type { ActionData } from './$types';
+
   export let data;
   export let form: ActionData;
 
   $: t = data.translations.page;
+  $: tMail = data.translations.mail;
 
   $: sponsorHref = APP_ROUTE_TREE[':lang'].sponsor.$.path({
     args: {
@@ -34,7 +36,7 @@
   </section>
 
   <div class="grid grid-cols-1 gap-10 md:grid-cols-2">
-    <section class="action-card">
+    <section class="c-action-card">
       <div class="c-graphic" />
       <h2 class="c-page@h2">{t.actions.share.title}</h2>
       <p>{t.actions.share.description}</p>
@@ -45,43 +47,17 @@
       </a>
     </section>
 
-    <section class="action-card">
+    <section class="c-action-card">
       <div class="c-graphic" />
       <h2 class="c-page@h2">{t.actions.participate.title}</h2>
       <p>{t.actions.participate.description}</p>
-      <form class="notification-form" method="POST" use:enhance action="?/notify" autocomplete="on">
-        <div class="relative">
-          {#if form?.error?.form?.name?.[0]}
-            <p class="absolute bottom-full left-0 pb-0.5 text-2xs italic text-status-error">
-              {form.error?.form?.name?.[0]}
-            </p>
-          {/if}
-          <input
-            class="c-input"
-            type="text"
-            name="name"
-            value={form?.data?.name ?? ''}
-            placeholder={t.actions.participate.form.name}
-            required
-          />
-        </div>
-        <div class="relative">
-          {#if form?.error?.form?.email?.[0]}
-            <p class="absolute bottom-full left-0 pb-0.5 text-2xs italic text-status-error">
-              {form.error?.form?.email?.[0]}
-            </p>
-          {/if}
-          <input
-            class="c-input"
-            type="email"
-            name="email"
-            value={form?.data?.email ?? ''}
-            placeholder="Email"
-            required
-          />
-        </div>
-        <button type="submit" class="c-btn">{t.actions.participate.form.cta}</button>
-      </form>
+      <MailRegistrationForm
+        t={tMail}
+        name={form?.data?.name}
+        nameError={form?.error?.form?.name?.[0]}
+        email={form?.data?.email}
+        emailError={form?.error?.form?.email?.[0]}
+      />
     </section>
 
     <a
@@ -92,7 +68,7 @@
       <svg data-inline-src="simpleicon/discord" />
     </a>
 
-    <section class="action-card md:col-span-2">
+    <section class="c-action-card md:col-span-2">
       <div class="c-graphic" />
       <h2 class="c-page@h2">{t.actions.sponsor.title}</h2>
       <p>{t.actions.sponsor.description}</p>
@@ -114,31 +90,3 @@
     </ul>
   </section>
 </main>
-
-<style lang="postcss">
-  .action-card {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: theme('spacing.6');
-    justify-content: center;
-    justify-items: center;
-
-    padding: theme('spacing.10');
-
-    background-color: theme('colors.bg.200');
-    border-radius: theme('borderRadius.DEFAULT');
-
-    & > p {
-      text-align: center;
-    }
-  }
-
-  .notification-form {
-    display: grid;
-    gap: theme('spacing.2');
-
-    @screen md {
-      grid-template-columns: 1fr 1fr auto;
-    }
-  }
-</style>
