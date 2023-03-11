@@ -6,3 +6,7 @@ unless_exists: true
 </script>
 
 <slot />
+
+<style lang="postcss">
+
+</style>

@@ -16,23 +16,6 @@ export const vi = {
     participate: {
       title: 'Tham gia',
       description: 'Đăng kí nhận thông báo và thông tin về các buổi gặp mặt của Svelte Vietnam',
-      form: {
-        name: 'Tên',
-        cta: 'Đăng kí',
-        validation: {
-          error: {
-            email: {
-              required: 'Email không được để trống',
-              invalid: 'Email không hợp lệ',
-            },
-            name: {
-              required: 'Tên không được để trống',
-              invalid: 'Tên không hợp lệ',
-            },
-          },
-          success: 'Đăng kí thành công',
-        },
-      },
     },
     discord: {
       cta: 'Sự kiện đã diễn ra',
