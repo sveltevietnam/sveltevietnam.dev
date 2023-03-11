@@ -7,6 +7,7 @@ specifiers:
   '@sveltejs/adapter-vercel': ^2.3.1
   '@sveltejs/kit': ^1.11.0
   '@tailwindash/triangle': ^1.0.5
+  '@total-typescript/ts-reset': ^0.4.2
   '@types/cookie': ^0.5.1
   '@types/gtag.js': ^0.0.12
   '@types/postcss-mixins': ^9.0.0
@@ -63,6 +64,7 @@ devDependencies:
   '@sveltejs/adapter-vercel': 2.3.1_@sveltejs+kit@1.11.0
   '@sveltejs/kit': 1.11.0_svelte@3.56.0+vite@4.1.4
   '@tailwindash/triangle': 1.0.5_tailwindcss@3.2.7
+  '@total-typescript/ts-reset': 0.4.2
   '@types/cookie': 0.5.1
   '@types/gtag.js': 0.0.12
   '@types/postcss-mixins': 9.0.0
@@ -568,6 +570,10 @@ packages:
       tailwindcss: ^3.1.0
     dependencies:
       tailwindcss: 3.2.7_postcss@8.4.21
+    dev: true
+
+  /@total-typescript/ts-reset/0.4.2:
+    resolution: {integrity: sha512-vqd7ZUDSrXFVT1n8b2kc3LnklncDQFPvR58yUS1kEP23/nHPAO9l1lMjUfnPrXYYk4Hj54rrLKMW5ipwk7k09A==}
     dev: true
 
   /@trysound/sax/0.2.0:

@@ -121,7 +121,7 @@
 </article>
 
 <style lang="postcss">
-  :where(.event-card) {
+  .event-card {
     padding: theme('spacing.10');
     background: theme('colors.bg.200');
     border-radius: theme('borderRadius.DEFAULT');
