@@ -1,8 +1,7 @@
 <script lang="ts">
   import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
 
-  import type { PageData } from './$types';
-  export let data: PageData;
+  export let data;
 
   $: t = data.translations.page;
 </script>
@@ -30,7 +29,7 @@
           class="max-md:h-4 max-md:w-4"
         />
       </a>
-      <a href="mailto:{EMAILS.coc}" target="_blank" rel="noreferrer" class="c-btn c-btn--outlined"
+      <a href="mailto:{EMAILS.coc}" target="_blank" rel="noreferrer" class="c-btn--outlined c-btn"
         ><span>{@html t.notice.ctas.email}</span></a
       >
     </div>

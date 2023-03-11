@@ -5,9 +5,7 @@
   import { LOAD_DEPENDENCIES } from '$shared/constants';
   import type { ColorScheme } from '$shared/types';
 
-  import type { PageData } from './$types';
-
-  export let data: PageData;
+  export let data;
 
   $: clientColorScheme = data.colorScheme;
   async function changeColorScheme(e: CustomEvent<ColorScheme>) {

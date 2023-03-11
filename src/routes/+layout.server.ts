@@ -3,9 +3,9 @@ import type { Config } from '@sveltejs/adapter-vercel';
 import { VERCEL_ANALYTICS_ID } from '$env/static/private';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
 
-import type { LayoutServerLoad } from './$types';
+import type { LayoutServerLoadEvent } from './$types';
 
-export const load: LayoutServerLoad = async ({ url, locals, depends }) => {
+export async function load({ url, locals, depends }: LayoutServerLoadEvent) {
   depends(LOAD_DEPENDENCIES.COLOR_SCHEME);
 
   return {
@@ -14,7 +14,7 @@ export const load: LayoutServerLoad = async ({ url, locals, depends }) => {
     colorScheme: locals.colorScheme,
     language: locals.language,
   };
-};
+}
 
 export const config: Config = {
   runtime: 'edge',

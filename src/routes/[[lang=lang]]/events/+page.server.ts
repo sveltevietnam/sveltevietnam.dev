@@ -6,9 +6,9 @@ import { createMockedEvents } from '$shared/mocks';
 import type { Language } from '$shared/services/i18n';
 import { translations } from '$shared/services/i18n/translations/pages/events';
 
-import type { Actions, PageServerLoad } from './$types';
+import type { PageServerLoadEvent, Actions } from './$types';
 
-export const load: PageServerLoad = async ({ params }) => {
+export async function load({ params }: PageServerLoadEvent) {
   const lang = params.lang as Language;
   return {
     translations: {
@@ -19,7 +19,7 @@ export const load: PageServerLoad = async ({ params }) => {
       past: createMockedEvents(4),
     },
   };
-};
+}
 
 export const actions: Actions = {
   notify: async ({ request, cookies, locals }) => {

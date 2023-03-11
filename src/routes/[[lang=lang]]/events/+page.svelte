@@ -3,8 +3,8 @@
   import { EventCard } from '$client/components/organisms/EventCard';
   import { APP_ROUTE_TREE, EMAILS, SOCIAL_LINKS } from '$shared/constants';
 
-  import type { ActionData, PageData } from './$types';
-  export let data: PageData;
+  import type { ActionData } from './$types';
+  export let data;
   export let form: ActionData;
 
   $: t = data.translations.page;
