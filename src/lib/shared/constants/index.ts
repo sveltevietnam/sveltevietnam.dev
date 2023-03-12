@@ -36,3 +36,6 @@ export const EMAILS = {
   impact: 'impact@sveltevietnam.dev',
   sponsor: 'sponsor@sveltevietnam.dev',
 } as const;
+
+export const GITHUB_NOMINATION_ISSUE_LINK =
+  'https://github.com/sveltevietnam/sveltevietnam.dev/issues/new?assignees=vnphanquang&labels=page%3Apeople%2Ctype%3Acontent&template=contributor_nomination.yaml&title=Nominate%3A+%3CName+of+member%3E';

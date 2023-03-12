@@ -1,4 +1,4 @@
-import type { Event, Job } from '$shared/types';
+import type { Contributor, Event, Job } from '$shared/types';
 
 export function createMockedEvent() {
   return {
@@ -94,4 +94,73 @@ export function createMockedJobs(sponsored = false, length?: number) {
     return jobs.slice(0, length);
   }
   return jobs;
+}
+
+export function createMockedContributors() {
+  return [
+    {
+      fullName: 'Nguyễn Văn A',
+      contribution: 'Creator of A, maintainer of B',
+      affiliation: 'developer at company X',
+      links: {
+        twitter: 'https://twitter.com/username',
+        github: 'https://github.com/username',
+        linkedin: 'https://linkedin.com/in/username',
+        website: 'https://website.com',
+      },
+    },
+    {
+      fullName: 'Person With No Affiliation',
+      contribution: 'Creator of A, maintainer of B',
+      links: {
+        twitter: 'https://twitter.com/username',
+        github: 'https://github.com/username',
+        linkedin: 'https://linkedin.com/in/username',
+        website: 'https://website.com',
+      },
+    },
+    {
+      fullName: 'Person Without Twitter',
+      contribution: 'Creator of A, maintainer of B',
+      affiliation: 'developer at company X',
+      links: {
+        github: 'https://github.com/username',
+        linkedin: 'https://linkedin.com/in/username',
+        website: 'https://website.com',
+      },
+    },
+    {
+      fullName: 'Person Without Linkedin',
+      contribution: 'Creator of A, maintainer of B',
+      affiliation: 'developer at company X',
+      links: {
+        twitter: 'https://twitter.com/username',
+        github: 'https://github.com/username',
+        website: 'https://website.com',
+      },
+    },
+    {
+      fullName: 'Person Without Website',
+      contribution: 'Creator of A, maintainer of B',
+      affiliation: 'developer at company X',
+      links: {
+        twitter: 'https://twitter.com/username',
+        github: 'https://github.com/username',
+        linkedin: 'https://linkedin.com/in/username',
+      },
+    },
+    {
+      fullName: 'Person With No Link',
+      contribution: 'Creator of A, maintainer of B',
+      affiliation: 'developer at company X',
+    },
+    {
+      fullName: 'Person Without Github',
+      contribution: 'Creator of A, maintainer of B',
+      affiliation: 'developer at company X',
+      links: {
+        github: 'https://github.com/username',
+      },
+    },
+  ] satisfies Contributor[];
 }

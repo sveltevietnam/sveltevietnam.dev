@@ -34,3 +34,15 @@ export interface Job {
   expiresAt?: string;
   sponsored: boolean;
 }
+
+export interface Contributor {
+  fullName: string;
+  contribution: string;
+  affiliation?: string;
+  links?: {
+    twitter?: string;
+    github?: string;
+    linkedin?: string;
+    website?: string;
+  };
+}

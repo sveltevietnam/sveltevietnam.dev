@@ -1,3 +1,4 @@
+import { createMockedContributors } from '$shared/mocks';
 import type { Language } from '$shared/services/i18n';
 import { translations } from '$shared/services/i18n/translations/pages/people';
 
@@ -9,5 +10,6 @@ export async function load({ params }: PageServerLoadEvent) {
     translations: {
       page: translations[lang],
     },
+    contributors: createMockedContributors(),
   };
 }
