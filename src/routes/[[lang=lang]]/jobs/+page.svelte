@@ -30,9 +30,9 @@
   <section class="space-y-10">
     <div class="flex items-center justify-between">
       <h2 class="c-page@h2">{t.fromSponsors.title}</h2>
-      <a href={sponsorHref} class="c-btn">{t.fromSponsors.cta}</a>
+      <a href={sponsorHref} class="c-btn max-md:hidden">{t.fromSponsors.cta}</a>
     </div>
-    <ul class="grid grid-cols-2 gap-10">
+    <ul class="grid grid-cols-1 gap-10 md:grid-cols-2">
       {#each fromSponsors as job}
         <li>
           <JobCard {job} lang={data.language} />
@@ -44,7 +44,7 @@
   <div class="grid grid-cols-1 gap-10 md:grid-cols-2">
     <section class="c-action-card">
       <div class="c-graphic" />
-      <h2 class="c-page@h2">{t.actions.recruiter.title}</h2>
+      <h2 class="c-page@h2 text-center">{t.actions.recruiter.title}</h2>
       <p>{t.actions.recruiter.description}</p>
       <a href={sponsorHref} class="c-btn">
         {t.actions.recruiter.cta}
@@ -71,7 +71,7 @@
       <h2 class="c-page@h2 inline">{t.fromRecruitmentSites.title}</h2>
       <p class="inline">({t.fromRecruitmentSites.collectedAt} {collectedTimestamp})</p>
     </div>
-    <ul class="grid grid-cols-2 gap-10">
+    <ul class="grid grid-cols-1 gap-10 md:grid-cols-2">
       {#each fromRecruitmentSites.jobs as job}
         <li>
           <JobCard {job} lang={data.language} />

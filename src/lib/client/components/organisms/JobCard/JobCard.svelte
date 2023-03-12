@@ -56,10 +56,14 @@
 
     padding: theme('spacing.1') theme('spacing.2') theme('spacing[0.5]');
 
-    font-size: theme('fontSize.xs');
+    font-size: theme('fontSize.2xs');
     text-transform: capitalize;
 
     background-color: theme('colors.bg.200');
     border-radius: theme('borderRadius.DEFAULT');
+
+    @screen md {
+      font-size: theme('fontSize.xs');
+    }
   }
 </style>
