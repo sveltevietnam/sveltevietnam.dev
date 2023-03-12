@@ -159,7 +159,9 @@ export function createMockedContributors() {
       contribution: 'Creator of A, maintainer of B',
       affiliation: 'developer at company X',
       links: {
-        github: 'https://github.com/username',
+        twitter: 'https://twitter.com/username',
+        linkedin: 'https://linkedin.com/in/username',
+        website: 'https://website.com',
       },
     },
   ] satisfies Contributor[];
