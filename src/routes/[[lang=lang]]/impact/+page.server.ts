@@ -1,3 +1,4 @@
+import { createMockedProject } from '$shared/mocks';
 import type { Language } from '$shared/services/i18n';
 import { translations } from '$shared/services/i18n/translations/pages/impact';
 
@@ -8,6 +9,10 @@ export async function load({ params }: PageServerLoadEvent) {
   return {
     translations: {
       page: translations[lang],
+    },
+    projects: {
+      inNeed: createMockedProject(2),
+      launched: createMockedProject(2),
     },
   };
 }
