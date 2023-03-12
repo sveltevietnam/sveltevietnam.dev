@@ -194,9 +194,9 @@ const sveltevietnam = plugin(
         padding: theme('spacing.10'),
         'background-color': theme('colors.bg.200'),
         'border-radius': theme('borderRadius.DEFAULT'),
-        '& > p': {
-          'text-align': 'center',
-        },
+      },
+      ':where(.c-action-card > p)': {
+        'text-align': 'center',
       },
     });
   },
