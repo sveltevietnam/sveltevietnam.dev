@@ -40,7 +40,7 @@ const sveltevietnam = plugin(
         'padding-right': theme('spacing.6'),
         'margin-left': 'auto',
         'margin-right': 'auto',
-        [`@media (min-width: ${theme('screens.md')})`]: {
+        '@screen md': {
           'padding-left': theme('spacing.8'),
           'padding-right': theme('spacing.8'),
         },
@@ -72,7 +72,7 @@ const sveltevietnam = plugin(
         display: 'grid',
         'column-gap': theme('spacing.2'),
         padding: `0 ${theme('spacing.3')}`,
-        height: '40px',
+        'min-height': '40px',
         'justify-content': 'center',
         'align-items': 'center',
         'border-radius': theme('borderRadius.DEFAULT'),
@@ -191,9 +191,12 @@ const sveltevietnam = plugin(
         gap: theme('spacing.6'),
         'justify-content': 'center',
         'justify-items': 'center',
-        padding: theme('spacing.10'),
+        padding: theme('spacing.6'),
         'background-color': theme('colors.bg.200'),
         'border-radius': theme('borderRadius.DEFAULT'),
+        '@screen md': {
+          padding: theme('spacing.10'),
+        },
       },
       ':where(.c-action-card > p)': {
         'text-align': 'center',

@@ -46,3 +46,10 @@ export interface Contributor {
     website?: string;
   };
 }
+
+export interface Project {
+  name: string;
+  description: string;
+  collaboration?: string;
+  href?: string;
+}

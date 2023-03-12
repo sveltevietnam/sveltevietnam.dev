@@ -1,6 +1,6 @@
 <script lang="ts">
   import { ContributorCard } from '$client/components/organisms/ContributorCard';
-  import { GITHUB_NOMINATION_ISSUE_LINK } from '$shared/constants';
+  import { GITHUB_ISSUE } from '$shared/constants';
 
   export let data;
 
@@ -17,7 +17,7 @@
     <section class="c-action-card">
       <h2 class="c-page@h2 justify-self-start">{t.who.title}</h2>
       <p class="text-left">{@html t.who.description}</p>
-      <a href={GITHUB_NOMINATION_ISSUE_LINK} rel="noreferrer" target="_blank" class="c-btn"
+      <a href={GITHUB_ISSUE.CONTRIBUTOR_NOMINATION} rel="noreferrer" target="_blank" class="c-btn"
         >{t.who.cta}</a
       >
     </section>

@@ -1,4 +1,4 @@
-import type { Contributor, Event, Job } from '$shared/types';
+import type { Contributor, Event, Job, Project } from '$shared/types';
 
 export function createMockedEvent() {
   return {
@@ -165,4 +165,14 @@ export function createMockedContributors() {
       },
     },
   ] satisfies Contributor[];
+}
+
+export function createMockedProject(length = 2) {
+  return new Array(length).fill({
+    name: 'Project Name',
+    description:
+      'Project description, target audience is for A, making life easier and creating good something for B.',
+    collaboration: 'In collaboration between company A and Person One, Person Two, Person Three',
+    href: '#',
+  }) satisfies Project[];
 }
