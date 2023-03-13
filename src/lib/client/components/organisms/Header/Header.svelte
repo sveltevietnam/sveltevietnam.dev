@@ -199,6 +199,13 @@
 </header>
 
 <style lang="postcss">
+  header {
+    position: sticky;
+    z-index: theme('zIndex.header');
+    top: 0;
+    background-color: theme('colors.bg.200');
+  }
+
   header > div {
     display: grid;
     grid-template-areas: 'logo theme mobile-open';

@@ -167,7 +167,7 @@ export function createMockedContributors() {
   ] satisfies Contributor[];
 }
 
-export function createMockedProject(length = 2) {
+export function createMockedProjects(length = 2) {
   return new Array(length).fill({
     name: 'Project Name',
     description:
