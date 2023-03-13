@@ -46,7 +46,7 @@
     <ul class="space-y-10">
       {#each data.projects.inNeed as project}
         <li>
-          <ProjectCard {project} />
+          <ProjectCard {project} lang={data.language} />
         </li>
       {/each}
     </ul>

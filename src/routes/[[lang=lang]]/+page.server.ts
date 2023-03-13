@@ -1,3 +1,4 @@
+import { createMockedEvents, createMockedJobs, createMockedProjects } from '$shared/mocks';
 import type { Language } from '$shared/services/i18n';
 import { translations } from '$shared/services/i18n/translations/pages/home';
 
@@ -9,5 +10,9 @@ export async function load({ params }: PageServerLoadEvent) {
     translations: {
       page: translations[lang],
     },
+    events: createMockedEvents(1),
+    jobs: createMockedJobs(),
+    projects: createMockedProjects(1),
+    sponsors: [],
   };
 }

@@ -253,6 +253,7 @@ const sveltevietnam = plugin(
         },
         zIndex: {
           px: '1',
+          header: '50', // root header
           modal: '80', // a modal/dialog
           // sidebar: '92', // sidebar
           // float: '100', // floating buttons and such
