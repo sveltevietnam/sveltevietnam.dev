@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { JobCard } from '$client/components/organisms/JobCard';
-  import { MailRegistrationForm } from '$client/components/organisms/MailRegistrationForm';
+  import { JobCard } from '$client/components/JobCard';
+  import { MailRegistrationForm } from '$client/components/MailRegistrationForm';
   import { APP_ROUTE_TREE } from '$shared/constants';
 
   import type { ActionData } from './$types';

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { invalidate } from '$app/navigation';
-  import { Footer } from '$client/components/organisms/Footer';
-  import { Header } from '$client/components/organisms/Header';
+  import { Footer } from '$client/components/Footer';
+  import { Header } from '$client/components/Header';
   import { LOAD_DEPENDENCIES } from '$shared/constants';
   import type { ColorScheme } from '$shared/types';
 

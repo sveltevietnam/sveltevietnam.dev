@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { ContributorCard } from '$client/components/organisms/ContributorCard';
+  import { ContributorCard } from '$client/components/ContributorCard';
   import { GITHUB_ISSUE } from '$shared/constants';
 
   export let data;

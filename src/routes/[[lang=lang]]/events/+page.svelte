@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { EventCard } from '$client/components/organisms/EventCard';
-  import { MailRegistrationForm } from '$client/components/organisms/MailRegistrationForm';
+  import { EventCard } from '$client/components/EventCard';
+  import { MailRegistrationForm } from '$client/components/MailRegistrationForm';
   import { APP_ROUTE_TREE, EMAILS, SOCIAL_LINKS } from '$shared/constants';
 
   import type { ActionData } from './$types';
@@ -62,7 +62,7 @@
 
     <a
       href={SOCIAL_LINKS.discord}
-      class="c-btn--outlined c-btn w-fit justify-self-center md:col-span-2"
+      class="c-btn c-btn--outlined w-fit justify-self-center md:col-span-2"
     >
       {t.actions.discord.cta}
       <svg data-inline-src="simpleicon/discord" />

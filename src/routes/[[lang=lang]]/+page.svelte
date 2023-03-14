@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { EventCard } from '$client/components/organisms/EventCard';
-  import { JobCard } from '$client/components/organisms/JobCard';
-  import { ProjectCard } from '$client/components/organisms/ProjectCard';
+  import { EventCard } from '$client/components/EventCard';
+  import { JobCard } from '$client/components/JobCard';
+  import { ProjectCard } from '$client/components/ProjectCard';
   import { APP_ROUTE_TREE, GITHUB_ISSUE, SOCIAL_LINKS } from '$shared/constants';
 
   export let data;
@@ -63,7 +63,7 @@
         <svg data-inline-src="simpleicon/discord" />
       </a>
       <a
-        class="c-btn--outlined c-btn"
+        class="c-btn c-btn--outlined"
         href={GITHUB_ISSUE.CONTRIBUTOR_NOMINATION}
         target="_blank"
         rel="noreferrer"
