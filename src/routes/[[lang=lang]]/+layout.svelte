@@ -1,7 +1,12 @@
 <script lang="ts">
+  import ModalPortal from '@svelte-put/modal/ModalPortal.svelte';
+  import { onMount } from 'svelte';
+
   import { invalidate } from '$app/navigation';
   import { Footer } from '$client/components/Footer';
   import { Header } from '$client/components/Header';
+  import { modalStore } from '$client/modals';
+  import { WireframeVersionNotice } from '$client/modals/WireframeVersionNotice';
   import { LOAD_DEPENDENCIES } from '$shared/constants';
   import type { ColorScheme } from '$shared/types';
 
@@ -19,6 +24,10 @@
     });
     invalidate(LOAD_DEPENDENCIES.COLOR_SCHEME);
   }
+
+  onMount(() => {
+    modalStore.push(WireframeVersionNotice);
+  });
 </script>
 
 <Header
@@ -30,3 +39,5 @@
 <slot />
 
 <Footer lang={data.language} />
+
+<ModalPortal store={modalStore} class="z-modal" />

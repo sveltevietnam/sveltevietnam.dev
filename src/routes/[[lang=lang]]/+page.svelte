@@ -2,7 +2,7 @@
   import { EventCard } from '$client/components/EventCard';
   import { JobCard } from '$client/components/JobCard';
   import { ProjectCard } from '$client/components/ProjectCard';
-  import { APP_ROUTE_TREE, GITHUB_ISSUE, SOCIAL_LINKS } from '$shared/constants';
+  import { APP_ROUTE_TREE, GITHUB_LINKS, SOCIAL_LINKS } from '$shared/constants';
 
   export let data;
 
@@ -63,8 +63,8 @@
         <svg data-inline-src="simpleicon/discord" />
       </a>
       <a
-        class="c-btn c-btn--outlined"
-        href={GITHUB_ISSUE.CONTRIBUTOR_NOMINATION}
+        class="c-btn--outlined c-btn"
+        href={GITHUB_LINKS.ISSUE.CONTRIBUTOR_NOMINATION}
         target="_blank"
         rel="noreferrer"
       >

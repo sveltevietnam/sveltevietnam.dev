@@ -76,20 +76,20 @@ const sveltevietnam = plugin(
         'justify-content': 'center',
         'align-items': 'center',
         'border-radius': theme('borderRadius.DEFAULT'),
-        '&:has(:is(img, svg))': {
+        '&:where(:has(:is(img, svg)))': {
           'grid-template-columns': 'auto auto',
         },
-        '&:not(:has(:is(img, svg)))': {
+        '&:where(not(:has(:is(img, svg))))': {
           'text-align': 'center',
         },
-        '&:not(:is(.c-btn--outlined, .c-btn--text)), &.c-btn--default': {
+        '&:where(:not(:is(.c-btn--outlined, .c-btn--text))), &:where(.c-btn--default)': {
           'background-color': theme('colors.bg.300'),
           'white-space': 'nowrap',
         },
-        '&.c-btn--outlined': {
+        '&:where(.c-btn--outlined)': {
           border: `1px solid ${theme('colors.bg.300')}`,
         },
-        '&.c-btn--text': {
+        '&:where(.c-btn--text)': {
           position: 'relative',
           padding: `0 0 ${theme('spacing.1')}`,
           'font-weight': theme('fontWeight.medium'),
