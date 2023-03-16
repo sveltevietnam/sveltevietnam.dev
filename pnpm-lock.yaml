@@ -3,7 +3,9 @@ lockfileVersion: 5.4
 specifiers:
   '@builder.io/partytown': ^0.7.5
   '@svelte-put/clickoutside': ^2.0.0
+  '@svelte-put/modal': ^1.0.0
   '@svelte-put/preprocess-inline-svg': ^1.1.1
+  '@svelte-put/shortcut': ^2.0.0
   '@sveltejs/adapter-vercel': ^2.3.1
   '@sveltejs/kit': ^1.11.0
   '@tailwindash/triangle': ^1.0.5
@@ -60,7 +62,9 @@ dependencies:
 
 devDependencies:
   '@svelte-put/clickoutside': 2.0.0
+  '@svelte-put/modal': 1.0.0_svelte@3.56.0
   '@svelte-put/preprocess-inline-svg': 1.1.1_svelte@3.56.0
+  '@svelte-put/shortcut': 2.0.0
   '@sveltejs/adapter-vercel': 2.3.1_@sveltejs+kit@1.11.0
   '@sveltejs/kit': 1.11.0_svelte@3.56.0+vite@4.1.4
   '@tailwindash/triangle': 1.0.5_tailwindcss@3.2.7
@@ -492,6 +496,21 @@ packages:
     resolution: {integrity: sha512-04xYxOT5Ti+VlP70+uY/a5tGnVWl3XFgnRiO9bMSHbkwOlzHxSgXyM1NCS4NV09B3i41LRuShgeMrbgU0J5cPg==}
     dev: true
 
+  /@svelte-put/modal/1.0.0_svelte@3.56.0:
+    resolution: {integrity: sha512-ugMfOYjGFkWynY+rt4cfpSjIBEht+/Vc/2kHxoqIKARKyJ3MDvrzZEBPKvEpmnHmMMuB1fPOUOojaU8n97loAA==}
+    peerDependencies:
+      svelte: ^3.2.0
+    dependencies:
+      '@svelte-put/clickoutside': 2.0.0
+      '@svelte-put/movable': 2.0.0
+      '@svelte-put/shortcut': 2.0.0
+      svelte: 3.56.0
+    dev: true
+
+  /@svelte-put/movable/2.0.0:
+    resolution: {integrity: sha512-y28oYx4pN8Vr2f/qfukz2yPwpqfREEHa5aMtr2sf3WC32kRZbd5Nbvz2dbTro7OMiB6SUfGomCVSokAB+nIVQA==}
+    dev: true
+
   /@svelte-put/preprocess-inline-svg/1.1.1_svelte@3.56.0:
     resolution: {integrity: sha512-sbo8Q7nhwQkksCd8i5G9iYZ5EEZac+hsV0+EnVlrgdu5I1aEzqQOQymUHbnFqXfoy9NDASsEYQN/M9+u5O8wCQ==}
     peerDependencies:
@@ -502,6 +521,10 @@ packages:
       svelte: 3.56.0
       svelte-parse-markup: 0.1.1_svelte@3.56.0
       svg-parser: 2.0.4
+    dev: true
+
+  /@svelte-put/shortcut/2.0.0:
+    resolution: {integrity: sha512-dDyxIFlRz+W6wxwQtl2jUen0rX8ofV2VBWaJdz0QehLb0IMDzP3aWM9W4k8cAZQIGmTT0adr1+Gt7HPPUugcpQ==}
     dev: true
 
   /@sveltejs/adapter-vercel/2.3.1_@sveltejs+kit@1.11.0:

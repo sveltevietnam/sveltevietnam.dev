@@ -37,8 +37,14 @@ export const EMAILS = {
   sponsor: 'sponsor@sveltevietnam.dev',
 } as const;
 
-export const GITHUB_ISSUE = {
-  CONTRIBUTOR_NOMINATION:
-    'https://github.com/sveltevietnam/sveltevietnam.dev/issues/new?assignees=vnphanquang&labels=page%3Apeople%2Ctype%3Acontent&template=contributor_nomination.yaml&title=Nominate%3A+%3CName+of+member%3E',
-  PUBLIC_PROJECT: '',
+export const GITHUB_LINKS = {
+  PROJECT: 'https://github.com/orgs/sveltevietnam/projects/1',
+  PROJECT_REFERENCES:
+    'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/PROJECT_REFERENCES.md',
+  DISCUSSION: 'https://github.com/sveltevietnam/sveltevietnam.dev/discussions',
+  ISSUE: {
+    CONTRIBUTOR_NOMINATION:
+      'https://github.com/sveltevietnam/sveltevietnam.dev/issues/new?assignees=vnphanquang&labels=page%3Apeople%2Ctype%3Acontent&template=contributor_nomination.yaml&title=Nominate%3A+%3CName+of+member%3E',
+    PUBLIC_PROJECT: '',
+  },
 };

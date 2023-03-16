@@ -26,7 +26,9 @@
   },
   "devDependencies": {
     "@svelte-put/clickoutside": "^2.0.0",
+    "@svelte-put/modal": "^1.0.0",
     "@svelte-put/preprocess-inline-svg": "^1.1.1",
+    "@svelte-put/shortcut": "^2.0.0",
     "@sveltejs/adapter-vercel": "^2.3.1",
     "@sveltejs/kit": "^1.11.0",
     "@tailwindash/triangle": "^1.0.5",

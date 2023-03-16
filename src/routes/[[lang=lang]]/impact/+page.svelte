@@ -1,6 +1,6 @@
 <script lang="ts">
   import { ProjectCard } from '$client/components/ProjectCard';
-  import { EMAILS, GITHUB_ISSUE, SOCIAL_LINKS } from '$shared/constants';
+  import { EMAILS, GITHUB_LINKS, SOCIAL_LINKS } from '$shared/constants';
 
   export let data;
 
@@ -16,10 +16,10 @@
   <section class="c-action-card">
     <p>{@html t.description}</p>
     <div class="flex items-center max-md:flex-col max-md:space-y-4 md:space-x-4">
-      <a href={GITHUB_ISSUE.PUBLIC_PROJECT} target="_blank" rel="noreferrer" class="c-btn">
-        <span>
+      <a href={GITHUB_LINKS.ISSUE.PUBLIC_PROJECT} target="_blank" rel="noreferrer" class="c-btn">
+        <spanq>
           {@html t.ctas.github}
-        </span>
+        </spanq>
         <svg data-inline-src="simpleicon/github" />
       </a>
       <a href={SOCIAL_LINKS.discord} target="_blank" rel="noreferrer" class="c-btn">
