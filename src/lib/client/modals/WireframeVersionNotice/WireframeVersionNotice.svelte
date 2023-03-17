@@ -47,12 +47,12 @@
       development.
     </p>
     <p>
-      For more information, see the <a
+      For more information, see <a
         href={GITHUB_LINKS.PROJECT_REFERENCES}
         class="c-link"
         target="_blank"
         rel="noreferrer">Project References</a
-      >. Roadmap and progress can be tracked at the
+      >. Roadmap and progress can be tracked at
       <a href={GITHUB_LINKS.PROJECT} class="c-link" target="_blank" rel="noreferrer"
         >sveltevietnam.dev project board</a
       >.
