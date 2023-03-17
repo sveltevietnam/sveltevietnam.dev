@@ -35,7 +35,7 @@
     transition:fade={{ duration: 200 }}
   />
   <div
-    class="mx-6 space-y-4 rounded bg-bg-300 p-6 text-center md:p-10"
+    class="mx-6 space-y-4 rounded bg-bg-300 p-6 text-center shadow-lg md:p-10"
     use:clickoutside
     on:clickoutside={clickOutside}
     transition:fly={{ duration: 200, y: 50 }}
