@@ -2,7 +2,8 @@
   import { page } from '$app/stores';
   import { APP_ROUTE_TREE, SOCIAL_LINKS } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
-  import { translations } from '$shared/services/i18n/translations/components/footer';
+
+  import { translations } from './translation';
 
   export let lang: Language;
 

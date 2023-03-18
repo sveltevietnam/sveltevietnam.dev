@@ -1,7 +1,8 @@
 <script lang="ts">
   import type { Language } from '$shared/services/i18n';
-  import { translations } from '$shared/services/i18n/translations/components/job-card';
   import type { Job } from '$shared/types';
+
+  import { translations } from './translation';
 
   export let lang: Language;
   export let job: Job;
