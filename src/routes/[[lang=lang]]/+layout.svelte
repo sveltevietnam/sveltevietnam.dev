@@ -7,6 +7,7 @@
   import { Header } from '$client/components/Header';
   import { modalStore } from '$client/modals';
   import { WireframeVersionNotice } from '$client/modals/WireframeVersionNotice';
+  import { WireframeVersionNoticeCache } from '$client/modals/WireframeVersionNotice/WireframeVersionNotice.cache';
   import { LOAD_DEPENDENCIES } from '$shared/constants';
   import type { ColorScheme } from '$shared/types';
 
@@ -26,7 +27,10 @@
   }
 
   onMount(() => {
-    modalStore.push(WireframeVersionNotice);
+    const cache = new WireframeVersionNoticeCache();
+    if (cache.shouldShow !== false) {
+      modalStore.push(WireframeVersionNotice);
+    }
   });
 </script>
 

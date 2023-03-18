@@ -7,6 +7,11 @@
 
   import { GITHUB_LINKS } from '$shared/constants';
 
+  import { WireframeVersionNoticeCache } from './WireframeVersionNotice.cache';
+
+  const cache = new WireframeVersionNoticeCache();
+  const shouldShow = cache.shouldShow;
+
   const dispatch = createEventDispatcher<{
     resolve: {
       trigger: ResolveTrigger;
@@ -22,6 +27,12 @@
   }
 
   function takeIn() {
+    cache.shouldShow = true;
+    dispatch('resolve', { trigger: 'custom' });
+  }
+
+  function doNotShowAgain() {
+    cache.shouldShow = false;
     dispatch('resolve', { trigger: 'custom' });
   }
 </script>
@@ -43,7 +54,7 @@
     <p class="text-3xl font-bold">Under Construction</p>
     <svg data-inline-src="google/handyman" height="40" width="40" class="mx-auto" />
     <p>
-      You are seeing the wireframe version of Svelte Vietnam. The project is in active design &
+      You are seeing the wireframe version of Svelte Vietnam. The project is in active design and
       development.
     </p>
     <p>
@@ -65,8 +76,14 @@
         rel="noreferrer">feedbacks and contributions</a
       >. Thank you for stopping by.
     </p>
-    <button on:click={takeIn} type="button" class="c-btn mx-auto bg-bg-400 text-fg-400"
-      >Take me in</button
-    >
+    <div class="flex items-center justify-center space-x-4">
+      <button on:click={takeIn} type="button" class="c-btn bg-bg-400 text-fg-400">Take me in</button
+      >
+      {#if shouldShow === true}
+        <button on:click={doNotShowAgain} type="button" class="c-btn--outlined c-btn border-bg-400">
+          Don't show again
+        </button>
+      {/if}
+    </div>
   </div>
 </div>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { browser } from '$app/environment';
 
 import type { BrowserCacheServiceConstructor } from './browser-cache.class';
