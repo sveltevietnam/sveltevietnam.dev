@@ -7,10 +7,10 @@
   import { page } from '$app/stores';
   import { APP_ROUTE_TREE } from '$shared/constants';
   import { localizeUrl, type Language, LANGUAGES } from '$shared/services/i18n';
-  import { translations } from '$shared/services/i18n/translations/components/header';
   import type { ColorScheme } from '$shared/types';
 
   import ColorSchemeIcon from './ColorSchemeIcon.svelte';
+  import { translations } from './translation';
 
   export let lang: Language;
   export let colorScheme: ColorScheme;
