@@ -46,27 +46,60 @@ const sveltevietnam = plugin(
         },
       },
       '.c-link': {
-        '& :is(img, svg)': {
-          transition: 'transform 200ms ease-in-out',
-        },
         '&:hover': {
           // FIXME: put in primary color when there is one
-          color: theme('colors.primary'),
+          color: theme('colors.svelte'),
+        },
+        // FIXME: can be refactor with `:has` when it is supported across browsers
+        '&:where(.c-link--icon)': {
           '& :is(img, svg)': {
-            transform: 'scale(1.05)',
+            transition: 'transform 200ms ease-in-out',
+          },
+          '&:hover': {
+            '& :is(img, svg)': {
+              transform: 'scale(1.05)',
+            },
+          },
+          '&:active': {
+            '& :is(img, svg)': {
+              transform: 'scale(0.95)',
+            },
           },
         },
-        '&:active': {
-          '& :is(img, svg)': {
-            transform: 'scale(0.95)',
+        '&:where(:not(.c-link--icon))': {
+          display: 'inline',
+          transition: 'color 200ms ease-in-out',
+          '--underline-color': 'currentColor',
+          'background-image': `linear-gradient(to right, var(--underline-color), var(--underline-color))`,
+          'background-repeat': 'no-repeat',
+          'background-position': 'left bottom',
+          'background-size': '100% 1px',
+          'will-change': 'background-size',
+          '@keyframes underline-swipe': {
+            '0%': {
+              'background-position': 'right bottom',
+              'background-size': '100% 1px',
+            },
+            '50%': {
+              'background-position': 'right bottom',
+              'background-size': '0 1px',
+            },
+            '51%': {
+              'background-position': 'left bottom',
+              'background-size': '0 1px',
+            },
+            '100%': {
+              'background-position': 'left bottom',
+              'background-size': '100% 1px',
+            },
+          },
+          '&:hover': {
+            animation: 'underline-swipe 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0s',
           },
         },
         [dataCurrent]: {
-          color: theme('colors.primary'),
+          color: theme('colors.svelte'),
         },
-      },
-      '* .c-link:not(:has(:is(img, svg))) ': {
-        'text-decoration-line': 'underline',
       },
       '.c-btn': {
         display: 'grid',
@@ -103,11 +136,12 @@ const sveltevietnam = plugin(
             height: 1,
             background: theme('colors.fg.200'),
             transition: `transform 250ms ${theme('transitionTimingFunction.DEFAULT')}`,
-            'transform-origin': 'left center',
+            'transform-origin': 'right center',
             transform: 'scaleX(0)',
           },
           '&:hover::after': {
             transform: 'scaleX(1)',
+            'transform-origin': 'left center',
           },
         },
       },

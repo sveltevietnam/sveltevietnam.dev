@@ -21,10 +21,20 @@
       <span aria-disabled class="mx-1 md:mx-2">|</span>
       <span>
         {t.poweredBy}
-        <a href="https://kit.svelte.dev/" target="_blank" rel="noreferrer" class="c-link">
+        <a
+          href="https://kit.svelte.dev/"
+          target="_blank"
+          rel="noreferrer"
+          class="c-link--icon c-link"
+        >
           <svg class="inline-block" height="16" width="16" data-inline-src="svelte" />
         </a>
-        <a href="https://tailwindcss.com/" target="_blank" rel="noreferrer" class="c-link">
+        <a
+          href="https://tailwindcss.com/"
+          target="_blank"
+          rel="noreferrer"
+          class="c-link--icon c-link"
+        >
           <svg
             class="inline-block"
             height="16"
@@ -32,19 +42,24 @@
             data-inline-src="simpleicon/tailwindcss"
           />
         </a>
-        <a href="https://vercel.com/" target="_blank" rel="noreferrer" class="c-link">
+        <a href="https://vercel.com/" target="_blank" rel="noreferrer" class="c-link--icon c-link">
           <svg class="inline-block" height="16" width="16" data-inline-src="simpleicon/vercel" />
         </a>
       </span>
     </section>
     <section class="socials space-x-2 md:space-x-4">
-      <a href={SOCIAL_LINKS.github} target="_blank" rel="noreferrer" class="c-link">
+      <a href={SOCIAL_LINKS.github} target="_blank" rel="noreferrer" class="c-link--icon c-link">
         <svg class="inline-block" height="20" width="20" data-inline-src="simpleicon/github" />
       </a>
-      <a href={SOCIAL_LINKS.discord} target="_blank" rel="noreferrer" class="c-link">
+      <a href={SOCIAL_LINKS.discord} target="_blank" rel="noreferrer" class="c-link--icon c-link">
         <svg class="inline-block" height="20" width="20" data-inline-src="simpleicon/discord" />
       </a>
-      <a href={SOCIAL_LINKS.openCollective} target="_blank" rel="noreferrer" class="c-link">
+      <a
+        href={SOCIAL_LINKS.openCollective}
+        target="_blank"
+        rel="noreferrer"
+        class="c-link--icon c-link"
+      >
         <svg
           class="inline-block"
           height="20"
@@ -52,15 +67,15 @@
           data-inline-src="simpleicon/opencollective"
         />
       </a>
-      <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noreferrer" class="c-link">
+      <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noreferrer" class="c-link--icon c-link">
         <svg class="inline-block" height="20" width="20" data-inline-src="simpleicon/twitter" />
       </a>
-      <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer" class="c-link">
+      <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer" class="c-link--icon c-link">
         <svg class="inline-block" height="20" width="20" data-inline-src="simpleicon/facebook" />
       </a>
     </section>
     <section class="links flex space-x-2 md:space-x-4">
-      <a href="/sitemap.xml" class="c-link flex space-x-1" target="_blank">
+      <a href="/sitemap.xml" class="c-link--icon c-link flex space-x-1" target="_blank">
         <svg
           height="20"
           width="20"
@@ -69,7 +84,7 @@
         />
         <span class="md:hidden">Sitemap</span>
       </a>
-      <a href="/rss.xml" class="c-link flex space-x-1" target="_blank">
+      <a href="/rss.xml" class="c-link--icon c-link flex space-x-1" target="_blank">
         <svg
           height="20"
           width="20"
@@ -79,7 +94,7 @@
         <span class="md:hidden">RSS</span>
       </a>
       <!-- svelte-ignore security-anchor-rel-noreferrer -->
-      <a href={codeOfConductLink} class="c-link flex space-x-1">
+      <a href={codeOfConductLink} class="c-link--icon c-link flex space-x-1">
         <svg
           height="20"
           width="20"

@@ -11,7 +11,7 @@ export const vi = {
   community: {
     title: 'Cộng đồng',
     description:
-      'Tham gia <a class="c-link" href=${SOCIAL_LINKS.discord} target="_blank" rel="noreferrer">Discord của Svelte Vietnam</a>và bắt đầu trò chuyện, giúp đỡ hoặc nhận giúp đỡ từ các thành viên khác. Để đóng góp vào mã nguồn của trang web này hoặc các dự án open source từ Svelte Vietnam, truy cập vào trang <a class="c-link" href="${SOCIAL_LINKS.github}" target="_blank" rel="noreferrer">Github của Svelte Vietnam</a>.',
+      'Tham gia <a class="c-link" href=${SOCIAL_LINKS.discord} target="_blank" rel="noreferrer">Discord của Svelte Vietnam</a> và bắt đầu trò chuyện, giúp đỡ hoặc nhận giúp đỡ từ các thành viên khác. Để đóng góp vào mã nguồn của trang web này hoặc các dự án open source từ Svelte Vietnam, truy cập vào trang <a class="c-link" href="${SOCIAL_LINKS.github}" target="_blank" rel="noreferrer">Github của Svelte Vietnam</a>.',
     ctas: {
       discord: 'Tham gia ngay tại Discord',
       nominate: 'Đề cử thành viên tiêu biểu',
