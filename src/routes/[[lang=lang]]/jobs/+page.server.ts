@@ -1,7 +1,7 @@
-import { mail } from '$server/actions/mail';
+import { mail } from '$shared/actions/mail/mail.server';
+import { translations as tMail } from '$shared/actions/mail/translation';
 import { createMockedJobs } from '$shared/mocks';
 import type { Language } from '$shared/services/i18n';
-import { translations as tMail } from '$shared/services/i18n/translations/actions/mail';
 import { translations as tPage } from '$shared/services/i18n/translations/pages/jobs';
 
 import type { PageServerLoadEvent, Actions } from './$types';

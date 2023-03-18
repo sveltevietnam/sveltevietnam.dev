@@ -3,7 +3,8 @@ import type { RequestEvent } from '@sveltejs/kit';
 import { z } from 'zod';
 
 import { COOKIE_USER_ID } from '$env/static/private';
-import { translations } from '$shared/services/i18n/translations/actions/mail';
+
+import { translations } from './translation';
 
 export async function mail<E extends RequestEvent>(event: E, domain: 'job' | 'event') {
   const { request, locals, cookies } = event;
