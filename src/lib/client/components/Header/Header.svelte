@@ -233,11 +233,11 @@
     display: contents;
 
     & > ul {
+      @mixin space x, theme('spacing.2');
+
       display: flex;
       grid-area: languages;
       align-items: center;
-
-      @apply space-x-2;
 
       @media (max-width: theme('screens.md')) {
         font-size: theme('fontSize.xl');
@@ -255,15 +255,15 @@
       justify-content: center;
 
       @media (max-width: theme('screens.md')) {
+        @mixin space y, theme('spacing.9');
+
         flex-direction: column;
         margin-top: calc(-1 * theme('spacing.6'));
         font-size: theme('fontSize.2xl');
-
-        @apply space-y-9;
       }
 
       @screen md {
-        @apply space-x-4;
+        @mixin space x, theme('spacing.4');
 
         position: absolute;
         top: 50%;

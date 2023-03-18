@@ -29,7 +29,7 @@
           class="max-md:h-4 max-md:w-4"
         />
       </a>
-      <a href="mailto:{EMAILS.coc}" target="_blank" rel="noreferrer" class="c-btn--outlined c-btn"
+      <a href="mailto:{EMAILS.coc}" target="_blank" rel="noreferrer" class="c-btn c-btn--outlined"
         ><span>{@html t.notice.ctas.email}</span></a
       >
     </div>
@@ -83,14 +83,14 @@
       grid-area: ctas;
 
       @media (max-width: theme('screens.md')) {
+        @mixin space y, theme('spacing.4');
+
         flex-direction: column;
         font-size: theme('fontSize.sm');
-
-        @apply space-y-4;
       }
 
       @screen md {
-        @apply space-x-8;
+        @mixin space x, theme('spacing.8');
 
         align-items: center;
         justify-content: center;
