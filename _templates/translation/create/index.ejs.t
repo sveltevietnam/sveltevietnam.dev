@@ -1,5 +1,5 @@
 ---
-to: src/lib/shared/services/i18n/translations/<%=domain%><%=name%>/index.ts
+to: <%=path%>/translation/index.ts
 unless_exists: true
 ---
 import { en } from './en';

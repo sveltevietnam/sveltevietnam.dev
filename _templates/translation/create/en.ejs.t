@@ -1,5 +1,5 @@
 ---
-to: src/lib/shared/services/i18n/translations/<%=domain%><%=name%>/en.ts
+to: <%=path%>/translation/en.ts
 unless_exists: true
 ---
 import type { vi } from './vi';
