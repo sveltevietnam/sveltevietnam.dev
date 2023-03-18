@@ -22,7 +22,7 @@ module.exports = {
         type: 'select',
         name: 'domain',
         message: 'Pick a domain:',
-        choices: ['page', 'action', 'component'],
+        choices: ['page', 'action', 'component', 'modal'],
         required: true,
       }));
       domain = `${domain}s/`;

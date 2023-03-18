@@ -29,7 +29,12 @@
   onMount(() => {
     const cache = new WireframeVersionNoticeCache();
     if (cache.shouldShow !== false) {
-      modalStore.push(WireframeVersionNotice);
+      modalStore.push({
+        component: WireframeVersionNotice,
+        props: {
+          lang: data.language,
+        },
+      });
     }
   });
 </script>

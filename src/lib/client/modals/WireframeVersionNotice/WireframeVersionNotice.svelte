@@ -6,8 +6,13 @@
   import { fade, fly } from 'svelte/transition';
 
   import { GITHUB_LINKS } from '$shared/constants';
+  import type { Language } from '$shared/services/i18n';
+  import { translations } from '$shared/services/i18n/translations/modals/wireframe-version-notice';
 
   import { WireframeVersionNoticeCache } from './WireframeVersionNotice.cache';
+
+  export let lang: Language;
+  $: t = translations[lang];
 
   const cache = new WireframeVersionNoticeCache();
   const shouldShow = cache.shouldShow;
@@ -19,10 +24,12 @@
   }>();
 
   function escape() {
+    cache.shouldShow = true;
     dispatch('resolve', { trigger: 'escape' });
   }
 
   function clickOutside() {
+    cache.shouldShow = true;
     dispatch('resolve', { trigger: 'clickoutside' });
   }
 
@@ -51,37 +58,21 @@
     on:clickoutside={clickOutside}
     transition:fly={{ duration: 200, y: 50 }}
   >
-    <p class="text-3xl font-bold">Under Construction</p>
+    <p class="text-3xl font-bold uppercase">{t.title}</p>
     <svg data-inline-src="google/handyman" height="40" width="40" class="mx-auto" />
     <p>
-      You are seeing the wireframe version of Svelte Vietnam. The project is in active design and
-      development.
+      {@html t.description}
     </p>
     <p>
-      For more information, see <a
-        href={GITHUB_LINKS.PROJECT_REFERENCES}
-        class="c-link"
-        target="_blank"
-        rel="noreferrer">Project References</a
-      >. Roadmap and progress can be tracked at
-      <a href={GITHUB_LINKS.PROJECT} class="c-link" target="_blank" rel="noreferrer"
-        >sveltevietnam.dev project board</a
-      >.
-    </p>
-    <p>
-      We welcome any <a
-        href={GITHUB_LINKS.DISCUSSION}
-        class="c-link"
-        target="_blank"
-        rel="noreferrer">feedbacks and contributions</a
-      >. Thank you for stopping by.
+      {@html t.feedbacks}
     </p>
     <div class="flex items-center justify-center space-x-4">
-      <button on:click={takeIn} type="button" class="c-btn bg-bg-400 text-fg-400">Take me in</button
-      >
+      <button on:click={takeIn} type="button" class="c-btn bg-bg-400 text-fg-400">
+        {t.ctas.continue}
+      </button>
       {#if shouldShow === true}
         <button on:click={doNotShowAgain} type="button" class="c-btn--outlined c-btn border-bg-400">
-          Don't show again
+          {t.ctas.doNotShowAgain}
         </button>
       {/if}
     </div>
