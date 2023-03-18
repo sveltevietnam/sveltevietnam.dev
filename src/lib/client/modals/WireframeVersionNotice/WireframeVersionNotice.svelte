@@ -5,11 +5,10 @@
   import { createEventDispatcher } from 'svelte';
   import { fade, fly } from 'svelte/transition';
 
-  import { GITHUB_LINKS } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
-  import { translations } from '$shared/services/i18n/translations/modals/wireframe-version-notice';
 
   import { WireframeVersionNoticeCache } from './WireframeVersionNotice.cache';
+  import { translations } from './translation';
 
   export let lang: Language;
   $: t = translations[lang];
