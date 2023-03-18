@@ -1,7 +1,7 @@
 import type { Language } from '$shared/services/i18n';
-import { translations } from '$shared/services/i18n/translations/pages/sponsor';
 
 import type { PageServerLoadEvent } from './$types';
+import { translations } from './_page/translation';
 
 export async function load({ params }: PageServerLoadEvent) {
   const lang = params.lang as Language;
