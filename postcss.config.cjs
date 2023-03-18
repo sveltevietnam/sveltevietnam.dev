@@ -6,6 +6,8 @@ const postcss = require('postcss');
 module.exports = {
   plugins: {
     'postcss-import': {},
+    'tailwindcss/nesting': 'postcss-nesting',
+    tailwindcss: {},
     /** @type {import('postcss-mixins').Options} */
     'postcss-mixins': {
       mixinsDir: path.resolve(__dirname, './src/lib/client/styles/mixins'),
@@ -61,11 +63,40 @@ module.exports = {
           });
           mixin.replaceWith([plainRule, mediaRule]);
         },
+        /**
+         * Add spacing between direct children
+         * @param {'x' | 'y'} axis
+         * @param {boolean} global
+         */
+        space: function (mixin, axis, value, global = false) {
+          const parent = mixin.parent;
+
+          const decl = postcss.decl({
+            prop: axis === 'x' ? 'margin-left' : 'margin-top',
+            value,
+          });
+          // maybe `> :not([hidden]) ~ :not([hidden])` is better ??
+          let directChildSelector = global ? `:global(* + *)` : `* + *`;
+          let nodeToAppend = parent;
+
+          const grandparent = parent.parent;
+
+          let selector = `& > ${directChildSelector}`;
+          if (grandparent.type === 'atrule' && grandparent.name === 'media') {
+            selector = `${parent.selector} > ${directChildSelector}`;
+            nodeToAppend = grandparent;
+          }
+
+          nodeToAppend.append(
+            postcss.rule({
+              selector: selector,
+              nodes: [decl],
+            }),
+          );
+        },
       },
     },
-    'tailwindcss/nesting': 'postcss-nesting',
     autoprefixer: {},
-    tailwindcss: {},
     ...(process.env.NODE_ENV !== 'development' && { cssnano: {} }),
   },
 };

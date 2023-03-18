@@ -40,10 +40,14 @@
   .project-card {
     display: flex;
 
-    @apply max-md:space-y-6 md:space-x-10;
-
     @media (max-width: theme('screens.md')) {
+      @mixin space y, theme('spacing.6');
+
       flex-direction: column;
+    }
+
+    @screen md {
+      @mixin space x, theme('spacing.10');
     }
   }
 
