@@ -4,8 +4,8 @@
 
 </div>
 
-<img src="TBD-logo" align="left" width="192" height="192"/>
-<img align="left" width="0" height="192" hspace="10" vspace="10" />
+<img src="https://raw.githubusercontent.com/sveltevietnam/branding/main/sveltevietnam-logo.png" align="left" width="192" height="192"/>
+<img align="left" width="0" height="192" hspace="2" vspace="2" />
 
 Svelte Vietnam official site at [sveltevietnam.dev](https://sveltevietnam.dev)
 
