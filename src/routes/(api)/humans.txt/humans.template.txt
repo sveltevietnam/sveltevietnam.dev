@@ -7,6 +7,9 @@ Github: https://github.com/vnphanquang
 Twitter: https://twitter.com/vnphanquang
 From: Vietnam
 
+Designer: Trong Tran
+From: Vietnam
+
 /* SITE */
 
 Last update: {{last_update}}
