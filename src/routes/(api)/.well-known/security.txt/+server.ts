@@ -1,18 +1,17 @@
 /**
- * https://humanstxt.org/
+ * https://securitytxt.org/
  */
 import type { Config } from '@sveltejs/adapter-vercel';
 import Handlebars from 'handlebars';
 
-import { toW3CDate } from '$shared/utils/datetime';
-
 import type { RequestHandler } from './$types';
-import source from './humans.template.txt?raw';
+import source from './security.template.txt?raw';
 
 export const GET: RequestHandler = async () => {
   const template = Handlebars.compile(source);
+  const expiresAt = new Date(`${new Date().getFullYear()}-12-31T23:59:59.999Z`);
   const txt = template({
-    last_update: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
+    expires_at: expiresAt.toISOString(),
   });
   const headers = {
     'Cache-Control': 'max-age=0, s-maxage=3600',
