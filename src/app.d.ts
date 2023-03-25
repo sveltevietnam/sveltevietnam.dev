@@ -46,10 +46,3 @@ declare global {
     // interface Platform {}
   }
 }
-
-declare namespace svelteHTML {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-interface
-  interface HTMLAttributes<T> {}
-}
-
-declare module '*.svelte';
