@@ -10,9 +10,9 @@ const commitHash = child_process.execSync('git rev-parse --short HEAD').toString
 const config: UserConfig = {
   plugins: [sveltekit()],
   define: {
-    'process.env.BUILD_TIMESTAMP': JSON.stringify(Date.now()),
-    'process.env.BUILD_HASH': JSON.stringify(commitHash),
-    'process.env.BUILD_VERSION': JSON.stringify(pkg.version),
+    __BUILD_TIMESTAMP__: JSON.stringify(Date.now()),
+    __BUILD_HASH__: JSON.stringify(commitHash),
+    __BUILD_VERSION__: JSON.stringify(pkg.version),
   },
 };
 

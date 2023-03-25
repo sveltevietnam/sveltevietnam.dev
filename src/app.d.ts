@@ -10,6 +10,10 @@ import type { ColorScheme } from '$shared/types';
 // for information about these interfaces
 // and what to do when importing types
 declare global {
+  declare const __BUILD_TIMESTAMP__: string;
+  declare const __BUILD_HASH__: string;
+  declare const __BUILD_VERSION__: string;
+
   namespace App {
     interface Locals {
       userId: string;

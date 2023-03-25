@@ -1,7 +1,6 @@
 import type { Config } from '@sveltejs/adapter-vercel';
 import Handlebars from 'handlebars';
 
-import { BUILD_TIMESTAMP } from '$env/static/private';
 import { PUBLIC_ROOT_URL } from '$env/static/public';
 // import { APP_ROUTE_TREE } from '$shared/constants';
 import { toW3CDate } from '$shared/utils/datetime';
@@ -35,7 +34,7 @@ export const GET: RequestHandler = () => {
     // ),
     {
       loc: PUBLIC_ROOT_URL,
-      lastmod: toW3CDate(parseInt(BUILD_TIMESTAMP, 10)),
+      lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
       changefreq: 'monthly',
       priority: 0.2,
     },

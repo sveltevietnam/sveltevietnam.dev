@@ -1,7 +1,6 @@
 import type { Config } from '@sveltejs/adapter-vercel';
 import Handlebars from 'handlebars';
 
-import { BUILD_TIMESTAMP } from '$env/static/private';
 import { PUBLIC_ROOT_URL } from '$env/static/public';
 // import { APP_ROUTE_TREE } from '$shared/constants';
 
@@ -31,7 +30,7 @@ export const GET: RequestHandler = () => {
     title: 'Svelte Vietnam',
     link: PUBLIC_ROOT_URL,
     description: 'The go-to, one-stop information hub for the Svelte community in Vietnam',
-    lastBuildDate: new Date(BUILD_TIMESTAMP).toUTCString(),
+    lastBuildDate: new Date(__BUILD_TIMESTAMP__).toUTCString(),
     copyright: `Copyright ${new Date().getFullYear()}, Svelte Vietnam`,
     items,
   });
