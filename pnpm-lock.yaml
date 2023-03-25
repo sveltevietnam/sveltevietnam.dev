@@ -4,7 +4,7 @@ specifiers:
   '@builder.io/partytown': ^0.7.6
   '@svelte-put/clickoutside': ^2.0.0
   '@svelte-put/modal': ^1.0.0
-  '@svelte-put/preprocess-inline-svg': ^1.2.0
+  '@svelte-put/preprocess-inline-svg': ^1.2.1
   '@svelte-put/shortcut': ^2.0.0
   '@sveltejs/adapter-vercel': ^2.4.1
   '@sveltejs/kit': ^1.14.0
@@ -64,7 +64,7 @@ dependencies:
 devDependencies:
   '@svelte-put/clickoutside': 2.0.0
   '@svelte-put/modal': 1.0.0_svelte@3.57.0
-  '@svelte-put/preprocess-inline-svg': 1.2.0_svelte@3.57.0
+  '@svelte-put/preprocess-inline-svg': 1.2.1_svelte@3.57.0
   '@svelte-put/shortcut': 2.0.0
   '@sveltejs/adapter-vercel': 2.4.1_@sveltejs+kit@1.14.0
   '@sveltejs/kit': 1.14.0_svelte@3.57.0+vite@4.2.1
@@ -709,8 +709,8 @@ packages:
     resolution: {integrity: sha512-y28oYx4pN8Vr2f/qfukz2yPwpqfREEHa5aMtr2sf3WC32kRZbd5Nbvz2dbTro7OMiB6SUfGomCVSokAB+nIVQA==}
     dev: true
 
-  /@svelte-put/preprocess-inline-svg/1.2.0_svelte@3.57.0:
-    resolution: {integrity: sha512-Iw7DQpP3rOCncCtEf2a0ej/w+cEMpusVraW6m5kHiF2+sb4MJlUWhf3bbCAG4xyTrBbTv584R785e83bu7m3KQ==}
+  /@svelte-put/preprocess-inline-svg/1.2.1_svelte@3.57.0:
+    resolution: {integrity: sha512-y8PES9SWb/JZGwoQR8FctNPMKwy8QbDFP67m3xsH4tCjTUf6Wv5eKtWKuIE0uus409G07o85Z1IWMJbFUnoXkQ==}
     peerDependencies:
       svelte: ^3.37.0
     dependencies:

@@ -57,13 +57,13 @@
     <div class="space-y-2">
       <p class="text-2xl font-bold">{event.title}</p>
       <p class="flex items-center space-x-2">
-        <svg class="inline-block" height="16" width="16" data-inline-src="google/location-on" />
+        <svg class="inline-block" height="16" width="16" inline-src="google/location-on" />
         <em>
           {event.location}
         </em>
       </p>
       <p class="flex items-center space-x-2">
-        <svg class="inline-block" height="16" width="16" data-inline-src="google/schedule" />
+        <svg class="inline-block" height="16" width="16" inline-src="google/schedule" />
         <em>
           <time datetime={rStartDate.toISOString()}>{formatTimeStr(event)}</time>
         </em>
@@ -116,7 +116,7 @@
 
   <a href={event.href} class="c-btn c-btn--text w-fit">
     <span>View Details</span>
-    <svg height="16" width="16" data-inline-src="google/arrow-right-alt" />
+    <svg height="16" width="16" inline-src="google/arrow-right-alt" />
   </a>
 </article>
 

@@ -14,7 +14,7 @@
   <section class="notice">
     <h2 hidden>Description</h2>
     <div class="notice-icon">
-      <svg height="24" width="24" data-inline-src="google/shield-with-heart" />
+      <svg height="24" width="24" inline-src="google/shield-with-heart" />
     </div>
     <p class="notice-description">{@html t.notice.description}</p>
     <p class="notice-action">{t.notice.action}</p>
@@ -22,12 +22,7 @@
     <div class="notice-ctas">
       <a href={SOCIAL_LINKS.discord} target="_blank" rel="noreferrer" class="c-btn">
         {t.notice.ctas.discord}
-        <svg
-          height="24"
-          width="24"
-          data-inline-src="simpleicon/discord"
-          class="max-md:h-4 max-md:w-4"
-        />
+        <svg height="24" width="24" inline-src="simpleicon/discord" class="max-md:h-4 max-md:w-4" />
       </a>
       <a href="mailto:{EMAILS.coc}" target="_blank" rel="noreferrer" class="c-btn c-btn--outlined"
         ><span>{@html t.notice.ctas.email}</span></a

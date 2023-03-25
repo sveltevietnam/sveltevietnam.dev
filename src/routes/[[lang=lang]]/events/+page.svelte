@@ -65,7 +65,7 @@
       class="c-btn c-btn--outlined w-fit justify-self-center md:col-span-2"
     >
       {t.actions.discord.cta}
-      <svg data-inline-src="simpleicon/discord" />
+      <svg inline-src="simpleicon/discord" />
     </a>
 
     <section class="c-action-card md:col-span-2">

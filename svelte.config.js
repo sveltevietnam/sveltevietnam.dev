@@ -8,6 +8,7 @@ const config = {
     vitePreprocess(),
     inlineSvg({
       directories: ['src/lib/shared/assets/images/svg'],
+      inlineSrcAttributeName: 'inline-src',
       attributes: {
         height: 24,
         width: 24,

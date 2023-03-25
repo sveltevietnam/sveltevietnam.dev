@@ -20,7 +20,7 @@
     <p class="font-bold">
       {job.title}
       {#if job.sponsored}
-        <svg data-inline-src="google/volunteer-activism" class="ml-4 inline-block" />
+        <svg inline-src="google/volunteer-activism" class="ml-4 inline-block" />
       {/if}
     </p>
     <p class="text-sm">{job.title}</p>

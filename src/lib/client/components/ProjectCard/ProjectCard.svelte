@@ -11,17 +11,17 @@
   <div class="space-y-4 md:space-y-8 md:py-10">
     <div class="flex items-center space-x-4">
       <p class="title">{project.name}</p>
-      <svg data-inline-src="google/eco" />
+      <svg inline-src="google/eco" />
     </div>
     <p class="space-x-4">
-      <svg data-inline-src="google/diversity-1" class="inline-block" />
+      <svg inline-src="google/diversity-1" class="inline-block" />
       <span>
         {project.description}
       </span>
     </p>
     {#if project.collaboration}
       <p class="space-x-4">
-        <svg data-inline-src="google/handshake" class="inline-block" />
+        <svg inline-src="google/handshake" class="inline-block" />
         <span>
           {project.collaboration}
         </span>
@@ -30,7 +30,7 @@
     {#if project.href}
       <a href={project.href} target="_blank" rel="noreferrer" class="c-btn c-btn--text w-fit">
         <span>View details</span>
-        <svg data-inline-src="google/arrow-right-alt" />
+        <svg inline-src="google/arrow-right-alt" />
       </a>
     {/if}
   </div>

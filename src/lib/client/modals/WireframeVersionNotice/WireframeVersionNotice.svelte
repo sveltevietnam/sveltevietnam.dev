@@ -58,7 +58,7 @@
     transition:fly={{ duration: 200, y: 50 }}
   >
     <p class="text-3xl font-bold uppercase">{t.title}</p>
-    <svg data-inline-src="google/handyman" height="40" width="40" class="mx-auto" />
+    <svg inline-src="google/handyman" height="40" width="40" class="mx-auto" />
     <p>
       {@html t.description}
     </p>
@@ -70,7 +70,7 @@
         {t.ctas.continue}
       </button>
       {#if shouldShow === true}
-        <button on:click={doNotShowAgain} type="button" class="c-btn--outlined c-btn border-bg-400">
+        <button on:click={doNotShowAgain} type="button" class="c-btn c-btn--outlined border-bg-400">
           {t.ctas.doNotShowAgain}
         </button>
       {/if}

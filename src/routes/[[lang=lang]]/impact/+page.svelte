@@ -20,13 +20,13 @@
         <spanq>
           {@html t.ctas.github}
         </spanq>
-        <svg data-inline-src="simpleicon/github" />
+        <svg inline-src="simpleicon/github" />
       </a>
       <a href={SOCIAL_LINKS.discord} target="_blank" rel="noreferrer" class="c-btn">
         <span>
           {t.ctas.discord}
         </span>
-        <svg data-inline-src="simpleicon/discord" />
+        <svg inline-src="simpleicon/discord" />
       </a>
       <a
         href="mailto:{EMAILS.impact}"
