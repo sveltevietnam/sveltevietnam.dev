@@ -5,7 +5,7 @@
 
   import { dev, browser } from '$app/environment';
   import { page } from '$app/stores';
-  import { PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID, PUBLIC_ROOT_URL } from '$env/static/public';
+  import { PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID } from '$env/static/public';
   import { localizeUrl, LANGUAGES } from '$shared/services/i18n';
 
   import '../lib/client/styles/app.css';
@@ -19,8 +19,8 @@
   $: ogTitle = meta?.og?.title ?? title;
   $: ogDescription = meta?.og?.description ?? description;
   $: ogType = meta?.og?.type ?? 'website';
-  $: ogUrl = meta?.og?.url ?? `${PUBLIC_ROOT_URL}${$page.url.pathname}`;
-  $: ogImage = meta?.og?.image ?? `${PUBLIC_ROOT_URL}/images/og.png`;
+  $: ogUrl = meta?.og?.url ?? `${$page.url.origin}/${$page.url.pathname}`;
+  $: ogImage = meta?.og?.image ?? `${$page.url.origin}/images/og.png`;
   $: ogImageAlt = meta?.og?.imageAlt ?? title;
 
   $: twitterTitle = meta?.twitter?.title ?? ogTitle;
@@ -74,7 +74,7 @@
   <meta name="twitter:site" content={twitterSite} />
 
   <link href={ogUrl} rel="canonical" />
-  <link type="text/plain" rel="author" href="{PUBLIC_ROOT_URL}/humans.txt" />
+  <link type="text/plain" rel="author" href="{$page.url.origin}/humans.txt" />
 
   <!-- alternative localized links -->
   {#each LANGUAGES.filter((l) => l !== $page.data.language) as lang}
@@ -82,6 +82,7 @@
   {/each}
   <link rel="alternate" hreflang="x-default" href={localizeUrl($page.url, 'vi').toString()} />
 
+  <!-- partytown scripts -->
   <!-- partytown scripts -->
   <script>
     partytown = {
@@ -92,6 +93,7 @@
   {@html `<script>${partytownSnippet()}</script>`}
 
   {#if analyticsEnabled}
+    <!-- vercel analytics -->
     <!-- vercel analytics -->
     <script src="/_vercel/insights/script.js" type="text/partytown"></script>
 

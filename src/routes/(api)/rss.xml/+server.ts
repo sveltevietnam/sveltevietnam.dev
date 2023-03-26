@@ -1,7 +1,6 @@
 import type { Config } from '@sveltejs/adapter-vercel';
 import Handlebars from 'handlebars';
 
-import { PUBLIC_ROOT_URL } from '$env/static/public';
 // import { APP_ROUTE_TREE } from '$shared/constants';
 
 import type { RequestHandler } from './$types';
@@ -15,20 +14,20 @@ type RssItem = {
   pubDate: string;
 };
 
-export const GET: RequestHandler = () => {
+export const GET: RequestHandler = ({ url }) => {
   const template = Handlebars.compile(source);
   const items: RssItem[] = [
     // {
     //   title: 'Svelte Vietnam',
     //   description: '',
-    //   link: `${PUBLIC_ROOT_URL}${APP_ROUTE_TREE.$.path()}`,
+    //   link: `${url.origin}/${APP_ROUTE_TREE.$.path()}`,
     //   guid: 'home',
     //   pubDate: new Date('2022-12-04').toUTCString(),
     // },
   ];
   const xml = template({
     title: 'Svelte Vietnam',
-    link: PUBLIC_ROOT_URL,
+    link: url.origin,
     description: 'The go-to, one-stop information hub for the Svelte community in Vietnam',
     lastBuildDate: new Date(__BUILD_TIMESTAMP__).toUTCString(),
     copyright: `Copyright ${new Date().getFullYear()}, Svelte Vietnam`,

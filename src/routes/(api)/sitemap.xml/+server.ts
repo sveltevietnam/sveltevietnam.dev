@@ -1,7 +1,6 @@
 import type { Config } from '@sveltejs/adapter-vercel';
 import Handlebars from 'handlebars';
 
-import { PUBLIC_ROOT_URL } from '$env/static/public';
 // import { APP_ROUTE_TREE } from '$shared/constants';
 import { toW3CDate } from '$shared/utils/datetime';
 
@@ -16,24 +15,24 @@ type SiteMapUrl = {
   priority?: number;
 };
 
-export const GET: RequestHandler = () => {
+export const GET: RequestHandler = ({ url }) => {
   const template = Handlebars.compile(source);
   const urls: SiteMapUrl[] = [
     // {
-    //   loc: `${PUBLIC_ROOT_URL}${APP_ROUTE_TREE.docs.$.path()}`,
+    //   loc: `${url.origin}/${APP_ROUTE_TREE.docs.$.path()}`,
     //   changefreq: 'monthly',
     //   priority: 0.9,
     // },
     // ...Object.values(packages).map(
     //   (pkg) =>
     //     ({
-    //       loc: `${PUBLIC_ROOT_URL}${pkg.path}`,
+    //       loc: `${url.origin}/${pkg.path}`,
     //       changefreq: 'monthly',
     //       priority: 0.8,
     //     } satisfies SiteMapUrl),
     // ),
     {
-      loc: PUBLIC_ROOT_URL,
+      loc: url.origin,
       lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
       changefreq: 'monthly',
       priority: 0.2,
