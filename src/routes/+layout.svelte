@@ -13,13 +13,14 @@
   $: meta = $page.data.meta;
 
   $: title = meta?.title ?? 'Svelte Vietnam';
-  $: description = meta?.description ?? '';
-  $: keywords = meta?.keywords ?? [];
+  $: description =
+    meta?.description ?? 'Community and go-to information hub for people of Svelte in Vietnam';
+  $: keywords = meta?.keywords ?? ['svelte', 'vietnam'];
 
   $: ogTitle = meta?.og?.title ?? title;
   $: ogDescription = meta?.og?.description ?? description;
   $: ogType = meta?.og?.type ?? 'website';
-  $: ogUrl = meta?.og?.url ?? `${$page.url.origin}/${$page.url.pathname}`;
+  $: ogUrl = meta?.og?.url ?? `${$page.url.origin}${$page.url.pathname}`;
   $: ogImage = meta?.og?.image ?? `${$page.url.origin}/images/og.png`;
   $: ogImageAlt = meta?.og?.imageAlt ?? title;
 
@@ -84,6 +85,7 @@
 
   <!-- partytown scripts -->
   <!-- partytown scripts -->
+  <!-- partytown scripts -->
   <script>
     partytown = {
       // forward the necessary functions to the web worker layer
@@ -93,6 +95,7 @@
   {@html `<script>${partytownSnippet()}</script>`}
 
   {#if analyticsEnabled}
+    <!-- vercel analytics -->
     <!-- vercel analytics -->
     <!-- vercel analytics -->
     <script src="/_vercel/insights/script.js" type="text/partytown"></script>
