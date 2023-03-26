@@ -30,8 +30,8 @@ export const SOCIAL_LINKS = {
 
 export const EMAILS = {
   admin: 'admin@sveltevietnam.dev',
-  coc: 'coc@sveltevietnam.dev',
   contact: 'contact@sveltevietnam.dev',
+  coc: 'coc@sveltevietnam.dev',
   events: 'events@sveltevietnam.dev',
   impact: 'impact@sveltevietnam.dev',
   sponsor: 'sponsor@sveltevietnam.dev',

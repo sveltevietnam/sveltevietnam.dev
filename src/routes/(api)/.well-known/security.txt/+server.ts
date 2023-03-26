@@ -4,8 +4,8 @@
 import type { Config } from '@sveltejs/adapter-vercel';
 import Handlebars from 'handlebars';
 
-import type { RequestHandler } from './$types';
 import source from './security.template.txt?raw';
+import { RequestHandler } from '@sveltejs/kit';
 
 export const GET: RequestHandler = async () => {
   const template = Handlebars.compile(source);
