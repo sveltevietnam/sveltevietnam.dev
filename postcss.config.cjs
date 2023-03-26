@@ -7,7 +7,6 @@ module.exports = {
   plugins: {
     'postcss-import': {},
     'tailwindcss/nesting': 'postcss-nesting',
-    tailwindcss: {},
     /** @type {import('postcss-mixins').Options} */
     'postcss-mixins': {
       mixinsDir: path.resolve(__dirname, './src/lib/client/styles/mixins'),
@@ -96,6 +95,7 @@ module.exports = {
         },
       },
     },
+    tailwindcss: {},
     autoprefixer: {},
     ...(process.env.NODE_ENV !== 'development' && { cssnano: {} }),
   },

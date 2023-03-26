@@ -77,9 +77,8 @@
 <header class="sticky top-0 bg-bg-200">
   <div class="c-container">
     <div class="logo">
-      <a href="/{lang}" title="Home" class="flex w-min items-center space-x-2">
-        <span class="grid h-8 w-8 place-items-center bg-bg-300 text-2xs">Logo</span>
-        <span class="w-max font-bold">Svelte Vietnam</span>
+      <a href="/{lang}" title="Home">
+        <svg inline-src="sveltevietnam-grayscale" width="50" height="56" />
       </a>
     </div>
     <div class="theme relative grid place-items-center" aria-expanded={themeMenuOpen}>
