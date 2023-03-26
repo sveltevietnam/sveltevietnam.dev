@@ -17,10 +17,14 @@
     --color-bg-200: theme('colors.grayscale.dark.200');
     --color-bg-300: theme('colors.grayscale.dark.300');
     --color-bg-400: theme('colors.grayscale.dark.400');
+
+    /* grayscale logo */
+    --logo-grayscale-color-fg: black;
+    --logo-grayscale-color-bg: white;
   }
 
   :root {
-    --header-height: 56px;
+    --header-height: 104px;
   }
 
   html {
@@ -36,10 +40,24 @@
     --color-bg-300: theme('colors.grayscale.light.300');
     --color-bg-400: theme('colors.grayscale.light.400');
 
+    /* grayscale logo */
+    --logo-grayscale-color-fg: white;
+    --logo-grayscale-color-bg: black;
+
     height: 100%;
     font-family: theme('fontFamily.inter');
     color: theme('colors.fg.100');
     background-color: theme('colors.bg.100');
+  }
+
+  .logo-grayscale {
+    & .fg {
+      fill: var(--logo-grayscale-color-fg);
+    }
+
+    & .bg {
+      fill: var(--logo-grayscale-color-bg);
+    }
   }
 
   svg {
