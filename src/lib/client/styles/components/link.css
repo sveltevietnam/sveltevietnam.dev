@@ -1,4 +1,5 @@
 @custom-selector :--icon .c-link--icon;
+@custom-selector :--__icon :is(img, svg);
 
 .c-link {
   &:where(:not(:--icon)) {
@@ -21,18 +22,19 @@
   }
 
   &:where(:--icon) {
-    & :is(img, svg) {
-      transition: transform 200ms ease-in-out;
+    & :--__icon {
+      transform-origin: center;
+      transition: transform 200ms ease;
     }
 
     &:hover {
-      & :is(img, svg) {
+      & :--__icon {
         transform: scale(1.05);
       }
     }
 
     &:active {
-      & :is(img, svg) {
+      & :--__icon {
         transform: scale(0.95);
       }
     }

@@ -1,6 +1,6 @@
 /* FIXME `:has` is enough, but Firefox has not yet added support for `:has`. When they do, please remove `.c-btn--with-icon` site-wide */
 @custom-selector :--with-icon :has(:is(img,svg)), .c-btn--with-icon;
-@custom-selector :--default :not(:is(.c-btn--outlined, .c-btn--text)), .c-btn--default;
+@custom-selector :--default :not(.c-btn--outlined, .c-btn--text), .c-btn--default;
 @custom-selector :--text .c-btn--text;
 @custom-selector :--outlined .c-btn--outlined;
 
