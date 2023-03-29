@@ -1,0 +1,1 @@
+@custom-selector :--current :is([data-current]:not([data-current="false"]),[aria-current]:not([aria-current="false"]));

@@ -62,7 +62,7 @@
 
     <a
       href={SOCIAL_LINKS.discord}
-      class="c-btn c-btn--outlined w-fit justify-self-center md:col-span-2"
+      class="c-btn--outlined c-btn w-fit justify-self-center md:col-span-2"
     >
       {t.actions.discord.cta}
       <svg inline-src="simpleicon/discord" />
@@ -73,9 +73,9 @@
       <h2 class="c-page@h2">{t.actions.sponsor.title}</h2>
       <p>{t.actions.sponsor.description}</p>
       <a href={sponsorHref} class="c-btn">{t.actions.sponsor.cta}</a>
-      <a class="c-link text-xs italic" href="{sponsorHref}#why"
-        >{t.actions.sponsor.whyNeedSponsor}</a
-      >
+      <a class="c-link text-xs italic" href="{sponsorHref}#why">
+        {t.actions.sponsor.whyNeedSponsor}
+      </a>
     </section>
   </div>
 
