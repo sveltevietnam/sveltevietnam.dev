@@ -1,4 +1,4 @@
-require('../css-node-loader.cjs');
+require('../postcss/css-node-loader.cjs');
 
 const components = {
   ...require('./action-card.css'),

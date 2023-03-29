@@ -1,5 +1,7 @@
+@custom-selector :--icon .c-link--icon;
+
 .c-link {
-  &:where(:not(.c-link--icon)) {
+  &:where(:not(:--icon)) {
     --underline-color: currentcolor;
 
     will-change: background-size;
@@ -18,7 +20,7 @@
     }
   }
 
-  &:where(.c-link--icon) {
+  &:where(:--icon) {
     & :is(img, svg) {
       transition: transform 200ms ease-in-out;
     }

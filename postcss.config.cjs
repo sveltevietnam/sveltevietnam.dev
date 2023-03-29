@@ -1,18 +1,14 @@
+const { globalData, mixins } = require('./src/lib/client/styles/postcss/plugins.cjs');
+
 /** @type {import('postcss-load-config').Config} */
 module.exports = {
-  plugins: {
-    'postcss-import': {},
-    'tailwindcss/nesting': 'postcss-nesting',
-    '@csstools/postcss-global-data': {
-      files: ['src/lib/client/styles/globals/custom-selectors.css'],
-    },
-    /** @type {import('postcss-mixins').Options} */
-    'postcss-mixins': {
-      mixins: require('./src/lib/client/styles/globals/mixins/index.cjs'),
-    },
-    tailwindcss: {},
-    'postcss-custom-selectors': {},
-    autoprefixer: {},
-    ...(process.env.NODE_ENV !== 'development' && { cssnano: {} }),
-  },
+  plugins: [
+    require('postcss-import'),
+    require('tailwindcss/nesting')(require('postcss-nesting')),
+    globalData,
+    mixins,
+    require('tailwindcss'),
+    require('autoprefixer'),
+    ...(process.env.NODE_ENV !== 'development' ? [require('cssnano')] : []),
+  ],
 };

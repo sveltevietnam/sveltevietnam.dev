@@ -1,4 +1,4 @@
-const sveltevietnam = require('./src/lib/client/styles/tailwind.cjs');
+const sveltevietnam = require('./src/lib/client/styles/postcss/tailwind.cjs');
 
 /** @type {import("tailwindcss").Config } */
 const config = {

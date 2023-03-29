@@ -1,3 +1,9 @@
+/* FIXME `:has` is enough, but Firefox has not yet added support for `:has`. When they do, please remove `.c-btn--with-icon` site-wide */
+@custom-selector :--with-icon :has(:is(img,svg)), .c-btn--with-icon;
+@custom-selector :--default :not(:is(.c-btn--outlined, .c-btn--text)), .c-btn--default;
+@custom-selector :--text .c-btn--text;
+@custom-selector :--outlined .c-btn--outlined;
+
 .c-btn {
   display: grid;
   column-gap: 8px;
@@ -9,25 +15,24 @@
 
   border-radius: theme('borderRadius.DEFAULT');
 
-  &:where(:has(:is(img,svg))) {
+  &:where(:--with-icon) {
     grid-template-columns: auto auto;
   }
 
-  &:where(:not(:has(:is(img,svg)))) {
+  &:where(:not(:--with-icon)) {
     text-align: center;
   }
 
-  &:where(:not(:is(.c-btn--outlined, .c-btn--text))),
-  &:where(.c-btn--default) {
+  &:where(:--default) {
     white-space: nowrap;
     background-color: theme('colors.bg.300');
   }
 
-  &:where(.c-btn--outlined) {
+  &:where(:--outlined) {
     border: 1px solid theme('colors.bg.300');
   }
 
-  &:where(.c-btn--text) {
+  &:where(:--text) {
     position: relative;
     padding: 0 0 4px;
     font-weight: 500;
