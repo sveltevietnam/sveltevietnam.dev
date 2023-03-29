@@ -1,0 +1,70 @@
+.c-link {
+  &:where(:not(.c-link--icon)) {
+    --underline-color: currentcolor;
+
+    will-change: background-size;
+
+    display: inline;
+
+    background-image: linear-gradient(to right, var(--underline-color), var(--underline-color));
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: 100% 1px;
+
+    transition: color 200ms ease-in-out;
+
+    &:hover {
+      animation: underline-swipe 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+    }
+  }
+
+  &:where(.c-link--icon) {
+    & :is(img, svg) {
+      transition: transform 200ms ease-in-out;
+    }
+
+    &:hover {
+      & :is(img, svg) {
+        transform: scale(1.05);
+      }
+    }
+
+    &:active {
+      & :is(img, svg) {
+        transform: scale(0.95);
+      }
+    }
+  }
+
+  &:hover {
+    /* FIXME: put in primary color when there is one */
+    color: theme('colors.svelte');
+  }
+
+  &[data-current]:not([data-current="false"]),
+  &[aria-current]:not([aria-current="false"]) {
+    color: theme('colors.svelte');
+  }
+}
+
+@keyframes underline-swipe {
+  0% {
+    background-position: 'right bottom';
+    background-size: '100% 1px';
+  }
+
+  50% {
+    background-position: 'right bottom';
+    background-size: '0 1px';
+  }
+
+  51% {
+    background-position: 'left bottom';
+    background-size: '0 1px';
+  }
+
+  100% {
+    background-position: 'left bottom';
+    background-size: '100% 1px';
+  }
+}

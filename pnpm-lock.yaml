@@ -51,6 +51,9 @@ devDependencies:
   '@types/gtag.js':
     specifier: ^0.0.12
     version: 0.0.12
+  '@types/postcss-js':
+    specifier: ^4.0.0
+    version: 4.0.0
   '@types/postcss-mixins':
     specifier: ^9.0.0
     version: 9.0.0
@@ -102,6 +105,9 @@ devDependencies:
   postcss-import:
     specifier: ^15.1.0
     version: 15.1.0(postcss@8.4.21)
+  postcss-js:
+    specifier: ^4.0.1
+    version: 4.0.1(postcss@8.4.21)
   postcss-load-config:
     specifier: ^4.0.1
     version: 4.0.1(postcss@8.4.21)
@@ -887,6 +893,12 @@ packages:
 
   /@types/parse5@6.0.3:
     resolution: {integrity: sha512-SuT16Q1K51EAVPz1K29DJ/sXjhSQ0zjvsypYJ6tlwVsRV9jwW5Adq2ch8Dq8kDBCkYnELS7N7VNCSB5nC56t/g==}
+    dev: true
+
+  /@types/postcss-js@4.0.0:
+    resolution: {integrity: sha512-ieu0u7T7jnUCFmXcf8JzoJ3/1U5NI3ZYpfX5zW2td0x/BqVQrpCQ6uOY9Ef/0WJuIjc9OCtdfYF/JE7MGax2TA==}
+    dependencies:
+      postcss: 8.4.21
     dev: true
 
   /@types/postcss-mixins@9.0.0:

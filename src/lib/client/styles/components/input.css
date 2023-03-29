@@ -1,0 +1,18 @@
+.c-input {
+  width: 100%;
+  min-width: 0;
+  height: 40px;
+  padding: 0 12px;
+
+  background-color: transparent;
+  border: 1px solid theme('colors.fg.200');
+  border-radius: theme('borderRadius.DEFAULT');
+
+  &:focus {
+    outline: 1px solid theme('colors.fg.200');
+  }
+
+  &:invalid:not(:placeholder-shown) {
+    border-color: theme('colors.status.error');
+  }
+}
