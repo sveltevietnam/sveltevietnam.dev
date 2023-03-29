@@ -1,0 +1,41 @@
+/* page level components */
+
+.c-page {
+  @apply c-container;
+
+  display: grid;
+  row-gap: 40px;
+  padding-bottom: 80px;
+
+  @screen md {
+    row-gap: 80px;
+  }
+}
+
+.c-page\@header {
+  @mixin space y, 24px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: 600px;
+
+  text-align: center;
+}
+
+.c-page\@h1 {
+  font-size: 60px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.c-page\@h1-sub {
+  font-size: 32px;
+}
+
+.c-page\@h2 {
+  font-size: 32px;
+  font-weight: 700;
+}

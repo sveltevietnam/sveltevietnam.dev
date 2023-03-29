@@ -1,0 +1,21 @@
+.c-action-card {
+  display: grid;
+  grid-auto-rows: min-content;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  justify-content: center;
+  justify-items: center;
+
+  padding: 24px;
+
+  background-color: theme('colors.bg.200');
+  border-radius: theme('borderRadius.DEFAULT');
+
+  @screen md {
+    padding: 40px;
+  }
+}
+
+:where(.c-action-card > p) {
+  text-align: center;
+}

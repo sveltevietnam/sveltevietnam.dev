@@ -1,0 +1,6 @@
+.c-sponsor {
+  width: auto;
+  min-height: 40px;
+  background-color: theme('colors.bg.300');
+  border-radius: theme('borderRadius.DEFAULT');
+}
