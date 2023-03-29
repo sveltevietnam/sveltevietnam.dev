@@ -49,7 +49,9 @@
       <a href={sponsorHref} class="c-btn">
         {t.actions.recruiter.cta}
       </a>
-      <p class="italic">{t.actions.recruiter.whyNeedSponsor}</p>
+      <a class="c-link text-xs italic" href="{sponsorHref}#why">
+        {t.actions.recruiter.whyNeedSponsor}
+      </a>
     </section>
 
     <section class="c-action-card">

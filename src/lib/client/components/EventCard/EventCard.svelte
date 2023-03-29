@@ -114,7 +114,7 @@
     </section>
   {/if}
 
-  <a href={event.href} class="c-btn c-btn--text w-fit">
+  <a href={event.href} class="c-btn--with-icon c-btn c-btn--text w-fit">
     <span>View Details</span>
     <svg height="16" width="16" inline-src="google/arrow-right-alt" />
   </a>

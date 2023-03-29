@@ -62,7 +62,7 @@
 
     <a
       href={SOCIAL_LINKS.discord}
-      class="c-btn--outlined c-btn w-fit justify-self-center md:col-span-2"
+      class="c-btn--with-icon c-btn c-btn--outlined w-fit justify-self-center md:col-span-2"
     >
       {t.actions.discord.cta}
       <svg inline-src="simpleicon/discord" />

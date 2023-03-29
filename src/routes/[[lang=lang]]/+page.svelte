@@ -58,7 +58,12 @@
     <h2 class="c-page@h2">{t.community.title}</h2>
     <p>{@html t.community.description}</p>
     <div class="flex items-center justify-center max-md:flex-col max-md:space-y-6 md:space-x-6">
-      <a class="c-btn" href={SOCIAL_LINKS.discord} target="_blank" rel="noreferrer">
+      <a
+        class="c-btn--with-icon c-btn"
+        href={SOCIAL_LINKS.discord}
+        target="_blank"
+        rel="noreferrer"
+      >
         <span>{t.community.ctas.discord}</span>
         <svg inline-src="simpleicon/discord" />
       </a>
@@ -70,7 +75,7 @@
       >
         {t.community.ctas.nominate}
       </a>
-      <a class="c-btn" href={SOCIAL_LINKS.github} target="_blank" rel="noreferrer">
+      <a class="c-btn--with-icon c-btn" href={SOCIAL_LINKS.github} target="_blank" rel="noreferrer">
         <span>{t.community.ctas.contribute}</span>
         <svg inline-src="simpleicon/github" />
       </a>
@@ -80,7 +85,7 @@
   <section class="space-y-10">
     <div class="flex items-center justify-between">
       <h2 class="c-page@h2">{t.events.title}</h2>
-      <a href={eventsHref} class="c-btn c-btn--text">
+      <a href={eventsHref} class="c-btn--with-icon c-btn c-btn--text">
         <span>{t.events.ctas.viewMore}</span>
         <svg inline-src="google/arrow-right-alt" />
       </a>
@@ -98,7 +103,7 @@
   <section class="space-y-10">
     <div class="flex items-center justify-between">
       <h2 class="c-page@h2">{t.jobs.title}</h2>
-      <a href={jobsHref} class="c-btn c-btn--text">
+      <a href={jobsHref} class="c-btn--with-icon c-btn c-btn--text">
         <span>{t.jobs.ctas.viewMore}</span>
         <svg inline-src="google/arrow-right-alt" />
       </a>
@@ -116,7 +121,7 @@
   <section class="space-y-10">
     <div class="flex items-center justify-between">
       <h2 class="c-page@h2">{t.impact.title}</h2>
-      <a href={impactHref} class="c-btn c-btn--text">
+      <a href={impactHref} class="c-btn--with-icon c-btn c-btn--text">
         <span>{t.impact.ctas.viewMore}</span>
         <svg inline-src="google/arrow-right-alt" />
       </a>
@@ -134,7 +139,7 @@
   <section class="space-y-10">
     <div class="flex items-center justify-between">
       <h2 class="c-page@h2">{t.sponsor.title}</h2>
-      <a href={sponsorHref} class="c-btn c-btn--text">
+      <a href={sponsorHref} class="c-btn--with-icon c-btn c-btn--text">
         <span>{t.sponsor.ctas.viewMore}</span>
         <svg inline-src="google/arrow-right-alt" />
       </a>
