@@ -6,21 +6,19 @@
   version="2.0"
 >
   <channel>
-    <title>{{title}}</title>
-    <link>{{link}}</link>
-    <description>{{description}}</description>
-    <lastBuildDate>{{lastBuildDate}}</lastBuildDate>
-    <copyright>{{copyright}}</copyright>
-    {{#each items}}
-      {{#with this}}
+    <title>{{ title }}</title>
+    <link>{{ link }}</link>
+    <description>{{ description }}</description>
+    <lastBuildDate>{{ lastBuildDate }}</lastBuildDate>
+    <copyright>{{ copyright }}</copyright>
+    {{#items}}
         <item>
-          <title>{{title}}</title>
-          <description>{{description}}</description>
-          <link>{{link}}</link>
-          <guid>{{guid}}</guid>
-          <pubDate>{{pubDate}}</pubDate>
+          <title>{{ title }}</title>
+          <description>{{ description }}</description>
+          <link>{{ link }}</link>
+          <guid>{{ guid }}</guid>
+          <pubDate>{{ pubDate }}</pubDate>
         </item>
-      {{/with}}
-    {{/each}}
+    {{/items}}
   </channel>
 </rss>

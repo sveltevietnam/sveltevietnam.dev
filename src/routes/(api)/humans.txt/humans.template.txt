@@ -12,7 +12,7 @@ From: Vietnam
 
 /* SITE */
 
-Last update: {{last_update}}
+Last update: {{ last_update }}
 Language: English
 Doctype: HTML5
 IDE: VSCode

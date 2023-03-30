@@ -1,11 +1,10 @@
-import type { Config } from '@sveltejs/adapter-vercel';
-import Handlebars from 'handlebars';
+import Mustache from 'mustache';
 
 // import { APP_ROUTE_TREE } from '$shared/constants';
 import { toW3CDate } from '$shared/utils/datetime';
 
 import type { RequestHandler } from './$types';
-import source from './sitemap.template.xml?raw';
+import template from './sitemap.template.xml?raw';
 
 /** https://www.sitemaps.org/protocol.html */
 type SiteMapUrl = {
@@ -16,7 +15,6 @@ type SiteMapUrl = {
 };
 
 export const GET: RequestHandler = ({ url }) => {
-  const template = Handlebars.compile(source);
   const urls: SiteMapUrl[] = [
     // {
     //   loc: `${url.origin}/${APP_ROUTE_TREE.docs.$.path()}`,
@@ -38,14 +36,10 @@ export const GET: RequestHandler = ({ url }) => {
       priority: 0.2,
     },
   ];
-  const xml = template({ urls });
+  const xml = Mustache.render(template, { urls });
   const headers = {
     'Cache-Control': 'max-age=0, s-maxage=3600',
     'Content-Type': 'application/xml',
   };
   return new Response(xml, { headers });
-};
-
-export const config: Config = {
-  runtime: 'nodejs16.x',
 };
