@@ -9,24 +9,16 @@
   xmlns:pagemap="http://www.google.com/schemas/sitemap-pagemap/1.0"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
 >
-  {{#each urls}}
-    {{#with this}}
-      <url>
-        {{#if loc}}
-          <loc>{{loc}}</loc>
-        {{else}}
-          <loc>/</loc>
-        {{/if}}
-        {{#if lasmod}}
-          <lastmod>{{lastmod}}</lastmod>
-        {{/if}}
-        {{#if changereq}}
-          <changefreq>{{changefreq}}</changefreq>
-        {{/if}}
-        {{#if priority}}
-          <priority>{{priority}}</priority>
-        {{/if}}
-      </url>
-    {{/with}}
-  {{/each}}
+  {{#urls}}
+    <url>
+      {{#loc}}<loc>{{loc}}</loc>{{/loc}}
+      {{^loc}}<loc>/</loc>{{/loc}}
+
+      {{#lastmod}}<lastmod>{{lastmod}}</lastmod>{{/lastmod}}
+
+      {{#changereq}}<changefreq>{{changefreq}}</changefreq>{{/changereq}}
+
+      {{#priority}}<priority>{{priority}}</priority>{{/priority}}
+    </url>
+  {{/urls}}
 </urlset>

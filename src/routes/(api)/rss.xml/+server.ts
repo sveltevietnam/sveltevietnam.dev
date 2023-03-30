@@ -1,10 +1,9 @@
-import type { Config } from '@sveltejs/adapter-vercel';
-import Handlebars from 'handlebars';
+import Mustache from 'mustache';
 
 // import { APP_ROUTE_TREE } from '$shared/constants';
 
 import type { RequestHandler } from './$types';
-import source from './rss.template.xml?raw';
+import template from './rss.template.xml?raw';
 
 type RssItem = {
   title: string;
@@ -15,7 +14,6 @@ type RssItem = {
 };
 
 export const GET: RequestHandler = ({ url }) => {
-  const template = Handlebars.compile(source);
   const items: RssItem[] = [
     // {
     //   title: 'Svelte Vietnam',
@@ -25,7 +23,7 @@ export const GET: RequestHandler = ({ url }) => {
     //   pubDate: new Date('2022-12-04').toUTCString(),
     // },
   ];
-  const xml = template({
+  const xml = Mustache.render(template, {
     title: 'Svelte Vietnam',
     link: url.origin,
     description: 'The go-to, one-stop information hub for the Svelte community in Vietnam',
@@ -38,8 +36,4 @@ export const GET: RequestHandler = ({ url }) => {
     'Content-Type': 'application/xml',
   };
   return new Response(xml, { headers });
-};
-
-export const config: Config = {
-  runtime: 'nodejs16.x',
 };
