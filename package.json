@@ -30,7 +30,7 @@
     "@svelte-put/modal": "^1.0.0",
     "@svelte-put/preprocess-inline-svg": "^1.2.1",
     "@svelte-put/shortcut": "^2.0.0",
-    "@sveltejs/adapter-vercel": "^2.4.1",
+    "@sveltejs/adapter-cloudflare": "^2.2.0",
     "@sveltejs/kit": "^1.14.0",
     "@tailwindash/triangle": "^1.0.5",
     "@total-typescript/ts-reset": "^0.4.2",
@@ -41,9 +41,9 @@
     "@types/postcss-mixins": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "^5.57.0",
     "@typescript-eslint/parser": "^5.57.0",
-    "@vnphanquang/eslint-config": "^1.2.1",
-    "@vnphanquang/eslint-config-svelte": "^1.0.1",
-    "@vnphanquang/prettierrc": "^1.0.0",
+    "@vnphanquang/eslint-config": "^1.2.3",
+    "@vnphanquang/eslint-config-svelte": "^1.0.3",
+    "@vnphanquang/prettierrc": "^1.0.1",
     "autoprefixer": "^10.4.14",
     "cssnano": "^6.0.0",
     "eslint": "^8.37.0",
@@ -62,7 +62,7 @@
     "postcss-nesting": "^11.2.2",
     "prettier": "^2.8.7",
     "prettier-plugin-svelte": "^2.10.0",
-    "prettier-plugin-tailwindcss": "^0.2.5",
+    "prettier-plugin-tailwindcss": "^0.2.6",
     "simple-git-hooks": "^2.8.1",
     "stylelint": "^15.3.0",
     "stylelint-config-clean-order": "^5.0.0",
@@ -79,6 +79,6 @@
   "packageManager": "pnpm@8.0.0",
   "engines": {
     "pnpm": ">=8.0.0",
-    "node": ">=18.14.0"
+    "node": ">=16.20.0"
   }
 }
