@@ -1,7 +1,6 @@
 /**
  * https://webfinger.net/
  */
-import type { Config } from '@sveltejs/adapter-vercel';
 import { RequestHandler, error } from '@sveltejs/kit';
 
 import { EMAILS } from '$shared/constants';
@@ -140,8 +139,4 @@ export const GET: RequestHandler = async ({ url }) => {
     webfinger.links = webfinger.links.filter((link) => rels.includes(link.rel));
   }
   return new Response(JSON.stringify(webfinger), { headers });
-};
-
-export const config: Config = {
-  runtime: 'nodejs16.x',
 };
