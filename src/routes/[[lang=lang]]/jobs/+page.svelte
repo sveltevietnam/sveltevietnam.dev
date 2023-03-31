@@ -60,10 +60,13 @@
       <p>{t.actions.candidate.description}</p>
       <MailRegistrationForm
         t={tMail}
+        language={data.language}
+        colorScheme={data.colorScheme}
         name={form?.data?.name}
         nameError={form?.error?.form?.name?.[0]}
         email={form?.data?.email}
         emailError={form?.error?.form?.email?.[0]}
+        turnstileError={form?.error?.turnstile?.[0]}
       />
     </section>
   </div>

@@ -48,3 +48,5 @@ export const GITHUB_LINKS = {
     PUBLIC_PROJECT: '',
   },
 };
+
+export const CLOUDFLARE_TURNSTILE_FORM_FIELD = 'turnstile';

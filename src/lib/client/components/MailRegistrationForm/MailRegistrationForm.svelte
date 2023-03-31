@@ -1,16 +1,25 @@
 <script lang="ts">
   import { enhance } from '$app/forms';
+  import { turnstile } from '$client/actions/turnstile';
+  import { PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
+  import { CLOUDFLARE_TURNSTILE_FORM_FIELD } from '$shared/constants';
+  import type { Language } from '$shared/services/i18n';
+  import type { ColorScheme } from '$shared/types';
 
   /** translations */
+  export let language: Language;
+  export let colorScheme: ColorScheme;
   export let t = {
     name: 'Name',
     cta: 'Notify me',
   };
   export let name = '';
-  export let nameError = '';
   export let email = '';
+
+  export let nameError = '';
   export let emailError = '';
-  export let error = '';
+  export let turnstileError = '';
+  // export let error = '';
 </script>
 
 <form class="notification-form" method="POST" use:enhance action="?/mail" autocomplete="on">
@@ -45,6 +54,20 @@
     />
   </div>
   <button type="submit" class="c-btn">{t.cta}</button>
+  <div class="relative col-span-3 w-full">
+    {#if turnstileError}
+      <p class="error">{turnstileError}</p>
+    {/if}
+    <div
+      class="flex justify-end"
+      turnstile-sitekey={PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY}
+      turnstile-response-field-name={CLOUDFLARE_TURNSTILE_FORM_FIELD}
+      turnstile-response-field
+      turnstile-theme={colorScheme === 'system' ? 'auto' : colorScheme}
+      turnstile-language={language}
+      use:turnstile
+    />
+  </div>
 </form>
 
 <style lang="postcss">
