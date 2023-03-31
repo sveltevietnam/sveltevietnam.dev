@@ -37,7 +37,7 @@ devDependencies:
     specifier: ^2.0.0
     version: 2.0.0
   '@sveltejs/adapter-cloudflare':
-    specifier: ^2.1.0
+    specifier: 2.1.0
     version: 2.1.0(@sveltejs/kit@1.14.0)
   '@sveltejs/kit':
     specifier: ^1.14.0
