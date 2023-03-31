@@ -74,6 +74,7 @@
   <!-- partytown scripts -->
   <!-- partytown scripts -->
   <!-- partytown scripts -->
+  <!-- partytown scripts -->
   <script>
     partytown = {
       // forward the necessary functions to the web worker layer
@@ -83,6 +84,12 @@
   {@html `<script>${partytownSnippet()}</script>`}
 
   {#if analyticsEnabled}
+    <!-- Cloudflare Web Analytics -->
+    {#if analyticsEnabled}
+      {@html `<script defer type="text/partytown" src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "90e5124b9ae64380840c51c68c1ff67b"}'></script>`}
+    {/if}
+    <!-- End Cloudflare Web Analytics -->
+
     <!-- Google tag (gtag.js) -->
     {@html `<script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id="${PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID}"></script>`}
     <script type="text/partytown">
