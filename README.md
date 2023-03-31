@@ -11,7 +11,7 @@ Svelte Vietnam official site at [sveltevietnam.dev](https://sveltevietnam.dev)
 
 [![Discord][sveltevietnam.discord.badge]][sveltevietnam.discord] [![Twitter][sveltevietnam.twitter.badge]][sveltevietnam.twitter] [![Facebook][sveltevietnam.facebook.badge]][sveltevietnam.facebook]
 
-[![MIT][license.badge]][license] [![Production][github.deploy.prod.badge]][github.deploy.prod]
+[![MIT][license.badge]][license]
 
 For details about the context & objective of this project, read the [Project References](./docs/PROJECT_REFERENCES.md) document.
 Contribution and discussion are welcome.
@@ -27,8 +27,6 @@ Contribution and discussion are welcome.
 
 [license.badge]: https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge
 [license]: ./LICENSE
-[github.deploy.prod.badge]: https://img.shields.io/github/deployments/sveltevietnam/sveltevietnam.dev/production?label=cloudflare&logo=cloudflare&logoColor=white&style=for-the-badge
-[github.deploy.prod]: https://github.com/sveltevietnam/sveltevietnam.dev/deployments/activity_log?environment=Production
 [sveltevietnam.discord.badge]: https://img.shields.io/discord/1066621936546877450?color=7289da&label=Discord&logo=discord&style=for-the-badge
 [sveltevietnam.discord]: https://discord.gg/Rtv2xwhz7d
 [sveltevietnam.facebook]: https://www.facebook.com/sveltevietnam
