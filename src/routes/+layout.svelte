@@ -72,9 +72,6 @@
 
   <!-- partytown scripts -->
   <!-- partytown scripts -->
-  <!-- partytown scripts -->
-  <!-- partytown scripts -->
-  <!-- partytown scripts -->
   <script>
     partytown = {
       // forward the necessary functions to the web worker layer
