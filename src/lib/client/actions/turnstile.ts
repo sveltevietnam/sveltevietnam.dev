@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Action } from 'svelte/action';
 
+// TODO: extract to own package?
+
 type TurnstileConfig = {
   sitekey: string;
   action?: string;
