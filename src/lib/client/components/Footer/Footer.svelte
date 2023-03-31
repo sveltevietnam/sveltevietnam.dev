@@ -37,8 +37,18 @@
         >
           <svg class="inline-block" height="16" width="16" inline-src="simpleicon/tailwindcss" />
         </a>
-        <a href="https://vercel.com/" target="_blank" rel="noreferrer" class="c-link--icon c-link">
-          <svg class="inline-block" height="16" width="16" inline-src="simpleicon/vercel" />
+        <a
+          href="https://www.cloudflare.com/"
+          target="_blank"
+          rel="noreferrer"
+          class="c-link--icon c-link"
+        >
+          <svg
+            class="inline-block"
+            height="16"
+            width="16"
+            inline-src="simpleicon/cloudflarepages"
+          />
         </a>
       </span>
     </section>

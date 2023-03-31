@@ -21,9 +21,8 @@ export const handle: Handle = async ({ event, resolve }) => {
   const languageFromUrl = getLocaleFromUrl(url);
 
   if (!languageFromUrl) {
-    // REF: https://vercel.com/docs/concepts/edge-network/headers#x-vercel-ip-country
-    // vercel specific country detection
-    const countryCode = request.headers.get('x-vercel-ip-country');
+    // REF: https://developers.cloudflare.com/support/network/configuring-ip-geolocation/
+    const countryCode = request.headers.get('cf-ipcountry');
     const fallbackLanguage =
       (cookies.get(COOKIE_LANGUAGE) as Language) ||
       (countryCode?.toUpperCase() === 'VN' ? 'vi' : 'en');

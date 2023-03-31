@@ -22,7 +22,6 @@ declare global {
     }
     interface PageData {
       colorScheme: ColorScheme;
-      vercelAnalyticsId?: string;
       language: Language;
       meta?: {
         title?: string;
@@ -46,7 +45,19 @@ declare global {
         };
       };
     }
+
+    // cloudflare
+    interface Platform {
+      env: {
+        //
+      };
+      context: {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        waitUntil(promise: Promise<any>): void;
+      };
+      caches: CacheStorage & { default: Cache };
+    }
+
     // interface Error {}
-    // interface Platform {}
   }
 }

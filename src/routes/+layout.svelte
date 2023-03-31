@@ -1,7 +1,6 @@
 <script lang="ts">
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   import { partytownSnippet } from '@builder.io/partytown/integration';
-  import { onMount } from 'svelte';
 
   import { dev, browser } from '$app/environment';
   import { page } from '$app/stores';
@@ -33,15 +32,6 @@
 
   $: analyticsEnabled = !dev;
 
-  let analyticsId = $page.data.vercelAnalyticsId;
-  let webVitals: typeof import('$client/services/web-vitals').webVitals;
-  $: if (browser && analyticsId && webVitals) {
-    webVitals({
-      path: $page.url.pathname,
-      params: $page.params,
-      analyticsId,
-    });
-  }
   $: if (browser && gtag && analyticsEnabled) {
     gtag('config', PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID, {
       page_title: document.title,
@@ -49,9 +39,6 @@
       page_path: $page.url.pathname,
     });
   }
-  onMount(async () => {
-    webVitals = (await import('$client/services/web-vitals')).webVitals;
-  });
 </script>
 
 <svelte:head>
@@ -86,6 +73,7 @@
   <!-- partytown scripts -->
   <!-- partytown scripts -->
   <!-- partytown scripts -->
+  <!-- partytown scripts -->
   <script>
     partytown = {
       // forward the necessary functions to the web worker layer
@@ -95,11 +83,6 @@
   {@html `<script>${partytownSnippet()}</script>`}
 
   {#if analyticsEnabled}
-    <!-- vercel analytics -->
-    <!-- vercel analytics -->
-    <!-- vercel analytics -->
-    <script src="/_vercel/insights/script.js" type="text/partytown"></script>
-
     <!-- Google tag (gtag.js) -->
     {@html `<script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id="${PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID}"></script>`}
     <script type="text/partytown">
