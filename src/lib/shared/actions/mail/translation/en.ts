@@ -13,6 +13,9 @@ export const en = {
         required: 'Name is required',
         invalid: 'Name is invalid',
       },
+      captcha: {
+        required: 'Cloudflare Turnstile response is required',
+      },
     },
     success: 'Registered successfully',
   },

@@ -32,7 +32,7 @@
 
   $: analyticsEnabled = !dev;
 
-  $: if (browser && gtag && analyticsEnabled) {
+  $: if (browser && gtag && analyticsEnabled && PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID) {
     gtag('config', PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID, {
       page_title: document.title,
       page_location: $page.url.href,
@@ -70,10 +70,8 @@
   {/each}
   <link rel="alternate" hreflang="x-default" href={localizeUrl($page.url, 'vi').toString()} />
 
-  <!-- partytown scripts -->
-  <!-- partytown scripts -->
-  <!-- partytown scripts -->
   <script>
+    // partytown scripts
     partytown = {
       // forward the necessary functions to the web worker layer
       forward: ['gtag'],

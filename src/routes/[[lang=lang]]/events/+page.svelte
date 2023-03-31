@@ -53,16 +53,19 @@
       <p>{t.actions.participate.description}</p>
       <MailRegistrationForm
         t={tMail}
+        language={data.language}
+        colorScheme={data.colorScheme}
         name={form?.data?.name}
         nameError={form?.error?.form?.name?.[0]}
         email={form?.data?.email}
         emailError={form?.error?.form?.email?.[0]}
+        turnstileError={form?.error?.turnstile?.[0]}
       />
     </section>
 
     <a
       href={SOCIAL_LINKS.discord}
-      class="c-btn--with-icon c-btn c-btn--outlined w-fit justify-self-center md:col-span-2"
+      class="c-btn--with-icon c-btn--outlined c-btn w-fit justify-self-center md:col-span-2"
     >
       {t.actions.discord.cta}
       <svg inline-src="simpleicon/discord" />

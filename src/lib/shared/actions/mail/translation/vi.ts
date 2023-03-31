@@ -11,6 +11,9 @@ export const vi = {
         required: 'Tên không được để trống',
         invalid: 'Tên không hợp lệ',
       },
+      captcha: {
+        required: 'Cloudflare Turnstile response không được để trống',
+      },
     },
     success: 'Đăng kí thành công',
   },

@@ -21,10 +21,7 @@ build/
 *.log*
 
 # local env files
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.development
 
 # turbo
 .turbo
@@ -38,3 +35,5 @@ temp/
 # vite temp
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+.gitsecret/keys/random_seed
+!*.secret
