@@ -4,6 +4,10 @@
   import { ProjectCard } from '$client/components/ProjectCard';
   import { APP_ROUTE_TREE, GITHUB_LINKS, SOCIAL_LINKS } from '$shared/constants';
 
+  import communityShapeEllipsis from './_page/images/community-shape-ellipsis.png';
+  import communityShapePolygon from './_page/images/community-shape-polygon.png';
+  import communityShapeStar from './_page/images/community-shape-star.png';
+
   export let data;
 
   $: t = data.translations.page;
@@ -30,126 +34,283 @@
   });
 </script>
 
-<main class="c-page">
-  <section class="c-page@header">
-    <h1 class="c-page@h1">Svelte Vietnam</h1>
-  </section>
-
-  <section class="grid grid-cols-1 gap-10 md:grid-cols-2">
-    <h2 hidden>Introduction</h2>
-    <article class="c-action-card">
-      <div class="c-graphic" />
-      <p class="c-page@h2">Svelte</p>
-      <p>{t.introduction.svelte}</p>
-    </article>
-    <article class="c-action-card">
-      <div class="c-graphic" />
-      <p class="c-page@h2">Vietnam</p>
-      <p>{t.introduction.vietnam}</p>
-    </article>
-    <article class="c-action-card md:col-span-2">
-      <div class="c-graphic" />
-      <p class="c-page@h2">Svelte Vietnam</p>
-      <p>{t.introduction.svelteVietnam}</p>
-    </article>
-  </section>
-
-  <section class="space-y-10">
-    <h2 class="c-page@h2">{t.community.title}</h2>
-    <p>{@html t.community.description}</p>
-    <div class="flex items-center justify-center max-md:flex-col max-md:space-y-6 md:space-x-6">
-      <a
-        class="c-btn--with-icon c-btn"
-        href={SOCIAL_LINKS.discord}
-        target="_blank"
-        rel="noreferrer"
-      >
-        <span>{t.community.ctas.discord}</span>
-        <svg inline-src="simpleicon/discord" />
-      </a>
-      <a
-        class="c-btn c-btn--outlined"
-        href={GITHUB_LINKS.ISSUE.CONTRIBUTOR_NOMINATION}
-        target="_blank"
-        rel="noreferrer"
-      >
-        {t.community.ctas.nominate}
-      </a>
-      <a class="c-btn--with-icon c-btn" href={SOCIAL_LINKS.github} target="_blank" rel="noreferrer">
-        <span>{t.community.ctas.contribute}</span>
-        <svg inline-src="simpleicon/github" />
-      </a>
-    </div>
-  </section>
-
-  <section class="space-y-10">
-    <div class="flex items-center justify-between">
-      <h2 class="c-page@h2">{t.events.title}</h2>
-      <a href={eventsHref} class="c-btn--with-icon c-btn c-btn--text">
-        <span>{t.events.ctas.viewMore}</span>
-        <svg inline-src="google/arrow-right-alt" />
-      </a>
-    </div>
-    <p>{t.events.description}</p>
-    <ul class="space-y-10">
-      {#each data.events as event}
-        <li>
-          <EventCard {event} lang={data.language} />
+<main class="page">
+  <div class="community">
+    <section class="section">
+      <h2 class="section@title">{t.community.title}</h2>
+      <p class="section@description mt-6 pc:mt-8">{@html t.community.description}</p>
+      <div class="shapes">
+        <img
+          class="ellipsis"
+          src={communityShapeEllipsis}
+          alt="ellipsis"
+          width="363"
+          height="403"
+        />
+        <img class="polygon" src={communityShapePolygon} alt="polygon" width="308" height="390" />
+        <img class="star" src={communityShapeStar} alt="star" width="181" height="181" />
+      </div>
+      <ul class="ctas divide-border divide-y">
+        <li class="pb-4">
+          <a
+            class="flex items-center justify-between"
+            href={SOCIAL_LINKS.discord}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span>{t.community.ctas.discord}</span>
+            <svg inline-src="icon/external-link" />
+          </a>
         </li>
-      {/each}
-    </ul>
-  </section>
-
-  <section class="space-y-10">
-    <div class="flex items-center justify-between">
-      <h2 class="c-page@h2">{t.jobs.title}</h2>
-      <a href={jobsHref} class="c-btn--with-icon c-btn c-btn--text">
-        <span>{t.jobs.ctas.viewMore}</span>
-        <svg inline-src="google/arrow-right-alt" />
-      </a>
-    </div>
-    <p>{t.jobs.description}</p>
-    <ul class="grid grid-cols-1 gap-10 md:grid-cols-2">
-      {#each data.jobs as job}
-        <li>
-          <JobCard {job} lang={data.language} />
+        <li class="py-4">
+          <a
+            class="flex items-center justify-between"
+            href={GITHUB_LINKS.ISSUE.CONTRIBUTOR_NOMINATION}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span>{t.community.ctas.nominate}</span>
+            <svg inline-src="icon/external-link" />
+          </a>
         </li>
-      {/each}
-    </ul>
-  </section>
-
-  <section class="space-y-10">
-    <div class="flex items-center justify-between">
-      <h2 class="c-page@h2">{t.impact.title}</h2>
-      <a href={impactHref} class="c-btn--with-icon c-btn c-btn--text">
-        <span>{t.impact.ctas.viewMore}</span>
-        <svg inline-src="google/arrow-right-alt" />
-      </a>
-    </div>
-    <p>{t.impact.description}</p>
-    <ul class="space-y-10">
-      {#each data.projects as project}
-        <li>
-          <ProjectCard {project} lang={data.language} />
+        <li class="pt-4">
+          <a
+            class="flex items-center justify-between"
+            href={SOCIAL_LINKS.github}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span>{t.community.ctas.contribute}</span>
+            <svg inline-src="icon/external-link" />
+          </a>
         </li>
-      {/each}
-    </ul>
-  </section>
+      </ul>
+    </section>
+  </div>
 
-  <section class="space-y-10">
-    <div class="flex items-center justify-between">
-      <h2 class="c-page@h2">{t.sponsor.title}</h2>
-      <a href={sponsorHref} class="c-btn--with-icon c-btn c-btn--text">
-        <span>{t.sponsor.ctas.viewMore}</span>
-        <svg inline-src="google/arrow-right-alt" />
+  <section class="section">
+    <div class="flex items-center space-x-4 pc:space-x-6">
+      <h2 class="section@title">
+        {t.events.title}
+      </h2>
+      <a href={eventsHref} title={t.events.title}>
+        <svg inline-src="icon/arrow-circle" width="64" height="64" class="arrow-circle" />
       </a>
     </div>
-    <p>{t.sponsor.description}</p>
-    <ul class="flex items-center space-x-4">
-      <li class="c-avatar" />
-      <li class="c-avatar" />
-      <li class="h-[40px] w-[100px] rounded bg-bg-300" />
-      <li class="c-avatar" />
-    </ul>
+    <p class="section@description mt-6 pc:mt-8">{t.events.description}</p>
+  </section>
+
+  <section class="section">
+    <div class="flex items-center space-x-4 pc:space-x-6">
+      <h2 class="section@title">
+        {t.jobs.title}
+      </h2>
+      <a href={eventsHref} title={t.jobs.title}>
+        <svg inline-src="icon/arrow-circle" width="64" height="64" class="arrow-circle" />
+      </a>
+    </div>
+    <p class="section@description mt-6 pc:mt-8">{t.jobs.description}</p>
+  </section>
+
+  <section class="section">
+    <div class="flex items-center space-x-4 pc:space-x-6">
+      <h2 class="section@title">
+        {t.impact.title}
+      </h2>
+      <a href={eventsHref} title={t.impact.title}>
+        <svg inline-src="icon/arrow-circle" width="64" height="64" class="arrow-circle" />
+      </a>
+    </div>
+    <p class="section@description mt-6 pc:mt-8">{t.impact.description}</p>
+  </section>
+
+  <section class="section">
+    <div class="flex items-center space-x-4 pc:space-x-6">
+      <h2 class="section@title">
+        {t.sponsor.title}
+      </h2>
+      <a href={eventsHref} title={t.sponsor.title}>
+        <svg inline-src="icon/arrow-circle" width="64" height="64" class="arrow-circle" />
+      </a>
+    </div>
+    <p class="section@description mt-6 pc:mt-8">{t.sponsor.description}</p>
   </section>
 </main>
+
+<style lang="postcss">
+  .section {
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 16px;
+    padding-left: 16px;
+
+    @screen pc {
+      max-width: 1440px;
+      padding-right: 160px;
+      padding-left: 160px;
+    }
+  }
+
+  .section\@title {
+    font-family: theme('fontFamily.lora');
+    font-size: 32px;
+    font-weight: 500;
+    text-transform: uppercase;
+
+    @screen pc {
+      font-size: 64px;
+    }
+  }
+
+  .section\@description {
+    @screen pc {
+      max-width: 560px;
+      font-size: 18px;
+    }
+  }
+
+  .arrow-circle {
+    width: 36px;
+    height: 36px;
+
+    @screen pc {
+      width: 64px;
+      height: 64px;
+    }
+  }
+
+  .community {
+    padding-top: 133px;
+    padding-bottom: 126px;
+    background: linear-gradient(
+      to bottom,
+      theme('colors.design.bg.1'),
+      theme('colors.design.bg.2') 27%,
+      theme('colors.design.bg.2') 73%,
+      theme('colors.design.bg.1') 100%
+    );
+
+    & > section {
+      display: grid;
+      grid-template-areas:
+        'title'
+        'description'
+        'shapes'
+        'ctas';
+
+      @screen pc {
+        grid-template-areas:
+          'title shapes'
+          'description shapes'
+          'ctas shapes';
+        grid-template-columns: minmax(560px, auto) auto;
+        justify-content: space-between;
+      }
+    }
+
+    & .section\@title {
+      grid-area: title;
+    }
+
+    & .section\@description {
+      grid-area: description;
+
+      @screen mobile {
+        margin-top: 24px;
+      }
+    }
+
+    & .ctas {
+      grid-area: ctas;
+      margin-top: 30px;
+
+      @screen mobile {
+        width: 90%;
+        margin-left: auto;
+      }
+
+      @screen pc {
+        margin-top: 80px;
+      }
+    }
+
+    & .shapes {
+      position: relative;
+
+      grid-area: shapes;
+
+      aspect-ratio: 285 / 277;
+      width: clamp(100px, 79.1vw, 285px);
+      height: auto;
+      margin-left: auto;
+
+      @screen mobile {
+        margin-top: 20px;
+      }
+
+      @screen pc {
+        aspect-ratio: 453 / 478;
+        width: clamp(100px, 31.5vw, 453px);
+        height: auto;
+      }
+
+      & img {
+        --rotate-x: 0deg;
+        --rotate-y: 0deg;
+        --rotate-z: 0deg;
+        --scale-from: 1;
+        --scale-to: 1;
+
+        position: absolute;
+        animation: shape 3s ease-in-out alternate infinite;
+
+        &.ellipsis {
+          --rotate-x: -5deg;
+          --rotate-y: 10deg;
+          --rotate-z: -3deg;
+          --scale-from: 1.02;
+
+          bottom: 0;
+          left: 0;
+          width: 80%;
+          height: auto;
+        }
+
+        &.polygon {
+          --rotate-x: -4deg;
+          --rotate-y: 8deg;
+          --rotate-z: 2deg;
+          --scale-from: 1.03;
+
+          top: 0;
+          left: 3.5%;
+          width: 68%;
+          height: auto;
+        }
+
+        &.star {
+          --rotate-x: -10deg;
+          --rotate-y: 12deg;
+          --rotate-z: -5deg;
+          --scale-to: 1.05;
+
+          right: 0;
+          bottom: 19.3%;
+          width: 40%;
+          height: auto;
+        }
+      }
+    }
+  }
+
+  @keyframes shape {
+    0% {
+      transform: rotateX(0) rotateY(0) rotateZ(0) scale(var(--scale-from));
+    }
+
+    100% {
+      transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) rotateZ(var(--rotate-z))
+        scale(var(--scale-to));
+    }
+  }
+</style>
