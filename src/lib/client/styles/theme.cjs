@@ -1,6 +1,14 @@
 /** @type {import('tailwindcss').Config['theme']} */
 const theme = {
   extend: {
+    screens: {
+      pc: {
+        min: '768px',
+      },
+      mobile: {
+        max: '767px',
+      },
+    },
     fontSize: {
       '2xs': '0.625rem',
     },
@@ -46,6 +54,20 @@ const theme = {
       },
       primary: '#ef4623',
       svelte: '#ef4623',
+      // FIXME temporary, refactor once there is a consistent color palette
+      design: {
+        link: 'var(--color-link)',
+        border: {
+          1: 'var(--color-border-1)',
+        },
+        fg: {
+          1: 'var(--color-fg-1)',
+        },
+        bg: {
+          1: 'var(--color-bg-1)',
+          2: 'var(--color-bg-2)',
+        },
+      },
     },
     zIndex: {
       px: '1',
