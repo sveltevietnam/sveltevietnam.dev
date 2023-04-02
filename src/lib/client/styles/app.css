@@ -1,4 +1,5 @@
 @import url('../../shared/assets/fonts/inter/inter.font.css');
+@import url('../../shared/assets/fonts/lora/lora.font.css');
 
 @tailwind base;
 @tailwind components;
@@ -68,3 +69,4 @@
     cursor: not-allowed;
   }
 }
+
