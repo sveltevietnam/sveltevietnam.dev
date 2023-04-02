@@ -9,6 +9,8 @@
 
     display: inline;
 
+    color: theme('colors.design.link');
+
     background-image: linear-gradient(to right, var(--underline-color), var(--underline-color));
     background-repeat: no-repeat;
     background-position: left bottom;
@@ -40,14 +42,12 @@
     }
   }
 
-  &:hover {
-    /* FIXME: put in primary color when there is one */
-    color: theme('colors.svelte');
-  }
+  /* &:hover {
+    FIXME: put in primary color when there is one
+  } */
 
-  &:--current {
-    color: theme('colors.svelte');
-  }
+  /* &:--current {
+  } */
 }
 
 @keyframes underline-swipe {
