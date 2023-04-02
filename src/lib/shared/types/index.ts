@@ -7,21 +7,22 @@ export interface Event {
   endDate: string;
   description: string;
   href: string;
-  highlights: EventHighlight[];
+  speakers: EventSpeaker[];
   sponsors: Sponsor[];
 }
 
-export interface EventHighlight {
+export interface EventSpeaker {
   image?: string;
-  title: string;
-  description: string;
+  name: string;
+  title?: string;
+  href?: string;
 }
 
 export interface Sponsor {
   /** inline svg with height of 40 */
   image: string;
   name: string;
-  href: string;
+  href?: string;
 }
 
 export interface Job {
