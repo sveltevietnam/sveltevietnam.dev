@@ -6,6 +6,7 @@ const theme = {
     },
     fontFamily: {
       inter: ['Inter', 'sans-serif'],
+      lora: ['Lora', 'serif'],
     },
     spacing: {
       header: 'var(--header-height)',
