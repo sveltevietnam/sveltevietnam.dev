@@ -27,6 +27,7 @@ export interface Sponsor {
 
 export interface Job {
   title: string;
+  image?: string;
   company: string;
   salary?: string;
   location?: string;

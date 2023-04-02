@@ -1,4 +1,5 @@
 <script lang="ts">
+  import companyFallbackImg from '$shared/assets/images/fallback/company.png';
   import type { Language } from '$shared/services/i18n';
   import type { Job } from '$shared/types';
 
@@ -10,61 +11,98 @@
   export { cls as class };
 
   $: t = translations[lang];
-
-  $: tags = [job.salary, job.location, job.locationPolicy].filter(Boolean);
 </script>
 
 <article class="job-card {cls}">
-  <div class="c-avatar" />
-  <div class="space-y-2">
-    <p class="font-bold">
-      {job.title}
-      {#if job.sponsored}
-        <svg inline-src="google/volunteer-activism" class="ml-4 inline-block" />
-      {/if}
-    </p>
-    <p class="text-sm">{job.title}</p>
-    <p class="space-x-4 text-xs italic text-fg-300">
-      <span>{t.posted} {new Date(job.createdAt).toLocaleDateString()}</span>
+  <img src={job.image || companyFallbackImg} alt={job.company} height="44" width="44" />
+  <div class="flex-1">
+    <p class="company">{job.company}</p>
+    <p class="datetime">
+      <span>{t.posted}</span>
+      <time datetime={job.createdAt}>{new Date(job.createdAt).toLocaleDateString()}</time>
       {#if job.expiresAt}
-        <span>{t.expires} {new Date(job.expiresAt).toLocaleDateString()}</span>
+        <span aria-disabled>-</span>
+        <span>{t.expires}</span>
+        <time datetime={job.expiresAt}>{new Date(job.expiresAt).toLocaleDateString()}</time>
       {/if}
     </p>
-    <div class="flex items-center gap-x-4">
-      {#each tags as tag}
-        <p class="tag">{tag}</p>
-      {/each}
+    <p class="title">{job.title}</p>
+    <div class="tags">
+      {#if job.salary}
+        <p class="tag salary">{job.salary}</p>
+      {/if}
+      {#if job.location}
+        <p class="tag">{job.location}</p>
+      {/if}
+      {#if job.locationPolicy}
+        <p class="tag">{job.locationPolicy}</p>
+      {/if}
     </div>
   </div>
 </article>
 
 <style lang="postcss">
   .job-card {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    column-gap: theme('spacing.4');
-    align-items: center;
+    @mixin space x, 12px;
+
+    display: flex;
+    align-items: flex-start;
+
+    padding: 14px 16px;
+
+    border: 1px solid theme('colors.design.border.1');
+    border-radius: 12px;
+
+    @screen pc {
+      @mixin space x, 14px;
+
+      padding: 16px;
+    }
   }
 
-  .c-avatar {
-    width: 100px;
-    height: 100px;
+  .company {
+    font-size: 12px;
+  }
+
+  .datetime {
+    margin-top: 4px;
+    font-size: 12px;
+    font-style: italic;
+  }
+
+  .title {
+    margin-top: 8px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    font-weight: 500;
+
+    @screen pc {
+      margin-top: 10px;
+      margin-bottom: 19px;
+      font-size: 16px;
+    }
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
   .tag {
-    display: grid;
-    place-items: center;
+    --color: 85 76 133;
 
-    padding: theme('spacing.1') theme('spacing.2') theme('spacing[0.5]');
+    padding: 4px 10px;
 
-    font-size: theme('fontSize.2xs');
-    text-transform: capitalize;
+    font-size: 12px;
+    color: rgb(var(--color));
 
-    background-color: theme('colors.bg.200');
-    border-radius: theme('borderRadius.DEFAULT');
+    background-color: rgba(var(--color) / 10%);
+    border: 1px solid rgba(var(--color) / 50%);
+    border-radius: 25px;
 
-    @screen md {
-      font-size: theme('fontSize.xs');
+    &.salary {
+      --color: 171 55 127;
     }
   }
 </style>

@@ -118,6 +118,15 @@
         </a>
       </div>
       <p class="section-desc mt-6 pc:mt-8">{t.jobs.description}</p>
+      <ul
+        class="mt-10 grid grid-cols-1 gap-x-6 pc:mt-20 pc:grid-cols-3 pc:gap-y-10 tb:grid-cols-2 sp:gap-y-4"
+      >
+        {#each data.jobs as job}
+          <li class="shrink-0">
+            <JobCard {job} lang={data.language} class="h-full" />
+          </li>
+        {/each}
+      </ul>
     </section>
 
     <section class="section">
@@ -131,7 +140,9 @@
       </div>
       <p class="section-desc mt-6 pc:mt-8">{t.impact.description}</p>
     </section>
+  </div>
 
+  <div class="sponsors">
     <section class="section">
       <div class="section-title-container">
         <h2 class="section-title">
