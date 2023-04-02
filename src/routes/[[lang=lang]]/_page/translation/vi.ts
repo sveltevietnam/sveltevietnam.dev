@@ -42,7 +42,8 @@ export const vi = {
   },
   sponsor: {
     title: 'Nhà tài trợ',
-    description: 'Giúp cộng đồng Svelte Vietnam phát triển bền vững bằng các trở thành nhà tài trợ',
+    description:
+      'Giúp cộng đồng Svelte Vietnam phát triển bền vững bằng cách trở thành nhà tài trợ',
     ctas: {
       viewMore: 'Xem thêm',
     },
