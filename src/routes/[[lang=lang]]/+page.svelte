@@ -1,7 +1,7 @@
 <script lang="ts">
   import { EventCard } from '$client/components/EventCard';
   import { JobCard } from '$client/components/JobCard';
-  import { ProjectCard } from '$client/components/ProjectCard';
+  // import { ProjectCard } from '$client/components/ProjectCard';
   import { APP_ROUTE_TREE, GITHUB_LINKS, SOCIAL_LINKS } from '$shared/constants';
 
   import communityShapeEllipsis from './_page/images/community-shape-ellipsis.png';
@@ -153,6 +153,20 @@
         </a>
       </div>
       <p class="section-desc mt-6 pc:mt-8">{t.sponsor.description}</p>
+      <!-- FIXME: refactor to plain css here -->
+      <ul class="mt-10 flex flex-wrap gap-x-[73px] gap-y-[62px] pc:mt-20">
+        {#each new Array(6).fill(0) as _}
+          <li class="flex items-center space-x-2 pc:space-x-4">
+            <svg
+              inline-src="sveltevietnam-grayscale"
+              width="50"
+              height="56"
+              class="logo-grayscale sp:w-27 sp:w-30"
+            />
+            <p class="w-[50px] text-[11px] uppercase pc:w-[90px] pc:text-[20px]">Svelte Vietnam</p>
+          </li>
+        {/each}
+      </ul>
     </section>
   </div>
 </main>
@@ -217,15 +231,21 @@
   }
 
   .community {
+    --gradient-offset: 200px;
+
     padding-top: 133px;
     padding-bottom: 126px;
     background: linear-gradient(
       to bottom,
       theme('colors.design.bg.1'),
-      theme('colors.design.bg.2') 27%,
-      theme('colors.design.bg.2') 73%,
+      theme('colors.design.bg.2') var(--gradient-offset),
+      theme('colors.design.bg.2') calc(100% - var(--gradient-offset)),
       theme('colors.design.bg.1') 100%
     );
+
+    @screen pc {
+      --gradient-offset: 200px;
+    }
 
     & > section {
       display: grid;
@@ -245,11 +265,11 @@
       }
     }
 
-    & .section\@title {
+    & .section-title {
       grid-area: title;
     }
 
-    & .section\@description {
+    & .section-desc {
       grid-area: description;
 
       @screen sp {
@@ -344,6 +364,26 @@
 
     @screen pc {
       @mixin space y, 160px;
+    }
+  }
+
+  .sponsors {
+    --gradient-offset: 148px;
+
+    margin-top: 80px;
+    padding-bottom: 120px;
+    background: linear-gradient(
+      to bottom,
+      theme('colors.design.bg.1'),
+      theme('colors.design.bg.2') var(--gradient-offset),
+      theme('colors.design.bg.2') 100%
+    );
+
+    @screen pc {
+      --gradient-offset: 200px;
+
+      padding-top: 80px;
+      padding-bottom: 108px;
     }
   }
 
