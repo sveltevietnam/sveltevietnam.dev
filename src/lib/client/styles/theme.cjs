@@ -4,6 +4,11 @@ const theme = {
     screens: {
       pc: {
         // desktop
+        min: '1024px',
+      },
+      tb: {
+        // tablet
+        max: '1023px',
         min: '768px',
       },
       sp: {
@@ -68,6 +73,10 @@ const theme = {
         bg: {
           1: 'var(--color-bg-1)',
           2: 'var(--color-bg-2)',
+        },
+        neutral: {
+          1: 'var(--color-neutral-1)',
+          2: 'var(--color-neutral-2)',
         },
       },
     },

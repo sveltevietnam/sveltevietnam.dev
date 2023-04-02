@@ -49,6 +49,8 @@
     --color-bg-400: theme('colors.grayscale.light.400');
 
     /* design */
+    --color-neutral-1: #ACACAC;
+    --color-neutral-2: #707070;
     --color-link: #1773CE;
     --color-border-1: #DBDBDB;
     --color-fg-1: #121212;
