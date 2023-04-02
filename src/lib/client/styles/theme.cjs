@@ -3,9 +3,11 @@ const theme = {
   extend: {
     screens: {
       pc: {
+        // desktop
         min: '768px',
       },
-      mobile: {
+      sp: {
+        // smart phone
         max: '767px',
       },
     },

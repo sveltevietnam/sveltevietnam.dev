@@ -3,38 +3,37 @@ import type { Contributor, Event, Job, Project } from '$shared/types';
 export function createMockedEvent() {
   return {
     description:
-      'Brief description of this event. For example, on which occasion, what will happen, ...',
-    title: 'Title of The Event',
-    location: 'Location of the event',
+      'Hackathon Svelte sẽ diễn ra tại TPHCM vào tháng 4 năm 2023, hướng tới các nhà phát triển web để thiết kế và phát triển các ứng dụng web độc đáo và ấn tượng sử dụng framework Svelte.',
+    title: 'Khám phá tiềm năng của framework Svelte: Hackathon Svelte đầu tiên',
+    location: 'Ho Chi Minh City',
     href: '#',
     startDate: new Date().toISOString(),
-    endDate: new Date(new Date().setHours(new Date().getHours() + 1)).toISOString(),
-    highlights: [
+    endDate: new Date(new Date().setHours(new Date().getHours() + 3)).toISOString(),
+    speakers: [
       {
-        description: 'Highlight details, without image',
-        title: 'Some Highlight',
+        name: 'Trọng Trần',
       },
       {
-        description: 'Some presentation about something',
-        title: 'Speaker Name',
-        image: 'https://avatars.githubusercontent.com/u/25895844?v=4',
+        title: 'Svelte và SvelteKit',
+        name: 'Quang Phan',
+        href: 'https://github.com/vnphanquang',
       },
     ],
     sponsors: [
       {
         href: '',
-        image: '<div class="c-sponsor w-[200px]"></div>',
+        image: '',
         name: 'Sponsor 1',
       },
       {
         href: '',
-        image: '<div class="c-sponsor w-[200px]"></div>',
-        name: 'Sponsor 2',
+        image: '',
+        name: 'Nhà tài trợ 2',
       },
       {
-        href: '',
-        image: '<div class="c-sponsor w-[200px]"></div>',
-        name: 'Sponsor 2',
+        href: 'http://github.com/sveltevietnam',
+        image: '',
+        name: 'Svelte Vietnam',
       },
     ],
   } satisfies Event;

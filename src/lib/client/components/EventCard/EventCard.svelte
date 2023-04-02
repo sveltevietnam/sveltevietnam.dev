@@ -1,14 +1,19 @@
 <script lang="ts">
+  import sponsorFallbackImg from '$shared/assets/images/fallback/sponsor.png';
   import type { Language } from '$shared/services/i18n';
   import type { Event } from '$shared/types';
+  import { formatDate } from '$shared/utils/datetime';
+
+  import { translations } from './translation';
 
   export let lang: Language;
   export let event: Event;
   let cls = '';
   export { cls as class };
 
+  $: t = translations[lang];
   $: rStartDate = new Date(event.startDate);
-  $: monthFormatter = new Intl.DateTimeFormat(lang, { month: 'long' });
+  // $: monthFormatter = new Intl.DateTimeFormat(lang, { month: 'long' });
 
   function formatTimeStr(event: Event) {
     const { startDate, endDate } = event;
@@ -44,86 +49,205 @@
   }
 </script>
 
-<article class="event-card space-y-6 {cls}">
-  <section class="flex max-md:flex-col max-md:space-y-10 md:items-center md:space-x-10">
-    <div
-      class="flex w-32 shrink-0 flex-col items-center justify-center space-y-1 rounded border border-fg-100 text-center square max-md:self-center"
-    >
-      <p class="text-2xl">{rStartDate.getDate()}</p>
-      <p class="text-xl font-bold">{monthFormatter.format(rStartDate)}</p>
-      <p>{rStartDate.getFullYear()}</p>
-    </div>
-
-    <div class="space-y-2">
-      <p class="text-2xl font-bold">{event.title}</p>
-      <p class="flex items-center space-x-2">
-        <svg class="inline-block" height="16" width="16" inline-src="google/location-on" />
-        <em>
-          {event.location}
-        </em>
+<article class="event-card {cls}">
+  <p class="date">
+    <time datetime={rStartDate.toISOString()}>{formatDate(rStartDate)}</time>
+    <svg inline-src="icon/arrow-circle" width="32" height="32" />
+  </p>
+  <div class="content">
+    <p class="title">{event.title}</p>
+    <div class="geotime">
+      <p class="geotime-item">
+        <svg class="inline-block" height="24" width="24" inline-src="icon/map-pin" />
+        <span>{event.location}</span>
       </p>
-      <p class="flex items-center space-x-2">
-        <svg class="inline-block" height="16" width="16" inline-src="google/schedule" />
-        <em>
-          <time datetime={rStartDate.toISOString()}>{formatTimeStr(event)}</time>
-        </em>
+      <p class="geotime-item">
+        <svg class="inline-block" height="24" width="24" inline-src="icon/clock" />
+        <time datetime={rStartDate.toISOString()}>{formatTimeStr(event)}</time>
       </p>
     </div>
-  </section>
-
-  <p>{event.description}</p>
-
-  {#if event.highlights.length}
-    <section class="space-y-4">
-      <p class="text-xl font-bold">Highlights</p>
-      <ul class="grid w-fit grid-cols-[auto,1fr] items-center gap-4 md:grid-cols-[auto,auto,auto]">
-        {#each event.highlights as { image, title, description }}
-          <li class="contents">
-            {#if image}
-              <!-- <img
-                src={image}
-                alt={title}
-                class="aspect-square object-contain"
-                height="50"
-                width="50"
-              /> -->
-              <div class="c-avatar" />
-            {:else}
-              <div aria-disabled />
-            {/if}
-            <p class="font-medium">{title}</p>
-            <p class="max-md:hidden">{description}</p>
-          </li>
-        {/each}
-      </ul>
-    </section>
-  {/if}
-
-  {#if event.sponsors.length}
-    <section class="space-y-4">
-      <p class="text-xl font-bold">Sponsors</p>
-      <ul class="flex max-md:flex-col max-md:space-y-4 md:items-center md:space-x-4">
-        {#each event.sponsors as { href, image, name }}
-          <li>
-            <a {href} title={name}>
-              {@html image}
-            </a>
-          </li>
-        {/each}
-      </ul>
-    </section>
-  {/if}
-
-  <a href={event.href} class="c-btn--with-icon c-btn c-btn--text w-fit">
-    <span>View Details</span>
-    <svg height="16" width="16" inline-src="google/arrow-right-alt" />
-  </a>
+    <div class="my-4 h-px w-full bg-design-border-1 pc:my-8" aria-disabled />
+    <div class="space-y-4">
+      <p class="description">
+        {@html event.description}
+      </p>
+      {#if event.speakers.length}
+        <div class="highlights speakers">
+          <p class="highlights-title">{t.speakers}</p>
+          <ul>
+            {#each event.speakers as { image, name, title, href }}
+              <li>
+                <svelte:element this={!!href ? 'a' : 'p'} {href}>
+                  {name}
+                </svelte:element>
+                {#if title}
+                  <p aria-disabled>-</p>
+                  <p>
+                    {@html title}
+                  </p>
+                {/if}
+              </li>
+            {/each}
+          </ul>
+        </div>
+      {/if}
+      {#if event.sponsors.length}
+        <div class="highlights sponsors">
+          <p class="highlights-title">{t.sponsors}</p>
+          <ul>
+            {#each event.sponsors as { href, image, name }}
+              <li>
+                <svelte:element this={!!href ? 'a' : 'div'} {href} class="sponsor">
+                  <img src={image || sponsorFallbackImg} width="32" height="32" alt={name} />
+                  <p>{name}</p>
+                </svelte:element>
+              </li>{/each}
+          </ul>
+        </div>
+      {/if}
+    </div>
+  </div>
 </article>
 
 <style lang="postcss">
   .event-card {
-    padding: theme('spacing.10');
-    background: theme('colors.bg.200');
-    border-radius: theme('borderRadius.DEFAULT');
+    display: flex;
+    align-items: flex-start;
+
+    @screen sp {
+      @mixin space y, 24px;
+
+      flex-direction: column;
+    }
+
+    @screen pc {
+      @mixin space x, 131px;
+    }
+  }
+
+  .date {
+    @mixin space x, 4px;
+
+    display: flex;
+    font-family: theme('fontFamily.lora');
+    font-size: 18px;
+
+    @screen pc {
+      @mixin space x, 8px;
+
+      font-size: 24px;
+    }
+
+    & svg {
+      width: 18px;
+      height: 18px;
+
+      @screen pc {
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
+
+  .content {
+    @screen pc {
+      max-width: 640px;
+    }
+  }
+
+  .title {
+    font-size: 18px;
+    font-weight: 500;
+
+    @screen pc {
+      font-size: 24px;
+    }
+  }
+
+  .geotime {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+
+    margin-top: 12px;
+
+    @screen pc {
+      gap: 40px;
+      margin-top: 16px;
+    }
+  }
+
+  .geotime-item {
+    @mixin space x, 4px;
+
+    display: flex;
+    align-items: center;
+
+    @screen pc {
+      @mixin space x, 8px;
+    }
+  }
+
+  .highlights {
+    @mixin space x, 8px;
+
+    display: flex;
+    font-size: 14px;
+
+    @screen pc {
+      @mixin space x, 24px;
+
+      font-size: 16px;
+    }
+
+    & .highlights-title {
+      flex-shrink: 0;
+      width: 60px;
+      font-weight: 500;
+      white-space: nowrap;
+
+      @screen pc {
+        width: 70px;
+      }
+    }
+  }
+
+  .speakers {
+    & ul {
+      @mixin space y, 4px;
+    }
+
+    & li {
+      @mixin space x, 4px;
+
+      display: flex;
+    }
+  }
+
+  .sponsors {
+    & ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    & .sponsor {
+      @mixin space x, 8px;
+
+      display: flex;
+      align-items: center;
+
+      padding: 6px 8px;
+
+      border: 1px solid theme('colors.design.border.1');
+      border-radius: 25px;
+
+      @screen pc {
+        @mixin space x, 15px;
+
+        padding: 6px 10px;
+      }
+    }
   }
 </style>

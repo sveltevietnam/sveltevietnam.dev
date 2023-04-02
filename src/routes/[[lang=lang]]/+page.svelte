@@ -37,8 +37,8 @@
 <main class="page">
   <div class="community">
     <section class="section">
-      <h2 class="section@title">{t.community.title}</h2>
-      <p class="section@description mt-6 pc:mt-8">{@html t.community.description}</p>
+      <h2 class="section-title">{t.community.title}</h2>
+      <p class="section-desc mt-6 pc:mt-8">{@html t.community.description}</p>
       <div class="shapes">
         <img
           class="ellipsis"
@@ -88,53 +88,62 @@
     </section>
   </div>
 
-  <section class="section">
-    <div class="flex items-center space-x-4 pc:space-x-6">
-      <h2 class="section@title">
-        {t.events.title}
-      </h2>
-      <a href={eventsHref} title={t.events.title}>
-        <svg inline-src="icon/arrow-circle" width="64" height="64" class="arrow-circle" />
-      </a>
-    </div>
-    <p class="section@description mt-6 pc:mt-8">{t.events.description}</p>
-  </section>
+  <div class="others">
+    <section class="section">
+      <div class="section-title-container">
+        <h2 class="section-title">
+          {t.events.title}
+        </h2>
+        <a href={eventsHref} title={t.events.title}>
+          <svg inline-src="icon/arrow-circle" width="64" height="64" class="arrow-circle" />
+        </a>
+      </div>
+      <p class="section-desc mt-6 pc:mt-8">{t.events.description}</p>
+      <ul class="mt-10 pc:mt-20 sp:ml-8">
+        {#each data.events as event}
+          <li>
+            <EventCard {event} lang={data.language} />
+          </li>
+        {/each}
+      </ul>
+    </section>
 
-  <section class="section">
-    <div class="flex items-center space-x-4 pc:space-x-6">
-      <h2 class="section@title">
-        {t.jobs.title}
-      </h2>
-      <a href={eventsHref} title={t.jobs.title}>
-        <svg inline-src="icon/arrow-circle" width="64" height="64" class="arrow-circle" />
-      </a>
-    </div>
-    <p class="section@description mt-6 pc:mt-8">{t.jobs.description}</p>
-  </section>
+    <section class="section">
+      <div class="section-title-container">
+        <h2 class="section-title">
+          {t.jobs.title}
+        </h2>
+        <a href={eventsHref} title={t.jobs.title}>
+          <svg inline-src="icon/arrow-circle" width="64" height="64" class="arrow-circle" />
+        </a>
+      </div>
+      <p class="section-desc mt-6 pc:mt-8">{t.jobs.description}</p>
+    </section>
 
-  <section class="section">
-    <div class="flex items-center space-x-4 pc:space-x-6">
-      <h2 class="section@title">
-        {t.impact.title}
-      </h2>
-      <a href={eventsHref} title={t.impact.title}>
-        <svg inline-src="icon/arrow-circle" width="64" height="64" class="arrow-circle" />
-      </a>
-    </div>
-    <p class="section@description mt-6 pc:mt-8">{t.impact.description}</p>
-  </section>
+    <section class="section">
+      <div class="flex items-start space-x-4 pc:space-x-6">
+        <h2 class="section-title impact">
+          {t.impact.title}
+        </h2>
+        <a href={eventsHref} title={t.impact.title}>
+          <svg inline-src="icon/arrow-circle" width="64" height="64" class="arrow-circle" />
+        </a>
+      </div>
+      <p class="section-desc mt-6 pc:mt-8">{t.impact.description}</p>
+    </section>
 
-  <section class="section">
-    <div class="flex items-center space-x-4 pc:space-x-6">
-      <h2 class="section@title">
-        {t.sponsor.title}
-      </h2>
-      <a href={eventsHref} title={t.sponsor.title}>
-        <svg inline-src="icon/arrow-circle" width="64" height="64" class="arrow-circle" />
-      </a>
-    </div>
-    <p class="section@description mt-6 pc:mt-8">{t.sponsor.description}</p>
-  </section>
+    <section class="section">
+      <div class="section-title-container">
+        <h2 class="section-title">
+          {t.sponsor.title}
+        </h2>
+        <a href={eventsHref} title={t.sponsor.title}>
+          <svg inline-src="icon/arrow-circle" width="64" height="64" class="arrow-circle" />
+        </a>
+      </div>
+      <p class="section-desc mt-6 pc:mt-8">{t.sponsor.description}</p>
+    </section>
+  </div>
 </main>
 
 <style lang="postcss">
@@ -151,7 +160,18 @@
     }
   }
 
-  .section\@title {
+  .section-title-container {
+    @mixin space x, 16px;
+
+    display: flex;
+    align-items: center;
+
+    @screen pc {
+      @mixin space x, 24px;
+    }
+  }
+
+  .section-title {
     font-family: theme('fontFamily.lora');
     font-size: 32px;
     font-weight: 500;
@@ -160,9 +180,15 @@
     @screen pc {
       font-size: 64px;
     }
+
+    &.impact {
+      @screen sp {
+        max-width: 180px;
+      }
+    }
   }
 
-  .section\@description {
+  .section-desc {
     @screen pc {
       max-width: 560px;
       font-size: 18px;
@@ -170,8 +196,8 @@
   }
 
   .arrow-circle {
-    width: 36px;
-    height: 36px;
+    width: 48px;
+    height: 48px;
 
     @screen pc {
       width: 64px;
@@ -215,7 +241,7 @@
     & .section\@description {
       grid-area: description;
 
-      @screen mobile {
+      @screen sp {
         margin-top: 24px;
       }
     }
@@ -224,9 +250,8 @@
       grid-area: ctas;
       margin-top: 30px;
 
-      @screen mobile {
-        width: 90%;
-        margin-left: auto;
+      @screen sp {
+        margin-left: 32px;
       }
 
       @screen pc {
@@ -244,7 +269,7 @@
       height: auto;
       margin-left: auto;
 
-      @screen mobile {
+      @screen sp {
         margin-top: 20px;
       }
 
@@ -300,6 +325,14 @@
           height: auto;
         }
       }
+    }
+  }
+
+  .others {
+    @mixin space y, 80px;
+
+    @screen pc {
+      @mixin space y, 160px;
     }
   }
 
