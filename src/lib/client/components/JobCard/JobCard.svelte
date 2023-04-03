@@ -53,7 +53,7 @@
     border: 1px solid theme('colors.design.border.1');
     border-radius: 12px;
 
-    @screen pc {
+    @screen tb {
       @mixin space x, 14px;
 
       padding: 16px;
@@ -76,7 +76,7 @@
     font-size: 14px;
     font-weight: 500;
 
-    @screen pc {
+    @screen tb {
       margin-top: 10px;
       margin-bottom: 19px;
       font-size: 16px;

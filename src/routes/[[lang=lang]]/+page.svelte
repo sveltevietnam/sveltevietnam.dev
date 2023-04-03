@@ -178,6 +178,12 @@
     padding-right: 16px;
     padding-left: 16px;
 
+    @screen tb {
+      max-width: 1024px;
+      padding-right: 40px;
+      padding-left: 40px;
+    }
+
     @screen pc {
       max-width: 1440px;
       padding-right: 160px;
@@ -191,7 +197,7 @@
     display: flex;
     align-items: center;
 
-    @screen pc {
+    @screen tb {
       @mixin space x, 24px;
     }
   }
@@ -202,7 +208,7 @@
     font-weight: 500;
     text-transform: uppercase;
 
-    @screen pc {
+    @screen tb {
       font-size: 64px;
     }
 
@@ -214,7 +220,7 @@
   }
 
   .section-desc {
-    @screen pc {
+    @screen tb {
       max-width: 560px;
       font-size: 18px;
     }
@@ -224,7 +230,7 @@
     width: 48px;
     height: 48px;
 
-    @screen pc {
+    @screen tb {
       width: 64px;
       height: 64px;
     }
@@ -243,7 +249,7 @@
       theme('colors.design.bg.1') 100%
     );
 
-    @screen pc {
+    @screen tb {
       --gradient-offset: 200px;
     }
 
@@ -255,7 +261,7 @@
         'shapes'
         'ctas';
 
-      @screen pc {
+      @screen tb {
         grid-template-areas:
           'title shapes'
           'description shapes'
@@ -285,7 +291,7 @@
         margin-left: 32px;
       }
 
-      @screen pc {
+      @screen tb {
         margin-top: 80px;
       }
     }
@@ -304,7 +310,7 @@
         margin-top: 20px;
       }
 
-      @screen pc {
+      @screen tb {
         aspect-ratio: 453 / 478;
         width: clamp(100px, 31.5vw, 453px);
         height: auto;
@@ -362,7 +368,7 @@
   .others {
     @mixin space y, 80px;
 
-    @screen pc {
+    @screen tb {
       @mixin space y, 160px;
     }
   }
@@ -379,7 +385,7 @@
       theme('colors.design.bg.2') 100%
     );
 
-    @screen pc {
+    @screen tb {
       --gradient-offset: 200px;
 
       padding-top: 80px;

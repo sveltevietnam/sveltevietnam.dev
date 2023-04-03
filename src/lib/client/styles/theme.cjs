@@ -8,7 +8,6 @@ const theme = {
       },
       tb: {
         // tablet
-        max: '1023px',
         min: '768px',
       },
       sp: {
