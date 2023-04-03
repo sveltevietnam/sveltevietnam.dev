@@ -5,7 +5,7 @@ export function createMockedEvent() {
     description:
       'Hackathon Svelte sẽ diễn ra tại TPHCM vào tháng 4 năm 2023, hướng tới các nhà phát triển web để thiết kế và phát triển các ứng dụng web độc đáo và ấn tượng sử dụng framework Svelte.',
     title: 'Khám phá tiềm năng của framework Svelte: Hackathon Svelte đầu tiên',
-    location: 'Ho Chi Minh City',
+    location: '4 Đ. Đặng Hữu Phổ, Thảo Điền, Quận 2, Thành phố Hồ Chí Minh',
     href: '#',
     startDate: new Date().toISOString(),
     endDate: new Date(new Date().setHours(new Date().getHours() + 3)).toISOString(),
