@@ -5,7 +5,7 @@ import type { UserConfig } from 'vite';
 
 import pkg from './package.json';
 
-const commitHash = child_process.execSync('git rev-parse --short HEAD').toString();
+const commitHash = child_process.execSync('git rev-parse --short HEAD').toString().trim();
 
 const config: UserConfig = {
   plugins: [sveltekit()],
