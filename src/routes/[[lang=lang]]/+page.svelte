@@ -130,7 +130,7 @@
     </section>
 
     <section class="section">
-      <div class="flex items-start space-x-4 pc:space-x-6">
+      <div class="flex space-x-4 pc:space-x-6 tb:items-center sp:items-start">
         <h2 class="section-title impact">
           {t.impact.title}
         </h2>
