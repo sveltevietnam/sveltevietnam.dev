@@ -759,13 +759,13 @@ packages:
       svelte: ^3.2.0
     dependencies:
       '@svelte-put/clickoutside': 2.0.0
-      '@svelte-put/movable': 2.0.0
+      '@svelte-put/movable': 2.0.1
       '@svelte-put/shortcut': 2.0.0
       svelte: 3.58.0
     dev: true
 
-  /@svelte-put/movable@2.0.0:
-    resolution: {integrity: sha512-y28oYx4pN8Vr2f/qfukz2yPwpqfREEHa5aMtr2sf3WC32kRZbd5Nbvz2dbTro7OMiB6SUfGomCVSokAB+nIVQA==}
+  /@svelte-put/movable@2.0.1:
+    resolution: {integrity: sha512-yYx+VpgWvffH6hY0V4gJ2de3SpXb2e7TlHz/l9W+Zjk/hUzM9TqlwubOuObeXGRJuaCWIeRFj0kL5ykkjg2a4Q==}
     dev: true
 
   /@svelte-put/preprocess-inline-svg@1.2.1(svelte@3.58.0):
