@@ -1,12 +1,20 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+
   import { EventCard } from '$client/components/EventCard';
   import { JobCard } from '$client/components/JobCard';
   // import { ProjectCard } from '$client/components/ProjectCard';
   import { APP_ROUTE_TREE, GITHUB_LINKS, SOCIAL_LINKS } from '$shared/constants';
 
-  import communityShapeEllipsis from './_page/images/community-shape-ellipsis.png';
+  import communityShapeEllipse from './_page/images/community-shape-ellipse.png';
   import communityShapePolygon from './_page/images/community-shape-polygon.png';
   import communityShapeStar from './_page/images/community-shape-star.png';
+  import introShapeEllipse from './_page/images/intro-shape-ellipse.png';
+  import introShapeTriangleLarge from './_page/images/intro-shape-triangle-large.png';
+  import introShapeTriangleSmall from './_page/images/intro-shape-triangle-small.png';
+  import introSvelteImg from './_page/images/intro-svelte.svg';
+  import introSvelteVietnamImg from './_page/images/intro-sveltevietnam.svg';
+  import introVietnamImg from './_page/images/intro-vietnam.svg';
 
   export let data;
 
@@ -32,21 +40,68 @@
       ':lang': data.language,
     },
   });
+
+  let mounted = false;
+  onMount(() => {
+    mounted = true;
+  });
 </script>
 
 <main class="page">
+  <section class="intro" class:mounted>
+    <h1 title="Svelte Vietnam" class="intro-title">
+      <svg inline-src="./_page/images/intro-title" width="824" height="301" class="inline-block" />
+    </h1>
+    <ul class="intro-cards">
+      <li>
+        <article class="intro-card intro-card--svelte">
+          <img src={introSvelteImg} alt="swirling winged-shaped star" width="60" height="60" />
+          <h2>Svelte</h2>
+          <div class="separator" aria-disabled />
+          <p>{t.intro.svelte}</p>
+        </article>
+      </li>
+      <li>
+        <article class="intro-card intro-card--vietnam">
+          <img src={introVietnamImg} alt="five-pointed star" width="60" height="60" />
+          <h2>Vietnam</h2>
+          <div class="separator" aria-disabled />
+          <p>{t.intro.vietnam}</p>
+        </article>
+      </li>
+      <li>
+        <article class="intro-card intro-card--sveltevietnam">
+          <img src={introSvelteVietnamImg} alt="eight-pointed start" width="60" height="60" />
+          <h2>Svelte Vietnam</h2>
+          <div class="separator" aria-disabled />
+          <p>{t.intro.sveltevietnam}</p>
+        </article>
+      </li>
+    </ul>
+    <div aria-disabled class="intro-backdrop">
+      <img src={introShapeEllipse} alt="ellipse" width="317" height="505" class="ellipse" />
+      <img
+        src={introShapeTriangleLarge}
+        alt="triangle large"
+        width="461"
+        height="399"
+        class="triangle-large"
+      />
+      <img
+        src={introShapeTriangleSmall}
+        alt="triangle small"
+        width="100"
+        height="86"
+        class="triangle-small"
+      />
+    </div>
+  </section>
   <div class="community">
     <section class="section">
       <h2 class="section-title">{t.community.title}</h2>
       <p class="section-desc mt-6 pc:mt-8">{@html t.community.description}</p>
-      <div class="shapes">
-        <img
-          class="ellipsis"
-          src={communityShapeEllipsis}
-          alt="ellipsis"
-          width="363"
-          height="403"
-        />
+      <div class="shapes" role="figure" aria-label="geometric shapes">
+        <img class="ellipse" src={communityShapeEllipse} alt="ellipse" width="363" height="403" />
         <img class="polygon" src={communityShapePolygon} alt="polygon" width="308" height="390" />
         <img class="star" src={communityShapeStar} alt="star" width="181" height="181" />
       </div>
@@ -113,7 +168,7 @@
         <h2 class="section-title">
           {t.jobs.title}
         </h2>
-        <a href={eventsHref} title={t.jobs.title}>
+        <a href={jobsHref} title={t.jobs.title}>
           <svg inline-src="icon/arrow-circle" width="64" height="64" class="arrow-circle" />
         </a>
       </div>
@@ -134,7 +189,7 @@
         <h2 class="section-title impact">
           {t.impact.title}
         </h2>
-        <a href={eventsHref} title={t.impact.title}>
+        <a href={impactHref} title={t.impact.title}>
           <svg inline-src="icon/arrow-circle" width="64" height="64" class="arrow-circle" />
         </a>
       </div>
@@ -148,7 +203,7 @@
         <h2 class="section-title">
           {t.sponsor.title}
         </h2>
-        <a href={eventsHref} title={t.sponsor.title}>
+        <a href={sponsorHref} title={t.sponsor.title}>
           <svg inline-src="icon/arrow-circle" width="64" height="64" class="arrow-circle" />
         </a>
       </div>
@@ -172,6 +227,142 @@
 </main>
 
 <style lang="postcss">
+  .intro {
+    position: relative;
+    padding-top: 68px;
+
+    @screen tb {
+      padding-top: 104px;
+    }
+  }
+
+  .intro-title {
+    display: flex;
+    justify-content: center;
+  }
+
+  .intro-cards {
+    display: flex;
+    column-gap: 25px;
+    justify-content: center;
+    margin-top: 136px;
+  }
+
+  .intro-card {
+    width: 357px;
+    height: 420px;
+    padding: 20px;
+
+    background: linear-gradient(to bottom, var(--bg-from), var(--bg-to));
+    border-radius: 16px;
+
+    @screen tb {
+      padding: 24px;
+      border-radius: 20px;
+    }
+
+    &.intro-card--svelte {
+      --bg-from: #e1befc;
+      --bg-to: #d49cff;
+      --transition-delay: 200ms;
+    }
+
+    &.intro-card--vietnam {
+      --bg-from: #d0e957;
+      --bg-to: #bcd155;
+      --transition-delay: 400ms;
+
+      margin-top: 56px;
+    }
+
+    &.intro-card--sveltevietnam {
+      --bg-from: #fea74f;
+      --bg-to: #fd952b;
+      --transition-delay: 600ms;
+
+      margin-top: 112px;
+    }
+
+    & h2 {
+      margin-top: 100px;
+      font-family: theme('fontFamily.lora');
+      font-size: 32px;
+      font-weight: 700;
+
+      @screen tb {
+        margin-top: 136px;
+      }
+    }
+
+    & .separator {
+      width: 100%;
+      height: 1px;
+      margin: 16px 0;
+      background-color: currentcolor;
+    }
+
+    & p {
+      font-size: 16px;
+    }
+  }
+
+  .intro-title,
+  .intro-card {
+    transform: translateY(80px);
+
+    opacity: 0;
+
+    transition-delay: var(--transition-delay, 0ms);
+    transition-timing-function: ease-out;
+    transition-duration: 500ms;
+    transition-property: transform, opacity;
+  }
+
+  .intro.mounted {
+    & .intro-title,
+    & .intro-card {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .intro-backdrop {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+
+    & img {
+      position: absolute;
+      transform-origin: center;
+      height: auto;
+    }
+
+    & .ellipse {
+      top: 321px;
+      right: calc(50% + 165px);
+      transform: rotate(-38deg);
+      width: clamp(100px, 22vw, 317px);
+    }
+
+    & .triangle-small {
+      top: 42px;
+      left: calc(50% + 64px);
+      transform-origin: 50% calc(56%);
+      transform: rotate(-94deg);
+
+      width: clamp(100px, 6.3vw, 94px);
+    }
+
+    & .triangle-large {
+      top: 155px;
+      left: calc(50% + 90px);
+      transform-origin: 50% calc(65.5%);
+      transform: rotate(-135deg);
+
+      width: clamp(100px, 32vw, 461px);
+    }
+  }
+
   .section {
     margin-right: auto;
     margin-left: auto;
@@ -239,6 +430,7 @@
   .community {
     --gradient-offset: 200px;
 
+    margin-top: 16px;
     padding-top: 133px;
     padding-bottom: 126px;
     background: linear-gradient(
@@ -251,6 +443,8 @@
 
     @screen tb {
       --gradient-offset: 200px;
+
+      margin-top: 27px;
     }
 
     & > section {
@@ -326,7 +520,7 @@
         position: absolute;
         animation: shape 3s ease-in-out alternate infinite;
 
-        &.ellipsis {
+        &.ellipse {
           --rotate-x: -5deg;
           --rotate-y: 10deg;
           --rotate-z: -3deg;
