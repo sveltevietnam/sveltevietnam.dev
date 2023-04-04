@@ -1,11 +1,11 @@
 export const vi = {
-  introduction: {
+  intro: {
     title: 'Giới thiệu',
     svelte:
       'Là công nghệ giúp xây dựng giao diện người dùng với khả năng tạo ra trải nghiệm tốt mà không đánh đổi hiệu suất của nhà phát triển',
     vietnam:
       'Là một trung tâm công nghệ đang phát triển nhanh với nhiều lập trình viên ưu tú cùng sự đầu tư vào chuyển đổi số và các công nghệ bền vững',
-    svelteVietnam:
+    sveltevietnam:
       'Là kênh thông tin tổng hợp và cộng đồng dành cho bất cứ ai quan tâm đến sự phát triển của Svelte tại Việt Nam',
   },
   community: {

@@ -3,13 +3,13 @@ import { SOCIAL_LINKS } from '$shared/constants';
 import type { vi } from './vi';
 
 export const en = {
-  introduction: {
+  intro: {
     title: 'Introduction',
     svelte:
       'A web technology for building user interface that enables great end-user experience without trading off developer productivity',
     vietnam:
       'A technology hub with engaging developers and rapidly growing investment in sustainable technologies and digital transformation',
-    svelteVietnam:
+    sveltevietnam:
       'A go-to and one-stop information center, and an inclusive community for anyone interested in the adoption of Svelte in Vietnam',
   },
   community: {
