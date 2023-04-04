@@ -21,7 +21,19 @@ module.exports = {
     'at-rule-no-unknown': [
       true,
       {
-        ignoreAtRules: ['tailwind', 'apply', 'layer', 'config', 'screen', 'mixin', 'define-mixin'],
+        ignoreAtRules: [
+          'tailwind',
+          'apply',
+          'layer',
+          'config',
+          'screen',
+          'mixin',
+          'define-mixin',
+          'space-x',
+          'space-y',
+          'gspace-x',
+          'gspace-y',
+        ],
       },
     ],
     'value-keyword-case': [

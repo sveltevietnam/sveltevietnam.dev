@@ -8,6 +8,7 @@ module.exports = {
     globalData,
     mixins,
     require('tailwindcss'),
+    require('postcss-space-between'),
     require('autoprefixer'),
     ...(process.env.NODE_ENV !== 'development' ? [require('cssnano')] : []),
   ],

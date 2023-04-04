@@ -78,14 +78,14 @@
       grid-area: ctas;
 
       @media (max-width: theme('screens.md')) {
-        @mixin space y, theme('spacing.4');
+        @space-y theme('spacing.4');
 
         flex-direction: column;
         font-size: theme('fontSize.sm');
       }
 
       @screen md {
-        @mixin space x, theme('spacing.8');
+        @space-x theme('spacing.8');
 
         align-items: center;
         justify-content: center;

@@ -123,7 +123,7 @@
   }
 
   .date {
-    @mixin space x, 4px;
+    @space-x 4px;
 
     display: flex;
     align-items: center;
@@ -131,7 +131,7 @@
     font-size: 18px;
 
     @screen tb {
-      @mixin space x, 8px;
+      @space-x 8px;
 
       font-size: 24px;
     }

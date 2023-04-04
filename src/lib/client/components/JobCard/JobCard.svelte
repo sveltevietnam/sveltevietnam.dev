@@ -43,7 +43,7 @@
 
 <style lang="postcss">
   .job-card {
-    @mixin space x, 12px;
+    @space-x 12px;
 
     display: flex;
     align-items: flex-start;
@@ -54,7 +54,7 @@
     border-radius: 12px;
 
     @screen tb {
-      @mixin space x, 14px;
+      @space-x 14px;
 
       padding: 16px;
     }
