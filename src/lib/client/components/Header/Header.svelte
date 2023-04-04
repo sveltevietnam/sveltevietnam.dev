@@ -93,7 +93,7 @@
       {/key}
       {#key themeMenuOpen}
         <div
-          class="absolute top-full right-0 z-popup mt-1 flex flex-col items-end shadow-lg"
+          class="absolute right-0 top-full z-popup mt-1 flex flex-col items-end shadow-lg"
           class:hidden={!themeMenuOpen}
           transition:slide|local={{ duration: 150 }}
           use:clickoutside={{ enabled: themeMenuOpen }}
@@ -105,7 +105,7 @@
               <li>
                 <button
                   on:click={() => changeColorScheme(s.scheme)}
-                  class="flex w-full items-center space-x-2 py-2 px-4 text-sm font-bold hover:bg-bg-200 hover:text-primary"
+                  class="flex w-full items-center space-x-2 px-4 py-2 text-sm font-bold hover:bg-bg-200 hover:text-primary"
                   class:text-primary={colorScheme === s.scheme}
                 >
                   <ColorSchemeIcon scheme={s.scheme} />
@@ -232,7 +232,7 @@
     display: contents;
 
     & > ul {
-      @mixin space x, theme('spacing.2');
+      @space-x theme('spacing.2');
 
       display: flex;
       grid-area: languages;
@@ -254,7 +254,7 @@
       justify-content: center;
 
       @media (max-width: theme('screens.md')) {
-        @mixin space y, theme('spacing.9');
+        @space-y theme('spacing.9');
 
         flex-direction: column;
         margin-top: calc(-1 * theme('spacing.6'));
@@ -262,7 +262,7 @@
       }
 
       @screen md {
-        @mixin space x, theme('spacing.4');
+        @space-x theme('spacing.4');
 
         position: absolute;
         top: 50%;

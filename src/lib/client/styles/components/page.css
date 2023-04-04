@@ -13,7 +13,7 @@
 }
 
 .c-page\@header {
-  @mixin space y, 24px;
+  @space-y 24px;
 
   display: flex;
   flex-direction: column;

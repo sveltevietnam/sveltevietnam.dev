@@ -383,13 +383,13 @@
   }
 
   .section-title-container {
-    @mixin space x, 16px;
+    @space-x 16px;
 
     display: flex;
     align-items: center;
 
     @screen tb {
-      @mixin space x, 24px;
+      @space-x 24px;
     }
   }
 
@@ -560,10 +560,10 @@
   }
 
   .others {
-    @mixin space y, 80px;
+    @space-y 80px;
 
     @screen tb {
-      @mixin space y, 160px;
+      @space-y 160px;
     }
   }
 
