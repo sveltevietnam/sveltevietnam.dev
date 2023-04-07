@@ -102,6 +102,9 @@ devDependencies:
   postcss:
     specifier: ^8.4.21
     version: 8.4.21
+  postcss-color-scheme:
+    specifier: ^0.2.2
+    version: 0.2.2
   postcss-custom-selectors:
     specifier: ^7.1.2
     version: 7.1.2(postcss@8.4.21)
@@ -3735,6 +3738,11 @@ packages:
       postcss: 8.4.21
       postcss-selector-parser: 6.0.11
       postcss-value-parser: 4.2.0
+    dev: true
+
+  /postcss-color-scheme@0.2.2:
+    resolution: {integrity: sha512-uQg6pOiuFCGa4l96J5qAlxoQTlrSVr2+w1I0U11rEZhTd8z5Yt4QD4mMNZlS08KPiaW9x5FFgNbsR+Z7iL5voA==}
+    engines: {node: '>=16.15.0', pnpm: '>=8.0.0'}
     dev: true
 
   /postcss-colormin@6.0.0(postcss@8.4.21):
