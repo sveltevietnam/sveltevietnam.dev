@@ -33,6 +33,8 @@ module.exports = {
           'space-y',
           'gspace-x',
           'gspace-y',
+          'dark',
+          'light',
         ],
       },
     ],

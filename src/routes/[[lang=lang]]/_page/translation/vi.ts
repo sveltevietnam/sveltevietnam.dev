@@ -36,6 +36,7 @@ export const vi = {
     title: 'Dự án cần hỗ trợ',
     description:
       'Chia sẻ hoặc tham gia các dự án phi lợi nhuận hoặc open source để góp phần tạo nên thay đổi tích cực',
+    collaboration: 'Hợp tác',
     ctas: {
       viewMore: 'Xem thêm',
     },

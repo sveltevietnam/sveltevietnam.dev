@@ -12,7 +12,7 @@ export async function load({ params }: PageServerLoadEvent) {
     },
     events: createMockedEvents(1),
     jobs: createMockedJobs(),
-    projects: createMockedProjects(1),
+    projects: createMockedProjects(4),
     sponsors: [],
   };
 }

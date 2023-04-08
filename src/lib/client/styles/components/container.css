@@ -10,3 +10,23 @@
     padding-left: 32px;
   }
 }
+
+.c-container-design {
+  --container-max-width: 375px;
+  --container-min-padding-x: 16px;
+  --container-padding-x: max(var(--container-min-padding-x), calc((100vw - var(--container-max-width)) / 2));
+
+  max-width: 100vw;
+  padding-right: var(--container-padding-x);
+  padding-left: var(--container-padding-x);
+
+  @screen tb {
+    --container-min-padding-x: 40px;
+    --container-max-width: 1024px;
+  }
+
+  @screen pc {
+    --container-min-padding-x: 160px;
+    --container-max-width: 1440px;
+  }
+}
