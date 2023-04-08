@@ -38,6 +38,7 @@ export const en = {
   impact: {
     title: 'Projects in need',
     description: 'Share or participate in open source or non-profit projects and make a difference',
+    collaboration: 'Collaboration',
     ctas: {
       viewMore: 'See more',
     },

@@ -1,5 +1,7 @@
 import type { Contributor, Event, Job, Project } from '$shared/types';
 
+import vietnamImg from './vietnam-ninhbinh.jpg';
+
 export function createMockedEvent() {
   return {
     description:
@@ -168,10 +170,12 @@ export function createMockedContributors() {
 
 export function createMockedProjects(length = 2) {
   return new Array(length).fill({
-    name: 'Project Name',
+    name: 'Svelte Vietnam',
+    image: vietnamImg,
     description:
-      'Project description, target audience is for A, making life easier and creating good something for B.',
-    collaboration: 'In collaboration between company A and Person One, Person Two, Person Three',
-    href: '#',
+      'Svelte Vietnam đang trong giai đoạn khởi tạo, hướng đến trở thành một cộng đồng chính thống và nơi thảo luận, tổng hợp tin tức, sự kiện, việc làm cho thành viên là bất cứ ai quan tâm đến Svelte và các công nghệ trong cùng hệ sinh thái.<br>Svelte Vietnam chào đón tất cả mọi người ko kể tuổi tác, giới tính, tính ngưỡng tôn giáo, ...',
+    collaboration:
+      'Thiết kế bới Trọng Trần, phát triển bới Quang Phan, open source tại trang Github của Svelte Vietnam',
+    href: 'https://sveltevietnam.dev',
   }) satisfies Project[];
 }

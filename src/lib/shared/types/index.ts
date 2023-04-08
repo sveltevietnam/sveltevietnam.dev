@@ -51,6 +51,7 @@ export interface Contributor {
 
 export interface Project {
   name: string;
+  image?: string;
   description: string;
   collaboration?: string;
   href?: string;
