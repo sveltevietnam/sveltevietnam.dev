@@ -1,18 +1,15 @@
-import { createMockedEvents, createMockedJobs, createMockedProjects } from '$shared/mocks';
-import type { Language } from '$shared/services/i18n';
+import {
+  createMockedEvents,
+  createMockedJobs,
+  createMockedProjects,
+  createMockedSponsors,
+} from '$shared/mocks';
 
-import type { PageServerLoadEvent } from './$types';
-import { translations } from './_page/translation';
-
-export async function load({ params }: PageServerLoadEvent) {
-  const lang = params.lang as Language;
+export async function load() {
   return {
-    translations: {
-      page: translations[lang],
-    },
     events: createMockedEvents(1),
     jobs: createMockedJobs(),
     projects: createMockedProjects(4),
-    sponsors: [],
+    sponsors: createMockedSponsors(),
   };
 }
