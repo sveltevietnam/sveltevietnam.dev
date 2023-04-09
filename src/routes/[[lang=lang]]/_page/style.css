@@ -1,0 +1,36 @@
+.section-title-container {
+  @gspace-x 16px;
+
+  display: flex;
+  align-items: center;
+
+  @screen tb {
+    @space-x 24px;
+  }
+}
+
+.section-title {
+  font-family: theme('fontFamily.lora');
+  font-size: 32px;
+  text-transform: uppercase;
+
+  @screen tb {
+    font-size: 64px;
+  }
+}
+
+.section-desc {
+  @screen tb {
+    font-size: 18px;
+  }
+}
+
+.arrow-circle {
+  width: 48px;
+  height: 48px;
+
+  @screen tb {
+    width: 64px;
+    height: 64px;
+  }
+}

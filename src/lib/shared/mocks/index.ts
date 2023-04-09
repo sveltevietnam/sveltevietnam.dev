@@ -1,6 +1,26 @@
-import type { Contributor, Event, Job, Project } from '$shared/types';
+import type { Contributor, Event, Job, Project, Sponsor } from '$shared/types';
 
 import vietnamImg from './vietnam-ninhbinh.jpg';
+
+export function createMockedSponsors() {
+  return [
+    {
+      href: '',
+      image: '',
+      name: 'Sponsor 1',
+    },
+    {
+      href: '',
+      image: '',
+      name: 'Nhà tài trợ 2',
+    },
+    {
+      href: 'http://github.com/sveltevietnam',
+      image: '',
+      name: 'Svelte Vietnam',
+    },
+  ] satisfies Sponsor[];
+}
 
 export function createMockedEvent() {
   return {
@@ -21,23 +41,7 @@ export function createMockedEvent() {
         href: 'https://github.com/vnphanquang',
       },
     ],
-    sponsors: [
-      {
-        href: '',
-        image: '',
-        name: 'Sponsor 1',
-      },
-      {
-        href: '',
-        image: '',
-        name: 'Nhà tài trợ 2',
-      },
-      {
-        href: 'http://github.com/sveltevietnam',
-        image: '',
-        name: 'Svelte Vietnam',
-      },
-    ],
+    sponsors: createMockedSponsors(),
   } satisfies Event;
 }
 
