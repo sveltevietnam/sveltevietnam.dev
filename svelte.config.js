@@ -1,7 +1,6 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import inlineSvg from '@svelte-put/preprocess-inline-svg';
 import adapter from '@sveltejs/adapter-cloudflare';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 
@@ -9,17 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-  preprocess: [
-    vitePreprocess(),
-    inlineSvg({
-      directories: [path.resolve(__dirname, 'src/lib/shared/assets/images/svg')],
-      inlineSrcAttributeName: 'inline-src',
-      attributes: {
-        height: 24,
-        width: 24,
-      },
-    }),
-  ],
+  preprocess: [vitePreprocess()],
   kit: {
     adapter: adapter({
       routes: {
