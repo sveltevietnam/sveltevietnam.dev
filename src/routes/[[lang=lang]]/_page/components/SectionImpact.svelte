@@ -1,4 +1,8 @@
 <script lang="ts">
+  import {
+    AnimatedArrowCircle,
+    animatedArrowCircleContainerClass,
+  } from '$client/components/AnimatedArrowCircle';
   import { APP_ROUTE_TREE } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
   import type { Project } from '$shared/types';
@@ -19,14 +23,16 @@
 
 <section class="impact">
   <div class="c-container-design">
-    <div class="flex space-x-4 pc:space-x-6 tb:items-center sp:items-start">
+    <a
+      href={impactHref}
+      title={t.title}
+      class="flex w-fit space-x-4 pc:space-x-6 tb:items-center sp:items-start {animatedArrowCircleContainerClass}"
+    >
       <h2 class="section-title">
         {t.title}
       </h2>
-      <a href={impactHref} title={t.title}>
-        <svg inline-src="icon/arrow-circle" width="64" height="64" class="arrow-circle" />
-      </a>
-    </div>
+      <AnimatedArrowCircle class="h-12 w-12 tb:h-16 tb:w-16" />
+    </a>
     <p class="section-desc mt-6 pc:mt-8">{t.description}</p>
   </div>
   <ul class="projects c-container-design scrollbar-hidden">
