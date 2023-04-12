@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { GITHUB_LINKS, SOCIAL_LINKS } from '$shared/constants';
+  import { APP_ROUTE_TREE, GITHUB_LINKS, SOCIAL_LINKS } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
 
   import communityShapeEllipse from '../images/community-shape-ellipse.png';
@@ -10,6 +10,12 @@
   export let lang: Language;
 
   $: t = translations[lang].community;
+
+  $: peopleHref = APP_ROUTE_TREE[':lang'].people.$.path({
+    args: {
+      ':lang': lang,
+    },
+  });
 </script>
 
 <section class="community c-container-design">
@@ -21,35 +27,19 @@
     <img class="star" src={communityShapeStar} alt="star" width="181" height="181" />
   </div>
   <ul class="ctas divide-border divide-y">
-    <li class="pb-4">
-      <a
-        class="flex items-center justify-between"
-        href={SOCIAL_LINKS.discord}
-        target="_blank"
-        rel="noreferrer"
-      >
+    <li>
+      <a class="cta" href={SOCIAL_LINKS.discord} target="_blank" rel="noreferrer">
         <span>{t.ctas.discord}</span>
         <svg inline-src="icon/external-link" />
       </a>
     </li>
-    <li class="py-4">
-      <a
-        class="flex items-center justify-between"
-        href={GITHUB_LINKS.ISSUE.CONTRIBUTOR_NOMINATION}
-        target="_blank"
-        rel="noreferrer"
-      >
+    <li>
+      <a class="cta" href={peopleHref} rel="noreferrer">
         <span>{t.ctas.nominate}</span>
-        <svg inline-src="icon/external-link" />
       </a>
     </li>
-    <li class="pt-4">
-      <a
-        class="flex items-center justify-between"
-        href={SOCIAL_LINKS.github}
-        target="_blank"
-        rel="noreferrer"
-      >
+    <li>
+      <a class="cta" href={SOCIAL_LINKS.github} target="_blank" rel="noreferrer">
         <span>{t.ctas.contribute}</span>
         <svg inline-src="icon/external-link" />
       </a>
@@ -119,6 +109,61 @@
 
     @screen tb {
       margin-top: 80px;
+    }
+  }
+
+  .cta {
+    --transition-duration: 300ms;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 16px 0;
+
+    &::before {
+      content: '';
+
+      position: absolute;
+      inset: 0;
+      transform-origin: left;
+      transform: scaleX(0);
+
+      opacity: 0;
+      background-color: theme('colors.design.fg.1');
+
+      transition-timing-function: ease-in-out;
+      transition-duration: var(--transition-duration);
+      transition-property: opacity, transform;
+    }
+
+    & span,
+    & svg {
+      transition-timing-function: ease-in-out;
+      transition-duration: var(--transition-duration);
+      transition-property: color, transform;
+    }
+
+    &:hover {
+      &::before {
+        transform: scaleX(1);
+        opacity: 1;
+      }
+
+      & span,
+      & svg {
+        color: theme('colors.design.bg.1');
+      }
+
+      & span {
+        transform: translateX(12px);
+      }
+
+      & svg {
+        transform: translateX(-12px);
+      }
     }
   }
 

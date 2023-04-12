@@ -19,7 +19,7 @@
     --color-bg-300: theme('colors.grayscale.dark.300');
     --color-bg-400: theme('colors.grayscale.dark.400');
 
-    /* design */
+    /* reactive colors */
     --color-link: #0A84FE;
     --color-border-1: #3F3F3F;
     --color-fg-1: #FFF;
@@ -48,9 +48,11 @@
     --color-bg-300: theme('colors.grayscale.light.300');
     --color-bg-400: theme('colors.grayscale.light.400');
 
-    /* design */
+    /* neutral colors */
     --color-neutral-1: #ACACAC;
     --color-neutral-2: #707070;
+
+    /* reactive colors */
     --color-link: #1773CE;
     --color-border-1: #DBDBDB;
     --color-fg-1: #121212;
