@@ -3,6 +3,7 @@
 
   display: flex;
   align-items: center;
+  width: fit-content;
 
   @screen tb {
     @space-x 24px;

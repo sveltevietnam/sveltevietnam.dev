@@ -1,4 +1,8 @@
 <script lang="ts">
+  import {
+    AnimatedArrowCircle,
+    animatedArrowCircleContainerClass,
+  } from '$client/components/AnimatedArrowCircle';
   import { JobCard } from '$client/components/JobCard';
   import { APP_ROUTE_TREE } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
@@ -19,14 +23,16 @@
 </script>
 
 <section class="jobs c-container-design">
-  <div class="section-title-container">
+  <a
+    href={jobsHref}
+    title={t.title}
+    class="section-title-container {animatedArrowCircleContainerClass}"
+  >
     <h2 class="section-title">
       {t.title}
     </h2>
-    <a href={jobsHref} title={t.title}>
-      <svg inline-src="icon/arrow-circle" width="64" height="64" class="arrow-circle" />
-    </a>
-  </div>
+    <AnimatedArrowCircle class="h-12 w-12 tb:h-16 tb:w-16" />
+  </a>
   <p class="section-desc mt-6 pc:mt-8">{t.description}</p>
   <ul
     class="mt-10 grid grid-cols-1 gap-x-6 pc:mt-20 pc:grid-cols-3 pc:gap-y-10 tb:grid-cols-2 sp:gap-y-4"

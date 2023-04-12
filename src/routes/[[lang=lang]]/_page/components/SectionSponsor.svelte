@@ -1,4 +1,8 @@
 <script lang="ts">
+  import {
+    AnimatedArrowCircle,
+    animatedArrowCircleContainerClass,
+  } from '$client/components/AnimatedArrowCircle';
   import { APP_ROUTE_TREE } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
   import type { Sponsor } from '$shared/types';
@@ -18,14 +22,16 @@
 </script>
 
 <section class="sponsors c-container-design">
-  <div class="section-title-container">
+  <a
+    href={sponsorHref}
+    title={t.title}
+    class="section-title-container {animatedArrowCircleContainerClass}"
+  >
     <h2 class="section-title">
       {t.title}
     </h2>
-    <a href={sponsorHref} title={t.title}>
-      <svg inline-src="icon/arrow-circle" width="64" height="64" class="arrow-circle" />
-    </a>
-  </div>
+    <AnimatedArrowCircle class="h-12 w-12 tb:h-16 tb:w-16" />
+  </a>
   <p class="section-desc mt-6 pc:mt-8">{t.description}</p>
   <!-- FIXME: refactor to plain css here -->
   <ul class="mt-10 flex flex-wrap gap-x-[73px] gap-y-[62px] pc:mt-20">

@@ -5,7 +5,7 @@
   import SectionIntro from './_page/components/SectionIntro.svelte';
   import SectionJobs from './_page/components/SectionJobs.svelte';
   import SectionSponsor from './_page/components/SectionSponsor.svelte';
-  import './_page/style.css';
+  import './_page/page.css';
 
   export let data;
 </script>
