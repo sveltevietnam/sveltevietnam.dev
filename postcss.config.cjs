@@ -9,6 +9,7 @@ module.exports = {
     mixins,
     require('tailwindcss'),
     require('postcss-space-between'),
+    require('postcss-color-scheme'),
     require('autoprefixer'),
     ...(process.env.NODE_ENV !== 'development' ? [require('cssnano')] : []),
   ],

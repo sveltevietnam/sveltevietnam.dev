@@ -1,4 +1,7 @@
 <script lang="ts">
+  import type { EmblaCarouselType } from 'embla-carousel';
+  import embla from 'embla-carousel-svelte';
+
   import {
     AnimatedArrowCircle,
     animatedArrowCircleContainerClass,
@@ -19,6 +22,15 @@
       ':lang': lang,
     },
   });
+
+  let emblaProgress = 0;
+  let emblaApi: EmblaCarouselType;
+  function onEmblaInit(event: CustomEvent<EmblaCarouselType>) {
+    emblaApi = event.detail;
+    emblaApi.on('scroll', () => {
+      emblaProgress = emblaApi.scrollProgress() * 100;
+    });
+  }
 </script>
 
 <section class="impact">
@@ -35,26 +47,64 @@
     </a>
     <p class="section-desc mt-6 pc:mt-8">{t.description}</p>
   </div>
-  <ul class="projects c-container-design scrollbar-hidden">
-    {#each projects as { description, image, name, collaboration, href }}
-      <li class="project">
-        <div class="img-container">
-          {#if image}
-            <img src={image} alt={name} />
-          {/if}
-        </div>
-        <p class="title">{name}</p>
-        <p class="description">{@html description}</p>
-        <p class="collaboration">
-          <span>{t.collaboration}</span>
-          <span>{@html collaboration}</span>
-        </p>
-      </li>
-    {/each}
-  </ul>
+  <div
+    class="embla projects c-container-design"
+    use:embla={{
+      options: {
+        loop: true,
+        align: 'start',
+        inViewThreshold: 0.5,
+      },
+      plugins: [],
+    }}
+    on:init={onEmblaInit}
+  >
+    <ul class="embla__container">
+      {#each projects as { description, image, name, collaboration, href }, i}
+        <li class="project embla__slide">
+          <div class="img-container">
+            {#if image}
+              <img src={image} alt={name} />
+            {/if}
+          </div>
+          <div>
+            <p class="title">{name}</p>
+            <p class="description">{@html description}</p>
+            <p class="collaboration">
+              <span class="sp:hidden">{t.collaboration}</span>
+              <span>{@html collaboration}</span>
+            </p>
+          </div>
+          <a {href} title={name} target="_blank" class="link">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 48 48"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7 24H40"
+                stroke="white"
+                stroke-width="2"
+                stroke-linecap="square"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M27 10.5L40.5 24L27 37.5"
+                stroke="white"
+                stroke-width="2"
+                stroke-linecap="square"
+              />
+            </svg>
+          </a>
+        </li>
+      {/each}
+    </ul>
+  </div>
   <div class="projects-pagination c-container-design">
     <p>01</p>
-    <progress max="100" aria-busy />
+    <progress max="100" value={emblaProgress} />
     <p>{projects.length.toString().padStart(2, '0')}</p>
   </div>
 </section>
@@ -74,42 +124,53 @@
     }
   }
 
-  .projects {
-    scroll-padding-left: var(--container-padding-x);
-    scroll-snap-type: x mandatory;
+  .embla {
+    overflow: hidden;
+  }
 
-    overflow-x: auto;
+  .embla__container {
     display: flex;
+  }
 
+  .embla__slide {
+    flex: 0 0 100%;
+    min-width: 0;
+  }
+
+  .projects {
     margin-top: 40px;
     padding-bottom: 10px;
 
     @screen tb {
-      @space-x 32px;
-
       margin-top: 107px;
     }
   }
 
   .project {
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
+    @space-x 4px;
 
     position: relative;
 
     overflow: hidden;
+    display: flex;
+    flex: 0 0 calc(83.2 * var(--container-max-width) / 100);
     flex-shrink: 0;
+    align-items: flex-end;
 
-    width: calc(46.25 * var(--container-max-width) / 100);
+    margin-left: 12px;
     padding: 69px 12px 12px;
 
-    color: theme('colors.design.bg.1');
+    color: theme('colors.design.grayscale.light.1');
 
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
 
     @screen tb {
-      padding: 234px 24px 24px;
+      @space-x 24px;
+
+      flex: 0 0 calc(46.25 * var(--container-max-width) / 100);
+      margin-left: 32px;
+      padding: 234px 24px 28px;
     }
   }
 
@@ -129,7 +190,11 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgb(0 0 0 / 0%) 38.02%, rgb(0 0 0 / 80%) 82.81%);
+      background: linear-gradient(to bottom, rgb(0 0 0 / 0%) 50px, rgb(0 0 0 / 80%) 82.81%);
+
+      @screen tb {
+        background: linear-gradient(to bottom, rgb(0 0 0 / 0%) 200px, rgb(0 0 0 / 80%) 82.81%);
+      }
     }
 
     & img {
@@ -161,17 +226,31 @@
   .collaboration {
     display: flex;
     align-items: flex-start;
-
-    @space-x 12px;
-
     margin-top: 8px;
     font-size: 12px;
 
     @screen tb {
       @space-x 24px;
 
-      margin-top: 14px;
+      margin-top: 10px;
       font-size: 16px;
+    }
+  }
+
+  .link {
+    flex-shrink: 0;
+
+    & svg {
+      transition: transform 250ms ease;
+
+      @screen tb {
+        width: 48px;
+        height: 48px;
+      }
+    }
+
+    &:hover svg {
+      transform: translateX(40%);
     }
   }
 

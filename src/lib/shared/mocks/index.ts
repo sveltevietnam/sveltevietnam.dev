@@ -1,6 +1,6 @@
 import type { Contributor, Event, Job, Project, Sponsor } from '$shared/types';
 
-import vietnamImg from './vietnam-ninhbinh.jpg';
+import vietnamImg from './vietnam-image.jpg';
 
 export function createMockedSponsors() {
   return [
