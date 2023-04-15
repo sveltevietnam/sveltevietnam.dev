@@ -2,18 +2,6 @@
 
 Thank you for stopping by. [svelte-vietnam][github] welcomes and appreciates your contribution.
 
-## Table of Contents
-
-- [Contributing to svelte-vietnam](#contributing-to-svelte-vietnam)
-  - [Table of Contents](#table-of-contents)
-  - [Reporting Issues](#reporting-issues)
-    - [Bug Report](#bug-report)
-    - [Feature Request](#feature-request)
-  - [Pull Requests](#pull-requests)
-  - [Consistent Code Style](#consistent-code-style)
-  - [Development Setup](#development-setup)
-    - [Recommended VSCode Extensions](#recommended-vscode-extensions)
-
 ## Reporting Issues
 
 Before opening a new issue, [first search for existing issues][github.issues] to avoid duplications.
@@ -25,7 +13,6 @@ When you start working on an issue, make sure you are asked to be assigned to it
 Please include as much details as possible:
 
 - steps to reproduce,
-- a github repo that has enough setup to reproduce the bug would be nice. It might be helpful to clone this repo and play around in the [docs](./sites/docs) project, create a branch to reproduce your problem there and reference in your issue.
 - screenshots.
 
 ### Feature Request
@@ -34,56 +21,74 @@ If you have an idea and don't know where to start yet, consider [opening a discu
 
 If you have a PR ready as your proposed implementation, you can [create an issue][github.issues] and a PR that references it.
 
-## Pull Requests
-
-Each pull request should [reference an open issue][github.issues.open] unless the change is very something simple such as a typo.
-
-## Consistent Code Style
-
-1. Commit message should follow the [Conventional Commits specification][conventionalcommits].
-2. Code should be formatted with [prettier] and linted with [eslint] and [stylelint]. They are already integrated into the codebase. See [package.json] for relevant scripts. There might also exist extensions for your editor that further enhance the experience with these tools.
-   - [VS Code Prettier][vscode.extension.prettier]
-   - [VS Code Eslint][vscode.extension.eslint]
-   - [VS Code Stylelint][vscode.extension.stylelint]
-
 ## Development Setup
 
-The typical workflow is:
+### Prerequisites
+
+Tools & setup required to start development
+
+| Dependency    | Installation                            | Description                     |
+| ------------- | --------------------------------------- | ------------------------------- |
+| [node] >= 16x | [nvm], or [volta]                       | recommended `volta`             |
+| [pnpm]        | [follow guide on website][pnpm.install] | alternative to `npm` and `yarn` |
+
+See [package.json] for available npm scripts. All can be run with `pnpm` without the `run` subcommand:
 
 ```bash
-# cd to the project of interest
-
 pnpm install
 pnpm dev
-
-pnpm lint
-pnpm format
-
+pnpm preview
 pnpm build
 ```
 
 ### Recommended VSCode Extensions
 
-Some extensions that are well suited for this project:
+Search for `@recommended` in the Extension panel for quick installation (look for "Workspace Recommendations").
 
-| Extension                                                                                                  | Author      |
-| ---------------------------------------------------------------------------------------------------------- | ----------- |
-| [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode)             | Svelte      |
-| [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) | Brad Cornes |
-| [Stylelint][vscode.extension.stylelint]                                                                    | stylelint   |
-| [Eslint][vscode.extension.eslint]                                                                          | eslint      |
-| [Prettier][vscode.extension.prettier]                                                                      | prettier    |
+To extend the `@recommended` list, add the extension ID to the `extensions` array in [.vscode/extensions.json].
 
-[turborepo]: https://turborepo.org/
+### Code standard
+
+#### Commit Guidelines
+
+We follow the [Conventional Commits][conventionalcommits] guidelines for writing git commit message. Please familiarize yourself with the guidelines and be consistent.
+
+Each commit encapsulates a complete change and ideally captures a **working state** of the application / site.
+
+Each pull request (PR) should work towards one issue or self-contained goal.
+
+#### Code Style Enforcement
+
+The project uses [eslint] and [prettier] for code linting and formatting. Make sure to install necessary plugins or integrations in your code editor.
+
+[simple-git-hooks] & [lint-staged] is setup to run format and lint checks as a `pre-commit` [git hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks).
+
+To bypass hook (not recommended, for admin only), run `git commit` with the `--no-verify` flag.
+
+<!-- GITHUB -->
+
 [github]: https://github.com/sveltevietnam/sveltevietnam.dev
 [github.issues]: https://github.com/sveltevietnam/sveltevietnam.dev/issues?q=
 [github.issues.open]: https://github.com/sveltevietnam/sveltevietnam.dev/issues?q=is%3Aissue+is%3Aopen
 [github.discussions]: https://github.com/sveltevietnam/sveltevietnam.dev/discussions
-[conventionalcommits]: https://www.conventionalcommits.org/en/v1.0.0/
-[prettier]: https://prettier.io/
-[eslint]: https://eslint.org/
-[stylelint]: https://stylelint.io/
-[vscode.extension.prettier]: https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
-[vscode.extension.eslint]: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
-[vscode.extension.stylelint]: https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint
+
+<!-- LOCAL -->
+
+[package.json]: ./package.json
+[.vscode/extensions.json]: ./.vscode/extensions.json
+
+<!-- TECHNOLOGIES -->
+
+[simple-git-hooks]: https://github.com/toplenboren/simple-git-hooks
+[lint-staged]: https://github.com/okonet/lint-staged
+[eslint]: https://eslint.org
+[prettier]: https://prettier.io
+[node]: https://nodejs.org/en/
+[nvm]: https://github.com/nvm-sh/nvm
+[volta]: https://volta.sh/
 [pnpm]: https://pnpm.io/
+[pnpm.install]: https://pnpm.io/installation
+
+<!-- OTHERS -->
+
+[conventionalcommits]: https://www.conventionalcommits.org/en/v1.0.0/

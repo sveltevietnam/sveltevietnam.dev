@@ -9,7 +9,7 @@
 
 Svelte Vietnam official site at [sveltevietnam.dev](https://sveltevietnam.dev)
 
-[![Discord][sveltevietnam.discord.badge]][sveltevietnam.discord] [![Twitter][sveltevietnam.twitter.badge]][sveltevietnam.twitter] [![Facebook][sveltevietnam.facebook.badge]][sveltevietnam.facebook]
+[![Discord][socials.discord.badge]][socials.discord] [![Twitter][socials.twitter.badge]][socials.twitter] [![Facebook][socials.facebook.badge]][socials.facebook]
 
 [![MIT][license.badge]][license]
 
@@ -17,19 +17,26 @@ For details about the context & objective of this project, read the [Project Ref
 Contribution and discussion are welcome.
 
 <br />
-<br />
 
-<div align="center">
+## Status
 
 ⚠️ This site is in active design & development; roadmap and progress can be tracked at the [sveltevietnam.dev project board](https://github.com/orgs/sveltevietnam/projects/1).
 
-</div>
+## Contributing
+
+See [CONTRIBUTING] for reporting & development guidelines.
+
+<!-- LOCAL -->
 
 [license.badge]: https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge
 [license]: ./LICENSE
-[sveltevietnam.discord.badge]: https://img.shields.io/discord/1066621936546877450?color=7289da&label=Discord&logo=discord&style=for-the-badge
-[sveltevietnam.discord]: https://discord.gg/Rtv2xwhz7d
-[sveltevietnam.facebook]: https://www.facebook.com/sveltevietnam
-[sveltevietnam.facebook.badge]: https://img.shields.io/static/v1?label=&message=sveltevietnam&color=4267B2&logoColor=white&style=for-the-badge&logo=facebook
-[sveltevietnam.twitter]: https://twitter.com/sveltevietnam
-[sveltevietnam.twitter.badge]: https://img.shields.io/static/v1?label=&message=sveltevietnam&color=1DA1F2&logoColor=white&style=for-the-badge&logo=twitter
+[CONTRIBUTING]: ./CONTRIBUTING.md
+
+<!-- SOCIALS -->
+
+[socials.discord.badge]: https://img.shields.io/discord/1066621936546877450?color=7289da&label=Discord&logo=discord&style=for-the-badge
+[socials.discord]: https://discord.gg/Rtv2xwhz7d
+[socials.facebook]: https://www.facebook.com/sveltevietnam
+[socials.facebook.badge]: https://img.shields.io/static/v1?label=&message=sveltevietnam&color=4267B2&logoColor=white&style=for-the-badge&logo=facebook
+[socials.twitter]: https://twitter.com/sveltevietnam
+[socials.twitter.badge]: https://img.shields.io/static/v1?label=&message=sveltevietnam&color=1DA1F2&logoColor=white&style=for-the-badge&logo=twitter
