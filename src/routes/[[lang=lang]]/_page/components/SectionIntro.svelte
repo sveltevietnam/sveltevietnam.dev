@@ -4,6 +4,7 @@
   import type { Language } from '$shared/services/i18n';
 
   import introShapeEllipse from '../images/intro-shape-ellipse.png';
+  import introShapeStar from '../images/intro-shape-star.png';
   import introShapeTriangleLarge from '../images/intro-shape-triangle-large.png';
   import introShapeTriangleSmall from '../images/intro-shape-triangle-small.png';
   import introSvelteImg from '../images/intro-svelte.svg';
@@ -52,6 +53,7 @@
     </li>
   </ul>
   <div aria-disabled class="intro-backdrop">
+    <img src={introShapeStar} alt="ellipse" width="174" height="174" class="star" />
     <img src={introShapeEllipse} alt="ellipse" width="317" height="505" class="ellipse" />
     <img
       src={introShapeTriangleLarge}
@@ -179,6 +181,12 @@
       position: absolute;
       transform-origin: center;
       height: auto;
+    }
+
+    & .star {
+      top: 15px;
+      right: calc(50% + 281px);
+      width: clamp(100px, 12vw, 174px);
     }
 
     & .ellipse {
