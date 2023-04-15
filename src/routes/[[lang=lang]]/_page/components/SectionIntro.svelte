@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-
   import type { Language } from '$shared/services/i18n';
 
   import introShapeEllipse from '../images/intro-shape-ellipse.png';
@@ -15,14 +13,9 @@
   export let lang: Language;
 
   $: t = translations[lang].intro;
-
-  let mounted = false;
-  onMount(() => {
-    mounted = true;
-  });
 </script>
 
-<section class="intro" class:mounted>
+<section class="intro intersect">
   <h1 title="Svelte Vietnam" class="intro-title">
     <svg inline-src="../images/intro-title" width="824" height="301" class="inline-block" />
   </h1>
@@ -99,6 +92,8 @@
     height: 420px;
     padding: 20px;
 
+    color: theme('colors.design.grayscale.dark.1');
+
     background: linear-gradient(to bottom, var(--bg-from), var(--bg-to));
     border-radius: 16px;
 
@@ -164,7 +159,7 @@
     transition-property: transform, opacity;
   }
 
-  .intro.mounted {
+  .intro.intersect {
     & .intro-title,
     & .intro-card {
       transform: translateY(0);
