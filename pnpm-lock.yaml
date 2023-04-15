@@ -81,6 +81,12 @@ devDependencies:
   cssnano:
     specifier: ^6.0.0
     version: 6.0.0(postcss@8.4.21)
+  embla-carousel:
+    specifier: ^7.1.0
+    version: 7.1.0
+  embla-carousel-svelte:
+    specifier: ^7.1.0
+    version: 7.1.0(svelte@3.58.0)
   eslint:
     specifier: ^8.38.0
     version: 8.38.0
@@ -1896,6 +1902,19 @@ packages:
 
   /electron-to-chromium@1.4.357:
     resolution: {integrity: sha512-UTkCbNTAcGXABmEnQrGcW4m3cG6fcyBfD4KDF0iyEAlbrGZiY9dmslyDAGOD1Kr5biN2F743Y30aRCOtau35Vw==}
+    dev: true
+
+  /embla-carousel-svelte@7.1.0(svelte@3.58.0):
+    resolution: {integrity: sha512-OrMARLa7ltV0+cXovSDw3jjbRmDKD81ZN9qjOFPmvlTTou5WVOYXXI+C+zrFJXWLP2eFlmAmBOTp2GwnExWi1A==}
+    peerDependencies:
+      svelte: ^3.49.0
+    dependencies:
+      embla-carousel: 7.1.0
+      svelte: 3.58.0
+    dev: true
+
+  /embla-carousel@7.1.0:
+    resolution: {integrity: sha512-Bh8Pa8NWzgugLkf8sAGexQlBCNDFaej5BXiKgQdRJ1mUC9NWBrw9Z23YVPVGkguWoz5LMjZXXFVGCobl3UPt/Q==}
     dev: true
 
   /emoji-regex@8.0.0:

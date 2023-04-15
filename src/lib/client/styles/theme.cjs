@@ -62,9 +62,26 @@ const theme = {
       svelte: '#ef4623',
       // FIXME temporary, refactor once there is a consistent color palette
       design: {
-        link: 'var(--color-link)',
+        link: {
+          DEFAULT: 'var(--color-link)',
+          dark: '#0A84FE',
+          light: '#1773CE',
+        },
         border: {
           1: 'var(--color-border-1)',
+        },
+        grayscale: {
+          light: {
+            1: '#FFFFFF',
+            2: '#EDECE8',
+            3: '#DBDBDB',
+          },
+          dark: {
+            1: '#121212',
+            2: '#0D0D0D',
+            3: '#201E1A',
+            4: '#3F3F3F',
+          },
         },
         fg: {
           1: 'var(--color-fg-1)',
@@ -74,8 +91,8 @@ const theme = {
           2: 'var(--color-bg-2)',
         },
         neutral: {
-          1: 'var(--color-neutral-1)',
-          2: 'var(--color-neutral-2)',
+          1: '#ACACAC',
+          2: '#707070',
         },
       },
     },

@@ -20,11 +20,11 @@
     --color-bg-400: theme('colors.grayscale.dark.400');
 
     /* reactive colors */
-    --color-link: #0A84FE;
-    --color-border-1: #3F3F3F;
-    --color-fg-1: #FFF;
-    --color-bg-1: #0D0D0D;
-    --color-bg-2: #201E1A;
+    --color-link: theme('colors.design.link.dark');
+    --color-border-1: theme('colors.design.grayscale.dark.4');
+    --color-fg-1: theme('colors.design.grayscale.light.1');
+    --color-bg-1: theme('colors.design.grayscale.dark.2');
+    --color-bg-2: theme('colors.design.grayscale.dark.3');
 
     /* grayscale logo */
     --logo-grayscale-color-fg: black;
@@ -48,16 +48,12 @@
     --color-bg-300: theme('colors.grayscale.light.300');
     --color-bg-400: theme('colors.grayscale.light.400');
 
-    /* neutral colors */
-    --color-neutral-1: #ACACAC;
-    --color-neutral-2: #707070;
-
     /* reactive colors */
-    --color-link: #1773CE;
-    --color-border-1: #DBDBDB;
-    --color-fg-1: #121212;
-    --color-bg-1: #FFF;
-    --color-bg-2: #EDECE8;
+    --color-link: theme('colors.design.link.light');
+    --color-border-1: theme('colors.design.grayscale.light.3');
+    --color-fg-1: theme('colors.design.grayscale.dark.1');
+    --color-bg-1: theme('colors.design.grayscale.light.1');
+    --color-bg-2: theme('colors.design.grayscale.light.2');
 
     /* grayscale logo */
     --logo-grayscale-color-fg: white;

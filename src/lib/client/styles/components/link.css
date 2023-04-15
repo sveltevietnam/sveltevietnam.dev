@@ -9,7 +9,7 @@
 
     display: inline;
 
-    color: theme('colors.design.link');
+    color: theme('colors.design.link.DEFAULT');
 
     background-image: linear-gradient(to right, var(--underline-color), var(--underline-color));
     background-repeat: no-repeat;
