@@ -1,5 +1,5 @@
 .section-title-container {
-  @gspace-x 16px;
+  @space-x 16px;
 
   display: flex;
   align-items: center;

@@ -58,8 +58,7 @@
       'shapes'
       'ctas';
 
-    margin-top: 16px;
-    padding-top: 133px;
+    padding-top: 80px;
     padding-bottom: 126px;
 
     background: linear-gradient(
@@ -77,9 +76,13 @@
         'title shapes'
         'description shapes'
         'ctas shapes';
-      grid-template-columns: minmax(560px, auto) auto;
+      grid-template-columns: minmax(380px, auto) auto;
       justify-content: space-between;
-      margin-top: 27px;
+      padding-top: 160px;
+    }
+
+    @screen pc {
+      grid-template-columns: minmax(560px, auto) auto;
     }
   }
 
