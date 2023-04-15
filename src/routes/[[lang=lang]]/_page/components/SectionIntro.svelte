@@ -1,4 +1,6 @@
 <script lang="ts">
+  import embla from 'embla-carousel-svelte';
+
   import type { Language } from '$shared/services/i18n';
 
   import introShapeEllipse from '../images/intro-shape-ellipse.png';
@@ -17,34 +19,49 @@
 
 <section class="intro intersect">
   <h1 title="Svelte Vietnam" class="intro-title">
-    <svg inline-src="../images/intro-title" width="824" height="301" class="inline-block" />
+    <svg inline-src="../images/intro-title" width="824" height="301" />
   </h1>
-  <ul class="intro-cards">
-    <li>
-      <article class="intro-card intro-card--svelte">
-        <img src={introSvelteImg} alt="swirling winged-shaped star" width="60" height="60" />
-        <h2>Svelte</h2>
-        <div class="separator" aria-disabled />
-        <p>{t.svelte}</p>
-      </article>
-    </li>
-    <li>
-      <article class="intro-card intro-card--vietnam">
-        <img src={introVietnamImg} alt="five-pointed star" width="60" height="60" />
-        <h2>Vietnam</h2>
-        <div class="separator" aria-disabled />
-        <p>{t.vietnam}</p>
-      </article>
-    </li>
-    <li>
-      <article class="intro-card intro-card--sveltevietnam">
-        <img src={introSvelteVietnamImg} alt="eight-pointed start" width="60" height="60" />
-        <h2>Svelte Vietnam</h2>
-        <div class="separator" aria-disabled />
-        <p>{t.sveltevietnam}</p>
-      </article>
-    </li>
-  </ul>
+  <div
+    class="intro-cards embla c-container-design"
+    use:embla={{
+      options: {
+        align: 'start',
+        breakpoints: {
+          '(max-width: 767px)': { align: 'center' },
+          '(min-width: 768px)': { align: 'center', startIndex: 1 },
+          '(min-width: 1440px)': { active: false },
+        },
+      },
+      plugins: [],
+    }}
+  >
+    <ul class="embla__container">
+      <li class="embla__slide intro-card intro-card--svelte">
+        <article>
+          <img src={introSvelteImg} alt="swirling winged-shaped star" width="60" height="60" />
+          <h2>Svelte</h2>
+          <div class="separator" aria-disabled />
+          <p>{t.svelte}</p>
+        </article>
+      </li>
+      <li class="embla__slide intro-card intro-card--vietnam">
+        <article>
+          <img src={introVietnamImg} alt="five-pointed star" width="60" height="60" />
+          <h2>Vietnam</h2>
+          <div class="separator" aria-disabled />
+          <p>{t.vietnam}</p>
+        </article>
+      </li>
+      <li class="embla__slide intro-card intro-card--sveltevietnam">
+        <article>
+          <img src={introSvelteVietnamImg} alt="eight-pointed start" width="60" height="60" />
+          <h2>Svelte Vietnam</h2>
+          <div class="separator" aria-disabled />
+          <p>{t.sveltevietnam}</p>
+        </article>
+      </li>
+    </ul>
+  </div>
   <div aria-disabled class="intro-backdrop">
     <img src={introShapeStar} alt="ellipse" width="174" height="174" class="star" />
     <img src={introShapeEllipse} alt="ellipse" width="317" height="505" class="ellipse" />
@@ -78,18 +95,55 @@
   .intro-title {
     display: flex;
     justify-content: center;
+
+    & svg {
+      width: 328px;
+      height: auto;
+
+      @screen tb {
+        width: 640px;
+      }
+
+      @screen pc {
+        width: 824px;
+      }
+    }
+  }
+
+  .embla {
+    overflow: hidden;
+  }
+
+  .embla__container {
+    display: flex;
+
+    /* stylelint-disable-next-line media-feature-range-notation */
+    @media (min-width: 1440px) {
+      justify-content: center;
+    }
+  }
+
+  .embla__slide {
+    min-width: 0;
   }
 
   .intro-cards {
-    display: flex;
-    column-gap: 25px;
-    justify-content: center;
-    margin-top: 136px;
+    margin-top: 60px;
+
+    @screen tb {
+      margin-top: 100px;
+    }
+
+    @screen pc {
+      margin-top: 136px;
+    }
   }
 
   .intro-card {
-    width: 357px;
-    height: 420px;
+    flex: 0 0 297px;
+
+    height: fit-content;
+    margin-left: 20px;
     padding: 20px;
 
     color: theme('colors.design.grayscale.dark.1');
@@ -98,6 +152,8 @@
     border-radius: 16px;
 
     @screen tb {
+      flex: 0 0 357px;
+      margin-left: 25px;
       padding: 24px;
       border-radius: 20px;
     }
@@ -113,7 +169,11 @@
       --bg-to: #bcd155;
       --transition-delay: 400ms;
 
-      margin-top: 56px;
+      margin-top: 20px;
+
+      @screen tb {
+        margin-top: 56px;
+      }
     }
 
     &.intro-card--sveltevietnam {
@@ -121,7 +181,11 @@
       --bg-to: #fd952b;
       --transition-delay: 600ms;
 
-      margin-top: 112px;
+      margin-top: 40px;
+
+      @screen tb {
+        margin-top: 112px;
+      }
     }
 
     & h2 {
@@ -138,8 +202,12 @@
     & .separator {
       width: 100%;
       height: 1px;
-      margin: 16px 0;
+      margin: 12px 0;
       background-color: currentcolor;
+
+      @screen pc {
+        margin: 16px 0;
+      }
     }
 
     & p {
@@ -172,6 +240,10 @@
     z-index: -1;
     inset: 0;
 
+    overflow: hidden;
+
+    max-width: 100%;
+
     & img {
       position: absolute;
       transform-origin: center;
@@ -179,34 +251,73 @@
     }
 
     & .star {
-      top: 15px;
-      right: calc(50% + 281px);
-      width: clamp(100px, 12vw, 174px);
+      top: 38px;
+      right: calc(50% + 92px);
+      width: clamp(83px, 12vw, 174px);
+
+      @screen tb {
+        top: 44px;
+        right: calc(50% + 200px);
+      }
+
+      @screen pc {
+        top: 15px;
+        right: calc(50% + 281px);
+      }
     }
 
     & .ellipse {
-      top: 321px;
-      right: calc(50% + 165px);
+      top: 180px;
+      right: calc(50% + 58px);
       transform: rotate(-38deg);
-      width: clamp(100px, 22vw, 317px);
+      width: clamp(175px, 22vw, 317px);
+
+      @screen tb {
+        top: 260px;
+        right: calc(50% + 140px);
+      }
+
+      @screen pc {
+        top: 321px;
+        right: calc(50% + 165px);
+      }
     }
 
     & .triangle-small {
-      top: 42px;
+      top: 25px;
       left: calc(50% + 64px);
       transform-origin: 50% calc(56%);
       transform: rotate(-94deg);
 
-      width: clamp(100px, 6.3vw, 94px);
+      width: clamp(52px, 6.3vw, 94px);
+
+      @screen tb {
+        top: 60px;
+        left: calc(50% + 80px);
+      }
+
+      @screen pc {
+        top: 42px;
+      }
     }
 
     & .triangle-large {
-      top: 155px;
-      left: calc(50% + 90px);
+      top: 88px;
+      left: calc(50% + 83px);
       transform-origin: 50% calc(65.5%);
       transform: rotate(-135deg);
 
-      width: clamp(100px, 32vw, 461px);
+      width: clamp(255px, 32vw, 461px);
+
+      @screen tb {
+        top: 160px;
+        left: calc(50% + 120px);
+      }
+
+      @screen pc {
+        top: 155px;
+        left: calc(50% + 90px);
+      }
     }
   }
 </style>

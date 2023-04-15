@@ -168,9 +168,14 @@
     @screen tb {
       @space-x 24px;
 
+      flex: 0 0 calc(60 * var(--container-max-width) / 100);
+      margin-left: 20px;
+      padding: 234px 24px 28px;
+    }
+
+    @screen pc {
       flex: 0 0 calc(46.25 * var(--container-max-width) / 100);
       margin-left: 32px;
-      padding: 234px 24px 28px;
     }
   }
 
