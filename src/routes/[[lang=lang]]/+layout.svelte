@@ -5,6 +5,7 @@
   import { invalidate } from '$app/navigation';
   import { Footer } from '$client/components/Footer';
   import { Header } from '$client/components/Header';
+  import { SplashScreen } from '$client/components/SplashScreen/index.js';
   import { modalStore } from '$client/modals';
   import { WireframeVersionNotice } from '$client/modals/WireframeVersionNotice';
   import { WireframeVersionNoticeCache } from '$client/modals/WireframeVersionNotice/WireframeVersionNotice.cache';
@@ -50,3 +51,5 @@
 <Footer lang={data.language} />
 
 <ModalPortal store={modalStore} class="z-modal" />
+
+<SplashScreen variant={data.splashScreenVariant} />
