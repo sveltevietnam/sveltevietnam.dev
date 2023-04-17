@@ -41,13 +41,6 @@
       }
     }
   }
-
-  /* &:hover {
-    FIXME: put in primary color when there is one
-  } */
-
-  /* &:--current {
-  } */
 }
 
 @keyframes underline-swipe {

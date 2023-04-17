@@ -25,6 +25,7 @@
     --color-fg-1: theme('colors.design.grayscale.light.1');
     --color-bg-1: theme('colors.design.grayscale.dark.2');
     --color-bg-2: theme('colors.design.grayscale.dark.3');
+    --color-shadow: theme(colors.design.grayscale.light.1 / 10%);
 
     /* grayscale logo */
     --logo-grayscale-color-fg: black;
@@ -54,6 +55,7 @@
     --color-fg-1: theme('colors.design.grayscale.dark.1');
     --color-bg-1: theme('colors.design.grayscale.light.1');
     --color-bg-2: theme('colors.design.grayscale.light.2');
+    --color-shadow: theme(colors.design.grayscale.dark.1 / 10%);
 
     /* grayscale logo */
     --logo-grayscale-color-fg: white;
