@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { intersect } from '$client/actions/intersect';
   import {
     animatedArrowCircleContainerClass,
     AnimatedArrowCircle,
@@ -33,10 +34,10 @@
     </h2>
     <AnimatedArrowCircle class="h-12 w-12 tb:h-16 tb:w-16" />
   </a>
-  <p class="section-desc mt-6 pc:mt-8">{t.description}</p>
+  <p class="section-desc mt-6 pc:mt-8" use:intersect>{t.description}</p>
   <ul class="mt-10 pc:mt-20 sp:ml-8">
     {#each events as event}
-      <li>
+      <li use:intersect>
         <EventCard {event} {lang} />
       </li>
     {/each}

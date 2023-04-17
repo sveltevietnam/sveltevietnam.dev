@@ -48,6 +48,7 @@
     console.log(iSplash);
     dispatch('splashed', iSplash);
     splashStore.set(iSplash);
+    document.documentElement.classList.toggle('splashed', true);
   }
 </script>
 
@@ -255,7 +256,7 @@
         content: '';
 
         position: absolute;
-        inset: 0;
+        inset: 0 -2px 0 0;
         transform-origin: right;
         transform: scaleX(1);
 
