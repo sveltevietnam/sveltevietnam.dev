@@ -2,6 +2,7 @@
   import type { EmblaCarouselType } from 'embla-carousel';
   import embla from 'embla-carousel-svelte';
 
+  import { intersect } from '$client/actions/intersect';
   import {
     AnimatedArrowCircle,
     animatedArrowCircleContainerClass,
@@ -45,10 +46,11 @@
       </h2>
       <AnimatedArrowCircle class="h-12 w-12 tb:h-16 tb:w-16" />
     </a>
-    <p class="section-desc mt-6 pc:mt-8">{t.description}</p>
+    <p class="section-desc mt-6 pc:mt-8" use:intersect>{t.description}</p>
   </div>
   <div
     class="embla projects c-container-design"
+    use:intersect
     use:embla={{
       options: {
         loop: true,

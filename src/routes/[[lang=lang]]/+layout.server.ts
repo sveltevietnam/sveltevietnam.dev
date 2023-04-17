@@ -1,4 +1,4 @@
-import { randomVariant } from '$client/components/SplashScreen/SplashScreen.svelte';
+import { randomVariant } from '$client/components/SplashScreen';
 
 export function load() {
   return {

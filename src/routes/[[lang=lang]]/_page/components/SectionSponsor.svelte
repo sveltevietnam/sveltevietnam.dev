@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { intersect } from '$client/actions/intersect';
   import {
     AnimatedArrowCircle,
     animatedArrowCircleContainerClass,
@@ -32,9 +33,9 @@
     </h2>
     <AnimatedArrowCircle class="h-12 w-12 tb:h-16 tb:w-16" />
   </a>
-  <p class="section-desc mt-6 pc:mt-8">{t.description}</p>
+  <p class="section-desc mt-6 pc:mt-8" use:intersect>{t.description}</p>
   <!-- FIXME: refactor to plain css here -->
-  <ul class="mt-10 flex flex-wrap gap-x-[73px] gap-y-[62px] pc:mt-20">
+  <ul class="mt-10 flex flex-wrap gap-x-[73px] gap-y-[62px] pc:mt-20" use:intersect>
     {#each sponsors as _}
       <li class="flex items-center space-x-2 pc:space-x-4">
         <svg

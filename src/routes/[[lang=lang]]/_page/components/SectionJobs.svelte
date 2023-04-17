@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { intersect } from '$client/actions/intersect';
   import {
     AnimatedArrowCircle,
     animatedArrowCircleContainerClass,
@@ -33,12 +34,12 @@
     </h2>
     <AnimatedArrowCircle class="h-12 w-12 tb:h-16 tb:w-16" />
   </a>
-  <p class="section-desc mt-6 pc:mt-8">{t.description}</p>
+  <p class="section-desc mt-6 pc:mt-8" use:intersect>{t.description}</p>
   <ul
     class="mt-10 grid grid-cols-1 gap-x-6 pc:mt-20 pc:grid-cols-3 pc:gap-y-10 tb:grid-cols-2 sp:gap-y-4"
   >
     {#each jobs as job}
-      <li class="shrink-0">
+      <li class="shrink-0" use:intersect>
         <JobCard {job} {lang} class="h-full" />
       </li>
     {/each}

@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { APP_ROUTE_TREE, GITHUB_LINKS, SOCIAL_LINKS } from '$shared/constants';
+  import { intersect } from '$client/actions/intersect';
+  import { APP_ROUTE_TREE, SOCIAL_LINKS } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
 
   import communityShapeEllipse from '../images/community-shape-ellipse.png';
@@ -20,13 +21,15 @@
 
 <section class="community c-container-design">
   <h2 class="section-title">{t.title}</h2>
-  <p class="section-desc mt-6 pc:mt-8">{@html t.description}</p>
-  <div class="shapes" role="figure" aria-label="geometric shapes">
+  <p class="section-desc c-intersect mt-6 pc:mt-8" use:intersect>
+    {@html t.description}
+  </p>
+  <div class="shapes c-intersect" role="figure" aria-label="geometric shapes" use:intersect>
     <img class="ellipse" src={communityShapeEllipse} alt="ellipse" width="363" height="403" />
     <img class="polygon" src={communityShapePolygon} alt="polygon" width="308" height="390" />
     <img class="star" src={communityShapeStar} alt="star" width="181" height="181" />
   </div>
-  <ul class="ctas divide-border divide-y">
+  <ul class="ctas divide-border c-intersect divide-y" use:intersect>
     <li>
       <a class="cta" href={SOCIAL_LINKS.discord} target="_blank" rel="noreferrer">
         <span>{t.ctas.discord}</span>
