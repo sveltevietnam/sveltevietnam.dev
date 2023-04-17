@@ -1,6 +1,7 @@
 <script context="module" lang="ts">
   import type { ComponentProps } from 'svelte';
   import { createEventDispatcher, onMount } from 'svelte';
+  import { readonly, writable } from 'svelte/store';
 
   import type { SplashScreen } from '$client/components/SplashScreen';
 
@@ -9,6 +10,18 @@
     if (random < 0.55) return 1;
     return 2;
   }
+
+  export type Splash = {
+    variant: ComponentProps<SplashScreen>['variant'];
+    duration: {
+      in: number;
+      out: number;
+    };
+    done: boolean;
+  };
+
+  const splashStore = writable<Splash | undefined>();
+  export const splash = readonly(splashStore);
 </script>
 
 <script lang="ts">
@@ -16,13 +29,26 @@
 
   let inDuration = variant === 1 ? 600 : 2000;
   const outDuration = 1000;
-  const dispatch = createEventDispatcher<{ splashed: undefined }>();
+  const dispatch = createEventDispatcher<{ splashed: Omit<Splash, 'done'> }>();
+
+  let iSplash: Splash = {
+    variant,
+    duration: {
+      in: inDuration,
+      out: outDuration,
+    },
+    done: false,
+  };
   onMount(() => {
-    const timeoutId = setTimeout(() => {
-      dispatch('splashed');
-      clearTimeout(timeoutId);
-    }, inDuration + outDuration);
+    splashStore.set(iSplash);
   });
+
+  function onAnimationEnd() {
+    iSplash = { ...iSplash, done: true };
+    console.log(iSplash);
+    dispatch('splashed', iSplash);
+    splashStore.set(iSplash);
+  }
 </script>
 
 <div
@@ -32,6 +58,7 @@
     --animation-out-duration: {outDuration}ms;
   "
   aria-disabled
+  on:animationend|self={onAnimationEnd}
 >
   <div class="icon">
     <svg inline-src="sveltevietnam-grayscale" width="90" height="94" class="logo-grayscale" />
