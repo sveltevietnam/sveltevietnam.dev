@@ -5,6 +5,7 @@
   import { page } from '$app/stores';
   import type { Language } from '$shared/services/i18n';
   import type { ColorScheme } from '$shared/types';
+  import { clamp } from '$shared/utils/clamp';
 
   import ColorSchemeMenu from './components/ColorSchemeMenu.svelte';
   import LanguageNav from './components/LanguageNav.svelte';
@@ -23,9 +24,16 @@
   });
 
   $: isHomePage = $page.url.pathname === `/${lang}`;
+
+  const MAX_SCROLL_Y = 320;
+  let scrollY = 0;
+  $: backdropOpacity = clamp(scrollY / MAX_SCROLL_Y, 0, 1);
 </script>
 
+<svelte:window bind:scrollY />
+
 <header>
+  <div class="backdrop" style="--opacity: {backdropOpacity}" />
   <div class="c-container">
     <div class="logo">
       <svelte:element
@@ -79,6 +87,18 @@
 </header>
 
 <style lang="postcss">
+  .backdrop {
+    --opacity: 0;
+
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+
+    opacity: var(--opacity);
+    background-color: theme('colors.design.bg.1');
+    box-shadow: 0 1px 3px 0 var(--color-shadow), 0 1px 2px -1px var(--color-shadow);
+  }
+
   header {
     --active-color: theme('colors.svelte');
     --transition-duration: 250ms;

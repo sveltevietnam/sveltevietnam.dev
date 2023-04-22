@@ -45,7 +45,6 @@
 
   function onAnimationEnd() {
     iSplash = { ...iSplash, done: true };
-    console.log(iSplash);
     dispatch('splashed', iSplash);
     splashStore.set(iSplash);
     document.documentElement.classList.toggle('splashed', true);
