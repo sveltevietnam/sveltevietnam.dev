@@ -18,7 +18,7 @@ In the context we have established, this project creates an entry point for said
 
 > **To become the inclusive and centralized information hub for the Svelte community in Vietnam.**
 
-"Inclusive" means we should try to not be biased towards any specific ethnicity or genders and to welcome people with all background and skill levels.
+"Inclusive" means we should try to not be biased towards any specific ethnicity or gender and to welcome people with all background and skill levels.
 
 ## Target Audience
 
@@ -39,9 +39,11 @@ This section lists some references to existing sites and communities for inspira
 | --- | --- |
 | - [Svelte][svelte]<br/>- [Svelte-kit][svelte.kit]<br/>- [Svelte Society][svelte.society]<br/> - [Svelte Radio][svelte.radio]<br/> - [Svelte Summit][svelte.summit]<br/> - [Svelte Sirens][svelte.sirens]<br/> - [Svelte Discord][svelte.discord]<br/> - [Svelte Hackathon][svelte.hackathon] | - [Svelte Jobs][sveltejobs]<br /> - [Made with Svelte][madewithsvelte]<br /> - [Best of Svelte][bestofsvelte] |
 
-## Svelte Branding Guidelines
+## Branding Guidelines
 
 This project should keep check and make sure to follow the [Svelte branding guidelines][svelte.branding] for any relevant design.
+
+Any specific guideline for public assets of Svelte Vietnam should be added to the [sveltevietnam/branding repo][sveltevietnam.branding].
 
 [svelte.branding]: https://github.com/sveltejs/branding
 [svelte]: https://svelte.dev/
@@ -55,3 +57,4 @@ This project should keep check and make sure to follow the [Svelte branding guid
 [sveltejobs]: https://sveltejobs.com/
 [madewithsvelte]: https://madewithsvelte.com/
 [bestofsvelte]: https://bestofsvelte.com/
+[sveltevietnam.branding]: https://github.com/sveltevietnam/branding
