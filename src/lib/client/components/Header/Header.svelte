@@ -33,7 +33,7 @@
 <svelte:window bind:scrollY />
 
 <header>
-  <div class="backdrop" style="--opacity: {backdropOpacity}" />
+  <div class="backdrop" style="--opacity: {backdropOpacity}" aria-disabled />
   <div class="c-container">
     <div class="logo">
       <svelte:element
@@ -51,18 +51,33 @@
     <ColorSchemeMenu {lang} {colorScheme} on:colorSchemeChange class="color-scheme" />
 
     <button class="mobile-open" on:click={toggleMobileOverlay}>
-      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        width="44"
+        height="44"
+        viewBox="0 0 44 44"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
-          d="M21 7H3C2.4 7 2 6.6 2 6C2 5.4 2.4 5 3 5H21C21.6 5 22 5.4 22 6C22 6.6 21.6 7 21 7Z"
+          d="M37.5564 32H14.5564"
+          stroke="currentcolor"
+          stroke-width="2"
+          stroke-linecap="square"
+          stroke-linejoin="round"
         />
         <path
-          d="M17 11H3C2.4 11 2 10.6 2 10C2 9.4 2.4 9 3 9H17C17.6 9 18 9.4 18 10C18 10.6 17.6 11 17 11Z"
+          d="M21.5547 11H37.5563"
+          stroke="currentcolor"
+          stroke-width="2"
+          stroke-linecap="square"
+          stroke-linejoin="round"
         />
         <path
-          d="M21 15H3C2.4 15 2 14.6 2 14C2 13.4 2.4 13 3 13H21C21.6 13 22 13.4 22 14C22 14.6 21.6 15 21 15Z"
-        />
-        <path
-          d="M17 19H3C2.4 19 2 18.6 2 18C2 17.4 2.4 17 3 17H17C17.6 17 18 17.4 18 18C18 18.6 17.6 19 17 19Z"
+          d="M6.44365 21H37.5563"
+          stroke="currentcolor"
+          stroke-width="2"
+          stroke-linecap="square"
+          stroke-linejoin="round"
         />
       </svg>
     </button>
@@ -75,11 +90,7 @@
         <LanguageNav {lang} class="languages" />
         <PageNav {lang} class="pages" />
         <button class="mobile-close" on:click={toggleMobileOverlay}>
-          <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M8.30002 25.0999L6.90002 23.6999L14.6 15.9999L6.90002 8.2999L8.30002 6.8999L16 14.5999L23.7 6.8999L25.1 8.2999L17.4 15.9999L25.1 23.6999L23.7 25.0999L16 17.3999L8.30002 25.0999Z"
-            />
-          </svg>
+          <svg inline-src="icon/x" width="44" height="44" />
         </button>
       </div>
     {/key}
@@ -118,7 +129,7 @@
 
     height: theme('spacing.header');
 
-    @screen md {
+    @screen tb {
       grid-template-areas: 'logo pages color-scheme languages';
       grid-template-columns: auto 1fr auto auto;
     }
@@ -141,6 +152,13 @@
     grid-area: logo;
     column-gap: 12px;
     align-items: center;
+
+    @screen sp {
+      & svg {
+        width: auto;
+        height: 36px;
+      }
+    }
 
     & span {
       column-gap: 16px;
@@ -178,13 +196,19 @@
     grid-template-areas:
       'languages mobile-close'
       'pages pages';
-    grid-template-columns: 1fr auto;
+    grid-template-columns: auto auto;
     grid-template-rows: auto 1fr;
     align-items: center;
+    justify-content: space-between;
 
-    padding: theme('spacing.4') theme('spacing.6');
+    padding: 16px;
 
-    background: theme('colors.bg.200');
+    background: radial-gradient(
+      circle at -500px -500px,
+      rgba(242 161 11/ 30%),
+      theme('colors.design.bg.1') 80%
+    );
+    background-color: theme('colors.design.bg.1');
 
     @media (max-width: theme('screens.md')) {
       &[data-open]:not([data-open='false']) {
@@ -192,7 +216,7 @@
       }
     }
 
-    @screen md {
+    @screen tb {
       display: contents;
     }
   }
@@ -200,7 +224,7 @@
   .mobile-close {
     grid-area: mobile-close;
 
-    @screen md {
+    @screen tb {
       display: none;
     }
   }
@@ -208,7 +232,7 @@
   .mobile-open {
     grid-area: mobile-open;
 
-    @screen md {
+    @screen tb {
       display: none;
     }
   }

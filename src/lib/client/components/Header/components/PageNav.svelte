@@ -36,7 +36,7 @@
 </script>
 
 <nav aria-label="pages" data-sveltekit-preload-data="hover">
-  <ul class={cls}>
+  <ul class="sp:divide-y sp:divide-design-border-1 {cls}">
     {#each Object.values(navLinks) as { text, href }}
       {@const current = href === $page.url.pathname}
       <li>
@@ -71,25 +71,24 @@
     display: contents;
 
     & > ul {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      @media (max-width: theme('screens.md')) {
-        @space-y theme('spacing.9');
-
-        flex-direction: column;
-        margin-top: calc(-1 * theme('spacing.6'));
-        font-size: theme('fontSize.2xl');
+      @screen sp {
+        align-self: flex-start;
+        margin-top: 80px;
+        margin-right: -16px;
+        margin-left: -16px;
       }
 
       @screen tb {
-        @space-x theme('spacing.4');
-
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @space-x theme('spacing.4');
       }
 
       @screen pc {
@@ -100,11 +99,18 @@
     & a {
       position: relative;
 
+      display: block;
+
       font-size: 14px;
       text-transform: uppercase;
       white-space: nowrap;
 
       transition: color var(--transition-duration) var(--transition-timing-function);
+
+      @screen sp {
+        padding: 16px;
+        font-size: 32px;
+      }
 
       & svg {
         position: absolute;
@@ -115,6 +121,10 @@
 
         width: calc(100% + 20px);
         height: auto;
+
+        @screen sp {
+          display: none;
+        }
 
         @screen pc {
           width: calc(100% + 40px);

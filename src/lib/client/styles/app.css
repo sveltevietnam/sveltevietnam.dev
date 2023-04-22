@@ -33,7 +33,11 @@
   }
 
   :root {
-    --header-height: 88px;
+    --header-height: 82px;
+
+    @screen tb {
+      --header-height: 88px;
+    }
   }
 
   html {

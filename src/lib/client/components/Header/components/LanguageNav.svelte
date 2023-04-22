@@ -38,6 +38,7 @@
       display: flex;
       align-items: center;
 
+      width: fit-content;
       height: 32px;
 
       border: 1px solid currentcolor;
