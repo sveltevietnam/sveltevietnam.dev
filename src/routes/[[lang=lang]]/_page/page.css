@@ -8,6 +8,12 @@
   @screen tb {
     @space-x 24px;
   }
+
+  transition: color 250ms ease-in-out;
+
+  &:hover {
+    color: theme('colors.design.neutral.2');
+  }
 }
 
 .section-title {

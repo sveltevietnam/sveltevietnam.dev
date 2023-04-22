@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { AnimatedArrowCircle } from '$client/components/AnimatedArrowCircle';
   import defaultFallbackImg from '$shared/assets/images/fallback/default.png';
   import sponsorFallbackImg from '$shared/assets/images/fallback/sponsor.png';
   import type { Language } from '$shared/services/i18n';
@@ -53,10 +54,12 @@
 <article class="event-card {cls}">
   <p class="date">
     <time datetime={rStartDate.toISOString()}>{formatDate(rStartDate)}</time>
-    <svg inline-src="icon/arrow-circle" width="32" height="32" />
+    <AnimatedArrowCircle height={32} width={32} handle="#{event.id}" />
   </p>
   <div class="content">
-    <p class="title">{event.title}</p>
+    <a href={event.href} class="title" id={event.id}>
+      {event.title}
+    </a>
     <p class="description">
       {@html event.description}
     </p>
@@ -123,26 +126,26 @@
   }
 
   .date {
-    @space-x 4px;
-
     display: flex;
     align-items: center;
     font-family: theme('fontFamily.lora');
     font-size: 18px;
 
     @screen tb {
-      @space-x 8px;
-
       font-size: 24px;
     }
 
-    & svg {
+    & :global(svg) {
+      --animated-color: theme('colors.design.neutral.2');
+
       width: 18px;
       height: 18px;
+      margin-left: 4px;
 
       @screen tb {
         width: 32px;
         height: 32px;
+        margin-left: 8px;
       }
     }
   }
@@ -157,8 +160,14 @@
   }
 
   .title {
+    display: block;
     font-size: 18px;
     font-weight: 500;
+    transition: color 400ms ease-out;
+
+    &:hover {
+      color: theme('colors.design.neutral.1');
+    }
 
     @screen tb {
       font-size: 24px;

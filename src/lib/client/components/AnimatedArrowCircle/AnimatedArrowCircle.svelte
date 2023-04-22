@@ -1,19 +1,62 @@
 <script context="module" lang="ts">
-  export const animatedArrowCircleContainerClass = 'animated-arrow-circle-container';
+  import { onMount } from 'svelte';
+
+  export const ANIMATED_ARROW_HANDLE_CLASS = 'animated-arrow-circle-handle';
 </script>
 
 <script lang="ts">
+  export let width = 64;
+  export let height = 64;
+  export let animated = false;
+  export let handle: 'self' | 'parent' | 'none' | `#${string}` = 'none';
   let cls = '';
   export { cls as class };
+
+  let node: SVGElement;
+  onMount(() => {
+    let handleNode: HTMLElement | null = null;
+
+    function mouseenter() {
+      node.dataset.animated = 'true';
+    }
+    function mouseleave() {
+      node.dataset.animated = 'false';
+    }
+
+    if (handle === 'self') {
+      node.classList.toggle(ANIMATED_ARROW_HANDLE_CLASS, true);
+    } else if (handle === 'parent') {
+      node.parentElement?.classList.toggle(ANIMATED_ARROW_HANDLE_CLASS, true);
+    } else if (handle !== 'none') {
+      handleNode = node?.parentElement;
+      handleNode = document.getElementById(handle.slice(1));
+      if (handleNode) {
+        handleNode.addEventListener('mouseenter', mouseenter);
+        handleNode.addEventListener('mouseleave', mouseleave);
+      }
+    }
+
+    return () => {
+      if (handle === 'parent') {
+        node.parentElement?.classList.toggle(ANIMATED_ARROW_HANDLE_CLASS, false);
+      } else if (handleNode) {
+        handleNode.removeEventListener('mouseenter', mouseenter);
+        handleNode.removeEventListener('mouseleave', mouseleave);
+      }
+    };
+  });
 </script>
 
 <svg
-  width="64"
-  height="64"
+  {width}
+  {height}
   viewBox="0 0 64 64"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
+  data-animated={animated}
+  data-handle={handle}
   class={cls}
+  bind:this={node}
 >
   <circle cx="32" cy="32" r="24" fill="currentColor" class="circle" />
   <path
@@ -43,6 +86,9 @@
   svg {
     --animation-duration: 400ms;
     --animation-timing-function: cubic-bezier(0.13, -0.27, 0.48, 1.54);
+    --animated-color: currentcolor;
+
+    transition: color 200ms ease-out;
 
     & .circle,
     & .arrow {
@@ -63,7 +109,23 @@
     }
   }
 
-  :global(.animated-arrow-circle-container:hover) {
+  svg[data-animated='true'] {
+    color: var(--animated-color);
+
+    & .circle {
+      animation-name: circle-animate-in;
+    }
+
+    & .arrow {
+      animation-name: arrow-animate-in;
+    }
+  }
+
+  :global(.animated-arrow-circle-handle:hover) {
+    & svg {
+      color: var(--animated-color);
+    }
+
     & .circle {
       animation-name: circle-animate-in;
     }

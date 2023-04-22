@@ -26,7 +26,7 @@
         <time datetime={job.expiresAt}>{new Date(job.expiresAt).toLocaleDateString()}</time>
       {/if}
     </p>
-    <p class="title">{job.title}</p>
+    <a class="title" href={job.href} target="_blank">{job.title}</a>
     <div class="tags">
       {#if job.salary}
         <p class="tag salary">{job.salary}</p>
@@ -71,10 +71,19 @@
   }
 
   .title {
+    display: block;
+
     margin-top: 8px;
     margin-bottom: 16px;
+
     font-size: 14px;
     font-weight: 500;
+
+    transition: color 400ms ease-out;
+
+    &:hover {
+      color: theme('colors.design.neutral.1');
+    }
 
     @screen tb {
       margin-top: 10px;

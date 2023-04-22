@@ -24,6 +24,7 @@ export function createMockedSponsors() {
 
 export function createMockedEvent() {
   return {
+    id: crypto.randomUUID(),
     description:
       'Hackathon Svelte sẽ diễn ra tại TPHCM vào tháng 4 năm 2023, hướng tới các nhà phát triển web để thiết kế và phát triển các ứng dụng web độc đáo và ấn tượng sử dụng framework Svelte.',
     title: 'Khám phá tiềm năng của framework Svelte: Hackathon Svelte đầu tiên',
@@ -55,12 +56,14 @@ export function createMockedJobs(sponsored = false, length?: number) {
   const jobs: Job[] = [
     {
       title: 'Senior Frontend Developer - Svelte',
+      href: '#',
       company: 'Company Name - Vietnam Subsidiary',
       createdAt,
       sponsored,
     },
     {
       title: 'Job With No Location',
+      href: '#',
       company: 'Company Name - Vietnam Subsidiary',
       expiresAt,
       createdAt,
@@ -70,6 +73,7 @@ export function createMockedJobs(sponsored = false, length?: number) {
     },
     {
       title: 'Job With No Location Policy',
+      href: '#',
       company: 'Company Name - Vietnam Subsidiary',
       createdAt,
       salary: 'Negotiable',
@@ -78,6 +82,7 @@ export function createMockedJobs(sponsored = false, length?: number) {
     },
     {
       title: 'Job With No Salary Detail',
+      href: '#',
       company: 'Company Name - Vietnam Subsidiary',
       expiresAt,
       createdAt,
@@ -86,6 +91,7 @@ export function createMockedJobs(sponsored = false, length?: number) {
     },
     {
       title: 'Job With No Salary Detail',
+      href: '#',
       company: 'Company Name - Vietnam Subsidiary',
       expiresAt,
       createdAt,
