@@ -3,10 +3,7 @@
   import embla from 'embla-carousel-svelte';
 
   import { intersect } from '$client/actions/intersect';
-  import {
-    AnimatedArrowCircle,
-    animatedArrowCircleContainerClass,
-  } from '$client/components/AnimatedArrowCircle';
+  import { AnimatedArrowCircle } from '$client/components/AnimatedArrowCircle';
   import { APP_ROUTE_TREE } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
   import type { Project } from '$shared/types';
@@ -36,15 +33,11 @@
 
 <section class="impact">
   <div class="c-container-design">
-    <a
-      href={impactHref}
-      title={t.title}
-      class="flex w-fit space-x-4 pc:space-x-6 tb:items-center sp:items-start {animatedArrowCircleContainerClass}"
-    >
+    <a href={impactHref} title={t.title} class="section-title-container">
       <h2 class="section-title">
         {t.title}
       </h2>
-      <AnimatedArrowCircle class="h-12 w-12 tb:h-16 tb:w-16" />
+      <AnimatedArrowCircle class="h-12 w-12 tb:h-16 tb:w-16 sp:self-start" handle="parent" />
     </a>
     <p class="section-desc mt-6 pc:mt-8" use:intersect>{t.description}</p>
   </div>
@@ -70,36 +63,13 @@
             {/if}
           </div>
           <div>
-            <p class="title">{name}</p>
+            <a class="title" {href}>{name}</a>
             <p class="description">{@html description}</p>
             <p class="collaboration">
               <span class="sp:hidden">{t.collaboration}</span>
               <span>{@html collaboration}</span>
             </p>
           </div>
-          <a {href} title={name} target="_blank" class="link">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 48 48"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M7 24H40"
-                stroke="white"
-                stroke-width="2"
-                stroke-linecap="square"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M27 10.5L40.5 24L27 37.5"
-                stroke="white"
-                stroke-width="2"
-                stroke-linecap="square"
-              />
-            </svg>
-          </a>
         </li>
       {/each}
     </ul>
@@ -212,8 +182,14 @@
   }
 
   .title {
+    display: block;
     font-size: 14px;
     font-weight: 700;
+    transition: color 400ms ease-out;
+
+    &:hover {
+      color: theme('colors.design.neutral.1');
+    }
 
     @screen tb {
       font-size: 24px;
@@ -241,23 +217,6 @@
 
       margin-top: 10px;
       font-size: 16px;
-    }
-  }
-
-  .link {
-    flex-shrink: 0;
-
-    & svg {
-      transition: transform 250ms ease;
-
-      @screen tb {
-        width: 48px;
-        height: 48px;
-      }
-    }
-
-    &:hover svg {
-      transform: translateX(40%);
     }
   }
 

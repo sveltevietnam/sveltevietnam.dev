@@ -1,9 +1,6 @@
 <script lang="ts">
   import { intersect } from '$client/actions/intersect';
-  import {
-    AnimatedArrowCircle,
-    animatedArrowCircleContainerClass,
-  } from '$client/components/AnimatedArrowCircle';
+  import { AnimatedArrowCircle } from '$client/components/AnimatedArrowCircle';
   import { JobCard } from '$client/components/JobCard';
   import { APP_ROUTE_TREE } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
@@ -24,15 +21,11 @@
 </script>
 
 <section class="jobs c-container-design">
-  <a
-    href={jobsHref}
-    title={t.title}
-    class="section-title-container {animatedArrowCircleContainerClass}"
-  >
+  <a href={jobsHref} title={t.title} class="section-title-container">
     <h2 class="section-title">
       {t.title}
     </h2>
-    <AnimatedArrowCircle class="h-12 w-12 tb:h-16 tb:w-16" />
+    <AnimatedArrowCircle class="h-12 w-12 tb:h-16 tb:w-16" handle="parent" />
   </a>
   <p class="section-desc mt-6 pc:mt-8" use:intersect>{t.description}</p>
   <ul

@@ -1,6 +1,7 @@
 export type ColorScheme = 'light' | 'dark' | 'system';
 
 export interface Event {
+  id: string;
   title: string;
   location: string;
   startDate: string;
@@ -27,6 +28,7 @@ export interface Sponsor {
 
 export interface Job {
   title: string;
+  href: string;
   image?: string;
   company: string;
   salary?: string;
