@@ -1,6 +1,7 @@
 <script lang="ts">
   import embla from 'embla-carousel-svelte';
 
+  import { intersect } from '$client/actions/intersect';
   import type { Language } from '$shared/services/i18n';
 
   import introShapeEllipse from '../images/intro-shape-ellipse.png';
@@ -17,7 +18,13 @@
   $: t = translations[lang].intro;
 </script>
 
-<section class="intro intersect">
+<section
+  class="intro"
+  use:intersect={{
+    class: false,
+    intersectedClass: 'intersected',
+  }}
+>
   <h1 title="Svelte Vietnam" class="intro-title">
     <svg inline-src="../images/intro-title" width="824" height="301" />
   </h1>
@@ -222,17 +229,9 @@
     opacity: 0;
 
     transition-delay: var(--transition-delay, 0ms);
-    transition-timing-function: ease-out;
+    transition-timing-function: cubic-bezier(0.45, 0.35, 0.52, 1.15);
     transition-duration: 500ms;
     transition-property: transform, opacity;
-  }
-
-  .intro.intersect {
-    & .intro-title,
-    & .intro-card {
-      transform: translateY(0);
-      opacity: 1;
-    }
   }
 
   .intro-backdrop {
@@ -245,118 +244,174 @@
     max-width: 100%;
 
     & img {
+      /* initial transition */
+      --initial-transition-duration: 1.4s;
+      --initial-transition-delay: 0s;
+      --initial-translate-x: 0;
+      --initial-translate-y: 0;
+
+      /* alternating pulsating animation */
+      --animation-delay: calc(var(--initial-transition-delay) + var(--initial-transition-duration));
       --rotate-x: 0deg;
       --rotate-y: 0deg;
       --rotate-z-from: 0deg;
       --rotate-z-to: 0deg;
-      --scale-from: 1;
-      --scale-to: 1;
+      --scale: 1;
+
+      /* positioning */
+      --left: 0px;
+      --delta-left: 0px;
+      --top: 0px;
+      --delta-top: 0px;
+      --right: 0px;
+      --delta-right: 0px;
+
       position: absolute;
+      top: calc(var(--top) + var(--delta-top));
       transform-origin: center;
+      transform: translateX(var(--initial-translate-x)) translateY(var(--initial-translate-y))
+        rotateX(0) rotateY(0) rotateZ(var(--rotate-z-from)) scale(1);
+
       height: auto;
-      animation: shape 3s ease-in-out alternate infinite;
+
+      opacity: 0;
+
+      transition-delay: var(--initial-transition-delay);
+      transition-timing-function: ease-out, cubic-bezier(0.41, 0.78, 0.43, 0.96);
+      transition-duration: var(--initial-transition-duration);
+      transition-property: transform, opacity;
     }
 
     & .star {
+      --initial-translate-x: -200px;
+      --initial-translate-y: -200px;
       --rotate-x: -10deg;
       --rotate-y: 12deg;
       --rotate-z-from: 0deg;
       --rotate-z-to: 10deg;
-      --scale-to: 1.05;
+      --scale: 1.05;
+      --top: 38px;
+      --right: calc(50% + 92px);
 
-      top: 38px;
-      right: calc(50% + 92px);
+      right: calc(var(--right) + var(--delta-right));
       width: clamp(83px, 12vw, 174px);
 
       @screen tb {
-        top: 44px;
-        right: calc(50% + 200px);
+        --top: 44px;
+        --right: calc(50% + 200px);
       }
 
       @screen pc {
-        top: 15px;
-        right: calc(50% + 281px);
+        --top: 15px;
+        --right: calc(50% + 281px);
       }
     }
 
     & .ellipse {
+      --initial-translate-x: -200px;
+      --initial-translate-y: 50px;
+      --initial-transition-delay: 400ms;
       --rotate-x: -5deg;
       --rotate-y: 10deg;
       --rotate-z-from: -38deg;
       --rotate-z-to: -25deg;
-      --scale-from: 1.02;
+      --scale: 0.98;
+      --top: 180px;
+      --right: calc(50% + 58px);
 
-      top: 180px;
-      right: calc(50% + 58px);
+      right: calc(var(--right) + var(--delta-right));
       width: clamp(175px, 22vw, 317px);
 
       @screen tb {
-        top: 260px;
-        right: calc(50% + 140px);
+        --top: 260px;
+        --right: calc(50% + 140px);
       }
 
       @screen pc {
-        top: 321px;
-        right: calc(50% + 165px);
+        --top: 321px;
+        --right: calc(50% + 165px);
       }
     }
 
     & .triangle-small {
+      --initial-translate-x: 200px;
+      --initial-translate-y: -200px;
+      --initial-transition-delay: 300ms;
       --rotate-x: -4deg;
       --rotate-y: 8deg;
       --rotate-z-from: -94deg;
       --rotate-z-to: -80deg;
-      --scale-to: 1.2;
+      --scale: 1.2;
+      --top: 25px;
+      --left: calc(50% + 64px);
 
-      top: 25px;
-      left: calc(50% + 64px);
+      left: calc(var(--left) + var(--delta-left));
       transform-origin: 50% calc(56%);
-
       width: clamp(52px, 6.3vw, 94px);
 
       @screen tb {
-        top: 60px;
-        left: calc(50% + 80px);
+        --top: 60px;
+        --left: calc(50% + 80px);
       }
 
       @screen pc {
-        top: 42px;
+        --top: 42px;
       }
     }
 
     & .triangle-large {
+      --initial-translate-x: 200px;
+      --initial-translate-y: 100px;
+      --initial-transition-delay: 200ms;
       --rotate-x: -4deg;
       --rotate-y: 8deg;
       --rotate-z-from: -135deg;
       --rotate-z-to: -140deg;
-      --scale-to: 0.95;
+      --scale: 0.95;
+      --top: 88px;
+      --left: calc(50% + 83px);
 
-      top: 88px;
-      left: calc(50% + 83px);
+      left: calc(var(--left) + var(--delta-left));
       transform-origin: 50% calc(65.5%);
-
       width: clamp(255px, 32vw, 461px);
 
       @screen tb {
-        top: 160px;
-        left: calc(50% + 120px);
+        --top: 160px;
+        --left: calc(50% + 120px);
       }
 
       @screen pc {
-        top: 155px;
-        left: calc(50% + 90px);
+        --top: 155px;
+        --left: calc(50% + 90px);
       }
+    }
+  }
+
+  :global(html.splashed .intro.intersected) {
+    & .intro-title,
+    & .intro-card {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    & .intro-backdrop img {
+      --initial-translate-x: 0;
+      --initial-translate-y: 0;
+
+      opacity: 1;
+      animation: shape 3s var(--animation-delay) ease-in-out alternate infinite;
     }
   }
 
   @keyframes shape {
     0% {
-      transform: rotateX(0) rotateY(0) rotateZ(var(--rotate-z-from)) scale(var(--scale-from));
+      transform: translateX(0) translateY(0) rotateX(0) rotateY(0) rotateZ(var(--rotate-z-from))
+        scale(1);
     }
 
     100% {
-      transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) rotateZ(var(--rotate-z-to))
-        scale(var(--scale-to));
+      transform: translateX(0) translateY(0) rotateX(var(--rotate-x)) rotateY(var(--rotate-y))
+        rotateZ(var(--rotate-z-to)) scale(var(--scale));
     }
   }
 </style>
