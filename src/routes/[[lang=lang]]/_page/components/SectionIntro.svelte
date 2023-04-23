@@ -245,12 +245,25 @@
     max-width: 100%;
 
     & img {
+      --rotate-x: 0deg;
+      --rotate-y: 0deg;
+      --rotate-z-from: 0deg;
+      --rotate-z-to: 0deg;
+      --scale-from: 1;
+      --scale-to: 1;
       position: absolute;
       transform-origin: center;
       height: auto;
+      animation: shape 3s ease-in-out alternate infinite;
     }
 
     & .star {
+      --rotate-x: -10deg;
+      --rotate-y: 12deg;
+      --rotate-z-from: 0deg;
+      --rotate-z-to: 10deg;
+      --scale-to: 1.05;
+
       top: 38px;
       right: calc(50% + 92px);
       width: clamp(83px, 12vw, 174px);
@@ -267,9 +280,14 @@
     }
 
     & .ellipse {
+      --rotate-x: -5deg;
+      --rotate-y: 10deg;
+      --rotate-z-from: -38deg;
+      --rotate-z-to: -25deg;
+      --scale-from: 1.02;
+
       top: 180px;
       right: calc(50% + 58px);
-      transform: rotate(-38deg);
       width: clamp(175px, 22vw, 317px);
 
       @screen tb {
@@ -284,10 +302,15 @@
     }
 
     & .triangle-small {
+      --rotate-x: -4deg;
+      --rotate-y: 8deg;
+      --rotate-z-from: -94deg;
+      --rotate-z-to: -80deg;
+      --scale-to: 1.2;
+
       top: 25px;
       left: calc(50% + 64px);
       transform-origin: 50% calc(56%);
-      transform: rotate(-94deg);
 
       width: clamp(52px, 6.3vw, 94px);
 
@@ -302,10 +325,15 @@
     }
 
     & .triangle-large {
+      --rotate-x: -4deg;
+      --rotate-y: 8deg;
+      --rotate-z-from: -135deg;
+      --rotate-z-to: -140deg;
+      --scale-to: 0.95;
+
       top: 88px;
       left: calc(50% + 83px);
       transform-origin: 50% calc(65.5%);
-      transform: rotate(-135deg);
 
       width: clamp(255px, 32vw, 461px);
 
@@ -318,6 +346,17 @@
         top: 155px;
         left: calc(50% + 90px);
       }
+    }
+  }
+
+  @keyframes shape {
+    0% {
+      transform: rotateX(0) rotateY(0) rotateZ(var(--rotate-z-from)) scale(var(--scale-from));
+    }
+
+    100% {
+      transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) rotateZ(var(--rotate-z-to))
+        scale(var(--scale-to));
     }
   }
 </style>
