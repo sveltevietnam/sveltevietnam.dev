@@ -64,7 +64,7 @@
           </div>
           <div>
             <a class="title" {href}>{name}</a>
-            <p class="description">{@html description}</p>
+            <p class="description line-clamp-3 tb:line-clamp-4">{@html description}</p>
             <p class="collaboration">
               <span class="sp:hidden">{t.collaboration}</span>
               <span>{@html collaboration}</span>
