@@ -11,12 +11,18 @@
   export { cls as class };
 
   $: t = translations[lang];
+  $: tags = [!!job.sponsor && t.sponsored, job.salary, job.location, job.locationPolicy].filter(
+    Boolean,
+  );
 </script>
 
 <article class="job-card {cls}">
-  <img src={job.image || companyFallbackImg} alt={job.company} height="44" width="44" />
-  <div class="flex-1">
-    <p class="company">{job.company}</p>
+  <img src={job.image || companyFallbackImg} alt={job.company} height="auto" width="80" />
+  <div class="details">
+    <p class="company">
+      <svg inline-src="icon/building" width="16" height="16" class="inline-block" />
+      {job.company}
+    </p>
     <p class="datetime">
       <span>{t.posted}</span>
       <time datetime={job.createdAt}>{new Date(job.createdAt).toLocaleDateString()}</time>
@@ -27,56 +33,53 @@
       {/if}
     </p>
     <a class="title" href={job.href} target="_blank">{job.title}</a>
-    <div class="tags">
-      {#if job.salary}
-        <p class="tag salary">{job.salary}</p>
-      {/if}
-      {#if job.location}
-        <p class="tag">{job.location}</p>
-      {/if}
-      {#if job.locationPolicy}
-        <p class="tag">{job.locationPolicy}</p>
-      {/if}
-    </div>
+  </div>
+  <div class="tags">
+    {#each tags as tag}
+      <p class="tag">{tag}</p>
+    {/each}
   </div>
 </article>
 
 <style lang="postcss">
   .job-card {
-    @space-x 12px;
+    display: grid;
+    grid-template-areas:
+      'img details'
+      'tags tags';
+    grid-template-columns: auto 1fr;
+    row-gap: 16px;
+    column-gap: 24px;
+  }
 
-    display: flex;
-    align-items: flex-start;
+  img {
+    grid-area: img;
+  }
 
-    padding: 14px 16px;
-
-    border: 1px solid theme('colors.design.border.1');
-    border-radius: 12px;
-
-    @screen tb {
-      @space-x 14px;
-
-      padding: 16px;
-    }
+  .details {
+    grid-area: details;
   }
 
   .company {
     font-size: 12px;
+
+    @screen tb {
+      font-size: 14px;
+    }
   }
 
   .datetime {
-    margin-top: 4px;
+    margin-top: 6px;
     font-size: 12px;
-    font-style: italic;
+    color: theme('colors.design.neutral.2');
   }
 
   .title {
     display: block;
 
-    margin-top: 8px;
-    margin-bottom: 16px;
+    margin-top: 12px;
 
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
 
     transition: color 400ms ease-out;
@@ -86,32 +89,24 @@
     }
 
     @screen tb {
-      margin-top: 10px;
-      margin-bottom: 19px;
-      font-size: 16px;
+      font-size: 18px;
     }
   }
 
   .tags {
     display: flex;
+    grid-area: tags;
     flex-wrap: wrap;
     gap: 8px;
   }
 
   .tag {
-    --color: 85 76 133;
-
     padding: 4px 10px;
 
     font-size: 12px;
-    color: rgb(var(--color));
+    color: theme('colors.design.neutral.2');
 
-    background-color: rgba(var(--color) / 10%);
-    border: 1px solid rgba(var(--color) / 50%);
+    border: 1px solid theme('colors.design.border.1');
     border-radius: 25px;
-
-    &.salary {
-      --color: 171 55 127;
-    }
   }
 </style>

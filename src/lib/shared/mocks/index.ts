@@ -1,20 +1,24 @@
 import type { Contributor, Event, Job, Project, Sponsor } from '$shared/types';
 
+import jobImg from './job-image.jpg';
 import vietnamImg from './vietnam-image.jpg';
 
 export function createMockedSponsors() {
   return [
     {
+      id: crypto.randomUUID(),
       href: '',
       image: '',
       name: 'Sponsor 1',
     },
     {
+      id: crypto.randomUUID(),
       href: '',
       image: '',
       name: 'Nhà tài trợ 2',
     },
     {
+      id: crypto.randomUUID(),
       href: 'http://github.com/sveltevietnam',
       image: '',
       name: 'Svelte Vietnam',
@@ -50,47 +54,62 @@ export function createMockedEvents(length: number) {
   return new Array(length).fill(createMockedEvent());
 }
 
-export function createMockedJobs(sponsored = false, length?: number) {
+export function createMockedJobs(length?: number, sponsor?: Sponsor) {
   const expiresAt = new Date(new Date().setDate(new Date().getDate() + 1)).toISOString();
   const createdAt = new Date().toISOString();
   const jobs: Job[] = [
     {
+      id: crypto.randomUUID(),
       title: 'Senior Frontend Developer - Svelte',
+      image: jobImg,
       href: '#',
       company: 'Company Name - Vietnam Subsidiary',
       createdAt,
-      sponsored,
+    },
+    {
+      id: crypto.randomUUID(),
+      title: 'Job by a Sponsor',
+      image: jobImg,
+      href: '#',
+      company: 'Company Name - Vietnam Subsidiary',
+      createdAt,
+      sponsor: sponsor ?? createMockedSponsors()[0],
     },
     {
       title: 'Job With No Location',
+      id: crypto.randomUUID(),
+      image: jobImg,
       href: '#',
       company: 'Company Name - Vietnam Subsidiary',
       expiresAt,
       createdAt,
       salary: '$1000-$2000',
       locationPolicy: 'remote',
-      sponsored,
     },
     {
       title: 'Job With No Location Policy',
+      id: crypto.randomUUID(),
+      image: jobImg,
       href: '#',
       company: 'Company Name - Vietnam Subsidiary',
       createdAt,
       salary: 'Negotiable',
       location: 'Ho Chi Minh',
-      sponsored,
     },
     {
       title: 'Job With No Salary Detail',
+      id: crypto.randomUUID(),
+      image: jobImg,
       href: '#',
       company: 'Company Name - Vietnam Subsidiary',
       expiresAt,
       createdAt,
       locationPolicy: 'remote',
-      sponsored,
     },
     {
       title: 'Job With No Salary Detail',
+      id: crypto.randomUUID(),
+      image: jobImg,
       href: '#',
       company: 'Company Name - Vietnam Subsidiary',
       expiresAt,
@@ -98,7 +117,7 @@ export function createMockedJobs(sponsored = false, length?: number) {
       salary: '$1000 - $2000',
       locationPolicy: 'hybrid',
       location: 'Ha Noi',
-      sponsored,
+      sponsor: sponsor ?? createMockedSponsors()[0],
     },
   ];
   if (length) {
@@ -180,6 +199,7 @@ export function createMockedContributors() {
 
 export function createMockedProjects(length = 2) {
   return new Array(length).fill({
+    id: crypto.randomUUID(),
     name: 'Svelte Vietnam',
     image: vietnamImg,
     description:

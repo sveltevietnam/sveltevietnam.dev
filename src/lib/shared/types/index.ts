@@ -20,6 +20,7 @@ export interface EventSpeaker {
 }
 
 export interface Sponsor {
+  id: string;
   /** inline svg with height of 40 */
   image: string;
   name: string;
@@ -27,6 +28,7 @@ export interface Sponsor {
 }
 
 export interface Job {
+  id: string;
   title: string;
   href: string;
   image?: string;
@@ -36,7 +38,7 @@ export interface Job {
   locationPolicy?: 'remote' | 'hybrid';
   createdAt: string;
   expiresAt?: string;
-  sponsored: boolean;
+  sponsor?: Sponsor;
 }
 
 export interface Contributor {
@@ -52,6 +54,7 @@ export interface Contributor {
 }
 
 export interface Project {
+  id: string;
   name: string;
   image?: string;
   description: string;
