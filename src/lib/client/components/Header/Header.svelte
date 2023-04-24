@@ -107,7 +107,7 @@
 
     opacity: var(--opacity);
     background-color: theme('colors.design.bg.1');
-    box-shadow: 0 1px 3px 0 var(--color-shadow), 0 1px 2px -1px var(--color-shadow);
+    border-bottom: 1px solid theme('colors.design.border.1');
   }
 
   header {
