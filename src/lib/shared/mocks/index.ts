@@ -1,6 +1,6 @@
+import jobImg from '$shared/assets/images/fallback/job.png';
 import type { Contributor, Event, Job, Project, Sponsor } from '$shared/types';
 
-import jobImg from './job-image.jpg';
 import vietnamImg from './vietnam-image.jpg';
 
 export function createMockedSponsors() {
