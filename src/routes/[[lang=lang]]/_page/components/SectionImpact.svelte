@@ -52,7 +52,7 @@
       },
       plugins: [],
     }}
-    on:init={onEmblaInit}
+    on:emblaInit={onEmblaInit}
   >
     <ul class="embla__container">
       {#each projects as { description, image, name, collaboration, href }, i}
