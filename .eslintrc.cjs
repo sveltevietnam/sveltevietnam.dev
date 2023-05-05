@@ -1,6 +1,26 @@
 module.exports = {
   root: true,
-  extends: ['@vnphanquang/eslint-config-svelte'],
+  extends: ['@vnphanquang/eslint-config', 'plugin:svelte/recommended'],
+  overrides: [
+    {
+      files: ['*.svelte'],
+      parser: 'svelte-eslint-parser',
+      // Parse the `<script>` in `.svelte` as TypeScript by adding the following configuration.
+      parserOptions: {
+        parser: '@typescript-eslint/parser',
+      },
+    },
+    {
+      files: ['src/routes/+layout.svelte'],
+      rules: {
+        '@typescript-eslint/semi': 'off',
+      },
+    },
+    // ...
+  ],
+  rules: {
+    'svelte/no-at-html-tags': 'off',
+  },
   globals: {
     App: 'readonly',
     gtag: 'readonly',

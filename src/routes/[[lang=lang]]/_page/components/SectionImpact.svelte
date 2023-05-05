@@ -55,7 +55,7 @@
     on:emblaInit={onEmblaInit}
   >
     <ul class="embla__container">
-      {#each projects as { description, image, name, collaboration, href }, i}
+      {#each projects as { description, image, name, collaboration, href }}
         <li class="project embla__slide">
           <div class="img-container">
             {#if image}
@@ -154,7 +154,7 @@
   .img-container {
     --fallback-bg: #d9d9d9;
 
-    @dark {
+    @dark global {
       --fallback-bg: #1f1f1f;
     }
 

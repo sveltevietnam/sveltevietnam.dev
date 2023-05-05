@@ -1,7 +1,7 @@
 <script lang="ts">
-  export let data;
+  // export let data;
 
-  $: t = data.translations.page;
+  // $: t = data.translations.page;
 </script>
 
 <main>

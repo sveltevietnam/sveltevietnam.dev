@@ -1,5 +1,4 @@
 <script lang="ts">
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   import { partytownSnippet } from '@builder.io/partytown/integration';
 
   import { dev, browser } from '$app/environment';
@@ -77,7 +76,7 @@
       forward: ['gtag'],
     };
   </script>
-  {@html `<script>${partytownSnippet()}</script>`}
+  {@html '<script>' + partytownSnippet() + '</script>'}
 
   {#if analyticsEnabled}
     <!-- Google tag (gtag.js) -->

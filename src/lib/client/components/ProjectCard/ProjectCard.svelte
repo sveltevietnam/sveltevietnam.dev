@@ -1,8 +1,6 @@
 <script lang="ts">
-  import type { Language } from '$shared/services/i18n';
   import type { Project } from '$shared/types';
 
-  export let lang: Language;
   export let project: Project;
 </script>
 
