@@ -80,7 +80,7 @@
           <ul class="speakers">
             {#each event.speakers as { image, name, href }}
               <li>
-                <svelte:element this={!!href ? 'a' : 'div'} {href} class="speaker">
+                <svelte:element this={href ? 'a' : 'div'} {href} class="speaker">
                   <img src={image || defaultFallbackImg} width="24" height="24" alt={name} />
                   <p>{name}</p>
                 </svelte:element>
@@ -96,7 +96,7 @@
           <ul class="sponsors">
             {#each event.sponsors as { href, image, name }}
               <li>
-                <svelte:element this={!!href ? 'a' : 'div'} {href} class="sponsor">
+                <svelte:element this={href ? 'a' : 'div'} {href} class="sponsor">
                   <img src={image || sponsorFallbackImg} width="24" height="24" alt={name} />
                   <p>{name}</p>
                 </svelte:element>

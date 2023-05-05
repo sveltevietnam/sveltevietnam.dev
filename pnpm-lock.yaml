@@ -4,6 +4,9 @@ dependencies:
   cookie:
     specifier: ^0.5.0
     version: 0.5.0
+  gsap:
+    specifier: ^3.11.5
+    version: 3.11.5
   mustache:
     specifier: ^4.2.0
     version: 4.2.0
@@ -69,9 +72,6 @@ devDependencies:
   '@vnphanquang/eslint-config':
     specifier: ^1.2.3
     version: 1.2.3(eslint@8.39.0)(typescript@5.0.4)
-  '@vnphanquang/eslint-config-svelte':
-    specifier: ^1.0.4
-    version: 1.0.4(eslint@8.39.0)(svelte@3.58.0)(typescript@5.0.4)
   '@vnphanquang/prettierrc':
     specifier: ^1.0.1
     version: 1.0.1
@@ -82,17 +82,20 @@ devDependencies:
     specifier: ^6.0.1
     version: 6.0.1(postcss@8.4.23)
   embla-carousel:
-    specifier: 8.0.0-rc02
-    version: 8.0.0-rc02
+    specifier: 8.0.0-rc03
+    version: 8.0.0-rc03
   embla-carousel-svelte:
-    specifier: 8.0.0-rc02
-    version: 8.0.0-rc02(svelte@3.58.0)
+    specifier: 8.0.0-rc03
+    version: 8.0.0-rc03(svelte@3.58.0)
   eslint:
     specifier: ^8.39.0
     version: 8.39.0
   eslint-config-prettier:
     specifier: ^8.8.0
     version: 8.8.0(eslint@8.39.0)
+  eslint-plugin-svelte:
+    specifier: ^2.27.3
+    version: 2.27.3(eslint@8.39.0)(svelte@3.58.0)
   eslint-plugin-svelte3:
     specifier: ^4.0.0
     version: 4.0.0(eslint@8.39.0)(svelte@3.58.0)
@@ -1091,20 +1094,6 @@ packages:
       eslint-visitor-keys: 3.4.0
     dev: true
 
-  /@vnphanquang/eslint-config-svelte@1.0.4(eslint@8.39.0)(svelte@3.58.0)(typescript@5.0.4):
-    resolution: {integrity: sha512-Wdoehu0maVZp9VgkFgS0yMwZojs8U9xIoEgNK0SHt4aNRhF3eqXqgckgkAGcDOWx4W9xrV74gK/FQnqT/upgMA==}
-    dependencies:
-      '@vnphanquang/eslint-config': 1.2.3(eslint@8.39.0)(typescript@5.0.4)
-      eslint-plugin-svelte3: 4.0.0(eslint@8.39.0)(svelte@3.58.0)
-    transitivePeerDependencies:
-      - eslint
-      - eslint-import-resolver-typescript
-      - eslint-import-resolver-webpack
-      - supports-color
-      - svelte
-      - typescript
-    dev: true
-
   /@vnphanquang/eslint-config@1.2.3(eslint@8.39.0)(typescript@5.0.4):
     resolution: {integrity: sha512-bVee0dPUATN3CCNW5cBa74ggwupg18l8yrZwn6qBf60a+OL4iSXduGnVE6gUDkVU75NLo/ymHbew9vFzvgNEww==}
     dependencies:
@@ -1909,26 +1898,26 @@ packages:
     resolution: {integrity: sha512-XKGdI4pWM78eLH2cbXJHiBnWUwFSzZM7XujsB6stDiGu9AeSqziedP6amNLpJzE3i0rLTcfAwdCTs5ecP5yeSg==}
     dev: true
 
-  /embla-carousel-reactive-utils@8.0.0-rc02(embla-carousel@8.0.0-rc02):
-    resolution: {integrity: sha512-26ZXUnSiD6eN7rwylPnDYeIM3xNlPd92Wr9PMFou9qlIJSydEA4o3IqScXdiS+3slnlo/hiR81VrmTNjgeGv+Q==}
+  /embla-carousel-reactive-utils@8.0.0-rc03(embla-carousel@8.0.0-rc03):
+    resolution: {integrity: sha512-m2ZaxmG0MBs9nFsA3vEz0ZUNiwJaoJM8f//ENe8ODM/rEIiHkSQ1fN90k3k2NX9JemcllYGqz/bmE5cMYGXjJQ==}
     peerDependencies:
-      embla-carousel: 8.0.0-rc02
+      embla-carousel: 8.0.0-rc03
     dependencies:
-      embla-carousel: 8.0.0-rc02
+      embla-carousel: 8.0.0-rc03
     dev: true
 
-  /embla-carousel-svelte@8.0.0-rc02(svelte@3.58.0):
-    resolution: {integrity: sha512-RiEAtJ4Nsn7JbkCkv1pZWqwj01ZW5VO5UpzM5i3egnOHg+O/UOQzDpmh6Mgmt2SEvDjio7twsKvUVDWQxqA0BQ==}
+  /embla-carousel-svelte@8.0.0-rc03(svelte@3.58.0):
+    resolution: {integrity: sha512-bD0onN0El+BW8YtC8FYZ2LhjnCCjg+R1Q2QTpPypa5v93p8M355big0ULtxBqFjGYFn6PAa0PsX8tYcmWVkPUQ==}
     peerDependencies:
       svelte: ^3.49.0
     dependencies:
-      embla-carousel: 8.0.0-rc02
-      embla-carousel-reactive-utils: 8.0.0-rc02(embla-carousel@8.0.0-rc02)
+      embla-carousel: 8.0.0-rc03
+      embla-carousel-reactive-utils: 8.0.0-rc03(embla-carousel@8.0.0-rc03)
       svelte: 3.58.0
     dev: true
 
-  /embla-carousel@8.0.0-rc02:
-    resolution: {integrity: sha512-ZD8zkPQqp56qOhNjdT2MmzeJmPMaCwOQW0oH/8dXWy7krIzJkCkaUMDYuD3VXAHs5729WeH4d0znLu6x9RadNg==}
+  /embla-carousel@8.0.0-rc03:
+    resolution: {integrity: sha512-2goVwmTYZdGFcRejbYJlaC/iWDPv/VAsASE60uLQYLSKpuQRTxq/huu548OozLsH/2uSelVszvmzfinZnnk/iw==}
     dev: true
 
   /emoji-regex@8.0.0:
@@ -2189,6 +2178,32 @@ packages:
     dependencies:
       eslint: 8.39.0
       svelte: 3.58.0
+    dev: true
+
+  /eslint-plugin-svelte@2.27.3(eslint@8.39.0)(svelte@3.58.0):
+    resolution: {integrity: sha512-LPri23kkKeeh+TkYr9FndQEy2Q5BhOrIwatnLdXx6hUtTIolohzrTJhWMK3k8BwitVBnJGl5CDVWNkV80tmdkQ==}
+    engines: {node: ^14.17.0 || >=16.0.0}
+    peerDependencies:
+      eslint: ^7.0.0 || ^8.0.0-0
+      svelte: ^3.37.0
+    peerDependenciesMeta:
+      svelte:
+        optional: true
+    dependencies:
+      '@eslint-community/eslint-utils': 4.4.0(eslint@8.39.0)
+      '@jridgewell/sourcemap-codec': 1.4.15
+      debug: 4.3.4
+      eslint: 8.39.0
+      esutils: 2.0.3
+      known-css-properties: 0.27.0
+      postcss: 8.4.23
+      postcss-load-config: 3.1.4(postcss@8.4.23)
+      postcss-safe-parser: 6.0.0(postcss@8.4.23)
+      svelte: 3.58.0
+      svelte-eslint-parser: 0.27.0(svelte@3.58.0)
+    transitivePeerDependencies:
+      - supports-color
+      - ts-node
     dev: true
 
   /eslint-scope@5.1.1:
@@ -2600,6 +2615,10 @@ packages:
   /grapheme-splitter@1.0.4:
     resolution: {integrity: sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==}
     dev: true
+
+  /gsap@3.11.5:
+    resolution: {integrity: sha512-Q89nKCLgoX5xUjznh9LcaIUkz54k1voNucT1Rpf9SJNFIQznBwFqt5qUUQbeVInFyN/n18OUJkpeI6CNEDt74w==}
+    dev: false
 
   /hard-rejection@2.1.0:
     resolution: {integrity: sha512-VIZB+ibDhx7ObhAe7OVtoEbuP4h/MuOTHJ+J8h/eBXotJYl0fBgR72xDFCKgIh22OJZIOVNxBMWuhAr10r8HdA==}
@@ -3911,6 +3930,23 @@ packages:
       postcss: 8.4.23
     dev: true
 
+  /postcss-load-config@3.1.4(postcss@8.4.23):
+    resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
+    engines: {node: '>= 10'}
+    peerDependencies:
+      postcss: '>=8.0.9'
+      ts-node: '>=9.0.0'
+    peerDependenciesMeta:
+      postcss:
+        optional: true
+      ts-node:
+        optional: true
+    dependencies:
+      lilconfig: 2.1.0
+      postcss: 8.4.23
+      yaml: 1.10.2
+    dev: true
+
   /postcss-load-config@4.0.1(postcss@8.4.23):
     resolution: {integrity: sha512-vEJIc8RdiBRu3oRAI0ymerOn+7rPuMvRXslTvZUKZonDHFIczxztIyJ1urxM1x9JXEikvpWWTUUqal5j/8QgvA==}
     engines: {node: '>= 14'}
@@ -4985,6 +5021,21 @@ packages:
       - sugarss
     dev: true
 
+  /svelte-eslint-parser@0.27.0(svelte@3.58.0):
+    resolution: {integrity: sha512-x9cBbCZwLdCnNE3yPqGhvAqEl9FCILC6AaV2xRtwzaMCpvpqO7ceONXj9xka3fQFczSqLzkwOxP4Ln4cIQNqXg==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    peerDependencies:
+      svelte: ^3.37.0
+    peerDependenciesMeta:
+      svelte:
+        optional: true
+    dependencies:
+      eslint-scope: 7.2.0
+      eslint-visitor-keys: 3.4.0
+      espree: 9.5.1
+      svelte: 3.58.0
+    dev: true
+
   /svelte-hmr@0.15.1(svelte@3.58.0):
     resolution: {integrity: sha512-BiKB4RZ8YSwRKCNVdNxK/GfY+r4Kjgp9jCLEy0DuqAKfmQtpL38cQK3afdpjw4sqSs4PLi3jIPJIFp259NkZtA==}
     engines: {node: ^12.20 || ^14.13.1 || >= 16}
@@ -5510,6 +5561,11 @@ packages:
 
   /yallist@4.0.0:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
+    dev: true
+
+  /yaml@1.10.2:
+    resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
+    engines: {node: '>= 6'}
     dev: true
 
   /yaml@2.2.2:

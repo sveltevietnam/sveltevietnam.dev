@@ -15,7 +15,7 @@
 
   <section class="c-action-card">
     <p>{@html t.description}</p>
-    <div class="flex items-center max-md:flex-col max-md:space-y-4 md:space-x-4">
+    <div class="max-md:flex-col max-md:space-y-4 flex items-center md:space-x-4">
       <a
         href={GITHUB_LINKS.ISSUE.PUBLIC_PROJECT}
         target="_blank"
@@ -56,7 +56,7 @@
     <ul class="space-y-10">
       {#each data.projects.inNeed as project}
         <li>
-          <ProjectCard {project} lang={data.language} />
+          <ProjectCard {project} />
         </li>
       {/each}
     </ul>
@@ -67,7 +67,7 @@
     <ul class="space-y-10">
       {#each data.projects.launched as project}
         <li>
-          <ProjectCard {project} lang={data.language} />
+          <ProjectCard {project} />
         </li>
       {/each}
     </ul>
