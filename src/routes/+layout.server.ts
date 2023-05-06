@@ -9,5 +9,6 @@ export async function load({ url, locals, depends }: LayoutServerLoadEvent) {
     pathname: url.pathname,
     colorScheme: locals.colorScheme,
     language: locals.language,
+    version: `#${__BUILD_HASH__}@${__BUILD_TIMESTAMP__}`,
   };
 }
