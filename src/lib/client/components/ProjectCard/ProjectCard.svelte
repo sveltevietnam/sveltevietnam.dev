@@ -5,7 +5,7 @@
 </script>
 
 <article class="project-card">
-  <div class="c-graphic md:h-[400px] md:w-[400px]" />
+  <div class="c-graphic flex-shrink-0 md:h-[400px] md:w-[400px]" />
   <div class="space-y-4 md:space-y-8 md:py-10">
     <div class="flex items-center space-x-4">
       <p class="title">{project.name}</p>
