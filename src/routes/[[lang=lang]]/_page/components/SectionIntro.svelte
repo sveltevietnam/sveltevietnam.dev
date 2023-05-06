@@ -48,17 +48,6 @@
 
     // TODO: improve responsive animation with https://greensock.com/docs/v3/GSAP/gsap.matchMedia()
 
-    // title & cards
-    gsap.set([titleElement, ...cardElements], { opacity: 0, y: 80 });
-    // shapes
-    gsap.set(shapeElements, {
-      x: (_, target: HTMLElement) => gsap.getProperty(target, '--initial-translate-x').toString(),
-      y: (_, target: HTMLElement) => gsap.getProperty(target, '--initial-translate-y').toString(),
-      rotateZ: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-z-from').toString(),
-      opacity: 0,
-    });
-    gsap.set(sectionElement, { opacity: 1 });
-
     parallaxTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: sectionElement,
@@ -218,6 +207,21 @@
         },
         '>',
       );
+
+    // title & cards
+    gsap.set([titleElement, ...cardElements], {
+      opacity: 0,
+      y: (_, target: HTMLElement) => gsap.getProperty(target, '--initial-translate-y').toString(),
+    });
+    // shapes
+    gsap.set(shapeElements, {
+      x: (_, target: HTMLElement) => gsap.getProperty(target, '--initial-translate-x').toString(),
+      y: (_, target: HTMLElement) => gsap.getProperty(target, '--initial-translate-y').toString(),
+      rotateZ: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-z-from').toString(),
+      opacity: 0,
+    });
+    gsap.set(sectionElement, { opacity: 1 });
+
     return () => {
       introTimeline?.kill();
       scrollTimeline?.kill();
@@ -333,6 +337,8 @@
   }
 
   .intro-title {
+    --initial-translate-y: 80px;
+
     display: flex;
     justify-content: center;
 
