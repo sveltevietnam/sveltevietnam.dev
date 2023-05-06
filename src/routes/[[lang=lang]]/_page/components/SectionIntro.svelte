@@ -369,7 +369,7 @@
   .intro-card {
     flex: 0 0 297px;
 
-    height: fit-content;
+    height: 360px;
     margin-left: 20px;
     padding: 20px;
 
@@ -380,8 +380,11 @@
 
     @screen tb {
       flex: 0 0 357px;
+
+      height: 420px;
       margin-left: 25px;
       padding: 24px;
+
       border-radius: 20px;
     }
 
@@ -435,7 +438,11 @@
     }
 
     & p {
-      font-size: 16px;
+      font-size: 14px;
+
+      @screen tb {
+        font-size: 16px;
+      }
     }
   }
 
