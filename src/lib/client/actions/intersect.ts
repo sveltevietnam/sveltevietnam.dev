@@ -7,6 +7,10 @@ export type IntersectParameters = {
   intersectedClass?: string | false;
 };
 
+export type IntersectAttributes = {
+  'on:intersect:once'?: (event: CustomEvent<IntersectionObserver>) => void;
+};
+
 function getThreshold(node: HTMLElement) {
   if (node.dataset.intersectThreshold) {
     return Number(node.dataset.intersectThreshold);
@@ -20,7 +24,10 @@ function getThreshold(node: HTMLElement) {
 /**
  * watch with `IntersectionObserver` and toggle corresponding classes
  */
-export const intersect: Action<HTMLElement, IntersectParameters> = function (node, parameters) {
+export const intersect: Action<HTMLElement, IntersectParameters, IntersectAttributes> = function (
+  node,
+  parameters,
+) {
   const className = parameters?.class ?? 'c-intro';
   const intersectedClass = parameters?.intersectedClass ?? `${className || ''}--intersected`;
   if (className !== false) {
@@ -35,6 +42,7 @@ export const intersect: Action<HTMLElement, IntersectParameters> = function (nod
         if (intersectedClass !== false) {
           node.classList.toggle(intersectedClass, true);
         }
+        node.dispatchEvent(new CustomEvent('intersect:once', { detail: observer }));
         observer.unobserve(node);
       }
     };
