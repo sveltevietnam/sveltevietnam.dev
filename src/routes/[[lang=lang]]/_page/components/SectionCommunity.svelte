@@ -1,5 +1,10 @@
 <script lang="ts">
+  import gsap from 'gsap';
+  import { Power1 } from 'gsap';
+  import { onMount } from 'svelte';
+
   import { intersect } from '$client/actions/intersect';
+  import { splash } from '$client/components/SplashScreen';
   import { APP_ROUTE_TREE, SOCIAL_LINKS } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
 
@@ -17,6 +22,57 @@
       ':lang': lang,
     },
   });
+
+  // shapes
+  let shapeContainerElement: HTMLElement;
+  let ellipseElement: HTMLElement;
+  let polygonElement: HTMLElement;
+  let starElement: HTMLElement;
+  $: shapeElements = [ellipseElement, polygonElement, starElement];
+
+  let shapesIntersected = false;
+  let parallaxTimeline: gsap.core.Timeline;
+
+  onMount(async () => {
+    const ScrollTrigger = (await import('gsap/ScrollTrigger')).ScrollTrigger;
+    gsap.registerPlugin(ScrollTrigger);
+
+    parallaxTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: shapeContainerElement,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true,
+      },
+    });
+    parallaxTimeline.fromTo(
+      shapeElements,
+      {
+        y: (_, target: HTMLElement) => Number(gsap.getProperty(target, '--parallax-y')) * -1,
+      },
+      {
+        y: (_, target: HTMLElement) => gsap.getProperty(target, '--parallax-y').toString(),
+      },
+      0,
+    );
+
+    return () => {
+      parallaxTimeline?.kill();
+    };
+  });
+
+  $: if (shapesIntersected && $splash?.done) {
+    gsap.to(shapeElements, {
+      rotateX: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-x').toString(),
+      rotateY: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-y').toString(),
+      rotateZ: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-z').toString(),
+      scale: (_, target: HTMLElement) => gsap.getProperty(target, '--scale').toString(),
+      duration: 2.5,
+      yoyo: true,
+      repeat: -1,
+      ease: Power1.easeInOut,
+    });
+  }
 </script>
 
 <section class="community c-container-design">
@@ -24,10 +80,38 @@
   <p class="section-desc c-intersect mt-6 pc:mt-8" use:intersect>
     {@html t.description}
   </p>
-  <div class="shapes c-intersect" role="figure" aria-label="geometric shapes" use:intersect>
-    <img class="ellipse" src={communityShapeEllipse} alt="ellipse" width="363" height="403" />
-    <img class="polygon" src={communityShapePolygon} alt="polygon" width="308" height="390" />
-    <img class="star" src={communityShapeStar} alt="star" width="181" height="181" />
+  <div
+    class="shapes c-intersect"
+    role="figure"
+    aria-label="geometric shapes"
+    use:intersect
+    on:intersect:once={() => (shapesIntersected = true)}
+    bind:this={shapeContainerElement}
+  >
+    <img
+      class="ellipse"
+      src={communityShapeEllipse}
+      alt="ellipse"
+      width="363"
+      height="403"
+      bind:this={ellipseElement}
+    />
+    <img
+      class="polygon"
+      src={communityShapePolygon}
+      alt="polygon"
+      width="308"
+      height="390"
+      bind:this={polygonElement}
+    />
+    <img
+      class="star"
+      src={communityShapeStar}
+      alt="star"
+      width="181"
+      height="181"
+      bind:this={starElement}
+    />
   </div>
   <ul class="ctas divide-border c-intersect divide-y" use:intersect>
     <li>
@@ -194,20 +278,15 @@
     }
 
     & img {
-      --rotate-x: 0deg;
-      --rotate-y: 0deg;
-      --rotate-z: 0deg;
-      --scale-from: 1;
-      --scale-to: 1;
-
       position: absolute;
-      animation: shape 3s ease-in-out alternate infinite;
 
       &.ellipse {
+        --parallax-y: -40px;
+
         --rotate-x: -5deg;
         --rotate-y: 10deg;
         --rotate-z: -3deg;
-        --scale-from: 1.02;
+        --scale: 0.98;
 
         bottom: 0;
         left: 0;
@@ -216,10 +295,12 @@
       }
 
       &.polygon {
+        --parallax-y: 30px;
+
         --rotate-x: -4deg;
         --rotate-y: 8deg;
         --rotate-z: 2deg;
-        --scale-from: 1.03;
+        --scale: 0.97;
 
         top: 0;
         left: 3.5%;
@@ -228,27 +309,18 @@
       }
 
       &.star {
+        --parallax-y: -60px;
+
         --rotate-x: -10deg;
         --rotate-y: 12deg;
         --rotate-z: -5deg;
-        --scale-to: 1.05;
+        --scale: 1.05;
 
         right: 0;
         bottom: 19.3%;
         width: 40%;
         height: auto;
       }
-    }
-  }
-
-  @keyframes shape {
-    0% {
-      transform: rotateX(0) rotateY(0) rotateZ(0) scale(var(--scale-from));
-    }
-
-    100% {
-      transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) rotateZ(var(--rotate-z))
-        scale(var(--scale-to));
     }
   }
 </style>

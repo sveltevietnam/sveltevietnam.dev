@@ -66,7 +66,6 @@
         end: 'bottom center',
         scrub: 0.1,
         invalidateOnRefresh: true,
-        markers: true,
       },
       paused: true,
     });
@@ -100,7 +99,6 @@
         start: 20,
         end: '+=1',
         invalidateOnRefresh: true,
-        markers: true,
       },
       paused: true,
       defaults: {
@@ -120,31 +118,46 @@
     }
 
     scrollTimeline
-      .to(
+      .fromTo(
         sectionElement,
+        {
+          marginTop: 0,
+        },
         {
           marginTop: getY,
         },
         0,
       )
-      .to(
+      .fromTo(
         titleElement,
         {
-          y: () => -0.5 * getY(),
-          opacity: 0.1,
+          y: 0,
+          opacity: 1,
         },
-        0,
-      )
-      .to(
-        backdropElement,
         {
           y: () => -0.5 * getY(),
           opacity: 0.1,
         },
         0,
       )
-      .to(
+      .fromTo(
+        backdropElement,
+        {
+          y: 0,
+          opacity: 1,
+        },
+        {
+          y: () => -0.5 * getY(),
+          opacity: 0.1,
+        },
+        0,
+      )
+      .fromTo(
         shapeElements,
+        {
+          x: 0,
+          y: 0,
+        },
         {
           x: (_, target: HTMLElement) =>
             gsap.getProperty(target, '--initial-translate-x').toString(),
