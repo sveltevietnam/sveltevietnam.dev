@@ -4,7 +4,9 @@
   import { onMount } from 'svelte';
 
   import { intersect } from '$client/actions/intersect';
+  import { splitFade } from '$client/actions/splitFade';
   import { splash } from '$client/components/SplashScreen';
+  import { SplitFadeText } from '$client/components/SplitFadeText';
   import { APP_ROUTE_TREE, SOCIAL_LINKS } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
 
@@ -76,7 +78,9 @@
 </script>
 
 <section class="community c-container-design">
-  <h2 class="section-title">{t.title}</h2>
+  <h2 class="section-title" use:splitFade>
+    {t.title}
+  </h2>
   <p class="section-desc c-intersect mt-6 pc:mt-8" use:intersect>
     {@html t.description}
   </p>

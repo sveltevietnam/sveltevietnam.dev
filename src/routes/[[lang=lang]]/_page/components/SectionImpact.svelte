@@ -3,6 +3,7 @@
   import embla from 'embla-carousel-svelte';
 
   import { intersect } from '$client/actions/intersect';
+  import { splitFade } from '$client/actions/splitFade';
   import { AnimatedArrowCircle } from '$client/components/AnimatedArrowCircle';
   import { APP_ROUTE_TREE } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
@@ -33,7 +34,7 @@
 
 <section class="impact">
   <div class="c-container-design">
-    <a href={impactHref} title={t.title} class="section-title-container">
+    <a href={impactHref} title={t.title} class="section-title-container" use:splitFade>
       <h2 class="section-title">
         {t.title}
       </h2>
@@ -92,7 +93,7 @@
 
   .section-title {
     @screen sp {
-      max-width: 180px;
+      max-width: 204px;
     }
   }
 
