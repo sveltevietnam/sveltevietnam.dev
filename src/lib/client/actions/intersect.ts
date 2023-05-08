@@ -11,7 +11,7 @@ export type IntersectAttributes = {
   'on:intersect:once'?: (event: CustomEvent<IntersectionObserver>) => void;
 };
 
-function getThreshold(node: HTMLElement) {
+export function getThreshold(node: HTMLElement) {
   if (node.dataset.intersectThreshold) {
     return Number(node.dataset.intersectThreshold);
   }

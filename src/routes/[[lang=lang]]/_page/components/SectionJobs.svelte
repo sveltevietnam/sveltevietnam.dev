@@ -1,5 +1,6 @@
 <script lang="ts">
   import { intersect } from '$client/actions/intersect';
+  import { splitFade } from '$client/actions/splitFade';
   import { AnimatedArrowCircle } from '$client/components/AnimatedArrowCircle';
   import { JobCard } from '$client/components/JobCard';
   import { APP_ROUTE_TREE } from '$shared/constants';
@@ -21,7 +22,7 @@
 </script>
 
 <section class="jobs c-container-design">
-  <a href={jobsHref} title={t.title} class="section-title-container">
+  <a href={jobsHref} title={t.title} class="section-title-container" use:splitFade>
     <h2 class="section-title">
       {t.title}
     </h2>
