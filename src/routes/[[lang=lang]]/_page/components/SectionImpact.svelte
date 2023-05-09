@@ -5,8 +5,8 @@
   import { intersect } from '$client/actions/intersect';
   import { splitFade } from '$client/actions/splitFade';
   import { AnimatedArrowCircle } from '$client/components/AnimatedArrowCircle';
-  import { APP_ROUTE_TREE } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
+  import { getImpactHref } from '$shared/services/navigation';
   import type { Project } from '$shared/types';
 
   import { translations } from '../translation';
@@ -15,12 +15,6 @@
   export let projects: Project[];
 
   $: t = translations[lang].impact;
-
-  $: impactHref = APP_ROUTE_TREE[':lang'].impact.$.path({
-    args: {
-      ':lang': lang,
-    },
-  });
 
   let emblaProgress = 0;
   let emblaApi: EmblaCarouselType;
@@ -34,7 +28,7 @@
 
 <section class="impact">
   <div class="c-container-design">
-    <a href={impactHref} title={t.title} class="section-title-container" use:splitFade>
+    <a href={getImpactHref(lang)} title={t.title} class="section-title-container" use:splitFade>
       <h2 class="section-title">
         {t.title}
       </h2>

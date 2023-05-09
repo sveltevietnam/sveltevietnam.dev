@@ -1,7 +1,8 @@
 <script lang="ts">
   import { EventCard } from '$client/components/EventCard';
   import { MailRegistrationForm } from '$client/components/MailRegistrationForm';
-  import { APP_ROUTE_TREE, EMAILS, SOCIAL_LINKS } from '$shared/constants';
+  import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
+  import { getSponsorHref } from '$shared/services/navigation';
 
   import type { ActionData } from './$types';
 
@@ -10,12 +11,7 @@
 
   $: t = data.translations.page;
   $: tMail = data.translations.mail;
-
-  $: sponsorHref = APP_ROUTE_TREE[':lang'].sponsor.$.path({
-    args: {
-      ':lang': data.language,
-    },
-  });
+  $: sponsorHref = getSponsorHref(data.language);
 </script>
 
 <main class="c-page">

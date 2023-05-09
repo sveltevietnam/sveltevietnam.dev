@@ -3,8 +3,8 @@
   import { splitFade } from '$client/actions/splitFade';
   import { AnimatedArrowCircle } from '$client/components/AnimatedArrowCircle';
   import { EventCard } from '$client/components/EventCard';
-  import { APP_ROUTE_TREE } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
+  import { getEventsHref } from '$shared/services/navigation';
   import type { Event } from '$shared/types';
 
   import { translations } from '../translation';
@@ -13,16 +13,10 @@
   export let events: Event[];
 
   $: t = translations[lang].events;
-
-  $: eventsHref = APP_ROUTE_TREE[':lang'].events.$.path({
-    args: {
-      ':lang': lang,
-    },
-  });
 </script>
 
 <section class="events c-container-design">
-  <a href={eventsHref} title={t.title} class="section-title-container" use:splitFade>
+  <a href={getEventsHref(lang)} title={t.title} class="section-title-container" use:splitFade>
     <h2 class="section-title">
       {t.title}
     </h2>

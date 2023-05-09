@@ -1,6 +1,5 @@
 import Mustache from 'mustache';
 
-// import { APP_ROUTE_TREE } from '$shared/constants';
 import { toW3CDate } from '$shared/utils/datetime';
 
 import type { RequestHandler } from './$types';
@@ -17,7 +16,7 @@ type SiteMapUrl = {
 export const GET: RequestHandler = ({ url }) => {
   const urls: SiteMapUrl[] = [
     // {
-    //   loc: `${url.origin}/${APP_ROUTE_TREE.docs.$.path()}`,
+    //   loc: `${url.origin}/${...}`,
     //   changefreq: 'monthly',
     //   priority: 0.9,
     // },
