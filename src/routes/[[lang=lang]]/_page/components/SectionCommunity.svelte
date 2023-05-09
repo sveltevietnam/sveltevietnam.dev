@@ -6,9 +6,9 @@
   import { intersect } from '$client/actions/intersect';
   import { splitFade } from '$client/actions/splitFade';
   import { splash } from '$client/components/SplashScreen';
-  import { SplitFadeText } from '$client/components/SplitFadeText';
-  import { APP_ROUTE_TREE, SOCIAL_LINKS } from '$shared/constants';
+  import { SOCIAL_LINKS } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
+  import { getPeopleHref } from '$shared/services/navigation';
 
   import communityShapeEllipse from '../images/community-shape-ellipse.png';
   import communityShapePolygon from '../images/community-shape-polygon.png';
@@ -18,12 +18,6 @@
   export let lang: Language;
 
   $: t = translations[lang].community;
-
-  $: peopleHref = APP_ROUTE_TREE[':lang'].people.$.path({
-    args: {
-      ':lang': lang,
-    },
-  });
 
   // shapes
   let shapeContainerElement: HTMLElement;
@@ -125,7 +119,7 @@
       </a>
     </li>
     <li>
-      <a class="cta" href={peopleHref} rel="noreferrer">
+      <a class="cta" href={getPeopleHref(lang)} rel="noreferrer">
         <span>{t.ctas.nominate}</span>
       </a>
     </li>

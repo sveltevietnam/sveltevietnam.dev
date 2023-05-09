@@ -2,8 +2,8 @@
   import { intersect } from '$client/actions/intersect';
   import { splitFade } from '$client/actions/splitFade';
   import { AnimatedArrowCircle } from '$client/components/AnimatedArrowCircle';
-  import { APP_ROUTE_TREE } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
+  import { getSponsorHref } from '$shared/services/navigation';
   import type { Sponsor } from '$shared/types';
 
   import { translations } from '../translation';
@@ -12,16 +12,10 @@
   export let sponsors: Sponsor[];
 
   $: t = translations[lang].sponsor;
-
-  $: sponsorHref = APP_ROUTE_TREE[':lang'].sponsor.$.path({
-    args: {
-      ':lang': lang,
-    },
-  });
 </script>
 
 <section class="sponsors c-container-design">
-  <a href={sponsorHref} title={t.title} class="section-title-container" use:splitFade>
+  <a href={getSponsorHref(lang)} title={t.title} class="section-title-container" use:splitFade>
     <h2 class="section-title">
       {t.title}
     </h2>

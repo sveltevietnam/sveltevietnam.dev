@@ -1,44 +1,17 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import { APP_ROUTE_TREE } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
-
-  import { translations } from '../translation';
+  import { pages } from '$shared/services/navigation';
 
   export let lang: Language;
   let cls = '';
   export { cls as class };
-
-  $: t = translations[lang].navigation;
-
-  $: navLinks = {
-    events: {
-      text: t.events,
-      href: APP_ROUTE_TREE[':lang'].events.$.path({ args: { ':lang': lang } }),
-    },
-    jobs: {
-      text: t.jobs,
-      href: APP_ROUTE_TREE[':lang'].jobs.$.path({ args: { ':lang': lang } }),
-    },
-    impact: {
-      text: t.impact,
-      href: APP_ROUTE_TREE[':lang'].impact.$.path({ args: { ':lang': lang } }),
-    },
-    people: {
-      text: t.people,
-      href: APP_ROUTE_TREE[':lang'].people.$.path({ args: { ':lang': lang } }),
-    },
-    sponsor: {
-      text: t.sponsor,
-      href: APP_ROUTE_TREE[':lang'].sponsor.$.path({ args: { ':lang': lang } }),
-    },
-  };
 </script>
 
 <nav aria-label="pages" data-sveltekit-preload-data="hover">
   <ul class="sp:divide-y sp:divide-design-border-1 {cls}">
-    {#each Object.values(navLinks) as { text, href }}
-      {@const current = href === $page.url.pathname}
+    {#each pages(lang) as { label, href }}
+      {@const current = $page.url.pathname.startsWith(href)}
       <li>
         <a aria-current={current} {href}>
           <svg
@@ -58,7 +31,7 @@
             />
           </svg>
           <span>
-            {text}
+            {label}
           </span>
         </a>
       </li>

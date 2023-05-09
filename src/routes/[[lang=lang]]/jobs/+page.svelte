@@ -1,7 +1,7 @@
 <script lang="ts">
   import { JobCard } from '$client/components/JobCard';
   import { MailRegistrationForm } from '$client/components/MailRegistrationForm';
-  import { APP_ROUTE_TREE } from '$shared/constants';
+  import { getSponsorHref } from '$shared/services/navigation';
 
   import type { ActionData } from './$types';
 
@@ -9,13 +9,8 @@
   export let form: ActionData;
 
   $: t = data.translations.page;
+  $: sponsorHref = getSponsorHref(data.language);
   $: tMail = data.translations.mail;
-
-  $: sponsorHref = APP_ROUTE_TREE[':lang'].sponsor.$.path({
-    args: {
-      ':lang': data.language,
-    },
-  });
   const { fromRecruitmentSites, fromSponsors } = data.jobs;
   const collectedAt = fromRecruitmentSites.collectedAt;
   const collectedTimestamp = `${collectedAt.toLocaleTimeString()} - ${collectedAt.toLocaleDateString()}`;
@@ -30,7 +25,7 @@
   <section class="space-y-10">
     <div class="flex items-center justify-between">
       <h2 class="c-page@h2">{t.fromSponsors.title}</h2>
-      <a href={sponsorHref} class="c-btn max-md:hidden">{t.fromSponsors.cta}</a>
+      <a href={sponsorHref} class="max-md:hidden c-btn">{t.fromSponsors.cta}</a>
     </div>
     <ul class="grid grid-cols-1 gap-10 md:grid-cols-2">
       {#each fromSponsors as job}

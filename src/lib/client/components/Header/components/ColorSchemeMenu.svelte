@@ -4,9 +4,8 @@
   import { slide, fade } from 'svelte/transition';
 
   import type { Language } from '$shared/services/i18n';
+  import { translations } from '$shared/services/i18n/translations/color-scheme';
   import type { ColorScheme } from '$shared/types';
-
-  import { translations } from '../translation';
 
   import ColorSchemeIcon from './ColorSchemeIcon.svelte';
 
@@ -36,7 +35,7 @@
     dispatch('colorSchemeChange', _scheme);
   }
 
-  $: t = translations[lang].colorScheme;
+  $: t = translations[lang];
 </script>
 
 <div class="color-scheme-menu {cls}" aria-expanded={themeMenuOpen}>

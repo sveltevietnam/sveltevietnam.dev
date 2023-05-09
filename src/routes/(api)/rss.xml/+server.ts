@@ -1,7 +1,5 @@
 import Mustache from 'mustache';
 
-// import { APP_ROUTE_TREE } from '$shared/constants';
-
 import type { RequestHandler } from './$types';
 import template from './rss.template.xml?raw';
 
@@ -18,7 +16,7 @@ export const GET: RequestHandler = ({ url }) => {
     // {
     //   title: 'Svelte Vietnam',
     //   description: '',
-    //   link: `${url.origin}/${APP_ROUTE_TREE.$.path()}`,
+    //   link: `${url.origin}/${...}`,
     //   guid: 'home',
     //   pubDate: new Date('2022-12-04').toUTCString(),
     // },
