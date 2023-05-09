@@ -20,7 +20,7 @@
     --color-bg-400: theme('colors.grayscale.dark.400');
 
     /* reactive colors */
-    --color-link: theme('colors.design.link.dark');
+    --color-link: #0A84FE;
     --color-border-1: theme('colors.design.grayscale.dark.4');
     --color-fg-1: theme('colors.design.grayscale.light.1');
     --color-bg-1: theme('colors.design.grayscale.dark.2');
@@ -54,7 +54,9 @@
     --color-bg-400: theme('colors.grayscale.light.400');
 
     /* reactive colors */
-    --color-link: theme('colors.design.link.light');
+    --color-link: #1773CE;
+    --color-link-title: theme('colors.design.neutral.2');
+
     --color-border-1: theme('colors.design.grayscale.light.3');
     --color-fg-1: theme('colors.design.grayscale.dark.1');
     --color-bg-1: theme('colors.design.grayscale.light.1');

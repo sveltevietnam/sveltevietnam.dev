@@ -58,7 +58,7 @@
   class={cls}
   bind:this={node}
 >
-  <circle cx="32" cy="32" r="24" fill="none" stroke="currentcolor" />
+  <circle cx="32" cy="32" r="24" fill="transparent" stroke="currentcolor" class="circle" />
   <path
     d="M32 56C45.2548 56 56 45.2548 56 32C56 18.7452 45.2548 8 32 8C18.7452 8 8 18.7452 8 32C8 45.2548 18.7452 56 32 56Z"
     stroke="currentcolor"
@@ -88,13 +88,17 @@
     --animation-timing-function: cubic-bezier(0.13, -0.27, 0.48, 1.54);
     --animated-color: currentcolor;
 
-    transition: color 200ms ease-out;
-
-    .arrow {
+    & .arrow {
+      transition: stroke var(--animation-duration) var(--animation-timing-function);
       animation-name: arrow-animate-out;
       animation-duration: var(--animation-duration);
       animation-timing-function: var(--animation-timing-function);
       animation-fill-mode: forwards;
+    }
+
+    & .circle {
+      fill: transparent;
+      transition: fill var(--animation-duration) var(--animation-timing-function);
     }
   }
 
@@ -103,6 +107,10 @@
 
     & .arrow {
       animation-name: arrow-animate-in;
+    }
+
+    & .circle {
+      fill: theme('colors.design.neutral.2 / 30%');
     }
   }
 
@@ -113,6 +121,10 @@
 
     & .arrow {
       animation-name: arrow-animate-in;
+    }
+
+    & .circle {
+      fill: theme('colors.design.neutral.2 / 30%');
     }
   }
 
