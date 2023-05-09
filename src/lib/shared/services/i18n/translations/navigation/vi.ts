@@ -1,4 +1,5 @@
 export const vi = {
+  home: 'Trang chủ',
   events: 'Sự kiện',
   jobs: 'Việc làm',
   impact: 'Tác động',

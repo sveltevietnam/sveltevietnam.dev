@@ -1,139 +1,333 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import { APP_ROUTE_TREE, SOCIAL_LINKS } from '$shared/constants';
+  import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
+  import {
+    getCodeOfConductHref,
+    getRSSHref,
+    getSitemapHref,
+    isCurrentPage,
+    pages,
+  } from '$shared/services/navigation';
 
   import { translations } from './translation';
 
+  export let version: string;
   export let lang: Language;
 
   $: t = translations[lang];
-
-  $: codeOfConductLink = APP_ROUTE_TREE[':lang']['code-of-conduct'].$.path({
-    args: { ':lang': lang },
-  });
 </script>
 
-<footer class="max-md:text-sm bg-bg-200 py-6">
-  <div class="c-container">
-    <section class="info">
-      <span>{new Date().getFullYear()} © <strong>Svelte Vietnam</strong></span>
-      <span aria-disabled class="mx-1 md:mx-2">|</span>
+<footer>
+  <div class="footer-top c-container">
+    <div class="footer-sections">
+      <section class="footer-about-us">
+        <p class="footer-section-title">{t.aboutUs.title}</p>
+        <p>{t.aboutUs.description}</p>
+      </section>
+      <section class="footer-navigation">
+        <p class="footer-section-title">{t.navigation.title}</p>
+        <nav aria-label="footer navigation" data-sveltekit-preload-data="hover">
+          <ul>
+            {#each pages(lang, 'with-home') as { href, label }}
+              {@const current = isCurrentPage($page.url.pathname, href)}
+              <li>
+                <a aria-current={current} {href} class="footer-link">{label}</a>
+              </li>
+            {/each}
+          </ul>
+        </nav>
+      </section>
+      <section class="footer-contact">
+        <p class="footer-section-title">{t.contact.title}</p>
+        <ul>
+          <li>
+            <a href={SOCIAL_LINKS.discord} target="_blank" class="footer-link">
+              <svg inline-src="simpleicon/discord" width="24" height="24" />
+              <span>Svelte Vietnam</span>
+            </a>
+          </li>
+          <li>
+            <a href="mailto:{EMAILS.contact}" target="_blank" class="footer-link">
+              <svg inline-src="google/mail" width="24" height="24" />
+              <span>{EMAILS.contact}</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <div class="footer-logo">
+      <svg inline-src="sveltevietnam-grayscale" width="76" height="86" />
+      <p>Svelte <br aria-disabled /> Vietnam</p>
+    </div>
+  </div>
+  <ul class="footer-socials c-container">
+    <li>
+      <a href={SOCIAL_LINKS.openCollective} target="_blank" rel="noreferrer" class="footer-link">
+        <svg height="16" width="16" inline-src="simpleicon/opencollective" />
+      </a>
+    </li>
+    <li>
+      <a href={SOCIAL_LINKS.github} target="_blank" rel="noreferrer" class="footer-link">
+        <svg height="16" width="16" inline-src="simpleicon/github" />
+      </a>
+    </li>
+    <li>
+      <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noreferrer" class="footer-link">
+        <svg height="16" width="16" inline-src="simpleicon/twitter" />
+      </a>
+    </li>
+    <li>
+      <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer" class="footer-link">
+        <svg height="16" width="16" inline-src="simpleicon/facebook" />
+      </a>
+    </li>
+  </ul>
+  <div class="footer-bottom c-container">
+    <p class="footer-version">
+      {t.version}
+      {version}
+    </p>
+    <p class="footer-info">
+      <span>
+        {new Date().getFullYear()} © Svelte Vietnam
+      </span>
+      <span aria-disabled class="vertical-separator">|</span>
       <span>
         {t.poweredBy}
-        <a
-          href="https://kit.svelte.dev/"
-          target="_blank"
-          rel="noreferrer"
-          class="c-link c-link--icon"
-        >
-          <svg class="inline-block" height="16" width="16" inline-src="svelte" />
+        <a href="https://kit.svelte.dev/" target="_blank" rel="noreferrer">
+          <svg class="inline-block" height="14" width="14" inline-src="svelte" />
         </a>
-        <a
-          href="https://tailwindcss.com/"
-          target="_blank"
-          rel="noreferrer"
-          class="c-link c-link--icon"
-        >
-          <svg class="inline-block" height="16" width="16" inline-src="simpleicon/tailwindcss" />
+        <a href="https://tailwindcss.com/" target="_blank" rel="noreferrer">
+          <svg class="inline-block" height="14" width="14" inline-src="simpleicon/tailwindcss" />
         </a>
-        <a
-          href="https://www.cloudflare.com/"
-          target="_blank"
-          rel="noreferrer"
-          class="c-link c-link--icon"
-        >
+        <a href="https://www.cloudflare.com/" target="_blank" rel="noreferrer">
           <svg
             class="inline-block"
-            height="16"
-            width="16"
+            height="14"
+            width="14"
             inline-src="simpleicon/cloudflarepages"
           />
         </a>
       </span>
-    </section>
-    <section class="socials space-x-2 md:space-x-4">
-      <a href={SOCIAL_LINKS.github} target="_blank" rel="noreferrer" class="c-link c-link--icon">
-        <svg class="inline-block" height="20" width="20" inline-src="simpleicon/github" />
-      </a>
-      <a href={SOCIAL_LINKS.discord} target="_blank" rel="noreferrer" class="c-link c-link--icon">
-        <svg class="inline-block" height="20" width="20" inline-src="simpleicon/discord" />
-      </a>
+    </p>
+    <p class="footer-additional-links">
       <a
-        href={SOCIAL_LINKS.openCollective}
-        target="_blank"
-        rel="noreferrer"
-        class="c-link c-link--icon"
+        href={getCodeOfConductHref(lang)}
+        class="footer-link"
+        aria-current={isCurrentPage($page.url.pathname, getCodeOfConductHref(lang))}
+        >{t.navigation.codeOfConduct}</a
       >
-        <svg class="inline-block" height="20" width="20" inline-src="simpleicon/opencollective" />
-      </a>
-      <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noreferrer" class="c-link c-link--icon">
-        <svg class="inline-block" height="20" width="20" inline-src="simpleicon/twitter" />
-      </a>
-      <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer" class="c-link c-link--icon">
-        <svg class="inline-block" height="20" width="20" inline-src="simpleicon/facebook" />
-      </a>
-    </section>
-    <section class="links flex space-x-2 md:space-x-4">
-      <a href="/sitemap.xml" class="c-link c-link--icon flex space-x-1" target="_blank">
-        <svg
-          height="20"
-          width="20"
-          class="max-md:h-4 max-md:w-4"
-          inline-src="google/account-tree"
-        />
-        <span class="md:hidden">Sitemap</span>
-      </a>
-      <a href="/rss.xml" class="c-link c-link--icon flex space-x-1" target="_blank">
-        <svg height="20" width="20" class="max-md:h-4 max-md:w-4" inline-src="google/rss-feed" />
-        <span class="md:hidden">RSS</span>
-      </a>
-      <a href={codeOfConductLink} class="c-link c-link--icon flex space-x-1">
-        <svg height="20" width="20" class="max-md:h-4 max-md:w-4" inline-src="google/diversity-1" />
-        <span class="md:hidden" class:font-bold={$page.url.pathname === codeOfConductLink}
-          >{t.codeOfConduct}</span
-        >
-      </a>
-    </section>
+      <span aria-disabled class="vertical-separator">|</span>
+      <a href={getRSSHref()} class="footer-link">RSS</a>
+      <span aria-disabled class="vertical-separator">|</span>
+      <a href={getSitemapHref()} class="footer-link">Sitemap</a>
+    </p>
   </div>
 </footer>
 
 <style lang="postcss">
-  footer > div {
-    display: grid;
-    grid-template-areas:
-      'socials'
-      'links'
-      'info';
-    row-gap: theme('spacing.5');
+  footer {
+    position: relative;
+    background-color: theme('colors.design.bg.2');
+    border-top: 1px solid theme('colors.design.border.1');
+
+    &::before {
+      content: '';
+
+      position: absolute;
+      z-index: -1;
+      right: 0;
+      bottom: calc(100% + 1px);
+      left: 0;
+
+      height: 150px;
+
+      background: linear-gradient(
+        to bottom,
+        theme('colors.design.bg.1'),
+        theme('colors.design.bg.2') 100%
+      );
+
+      @screen tb {
+        height: 200px;
+      }
+    }
+  }
+
+  .footer-top {
+    width: 100%;
+    margin: 40px 0 48px;
+
+    @screen tb {
+      display: flex;
+      gap: 64px;
+      align-items: flex-start;
+      justify-content: space-between;
+
+      margin: 60px auto;
+    }
+  }
+
+  .footer-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    @screen tb {
+      flex-direction: row;
+      gap: 64px;
+    }
+  }
+
+  .footer-section-title {
+    margin-bottom: 24px;
+    font-family: theme('fontFamily.lora');
+    font-size: 20px;
+    font-weight: 500;
+
+    @screen tb {
+      margin-bottom: 32px;
+    }
+  }
+
+  .footer-about-us {
+    @screen tb {
+      width: 262px;
+    }
+  }
+
+  .footer-navigation {
+    & ul {
+      display: grid;
+      grid-template-columns: repeat(3, min-content);
+      row-gap: 16px;
+      column-gap: 32px;
+
+      white-space: nowrap;
+
+      @screen tb {
+        grid-template-columns: 1fr;
+        column-gap: 12px;
+      }
+    }
+  }
+
+  .footer-contact {
+    & ul {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      @screen tb {
+        gap: 12px;
+      }
+    }
+
+    & a {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+  }
+
+  .footer-logo {
+    display: none;
+    gap: 24px;
+
+    font-size: 30px;
+    line-height: normal;
+    text-transform: uppercase;
+
+    @screen tb {
+      display: flex;
+    }
+  }
+
+  .footer-socials {
+    display: flex;
+    gap: 12px;
     align-items: center;
-    justify-content: center;
-    justify-items: center;
+    margin-bottom: 24px;
 
-    @screen md {
-      grid-template-areas: 'links info socials';
-      grid-template-columns: 1fr auto 1fr;
-      row-gap: 0;
+    @screen tb {
+      justify-content: flex-end;
+    }
+
+    & a {
+      display: block;
+      padding: 7px;
+      border: 1px solid currentcolor;
+      border-radius: theme('borderRadius.full');
     }
   }
 
-  .socials {
-    grid-area: socials;
+  .footer-bottom {
+    position: relative;
 
-    @screen md {
-      justify-self: end;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 16px;
+    align-items: flex-start;
+
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    font-size: 12px;
+
+    border-top: 1px solid theme('colors.design.border.1');
+
+    @screen tb {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      padding-top: 14px;
+      padding-bottom: 14px;
     }
   }
 
-  .links {
-    grid-area: links;
+  .footer-version {
+    color: theme('colors.design.neutral.2');
+  }
+
+  .footer-info {
+    display: flex;
+    gap: 8px;
+    align-items: center;
 
     @screen md {
-      justify-self: start;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    & svg {
+      filter: grayscale(1);
+    }
+
+    & a:hover svg {
+      filter: none;
     }
   }
 
-  .info {
-    grid-area: info;
+  .footer-additional-links {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .footer-link {
+    transition: color 400ms ease-out;
+
+    &:hover,
+    &[aria-current='true'] {
+      color: theme('colors.design.link.title');
+    }
+
+    & svg {
+      fill: currentcolor;
+    }
   }
 </style>

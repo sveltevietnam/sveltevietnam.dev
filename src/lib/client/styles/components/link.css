@@ -1,5 +1,6 @@
 @custom-selector :--icon .c-link--icon;
 @custom-selector :--__icon :is(img, svg);
+@custom-selector :--preserved .c-link--preserved;
 
 .c-link {
   &:where(:not(:--icon)) {

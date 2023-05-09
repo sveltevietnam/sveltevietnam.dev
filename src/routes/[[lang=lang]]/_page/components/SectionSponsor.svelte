@@ -40,20 +40,10 @@
 
 <style lang="postcss">
   .sponsors {
-    --gradient-offset: 148px;
-
     margin-top: 80px;
     padding-bottom: 120px;
-    background: linear-gradient(
-      to bottom,
-      theme('colors.design.bg.1'),
-      theme('colors.design.bg.2') var(--gradient-offset),
-      theme('colors.design.bg.2') 100%
-    );
 
     @screen tb {
-      --gradient-offset: 200px;
-
       padding-top: 80px;
       padding-bottom: 108px;
     }
