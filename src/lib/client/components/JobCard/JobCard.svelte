@@ -85,7 +85,7 @@
     transition: color 400ms ease-out;
 
     &:hover {
-      color: theme('colors.design.neutral.1');
+      color: theme('colors.design.link.title');
     }
 
     @screen tb {

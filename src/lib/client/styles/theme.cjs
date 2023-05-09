@@ -64,8 +64,7 @@ const theme = {
       design: {
         link: {
           DEFAULT: 'var(--color-link)',
-          dark: '#0A84FE',
-          light: '#1773CE',
+          title: 'var(--color-link-title)',
         },
         border: {
           1: 'var(--color-border-1)',
