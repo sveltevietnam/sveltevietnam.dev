@@ -48,7 +48,7 @@
 
 <slot />
 
-<Footer lang={data.language} />
+<Footer lang={data.language} version={data.version} />
 
 <ModalPortal store={modalStore} class="z-modal" />
 
