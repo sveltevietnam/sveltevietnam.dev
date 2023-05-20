@@ -1,20 +1,18 @@
 import { mail } from '$shared/actions/mail/mail.server';
 import { translations as tMail } from '$shared/actions/mail/translation';
 import { createMockedJobs } from '$shared/mocks';
-import type { Language } from '$shared/services/i18n';
 
 import type { PageServerLoadEvent, Actions } from './$types';
 import { translations as tPage } from './_page/translation';
 
-export async function load({ params }: PageServerLoadEvent) {
-  const lang = params.lang as Language;
+export async function load({ locals }: PageServerLoadEvent) {
   return {
     translations: {
-      page: tPage[lang],
-      mail: tMail[lang],
+      page: tPage[locals.language],
+      mail: tMail[locals.language],
     },
     jobs: {
-      fromSponsors: createMockedJobs(true, 2),
+      fromSponsors: createMockedJobs(6),
       fromRecruitmentSites: {
         collectedAt: new Date(),
         jobs: createMockedJobs(),

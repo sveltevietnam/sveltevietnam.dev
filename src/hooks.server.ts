@@ -2,7 +2,6 @@ import type { Handle } from '@sveltejs/kit';
 
 import { COOKIE_COLOR_SCHEME, COOKIE_LANGUAGE, COOKIE_USER_ID } from '$env/static/private';
 import { getLocaleFromUrl, localizeUrl } from '$shared/services/i18n';
-import type { Language } from '$shared/services/i18n';
 import type { ColorScheme } from '$shared/types';
 
 const COOKIE_CONFIG = { path: '/', secure: true, httpOnly: true };
@@ -18,16 +17,15 @@ export const handle: Handle = async ({ event, resolve }) => {
   if (route.id?.includes('(api)')) {
     return resolve(event);
   }
-  const languageFromUrl = getLocaleFromUrl(url);
+  let languageFromUrl = getLocaleFromUrl(url);
 
   if (!languageFromUrl) {
     // REF: https://developers.cloudflare.com/support/network/configuring-ip-geolocation/
     const countryCode = request.headers.get('cf-ipcountry');
-    const fallbackLanguage =
-      (cookies.get(COOKIE_LANGUAGE) as Language) ||
-      (countryCode?.toUpperCase() === 'VN' ? 'vi' : 'en');
-    const redirectedUrl = localizeUrl(url, fallbackLanguage);
-    return Response.redirect(redirectedUrl, 302);
+    if (countryCode && countryCode.toUpperCase() !== 'VN') {
+      return Response.redirect(localizeUrl(url, 'en'), 302);
+    }
+    languageFromUrl = 'vi';
   }
 
   locals.colorScheme = (cookies.get(COOKIE_COLOR_SCHEME) as ColorScheme) || 'system';
