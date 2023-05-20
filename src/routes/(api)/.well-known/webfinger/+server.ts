@@ -1,7 +1,8 @@
 /**
  * https://webfinger.net/
  */
-import { RequestHandler, error } from '@sveltejs/kit';
+import type { RequestHandler } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 
 import { EMAILS } from '$shared/constants';
 

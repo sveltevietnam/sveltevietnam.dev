@@ -4,7 +4,7 @@
 import Mustache from 'mustache';
 
 import template from './security.template.txt?raw';
-import { RequestHandler } from '@sveltejs/kit';
+import type { RequestHandler } from '@sveltejs/kit';
 
 export const GET: RequestHandler = async () => {
   const expiresAt = new Date(`${new Date().getFullYear()}-12-31T23:59:59.999Z`);

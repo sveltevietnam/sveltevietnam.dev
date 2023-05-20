@@ -24,13 +24,11 @@ const config = {
     },
   },
   vitePlugin: {
-    experimental: {
-      inspector: {
-        toggleKeyCombo: 'control-shift',
-        holdMode: true,
-        showToggleButton: 'always',
-        toggleButtonPos: 'bottom-left',
-      },
+    inspector: {
+      toggleKeyCombo: 'control-shift',
+      holdMode: true,
+      showToggleButton: 'always',
+      toggleButtonPos: 'bottom-left',
     },
   },
 };
