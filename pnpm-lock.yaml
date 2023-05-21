@@ -79,11 +79,11 @@ devDependencies:
     specifier: ^6.0.1
     version: 6.0.1(postcss@8.4.23)
   embla-carousel:
-    specifier: 8.0.0-rc03
-    version: 8.0.0-rc03
+    specifier: 8.0.0-rc04
+    version: 8.0.0-rc04
   embla-carousel-svelte:
-    specifier: 8.0.0-rc03
-    version: 8.0.0-rc03(svelte@3.59.1)
+    specifier: 8.0.0-rc04
+    version: 8.0.0-rc04(svelte@3.59.1)
   eslint:
     specifier: ^8.41.0
     version: 8.41.0
@@ -1153,7 +1153,7 @@ packages:
     dependencies:
       caniuse-lite: 1.0.30001488
       electron-to-chromium: 1.4.402
-      node-releases: 2.0.10
+      node-releases: 2.0.11
       update-browserslist-db: 1.0.11(browserslist@4.21.5)
     dev: true
 
@@ -1697,26 +1697,26 @@ packages:
     resolution: {integrity: sha512-gWYvJSkohOiBE6ecVYXkrDgNaUjo47QEKK0kQzmWyhkH+yoYiG44bwuicTGNSIQRG3WDMsWVZJLRnJnLNkbWvA==}
     dev: true
 
-  /embla-carousel-reactive-utils@8.0.0-rc03(embla-carousel@8.0.0-rc03):
-    resolution: {integrity: sha512-m2ZaxmG0MBs9nFsA3vEz0ZUNiwJaoJM8f//ENe8ODM/rEIiHkSQ1fN90k3k2NX9JemcllYGqz/bmE5cMYGXjJQ==}
+  /embla-carousel-reactive-utils@8.0.0-rc04(embla-carousel@8.0.0-rc04):
+    resolution: {integrity: sha512-aXH07V2jht6XL7dN01dCNLWiHeaoYZnFcmHKGCsawGpkJPmylJPQ05o/1icCHSelPZbNk55ztHi5D8uAFOKX8w==}
     peerDependencies:
-      embla-carousel: 8.0.0-rc03
+      embla-carousel: 8.0.0-rc04
     dependencies:
-      embla-carousel: 8.0.0-rc03
+      embla-carousel: 8.0.0-rc04
     dev: true
 
-  /embla-carousel-svelte@8.0.0-rc03(svelte@3.59.1):
-    resolution: {integrity: sha512-bD0onN0El+BW8YtC8FYZ2LhjnCCjg+R1Q2QTpPypa5v93p8M355big0ULtxBqFjGYFn6PAa0PsX8tYcmWVkPUQ==}
+  /embla-carousel-svelte@8.0.0-rc04(svelte@3.59.1):
+    resolution: {integrity: sha512-51M17iCZDHHlJAvAMa6x3Db2KjZwlR3EeiGO+KpV9/xrC4diQBbC4HICFzOlpCdfayEBNkymBgv4zbbqjT4vSg==}
     peerDependencies:
       svelte: ^3.49.0
     dependencies:
-      embla-carousel: 8.0.0-rc03
-      embla-carousel-reactive-utils: 8.0.0-rc03(embla-carousel@8.0.0-rc03)
+      embla-carousel: 8.0.0-rc04
+      embla-carousel-reactive-utils: 8.0.0-rc04(embla-carousel@8.0.0-rc04)
       svelte: 3.59.1
     dev: true
 
-  /embla-carousel@8.0.0-rc03:
-    resolution: {integrity: sha512-2goVwmTYZdGFcRejbYJlaC/iWDPv/VAsASE60uLQYLSKpuQRTxq/huu548OozLsH/2uSelVszvmzfinZnnk/iw==}
+  /embla-carousel@8.0.0-rc04:
+    resolution: {integrity: sha512-+yIKQPSiS+2WcjIjXknCSQ3SPtyRvLjwU0+HJBi7ZAxvg+i405PSVGi0nD3c9XzI3X0s4Y1yuRgthDzusJ8pFw==}
     dev: true
 
   /emoji-regex@8.0.0:
@@ -3255,8 +3255,8 @@ packages:
       lower-case: 1.1.4
     dev: true
 
-  /node-releases@2.0.10:
-    resolution: {integrity: sha512-5GFldHPXVG/YZmFzJvKK2zDSzPKhEp0+ZR5SVaoSag9fsL5YgHbUHDfnG5494ISANDcK4KwPXAx2xqVEydmd7w==}
+  /node-releases@2.0.11:
+    resolution: {integrity: sha512-+M0PwXeU80kRohZ3aT4J/OnR+l9/KD2nVLNNoRgFtnf+umQVFdGBAO2N8+nCnEi0xlh/Wk3zOGC+vNNx+uM79Q==}
     dev: true
 
   /normalize-package-data@2.5.0:
