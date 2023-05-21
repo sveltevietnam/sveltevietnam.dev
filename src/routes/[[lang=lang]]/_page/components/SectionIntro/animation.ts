@@ -2,6 +2,8 @@ import gsap from 'gsap';
 import { Power1 } from 'gsap';
 // TODO: improve responsive animation with https://greensock.com/docs/v3/GSAP/gsap.matchMedia()??
 
+const SCROLL_DELTA = 500;
+
 export function alternateShapes(shapeElements: HTMLElement[]) {
   gsap.to(shapeElements, {
     rotateX: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-x').toString(),
@@ -33,7 +35,7 @@ export function createIntroTimeline(
 
   // title & cards
   tl.fromTo(
-    [titleElement, ...cardElements],
+    cardElements,
     {
       opacity: 0,
       y: (_, target: HTMLElement) => gsap.getProperty(target, '--initial-translate-y').toString(),
@@ -89,10 +91,19 @@ export function createScrollTimeline(
     scrollTrigger: {
       trigger: sectionElement,
       start: 0,
-      end: 'bottom center',
+      end: SCROLL_DELTA,
       pin: true,
-      scrub: 0.1,
+      pinSpacing: false,
+      scrub: 0.2,
       invalidateOnRefresh: true,
+      onRefresh() {
+        const communitySection = document.getElementById('community');
+        if (communitySection) {
+          communitySection.style.marginTop = `${
+            SCROLL_DELTA + getCardsContainerY(cardsContainerElement)
+          }px`;
+        }
+      },
     },
     defaults: {
       duration: 1,
@@ -101,36 +112,34 @@ export function createScrollTimeline(
   });
 
   tl.fromTo(
-    sectionElement,
+    titleElement,
     {
-      marginTop: 0,
+      yPercent: 0,
+      opacity: 1,
     },
     {
-      marginTop: () => getCardsContainerY(cardsContainerElement),
+      yPercent: -50,
+      opacity: 0.1,
     },
     0,
   )
     .fromTo(
-      titleElement,
+      cardsContainerElement,
       {
         y: 0,
-        opacity: 1,
       },
       {
-        y: () => -0.5 * getCardsContainerY(cardsContainerElement),
-        opacity: 0.1,
+        y: () => getCardsContainerY(cardsContainerElement),
       },
       0,
     )
     .fromTo(
       backdropElement,
       {
-        y: 0,
         opacity: 1,
       },
       {
-        y: () => -0.5 * getCardsContainerY(cardsContainerElement),
-        opacity: 0.1,
+        opacity: 0,
       },
       0,
     )
@@ -157,7 +166,7 @@ export function createCardParallaxTimeline(
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: sectionElement,
-      start: 'center center',
+      start: SCROLL_DELTA,
       end: 'bottom top',
       scrub: 0.1,
       invalidateOnRefresh: true,

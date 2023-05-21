@@ -52,22 +52,21 @@
     const ScrollTrigger = (await import('gsap/ScrollTrigger')).ScrollTrigger;
     gsap.registerPlugin(ScrollTrigger);
 
-    introTimeline = createIntroTimeline(titleElement, cardElements, shapeElements, () => {
-      alternateShapes(shapeElements);
-      scrollTimeline = createScrollTimeline(
-        sectionElement,
-        cardsContainerElement,
-        titleElement,
-        shapeElements,
-        backdropElement,
-      );
-    });
-
     parallaxTimeline = createCardParallaxTimeline(
       sectionElement,
       svelteCardElement,
       sveltevietnamCardElement,
     );
+    scrollTimeline = createScrollTimeline(
+      sectionElement,
+      cardsContainerElement,
+      titleElement,
+      shapeElements,
+      backdropElement,
+    );
+    introTimeline = createIntroTimeline(titleElement, cardElements, shapeElements, () => {
+      alternateShapes(shapeElements);
+    });
 
     return () => {
       introTimeline?.kill();
@@ -198,7 +197,7 @@
         width: 640px;
       }
 
-      @screen pc {
+      @screen xl {
         width: 824px;
       }
     }
