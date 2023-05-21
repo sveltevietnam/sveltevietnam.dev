@@ -1,14 +1,11 @@
 <script lang="ts">
   import ModalPortal from '@svelte-put/modal/ModalPortal.svelte';
-  import { onMount } from 'svelte';
 
   import { invalidate } from '$app/navigation';
   import { Footer } from '$client/components/Footer';
   import { Header } from '$client/components/Header';
   import { SplashScreen } from '$client/components/SplashScreen/index.js';
   import { modalStore } from '$client/modals';
-  import { WireframeVersionNotice } from '$client/modals/WireframeVersionNotice';
-  import { WireframeVersionNoticeCache } from '$client/modals/WireframeVersionNotice/WireframeVersionNotice.cache';
   import { LOAD_DEPENDENCIES } from '$shared/constants';
   import type { ColorScheme } from '$shared/types';
 
@@ -26,18 +23,6 @@
     });
     invalidate(LOAD_DEPENDENCIES.COLOR_SCHEME);
   }
-
-  onMount(() => {
-    const cache = new WireframeVersionNoticeCache();
-    if (cache.shouldShow !== false) {
-      modalStore.push({
-        component: WireframeVersionNotice,
-        props: {
-          lang: data.language,
-        },
-      });
-    }
-  });
 </script>
 
 <Header

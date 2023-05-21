@@ -42,7 +42,7 @@
         href="mailto:{EMAILS.impact}"
         target="_blank"
         rel="noreferrer"
-        class="c-btn c-btn--outlined"
+        class="c-btn--outlined c-btn"
       >
         <span>
           {@html t.ctas.email}
