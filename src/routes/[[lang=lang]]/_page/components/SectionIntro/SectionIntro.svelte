@@ -1,21 +1,27 @@
 <script lang="ts">
   import embla from 'embla-carousel-svelte';
   import gsap from 'gsap';
-  import { Power1 } from 'gsap';
   import { onMount } from 'svelte';
 
   import { intersect } from '$client/actions/intersect';
   import { splash } from '$client/components/SplashScreen';
   import type { Language } from '$shared/services/i18n';
 
-  import introShapeEllipse from '../images/intro-shape-ellipse.png';
-  import introShapeStar from '../images/intro-shape-star.png';
-  import introShapeTriangleLarge from '../images/intro-shape-triangle-large.png';
-  import introShapeTriangleSmall from '../images/intro-shape-triangle-small.png';
-  import introSvelteImg from '../images/intro-svelte.svg';
-  import introSvelteVietnamImg from '../images/intro-sveltevietnam.svg';
-  import introVietnamImg from '../images/intro-vietnam.svg';
-  import { translations } from '../translation';
+  import { translations } from '../../translation';
+
+  import {
+    alternateShapes,
+    createCardParallaxTimeline,
+    createIntroTimeline,
+    createScrollTimeline,
+  } from './animation';
+  import introShapeEllipse from './images/intro-shape-ellipse.png';
+  import introShapeStar from './images/intro-shape-star.png';
+  import introShapeTriangleLarge from './images/intro-shape-triangle-large.png';
+  import introShapeTriangleSmall from './images/intro-shape-triangle-small.png';
+  import introSvelteImg from './images/intro-svelte.svg';
+  import introSvelteVietnamImg from './images/intro-sveltevietnam.svg';
+  import introVietnamImg from './images/intro-vietnam.svg';
 
   export let lang: Language;
 
@@ -46,181 +52,22 @@
     const ScrollTrigger = (await import('gsap/ScrollTrigger')).ScrollTrigger;
     gsap.registerPlugin(ScrollTrigger);
 
-    // TODO: improve responsive animation with https://greensock.com/docs/v3/GSAP/gsap.matchMedia()
-
-    parallaxTimeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionElement,
-        start: 'top+=10 top',
-        end: 'bottom center',
-        scrub: 0.1,
-        invalidateOnRefresh: true,
-      },
-      paused: true,
-    });
-    parallaxTimeline
-      .fromTo(
-        svelteCardElement,
-        {
-          y: 0,
-        },
-        {
-          y: (_, target: HTMLElement) =>
-            (target.parentElement?.offsetHeight ?? 0) - target.offsetHeight,
-        },
-        0,
-      )
-      .fromTo(
-        sveltevietnamCardElement,
-        {
-          y: 0,
-        },
-        {
-          y: (_, target: HTMLElement) =>
-            target.offsetHeight - (target.parentElement?.offsetHeight ?? 0),
-        },
-        0,
-      );
-
-    scrollTimeline = gsap.timeline({
-      scrollTrigger: {
-        toggleActions: 'play none reverse none',
-        start: 20,
-        end: '+=1',
-        invalidateOnRefresh: true,
-      },
-      paused: true,
-      defaults: {
-        duration: 1,
-        ease: Power1.easeInOut,
-      },
-    });
-
-    function getY() {
-      const { top, height } = cardsContainerElement.getBoundingClientRect();
-      const viewBoxHeight = window.innerHeight;
-      if (top < viewBoxHeight / 2) {
-        return -80;
-      }
-      const y = top - height / 2 - viewBoxHeight / 2;
-      return y;
-    }
-
-    scrollTimeline
-      .fromTo(
+    introTimeline = createIntroTimeline(titleElement, cardElements, shapeElements, () => {
+      alternateShapes(shapeElements);
+      scrollTimeline = createScrollTimeline(
         sectionElement,
-        {
-          marginTop: 0,
-        },
-        {
-          marginTop: getY,
-        },
-        0,
-      )
-      .fromTo(
+        cardsContainerElement,
         titleElement,
-        {
-          y: 0,
-          opacity: 1,
-        },
-        {
-          y: () => -0.5 * getY(),
-          opacity: 0.1,
-        },
-        0,
-      )
-      .fromTo(
+        shapeElements,
         backdropElement,
-        {
-          y: 0,
-          opacity: 1,
-        },
-        {
-          y: () => -0.5 * getY(),
-          opacity: 0.1,
-        },
-        0,
-      )
-      .fromTo(
-        shapeElements,
-        {
-          x: 0,
-          y: 0,
-        },
-        {
-          x: (_, target: HTMLElement) =>
-            gsap.getProperty(target, '--initial-translate-x').toString(),
-          y: (_, target: HTMLElement) =>
-            gsap.getProperty(target, '--initial-translate-y').toString(),
-        },
-        0,
       );
-
-    introTimeline = gsap.timeline({
-      defaults: {
-        ease: Power1.easeOut,
-        duration: 0.8,
-      },
-      onComplete() {
-        parallaxTimeline.play();
-        scrollTimeline.play();
-      },
-      paused: true,
     });
 
-    // title & cards
-    introTimeline.to(
-      [titleElement, ...cardElements],
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.5,
-        stagger: 0.2,
-      },
-      0,
+    parallaxTimeline = createCardParallaxTimeline(
+      sectionElement,
+      svelteCardElement,
+      sveltevietnamCardElement,
     );
-
-    // shapes
-    introTimeline
-      .to(
-        shapeElements,
-        {
-          opacity: 1,
-          x: 0,
-          y: 0,
-          stagger: 0.15,
-        },
-        0,
-      )
-      .to(
-        shapeElements,
-        {
-          rotateX: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-x').toString(),
-          rotateY: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-y').toString(),
-          rotateZ: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-z-to').toString(),
-          scale: (_, target: HTMLElement) => gsap.getProperty(target, '--scale').toString(),
-          repeat: -1,
-          yoyo: true,
-          duration: 3,
-          ease: Power1.easeInOut,
-          stagger: 0.1,
-        },
-        '>',
-      );
-
-    // title & cards
-    gsap.set([titleElement, ...cardElements], {
-      opacity: 0,
-      y: (_, target: HTMLElement) => gsap.getProperty(target, '--initial-translate-y').toString(),
-    });
-    // shapes
-    gsap.set(shapeElements, {
-      x: (_, target: HTMLElement) => gsap.getProperty(target, '--initial-translate-x').toString(),
-      y: (_, target: HTMLElement) => gsap.getProperty(target, '--initial-translate-y').toString(),
-      rotateZ: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-z-from').toString(),
-      opacity: 0,
-    });
-    gsap.set(sectionElement, { opacity: 1 });
 
     return () => {
       introTimeline?.kill();
@@ -236,14 +83,14 @@
 
 <section
   class="intro"
-  style="opacity: 0"
   class:intersected
   use:intersect={{ class: false, intersectedClass: false }}
   on:intersect:once={() => (intersected = true)}
+  data-intersect-threshold="0.2"
   bind:this={sectionElement}
 >
   <h1 title="Svelte Vietnam" class="intro-title" bind:this={titleElement}>
-    <svg inline-src="../images/intro-title" width="824" height="301" />
+    <svg inline-src="./images/intro-title" width="824" height="301" />
   </h1>
   <div
     class="intro-cards embla c-container-design"
@@ -341,6 +188,7 @@
 
     display: flex;
     justify-content: center;
+    opacity: 0;
 
     & svg {
       width: 328px;
@@ -386,6 +234,8 @@
   }
 
   .intro-card {
+    --initial-translate-y: 80px;
+
     flex: 0 0 297px;
 
     height: 360px;
@@ -394,6 +244,7 @@
 
     color: theme('colors.design.grayscale.dark.1');
 
+    opacity: 0;
     background: linear-gradient(to bottom, var(--bg-from), var(--bg-to));
     border-radius: 16px;
 
@@ -498,6 +349,8 @@
         rotateX(0) rotateY(0) rotateZ(var(--rotate-z-from)) scale(1);
 
       height: auto;
+
+      opacity: 0;
     }
 
     & .star {

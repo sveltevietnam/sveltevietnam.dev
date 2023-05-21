@@ -2,7 +2,7 @@
   import SectionCommunity from './_page/components/SectionCommunity.svelte';
   import SectionEvents from './_page/components/SectionEvents.svelte';
   import SectionImpact from './_page/components/SectionImpact.svelte';
-  import SectionIntro from './_page/components/SectionIntro.svelte';
+  import SectionIntro from './_page/components/SectionIntro/SectionIntro.svelte';
   import SectionJobs from './_page/components/SectionJobs.svelte';
   import SectionSponsor from './_page/components/SectionSponsor.svelte';
   import './_page/page.css';
