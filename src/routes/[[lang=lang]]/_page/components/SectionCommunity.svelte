@@ -44,9 +44,11 @@
     parallaxTimeline.fromTo(
       shapeElements,
       {
+        x: (_, target: HTMLElement) => Number(gsap.getProperty(target, '--parallax-x')) * -1,
         y: (_, target: HTMLElement) => Number(gsap.getProperty(target, '--parallax-y')) * -1,
       },
       {
+        x: (_, target: HTMLElement) => gsap.getProperty(target, '--parallax-x').toString(),
         y: (_, target: HTMLElement) => gsap.getProperty(target, '--parallax-y').toString(),
       },
       0,
@@ -280,6 +282,7 @@
       position: absolute;
 
       &.ellipse {
+        --parallax-x: 15px;
         --parallax-y: -40px;
 
         --rotate-x: -5deg;
@@ -294,6 +297,7 @@
       }
 
       &.polygon {
+        --parallax-x: -20px;
         --parallax-y: 30px;
 
         --rotate-x: -4deg;
@@ -302,12 +306,13 @@
         --scale: 0.97;
 
         top: 0;
-        left: 3.5%;
+        left: 3%;
         width: 68%;
         height: auto;
       }
 
       &.star {
+        --parallax-x: -20px;
         --parallax-y: -60px;
 
         --rotate-x: -10deg;
