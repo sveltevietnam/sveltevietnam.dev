@@ -5,11 +5,12 @@ import { createMockedEvents } from '$shared/mocks';
 import type { PageServerLoadEvent, Actions } from './$types';
 import { translations as pageT } from './_page/translation';
 
-export async function load({ locals }: PageServerLoadEvent) {
+export async function load({ parent }: PageServerLoadEvent) {
+  const { language } = await parent();
   return {
     translations: {
-      page: pageT[locals.language],
-      mail: mailT[locals.language],
+      page: pageT[language],
+      mail: mailT[language],
     },
     events: {
       upcoming: createMockedEvents(1),
