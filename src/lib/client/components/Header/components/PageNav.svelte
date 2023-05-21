@@ -126,6 +126,10 @@
           stroke-dashoffset: 0;
         }
       }
+
+      @media (768px <= width <= 850px) {
+        font-size: calc(14 / 850 * 100vw);
+      }
     }
   }
 </style>

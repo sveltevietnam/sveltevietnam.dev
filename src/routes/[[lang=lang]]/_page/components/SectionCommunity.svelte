@@ -71,7 +71,7 @@
   }
 </script>
 
-<section class="community c-container-design">
+<section class="community c-container-design" id="community">
   <h2 class="section-title" use:splitFade>
     {t.title}
   </h2>
@@ -136,6 +136,7 @@
   .community {
     --gradient-offset: 200px;
 
+    overflow: hidden;
     display: grid;
     grid-template-areas:
       'title'
@@ -271,7 +272,7 @@
 
     @screen tb {
       aspect-ratio: 453 / 478;
-      width: clamp(100px, 31.5vw, 453px);
+      width: clamp(100px, 25vw, 453px);
       height: auto;
     }
 

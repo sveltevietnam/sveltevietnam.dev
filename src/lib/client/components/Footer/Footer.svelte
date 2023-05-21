@@ -19,7 +19,7 @@
 </script>
 
 <footer>
-  <div class="footer-top c-container">
+  <div class="footer-top c-container-design">
     <div class="footer-sections">
       <section class="footer-about-us">
         <p class="footer-section-title">{t.aboutUs.title}</p>
@@ -61,7 +61,7 @@
       <p>Svelte <br aria-disabled /> Vietnam</p>
     </div>
   </div>
-  <ul class="footer-socials c-container">
+  <ul class="footer-socials c-container-design">
     <li>
       <a href={SOCIAL_LINKS.openCollective} target="_blank" rel="noreferrer" class="footer-link">
         <svg height="16" width="16" inline-src="simpleicon/opencollective" />
@@ -83,7 +83,7 @@
       </a>
     </li>
   </ul>
-  <div class="footer-bottom c-container">
+  <div class="footer-bottom c-container-design">
     <p class="footer-version">
       {t.version}
       {version}
@@ -149,7 +149,7 @@
         theme('colors.design.bg.2') 100%
       );
 
-      @screen tb {
+      @screen pc {
         height: 200px;
       }
     }
@@ -159,7 +159,7 @@
     width: 100%;
     margin: 40px 0 48px;
 
-    @screen tb {
+    @screen pc {
       display: flex;
       gap: 64px;
       align-items: flex-start;
@@ -174,8 +174,11 @@
     flex-direction: column;
     gap: 32px;
 
-    @screen tb {
+    @screen pc {
       flex-direction: row;
+    }
+
+    @screen xl {
       gap: 64px;
     }
   }
@@ -186,13 +189,13 @@
     font-size: 20px;
     font-weight: 500;
 
-    @screen tb {
+    @screen pc {
       margin-bottom: 32px;
     }
   }
 
   .footer-about-us {
-    @screen tb {
+    @screen pc {
       width: 262px;
     }
   }
@@ -206,7 +209,7 @@
 
       white-space: nowrap;
 
-      @screen tb {
+      @screen pc {
         grid-template-columns: 1fr;
         column-gap: 12px;
       }
@@ -219,7 +222,7 @@
       flex-direction: column;
       gap: 16px;
 
-      @screen tb {
+      @screen pc {
         gap: 12px;
       }
     }
@@ -239,7 +242,7 @@
     line-height: normal;
     text-transform: uppercase;
 
-    @screen tb {
+    @screen pc {
       display: flex;
     }
   }
@@ -250,7 +253,7 @@
     align-items: center;
     margin-bottom: 24px;
 
-    @screen tb {
+    @screen pc {
       justify-content: flex-end;
     }
 
@@ -277,7 +280,7 @@
 
     border-top: 1px solid theme('colors.design.border.1');
 
-    @screen tb {
+    @screen pc {
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
@@ -296,7 +299,7 @@
     gap: 8px;
     align-items: center;
 
-    @screen md {
+    @screen pc {
       position: absolute;
       top: 50%;
       left: 50%;

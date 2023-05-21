@@ -34,7 +34,7 @@
 
 <header>
   <div class="backdrop" style="--opacity: {backdropOpacity}" aria-disabled />
-  <div class="c-container">
+  <div class="c-container-design">
     <div class="logo">
       <svelte:element
         this={isHomePage ? 'div' : 'a'}
