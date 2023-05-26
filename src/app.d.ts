@@ -2,6 +2,7 @@
 /// <reference types="svelte" />
 /// <reference types="vite/client" />
 /// <reference types="@types/gtag.js" />
+/// <reference types="@sveltejs/adapter-cloudflare" />
 
 import type { Language } from '$shared/services/i18n';
 import type { ColorScheme } from '$shared/types';
@@ -47,18 +48,7 @@ declare global {
       };
     }
 
-    // cloudflare
-    interface Platform {
-      env: {
-        //
-      };
-      context: {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        waitUntil(promise: Promise<any>): void;
-      };
-      caches: CacheStorage & { default: Cache };
-    }
-
+    // interface Platform {}
     // interface Error {}
   }
 }

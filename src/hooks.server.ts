@@ -7,7 +7,7 @@ import type { ColorScheme } from '$shared/types';
 const COOKIE_CONFIG = { path: '/', secure: true, httpOnly: true };
 
 export const handle: Handle = async ({ event, resolve }) => {
-  const { locals, request, cookies, url, route } = event;
+  const { locals, cookies, url, route, platform } = event;
 
   // Ensure that the user has a unique ID
   locals.userId = cookies.get(COOKIE_USER_ID) || crypto.randomUUID();
@@ -20,8 +20,8 @@ export const handle: Handle = async ({ event, resolve }) => {
   let languageFromUrl = getLocaleFromUrl(url);
 
   if (!languageFromUrl) {
-    // REF: https://developers.cloudflare.com/support/network/configuring-ip-geolocation/
-    const countryCode = request.headers.get('cf-ipcountry');
+    // REF: https://developers.cloudflare.com/workers/runtime-apis/request/#incomingrequestcfproperties
+    const countryCode = platform?.cf?.country;
     if (countryCode && countryCode.toUpperCase() !== 'VN') {
       return Response.redirect(localizeUrl(url, 'en'), 302);
     }
