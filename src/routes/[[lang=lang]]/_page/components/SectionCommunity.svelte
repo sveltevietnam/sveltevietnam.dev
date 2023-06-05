@@ -1,8 +1,7 @@
 <script lang="ts">
-  import gsap from 'gsap';
-  import { Power1 } from 'gsap';
   import { onMount } from 'svelte';
 
+  import { Power1, gsap } from '$3rd/gsap';
   import { intersect } from '$client/actions/intersect';
   import { splitFade } from '$client/actions/splitFade';
   import { splash } from '$client/components/SplashScreen';
@@ -21,46 +20,45 @@
 
   // shapes
   let shapeContainerElement: HTMLElement;
-  let ellipseElement: HTMLElement;
-  let polygonElement: HTMLElement;
-  let starElement: HTMLElement;
-  $: shapeElements = [ellipseElement, polygonElement, starElement];
 
   let shapesIntersected = false;
   let parallaxTimeline: gsap.core.Timeline;
 
+  let ctx: gsap.Context;
+
+  $: if (shapeContainerElement) {
+    ctx = gsap.context(() => {
+      parallaxTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: shapeContainerElement,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        },
+      });
+      parallaxTimeline.fromTo(
+        'img',
+        {
+          x: (_, target: HTMLElement) => Number(gsap.getProperty(target, '--parallax-x')) * -1,
+          y: (_, target: HTMLElement) => Number(gsap.getProperty(target, '--parallax-y')) * -1,
+        },
+        {
+          x: (_, target: HTMLElement) => gsap.getProperty(target, '--parallax-x').toString(),
+          y: (_, target: HTMLElement) => gsap.getProperty(target, '--parallax-y').toString(),
+        },
+        0,
+      );
+    }, shapeContainerElement);
+  }
+
   onMount(async () => {
-    const ScrollTrigger = (await import('gsap/ScrollTrigger')).ScrollTrigger;
-    gsap.registerPlugin(ScrollTrigger);
-
-    parallaxTimeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: shapeContainerElement,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: true,
-      },
-    });
-    parallaxTimeline.fromTo(
-      shapeElements,
-      {
-        x: (_, target: HTMLElement) => Number(gsap.getProperty(target, '--parallax-x')) * -1,
-        y: (_, target: HTMLElement) => Number(gsap.getProperty(target, '--parallax-y')) * -1,
-      },
-      {
-        x: (_, target: HTMLElement) => gsap.getProperty(target, '--parallax-x').toString(),
-        y: (_, target: HTMLElement) => gsap.getProperty(target, '--parallax-y').toString(),
-      },
-      0,
-    );
-
     return () => {
-      parallaxTimeline?.kill();
+      ctx?.revert();
     };
   });
 
-  $: if (shapesIntersected && $splash?.done) {
-    gsap.to(shapeElements, {
+  $: if (shapesIntersected && $splash?.done && shapeContainerElement) {
+    gsap.to(shapeContainerElement.querySelectorAll('img'), {
       rotateX: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-x').toString(),
       rotateY: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-y').toString(),
       rotateZ: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-z').toString(),
@@ -94,7 +92,6 @@
       alt="ellipse"
       width="363"
       height="403"
-      bind:this={ellipseElement}
     />
     <img
       class="polygon"
@@ -102,7 +99,6 @@
       alt="polygon"
       width="308"
       height="390"
-      bind:this={polygonElement}
     />
     <img
       class="star"
@@ -110,7 +106,6 @@
       alt="star"
       width="181"
       height="181"
-      bind:this={starElement}
     />
   </div>
   <ul class="ctas divide-border c-intersect divide-y" use:intersect>

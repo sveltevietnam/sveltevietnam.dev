@@ -1,7 +1,7 @@
-import { gsap, Back } from 'gsap';
 import type { Action } from 'svelte/action';
 import { derived, writable } from 'svelte/store';
 
+import { gsap, Back } from '$3rd/gsap';
 import { splash } from '$client/components/SplashScreen';
 
 export const splitFade: Action<HTMLElement> = function (node) {

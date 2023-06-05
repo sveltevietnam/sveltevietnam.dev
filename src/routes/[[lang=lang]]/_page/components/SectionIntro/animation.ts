@@ -1,11 +1,10 @@
-import gsap from 'gsap';
-import { Power1 } from 'gsap';
+import { Power1, gsap } from '$3rd/gsap';
 // TODO: improve responsive animation with https://greensock.com/docs/v3/GSAP/gsap.matchMedia()??
 
 const SCROLL_DELTA = 500;
 
-export function alternateShapes(shapeElements: HTMLElement[]) {
-  gsap.to(shapeElements, {
+export function alternateShapes() {
+  gsap.to('.intro-backdrop img', {
     rotateX: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-x').toString(),
     rotateY: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-y').toString(),
     rotateZ: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-z-to').toString(),
@@ -18,24 +17,19 @@ export function alternateShapes(shapeElements: HTMLElement[]) {
   });
 }
 
-export function createIntroTimeline(
-  titleElement: HTMLElement,
-  cardElements: HTMLElement[],
-  shapeElements: HTMLElement[],
-  onComplete: () => void,
-) {
+export function createIntroTimeline() {
   const tl = gsap.timeline({
     defaults: {
       ease: Power1.easeOut,
       duration: 0.8,
     },
     paused: true,
-    onComplete,
+    onComplete: alternateShapes,
   });
 
   // title & cards
   tl.fromTo(
-    cardElements,
+    '.intro-card',
     {
       opacity: 0,
       y: (_, target: HTMLElement) => gsap.getProperty(target, '--initial-translate-y').toString(),
@@ -51,7 +45,7 @@ export function createIntroTimeline(
 
   // shapes
   tl.fromTo(
-    shapeElements,
+    '.intro-backdrop img',
     {
       x: (_, target: HTMLElement) => gsap.getProperty(target, '--initial-translate-x').toString(),
       y: (_, target: HTMLElement) => gsap.getProperty(target, '--initial-translate-y').toString(),
@@ -80,13 +74,8 @@ function getCardsContainerY(cardsContainerElement: HTMLElement) {
   const y = top - height / 2 - viewBoxHeight / 2;
   return y;
 }
-export function createScrollTimeline(
-  sectionElement: HTMLElement,
-  cardsContainerElement: HTMLElement,
-  titleElement: HTMLElement,
-  shapeElements: HTMLElement[],
-  backdropElement: HTMLElement,
-) {
+export function createScrollTimeline(sectionElement: HTMLElement) {
+  const cardsContainerElement = sectionElement.querySelector('.intro-cards') as HTMLElement;
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: sectionElement,
@@ -112,7 +101,7 @@ export function createScrollTimeline(
   });
 
   tl.fromTo(
-    titleElement,
+    '.intro-title',
     {
       yPercent: 0,
       opacity: 1,
@@ -134,7 +123,7 @@ export function createScrollTimeline(
       0,
     )
     .fromTo(
-      backdropElement,
+      '.intro-backdrop',
       {
         opacity: 1,
       },
@@ -144,7 +133,7 @@ export function createScrollTimeline(
       0,
     )
     .fromTo(
-      shapeElements,
+      '.intro-backdrop img',
       {
         x: 0,
         y: 0,
@@ -158,11 +147,7 @@ export function createScrollTimeline(
   return tl;
 }
 
-export function createCardParallaxTimeline(
-  sectionElement: HTMLElement,
-  svelteCardElement: HTMLElement,
-  sveltevietnamCardElement: HTMLElement,
-) {
+export function createCardParallaxTimeline(sectionElement: HTMLElement) {
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: sectionElement,
@@ -173,7 +158,7 @@ export function createCardParallaxTimeline(
     },
   });
   tl.fromTo(
-    svelteCardElement,
+    '.intro-card--svelte',
     {
       y: 0,
     },
@@ -183,7 +168,7 @@ export function createCardParallaxTimeline(
     },
     0,
   ).fromTo(
-    sveltevietnamCardElement,
+    '.intro-card--sveltevietnam',
     {
       y: 0,
     },

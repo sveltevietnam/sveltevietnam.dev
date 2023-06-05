@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { gsap, Power1, Back } from 'gsap';
   import { onMount } from 'svelte';
 
+  import { gsap, Back } from '$3rd/gsap';
   import { browser } from '$app/environment';
 
   import { splash } from '../SplashScreen';
@@ -20,10 +20,11 @@
       chars = Array.from(container.querySelectorAll('.split-char'));
       gsap.set(chars, { opacity: 0, y: 50, rotate: 15 });
 
-      const observer = new IntersectionObserver(
+      observer = new IntersectionObserver(
         (entries, observer) => {
           if (entries.some((e) => !!e.intersectionRatio)) {
             intersected = true;
+            observer?.unobserve(container);
           }
         },
         { threshold: 1 },
@@ -46,7 +47,6 @@
       ease: Back.easeOut.config(1.4),
       stagger: 0.05,
     });
-    observer?.unobserve(container);
   }
 </script>
 
@@ -67,9 +67,9 @@
   }
 
   .split-char {
-    display: inline-block;
     position: relative;
     overflow: hidden;
+    display: inline-block;
     white-space: pre;
   }
 </style>

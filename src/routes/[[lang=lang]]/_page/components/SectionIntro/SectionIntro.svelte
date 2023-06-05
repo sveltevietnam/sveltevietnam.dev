@@ -1,20 +1,15 @@
 <script lang="ts">
   import embla from 'embla-carousel-svelte';
-  import gsap from 'gsap';
   import { onMount } from 'svelte';
 
+  import { gsap } from '$3rd/gsap';
   import { intersect } from '$client/actions/intersect';
   import { splash } from '$client/components/SplashScreen';
   import type { Language } from '$shared/services/i18n';
 
   import { translations } from '../../translation';
 
-  import {
-    alternateShapes,
-    createCardParallaxTimeline,
-    createIntroTimeline,
-    createScrollTimeline,
-  } from './animation';
+  import { createCardParallaxTimeline, createIntroTimeline, createScrollTimeline } from './animation';
   import introShapeEllipse from './images/intro-shape-ellipse.png';
   import introShapeStar from './images/intro-shape-star.png';
   import introShapeTriangleLarge from './images/intro-shape-triangle-large.png';
@@ -28,50 +23,22 @@
   $: t = translations[lang].intro;
 
   let sectionElement: HTMLElement;
-  let titleElement: HTMLElement;
-  // card elements
-  let cardsContainerElement: HTMLElement;
-  let svelteCardElement: HTMLElement;
-  let vietnamCardElement: HTMLElement;
-  let sveltevietnamCardElement: HTMLElement;
-  $: cardElements = [svelteCardElement, vietnamCardElement, sveltevietnamCardElement];
-  // shape elements
-  let backdropElement: HTMLElement;
-  let starElement: HTMLElement;
-  let triangleLargeElement: HTMLElement;
-  let triangleSmallElement: HTMLElement;
-  let ellipseElement: HTMLElement;
-  $: shapeElements = [starElement, triangleLargeElement, triangleSmallElement, ellipseElement];
-
   let intersected = false;
 
+  let ctx: gsap.Context;
   let introTimeline: gsap.core.Timeline;
-  let scrollTimeline: gsap.core.Timeline;
-  let parallaxTimeline: gsap.core.Timeline;
+
+  $: if (sectionElement) {
+    ctx = gsap.context(() => {
+      createCardParallaxTimeline(sectionElement);
+      createScrollTimeline(sectionElement);
+      introTimeline = createIntroTimeline();
+    }, sectionElement);
+  }
+
   onMount(async () => {
-    const ScrollTrigger = (await import('gsap/ScrollTrigger')).ScrollTrigger;
-    gsap.registerPlugin(ScrollTrigger);
-
-    parallaxTimeline = createCardParallaxTimeline(
-      sectionElement,
-      svelteCardElement,
-      sveltevietnamCardElement,
-    );
-    scrollTimeline = createScrollTimeline(
-      sectionElement,
-      cardsContainerElement,
-      titleElement,
-      shapeElements,
-      backdropElement,
-    );
-    introTimeline = createIntroTimeline(titleElement, cardElements, shapeElements, () => {
-      alternateShapes(shapeElements);
-    });
-
     return () => {
-      introTimeline?.kill();
-      scrollTimeline?.kill();
-      parallaxTimeline?.kill();
+      ctx?.revert();
     };
   });
 
@@ -88,7 +55,7 @@
   data-intersect-threshold="0.2"
   bind:this={sectionElement}
 >
-  <h1 title="Svelte Vietnam" class="intro-title" bind:this={titleElement}>
+  <h1 title="Svelte Vietnam" class="intro-title">
     <svg inline-src="./images/intro-title" width="824" height="301" />
   </h1>
   <div
@@ -104,10 +71,9 @@
       },
       plugins: [],
     }}
-    bind:this={cardsContainerElement}
   >
     <ul class="embla__container">
-      <li class="embla__slide intro-card intro-card--svelte" bind:this={svelteCardElement}>
+      <li class="embla__slide intro-card intro-card--svelte">
         <article>
           <img src={introSvelteImg} alt="swirling winged-shaped star" width="60" height="60" />
           <h2>Svelte</h2>
@@ -115,7 +81,7 @@
           <p>{t.svelte}</p>
         </article>
       </li>
-      <li class="embla__slide intro-card intro-card--vietnam" bind:this={vietnamCardElement}>
+      <li class="embla__slide intro-card intro-card--vietnam">
         <article>
           <img src={introVietnamImg} alt="five-pointed star" width="60" height="60" />
           <h2>Vietnam</h2>
@@ -125,7 +91,6 @@
       </li>
       <li
         class="embla__slide intro-card intro-card--sveltevietnam"
-        bind:this={sveltevietnamCardElement}
       >
         <article>
           <img src={introSvelteVietnamImg} alt="eight-pointed start" width="60" height="60" />
@@ -136,14 +101,13 @@
       </li>
     </ul>
   </div>
-  <div aria-disabled class="intro-backdrop" bind:this={backdropElement}>
+  <div aria-disabled class="intro-backdrop">
     <img
       src={introShapeStar}
       alt="star"
       width="174"
       height="174"
       class="star"
-      bind:this={starElement}
     />
     <img
       src={introShapeEllipse}
@@ -151,7 +115,6 @@
       width="317"
       height="505"
       class="ellipse"
-      bind:this={ellipseElement}
     />
     <img
       src={introShapeTriangleLarge}
@@ -159,7 +122,6 @@
       width="461"
       height="399"
       class="triangle-large"
-      bind:this={triangleLargeElement}
     />
     <img
       src={introShapeTriangleSmall}
@@ -167,7 +129,6 @@
       width="100"
       height="86"
       class="triangle-small"
-      bind:this={triangleSmallElement}
     />
   </div>
 </section>
