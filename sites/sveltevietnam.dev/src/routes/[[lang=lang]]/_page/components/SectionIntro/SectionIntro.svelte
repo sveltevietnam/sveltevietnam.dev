@@ -9,7 +9,11 @@
 
   import { translations } from '../../translation';
 
-  import { createCardParallaxTimeline, createIntroTimeline, createScrollTimeline } from './animation';
+  import {
+    createCardParallaxTimeline,
+    createIntroTimeline,
+    createScrollTimeline,
+  } from './animation';
   import introShapeEllipse from './images/intro-shape-ellipse.png';
   import introShapeStar from './images/intro-shape-star.png';
   import introShapeTriangleLarge from './images/intro-shape-triangle-large.png';
@@ -89,9 +93,7 @@
           <p>{t.vietnam}</p>
         </article>
       </li>
-      <li
-        class="embla__slide intro-card intro-card--sveltevietnam"
-      >
+      <li class="embla__slide intro-card intro-card--sveltevietnam">
         <article>
           <img src={introSvelteVietnamImg} alt="eight-pointed start" width="60" height="60" />
           <h2>Svelte Vietnam</h2>
@@ -102,20 +104,8 @@
     </ul>
   </div>
   <div aria-disabled class="intro-backdrop">
-    <img
-      src={introShapeStar}
-      alt="star"
-      width="174"
-      height="174"
-      class="star"
-    />
-    <img
-      src={introShapeEllipse}
-      alt="ellipse"
-      width="317"
-      height="505"
-      class="ellipse"
-    />
+    <img src={introShapeStar} alt="star" width="174" height="174" class="star" />
+    <img src={introShapeEllipse} alt="ellipse" width="317" height="505" class="ellipse" />
     <img
       src={introShapeTriangleLarge}
       alt="triangle large"

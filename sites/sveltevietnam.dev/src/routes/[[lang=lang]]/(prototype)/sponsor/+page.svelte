@@ -23,7 +23,7 @@
       href="mailto:{EMAILS.sponsor}"
       target="_blank"
       rel="noreferrer"
-      class="c-btn--outlined c-btn h-24"
+      class="c-btn c-btn--outlined h-24"
     >
       <span>{@html t.ctas.question}</span>
     </a>
