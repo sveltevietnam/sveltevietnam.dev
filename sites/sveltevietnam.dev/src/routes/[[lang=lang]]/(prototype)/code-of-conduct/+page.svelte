@@ -24,7 +24,7 @@
         {t.notice.ctas.discord}
         <svg height="24" width="24" inline-src="simpleicon/discord" class="max-md:h-4 max-md:w-4" />
       </a>
-      <a href="mailto:{EMAILS.coc}" target="_blank" rel="noreferrer" class="c-btn--outlined c-btn"
+      <a href="mailto:{EMAILS.coc}" target="_blank" rel="noreferrer" class="c-btn c-btn--outlined"
         ><span>{@html t.notice.ctas.email}</span></a
       >
     </div>
