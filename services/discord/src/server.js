@@ -1,80 +1,53 @@
-import FastifyEnv from '@fastify/env';
 import FastifyHelmet from '@fastify/helmet';
 import FastifyWebsocket from '@fastify/websocket';
 import { Client, GatewayIntentBits, Events } from 'discord.js';
 import Fastify from 'fastify';
 import { v4 as uuidv4 } from 'uuid';
 
+import { FastifyEnv } from './env.js';
+
 const fastify = Fastify({
   logger: true,
 });
 
-await fastify
-  .register(FastifyEnv, {
-    dotenv: true,
-    schema: {
-      type: 'object',
-      required: [
-        'DISCORD_TOKEN',
-        'DISCORD_APPLICATION_ID',
-        'DISCORD_PUBLIC_KEY',
-        'DISCORD_SVELTEVIETNAM_GUILD_ID',
-        'DISCORD_SVELTEVIETNAM_INVITE_URL'
-      ],
-      properties: {
-        DISCORD_TOKEN: {
-          type: 'string',
-        },
-        DISCORD_APPLICATION_ID: {
-          type: 'string',
-        },
-        DISCORD_PUBLIC_KEY: {
-          type: 'string',
-        },
-        DISCORD_SVELTEVIETNAM_GUILD_ID: {
-          type: 'string',
-        },
-        DISCORD_SVELTEVIETNAM_INVITE_URL: {
-          type: 'string',
-        },
-      },
-    },
-  })
-  .register(FastifyHelmet)
-  .register(FastifyWebsocket);
+await fastify.register(FastifyEnv).register(FastifyHelmet).register(FastifyWebsocket);
 
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
-		GatewayIntentBits.GuildMessages,
-		GatewayIntentBits.MessageContent,
-		GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildMembers,
   ],
 });
+/**
+ * @type {Record<string, import('@fastify/websocket').SocketStream>}
+ */
 const connections = {};
 
-client.login(fastify.config.DISCORD_TOKEN);
+client.login(fastify.env.DISCORD_TOKEN);
 client.on(Events.ClientReady, () => {
   console.log('ready');
 });
-client.on(Events.MessageCreate, message => {
+client.on(Events.MessageCreate, (message) => {
   const { author, guildId } = message;
-  console.log(guildId);
   if (!author.bot) return;
-  if (guildId !== fastify.config.DISCORD_SVELTEVIETNAM_GUILD_ID) return;
+  if (guildId !== fastify.env.DISCORD_SVELTEVIETNAM_GUILD_ID) return;
   for (const connection of Object.values(connections)) {
-    connection.socket.send(JSON.stringify({
-      type: 'message',
-      data: {
-        id: message.id,
-        content: message.content,
-      },
-    }));
+    connection.socket.send(
+      JSON.stringify({
+        type: 'message',
+        data: {
+          id: message.id,
+          content: message.content,
+        },
+      }),
+    );
   }
 });
 
 fastify.get('/', async (request, reply) => {
-  reply.redirect(301, fastify.config.DISCORD_SVELTEVIETNAM_INVITE_URL);
+  reply.redirect(301, fastify.env.DISCORD_SVELTEVIETNAM_INVITE_URL);
 });
 fastify.get('/websocket', { websocket: true }, (connection) => {
   const id = uuidv4();
