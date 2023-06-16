@@ -1,5 +1,6 @@
 <script lang="ts">
   import { partytownSnippet } from '@builder.io/partytown/integration';
+  import { onMount } from 'svelte';
 
   import { dev, browser } from '$app/environment';
   import { page } from '$app/stores';
@@ -38,6 +39,17 @@
       page_path: $page.url.pathname,
     });
   }
+
+  onMount(() => {
+    const ws = new WebSocket('ws://localhost:5006/websocket');
+    ws.addEventListener('message', (event) => {
+      const data = JSON.parse(event.data);
+      console.log(data);
+    });
+    return () => {
+      ws.close();
+    };
+  });
 </script>
 
 <svelte:head>
