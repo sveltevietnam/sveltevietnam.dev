@@ -1,0 +1,26 @@
+{
+  "name": "@services/discord",
+  "version": "0.0.0",
+  "description": "SvelteVietnam discord bot",
+  "type": "module",
+  "main": "src/server.js",
+  "private": true,
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "@fastify/env": "^4.2.0",
+    "@fastify/helmet": "^10.1.1",
+    "@fastify/websocket": "^8.1.0",
+    "discord.js": "^14.11.0",
+    "fastify": "^4.18.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.2",
+    "@types/ws": "^8.5.5"
+  },
+  "volta": {
+    "extends": "../../package.json"
+  }
+}
