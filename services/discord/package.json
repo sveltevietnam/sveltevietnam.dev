@@ -6,7 +6,7 @@
   "main": "src/server.js",
   "private": true,
   "scripts": {
-    "start": "node src/server.js"
+    "dev": "node src/server.js"
   },
   "dependencies": {
     "@fastify/helmet": "^10.1.1",

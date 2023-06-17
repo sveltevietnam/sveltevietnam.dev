@@ -10,15 +10,13 @@ export const schema = z.object({
   DISCORD_SVELTEVIETNAM_INVITE_URL: z.string().nonempty(),
 });
 
-/**
- * @type {import('fastify').FastifyPluginAsync}
- */
 export const FastifyEnv = fastifyPlugin(
   async function (fastify) {
     dotenv.config();
     const env = schema.parse(process.env);
 
-    fastify.decorate('env', env).addHook('preHandler', async (request) => {
+    fastify.decorate('env', env);
+    fastify.addHook('preHandler', async (request) => {
       request.env = env;
     });
   },
