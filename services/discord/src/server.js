@@ -17,6 +17,10 @@ await fastify
   .register(FastifyWebsocket)
   .register(FastifyHelmet);
 
+fastify.get('/healthz', async () => {
+  return { status: 'ok' };
+});
+
 fastify.get('/', async (request, reply) => {
   reply.redirect(301, fastify.env.DISCORD_SVELTEVIETNAM_INVITE_URL);
 });
