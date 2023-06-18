@@ -41,14 +41,14 @@
   }
 
   onMount(() => {
-    const ws = new WebSocket('ws://localhost:5006/websocket');
-    ws.addEventListener('message', (event) => {
-      const data = JSON.parse(event.data);
-      console.log(data);
-    });
-    return () => {
-      ws.close();
-    };
+    // const ws = new WebSocket('ws://localhost:5006/websocket');
+    // ws.addEventListener('message', (event) => {
+    //   const data = JSON.parse(event.data);
+    //   console.log(data);
+    // });
+    // return () => {
+    //   ws.close();
+    // };
   });
 </script>
 
