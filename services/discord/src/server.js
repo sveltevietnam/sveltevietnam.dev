@@ -30,7 +30,7 @@ fastify.get('/websocket', { websocket: true }, (connection, request) => {
  */
 try {
   await fastify.ready();
-  await fastify.listen({ port: 5006 });
+  await fastify.listen({ port: fastify.env.PORT });
 } catch (err) {
   fastify.log.error(err);
   process.exit(1);
