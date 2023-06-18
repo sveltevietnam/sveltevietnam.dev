@@ -9,6 +9,7 @@ export const schema = z.object({
   DISCORD_SVELTEVIETNAM_GUILD_ID: z.string().nonempty(),
   DISCORD_SVELTEVIETNAM_INVITE_URL: z.string().nonempty(),
   PORT: z.coerce.number(),
+  MODE: z.enum(['development', 'production']),
 });
 
 export const FastifyEnv = fastifyPlugin(
