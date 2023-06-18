@@ -30,7 +30,7 @@ export function createMockedEvent() {
   return {
     id: crypto.randomUUID(),
     description:
-      'Hackathon Svelte sẽ diễn ra tại TPHCM vào tháng 4 năm 2023, hướng tới các nhà phát triển web để thiết kế và phát triển các ứng dụng web độc đáo và ấn tượng sử dụng framework Svelte.',
+      'Hackathon Svelte sẽ diễn ra tại TPHCM vào tháng X năm YYYY, hướng tới các nhà phát triển web để thiết kế và phát triển các ứng dụng web độc đáo và ấn tượng sử dụng framework Svelte.',
     title: 'Khám phá tiềm năng của framework Svelte: Hackathon Svelte đầu tiên',
     location: '4 Đ. Đặng Hữu Phổ, Thảo Điền, Quận 2, Thành phố Hồ Chí Minh',
     href: '#',
@@ -38,11 +38,11 @@ export function createMockedEvent() {
     endDate: new Date(new Date().setHours(new Date().getHours() + 3)).toISOString(),
     speakers: [
       {
-        name: 'Trọng Trần',
+        name: 'Speaker 1',
       },
       {
         title: 'Svelte và SvelteKit',
-        name: 'Quang Phan',
+        name: 'Speaker 2',
         href: 'https://github.com/vnphanquang',
       },
     ],
