@@ -38,12 +38,13 @@
   $: t = translations[lang];
 </script>
 
-<div class="color-scheme-menu {cls}" aria-expanded={themeMenuOpen}>
+<div class="color-scheme-menu {cls}" data-expanded={themeMenuOpen}>
   {#key colorScheme}
     <button
       class="color-scheme-menu__toggler"
       on:click|stopPropagation={toggleThemeMenu}
       in:fade|local={{ duration: 150 }}
+      aria-label="Color scheme menu"
     >
       <ColorSchemeIcon scheme={SCHEMES[colorScheme].scheme} width={24} height={24} />
     </button>
