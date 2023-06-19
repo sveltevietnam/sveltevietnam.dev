@@ -67,7 +67,7 @@
 
       &[aria-current='false'] {
         color: currentcolor;
-        opacity: 0.5;
+        opacity: 0.6;
       }
 
       &:hover {
