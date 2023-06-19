@@ -4,7 +4,7 @@ import FastifyHelmet from '@fastify/helmet';
 import FastifyWebsocket from '@fastify/websocket';
 import Fastify from 'fastify';
 
-import { FastifyDiscord } from './discord.js';
+import { FastifyDiscord } from './discord/index.js';
 import { FastifyEnv } from './env.js';
 
 const fastify = Fastify({
@@ -26,7 +26,7 @@ fastify.get('/', async (request, reply) => {
 });
 
 fastify.get('/websocket', { websocket: true }, (connection, request) => {
-  request.discord.connect(connection);
+  request.discord.websocket.connect(connection);
 });
 
 /**
