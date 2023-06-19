@@ -1,7 +1,7 @@
-import jobImg from '$shared/assets/images/fallback/job.png';
+import jobImg from '$shared/assets/images/fallback/job.webp';
 import type { Contributor, Event, Job, Project, Sponsor } from '$shared/types';
 
-import vietnamImg from './vietnam-image.jpg';
+import vietnamImg from './vietnam-image.webp';
 
 export function createMockedSponsors() {
   return [

@@ -9,9 +9,9 @@
   import type { Language } from '$shared/services/i18n';
   import { getPeopleHref } from '$shared/services/navigation';
 
-  import communityShapeEllipse from '../images/community-shape-ellipse.png';
-  import communityShapePolygon from '../images/community-shape-polygon.png';
-  import communityShapeStar from '../images/community-shape-star.png';
+  import communityShapeEllipse from '../images/community-shape-ellipse.webp';
+  import communityShapePolygon from '../images/community-shape-polygon.webp';
+  import communityShapeStar from '../images/community-shape-star.webp';
   import { translations } from '../translation';
 
   export let lang: Language;

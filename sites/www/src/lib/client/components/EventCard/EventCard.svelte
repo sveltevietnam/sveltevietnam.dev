@@ -1,7 +1,7 @@
 <script lang="ts">
   import { AnimatedArrowCircle } from '$client/components/AnimatedArrowCircle';
-  import defaultFallbackImg from '$shared/assets/images/fallback/default.png';
-  import sponsorFallbackImg from '$shared/assets/images/fallback/sponsor.png';
+  import defaultFallbackImg from '$shared/assets/images/fallback/default.webp';
+  import sponsorFallbackImg from '$shared/assets/images/fallback/sponsor.webp';
   import type { Language } from '$shared/services/i18n';
   import type { Event } from '$shared/types';
   import { formatDate } from '$shared/utils/datetime';

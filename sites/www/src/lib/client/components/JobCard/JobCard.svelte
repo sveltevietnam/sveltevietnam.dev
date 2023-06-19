@@ -1,5 +1,5 @@
 <script lang="ts">
-  import companyFallbackImg from '$shared/assets/images/fallback/company.png';
+  import companyFallbackImg from '$shared/assets/images/fallback/company.webp';
   import type { Language } from '$shared/services/i18n';
   import type { Job } from '$shared/types';
 
@@ -17,7 +17,7 @@
 </script>
 
 <article class="job-card {cls}">
-  <img src={job.image || companyFallbackImg} alt={job.company} height="auto" width="80" />
+  <img src={job.image || companyFallbackImg} alt={job.company} height="80" width="80" />
   <div class="details">
     <p class="company">
       <svg inline-src="icon/building" width="16" height="16" class="inline-block" />

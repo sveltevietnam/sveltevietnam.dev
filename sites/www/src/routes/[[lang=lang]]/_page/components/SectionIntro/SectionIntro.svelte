@@ -14,10 +14,10 @@
     createIntroTimeline,
     createScrollTimeline,
   } from './animation';
-  import introShapeEllipse from './images/intro-shape-ellipse.png';
-  import introShapeStar from './images/intro-shape-star.png';
-  import introShapeTriangleLarge from './images/intro-shape-triangle-large.png';
-  import introShapeTriangleSmall from './images/intro-shape-triangle-small.png';
+  import introShapeEllipse from './images/intro-shape-ellipse.webp';
+  import introShapeStar from './images/intro-shape-star.webp';
+  import introShapeTriangleLarge from './images/intro-shape-triangle-large.webp';
+  import introShapeTriangleSmall from './images/intro-shape-triangle-small.webp';
   import introSvelteImg from './images/intro-svelte.svg';
   import introSvelteVietnamImg from './images/intro-sveltevietnam.svg';
   import introVietnamImg from './images/intro-vietnam.svg';
