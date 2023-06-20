@@ -52,5 +52,21 @@
       "type": "image/png"
     }
   ],
-  "screenshots": []
+  "screenshots": [
+    {
+      "src": "/images/screenshots/screenshot-1280x720.webp",
+      "sizes": "1280x720",
+      "type": "image/webp",
+      "platform": "wide",
+      "label": "sveltevietnam desktop"
+    },
+    {
+      "src": "/images/screenshots/screenshot-428x926.webp",
+      "sizes": "428x926",
+      "type": "image/webp",
+      "platform": "narrow",
+      "label": "sveltevietnam mobile"
+    }
+
+  ]
 }
