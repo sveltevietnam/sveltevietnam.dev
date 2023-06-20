@@ -11,7 +11,7 @@ const metaTranslations = {
   },
   en: {
     title: 'Code of Conduct | Svelte Vietnam',
-    description: 'Code of Conduct for members of the Svelte Vietnam community',
+    description: 'Code of Conduct for members in the Svelte Vietnam community',
     keywords: ['code', 'conduct', 'community', 'rules'],
   },
 };

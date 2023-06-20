@@ -3,7 +3,7 @@ import { EMAILS } from '$shared/constants';
 export const vi = {
   title: 'Tài trợ',
   intro:
-    'Svelte Vietnam chọn <a class="c-link font-bold" href="https://docs.opencollective.com/help/about/introduction" target="_blank" rel="noreferrer">Open Collective</a> để nhận đóng góp tài chính từ nhà tài trợ (cá nhân hoặc tổ chức) vì nền tảng này hỗ trợ tốt cho các dự án open source, đồng thời cung cấp sự minh bạch trong quản lý tài chính: mọi đóng góp (tiền vào) và chi tiêu (tiền ra) đều được lưu trữ và hiển thị công khai đến tất cả mọi người.',
+    'Svelte Vietnam chọn <a class="c-link font-bold" href="https://docs.opencollective.com/help/about/introduction" target="_blank" rel="noreferrer">Open Collective</a> để nhận đóng góp tài chính từ nhà tài trợ (cá nhân hoặc tổ chức) vì nền tảng này hỗ trợ tốt cho các dự án open source, đồng thời cung cấp sự minh bạch trong quản lý tài chính: mọi đóng góp (tiền vào) và chi tiêu (tiền ra) đều được lưu trữ và hiển thị công khai.',
   ctas: {
     sponsor: 'Tài trợ thông qua Open Collective',
     question: `Gởi thắc mắc đến <em>${EMAILS.sponsor}</em>`,

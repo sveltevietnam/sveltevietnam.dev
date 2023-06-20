@@ -6,12 +6,12 @@ import { translations } from './_page/translation';
 const metaTranslations = {
   vi: {
     title: 'Tài trợ | Svelte Vietnam',
-    description: 'Tài trợ Svelte Vietnam',
+    description: 'Chung tay phát triển cộng đồng Svelte Vietnam',
     keywords: ['tài trợ', 'đóng góp'],
   },
   en: {
     title: 'Sponsor | Svelte Vietnam',
-    description: 'Sponsor Svelte Vietnam and its community',
+    description: 'Grow together with the Svelte Vietnam community',
     keywords: ['sponsor', 'contribute'],
   },
 };

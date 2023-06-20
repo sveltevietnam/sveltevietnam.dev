@@ -12,7 +12,7 @@ const metaTranslations = {
   },
   en: {
     title: 'Impact | Svelte Vietnam',
-    description: 'Impact of Svelte and its community in Vietnam',
+    description: 'Social impact of Svelte and its community in Vietnam',
     keywords: ['impact', 'community', 'project', 'social', 'responsibility'],
   },
 };

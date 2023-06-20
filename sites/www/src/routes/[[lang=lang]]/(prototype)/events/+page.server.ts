@@ -9,7 +9,7 @@ import { translations as pageT } from './_page/translation';
 const metaTranslations = {
   vi: {
     title: 'Sự kiện | Svelte Vietnam',
-    description: 'Gặp gỡ với cộng đồng Svelte tại Việt Nam',
+    description: 'Gặp gỡ cộng đồng Svelte tại Việt Nam',
     keywords: ['sự kiện', 'cộng đồng', 'gặp mặt'],
   },
   en: {
