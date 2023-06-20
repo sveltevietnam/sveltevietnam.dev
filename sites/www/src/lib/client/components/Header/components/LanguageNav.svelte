@@ -1,5 +1,7 @@
 <script lang="ts">
+  import { invalidate } from '$app/navigation';
   import { page } from '$app/stores';
+  import { LOAD_DEPENDENCIES } from '$shared/constants';
   import { LANGUAGES, localizeUrl } from '$shared/services/i18n';
   import type { Language } from '$shared/services/i18n';
 
@@ -8,7 +10,10 @@
   export { cls as class };
 
   function changeLanguage(lang: Language) {
-    document.documentElement.setAttribute('lang', lang);
+    if (lang !== document.documentElement.getAttribute('lang')) {
+      invalidate(LOAD_DEPENDENCIES.LANGUAGE);
+      document.documentElement.setAttribute('lang', lang);
+    }
   }
 </script>
 

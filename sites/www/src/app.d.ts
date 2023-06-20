@@ -29,6 +29,7 @@ declare global {
         title?: string;
         description?: string;
         keywords?: string[];
+        canonical?: string;
         og?: {
           title?: string;
           description?: string;
@@ -41,9 +42,10 @@ declare global {
           title?: string;
           description?: string;
           card?: string;
-          img?: string;
+          image?: string;
           imageAlt?: string;
           site?: string;
+          creator?: string;
         };
       };
     }

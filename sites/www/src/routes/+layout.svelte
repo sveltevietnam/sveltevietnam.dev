@@ -9,26 +9,30 @@
 
   import '../lib/client/styles/app.css';
 
+  const DEFAULT_KEYWORDS = ['svelte', 'vietnam'];
+
   $: meta = $page.data.meta;
 
   $: title = meta?.title ?? 'Svelte Vietnam';
   $: description =
     meta?.description ?? 'Community and go-to information hub for people of Svelte in Vietnam';
-  $: keywords = meta?.keywords ?? ['svelte', 'vietnam'];
+  $: keywords = meta?.keywords ? [...DEFAULT_KEYWORDS, ...meta.keywords] : DEFAULT_KEYWORDS;
+  $: canonical = meta?.canonical ?? `${$page.url.origin}${$page.url.pathname}`;
 
   $: ogTitle = meta?.og?.title ?? title;
   $: ogDescription = meta?.og?.description ?? description;
   $: ogType = meta?.og?.type ?? 'website';
-  $: ogUrl = meta?.og?.url ?? `${$page.url.origin}${$page.url.pathname}`;
-  $: ogImage = meta?.og?.image ?? `${$page.url.origin}/images/og.png`;
+  $: ogUrl = meta?.og?.url ?? canonical;
+  $: ogImage = meta?.og?.image ?? `${$page.url.origin}/images/og/home.webp`;
   $: ogImageAlt = meta?.og?.imageAlt ?? title;
 
   $: twitterTitle = meta?.twitter?.title ?? ogTitle;
   $: twitterDescription = meta?.twitter?.description ?? ogDescription;
+  $: twitterImage = meta?.twitter?.image ?? ogImage;
+  $: twitterImageAlt = meta?.twitter?.imageAlt ?? ogImageAlt;
   $: twitterCard = meta?.twitter?.card ?? 'summary_large_image';
-  $: twitterImage = meta?.twitter?.img ?? ogImage;
-  $: twitterImageAlt = meta?.twitter?.imageAlt ?? title;
   $: twitterSite = meta?.twitter?.site ?? '@sveltevietnam';
+  $: twitterCreator = meta?.twitter?.creator ?? '@sveltevietnam';
 
   $: analyticsEnabled = !dev;
 
@@ -71,8 +75,9 @@
   <meta name="twitter:image" content={twitterImage} />
   <meta name="twitter:image:alt" content={twitterImageAlt} />
   <meta name="twitter:site" content={twitterSite} />
+  <meta name="twitter:creator" content={twitterCreator} />
 
-  <link href={ogUrl} rel="canonical" />
+  <link href={canonical} rel="canonical" />
   <link type="text/plain" rel="author" href="{$page.url.origin}/humans.txt" />
 
   <!-- alternative localized links -->
