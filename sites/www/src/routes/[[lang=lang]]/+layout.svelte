@@ -1,12 +1,11 @@
 <script lang="ts">
   import ModalPortal from '@svelte-put/modal/ModalPortal.svelte';
 
-  import { invalidate } from '$app/navigation';
   import { Footer } from '$client/components/Footer';
   import { Header } from '$client/components/Header';
   import { SplashScreen } from '$client/components/SplashScreen/index.js';
   import { modalStore } from '$client/modals';
-  import { LOAD_DEPENDENCIES } from '$shared/constants';
+  import { PUBLIC_COOKIE_SCHEME } from '$env/static/public';
   import type { ColorScheme } from '$shared/types';
 
   export let data;
@@ -17,11 +16,7 @@
     if (clientColorScheme === scheme) return;
     clientColorScheme = scheme;
     document.documentElement.dataset.colorScheme = scheme;
-    await fetch('/api/color-scheme', {
-      method: 'POST',
-      body: scheme,
-    });
-    invalidate(LOAD_DEPENDENCIES.COLOR_SCHEME);
+    document.cookie = `${PUBLIC_COOKIE_SCHEME}=${scheme}; path=/; SameSite=Lax; Secure`;
   }
 </script>
 

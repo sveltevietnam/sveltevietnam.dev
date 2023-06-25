@@ -1,5 +1,4 @@
 export const LOAD_DEPENDENCIES = {
-  COLOR_SCHEME: 'site:color-scheme',
   LANGUAGE: 'site:language',
 } as const;
 
