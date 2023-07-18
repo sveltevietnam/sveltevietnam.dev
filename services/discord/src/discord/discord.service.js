@@ -44,4 +44,8 @@ export class DiscordService {
     this.bot = new DiscordBot(this.#client);
     this.websocket = new DiscordWebsocket(this.#client);
   }
+
+  destroy() {
+    this.#client.destroy();
+  }
 }
