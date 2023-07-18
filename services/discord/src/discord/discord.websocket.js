@@ -12,6 +12,10 @@ import { v4 as uuidv4 } from 'uuid';
  * @typedef {(...args: ClientEvents[K]) => import('discord.js').Awaitable<void>} ClientEventHandler
  */
 
+/**
+ * Listen for events from Svelte Vietnam discord guild
+ * and send websocket messages to active clients on sveltevietnam.dev
+ */
 export class DiscordWebsocket {
   /** @param {Client} client */
   #client;
