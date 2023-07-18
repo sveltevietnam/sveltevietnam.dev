@@ -28,7 +28,7 @@ export class DiscordBot {
   constructor(client) {
     this.#client = client;
     this.#onGuildMemberAdd = (member) => {
-      const helloChannel = this.#client.channels.cache.get(DiscordBot.DISCORD_TESTING_CHANNEL_ID);
+      const helloChannel = this.#client.channels.cache.get(DiscordBot.HELLO_CHANNEL_ID);
       if (!helloChannel || !helloChannel.isTextBased()) return;
       helloChannel.send(
         `Chào mừng thành viên mới <@${member.user.id}>. Welcome new member <@${member.user.id}> to Svelte Vietnam.`,
