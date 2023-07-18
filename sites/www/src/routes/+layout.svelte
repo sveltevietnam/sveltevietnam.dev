@@ -36,7 +36,7 @@
 
   $: analyticsEnabled = !dev;
 
-  $: if (browser && gtag && analyticsEnabled && PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID) {
+  $: if (browser && !analyticsEnabled && PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID && gtag) {
     gtag('config', PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID, {
       page_title: document.title,
       page_location: $page.url.href,
