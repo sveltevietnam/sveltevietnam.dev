@@ -1,4 +1,3 @@
-import * as fastify from 'fastify';
 import type z from 'zod';
 
 import { DiscordService } from './discord';
