@@ -210,7 +210,7 @@
     );
     background-color: theme('colors.design.bg.1');
 
-    @media (max-width: theme('screens.md')) {
+    @screen upto-tb {
       &[data-open]:not([data-open='false']) {
         display: grid;
       }

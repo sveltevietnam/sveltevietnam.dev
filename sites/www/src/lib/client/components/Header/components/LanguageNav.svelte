@@ -49,7 +49,7 @@
       border: 1px solid currentcolor;
       border-radius: 30px;
 
-      @media (max-width: theme('screens.md')) {
+      @screen upto-tb {
         font-size: theme('fontSize.xl');
       }
     }

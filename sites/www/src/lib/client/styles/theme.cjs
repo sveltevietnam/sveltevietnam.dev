@@ -10,6 +10,9 @@ const theme = {
         // tablet
         min: '768px',
       },
+      'upto-tb': {
+        max: '768px',
+      },
       sp: {
         // smart phone
         max: '767px',

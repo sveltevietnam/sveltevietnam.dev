@@ -77,7 +77,7 @@
       display: flex;
       grid-area: ctas;
 
-      @media (max-width: theme('screens.md')) {
+      @screen upto-tb {
         @space-y theme('spacing.4');
 
         flex-direction: column;

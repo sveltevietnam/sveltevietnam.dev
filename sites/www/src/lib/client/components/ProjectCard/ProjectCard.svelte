@@ -43,7 +43,7 @@
   .project-card {
     display: flex;
 
-    @media (max-width: theme('screens.md')) {
+    @screen upto-tb {
       @space-y theme('spacing.6');
 
       flex-direction: column;
