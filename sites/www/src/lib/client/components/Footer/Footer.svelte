@@ -27,7 +27,7 @@
       </section>
       <section class="footer-navigation">
         <p class="footer-section-title">{t.navigation.title}</p>
-        <nav aria-label="footer navigation" data-sveltekit-preload-data="hover">
+        <nav aria-label="all internal pages" data-sveltekit-preload-data="hover">
           <ul>
             {#each pages(lang, 'with-home') as { href, label }}
               {@const current = isCurrentPage($page.url.pathname, href)}
@@ -42,13 +42,13 @@
         <p class="footer-section-title">{t.contact.title}</p>
         <ul>
           <li>
-            <a href={SOCIAL_LINKS.discord} target="_blank" class="footer-link">
+            <a href={SOCIAL_LINKS.discord} target="_blank" class="footer-link" rel="noreferrer">
               <svg inline-src="simpleicon/discord" width="24" height="24" />
               <span>Svelte Vietnam</span>
             </a>
           </li>
           <li>
-            <a href="mailto:{EMAILS.contact}" target="_blank" class="footer-link">
+            <a href="mailto:{EMAILS.contact}" target="_blank" class="footer-link" rel="noreferrer">
               <svg inline-src="google/mail" width="24" height="24" />
               <span>{EMAILS.contact}</span>
             </a>

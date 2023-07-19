@@ -80,7 +80,7 @@
       <li class="embla__slide intro-card intro-card--svelte">
         <article>
           <img src={introSvelteImg} alt="swirling winged-shaped star" width="60" height="60" />
-          <h2>Svelte</h2>
+          <p class="intro-card-title">Svelte</p>
           <div class="separator" aria-disabled />
           <p>{t.svelte}</p>
         </article>
@@ -88,7 +88,7 @@
       <li class="embla__slide intro-card intro-card--vietnam">
         <article>
           <img src={introVietnamImg} alt="five-pointed star" width="60" height="60" />
-          <h2>Vietnam</h2>
+          <p class="intro-card-title">Vietnam</p>
           <div class="separator" aria-disabled />
           <p>{t.vietnam}</p>
         </article>
@@ -96,7 +96,7 @@
       <li class="embla__slide intro-card intro-card--sveltevietnam">
         <article>
           <img src={introSvelteVietnamImg} alt="eight-pointed start" width="60" height="60" />
-          <h2>Svelte Vietnam</h2>
+          <p class="intro-card-title">Svelte Vietnam</p>
           <div class="separator" aria-disabled />
           <p>{t.sveltevietnam}</p>
         </article>
@@ -235,7 +235,7 @@
       }
     }
 
-    & h2 {
+    & .intro-card-title {
       margin-top: 100px;
       font-family: theme('fontFamily.lora');
       font-size: 32px;
