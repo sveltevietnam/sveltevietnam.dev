@@ -24,35 +24,33 @@ export function getThreshold(node: HTMLElement) {
 /**
  * watch with `IntersectionObserver` and toggle corresponding classes
  */
-export const intersect: Action<HTMLElement, IntersectParameters, IntersectAttributes> = function (
-  node,
-  parameters,
-) {
-  const className = parameters?.class ?? 'c-intro';
-  const intersectedClass = parameters?.intersectedClass ?? `${className || ''}--intersected`;
-  if (className !== false) {
-    node.classList.toggle(className, true);
-  }
+export const intersect: Action<HTMLElement, IntersectParameters | undefined, IntersectAttributes> =
+  function (node, parameters) {
+    const className = parameters?.class ?? 'c-intro';
+    const intersectedClass = parameters?.intersectedClass ?? `${className || ''}--intersected`;
+    if (className !== false) {
+      node.classList.toggle(className, true);
+    }
 
-  const threshold = getThreshold(node);
-  let observer = observerMap[threshold];
-  if (!observer) {
-    const callback: IntersectionObserverCallback = (entries, observer) => {
-      if (entries.some((e) => e.target.isSameNode(node) && !!e.intersectionRatio)) {
-        if (intersectedClass !== false) {
-          node.classList.toggle(intersectedClass, true);
+    const threshold = getThreshold(node);
+    let observer = observerMap[threshold];
+    if (!observer) {
+      const callback: IntersectionObserverCallback = (entries, observer) => {
+        if (entries.some((e) => e.target.isSameNode(node) && !!e.intersectionRatio)) {
+          if (intersectedClass !== false) {
+            node.classList.toggle(intersectedClass, true);
+          }
+          node.dispatchEvent(new CustomEvent('intersect:once', { detail: observer }));
+          observer.unobserve(node);
         }
-        node.dispatchEvent(new CustomEvent('intersect:once', { detail: observer }));
-        observer.unobserve(node);
-      }
-    };
-    observer = new IntersectionObserver(callback, { threshold });
-  }
-  observer.observe(node);
+      };
+      observer = new IntersectionObserver(callback, { threshold });
+    }
+    observer.observe(node);
 
-  return {
-    destroy() {
-      observer.unobserve(node);
-    },
+    return {
+      destroy() {
+        observer.unobserve(node);
+      },
+    };
   };
-};

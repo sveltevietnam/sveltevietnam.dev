@@ -61,7 +61,7 @@
             <a class="title" {href}>{name}</a>
             <p class="description line-clamp-3 tb:line-clamp-4">{@html description}</p>
             <p class="collaboration">
-              <span class="sp:hidden whitespace-nowrap">{t.collaboration}</span>
+              <span class="whitespace-nowrap sp:hidden">{t.collaboration}</span>
               <span>{@html collaboration}</span>
             </p>
           </div>
@@ -180,7 +180,7 @@
     display: block;
     font-size: 14px;
     font-weight: 700;
-    transition: color 400ms ease-out;
+    transition: color 250ms ease-out;
 
     &:hover {
       color: theme('colors.design.link.title');

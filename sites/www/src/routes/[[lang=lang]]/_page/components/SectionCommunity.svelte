@@ -51,7 +51,7 @@
     }, shapeContainerElement);
   }
 
-  onMount(async () => {
+  onMount(() => {
     return () => {
       ctx?.revert();
     };
