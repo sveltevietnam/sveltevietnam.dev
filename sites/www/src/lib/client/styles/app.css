@@ -6,41 +6,13 @@
 @tailwind utilities;
 
 @layer base {
-  @mixin dark {
-    /* foreground colors */
-    --color-fg-100: theme('colors.grayscale.light.100');
-    --color-fg-200: theme('colors.grayscale.light.200');
-    --color-fg-300: theme('colors.grayscale.light.300');
-    --color-fg-400: theme('colors.grayscale.light.400');
-
-    /* background colors */
-    --color-bg-100: theme('colors.grayscale.dark.100');
-    --color-bg-200: theme('colors.grayscale.dark.200');
-    --color-bg-300: theme('colors.grayscale.dark.300');
-    --color-bg-400: theme('colors.grayscale.dark.400');
-
-    /* reactive colors */
-    --color-link: #0A84FE;
-    --color-border-1: theme('colors.design.grayscale.dark.4');
-    --color-fg-1: theme('colors.design.grayscale.light.1');
-    --color-bg-1: theme('colors.design.grayscale.dark.2');
-    --color-bg-2: theme('colors.design.grayscale.dark.3');
-    --color-shadow: theme(colors.design.grayscale.light.1 / 10%);
-
-    /* grayscale logo */
-    --logo-grayscale-color-fg: black;
-    --logo-grayscale-color-bg: white;
-  }
-
   :root {
     --header-height: 82px;
 
     @screen tb {
       --header-height: 88px;
     }
-  }
 
-  html {
     /* foreground colors */
     --color-fg-100: theme('colors.grayscale.dark.100');
     --color-fg-200: theme('colors.grayscale.dark.200');
@@ -67,6 +39,34 @@
     --logo-grayscale-color-fg: white;
     --logo-grayscale-color-bg: black;
 
+    @dark {
+      /* foreground colors */
+      --color-fg-100: theme('colors.grayscale.light.100');
+      --color-fg-200: theme('colors.grayscale.light.200');
+      --color-fg-300: theme('colors.grayscale.light.300');
+      --color-fg-400: theme('colors.grayscale.light.400');
+
+      /* background colors */
+      --color-bg-100: theme('colors.grayscale.dark.100');
+      --color-bg-200: theme('colors.grayscale.dark.200');
+      --color-bg-300: theme('colors.grayscale.dark.300');
+      --color-bg-400: theme('colors.grayscale.dark.400');
+
+      /* reactive colors */
+      --color-link: #0A84FE;
+      --color-border-1: theme('colors.design.grayscale.dark.4');
+      --color-fg-1: theme('colors.design.grayscale.light.1');
+      --color-bg-1: theme('colors.design.grayscale.dark.2');
+      --color-bg-2: theme('colors.design.grayscale.dark.3');
+      --color-shadow: theme(colors.design.grayscale.light.1 / 10%);
+
+      /* grayscale logo */
+      --logo-grayscale-color-fg: black;
+      --logo-grayscale-color-bg: white;
+    }
+  }
+
+  html {
     height: 100%;
 
     font-family: theme('fontFamily.inter');
