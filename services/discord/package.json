@@ -15,10 +15,10 @@
   "dependencies": {
     "@fastify/helmet": "^11.0.0",
     "@fastify/websocket": "^8.2.0",
-    "@types/node": "^20.4.2",
+    "@types/node": "^20.4.5",
     "discord.js": "^14.11.0",
     "dotenv": "^16.3.1",
-    "fastify": "^4.20.0",
+    "fastify": "^4.21.0",
     "fastify-plugin": "^4.5.1",
     "uuid": "^9.0.0",
     "zod": "^3.21.4"
