@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { partytownSnippet } from '@builder.io/partytown/integration';
   import { onMount } from 'svelte';
 
-  import { dev, browser } from '$app/environment';
+  import { browser } from '$app/environment';
   import { page } from '$app/stores';
-  import { PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID } from '$env/static/public';
+  import { PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID, PUBLIC_MODE } from '$env/static/public';
   import { localizeUrl, LANGUAGES } from '$shared/services/i18n';
+  import { createGtagScriptTag, createPartytownSnippetScriptTag } from '$shared/utils/html-scripts';
 
   import '../lib/client/styles/app.css';
 
@@ -34,9 +34,9 @@
   $: twitterSite = meta?.twitter?.site ?? '@sveltevietnam';
   $: twitterCreator = meta?.twitter?.creator ?? '@sveltevietnam';
 
-  $: analyticsEnabled = !dev;
+  $: analyticsEnabled = PUBLIC_MODE === 'production';
 
-  $: if (browser && !analyticsEnabled && PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID && gtag) {
+  $: if (browser && analyticsEnabled && gtag) {
     gtag('config', PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID, {
       page_title: document.title,
       page_location: $page.url.href,
@@ -87,17 +87,14 @@
   <link rel="alternate" hreflang="x-default" href={localizeUrl($page.url, 'vi').toString()} />
 
   <script>
-    // partytown scripts
     partytown = {
-      // forward the necessary functions to the web worker layer
-      forward: ['gtag'],
+      forward: ['gtag'], // forward the necessary functions to the web worker layer
     };
   </script>
-  {@html '<script>' + partytownSnippet() + '</script>'}
+  {@html createPartytownSnippetScriptTag()}
 
   {#if analyticsEnabled}
-    <!-- Google tag (gtag.js) -->
-    {@html `<script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id="${PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID}"></script>`}
+    {@html createGtagScriptTag(PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID)}
     <script type="text/partytown">
       window.dataLayer = window.dataLayer || [];
       window.gtag = function () {

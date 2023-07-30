@@ -10,13 +10,6 @@ module.exports = {
         parser: '@typescript-eslint/parser',
       },
     },
-    {
-      files: ['src/routes/+layout.svelte'],
-      rules: {
-        '@typescript-eslint/semi': 'off',
-      },
-    },
-    // ...
   ],
   rules: {
     'svelte/no-at-html-tags': 'off',
