@@ -1,10 +1,11 @@
-import type { LayoutServerLoadEvent } from './$types';
+import type { LayoutServerLoad } from './$types';
 
-export async function load({ url, locals }: LayoutServerLoadEvent) {
+export const load: LayoutServerLoad = ({ url, locals }) => {
   return {
     pathname: url.pathname, // to trigger when pathname changes
     colorScheme: locals.colorScheme,
+    supportedLanguages: ['en', 'vi'],
     language: locals.language,
     version: `#${__BUILD_HASH__}@${__BUILD_TIMESTAMP__}`,
   };
-}
+};

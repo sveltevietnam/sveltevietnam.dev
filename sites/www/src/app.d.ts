@@ -25,6 +25,7 @@ declare global {
     interface PageData {
       colorScheme: ColorScheme;
       language: Language;
+      supportedLanguages: Language[];
       meta?: {
         title?: string;
         description?: string;
