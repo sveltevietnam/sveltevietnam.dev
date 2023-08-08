@@ -1,11 +1,15 @@
 import { store } from '@svelte-put/noti';
 
+import type { Language } from '$shared/services/i18n';
+
+import DiscordNotification from './DiscordNotification.svelte';
 import TextOnlyNotification from './TextOnlyNotification.svelte';
 
 export const notiStore = store({
   timeout: 5000,
 })
   .variant('text-only', TextOnlyNotification)
+  .variant('discord', DiscordNotification)
   .build();
 
 export const noti = {
@@ -37,4 +41,6 @@ export const noti = {
         intent: 'error',
       },
     }),
+  discord: (props: { avatarURL: string; name: string; language: Language }) =>
+    notiStore.push('discord', { props }),
 };

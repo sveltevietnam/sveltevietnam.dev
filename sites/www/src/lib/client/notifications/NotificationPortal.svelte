@@ -25,7 +25,7 @@
 
     position: fixed;
     z-index: theme('zIndex.notification');
-    top: 8px;
+    top: calc(8px + theme('spacing.header'));
     right: 8px;
 
     display: flex;

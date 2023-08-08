@@ -5,10 +5,10 @@
 <script lang="ts">
   import type { NotificationInstance } from '@svelte-put/noti';
   import { createEventDispatcher } from 'svelte';
-  import { fly } from 'svelte/transition';
 
   export let notification: NotificationInstance;
-  export let intent: NotificationIntent;
+  export let intent: NotificationIntent | undefined;
+  export let icon = true;
 
   const { progress } = notification;
 
@@ -18,22 +18,23 @@
 
 <div
   class="notification notification--{intent}"
-  in:fly|global={{ duration: 200, y: -20 }}
   on:mouseenter={progress.pause}
   on:mouseleave={progress.resume}
   role="presentation"
 >
-  <div class="icon">
-    {#if intent === 'info'}
-      <svg inline-src="google/info" width="24" height="24" />
-    {:else if intent === 'success'}
-      <svg inline-src="google/check-circle" width="24" height="24" />
-    {:else if intent === 'warning'}
-      <svg inline-src="google/warning" width="24" height="24" />
-    {:else if intent === 'error'}
-      <svg inline-src="google/error" width="24" height="24" />
-    {/if}
-  </div>
+  {#if icon}
+    <div class="icon">
+      {#if intent === 'info'}
+        <svg inline-src="google/info" width="24" height="24" />
+      {:else if intent === 'success'}
+        <svg inline-src="google/check-circle" width="24" height="24" />
+      {:else if intent === 'warning'}
+        <svg inline-src="google/warning" width="24" height="24" />
+      {:else if intent === 'error'}
+        <svg inline-src="google/error" width="24" height="24" />
+      {/if}
+    </div>
+  {/if}
   <div class="content">
     <slot />
   </div>
@@ -60,6 +61,7 @@
     gap: 16px;
     align-items: flex-start;
 
+    width: fit-content;
     min-width: 200px;
     padding: 16px;
 
