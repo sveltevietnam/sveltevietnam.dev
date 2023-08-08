@@ -30,10 +30,10 @@ const theme = {
     },
     colors: {
       status: {
-        info: '#3ABFF8',
-        success: '#36D399',
-        warning: '#FBBD23',
-        error: '#F87272',
+        info: '#00D0EA',
+        success: '#35D39D',
+        warning: '#FFC02E',
+        error: '#EF4D61',
       },
       grayscale: {
         light: {
@@ -107,7 +107,7 @@ const theme = {
       popup: '120', // tooltip, dropdown, popover etc
       overlay: '150', // a full screen overlay
       // command: '200', // command palette
-      // notification: '300', // notification
+      notification: '300', // notification
     },
   },
 };

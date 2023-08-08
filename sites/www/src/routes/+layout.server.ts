@@ -1,6 +1,6 @@
 import type { LayoutServerLoadEvent } from './$types';
 
-export async function load({ url, locals, depends }: LayoutServerLoadEvent) {
+export async function load({ url, locals }: LayoutServerLoadEvent) {
   return {
     pathname: url.pathname, // to trigger when pathname changes
     colorScheme: locals.colorScheme,
