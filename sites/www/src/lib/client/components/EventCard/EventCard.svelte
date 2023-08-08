@@ -81,7 +81,13 @@
             {#each event.speakers as { image, name, href }}
               <li>
                 <svelte:element this={href ? 'a' : 'div'} {href} class="speaker">
-                  <img src={image || defaultFallbackImg} width="24" height="24" alt={name} />
+                  <img
+                    src={image || defaultFallbackImg}
+                    width="24"
+                    height="24"
+                    alt={name}
+                    class="c-avatar"
+                  />
                   <p>{name}</p>
                 </svelte:element>
               </li>
