@@ -16,7 +16,8 @@
     "lint:code": "eslint . --ignore-path=\"../../.eslintignore\"",
     "lint:style": "stylelint '**/*.{svelte,css}'",
     "format": "prettier --ignore-path ../../.prettierignore --write .",
-    "partytown": "partytown copylib static/~partytown"
+    "partytown": "partytown copylib static/~partytown",
+    "post:create": "hygen post create"
   },
   "dependencies": {
     "cookie": "^0.5.0",
@@ -47,6 +48,7 @@
     "embla-carousel": "8.0.0-rc11",
     "embla-carousel-svelte": "8.0.0-rc11",
     "hygen": "^6.2.11",
+    "mdsvex": "^0.11.0",
     "postcss": "^8.4.27",
     "postcss-color-scheme": "^0.3.2",
     "postcss-custom-selectors": "^7.1.4",

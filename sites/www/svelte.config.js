@@ -3,12 +3,18 @@ import { fileURLToPath } from 'url';
 
 import adapter from '@sveltejs/adapter-cloudflare';
 import { vitePreprocess } from '@sveltejs/kit/vite';
+import { mdsvex, defineMDSveXConfig } from 'mdsvex';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+const mdsvexConfig = defineMDSveXConfig({
+  extensions: ['.md.svelte'],
+});
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-  preprocess: [vitePreprocess()],
+  extensions: ['.svelte', ...mdsvexConfig.extensions],
+  preprocess: [vitePreprocess(), mdsvex(mdsvexConfig)],
   kit: {
     adapter: adapter({
       routes: {

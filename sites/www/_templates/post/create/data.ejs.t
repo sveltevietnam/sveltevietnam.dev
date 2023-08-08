@@ -7,10 +7,10 @@ import type { BlogContent } from '$shared/data/blog';
 import type { Post } from '$shared/data/blog';
 
 <% if (languages.en) { -%>
-import En from './content.en.svelte';
+import En from './content.en.md.svelte';
 <% } -%>
 <% if (languages.vi) { -%>
-import Vi from './content.vi.svelte';
+import Vi from './content.vi.md.svelte';
 <% } -%>
 
 export const post = {
