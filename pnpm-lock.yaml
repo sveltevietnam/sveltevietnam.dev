@@ -8,6 +8,12 @@ importers:
 
   .:
     devDependencies:
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^6.2.0
+        version: 6.2.0(@typescript-eslint/parser@6.2.0)(eslint@8.46.0)(typescript@5.1.6)
+      '@typescript-eslint/parser':
+        specifier: ^6.2.0
+        version: 6.2.0(eslint@8.46.0)(typescript@5.1.6)
       '@vnphanquang/eslint-config':
         specifier: ^2.0.0
         version: 2.0.0(eslint@8.46.0)(typescript@5.1.6)
@@ -17,6 +23,12 @@ importers:
       eslint:
         specifier: ^8.46.0
         version: 8.46.0
+      eslint-config-prettier:
+        specifier: ^8.9.0
+        version: 8.9.0(eslint@8.46.0)
+      eslint-plugin-svelte:
+        specifier: ^2.32.4
+        version: 2.32.4(eslint@8.46.0)(svelte@4.1.1)
       lint-staged:
         specifier: ^13.2.3
         version: 13.2.3
@@ -26,6 +38,12 @@ importers:
       prettier:
         specifier: ^3.0.0
         version: 3.0.0
+      prettier-plugin-svelte:
+        specifier: ^3.0.3
+        version: 3.0.3(prettier@3.0.0)(svelte@4.1.1)
+      prettier-plugin-tailwindcss:
+        specifier: ^0.4.1
+        version: 0.4.1(prettier-plugin-svelte@3.0.3)(prettier@3.0.0)
       simple-git-hooks:
         specifier: ^2.9.0
         version: 2.9.0
@@ -151,12 +169,6 @@ importers:
       '@types/postcss-mixins':
         specifier: ^9.0.0
         version: 9.0.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^6.2.0
-        version: 6.2.0(@typescript-eslint/parser@6.2.0)(eslint@8.46.0)(typescript@5.1.6)
-      '@typescript-eslint/parser':
-        specifier: ^6.2.0
-        version: 6.2.0(eslint@8.46.0)(typescript@5.1.6)
       autoprefixer:
         specifier: ^10.4.14
         version: 10.4.14(postcss@8.4.27)
@@ -169,12 +181,6 @@ importers:
       embla-carousel-svelte:
         specifier: 8.0.0-rc11
         version: 8.0.0-rc11(svelte@4.1.1)
-      eslint-config-prettier:
-        specifier: ^8.9.0
-        version: 8.9.0(eslint@8.46.0)
-      eslint-plugin-svelte:
-        specifier: ^2.32.4
-        version: 2.32.4(eslint@8.46.0)(svelte@4.1.1)
       hygen:
         specifier: ^6.2.11
         version: 6.2.11
@@ -208,12 +214,6 @@ importers:
       postcss-space-between:
         specifier: ^0.2.0
         version: 0.2.0(postcss@8.4.27)
-      prettier-plugin-svelte:
-        specifier: ^3.0.3
-        version: 3.0.3(prettier@3.0.0)(svelte@4.1.1)
-      prettier-plugin-tailwindcss:
-        specifier: ^0.4.1
-        version: 0.4.1(prettier-plugin-svelte@3.0.3)(prettier@3.0.0)
       svelte:
         specifier: ^4.1.1
         version: 4.1.1
