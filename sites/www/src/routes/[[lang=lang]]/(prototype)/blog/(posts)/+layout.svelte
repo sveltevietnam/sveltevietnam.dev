@@ -6,10 +6,12 @@
   $: langNotSupported = !$page.data.supportedLanguages.includes($page.data.language);
 </script>
 
-{#if langNotSupported}
-  <p>Language is not supported.</p>
-{/if}
-
-<h1>{meta?.title}</h1>
-
-<slot />
+<main class="c-container-design">
+  <article class="prose dark:prose-invert max-w-none prose-svelte-vn">
+    {#if langNotSupported}
+      <p>Language is not supported.</p>
+    {/if}
+    <h1>{meta?.title}</h1>
+    <slot />
+  </article>
+</main>
