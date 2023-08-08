@@ -18,12 +18,18 @@
     "format": "turbo run format --parallel"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.2.0",
+    "@typescript-eslint/parser": "^6.2.0",
     "@vnphanquang/eslint-config": "^2.0.0",
     "@vnphanquang/prettierrc": "^1.0.1",
     "eslint": "^8.46.0",
+    "eslint-config-prettier": "^8.9.0",
+    "eslint-plugin-svelte": "^2.32.4",
     "lint-staged": "^13.2.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.0.0",
+    "prettier-plugin-svelte": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.4.1",
     "simple-git-hooks": "^2.9.0",
     "stylelint": "^15.10.2",
     "stylelint-config-clean-order": "^5.0.1",
