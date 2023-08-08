@@ -1,37 +1,42 @@
+<script lang="ts" context="module">
+  export type NotificationIntent = 'info' | 'success' | 'warning' | 'error';
+</script>
+
 <script lang="ts">
   import type { NotificationInstance } from '@svelte-put/noti';
   import { createEventDispatcher } from 'svelte';
   import { fly } from 'svelte/transition';
 
   export let notification: NotificationInstance;
+  export let intent: NotificationIntent;
 
-  export let content = 'Placeholder';
+  const { progress } = notification;
 
-  const { progress, variant } = notification;
-
-  const dispatch = createEventDispatcher<{ resolve: string }>();
-  const dismiss = () => dispatch('resolve', 'popped from within component');
+  const dispatch = createEventDispatcher<{ resolve: undefined }>();
+  const dismiss = () => dispatch('resolve');
 </script>
 
 <div
-  class="notification notification--{variant}"
+  class="notification notification--{intent}"
   in:fly|global={{ duration: 200, y: -20 }}
   on:mouseenter={progress.pause}
   on:mouseleave={progress.resume}
   role="presentation"
 >
   <div class="icon">
-    {#if variant === 'info'}
+    {#if intent === 'info'}
       <svg inline-src="google/info" width="24" height="24" />
-    {:else if variant === 'success'}
+    {:else if intent === 'success'}
       <svg inline-src="google/check-circle" width="24" height="24" />
-    {:else if variant === 'warning'}
+    {:else if intent === 'warning'}
       <svg inline-src="google/warning" width="24" height="24" />
-    {:else if variant === 'error'}
+    {:else if intent === 'error'}
       <svg inline-src="google/error" width="24" height="24" />
     {/if}
   </div>
-  <p>{content}</p>
+  <div class="content">
+    <slot />
+  </div>
   <button on:click={dismiss} type="button" class="dismiss-btn">
     <svg inline-src="icon/x" width="24" height="24" />
   </button>
@@ -54,7 +59,6 @@
     display: flex;
     gap: 16px;
     align-items: flex-start;
-    justify-content: space-between;
 
     min-width: 200px;
     padding: 16px;
@@ -83,6 +87,10 @@
 
   .icon {
     fill: var(--notification-color);
+  }
+
+  .content {
+    flex: 1;
   }
 
   .progress {
