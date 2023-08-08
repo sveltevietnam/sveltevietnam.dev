@@ -29,7 +29,9 @@
     <p>
       <strong>{name}</strong>
       {translations[language].message}
-      <a href={SOCIAL_LINKS.discord} class="c-link"> Svelte Vietnam Discord</a>
+      <a href={SOCIAL_LINKS.discord} class="c-link" target="_blank" rel="noreferrer"
+        >Svelte Vietnam Discord</a
+      >.
     </p>
   </div>
 </BaseNotification>
