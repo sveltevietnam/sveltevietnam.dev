@@ -5,6 +5,8 @@
   import { Header } from '$client/components/Header';
   import { SplashScreen } from '$client/components/SplashScreen/index.js';
   import { modalStore } from '$client/modals';
+  import NotificationPortal from '$client/notifications/NotificationPortal.svelte';
+  import { notiStore } from '$client/notifications/index.js';
   import { PUBLIC_COOKIE_SCHEME } from '$env/static/public';
   import type { ColorScheme } from '$shared/types';
 
@@ -25,11 +27,11 @@
   colorScheme={clientColorScheme}
   on:colorSchemeChange={changeColorScheme}
 />
-
 <slot />
-
 <Footer lang={data.language} version={data.version} />
 
+<!-- portals -->
 <ModalPortal store={modalStore} class="z-modal" />
+<NotificationPortal store={notiStore} />
 
 <SplashScreen variant={data.splashScreenVariant} />
