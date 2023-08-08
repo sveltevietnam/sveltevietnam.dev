@@ -90,6 +90,8 @@
       gtag('js', new Date());
     </script>
   {/if}
+
+  <meta name="mode" content={PUBLIC_MODE} />
 </svelte:head>
 
 <slot />

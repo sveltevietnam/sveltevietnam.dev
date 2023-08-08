@@ -8,7 +8,7 @@
   import { modalStore } from '$client/modals';
   import NotificationPortal from '$client/notifications/NotificationPortal.svelte';
   import { noti, notiStore } from '$client/notifications/index.js';
-  import { PUBLIC_COOKIE_SCHEME } from '$env/static/public';
+  import { PUBLIC_COOKIE_SCHEME, PUBLIC_DISCORD_WS_URL } from '$env/static/public';
   import type { ColorScheme } from '$shared/types';
 
   export let data;
@@ -32,7 +32,7 @@
 
   // FIXME: extract to own service
   onMount(() => {
-    const ws = new WebSocket('ws://localhost:5006/websocket');
+    const ws = new WebSocket(PUBLIC_DISCORD_WS_URL);
     ws.addEventListener('message', (event) => {
       try {
         const payload = JSON.parse(event.data) as DiscordEventData;
