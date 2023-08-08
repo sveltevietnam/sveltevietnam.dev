@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-
   import { browser } from '$app/environment';
   import { page } from '$app/stores';
   import { PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID, PUBLIC_MODE } from '$env/static/public';
@@ -43,17 +41,6 @@
       page_path: $page.url.pathname,
     });
   }
-
-  onMount(() => {
-    // const ws = new WebSocket('ws://localhost:5006/websocket');
-    // ws.addEventListener('message', (event) => {
-    //   const data = JSON.parse(event.data);
-    //   console.log(data);
-    // });
-    // return () => {
-    //   ws.close();
-    // };
-  });
 </script>
 
 <svelte:head>
