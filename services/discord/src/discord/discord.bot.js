@@ -1,5 +1,7 @@
 import { Events } from 'discord.js';
 
+import { CHANNEL_ID_MAP } from './discord.constants.js';
+
 /**
  * @typedef {import('discord.js').ClientEvents} ClientEvents
  * @typedef {import('discord.js').Client} Client
@@ -15,9 +17,6 @@ import { Events } from 'discord.js';
  * and send messages as a bot
  */
 export class DiscordBot {
-  static HELLO_CHANNEL_ID = '1080302429729456148';
-  static DISCORD_TESTING_CHANNEL_ID = '1104409592047358113';
-
   /** @param {Client} client */
   #client;
 
@@ -28,7 +27,7 @@ export class DiscordBot {
   constructor(client) {
     this.#client = client;
     this.#onGuildMemberAdd = (member) => {
-      const helloChannel = this.#client.channels.cache.get(DiscordBot.HELLO_CHANNEL_ID);
+      const helloChannel = this.#client.channels.cache.get(CHANNEL_ID_MAP.HELLO);
       if (!helloChannel || !helloChannel.isTextBased()) return;
       helloChannel.send(
         `Chào mừng thành viên mới <@${member.user.id}>. Welcome new member <@${member.user.id}> to Svelte Vietnam.`,
