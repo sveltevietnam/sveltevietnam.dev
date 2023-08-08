@@ -2,7 +2,7 @@ async function promptLanguages(prompter) {
   const { languages } = await prompter.prompt({
     type: 'multiselect',
     name: 'languages',
-    message: 'What languages does your post provide?',
+    message: 'What languages does your post provide? (choose all that apply)',
     hint: '(Use <space> to select, <return> to submit)',
     required: true,
     choices: [
@@ -34,7 +34,7 @@ module.exports = {
     /** @type {{ title: string }} */
     let { title } = await prompter.prompt({
       type: 'input',
-      message: 'What is the English title of your post? (choose all that apply)',
+      message: 'What is the English title of your post?',
       name: 'title',
       required: true,
     });
