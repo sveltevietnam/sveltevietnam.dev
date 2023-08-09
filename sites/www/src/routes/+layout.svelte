@@ -1,8 +1,10 @@
 <script lang="ts">
+  import { localizeUrl } from '@libs/utils/url';
+
   import { browser } from '$app/environment';
   import { page } from '$app/stores';
   import { PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID, PUBLIC_MODE } from '$env/static/public';
-  import { localizeUrl, LANGUAGES } from '$shared/services/i18n';
+  import { LANGUAGES } from '$shared/services/i18n';
   import { createGtagScriptTag, createPartytownSnippetScriptTag } from '$shared/utils/html-scripts';
 
   import '../lib/client/styles/app.css';
@@ -69,9 +71,17 @@
 
   <!-- alternative localized links -->
   {#each LANGUAGES.filter((l) => l !== $page.data.language) as lang}
-    <link rel="alternate" hreflang={lang} href={localizeUrl($page.url, lang).toString()} />
+    <link
+      rel="alternate"
+      hreflang={lang}
+      href={localizeUrl($page.url, LANGUAGES, lang).toString()}
+    />
   {/each}
-  <link rel="alternate" hreflang="x-default" href={localizeUrl($page.url, 'vi').toString()} />
+  <link
+    rel="alternate"
+    hreflang="x-default"
+    href={localizeUrl($page.url, LANGUAGES, 'vi').toString()}
+  />
 
   <script>
     partytown = {
