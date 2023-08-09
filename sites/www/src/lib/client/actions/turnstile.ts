@@ -91,101 +91,100 @@ export type TurnstileParameters = {
 const CLOUDFLARE_TURNSTILE_SCRIPT =
   'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
 
-export const turnstile: Action<HTMLElement, TurnstileParameters, TurnstileAttributes> = function (
-  node,
-  parameters,
-) {
-  let id: string | null = null;
-  if (!window.turnstile) {
-    const script = document.createElement('script');
-    const src =
-      parameters?.scriptScr ??
-      node.getAttribute('turnstile-script-src') ??
-      CLOUDFLARE_TURNSTILE_SCRIPT;
-    script.setAttribute('src', src);
-    document.head.appendChild(script);
-    script.addEventListener('load', () => {
+export const turnstile: Action<HTMLElement, TurnstileParameters | undefined, TurnstileAttributes> =
+  function (node, parameters) {
+    let id: string | null = null;
+    if (!window.turnstile) {
+      const script = document.createElement('script');
+      const src =
+        parameters?.scriptScr ??
+        node.getAttribute('turnstile-script-src') ??
+        CLOUDFLARE_TURNSTILE_SCRIPT;
+      script.setAttribute('src', src);
+      document.head.appendChild(script);
+      script.addEventListener('load', () => {
+        load(parameters);
+      });
+    } else {
       load(parameters);
-    });
-  } else {
-    load(parameters);
-  }
+    }
 
-  function load(parameters?: TurnstileParameters) {
-    const sitekey = parameters?.sitekey ?? node.getAttribute('turnstile-sitekey');
-    if (!sitekey) throw new Error('`sitekey` is required');
-    const config = {
-      sitekey,
-      action:
-        parameters?.action ??
-        (node.getAttribute('turnstile-action') as TurnstileConfig['action']) ??
-        undefined,
-      // get the rest of the parameters from the node, fallback to matching attributes
-      cData:
-        parameters?.cData ??
-        (node.getAttribute('turnstile-cdata') as TurnstileConfig['cData']) ??
-        undefined,
-      execution:
-        parameters?.execution ??
-        (node.getAttribute('turnstile-execution') as TurnstileConfig['execution']) ??
-        undefined,
-      theme:
-        parameters?.theme ??
-        (node.getAttribute('turnstile-theme') as TurnstileConfig['theme']) ??
-        undefined,
-      language:
-        parameters?.language ??
-        (node.getAttribute('turnstile-language') as TurnstileConfig['language']) ??
-        undefined,
-      tabindex:
-        parameters?.tabindex ??
-        (parseInt(node.getAttribute('turnstile-tabindex') ?? '0') as TurnstileConfig['tabindex']),
-      'response-field': parameters?.responseField ?? node.hasAttribute('turnstile-response-field'),
-      'response-field-name':
-        parameters?.responseFieldName ??
-        (node.getAttribute(
-          'turnstile-response-field-name',
-        ) as TurnstileConfig['response-field-name']) ??
-        undefined,
-      size:
-        parameters?.size ??
-        (node.getAttribute('turnstile-size') as TurnstileConfig['size']) ??
-        undefined,
-      retry:
-        parameters?.retry ??
-        (node.getAttribute('turnstile-retry') as TurnstileConfig['retry']) ??
-        undefined,
-      'retry-interval':
-        parameters?.retryInterval ??
-        (parseInt(
-          node.getAttribute('turnstile-retry-interval') ?? '8000',
-        ) as TurnstileConfig['retry-interval']),
-      'refresh-expired':
-        parameters?.refreshExpired ??
-        (node.getAttribute('turnstile-refresh-expired') as TurnstileConfig['refresh-expired']) ??
-        undefined,
-      appearance:
-        parameters?.appearance ??
-        (node.getAttribute('turnstile-appearance') as TurnstileConfig['appearance']) ??
-        undefined,
-      callback: (token) => {
-        node.dispatchEvent(new CustomEvent('turnstile', { detail: token }));
+    function load(parameters?: TurnstileParameters) {
+      const sitekey = parameters?.sitekey ?? node.getAttribute('turnstile-sitekey');
+      if (!sitekey) throw new Error('`sitekey` is required');
+      const config = {
+        sitekey,
+        action:
+          parameters?.action ??
+          (node.getAttribute('turnstile-action') as TurnstileConfig['action']) ??
+          undefined,
+        // get the rest of the parameters from the node, fallback to matching attributes
+        cData:
+          parameters?.cData ??
+          (node.getAttribute('turnstile-cdata') as TurnstileConfig['cData']) ??
+          undefined,
+        execution:
+          parameters?.execution ??
+          (node.getAttribute('turnstile-execution') as TurnstileConfig['execution']) ??
+          undefined,
+        theme:
+          parameters?.theme ??
+          (node.getAttribute('turnstile-theme') as TurnstileConfig['theme']) ??
+          undefined,
+        language:
+          parameters?.language ??
+          (node.getAttribute('turnstile-language') as TurnstileConfig['language']) ??
+          undefined,
+        tabindex:
+          parameters?.tabindex ??
+          (parseInt(node.getAttribute('turnstile-tabindex') ?? '0') as TurnstileConfig['tabindex']),
+        'response-field':
+          parameters?.responseField ?? node.hasAttribute('turnstile-response-field'),
+        'response-field-name':
+          parameters?.responseFieldName ??
+          (node.getAttribute(
+            'turnstile-response-field-name',
+          ) as TurnstileConfig['response-field-name']) ??
+          undefined,
+        size:
+          parameters?.size ??
+          (node.getAttribute('turnstile-size') as TurnstileConfig['size']) ??
+          undefined,
+        retry:
+          parameters?.retry ??
+          (node.getAttribute('turnstile-retry') as TurnstileConfig['retry']) ??
+          undefined,
+        'retry-interval':
+          parameters?.retryInterval ??
+          (parseInt(
+            node.getAttribute('turnstile-retry-interval') ?? '8000',
+          ) as TurnstileConfig['retry-interval']),
+        'refresh-expired':
+          parameters?.refreshExpired ??
+          (node.getAttribute('turnstile-refresh-expired') as TurnstileConfig['refresh-expired']) ??
+          undefined,
+        appearance:
+          parameters?.appearance ??
+          (node.getAttribute('turnstile-appearance') as TurnstileConfig['appearance']) ??
+          undefined,
+        callback: (token) => {
+          node.dispatchEvent(new CustomEvent('turnstile', { detail: token }));
+        },
+        'error-callback': (error) => {
+          node.dispatchEvent(new CustomEvent('turnstile:error', { detail: error }));
+        },
+        'timeout-callback': (timeout) => {
+          node.dispatchEvent(new CustomEvent('turnstile:timeout', { detail: timeout }));
+        },
+        'expired-callback': (expired) => {
+          node.dispatchEvent(new CustomEvent('turnstile:expired', { detail: expired }));
+        },
+      } satisfies TurnstileConfig;
+      id = window.turnstile.render(node, config);
+    }
+    return {
+      destroy() {
+        if (id) window.turnstile.remove(id);
       },
-      'error-callback': (error) => {
-        node.dispatchEvent(new CustomEvent('turnstile:error', { detail: error }));
-      },
-      'timeout-callback': (timeout) => {
-        node.dispatchEvent(new CustomEvent('turnstile:timeout', { detail: timeout }));
-      },
-      'expired-callback': (expired) => {
-        node.dispatchEvent(new CustomEvent('turnstile:expired', { detail: expired }));
-      },
-    } satisfies TurnstileConfig;
-    id = window.turnstile.render(node, config);
-  }
-  return {
-    destroy() {
-      if (id) window.turnstile.remove(id);
-    },
+    };
   };
-};
