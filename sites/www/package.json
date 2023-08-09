@@ -1,6 +1,8 @@
 {
   "name": "@sites/www",
   "version": "0.0.0",
+  "author": "Svelte Vietnam",
+  "description": "Svelte Vietnam official website",
   "private": true,
   "type": "module",
   "scripts": {
@@ -25,6 +27,7 @@
   "devDependencies": {
     "@builder.io/partytown": "^0.8.0",
     "@csstools/postcss-global-data": "^2.0.1",
+    "@libs/utils": "workspace:^",
     "@svelte-put/clickoutside": "^3.0.0",
     "@svelte-put/modal": "^1.0.2",
     "@svelte-put/noti": "^1.1.0",

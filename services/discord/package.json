@@ -1,6 +1,7 @@
 {
   "name": "@services/discord",
   "version": "0.0.0",
+  "author": "Svelte Vietnam",
   "description": "SvelteVietnam discord bot",
   "type": "module",
   "main": "src/server.js",
