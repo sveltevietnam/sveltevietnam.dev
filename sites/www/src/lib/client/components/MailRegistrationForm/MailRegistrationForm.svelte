@@ -1,71 +1,88 @@
+<script lang="ts" context="module">
+  import { z } from 'zod';
+  export const mailSchema = z.object({
+    name: z.string().min(1),
+    email: z.string().email(),
+    turnstile: z.string().min(1),
+  });
+  export type MailSchema = typeof mailSchema;
+</script>
+
 <script lang="ts">
-  import { enhance } from '$app/forms';
+  import type { SuperValidated } from 'sveltekit-superforms';
+  import { superForm } from 'sveltekit-superforms/client';
+
   import { turnstile } from '$client/actions/turnstile';
   import { PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
-  import { CLOUDFLARE_TURNSTILE_FORM_FIELD } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
   import type { ColorScheme } from '$shared/types';
 
   /** translations */
+  export let superValidated: SuperValidated<MailSchema>;
   export let language: Language;
   export let colorScheme: ColorScheme;
   export let t = {
     name: 'Name',
     cta: 'Notify me',
   };
-  export let name = '';
-  export let email = '';
-
-  export let nameError = '';
-  export let emailError = '';
-  export let turnstileError = '';
-  // export let error = '';
+  const { form, enhance, constraints, errors } = superForm(superValidated, {
+    taintedMessage: null,
+  });
 </script>
 
 <form class="notification-form" method="POST" use:enhance action="?/mail" autocomplete="on">
   <div class="relative">
-    {#if nameError}
+    {#if $errors.name?.length}
       <p class="error">
-        {nameError}
+        {$errors.name[0]}
       </p>
     {/if}
     <input
       class="c-input"
       type="text"
       name="name"
-      bind:value={name}
       placeholder={t.name}
-      required
+      autocomplete="name"
+      bind:value={$form.name}
+      {...$constraints.name}
     />
   </div>
   <div class="relative">
-    {#if emailError}
+    {#if $errors.email?.length}
       <p class="error">
-        {emailError}
+        {$errors.name?.[0]}
       </p>
     {/if}
     <input
       class="c-input"
       type="email"
       name="email"
-      bind:value={email}
       placeholder="Email"
-      required
+      autocomplete="email"
+      bind:value={$form.email}
+      {...$constraints.email}
     />
   </div>
   <button type="submit" class="c-btn">{t.cta}</button>
   <div class="relative col-span-3 w-full">
-    {#if turnstileError}
-      <p class="error">{turnstileError}</p>
+    {#if $errors.turnstile?.length}
+      <p class="error">{$errors.turnstile[0]}</p>
     {/if}
     <div
       class="flex justify-end"
       turnstile-sitekey={PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY}
-      turnstile-response-field-name={CLOUDFLARE_TURNSTILE_FORM_FIELD}
-      turnstile-response-field
       turnstile-theme={colorScheme === 'system' ? 'auto' : colorScheme}
       turnstile-language={language}
       use:turnstile
+      on:turnstile={(e) => ($form.turnstile = e.detail)}
+    />
+    <input
+      hidden
+      type="text"
+      name="turnstile"
+      autocomplete="off"
+      bind:value={$form.turnstile}
+      {...$constraints.turnstile}
     />
   </div>
 </form>

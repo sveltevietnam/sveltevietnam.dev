@@ -1,5 +1,8 @@
-import { mail } from '$shared/actions/mail/mail.server';
-import { translations as mailT } from '$shared/actions/mail/translation';
+import { superValidate } from 'sveltekit-superforms/server';
+
+import { mailSchema } from '$client/components/MailRegistrationForm/MailRegistrationForm.svelte';
+import { mail } from '$server/actions/mail/mail.server';
+import { translations as mailT } from '$server/actions/mail/translation';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
 import { createMockedEvents } from '$shared/mocks';
 
@@ -22,6 +25,7 @@ const metaTranslations = {
 export const load: PageServerLoad = ({ depends, locals: { language } }) => {
   depends(LOAD_DEPENDENCIES.LANGUAGE);
   const tMeta = metaTranslations[language];
+  const mailForm = superValidate(mailSchema);
   return {
     translations: {
       page: pageT[language],
@@ -35,6 +39,7 @@ export const load: PageServerLoad = ({ depends, locals: { language } }) => {
       ...tMeta,
       canonical: `https://sveltevietnam.com/${language}/events`,
     },
+    mailForm,
   };
 };
 

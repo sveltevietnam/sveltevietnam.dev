@@ -4,7 +4,6 @@ export const LOAD_DEPENDENCIES = {
 
 export const SOCIAL_LINKS = {
   github: 'https://github.com/sveltevietnam',
-  // discord: 'https://discord.gg/Rtv2xwhz7d',
   discord: 'https://discord.sveltevietnam.dev',
   twitter: 'https://twitter.com/sveltevietnam',
   facebook: 'https://facebook.com/sveltevietnam',
@@ -31,5 +30,3 @@ export const GITHUB_LINKS = {
     PUBLIC_PROJECT: '',
   },
 };
-
-export const CLOUDFLARE_TURNSTILE_FORM_FIELD = 'turnstile';
