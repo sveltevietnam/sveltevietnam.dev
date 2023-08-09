@@ -13,6 +13,7 @@ export const vi = {
       },
       captcha: {
         required: 'Cloudflare Turnstile response không được để trống',
+        unknown: 'Lỗi không xác định từ Cloudflare Turnstile',
       },
     },
     success: 'Đăng kí thành công',

@@ -247,6 +247,9 @@ importers:
       svelte-check:
         specifier: ^3.4.6
         version: 3.4.6(postcss-load-config@4.0.1)(postcss@8.4.27)(svelte@4.1.1)
+      sveltekit-superforms:
+        specifier: ^1.5.0
+        version: 1.5.0(@sveltejs/kit@1.22.3)(svelte@4.1.1)(zod@3.21.4)
       tailwindcss:
         specifier: ^3.3.3
         version: 3.3.3
@@ -6119,6 +6122,18 @@ packages:
       periscopic: 3.1.0
     dev: true
 
+  /sveltekit-superforms@1.5.0(@sveltejs/kit@1.22.3)(svelte@4.1.1)(zod@3.21.4):
+    resolution: {integrity: sha512-c/2v6zN9rtIAsOfsd6rBV7Kf0lB2+/o6sAFaOuMrYPlTBro5lpbz3iN/3nM5D3EuLE2Xt/iDdZYpkQdH8rq4nQ==}
+    peerDependencies:
+      '@sveltejs/kit': 1.x
+      svelte: 3.x || 4.x
+      zod: 3.x
+    dependencies:
+      '@sveltejs/kit': 1.22.3(svelte@4.1.1)(vite@4.4.7)
+      svelte: 4.1.1
+      zod: 3.21.4
+    dev: true
+
   /svg-parser@2.0.4:
     resolution: {integrity: sha512-e4hG1hRwoOdRb37cIMSgzNsxyzKfayW6VOflrwvR+/bzrkyxY/31WkbgnQpgtrNp1SdpJvpUAGTa/ZoiPNDuRQ==}
     dev: true
@@ -6859,7 +6874,6 @@ packages:
 
   /zod@3.21.4:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
-    dev: false
 
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}

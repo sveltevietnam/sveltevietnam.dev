@@ -14,7 +14,8 @@ export const en = {
         invalid: 'Name is invalid',
       },
       captcha: {
-        required: 'Cloudflare Turnstile response is required',
+        required: 'Cloudflare turnstile response is required',
+        unknown: 'Unknown cloudflare turnstile error',
       },
     },
     success: 'Registered successfully',

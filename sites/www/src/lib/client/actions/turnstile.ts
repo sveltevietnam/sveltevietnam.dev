@@ -39,7 +39,7 @@ declare global {
 }
 
 export type TurnstileEventAttributes = {
-  'on:turnstile'?: (event: CustomEvent<any>) => void;
+  'on:turnstile'?: (event: CustomEvent<string>) => void;
   'on:turnstile:error'?: (event: CustomEvent<any>) => void;
   'on:turnstile:timeout'?: (event: CustomEvent<any>) => void;
   'on:turnstile:expired'?: (event: CustomEvent<any>) => void;
@@ -70,7 +70,7 @@ export type TurnstileAttributes = TurnstileEventAttributes & TurnstileDataAttrib
  * {@link https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/#configurations | Turnstile client configuration}
  */
 export type TurnstileParameters = {
-  sitekey: TurnstileConfig['sitekey'];
+  sitekey?: TurnstileConfig['sitekey'];
   action?: TurnstileConfig['action'];
   cData?: TurnstileConfig['cData'];
   execution?: TurnstileConfig['execution'];
