@@ -22,6 +22,11 @@ export const handle: Handle = async ({ event, resolve }) => {
   let languageFromUrl = getLangFromUrl(url, LANGUAGES);
 
   if (!languageFromUrl) {
+    const cookieLang = cookies.get(COOKIE_LANGUAGE);
+    if (cookieLang && cookieLang !== 'vi') {
+      return Response.redirect(localizeUrl(url, cookieLang, LANGUAGES), 302);
+    }
+
     // REF: https://developers.cloudflare.com/workers/runtime-apis/request/#incomingrequestcfproperties
     const countryCode = platform?.cf?.country;
     if (countryCode && countryCode.toUpperCase() !== 'VN') {
