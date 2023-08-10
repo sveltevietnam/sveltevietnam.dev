@@ -9,7 +9,7 @@ import type { ColorScheme } from '$shared/types';
 const COMMON_COOKIE_CONFIG = { path: '/', secure: true, httpOnly: true };
 
 export const handle: Handle = async ({ event, resolve }) => {
-  const { locals, cookies, url, route, platform } = event;
+  const { locals, cookies, url, route, platform, request } = event;
 
   // Ensure that the user has a unique ID
   locals.userId = cookies.get(COOKIE_USER_ID) || crypto.randomUUID();
@@ -22,6 +22,21 @@ export const handle: Handle = async ({ event, resolve }) => {
   let languageFromUrl = getLangFromUrl(url, LANGUAGES);
 
   if (!languageFromUrl) {
+    const referer = request.headers.get('Referer');
+    if (referer) {
+      try {
+        const urlReferer = new URL(referer);
+        if (urlReferer.origin === url.origin) {
+          languageFromUrl = getLangFromUrl(urlReferer, LANGUAGES);
+          if (languageFromUrl) {
+            return Response.redirect(localizeUrl(url, languageFromUrl, LANGUAGES), 302);
+          }
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
     const cookieLang = cookies.get(COOKIE_LANGUAGE);
     if (cookieLang && cookieLang !== 'vi') {
       return Response.redirect(localizeUrl(url, cookieLang, LANGUAGES), 302);
