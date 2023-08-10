@@ -104,3 +104,7 @@ describe('root urls', () => {
 describe('urls with subpaths', () => {
   commonTests('/path/to/somewhere');
 });
+
+describe('urls with subpaths, ending with slash', () => {
+  commonTests('/path/to/somewhere/');
+});

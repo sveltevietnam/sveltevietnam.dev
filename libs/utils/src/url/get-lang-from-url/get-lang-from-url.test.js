@@ -9,7 +9,7 @@ const langs = ['en', 'ja', 'vi'];
  * @param {string} pathname
  */
 function commonTests(pathname) {
-  const localizedPathname = `/${lang}/path`;
+  const localizedPathname = `/${lang}${pathname}`;
 
   test('url is localized', () => {
     expect(getLangFromUrl(localizedPathname, langs)).toBe(lang);
@@ -31,4 +31,8 @@ describe('root urls', () => {
 
 describe('urls with subpaths', () => {
   commonTests('/path/to/somewhere');
+});
+
+describe('urls with subpaths, ending with slash', () => {
+  commonTests('/path/to/somewhere/');
 });

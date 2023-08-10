@@ -11,10 +11,9 @@ const origin = 'https://mocking.com';
  * @param {string} pathname
  */
 function commonTests(pathname) {
+  const localizedPathname = `/${lang}${pathname !== '/' ? pathname : ''}`;
+
   const absoluteUrl = `${origin}${pathname}`;
-
-  const localizedPathname = `/${lang}${pathname}`;
-
   const localizedAbsoluteUrl = `${origin}/${lang}${pathname}`;
 
   const url = new URL(`${origin}${pathname}`);
@@ -22,7 +21,7 @@ function commonTests(pathname) {
 
   describe('localized', () => {
     test('arg is root relative pathname', () => {
-      expect(delocalizeUrl(localizedPathname, langs)).toBe(pathname);
+      expect(delocalizeUrl(localizedPathname, langs)).toBe(pathname || '/');
     });
     test('arg is absolute url string', () => {
       expect(delocalizeUrl(localizedAbsoluteUrl, langs)).toBe(absoluteUrl);
@@ -34,7 +33,7 @@ function commonTests(pathname) {
 
   describe('not localized', () => {
     test('arg is root relative pathname', () => {
-      expect(delocalizeUrl(pathname, langs)).toBe(pathname);
+      expect(delocalizeUrl(pathname || '/', langs)).toBe(pathname || '/');
     });
     test('arg is absolute url string', () => {
       expect(delocalizeUrl(absoluteUrl, langs)).toBe(absoluteUrl);
@@ -51,4 +50,8 @@ describe('root urls', () => {
 
 describe('urls with subpaths', () => {
   commonTests('/path/to/somewhere');
+});
+
+describe('urls with subpaths, ending with slash', () => {
+  commonTests('/path/to/somewhere/');
 });
