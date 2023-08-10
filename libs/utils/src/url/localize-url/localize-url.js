@@ -17,7 +17,9 @@ export function localizeUrl(url, lang, langs) {
 
   let newPathname = '';
   const [, maybeLang, ...rest] = rUrl.pathname.split('/');
-  if (langs.some((l) => l === maybeLang)) {
+  if (!maybeLang) {
+    newPathname = `/${lang}`;
+  } else if (langs.some((l) => l === maybeLang)) {
     newPathname = `/${[lang, ...rest].join('/')}`;
   } else {
     newPathname = `/${[lang, maybeLang, ...rest].join('/')}`;

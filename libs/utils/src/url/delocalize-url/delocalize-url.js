@@ -16,9 +16,11 @@ export function delocalizeUrl(url, langs) {
 
   let pathname = rUrl.pathname;
   for (const lang of langs) {
-    pathname = pathname.replace(`/${lang}/`, '/');
+    if (pathname === `/${lang}` || pathname.startsWith(`/${lang}`)) {
+      pathname = pathname.substring(lang.length + 1);
+    }
   }
-  rUrl.pathname = pathname;
+  rUrl.pathname = pathname || '/';
 
   if (typeof url === 'string') {
     if (url.startsWith('/')) {

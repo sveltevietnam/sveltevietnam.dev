@@ -12,11 +12,11 @@ const origin = 'https://mocking.com';
  * @param {string} pathname
  */
 function commonTests(pathname) {
-  const absoluteUrl = `${origin}${pathname}`;
-
+  if (pathname === '/') pathname = '';
   const localizedPathname = `/${lang}${pathname}`;
   const differentLocalizedPathname = `/${differentLang}${pathname}`;
 
+  const absoluteUrl = `${origin}${pathname}`;
   const localizedAbsoluteUrl = `${origin}/${lang}${pathname}`;
   const differentLocalizedAbsoluteUrl = `${origin}/${differentLang}${pathname}`;
 
@@ -52,7 +52,7 @@ function commonTests(pathname) {
 
   describe('not localized', () => {
     test('arg is root relative pathname', () => {
-      expect(localizeUrl(pathname, lang, langs)).toBe(localizedPathname);
+      expect(localizeUrl(pathname || '/', lang, langs)).toBe(localizedPathname);
     });
     test('arg is absolute url string', () => {
       expect(localizeUrl(absoluteUrl, lang, langs)).toBe(localizedAbsoluteUrl);
@@ -69,4 +69,8 @@ describe('root urls', () => {
 
 describe('urls with subpaths', () => {
   commonTests('/path/to/somewhere');
+});
+
+describe('urls with subpaths, ending with slash', () => {
+  commonTests('/path/to/somewhere/');
 });
