@@ -74,13 +74,13 @@
     <link
       rel="alternate"
       hreflang={lang}
-      href={localizeUrl($page.url, LANGUAGES, lang).toString()}
+      href={localizeUrl($page.url, lang, LANGUAGES).toString()}
     />
   {/each}
   <link
     rel="alternate"
     hreflang="x-default"
-    href={localizeUrl($page.url, LANGUAGES, 'vi').toString()}
+    href={localizeUrl($page.url, 'vi', LANGUAGES).toString()}
   />
 
   <script>

@@ -26,25 +26,25 @@ function commonTests(pathname) {
 
   describe('already localized', () => {
     test('arg is root relative pathname', () => {
-      expect(localizeUrl(localizedPathname, langs, lang)).toBe(localizedPathname);
+      expect(localizeUrl(localizedPathname, lang, langs)).toBe(localizedPathname);
     });
     test('arg is absolute url string', () => {
-      expect(localizeUrl(localizedAbsoluteUrl, langs, lang)).toBe(localizedAbsoluteUrl);
+      expect(localizeUrl(localizedAbsoluteUrl, lang, langs)).toBe(localizedAbsoluteUrl);
     });
     test('arg is URL object', () => {
-      expect(localizeUrl(localizedUrl, langs, lang).toString()).toBe(localizedUrl.toString());
+      expect(localizeUrl(localizedUrl, lang, langs).toString()).toBe(localizedUrl.toString());
     });
   });
 
   describe('already localized but with different lang', () => {
     test('arg is root relative pathname', () => {
-      expect(localizeUrl(differentLocalizedPathname, langs, lang)).toBe(localizedPathname);
+      expect(localizeUrl(differentLocalizedPathname, lang, langs)).toBe(localizedPathname);
     });
     test('arg is absolute url string', () => {
-      expect(localizeUrl(differentLocalizedAbsoluteUrl, langs, lang)).toBe(localizedAbsoluteUrl);
+      expect(localizeUrl(differentLocalizedAbsoluteUrl, lang, langs)).toBe(localizedAbsoluteUrl);
     });
     test('arg is URL object', () => {
-      expect(localizeUrl(differentLocalizedUrl, langs, lang).toString()).toBe(
+      expect(localizeUrl(differentLocalizedUrl, lang, langs).toString()).toBe(
         localizedUrl.toString(),
       );
     });
@@ -52,13 +52,13 @@ function commonTests(pathname) {
 
   describe('not localized', () => {
     test('arg is root relative pathname', () => {
-      expect(localizeUrl(pathname, langs, lang)).toBe(localizedPathname);
+      expect(localizeUrl(pathname, lang, langs)).toBe(localizedPathname);
     });
     test('arg is absolute url string', () => {
-      expect(localizeUrl(absoluteUrl, langs, lang)).toBe(localizedAbsoluteUrl);
+      expect(localizeUrl(absoluteUrl, lang, langs)).toBe(localizedAbsoluteUrl);
     });
     test('arg is URL object', () => {
-      expect(localizeUrl(url, langs, lang).toString()).toBe(localizedUrl.toString());
+      expect(localizeUrl(url, lang, langs).toString()).toBe(localizedUrl.toString());
     });
   });
 }

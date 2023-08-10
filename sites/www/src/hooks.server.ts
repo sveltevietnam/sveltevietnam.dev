@@ -25,7 +25,7 @@ export const handle: Handle = async ({ event, resolve }) => {
     // REF: https://developers.cloudflare.com/workers/runtime-apis/request/#incomingrequestcfproperties
     const countryCode = platform?.cf?.country;
     if (countryCode && countryCode.toUpperCase() !== 'VN') {
-      return Response.redirect(localizeUrl(url, LANGUAGES, 'en'), 302);
+      return Response.redirect(localizeUrl(url, 'en', LANGUAGES), 302);
     }
     languageFromUrl = 'vi';
   }
