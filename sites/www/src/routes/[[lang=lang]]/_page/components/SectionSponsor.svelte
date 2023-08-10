@@ -3,7 +3,7 @@
   import { splitFade } from '$client/actions/splitFade';
   import { AnimatedArrowCircle } from '$client/components/AnimatedArrowCircle';
   import type { Language } from '$shared/services/i18n';
-  import { getSponsorHref } from '$shared/services/navigation';
+  import { SPONSOR_PATH } from '$shared/services/navigation';
   import type { Sponsor } from '$shared/types';
 
   import { translations } from '../translation';
@@ -15,7 +15,7 @@
 </script>
 
 <section class="sponsors c-container-design">
-  <a href={getSponsorHref(lang)} title={t.title} class="section-title-container" use:splitFade>
+  <a href={SPONSOR_PATH} title={t.title} class="section-title-container" use:splitFade>
     <h2 class="section-title">
       {t.title}
     </h2>

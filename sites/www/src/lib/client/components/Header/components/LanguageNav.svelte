@@ -2,11 +2,11 @@
   import { localizeUrl } from '@libs/utils/url';
 
   import { invalidate } from '$app/navigation';
-  import { page } from '$app/stores';
   import { LOAD_DEPENDENCIES } from '$shared/constants';
   import { LANGUAGES } from '$shared/services/i18n';
   import type { Language } from '$shared/services/i18n';
 
+  export let pathname: string;
   export let lang: Language;
   let cls = '';
   export { cls as class };
@@ -27,7 +27,7 @@
         <a
           lang={language}
           aria-current={current}
-          href={localizeUrl($page.url, language, LANGUAGES).toString()}
+          href={localizeUrl(pathname, language, LANGUAGES).toString()}
           on:click={() => changeLanguage(language)}
         >
           {language}

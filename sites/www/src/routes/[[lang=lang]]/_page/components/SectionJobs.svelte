@@ -4,7 +4,7 @@
   import { AnimatedArrowCircle } from '$client/components/AnimatedArrowCircle';
   import { JobCard } from '$client/components/JobCard';
   import type { Language } from '$shared/services/i18n';
-  import { getJobsHref } from '$shared/services/navigation';
+  import { JOBS_PATH } from '$shared/services/navigation';
   import type { Job } from '$shared/types';
 
   import { translations } from '../translation';
@@ -16,7 +16,7 @@
 </script>
 
 <section class="jobs c-container-design">
-  <a href={getJobsHref(lang)} title={t.title} class="section-title-container" use:splitFade>
+  <a href={JOBS_PATH} title={t.title} class="section-title-container" use:splitFade>
     <h2 class="section-title">
       {t.title}
     </h2>

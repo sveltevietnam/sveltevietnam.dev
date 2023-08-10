@@ -2,8 +2,8 @@
   import { fly } from 'svelte/transition';
 
   import { afterNavigate } from '$app/navigation';
-  import { page } from '$app/stores';
   import type { Language } from '$shared/services/i18n';
+  import { HOME_PATH, isCurrentPage } from '$shared/services/navigation';
   import type { ColorScheme } from '$shared/types';
   import { clamp } from '$shared/utils/clamp';
 
@@ -11,6 +11,7 @@
   import LanguageNav from './components/LanguageNav.svelte';
   import PageNav from './components/PageNav.svelte';
 
+  export let pathname: string;
   export let lang: Language;
   export let colorScheme: ColorScheme;
 
@@ -23,11 +24,10 @@
     mobileOverlayOpen = false;
   });
 
-  $: isHomePage = $page.url.pathname === `/${lang}`;
-
   const MAX_SCROLL_Y = 320;
   let scrollY = 0;
   $: backdropOpacity = clamp(scrollY / MAX_SCROLL_Y, 0, 1);
+  $: isHomePage = isCurrentPage(pathname, HOME_PATH);
 </script>
 
 <svelte:window bind:scrollY />
@@ -39,7 +39,7 @@
       <svelte:element
         this={isHomePage ? 'div' : 'a'}
         {...!isHomePage && {
-          href: `/${lang}`,
+          href: HOME_PATH,
           title: 'Home',
         }}
         class="contents"
@@ -87,8 +87,8 @@
         data-open={mobileOverlayOpen}
         transition:fly={{ duration: 200, x: 50 }}
       >
-        <LanguageNav {lang} class="languages" />
-        <PageNav {lang} class="pages" />
+        <LanguageNav {pathname} {lang} class="languages" />
+        <PageNav {pathname} {lang} class="pages" />
         <button class="mobile-close" on:click={toggleMobileOverlay}>
           <svg inline-src="icon/x" width="44" height="44" />
         </button>

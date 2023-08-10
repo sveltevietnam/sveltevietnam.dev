@@ -4,7 +4,7 @@
   import { AnimatedArrowCircle } from '$client/components/AnimatedArrowCircle';
   import { EventCard } from '$client/components/EventCard';
   import type { Language } from '$shared/services/i18n';
-  import { getEventsHref } from '$shared/services/navigation';
+  import { EVENTS_PATH } from '$shared/services/navigation';
   import type { Event } from '$shared/types';
 
   import { translations } from '../translation';
@@ -16,7 +16,7 @@
 </script>
 
 <section class="events c-container-design">
-  <a href={getEventsHref(lang)} title={t.title} class="section-title-container" use:splitFade>
+  <a href={EVENTS_PATH} title={t.title} class="section-title-container" use:splitFade>
     <h2 class="section-title">
       {t.title}
     </h2>

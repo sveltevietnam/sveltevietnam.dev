@@ -2,7 +2,7 @@
   import { EventCard } from '$client/components/EventCard';
   import { MailRegistrationForm } from '$client/components/MailRegistrationForm';
   import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
-  import { getSponsorHref } from '$shared/services/navigation';
+  import { SPONSOR_PATH } from '$shared/services/navigation';
 
   import type { ActionData } from './$types';
 
@@ -11,7 +11,6 @@
 
   $: t = data.translations.page;
   $: tMail = data.translations.mail;
-  $: sponsorHref = getSponsorHref(data.language);
 </script>
 
 <main class="c-page">
@@ -71,8 +70,8 @@
       <div class="c-graphic" />
       <h2 class="c-page@h2">{t.actions.sponsor.title}</h2>
       <p>{t.actions.sponsor.description}</p>
-      <a href={sponsorHref} class="c-btn">{t.actions.sponsor.cta}</a>
-      <a class="c-link text-xs italic" href="{sponsorHref}#why">
+      <a href={SPONSOR_PATH} class="c-btn">{t.actions.sponsor.cta}</a>
+      <a class="c-link text-xs italic" href="{SPONSOR_PATH}#why">
         {t.actions.sponsor.whyNeedSponsor}
       </a>
     </section>

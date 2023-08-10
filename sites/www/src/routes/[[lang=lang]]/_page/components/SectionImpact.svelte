@@ -6,7 +6,7 @@
   import { splitFade } from '$client/actions/splitFade';
   import { AnimatedArrowCircle } from '$client/components/AnimatedArrowCircle';
   import type { Language } from '$shared/services/i18n';
-  import { getImpactHref } from '$shared/services/navigation';
+  import { IMPACT_PATH } from '$shared/services/navigation';
   import type { Project } from '$shared/types';
 
   import { translations } from '../translation';
@@ -28,7 +28,7 @@
 
 <section class="impact">
   <div class="c-container-design">
-    <a href={getImpactHref(lang)} title={t.title} class="section-title-container" use:splitFade>
+    <a href={IMPACT_PATH} title={t.title} class="section-title-container" use:splitFade>
       <h2 class="section-title">
         {t.title}
       </h2>

@@ -1,17 +1,19 @@
 <script lang="ts">
-  import { page } from '$app/stores';
   import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
   import {
-    getCodeOfConductHref,
-    getRSSHref,
-    getSitemapHref,
+    CODE_OF_CONDUCT_PATH,
+    HOME_PATH,
+    RSS_PATH,
+    SITEMAP_PATH,
+    TOP_LEVEL_PATHS,
+    getPathLabel,
     isCurrentPage,
-    pages,
   } from '$shared/services/navigation';
 
   import { translations } from './translation';
 
+  export let pathname: string;
   export let version: string;
   export let lang: Language;
 
@@ -29,10 +31,10 @@
         <p class="footer-section-title">{t.navigation.title}</p>
         <nav aria-label="all internal pages" data-sveltekit-preload-data="hover">
           <ul>
-            {#each pages(lang, 'with-home') as { href, label }}
-              {@const current = isCurrentPage($page.url.pathname, href)}
+            {#each [HOME_PATH, ...TOP_LEVEL_PATHS] as href}
+              {@const current = isCurrentPage(pathname, href)}
               <li>
-                <a aria-current={current} {href} class="footer-link">{label}</a>
+                <a aria-current={current} {href} class="footer-link">{getPathLabel(href, lang)}</a>
               </li>
             {/each}
           </ul>
@@ -113,15 +115,14 @@
     </p>
     <p class="footer-additional-links">
       <a
-        href={getCodeOfConductHref(lang)}
+        href={CODE_OF_CONDUCT_PATH}
         class="footer-link"
-        aria-current={isCurrentPage($page.url.pathname, getCodeOfConductHref(lang))}
-        >{t.navigation.codeOfConduct}</a
+        aria-current={isCurrentPage(pathname, CODE_OF_CONDUCT_PATH)}>{t.navigation.codeOfConduct}</a
       >
       <span aria-disabled class="vertical-separator">|</span>
-      <a href={getRSSHref()} class="footer-link">RSS</a>
+      <a href={RSS_PATH} class="footer-link" target="_blank">RSS</a>
       <span aria-disabled class="vertical-separator">|</span>
-      <a href={getSitemapHref()} class="footer-link">Sitemap</a>
+      <a href={SITEMAP_PATH} class="footer-link" target="_blank">Sitemap</a>
     </p>
   </div>
 </footer>

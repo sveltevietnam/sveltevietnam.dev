@@ -1,7 +1,9 @@
 <script lang="ts">
+  import { localizeUrl } from '@libs/utils';
   import ModalPortal from '@svelte-put/modal/ModalPortal.svelte';
   import { onMount } from 'svelte';
 
+  import { beforeNavigate, goto } from '$app/navigation';
   import { Footer } from '$client/components/Footer';
   import { Header } from '$client/components/Header';
   import { SplashScreen } from '$client/components/SplashScreen/index.js';
@@ -9,6 +11,7 @@
   import NotificationPortal from '$client/notifications/NotificationPortal.svelte';
   import { noti, notiStore } from '$client/notifications/index.js';
   import { PUBLIC_COOKIE_SCHEME, PUBLIC_DISCORD_WS_URL } from '$env/static/public';
+  import { LANGUAGES } from '$shared/services/i18n/index.js';
   import type { ColorScheme } from '$shared/types';
 
   export let data;
@@ -50,15 +53,26 @@
       ws.close();
     };
   });
+
+  beforeNavigate(({ to, cancel, from }) => {
+    const fromLang = from?.params?.lang;
+    const toLang = to?.params?.lang;
+    if (to && fromLang && !toLang) {
+      cancel();
+      const localized = localizeUrl(to.url.pathname, fromLang, LANGUAGES);
+      goto(localized);
+    }
+  });
 </script>
 
 <Header
+  pathname={data.pathname}
   lang={data.language}
   colorScheme={clientColorScheme}
   on:colorSchemeChange={changeColorScheme}
 />
 <slot />
-<Footer lang={data.language} version={data.version} />
+<Footer lang={data.language} version={data.version} pathname={data.pathname} />
 
 <!-- portals -->
 <ModalPortal store={modalStore} class="z-modal" />
