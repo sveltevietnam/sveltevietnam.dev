@@ -27,7 +27,7 @@
         <a
           lang={language}
           aria-current={current}
-          href={localizeUrl($page.url, LANGUAGES, language).toString()}
+          href={localizeUrl($page.url, language, LANGUAGES).toString()}
           on:click={() => changeLanguage(language)}
         >
           {language}
