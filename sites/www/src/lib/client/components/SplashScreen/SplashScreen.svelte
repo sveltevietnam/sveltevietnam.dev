@@ -7,7 +7,7 @@
 
   export function randomVariant(): ComponentProps<SplashScreen>['variant'] {
     const random = Math.random();
-    if (random < 0.55) return 1;
+    if (random < 0.75) return 1;
     return 2;
   }
 
