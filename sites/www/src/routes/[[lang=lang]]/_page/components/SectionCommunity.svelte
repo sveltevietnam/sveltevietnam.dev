@@ -7,7 +7,7 @@
   import { splash } from '$client/components/SplashScreen';
   import { SOCIAL_LINKS } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
-  import { getPeopleHref } from '$shared/services/navigation';
+  import { PEOPLE_PATH } from '$shared/services/navigation';
 
   import communityShapeEllipse from '../images/community-shape-ellipse.webp';
   import communityShapePolygon from '../images/community-shape-polygon.webp';
@@ -98,7 +98,7 @@
       </a>
     </li>
     <li>
-      <a class="cta" href={getPeopleHref(lang)} rel="noreferrer">
+      <a class="cta" href={PEOPLE_PATH} rel="noreferrer">
         <span>{t.ctas.nominate}</span>
       </a>
     </li>

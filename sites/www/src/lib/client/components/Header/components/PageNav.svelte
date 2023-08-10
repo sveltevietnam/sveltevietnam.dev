@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { page } from '$app/stores';
   import type { Language } from '$shared/services/i18n';
-  import { pages } from '$shared/services/navigation';
+  import { TOP_LEVEL_PATHS, getPathLabel, isCurrentPage } from '$shared/services/navigation';
 
+  export let pathname: string;
   export let lang: Language;
   let cls = '';
   export { cls as class };
@@ -10,8 +10,8 @@
 
 <nav aria-label="pages" data-sveltekit-preload-data="hover">
   <ul class="sp:divide-y sp:divide-design-border-1 {cls}">
-    {#each pages(lang) as { label, href }}
-      {@const current = $page.url.pathname.startsWith(href)}
+    {#each TOP_LEVEL_PATHS as href}
+      {@const current = isCurrentPage(pathname, href)}
       <li>
         <a aria-current={current} {href}>
           <svg
@@ -31,7 +31,7 @@
             />
           </svg>
           <span>
-            {label}
+            {getPathLabel(href, lang)}
           </span>
         </a>
       </li>

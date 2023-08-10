@@ -1,7 +1,7 @@
 <script lang="ts">
   import { JobCard } from '$client/components/JobCard';
   import { MailRegistrationForm } from '$client/components/MailRegistrationForm';
-  import { getSponsorHref } from '$shared/services/navigation';
+  import { SPONSOR_PATH } from '$shared/services/navigation';
 
   import type { ActionData } from './$types';
 
@@ -9,7 +9,6 @@
   export let form: ActionData;
 
   $: t = data.translations.page;
-  $: sponsorHref = getSponsorHref(data.language);
   $: tMail = data.translations.mail;
   const { fromRecruitmentSites, fromSponsors } = data.jobs;
   const collectedAt = fromRecruitmentSites.collectedAt;
@@ -25,7 +24,7 @@
   <section class="space-y-10">
     <div class="flex items-center justify-between">
       <h2 class="c-page@h2">{t.fromSponsors.title}</h2>
-      <a href={sponsorHref} class="max-md:hidden c-btn">{t.fromSponsors.cta}</a>
+      <a href={SPONSOR_PATH} class="max-md:hidden c-btn">{t.fromSponsors.cta}</a>
     </div>
     <ul class="grid grid-cols-1 gap-10 md:grid-cols-2">
       {#each fromSponsors as job}
@@ -41,10 +40,10 @@
       <div class="c-graphic" />
       <h2 class="c-page@h2 text-center">{t.actions.recruiter.title}</h2>
       <p>{t.actions.recruiter.description}</p>
-      <a href={sponsorHref} class="c-btn">
+      <a href={SPONSOR_PATH} class="c-btn">
         {t.actions.recruiter.cta}
       </a>
-      <a class="c-link text-xs italic" href="{sponsorHref}#why">
+      <a class="c-link text-xs italic" href="{SPONSOR_PATH}#why">
         {t.actions.recruiter.whyNeedSponsor}
       </a>
     </section>
