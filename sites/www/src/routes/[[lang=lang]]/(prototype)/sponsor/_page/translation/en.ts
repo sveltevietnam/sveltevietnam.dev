@@ -1,7 +1,5 @@
 import { EMAILS } from '$shared/constants';
 
-import type { vi } from './vi';
-
 export const en = {
   title: 'Sponsor',
   intro:
@@ -18,4 +16,4 @@ export const en = {
   sponsors: {
     cta: 'See list of sponsors and financial report at Open Collective',
   },
-} satisfies typeof vi;
+} satisfies typeof import('./vi').vi;

@@ -1,7 +1,5 @@
 import { EMAILS } from '$shared/constants';
 
-import type { vi } from './vi';
-
 export const en = {
   title: 'Events',
   subtitle: 'Meetups, conferences about Svelte and open source',
@@ -32,4 +30,4 @@ export const en = {
   pastEvents: {
     title: 'Past Events',
   },
-} satisfies typeof vi;
+} satisfies typeof import('./vi').vi;

@@ -1,7 +1,5 @@
 import { EMAILS } from '$shared/constants';
 
-import type { vi } from './vi';
-
 export const en = {
   title: 'Code of Conduct',
   notice: {
@@ -20,4 +18,4 @@ export const en = {
       'Svelte Society is dedicated to providing <strong/>a harassment-free community for everyone</strong>, regardless of sex, gender identity or expression, sexual orientation, disability, physical appearance, age, race, nationality, or religious beliefs. <strong>We do not tolerate harassment of community members in any form</strong>. Participants violating these rules may be sanctioned or expelled from the community at the discretion of Svelte Society organizers.<br/><br/>All attendees, speakers, sponsors, instructors, and volunteers at our events are required to agree with the following code of conduct. Leadership will enforce this code at all times. We expect cooperation from all participants to help ensure a safe environment for everybody.',
     caption: 'Svelte Society, <cite class="font-bold">TL;DR - Code of Conduct</cite>',
   },
-} satisfies typeof vi;
+} satisfies typeof import('./vi').vi;

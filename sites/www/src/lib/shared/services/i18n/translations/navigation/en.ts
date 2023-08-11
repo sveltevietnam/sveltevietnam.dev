@@ -1,5 +1,3 @@
-import type { vi } from './vi';
-
 export const en = {
   home: 'Home',
   events: 'Events',
@@ -8,4 +6,4 @@ export const en = {
   people: 'People',
   sponsor: 'Sponsor',
   codeOfConduct: 'Code of Conduct',
-} satisfies typeof vi;
+} satisfies typeof import('./vi').vi;

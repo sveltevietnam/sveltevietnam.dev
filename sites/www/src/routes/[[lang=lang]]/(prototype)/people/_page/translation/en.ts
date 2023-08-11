@@ -1,5 +1,3 @@
-import type { vi } from './vi';
-
 export const en = {
   title: 'People',
   subtitle: 'People of Vietnam in the Svelte community',
@@ -18,4 +16,4 @@ export const en = {
       recognize: 'Recognized',
     },
   },
-} satisfies typeof vi;
+} satisfies typeof import('./vi').vi;

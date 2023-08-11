@@ -1,5 +1,3 @@
-import type { vi } from './vi';
-
 export const en = {
   name: 'Name',
   cta: 'Notify me',
@@ -21,4 +19,4 @@ export const en = {
     notImplemented: 'Feature will be implemented soon. Please come back later!',
     success: 'Registered successfully. Thank you!',
   },
-} satisfies typeof vi;
+} satisfies typeof import('./vi').vi;

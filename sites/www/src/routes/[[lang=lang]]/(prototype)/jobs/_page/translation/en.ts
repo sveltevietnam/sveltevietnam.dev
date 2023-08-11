@@ -1,5 +1,3 @@
-import type { vi } from './vi';
-
 export const en = {
   title: 'Jobs',
   subtitle: 'For Svelte developers, posted by sponsors and collected from some recruitment sites',
@@ -24,4 +22,4 @@ export const en = {
     title: 'From Recruitment Sites',
     collectedAt: 'collected at',
   },
-} satisfies typeof vi;
+} satisfies typeof import('./vi').vi;

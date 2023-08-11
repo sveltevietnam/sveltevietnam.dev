@@ -1,7 +1,5 @@
 import { EMAILS } from '$shared/constants';
 
-import type { vi } from './vi';
-
 export const en = {
   title: 'Positive Impact',
   subtitle: 'Technology for all',
@@ -18,4 +16,4 @@ export const en = {
   projectsLaunched: {
     title: 'Launched Projects',
   },
-} satisfies typeof vi;
+} satisfies typeof import('./vi').vi;

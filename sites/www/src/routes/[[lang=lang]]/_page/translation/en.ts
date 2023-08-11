@@ -1,7 +1,5 @@
 import { SOCIAL_LINKS } from '$shared/constants';
 
-import type { vi } from './vi';
-
 export const en = {
   intro: {
     title: 'Introduction',
@@ -50,4 +48,4 @@ export const en = {
       viewMore: 'See more',
     },
   },
-} satisfies typeof vi;
+} satisfies typeof import('./vi').vi;
