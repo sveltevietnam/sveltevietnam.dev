@@ -16,6 +16,7 @@ export const vi = {
         unknown: 'Lỗi không xác định từ Cloudflare Turnstile',
       },
     },
-    success: 'Đăng kí thành công',
+    notImplemented: 'Tính năng sắp hoàn thiện. Quay lại sau bạn nhé!',
+    success: 'Đăng kí thành công. Cảm ơn bạn nhé!',
   },
 };

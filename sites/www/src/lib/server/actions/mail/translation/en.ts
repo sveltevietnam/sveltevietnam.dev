@@ -18,6 +18,7 @@ export const en = {
         unknown: 'Unknown cloudflare turnstile error',
       },
     },
-    success: 'Registered successfully',
+    notImplemented: 'Feature will be implemented soon. Please come back later!',
+    success: 'Registered successfully. Thank you!',
   },
 } satisfies typeof vi;

@@ -3,6 +3,7 @@
 @custom-selector :--default :not(.c-btn--outlined, .c-btn--text), .c-btn--default;
 @custom-selector :--text .c-btn--text;
 @custom-selector :--outlined .c-btn--outlined;
+@custom-selector :--loading [data-loading]:not([data-loading='false']);
 
 .c-btn {
   display: grid;
@@ -59,6 +60,29 @@
     &:hover::after {
       transform-origin: left center;
       transform: scaleX(1);
+    }
+  }
+
+  &:where(:not(:--text):--loading) {
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      backdrop-filter: blur(4px);
+    }
+
+    &::after {
+      @apply c-loader;
+
+      content: '';
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
   }
 }

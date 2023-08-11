@@ -22,10 +22,10 @@ const metaTranslations = {
   },
 };
 
-export const load: PageServerLoad = ({ depends, locals: { language } }) => {
+export const load: PageServerLoad = async ({ depends, locals: { language } }) => {
   depends(LOAD_DEPENDENCIES.LANGUAGE);
   const tMeta = metaTranslations[language];
-  const mailForm = superValidate(mailSchema);
+  const mailForm = await superValidate(mailSchema);
   return {
     translations: {
       page: pageT[language],
