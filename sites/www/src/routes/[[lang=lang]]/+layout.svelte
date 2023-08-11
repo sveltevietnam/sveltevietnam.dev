@@ -35,23 +35,27 @@
 
   // FIXME: extract to own service
   onMount(() => {
-    const ws = new WebSocket(PUBLIC_DISCORD_WS_URL);
-    ws.addEventListener('message', (event) => {
-      try {
-        const payload = JSON.parse(event.data) as DiscordEventData;
-        if (payload.type === 'message') {
-          noti.discord({
-            ...payload.data,
-            language: data.language,
-          });
+    try {
+      const ws = new WebSocket(PUBLIC_DISCORD_WS_URL);
+      ws.addEventListener('message', (event) => {
+        try {
+          const payload = JSON.parse(event.data) as DiscordEventData;
+          if (payload.type === 'message') {
+            noti.discord({
+              ...payload.data,
+              language: data.language,
+            });
+          }
+        } catch (error) {
+          console.error(error);
         }
-      } catch (error) {
-        console.error(error);
-      }
-    });
-    return () => {
-      ws.close();
-    };
+      });
+      return () => {
+        ws.close();
+      };
+    } catch (e) {
+      //
+    }
   });
 
   beforeNavigate(({ to, cancel, from }) => {
