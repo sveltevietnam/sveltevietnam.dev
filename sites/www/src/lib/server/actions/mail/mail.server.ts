@@ -1,6 +1,6 @@
-import { fail } from '@sveltejs/kit';
+import { error, fail } from '@sveltejs/kit';
 import type { RequestEvent } from '@sveltejs/kit';
-import { setError, superValidate } from 'sveltekit-superforms/server';
+import { message, setError, superValidate } from 'sveltekit-superforms/server';
 import { z } from 'zod';
 
 import { validateToken } from '$server/services/turnstile';
@@ -24,7 +24,7 @@ export async function mail<E extends RequestEvent>(event: E, domain: 'job' | 'ev
       .min(1, { message: t.error.captcha.required }),
   });
 
-  const form = await superValidate(request, schema);
+  const form = await superValidate<typeof schema, string>(request, schema);
 
   if (!form.valid) {
     return fail(400, { form });
@@ -43,5 +43,5 @@ export async function mail<E extends RequestEvent>(event: E, domain: 'job' | 'ev
   // - add user if not already
   // - add user to event notification mail list
 
-  return { form };
+  return message(form, t.notImplemented);
 }

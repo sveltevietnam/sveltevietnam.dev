@@ -9,13 +9,12 @@ export const vi = {
   actions: {
     share: {
       title: 'Chia sẻ',
-      description:
-        'Đăng kí trở thành diễn giả trong các buổi gặp mặt kế tiếp để chia sẻ kinh nghiệm hoặc sản phẩm của bạn',
+      description: 'Chia sẻ kinh nghiệm, sản phẩm trong các sự kiện kế tiếp',
       cta: `Email <em>${EMAILS.events}</em>`,
     },
     participate: {
       title: 'Tham gia',
-      description: 'Đăng kí nhận thông báo và thông tin về các buổi gặp mặt của Svelte Vietnam',
+      description: 'Đăng kí nhận thông tin về sự kiện của Svelte Vietnam',
     },
     discord: {
       cta: 'Sự kiện đã diễn ra',

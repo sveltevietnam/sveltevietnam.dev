@@ -11,13 +11,12 @@ export const en = {
   actions: {
     share: {
       title: 'Share',
-      description:
-        'Register to be speaker at the next meetups to share your experience and products',
+      description: 'Share your experience and products in the next events',
       cta: `Email <em>${EMAILS.events}</em>`,
     },
     participate: {
       title: 'Participate',
-      description: 'Register to receive email notification about upcoming Svelte Vietnam meetups',
+      description: 'Register for email notification about upcoming events',
     },
     discord: {
       cta: 'Join the community now in Discord',
