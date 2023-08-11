@@ -88,18 +88,11 @@
       class="flex justify-end"
       turnstile-sitekey={PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY}
       turnstile-theme={colorScheme === 'system' ? 'auto' : colorScheme}
+      turnstile-response-field-name="turnstile"
       turnstile-response-field
       turnstile-language={language}
       use:turnstile
       on:turnstile={(e) => ($form.turnstile = e.detail)}
-    />
-    <input
-      hidden
-      type="text"
-      name="turnstile"
-      autocomplete="off"
-      bind:value={$form.turnstile}
-      {...$constraints.turnstile}
     />
   </div>
 </form>
