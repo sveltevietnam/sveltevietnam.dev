@@ -22,6 +22,10 @@ export const handle: Handle = async ({ event, resolve }) => {
   let languageFromUrl = getLangFromUrl(url, LANGUAGES);
 
   if (!languageFromUrl) {
+    // if user comes from an internal link with lang, redirect to the same lang
+    // this is for progressive enhancement when JS is unavailable,
+    // otherwise the beforeNavigate hook in [[lang=lang]]/+layout.svelte will
+    // handle the redirection with kit client-side router
     const referer = request.headers.get('Referer');
     if (referer) {
       try {
@@ -37,11 +41,13 @@ export const handle: Handle = async ({ event, resolve }) => {
       }
     }
 
+    // if user has the EN cookie lang, redirect to EN
     const cookieLang = cookies.get(COOKIE_LANGUAGE);
     if (cookieLang && cookieLang !== 'vi') {
       return Response.redirect(localizeUrl(url, cookieLang, LANGUAGES), 302);
     }
 
+    // if user comes from a non-VN country, redirect to EN
     // REF: https://developers.cloudflare.com/workers/runtime-apis/request/#incomingrequestcfproperties
     const countryCode = platform?.cf?.country;
     if (countryCode && countryCode.toUpperCase() !== 'VN') {
