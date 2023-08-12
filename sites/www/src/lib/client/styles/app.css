@@ -35,10 +35,6 @@
     --color-bg-2: theme('colors.design.grayscale.light.2');
     --color-shadow: theme(colors.design.grayscale.dark.1 / 10%);
 
-    /* grayscale logo */
-    --logo-grayscale-color-fg: white;
-    --logo-grayscale-color-bg: black;
-
     @dark {
       /* foreground colors */
       --color-fg-100: theme('colors.grayscale.light.100');
@@ -59,10 +55,6 @@
       --color-bg-1: theme('colors.design.grayscale.dark.2');
       --color-bg-2: theme('colors.design.grayscale.dark.3');
       --color-shadow: theme(colors.design.grayscale.light.1 / 10%);
-
-      /* grayscale logo */
-      --logo-grayscale-color-fg: black;
-      --logo-grayscale-color-bg: white;
     }
   }
 
@@ -75,16 +67,6 @@
     color: theme('colors.design.fg.1');
 
     background-color: theme('colors.design.bg.1');
-  }
-
-  .logo-grayscale {
-    & .fg {
-      fill: var(--logo-grayscale-color-fg);
-    }
-
-    & .bg {
-      fill: var(--logo-grayscale-color-bg);
-    }
   }
 
   *:disabled {

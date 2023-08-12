@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { SvelteVietnamLogo } from '$client/components/SvelteVietnamLogo';
   import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
   import {
@@ -58,7 +59,7 @@
       </section>
     </div>
     <div class="footer-logo">
-      <svg inline-src="sveltevietnam-grayscale" width="76" height="86" />
+      <SvelteVietnamLogo version="themed" width={76} height={86} />
       <p>Svelte <br aria-disabled /> Vietnam</p>
     </div>
   </div>

@@ -7,6 +7,8 @@
   import type { ColorScheme } from '$shared/types';
   import { clamp } from '$shared/utils/clamp';
 
+  import { SvelteVietnamLogo } from '../SvelteVietnamLogo';
+
   import ColorSchemeMenu from './components/ColorSchemeMenu.svelte';
   import LanguageNav from './components/LanguageNav.svelte';
   import PageNav from './components/PageNav.svelte';
@@ -44,7 +46,7 @@
         }}
         class="contents"
       >
-        <svg inline-src="sveltevietnam-grayscale" width="50" height="56" />
+        <SvelteVietnamLogo version="themed" hoverToOriginal width={50} height={56} />
         <span>Svelte <br aria-disabled /> Vietnam</span>
       </svelte:element>
     </div>
@@ -174,16 +176,8 @@
       }
     }
 
-    & :global(.bg) {
-      transition: fill var(--transition-duration) var(--transition-timing-function);
-    }
-
     & a:hover {
       color: var(--active-color);
-
-      & :global(.bg) {
-        fill: var(--active-color);
-      }
     }
   }
 

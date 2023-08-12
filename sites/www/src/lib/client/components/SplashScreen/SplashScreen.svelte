@@ -25,6 +25,8 @@
 </script>
 
 <script lang="ts">
+  import { SvelteVietnamLogo } from '$client/components/SvelteVietnamLogo';
+
   export let variant: 1 | 2;
 
   let inDuration = variant === 1 ? 600 : 2000;
@@ -61,7 +63,7 @@
   on:animationend|self={onAnimationEnd}
 >
   <div class="icon">
-    <svg inline-src="sveltevietnam-grayscale" width="90" height="94" class="logo-grayscale" />
+    <SvelteVietnamLogo version="themed" width={90} height={94} />
   </div>
   <div class="title">
     <svg

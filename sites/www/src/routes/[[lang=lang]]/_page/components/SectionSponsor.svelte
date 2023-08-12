@@ -2,6 +2,7 @@
   import { intersect } from '$client/actions/intersect';
   import { splitFade } from '$client/actions/splitFade';
   import { AnimatedArrowCircle } from '$client/components/AnimatedArrowCircle';
+  import SvelteVietnamLogo from '$client/components/SvelteVietnamLogo/SvelteVietnamLogo.svelte';
   import type { Language } from '$shared/services/i18n';
   import { SPONSOR_PATH } from '$shared/services/navigation';
   import type { Sponsor } from '$shared/types';
@@ -26,12 +27,7 @@
   <ul class="mt-10 flex flex-wrap gap-x-[73px] gap-y-[62px] pc:mt-20" use:intersect>
     {#each sponsors as _}
       <li class="flex items-center space-x-2 pc:space-x-4">
-        <svg
-          inline-src="sveltevietnam-grayscale"
-          width="50"
-          height="56"
-          class="logo-grayscale sp:w-27 sp:w-30"
-        />
+        <SvelteVietnamLogo width={50} height={56} version="themed" class="sp:w-[32px]" />
         <p class="w-[50px] text-[11px] uppercase pc:w-[90px] pc:text-[20px]">Svelte Vietnam</p>
       </li>
     {/each}
