@@ -1,0 +1,179 @@
+/* --------------H1-------------- */
+.typo-h1\@sp {
+  font-family: theme('fontFamily.lora');
+}
+
+.typo-h1\@pc {
+  font-family: theme('fontFamily.lora');
+  font-size: 64px;
+  line-height: 82px;
+  letter-spacing: 0.06em;
+}
+
+.typo-h1 {
+  @screen pc {
+    @apply typo-h1@pc;
+  }
+}
+
+/* --------------H2-------------- */
+.typo-h2\@sp {
+  font-family: theme('fontFamily.lora');
+}
+
+.typo-h2\@pc {
+  font-family: theme('fontFamily.lora');
+  font-size: 48px;
+  line-height: 61px;
+  letter-spacing: 0.04em;
+}
+
+.typo-h2 {
+  @screen pc {
+    @apply typo-h2@pc;
+  }
+}
+
+/* --------------H3-------------- */
+.typo-h3\@sp {
+  font-family: theme('fontFamily.lora');
+}
+
+.typo-h3\@pc {
+  font-family: theme('fontFamily.lora');
+  font-size: 32px;
+  line-height: 41px;
+  letter-spacing: 0.04em;
+}
+
+.typo-h3 {
+  @screen pc {
+    @apply typo-h3@pc;
+  }
+}
+
+/* --------------H4-------------- */
+.typo-h4\@sp {
+  font-family: theme('fontFamily.inter');
+}
+
+.typo-h4\@pc {
+  font-family: theme('fontFamily.inter');
+  font-size: 24px;
+  line-height: 31px;
+  letter-spacing: 0;
+}
+
+.typo-h4 {
+  @screen pc {
+    @apply typo-h4@pc;
+  }
+}
+
+/* --------------H5-------------- */
+.typo-h5\@sp {
+  font-family: theme('fontFamily.inter');
+}
+
+.typo-h5\@pc {
+  font-family: theme('fontFamily.inter');
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0;
+}
+
+.typo-h5 {
+  @screen pc {
+    @apply typo-h5@pc;
+  }
+}
+
+/* --------------BODY-1-------------- */
+.typo-body1\@sp {
+  font-family: theme('fontFamily.inter');
+}
+
+.typo-body1\@pc {
+  font-family: theme('fontFamily.inter');
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+}
+
+.typo-body1 {
+  @screen pc {
+    @apply typo-body1@pc;
+  }
+}
+
+/* --------------BODY-2-------------- */
+.typo-body2\@sp {
+  font-family: theme('fontFamily.inter');
+}
+
+.typo-body2\@pc {
+  font-family: theme('fontFamily.inter');
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0;
+}
+
+.typo-body2 {
+  @screen pc {
+    @apply typo-body2@pc;
+  }
+}
+
+/* --------------CATPTION-1-------------- */
+.typo-caption1\@sp {
+  font-family: theme('fontFamily.inter');
+}
+
+.typo-caption1\@pc {
+  font-family: theme('fontFamily.inter');
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0;
+}
+
+.typo-caption1 {
+  @screen pc {
+    @apply typo-caption1@pc;
+  }
+}
+
+/* --------------CATPTION-2-------------- */
+.typo-caption2\@sp {
+  font-family: theme('fontFamily.inter');
+}
+
+.typo-caption2\@pc {
+  font-family: theme('fontFamily.inter');
+  font-size: 12px;
+  line-height: 22px;
+  letter-spacing: 0;
+}
+
+.typo-caption2 {
+  @screen pc {
+    @apply typo-caption2@pc;
+  }
+}
+
+/* --------------LINK-------------- */
+.typo-link\@sp {
+  font-family: theme('fontFamily.inter');
+}
+
+.typo-link\@pc {
+  font-family: theme('fontFamily.inter');
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+}
+
+.typo-link {
+  @screen pc {
+    @apply typo-link@pc;
+  }
+}

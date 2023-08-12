@@ -15,6 +15,9 @@ export const PEOPLE_PATH = '/people';
 export const SPONSOR_PATH = '/sponsor';
 export const CODE_OF_CONDUCT_PATH = '/code-of-conduct';
 
+export const DESIGN_PATH = '/design';
+export const DESIGN_TYPOGRAPHY = '/design/typography';
+
 export function getPathLabel(path: string, lang: Language) {
   const t = translations[lang];
   switch (path) {
