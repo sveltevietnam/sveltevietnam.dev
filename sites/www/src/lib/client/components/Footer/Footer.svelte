@@ -6,6 +6,7 @@
     CODE_OF_CONDUCT_PATH,
     FOOTER_PATHS,
     RSS_PATH,
+    DESIGN_PATH,
     SITEMAP_PATH,
     getPathLabel,
     isCurrentPage,
@@ -114,6 +115,10 @@
       </span>
     </p>
     <p class="footer-additional-links">
+      <a href={DESIGN_PATH} class="footer-link" aria-current={isCurrentPage(pathname, DESIGN_PATH)}
+        >{t.navigation.design}</a
+      >
+      <span aria-disabled class="vertical-separator">|</span>
       <a
         href={CODE_OF_CONDUCT_PATH}
         class="footer-link"

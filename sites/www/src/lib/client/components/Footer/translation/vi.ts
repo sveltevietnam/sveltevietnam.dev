@@ -7,6 +7,7 @@ export const vi = {
   navigation: {
     title: 'Điều hướng',
     codeOfConduct: 'Quy tắc ứng xử',
+    design: 'Thiết kế',
   },
   contact: {
     title: 'Liên hệ',

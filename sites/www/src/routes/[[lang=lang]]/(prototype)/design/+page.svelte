@@ -1,0 +1,140 @@
+<script lang="ts">
+  import { SvelteVietnamLogo } from '$client/components/SvelteVietnamLogo';
+
+  import imgNonla from './_page/images/logo-concept-nonla.webp';
+
+  export let data;
+
+  $: t = data.translations.page;
+</script>
+
+<main class="typo-body1">
+  <div class="c-container-design heading-container">
+    <h1 class="typo-h1 font-bold">{t.title}</h1>
+  </div>
+
+  <div class="c-container-design pt-20 pb-48 space-y-20">
+    <section class="space-y-16">
+      <h2 class="typo-h2 font-bold">Logo</h2>
+
+      <section class="w-[745px] space-y-12">
+        <h3 class="typo-h3 font-bold">{t.logo.inspiration.title}</h3>
+        <p>{@html t.logo.inspiration.content}</p>
+        <div class="flex items-center gap-8">
+          <img src={imgNonla} alt="nón lá" width="106" height="106" />
+          <svg inline-src="icon/plus" width="32" height="32" />
+          <img
+            src="https://raw.githubusercontent.com/sveltejs/branding/master/svelte-logo.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            height="108"
+            width="90"
+          />
+        </div>
+      </section>
+
+      <section class="space-y-12">
+        <h3 class="typo-h3 font-bold">{t.logo.concept.title}</h3>
+        <ul class="flex items-center gap-8">
+          <li class="py-6 px-12 border border-design-border-1">{t.logo.concept.inspiration}</li>
+          <li class="py-6 px-12 border border-design-border-1">{t.logo.concept.vietnam}</li>
+          <li class="py-6 px-12 border border-design-border-1">{t.logo.concept.community}</li>
+        </ul>
+      </section>
+
+      <section class="space-y-12">
+        <h3 class="typo-h3 font-bold">{t.logo.versions.title}</h3>
+        <ul class="flex items-center gap-8">
+          <li class="logo-card-wrapper">
+            <dt class="typo-caption2">{t.logo.versions.versions.original}</dt>
+            <dd class="logo-card bg-design-bg-1">
+              <SvelteVietnamLogo version="original" />
+              <p>SVELTE<br />VIETNAM</p>
+            </dd>
+          </li>
+          <li class="logo-card-wrapper">
+            <dt class="typo-caption2">{t.logo.versions.versions.positive}</dt>
+            <dd class="logo-card bg-design-grayscale-light-1 text-design-grayscale-dark-1">
+              <SvelteVietnamLogo version="positive" />
+              <p>SVELTE<br />VIETNAM</p>
+            </dd>
+          </li>
+          <li class="logo-card-wrapper">
+            <dt class="typo-caption2">{t.logo.versions.versions.negative}</dt>
+            <dd class="logo-card bg-design-grayscale-dark-1 text-design-grayscale-light-1">
+              <SvelteVietnamLogo version="negative" />
+              <p>SVELTE<br />VIETNAM</p>
+            </dd>
+          </li>
+        </ul>
+      </section>
+
+      <section class="space-y-12">
+        <h3 class="typo-h3 font-bold">{t.logo.typeface.title}</h3>
+        <div class="border-design-border-1 border font-inter py-5 px-10 w-fit">
+          <p class="typeface-caption">Typeface</p>
+          <p class="typeface-heading">Inter</p>
+          <div class="h-px w-full bg-design-fg-1 my-3" />
+          <div class="typeface-bold">
+            <p>Inter / Bold</p>
+            <p>abcdefghijklmnopqrstuvwxyz</p>
+            <p class="uppercase">abcdefghijklmnopqrstuvwxyz</p>
+            <p class="uppercase">0123456789</p>
+          </div>
+          <div class="h-px w-full bg-design-fg-1 my-3" />
+          <div class="typeface-normal">
+            <p>Inter / Regular</p>
+            <p>abcdefghijklmnopqrstuvwxyz</p>
+            <p class="uppercase">abcdefghijklmnopqrstuvwxyz</p>
+            <p class="uppercase">0123456789</p>
+          </div>
+        </div>
+      </section>
+    </section>
+  </div>
+</main>
+
+<style>
+  .heading-container {
+    margin-top: calc(-1 * theme('spacing.header'));
+    padding-top: calc(theme('spacing.header') + 80px);
+    padding-bottom: 80px;
+    background: theme('colors.design.bg.2');
+  }
+
+  .logo-card-wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 8px;
+  }
+
+  .logo-card {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+
+    padding: 32px 52px;
+
+    border: 1px solid theme('colors.design.border.1');
+  }
+
+  .typeface-caption {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 150%;
+  }
+
+  .typeface-heading {
+    margin-top: 17px;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .typeface-bold {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 150%;
+  }
+</style>
