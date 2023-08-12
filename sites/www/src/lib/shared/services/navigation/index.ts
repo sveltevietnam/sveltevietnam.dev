@@ -36,6 +36,7 @@ export function getPathLabel(path: string, lang: Language) {
 }
 
 export const TOP_LEVEL_PATHS = [EVENTS_PATH, JOBS_PATH, IMPACT_PATH, PEOPLE_PATH, SPONSOR_PATH];
+export const FOOTER_PATHS = [HOME_PATH, ...TOP_LEVEL_PATHS];
 
 export function isCurrentPage(pathname: string, href: string) {
   const delocalizedPathname = delocalizeUrl(pathname, LANGUAGES);

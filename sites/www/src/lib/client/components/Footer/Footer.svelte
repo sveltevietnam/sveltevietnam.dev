@@ -3,10 +3,9 @@
   import type { Language } from '$shared/services/i18n';
   import {
     CODE_OF_CONDUCT_PATH,
-    HOME_PATH,
+    FOOTER_PATHS,
     RSS_PATH,
     SITEMAP_PATH,
-    TOP_LEVEL_PATHS,
     getPathLabel,
     isCurrentPage,
   } from '$shared/services/navigation';
@@ -31,7 +30,7 @@
         <p class="footer-section-title">{t.navigation.title}</p>
         <nav aria-label="all internal pages" data-sveltekit-preload-data="hover">
           <ul>
-            {#each [HOME_PATH, ...TOP_LEVEL_PATHS] as href}
+            {#each FOOTER_PATHS as href}
               {@const current = isCurrentPage(pathname, href)}
               <li>
                 <a aria-current={current} {href} class="footer-link">{getPathLabel(href, lang)}</a>
