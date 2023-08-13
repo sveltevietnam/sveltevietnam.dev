@@ -46,7 +46,7 @@
         }}
         class="contents"
       >
-        <SvelteVietnamLogo version="themed" hoverToOriginal width={50} height={56} />
+        <SvelteVietnamLogo version="themed" width={50} height={56} />
         <span>Svelte <br aria-disabled /> Vietnam</span>
       </svelte:element>
     </div>
@@ -178,6 +178,11 @@
 
     & a:hover {
       color: var(--active-color);
+
+      & :global(svg) {
+        --logo-color-bg: white;
+        --logo-color-fg: theme('colors.svelte');
+      }
     }
   }
 
