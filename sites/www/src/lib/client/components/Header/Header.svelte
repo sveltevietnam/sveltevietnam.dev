@@ -180,7 +180,6 @@
       color: var(--active-color);
 
       & :global(svg) {
-        --logo-color-bg: white;
         --logo-color-fg: theme('colors.svelte');
       }
     }
