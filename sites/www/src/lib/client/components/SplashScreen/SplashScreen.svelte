@@ -236,7 +236,7 @@
       animation-fill-mode: forwards;
       animation-delay: var(--step-2-delay);
 
-      & svg {
+      & :global(svg) {
         transform: translateX(70%);
 
         animation-name: splash-in-2-step-1-icon, splash-in-2-step-2-icon, splash-in-2-step-3-icon;
