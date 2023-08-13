@@ -19,25 +19,26 @@ export const handle: Handle = async ({ event, resolve }) => {
   if (route.id?.includes('(api)')) {
     return resolve(event);
   }
+
   let languageFromUrl = getLangFromUrl(url, LANGUAGES);
+
+  const referer = request.headers.get('Referer');
+  if (referer) {
+    const urlReferer = new URL(referer);
+    if (urlReferer.origin === url.origin) {
+      locals.referer = urlReferer;
+    }
+  }
 
   if (!languageFromUrl) {
     // if user comes from an internal link with lang, redirect to the same lang
     // this is for progressive enhancement when JS is unavailable,
     // otherwise the beforeNavigate hook in [[lang=lang]]/+layout.svelte will
     // handle the redirection with kit client-side router
-    const referer = request.headers.get('Referer');
-    if (referer) {
-      try {
-        const urlReferer = new URL(referer);
-        if (urlReferer.origin === url.origin) {
-          languageFromUrl = getLangFromUrl(urlReferer, LANGUAGES);
-          if (languageFromUrl) {
-            return Response.redirect(localizeUrl(url, languageFromUrl, LANGUAGES), 302);
-          }
-        }
-      } catch (error) {
-        console.error(error);
+    if (locals.referer) {
+      languageFromUrl = getLangFromUrl(locals.referer, LANGUAGES);
+      if (languageFromUrl) {
+        return Response.redirect(localizeUrl(url, languageFromUrl, LANGUAGES), 302);
       }
     }
 
