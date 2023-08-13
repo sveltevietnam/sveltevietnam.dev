@@ -2,127 +2,280 @@
   const TYPOGRAPHY = [
     {
       name: 'H1',
-      class: 'typo-h1',
+      class: 'tp-h1',
       fontFamily: 'Lora',
-      fontSize: '64px',
-      lineHeight: '82px',
-      letterSpacing: '6%',
-      paragraphSpacing: '0px',
+      sp: {
+        class: 'tp-h1@sp',
+        fontSize: '48px',
+        lineHeight: '61px',
+        letterSpacing: '4%',
+      },
+      pc: {
+        class: 'tp-h1@pc',
+        fontSize: '64px',
+        lineHeight: '82px',
+        letterSpacing: '6%',
+      },
+      // paragraphSpacing: {
+      //   pc: '0px',
+      //   sp: '8px',
+      // },
       example: 'Heading 1',
     },
     {
       name: 'H2',
-      class: 'typo-h2',
+      class: 'tp-h2',
       fontFamily: 'Lora',
-      fontSize: '48px',
-      lineHeight: '61px',
-      letterSpacing: '4%',
-      paragraphSpacing: '8px',
+      sp: {
+        class: 'tp-h2@sp',
+        fontSize: '32px',
+        lineHeight: '41px',
+        letterSpacing: '4%',
+      },
+      pc: {
+        class: 'tp-h2@pc',
+        fontSize: '48px',
+        lineHeight: '61px',
+        letterSpacing: '4%',
+      },
+      // paragraphSpacing: {
+      //   pc: '8px',
+      //   sp: 'px',
+      // },
       example: 'Heading 2',
     },
     {
       name: 'H3',
-      class: 'typo-h3',
+      class: 'tp-h3',
       fontFamily: 'Lora',
-      fontSize: '32px',
-      lineHeight: '41px',
-      letterSpacing: '4%',
-      paragraphSpacing: '0px',
+      sp: {
+        class: 'tp-h3@sp',
+        fontSize: '24px',
+        lineHeight: '31px',
+        letterSpacing: '0%',
+      },
+      pc: {
+        class: 'tp-h3@pc',
+        fontSize: '32px',
+        lineHeight: '41px',
+        letterSpacing: '4%',
+      },
+      // paragraphSpacing: {
+      //   pc: '0px',
+      //   sp: 'px',
+      // },
       example: 'Heading 3',
     },
     {
       name: 'H4',
-      class: 'typo-h4',
+      class: 'tp-h4',
       fontFamily: 'Inter',
-      fontSize: '24px',
-      lineHeight: '24px',
-      letterSpacing: '0%',
-      paragraphSpacing: '8px',
+      sp: {
+        class: 'tp-h4@sp',
+        fontSize: '18px',
+        lineHeight: '24px',
+        letterSpacing: '0%',
+      },
+      pc: {
+        class: 'tp-h4@pc',
+        fontSize: '24px',
+        lineHeight: '31px',
+        letterSpacing: '0%',
+      },
+      // paragraphSpacing: {
+      //   pc: '8px',
+      //   sp: 'px',
+      // },
       example: 'Heading 4',
     },
     {
       name: 'H5',
-      class: 'typo-h5',
+      class: 'tp-h5',
       fontFamily: 'Inter',
-      fontSize: '18px',
-      lineHeight: '22px',
-      letterSpacing: '0%',
-      paragraphSpacing: '12px',
+      sp: {
+        class: 'tp-h5@sp',
+        fontSize: '18px',
+        lineHeight: '22px',
+        letterSpacing: '0%',
+      },
+      pc: {
+        class: 'tp-h5@pc',
+        fontSize: '18px',
+        lineHeight: '22px',
+        letterSpacing: '0%',
+      },
+      // paragraphSpacing: {
+      //   pc: '12px',
+      //   sp: 'px',
+      // },
       example: 'Heading 5',
     },
     {
       name: 'Body 1',
-      class: 'typo-body1',
+      class: 'tp-body1',
       fontFamily: 'Inter',
-      fontSize: '16px',
-      lineHeight: '24px',
-      letterSpacing: '0%',
-      paragraphSpacing: '12px',
+      sp: {
+        class: 'tp-body1@sp',
+        fontSize: '16px',
+        lineHeight: '24px',
+        letterSpacing: '0%',
+      },
+      pc: {
+        class: 'tp-body1@pc',
+        fontSize: '16px',
+        lineHeight: '24px',
+        letterSpacing: '0%',
+      },
+      // paragraphSpacing: {
+      //   pc: '12px',
+      //   sp: 'px',
+      // },
       example: 'Body 1',
     },
     {
       name: 'Body 2',
-      class: 'typo-body2',
+      class: 'tp-body2',
       fontFamily: 'Inter',
-      fontSize: '14px',
-      lineHeight: '24px',
-      letterSpacing: '0%',
-      paragraphSpacing: '12px',
+      sp: {
+        class: 'tp-body2@sp',
+        fontSize: '14px',
+        lineHeight: '24px',
+        letterSpacing: '0%',
+      },
+      pc: {
+        class: 'tp-body2@pc',
+        fontSize: '14px',
+        lineHeight: '24px',
+        letterSpacing: '0%',
+      },
+      // paragraphSpacing: {
+      //   pc: '12px',
+      //   sp: 'px',
+      // },
       example: 'Body 2',
     },
     {
       name: 'Caption 1',
-      class: 'typo-caption1',
+      class: 'tp-cap1',
       fontFamily: 'Inter',
-      fontSize: '14px',
-      lineHeight: '22px',
-      letterSpacing: '0%',
-      paragraphSpacing: '0%',
+      sp: {
+        class: 'tp-cap1@sp',
+        fontSize: '14px',
+        lineHeight: '22px',
+        letterSpacing: '0%',
+      },
+      pc: {
+        class: 'tp-cap1@pc',
+        fontSize: '14px',
+        lineHeight: '22px',
+        letterSpacing: '0%',
+      },
+      // paragraphSpacing: {
+      //   pc: '0%',
+      //   sp: 'px',
+      // },
       example: 'Caption 1',
     },
     {
       name: 'Caption 2',
-      class: 'typo-caption2',
+      class: 'tp-cap2',
       fontFamily: 'Inter',
-      fontSize: '12px',
-      lineHeight: '22px',
-      letterSpacing: '0%',
-      paragraphSpacing: '0%',
+      sp: {
+        class: 'tp-cap2@sp',
+        fontSize: '12px',
+        lineHeight: '22px',
+        letterSpacing: '0%',
+      },
+      pc: {
+        class: 'tp-cap2@pc',
+        fontSize: '12px',
+        lineHeight: '22px',
+        letterSpacing: '0%',
+      },
+      // paragraphSpacing: {
+      //   pc: '0%',
+      //   sp: 'px',
+      // },
       example: 'Caption 2',
     },
-    {
-      name: 'Link',
-      class: 'typo-link underline',
-      fontFamily: 'Inter',
-      fontSize: '16px',
-      lineHeight: '24px',
-      letterSpacing: '0%',
-      paragraphSpacing: '12px',
-      example: 'Link',
-    },
+    // {
+    //   name: 'Link',
+    //   class: 'tp-link underline',
+    //   fontFamily: 'Inter',
+    //   sp: {
+    //     class: 'tp-link@sp',
+    //     fontSize: '16px',
+    //     lineHeight: '24px',
+    //     letterSpacing: '0%',
+    //   },
+    //   pc: {
+    //     class: 'tp-link@pc',
+    //     fontSize: '16px',
+    //     lineHeight: '24px',
+    //     letterSpacing: '0%',
+    //   },
+    //   // paragraphSpacing: {
+    //   //   pc: '12px',
+    //   //   sp: 'px',
+    //   // },
+    //   example: 'Link',
+    // },
   ];
 </script>
 
-<main>
+<main class="tp-body1">
   <div class="c-container-design heading-container">
-    <h1 class="typo-h1 font-bold">Typography</h1>
+    <h1 class="tp-h1 font-bold">Typography</h1>
   </div>
   <div class="pt-20 py-40 c-container-design">
     {#each TYPOGRAPHY as typo, i (typo.name)}
       {#if i > 0}
-        <div class="bg-black/20 h-px w-full my-12" />
+        <div class="bg-design-border-1 h-px w-full my-12" />
       {/if}
       <section>
-        <h2 class="sr-only">{typo.name}</h2>
-        <ul class="typo-body1 space-y-0.5">
-          <li class="font-medium">{typo.name}</li>
-          <li class="font-medium">{typo.fontFamily}</li>
-          <li class="font-medium">{typo.fontSize}</li>
-          <li>Line height {typo.lineHeight}</li>
-          <li>Letter spacing {typo.letterSpacing}</li>
-          <li>Paragraph spacing {typo.paragraphSpacing}</li>
-        </ul>
-        <ul class="{typo.class} sp:text-right">
+        <div class="grid grid-cols-[1fr,auto,auto] gap-x-8 gap-y-1">
+          <div class="contents">
+            <p class="font-medium">Name</p>
+            <h2 class="col-span-2 font-bold text-right">{typo.name}</h2>
+          </div>
+          <div class="contents">
+            <p class="font-medium">Font family</p>
+            <p class="col-span-2 text-right">{typo.fontFamily}</p>
+          </div>
+          <div class="contents">
+            <p class="font-medium">Reactive CSS</p>
+            <p class="col-span-2 text-right"><code>{typo.class}</code></p>
+          </div>
+          <div class="col-span-3 flex justify-between font-bold"></div>
+          <div class="contents font-medium">
+            <div class="font-bold mt-4"></div>
+            <p class="mt-4">Desktop</p>
+            <p class="text-right mt-4">Mobile</p>
+          </div>
+          <div class="contents">
+            <p class="font-medium">Specific CSS</p>
+            <p><code>{typo.pc.class}</code></p>
+            <p><code>{typo.sp.class}</code></p>
+          </div>
+          <div class="contents">
+            <p class="font-medium">Font size</p>
+            <p>{typo.pc.fontSize}</p>
+            <p class="text-right">{typo.sp.fontSize}</p>
+          </div>
+          <div class="contents">
+            <p class="font-medium">Line height</p>
+            <p>{typo.pc.lineHeight}</p>
+            <p class="text-right">{typo.sp.lineHeight}</p>
+          </div>
+          <div class="contents">
+            <p class="font-medium">Letter spacing</p>
+            <p>{typo.pc.letterSpacing}</p>
+            <p class="text-right">{typo.sp.letterSpacing}</p>
+          </div>
+        </div>
+        <ul
+          class="{typo.class} text-right tb:text-center border border-design-border-1 h-full flex items-center justify-center flex-col p-4"
+        >
           {#each ['font-bold', 'font-medium', 'font-normal'] as weight}
             <li class={weight}>{typo.example}</li>
           {/each}
@@ -144,19 +297,19 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 40px;
-    align-items: center;
+    align-items: flex-start;
 
     @screen sp {
       grid-template-rows: auto auto;
     }
 
     @screen tb {
-      grid-template-columns: auto 1fr;
-      gap: 120px;
+      grid-template-columns: 400px 1fr;
+      gap: 80px;
     }
 
     @screen pc {
-      gap: 320px;
+      gap: 100px;
     }
   }
 </style>
