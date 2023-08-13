@@ -63,7 +63,7 @@
     const toLang = to?.params?.lang;
     if (to && fromLang && !toLang) {
       cancel();
-      const localized = localizeUrl(to.url.pathname, fromLang, LANGUAGES);
+      const localized = localizeUrl(to.url, fromLang, LANGUAGES);
       goto(localized);
     }
   });
