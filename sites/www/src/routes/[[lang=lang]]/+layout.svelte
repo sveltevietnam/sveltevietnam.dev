@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { localizeUrl } from '@libs/utils';
+  import { localizeUrl } from '@libs/utils/url';
   import ModalPortal from '@svelte-put/modal/ModalPortal.svelte';
   import { onMount } from 'svelte';
 
@@ -13,6 +13,8 @@
   import { PUBLIC_COOKIE_SCHEME, PUBLIC_DISCORD_WS_URL } from '$env/static/public';
   import { LANGUAGES } from '$shared/services/i18n/index.js';
   import type { ColorScheme } from '$shared/types';
+
+  import PageTransition from './_page/components/PageTransition.svelte';
 
   export let data;
 
@@ -75,8 +77,11 @@
   colorScheme={clientColorScheme}
   on:colorSchemeChange={changeColorScheme}
 />
-<slot />
-<Footer lang={data.language} version={data.version} pathname={data.pathname} />
+
+<PageTransition>
+  <slot />
+  <Footer lang={data.language} version={data.version} pathname={data.pathname} />
+</PageTransition>
 
 <!-- portals -->
 <ModalPortal store={modalStore} class="z-modal" />

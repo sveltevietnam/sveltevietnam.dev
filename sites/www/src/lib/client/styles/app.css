@@ -72,4 +72,8 @@
   *:disabled {
     cursor: not-allowed;
   }
+
+  *[id] {
+    scroll-margin: calc(1.5 * theme('spacing.header'));
+  }
 }
