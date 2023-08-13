@@ -22,15 +22,8 @@
         <p>{@html t.logo.inspiration.content}</p>
         <div class="flex items-center gap-8">
           <img src={imgNonla} alt="nón lá" width="106" height="106" />
-          <svg inline-src="icon/plus" width="32" height="32" />
-          <img
-            src="https://raw.githubusercontent.com/sveltejs/branding/master/svelte-logo.svg"
-            alt=""
-            loading="lazy"
-            decoding="async"
-            height="108"
-            width="90"
-          />
+          <svg inline-src="icon/plus" width="32" height="32" class="stroke-current" />
+          <svg inline-src="svelte" width="90" height="108" />
         </div>
       </section>
 
