@@ -1,16 +1,16 @@
-name: Contributor Nomination
+name: EN - Contributor Nomination
 description: Nominate a member with significant contribution to be listed at https://sveltevietnam.com/people
-title: "Nominate: <Name of member>"
+title: "Nominate: <name of member>"
 labels:
   - "page:people"
-  - "type:content"
+  - "content:people"
 assignees:
   - vnphanquang
 body:
   - type: markdown
     attributes:
       value: |
-        Thank you for being part of the community. Let's fill out some information so we can better consider your nomination.
+        Thank you for being part of the community. Let's fill out some information so administrators can better consider your nomination.
   - type: dropdown
     id: self
     attributes:
@@ -48,11 +48,11 @@ body:
     id: others
     attributes:
       label: Other Information
-      description: Any other things that you want us to know. You may also tag others to upvote this nomination.
+      description: Any other things that you want administrators to know. You may also tag others to upvote this nomination.
   - type: markdown
     attributes:
       value: |
         Thank you!
 
-        We will review your nomination and update the progress in this issue. If approved, the nominee will be recognized
+        Administrators will review your nomination and update progress in this issue. If approved, the nominee will be recognized
         at https://sveltevietnam.com/people and given a shout-out in the Svelte Vietnam Discord.

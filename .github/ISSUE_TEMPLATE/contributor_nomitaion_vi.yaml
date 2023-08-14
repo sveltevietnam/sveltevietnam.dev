@@ -1,0 +1,59 @@
+name: VI - Đề cử thành viên tiêu biểu
+description: Đề cử thành viên có đóng góp đáng kể cho trang https://sveltevietnam.com/people
+title: "Đề cử: <tên người được đề cử>"
+labels:
+  - "page:people"
+  - "content:people"
+assignees:
+  - vnphanquang
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Cảm ơn bạn đã dành thời gian đóng góp cho cộng đồng. Hãy điền thêm thông tin để giúp ban quản trị xem xét phê duyệt đề cử này.
+  - type: dropdown
+    id: self
+    attributes:
+      label: Ứng cử
+      description: Bạn có đang tự ứng cử?
+      options:
+        - "Có"
+        - "Không"
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: Tên người được đề cử
+      description: Điền tên người bạn đang đề cử.
+      placeholder: Nguyen Van A
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: Thông tin liên lạc của người được đề cử
+      description: Ban quản trị sẽ liên lạc trực tiếp với người được đề cử để thông báo và xác nhận thông tin.
+      placeholder: nguyenvana@gmail.com hoặc github.com/nguyenvanavới
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Đóng góp của người được để cử
+      description: Cá nhân này đã có những đóng góp gì mang lại giá trị cho bạn và cộng đồng?
+    validations:
+      required: true
+  - type: textarea
+    id: others
+    attributes:
+      label: Thông tin thêm
+      description: Hãy điền thêm bất cứ thông tin liên quan nào bạn nghĩ ban quản trị nên biết.
+  - type: markdown
+    attributes:
+      value: |
+        Cảm ơn bạn!
+
+        Ban quản trị sẽ xem xét và cập nhật thông tin vào issue này.
+        Nếu được phê duyệt, cá nhân được đề cử sẽ được liệt kê trên trang i
+        https://sveltevietnam.com/people và được tuyên dương tại Discord của Svelte Vietnam.
