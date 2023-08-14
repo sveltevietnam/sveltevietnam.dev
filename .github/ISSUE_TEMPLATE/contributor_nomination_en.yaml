@@ -11,6 +11,8 @@ body:
     attributes:
       value: |
         Thank you for being part of the community. Let's fill out some information so administrators can better consider your nomination.
+
+        ## Nomination Details
   - type: dropdown
     id: self
     attributes:
@@ -52,7 +54,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you!
+        ## Thank you
 
         Administrators will review your nomination and update progress in this issue. If approved, the nominee will be recognized
         at https://sveltevietnam.com/people and given a shout-out in the Svelte Vietnam Discord.

@@ -11,6 +11,8 @@ body:
     attributes:
       value: |
         Cảm ơn bạn đã dành thời gian đóng góp cho cộng đồng. Hãy điền thêm thông tin để giúp ban quản trị xem xét phê duyệt đề cử này.
+
+        ## Thông tin Đề cử
   - type: dropdown
     id: self
     attributes:
@@ -52,7 +54,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Cảm ơn bạn!
+        ## Cảm ơn bạn
 
         Ban quản trị sẽ xem xét và cập nhật thông tin vào issue này.
         Nếu được phê duyệt, cá nhân được đề cử sẽ được liệt kê trên trang i

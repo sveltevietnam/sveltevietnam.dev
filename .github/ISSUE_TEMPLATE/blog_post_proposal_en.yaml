@@ -1,0 +1,124 @@
+name: EN - Proposal for Blog Post Publication
+description: Propose a blog post to be published at https://sveltevietnam.com/blog
+title: "Blog Post Proposal: <short title of blog post>"
+labels:
+  - "page:blog"
+  - "content:blog"
+assignees:
+  - vnphanquang
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for being part of the community. Let's write some stuff, shall we?
+
+        ## Note
+
+        This is a **no-code** proposal for blog post. If approved your blog post will be implemented by a maintainer.
+
+        If you want granular control or prefer to code yourself, refer to <link_to_technical_guideline> and open a PR that directly implements your post.
+
+        ## Proposal Details
+
+  - type: input
+    id: translation
+    attributes:
+      label: Link to Vietnamese Version
+      description: |
+        Link to the accompanying issue for the Vietnamese version of this post (if any).
+
+        This issue is a proposal for the English version of your post. It is optional
+        but recommended that you use the [VI - Đề nghị đăng bài](https://github.com/sveltevietnam/sveltevietnam.dev/issues/new/choose)
+        for a Vietnamese translation. If you are not able to do so, let us know in a comment.
+      placeholder: https://github.com/sveltevietnam/sveltevietnam.dev/issues/XXX
+    validations:
+      required: false
+
+  - type: textarea
+    id: authors
+    attributes:
+      label: Authors
+      description: Provide information about the author(s)
+      value: |
+        Nguyễn Văn A:
+
+        - Title for display: Developer Advocate at Company C
+        - Avatar URL: ...
+        - Social links:
+            - twitter: https://twitter.com/example-nguyenvana
+            - github: https://github.com/example-nguyenvana
+            - linkedin: https://linkedin.com/in/example-nguyenvana
+            - personal website: https://example-nguyenvana.dev
+
+        # ... other co-authors (if any)
+    validations:
+      required: true
+  - type: input
+    id: slug
+    attributes:
+      label: Slug
+      description: Provide an optional slug. Leave blank to auto-generate from title.
+      placeholder: my-blog-post-about-something
+    validations:
+      required: false
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      description: Provide a title for the blog post, used in page and for meta tags
+      placeholder: My Blog Post About Something
+    validations:
+      required: true
+  - type: input
+    id: description
+    attributes:
+      label: Description
+      description: A short description about the blog post, used for meta tags and display in blog post listing
+      placeholder: This post is about something and something else
+    validations:
+      required: true
+  - type: input
+    id: keywords
+    attributes:
+      label: Keywords
+      description: Provide an optional comma-separated list of keywords, used for meta tags
+      placeholder: typescript, benchmark, UI, ...
+    validations:
+      required: true
+  - type: dropdown
+    id: tags
+    attributes:
+      label: Tags
+      description: Select one or more tags for organizing and grouping blog posts
+      multiple: true
+      options:
+        - svelte
+        - kit
+        - ecosystem
+        - tooling
+        - community
+    validations:
+      required: false
+  - type: textarea
+    id: content
+    attributes:
+      label: Post Content
+      description: Provide the content for this blog post. You may use Markdown syntax.
+      placeholder: |
+        If the content is long, prefer an attachment instead.
+    validations:
+      required: true
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Information
+      description: You may include any relevant information, for example optimized image links or a design guideline on how the post should be implemented.
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
+        ## Thank you
+
+        Administrators will review the content and update progress in this issue.
+        If approved, this post will be published to https://sveltevietnam.com/blog.
