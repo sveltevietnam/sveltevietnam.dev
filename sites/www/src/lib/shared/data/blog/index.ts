@@ -3,7 +3,7 @@ import type { ComponentType, SvelteComponent } from 'svelte';
 import { resolveLangText, type LangText, type Language } from '$shared/services/i18n';
 import type { ProfileLinks } from '$shared/types';
 
-export type PostTag = 'svelte' | 'kit' | 'eco' | 'tooling' | 'community';
+export type PostTag = 'svelte' | 'kit' | 'ecosystem' | 'tooling' | 'community';
 
 export type PostAuthor = {
   name: LangText;

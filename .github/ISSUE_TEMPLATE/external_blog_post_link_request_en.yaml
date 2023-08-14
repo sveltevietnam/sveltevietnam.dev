@@ -1,0 +1,49 @@
+name: EN - Request to Link External Blog Post
+description: Request to link an external blog post to be listed at https://sveltevietnam.com/blog
+title: "External Blog Post Link Request: <short title of blog post"
+labels:
+  - "page:blog"
+  - "content:blog"
+assignees:
+  - vnphanquang
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for being part of the community.
+
+        ## Note
+
+        The content of the linked blog post will stay on its original site and not be available on *sveltevietnam.dev*.
+
+        To propose blog post to be published on *sveltevietnam.dev* itself, use the [EN - Proposal for Blog Post Publication](https://github.com/sveltevietnam/sveltevietnam.dev/issues/new/choose) instead.
+
+        ## Request Details
+
+        Request must include at least one of the following link.
+  - type: input
+    id: link-en
+    attributes:
+      label: Link to external blog post in English (if any)
+    validations:
+      required: false
+  - type: input
+    id: link-vi
+    attributes:
+      label: Link to external blog post in Vietnamese (if any)
+    validations:
+      required: false
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Information
+      description: You may include any relevant information that you wished administrators to take note.
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
+        ## Thank you
+
+        Administrators will review the request and update progress in this issue.
+        If approved, this post will be listed at https://sveltevietnam.com/blog.
