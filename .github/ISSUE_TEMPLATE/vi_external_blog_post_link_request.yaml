@@ -1,0 +1,52 @@
+name: VI - Yêu cầu liên kết bài viết ngoài
+description: Yêu cầu thêm đường dẫn đến bài viết ngoài tại https://sveltevietnam.com/blog
+title: "Liên kết bài viết ngoài: <tựa đề bài viết>"
+labels:
+  - "page:blog"
+  - "content:blog"
+assignees:
+  - vnphanquang
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Cảm ơn bạn đã dành thời gian đóng góp cho cộng đồng.
+
+        ## Lưu ý
+
+        Nội dung của bài viết ngoài thường phải có liên quan đến Svelte và cộng đồng Svelte Vietnam.
+
+        Chú ý rằng nội dung bài viết sẽ vẫn đặt tại trang nguồn chứ không sao chép sang *sveltevietnam.dev*. Nếu bạn muốn đăng bài ngay trên trang *sveltevietnam.dev*, hãy dùng mẫu issue [VI - Đề nghị đăng bài](https://github.com/sveltevietnam/sveltevietnam.dev/issues/new/choose).
+
+        ## Nội dung yêu cầu
+
+        Bạn cần cung cấp ít nhất một trong hai đường dẫn sau đây:
+  - type: input
+    id: link-en
+    attributes:
+      label: Đường dẫn đến bài viết bằng tiếng Anh (nếu có)
+      placeholder: dẫn đến dev.to, personal blog, ...
+    validations:
+      required: false
+  - type: input
+    id: link-vi
+    attributes:
+      label: Đường dẫn đến bài viết bằng tiếng Việt (nếu có)
+      placeholder: dẫn đến dev.to, personal blog, ...
+    validations:
+      required: false
+  - type: textarea
+    id: additional
+    attributes:
+      label: Thông tin bổ sung
+      description: Thêm bất cứ thông tin nào bạn nghĩ ban quản trị cần biết.
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
+        ## Cảm ơn bạn !
+
+        Ban quản trị sẽ xem xét và cập nhật thông tin vào issue này.
+        Nếu được phê duyệt, đuờng dẫn đến bài viết sẽ được thêm tại trang
+        *https://sveltevietnam.com/blog*

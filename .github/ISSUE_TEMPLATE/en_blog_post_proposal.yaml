@@ -1,5 +1,5 @@
 name: EN - Proposal for Blog Post Publication
-description: Propose a blog post to be published at https://sveltevietnam.com/blog
+description: Propose a blog post to be published at *https://sveltevietnam.com/blog*
 title: "Blog Post Proposal: <short title of blog post>"
 labels:
   - "page:blog"
@@ -27,9 +27,9 @@ body:
       description: |
         Link to the accompanying issue for the Vietnamese version of this post (if any).
 
-        This issue is a proposal for the English version of your post. It is optional
-        but recommended that you use the [VI - Đề nghị đăng bài](https://github.com/sveltevietnam/sveltevietnam.dev/issues/new/choose)
-        for a Vietnamese translation. If you are not able to do so, let us know in a comment.
+        This issue is a proposal for the English version of your post. It is optional but recommended that you use the template [VI - Đề nghị đăng bài](https://github.com/sveltevietnam/sveltevietnam.dev/issues/new/choose) for a Vietnamese translation.
+
+        If you are not able to do so, let us know in a comment.
       placeholder: https://github.com/sveltevietnam/sveltevietnam.dev/issues/XXX
     validations:
       required: false
@@ -103,9 +103,9 @@ body:
     id: content
     attributes:
       label: Post Content
-      description: Provide the content for this blog post. You may use Markdown syntax.
-      placeholder: |
-        If the content is long, prefer an attachment instead.
+      description: Provide the content for this blog post. You may use Markdown syntax. If the content is long, prefer an attachment instead.
+      value: |
+        Attachment or link to your blog post content. For example: content.md, content.docx, link to Figma, Google Docs, ...
     validations:
       required: true
   - type: textarea
@@ -120,5 +120,5 @@ body:
       value: |
         ## Thank you
 
-        Administrators will review the content and update progress in this issue.
-        If approved, this post will be published to https://sveltevietnam.com/blog.
+        Administrators will review your content and update progress in this issue.
+        If approved, this post will be published to *https://sveltevietnam.com/blog*.
