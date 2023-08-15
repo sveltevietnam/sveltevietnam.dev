@@ -1,0 +1,123 @@
+name: VI - Đề nghị đăng bài
+description: Đề nghị đăng bài mới tại *https://sveltevietnam.com/blog*
+title: "Đề nghị đăng bài: <tựa đề bài viết>"
+labels:
+  - "page:blog"
+  - "content:blog"
+assignees:
+  - vnphanquang
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Cảm ơn bạn đã dành thời gian đóng góp cho cộng đồng.
+
+        ## Lưu ý
+
+        Trong bản đề nghị này, bạn không cần phải code. Nếu được phê duyệt, bài viết của bạn sẽ được code bởi các kỹ thuật viên. Tuy nhiên nếu bạn muốn tự code, hãy xem qua <link_to_technical_guideline> và trực tiếp mở PR cho bài viết nhé.
+
+        ## Nội dung đề nghị
+
+  - type: input
+    id: translation
+    attributes:
+      label: Đường dẫn tới issue cho bản tiếng Anh (nếu có)
+      description: |
+        This issue is a proposal for the English version of your post. It is optional but recommended that you use the template [VI - Đề nghị đăng bài](https://github.com/sveltevietnam/sveltevietnam.dev/issues/new/choose) for a Vietnamese translation.
+
+        Nếu bạn không thể dịch hoặc cung cấp bản tiếng Anh, hãy để lại lời nhắn bên dưới để ban quản trị và cộng đồng cùng hỗ trợ nhé.
+      placeholder: https://github.com/sveltevietnam/sveltevietnam.dev/issues/XXX
+    validations:
+      required: false
+
+  - type: textarea
+    id: authors
+    attributes:
+      label: Tác giả
+      description: Điền thông tin về (các) tác giả
+      value: |
+        Nguyễn Văn A:
+
+        - Title for display: Developer Advocate at Company C
+        - Avatar URL: ...
+        - Social links:
+            - twitter: https://twitter.com/example-nguyenvana
+            - github: https://github.com/example-nguyenvana
+            - linkedin: https://linkedin.com/in/example-nguyenvana
+            - personal website: https://example-nguyenvana.dev
+
+        # ... thêm đồng tác giả theo mẫu trên (nếu có)
+    validations:
+      required: true
+  - type: input
+    id: slug
+    attributes:
+      label: Slug
+      description: |
+        Điền slug tùy chọn. Để trống để tự động tạo từ tiêu đề.
+        Slug phải bằng tiếng anh và sẽ được sử dụng cho cả bản tiếng Anh và tiếng Việt.
+      placeholder: my-blog-post-about-something
+    validations:
+      required: false
+  - type: input
+    id: title
+    attributes:
+      label: Tiêu đề
+      description: Điền tiêu đề bài viết (dùng cho cả meta tags)
+      placeholder: Tựa bài viết của tôi
+    validations:
+      required: true
+  - type: input
+    id: description
+    attributes:
+      label: Mô tả
+      description: Điền mô tả ngắn gọn về bài viết (dùng cho meta tags và hiển thị trên danh sách bài viết)
+      placeholder: Bài viết hay ho về Svelte Vietnam
+    validations:
+      required: true
+  - type: input
+    id: keywords
+    attributes:
+      label: Từ khoá (Keywords)
+      description: Điền chuỗi các từ khoá, cách nhau bằng dấu phẩy (dùng cho meta tags)
+      placeholder: typescript, benchmark, UI, ...
+    validations:
+      required: true
+  - type: dropdown
+    id: tags
+    attributes:
+      label: Gắn thẻ (Tags)
+      description: Chọn một hoặc nhiều thẻ thích hợp để phân loại bài viết
+      multiple: true
+      options:
+        - svelte
+        - kit
+        - ecosystem
+        - tooling
+        - community
+    validations:
+      required: false
+  - type: textarea
+    id: content
+    attributes:
+      label: Nội dung
+      description: Điền nội dung bài viết. Bạn có thể dùng cú pháp Markdown. Dùng file đính kèm cho bài viết dài.
+      value: |
+        Đính kèm  file hoặc đường dẫn tới nội dung bài viết. Ví dụ: content.md, content.docx, đường dẫn tới Figma, Google Docs, …
+    validations:
+      required: true
+  - type: textarea
+    id: additional
+    attributes:
+      label: Thông tin bổ sung
+      description: Thêm thông tin liên quan, ví dụ đường dẫn đến hình ảnh đã được tối ưu hoá, bản phát hoạ, thiết kế cho nội dung bài viết, hoặc hướng dẫn khác cho kỹ thuật viên
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
+        ## Cảm ơn bạn!
+
+        Ban quản trị sẽ xem xét và cập nhật thông tin vào issue này.
+        Nếu được phê duyệt, bài viết sẽ được đăng tại trang
+        *https://sveltevietnam.com/blog*
