@@ -2,6 +2,10 @@
 
 Thank you for stopping by. [svelte-vietnam][github] welcomes and appreciates your contribution.
 
+## Content
+
+Share your ideas and experience with the community and beyond by writing blog posts or link your existing blog posts to _sveltevietnam.dev_. Use [github issue templates](https://github.com/sveltevietnam/sveltevietnam.dev/issues/new/choose) or take a look at [DEV_BLOG_POST] to get started.
+
 ## Reporting Issues
 
 Before opening a new issue, [first search for existing issues][github.issues] to avoid duplications.
