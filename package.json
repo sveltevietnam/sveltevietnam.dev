@@ -16,7 +16,9 @@
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint --parallel",
     "format": "turbo run format --parallel",
-    "test:ci": "turbo run test:ci --parallel"
+    "test:ci": "turbo run test:ci --parallel",
+    "dts": "turbo run dts --parallel",
+    "setup": "pnpm install && pnpm dts"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.2.0",
