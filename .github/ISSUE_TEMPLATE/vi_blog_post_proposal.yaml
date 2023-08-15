@@ -4,6 +4,7 @@ title: "Đề nghị đăng bài: <tựa đề bài viết>"
 labels:
   - "page:blog"
   - "content:blog"
+  - "blog:pending"
 assignees:
   - vnphanquang
 body:
@@ -23,7 +24,7 @@ body:
     attributes:
       label: Đường dẫn tới issue cho bản tiếng Anh (nếu có)
       description: |
-        This issue is a proposal for the English version of your post. It is optional but recommended that you use the template [VI - Đề nghị đăng bài](https://github.com/sveltevietnam/sveltevietnam.dev/issues/new/choose) for a Vietnamese translation.
+        Bản đề nghị này chỉ dành cho bài viết tiếng Việt. Ban quản trị khuyến khích bạn cung cấp thêm bản tiếng Anh thông qua mẫu [EN - Proposal for Blog Post Publication](https://github.com/sveltevietnam/sveltevietnam.dev/issues/new/choose).
 
         Nếu bạn không thể dịch hoặc cung cấp bản tiếng Anh, hãy để lại lời nhắn bên dưới để ban quản trị và cộng đồng cùng hỗ trợ nhé.
       placeholder: https://github.com/sveltevietnam/sveltevietnam.dev/issues/XXX
@@ -103,7 +104,7 @@ body:
       label: Nội dung
       description: Điền nội dung bài viết. Bạn có thể dùng cú pháp Markdown. Dùng file đính kèm cho bài viết dài.
       value: |
-        Đính kèm  file hoặc đường dẫn tới nội dung bài viết. Ví dụ: content.md, content.docx, đường dẫn tới Figma, Google Docs, …
+        Đính kèm file hoặc đường dẫn tới nội dung bài viết. Ví dụ: content.md, content.docx, đường dẫn tới Figma, Google Docs, …
     validations:
       required: true
   - type: textarea

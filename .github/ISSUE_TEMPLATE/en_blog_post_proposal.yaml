@@ -4,6 +4,7 @@ title: "Blog Post Proposal: <short title of blog post>"
 labels:
   - "page:blog"
   - "content:blog"
+  - "blog:pending"
 assignees:
   - vnphanquang
 body:
@@ -25,7 +26,7 @@ body:
     attributes:
       label: Link to the accompanying issue for the Vietnamese version (if any).
       description: |
-        This issue is a proposal for the English version of your post. It is optional but recommended that you use the template [VI - Đề nghị đăng bài](https://github.com/sveltevietnam/sveltevietnam.dev/issues/new/choose) for a Vietnamese translation.
+        This issue is a proposal for the English version of your post. It is recommended that you use the template [VI - Đề nghị đăng bài](https://github.com/sveltevietnam/sveltevietnam.dev/issues/new/choose) to provide and link a Vietnamese translation.
 
         If you are not able to do so, leave a comment below so that administrators and others from our community can help out.
       placeholder: https://github.com/sveltevietnam/sveltevietnam.dev/issues/XXX
@@ -66,7 +67,7 @@ body:
     attributes:
       label: Title
       description: Provide a title for the blog post, used in page and for meta tags
-      placeholder: My interesting blog post about Svelte Vietnam
+      placeholder: My blog post title
     validations:
       required: true
   - type: input
@@ -74,7 +75,7 @@ body:
     attributes:
       label: Description
       description: A short description about the blog post, used for meta tags and display in blog post listing
-      placeholder: This post is about something and something else
+      placeholder: My interesting blog post about Svelte Vietnam
     validations:
       required: true
   - type: input
