@@ -17,7 +17,7 @@ body:
 
         This is a **no-code** proposal for blog post. If approved your blog post will be implemented by maintainers.
 
-        If you want granular control or prefer to code yourself, refer to [Blog Post Implementation Guidelines](https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/PROJECT_REFERENCES.md) and open a PR that directly implements your post.
+        If you want granular control or prefer to code yourself, refer to [Blog Post Implementation Guidelines](https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/DEV_BLOG_POST.md) and open a PR that directly implements your post.
 
         ## Proposal Details
 
