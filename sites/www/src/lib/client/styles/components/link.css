@@ -65,3 +65,16 @@
     background-size: 100% 1px;
   }
 }
+
+.c-link-neutral {
+  transition: color 400ms ease-out;
+
+  &:hover,
+  &[aria-current]:not([aria-current="false"]) {
+    color: theme('colors.design.link.title');
+  }
+
+  & svg {
+    fill: currentcolor;
+  }
+}

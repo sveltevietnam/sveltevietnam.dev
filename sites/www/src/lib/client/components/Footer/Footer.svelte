@@ -35,7 +35,9 @@
             {#each FOOTER_PATHS as href}
               {@const current = isCurrentPage(pathname, href)}
               <li>
-                <a aria-current={current} {href} class="footer-link">{getPathLabel(href, lang)}</a>
+                <a aria-current={current} {href} class="c-link-neutral"
+                  >{getPathLabel(href, lang)}</a
+                >
               </li>
             {/each}
           </ul>
@@ -45,13 +47,18 @@
         <p class="footer-section-title">{t.contact.title}</p>
         <ul>
           <li>
-            <a href={SOCIAL_LINKS.discord} target="_blank" class="footer-link" rel="noreferrer">
+            <a href={SOCIAL_LINKS.discord} target="_blank" class="c-link-neutral" rel="noreferrer">
               <svg inline-src="simpleicon/discord" width="24" height="24" />
               <span>Svelte Vietnam</span>
             </a>
           </li>
           <li>
-            <a href="mailto:{EMAILS.contact}" target="_blank" class="footer-link" rel="noreferrer">
+            <a
+              href="mailto:{EMAILS.contact}"
+              target="_blank"
+              class="c-link-neutral"
+              rel="noreferrer"
+            >
               <svg inline-src="google/mail" width="24" height="24" />
               <span>{EMAILS.contact}</span>
             </a>
@@ -66,22 +73,22 @@
   </div>
   <ul class="footer-socials c-container-design">
     <li>
-      <a href={SOCIAL_LINKS.openCollective} target="_blank" rel="noreferrer" class="footer-link">
+      <a href={SOCIAL_LINKS.openCollective} target="_blank" rel="noreferrer" class="c-link-neutral">
         <svg height="16" width="16" inline-src="simpleicon/opencollective" />
       </a>
     </li>
     <li>
-      <a href={SOCIAL_LINKS.github} target="_blank" rel="noreferrer" class="footer-link">
+      <a href={SOCIAL_LINKS.github} target="_blank" rel="noreferrer" class="c-link-neutral">
         <svg height="16" width="16" inline-src="simpleicon/github" />
       </a>
     </li>
     <li>
-      <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noreferrer" class="footer-link">
+      <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noreferrer" class="c-link-neutral">
         <svg height="16" width="16" inline-src="simpleicon/twitter" />
       </a>
     </li>
     <li>
-      <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer" class="footer-link">
+      <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer" class="c-link-neutral">
         <svg height="16" width="16" inline-src="simpleicon/facebook" />
       </a>
     </li>
@@ -115,19 +122,21 @@
       </span>
     </p>
     <p class="footer-additional-links">
-      <a href={DESIGN_PATH} class="footer-link" aria-current={isCurrentPage(pathname, DESIGN_PATH)}
-        >{t.navigation.design}</a
+      <a
+        href={DESIGN_PATH}
+        class="c-link-neutral"
+        aria-current={isCurrentPage(pathname, DESIGN_PATH)}>{t.navigation.design}</a
       >
       <span aria-disabled class="vertical-separator">|</span>
       <a
         href={CODE_OF_CONDUCT_PATH}
-        class="footer-link"
+        class="c-link-neutral"
         aria-current={isCurrentPage(pathname, CODE_OF_CONDUCT_PATH)}>{t.navigation.codeOfConduct}</a
       >
       <span aria-disabled class="vertical-separator">|</span>
-      <a href={RSS_PATH} class="footer-link" target="_blank">RSS</a>
+      <a href={RSS_PATH} class="c-link-neutral" target="_blank">RSS</a>
       <span aria-disabled class="vertical-separator">|</span>
-      <a href={SITEMAP_PATH} class="footer-link" target="_blank">Sitemap</a>
+      <a href={SITEMAP_PATH} class="c-link-neutral" target="_blank">Sitemap</a>
     </p>
   </div>
 </footer>
@@ -325,18 +334,5 @@
     display: flex;
     gap: 16px;
     align-items: center;
-  }
-
-  .footer-link {
-    transition: color 400ms ease-out;
-
-    &:hover,
-    &[aria-current='true'] {
-      color: theme('colors.design.link.title');
-    }
-
-    & svg {
-      fill: currentcolor;
-    }
   }
 </style>
