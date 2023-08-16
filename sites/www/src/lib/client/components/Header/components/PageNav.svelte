@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Language } from '$shared/services/i18n';
-  import { TOP_LEVEL_PATHS, getPathLabel, isCurrentPage } from '$shared/services/navigation';
+  import { HEADER_PATHS, getPathLabel, isCurrentPage } from '$shared/services/navigation';
 
   export let pathname: string;
   export let lang: Language;
@@ -10,7 +10,7 @@
 
 <nav aria-label="pages" data-sveltekit-preload-data="hover">
   <ul class="sp:divide-y sp:divide-design-border-1 {cls}">
-    {#each TOP_LEVEL_PATHS as href}
+    {#each HEADER_PATHS as href}
       {@const current = isCurrentPage(pathname, href)}
       <li>
         <a aria-current={current} {href}>
