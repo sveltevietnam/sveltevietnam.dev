@@ -5,6 +5,7 @@
 
   import { version } from '$app/environment';
   import { beforeNavigate, goto } from '$app/navigation';
+  import { updated } from '$app/stores';
   import { Footer } from '$client/components/Footer';
   import { Header } from '$client/components/Header';
   import { SplashScreen } from '$client/components/SplashScreen/index.js';
@@ -13,6 +14,7 @@
   import { noti, notiStore } from '$client/notifications/index.js';
   import { PUBLIC_COOKIE_SCHEME, PUBLIC_DISCORD_WS_URL } from '$env/static/public';
   import { LANGUAGES } from '$shared/services/i18n/index.js';
+  import { translations } from '$shared/services/i18n/translations/notification';
   import type { ColorScheme } from '$shared/types';
 
   import PageTransition from './_page/components/PageTransition.svelte';
@@ -70,6 +72,8 @@
       goto(localized);
     }
   });
+
+  $: if ($updated) noti.info(translations[data.language].newVersion);
 </script>
 
 <Header
