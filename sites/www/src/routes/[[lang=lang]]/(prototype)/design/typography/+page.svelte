@@ -1,4 +1,10 @@
 <script lang="ts">
+  import Breadcrumbs from '$client/components/Breadcrumbs/Breadcrumbs.svelte';
+
+  import type { PageData } from './$types';
+
+  export let data: PageData;
+
   const TYPOGRAPHY = [
     {
       name: 'H1',
@@ -225,9 +231,10 @@
 
 <main class="tp-body1">
   <div class="c-container-design heading-container">
+    <Breadcrumbs breadcrumbs={data.breadcrumbs} class="mb-10" />
     <h1 class="tp-h1 font-bold">Typography</h1>
   </div>
-  <div class="pt-20 py-40 c-container-design">
+  <div class="pt-20 pb-40 c-container-design">
     {#each TYPOGRAPHY as typo, i (typo.name)}
       {#if i > 0}
         <div class="bg-design-border-1 h-px w-full my-12" />
@@ -288,7 +295,7 @@
 <style lang="postcss">
   .heading-container {
     margin-top: calc(-1 * theme('spacing.header'));
-    padding-top: calc(theme('spacing.header') + 80px);
+    padding-top: calc(theme('spacing.header') + 20px);
     padding-bottom: 80px;
     background: theme('colors.design.bg.2');
   }

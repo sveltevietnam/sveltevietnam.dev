@@ -1,4 +1,5 @@
 import { LOAD_DEPENDENCIES } from '$shared/constants';
+import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { PageServerLoad } from './$types';
 import { translations } from './_page/translation';
@@ -16,10 +17,11 @@ const metaTranslations = {
   },
 };
 
-export const load: PageServerLoad = async ({ depends, locals: { language } }) => {
+export const load: PageServerLoad = async ({ url, depends, locals: { language } }) => {
   depends(LOAD_DEPENDENCIES.LANGUAGE);
   const tMeta = metaTranslations[language];
   return {
+    breadcrumbs: buildBreadcrumbs(url.pathname),
     translations: {
       page: translations[language],
     },
