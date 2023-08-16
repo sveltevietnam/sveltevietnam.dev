@@ -10,7 +10,6 @@
     "node": "18.16.0"
   },
   "scripts": {
-    "prepare": "simple-git-hooks",
     "turbo": "turbo",
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
@@ -18,7 +17,8 @@
     "format": "turbo run format --parallel",
     "test:ci": "turbo run test:ci --parallel",
     "dts": "turbo run dts --parallel",
-    "setup": "pnpm install && pnpm dts"
+    "setup": "pnpm install && pnpm dts",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.2.0",
@@ -28,12 +28,12 @@
     "eslint": "^8.46.0",
     "eslint-config-prettier": "^8.9.0",
     "eslint-plugin-svelte": "^2.32.4",
+    "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.0.0",
     "prettier-plugin-svelte": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.4.1",
-    "simple-git-hooks": "^2.9.0",
     "stylelint": "^15.10.2",
     "stylelint-config-clean-order": "^5.0.1",
     "stylelint-config-html": "^1.1.0",

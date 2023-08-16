@@ -55,7 +55,7 @@ Each pull request (PR) should work towards one issue or self-contained goal.
 
 The project uses [eslint] and [prettier] for code linting and formatting. Make sure to install necessary plugins or integrations in your code editor.
 
-[simple-git-hooks] & [lint-staged] is setup to run format and lint checks as a `pre-commit` [git hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks).
+[husky] & [lint-staged] is setup to run format and lint checks as a `pre-commit` [git hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks).
 
 To bypass hook (not recommended, for admin only), run `git commit` with the `--no-verify` flag.
 
@@ -65,7 +65,7 @@ To bypass hook (not recommended, for admin only), run `git commit` with the `--n
 
 <!-- TECHNOLOGIES -->
 
-[simple-git-hooks]: https://github.com/toplenboren/simple-git-hooks
+[husky]: https://typicode.github.io/husky/
 [lint-staged]: https://github.com/okonet/lint-staged
 [eslint]: https://eslint.org
 [prettier]: https://prettier.io

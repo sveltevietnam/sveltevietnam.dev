@@ -29,6 +29,9 @@ importers:
       eslint-plugin-svelte:
         specifier: ^2.32.4
         version: 2.32.4(eslint@8.47.0)(svelte@4.2.0)
+      husky:
+        specifier: ^8.0.3
+        version: 8.0.3
       lint-staged:
         specifier: ^13.2.3
         version: 13.2.3
@@ -44,9 +47,6 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: ^0.4.1
         version: 0.4.1(prettier-plugin-svelte@3.0.3)(prettier@3.0.2)
-      simple-git-hooks:
-        specifier: ^2.9.0
-        version: 2.9.0
       stylelint:
         specifier: ^15.10.2
         version: 15.10.2
@@ -3414,6 +3414,12 @@ packages:
     engines: {node: '>=14.18.0'}
     dev: true
 
+  /husky@8.0.3:
+    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dev: true
+
   /hygen@6.2.11:
     resolution: {integrity: sha512-t6/zLI2XozP5gvV74nnl8LZSbwpVNFUkUs/O9DwuOdiiBbws5k4AQNVwKZ9FGzcKjdJ5EBBYkVzlcUHkLyY0FQ==}
     hasBin: true
@@ -5584,12 +5590,6 @@ packages:
   /signal-exit@4.1.0:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
     engines: {node: '>=14'}
-    dev: true
-
-  /simple-git-hooks@2.9.0:
-    resolution: {integrity: sha512-waSQ5paUQtyGC0ZxlHmcMmD9I1rRXauikBwX31bX58l5vTOhCEcBC5Bi+ZDkPXTjDnZAF8TbCqKBY+9+sVPScw==}
-    hasBin: true
-    requiresBuild: true
     dev: true
 
   /sirv@2.0.3:
