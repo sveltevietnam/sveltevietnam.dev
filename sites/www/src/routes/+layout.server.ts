@@ -6,6 +6,5 @@ export const load: LayoutServerLoad = ({ url, locals }) => {
     colorScheme: locals.colorScheme,
     supportedLanguages: ['en', 'vi'],
     language: locals.language,
-    version: `#${__BUILD_HASH__}@${__BUILD_TIMESTAMP__}`,
   };
 };

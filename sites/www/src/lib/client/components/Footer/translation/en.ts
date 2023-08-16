@@ -13,5 +13,5 @@ export const en = {
     title: 'Contact',
   },
   poweredBy: 'Powered by',
-  version: 'Site version',
+  version: 'Version',
 } satisfies typeof import('./vi').vi;

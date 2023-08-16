@@ -3,6 +3,7 @@
   import ModalPortal from '@svelte-put/modal/ModalPortal.svelte';
   import { onMount } from 'svelte';
 
+  import { version } from '$app/environment';
   import { beforeNavigate, goto } from '$app/navigation';
   import { Footer } from '$client/components/Footer';
   import { Header } from '$client/components/Header';
@@ -80,7 +81,7 @@
 
 <PageTransition>
   <slot />
-  <Footer lang={data.language} version={data.version} pathname={data.pathname} />
+  <Footer lang={data.language} {version} pathname={data.pathname} />
 </PageTransition>
 
 <!-- portals -->
