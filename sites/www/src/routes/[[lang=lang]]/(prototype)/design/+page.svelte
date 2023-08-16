@@ -1,15 +1,18 @@
 <script lang="ts">
+  import Breadcrumbs from '$client/components/Breadcrumbs/Breadcrumbs.svelte';
   import { SvelteVietnamLogo } from '$client/components/SvelteVietnamLogo';
 
+  import type { PageData } from './$types';
   import imgNonla from './_page/images/logo-concept-nonla.webp';
 
-  export let data;
+  export let data: PageData;
 
   $: t = data.translations.page;
 </script>
 
 <main class="tp-body1">
   <div class="c-container-design heading-container">
+    <Breadcrumbs breadcrumbs={data.breadcrumbs} class="mb-10" />
     <h1 class="tp-h1 font-bold">{t.title}</h1>
   </div>
 
@@ -91,7 +94,7 @@
 <style lang="postcss">
   .heading-container {
     margin-top: calc(-1 * theme('spacing.header'));
-    padding-top: calc(theme('spacing.header') + 80px);
+    padding-top: calc(theme('spacing.header') + 20px);
     padding-bottom: 80px;
     background: theme('colors.design.bg.2');
   }

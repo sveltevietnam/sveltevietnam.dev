@@ -1,9 +1,14 @@
 <script lang="ts">
   import { page } from '$app/stores';
+  import type { Breadcrumb } from '$shared/services/navigation';
+
+  import type { LayoutData } from './$types';
+
+  export let data: LayoutData;
 
   $: meta = $page.data.meta;
-
   $: langNotSupported = !$page.data.supportedLanguages.includes($page.data.language);
+  $: breadcrumbs = [...data.breadcrumbs, { label: meta?.title ?? '' }] satisfies Breadcrumb[];
 </script>
 
 <main class="c-container-design">

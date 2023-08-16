@@ -5,6 +5,7 @@ import { mail } from '$server/actions/mail/mail.server';
 import { translations as tMail } from '$server/actions/mail/translation';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
 import { createMockedJobs } from '$shared/mocks';
+import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { PageServerLoad, Actions } from './$types';
 import { translations as tPage } from './_page/translation';
@@ -22,11 +23,12 @@ const metaTranslations = {
   },
 };
 
-export const load: PageServerLoad = async ({ depends, locals: { language } }) => {
+export const load: PageServerLoad = async ({ url, depends, locals: { language } }) => {
   depends(LOAD_DEPENDENCIES.LANGUAGE);
   const tMeta = metaTranslations[language];
   const mailForm = await superValidate(mailSchema);
   return {
+    breadcrumbs: buildBreadcrumbs(url.pathname),
     translations: {
       page: tPage[language],
       mail: tMail[language],

@@ -12,9 +12,11 @@
       {@const last = i === breadcrumbs.length - 1}
       <li {...last && { 'aria-current': 'page' }} class="contents">
         {#if href}
-          <a {href} class="c-link-neutral">{label}</a>
+          <a {href} class="c-link-neutral shrink-0">{label}</a>
         {:else}
-          <span class="text-design-neutral-2">{label}</span>
+          <span class="text-design-neutral-2 whitespace-nowrap overflow-hidden overflow-ellipsis"
+            >{label}</span
+          >
         {/if}
         {#if !last}
           <svg inline-src="icon/caret" width="14" height="14" />
