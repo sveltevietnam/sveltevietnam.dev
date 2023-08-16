@@ -21,13 +21,13 @@ pnpm setup
 
 ## Monorepo
 
-This is a monorepo managed with [pnpm] workspace and [turborepo]. The internal projects are scoped as following:
+This is a monorepo managed with [pnpm] workspace and [turborepo]. The internal packages (sub-projects) are scoped as following:
 
-- `/sites/*`: each project represents an isolated domain.
-- `/services/*`: each project represent a service running in isolation (bot, backend domains, ...).
-- `/libs/*`: each project is a collection of code reusable across monorepo.
+- `/sites/*`: each package represents an isolated domain.
+- `/services/*`: each package represent a service running in isolation (bot, backend domains, ...).
+- `/libs/*`: each package is a collection of code reusable across monorepo.
 
-See [package.json at root directory](./package.json) and in each project for available npm scripts. To run project-specific npm scripts, `cd` to project or use the `filter=...` flag at root. For example, to start the `sveltevietnam.dev` site, run:
+See [package.json at root directory](./package.json) and in each package for available npm scripts. To run package-specific npm scripts, `cd` to package or use the `filter=...` flag at root. For example, to start the `sveltevietnam.dev` site, run:
 
 ```bash
 pnpm dev --filter=@sites/www
