@@ -1,0 +1,69 @@
+name: "EN - \U0001F41E Báo lỗi"
+description: Báo lỗi gặp phải tại sveltevietnam.dev
+title: "Báo lỗi: <tiêu đề ngắn gọn>"
+labels:
+  - "op:triage"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Cảm ơn bạn đã dành thời gian đóng góp cho cộng đồng.
+
+        ## Lưu ý
+
+        Đôi khi trang web cần được tải lại để hoàn thành cập nhật phiên bản mới.
+
+        ## Chi tiết
+  - type: input
+    id: version
+    attributes:
+      label: Phiên bản của sveltevietnam.dev
+      description: |
+        Tìm và điền phiên bản tại góc trái và dưới của trang theo hình dưới.
+
+        ![site version location](https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/.github/assets/site_version_location.png?raw=true)
+      placeholder: semantic#hash@timestamp
+    validations:
+      required: true
+  - type: textarea
+    id: system
+    attributes:
+      label: Thông tin hệ thống
+      description: Điền thông tin về hệ thống và môi trường mà bạn gặp lỗi.
+      value: |
+        - Operating System: Windows | MacOS | Ubuntu
+        - Browser: Chrome | Firefox | Safari | Edge
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Mô tả lỗi
+      description: Liệt kê các bước để lặp lại lỗi, có thể thêm ảnh chụp màn hình hoặc video.
+      value: |
+        ### Bước lặp lại lỗi
+
+        1. Go to page `/...`,
+        2. Click on button ...
+
+        ### Kỳ vọng của người dùng
+
+        ... (đáng ra X phải xảy ra)
+
+        ### Thực tế
+
+        ... (nhưng Y đã xảy ra)
+
+        <ảnh hoặc video>
+    validations:
+      required: true
+  - type: textarea
+    id: additional
+    attributes:
+      label: Thông tin thêm
+  - type: markdown
+    attributes:
+      value: |
+        ## Thank you
+
+        We appreciate your effort to make the site better!
