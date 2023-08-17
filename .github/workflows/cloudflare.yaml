@@ -1,0 +1,90 @@
+name: Deploy to Cloudflare
+
+on:
+  push:
+    branches:
+      - production
+      - preview
+      - main
+  pull_request:
+    paths:
+      - 'libs/utils/**'
+  workflow_dispatch:
+
+jobs:
+  www:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Get pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: '${{ env.STORE_PATH }}'
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
+        continue-on-error: false
+
+      - name: Build
+        run: pnpm run build --filter=@sites/www
+
+      - name: Deploy to Cloudflare
+        id: cloudflare-pages-deploy
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: sveltevietnam
+          directory: sites/www/.svelte-kit/cloudflare
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref_name }}
+          wranglerVersion: "3"
+
+      - name: Create commit comment
+        if: ${{ github.event_name == 'push' }}
+        uses: peter-evans/commit-comment@v2
+        with:
+          body: |
+            ## ⚡ Successfully Cloudflare Pages deployed!
+            | Name | Link |
+            | :--- | :--- |
+            | Latest commit | ${{ github.event.pull_request.head.sha || github.sha }} |
+            | Latest deploy log | ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} |
+            | Deploy Preview Url | [${{ steps.cloudflare-pages-deploy.outputs.url }}](${{ steps.cloudflare-pages-deploy.outputs.url }}) |
+            | Environment | ${{ steps.cloudflare-pages-deploy.outputs.environment }} |
+
+      - name: Create PR comment
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: mshick/add-pr-comment@v2
+        with:
+          message: |
+            ## ⚡ Successfully Cloudflare Pages deployed!
+            | Name | Link |
+            | :--- | :--- |
+            | Latest commit | ${{ github.event.pull_request.head.sha || github.sha }} |
+            | Latest deploy log | ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} |
+            | Deploy Preview Url | [${{ steps.cloudflare-pages-deploy.outputs.url }}](${{ steps.cloudflare-pages-deploy.outputs.url }}) |
+            | Environment | ${{ steps.cloudflare-pages-deploy.outputs.environment }} |
