@@ -1,25 +1,25 @@
-name: "EN - \U0001F41E Báo lỗi"
-description: Báo lỗi gặp phải tại sveltevietnam.dev
-title: "Báo lỗi: <tiêu đề ngắn gọn>"
+name: "EN - \U0001F41E Bug report"
+description: Report a bug at sveltevietnam.dev
+title: "Bug Report: <short description>"
 labels:
   - "op:triage"
 body:
   - type: markdown
     attributes:
       value: |
-        Cảm ơn bạn đã dành thời gian đóng góp cho cộng đồng.
+        Thank you for being part of the community. Let's fill out some information to help maintainers better understand the issue.
 
-        ## Lưu ý
+        ## Note
 
-        Đôi khi trang web cần được tải lại để hoàn thành cập nhật phiên bản mới.
+        Sometimes it takes a hard refresh for the site to be fully updated with new version.
 
-        ## Chi tiết
+        ## Report Details
   - type: input
     id: version
     attributes:
-      label: Phiên bản của sveltevietnam.dev
+      label: Version of sveltevietnam.dev
       description: |
-        Tìm và điền phiên bản tại góc trái và dưới của trang theo hình dưới.
+        Find the site version at the bottom left of the page, inside the footer.
 
         ![site version location](https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/.github/assets/site_version_location.png?raw=true)
       placeholder: semantic#hash@timestamp
@@ -28,8 +28,8 @@ body:
   - type: textarea
     id: system
     attributes:
-      label: Thông tin hệ thống
-      description: Điền thông tin về hệ thống và môi trường mà bạn gặp lỗi.
+      label: System Information
+      description: Provide your system and environment information.
       value: |
         - Operating System: Windows | MacOS | Ubuntu
         - Browser: Chrome | Firefox | Safari | Edge
@@ -38,29 +38,29 @@ body:
   - type: textarea
     id: description
     attributes:
-      label: Mô tả lỗi
-      description: Liệt kê các bước để lặp lại lỗi, có thể thêm ảnh chụp màn hình hoặc video.
+      label: Describe the bug
+      description: Include steps to reproduce, you may include screenshots or videos.
       value: |
-        ### Bước lặp lại lỗi
+        ### Steps to reproduce
 
         1. Go to page `/...`,
         2. Click on button ...
 
-        ### Kỳ vọng của người dùng
+        ### Expected behavior
 
-        ... (đáng ra X phải xảy ra)
+        ...
 
-        ### Thực tế
+        ### Actual behavior
 
-        ... (nhưng Y đã xảy ra)
+        ...
 
-        <ảnh hoặc video>
+        <screenshots_or_videos>
     validations:
       required: true
   - type: textarea
     id: additional
     attributes:
-      label: Thông tin thêm
+      label: Additional Information
   - type: markdown
     attributes:
       value: |
