@@ -2,7 +2,7 @@ import { localizeUrl, getLangFromUrl } from '@libs/utils/url';
 import type { Handle } from '@sveltejs/kit';
 
 import { COOKIE_LANGUAGE, COOKIE_USER_ID } from '$env/static/private';
-import { PUBLIC_COOKIE_SCHEME } from '$env/static/public';
+import { PUBLIC_COOKIE_COLOR_SCHEME } from '$env/static/public';
 import { LANGUAGES } from '$shared/services/i18n';
 import type { ColorScheme } from '$shared/types';
 
@@ -57,11 +57,11 @@ export const handle: Handle = async ({ event, resolve }) => {
     languageFromUrl = 'vi';
   }
 
-  locals.colorScheme = (cookies.get(PUBLIC_COOKIE_SCHEME) as ColorScheme) || 'system';
+  locals.colorScheme = (cookies.get(PUBLIC_COOKIE_COLOR_SCHEME) as ColorScheme) || 'system';
   locals.language = languageFromUrl;
 
   // set cookies
-  cookies.set(PUBLIC_COOKIE_SCHEME, locals.colorScheme, {
+  cookies.set(PUBLIC_COOKIE_COLOR_SCHEME, locals.colorScheme, {
     ...COMMON_COOKIE_CONFIG,
     httpOnly: false,
   });

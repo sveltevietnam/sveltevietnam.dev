@@ -14,6 +14,19 @@ on:
 jobs:
   www:
     runs-on: ubuntu-latest
+    environment:
+      name: |-
+        ${{
+            github.ref_name == 'production' && 'sveltevietnam (Production)'
+        ||  github.ref_name == 'preview'    && 'sveltevietnam (Preview)'
+        ||                                     'sveltevietnam (Dev)'
+        }}
+      url: |-
+        ${{
+            github.ref_name == 'production' && 'https://sveltevietnam.dev'
+        ||  github.ref_name == 'preview'    && 'https://preview.sveltevietnam.dev'
+        ||                                      steps.cloudflare-pages-deploy.outputs.url
+        }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -50,6 +63,18 @@ jobs:
 
       - name: Build
         run: pnpm run build --filter=@sites/www
+        env:
+          # cloudflare turnstile
+          PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY: ${{ vars.PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY }}
+          CLOUDFLARE_TURNSTILE_SECRET_KEY: ${{ secrets.CLOUDFLARE_TURNSTILE_SECRET_KEY }}
+          # cookies
+          COOKIE_USER_ID: ${{ vars.COOKIE_USER_ID }}
+          PUBLIC_COOKIE_COLOR_SCHEME: ${{ vars.PUBLIC_COOKIE_COLOR_SCHEME }}
+          COOKIE_LANGUAGE: ${{ vars.COOKIE_LANGUAGE }}
+          # public env
+          PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID: ${{ vars.PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID }}
+          PUBLIC_DISCORD_WS_URL: ${{ vars.PUBLIC_DISCORD_WS_URL }}
+          PUBLIC_MODE: ${{ vars.PUBLIC_MODE }}
 
       - name: Deploy to Cloudflare
         id: cloudflare-pages-deploy
@@ -59,7 +84,7 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: sveltevietnam
           directory: sites/www/.svelte-kit/cloudflare
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          # gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref_name }}
           wranglerVersion: "3"
 

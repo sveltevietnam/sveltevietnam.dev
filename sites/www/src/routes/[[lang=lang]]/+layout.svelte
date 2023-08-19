@@ -12,7 +12,7 @@
   import { modalStore } from '$client/modals';
   import NotificationPortal from '$client/notifications/NotificationPortal.svelte';
   import { noti, notiStore } from '$client/notifications/index.js';
-  import { PUBLIC_COOKIE_SCHEME, PUBLIC_DISCORD_WS_URL } from '$env/static/public';
+  import { PUBLIC_COOKIE_COLOR_SCHEME, PUBLIC_DISCORD_WS_URL } from '$env/static/public';
   import { LANGUAGES } from '$shared/services/i18n/index.js';
   import { translations } from '$shared/services/i18n/translations/notification';
   import type { ColorScheme } from '$shared/types';
@@ -27,7 +27,7 @@
     if (clientColorScheme === scheme) return;
     clientColorScheme = scheme;
     document.documentElement.dataset.colorScheme = scheme;
-    document.cookie = `${PUBLIC_COOKIE_SCHEME}=${scheme}; path=/; SameSite=Lax; Secure`;
+    document.cookie = `${PUBLIC_COOKIE_COLOR_SCHEME}=${scheme}; path=/; SameSite=Lax; Secure`;
   }
 
   type DiscordEventData = {
