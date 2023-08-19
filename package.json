@@ -7,7 +7,7 @@
     "node": ">=18.0.0"
   },
   "volta": {
-    "node": "18.16.0"
+    "node": "18.17.1"
   },
   "scripts": {
     "turbo": "turbo",
@@ -21,24 +21,24 @@
     "prepare": "husky install"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.2.0",
-    "@typescript-eslint/parser": "^6.2.0",
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
+    "@typescript-eslint/parser": "^6.4.0",
     "@vnphanquang/eslint-config": "^2.0.0",
     "@vnphanquang/prettierrc": "^1.0.1",
-    "eslint": "^8.46.0",
-    "eslint-config-prettier": "^8.9.0",
+    "eslint": "^8.47.0",
+    "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-svelte": "^2.32.4",
     "husky": "^8.0.3",
-    "lint-staged": "^13.2.3",
+    "lint-staged": "^14.0.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^3.0.0",
+    "prettier": "^3.0.2",
     "prettier-plugin-svelte": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.4.1",
-    "stylelint": "^15.10.2",
-    "stylelint-config-clean-order": "^5.0.1",
+    "stylelint": "^15.10.3",
+    "stylelint-config-clean-order": "^5.2.0",
     "stylelint-config-html": "^1.1.0",
     "stylelint-config-standard": "^34.0.0",
-    "tslib": "^2.6.1",
+    "tslib": "^2.6.2",
     "turbo": "^1.10.12",
     "typescript": "^5.1.6"
   }
