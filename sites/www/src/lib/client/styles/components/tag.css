@@ -1,0 +1,19 @@
+@custom-selector :--inline .c-tag--inline;
+
+.c-tag {
+  @apply tp-cap1;
+
+  padding: 6px 12px;
+
+  line-height: 1;
+  color: theme('colors.design.neutral.2');
+
+  border: 1px solid theme('colors.design.border.1');
+  border-radius: 25px;
+
+  &:where(:--inline) {
+    display: inline-block;
+    color: currentcolor;
+    border-color: currentcolor;
+  }
+}

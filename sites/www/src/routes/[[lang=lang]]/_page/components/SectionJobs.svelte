@@ -22,10 +22,8 @@
     </h2>
     <AnimatedArrowCircle class="h-12 w-12 tb:h-16 tb:w-16" handle="parent" />
   </a>
-  <p class="section-desc mt-6 pc:mt-8" use:intersect>{t.description}</p>
-  <ul
-    class="mt-10 grid grid-cols-1 gap-x-6 pc:mt-20 pc:grid-cols-3 pc:gap-y-10 tb:grid-cols-2 sp:gap-y-4"
-  >
+  <p class="section-desc mt-6" use:intersect>{t.description}</p>
+  <ul>
     {#each jobs as job}
       <li class="shrink-0" use:intersect>
         <JobCard {job} {lang} class="h-full" />
@@ -39,7 +37,21 @@
     margin-top: 80px;
 
     @screen tb {
-      margin-top: 160px;
+      margin-top: 120px;
+    }
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 40px;
+    column-gap: 24px;
+
+    margin-top: 40px;
+
+    @screen tb {
+      grid-template-columns: repeat(2, 1fr);
+      margin-top: 60px;
     }
   }
 </style>

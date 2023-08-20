@@ -19,7 +19,7 @@
 <article class="job-card {cls}">
   <img src={job.image || companyFallbackImg} alt={job.company} height="80" width="80" />
   <div class="details">
-    <p class="company">
+    <p class="font-medium">
       <svg inline-src="icon/building" width="16" height="16" class="inline-block" />
       {job.company}
     </p>
@@ -32,11 +32,11 @@
         <time datetime={job.expiresAt}>{new Date(job.expiresAt).toLocaleDateString()}</time>
       {/if}
     </p>
-    <a class="title" href={job.href} target="_blank">{job.title}</a>
+    <a class="title font-medium tp-h5" href={job.href} target="_blank">{job.title}</a>
   </div>
   <div class="tags">
     {#each tags as tag}
-      <p class="tag">{tag}</p>
+      <p class="c-tag">{tag}</p>
     {/each}
   </div>
 </article>
@@ -48,6 +48,7 @@
       'img details'
       'tags tags';
     grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
     row-gap: 16px;
     column-gap: 24px;
   }
@@ -60,36 +61,18 @@
     grid-area: details;
   }
 
-  .company {
-    font-size: 12px;
-
-    @screen tb {
-      font-size: 14px;
-    }
-  }
-
   .datetime {
     margin-top: 6px;
-    font-size: 12px;
     color: theme('colors.design.neutral.2');
   }
 
   .title {
     display: block;
-
     margin-top: 12px;
-
-    font-size: 16px;
-    font-weight: 500;
-
     transition: color 400ms ease-out;
 
     &:hover {
       color: theme('colors.design.link.title');
-    }
-
-    @screen tb {
-      font-size: 18px;
     }
   }
 
@@ -98,15 +81,7 @@
     grid-area: tags;
     flex-wrap: wrap;
     gap: 8px;
-  }
 
-  .tag {
-    padding: 4px 10px;
-
-    font-size: 12px;
-    color: theme('colors.design.neutral.2');
-
-    border: 1px solid theme('colors.design.border.1');
-    border-radius: 25px;
+    height: fit-content;
   }
 </style>

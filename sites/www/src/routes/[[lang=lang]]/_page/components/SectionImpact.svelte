@@ -50,7 +50,7 @@
     on:emblaInit={onEmblaInit}
   >
     <ul class="embla__container">
-      {#each projects as { description, image, name, collaboration, href }}
+      {#each projects as { description, image, name, by, href }}
         <li class="project embla__slide">
           <div class="img-container">
             {#if image}
@@ -58,21 +58,32 @@
             {/if}
           </div>
           <div>
-            <a class="title" {href}>{name}</a>
+            <a class="title font-bold tp-h4" {href}>{name}</a>
             <p class="description line-clamp-3 tb:line-clamp-4">{@html description}</p>
-            <p class="collaboration">
-              <span class="whitespace-nowrap sp:hidden">{t.collaboration}</span>
-              <span>{@html collaboration}</span>
-            </p>
+            <div class="by">
+              <p class="whitespace-nowrap font-medium">{t.by}:</p>
+              <p class="line-clamp-3 flex-1">{@html by}</p>
+            </div>
           </div>
         </li>
       {/each}
     </ul>
   </div>
   <div class="projects-pagination c-container-design">
+    <button class="pagination-btn mr-6" on:click={() => emblaApi?.scrollPrev()}>
+      <svg
+        inline-src="icon/caret"
+        width="24"
+        height="24"
+        class="rotate-180 stroke-current stroke-2"
+      />
+    </button>
     <p>01</p>
     <progress max="100" value={emblaProgress} />
     <p>{projects.length.toString().padStart(2, '0')}</p>
+    <button class="pagination-btn ml-6" on:click={() => emblaApi?.scrollNext()}>
+      <svg inline-src="icon/caret" width="24" height="24" class="stroke-current stroke-2" />
+    </button>
   </div>
 </section>
 
@@ -81,7 +92,7 @@
     margin-top: 80px;
 
     @screen tb {
-      margin-top: 160px;
+      margin-top: 120px;
     }
   }
 
@@ -109,13 +120,11 @@
     padding-bottom: 10px;
 
     @screen tb {
-      margin-top: 107px;
+      margin-top: 60px;
     }
   }
 
   .project {
-    @space-x 4px;
-
     position: relative;
 
     overflow: hidden;
@@ -125,19 +134,21 @@
     align-items: flex-end;
 
     margin-left: 12px;
-    padding: 69px 12px 12px;
+    padding: 40px 12px 12px;
 
     color: theme('colors.design.grayscale.light.1');
 
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
 
-    @screen tb {
-      @space-x 24px;
+    @screen sp {
+      height: 240px;
+    }
 
+    @screen tb {
       flex: 0 0 calc(60 * var(--container-max-width) / 100);
       margin-left: 20px;
-      padding: 234px 24px 28px;
+      padding: 187px 24px 38px;
     }
 
     @screen pc {
@@ -178,59 +189,60 @@
 
   .title {
     display: block;
-    font-size: 14px;
-    font-weight: 700;
     transition: color 250ms ease-out;
 
     &:hover {
       color: theme('colors.design.link.title');
     }
-
-    @screen tb {
-      font-size: 24px;
-    }
   }
 
   .description {
     margin-top: 8px;
-    font-size: 12px;
 
     @screen tb {
       margin-top: 16px;
-      font-size: 16px;
     }
   }
 
-  .collaboration {
+  .by {
     display: flex;
-    align-items: flex-start;
+    gap: 16px;
+    align-items: center;
     margin-top: 8px;
-    font-size: 12px;
+
+    @screen sp {
+      align-items: flex-start;
+    }
 
     @screen tb {
-      @space-x 24px;
-
       margin-top: 10px;
-      font-size: 16px;
     }
   }
 
   .projects-pagination {
-    @space-x 8px;
-
     display: flex;
+    gap: 8px;
     align-items: center;
     justify-content: flex-end;
 
     margin-top: 30px;
 
-    font-family: theme('fontFamily.lora');
-    font-size: 16px;
-    font-weight: 700;
-
     @screen tb {
       margin-top: 70px;
-      font-size: 24px;
+    }
+  }
+
+  .pagination-btn {
+    padding: 10px;
+
+    opacity: 0.5;
+    border: 2px solid currentcolor;
+    border-radius: theme('borderRadius.full');
+
+    transition: opacity theme('transitionTimingFunction.DEFAULT') 250ms;
+
+    &:hover {
+      opacity: 1;
     }
   }
 

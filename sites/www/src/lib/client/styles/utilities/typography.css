@@ -16,7 +16,7 @@
 .tp-h1 {
   @apply tp-h1@sp;
 
-  @screen pc {
+  @screen tb {
     @apply tp-h1@pc;
   }
 }
@@ -39,7 +39,7 @@
 .tp-h2 {
   @apply tp-h2@sp;
 
-  @screen pc {
+  @screen tb {
     @apply tp-h2@pc;
   }
 }
@@ -62,7 +62,7 @@
 .tp-h3 {
   @apply tp-h3@sp;
 
-  @screen pc {
+  @screen tb {
     @apply tp-h3@pc;
   }
 }
@@ -85,7 +85,7 @@
 .tp-h4 {
   @apply tp-h4@sp;
 
-  @screen pc {
+  @screen tb {
     @apply tp-h4@pc;
   }
 }
@@ -105,7 +105,7 @@
 .tp-h5 {
   @apply tp-h5@sp;
 
-  @screen pc {
+  @screen tb {
     @apply tp-h5@pc;
   }
 }
@@ -125,7 +125,7 @@
 .tp-body1 {
   @apply tp-body1@sp;
 
-  @screen pc {
+  @screen tb {
     @apply tp-body1@pc;
   }
 }
@@ -145,7 +145,7 @@
 .tp-body2 {
   @apply tp-body2@sp;
 
-  @screen pc {
+  @screen tb {
     @apply tp-body2@pc;
   }
 }
@@ -165,7 +165,7 @@
 .tp-cap1 {
   @apply tp-cap1@sp;
 
-  @screen pc {
+  @screen tb {
     @apply tp-cap1@pc;
   }
 }
@@ -185,7 +185,7 @@
 .tp-cap2 {
   @apply tp-cap2@sp;
 
-  @screen pc {
+  @screen tb {
     @apply tp-cap2@pc;
   }
 }
@@ -206,7 +206,7 @@
 .tp-link {
   @apply tp-link@pc;
 
-  @screen pc {
+  @screen tb {
     @apply tp-link@pc;
   }
 } */

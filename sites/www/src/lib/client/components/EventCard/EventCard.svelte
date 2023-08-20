@@ -52,30 +52,30 @@
 </script>
 
 <article class="event-card {cls}">
-  <p class="date">
+  <p class="tp-h4 font-medium date">
     <time datetime={rStartDate.toISOString()}>{formatDate(rStartDate)}</time>
     <AnimatedArrowCircle height={32} width={32} handle="#{event.id}" />
   </p>
   <div class="content">
-    <a href={event.href} class="title" id={event.id}>
+    <a href={event.href} class="title tp-h4 font-medium" id={event.id}>
       {event.title}
     </a>
     <p class="description">
       {@html event.description}
     </p>
     <dl class="details">
-      <dt>{t.location}:</dt>
+      <dt class="font-medium">{t.location}:</dt>
       <dd>
         {event.location}
       </dd>
 
-      <dt>{t.time}:</dt>
+      <dt class="font-medium">{t.time}:</dt>
       <dd>
         <time datetime={rStartDate.toISOString()}>{formatTimeStr(event)}</time>
       </dd>
 
       {#if event.speakers.length}
-        <dt>{t.speakers}:</dt>
+        <dt class="font-medium">{t.speakers}:</dt>
         <dd>
           <ul class="speakers">
             {#each event.speakers as { image, name, href }}
@@ -97,7 +97,7 @@
       {/if}
 
       {#if event.sponsors.length}
-        <dt>{t.sponsors}:</dt>
+        <dt class="font-medium">{t.sponsors}:</dt>
         <dd>
           <ul class="sponsors">
             {#each event.sponsors as { href, image, name }}
@@ -135,11 +135,6 @@
     display: flex;
     align-items: center;
     font-family: theme('fontFamily.lora');
-    font-size: 18px;
-
-    @screen tb {
-      font-size: 24px;
-    }
 
     & :global(svg) {
       --animated-color: theme('colors.design.neutral.2');
@@ -167,16 +162,10 @@
 
   .title {
     display: block;
-    font-size: 18px;
-    font-weight: 500;
     transition: color 400ms ease-out;
 
     &:hover {
       color: theme('colors.design.link.title');
-    }
-
-    @screen tb {
-      font-size: 24px;
     }
   }
 

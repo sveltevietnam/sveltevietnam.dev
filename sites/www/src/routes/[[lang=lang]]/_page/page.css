@@ -17,23 +17,10 @@
 }
 
 .section-title {
-  font-family: theme('fontFamily.lora');
-  font-size: 32px;
-  line-height: 0;
   text-transform: uppercase;
 
-  @screen tb {
-    font-size: 64px;
-  }
-
   & .splitFade-char {
-    line-height: 1.5;
-  }
-}
-
-.section-desc {
-  @screen tb {
-    font-size: 18px;
+    @apply tp-h2;
   }
 }
 

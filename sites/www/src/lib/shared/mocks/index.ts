@@ -23,6 +23,24 @@ export function createMockedSponsors() {
       image: '',
       name: 'Svelte Vietnam',
     },
+    {
+      id: crypto.randomUUID(),
+      href: 'http://github.com/sveltevietnam',
+      image: '',
+      name: 'Svelte Vietnam',
+    },
+    {
+      id: crypto.randomUUID(),
+      href: 'http://github.com/sveltevietnam',
+      image: '',
+      name: 'Svelte Vietnam',
+    },
+    {
+      id: crypto.randomUUID(),
+      href: 'http://github.com/sveltevietnam',
+      image: '',
+      name: 'Svelte Vietnam',
+    },
   ] satisfies Sponsor[];
 }
 
@@ -198,14 +216,18 @@ export function createMockedContributors() {
 }
 
 export function createMockedProjects(length = 2) {
-  return new Array(length).fill({
-    id: crypto.randomUUID(),
-    name: 'Svelte Vietnam',
-    image: vietnamImg,
-    description:
-      'Svelte Vietnam đang trong giai đoạn khởi tạo, hướng đến trở thành một cộng đồng chính thống và nơi thảo luận, tổng hợp tin tức, sự kiện, việc làm cho thành viên là bất cứ ai quan tâm đến Svelte và các công nghệ trong cùng hệ sinh thái.<br>Svelte Vietnam chào đón tất cả mọi người ko kể tuổi tác, giới tính, tính ngưỡng tôn giáo, ...',
-    collaboration:
-      'Thiết kế bới Trọng Trần, phát triển bới Quang Phan, open source tại trang Github của Svelte Vietnam',
-    href: 'https://sveltevietnam.dev',
-  }) satisfies Project[];
+  const projects: Project[] = [];
+  for (let i = 0; i < length; i++) {
+    projects.push({
+      id: crypto.randomUUID(),
+      name: 'Svelte Vietnam',
+      image: vietnamImg,
+      description:
+        'Svelte Vietnam đang trong giai đoạn khởi tạo, hướng đến trở thành một cộng đồng chính thống và nơi thảo luận, tổng hợp tin tức, sự kiện, việc làm cho thành viên là bất cứ ai quan tâm đến Svelte và các công nghệ trong cùng hệ sinh thái.<br>Svelte Vietnam chào đón tất cả mọi người ko kể tuổi tác, giới tính, tính ngưỡng tôn giáo, ...',
+      by: 'Cộng đồng open source Svelte Vietnam',
+      href: 'https://sveltevietnam.dev',
+    });
+  }
+
+  return projects;
 }

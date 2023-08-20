@@ -80,25 +80,31 @@
       <li class="embla__slide intro-card intro-card--svelte">
         <article>
           <img src={introSvelteImg} alt="swirling winged-shaped star" width="60" height="60" />
-          <p class="intro-card-title">Svelte</p>
-          <div class="separator" aria-disabled />
-          <p>{t.svelte}</p>
+          <div>
+            <p class="tp-h3 font-bold">Svelte</p>
+            <div class="separator" aria-disabled />
+            <p>{t.svelte}</p>
+          </div>
         </article>
       </li>
       <li class="embla__slide intro-card intro-card--vietnam">
         <article>
           <img src={introVietnamImg} alt="five-pointed star" width="60" height="60" />
-          <p class="intro-card-title">Vietnam</p>
-          <div class="separator" aria-disabled />
-          <p>{t.vietnam}</p>
+          <div>
+            <p class="tp-h3 font-bold">Vietnam</p>
+            <div class="separator" aria-disabled />
+            <p>{t.vietnam}</p>
+          </div>
         </article>
       </li>
       <li class="embla__slide intro-card intro-card--sveltevietnam">
         <article>
           <img src={introSvelteVietnamImg} alt="eight-pointed start" width="60" height="60" />
-          <p class="intro-card-title">Svelte Vietnam</p>
-          <div class="separator" aria-disabled />
-          <p>{t.sveltevietnam}</p>
+          <div>
+            <p class="tp-h3 font-bold">Svelte Vietnam</p>
+            <div class="separator" aria-disabled />
+            <p>{t.sveltevietnam}</p>
+          </div>
         </article>
       </li>
     </ul>
@@ -186,11 +192,14 @@
   .intro-card {
     --initial-translate-y: 80px;
 
-    flex: 0 0 297px;
+    display: flex;
+    flex: 0 0 298px;
+    flex-direction: column;
+    justify-content: space-between;
 
-    height: 360px;
+    height: 350px;
     margin-left: 20px;
-    padding: 20px;
+    padding: 16px;
 
     color: theme('colors.design.grayscale.dark.1');
 
@@ -235,33 +244,28 @@
       }
     }
 
-    & .intro-card-title {
-      margin-top: 100px;
-      font-family: theme('fontFamily.lora');
-      font-size: 32px;
-      font-weight: 700;
+    & article {
+      display: contents;
+    }
+
+    & img {
+      width: 50px;
+      height: 50px;
 
       @screen tb {
-        margin-top: 136px;
+        width: 60px;
+        height: 60px;
       }
     }
 
     & .separator {
       width: 100%;
       height: 1px;
-      margin: 12px 0;
+      margin: 14px 0;
       background-color: currentcolor;
 
       @screen pc {
         margin: 16px 0;
-      }
-    }
-
-    & p {
-      font-size: 14px;
-
-      @screen tb {
-        font-size: 16px;
       }
     }
   }

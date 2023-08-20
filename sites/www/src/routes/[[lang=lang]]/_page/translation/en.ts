@@ -12,7 +12,7 @@ export const en = {
   },
   community: {
     title: 'Community',
-    description: `Join the <a class="c-link" href=${SOCIAL_LINKS.discord} target="_blank" rel="noreferrer">Svelte Vietnam Discord</a> and start having conversations, help or seek help from other members. To contribute to the source code of this website or other open source projects from Svelte Vietnam, visit the <a class="c-link" href="${SOCIAL_LINKS.github}" target="_blank" rel="noreferrer">Svelte Vietnam Github</a> page.`,
+    description: `Join the <a class="c-link" href=${SOCIAL_LINKS.discord} target="_blank" rel="noreferrer">Svelte Vietnam Discord</a> and start having conversations, help or seek help from other members.<br>To contribute to the source code of this website or other open source projects from Svelte Vietnam, visit the <a class="c-link" href="${SOCIAL_LINKS.github}" target="_blank" rel="noreferrer">Svelte Vietnam Github</a> page.`,
     ctas: {
       discord: 'Join now at Discord',
       nominate: 'Nominate contributor',
@@ -36,7 +36,7 @@ export const en = {
   impact: {
     title: 'Projects in need',
     description: 'Share or participate in open source or non-profit projects and make a difference',
-    collaboration: 'Collaboration',
+    by: 'By',
     ctas: {
       viewMore: 'See more',
     },
