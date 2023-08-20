@@ -48,7 +48,7 @@
 .tp-h3\@sp {
   font-family: theme('fontFamily.lora');
   font-size: 24px;
-  line-height: 31px;
+  line-height: 36px;
   letter-spacing: 0;
 }
 
@@ -70,7 +70,7 @@
 /* --------------H4-------------- */
 .tp-h4\@sp {
   font-family: theme('fontFamily.inter');
-  font-size: 18px;
+  font-size: 20px;
   line-height: 24px;
   letter-spacing: 0;
 }
@@ -94,7 +94,7 @@
 .tp-h5\@sp {
   font-family: theme('fontFamily.inter');
   font-size: 18px;
-  line-height: 22px;
+  line-height: 24px;
   letter-spacing: 0;
 }
 
