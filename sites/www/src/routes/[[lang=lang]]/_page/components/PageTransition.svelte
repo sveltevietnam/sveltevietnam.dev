@@ -20,10 +20,15 @@
   });
 
   let url: URL | undefined = undefined;
-  afterNavigate(({ to }) => {
+  afterNavigate(({ to, from }) => {
     disableScrollHandling();
-    url = to?.url;
-    if (to && isCurrentPage(to.url.pathname, HOME_PATH)) {
+    if (
+      from &&
+      to &&
+      isCurrentPage(to.url.pathname, HOME_PATH) &&
+      !isCurrentPage(from.url.pathname, HOME_PATH)
+    ) {
+      console.log('AUTOSCROLL');
       autoScroll();
     }
   });
