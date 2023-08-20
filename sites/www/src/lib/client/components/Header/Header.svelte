@@ -194,7 +194,7 @@
     grid-template-areas:
       'languages mobile-close'
       'pages pages';
-    grid-template-columns: auto auto;
+    grid-template-columns: auto 44px;
     grid-template-rows: auto 1fr;
     align-items: center;
     justify-content: space-between;
@@ -221,6 +221,7 @@
 
   .mobile-close {
     grid-area: mobile-close;
+    width: fit-content;
 
     @screen tb {
       display: none;

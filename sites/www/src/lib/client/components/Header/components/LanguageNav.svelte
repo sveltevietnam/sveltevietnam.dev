@@ -46,12 +46,17 @@
       align-items: center;
 
       width: fit-content;
-      height: 32px;
+      height: 35px;
+
+      font-size: 16px;
+      font-weight: 500;
+      line-height: normal;
 
       border: 1px solid currentcolor;
       border-radius: 30px;
 
       @screen upto-tb {
+        height: 40px;
         font-size: theme('fontSize.xl');
       }
     }
@@ -62,15 +67,13 @@
 
     & a {
       display: block;
-
       padding: 0 12px;
-
-      font-size: 16px;
-      font-weight: 500;
-      line-height: normal;
       text-transform: uppercase;
-
       transition: opacity var(--transition-duration) var(--transition-timing-function);
+
+      @screen upto-tb {
+        padding: 0 16px;
+      }
 
       &[aria-current='false'] {
         color: currentcolor;
