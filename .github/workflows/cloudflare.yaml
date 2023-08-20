@@ -9,6 +9,7 @@ on:
   pull_request:
     paths:
       - 'libs/utils/**'
+      - 'sites/www/**'
   workflow_dispatch:
 
 jobs:
