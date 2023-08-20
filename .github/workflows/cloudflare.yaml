@@ -7,13 +7,29 @@ on:
       - preview
       - main
   pull_request:
-    paths:
-      - 'libs/utils/**'
-      - 'sites/www/**'
   workflow_dispatch:
 
 jobs:
+  pre_jobs:
+    runs-on: ubuntu-latest
+    outputs:
+      should_skip: ${{ steps.skip_check.outputs.should_skip }}
+      paths_result: ${{ steps.skip_check.outputs.paths_result }}
+    steps:
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@v5
+        with:
+          skip_after_successful_duplicate: 'true'
+          paths_ignore: '["**/README.md", "**/docs/**"]'
+          do_not_skip: '["pull_request", "workflow_dispatch", "schedule"]'
+          paths_filter: |
+            www:
+              paths:
+                - 'libs/utils/**'
+                - 'sites/www/**'
   www:
+    needs: pre_jobs
+    if: needs.pre_jobs.outputs.should_skip != 'true' || !fromJSON(needs.pre_jobs.outputs.paths_result).www.should_skip
     runs-on: ubuntu-latest
     environment:
       name: |-
