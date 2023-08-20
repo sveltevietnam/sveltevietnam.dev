@@ -20,7 +20,8 @@ Contribution and discussion are welcome.
 
 ## Status
 
-⚠️ This site is in active design & development; roadmap and progress can be tracked at the [sveltevietnam.dev project board](https://github.com/orgs/sveltevietnam/projects/1).
+> [!IMPORTANT]
+> This site is in active design & development; roadmap and progress can be tracked at the [sveltevietnam.dev project board](https://github.com/orgs/sveltevietnam/projects/1).
 
 ## Contributing
 
