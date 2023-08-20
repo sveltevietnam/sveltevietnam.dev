@@ -22,13 +22,13 @@
     </h2>
     <AnimatedArrowCircle class="h-12 w-12 tb:h-16 tb:w-16" handle="parent" />
   </a>
-  <p class="section-desc mt-6 pc:mt-8" use:intersect>{t.description}</p>
+  <p class="section-desc mt-6" use:intersect>{t.description}</p>
   <!-- FIXME: refactor to plain css here -->
-  <ul class="mt-10 flex flex-wrap gap-x-[73px] gap-y-[62px] pc:mt-20" use:intersect>
+  <ul use:intersect>
     {#each sponsors as _}
       <li class="flex items-center space-x-2 pc:space-x-4">
-        <SvelteVietnamLogo width={50} height={56} version="themed" class="sp:w-[32px]" />
-        <p class="w-[50px] text-[11px] uppercase pc:w-[90px] pc:text-[20px]">Svelte Vietnam</p>
+        <SvelteVietnamLogo width={50} height={56} version="themed" class="sp:w-[32px] sp:h-auto" />
+        <p class="text-[11px] uppercase pc:text-[20px] leading-normal">Svelte<br />Vietnam</p>
       </li>
     {/each}
   </ul>
@@ -40,8 +40,20 @@
     padding-bottom: 120px;
 
     @screen tb {
-      padding-top: 80px;
+      margin-top: 120px;
       padding-bottom: 108px;
+    }
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 24px;
+
+    @screen tb {
+      gap: 40px;
+      margin-top: 60px;
     }
   }
 </style>

@@ -12,7 +12,7 @@ export const vi = {
   },
   community: {
     title: 'Cộng đồng',
-    description: `Tham gia <a class="c-link" href=${SOCIAL_LINKS.discord} target="_blank" rel="noreferrer">Discord của Svelte Vietnam</a> để cùng giao lưu, trao đổi thông tin, hỏi đáp, và hỗ trợ nhau.<br><br>Để đóng góp vào mã nguồn của trang web này hoặc các dự án open source từ Svelte Vietnam, truy cập trang <a class="c-link" href="${SOCIAL_LINKS.github}" target="_blank" rel="noreferrer">Github của Svelte Vietnam</a>.`,
+    description: `Tham gia <a class="c-link" href=${SOCIAL_LINKS.discord} target="_blank" rel="noreferrer">Discord của Svelte Vietnam</a> để cùng giao lưu, trao đổi thông tin, hỏi đáp, và hỗ trợ nhau.<br>Để đóng góp vào mã nguồn của trang web này hoặc các dự án open source từ Svelte Vietnam, truy cập trang <a class="c-link" href="${SOCIAL_LINKS.github}" target="_blank" rel="noreferrer">Github của Svelte Vietnam</a>.`,
     ctas: {
       discord: 'Tham gia ngay tại Discord',
       nominate: 'Đề cử thành viên tiêu biểu',
@@ -37,7 +37,7 @@ export const vi = {
     title: 'Dự án cần hỗ trợ',
     description:
       'Chia sẻ hoặc tham gia các dự án phi lợi nhuận hoặc open source để góp phần tạo nên thay đổi tích cực',
-    collaboration: 'Hợp tác',
+    by: 'Bởi',
     ctas: {
       viewMore: 'Xem thêm',
     },

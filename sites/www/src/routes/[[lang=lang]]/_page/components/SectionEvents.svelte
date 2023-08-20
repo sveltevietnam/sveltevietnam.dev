@@ -22,8 +22,8 @@
     </h2>
     <AnimatedArrowCircle class="h-12 w-12 tb:h-16 tb:w-16" handle="parent" />
   </a>
-  <p class="section-desc mt-6 pc:mt-8" use:intersect>{t.description}</p>
-  <ul class="mt-10 pc:mt-20 sp:ml-8">
+  <p class="section-desc mt-6" use:intersect>{t.description}</p>
+  <ul>
     {#each events as event}
       <li use:intersect>
         <EventCard {event} {lang} />
@@ -31,3 +31,17 @@
     {/each}
   </ul>
 </section>
+
+<style lang="postcss">
+  ul {
+    margin-top: 40px;
+
+    @screen sp {
+      margin-left: 32px;
+    }
+
+    @screen tb {
+      margin-top: 60px;
+    }
+  }
+</style>

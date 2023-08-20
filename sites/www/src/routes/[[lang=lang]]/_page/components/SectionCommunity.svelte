@@ -1,17 +1,17 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  // import { onMount } from 'svelte';
 
-  import { Power1, gsap } from '$3rd/gsap';
+  // import { Power1, gsap } from '$3rd/gsap';
   import { intersect } from '$client/actions/intersect';
   import { splitFade } from '$client/actions/splitFade';
-  import { splash } from '$client/components/SplashScreen';
+  // import { splash } from '$client/components/SplashScreen';
   import { SOCIAL_LINKS } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
   import { PEOPLE_PATH } from '$shared/services/navigation';
 
-  import communityShapeEllipse from '../images/community-shape-ellipse.webp';
-  import communityShapePolygon from '../images/community-shape-polygon.webp';
-  import communityShapeStar from '../images/community-shape-star.webp';
+  // import communityShapeEllipse from '../images/community-shape-ellipse.webp';
+  // import communityShapePolygon from '../images/community-shape-polygon.webp';
+  // import communityShapeStar from '../images/community-shape-star.webp';
   import { translations } from '../translation';
 
   export let lang: Language;
@@ -19,66 +19,66 @@
   $: t = translations[lang].community;
 
   // shapes
-  let shapeContainerElement: HTMLElement;
+  // let shapeContainerElement: HTMLElement;
 
-  let shapesIntersected = false;
-  let parallaxTimeline: gsap.core.Timeline;
+  // let shapesIntersected = false;
+  // let parallaxTimeline: gsap.core.Timeline;
 
-  let ctx: gsap.Context;
+  // let ctx: gsap.Context;
 
-  $: if (shapeContainerElement) {
-    ctx = gsap.context(() => {
-      parallaxTimeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: shapeContainerElement,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true,
-        },
-      });
-      parallaxTimeline.fromTo(
-        'img',
-        {
-          x: (_, target: HTMLElement) => Number(gsap.getProperty(target, '--parallax-x')) * -1,
-          y: (_, target: HTMLElement) => Number(gsap.getProperty(target, '--parallax-y')) * -1,
-        },
-        {
-          x: (_, target: HTMLElement) => gsap.getProperty(target, '--parallax-x').toString(),
-          y: (_, target: HTMLElement) => gsap.getProperty(target, '--parallax-y').toString(),
-        },
-        0,
-      );
-    }, shapeContainerElement);
-  }
+  // $: if (shapeContainerElement) {
+  //   ctx = gsap.context(() => {
+  //     parallaxTimeline = gsap.timeline({
+  //       scrollTrigger: {
+  //         trigger: shapeContainerElement,
+  //         start: 'top bottom',
+  //         end: 'bottom top',
+  //         scrub: true,
+  //       },
+  //     });
+  //     parallaxTimeline.fromTo(
+  //       'img',
+  //       {
+  //         x: (_, target: HTMLElement) => Number(gsap.getProperty(target, '--parallax-x')) * -1,
+  //         y: (_, target: HTMLElement) => Number(gsap.getProperty(target, '--parallax-y')) * -1,
+  //       },
+  //       {
+  //         x: (_, target: HTMLElement) => gsap.getProperty(target, '--parallax-x').toString(),
+  //         y: (_, target: HTMLElement) => gsap.getProperty(target, '--parallax-y').toString(),
+  //       },
+  //       0,
+  //     );
+  //   }, shapeContainerElement);
+  // }
 
-  onMount(() => {
-    return () => {
-      ctx?.revert();
-    };
-  });
+  // onMount(() => {
+  //   return () => {
+  //     ctx?.revert();
+  //   };
+  // });
 
-  $: if (shapesIntersected && $splash?.done && shapeContainerElement) {
-    gsap.to(shapeContainerElement.querySelectorAll('img'), {
-      rotateX: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-x').toString(),
-      rotateY: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-y').toString(),
-      rotateZ: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-z').toString(),
-      scale: (_, target: HTMLElement) => gsap.getProperty(target, '--scale').toString(),
-      duration: 2.5,
-      yoyo: true,
-      repeat: -1,
-      ease: Power1.easeInOut,
-    });
-  }
+  // $: if (shapesIntersected && $splash?.done && shapeContainerElement) {
+  //   gsap.to(shapeContainerElement.querySelectorAll('img'), {
+  //     rotateX: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-x').toString(),
+  //     rotateY: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-y').toString(),
+  //     rotateZ: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-z').toString(),
+  //     scale: (_, target: HTMLElement) => gsap.getProperty(target, '--scale').toString(),
+  //     duration: 2.5,
+  //     yoyo: true,
+  //     repeat: -1,
+  //     ease: Power1.easeInOut,
+  //   });
+  // }
 </script>
 
 <section class="community c-container-design" id="community">
   <h2 class="section-title" use:splitFade>
     {t.title}
   </h2>
-  <p class="section-desc c-intersect mt-6 pc:mt-8" use:intersect>
+  <p class="section-desc c-intersect mt-6" use:intersect>
     {@html t.description}
   </p>
-  <div
+  <!-- <div
     class="shapes c-intersect"
     role="figure"
     aria-label="geometric shapes"
@@ -89,21 +89,21 @@
     <img class="ellipse" src={communityShapeEllipse} alt="ellipse" width="363" height="403" />
     <img class="polygon" src={communityShapePolygon} alt="polygon" width="308" height="390" />
     <img class="star" src={communityShapeStar} alt="star" width="181" height="181" />
-  </div>
+  </div> -->
   <ul class="ctas divide-border c-intersect divide-y" use:intersect>
     <li>
-      <a class="cta" href={SOCIAL_LINKS.discord} target="_blank" rel="noreferrer">
+      <a class="cta font-medium" href={SOCIAL_LINKS.discord} target="_blank" rel="noreferrer">
         <span>{t.ctas.discord}</span>
         <svg inline-src="icon/external-link" />
       </a>
     </li>
     <li>
-      <a class="cta" href={PEOPLE_PATH} rel="noreferrer">
+      <a class="cta font-medium" href={PEOPLE_PATH} rel="noreferrer">
         <span>{t.ctas.nominate}</span>
       </a>
     </li>
     <li>
-      <a class="cta" href={SOCIAL_LINKS.github} target="_blank" rel="noreferrer">
+      <a class="cta font-medium" href={SOCIAL_LINKS.github} target="_blank" rel="noreferrer">
         <span>{t.ctas.contribute}</span>
         <svg inline-src="icon/external-link" />
       </a>
@@ -115,17 +115,18 @@
   .community {
     --gradient-offset: 200px;
 
-    overflow: hidden;
-    display: grid;
-    grid-template-areas:
+    /* overflow: hidden; */
+
+    /* display: grid; */
+
+    /* grid-template-areas:
       'title'
       'description'
       'shapes'
-      'ctas';
+      'ctas'; */
 
     padding-top: 80px;
-    padding-bottom: 126px;
-
+    padding-bottom: 80px;
     background: linear-gradient(
       to bottom,
       theme('colors.design.bg.1'),
@@ -137,18 +138,19 @@
     @screen tb {
       --gradient-offset: 200px;
 
-      grid-template-areas:
+      /* grid-template-areas:
         'title shapes'
         'description shapes'
         'ctas shapes';
-      grid-template-columns: minmax(380px, auto) auto;
-      justify-content: space-between;
+      grid-template-columns: minmax(380px, auto) auto; */
+
+      /* justify-content: space-between; */
       padding-top: 160px;
     }
 
-    @screen pc {
+    /* @screen pc {
       grid-template-columns: minmax(560px, auto) auto;
-    }
+    } */
   }
 
   .section-title {
@@ -161,10 +163,6 @@
     @screen sp {
       margin-top: 24px;
     }
-
-    @screen tb {
-      max-width: 560px;
-    }
   }
 
   .ctas {
@@ -176,7 +174,8 @@
     }
 
     @screen tb {
-      margin-top: 80px;
+      max-width: 548px;
+      margin-top: 60px;
     }
   }
 
@@ -235,7 +234,7 @@
     }
   }
 
-  .shapes {
+  /* .shapes {
     position: relative;
 
     grid-area: shapes;
@@ -303,5 +302,5 @@
         height: auto;
       }
     }
-  }
+  } */
 </style>

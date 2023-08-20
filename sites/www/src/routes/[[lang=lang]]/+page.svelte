@@ -14,7 +14,7 @@
 <main class="page">
   <SectionIntro lang={data.language} />
   <SectionCommunity lang={data.language} />
-  <section class="c-container-design mb-10 bg-bg-300 py-6 text-fg-100">
+  <section class="c-container-design mb-20 bg-bg-300 py-6 text-fg-100">
     <p>
       <svg
         class="inline-block"

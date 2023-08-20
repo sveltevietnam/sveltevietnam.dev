@@ -61,11 +61,9 @@
   html {
     height: 100%;
 
-    font-family: theme('fontFamily.inter');
-    font-size: 16px;
-    line-height: 1.5;
-    color: theme('colors.design.fg.1');
+    @apply tp-body1;
 
+    color: theme('colors.design.fg.1');
     background-color: theme('colors.design.bg.1');
   }
 

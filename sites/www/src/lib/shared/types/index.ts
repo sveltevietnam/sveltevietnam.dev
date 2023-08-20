@@ -60,6 +60,6 @@ export type Project = {
   name: string;
   image?: string;
   description: string;
-  collaboration?: string;
+  by?: string;
   href?: string;
 };
