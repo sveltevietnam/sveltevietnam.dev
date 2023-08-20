@@ -57,7 +57,7 @@
       sp: {
         class: 'tp-h3@sp',
         fontSize: '24px',
-        lineHeight: '31px',
+        lineHeight: '36px',
         letterSpacing: '0%',
       },
       pc: {
@@ -78,7 +78,7 @@
       fontFamily: 'Inter',
       sp: {
         class: 'tp-h4@sp',
-        fontSize: '18px',
+        fontSize: '20px',
         lineHeight: '24px',
         letterSpacing: '0%',
       },
@@ -101,7 +101,7 @@
       sp: {
         class: 'tp-h5@sp',
         fontSize: '18px',
-        lineHeight: '22px',
+        lineHeight: '24px',
         letterSpacing: '0%',
       },
       pc: {
