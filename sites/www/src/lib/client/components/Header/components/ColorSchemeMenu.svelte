@@ -72,7 +72,7 @@
           />
           <rect y="7" width="12" height="4" fill="white" />
         </svg>
-        <ul>
+        <ul class="tp-body2">
           {#each Object.values(SCHEMES) as s}
             <li>
               <button
@@ -112,11 +112,8 @@
   .color-scheme-menu__option {
     display: flex;
     align-items: center;
-
     width: 100%;
     padding: 10px;
-
-    font-size: 14px;
 
     &:hover {
       color: theme('colors.svelte');
@@ -156,7 +153,9 @@
         background-color: theme('colors.design.bg.1');
         border: 1px solid currentcolor;
         border-radius: 8px;
-        box-shadow: 0 1px 3px 0 var(--color-shadow), 0 1px 2px -1px var(--color-shadow);
+        box-shadow:
+          0 1px 3px 0 var(--color-shadow),
+          0 1px 2px -1px var(--color-shadow);
       }
     }
   }

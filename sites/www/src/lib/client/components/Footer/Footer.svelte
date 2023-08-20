@@ -25,11 +25,11 @@
   <div class="footer-top c-container-design">
     <div class="footer-sections">
       <section class="footer-about-us">
-        <p class="footer-section-title">{t.aboutUs.title}</p>
+        <p class="footer-section-title tp-h4 font-medium">{t.aboutUs.title}</p>
         <p>{t.aboutUs.description}</p>
       </section>
       <section class="footer-navigation">
-        <p class="footer-section-title">{t.navigation.title}</p>
+        <p class="footer-section-title tp-h4 font-medium">{t.navigation.title}</p>
         <nav aria-label="all internal pages" data-sveltekit-preload-data="hover">
           <ul>
             {#each FOOTER_PATHS as href}
@@ -44,7 +44,7 @@
         </nav>
       </section>
       <section class="footer-contact">
-        <p class="footer-section-title">{t.contact.title}</p>
+        <p class="footer-section-title tp-h4 font-medium">{t.contact.title}</p>
         <ul>
           <li>
             <a href={SOCIAL_LINKS.discord} target="_blank" class="c-link-neutral" rel="noreferrer">
@@ -93,7 +93,7 @@
       </a>
     </li>
   </ul>
-  <div class="footer-bottom c-container-design">
+  <div class="footer-bottom c-container-design tp-cap2">
     <p class="footer-version">
       {t.version}
       {version}
@@ -200,9 +200,6 @@
 
   .footer-section-title {
     margin-bottom: 24px;
-    font-family: theme('fontFamily.lora');
-    font-size: 20px;
-    font-weight: 500;
 
     @screen pc {
       margin-bottom: 32px;
@@ -290,8 +287,6 @@
 
     padding-top: 20px;
     padding-bottom: 20px;
-
-    font-size: 12px;
 
     border-top: 1px solid theme('colors.design.border.1');
 
