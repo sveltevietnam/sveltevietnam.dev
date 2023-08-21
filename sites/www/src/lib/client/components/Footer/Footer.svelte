@@ -172,7 +172,7 @@
 
   .footer-top {
     width: 100%;
-    margin: 40px 0 48px;
+    margin: 40px 0;
 
     @screen pc {
       display: flex;
@@ -263,7 +263,7 @@
     display: flex;
     gap: 12px;
     align-items: center;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
 
     @screen pc {
       justify-content: flex-end;

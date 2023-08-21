@@ -23,7 +23,7 @@
       <svg inline-src="icon/building" width="16" height="16" class="inline-block" />
       {job.company}
     </p>
-    <p class="datetime">
+    <p class="datetime tp-body2">
       <span>{t.posted}</span>
       <time datetime={job.createdAt}>{new Date(job.createdAt).toLocaleDateString()}</time>
       {#if job.expiresAt}

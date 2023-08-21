@@ -1,7 +1,7 @@
 @custom-selector :--inline .c-tag--inline;
 
 .c-tag {
-  @apply tp-cap1;
+  @apply tp-cap2;
 
   padding: 6px 12px;
 
