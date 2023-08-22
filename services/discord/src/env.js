@@ -14,7 +14,9 @@ export const schema = z.object({
 
 export const FastifyEnv = fastifyPlugin(
   async function (fastify) {
-    dotenv.config();
+    dotenv.config({
+      override: false,
+    });
     const env = schema.parse(process.env);
 
     fastify.decorate('env', env);
