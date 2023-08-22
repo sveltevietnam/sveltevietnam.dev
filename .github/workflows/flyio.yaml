@@ -17,10 +17,11 @@ jobs:
         uses: fkirc/skip-duplicate-actions@v5
         with:
           skip_after_successful_duplicate: 'true'
-          paths_ignore: '["**/README.md", "**/docs/**"]'
           do_not_skip: '["workflow_dispatch"]'
           paths_filter: |
             www:
+              paths_ignore:
+                - 'services/discord/README.md'
               paths:
                 - 'services/discord/**'
   discord:
