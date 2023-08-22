@@ -18,7 +18,7 @@ jobs:
         with:
           skip_after_successful_duplicate: 'true'
           paths_ignore: '["**/README.md", "**/docs/**"]'
-          do_not_skip: '["pull_request", "workflow_dispatch", "schedule"]'
+          do_not_skip: '["workflow_dispatch"]'
           paths_filter: |
             www:
               paths:
