@@ -6,4 +6,5 @@
 
 <main>
   <h1>Page Skeleton</h1>
+  <!-- TODO: Deprecate this and create a route for each event, manually, as done with blog -->
 </main>
