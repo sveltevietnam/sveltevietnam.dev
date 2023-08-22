@@ -26,6 +26,7 @@
     "zod": "^3.22.2"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.4.7",
     "@types/lodash.throttle": "^4.1.7",
     "@types/uuid": "^9.0.2",
     "@types/ws": "^8.5.5"
