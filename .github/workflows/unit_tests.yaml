@@ -1,7 +1,5 @@
 name: Unit Tests
 
-# TODO: look into github composite actions
-
 on:
   workflow_dispatch:
   pull_request:
@@ -102,10 +100,12 @@ jobs:
         run: pnpm install --frozen-lockfile --ignore-scripts
         continue-on-error: false
 
+        # TODO: improve with `vitest latest` for only changed files
       - name: Run unit tests
         run: pnpm test:ci --filter=@libs/utils
         continue-on-error: false
 
+        # TODO: simplify report steps with https://github.com/davelosert/vitest-coverage-report-action
       - name: Code coverage
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
