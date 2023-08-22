@@ -11,7 +11,8 @@
     "start": "node src/server.js",
     "lint": "run-p lint:*",
     "lint:code": "eslint . --ignore-path=\"../../.eslintignore\"",
-    "format": "prettier --ignore-path ../../.prettierignore --write ."
+    "format": "prettier --ignore-path ../../.prettierignore --write .",
+    "flyio": "flyctl deploy ../.. --dockerfile services/discord/Dockerfile --config services/discord/fly.toml --ha=false --local-only"
   },
   "dependencies": {
     "@fastify/helmet": "^11.0.0",

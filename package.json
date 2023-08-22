@@ -10,7 +10,6 @@
     "node": "18.17.1"
   },
   "scripts": {
-    "deploy:discord": "flyctl deploy . --dockerfile services/discord/Dockerfile --config services/discord/fly.toml --ha=false",
     "turbo": "turbo",
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
