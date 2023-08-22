@@ -1,5 +1,3 @@
-import { EMAILS } from '$shared/constants';
-
 export const en = {
   title: 'Events',
   subtitle: 'Meetups, conferences about Svelte and open source',
@@ -7,10 +5,10 @@ export const en = {
     title: 'Upcoming Events',
   },
   actions: {
+    title: 'Actions',
     share: {
       title: 'Share',
       description: 'Share your experience and products in the next events',
-      cta: `Email <em>${EMAILS.events}</em>`,
     },
     participate: {
       title: 'Participate',
