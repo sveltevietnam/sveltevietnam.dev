@@ -1,5 +1,3 @@
-import { EMAILS } from '$shared/constants';
-
 export const vi = {
   title: 'Sự kiện',
   subtitle: 'Gặp gỡ, trao đổi, chia sẻ về Svelte và open source',
@@ -7,10 +5,10 @@ export const vi = {
     title: 'Sự kiện mới',
   },
   actions: {
+    title: 'Hành động',
     share: {
       title: 'Chia sẻ',
       description: 'Chia sẻ kinh nghiệm, sản phẩm trong các sự kiện kế tiếp',
-      cta: `Email <em>${EMAILS.events}</em>`,
     },
     participate: {
       title: 'Tham gia',
