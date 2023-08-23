@@ -12,7 +12,7 @@
   <ul class="sp:divide-y sp:divide-design-border-1 {cls}">
     {#each HEADER_PATHS as href}
       {@const current = isCurrentPage(pathname, href)}
-      <li>
+      <li data-current={current}>
         <a aria-current={current} {href} class="c-link c-link--preserved">
           {getPathLabel(href, lang)}
         </a>
@@ -24,62 +24,67 @@
 <style lang="postcss">
   nav {
     display: contents;
+  }
 
-    & > ul {
-      @screen sp {
-        align-self: flex-start;
-        margin-top: 80px;
-        margin-right: -16px;
-        margin-left: -16px;
-      }
-
-      @screen tb {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-
-        display: flex;
-        gap: 16px;
-        align-items: center;
-        justify-content: center;
-      }
-
-      @screen pc {
-        gap: 40px;
-      }
+  ul {
+    @screen sp {
+      align-self: flex-start;
+      margin-top: 80px;
+      margin-right: -16px;
+      margin-left: -16px;
     }
 
-    & a {
-      --underline-height: 2px;
+    @screen tb {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
 
-      position: relative;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      justify-content: center;
+    }
 
-      display: block;
+    @screen pc {
+      gap: 40px;
+    }
+  }
 
-      font-size: 14px;
-      text-transform: uppercase;
-      white-space: nowrap;
+  li[data-current]:not([data-current='false']) {
+    cursor: text;
+  }
 
-      /* transition: color var(--transition-duration) var(--transition-timing-function); */
+  a {
+    --underline-height: 2px;
 
-      @screen sp {
-        padding: 16px;
-        font-size: 32px;
-        line-height: 1.5;
-      }
+    position: relative;
 
-      &:hover {
-        color: var(--active-color);
-      }
+    display: block;
 
-      &[aria-current]:not([aria-current='false']) {
-        color: var(--active-color);
-      }
+    font-size: 14px;
+    text-transform: uppercase;
+    white-space: nowrap;
 
-      @media (768px <= width <= 850px) {
-        font-size: calc(14 / 850 * 100vw);
-      }
+    /* transition: color var(--transition-duration) var(--transition-timing-function); */
+
+    @screen sp {
+      padding: 16px;
+      font-size: 32px;
+      line-height: 1.5;
+    }
+
+    &:hover {
+      color: var(--active-color);
+    }
+
+    &[aria-current]:not([aria-current='false']) {
+      pointer-events: none;
+      color: var(--active-color);
+    }
+
+    @media (768px <= width <= 850px) {
+      font-size: calc(14 / 850 * 100vw);
     }
   }
 </style>
