@@ -26,6 +26,8 @@
     name: 'Name',
     cta: 'Notify me',
   };
+  let cls = '';
+  export { cls as class };
 
   const { form, enhance, constraints, errors, delayed, message } = superForm<MailSchema, string>(
     superValidated,
@@ -44,7 +46,7 @@
   }
 </script>
 
-<form class="notification-form" method="POST" use:enhance action="?/mail" autocomplete="on">
+<form class="space-y-2 {cls}" method="POST" use:enhance action="?/mail" autocomplete="on">
   <div class="relative">
     {#if $errors.name?.length}
       <p class="error">
@@ -77,19 +79,19 @@
       {...$constraints.email}
     />
   </div>
-  <button type="submit" class="c-btn" data-loading={$delayed}>
-    {t.cta}
-  </button>
-  <div class="relative col-span-3 w-full">
+  <div class="flex items-end justify-between">
+    <button type="submit" class="c-btn" data-loading={$delayed}>
+      {t.cta}
+    </button>
     {#if $errors.turnstile?.length}
       <p class="error">{$errors.turnstile[0]}</p>
     {/if}
     <div
-      class="flex justify-end"
       turnstile-sitekey={PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY}
       turnstile-theme={colorScheme === 'system' ? 'auto' : colorScheme}
       turnstile-response-field-name="turnstile"
       turnstile-response-field
+      turnstile-size="compact"
       turnstile-language={language}
       use:turnstile
       on:turnstile={(e) => ($form.turnstile = e.detail)}
@@ -98,15 +100,6 @@
 </form>
 
 <style lang="postcss">
-  form {
-    display: grid;
-    gap: theme('spacing.2');
-
-    @screen md {
-      grid-template-columns: 1fr 1fr auto;
-    }
-  }
-
   .error {
     position: absolute;
     bottom: 100%;
