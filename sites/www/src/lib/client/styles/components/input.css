@@ -1,12 +1,15 @@
 .c-input {
   width: 100%;
   min-width: 0;
-  height: 40px;
-  padding: 0 12px;
+  padding: 12px 16px;
 
   background-color: transparent;
-  border: 1px solid theme('colors.fg.200');
-  border-radius: theme('borderRadius.DEFAULT');
+  border: 1px solid theme('colors.design.border.1');
+  border-radius: 4px;
+
+  &::placeholder {
+    color: theme('colors.design.neutral.2');
+  }
 
   &:focus {
     outline: 1px solid theme('colors.fg.200');

@@ -12,9 +12,9 @@
   justify-content: center;
 
   min-height: 40px;
-  padding: 0 12px;
+  padding: 12px 16px;
 
-  border-radius: theme('borderRadius.DEFAULT');
+  border-radius: 4px;
 
   &:where(:--with-icon) {
     grid-template-columns: auto auto;
@@ -25,12 +25,19 @@
   }
 
   &:where(:--default) {
+    color: theme('colors.design.bg.1');
     white-space: nowrap;
-    background-color: theme('colors.bg.300');
+    background-color: theme('colors.design.fg.1');
+    transition: opacity 250ms theme('transitionTimingFunction.DEFAULT');
+
+    /* TODO: Need to discuss about interaction styling */
+    &:hover {
+      opacity: 0.75;
+    }
   }
 
   &:where(:--outlined) {
-    border: 1px solid theme('colors.bg.300');
+    border: 1px solid theme('colors.design.fg.1');
   }
 
   &:where(:--text) {

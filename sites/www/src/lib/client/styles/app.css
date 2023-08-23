@@ -31,6 +31,7 @@
 
     --color-border-1: theme('colors.design.grayscale.light.3');
     --color-fg-1: theme('colors.design.grayscale.dark.1');
+    --color-fg-2: theme('colors.design.grayscale.dark.2');
     --color-bg-1: theme('colors.design.grayscale.light.1');
     --color-bg-2: theme('colors.design.grayscale.light.2');
     --color-shadow: theme(colors.design.grayscale.dark.1 / 10%);
@@ -52,8 +53,9 @@
       --color-link: #0A84FE;
       --color-border-1: theme('colors.design.grayscale.dark.4');
       --color-fg-1: theme('colors.design.grayscale.light.1');
-      --color-bg-1: theme('colors.design.grayscale.dark.2');
-      --color-bg-2: theme('colors.design.grayscale.dark.3');
+      --color-fg-2: theme('colors.design.grayscale.light.2');
+      --color-bg-1: theme('colors.design.grayscale.dark.1');
+      --color-bg-2: theme('colors.design.grayscale.dark.2');
       --color-shadow: theme(colors.design.grayscale.light.1 / 10%);
     }
   }
