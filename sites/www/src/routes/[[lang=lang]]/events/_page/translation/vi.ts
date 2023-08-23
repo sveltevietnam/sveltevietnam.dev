@@ -8,22 +8,22 @@ export const vi = {
     title: 'Hành động',
     share: {
       title: 'Chia sẻ',
-      description: 'Chia sẻ kinh nghiệm, sản phẩm trong các sự kiện kế tiếp',
+      description:
+        'Quảng bá sản phẩm, lan tỏa ý tưởng, hay chia sẻ dự án và kinh nghiệm của bạn trong các sự kiện sắp đến.',
+      call: 'Liên hệ với ban quản trị thông qua email bên dưới để đăng ký trở thành diễn giả hoặc trao đổi ý tưởng về các hoạt động, buổi gặp mặt, đàm thoại.',
     },
     participate: {
       title: 'Tham gia',
-      description: 'Đăng kí nhận thông tin về sự kiện của Svelte Vietnam',
-    },
-    discord: {
-      cta: 'Sự kiện đã diễn ra',
+      description: 'Đăng kí nhận thông tin cập nhật về sự kiện của Svelte Vietnam.',
     },
     sponsor: {
       title: 'Tài trợ',
       description:
-        'Trở thành nhà tài trợ của Svelte Vietnam để có cơ hội giới thiệu thương hiệu và củng cố mốt quan hệ với cộng đồng open source.',
+        'Tài trợ cho sự kiện để hỗ trợ công tác tổ chức cho các buổi gặp mặt, cuộc thi, hoạt động bổ ích cho cộng đồng Svelte và open source Việt Nam.',
       cta: 'Trở thành nhà tài trợ',
       whyNeedSponsor: 'Tại sao Svelte Vietnam cần tài trợ?',
     },
+    discord: 'Thảo luận về sự kiện tại',
   },
   pastEvents: {
     title: 'Sự kiện đã diễn ra',

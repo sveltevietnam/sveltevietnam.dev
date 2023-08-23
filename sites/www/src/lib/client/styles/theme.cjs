@@ -2,20 +2,24 @@
 const theme = {
   extend: {
     screens: {
-      pc: {
-        // desktop
-        min: '1024px',
+      sp: {
+        // smart phone
+        max: '767px',
+      },
+      'upto-tb': {
+        max: '768px',
       },
       tb: {
         // tablet
         min: '768px',
       },
-      'upto-tb': {
-        max: '768px',
+      'tb-to-pc': {
+        min: '768px',
+        max: '1023px',
       },
-      sp: {
-        // smart phone
-        max: '767px',
+      pc: {
+        // desktop
+        min: '1024px',
       },
     },
     fontSize: {
@@ -87,6 +91,7 @@ const theme = {
         },
         fg: {
           1: 'var(--color-fg-1)',
+          2: 'var(--color-fg-2)',
         },
         bg: {
           1: 'var(--color-bg-1)',
