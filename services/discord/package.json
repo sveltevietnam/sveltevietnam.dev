@@ -22,13 +22,13 @@
     "dotenv": "^16.3.1",
     "fastify": "^4.21.0",
     "fastify-plugin": "^4.5.1",
-    "lodash.throttle": "^4.1.1",
+    "lodash.debounce": "^4.0.8",
     "uuid": "^9.0.0",
     "zod": "^3.22.2"
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.4.7",
-    "@types/lodash.throttle": "^4.1.7",
+    "@types/lodash.debounce": "^4.0.7",
     "@types/uuid": "^9.0.2",
     "@types/ws": "^8.5.5"
   },

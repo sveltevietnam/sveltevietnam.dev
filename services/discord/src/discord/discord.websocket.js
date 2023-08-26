@@ -1,5 +1,5 @@
 import { Events } from 'discord.js';
-import throttle from 'lodash.throttle';
+import debounce from 'lodash.debounce';
 import { v4 as uuidv4 } from 'uuid';
 
 import { SVELTEVIETNAM_GUILD_ID } from './discord.constants.js';
@@ -44,25 +44,29 @@ export class DiscordWebsocket {
       }
     };
 
-    this.#onMessageCreate = throttle(async (message) => {
-      if (!message.author.bot) {
-        const guild = this.#client.guilds.cache.get(SVELTEVIETNAM_GUILD_ID);
-        const member = guild?.members.cache.get(message.author.id);
-        if (member) {
-          // const avatarURL = message.author.displayAvatarURL();
-          for (const connection of Object.values(this.#connections)) {
-            const payload = {
-              type: 'message',
-              data: {
-                avatarURL: member.displayAvatarURL(),
-                name: member.displayName,
-              },
-            };
-            connection.socket.send(JSON.stringify(payload));
+    this.#onMessageCreate = debounce(
+      async (message) => {
+        if (!message.author.bot) {
+          const guild = this.#client.guilds.cache.get(SVELTEVIETNAM_GUILD_ID);
+          const member = guild?.members.cache.get(message.author.id);
+          if (member) {
+            // const avatarURL = message.author.displayAvatarURL();
+            for (const connection of Object.values(this.#connections)) {
+              const payload = {
+                type: 'message',
+                data: {
+                  avatarURL: member.displayAvatarURL(),
+                  name: member.displayName,
+                },
+              };
+              connection.socket.send(JSON.stringify(payload));
+            }
           }
         }
-      }
-    }, 5000);
+      },
+      5000,
+      { leading: true, trailing: false },
+    );
   }
 
   get idle() {

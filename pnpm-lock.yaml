@@ -110,9 +110,9 @@ importers:
       fastify-plugin:
         specifier: ^4.5.1
         version: 4.5.1
-      lodash.throttle:
-        specifier: ^4.1.1
-        version: 4.1.1
+      lodash.debounce:
+        specifier: ^4.0.8
+        version: 4.0.8
       uuid:
         specifier: ^9.0.0
         version: 9.0.0
@@ -123,9 +123,9 @@ importers:
       '@flydotio/dockerfile':
         specifier: ^0.4.7
         version: 0.4.7
-      '@types/lodash.throttle':
-        specifier: ^4.1.7
-        version: 4.1.7
+      '@types/lodash.debounce':
+        specifier: ^4.0.7
+        version: 4.0.7
       '@types/uuid':
         specifier: ^9.0.2
         version: 9.0.2
@@ -1187,8 +1187,8 @@ packages:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
     dev: true
 
-  /@types/lodash.throttle@4.1.7:
-    resolution: {integrity: sha512-znwGDpjCHQ4FpLLx19w4OXDqq8+OvREa05H89obtSyXyOFKL3dDjCslsmfBz0T2FU8dmf5Wx1QvogbINiGIu9g==}
+  /@types/lodash.debounce@4.0.7:
+    resolution: {integrity: sha512-X1T4wMZ+gT000M2/91SYj0d/7JfeNZ9PeeOldSNoE/lunLeQXKvkmIumI29IaKMotU/ln/McOIvgzZcQ/3TrSA==}
     dependencies:
       '@types/lodash': 4.14.197
     dev: true
@@ -3993,7 +3993,6 @@ packages:
 
   /lodash.debounce@4.0.8:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
-    dev: true
 
   /lodash.isplainobject@4.0.6:
     resolution: {integrity: sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==}
@@ -4009,10 +4008,6 @@ packages:
 
   /lodash.snakecase@4.1.1:
     resolution: {integrity: sha512-QZ1d4xoBHYUeuouhEq3lk3Uq7ldgyFXGBhg04+oRLnIz8o9T65Eh+8YdroUwn846zchkA9yDsDl5CVVaV2nqYw==}
-    dev: false
-
-  /lodash.throttle@4.1.1:
-    resolution: {integrity: sha512-wIkUCfVKpVsWo3JSZlc+8MB5it+2AN5W8J7YVMST30UrvcQNZ1Okbj+rbVniijTWE6FGYy4XJq/rHkas8qJMLQ==}
     dev: false
 
   /lodash.truncate@4.4.2:
