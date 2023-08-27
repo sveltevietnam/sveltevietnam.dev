@@ -3,6 +3,10 @@ export const vi = {
   subtitle: 'Gặp gỡ, trao đổi, chia sẻ về Svelte và open source',
   upcomingEvents: {
     title: 'Sự kiện mới',
+    tba: {
+      description: 'Chưa có sự kiện nào.',
+      cta: 'Đăng ký cập nhật sự kiến mới nhất.',
+    },
   },
   actions: {
     title: 'Hành động',
@@ -27,5 +31,6 @@ export const vi = {
   },
   pastEvents: {
     title: 'Sự kiện đã diễn ra',
+    tba: 'Sự kiện đã diễn ra sẽ được liệt kê tại đây.',
   },
 };

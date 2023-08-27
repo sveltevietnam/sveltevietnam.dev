@@ -4,7 +4,6 @@ import { mailSchema } from '$client/components/MailRegistrationForm/MailRegistra
 import { mail } from '$server/actions/mail/mail.server';
 import { translations as mailT } from '$server/actions/mail/translation';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
-import { createMockedEvents } from '$shared/mocks';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { PageServerLoad, Actions } from './$types';
@@ -34,8 +33,8 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
       mail: mailT[language],
     },
     events: {
-      upcoming: createMockedEvents(1),
-      past: createMockedEvents(4),
+      upcoming: [],
+      past: [],
     },
     meta: {
       ...tMeta,

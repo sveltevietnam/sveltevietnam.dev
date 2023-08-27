@@ -24,7 +24,7 @@
       <h1 class="tp-h1 uppercase">{t.title}</h1>
       <p class="tp-h4 mt-6 tb:mt-8">{t.subtitle}</p>
     </div>
-    <div class="shink">
+    <div>
       <img
         src={headerFigures}
         alt="people meet together through events"
@@ -37,13 +37,25 @@
   <div class="space-y-[60px] tb:space-y-[120px] pb-[120px] tb:pb-40">
     <section>
       <h2 class="tp-h2 uppercase" use:splitFade>{t.upcomingEvents.title}</h2>
-      <ul class="mt-10 tb:mt-[60px] space-y-10 tb:space-y-[60px]">
-        {#each data.events.upcoming as event}
-          <li use:intersect>
-            <EventCard {event} lang={data.language} />
-          </li>
-        {/each}
-      </ul>
+      <div class="mt-10 tb:mt-[60px]">
+        {#if data.events.past.length}
+          <ul class="space-y-10 tb:space-y-[60px]">
+            {#each data.events.upcoming as event}
+              <li use:intersect>
+                <EventCard {event} lang={data.language} />
+              </li>
+            {/each}
+          </ul>
+        {:else}
+          <div class="space-y-6" use:intersect>
+            <svg inline-src="tba" width="486" height="140" class="mx-auto" />
+            <p class="text-center">
+              {t.upcomingEvents.tba.description}
+              <a href="#mail" class="c-link">{t.upcomingEvents.tba.cta}</a>
+            </p>
+          </div>
+        {/if}
+      </div>
     </section>
     <section class="">
       <h2 class="sr-only">{t.actions.title}</h2>
@@ -63,7 +75,7 @@
             </a>
           </p>
         </section>
-        <section class="action-card" use:intersect>
+        <section class="action-card" use:intersect id="mail">
           <h3 class="tp-h3">{t.actions.participate.title}</h3>
           <p class="flex-1 mt-6">{t.actions.participate.description}</p>
           <MailRegistrationForm
@@ -92,13 +104,24 @@
     </section>
     <section>
       <h2 class="tp-h2 uppercase" use:splitFade>{t.pastEvents.title}</h2>
-      <ul class="mt-10 tb:mt-[60px] space-y-10 tb:space-y-[60px]">
-        {#each data.events.past as event}
-          <li use:intersect>
-            <EventCard {event} lang={data.language} />
-          </li>
-        {/each}
-      </ul>
+      <div class="mt-10 tb:mt-[60px]">
+        {#if data.events.past.length}
+          <ul class="space-y-10 tb:space-y-[60px]">
+            {#each data.events.past as event}
+              <li use:intersect>
+                <EventCard {event} lang={data.language} />
+              </li>
+            {/each}
+          </ul>
+        {:else}
+          <div class="space-y-6" use:intersect>
+            <svg inline-src="tba" width="486" height="140" class="mx-auto" />
+            <p class="text-center">
+              {t.pastEvents.tba}
+            </p>
+          </div>
+        {/if}
+      </div>
     </section>
   </div>
 </main>

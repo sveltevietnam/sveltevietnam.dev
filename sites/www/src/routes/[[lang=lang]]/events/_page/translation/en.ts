@@ -3,6 +3,10 @@ export const en = {
   subtitle: 'Meetups, conferences about Svelte and open source',
   upcomingEvents: {
     title: 'Upcoming Events',
+    tba: {
+      description: 'No event is planned yet.',
+      cta: 'Register for notification about the next event.',
+    },
   },
   actions: {
     title: 'Actions',
@@ -27,5 +31,6 @@ export const en = {
   },
   pastEvents: {
     title: 'Past Events',
+    tba: 'Previous events will be listed here.',
   },
 } satisfies typeof import('./vi').vi;
