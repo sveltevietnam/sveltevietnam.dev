@@ -1,9 +1,10 @@
 <script lang="ts">
   import { intersect } from '$client/actions/intersect';
-  import { splitFade } from '$client/actions/splitFade';
-  import Breadcrumbs from '$client/components/Breadcrumbs/Breadcrumbs.svelte';
+  import { Breadcrumbs } from '$client/components/Breadcrumbs';
+  import ConsecutiveFadeUpIntro from '$client/components/ConsecutiveFadeUpIntro/ConsecutiveFadeUpIntro.svelte';
   import { EventCard } from '$client/components/EventCard';
   import { MailRegistrationForm } from '$client/components/MailRegistrationForm';
+  import { SplitText } from '$client/components/SplitText';
   import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
   import { SPONSOR_PATH } from '$shared/services/navigation';
 
@@ -36,7 +37,11 @@
   </section>
   <div class="space-y-[60px] tb:space-y-[120px] pb-[120px] tb:pb-40">
     <section>
-      <h2 class="tp-h2 uppercase" use:splitFade>{t.upcomingEvents.title}</h2>
+      <ConsecutiveFadeUpIntro selector=".char">
+        <h2 class="tp-h2 uppercase">
+          <SplitText text={t.upcomingEvents.title} />
+        </h2>
+      </ConsecutiveFadeUpIntro>
       <div class="mt-10 tb:mt-[60px]">
         {#if data.events.past.length}
           <ul class="space-y-10 tb:space-y-[60px]">
@@ -103,7 +108,11 @@
       </div>
     </section>
     <section>
-      <h2 class="tp-h2 uppercase" use:splitFade>{t.pastEvents.title}</h2>
+      <ConsecutiveFadeUpIntro selector=".char">
+        <h2 class="tp-h2 uppercase">
+          <SplitText text={t.pastEvents.title} />
+        </h2>
+      </ConsecutiveFadeUpIntro>
       <div class="mt-10 tb:mt-[60px]">
         {#if data.events.past.length}
           <ul class="space-y-10 tb:space-y-[60px]">

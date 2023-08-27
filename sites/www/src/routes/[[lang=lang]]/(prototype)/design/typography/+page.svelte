@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Breadcrumbs from '$client/components/Breadcrumbs/Breadcrumbs.svelte';
+  import { Breadcrumbs } from '$client/components/Breadcrumbs';
 
   import type { PageData } from './$types';
 

@@ -3,8 +3,9 @@
   import embla from 'embla-carousel-svelte';
 
   import { intersect } from '$client/actions/intersect';
-  import { splitFade } from '$client/actions/splitFade';
   import { AnimatedArrowCircle } from '$client/components/AnimatedArrowCircle';
+  import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
+  import { SplitText } from '$client/components/SplitText';
   import type { Language } from '$shared/services/i18n';
   import { IMPACT_PATH } from '$shared/services/navigation';
   import type { Project } from '$shared/types';
@@ -28,12 +29,17 @@
 
 <section class="impact">
   <div class="c-container-design">
-    <a href={IMPACT_PATH} title={t.title} class="section-title-container" use:splitFade>
-      <h2 class="section-title">
-        {t.title}
-      </h2>
-      <AnimatedArrowCircle class="h-12 w-12 tb:h-16 tb:w-16 sp:self-start" handle="parent" />
-    </a>
+    <ConsecutiveFadeUpIntro selector=":is(.arrow, .char)">
+      <a href={IMPACT_PATH} title={t.title} class="section-title-container">
+        <h2 class="tp-h2 uppercase">
+          <SplitText text={t.title} />
+        </h2>
+        <AnimatedArrowCircle
+          class="arrow h-12 w-12 tb:h-16 tb:w-16 sp:self-start"
+          handle="parent"
+        />
+      </a>
+    </ConsecutiveFadeUpIntro>
     <p class="section-desc mt-6 pc:mt-8" use:intersect>{t.description}</p>
   </div>
   <div
@@ -93,12 +99,6 @@
 
     @screen tb {
       margin-top: 120px;
-    }
-  }
-
-  .section-title {
-    @screen sp {
-      max-width: 204px;
     }
   }
 

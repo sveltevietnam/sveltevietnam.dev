@@ -1,1 +1,1 @@
-export { default as MailRegistrationForm } from './MailRegistrationForm.svelte';
+export { default as MailRegistrationForm, mailSchema } from './MailRegistrationForm.svelte';
