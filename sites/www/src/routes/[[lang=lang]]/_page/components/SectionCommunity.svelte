@@ -3,7 +3,8 @@
 
   // import { Power1, gsap } from '$3rd/gsap';
   import { intersect } from '$client/actions/intersect';
-  import { splitFade } from '$client/actions/splitFade';
+  import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
+  import { SplitText } from '$client/components/SplitText';
   // import { splash } from '$client/components/SplashScreen';
   import { SOCIAL_LINKS } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
@@ -72,8 +73,10 @@
 </script>
 
 <section class="community c-container-design" id="community">
-  <h2 class="section-title" use:splitFade>
-    {t.title}
+  <h2 class="section-title tp-h2 uppercase">
+    <ConsecutiveFadeUpIntro selector=".char" class="inline-block">
+      <SplitText text={t.title} />
+    </ConsecutiveFadeUpIntro>
   </h2>
   <p class="section-desc c-intersect mt-6" use:intersect>
     {@html t.description}

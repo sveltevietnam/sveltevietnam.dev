@@ -1,8 +1,9 @@
 <script lang="ts">
   import { intersect } from '$client/actions/intersect';
-  import { splitFade } from '$client/actions/splitFade';
   import { AnimatedArrowCircle } from '$client/components/AnimatedArrowCircle';
-  import SvelteVietnamLogo from '$client/components/SvelteVietnamLogo/SvelteVietnamLogo.svelte';
+  import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
+  import { SplitText } from '$client/components/SplitText';
+  import { SvelteVietnamLogo } from '$client/components/SvelteVietnamLogo';
   import type { Language } from '$shared/services/i18n';
   import { SPONSOR_PATH } from '$shared/services/navigation';
   import type { Sponsor } from '$shared/types';
@@ -16,12 +17,14 @@
 </script>
 
 <section class="sponsors c-container-design">
-  <a href={SPONSOR_PATH} title={t.title} class="section-title-container" use:splitFade>
-    <h2 class="section-title">
-      {t.title}
-    </h2>
-    <AnimatedArrowCircle class="h-12 w-12 tb:h-16 tb:w-16" handle="parent" />
-  </a>
+  <ConsecutiveFadeUpIntro selector=":is(.arrow, .char)">
+    <a href={SPONSOR_PATH} title={t.title} class="section-title-container">
+      <h2 class="tp-h2 uppercase">
+        <SplitText text={t.title} />
+      </h2>
+      <AnimatedArrowCircle class="arrow h-12 w-12 tb:h-16 tb:w-16" handle="parent" />
+    </a>
+  </ConsecutiveFadeUpIntro>
   <p class="section-desc mt-6" use:intersect>{t.description}</p>
   <!-- FIXME: refactor to plain css here -->
   <ul use:intersect>

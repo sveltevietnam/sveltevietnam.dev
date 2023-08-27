@@ -34,7 +34,7 @@ export const vi = {
     },
   },
   impact: {
-    title: 'Dự án cần hỗ trợ',
+    title: 'Dự án',
     description:
       'Chia sẻ hoặc tham gia các dự án phi lợi nhuận hoặc open source để góp phần tạo nên thay đổi tích cực',
     by: 'Bởi',

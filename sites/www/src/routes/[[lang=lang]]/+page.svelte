@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { intersect } from '$client/actions/intersect';
+
   import type { PageData } from './$types';
   import SectionCommunity from './_page/components/SectionCommunity.svelte';
   import SectionEvents from './_page/components/SectionEvents.svelte';
@@ -14,7 +16,7 @@
 <main class="page">
   <SectionIntro lang={data.language} />
   <SectionCommunity lang={data.language} />
-  <section class="c-container-design mb-20 bg-bg-300 py-6 text-fg-100">
+  <section class="c-container-design mb-20 bg-bg-300 py-6 text-fg-100" use:intersect>
     <p>
       <svg
         class="inline-block"

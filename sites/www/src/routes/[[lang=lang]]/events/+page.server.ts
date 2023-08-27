@@ -1,6 +1,6 @@
 import { superValidate } from 'sveltekit-superforms/server';
 
-import { mailSchema } from '$client/components/MailRegistrationForm/MailRegistrationForm.svelte';
+import { mailSchema } from '$client/components/MailRegistrationForm';
 import { mail } from '$server/actions/mail/mail.server';
 import { translations as mailT } from '$server/actions/mail/translation';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
