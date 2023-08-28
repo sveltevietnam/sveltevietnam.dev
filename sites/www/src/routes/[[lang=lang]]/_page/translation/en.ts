@@ -22,30 +22,22 @@ export const en = {
   events: {
     title: 'Next Event',
     description: 'Join the community to share your experience, products, and all thing Svelte',
-    ctas: {
-      viewMore: 'See more',
+    tba: {
+      description: 'No event is planned yet.',
+      cta: 'Register for notification about the next event.',
     },
   },
   jobs: {
     title: 'Recent Jobs',
     description: 'Share or apply for Svelte-related jobs or collaboration opportunities',
-    ctas: {
-      viewMore: 'See more',
-    },
   },
   impact: {
     title: 'Projects',
     description: 'Share or participate in open source or non-profit projects and make a difference',
     by: 'By',
-    ctas: {
-      viewMore: 'See more',
-    },
   },
   sponsor: {
     title: 'Sponsors',
     description: 'Help sustain the community and support its growth by becoming a sponsor',
-    ctas: {
-      viewMore: 'See more',
-    },
   },
 } satisfies typeof import('./vi').vi;

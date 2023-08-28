@@ -22,32 +22,24 @@ export const vi = {
   events: {
     title: 'Sự kiện sắp tới',
     description: 'Gặp gỡ, cùng nhau chia sẻ kinh nghiệm, sản phẩm, và mọi thứ liên quan đến Svelte',
-    ctas: {
-      viewMore: 'Xem thêm',
+    tba: {
+      description: 'Chưa có sự kiện nào.',
+      cta: 'Đăng ký cập nhật sự kiến mới nhất.',
     },
   },
   jobs: {
     title: 'Việc làm mới',
     description: 'Chia sẻ hoặc ứng tuyển vào các công việc liên quan đến Svelte',
-    ctas: {
-      viewMore: 'Xem thêm',
-    },
   },
   impact: {
     title: 'Dự án',
     description:
       'Chia sẻ hoặc tham gia các dự án phi lợi nhuận hoặc open source để góp phần tạo nên thay đổi tích cực',
     by: 'Bởi',
-    ctas: {
-      viewMore: 'Xem thêm',
-    },
   },
   sponsor: {
     title: 'Nhà tài trợ',
     description:
       'Giúp cộng đồng Svelte Vietnam phát triển bền vững bằng cách trở thành nhà tài trợ',
-    ctas: {
-      viewMore: 'Xem thêm',
-    },
   },
 };

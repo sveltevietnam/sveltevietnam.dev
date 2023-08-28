@@ -1,10 +1,5 @@
 import { LOAD_DEPENDENCIES, SOCIAL_LINKS } from '$shared/constants';
-import {
-  createMockedEvents,
-  createMockedJobs,
-  createMockedProjects,
-  createMockedSponsors,
-} from '$shared/mocks';
+import { createMockedJobs, createMockedProjects, createMockedSponsors } from '$shared/mocks';
 
 import type { PageServerLoad } from './$types';
 
@@ -30,7 +25,7 @@ export const load: PageServerLoad = async ({ depends, locals: { language } }) =>
   depends(LOAD_DEPENDENCIES.LANGUAGE);
   const tMeta = metaTranslations[language];
   return {
-    events: createMockedEvents(1),
+    events: [],
     jobs: createMockedJobs(),
     projects: createMockedProjects(4),
     sponsors: createMockedSponsors(),
