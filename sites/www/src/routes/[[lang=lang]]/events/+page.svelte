@@ -53,7 +53,7 @@
           </ul>
         {:else}
           <div class="space-y-6" use:intersect>
-            <svg inline-src="tba" width="486" height="140" class="mx-auto" />
+            <svg inline-src="tba" width="486" height="140" class="mx-auto max-w-full" />
             <p class="text-center">
               {t.upcomingEvents.tba.description}
               <a href="#mail" class="c-link">{t.upcomingEvents.tba.cta}</a>
@@ -124,7 +124,7 @@
           </ul>
         {:else}
           <div class="space-y-6" use:intersect>
-            <svg inline-src="tba" width="486" height="140" class="mx-auto" />
+            <svg inline-src="tba" width="486" height="140" class="mx-auto max-w-full" />
             <p class="text-center">
               {t.pastEvents.tba}
             </p>

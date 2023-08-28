@@ -26,22 +26,30 @@
     </a>
   </ConsecutiveFadeUpIntro>
   <p class="section-desc mt-6" use:intersect>{t.description}</p>
-  <ul>
-    {#each events as event}
-      <li use:intersect>
-        <EventCard {event} {lang} />
-      </li>
-    {/each}
-  </ul>
+  <div class="listing">
+    {#if events.length}
+      <ul class="sp:ml-8">
+        {#each events as event}
+          <li use:intersect>
+            <EventCard {event} {lang} />
+          </li>
+        {/each}
+      </ul>
+    {:else}
+      <div use:intersect>
+        <svg inline-src="tba" width="486" height="140" class="mx-auto max-w-full" />
+        <p class="text-center">
+          {t.tba.description}
+          <a href="{EVENTS_PATH}#mail" class="c-link">{t.tba.cta}</a>
+        </p>
+      </div>
+    {/if}
+  </div>
 </section>
 
 <style lang="postcss">
-  ul {
+  .listing {
     margin-top: 40px;
-
-    @screen sp {
-      margin-left: 32px;
-    }
 
     @screen tb {
       margin-top: 60px;
