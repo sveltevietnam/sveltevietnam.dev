@@ -28,7 +28,7 @@
       <h1 class="tp-h1 uppercase">{t.title}</h1>
       <p class="tp-h4 mt-6 tb:mt-8">{t.subtitle}</p>
     </div>
-    <div>
+    <div class="sp:mt-8">
       <img
         src={keyVisuals}
         alt="people meet together through events"
@@ -102,7 +102,10 @@
           </a>
           <a href={SPONSOR_PATH} class="c-btn mt-2 w-fit">{t.actions.sponsor.cta}</a>
         </section>
-        <p class="text-center self-center pc:col-span-3 sp:w-8/12 justify-self-center">
+        <p
+          class="text-center self-center pc:col-span-3 sp:w-8/12 justify-self-center"
+          use:intersect
+        >
           {t.actions.discord}
           <a href={SOCIAL_LINKS.discord} class="c-link" target="_blank" rel="noreferrer">
             Svelte Vietnam Discord

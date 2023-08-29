@@ -15,8 +15,10 @@ export const en = {
         required: 'Cloudflare turnstile response is required',
         unknown: 'Unknown cloudflare turnstile error',
       },
+      unknown: 'An error has occurred. Please try again later!',
+      dbNotAvailable: 'Connection to database is not available. Please try again later!',
     },
-    notImplemented: 'Feature will be implemented soon. Please come back later!',
+    alreadyRegister: 'You have already registered. Thank you!',
     success: 'Registered successfully. Thank you!',
   },
 } satisfies typeof import('./vi').vi;

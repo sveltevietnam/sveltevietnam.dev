@@ -3,13 +3,22 @@ import type { RequestEvent } from '@sveltejs/kit';
 import { message, setError, superValidate } from 'sveltekit-superforms/server';
 import { z } from 'zod';
 
+import type { MailMessage } from '$client/components/MailRegistrationForm';
 import { validateToken } from '$server/services/turnstile';
 
 import { translations } from './translation';
 
-export async function mail<E extends RequestEvent>(event: E, domain: 'job' | 'event') {
-  const { request, locals } = event;
+export type Mail = {
+  email: string; // primary key
+  name: string;
+  job: boolean;
+  event: boolean;
+};
 
+export async function mail<E extends RequestEvent>(event: E, domain: 'job' | 'event') {
+  const { request, locals, platform } = event;
+
+  // create i18n-aware validation schema
   const t = translations[locals.language].validation;
   const schema = z.object({
     name: z
@@ -24,24 +33,53 @@ export async function mail<E extends RequestEvent>(event: E, domain: 'job' | 'ev
       .min(1, { message: t.error.captcha.required }),
   });
 
-  const form = await superValidate<typeof schema, string>(request, schema);
-
+  // parse form object
+  const form = await superValidate<typeof schema, MailMessage>(request, schema);
   if (!form.valid) {
     return fail(400, { form });
   }
 
+  // check cloudflare turnstile captcha
   const turnstile = await validateToken(form.data.turnstile);
   if (!turnstile.success) {
-    return setError(form, 'turnstile', turnstile.error?.[0] ?? t.error.captcha.unknown);
+    setError(form, 'turnstile', turnstile.error?.[0] ?? t.error.captcha.unknown);
+    return fail(400, { form });
   }
 
-  console.log(domain, form.data);
+  // get cloudflare bindings for d1 database
+  const d1 = platform?.env?.D1;
+  if (!d1) {
+    // add error capturing
+    throw error(500, t.error.dbNotAvailable);
+  }
 
-  // fail if email has already been registered
+  try {
+    // fail if email has already been registered for this domain
+    const mail = await d1
+      .prepare('SELECT * FROM mail WHERE email = ?')
+      .bind(form.data.email)
+      .first<Mail>();
+    if (mail?.[domain]) {
+      return message(form, {
+        type: 'success',
+        text: t.alreadyRegister,
+      });
+    }
+    // mutate database
+    await d1
+      .prepare(
+        `INSERT INTO mail(email,name,${domain}) VALUES(?1,?2,1) ON CONFLICT(email) DO UPDATE SET ${domain}=1`,
+      )
+      .bind(form.data.email, form.data.name)
+      .run();
 
-  // mutate database here
-  // - add user if not already
-  // - add user to event notification mail list
-
-  return message(form, t.notImplemented);
+    return message(form, {
+      type: 'success',
+      text: t.success,
+    });
+  } catch (e) {
+    // TODO: add error capturing
+    console.error('Mail error', e);
+    throw error(500, t.error.unknown);
+  }
 }
