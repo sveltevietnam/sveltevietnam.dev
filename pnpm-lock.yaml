@@ -151,6 +151,9 @@ importers:
       '@builder.io/partytown':
         specifier: ^0.8.0
         version: 0.8.0
+      '@cloudflare/workers-types':
+        specifier: ^4.20230821.0
+        version: 4.20230821.0
       '@csstools/postcss-global-data':
         specifier: ^2.0.1
         version: 2.0.1(postcss@8.4.28)
@@ -485,8 +488,8 @@ packages:
     hasBin: true
     dev: true
 
-  /@cloudflare/workers-types@4.20230814.0:
-    resolution: {integrity: sha512-+jHiGjZg2UpULZSSHmHLqUG45TLg1s+uppSMlGvMn0u/xyFsRX9HX6b8Ydg/oHSp3jfSuPtX05GSvtgRAmrWTg==}
+  /@cloudflare/workers-types@4.20230821.0:
+    resolution: {integrity: sha512-lVQSyr5E4CEkQw7WIdsrMTj+kHjsm28mJ0B5AhNFByKR+16KTFsU/RW/nGLKHHW2jxT5lvYI+HjNQMzC9QR8Ng==}
     dev: true
 
   /@csstools/cascade-layer-name-parser@1.0.4(@csstools/css-parser-algorithms@2.3.1)(@csstools/css-tokenizer@2.2.0):
@@ -1053,7 +1056,7 @@ packages:
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
     dependencies:
-      '@cloudflare/workers-types': 4.20230814.0
+      '@cloudflare/workers-types': 4.20230821.0
       '@sveltejs/kit': 1.22.6(svelte@4.2.0)(vite@4.4.9)
       esbuild: 0.18.20
       worktop: 0.8.0-next.15

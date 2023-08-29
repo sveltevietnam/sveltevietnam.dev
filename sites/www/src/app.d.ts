@@ -48,7 +48,18 @@ declare global {
       };
     }
 
-    // interface Platform {}
+    interface Platform {
+      env?: {
+        D1: import('@cloudflare/workers-types').D1Database;
+      };
+      context: {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        waitUntil(promise: Promise<any>): void;
+      };
+      caches: import('@cloudflare/workers-types').CacheStorage & {
+        default: import('@cloudflare/workers-types').Cache;
+      };
+    }
     // interface Error {}
   }
 }

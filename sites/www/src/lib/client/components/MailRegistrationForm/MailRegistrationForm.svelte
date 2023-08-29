@@ -6,6 +6,10 @@
     turnstile: z.string().min(1),
   });
   export type MailSchema = typeof mailSchema;
+  export type MailMessage = {
+    type: 'success' | 'error';
+    text: string;
+  };
 </script>
 
 <script lang="ts">
@@ -29,20 +33,29 @@
   let cls = '';
   export { cls as class };
 
-  const { form, enhance, constraints, errors, delayed, message } = superForm<MailSchema, string>(
-    superValidated,
-    {
-      taintedMessage: null,
-      multipleSubmits: 'prevent',
-      delayMs: 500,
-      onError({ result }) {
-        noti.error(result.error.message);
-      },
+  const { form, enhance, constraints, errors, delayed, message } = superForm<
+    MailSchema,
+    MailMessage
+  >(superValidated, {
+    taintedMessage: null,
+    multipleSubmits: 'prevent',
+    delayMs: 500,
+    onError({ result }) {
+      noti.error(result.error.message);
     },
-  );
+  });
 
   $: if ($message) {
-    noti.success($message);
+    switch ($message.type) {
+      case 'error':
+        noti.error($message.text);
+        break;
+      case 'success':
+        noti.success($message.text);
+        break;
+      default:
+        noti.info($message.text);
+    }
   }
 </script>
 

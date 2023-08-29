@@ -15,8 +15,10 @@ export const vi = {
         required: 'Cloudflare Turnstile response không được để trống',
         unknown: 'Lỗi không xác định từ Cloudflare Turnstile',
       },
+      unknown: 'Đã có lỗi xảy ra. Vui lòng thử lại sau!',
+      dbNotAvailable: 'Kết nối tới cơ sở dữ liệu hiện không khả dụng. Vui lòng thử lại sau!',
     },
-    notImplemented: 'Tính năng sắp hoàn thiện. Quay lại sau bạn nhé!',
-    success: 'Đăng kí thành công. Cảm ơn bạn nhé!',
+    alreadyRegister: 'Bạn đã đăng kí rồi. Cảm ơn bạn!',
+    success: 'Đăng kí thành công. Cảm ơn bạn!',
   },
 };
