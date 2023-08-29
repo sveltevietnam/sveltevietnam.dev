@@ -8,7 +8,7 @@
   import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
   import { SPONSOR_PATH } from '$shared/services/navigation';
 
-  import headerFigures from './_page/images/header-figures.webp';
+  import keyVisuals from './_page/images/key-visuals.svg';
 
   export let data;
 
@@ -20,18 +20,21 @@
   <div class="mt-6" use:intersect>
     <Breadcrumbs breadcrumbs={data.breadcrumbs} />
   </div>
-  <section class="sp:pt-6 tb:flex tb:justify-between tb:flex-row-reverse" use:intersect>
-    <div class="tb:text-right tb:mt-[60px] pc:mt-[120px] min-w-[330px]">
+  <section
+    class="tb:flex tb:justify-between tb:flex-row-reverse mt-8 mb-[60px] tb:mt-[60px] tb:mb-[120px]"
+    use:intersect
+  >
+    <div class="tb:text-right tb:mt-10 tb:max-w-[500px]">
       <h1 class="tp-h1 uppercase">{t.title}</h1>
       <p class="tp-h4 mt-6 tb:mt-8">{t.subtitle}</p>
     </div>
     <div>
       <img
-        src={headerFigures}
+        src={keyVisuals}
         alt="people meet together through events"
-        width="520"
-        height="520"
-        class="w-full h-auto max-w-[520px] relative -left-5"
+        width="544"
+        height="352"
+        class="w-full h-auto max-w-[544px]"
       />
     </div>
   </section>
