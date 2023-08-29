@@ -103,7 +103,7 @@ jobs:
           directory: sites/www/.svelte-kit/cloudflare
           # gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref_name }}
-          wranglerVersion: "3"
+          wranglerVersion: "3.4"
 
       - name: Create commit comment
         if: ${{ github.event_name == 'push' }}
