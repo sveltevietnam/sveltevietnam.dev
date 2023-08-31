@@ -18,7 +18,7 @@ primary_region = "sin"
 
   [[http_service.checks]]
     grace_period = "5s"
-    interval = "10s"
+    interval = "30s"
     method = "GET"
     timeout = "2s"
     path = "/healthz"
