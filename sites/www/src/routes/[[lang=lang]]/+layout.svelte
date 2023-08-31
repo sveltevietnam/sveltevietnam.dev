@@ -17,8 +17,6 @@
   import { translations } from '$shared/services/i18n/translations/notification';
   import type { ColorScheme } from '$shared/types';
 
-  import PageTransition from './_page/components/PageTransition.svelte';
-
   export let data;
 
   $: clientColorScheme = data.colorScheme;
@@ -82,11 +80,8 @@
   colorScheme={clientColorScheme}
   on:colorSchemeChange={changeColorScheme}
 />
-
-<PageTransition>
-  <slot />
-  <Footer lang={data.language} {version} pathname={data.pathname} />
-</PageTransition>
+<slot />
+<Footer lang={data.language} {version} pathname={data.pathname} />
 
 <!-- portals -->
 <ModalPortal store={modalStore} class="z-modal" />
