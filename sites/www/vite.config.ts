@@ -26,6 +26,9 @@ const config: UserConfig = {
     ),
     sveltekit(),
   ],
+  define: {
+    __BUILD_TIMESTAMP__: JSON.stringify(Date.now().toString()),
+  },
 };
 
 export default config;
