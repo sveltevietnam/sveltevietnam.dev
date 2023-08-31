@@ -1,6 +1,6 @@
 {
   "name": "@sites/www",
-  "version": "prerelease",
+  "version": "0.0.0",
   "author": "Svelte Vietnam",
   "description": "Svelte Vietnam official website",
   "private": true,
