@@ -70,7 +70,7 @@
   <link type="text/plain" rel="author" href="{$page.url.origin}/humans.txt" />
 
   <!-- alternative localized links -->
-  {#each LANGUAGES.filter((l) => l !== $page.data.language) as lang}
+  {#each LANGUAGES as lang}
     <link
       rel="alternate"
       hreflang={lang}
