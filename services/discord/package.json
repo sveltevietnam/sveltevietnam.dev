@@ -17,17 +17,17 @@
   "dependencies": {
     "@fastify/helmet": "^11.0.0",
     "@fastify/websocket": "^8.2.0",
-    "@types/node": "^20.5.1",
+    "@types/node": "^20.5.7",
     "discord.js": "^14.13.0",
     "dotenv": "^16.3.1",
-    "fastify": "^4.21.0",
+    "fastify": "^4.22.0",
     "fastify-plugin": "^4.5.1",
     "lodash.debounce": "^4.0.8",
     "uuid": "^9.0.0",
     "zod": "^3.22.2"
   },
   "devDependencies": {
-    "@flydotio/dockerfile": "^0.4.7",
+    "@flydotio/dockerfile": "^0.4.8",
     "@types/lodash.debounce": "^4.0.7",
     "@types/uuid": "^9.0.2",
     "@types/ws": "^8.5.5"
