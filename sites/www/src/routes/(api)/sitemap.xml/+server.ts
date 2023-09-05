@@ -31,62 +31,62 @@ type SiteMapUrl = {
 
 export const GET: RequestHandler = ({ url }) => {
   const urls: SiteMapUrl[] = [
-    ...makeUrl({
-      loc: `${url.origin}`,
+    ...makeUrl(url.origin, {
+      loc: '',
       lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
       changefreq: 'monthly',
       priority: 0.5,
     }),
-    ...makeUrl({
-      loc: `${url.origin}${BLOG_PATH}`,
+    ...makeUrl(url.origin, {
+      loc: BLOG_PATH,
       lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
       changefreq: 'monthly',
       priority: 0.9,
     }),
-    ...makeUrl({
-      loc: `${url.origin}${EVENTS_PATH}`,
+    ...makeUrl(url.origin, {
+      loc: EVENTS_PATH,
       lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
       changefreq: 'monthly',
       priority: 0.8,
     }),
-    ...makeUrl({
-      loc: `${url.origin}${JOBS_PATH}`,
+    ...makeUrl(url.origin, {
+      loc: JOBS_PATH,
       lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
       changefreq: 'monthly',
       priority: 0.7,
     }),
-    ...makeUrl({
-      loc: `${url.origin}${IMPACT_PATH}`,
+    ...makeUrl(url.origin, {
+      loc: IMPACT_PATH,
       lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
       changefreq: 'monthly',
       priority: 0.6,
     }),
-    ...makeUrl({
-      loc: `${url.origin}${PEOPLE_PATH}`,
+    ...makeUrl(url.origin, {
+      loc: PEOPLE_PATH,
       lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
       changefreq: 'yearly',
       priority: 0.5,
     }),
-    ...makeUrl({
-      loc: `${url.origin}${SPONSOR_PATH}`,
+    ...makeUrl(url.origin, {
+      loc: SPONSOR_PATH,
       lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
       changefreq: 'yearly',
       priority: 0.4,
     }),
-    ...makeUrl({
-      loc: `${url.origin}${CODE_OF_CONDUCT_PATH}`,
+    ...makeUrl(url.origin, {
+      loc: CODE_OF_CONDUCT_PATH,
       lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
       changefreq: 'yearly',
       priority: 0.3,
     }),
-    ...makeUrl({
-      loc: `${url.origin}${DESIGN_PATH}`,
+    ...makeUrl(url.origin, {
+      loc: DESIGN_PATH,
       lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
       changefreq: 'yearly',
       priority: 0.2,
     }),
-    ...makeUrl({
-      loc: `${url.origin}${DESIGN_TYPOGRAPHY_PATH}`,
+    ...makeUrl(url.origin, {
+      loc: DESIGN_TYPOGRAPHY_PATH,
       lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
       changefreq: 'yearly',
       priority: 0.2,
@@ -100,14 +100,14 @@ export const GET: RequestHandler = ({ url }) => {
   return new Response(xml, { headers });
 };
 
-function makeUrl(url: SiteMapUrl): SiteMapUrl[] {
+function makeUrl(origin: string, url: SiteMapUrl): SiteMapUrl[] {
   return LANGUAGES.map((locLang) => ({
     ...url,
-    loc: `${url.loc}/${locLang}`,
+    loc: `${origin}/${locLang}${url.loc}`,
     alternates:
       url.alternates ??
       LANGUAGES.map((lang) => ({
-        href: `${url.loc}/${lang}`,
+        href: `${origin}/${lang}${url.loc}`,
         hreflang: lang,
       })),
   }));
