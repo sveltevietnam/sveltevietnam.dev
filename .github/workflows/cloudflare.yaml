@@ -92,6 +92,10 @@ jobs:
           PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID: ${{ vars.PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID }}
           PUBLIC_DISCORD_WS_URL: ${{ vars.PUBLIC_DISCORD_WS_URL }}
           PUBLIC_MODE: ${{ vars.PUBLIC_MODE }}
+          # DKIM for MailChannels
+          DKIM_DOMAIN: ${{ vars.DKIM_DOMAIN }}
+          DKIM_SELECTOR: ${{ vars.DKIM_SELECTOR }}
+          DKIM_PRIVATE_KEY: ${{ secrets.DKIM_PRIVATE_KEY }}
 
       - name: Deploy to Cloudflare
         id: cloudflare-pages-deploy
