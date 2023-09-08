@@ -13,15 +13,15 @@
 <main class="tp-body1">
   <div class="c-container-design heading-container">
     <Breadcrumbs breadcrumbs={data.breadcrumbs} class="mb-10" />
-    <h1 class="tp-h1 font-bold">{t.title}</h1>
+    <h1 class="tp-h1 uppercase font-medium">{t.title}</h1>
   </div>
 
   <div class="c-container-design pt-20 pb-48 space-y-20">
     <section class="space-y-16">
-      <h2 class="tp-h2 font-bold">Logo</h2>
+      <h2 class="tp-h2 font-medium">Logo</h2>
 
       <section class="space-y-12">
-        <h3 class="tp-h3 font-bold">{t.logo.inspiration.title}</h3>
+        <h3 class="tp-h3 font-medium">{t.logo.inspiration.title}</h3>
         <p>{@html t.logo.inspiration.content}</p>
         <div class="flex items-center gap-8">
           <img src={imgNonla} alt="nón lá" width="106" height="106" />
@@ -31,7 +31,7 @@
       </section>
 
       <section class="space-y-12">
-        <h3 class="tp-h3 font-bold">{t.logo.concept.title}</h3>
+        <h3 class="tp-h3 font-medium">{t.logo.concept.title}</h3>
         <ul class="flex items-center gap-8 sp:flex-col">
           <li class="py-6 px-12 border border-design-border-1">{t.logo.concept.inspiration}</li>
           <li class="py-6 px-12 border border-design-border-1">{t.logo.concept.vietnam}</li>
@@ -40,7 +40,7 @@
       </section>
 
       <section class="space-y-12">
-        <h3 class="tp-h3 font-bold">{t.logo.versions.title}</h3>
+        <h3 class="tp-h3 font-medium">{t.logo.versions.title}</h3>
         <ul class="flex items-center gap-8 sp:flex-col">
           <li class="logo-card-wrapper">
             <dt class="tp-caption2">{t.logo.versions.versions.original}</dt>
@@ -67,7 +67,7 @@
       </section>
 
       <section class="space-y-12">
-        <h3 class="tp-h3 font-bold">{t.logo.typeface.title}</h3>
+        <h3 class="tp-h3 font-medium">{t.logo.typeface.title}</h3>
         <div class="border-design-border-1 border font-inter py-4 px-4 tb:py-5 tb:px-10 w-fit">
           <p class="typeface-caption">Typeface</p>
           <p class="typeface-heading">Inter</p>

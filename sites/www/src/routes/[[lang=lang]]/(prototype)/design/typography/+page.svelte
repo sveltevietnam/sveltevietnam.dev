@@ -232,7 +232,7 @@
 <main class="tp-body1">
   <div class="c-container-design heading-container">
     <Breadcrumbs breadcrumbs={data.breadcrumbs} class="mb-10" />
-    <h1 class="tp-h1 font-bold">Typography</h1>
+    <h1 class="tp-h1 font-medium uppercase">Typography</h1>
   </div>
   <div class="pt-20 pb-40 c-container-design">
     {#each TYPOGRAPHY as typo, i (typo.name)}
