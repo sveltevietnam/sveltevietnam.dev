@@ -6,7 +6,6 @@
     CODE_OF_CONDUCT_PATH,
     FOOTER_PATHS,
     RSS_PATH,
-    DESIGN_PATH,
     SITEMAP_PATH,
     getPathLabel,
     isCurrentPage,
@@ -123,12 +122,6 @@
     </p>
     <p class="footer-additional-links">
       <a
-        href={DESIGN_PATH}
-        class="c-link-neutral"
-        aria-current={isCurrentPage(pathname, DESIGN_PATH)}>{t.navigation.design}</a
-      >
-      <span aria-disabled class="vertical-separator">|</span>
-      <a
         href={CODE_OF_CONDUCT_PATH}
         class="c-link-neutral"
         aria-current={isCurrentPage(pathname, CODE_OF_CONDUCT_PATH)}>{t.navigation.codeOfConduct}</a
@@ -222,8 +215,9 @@
       white-space: nowrap;
 
       @screen pc {
-        grid-template-columns: 1fr;
-        column-gap: 12px;
+        grid-template-columns: repeat(2, auto);
+        row-gap: 12px;
+        column-gap: 24px;
       }
     }
   }
