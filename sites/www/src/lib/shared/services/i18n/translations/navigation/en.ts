@@ -7,6 +7,7 @@ export const en = {
   people: 'People',
   sponsor: 'Sponsor',
   codeOfConduct: 'Code of Conduct',
+  roadmap: 'Roadmap',
   design: 'Design',
   typography: 'Typography',
 } satisfies typeof import('./vi').vi;

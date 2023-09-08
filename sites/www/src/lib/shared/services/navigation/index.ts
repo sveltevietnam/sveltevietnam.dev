@@ -15,6 +15,7 @@ export const IMPACT_PATH = '/impact';
 export const PEOPLE_PATH = '/people';
 export const SPONSOR_PATH = '/sponsor';
 export const CODE_OF_CONDUCT_PATH = '/code-of-conduct';
+export const ROADMAP_PATH = '/roadmap';
 export const DESIGN_PATH = '/design';
 export const DESIGN_TYPOGRAPHY_PATH = '/design/typography';
 
@@ -37,6 +38,8 @@ export function getPathLabel(path: string, lang: Language) {
       return t.sponsor;
     case CODE_OF_CONDUCT_PATH:
       return t.codeOfConduct;
+    case ROADMAP_PATH:
+      return t.roadmap;
     case DESIGN_PATH:
       return t.design;
     case DESIGN_TYPOGRAPHY_PATH:
@@ -46,8 +49,26 @@ export function getPathLabel(path: string, lang: Language) {
   }
 }
 
-export const HEADER_PATHS = [EVENTS_PATH, JOBS_PATH, IMPACT_PATH, PEOPLE_PATH, SPONSOR_PATH];
-export const FOOTER_PATHS = [HOME_PATH, ...HEADER_PATHS];
+// export const HEADER_PATHS = [EVENTS_PATH, JOBS_PATH, IMPACT_PATH, PEOPLE_PATH, SPONSOR_PATH];
+export const HEADER_PATHS = [
+  EVENTS_PATH,
+  BLOG_PATH,
+  JOBS_PATH,
+  IMPACT_PATH,
+  PEOPLE_PATH,
+  SPONSOR_PATH,
+];
+export const FOOTER_PATHS = [
+  HOME_PATH,
+  BLOG_PATH,
+  EVENTS_PATH,
+  JOBS_PATH,
+  IMPACT_PATH,
+  PEOPLE_PATH,
+  SPONSOR_PATH,
+  ROADMAP_PATH,
+  DESIGN_PATH,
+];
 export const ALL_PATHS = [
   HOME_PATH,
   BLOG_PATH,
@@ -57,6 +78,7 @@ export const ALL_PATHS = [
   PEOPLE_PATH,
   SPONSOR_PATH,
   CODE_OF_CONDUCT_PATH,
+  ROADMAP_PATH,
   DESIGN_PATH,
   DESIGN_TYPOGRAPHY_PATH,
 ];

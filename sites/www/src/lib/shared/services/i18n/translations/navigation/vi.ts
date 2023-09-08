@@ -7,6 +7,7 @@ export const vi = {
   people: 'Con người',
   sponsor: 'Tài trợ',
   codeOfConduct: 'Quy tắc ứng xử',
+  roadmap: 'Lộ trình',
   design: 'Thiết kế',
   typography: 'Typography',
 };
