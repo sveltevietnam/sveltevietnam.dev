@@ -165,7 +165,7 @@
 
   .footer-top {
     width: 100%;
-    margin: 40px 0;
+    margin-top: 40px;
 
     @screen pc {
       display: flex;
@@ -173,7 +173,7 @@
       align-items: flex-start;
       justify-content: space-between;
 
-      margin: 60px auto;
+      margin-top: 60px;
     }
   }
 
@@ -257,10 +257,13 @@
     display: flex;
     gap: 12px;
     align-items: center;
-    margin-bottom: 16px;
+
+    margin-top: 40px;
+    margin-bottom: 24px;
 
     @screen pc {
       justify-content: flex-end;
+      margin-top: 80px;
     }
 
     & a {
@@ -289,8 +292,8 @@
       align-items: center;
       justify-content: space-between;
 
-      padding-top: 14px;
-      padding-bottom: 14px;
+      padding-top: 12px;
+      padding-bottom: 12px;
     }
   }
 
