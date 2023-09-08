@@ -5,6 +5,7 @@
   import { EventCard } from '$client/components/EventCard';
   import { MailRegistrationForm } from '$client/components/MailRegistrationForm';
   import { SplitText } from '$client/components/SplitText';
+  import { ToBeAnnounced } from '$client/components/ToBeAnnounced';
   import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
   import { SPONSOR_PATH } from '$shared/services/navigation';
 
@@ -55,12 +56,13 @@
             {/each}
           </ul>
         {:else}
-          <div class="space-y-6" use:intersect>
-            <svg inline-src="tba" width="486" height="140" class="mx-auto max-w-full" />
-            <p class="text-center">
-              {t.upcomingEvents.tba.description}
-              <a href="#mail" class="c-link">{t.upcomingEvents.tba.cta}</a>
-            </p>
+          <div use:intersect>
+            <ToBeAnnounced>
+              <p class="text-center">
+                {t.upcomingEvents.tba.description}
+                <a href="#mail" class="c-link">{t.upcomingEvents.tba.cta}</a>
+              </p>
+            </ToBeAnnounced>
           </div>
         {/if}
       </div>
@@ -129,11 +131,12 @@
             {/each}
           </ul>
         {:else}
-          <div class="space-y-6" use:intersect>
-            <svg inline-src="tba" width="486" height="140" class="mx-auto max-w-full" />
-            <p class="text-center">
-              {t.pastEvents.tba}
-            </p>
+          <div use:intersect>
+            <ToBeAnnounced>
+              <p class="text-center">
+                {t.pastEvents.tba}
+              </p>
+            </ToBeAnnounced>
           </div>
         {/if}
       </div>
