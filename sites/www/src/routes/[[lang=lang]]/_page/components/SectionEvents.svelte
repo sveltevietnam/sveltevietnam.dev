@@ -4,6 +4,7 @@
   import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
   import { EventCard } from '$client/components/EventCard';
   import { SplitText } from '$client/components/SplitText';
+  import { ToBeAnnounced } from '$client/components/ToBeAnnounced';
   import type { Language } from '$shared/services/i18n';
   import { EVENTS_PATH } from '$shared/services/navigation';
   import type { Event } from '$shared/types';
@@ -37,11 +38,12 @@
       </ul>
     {:else}
       <div use:intersect>
-        <svg inline-src="tba" width="486" height="140" class="mx-auto max-w-full" />
-        <p class="text-center">
-          {t.tba.description}
-          <a href="{EVENTS_PATH}#mail" class="c-link">{t.tba.cta}</a>
-        </p>
+        <ToBeAnnounced>
+          <p class="text-center">
+            {t.tba.description}
+            <a href="{EVENTS_PATH}#mail" class="c-link">{t.tba.cta}</a>
+          </p>
+        </ToBeAnnounced>
       </div>
     {/if}
   </div>
