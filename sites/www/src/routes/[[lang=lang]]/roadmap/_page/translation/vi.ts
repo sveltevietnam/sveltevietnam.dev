@@ -40,13 +40,13 @@ export const vi = {
         `☐ Công bố trang <a class="c-link" href="${BLOG_PATH}">Blog</a> với thiết kế sơ khởi`,
         `☐ Công bố văn bản “Technical Reference” và “<a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/CONTRIBUTING.md" rel="noreferrer" target="_blank">Contributing Guidelines</a>”`,
         '☐ Thiết lập quy trình đăng bài hoặc liên kết bài viết thông qua <a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/issues/new/choose" rel="noreferrer" target="_blank">Github issue</a> và <a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/DEV_BLOG_POST.md" rel="noreferrer" target="_blank">hướng dẫn code trực tiếp bài viết</a>',
-        '☐ Thiết kế “Khảo sát Cộng đồng Svelte Vietnam 2023”',
+        '☐ Thiết kế “Khảo sát Cộng đồng Svelte Việt Nam 2023”',
       ],
       secondaryTasks: {
         title: 'Công việc liên quan và liên kết với cột mốc sau',
         items: [
           `☐ Công bố trang <a class="c-link" href="${SPONSOR_PATH}">Tài trợ</a> với thiết kế sơ khởi`,
-          '☐ Gởi yêu cầu thành lập Open Collective của Svelte Vietnam',
+          '☐ Gởi yêu cầu thành lập Open Collective của Svelte Việt Nam',
         ],
       },
     },

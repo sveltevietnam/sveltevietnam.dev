@@ -220,11 +220,11 @@ export function createMockedProjects(length = 2) {
   for (let i = 0; i < length; i++) {
     projects.push({
       id: crypto.randomUUID(),
-      name: 'Svelte Vietnam',
+      name: 'Svelte Việt Nam',
       image: vietnamImg,
       description:
-        'Svelte Vietnam đang trong giai đoạn khởi tạo, hướng đến trở thành một cộng đồng chính thống và nơi thảo luận, tổng hợp tin tức, sự kiện, việc làm cho thành viên là bất cứ ai quan tâm đến Svelte và các công nghệ trong cùng hệ sinh thái.<br>Svelte Vietnam chào đón tất cả mọi người ko kể tuổi tác, giới tính, tính ngưỡng tôn giáo, ...',
-      by: 'Cộng đồng open source Svelte Vietnam',
+        'Svelte Việt Nam đang trong giai đoạn khởi tạo, hướng đến trở thành một cộng đồng chính thống và nơi thảo luận, tổng hợp tin tức, sự kiện, việc làm cho thành viên là bất cứ ai quan tâm đến Svelte và các công nghệ trong cùng hệ sinh thái.<br>Svelte Việt Nam chào đón tất cả mọi người ko kể tuổi tác, giới tính, tính ngưỡng tôn giáo, ...',
+      by: 'Cộng đồng open source Svelte Việt Nam',
       href: 'https://sveltevietnam.dev',
     });
   }

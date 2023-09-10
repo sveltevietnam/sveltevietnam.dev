@@ -6,8 +6,8 @@ import { translations } from './_page/translation';
 
 const metaTranslations = {
   vi: {
-    title: 'Quy tắc ứng xử | Svelte Vietnam',
-    description: 'Quy tắc ứng xử dành cho thành viên trong cộng đồng Svelte Vietnam',
+    title: 'Quy tắc ứng xử | Svelte Việt Nam',
+    description: 'Quy tắc ứng xử dành cho thành viên trong cộng đồng Svelte Việt Nam',
     keywords: ['quy tắc', 'nội quy', 'điều lệ', 'cộng đồng'],
   },
   en: {

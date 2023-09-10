@@ -7,7 +7,7 @@ import { translations } from './_page/translation';
 
 const metaTranslations = {
   vi: {
-    title: 'Con người | Svelte Vietnam',
+    title: 'Con người | Svelte Việt Nam',
     description: 'Nhân tố Việt trong Cộng đồng Svelte',
     keywords: ['con người', 'cộng đồng', 'đóng góp', 'đề cử'],
   },

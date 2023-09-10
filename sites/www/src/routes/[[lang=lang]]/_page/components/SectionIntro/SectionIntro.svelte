@@ -6,6 +6,7 @@
   import { intersect } from '$client/actions/intersect';
   import { splash } from '$client/components/SplashScreen';
   import type { Language } from '$shared/services/i18n';
+  import { translations as commonT } from '$shared/services/i18n/translations/common';
 
   import { translations } from '../../translation';
 
@@ -59,7 +60,7 @@
   data-intersect-threshold="0.2"
   bind:this={sectionElement}
 >
-  <h1 title="Svelte Vietnam" class="intro-title">
+  <h1 title={commonT[lang].sveltevienam} class="intro-title">
     <svg inline-src="./images/intro-title" width="824" height="301" />
   </h1>
   <div
@@ -101,7 +102,7 @@
         <article>
           <img src={introSvelteVietnamImg} alt="eight-pointed start" width="60" height="60" />
           <div>
-            <p class="tp-h3 font-bold">Svelte Vietnam</p>
+            <p class="tp-h3 font-bold">{commonT[lang].sveltevienam}</p>
             <div class="separator" aria-disabled />
             <p>{t.sveltevietnam}</p>
           </div>

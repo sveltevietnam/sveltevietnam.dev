@@ -7,6 +7,7 @@
   import { SplitText } from '$client/components/SplitText';
   import { ToBeAnnounced } from '$client/components/ToBeAnnounced';
   import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
+  import { translations as commonT } from '$shared/services/i18n/translations/common';
   import { SPONSOR_PATH } from '$shared/services/navigation';
 
   import keyVisuals from './_page/images/key-visuals.svg';
@@ -110,7 +111,7 @@
         >
           {t.actions.discord}
           <a href={SOCIAL_LINKS.discord} class="c-link" target="_blank" rel="noreferrer">
-            Svelte Vietnam Discord
+            {commonT[data.language].sveltevienam} Discord
           </a>
         </p>
       </div>

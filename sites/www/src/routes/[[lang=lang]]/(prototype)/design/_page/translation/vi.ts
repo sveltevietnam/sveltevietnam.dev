@@ -1,11 +1,11 @@
 export const vi = {
-  title: 'Thiết kế Svelte Vietnam',
+  title: 'Thiết kế Svelte Việt Nam',
   logo: {
     title: 'Logo',
     inspiration: {
       title: 'Cảm hứng sáng tác logo',
       content:
-        'Logo Svelte Vietnam được tạo nên từ hai thành phần chính: Logo chính thức của Svelte và hình ảnh chiếc nón lá mang ngôi sao - tượng trưng cho hình ảnh cộng đồng người Việt Nam.<br><br>Màu sắc chính của logo được chọn dựa trên màu sắc chính của Svelte, tạo nên tính thống nhất với màu sắc biểu tượng của cộng đồng Svelte trên thế giới.',
+        'Logo Svelte Việt Nam được tạo nên từ hai thành phần chính: Logo chính thức của Svelte và hình ảnh chiếc nón lá mang ngôi sao - tượng trưng cho hình ảnh cộng đồng người Việt Nam.<br><br>Màu sắc chính của logo được chọn dựa trên màu sắc chính của Svelte, tạo nên tính thống nhất với màu sắc biểu tượng của cộng đồng Svelte trên thế giới.',
     },
     concept: {
       title: 'Chủ đề logo',

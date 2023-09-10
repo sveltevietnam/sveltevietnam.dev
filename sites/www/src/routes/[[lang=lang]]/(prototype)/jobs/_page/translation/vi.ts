@@ -10,9 +10,9 @@ export const vi = {
     recruiter: {
       title: 'Nhà tuyển dụng',
       description:
-        'Cá nhân và tổ chức đã tài trợ cho Svelte Vietnam có cơ hội đăng tuyển trực tiếp trên trang web này.',
+        'Cá nhân và tổ chức đã tài trợ cho Svelte Việt Nam có cơ hội đăng tuyển trực tiếp trên trang web này.',
       cta: 'Trở thành nhà tài trợ',
-      whyNeedSponsor: 'Tại sao Svelte Vietnam cần tài trợ?',
+      whyNeedSponsor: 'Tại sao Svelte Việt Nam cần tài trợ?',
     },
     candidate: {
       title: 'Ứng viên',

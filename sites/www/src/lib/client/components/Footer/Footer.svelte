@@ -2,6 +2,7 @@
   import { SvelteVietnamLogo } from '$client/components/SvelteVietnamLogo';
   import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
+  import { translations as commonT } from '$shared/services/i18n/translations/common';
   import {
     CODE_OF_CONDUCT_PATH,
     FOOTER_PATHS,
@@ -48,7 +49,7 @@
           <li>
             <a href={SOCIAL_LINKS.discord} target="_blank" class="c-link-neutral" rel="noreferrer">
               <svg inline-src="simpleicon/discord" width="24" height="24" />
-              <span>Svelte Vietnam</span>
+              <span>{commonT[lang].sveltevienam}</span>
             </a>
           </li>
           <li>
@@ -99,7 +100,7 @@
     </p>
     <p class="footer-info">
       <span>
-        {new Date().getFullYear()} © Svelte Vietnam
+        {new Date().getFullYear()} © {commonT[lang].sveltevienam}
       </span>
       <span aria-disabled class="vertical-separator">|</span>
       <span>

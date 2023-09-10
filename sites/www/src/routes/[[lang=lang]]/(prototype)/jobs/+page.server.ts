@@ -12,7 +12,7 @@ import { translations as tPage } from './_page/translation';
 
 const metaTranslations = {
   vi: {
-    title: 'Công việc | Svelte Vietnam',
+    title: 'Công việc | Svelte Việt Nam',
     description: 'Công việc dành cho lập trình viên Svelte tại Việt Nam',
     keywords: ['công việc', 'việc làm', 'tuyển dụng'],
   },

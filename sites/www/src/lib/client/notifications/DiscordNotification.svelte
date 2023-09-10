@@ -1,5 +1,6 @@
 <script lang="ts" context="module">
   import { SOCIAL_LINKS } from '$shared/constants';
+  import { translations as commonT } from '$shared/services/i18n/translations/common';
   export const translations = {
     en: {
       message: 'is having a conversation at',
@@ -30,7 +31,7 @@
       <strong>{name}</strong>
       {translations[language].message}
       <a href={SOCIAL_LINKS.discord} class="c-link" target="_blank" rel="noreferrer"
-        >Svelte Vietnam Discord</a
+        >{commonT[language].sveltevienam} Discord</a
       >.
     </p>
   </div>
