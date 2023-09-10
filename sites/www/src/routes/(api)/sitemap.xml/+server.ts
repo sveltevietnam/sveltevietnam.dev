@@ -10,6 +10,7 @@ import {
   IMPACT_PATH,
   JOBS_PATH,
   PEOPLE_PATH,
+  ROADMAP_PATH,
   SPONSOR_PATH,
 } from '$shared/services/navigation';
 import { toW3CDate } from '$shared/utils/datetime';
@@ -36,6 +37,12 @@ export const GET: RequestHandler = ({ url }) => {
       lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
       changefreq: 'monthly',
       priority: 0.5,
+    }),
+    ...makeUrl(url.origin, {
+      loc: ROADMAP_PATH,
+      lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
+      changefreq: 'weekly',
+      priority: 0.6,
     }),
     ...makeUrl(url.origin, {
       loc: BLOG_PATH,
