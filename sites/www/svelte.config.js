@@ -40,7 +40,7 @@ const config = {
   },
   vitePlugin: {
     inspector: {
-      toggleKeyCombo: 'control-shift',
+      toggleKeyCombo: 'alt-shift',
       holdMode: true,
       showToggleButton: 'always',
       toggleButtonPos: 'bottom-left',
