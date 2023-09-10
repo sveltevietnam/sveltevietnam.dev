@@ -71,7 +71,7 @@ export function preparePageData(language: Language, post: Post, content: BlogCon
         image: lPost.ogImage,
         imageAlt: lPost.title,
       },
-      canonical: `https://sveltevietnam.com/${language}/blog/${lPost.slug}`,
+      canonical: `https://sveltevietnam.dev/${language}/blog/${lPost.slug}`,
     },
   };
 }

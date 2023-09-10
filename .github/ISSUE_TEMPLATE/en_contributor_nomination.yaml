@@ -1,5 +1,5 @@
 name: EN - 🏆 Contributor Nomination
-description: Nominate a member with significant contribution to be listed at *https://sveltevietnam.com/people*
+description: Nominate a member with significant contribution to be listed at *https://sveltevietnam.dev/people*
 title: "Nominate: <name of member>"
 labels:
   - "page:people"
@@ -57,4 +57,4 @@ body:
         ## Thank you
 
         Administrators will review your nomination and update progress in this issue. If approved, the nominee will be recognized
-        at *https://sveltevietnam.com/people* and given a shout-out in the Svelte Vietnam Discord.
+        at *https://sveltevietnam.dev/people* and given a shout-out in the Svelte Vietnam Discord.

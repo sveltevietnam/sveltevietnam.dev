@@ -38,7 +38,7 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
     },
     meta: {
       ...tMeta,
-      canonical: `https://sveltevietnam.com/${language}/events`,
+      canonical: `https://sveltevietnam.dev/${language}/events`,
     },
     mailForm,
   };

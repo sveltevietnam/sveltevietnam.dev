@@ -1,5 +1,5 @@
 name: EN - 🖇️ Request to Link External Blog Post
-description: Request that a link to an external blog post be added to *https://sveltevietnam.com/blog*
+description: Request that a link to an external blog post be added to *https://sveltevietnam.dev/blog*
 title: "External Blog Post Link Request: <short title of blog post>"
 labels:
   - "page:blog"
@@ -48,4 +48,4 @@ body:
         ## Thank you
 
         Administrators will review your request and update progress in this issue.
-        If approved, link to post will be listed at *https://sveltevietnam.com/blog*.
+        If approved, link to post will be listed at *https://sveltevietnam.dev/blog*.

@@ -1,5 +1,5 @@
 name: VI - 🖇️ Yêu cầu liên kết bài viết ngoài
-description: Yêu cầu thêm đường dẫn đến bài viết ngoài tại https://sveltevietnam.com/blog
+description: Yêu cầu thêm đường dẫn đến bài viết ngoài tại https://sveltevietnam.dev/blog
 title: "Liên kết bài viết ngoài: <tựa đề bài viết>"
 labels:
   - "page:blog"
@@ -49,4 +49,4 @@ body:
 
         Ban quản trị sẽ xem xét và cập nhật thông tin vào issue này.
         Nếu được phê duyệt, đuờng dẫn đến bài viết sẽ được thêm tại trang
-        *https://sveltevietnam.com/blog*
+        *https://sveltevietnam.dev/blog*

@@ -42,7 +42,7 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
     },
     meta: {
       ...tMeta,
-      canonical: `https://sveltevietnam.com/${language}/jobs`,
+      canonical: `https://sveltevietnam.dev/${language}/jobs`,
     },
     mailForm,
   };

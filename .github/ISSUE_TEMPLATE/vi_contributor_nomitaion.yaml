@@ -1,5 +1,5 @@
 name: VI - 🏆 Đề cử thành viên tiêu biểu
-description: Đề cử thành viên có đóng góp đáng kể cho trang *https://sveltevietnam.com/people*
+description: Đề cử thành viên có đóng góp đáng kể cho trang *https://sveltevietnam.dev/people*
 title: "Đề cử: <tên người được đề cử>"
 labels:
   - "page:people"
@@ -58,4 +58,4 @@ body:
 
         Ban quản trị sẽ xem xét và cập nhật thông tin vào issue này.
         Nếu được phê duyệt, cá nhân được đề cử sẽ được liệt kê trên trang
-        *https://sveltevietnam.com/people* và được tuyên dương tại Discord của Svelte Vietnam.
+        *https://sveltevietnam.dev/people* và được tuyên dương tại Discord của Svelte Vietnam.

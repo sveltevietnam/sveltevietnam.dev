@@ -29,7 +29,7 @@ export const load: PageServerLoad = ({ url, depends, locals: { language } }) => 
     contributors: createMockedContributors(),
     meta: {
       ...tMeta,
-      canonical: `https://sveltevietnam.com/${language}/people`,
+      canonical: `https://sveltevietnam.dev/${language}/people`,
     },
   };
 };

@@ -1,5 +1,5 @@
 name: EN - 📜 Proposal for Blog Post Publication
-description: Propose a blog post to be published at *https://sveltevietnam.com/blog*
+description: Propose a blog post to be published at *https://sveltevietnam.dev/blog*
 title: "Blog Post Proposal: <short title of blog post>"
 labels:
   - "page:blog"
@@ -122,4 +122,4 @@ body:
         ## Thank you
 
         Administrators will review your content and update progress in this issue.
-        If approved, this post will be published to *https://sveltevietnam.com/blog*.
+        If approved, this post will be published to *https://sveltevietnam.dev/blog*.

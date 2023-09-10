@@ -32,7 +32,7 @@ export const load: PageServerLoad = ({ url, depends, locals: { language } }) => 
     },
     meta: {
       ...tMeta,
-      canonical: `https://sveltevietnam.com/${language}/impact`,
+      canonical: `https://sveltevietnam.dev/${language}/impact`,
     },
   };
 };

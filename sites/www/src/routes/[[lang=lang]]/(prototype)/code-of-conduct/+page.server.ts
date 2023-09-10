@@ -27,7 +27,7 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
     },
     meta: {
       ...tMeta,
-      canonical: `https://sveltevietnam.com/${language}/code-of-conduct`,
+      canonical: `https://sveltevietnam.dev/${language}/code-of-conduct`,
     },
   };
 };

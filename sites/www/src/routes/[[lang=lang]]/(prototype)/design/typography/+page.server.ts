@@ -9,7 +9,7 @@ export const load: PageServerLoad = ({ url, locals: { language } }) => {
       title: 'Typography | Svelte Vietnam',
       description: 'Typography Design of Svelte Vietnam',
       keywords: ['typography', 'design', 'logo'],
-      canonical: `https://sveltevietnam.com/${language}/design/typography`,
+      canonical: `https://sveltevietnam.dev/${language}/design/typography`,
     },
   };
 };

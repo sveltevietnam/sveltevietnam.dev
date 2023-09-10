@@ -32,7 +32,7 @@ export const load: PageServerLoad = async ({ depends, locals: { language } }) =>
     underConstructionNote: UNDER_CONSTRUCTION_NOTE[language],
     meta: {
       ...tMeta,
-      canonical: `https://sveltevietnam.com/${language}`,
+      canonical: `https://sveltevietnam.dev/${language}`,
     },
   };
 };
