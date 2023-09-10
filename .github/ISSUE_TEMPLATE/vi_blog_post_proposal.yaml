@@ -73,7 +73,7 @@ body:
     attributes:
       label: Mô tả
       description: Điền mô tả ngắn gọn về bài viết (dùng cho meta tags và hiển thị trên danh sách bài viết)
-      placeholder: Bài viết hay ho về Svelte Vietnam
+      placeholder: Bài viết hay ho về Svelte Việt Nam
     validations:
       required: true
   - type: input

@@ -4,7 +4,7 @@ export const vi = {
   who: {
     title: 'Họ là ai?',
     description:
-      'Đây là những cá nhân (developer, designer, community builder, ...) có đóng góp vào sự phát triển của cộng đồng Svelte tại Việt Nam.<br/><br/>Nếu chính bạn hoặc người bạn biết xứng đáng được ghi nhận ở đây, hãy ứng cử / đề cử thông qua mẫu issue “Contributor Nomination” tại github của Svelte Vietnam.',
+      'Đây là những cá nhân (developer, designer, community builder, ...) có đóng góp vào sự phát triển của cộng đồng Svelte tại Việt Nam.<br/><br/>Nếu chính bạn hoặc người bạn biết xứng đáng được ghi nhận ở đây, hãy ứng cử / đề cử thông qua mẫu issue “Contributor Nomination” tại github của Svelte Việt Nam.',
     cta: 'Ứng cử / Đề cử',
   },
   how: {

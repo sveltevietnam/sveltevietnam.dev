@@ -6,8 +6,8 @@ import { translations } from './_page/translation';
 
 const metaTranslations = {
   vi: {
-    title: 'Tài trợ | Svelte Vietnam',
-    description: 'Chung tay phát triển cộng đồng Svelte Vietnam',
+    title: 'Tài trợ | Svelte Việt Nam',
+    description: 'Chung tay phát triển cộng đồng Svelte Việt Nam',
     keywords: ['tài trợ', 'đóng góp'],
   },
   en: {

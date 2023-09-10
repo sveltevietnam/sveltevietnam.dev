@@ -7,7 +7,7 @@ import { translations } from './_page/translation';
 
 const metaTranslations = {
   vi: {
-    title: 'Tác động | Svelte Vietnam',
+    title: 'Tác động | Svelte Việt Nam',
     description: 'Tác động của Svelte và cộng đồng tại Việt Nam',
     keywords: ['tác động', 'cộng đồng', 'dự án', 'trách nhiệm', 'xã hội'],
   },

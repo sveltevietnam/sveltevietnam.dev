@@ -6,7 +6,7 @@ import { translations as pageT } from './_page/translation';
 
 const metaTranslations = {
   vi: {
-    title: 'Lộ trình | Svelte Vietnam',
+    title: 'Lộ trình | Svelte Việt Nam',
     description: 'Kế hoạch phát triển trang web sveltevietnam.dev',
     keywords: ['mốc', 'lộ trình', 'kế hoạch'],
   },

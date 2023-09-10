@@ -18,14 +18,14 @@ export const vi = {
     },
     participate: {
       title: 'Tham gia',
-      description: 'Đăng kí nhận thông tin cập nhật về sự kiện của Svelte Vietnam.',
+      description: 'Đăng kí nhận thông tin cập nhật về sự kiện của Svelte Việt Nam.',
     },
     sponsor: {
       title: 'Tài trợ',
       description:
         'Tài trợ cho sự kiện để hỗ trợ công tác tổ chức cho các buổi gặp mặt, cuộc thi, hoạt động bổ ích cho cộng đồng Svelte và open source Việt Nam.',
       cta: 'Trở thành nhà tài trợ',
-      whyNeedSponsor: 'Tại sao Svelte Vietnam cần tài trợ?',
+      whyNeedSponsor: 'Tại sao Svelte Việt Nam cần tài trợ?',
     },
     discord: 'Thảo luận về sự kiện tại',
   },
