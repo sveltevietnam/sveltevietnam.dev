@@ -144,7 +144,7 @@
       content: '';
 
       position: absolute;
-      z-index: -1;
+      z-index: -2;
       right: 0;
       bottom: calc(100% + 1px);
       left: 0;

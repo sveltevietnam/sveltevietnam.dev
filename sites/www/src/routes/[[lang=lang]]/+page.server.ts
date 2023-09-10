@@ -1,5 +1,6 @@
 import { LOAD_DEPENDENCIES, SOCIAL_LINKS } from '$shared/constants';
 import { createMockedJobs, createMockedProjects, createMockedSponsors } from '$shared/mocks';
+import { ROADMAP_PATH } from '$shared/services/navigation';
 
 import type { PageServerLoad } from './$types';
 
@@ -17,8 +18,8 @@ const metaTranslations = {
 };
 
 const UNDER_CONSTRUCTION_NOTE = {
-  vi: `Trang Svelte Vietnam vẫn đang trong giai đoạn phát triển. Dữ liệu hiển thị dưới đây chỉ để làm mẫu. Trong thời gian này bạn hãy tham gia <a href="${SOCIAL_LINKS.discord}" target="_blank" class="c-link" rel="noreferrer">discord của cộng đồng</a> nhé!`,
-  en: `The Svelte Vietnam site is still active development. The data shown below is for mocking only. In the meantime, have a chat with us at <a href="${SOCIAL_LINKS.discord}" target="_blank" class="c-link" rel="noreferrer">our discord</a>.`,
+  vi: `Trang Svelte Vietnam vẫn đang trong giai đoạn phát triển. Dữ liệu hiển thị dưới đây chỉ để làm mẫu. Trong thời gian này bạn hãy tham gia <a href="${SOCIAL_LINKS.discord}" target="_blank" class="c-link" rel="noreferrer">discord của cộng đồng</a> hoặc xem <a class="c-link" href=${ROADMAP_PATH}>Lộ trình</a>.`,
+  en: `The Svelte Vietnam site is still active development. The data shown below is for mocking only. In the meantime, have a chat with us at <a href="${SOCIAL_LINKS.discord}" target="_blank" class="c-link" rel="noreferrer">our discord</a> or see the <a class="c-link" href=${ROADMAP_PATH}>Roadmap</a>.`,
 };
 
 export const load: PageServerLoad = async ({ depends, locals: { language } }) => {
