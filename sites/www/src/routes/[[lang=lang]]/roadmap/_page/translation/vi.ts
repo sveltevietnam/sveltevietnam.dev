@@ -1,5 +1,6 @@
 import {
   BLOG_PATH,
+  CODE_OF_CONDUCT_PATH,
   DESIGN_PATH,
   EVENTS_PATH,
   HOME_PATH,
@@ -36,6 +37,7 @@ export const vi = {
       objective:
         'chuẩn bị cho phiên bản chính thức đầu tiên của sveltevietnam.dev (v1.0.0), tập trung phát triển trang blog, trang sự kiện, các tính năng và nội dung cần thiết để cộng đồng có thể bắt đầu tham gia và đóng góp một cách chủ động hơn.',
       primaryTasks: [
+        `☑ Công bố trang <a class="c-link" href="${CODE_OF_CONDUCT_PATH}">Quy tắc ứng xử</a> với thiết kế sơ khởi`,
         `☐ Công bố trang <a class="c-link" href="${EVENTS_PATH}">Sự kiện</a> với thiết kế sơ khởi`,
         `☐ Công bố trang <a class="c-link" href="${BLOG_PATH}">Blog</a> với thiết kế sơ khởi`,
         `☐ Công bố văn bản “Technical Reference” và “<a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/CONTRIBUTING.md" rel="noreferrer" target="_blank">Contributing Guidelines</a>”`,

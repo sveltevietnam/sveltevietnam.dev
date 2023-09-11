@@ -23,7 +23,7 @@ const UNDER_CONSTRUCTION_NOTE = {
 };
 
 export const load: PageServerLoad = async ({ depends, locals: { language } }) => {
-  // depends(LOAD_DEPENDENCIES.LANGUAGE);
+  depends(LOAD_DEPENDENCIES.LANGUAGE);
   const tMeta = metaTranslations[language];
   return {
     events: [],

@@ -1,5 +1,6 @@
 import {
   BLOG_PATH,
+  CODE_OF_CONDUCT_PATH,
   DESIGN_PATH,
   EVENTS_PATH,
   HOME_PATH,
@@ -36,6 +37,7 @@ export const en = {
       objective:
         'prepare for the first official release of sveltevietnam (v1.0.0), focusing on developing blog and events pages, as well as necessary features and content for the community to start participating and contributing more actively.',
       primaryTasks: [
+        `☑ Publish the <a class="c-link" href="${CODE_OF_CONDUCT_PATH}">Code of Conduct</a> page with basic design`,
         `☐ Publish the <a class="c-link" href="${EVENTS_PATH}">Events</a> page with basic design`,
         `☐ Publish the <a class="c-link" href="${BLOG_PATH}">Blog</a> page with basic design`,
         `☐ Introduce the “Technical Reference” and “<a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/CONTRIBUTING.md" rel="noreferrer" target="_blank">Contributing Guidelines</a>” documents`,
@@ -46,7 +48,7 @@ export const en = {
         title: 'Related tasks as preparation for the next milestone',
         items: [
           `☐ Publish the <a class="c-link" href="${SPONSOR_PATH}">Sponsors</a> page with basic design`,
-          "☐ Send request to create Svelte Vietnam's Open Collective",
+          `☐ Send request to create Svelte Vietnam's Open Collective`,
         ],
       },
     },

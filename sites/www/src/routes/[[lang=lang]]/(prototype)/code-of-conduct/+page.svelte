@@ -1,106 +1,69 @@
 <script lang="ts">
+  import { intersect } from '$client/actions/intersect';
+  import { Breadcrumbs } from '$client/components/Breadcrumbs';
+  import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
+  import { SplitText } from '$client/components/SplitText';
   import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
 
-  export let data;
+  import type { PageData } from './$types';
+
+  export let data: PageData;
 
   $: t = data.translations.page;
 </script>
 
-<main class="c-page">
-  <section class="c-page@header">
-    <h1 class="c-page@h1">{t.title}</h1>
+<main class="c-container-design">
+  <div class="mt-6" use:intersect>
+    <Breadcrumbs breadcrumbs={data.breadcrumbs} />
+  </div>
+
+  <section class="mt-8 tb:mt-[60px]">
+    <h1 class="tp-h1 uppercase font-medium" use:intersect>{t.title}</h1>
   </section>
 
-  <section class="notice">
-    <h2 hidden>Description</h2>
-    <div class="notice-icon">
-      <svg height="24" width="24" inline-src="google/shield-with-heart" />
-    </div>
-    <p class="notice-description">{@html t.notice.description}</p>
-    <p class="notice-action">{t.notice.action}</p>
+  <div class="space-y-[60px] tb:space-y-[120px] py-[60px] tb:pb-[200px] tb:pt-[120px]">
+    <section class="border border-current rounded-[20px] p-6 tb:p-8" use:intersect>
+      <h2 class="sr-only">{t.notice.title}</h2>
+      <div class="space-y-4">
+        <p>{@html t.notice.description}</p>
+        <p>{@html t.notice.action}</p>
+        <div class="flex items-center gap-4 upto-tb:flex-col">
+          <a href={SOCIAL_LINKS.discord} class="c-btn w-fit">
+            {t.notice.ctas.discord}
+          </a>
+          <p>
+            Email: <a class="c-link" href="mailto:{EMAILS.coc}">{EMAILS.coc}</a>
+          </p>
+        </div>
+      </div>
+    </section>
 
-    <div class="notice-ctas">
-      <a href={SOCIAL_LINKS.discord} target="_blank" rel="noreferrer" class="c-btn">
-        {t.notice.ctas.discord}
-        <svg height="24" width="24" inline-src="simpleicon/discord" class="max-md:h-4 max-md:w-4" />
-      </a>
-      <a href="mailto:{EMAILS.coc}" target="_blank" rel="noreferrer" class="c-btn c-btn--outlined"
-        ><span>{@html t.notice.ctas.email}</span></a
-      >
-    </div>
-  </section>
-
-  <section class="space-y-10">
-    <h2 hidden>Excerpt</h2>
-    <p>{t.excerpt.intro}</p>
-    <figure class="excerpt">
-      <blockquote>
-        <p>{@html t.excerpt.quote}</p>
-      </blockquote>
-      <figcaption>{@html t.excerpt.caption}</figcaption>
-    </figure>
-  </section>
+    <section class="space-y-6">
+      <ConsecutiveFadeUpIntro selector=".char">
+        <h2 class="tp-h2 font-medium uppercase">
+          <SplitText text={t.excerpt.title} />
+        </h2>
+      </ConsecutiveFadeUpIntro>
+      <p use:intersect>{@html t.excerpt.intro}</p>
+      <figure class="excerpt" use:intersect>
+        <blockquote>
+          <p>{@html t.excerpt.quote}</p>
+        </blockquote>
+        <figcaption>{@html t.excerpt.caption}</figcaption>
+      </figure>
+    </section>
+  </div>
 </main>
 
 <style lang="postcss">
-  .notice {
-    display: grid;
-    grid-template-areas:
-      'icon description'
-      'x action'
-      'ctas ctas';
-    row-gap: theme('spacing.4');
-    column-gap: theme('spacing.4');
-
-    padding: theme('spacing.6');
-
-    background-color: theme('colors.bg.200');
-    border-radius: theme('borderRadius.DEFAULT');
-
-    @screen md {
-      padding: theme('spacing.10');
-    }
-
-    & .notice-icon {
-      grid-area: icon;
-    }
-
-    & .notice-description {
-      grid-area: description;
-    }
-
-    & .notice-action {
-      grid-area: action;
-    }
-
-    & .notice-ctas {
-      display: flex;
-      grid-area: ctas;
-
-      @screen upto-tb {
-        @space-y theme('spacing.4');
-
-        flex-direction: column;
-        font-size: theme('fontSize.sm');
-      }
-
-      @screen md {
-        @space-x theme('spacing.8');
-
-        align-items: center;
-        justify-content: center;
-      }
-    }
-  }
-
   .excerpt {
     display: grid;
     grid-template-areas:
       'line quote'
       'line caption';
     grid-template-columns: auto 1fr;
-    row-gap: theme('spacing.6');
-    column-gap: theme('spacing.4');
+    row-gap: 24px;
+    column-gap: 16px;
 
     &::before {
       content: '';
@@ -111,22 +74,16 @@
       width: 4px;
       height: 100%;
 
-      background-color: theme('colors.fg.100');
+      background-color: currentcolor;
     }
 
     & blockquote {
       grid-area: quote;
-
-      & > p::first-letter {
-        font-size: theme('fontSize.4xl');
-        font-weight: theme('fontWeight.bold');
-      }
     }
 
     & figcaption {
       grid-area: caption;
-      padding-bottom: theme('spacing.2');
-      font-style: italic;
+      padding-bottom: 8px;
     }
   }
 </style>

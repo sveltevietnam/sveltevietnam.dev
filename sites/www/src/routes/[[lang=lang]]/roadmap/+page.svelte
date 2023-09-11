@@ -1,6 +1,8 @@
 <script lang="ts">
   import { intersect } from '$client/actions/intersect';
   import { Breadcrumbs } from '$client/components/Breadcrumbs';
+  import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
+  import { SplitText } from '$client/components/SplitText';
 
   import type { PageData } from './$types';
 
@@ -15,7 +17,7 @@
   </div>
   <section class="mt-8 tb:mt-[60px] flex items-start justify-between gap-8 upto-tb:flex-col">
     <div use:intersect>
-      <h1 class="tp-h1 uppercase">{t.title}</h1>
+      <h1 class="tp-h1 uppercase font-medium">{t.title}</h1>
       <p class="tp-h4 mt-6 tb:mt-8">{t.subtitle}</p>
     </div>
     <div use:intersect>
@@ -29,9 +31,11 @@
   <div class="space-y-[60px] tb:space-y-[120px] py-[60px] tb:pb-[200px] tb:pt-[120px]">
     <section class="relative">
       <div class="space-y-6">
-        <h2 class="tp-h2 font-medium" use:intersect>
-          {t.common.milestone}: {t.milestones.aulac.title}
-        </h2>
+        <ConsecutiveFadeUpIntro selector=".char">
+          <h2 class="tp-h2 font-medium uppercase">
+            <SplitText text={`${t.common.milestone}: ${t.milestones.aulac.title}`} />
+          </h2>
+        </ConsecutiveFadeUpIntro>
         <p use:intersect>
           <strong class="font-medium">{t.common.objective}</strong>: {t.milestones.aulac.objective}
         </p>
@@ -56,9 +60,11 @@
 
     <section class="relative">
       <div class="space-y-6">
-        <h2 class="tp-h2 font-medium" use:intersect>
-          {t.common.milestone}: {t.milestones.tu.title}
-        </h2>
+        <ConsecutiveFadeUpIntro selector=".char">
+          <h2 class="tp-h2 font-medium uppercase">
+            <SplitText text={`${t.common.milestone}: ${t.milestones.tu.title}`} />
+          </h2>
+        </ConsecutiveFadeUpIntro>
         <p use:intersect>
           <strong class="font-medium">{t.common.objective}</strong>: {t.milestones.tu.objective}
         </p>
@@ -96,9 +102,11 @@
 
     <section class="relative">
       <div class="space-y-6">
-        <h2 class="tp-h2 font-medium" use:intersect>
-          {t.common.milestone}: {t.milestones.dong.title}
-        </h2>
+        <ConsecutiveFadeUpIntro selector=".char">
+          <h2 class="tp-h2 font-medium uppercase">
+            <SplitText text={`${t.common.milestone}: ${t.milestones.dong.title}`} />
+          </h2>
+        </ConsecutiveFadeUpIntro>
         <p use:intersect>
           <strong class="font-medium">{t.common.objective}</strong>: {t.milestones.dong.objective}
         </p>
