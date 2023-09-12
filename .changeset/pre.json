@@ -6,5 +6,15 @@
     "@services/discord": "0.0.0",
     "@sites/www": "0.0.0"
   },
-  "changesets": ["new-hotels-tell"]
+  "changesets": [
+    "curly-spoons-confess",
+    "gold-mangos-hug",
+    "light-mugs-remember",
+    "metal-jobs-matter",
+    "new-hotels-tell",
+    "spicy-kids-accept",
+    "tiny-wasps-do",
+    "twelve-rules-double",
+    "wicked-suns-search"
+  ]
 }
