@@ -74,7 +74,25 @@
         class="grid sp:grid-rows-3 tb:grid-cols-2 tb-to-pc:grid-rows-2 gap-8 tb:gap-6 pc:grid-cols-3"
       >
         <section class="action-card" use:intersect>
-          <h3 class="tp-h3">{t.actions.share.title}</h3>
+          <div class="flex items-center justify-between">
+            <h3 class="tp-h3 font-medium">{t.actions.share.title}</h3>
+            <svg
+              width="56"
+              height="41"
+              viewBox="0 0 56 41"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="opacity-40"
+            >
+              <rect x="43.3333" y="15" width="12" height="12" fill="currentcolor" />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M40 0.5H0V40.5H40V27H28V15H40V0.5Z"
+                fill="currentcolor"
+              />
+            </svg>
+          </div>
           <div class="flex-1 mt-6 space-y-1">
             <p>{t.actions.share.description}</p>
             <p>{t.actions.share.call}</p>
@@ -87,7 +105,19 @@
           </p>
         </section>
         <section class="action-card" use:intersect id="mail">
-          <h3 class="tp-h3">{t.actions.participate.title}</h3>
+          <div class="flex items-center justify-between">
+            <h3 class="tp-h3 font-medium">{t.actions.participate.title}</h3>
+            <svg
+              width="53"
+              height="41"
+              viewBox="0 0 53 41"
+              xmlns="http://www.w3.org/2000/svg"
+              class="opacity-40"
+            >
+              <circle cx="32.6665" cy="20.5" r="20" fill="currentcolor" />
+              <circle cx="6.6665" cy="34.5" r="6" fill="currentcolor" />
+            </svg>
+          </div>
           <p class="flex-1 mt-6">{t.actions.participate.description}</p>
           <MailRegistrationForm
             t={tMail}
@@ -98,7 +128,28 @@
           />
         </section>
         <section class="action-card" use:intersect>
-          <h3 class="tp-h3">{t.actions.sponsor.title}</h3>
+          <div class="flex items-center justify-between">
+            <h3 class="tp-h3 font-medium">{t.actions.sponsor.title}</h3>
+            <svg
+              width="47"
+              height="41"
+              viewBox="0 0 47 41"
+              xmlns="http://www.w3.org/2000/svg"
+              class="opacity-40"
+            >
+              <rect
+                x="0.0666504"
+                y="27.1667"
+                width="14.7242"
+                height="13.3333"
+                fill="currentcolor"
+              />
+              <rect x="6.96863" y="13.8333" width="14.7242" height="13.3333" fill="currentcolor" />
+              <rect x="13.8705" y="0.5" width="14.7242" height="13.3333" fill="currentcolor" />
+              <rect x="25.3738" y="27.1667" width="14.7242" height="13.3333" fill="currentcolor" />
+              <rect x="32.2758" y="13.8333" width="14.7242" height="13.3333" fill="currentcolor" />
+            </svg>
+          </div>
           <p class="flex-1 mt-6">{t.actions.sponsor.description}</p>
           <a class="c-link text-xs w-fit" href="{SPONSOR_PATH}#why">
             {t.actions.sponsor.whyNeedSponsor}
