@@ -3,11 +3,16 @@ name: Deploy to Cloudflare
 on:
   push:
     branches:
-      - production
-      - preview
       - main
   pull_request:
+    types:
+      - opened
+      - closed
+      - reopened
+      - synchronize
+      - ready_for_review
   workflow_dispatch:
+    # TODO: allow select deployment environment
 
 jobs:
   pre_jobs:
@@ -16,6 +21,12 @@ jobs:
       should_skip: ${{ steps.skip_check.outputs.should_skip }}
       paths_result: ${{ steps.skip_check.outputs.paths_result }}
       reason: ${{ steps.skip_check.outputs.reason }}
+      mode: |-
+        ${{
+            github.event.pull_request.merged == true && startsWith(github.head_ref, 'changeset-release/main') && 'production'
+        ||  github.event.pull_request.merged != true && startsWith(github.head_ref, 'changeset-release/main') && 'preview'
+        ||                                                                                                       'dev'
+        }}
     steps:
       - id: skip_check
         uses: fkirc/skip-duplicate-actions@v5
@@ -34,15 +45,15 @@ jobs:
     environment:
       name: |-
         ${{
-            github.ref_name == 'production' && 'sveltevietnam (Production)'
-        ||  github.ref_name == 'preview'    && 'sveltevietnam (Preview)'
-        ||                                     'sveltevietnam (Dev)'
+            needs.pre_jobs.outputs.mode == 'production' && 'sveltevietnam (Production)'
+        ||  needs.pre_jobs.outputs.mode == 'preview'    && 'sveltevietnam (Preview)'
+        ||                                                  'sveltevietnam (Dev)'
         }}
       url: |-
         ${{
-            github.ref_name == 'production' && 'https://sveltevietnam.dev'
-        ||  github.ref_name == 'preview'    && 'https://preview.sveltevietnam.dev'
-        ||                                      steps.cloudflare-pages-deploy.outputs.url
+            needs.pre_jobs.outputs.mode == 'production' && 'https://sveltevietnam.dev'
+        ||  needs.pre_jobs.outputs.mode == 'preview'    && 'https://preview.sveltevietnam.dev'
+        ||                                                  steps.cloudflare-pages-deploy.outputs.url
         }}
     steps:
       - name: Checkout
@@ -106,7 +117,7 @@ jobs:
           projectName: sveltevietnam
           directory: sites/www/.svelte-kit/cloudflare
           # gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref_name }}
+          branch: ${{ needs.pre_jobs.outputs.mode == 'preview' && 'preview' || github.ref_name }}
           wranglerVersion: "3.4"
 
       - name: Create commit comment
@@ -119,8 +130,8 @@ jobs:
             | :--- | :--- |
             | Latest commit | ${{ github.event.pull_request.head.sha || github.sha }} |
             | Latest deploy log | ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} |
-            | Deploy Preview Url | [${{ steps.cloudflare-pages-deploy.outputs.url }}](${{ steps.cloudflare-pages-deploy.outputs.url }}) |
-            | Environment | ${{ steps.cloudflare-pages-deploy.outputs.environment }} |
+            | Deploy Preview Url | [${{ needs.pre_jobs.outputs.mode == 'preview' && 'https://preview.sveltevietnam.dev' || steps.cloudflare-pages-deploy.outputs.url }}](${{ needs.pre_jobs.outputs.mode == 'preview' && 'https://preview.sveltevietnam.dev' || steps.cloudflare-pages-deploy.outputs.url }}) |
+            | Environment | ${{ needs.pre_jobs.outputs.mode }} |
 
       - name: Create PR comment
         if: ${{ github.event_name == 'pull_request' }}
@@ -132,5 +143,5 @@ jobs:
             | :--- | :--- |
             | Latest commit | ${{ github.event.pull_request.head.sha || github.sha }} |
             | Latest deploy log | ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} |
-            | Deploy Preview Url | [${{ steps.cloudflare-pages-deploy.outputs.url }}](${{ steps.cloudflare-pages-deploy.outputs.url }}) |
-            | Environment | ${{ steps.cloudflare-pages-deploy.outputs.environment }} |
+            | Deploy Preview Url | [${{ needs.pre_jobs.outputs.mode == 'preview' && 'https://preview.sveltevietnam.dev' || steps.cloudflare-pages-deploy.outputs.url }}](${{ needs.pre_jobs.outputs.mode == 'preview' && 'https://preview.sveltevietnam.dev' || steps.cloudflare-pages-deploy.outputs.url }}) |
+            | Environment | ${{ needs.pre_jobs.outputs.mode }} |
