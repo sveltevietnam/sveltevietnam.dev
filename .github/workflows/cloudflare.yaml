@@ -7,6 +7,16 @@ on:
   pull_request:
   workflow_dispatch:
     # TODO: allow select deployment environment
+    inputs:
+      environment:
+        description: 'Deployment nvironment'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - preview
+          - production
 
 jobs:
   pre_jobs:
@@ -17,7 +27,8 @@ jobs:
       reason: ${{ steps.skip_check.outputs.reason }}
       mode: |-
         ${{
-            github.event_name == 'push'         && github.ref == 'main'                                  && 'production'
+            inputs.environment
+        ||  github.event_name == 'push'         && github.ref == 'main'                                  && 'production'
         ||  github.event_name == 'pull_request' && startsWith(github.head_ref, 'changeset-release/main') && 'preview'
         ||                                                                                                  'dev'
         }}
