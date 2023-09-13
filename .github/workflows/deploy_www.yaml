@@ -1,4 +1,4 @@
-name: Deploy to Cloudflare
+name: Deploy @sites/www
 
 on:
   push:
@@ -6,7 +6,6 @@ on:
       - main
   pull_request:
   workflow_dispatch:
-    # TODO: allow select deployment environment
     inputs:
       environment:
         description: 'Deployment nvironment'
