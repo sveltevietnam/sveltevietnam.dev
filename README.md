@@ -21,7 +21,7 @@ Contribution and discussion are welcome.
 ## Status
 
 > [!IMPORTANT]
-> This site is in active design & development; roadmap and progress can be tracked at the [sveltevietnam.dev project board](https://github.com/orgs/sveltevietnam/projects/1).
+> This site is in active design & development; [join the Discord server][socials.discord] and have a chat with us, or see the [Roadmap](https://sveltevietnam.dev/roadmap).
 
 ## Contributing
 
@@ -36,7 +36,7 @@ See [CONTRIBUTING] for reporting & development guidelines.
 <!-- SOCIALS -->
 
 [socials.discord.badge]: https://img.shields.io/discord/1066621936546877450?color=7289da&label=Discord&logo=discord&style=for-the-badge
-[socials.discord]: https://discord.gg/Rtv2xwhz7d
+[socials.discord]: https://discord.sveltevietnam.dev
 [socials.facebook]: https://www.facebook.com/sveltevietnam
 [socials.facebook.badge]: https://img.shields.io/static/v1?label=&message=sveltevietnam&color=4267B2&logoColor=white&style=for-the-badge&logo=facebook
 [socials.twitter]: https://twitter.com/sveltevietnam
