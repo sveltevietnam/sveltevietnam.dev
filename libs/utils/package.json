@@ -23,11 +23,19 @@
       "types": "./types/index.d.ts",
       "svelte": "./src/url/index.js",
       "import": "./src/url/index.js"
+    },
+    "./signature": {
+      "types": "./types/index.d.ts",
+      "svelte": "./src/signature/index.js",
+      "import": "./src/signature/index.js"
     }
   },
   "typesVersions": {
     "*": {
       "url": [
+        "./types/index.d.ts"
+      ],
+      "signature": [
         "./types/index.d.ts"
       ]
     }
