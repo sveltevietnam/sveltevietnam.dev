@@ -1,6 +1,11 @@
 {
   "name": "sveltevietnam",
   "private": true,
+  "author": {
+    "email": "developers@sveltevietnam.dev",
+    "name": "Svelte Vietnam",
+    "url": "https://sveltevietnam.dev"
+  },
   "packageManager": "pnpm@8.7.1",
   "engines": {
     "pnpm": ">=8.7.0",
