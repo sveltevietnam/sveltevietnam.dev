@@ -1,6 +1,10 @@
 {
   "name": "@libs/utils",
-  "author": "Svelte Vietnam",
+  "author": {
+    "email": "developers@sveltevietnam.dev",
+    "name": "Svelte Vietnam",
+    "url": "https://sveltevietnam.dev"
+  },
   "version": "1.0.0-next.0",
   "description": "utilities for sveltevietnam.dev projects",
   "private": true,
