@@ -1,10 +1,10 @@
 import { error, fail } from '@sveltejs/kit';
 import type { RequestEvent } from '@sveltejs/kit';
 import { message, setError, superValidate } from 'sveltekit-superforms/server';
-import { z } from 'zod';
+import { string, object } from 'zod';
 
 import type { MailMessage } from '$client/components/MailRegistrationForm';
-import { DKIM_DOMAIN, DKIM_PRIVATE_KEY, DKIM_SELECTOR } from '$env/static/private';
+// import { DKIM_DOMAIN, DKIM_PRIVATE_KEY, DKIM_SELECTOR } from '$env/static/private';
 import { validateToken } from '$server/services/turnstile';
 
 import { translations } from './translation';
@@ -21,17 +21,16 @@ export async function mail<E extends RequestEvent>(event: E, domain: 'job' | 'ev
 
   // create i18n-aware validation schema
   const t = translations[locals.language].validation;
-  const schema = z.object({
-    name: z
-      .string({ invalid_type_error: t.error.captcha.required })
-      .min(1, { message: t.error.name.required }),
-    email: z
-      .string({ invalid_type_error: t.error.captcha.required })
+  const schema = object({
+    name: string({ invalid_type_error: t.error.captcha.required }).min(1, {
+      message: t.error.name.required,
+    }),
+    email: string({ invalid_type_error: t.error.captcha.required })
       .min(1, { message: t.error.email.required })
       .email({ message: t.error.email.invalid }),
-    turnstile: z
-      .string({ invalid_type_error: t.error.captcha.required })
-      .min(1, { message: t.error.captcha.required }),
+    turnstile: string({ invalid_type_error: t.error.captcha.required }).min(1, {
+      message: t.error.captcha.required,
+    }),
   });
 
   // parse form object

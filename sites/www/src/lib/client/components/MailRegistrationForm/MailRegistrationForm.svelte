@@ -1,9 +1,9 @@
 <script lang="ts" context="module">
-  import { z } from 'zod';
-  export const mailSchema = z.object({
-    name: z.string().min(1),
-    email: z.string().email(),
-    turnstile: z.string().min(1),
+  import { object as zObject, string as zString } from 'zod';
+  export const mailSchema = zObject({
+    name: zString().min(1),
+    email: zString().email(),
+    turnstile: zString().min(1),
   });
   export type MailSchema = typeof mailSchema;
   export type MailMessage = {
