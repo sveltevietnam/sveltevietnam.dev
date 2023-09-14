@@ -19,7 +19,6 @@ const config = {
   darkMode: '',
   content: ['./src/**/*.{html,js,svelte,ts,md}', 'svelte.config.js'],
   plugins: [
-    require('@tailwindash/triangle'),
     sveltevietnam,
     require('postcss-color-scheme/lib/tailwind'),
     require('@tailwindcss/typography'),
