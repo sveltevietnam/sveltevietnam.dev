@@ -1,7 +1,11 @@
 {
   "name": "@services/discord",
   "version": "1.0.0-next.0",
-  "author": "Svelte Vietnam",
+  "author": {
+    "email": "developers@sveltevietnam.dev",
+    "name": "Svelte Vietnam",
+    "url": "https://sveltevietnam.dev"
+  },
   "description": "SvelteVietnam discord bot",
   "type": "module",
   "main": "src/server.js",
