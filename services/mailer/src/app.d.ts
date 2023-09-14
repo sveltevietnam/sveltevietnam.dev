@@ -9,8 +9,8 @@
 declare global {
   declare const __BUILD_TIMESTAMP__: string;
   namespace App {
-    interface Locals {}
-    interface PageData {}
+    // interface Locals {}
+    // interface PageData {}
 
     interface Platform {
       env?: {
@@ -27,3 +27,5 @@ declare global {
     // interface Error {}
   }
 }
+
+export {};

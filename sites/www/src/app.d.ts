@@ -64,3 +64,5 @@ declare global {
     // interface Error {}
   }
 }
+
+export {};
