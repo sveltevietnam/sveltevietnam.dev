@@ -13,7 +13,7 @@
     "extends": "../../package.json"
   },
   "scripts": {
-    "dev": "vite dev --port 5006",
+    "dev": "vite dev --port 5007",
     "dev:wrangler": "pnpm dlx wrangler pages dev .svelte-kit/cloudflare",
     "build": "vite build --mode production",
     "preview": "vite preview",
