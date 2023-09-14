@@ -6,5 +6,6 @@ export default defineConfig({
       provider: 'istanbul',
       reporter: ['text', 'lcov', 'cobertura'],
     },
+    setupFiles: ['test/setup-crypto.js'],
   },
 });
