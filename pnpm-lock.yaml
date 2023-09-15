@@ -151,6 +151,9 @@ importers:
       '@csstools/postcss-global-data':
         specifier: ^2.1.0
         version: 2.1.0(postcss@8.4.29)
+      '@libs/utils':
+        specifier: workspace:*
+        version: link:../../libs/utils
       '@svelte-put/clickoutside':
         specifier: ^3.0.0
         version: 3.0.0

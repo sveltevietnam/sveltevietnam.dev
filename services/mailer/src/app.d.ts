@@ -9,7 +9,9 @@
 declare global {
   declare const __BUILD_TIMESTAMP__: string;
   namespace App {
-    // interface Locals {}
+    interface Locals {
+      d1: import('@cloudflare/workers-types').D1Database;
+    }
     // interface PageData {}
 
     interface Platform {
