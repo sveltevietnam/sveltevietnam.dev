@@ -7,6 +7,11 @@ export const MAIL_SERVICE_ERRORS = {
   MISSING_CLIENT_ID_OR_SIGNATURE: ['MS002', 404] as const,
   CLIENT_ID_NOT_FOUND: ['MS003', 401] as const,
   INVALID_SIGNATURE: ['MS004', 401] as const,
+
+  // endpoint level errors
+  SUBSCRIPTION_UNKNOWN_ERROR: ['MS005', 500] as const,
+  SUBSCRIPTION_INVALID_INPUT: ['MS006', 400] as const,
+  SUBSCRIPTION_EXISTS: ['MS007', 409] as const,
 } as const satisfies Record<string, [string, number]>;
 
 export function createErrorResponse<E extends keyof typeof MAIL_SERVICE_ERRORS>(
