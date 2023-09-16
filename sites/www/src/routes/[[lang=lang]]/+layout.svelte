@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { localizeUrl } from '@libs/utils/url';
+  import { localizeUrl } from '@internals/utils/url';
   import ModalPortal from '@svelte-put/modal/ModalPortal.svelte';
   import { onMount } from 'svelte';
 

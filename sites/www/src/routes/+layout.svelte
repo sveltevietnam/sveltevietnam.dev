@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { localizeUrl } from '@libs/utils/url';
+  import { localizeUrl } from '@internals/utils/url';
 
   import { browser } from '$app/environment';
   import { page } from '$app/stores';

@@ -1,4 +1,4 @@
-import { delocalizeUrl, getLangFromUrl } from '@libs/utils/url';
+import { delocalizeUrl, getLangFromUrl } from '@internals/utils/url';
 
 import { LANGUAGES } from '$shared/services/i18n';
 

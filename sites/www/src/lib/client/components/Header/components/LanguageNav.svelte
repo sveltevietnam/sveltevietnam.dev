@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { localizeUrl } from '@libs/utils/url';
+  import { localizeUrl } from '@internals/utils/url';
 
   import { invalidate } from '$app/navigation';
   import { LOAD_DEPENDENCIES } from '$shared/constants';
