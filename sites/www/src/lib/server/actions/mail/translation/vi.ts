@@ -16,7 +16,6 @@ export const vi = {
         unknown: 'Lỗi không xác định từ Cloudflare Turnstile',
       },
       unknown: 'Đã có lỗi xảy ra. Vui lòng thử lại sau!',
-      dbNotAvailable: 'Kết nối tới cơ sở dữ liệu hiện không khả dụng. Vui lòng thử lại sau!',
     },
     alreadyRegister: 'Bạn đã đăng kí rồi. Cảm ơn bạn!',
     success: 'Đăng kí thành công. Cảm ơn bạn!',

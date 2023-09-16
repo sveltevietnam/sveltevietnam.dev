@@ -75,6 +75,22 @@ importers:
         specifier: ^5.2.2
         version: 5.2.2
 
+  internals/isc:
+    dependencies:
+      '@internals/utils':
+        specifier: workspace:1.0.0-next.0
+        version: link:../utils
+      zod:
+        specifier: ^3.22.2
+        version: 3.22.2
+    devDependencies:
+      dts-buddy:
+        specifier: ^0.2.4
+        version: 0.2.4
+      publint:
+        specifier: ^0.2.2
+        version: 0.2.2
+
   internals/utils:
     devDependencies:
       '@vitest/coverage-istanbul':
@@ -151,6 +167,9 @@ importers:
       '@csstools/postcss-global-data':
         specifier: ^2.1.0
         version: 2.1.0(postcss@8.4.29)
+      '@internals/isc':
+        specifier: workspace:^
+        version: link:../../internals/isc
       '@internals/utils':
         specifier: workspace:*
         version: link:../../internals/utils
@@ -260,6 +279,9 @@ importers:
       '@csstools/postcss-global-data':
         specifier: ^2.1.0
         version: 2.1.0(postcss@8.4.29)
+      '@internals/isc':
+        specifier: workspace:^
+        version: link:../../internals/isc
       '@internals/utils':
         specifier: workspace:^
         version: link:../../internals/utils
