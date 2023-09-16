@@ -22,7 +22,6 @@ const config = {
     }),
     version: {
       name: `${pkg.version} (#${commitHash}@${Date.now()})`,
-      pollInterval: 10_000, // every 10 seconds
     },
     alias: {
       $routes: path.resolve(__dirname, 'src/routes'),

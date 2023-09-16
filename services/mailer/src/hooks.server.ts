@@ -7,7 +7,7 @@ import { getSecretFromClientId } from '$server/daos/clients.dao';
 export const handle: Handle = async ({ event, resolve }) => {
   const { request, route, platform, locals } = event;
 
-  if (!route.id?.includes('projected')) {
+  if (!route.id?.includes('protected')) {
     // if public routes, pass through
     return resolve(event);
   }

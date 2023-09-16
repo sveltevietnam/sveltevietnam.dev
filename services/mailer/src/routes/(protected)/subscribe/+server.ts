@@ -32,6 +32,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
     await upsertSubscription(d1, domain, { name, email });
   } catch (e) {
     // add error capturing
+    console.error(e);
     return createMailerErrorResponse('SUBSCRIPTION_UNKNOWN_ERROR');
   }
 
