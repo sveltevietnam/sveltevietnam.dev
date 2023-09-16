@@ -1,23 +1,16 @@
 import { json } from '@sveltejs/kit';
-import { string as zString, object as zObject, enum as zEnum } from 'zod';
 
+import { createErrorResponse } from '$server/errors';
 import {
-  SUBSCRIPTION_DOMAINS,
   getSubscriptionByEmail,
   upsertSubscription,
-} from '$server/daos/subscriptions.dao';
-import { createErrorResponse } from '$server/errors';
+} from '$server/subscriptions/subscriptions.dao';
+import { subscriptionSchema } from '$server/subscriptions/subscriptions.dto';
 
 import type { RequestHandler } from './$types';
 
-const schema = zObject({
-  name: zString().min(1),
-  email: zString().min(1).email(),
-  domain: zEnum(SUBSCRIPTION_DOMAINS),
-});
-
 export const POST: RequestHandler = async ({ request, locals }) => {
-  const parsed = schema.safeParse(await request.json());
+  const parsed = subscriptionSchema.safeParse(await request.json());
   if (!parsed.success) {
     return createErrorResponse(
       'SUBSCRIPTION_INVALID_INPUT',
