@@ -1,6 +1,6 @@
 ---
 '@services/discord': major
-'@libs/utils': major
+'@internals/utils': major
 '@sites/www': major
 ---
 

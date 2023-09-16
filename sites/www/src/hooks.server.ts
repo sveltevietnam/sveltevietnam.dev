@@ -1,4 +1,4 @@
-import { localizeUrl, getLangFromUrl } from '@libs/utils/url';
+import { localizeUrl, getLangFromUrl } from '@internals/utils/url';
 import type { Handle } from '@sveltejs/kit';
 
 import { COOKIE_LANGUAGE, COOKIE_USER_ID } from '$env/static/private';

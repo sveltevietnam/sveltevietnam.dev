@@ -1,4 +1,4 @@
-import { delocalizeUrl } from '@libs/utils/url';
+import { delocalizeUrl } from '@internals/utils/url';
 
 import type { Language } from '$shared/services/i18n';
 import { LANGUAGES } from '$shared/services/i18n';

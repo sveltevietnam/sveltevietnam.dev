@@ -2,7 +2,7 @@
   "mode": "pre",
   "tag": "next",
   "initialVersions": {
-    "@libs/utils": "0.0.0",
+    "@internals/utils": "0.0.0",
     "@services/discord": "0.0.0",
     "@sites/www": "0.0.0"
   },

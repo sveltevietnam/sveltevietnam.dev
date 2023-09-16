@@ -1,4 +1,4 @@
-import { verifyRequest } from '@libs/utils/signature';
+import { verifyRequest } from '@internals/utils/signature';
 import type { Handle } from '@sveltejs/kit';
 
 import { getSecretFromClientId } from '$server/clients/clients.dao';

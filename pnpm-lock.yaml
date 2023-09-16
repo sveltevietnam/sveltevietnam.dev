@@ -75,7 +75,7 @@ importers:
         specifier: ^5.2.2
         version: 5.2.2
 
-  libs/utils:
+  internals/utils:
     devDependencies:
       '@vitest/coverage-istanbul':
         specifier: ^0.34.4
@@ -151,9 +151,9 @@ importers:
       '@csstools/postcss-global-data':
         specifier: ^2.1.0
         version: 2.1.0(postcss@8.4.29)
-      '@libs/utils':
+      '@internals/utils':
         specifier: workspace:*
-        version: link:../../libs/utils
+        version: link:../../internals/utils
       '@svelte-put/clickoutside':
         specifier: ^3.0.0
         version: 3.0.0
@@ -260,9 +260,9 @@ importers:
       '@csstools/postcss-global-data':
         specifier: ^2.1.0
         version: 2.1.0(postcss@8.4.29)
-      '@libs/utils':
+      '@internals/utils':
         specifier: workspace:^
-        version: link:../../libs/utils
+        version: link:../../internals/utils
       '@svelte-put/clickoutside':
         specifier: ^3.0.0
         version: 3.0.0
