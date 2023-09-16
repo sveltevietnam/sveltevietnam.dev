@@ -45,11 +45,14 @@ function signRequestX(request, config) {
  */
 export function createRequestFactory(endpoint, init = {}) {
   return function (data, config) {
-    const request = new Request(endpoint, {
+    const url = new URL(config.serviceURL);
+    url.pathname = endpoint;
+    const request = new Request(url, {
       method: 'POST',
       ...init,
       body: JSON.stringify(data),
     });
+    request.headers.set('content-type', 'application/json');
     return signRequestX(request, config);
   };
 }

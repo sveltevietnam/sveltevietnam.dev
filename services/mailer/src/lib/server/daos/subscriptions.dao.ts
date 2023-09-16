@@ -1,6 +1,6 @@
 import type { D1Database } from '@cloudflare/workers-types';
 
-const TABLE_NAME = 'subscription';
+const TABLE_NAME = 'subscriptions';
 
 export type Subscription = {
   email: string; // primary key
@@ -33,7 +33,7 @@ export function upsertSubscription<D extends SubscriptionDomain>(
         ${TABLE_NAME} (email,name,${domain},created_at)
       VALUES(?1,?2,1,?3)
       ON CONFLICT (email) DO UPDATE SET
-        name=$2,
+        name=?2,
         ${domain}=1,
         updated_at=?3
       `,

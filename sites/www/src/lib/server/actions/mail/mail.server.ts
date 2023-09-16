@@ -1,4 +1,8 @@
-import { createSubscriptionRequest, type SubscriptionResponseDTO } from '@internals/isc/mailer';
+import {
+  createSubscriptionRequest,
+  MAILER_SUBSCRIPTION_ERRORS,
+  type SubscriptionResponseDTO,
+} from '@internals/isc/mailer';
 import { error, fail } from '@sveltejs/kit';
 import type { RequestEvent } from '@sveltejs/kit';
 import { message, setError, superValidate } from 'sveltekit-superforms/server';
@@ -43,7 +47,8 @@ export async function mail<E extends RequestEvent>(event: E, domain: 'job' | 'ev
   const response = await fetch(
     await createSubscriptionRequest(
       {
-        ...form.data,
+        email: form.data.email,
+        name: form.data.name,
         domain,
       },
       {
@@ -56,6 +61,12 @@ export async function mail<E extends RequestEvent>(event: E, domain: 'job' | 'ev
   const data = (await response.json()) as SubscriptionResponseDTO;
 
   if (!data.success) {
+    if (data.code === MAILER_SUBSCRIPTION_ERRORS.SUBSCRIPTION_EXISTS.code) {
+      return message(form, {
+        type: 'success',
+        text: t.alreadyRegister,
+      });
+    }
     throw error(500, t.error.unknown);
   }
 

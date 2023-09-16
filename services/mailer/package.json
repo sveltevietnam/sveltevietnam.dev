@@ -14,7 +14,7 @@
   },
   "scripts": {
     "dev": "vite dev --port 5007",
-    "dev:wrangler": "pnpm dlx wrangler pages dev .svelte-kit/cloudflare",
+    "dev:wrangler": "wrangler pages dev .svelte-kit/cloudflare --port 5007",
     "build": "vite build --mode production",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
