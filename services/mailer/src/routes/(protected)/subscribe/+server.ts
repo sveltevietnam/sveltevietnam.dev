@@ -1,21 +1,18 @@
-import { json } from '@sveltejs/kit';
-
-import { createErrorResponse } from '$server/common/errors';
-import {
-  getSubscriptionByEmail,
-  upsertSubscription,
-} from '$server/subscriptions/subscriptions.dao';
 import {
   subscriptionSchema,
   type SubscriptionResponseDTO,
-} from '$server/subscriptions/subscriptions.dto';
+  createMailerErrorResponse,
+} from '@internals/isc/mailer';
+import { json } from '@sveltejs/kit';
+
+import { getSubscriptionByEmail, upsertSubscription } from '$server/daos/subscriptions.dao';
 
 import type { RequestHandler } from './$types';
 
 export const POST: RequestHandler = async ({ request, locals }) => {
   const parsed = subscriptionSchema.safeParse(await request.json());
   if (!parsed.success) {
-    return createErrorResponse(
+    return createMailerErrorResponse(
       'SUBSCRIPTION_INVALID_INPUT',
       parsed.error.errors.map((e) => e.message),
     );
@@ -28,14 +25,14 @@ export const POST: RequestHandler = async ({ request, locals }) => {
     // pass through if email has already been registered for this domain
     const subscription = await getSubscriptionByEmail(d1, email);
     if (subscription?.[domain]) {
-      return createErrorResponse('SUBSCRIPTION_EXISTS');
+      return createMailerErrorResponse('SUBSCRIPTION_EXISTS');
     }
 
     // otherwise upsert subscription
     await upsertSubscription(d1, domain, { name, email });
   } catch (e) {
     // add error capturing
-    return createErrorResponse('SUBSCRIPTION_UNKNOWN_ERROR');
+    return createMailerErrorResponse('SUBSCRIPTION_UNKNOWN_ERROR');
   }
 
   return json({ success: true } satisfies SubscriptionResponseDTO, { status: 201 });

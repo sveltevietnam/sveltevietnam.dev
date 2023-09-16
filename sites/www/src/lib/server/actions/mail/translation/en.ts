@@ -16,7 +16,6 @@ export const en = {
         unknown: 'Unknown cloudflare turnstile error',
       },
       unknown: 'An error has occurred. Please try again later!',
-      dbNotAvailable: 'Connection to database is not available. Please try again later!',
     },
     alreadyRegister: 'You have already registered. Thank you!',
     success: 'Registered successfully. Thank you!',
