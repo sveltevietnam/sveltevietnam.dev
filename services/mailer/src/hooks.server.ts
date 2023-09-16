@@ -2,7 +2,7 @@ import { verifyRequest } from '@libs/utils/signature';
 import type { Handle } from '@sveltejs/kit';
 
 import { getSecretFromClientId } from '$server/clients/clients.dao';
-import { createErrorResponse } from '$server/errors';
+import { createErrorResponse } from '$server/common/errors';
 
 export const handle: Handle = async ({ event, resolve }) => {
   const { request, route, platform, locals } = event;
