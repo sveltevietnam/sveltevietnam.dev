@@ -1,11 +1,14 @@
 import { json } from '@sveltejs/kit';
 
-import { createErrorResponse } from '$server/errors';
+import { createErrorResponse } from '$server/common/errors';
 import {
   getSubscriptionByEmail,
   upsertSubscription,
 } from '$server/subscriptions/subscriptions.dao';
-import { subscriptionSchema } from '$server/subscriptions/subscriptions.dto';
+import {
+  subscriptionSchema,
+  type SubscriptionResponseDTO,
+} from '$server/subscriptions/subscriptions.dto';
 
 import type { RequestHandler } from './$types';
 
@@ -35,12 +38,5 @@ export const POST: RequestHandler = async ({ request, locals }) => {
     return createErrorResponse('SUBSCRIPTION_UNKNOWN_ERROR');
   }
 
-  return json(
-    {
-      success: true,
-    },
-    {
-      status: 201,
-    },
-  );
+  return json({ success: true } satisfies SubscriptionResponseDTO, { status: 201 });
 };
