@@ -1,0 +1,6 @@
+-- Migration number: 0001 	 2023-09-16T10:51:50.363Z
+CREATE TABLE IF NOT EXISTS clients
+(
+  id TEXT NOT NULL PRIMARY KEY,
+  secret TEXT NOT NULL
+);
