@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.3
+
+### Patch Changes
+
+- [`b7b976b`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/b7b976b95f39e0f2ccdf77744f718f01b4882635) Thanks [@vnphanquang](https://github.com/vnphanquang)! - add `mailer` service setup item to roadmap, Tu milestone
+
 ## 1.0.0-next.2
 
 ### Minor Changes
