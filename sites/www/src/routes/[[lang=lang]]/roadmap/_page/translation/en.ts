@@ -38,6 +38,7 @@ export const en = {
         'prepare for the first official release of sveltevietnam (v1.0.0), focusing on developing blog and events pages, as well as necessary features and content for the community to start participating and contributing more actively.',
       primaryTasks: [
         `☑ Publish the <a class="c-link" href="${CODE_OF_CONDUCT_PATH}">Code of Conduct</a> page with basic design`,
+        `☑ Design the infrastructure and bootstrap <a class="c-link" href="https://mailer.sveltevietnam.dev" target="_blank" rel="noreferrer">mailer service</a> to manage user subscriptions for email notifications`,
         `☐ Publish the <a class="c-link" href="${EVENTS_PATH}">Events</a> page with basic design`,
         `☐ Publish the <a class="c-link" href="${BLOG_PATH}">Blog</a> page with basic design`,
         `☐ Introduce the “Technical Reference” and “<a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/CONTRIBUTING.md" rel="noreferrer" target="_blank">Contributing Guidelines</a>” documents`,
