@@ -81,7 +81,7 @@ importers:
   internals/isc:
     dependencies:
       '@internals/utils':
-        specifier: workspace:1.0.0-next.0
+        specifier: workspace:1.0.0-next.1
         version: link:../utils
       zod:
         specifier: ^3.22.2
