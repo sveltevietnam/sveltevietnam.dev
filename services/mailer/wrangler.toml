@@ -4,4 +4,3 @@ database_name = "sv_mailer_dev"
 database_id = "f44b5a85-eb23-4ec3-a8ac-e9c6736d682a"
 migrations_table = "d1_migrations"
 migrations_dir = "d1/migrations"
-
