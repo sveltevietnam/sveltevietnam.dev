@@ -1,4 +1,4 @@
-name: Deploy @sites/www
+name: Deploy @services/mailer
 
 on:
   push:
@@ -38,26 +38,26 @@ jobs:
           skip_after_successful_duplicate: 'true'
           do_not_skip: '["workflow_dispatch"]'
           paths_filter: |
-            www:
+            mailer:
               paths:
                 - 'internals/utils/**'
                 - 'internals/isc/**'
-                - 'sites/www/**'
-  www:
+                - 'services/mailer/**'
+  mailer:
     needs: pre_jobs
-    if: (needs.pre_jobs.outputs.should_skip != 'true' && needs.pre_jobs.outputs.reason != 'paths') || !fromJSON(needs.pre_jobs.outputs.paths_result).www.should_skip
+    if: (needs.pre_jobs.outputs.should_skip != 'true' && needs.pre_jobs.outputs.reason != 'paths') || !fromJSON(needs.pre_jobs.outputs.paths_result).mailer.should_skip
     runs-on: ubuntu-latest
     environment:
       name: |-
         ${{
-            needs.pre_jobs.outputs.mode == 'production' && '@sites/www|production'
-        ||  needs.pre_jobs.outputs.mode == 'preview'    && '@sites/www|preview'
-        ||                                                 '@sites/www|dev'
+            needs.pre_jobs.outputs.mode == 'production' && '@services/mailer|production'
+        ||  needs.pre_jobs.outputs.mode == 'preview'    && '@services/mailer|preview'
+        ||                                                 '@services/mailer|dev'
         }}
       url: |-
         ${{
-            needs.pre_jobs.outputs.mode == 'production' && 'https://sveltevietnam.dev'
-        ||  needs.pre_jobs.outputs.mode == 'preview'    && 'https://preview.sveltevietnam.dev'
+            needs.pre_jobs.outputs.mode == 'production' && 'https://mailer.sveltevietnam.dev'
+        ||  needs.pre_jobs.outputs.mode == 'preview'    && 'https://mailer-preview.sveltevietnam.dev'
         ||                                                  steps.cloudflare-pages-deploy.outputs.url
         }}
     steps:
@@ -95,23 +95,14 @@ jobs:
         continue-on-error: false
 
       - name: Build
-        run: pnpm run build --filter=@sites/www
+        run: pnpm run build --filter=@services/mailer
         env:
-          # cloudflare turnstile
-          PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY: ${{ vars.PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY }}
-          CLOUDFLARE_TURNSTILE_SECRET_KEY: ${{ secrets.CLOUDFLARE_TURNSTILE_SECRET_KEY }}
-          # cookies
-          COOKIE_USER_ID: ${{ vars.COOKIE_USER_ID }}
-          PUBLIC_COOKIE_COLOR_SCHEME: ${{ vars.PUBLIC_COOKIE_COLOR_SCHEME }}
-          COOKIE_LANGUAGE: ${{ vars.COOKIE_LANGUAGE }}
           # public env
-          PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID: ${{ vars.PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID }}
-          PUBLIC_DISCORD_WS_URL: ${{ vars.PUBLIC_DISCORD_WS_URL }}
           PUBLIC_MODE: ${{ vars.PUBLIC_MODE }}
-          # mailer service
-          MAILER_CLIENT_ID: ${{ vars.MAILER_CLIENT_ID }}
-          MAILER_CLIENT_SECRET: ${{ secrets.MAILER_CLIENT_SECRET }}
-          MAILER_SERVICE_URL: ${{ vars.MAILER_SERVICE_URL }}
+          # DKIM for MailChannels
+          DKIM_DOMAIN: ${{ vars.DKIM_DOMAIN }}
+          DKIM_SELECTOR: ${{ vars.DKIM_SELECTOR }}
+          DKIM_PRIVATE_KEY: ${{ secrets.DKIM_PRIVATE_KEY }}
 
       - name: Deploy to Cloudflare
         id: cloudflare-pages-deploy
@@ -119,8 +110,8 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: sveltevietnam
-          directory: sites/www/.svelte-kit/cloudflare
+          projectName: mailer-sveltevietnam
+          directory: services/mailer/.svelte-kit/cloudflare
           # gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           branch: |-
             ${{
@@ -140,7 +131,7 @@ jobs:
             | :--- | :--- |
             | Latest commit | ${{ github.event.pull_request.head.sha || github.sha }} |
             | Latest deploy log | ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} |
-            | Deploy Preview Url | [${{ needs.pre_jobs.outputs.mode == 'preview' && 'https://preview.sveltevietnam.dev' || steps.cloudflare-pages-deploy.outputs.url }}](${{ needs.pre_jobs.outputs.mode == 'preview' && 'https://preview.sveltevietnam.dev' || steps.cloudflare-pages-deploy.outputs.url }}) |
+            | Deploy Preview Url | [${{ needs.pre_jobs.outputs.mode == 'preview' && 'https://mailer-preview.sveltevietnam.dev' || steps.cloudflare-pages-deploy.outputs.url }}](${{ needs.pre_jobs.outputs.mode == 'preview' && 'https://mailer-preview.sveltevietnam.dev' || steps.cloudflare-pages-deploy.outputs.url }}) |
             | Environment | ${{ needs.pre_jobs.outputs.mode }} |
 
       - name: Create PR comment
@@ -153,5 +144,5 @@ jobs:
             | :--- | :--- |
             | Latest commit | ${{ github.event.pull_request.head.sha || github.sha }} |
             | Latest deploy log | ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} |
-            | Deploy Preview Url | [${{ needs.pre_jobs.outputs.mode == 'preview' && 'https://preview.sveltevietnam.dev' || steps.cloudflare-pages-deploy.outputs.url }}](${{ needs.pre_jobs.outputs.mode == 'preview' && 'https://preview.sveltevietnam.dev' || steps.cloudflare-pages-deploy.outputs.url }}) |
+            | Deploy Preview Url | [${{ needs.pre_jobs.outputs.mode == 'preview' && 'https://mailer-preview.sveltevietnam.dev' || steps.cloudflare-pages-deploy.outputs.url }}](${{ needs.pre_jobs.outputs.mode == 'preview' && 'https://mailer-preview.sveltevietnam.dev' || steps.cloudflare-pages-deploy.outputs.url }}) |
             | Environment | ${{ needs.pre_jobs.outputs.mode }} |
