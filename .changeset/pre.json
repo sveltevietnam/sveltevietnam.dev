@@ -4,17 +4,31 @@
   "initialVersions": {
     "@internals/utils": "0.0.0",
     "@services/discord": "0.0.0",
-    "@sites/www": "0.0.0"
+    "@sites/www": "0.0.0",
+    "@internals/isc": "0.0.0",
+    "@services/mailer": "0.0.0"
   },
   "changesets": [
+    "afraid-mayflies-explain",
+    "brown-cats-buy",
     "curly-spoons-confess",
+    "eleven-pants-end",
     "gold-mangos-hug",
     "light-mugs-remember",
+    "lovely-cameras-add",
+    "lucky-paws-explain",
+    "lucky-spies-exercise",
     "metal-jobs-matter",
     "new-hotels-tell",
+    "perfect-ligers-shop",
+    "pink-moons-wonder",
+    "rare-buckets-switch",
+    "small-zebras-tan",
     "spicy-kids-accept",
+    "tasty-pugs-play",
     "tiny-wasps-do",
     "twelve-rules-double",
+    "unlucky-seas-greet",
     "wicked-suns-search"
   ]
 }

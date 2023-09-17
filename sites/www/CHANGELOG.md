@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.0-next.2
+
+### Minor Changes
+
+- [#131](https://github.com/sveltevietnam/sveltevietnam.dev/pull/131) [`8faa5a7`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/8faa5a723fc56eb9ebf84d8f53e1918ea626fd70) Thanks [@vnphanquang](https://github.com/vnphanquang)! - reconciliation for `/subscribe` endpoint from mailer service
+
+### Patch Changes
+
+- [#131](https://github.com/sveltevietnam/sveltevietnam.dev/pull/131) [`6b4d30c`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/6b4d30c1ad8d76e77b32f07998b184a85ee898d0) Thanks [@vnphanquang](https://github.com/vnphanquang)! - reduce zod dependencies by importing direct schema types
+
 ## 1.0.0-next.1
 
 ### Minor Changes
