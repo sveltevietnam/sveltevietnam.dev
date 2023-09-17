@@ -33,7 +33,7 @@ export const handle: Handle = async ({ event, resolve }) => {
   }
 
   // verify
-  const passed = verifyRequest({ request, secret });
+  const passed = await verifyRequest({ request, secret });
   if (!passed) {
     return createMailerErrorResponse('INVALID_SIGNATURE');
   }
