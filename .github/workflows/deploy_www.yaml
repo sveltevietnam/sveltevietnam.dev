@@ -5,6 +5,12 @@ on:
     branches:
       - main
   pull_request:
+    types:
+      - opened
+      - closed
+      - reopened
+      - synchronize
+      - ready_for_review
   workflow_dispatch:
     inputs:
       environment:
@@ -27,9 +33,9 @@ jobs:
       mode: |-
         ${{
             inputs.environment
-        ||  github.event_name == 'push'         && github.ref == 'main'                                  && 'production'
-        ||  github.event_name == 'pull_request' && startsWith(github.head_ref, 'changeset-release/main') && 'preview'
-        ||                                                                                                  'dev'
+        ||  github.event_name == 'pull_request' && startsWith(github.head_ref, 'changeset-release/main') && github.event.pull_request.merged == true  && 'production'
+        ||  github.event_name == 'pull_request' && startsWith(github.head_ref, 'changeset-release/main') && github.event.pull_request.merged == false && 'preview'
+        ||                                                                                                                                               'dev'
         }}
     steps:
       - id: skip_check
