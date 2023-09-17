@@ -67,7 +67,7 @@ export async function mail<E extends RequestEvent>(event: E, domain: 'job' | 'ev
         text: t.alreadyRegister,
       });
     }
-    throw error(500, t.error.unknown);
+    throw error(response.status, `${t.error.unknown} [CODE: ${data.code}]`);
   }
 
   return message(form, {
