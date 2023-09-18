@@ -14,7 +14,7 @@
     "dev": "node src/server.js",
     "start": "node src/server.js",
     "lint": "run-p lint:*",
-    "lint:code": "eslint . --ignore-path=\"../../.eslintignore\"",
+    "lint:es": "eslint . --ignore-path=\"../../.eslintignore\"",
     "format": "prettier --ignore-path ../../.prettierignore --write .",
     "flyio": "flyctl deploy ../.. --dockerfile services/discord/Dockerfile --config services/discord/fly.toml --ha=false --local-only"
   },

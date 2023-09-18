@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores';
+  import { Breadcrumbs } from '$client/components/Breadcrumbs';
   import type { Breadcrumb } from '$shared/services/navigation';
 
   import type { LayoutData } from './$types';
@@ -12,6 +13,7 @@
 </script>
 
 <main class="c-container-design">
+  <Breadcrumbs {breadcrumbs} />
   <article class="prose dark:prose-invert max-w-none prose-svelte-vn">
     {#if langNotSupported}
       <p>Language is not supported.</p>

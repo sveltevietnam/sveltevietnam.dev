@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: ['@vnphanquang/eslint-config', 'plugin:svelte/recommended'],
+  extends: ['@vnphanquang/eslint-config', 'plugin:svelte/recommended', 'prettier'],
   overrides: [
     {
       files: ['*.svelte'],

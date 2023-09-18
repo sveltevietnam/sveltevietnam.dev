@@ -18,7 +18,7 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "run-p lint:*",
-    "lint:code": "eslint . --ignore-path=\"../../.eslintignore\"",
+    "lint:es": "eslint . --ignore-path=\"../../.eslintignore\"",
     "lint:style": "stylelint '**/*.{svelte,css}'",
     "format": "prettier --ignore-path ../../.prettierignore --write .",
     "partytown": "partytown copylib static/~partytown",

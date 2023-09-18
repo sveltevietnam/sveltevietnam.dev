@@ -46,7 +46,7 @@
   ],
   "scripts": {
     "lint": "run-p lint:*",
-    "lint:code": "eslint . --ignore-path=\"../../.eslintignore\"",
+    "lint:es": "eslint . --ignore-path=\"../../.eslintignore\"",
     "format": "prettier --ignore-path ../../.prettierignore --write .",
     "test:unit": "vitest --ui --coverage",
     "test:ci": "vitest run --coverage",
