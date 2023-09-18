@@ -44,8 +44,9 @@ function signRequestX(request, config) {
  * @returns {import('./types').CommonRequestFactory<Data>}
  */
 export function createRequestFactory(endpoint, init = {}) {
-  return function (data, config) {
-    const url = new URL(config.serviceURL);
+  return async function (data, config) {
+    const internal = config === 'internal';
+    const url = new URL(internal ? 'http://127.0.0.1' : config.serviceURL);
     url.pathname = endpoint;
     const request = new Request(url, {
       method: 'POST',
@@ -53,6 +54,6 @@ export function createRequestFactory(endpoint, init = {}) {
       body: JSON.stringify(data),
     });
     request.headers.set('content-type', 'application/json');
-    return signRequestX(request, config);
+    return internal ? request : signRequestX(request, config);
   };
 }

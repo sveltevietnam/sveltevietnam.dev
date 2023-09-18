@@ -30,5 +30,5 @@ export type ErrorSpecs = {
 
 export type CommonRequestFactory<Data> = (
   data: Data,
-  config: CommonRequestConfig,
+  config: CommonRequestConfig | 'internal',
 ) => Promise<Request>;

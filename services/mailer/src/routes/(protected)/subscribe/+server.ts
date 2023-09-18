@@ -2,6 +2,7 @@ import {
   subscriptionSchema,
   type SubscriptionResponseDTO,
   createMailerErrorResponse,
+  createSendRequest,
 } from '@internals/isc/mailer';
 import { json } from '@sveltejs/kit';
 
@@ -9,7 +10,7 @@ import { getSubscriptionByEmail, upsertSubscription } from '$server/daos/subscri
 
 import type { RequestHandler } from './$types';
 
-export const POST: RequestHandler = async ({ request, locals }) => {
+export const POST: RequestHandler = async ({ request, locals, fetch }) => {
   const parsed = subscriptionSchema.safeParse(await request.json());
   if (!parsed.success) {
     return createMailerErrorResponse(
@@ -30,8 +31,19 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 
     // otherwise upsert subscription
     await upsertSubscription(d1, domain, { name, email });
+
+    // TODO: add error capturing & message queue, retry?
+    const sendRequest = await createSendRequest(
+      {
+        templateId: 'SUBSCRIPTION_SUCCESS',
+        to: { email, name },
+      },
+      'internal',
+    );
+    const url = new URL(sendRequest.url);
+    fetch(url.pathname, sendRequest);
   } catch (e) {
-    // add error capturing
+    // TODO: add error capturing
     console.error(e);
     return createMailerErrorResponse('SUBSCRIPTION_UNKNOWN_ERROR');
   }

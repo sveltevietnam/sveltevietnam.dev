@@ -1,0 +1,8 @@
+-- Migration number: 0002 	 2023-09-18T06:35:01.203Z
+CREATE TABLE IF NOT EXISTS mails
+(
+  id integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+  email TEXT NOT NULL,
+  html TEXT NOT NULL,
+  created_at TEXT NOT NULL
+);
