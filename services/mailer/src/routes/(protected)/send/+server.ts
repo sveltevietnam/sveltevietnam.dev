@@ -1,5 +1,6 @@
 import { createMailerErrorResponse, sendSchema, type SendResponseDTO } from '@internals/isc/mailer';
 import { json } from '@sveltejs/kit';
+import jwt from '@tsndr/cloudflare-worker-jwt';
 import Mustache from 'mustache';
 
 import { DKIM_DOMAIN, DKIM_PRIVATE_KEY, DKIM_SELECTOR, JWT_SECRET } from '$env/static/private';
@@ -29,8 +30,15 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 
     // construct mail URL
     const id = crypto.randomUUID();
+    const token = await jwt.sign({ id }, JWT_SECRET);
+    const mailURL = new URL(request.url);
+    mailURL.pathname = `/mail/${token}`;
+
     // render
-    const html = Mustache.render(template.html, variables);
+    const html = Mustache.render(template.html, {
+      ...variables,
+      mailURL: mailURL.toString(),
+    });
 
     // send with mailchannels (only in production)
     if (PUBLIC_MODE === 'production') {

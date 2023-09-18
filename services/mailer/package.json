@@ -26,6 +26,7 @@
     "format": "prettier --ignore-path ../../.prettierignore --write ."
   },
   "dependencies": {
+    "@tsndr/cloudflare-worker-jwt": "^2.2.2",
     "mustache": "^4.2.0",
     "zod": "^3.22.2"
   },
