@@ -1,6 +1,7 @@
 {
   "name": "sveltevietnam",
   "private": true,
+  "type": "module",
   "author": {
     "email": "developers@sveltevietnam.dev",
     "name": "Svelte Vietnam",

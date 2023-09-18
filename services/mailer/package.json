@@ -16,6 +16,7 @@
     "dev": "vite dev --port 5007",
     "dev:wrangler": "wrangler pages dev .svelte-kit/cloudflare --port 5007",
     "build": "vite build --mode production",
+    "build:mjml": "mjml src/lib/server/templates/*.mjml -o src/lib/server/templates --config.mjmlConfigPath .mjmlconfig",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -25,6 +26,7 @@
     "format": "prettier --ignore-path ../../.prettierignore --write ."
   },
   "dependencies": {
+    "mustache": "^4.2.0",
     "zod": "^3.22.2"
   },
   "devDependencies": {
@@ -39,12 +41,14 @@
     "@sveltejs/adapter-cloudflare": "2.3.3",
     "@sveltejs/kit": "^1.25.0",
     "@total-typescript/ts-reset": "^0.5.1",
+    "@types/mjml": "^4.7.1",
     "@types/mustache": "^4.2.2",
     "@types/postcss-js": "^4.0.1",
     "@types/postcss-mixins": "^9.0.0",
     "autoprefixer": "^10.4.15",
     "cssnano": "^6.0.1",
     "hygen": "^6.2.11",
+    "mjml": "^4.14.1",
     "postcss": "^8.4.29",
     "postcss-custom-selectors": "^7.1.4",
     "postcss-html": "^1.5.0",
