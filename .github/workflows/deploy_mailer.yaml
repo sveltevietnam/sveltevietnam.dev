@@ -103,6 +103,7 @@ jobs:
       - name: Build
         run: pnpm run build --filter=@services/mailer
         env:
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
           # public env
           PUBLIC_MODE: ${{ vars.PUBLIC_MODE }}
           # DKIM for MailChannels
