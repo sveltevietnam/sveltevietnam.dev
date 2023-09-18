@@ -19,6 +19,11 @@ export const handle: Handle = async ({ event, resolve }) => {
   }
   locals.d1 = d1;
 
+  if (event.isSubRequest) {
+    // internal requests, pass through
+    return resolve(event);
+  }
+
   // check for client signature
   const clientId = request.headers.get('x-client-id');
   const signature = request.headers.get('x-signature');
