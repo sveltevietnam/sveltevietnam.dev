@@ -4,7 +4,7 @@ import Mustache from 'mustache';
 
 import { DKIM_DOMAIN, DKIM_PRIVATE_KEY, DKIM_SELECTOR } from '$env/static/private';
 import { PUBLIC_MODE } from '$env/static/public';
-import { createMail } from '$server/daos/mails.dao';
+import { createMail, type Mail } from '$server/daos/mails.dao';
 import { EMAIL_TEMPLATES } from '$server/templates';
 
 import type { RequestHandler } from './$types';
@@ -21,11 +21,13 @@ export const POST: RequestHandler = async ({ request, locals }) => {
   try {
     const { templateId, variables = {}, to } = parsed.data;
 
-    // render html from template
+    // check for template
     const template = EMAIL_TEMPLATES[templateId];
     if (!template) {
       return createMailerErrorResponse('SEND_TEMPLATE_NOT_FOUND');
     }
+
+    // render
     const html = Mustache.render(template.html, variables);
 
     // send with mailchannels (only in production)
@@ -61,7 +63,13 @@ export const POST: RequestHandler = async ({ request, locals }) => {
     }
 
     // save mail record
-    await createMail(locals.d1, to.email, html);
+    const mail = {
+      id: crypto.randomUUID(),
+      email: to.email,
+      html,
+      created_at: new Date().toISOString(),
+    } satisfies Mail;
+    await createMail(locals.d1, mail);
 
     return json({ success: true } satisfies SendResponseDTO, { status: 201 });
   } catch (e) {
