@@ -1,4 +1,4 @@
-import { createErrorResponse } from '../common/http';
+import { createErrorResponse } from '../common/http.js';
 
 /**
  * @satisfies {Record<string, import('../common/types').ErrorSpecs>}
@@ -38,6 +38,20 @@ export const MAILER_SUBSCRIPTION_ERRORS = /* @type {const} */ {
   SUBSCRIPTION_EXISTS: {
     code: 'MS007',
     status: 409,
+  },
+
+  // `/send` endpoint errors
+  SEND_UNKNOWN_ERROR: {
+    code: 'MS008',
+    status: 500,
+  },
+  SEND_INVALID_INPUT: {
+    code: 'MS009',
+    status: 400,
+  },
+  SEND_TEMPLATE_NOT_FOUND: {
+    code: 'MS010',
+    status: 400,
   },
 };
 
