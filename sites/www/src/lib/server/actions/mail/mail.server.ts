@@ -50,6 +50,7 @@ export async function mail<E extends RequestEvent>(event: E, domain: 'job' | 'ev
         email: form.data.email,
         name: form.data.name,
         domain,
+        language: locals.language,
       },
       {
         clientID: MAILER_CLIENT_ID,
