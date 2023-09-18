@@ -2,15 +2,13 @@ import { createMailerErrorResponse } from '@internals/isc/mailer';
 import { verifyRequest } from '@internals/utils/signature';
 import type { Handle } from '@sveltejs/kit';
 
+import { building } from '$app/environment';
 import { getSecretFromClientId } from '$server/daos/clients.dao';
 
 export const handle: Handle = async ({ event, resolve }) => {
-  const { request, route, platform, locals } = event;
+  if (building) return resolve(event);
 
-  if (!route.id?.includes('protected')) {
-    // if public routes, pass through
-    return resolve(event);
-  }
+  const { request, route, platform, locals } = event;
 
   // get cloudflare bindings for d1 database
   const d1 = platform?.env?.D1;
@@ -18,6 +16,11 @@ export const handle: Handle = async ({ event, resolve }) => {
     return createMailerErrorResponse('D1_NOT_AVAILABLE');
   }
   locals.d1 = d1;
+
+  if (!route.id?.includes('protected')) {
+    // if public routes, pass through
+    return resolve(event);
+  }
 
   if (event.isSubRequest) {
     // internal requests, pass through
