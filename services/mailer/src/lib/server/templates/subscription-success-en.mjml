@@ -5,7 +5,7 @@
     <mj-section background-color="#f0f0f0">
       <mj-column>
         <mj-text align="center" font-style="italic" font-size="20px" color="#626262">
-          {{ company }}
+          English Version
         </mj-text>
       </mj-column>
     </mj-section>

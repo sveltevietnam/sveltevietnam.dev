@@ -26,7 +26,7 @@ export const MAILER_SUBSCRIPTION_ERRORS = /* @type {const} */ {
     status: 401,
   },
 
-  // `/subscribe` endpoint errors
+  // POST `/subscribe` endpoint errors
   SUBSCRIPTION_UNKNOWN_ERROR: {
     code: 'MS005',
     status: 500,
@@ -40,7 +40,7 @@ export const MAILER_SUBSCRIPTION_ERRORS = /* @type {const} */ {
     status: 409,
   },
 
-  // `/send` endpoint errors
+  // POST `/send` endpoint errors
   SEND_UNKNOWN_ERROR: {
     code: 'MS008',
     status: 500,
@@ -51,6 +51,16 @@ export const MAILER_SUBSCRIPTION_ERRORS = /* @type {const} */ {
   },
   SEND_TEMPLATE_NOT_FOUND: {
     code: 'MS010',
+    status: 400,
+  },
+
+  // GET `/mail/[token]` endpoint errors
+  MAIL_UNKNOWN_ERROR: {
+    code: 'MS011',
+    status: 500,
+  },
+  MAIL_INVALID_TOKEN: {
+    code: 'MS012',
     status: 400,
   },
 };

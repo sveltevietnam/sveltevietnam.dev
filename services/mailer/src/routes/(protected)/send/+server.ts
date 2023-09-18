@@ -2,7 +2,7 @@ import { createMailerErrorResponse, sendSchema, type SendResponseDTO } from '@in
 import { json } from '@sveltejs/kit';
 import Mustache from 'mustache';
 
-import { DKIM_DOMAIN, DKIM_PRIVATE_KEY, DKIM_SELECTOR } from '$env/static/private';
+import { DKIM_DOMAIN, DKIM_PRIVATE_KEY, DKIM_SELECTOR, JWT_SECRET } from '$env/static/private';
 import { PUBLIC_MODE } from '$env/static/public';
 import { createMail, type Mail } from '$server/daos/mails.dao';
 import { EMAIL_TEMPLATES } from '$server/templates';
@@ -19,14 +19,16 @@ export const POST: RequestHandler = async ({ request, locals }) => {
   }
 
   try {
-    const { templateId, variables = {}, to } = parsed.data;
+    const { templateId, variables = {}, to, language } = parsed.data;
 
     // check for template
-    const template = EMAIL_TEMPLATES[templateId];
+    const template = EMAIL_TEMPLATES[templateId]?.[language];
     if (!template) {
       return createMailerErrorResponse('SEND_TEMPLATE_NOT_FOUND');
     }
 
+    // construct mail URL
+    const id = crypto.randomUUID();
     // render
     const html = Mustache.render(template.html, variables);
 
@@ -64,7 +66,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 
     // save mail record
     const mail = {
-      id: crypto.randomUUID(),
+      id,
       email: to.email,
       html,
       created_at: new Date().toISOString(),

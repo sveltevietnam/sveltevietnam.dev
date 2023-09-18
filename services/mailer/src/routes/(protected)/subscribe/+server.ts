@@ -20,7 +20,7 @@ export const POST: RequestHandler = async ({ request, locals, fetch }) => {
   }
 
   const { d1 } = locals;
-  const { email, domain, name } = parsed.data;
+  const { email, domain, name, language } = parsed.data;
 
   try {
     // pass through if email has already been registered for this domain
@@ -37,6 +37,7 @@ export const POST: RequestHandler = async ({ request, locals, fetch }) => {
       {
         templateId: 'SUBSCRIPTION_SUCCESS',
         to: { email, name },
+        language,
       },
       'internal',
     );
