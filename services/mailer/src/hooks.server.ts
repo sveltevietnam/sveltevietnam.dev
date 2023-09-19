@@ -17,7 +17,7 @@ export const handle: Handle = async ({ event, resolve }) => {
   locals.d1 = d1;
 
   // if public routes, pass through
-  if (!route.id?.includes('protected')) return resolve(event);
+  if (!route.id?.includes('signed')) return resolve(event);
 
   // internal requests, pass through
   if (event.isSubRequest) return resolve(event);
