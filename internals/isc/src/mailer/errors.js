@@ -24,12 +24,12 @@ export const MAILER_ERRORS = /* @type {const} */ {
     status: 401,
   },
 
-  // POST `/subscribe` endpoint errors
-  SUBSCRIBE_INVALID_INPUT: {
+  // POST `/subscription` endpoint errors
+  SUBSCRIPTION_CREATE_INVALID_INPUT: {
     code: 'MS005',
     status: 400,
   },
-  SUBSCRIBE_ALREADY_EXISTS: {
+  SUBSCRIPTION_CREATE_ALREADY_EXISTS: {
     code: 'MS006',
     status: 409,
   },

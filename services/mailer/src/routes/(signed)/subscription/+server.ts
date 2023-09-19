@@ -1,6 +1,6 @@
 import {
-  subscriptionSchema,
-  type SubscriptionResponseDTO,
+  CreateSubscriptionSchema,
+  type CreateSubscriptionResponseDTO,
   createSendRequest,
 } from '@internals/isc/mailer';
 import { json } from '@sveltejs/kit';
@@ -11,9 +11,12 @@ import { createMailerSvelteKitError } from '$server/errors';
 import type { RequestHandler } from './$types';
 
 export const POST: RequestHandler = async ({ request, locals, fetch }) => {
-  const parsed = subscriptionSchema.safeParse(await request.json());
+  const parsed = CreateSubscriptionSchema.safeParse(await request.json());
   if (!parsed.success) {
-    throw createMailerSvelteKitError('SUBSCRIBE_INVALID_INPUT', parsed.error.errors[0]?.message);
+    throw createMailerSvelteKitError(
+      'SUBSCRIPTION_CREATE_INVALID_INPUT',
+      parsed.error.errors[0]?.message,
+    );
   }
 
   const { d1 } = locals;
@@ -22,7 +25,7 @@ export const POST: RequestHandler = async ({ request, locals, fetch }) => {
   // pass through if email has already been registered for this domain
   const subscription = await getSubscriptionByEmail(d1, email);
   if (subscription?.[domain]) {
-    throw createMailerSvelteKitError('SUBSCRIBE_ALREADY_EXISTS');
+    throw createMailerSvelteKitError('SUBSCRIPTION_CREATE_ALREADY_EXISTS');
   }
 
   // otherwise upsert subscription
@@ -40,5 +43,5 @@ export const POST: RequestHandler = async ({ request, locals, fetch }) => {
   const url = new URL(sendRequest.url);
   fetch(url.pathname, sendRequest);
 
-  return json({ success: true } satisfies SubscriptionResponseDTO, { status: 201 });
+  return json({ success: true } satisfies CreateSubscriptionResponseDTO, { status: 201 });
 };

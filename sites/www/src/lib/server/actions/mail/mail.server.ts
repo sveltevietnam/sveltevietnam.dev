@@ -1,7 +1,7 @@
 import {
   createSubscriptionRequest,
   MAILER_ERRORS,
-  type SubscriptionResponseDTO,
+  type CreateSubscriptionResponseDTO,
 } from '@internals/isc/mailer';
 import { error, fail } from '@sveltejs/kit';
 import type { RequestEvent } from '@sveltejs/kit';
@@ -59,10 +59,10 @@ export async function mail<E extends RequestEvent>(event: E, domain: 'job' | 'ev
       },
     ),
   );
-  const data = (await response.json()) as SubscriptionResponseDTO;
+  const data = (await response.json()) as CreateSubscriptionResponseDTO;
 
   if (!data.success) {
-    if (data.code === MAILER_ERRORS.SUBSCRIBE_ALREADY_EXISTS.code) {
+    if (data.code === MAILER_ERRORS.SUBSCRIPTION_CREATE_ALREADY_EXISTS.code) {
       return message(form, {
         type: 'success',
         text: t.alreadyRegister,
