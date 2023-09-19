@@ -29,7 +29,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
   const id = crypto.randomUUID();
   const token = await jwt.sign({ id }, JWT_SECRET);
   const mailURL = new URL(request.url);
-  mailURL.pathname = `/mail/${token}`;
+  mailURL.pathname = `/mail/${encodeURIComponent(token)}`;
 
   // render
   const html = Mustache.render(template.html, {
