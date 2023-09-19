@@ -14,7 +14,7 @@ export const POST: RequestHandler = async ({ request, locals, fetch }) => {
   const parsed = subscriptionSchema.safeParse(await request.json());
   if (!parsed.success) {
     return createMailerErrorResponse(
-      'SUBSCRIPTION_INVALID_INPUT',
+      'SUBSCRIBE_INVALID_INPUT',
       parsed.error.errors.map((e) => e.message),
     );
   }
@@ -26,7 +26,7 @@ export const POST: RequestHandler = async ({ request, locals, fetch }) => {
     // pass through if email has already been registered for this domain
     const subscription = await getSubscriptionByEmail(d1, email);
     if (subscription?.[domain]) {
-      return createMailerErrorResponse('SUBSCRIPTION_EXISTS');
+      return createMailerErrorResponse('SUBSCRIBE_ALREADY_EXISTS');
     }
 
     // otherwise upsert subscription
@@ -46,7 +46,7 @@ export const POST: RequestHandler = async ({ request, locals, fetch }) => {
   } catch (e) {
     // TODO: add error capturing
     console.error(e);
-    return createMailerErrorResponse('SUBSCRIPTION_UNKNOWN_ERROR');
+    return createMailerErrorResponse('SUBSCRIBE_UNKNOWN_ERROR');
   }
 
   return json({ success: true } satisfies SubscriptionResponseDTO, { status: 201 });
