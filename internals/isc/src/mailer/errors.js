@@ -3,7 +3,7 @@ import { createErrorResponse } from '../common/http.js';
 /**
  * @satisfies {Record<string, import('../common/types').ErrorSpecs>}
  */
-export const MAILER_SUBSCRIPTION_ERRORS = /* @type {const} */ {
+export const MAILER_ERRORS = /* @type {const} */ {
   // service level errors
   UNKNOWN: {
     code: 'MS000',
@@ -27,15 +27,15 @@ export const MAILER_SUBSCRIPTION_ERRORS = /* @type {const} */ {
   },
 
   // POST `/subscribe` endpoint errors
-  SUBSCRIPTION_UNKNOWN_ERROR: {
+  SUBSCRIBE_UNKNOWN_ERROR: {
     code: 'MS005',
     status: 500,
   },
-  SUBSCRIPTION_INVALID_INPUT: {
+  SUBSCRIBE_INVALID_INPUT: {
     code: 'MS006',
     status: 400,
   },
-  SUBSCRIPTION_EXISTS: {
+  SUBSCRIBE_ALREADY_EXISTS: {
     code: 'MS007',
     status: 409,
   },
@@ -67,10 +67,10 @@ export const MAILER_SUBSCRIPTION_ERRORS = /* @type {const} */ {
 
 /**
  *
- * @param {keyof typeof MAILER_SUBSCRIPTION_ERRORS} error
+ * @param {keyof typeof MAILER_ERRORS} error
  * @param {string | string[]} [message]
  * @returns
  */
 export function createMailerErrorResponse(error, message = []) {
-  return createErrorResponse(MAILER_SUBSCRIPTION_ERRORS[error], message);
+  return createErrorResponse(MAILER_ERRORS[error], message);
 }
