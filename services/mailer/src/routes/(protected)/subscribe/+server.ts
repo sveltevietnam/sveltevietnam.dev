@@ -1,53 +1,44 @@
 import {
   subscriptionSchema,
   type SubscriptionResponseDTO,
-  createMailerErrorResponse,
   createSendRequest,
 } from '@internals/isc/mailer';
 import { json } from '@sveltejs/kit';
 
 import { getSubscriptionByEmail, upsertSubscription } from '$server/daos/subscriptions.dao';
+import { createMailerSvelteKitError } from '$server/errors';
 
 import type { RequestHandler } from './$types';
 
 export const POST: RequestHandler = async ({ request, locals, fetch }) => {
   const parsed = subscriptionSchema.safeParse(await request.json());
   if (!parsed.success) {
-    return createMailerErrorResponse(
-      'SUBSCRIBE_INVALID_INPUT',
-      parsed.error.errors.map((e) => e.message),
-    );
+    throw createMailerSvelteKitError('SUBSCRIBE_INVALID_INPUT', parsed.error.errors[0]?.message);
   }
 
   const { d1 } = locals;
   const { email, domain, name, language } = parsed.data;
 
-  try {
-    // pass through if email has already been registered for this domain
-    const subscription = await getSubscriptionByEmail(d1, email);
-    if (subscription?.[domain]) {
-      return createMailerErrorResponse('SUBSCRIBE_ALREADY_EXISTS');
-    }
-
-    // otherwise upsert subscription
-    await upsertSubscription(d1, domain, { name, email });
-
-    // TODO: add error capturing & message queue, retry?
-    const sendRequest = await createSendRequest(
-      {
-        templateId: 'SUBSCRIPTION_SUCCESS',
-        to: { email, name },
-        language,
-      },
-      'internal',
-    );
-    const url = new URL(sendRequest.url);
-    fetch(url.pathname, sendRequest);
-  } catch (e) {
-    // TODO: add error capturing
-    console.error(e);
-    return createMailerErrorResponse('SUBSCRIBE_UNKNOWN_ERROR');
+  // pass through if email has already been registered for this domain
+  const subscription = await getSubscriptionByEmail(d1, email);
+  if (subscription?.[domain]) {
+    throw createMailerSvelteKitError('SUBSCRIBE_ALREADY_EXISTS');
   }
+
+  // otherwise upsert subscription
+  await upsertSubscription(d1, domain, { name, email });
+
+  // TODO: message queue, retry?
+  const sendRequest = await createSendRequest(
+    {
+      templateId: 'SUBSCRIPTION_SUCCESS',
+      to: { email, name },
+      language,
+    },
+    'internal',
+  );
+  const url = new URL(sendRequest.url);
+  fetch(url.pathname, sendRequest);
 
   return json({ success: true } satisfies SubscriptionResponseDTO, { status: 201 });
 };

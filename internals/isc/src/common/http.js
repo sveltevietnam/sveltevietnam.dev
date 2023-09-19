@@ -3,15 +3,13 @@ import { signRequest } from '@internals/utils/signature';
 /**
  *
  * @param {import('./types').ErrorSpecs} error
- * @param {string | string[]} [message]
  * @returns
  */
-export function createErrorResponse(error, message = []) {
+export function createErrorJSONResponse(error) {
   /** @satisfies {import('./types').CommonErrorResponseDTO} */
   const data = {
     success: false,
     code: error.code,
-    errors: typeof message === 'string' ? [message] : message,
   };
 
   const headers = new Headers();

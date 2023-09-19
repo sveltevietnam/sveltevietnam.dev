@@ -26,7 +26,9 @@ declare global {
         default: import('@cloudflare/workers-types').Cache;
       };
     }
-    // interface Error {}
+    interface Error {
+      code: string;
+    }
   }
 }
 
