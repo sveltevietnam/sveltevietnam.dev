@@ -5,7 +5,6 @@ export type CommonResponseDTO<Data = undefined> =
 export type CommonErrorResponseDTO = {
   success: false;
   code: string;
-  errors: string[];
 };
 
 export type CommonSuccessResponseDTO<Data = undefined> = undefined extends Data

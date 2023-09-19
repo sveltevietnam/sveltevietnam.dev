@@ -1,5 +1,3 @@
-import { createErrorResponse } from '../common/http.js';
-
 /**
  * @satisfies {Record<string, import('../common/types').ErrorSpecs>}
  */
@@ -27,50 +25,36 @@ export const MAILER_ERRORS = /* @type {const} */ {
   },
 
   // POST `/subscribe` endpoint errors
-  SUBSCRIBE_UNKNOWN_ERROR: {
-    code: 'MS005',
-    status: 500,
-  },
   SUBSCRIBE_INVALID_INPUT: {
-    code: 'MS006',
+    code: 'MS005',
     status: 400,
   },
   SUBSCRIBE_ALREADY_EXISTS: {
-    code: 'MS007',
+    code: 'MS006',
     status: 409,
   },
 
   // POST `/send` endpoint errors
-  SEND_UNKNOWN_ERROR: {
-    code: 'MS008',
+  SEND_MAILCHANNELS_ERROR: {
+    code: 'MS007',
     status: 500,
   },
   SEND_INVALID_INPUT: {
-    code: 'MS009',
+    code: 'MS008',
     status: 400,
   },
   SEND_TEMPLATE_NOT_FOUND: {
-    code: 'MS010',
+    code: 'MS009',
     status: 400,
   },
 
   // GET `/mail/[token]` endpoint errors
-  MAIL_UNKNOWN_ERROR: {
-    code: 'MS011',
-    status: 500,
-  },
   MAIL_INVALID_TOKEN: {
-    code: 'MS012',
+    code: 'MS010',
     status: 400,
   },
+  MAIL_NOT_FOUND: {
+    code: 'MS011',
+    status: 404,
+  },
 };
-
-/**
- *
- * @param {keyof typeof MAILER_ERRORS} error
- * @param {string | string[]} [message]
- * @returns
- */
-export function createMailerErrorResponse(error, message = []) {
-  return createErrorResponse(MAILER_ERRORS[error], message);
-}
