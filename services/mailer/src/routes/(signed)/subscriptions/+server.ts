@@ -4,6 +4,7 @@ import {
   type CreateSubscriptionResponseDTO,
   UpdateDomainSubscriptionRequestSchema,
   createSendRequest,
+  GetSubscriptionResponseSchema,
 } from '@internals/isc/mailer';
 import { json } from '@sveltejs/kit';
 import jwt from '@tsndr/cloudflare-worker-jwt';
@@ -32,7 +33,10 @@ export const GET: RequestHandler = async ({ request, locals }) => {
   const subscription = await getSubscriptionByEmail(locals.d1, email);
   if (!subscription) throw createMailerSvelteKitError('SUBSCRIPTION_GET_NOT_FOUND');
 
-  return json(subscription);
+  const parsed = GetSubscriptionResponseSchema.safeParse(subscription);
+  if (!parsed.success) throw createMailerSvelteKitError('SUBSCRIPTION_GET_PARSE_ERROR');
+
+  return json(parsed.data);
 };
 
 export const POST: RequestHandler = async ({ request, locals, fetch }) => {

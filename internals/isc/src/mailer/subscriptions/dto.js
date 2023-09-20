@@ -4,6 +4,15 @@ import { LanguageSchema } from '../../common/dto';
 
 export const SUBSCRIPTION_DOMAINS = /** @type {const} */ (['job', 'event']);
 
+export const GetSubscriptionResponseSchema = zObject({
+  name: zString(),
+  job: zCoerce.boolean(),
+  event: zCoerce.boolean(),
+});
+/**
+ * @typedef {import('zod').infer<typeof GetSubscriptionResponseSchema>} GetSubscriptionResponseDTO
+ */
+
 export const CreateSubscriptionRequestSchema = zObject({
   name: zString().min(1),
   email: zString().min(1).email(),
