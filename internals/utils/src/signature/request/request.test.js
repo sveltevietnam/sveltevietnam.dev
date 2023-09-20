@@ -12,6 +12,8 @@ const ALTERED_URL = 'https://mocking-url.com/alter';
 const BODY = { foo: 'ba-r' };
 const ALTERED_BODY = { foo: 'ba-z' };
 
+const HEADER = 'x-signature';
+
 describe('GET Request:', () => {
   test('a correctly signed request should pass verification', async () => {
     const request = new Request(URL, { method: 'GET' });
@@ -34,8 +36,8 @@ describe('GET Request:', () => {
     const request = new Request(URL, { method: 'GET' });
     await signRequest({ request, secret: SECRET });
 
-    request.headers.set('x-signature', ALTERED_SIGNATURE);
-    const valid = await verifyRequest({ request, secret: SECRET });
+    request.headers.set(HEADER, ALTERED_SIGNATURE);
+    const valid = await verifyRequest({ request, secret: SECRET, header: HEADER });
 
     expect(valid).toBe(false);
   });
@@ -80,7 +82,7 @@ describe('POST Request', () => {
       method: 'POST',
       body: JSON.stringify(ALTERED_BODY),
     });
-    altered.headers.set('x-signature', request.headers.get('x-signature') ?? '');
+    altered.headers.set(HEADER, request.headers.get(HEADER) ?? '');
     const valid = await verifyRequest({ request: altered, secret: SECRET });
     expect(valid).toBe(false);
   });
@@ -92,7 +94,7 @@ describe('POST Request', () => {
     });
     await signRequest({ request, secret: SECRET });
 
-    request.headers.delete('x-signature');
+    request.headers.delete(HEADER);
     const valid = await verifyRequest({ request, secret: SECRET });
     expect(valid).toBe(false);
   });

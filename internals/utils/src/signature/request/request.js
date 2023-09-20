@@ -2,6 +2,7 @@
  * @typedef {{
  *   request: Request;
  *   secret: string;
+ *   header?: string;
  * }} RequestSignatureParams
  */
 
@@ -27,10 +28,10 @@ async function getMessageFromRequest(request) {
  * @param {RequestSignatureParams} param0
  * @returns {Promise<Request>} signed request
  */
-export async function signRequest({ request, secret }) {
+export async function signRequest({ request, secret, header = 'x-signature' }) {
   const message = await getMessageFromRequest(request);
   const signature = await sign({ message, secret });
-  request.headers.set('x-signature', signature);
+  request.headers.set(header, signature);
   return request;
 }
 
@@ -39,9 +40,9 @@ export async function signRequest({ request, secret }) {
  * @param {RequestSignatureParams} param0
  * @returns
  */
-export async function verifyRequest({ request, secret }) {
+export async function verifyRequest({ request, secret, header = 'x-signature' }) {
   const message = await getMessageFromRequest(request);
-  const signature = request.headers.get('x-signature') ?? '';
+  const signature = request.headers.get(header) ?? '';
 
   return await verify({ message, signature, secret });
 }

@@ -2,11 +2,14 @@ import type { D1Database } from '@cloudflare/workers-types';
 
 const TABLE_NAME = 'subscriptions';
 
-export type Subscription = {
-  email: string; // primary key
-  name: string;
+export type DomainSubscription = {
   job: boolean;
   event: boolean;
+};
+
+export type Subscription = DomainSubscription & {
+  email: string; // primary key
+  name: string;
   created_at: string;
   updated_at: string;
 };
@@ -21,9 +24,9 @@ export function getSubscriptionByEmail(d1: D1Database, email: string) {
     .first<Subscription>();
 }
 
-export function upsertSubscription<D extends SubscriptionDomain>(
+export function upsertSubscription(
   d1: D1Database,
-  domain: D,
+  domain: SubscriptionDomain,
   subscription: Pick<Subscription, 'email' | 'name'>,
 ) {
   return d1
@@ -36,8 +39,27 @@ export function upsertSubscription<D extends SubscriptionDomain>(
         name=?2,
         ${domain}=1,
         updated_at=?3
-      `,
+    `,
     )
     .bind(subscription.email, subscription.name, new Date().toISOString())
+    .run();
+}
+
+export function updateDomainSubscription(
+  d1: D1Database,
+  email: string,
+  subscription: DomainSubscription,
+) {
+  return d1
+    .prepare(
+      `
+    UPDATE subscriptions
+        SET event = ?1,
+            job = ?2,
+            updated_at = ?3,
+        WHERE email = ?4
+    `,
+    )
+    .bind(subscription.event, subscription.job, new Date().toISOString(), email)
     .run();
 }

@@ -63,4 +63,20 @@ export const MAILER_ERRORS = /* @type {const} */ {
     code: 'MS012',
     status: 400,
   },
+
+  // PATCH `/subscription` endpoint errors
+  SUBSCRIPTION_DOMAIN_UPDATE_NO_TOKEN: {
+    code: 'MS013',
+    status: 400,
+  },
+  SUBSCRIPTION_DOMAIN_UPDATE_INVALID_INPUT: {
+    code: 'MS014',
+    status: 400,
+  },
+  SUBSCRIPTION_DOMAIN_UPDATE_INVALID_TOKEN: {
+    code: 'MS015',
+    status: 400,
+  },
+
+  // next error code: MS016
 };

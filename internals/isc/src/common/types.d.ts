@@ -16,18 +16,18 @@ export type CommonSuccessResponseDTO<Data = undefined> = undefined extends Data
       data: Data;
     };
 
-export type CommonRequestConfig = {
+export type CommonRequestConfig<HasToken extends boolean = false> = {
   serviceURL: string;
   clientID: string;
   clientSecret: string;
-};
+} & (true extends HasToken ? { token: string } : Record<string, never>);
 
 export type ErrorSpecs = {
   code: string;
   status: number;
 };
 
-export type CommonRequestFactory<Data> = (
+export type CommonRequestFactory<Data, HasToken extends boolean = false> = (
   data: Data,
-  config: CommonRequestConfig | 'internal',
+  config: CommonRequestConfig<HasToken> | 'internal',
 ) => Promise<Request>;

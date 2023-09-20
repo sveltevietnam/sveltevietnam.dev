@@ -1,5 +1,11 @@
 import { signRequest } from '@internals/utils/signature';
 
+export const COMMON_HEADERS = {
+  TOKEN: 'x-token',
+  CLIENT_ID: 'x-client-id',
+  CLIENT_SIGNATURE: 'x-client-signature',
+};
+
 /**
  *
  * @param {import('./types').ErrorSpecs} error
@@ -28,30 +34,39 @@ export function createErrorJSONResponse(error) {
  * @returns {Promise<Request>}
  */
 function signRequestX(request, config) {
-  request.headers.set('x-client-id', config.clientID);
+  request.headers.set(COMMON_HEADERS.CLIENT_ID, config.clientID);
   return signRequest({
     request,
     secret: config.clientSecret,
+    header: COMMON_HEADERS.CLIENT_SIGNATURE,
   });
 }
 
 /**
  * @template Data
+ * @template {boolean} HasToken
  * @param {string} endpoint
- * @param {RequestInit} init
- * @returns {import('./types').CommonRequestFactory<Data>}
+ * @param {RequestInit & { token: HasToken }} init
+ * @returns {import('./types').CommonRequestFactory<Data, HasToken>}
  */
-export function createRequestFactory(endpoint, init = {}) {
+export function createSignedRequestFactory(
+  endpoint,
+  init = { token: /** @type {HasToken} */ (false) },
+) {
   return async function (data, config) {
     const internal = config === 'internal';
     const url = new URL(internal ? 'http://127.0.0.1' : config.serviceURL);
     url.pathname = endpoint;
-    const request = new Request(url, {
+    let request = new Request(url, {
       method: 'POST',
       ...init,
       body: JSON.stringify(data),
     });
     request.headers.set('content-type', 'application/json');
-    return internal ? request : signRequestX(request, config);
+    if (!internal) {
+      request = await signRequestX(request, config);
+      if (init?.token) request.headers.set(COMMON_HEADERS.TOKEN, config.token);
+    }
+    return request;
   };
 }

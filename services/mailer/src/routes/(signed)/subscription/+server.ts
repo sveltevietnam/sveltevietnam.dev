@@ -1,11 +1,19 @@
+import { COMMON_HEADERS } from '@internals/isc/common';
 import {
   CreateSubscriptionSchema,
   type CreateSubscriptionResponseDTO,
+  UpdateDomainSubscriptionSchema,
   createSendRequest,
 } from '@internals/isc/mailer';
 import { json } from '@sveltejs/kit';
+import jwt from '@tsndr/cloudflare-worker-jwt';
 
-import { getSubscriptionByEmail, upsertSubscription } from '$server/daos/subscriptions.dao';
+import { JWT_SECRET } from '$env/static/private';
+import {
+  getSubscriptionByEmail,
+  updateDomainSubscription,
+  upsertSubscription,
+} from '$server/daos/subscriptions.dao';
 import { createMailerSvelteKitError } from '$server/errors';
 
 import type { RequestHandler } from './$types';
@@ -44,4 +52,23 @@ export const POST: RequestHandler = async ({ request, locals, fetch }) => {
   fetch(url.pathname, sendRequest);
 
   return json({ success: true } satisfies CreateSubscriptionResponseDTO, { status: 201 });
+};
+
+export const PATCH: RequestHandler = async ({ request, locals }) => {
+  const token = request.headers.get(COMMON_HEADERS.TOKEN);
+  if (!token) throw createMailerSvelteKitError('SUBSCRIPTION_DOMAIN_UPDATE_NO_TOKEN');
+  const isValid = await jwt.verify(token, JWT_SECRET);
+  if (!isValid) throw createMailerSvelteKitError('SUBSCRIPTION_DOMAIN_UPDATE_INVALID_INPUT');
+
+  const parsed = UpdateDomainSubscriptionSchema.safeParse(await request.json());
+  if (!parsed.success) {
+    throw createMailerSvelteKitError('SUBSCRIPTION_DOMAIN_UPDATE_INVALID_INPUT');
+  }
+
+  const { payload } = jwt.decode(token);
+  const email = payload.email as string;
+
+  updateDomainSubscription(locals.d1, email, parsed.data);
+
+  return json(true);
 };

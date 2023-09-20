@@ -16,3 +16,14 @@ export const CreateSubscriptionSchema = zObject({
 /**
  * @typedef {import('zod').infer<typeof CreateSubscriptionSchema>} CreateSubscriptionRequestDTO
  */
+
+export const UpdateDomainSubscriptionSchema = zObject({
+  job: zCoerce.boolean(),
+  event: zCoerce.boolean(),
+});
+/**
+ * @typedef {import('../../common/types').CommonResponseDTO} UpdateDomainSubscriptionResponseDTO
+ */
+/**
+ * @typedef {import('zod').infer<typeof UpdateDomainSubscriptionSchema>} UpdateDomainSubscriptionRequestDTO
+ */
