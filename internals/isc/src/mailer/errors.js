@@ -57,4 +57,10 @@ export const MAILER_ERRORS = /* @type {const} */ {
     code: 'MS011',
     status: 404,
   },
+
+  // GET `verify/[token]` endpoint errors
+  VERIFY_INVALID_TOKEN: {
+    code: 'MS012',
+    status: 400,
+  },
 };
