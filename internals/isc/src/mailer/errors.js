@@ -51,7 +51,7 @@ export const MAILER_ERRORS = /* @type {const} */ {
   // GET `/mail/[token]` endpoint errors
   MAIL_INVALID_TOKEN: {
     code: 'MS010',
-    status: 400,
+    status: 401,
   },
   MAIL_NOT_FOUND: {
     code: 'MS011',
@@ -61,7 +61,7 @@ export const MAILER_ERRORS = /* @type {const} */ {
   // GET `verify/[token]` endpoint errors
   VERIFY_INVALID_TOKEN: {
     code: 'MS012',
-    status: 400,
+    status: 401,
   },
 
   // PATCH `/subscription` endpoint errors
@@ -75,7 +75,21 @@ export const MAILER_ERRORS = /* @type {const} */ {
   },
   SUBSCRIPTION_DOMAIN_UPDATE_INVALID_TOKEN: {
     code: 'MS015',
+    status: 401,
+  },
+
+  // GET `/subscription` endpoint errors
+  SUBSCRIPTION_GET_NO_TOKEN: {
+    code: 'MS016',
     status: 400,
+  },
+  SUBSCRIPTION_GET_INVALID_TOKEN: {
+    code: 'MS017',
+    status: 401,
+  },
+  SUBSCRIPTION_GET_NOT_FOUND: {
+    code: 'MS018',
+    status: 404,
   },
 
   // next error code: MS016

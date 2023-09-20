@@ -31,3 +31,7 @@ export type CommonRequestFactory<Data, HasToken extends boolean = false> = (
   data: Data,
   config: CommonRequestConfig<HasToken> | 'internal',
 ) => Promise<Request>;
+
+export type CommonGetRequestFactory<HasToken extends boolean = false> = (
+  config: CommonRequestConfig<HasToken> | 'internal',
+) => Promise<Request>;
