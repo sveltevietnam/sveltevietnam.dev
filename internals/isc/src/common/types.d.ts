@@ -20,7 +20,8 @@ export type CommonRequestConfig<HasToken extends boolean = false> = {
   serviceURL: string;
   clientID: string;
   clientSecret: string;
-} & (true extends HasToken ? { token: string } : Record<string, never>);
+  // eslint-disable-next-line @typescript-eslint/ban-types
+} & (true extends HasToken ? { token: string } : {});
 
 export type ErrorSpecs = {
   code: string;

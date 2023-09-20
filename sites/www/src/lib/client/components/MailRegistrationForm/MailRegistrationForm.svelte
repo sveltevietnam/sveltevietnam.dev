@@ -6,10 +6,6 @@
     turnstile: zString().min(1),
   });
   export type MailSchema = typeof mailSchema;
-  export type MailMessage = {
-    type: 'success' | 'error';
-    text: string;
-  };
 </script>
 
 <script lang="ts">
@@ -17,6 +13,7 @@
   import { superForm } from 'sveltekit-superforms/client';
 
   import { turnstile } from '$client/actions/turnstile';
+  import type { FormMessage } from '$client/forms';
   import { noti } from '$client/notifications';
   import { PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
   import type { Language } from '$shared/services/i18n';
@@ -35,7 +32,7 @@
 
   const { form, enhance, constraints, errors, delayed, message } = superForm<
     MailSchema,
-    MailMessage
+    FormMessage
   >(superValidated, {
     taintedMessage: null,
     multipleSubmits: 'prevent',

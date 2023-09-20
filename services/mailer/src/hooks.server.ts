@@ -39,6 +39,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 };
 
 export const handleError: HandleServerError = async ({ error }) => {
+  // TODO: add error capturing
+  console.error(`Internal Error`, error);
   return {
     code: (error as App.Error)?.code ?? MAILER_ERRORS.UNKNOWN.code,
     message: (error as App.Error).code ?? MAILER_ERRORS.UNKNOWN.code,
