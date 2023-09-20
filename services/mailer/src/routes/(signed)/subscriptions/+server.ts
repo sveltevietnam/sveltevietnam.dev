@@ -27,6 +27,7 @@ export const GET: RequestHandler = async ({ request, locals }) => {
 
   const { payload } = jwt.decode(token);
   const email = payload.email as string;
+  if (!email) throw createMailerSvelteKitError('SUBSCRIPTION_GET_NOT_FOUND');
 
   const subscription = await getSubscriptionByEmail(locals.d1, email);
   if (!subscription) throw createMailerSvelteKitError('SUBSCRIPTION_GET_NOT_FOUND');
@@ -84,6 +85,7 @@ export const PATCH: RequestHandler = async ({ request, locals }) => {
 
   const { payload } = jwt.decode(token);
   const email = payload.email as string;
+  if (!email) throw createMailerSvelteKitError('SUBSCRIPTION_DOMAIN_UPDATE_NOT_FOUND');
 
   await updateDomainSubscription(locals.d1, email, parsed.data);
   return json(true);
