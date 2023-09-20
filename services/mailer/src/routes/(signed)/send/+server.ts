@@ -1,4 +1,4 @@
-import { sendSchema, type SendResponseDTO } from '@internals/isc/mailer';
+import { SendSchema, type SendResponseDTO } from '@internals/isc/mailer';
 import { json } from '@sveltejs/kit';
 import jwt from '@tsndr/cloudflare-worker-jwt';
 import Mustache from 'mustache';
@@ -12,7 +12,7 @@ import { EMAIL_TEMPLATES } from '$server/templates';
 import type { RequestHandler } from './$types';
 
 export const POST: RequestHandler = async ({ request, locals }) => {
-  const parsed = sendSchema.safeParse(await request.json());
+  const parsed = SendSchema.safeParse(await request.json());
   if (!parsed.success) {
     throw createMailerSvelteKitError('SEND_INVALID_INPUT', parsed.error.errors[0]?.message);
   }

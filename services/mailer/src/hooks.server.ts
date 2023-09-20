@@ -1,3 +1,4 @@
+import { COMMON_HEADERS } from '@internals/isc/common';
 import { MAILER_ERRORS } from '@internals/isc/mailer';
 import { verifyRequest } from '@internals/utils/signature';
 import type { Handle, HandleServerError } from '@sveltejs/kit';
@@ -23,15 +24,15 @@ export const handle: Handle = async ({ event, resolve }) => {
   if (event.isSubRequest) return resolve(event);
 
   // check for client signature
-  const clientId = request.headers.get('x-client-id');
-  const signature = request.headers.get('x-signature');
+  const clientId = request.headers.get(COMMON_HEADERS.CLIENT_ID);
+  const signature = request.headers.get(COMMON_HEADERS.CLIENT_SIGNATURE);
   if (!clientId || !signature) throw createMailerSvelteKitError('MISSING_CLIENT_ID_OR_SIGNATURE');
 
   const secret = await getSecretFromClientId(d1, clientId);
   if (!secret) throw createMailerSvelteKitError('CLIENT_ID_NOT_FOUND');
 
   // verify
-  const passed = await verifyRequest({ request, secret });
+  const passed = await verifyRequest({ request, secret, header: COMMON_HEADERS.CLIENT_SIGNATURE });
   if (!passed) throw createMailerSvelteKitError('INVALID_SIGNATURE');
 
   return resolve(event);

@@ -1,3 +1,5 @@
+import type { Language } from '@internals/isc/common';
+
 import subscriptionSuccessEn from './subscription-success-en.html?raw';
 import subscriptionSuccessVi from './subscription-success-vi.html?raw';
 
@@ -12,7 +14,7 @@ export type MailTemplate = {
 
 export const NO_REPLY_EMAIL = 'no-reply@sveltevietnam.dev';
 
-export const EMAIL_TEMPLATES: Record<string, Record<'en' | 'vi', MailTemplate>> = {
+export const EMAIL_TEMPLATES: Record<string, Record<Language, MailTemplate>> = {
   SUBSCRIPTION_SUCCESS: {
     vi: {
       subject: 'Cảm ơn bạn đã đăng kí tại Svelte Vietnam!',

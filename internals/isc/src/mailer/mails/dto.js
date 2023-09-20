@@ -14,7 +14,7 @@ export const SendSchema = zObject({
   }),
 });
 /**
- * @typedef {import('../../common/types').CommonResponseDTO} SendResponseDTO
+ * @typedef {import('../../common/types.js').CommonResponseDTO} SendResponseDTO
  */
 /**
  * @typedef {import('zod').infer<typeof SendSchema>} SendRequestDTO
