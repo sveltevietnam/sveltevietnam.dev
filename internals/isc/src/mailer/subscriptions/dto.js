@@ -4,7 +4,7 @@ import { LanguageSchema } from '../../common/dto';
 
 export const SUBSCRIPTION_DOMAINS = /** @type {const} */ (['job', 'event']);
 
-export const CreateSubscriptionSchema = zObject({
+export const CreateSubscriptionRequestSchema = zObject({
   name: zString().min(1),
   email: zString().min(1).email(),
   domain: zEnum(SUBSCRIPTION_DOMAINS),
@@ -14,10 +14,10 @@ export const CreateSubscriptionSchema = zObject({
  * @typedef {import('../../common/types').CommonResponseDTO} CreateSubscriptionResponseDTO
  */
 /**
- * @typedef {import('zod').infer<typeof CreateSubscriptionSchema>} CreateSubscriptionRequestDTO
+ * @typedef {import('zod').infer<typeof CreateSubscriptionRequestSchema>} CreateSubscriptionRequestDTO
  */
 
-export const UpdateDomainSubscriptionSchema = zObject({
+export const UpdateDomainSubscriptionRequestSchema = zObject({
   job: zCoerce.boolean(),
   event: zCoerce.boolean(),
 });
@@ -25,5 +25,5 @@ export const UpdateDomainSubscriptionSchema = zObject({
  * @typedef {import('../../common/types').CommonResponseDTO} UpdateDomainSubscriptionResponseDTO
  */
 /**
- * @typedef {import('zod').infer<typeof UpdateDomainSubscriptionSchema>} UpdateDomainSubscriptionRequestDTO
+ * @typedef {import('zod').infer<typeof UpdateDomainSubscriptionRequestSchema>} UpdateDomainSubscriptionRequestDTO
  */

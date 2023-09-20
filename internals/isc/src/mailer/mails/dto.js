@@ -4,7 +4,7 @@ import { LanguageSchema } from '../../common/dto.js';
 
 export const EMAIL_TEMPLATES = /** @type {const} */ (['SUBSCRIPTION_SUCCESS']);
 
-export const SendSchema = zObject({
+export const SendRequestSchema = zObject({
   language: LanguageSchema,
   templateId: zEnum(EMAIL_TEMPLATES),
   variables: zRecord(zString(), zString()).optional(),
@@ -17,5 +17,5 @@ export const SendSchema = zObject({
  * @typedef {import('../../common/types.js').CommonResponseDTO} SendResponseDTO
  */
 /**
- * @typedef {import('zod').infer<typeof SendSchema>} SendRequestDTO
+ * @typedef {import('zod').infer<typeof SendRequestSchema>} SendRequestDTO
  */
