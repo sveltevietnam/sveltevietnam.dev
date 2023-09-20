@@ -8,7 +8,7 @@ import type { RequestEvent } from '@sveltejs/kit';
 import { message, setError, superValidate } from 'sveltekit-superforms/server';
 import { string, object } from 'zod';
 
-import type { MailMessage } from '$client/components/MailRegistrationForm';
+import type { FormMessage } from '$client/forms';
 import { MAILER_CLIENT_ID, MAILER_CLIENT_SECRET, MAILER_SERVICE_URL } from '$env/static/private';
 import { validateToken } from '$server/services/turnstile';
 
@@ -32,7 +32,7 @@ export async function mail<E extends RequestEvent>(event: E, domain: 'job' | 'ev
   });
 
   // parse form object
-  const form = await superValidate<typeof schema, MailMessage>(request, schema);
+  const form = await superValidate<typeof schema, FormMessage>(request, schema);
   if (!form.valid) {
     return fail(400, { form });
   }

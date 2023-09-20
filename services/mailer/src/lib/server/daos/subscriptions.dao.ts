@@ -56,10 +56,10 @@ export function updateDomainSubscription(
     UPDATE subscriptions
         SET event = ?1,
             job = ?2,
-            updated_at = ?3,
+            updated_at = ?3
         WHERE email = ?4
     `,
     )
-    .bind(subscription.event, subscription.job, new Date().toISOString(), email)
+    .bind(Number(subscription.event), Number(subscription.job), new Date().toISOString(), email)
     .run();
 }

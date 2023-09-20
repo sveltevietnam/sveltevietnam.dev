@@ -10,7 +10,7 @@ export const GetSubscriptionResponseSchema = zObject({
   event: zCoerce.boolean(),
 });
 /**
- * @typedef {import('zod').infer<typeof GetSubscriptionResponseSchema>} GetSubscriptionResponseDTO
+ * @typedef {import('../../common/types').CommonResponseDTO<import('zod').infer<typeof GetSubscriptionResponseSchema>>} GetSubscriptionResponseDTO
  */
 
 export const CreateSubscriptionRequestSchema = zObject({
