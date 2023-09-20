@@ -1,8 +1,8 @@
 import { COMMON_HEADERS } from '@internals/isc/common';
 import {
-  CreateSubscriptionSchema,
+  CreateSubscriptionRequestSchema,
   type CreateSubscriptionResponseDTO,
-  UpdateDomainSubscriptionSchema,
+  UpdateDomainSubscriptionRequestSchema,
   createSendRequest,
 } from '@internals/isc/mailer';
 import { json } from '@sveltejs/kit';
@@ -36,7 +36,7 @@ export const GET: RequestHandler = async ({ request, locals }) => {
 };
 
 export const POST: RequestHandler = async ({ request, locals, fetch }) => {
-  const parsed = CreateSubscriptionSchema.safeParse(await request.json());
+  const parsed = CreateSubscriptionRequestSchema.safeParse(await request.json());
   if (!parsed.success) {
     throw createMailerSvelteKitError(
       'SUBSCRIPTION_CREATE_INVALID_INPUT',
@@ -78,7 +78,7 @@ export const PATCH: RequestHandler = async ({ request, locals }) => {
   const isValid = await jwt.verify(token, JWT_SECRET);
   if (!isValid) throw createMailerSvelteKitError('SUBSCRIPTION_DOMAIN_UPDATE_INVALID_TOKEN');
 
-  const parsed = UpdateDomainSubscriptionSchema.safeParse(await request.json());
+  const parsed = UpdateDomainSubscriptionRequestSchema.safeParse(await request.json());
   if (!parsed.success) {
     throw createMailerSvelteKitError('SUBSCRIPTION_DOMAIN_UPDATE_INVALID_INPUT');
   }
