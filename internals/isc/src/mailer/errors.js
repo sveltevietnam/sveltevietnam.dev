@@ -95,6 +95,10 @@ export const MAILER_ERRORS = /* @type {const} */ {
     code: 'MS019',
     status: 404,
   },
+  SUBSCRIPTION_GET_PARSE_ERROR: {
+    code: 'MS020',
+    status: 500,
+  },
 
-  // next error code: MS020
+  // next error code: MS021
 };
