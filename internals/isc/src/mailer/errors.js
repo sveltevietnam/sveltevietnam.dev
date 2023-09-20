@@ -77,20 +77,24 @@ export const MAILER_ERRORS = /* @type {const} */ {
     code: 'MS015',
     status: 401,
   },
-
-  // GET `/subscriptions` endpoint errors
-  SUBSCRIPTION_GET_NO_TOKEN: {
+  SUBSCRIPTION_DOMAIN_UPDATE_NOT_FOUND: {
     code: 'MS016',
-    status: 400,
-  },
-  SUBSCRIPTION_GET_INVALID_TOKEN: {
-    code: 'MS017',
-    status: 401,
-  },
-  SUBSCRIPTION_GET_NOT_FOUND: {
-    code: 'MS018',
     status: 404,
   },
 
-  // next error code: MS016
+  // GET `/subscriptions` endpoint errors
+  SUBSCRIPTION_GET_NO_TOKEN: {
+    code: 'MS017',
+    status: 400,
+  },
+  SUBSCRIPTION_GET_INVALID_TOKEN: {
+    code: 'MS018',
+    status: 401,
+  },
+  SUBSCRIPTION_GET_NOT_FOUND: {
+    code: 'MS019',
+    status: 404,
+  },
+
+  // next error code: MS020
 };
