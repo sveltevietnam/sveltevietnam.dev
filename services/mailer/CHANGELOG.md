@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.3
+
+### Patch Changes
+
+- [`df1e78b`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/df1e78b4b03d2d1fdbea90152070f49212e697c3) Thanks [@vnphanquang](https://github.com/vnphanquang)! - change social icon to png for better support in email
+
 ## 1.0.0-next.2
 
 ### Minor Changes

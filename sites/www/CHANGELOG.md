@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.6
+
+### Patch Changes
+
+- [`24d9ea8`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/24d9ea80a84ac888567b0ad2d277469715e36354) Thanks [@vnphanquang](https://github.com/vnphanquang)! - request to `mailer` via fetch should `accept: application/json`
+
 ## 1.0.0-next.5
 
 ### Minor Changes
