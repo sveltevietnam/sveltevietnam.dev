@@ -36,17 +36,17 @@ const SVELTE_VIETNAM_AVATAR_LINKS: WebFingerLink[] = [
   {
     rel: 'http://webfinger.net/rel/avatar',
     type: 'image/jpeg',
-    href: 'https://sveltevietnam.dev/logo.jpg',
+    href: 'https://sveltevietnam.dev/logo/original.jpg',
   },
   {
     rel: 'http://webfinger.net/rel/avatar',
     type: 'image/png',
-    href: 'https://sveltevietnam.dev/logo.png',
+    href: 'https://sveltevietnam.dev/logo/original.png',
   },
   {
     rel: 'http://webfinger.net/rel/avatar',
     type: 'image/svg+xml',
-    href: 'https://sveltevietnam.dev/logo.svg',
+    href: 'https://sveltevietnam.dev/logo/original.svg',
   },
 ];
 
