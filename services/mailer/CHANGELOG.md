@@ -1,5 +1,33 @@
 # Changelog
 
+## 1.0.0-next.2
+
+### Minor Changes
+
+- [#136](https://github.com/sveltevietnam/sveltevietnam.dev/pull/136) [`5687242`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/5687242d589f4eede3323ac20f0fea3d51012b07) Thanks [@vnphanquang](https://github.com/vnphanquang)! - MJML workflow and `/send` API
+
+- [#136](https://github.com/sveltevietnam/sveltevietnam.dev/pull/136) [`e54f748`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/e54f74895f2ef20f7a1b02bffd7b630f6ec67f75) Thanks [@vnphanquang](https://github.com/vnphanquang)! - PATCH `/subscription` for updating domain subscription
+
+- [#136](https://github.com/sveltevietnam/sveltevietnam.dev/pull/136) [`b153d2e`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/b153d2e81166d5eca1728e5500a7bc8e8273027f) Thanks [@vnphanquang](https://github.com/vnphanquang)! - `/verify` API for token verification
+
+- [#136](https://github.com/sveltevietnam/sveltevietnam.dev/pull/136) [`538edd5`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/538edd510052dc72ff6ab9d8267091b783bd3b37) Thanks [@vnphanquang](https://github.com/vnphanquang)! - complete the `WELCOME` email template (with i18n support)
+
+- [#136](https://github.com/sveltevietnam/sveltevietnam.dev/pull/136) [`d7ab23c`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/d7ab23ca524c6562ab23e3021a28c4e39981f640) Thanks [@vnphanquang](https://github.com/vnphanquang)! - www `/subscriptions/[token]` route for managing user subscription
+
+- [#136](https://github.com/sveltevietnam/sveltevietnam.dev/pull/136) [`195dcb1`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/195dcb14f157313f1edb4d6d16c23307dd189e78) Thanks [@vnphanquang](https://github.com/vnphanquang)! - GET `/subscription` for getting domain subscription details
+
+- [#136](https://github.com/sveltevietnam/sveltevietnam.dev/pull/136) [`ce9167e`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/ce9167e9acbac20161ef835e0e575956bfe5b6cd) Thanks [@vnphanquang](https://github.com/vnphanquang)! - Bypass authentication if request is made internally
+
+### Patch Changes
+
+- [#136](https://github.com/sveltevietnam/sveltevietnam.dev/pull/136) [`9b9ece1`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/9b9ece173c5aced2c35b93ffe3c97ca80a82316f) Thanks [@vnphanquang](https://github.com/vnphanquang)! - [breaking] let id be manually created during insertion (mails table). This commit edits a migration file, which is fine in this case but should be avoided in the future
+
+- [#136](https://github.com/sveltevietnam/sveltevietnam.dev/pull/136) [`90eb50d`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/90eb50db1c3004f7bc7acec1aafc33d92062c96c) Thanks [@vnphanquang](https://github.com/vnphanquang)! - move binding `locals.d1` (hooks) to top, apply to all routes, but accept for when building (otherwise svelte kit will fail with 500 when trying to render 404 page)
+
+- [#136](https://github.com/sveltevietnam/sveltevietnam.dev/pull/136) [`71bf13e`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/71bf13e2659d10417026c0c5569d814e267f4af0) Thanks [@vnphanquang](https://github.com/vnphanquang)! - throw svelte kit expected error and let svelte kit handle response
+
+- [#136](https://github.com/sveltevietnam/sveltevietnam.dev/pull/136) [`3b05336`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/3b05336a477ee4232014399b3b174a3f8f526628) Thanks [@vnphanquang](https://github.com/vnphanquang)! - add `language` and `template_id` columns to `mails` table
+
 ## 1.0.0-next.1
 
 ### Patch Changes

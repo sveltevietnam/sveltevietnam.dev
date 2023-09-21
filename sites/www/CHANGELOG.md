@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.5
+
+### Minor Changes
+
+- [#136](https://github.com/sveltevietnam/sveltevietnam.dev/pull/136) [`d7ab23c`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/d7ab23ca524c6562ab23e3021a28c4e39981f640) Thanks [@vnphanquang](https://github.com/vnphanquang)! - www `/subscriptions/[token]` route for managing user subscription
+
 ## 1.0.0-next.4
 
 ### Patch Changes
