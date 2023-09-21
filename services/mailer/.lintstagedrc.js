@@ -2,5 +2,5 @@ import baseConfig from '../../.lintstagedrc.js';
 
 export default {
   ...baseConfig,
-  '*.mjml': ['node scripts/lint-staged-mjml.js'],
+  '*.template.mjml': ['node scripts/lint-staged-mjml.js'],
 };
