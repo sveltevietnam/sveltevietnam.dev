@@ -2,7 +2,7 @@ import { string as zString, object as zObject, record as zRecord, enum as zEnum 
 
 import { LanguageSchema } from '../../common/dto.js';
 
-export const EMAIL_TEMPLATES = /** @type {const} */ (['SUBSCRIPTION_SUCCESS']);
+export const EMAIL_TEMPLATES = /** @type {const} */ (['WELCOME']);
 
 export const SendRequestSchema = zObject({
   language: LanguageSchema,

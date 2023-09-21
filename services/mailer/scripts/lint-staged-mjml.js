@@ -1,26 +1,17 @@
 import { execSync } from 'child_process';
-import { readFileSync, writeFileSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
-
-import mjml2html from 'mjml';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// read mjml file
 const mjmlPath = resolve(process.cwd(), process.argv.slice(2)[0]);
-const mjmlStr = readFileSync(mjmlPath, 'utf8');
+const htmlPath = mjmlPath.replace('.mjml', '');
+const mjmlConfigPath = resolve(__dirname, '../.mjmlconfig');
 
-// parse
-const parsed = mjml2html(mjmlStr, {
-  filePath: mjmlPath,
-  mjmlConfigPath: resolve(__dirname, '../.mjmlconfig'),
-});
-
-// write html file
-const htmlPath = mjmlPath.replace('.mjml', '.html');
-writeFileSync(htmlPath, parsed.html, 'utf8');
+execSync(
+  `pnpm mjml ${mjmlPath} -o ${htmlPath} --config.mjmlConfigPath ${mjmlConfigPath} --config.minify=true --config.beautify=false`,
+);
 
 // add to git
 execSync(`git add ${htmlPath}`);

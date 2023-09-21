@@ -62,17 +62,21 @@ export const POST: RequestHandler = async ({ request, locals, fetch }) => {
   // otherwise upsert subscription
   await upsertSubscription(d1, domain, { name, email });
 
-  // TODO: message queue, retry?
-  const sendRequest = await createSendRequest(
-    {
-      templateId: 'SUBSCRIPTION_SUCCESS',
-      to: { email, name },
-      language,
-    },
-    'internal',
-  );
-  const url = new URL(sendRequest.url);
-  fetch(url.pathname, sendRequest);
+  // send welcome email if first time subscribing
+  if (!subscription?.email && !subscription?.job) {
+    // TODO: message queue, retry?
+    const sendRequest = await createSendRequest(
+      {
+        templateId: 'WELCOME',
+        to: { email, name },
+        language,
+        variables: { name },
+      },
+      'internal',
+    );
+    const url = new URL(sendRequest.url);
+    fetch(url.pathname, sendRequest);
+  }
 
   return json({ success: true } satisfies CreateSubscriptionResponseDTO, { status: 201 });
 };

@@ -1,0 +1,22 @@
+<mj-social icon-size="32px" mode="horizontal" inner-padding="8px">
+  <mj-social-element
+    href="https://opencollective.com/sveltevietnam"
+    src="https://mailer.sveltevietnam.dev/images/socials/opencollective.svg"
+    background-color="transparent"
+  />
+  <mj-social-element
+    href="https://github.com/sveltevietnam"
+    src="https://mailer.sveltevietnam.dev/images/socials/github.svg"
+    background-color="transparent"
+  />
+  <mj-social-element
+    href="https://twitter.com/sveltevietnam"
+    src="https://mailer.sveltevietnam.dev/images/socials/twitter.svg"
+    background-color="transparent"
+  />
+  <mj-social-element
+    href="https://facebook.com/sveltevietnam"
+    src="https://mailer.sveltevietnam.dev/images/socials/facebook.svg"
+    background-color="transparent"
+  />
+</mj-social>

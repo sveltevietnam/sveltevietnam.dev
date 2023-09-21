@@ -13,7 +13,7 @@ import {
 import { PUBLIC_MODE } from '$env/static/public';
 import { createMail, type Mail } from '$server/daos/mails.dao';
 import { createMailerSvelteKitError } from '$server/errors';
-import { EMAIL_TEMPLATES } from '$server/templates';
+import { EMAIL_TEMPLATES } from '$server/mjml/templates';
 
 import type { RequestHandler } from './$types';
 
@@ -38,6 +38,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 
   // render
   const html = Mustache.render(template.html, {
+    wwwURL: WWW_URL,
     mailURL: `${origin}/mails/${token}`,
     subscriptionURL: `${WWW_URL}/${language}/subscriptions/${token}`,
     ...variables,
