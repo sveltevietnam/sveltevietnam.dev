@@ -117,10 +117,12 @@ jobs:
           projectName: mailer-sveltevietnam
           directory: services/mailer/.svelte-kit/cloudflare
           # gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          # FIXME: for some reason (perhaps weird git integration or cloudflare defaults, main branch will be considered production)
           branch: |-
             ${{
-              needs.pre_jobs.outputs.mode == 'production' && 'production'
+              needs.pre_jobs.outputs.mode == 'production' && 'main'
             || needs.pre_jobs.outputs.mode == 'preview' && 'preview'
+            || github.ref_name == 'main' && 'main-dev'
             || github.ref_name
             }}
           wranglerVersion: "3.4"
