@@ -1,6 +1,6 @@
 <mj-section>
   <mj-column>
-    <mj-image width="40px" src="https://sveltevietnam.dev/logo/positive.svg" />
+    <mj-image width="40px" src="https://mailer.sveltevietnam.dev/images/logo.png" />
     <mj-divider />
   </mj-column>
 </mj-section>
