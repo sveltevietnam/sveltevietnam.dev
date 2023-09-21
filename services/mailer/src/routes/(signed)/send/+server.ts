@@ -70,6 +70,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
       body: JSON.stringify(body),
     });
     if (!resp.ok) {
+      console.error('MAILCHANNELS ERROR', resp);
       throw createMailerSvelteKitError('SEND_MAILCHANNELS_ERROR', await resp.text());
     }
   }

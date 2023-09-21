@@ -75,7 +75,12 @@ export const POST: RequestHandler = async ({ request, locals, fetch }) => {
       'internal',
     );
     const url = new URL(sendRequest.url);
-    fetch(url.pathname, sendRequest);
+    await fetch(url.pathname, sendRequest).then(async (resp) => {
+      if (!resp.ok) {
+        const json = await resp.json();
+        console.error('/send error:', json);
+      }
+    });
   }
 
   return json({ success: true } satisfies CreateSubscriptionResponseDTO, { status: 201 });
