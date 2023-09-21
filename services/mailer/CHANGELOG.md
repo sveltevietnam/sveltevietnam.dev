@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.1
+
+### Patch Changes
+
+- [`481ed89`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/481ed898c6e35c8c999464d9569be0429d1ba847) Thanks [@vnphanquang](https://github.com/vnphanquang)! - Add static social image svgs for use in email templates
+
 ## 1.0.0-next.0
 
 ### Major Changes
