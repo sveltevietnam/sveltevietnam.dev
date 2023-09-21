@@ -48,7 +48,7 @@ jobs:
                 - 'services/mailer/**'
   mailer:
     needs: pre_jobs
-    if: (needs.pre_jobs.outputs.should_skip != 'true' && needs.pre_jobs.outputs.reason != 'paths') || !fromJSON(needs.pre_jobs.outputs.paths_result).mailer.should_skip
+    if: (needs.pre_jobs.outputs.should_skip != 'true' && needs.pre_jobs.outputs.reason != 'paths') || (needs.pre_jobs.outputs.paths_result && !fromJSON(needs.pre_jobs.outputs.paths_result).mailer.should_skip)
     runs-on: ubuntu-latest
     environment:
       name: |-
@@ -124,6 +124,19 @@ jobs:
             || github.ref_name
             }}
           wranglerVersion: "3.4"
+
+      - name: Create commit comment
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: peter-evans/commit-comment@v2
+        with:
+          body: |
+            ## ⚡ Successfully Cloudflare Pages deployed!
+            | Name | Link |
+            | :--- | :--- |
+            | Latest commit | ${{ github.event.pull_request.head.sha || github.sha }} |
+            | Latest deploy log | ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} |
+            | Deploy Preview Url | [${{ needs.pre_jobs.outputs.mode == 'preview' && 'https://mailer-preview.sveltevietnam.dev' || steps.cloudflare-pages-deploy.outputs.url }}](${{ needs.pre_jobs.outputs.mode == 'preview' && 'https://mailer-preview.sveltevietnam.dev' || steps.cloudflare-pages-deploy.outputs.url }}) |
+            | Environment | ${{ needs.pre_jobs.outputs.mode }} |
 
       - name: Create PR comment
         if: ${{ github.event_name == 'pull_request' }}

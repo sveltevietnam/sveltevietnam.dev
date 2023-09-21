@@ -19,14 +19,14 @@ jobs:
           skip_after_successful_duplicate: 'true'
           do_not_skip: '["workflow_dispatch"]'
           paths_filter: |
-            www:
+            discord:
               paths_ignore:
                 - 'services/discord/README.md'
               paths:
                 - 'services/discord/**'
   discord:
     needs: pre_jobs
-    if: needs.pre_jobs.outputs.should_skip != 'true' || !fromJSON(needs.pre_jobs.outputs.paths_result).www.should_skip
+    if: needs.pre_jobs.outputs.should_skip != 'true' || (needs.pre_jobs.outputs.paths_result && !fromJSON(needs.pre_jobs.outputs.paths_result).discord.should_skip)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
