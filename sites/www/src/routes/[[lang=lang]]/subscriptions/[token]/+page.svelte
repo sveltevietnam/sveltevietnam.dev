@@ -17,7 +17,6 @@
     taintedMessage: null,
     multipleSubmits: 'prevent',
     delayMs: 500,
-    timeoutMs: 1000,
     onError({ result }) {
       noti.error(result.error.message);
     },
