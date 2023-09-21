@@ -1,9 +1,6 @@
 name: Deploy @sites/www
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     types:
       - opened
@@ -135,19 +132,6 @@ jobs:
             || github.ref_name
             }}
           wranglerVersion: "3.4"
-
-      - name: Create commit comment
-        if: ${{ github.event_name == 'push' }}
-        uses: peter-evans/commit-comment@v2
-        with:
-          body: |
-            ## ⚡ Successfully Cloudflare Pages deployed!
-            | Name | Link |
-            | :--- | :--- |
-            | Latest commit | ${{ github.event.pull_request.head.sha || github.sha }} |
-            | Latest deploy log | ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} |
-            | Deploy Preview Url | [${{ needs.pre_jobs.outputs.mode == 'preview' && 'https://preview.sveltevietnam.dev' || steps.cloudflare-pages-deploy.outputs.url }}](${{ needs.pre_jobs.outputs.mode == 'preview' && 'https://preview.sveltevietnam.dev' || steps.cloudflare-pages-deploy.outputs.url }}) |
-            | Environment | ${{ needs.pre_jobs.outputs.mode }} |
 
       - name: Create PR comment
         if: ${{ github.event_name == 'pull_request' }}
