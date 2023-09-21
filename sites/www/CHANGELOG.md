@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.4
+
+### Patch Changes
+
+- [`52148b6`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/52148b6e49fe6bb645a744c33190ccb32422a2c8) Thanks [@vnphanquang](https://github.com/vnphanquang)! - expose versions of logo as static svgs at /logo/\*.svg
+
 ## 1.0.0-next.3
 
 ### Patch Changes
