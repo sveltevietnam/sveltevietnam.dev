@@ -63,9 +63,14 @@ export function createSignedRequestFactory(
       body: JSON.stringify(data),
     });
     request.headers.set('content-type', 'application/json');
+    request.headers.set('accept', 'application/json');
     if (!internal) {
       request = await signRequestX(request, config);
-      if (init?.token) request.headers.set(COMMON_HEADERS.TOKEN, config.token);
+      if (init?.token)
+        request.headers.set(
+          COMMON_HEADERS.TOKEN,
+          /** @type {import('./types').CommonRequestConfig<true>} */ (config).token,
+        );
     }
     return request;
   };
@@ -87,9 +92,14 @@ export function createSignedGetRequestFactory(
     url.pathname = endpoint;
     let request = new Request(url, { method: 'GET', ...init });
     request.headers.set('content-type', 'application/json');
+    request.headers.set('accept', 'application/json');
     if (!internal) {
       request = await signRequestX(request, config);
-      if (init?.token) request.headers.set(COMMON_HEADERS.TOKEN, config.token);
+      if (init?.token)
+        request.headers.set(
+          COMMON_HEADERS.TOKEN,
+          /** @type {import('./types').CommonRequestConfig<true>} */ (config).token,
+        );
     }
     return request;
   };
