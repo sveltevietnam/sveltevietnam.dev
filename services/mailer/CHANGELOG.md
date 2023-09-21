@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.4
+
+### Patch Changes
+
+- [`29beb86`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/29beb868e893c4ec11206f38d95d460b5bf4809d) Thanks [@vnphanquang](https://github.com/vnphanquang)! - change logo to png for better support in email
+
 ## 1.0.0-next.3
 
 ### Patch Changes
