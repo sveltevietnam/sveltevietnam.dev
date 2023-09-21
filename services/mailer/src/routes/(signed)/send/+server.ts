@@ -3,7 +3,13 @@ import { json } from '@sveltejs/kit';
 import jwt from '@tsndr/cloudflare-worker-jwt';
 import Mustache from 'mustache';
 
-import { DKIM_DOMAIN, DKIM_PRIVATE_KEY, DKIM_SELECTOR, JWT_SECRET } from '$env/static/private';
+import {
+  DKIM_DOMAIN,
+  DKIM_PRIVATE_KEY,
+  DKIM_SELECTOR,
+  JWT_SECRET,
+  WWW_URL,
+} from '$env/static/private';
 import { PUBLIC_MODE } from '$env/static/public';
 import { createMail, type Mail } from '$server/daos/mails.dao';
 import { createMailerSvelteKitError } from '$server/errors';
@@ -27,14 +33,14 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 
   // construct mail URL
   const id = crypto.randomUUID();
-  const token = await jwt.sign({ id }, JWT_SECRET);
-  const mailURL = new URL(request.url);
-  mailURL.pathname = `/mail/${encodeURIComponent(token)}`;
+  const token = encodeURIComponent(await jwt.sign({ id, email: to.email }, JWT_SECRET));
+  const origin = new URL(request.url).origin;
 
   // render
   const html = Mustache.render(template.html, {
+    mailURL: `${origin}/mails/${token}`,
+    subscriptionURL: `${WWW_URL}/${language}/subscriptions/${token}`,
     ...variables,
-    mailURL: mailURL.toString(),
   });
 
   // send with mailchannels (only in production)
@@ -71,6 +77,8 @@ export const POST: RequestHandler = async ({ request, locals }) => {
   const mail = {
     id,
     email: to.email,
+    language,
+    template_id: templateId,
     html,
     created_at: new Date().toISOString(),
   } satisfies Mail;
