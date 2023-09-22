@@ -35,18 +35,19 @@ export const load: PageServerLoad = async ({
 }) => {
   depends(LOAD_DEPENDENCIES.LANGUAGE);
 
-  const response = await fetch(
-    await createGetSubscriptionRequest({
-      clientID: MAILER_CLIENT_ID,
-      clientSecret: MAILER_CLIENT_SECRET,
-      serviceURL: MAILER_SERVICE_URL,
-      token,
-    }),
-  );
-  const json = (await response.json()) as GetSubscriptionResponseDTO;
-  if (!json.success) throw error(response.status, json.code);
+  // const response = await fetch(
+  //   await createGetSubscriptionRequest({
+  //     clientID: MAILER_CLIENT_ID,
+  //     clientSecret: MAILER_CLIENT_SECRET,
+  //     serviceURL: MAILER_SERVICE_URL,
+  //     token,
+  //   }),
+  // );
+  // const json = (await response.json()) as GetSubscriptionResponseDTO;
+  // if (!json.success) throw error(response.status, json.code);
 
-  const form = await superValidate(json.data, UpdateDomainSubscriptionRequestSchema);
+  // const form = await superValidate(json.data, UpdateDomainSubscriptionRequestSchema);
+  const form = await superValidate(UpdateDomainSubscriptionRequestSchema);
 
   return {
     form,
@@ -57,7 +58,10 @@ export const load: PageServerLoad = async ({
       upcoming: [],
       past: [],
     },
-    meta: metaTranslations[language],
+    meta: {
+      ...metaTranslations[language],
+      canonical: `https://sveltevietnam.dev/${language}/subscriptions`,
+    },
   };
 };
 

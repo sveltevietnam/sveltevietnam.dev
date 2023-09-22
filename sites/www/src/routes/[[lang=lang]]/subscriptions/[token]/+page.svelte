@@ -36,12 +36,12 @@
   }
 </script>
 
-<main class="c-container-design flex-1">
+<main class="c-container-design flex-1 pb-[120px] tb:pb-40">
   <h1 class="tp-h1 mt-8 pc:mt-[60px] uppercase">{t.title}</h1>
   <section class="mt-8 pc:mt-[60px]">
     <form action="?/update" method="POST" use:enhance class="space-y-6">
       <p>{t.form.emails.description}:</p>
-      <div class="space-y-4 tb:ml-4">
+      <div class="space-y-4">
         <label for="job" class="toggle-container">
           <input class="toggle" type="checkbox" name="job" id="job" bind:checked={$form.job} />
           <p>{t.form.emails.job}</p>
@@ -82,13 +82,17 @@
     --handle-offset: calc(1.5rem * var(--handle-sign));
     --toggle-bg: theme('colors.design.bg.1');
     --toggle-fg: theme('colors.design.fg.1');
+    --toggle-opacity: 0.5;
 
     cursor: pointer;
+
+    flex-shrink: 0;
 
     width: 3rem;
     height: 1.5rem;
 
     appearance: none;
+    opacity: var(--toggle-opacity);
     background-color: var(--toggle-fg);
     border-color: var(--toggle-fg);
     border-width: 1px;
@@ -99,11 +103,13 @@
       0 0;
 
     transition:
+      opacity,
       background,
       box-shadow 200ms ease-out;
 
     &:checked {
       --handle-sign: 1;
+      --toggle-opacity: 1;
     }
   }
 </style>
