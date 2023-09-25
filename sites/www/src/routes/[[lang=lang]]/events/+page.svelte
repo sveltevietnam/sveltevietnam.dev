@@ -10,7 +10,7 @@
   import { translations as commonT } from '$shared/services/i18n/translations/common';
   import { SPONSOR_PATH } from '$shared/services/navigation';
 
-  import keyVisuals from './_page/images/key-visuals.svg';
+  import keyVisuals from './_page/images/key-visuals.webp';
 
   export let data;
 
@@ -22,11 +22,8 @@
   <div class="mt-6" use:intersect>
     <Breadcrumbs breadcrumbs={data.breadcrumbs} />
   </div>
-  <section
-    class="tb:flex tb:justify-between tb:flex-row-reverse mt-8 mb-[60px] tb:mt-[60px] tb:mb-[120px]"
-    use:intersect
-  >
-    <div class="tb:text-right tb:mt-10 tb:max-w-[500px]">
+  <section class="tb:flex tb:justify-between tb:flex-row mb-[60px] tb:mb-16" use:intersect>
+    <div class="tb:max-w-[500px] tb:mt-[100px] mt-8">
       <h1 class="tp-h1 uppercase">{t.title}</h1>
       <p class="tp-h4 mt-6 tb:mt-8">{t.subtitle}</p>
     </div>
@@ -34,9 +31,9 @@
       <img
         src={keyVisuals}
         alt="people meet together through events"
-        width="544"
-        height="352"
-        class="w-full h-auto max-w-[544px]"
+        width="548"
+        height="547"
+        class="w-full h-auto max-w-[548px]"
       />
     </div>
   </section>
