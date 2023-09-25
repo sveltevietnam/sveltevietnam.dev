@@ -15,30 +15,18 @@ body:
 
         ## Note
 
-        This is a **no-code** proposal for blog post. If approved your blog post will be implemented by maintainers.
+        This is a **no-code** proposal for blog post. If approved your blog post will be implemented by maintainers.  If you want granular control or prefer to code yourself, refer to [Blog Post Implementation Guidelines](https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/DEV_BLOG_POST.md) and open a PR that directly implements your post.
 
-        If you want granular control or prefer to code yourself, refer to [Blog Post Implementation Guidelines](https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/DEV_BLOG_POST.md) and open a PR that directly implements your post.
+        It is recommended that you provide and Vietnamese translation for each of the field and information below. If you are not able to do so, leave a comment below so that administrators and others from our community can help out.
 
-        ## Proposal Details
-
-  - type: input
-    id: translation
+  - type: markdown
     attributes:
-      label: Link to the accompanying issue for the Vietnamese version (if any).
-      description: |
-        This issue is a proposal for the English version of your post. It is recommended that you use the template [VI - Đề nghị đăng bài](https://github.com/sveltevietnam/sveltevietnam.dev/issues/new/choose) to provide and link a Vietnamese translation.
-
-        If you are not able to do so, leave a comment below so that administrators and others from our community can help out.
-      placeholder: https://github.com/sveltevietnam/sveltevietnam.dev/issues/XXX
-    validations:
-      required: false
-
-  - type: textarea
-    id: authors
-    attributes:
-      label: Authors
-      description: Provide information about the author(s) using the format below
       value: |
+        ## Authors
+
+        Provide information about the author(s) using the format below
+
+        ```
         Nguyễn Văn A:
 
         - Title for display: Developer Advocate at Company C
@@ -50,47 +38,103 @@ body:
             - personal website: https://example-nguyenvana.dev
 
         # ... other co-authors with the same format as above (if any)
+        ```
+  - type: textarea
+    id: authors-en
+    attributes:
+      label: Authors (English)
+      value: As instructed above
     validations:
-      required: true
+      required: false
+  - type: textarea
+    id: authors-vi
+    attributes:
+      label: Authors (Vietnamese)
+      value: As instructed above
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Slug
+
+        Provide an optional slug. Leave blank to auto-generate from title.
+        Slug must be provided in English and is reused for both Vietnamese and English versions.
   - type: input
     id: slug
     attributes:
       label: Slug
-      description: |
-        Provide an optional slug. Leave blank to auto-generate from title.
-        Slug must be provided in English and is reused for both Vietnamese and English versions.
       placeholder: my-blog-post-about-something
     validations:
       required: false
-  - type: input
-    id: title
+
+  - type: markdown
     attributes:
-      label: Title
-      description: Provide a title for the blog post, used in page and for meta tags
+      value: |
+        ## Title
+
+        Provide a title for the blog post, used in page and for meta tags
+  - type: input
+    id: title-en
+    attributes:
+      label: Title (English)
       placeholder: My blog post title
     validations:
-      required: true
+      required: false
   - type: input
-    id: description
+    id: title-vi
     attributes:
-      label: Description
-      description: A short description about the blog post, used for meta tags and display in blog post listing
-      placeholder: My interesting blog post about Svelte Vietnam
+      label: Title (Vietnamese)
+      placeholder: Bài viết của tôi
     validations:
-      required: true
-  - type: input
-    id: keywords
+      required: false
+
+  - type: markdown
     attributes:
-      label: Keywords
-      description: Provide an optional comma-separated list of keywords, used for meta tags
+      value: |
+        ## Description
+
+        A short description about the blog post, used for meta tags and display in blog post listing
+  - type: input
+    id: description-en
+    attributes:
+      label: Description (English)
+      placeholder: My blog post about Svelte Vietnam
+    validations:
+      required: false
+  - type: input
+    id: description-vi
+    attributes:
+      label: Description (Vietnamese)
+      placeholder: Bài viết hay ho về Svelte Việt Nam
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Keywords
+
+        Provide an optional comma-separated list of keywords, used for meta tags
+  - type: input
+    id: keywords-en
+    attributes:
+      label: Keywords (English)
       placeholder: typescript, benchmark, UI, ...
     validations:
-      required: true
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Tags
+
+        Select one or more tags to help categorize blog post
   - type: dropdown
-    id: tags
+    id: tags-en
     attributes:
       label: Tags
-      description: Select one or more tags to help categorize blog post
       multiple: true
       options:
         - svelte
@@ -100,22 +144,41 @@ body:
         - community
     validations:
       required: false
-  - type: textarea
-    id: content
+
+  - type: markdown
     attributes:
-      label: Post Content
-      description: Provide the content for this blog post. You may use Markdown syntax. If the content is long, prefer an attachment instead.
       value: |
-        Attachment or link to your blog post content. For example: content.md, content.docx, link to Figma, Google Docs, ...
+        ## Content
+
+        Provide the content for this blog post. You may use Markdown syntax. If the content is long, prefer an attachment instead. Attachment or link to your blog post content. For example: content.md, content.docx, link to Figma, Google Docs, ...
+  - type: textarea
+    id: content-en
+    attributes:
+      label: Content (English)
+      value: As instructed above
     validations:
-      required: true
+      required: false
+  - type: textarea
+    id: content-vi
+    attributes:
+      label: Content (Vietnamese)
+      value: As instructed above
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Additional Information
+
+        You may include any relevant information, for example optimized image links or a design guideline on how the post should be implemented.
   - type: textarea
     id: additional
     attributes:
       label: Additional Information
-      description: You may include any relevant information, for example optimized image links or a design guideline on how the post should be implemented.
     validations:
       required: false
+
   - type: markdown
     attributes:
       value: |

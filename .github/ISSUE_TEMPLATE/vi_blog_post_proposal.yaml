@@ -17,26 +17,16 @@ body:
 
         Trong bản đề nghị này, bạn không cần phải code. Nếu được phê duyệt, bài viết của bạn sẽ được code bởi các kỹ thuật viên. Tuy nhiên nếu bạn muốn tự code, hãy xem qua [Blog Post Implementation Guidelines](https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/DEV_BLOG_POST.md) và trực tiếp mở PR cho bài viết nhé.
 
-        ## Nội dung đề nghị
+        Ban quản trị khuyến khích bạn cung cấp thêm bản tiếng Anh cho mỗi thông tin và nội dung bên dưới. Nếu bạn không thể dịch hoặc cung cấp bản tiếng Anh, hãy để lại lời nhắn bên dưới để ban quản trị và cộng đồng cùng hỗ trợ nhé.
 
-  - type: input
-    id: translation
+  - type: markdown
     attributes:
-      label: Đường dẫn tới issue cho bản tiếng Anh (nếu có)
-      description: |
-        Bản đề nghị này chỉ dành cho bài viết tiếng Việt. Ban quản trị khuyến khích bạn cung cấp thêm bản tiếng Anh thông qua mẫu [EN - Proposal for Blog Post Publication](https://github.com/sveltevietnam/sveltevietnam.dev/issues/new/choose).
-
-        Nếu bạn không thể dịch hoặc cung cấp bản tiếng Anh, hãy để lại lời nhắn bên dưới để ban quản trị và cộng đồng cùng hỗ trợ nhé.
-      placeholder: https://github.com/sveltevietnam/sveltevietnam.dev/issues/XXX
-    validations:
-      required: false
-
-  - type: textarea
-    id: authors
-    attributes:
-      label: Tác giả
-      description: Điền thông tin về (các) tác giả
       value: |
+        ## Tác giả
+
+        Điền thông tin về (các) tác giả theo mẫu dưới
+
+        ```
         Nguyễn Văn A:
 
         - Title for display: Developer Advocate at Company C
@@ -48,47 +38,112 @@ body:
             - personal website: https://example-nguyenvana.dev
 
         # ... thêm đồng tác giả theo mẫu trên (nếu có)
+        ```
+  - type: textarea
+    id: authors-vi
+    attributes:
+      label: Tác giả (tiếng Việt)
+      value: Theo mẫu trên
     validations:
-      required: true
+      required: false
+  - type: textarea
+    id: authors-en
+    attributes:
+      label: Tác giả (tiếng Anh)
+      value: Theo mẫu trên
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Đường dẫn (slug)
+
+        Điền slug tùy chọn. Để trống để tự động tạo từ tiêu đề.
+        Riêng slug phải bằng tiếng anh và sẽ được sử dụng cho cả bản tiếng Anh và tiếng Việt.
   - type: input
     id: slug
     attributes:
       label: Slug
-      description: |
-        Điền slug tùy chọn. Để trống để tự động tạo từ tiêu đề.
-        Slug phải bằng tiếng anh và sẽ được sử dụng cho cả bản tiếng Anh và tiếng Việt.
       placeholder: my-blog-post-about-something
     validations:
       required: false
-  - type: input
-    id: title
+
+  - type: markdown
     attributes:
-      label: Tiêu đề
-      description: Điền tiêu đề bài viết (dùng cho cả meta tags)
+      value: |
+        ## Tiêu đề
+
+        Điền tiêu đề bài viết (dùng cho cả meta tags)
+  - type: input
+    id: title-vi
+    attributes:
+      label: Tiêu đề (tiếng Việt)
       placeholder: Tựa bài viết của tôi
     validations:
-      required: true
+      required: false
   - type: input
-    id: description
+    id: title-en
     attributes:
-      label: Mô tả
-      description: Điền mô tả ngắn gọn về bài viết (dùng cho meta tags và hiển thị trên danh sách bài viết)
+      label: Tiêu đề (tiếng Anh)
+      placeholder: My blog post title
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Mô tả
+
+        Điền mô tả ngắn gọn về bài viết (dùng cho meta tags và hiển thị trên danh sách bài viết)
+  - type: input
+    id: description-vi
+    attributes:
+      label: Mô tả (tiếng Việt)
       placeholder: Bài viết hay ho về Svelte Việt Nam
     validations:
-      required: true
+      required: false
   - type: input
-    id: keywords
+    id: description-en
     attributes:
-      label: Từ khoá (Keywords)
-      description: Điền chuỗi các từ khoá, cách nhau bằng dấu phẩy (dùng cho meta tags)
-      placeholder: typescript, benchmark, UI, ...
+      label: Mô tả (tiếng Anh)
+      placeholder: My blog post about Svelte Vietnam
     validations:
-      required: true
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Từ khoá (Keywords)
+
+        Điền chuỗi các từ khoá, cách nhau bằng dấu phẩy (dùng cho meta tags). Ví dụ:
+
+        ```
+        typescript, benchmark, UI, ...
+        ```
+  - type: input
+    id: keywords-vi
+    attributes:
+      label: Từ khoá (tiếng Việt)
+    validations:
+      required: false
+  - type: input
+    id: keywords-en
+    attributes:
+      label: Từ khoá (tiếng Anh)
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Gắn thẻ (Tags)
+
+        Chọn một hoặc nhiều thẻ thích hợp để phân loại bài viết
   - type: dropdown
     id: tags
     attributes:
-      label: Gắn thẻ (Tags)
-      description: Chọn một hoặc nhiều thẻ thích hợp để phân loại bài viết
+      label: Gắn thẻ
       multiple: true
       options:
         - svelte
@@ -98,22 +153,41 @@ body:
         - community
     validations:
       required: false
-  - type: textarea
-    id: content
+
+  - type: markdown
     attributes:
-      label: Nội dung
-      description: Điền nội dung bài viết. Bạn có thể dùng cú pháp Markdown. Dùng file đính kèm cho bài viết dài.
       value: |
-        Đính kèm file hoặc đường dẫn tới nội dung bài viết. Ví dụ: content.md, content.docx, đường dẫn tới Figma, Google Docs, …
+        ## Nội dung
+
+        Điền nội dung bài viết. Bạn có thể dùng cú pháp Markdown. Dùng file đính kèm cho bài viết dài. Đính kèm file hoặc đường dẫn tới nội dung bài viết. Ví dụ: content.md, content.docx, đường dẫn tới Figma, Google Docs, …
+  - type: textarea
+    id: content-vi
+    attributes:
+      label: Nội dung (tiếng Việt)
+      value: Như hướng dẫn trên
     validations:
-      required: true
+      required: false
+  - type: textarea
+    id: content-en
+    attributes:
+      label: Nội dung (tiếng Anh)
+      value: Như hướng dẫn trên
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Thông tin bổ sung
+
+        Thêm thông tin liên quan, ví dụ đường dẫn đến hình ảnh đã được tối ưu hoá, bản phát hoạ, thiết kế cho nội dung bài viết, hoặc hướng dẫn khác cho kỹ thuật viên
   - type: textarea
     id: additional
     attributes:
       label: Thông tin bổ sung
-      description: Thêm thông tin liên quan, ví dụ đường dẫn đến hình ảnh đã được tối ưu hoá, bản phát hoạ, thiết kế cho nội dung bài viết, hoặc hướng dẫn khác cho kỹ thuật viên
     validations:
       required: false
+
   - type: markdown
     attributes:
       value: |
