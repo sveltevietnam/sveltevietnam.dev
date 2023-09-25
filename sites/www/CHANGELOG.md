@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.7
+
+### Minor Changes
+
+- [`c167e65`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/c167e651352fa509a2f7387586156e6c413127e0) Thanks [@vnphanquang](https://github.com/vnphanquang)! - replace key visuals for /events page
+
 ## 1.0.0-next.6
 
 ### Patch Changes
