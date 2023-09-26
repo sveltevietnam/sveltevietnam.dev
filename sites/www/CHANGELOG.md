@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.8
+
+### Patch Changes
+
+- [`243b9b5`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/243b9b52838190730c9ee3ca3115d34b615e8060) Thanks [@vnphanquang](https://github.com/vnphanquang)! - add a `figure` variant to the `ToBeAnnounced` component that uses a more complex and interseting illustration
+
 ## 1.0.0-next.7
 
 ### Minor Changes
