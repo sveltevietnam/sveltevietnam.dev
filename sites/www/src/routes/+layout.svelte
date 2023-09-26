@@ -1,11 +1,9 @@
 <script lang="ts">
   import { localizeUrl } from '@internals/utils/url';
 
-  import { browser } from '$app/environment';
   import { page } from '$app/stores';
-  import { PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID, PUBLIC_MODE } from '$env/static/public';
+  import { PUBLIC_MODE } from '$env/static/public';
   import { LANGUAGES } from '$shared/services/i18n';
-  import { createGtagScriptTag, createPartytownSnippetScriptTag } from '$shared/utils/html-scripts';
 
   import '../lib/client/styles/app.css';
 
@@ -33,16 +31,6 @@
   $: twitterCard = meta?.twitter?.card ?? 'summary_large_image';
   $: twitterSite = meta?.twitter?.site ?? '@sveltevietnam';
   $: twitterCreator = meta?.twitter?.creator ?? '@sveltevietnam';
-
-  $: analyticsEnabled = PUBLIC_MODE === 'production';
-
-  $: if (browser && analyticsEnabled && gtag) {
-    gtag('config', PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID, {
-      page_title: document.title,
-      page_location: $page.url.href,
-      page_path: $page.url.pathname,
-    });
-  }
 </script>
 
 <svelte:head>
@@ -82,24 +70,6 @@
     hreflang="x-default"
     href={localizeUrl($page.url, 'vi', LANGUAGES).toString()}
   />
-
-  <script>
-    partytown = {
-      forward: ['gtag'], // forward the necessary functions to the web worker layer
-    };
-  </script>
-  {@html createPartytownSnippetScriptTag()}
-
-  {#if analyticsEnabled}
-    {@html createGtagScriptTag(PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID)}
-    <script type="text/partytown">
-      window.dataLayer = window.dataLayer || [];
-      window.gtag = function () {
-        dataLayer.push(arguments);
-      };
-      gtag('js', new Date());
-    </script>
-  {/if}
 
   <meta name="mode" content={PUBLIC_MODE} />
 </svelte:head>

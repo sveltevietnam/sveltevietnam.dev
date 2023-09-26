@@ -285,9 +285,6 @@ importers:
         specifier: ^3.22.2
         version: 3.22.2
     devDependencies:
-      '@builder.io/partytown':
-        specifier: ^0.8.1
-        version: 0.8.1
       '@cloudflare/workers-types':
         specifier: ^4.20230904.0
         version: 4.20230904.0
@@ -330,9 +327,6 @@ importers:
       '@types/cookie':
         specifier: ^0.5.2
         version: 0.5.2
-      '@types/gtag.js':
-        specifier: ^0.0.13
-        version: 0.0.13
       '@types/mustache':
         specifier: ^4.2.2
         version: 4.2.2
@@ -625,12 +619,6 @@ packages:
       '@babel/helper-string-parser': 7.22.5
       '@babel/helper-validator-identifier': 7.22.15
       to-fast-properties: 2.0.0
-    dev: true
-
-  /@builder.io/partytown@0.8.1:
-    resolution: {integrity: sha512-p4xhEtQCPe8YFJ8e7KT9RptnT+f4lvtbmXymbp1t0bLp+USkNMTxrRMNc3Dlr2w2fpxyX7uA0CyAeU3ju84O4A==}
-    engines: {node: '>=18.0.0'}
-    hasBin: true
     dev: true
 
   /@changesets/apply-release-plan@6.1.4:
@@ -1806,10 +1794,6 @@ packages:
 
   /@types/estree@1.0.1:
     resolution: {integrity: sha512-LG4opVs2ANWZ1TJoKc937iMmNstM/d0ae1vNbnBvBhqCSezgVUOzcLCqbI5elV8Vy6WKwKjaqR+zO9VKirBBCA==}
-    dev: true
-
-  /@types/gtag.js@0.0.13:
-    resolution: {integrity: sha512-yOXFkfnt1DQr1v9B4ERulJOGnbdVqnPHV8NG4nkQhnu4qbrJecQ06DlaKmSjI3nzIwBj5U9/X61LY4sTc2KbaQ==}
     dev: true
 
   /@types/hast@2.3.5:

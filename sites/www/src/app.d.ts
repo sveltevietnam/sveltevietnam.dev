@@ -1,7 +1,6 @@
 /// <reference types="@sveltejs/kit" />
 /// <reference types="svelte" />
 /// <reference types="vite/client" />
-/// <reference types="@types/gtag.js" />
 /// <reference types="@sveltejs/adapter-cloudflare" />
 
 import type { Language } from '$shared/services/i18n';

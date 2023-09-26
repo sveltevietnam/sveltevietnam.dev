@@ -10,7 +10,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "prepare": "pnpm partytown",
     "dev": "vite dev --port 5005",
     "dev:wrangler": "pnpm dlx wrangler pages dev .svelte-kit/cloudflare",
     "build": "vite build --mode production",
@@ -21,7 +20,6 @@
     "lint:es": "eslint . --ignore-path=\"../../.eslintignore\"",
     "lint:style": "stylelint '**/*.{svelte,css}'",
     "format": "prettier --ignore-path ../../.prettierignore --write .",
-    "partytown": "partytown copylib static/~partytown",
     "post:create": "hygen post create"
   },
   "dependencies": {
@@ -31,7 +29,6 @@
     "zod": "^3.22.2"
   },
   "devDependencies": {
-    "@builder.io/partytown": "^0.8.1",
     "@cloudflare/workers-types": "^4.20230904.0",
     "@csstools/postcss-global-data": "^2.1.0",
     "@internals/isc": "workspace:^",
@@ -46,7 +43,6 @@
     "@tailwindcss/typography": "^0.5.10",
     "@total-typescript/ts-reset": "^0.5.1",
     "@types/cookie": "^0.5.2",
-    "@types/gtag.js": "^0.0.13",
     "@types/mustache": "^4.2.2",
     "@types/postcss-js": "^4.0.1",
     "@types/postcss-mixins": "^9.0.0",

@@ -11,4 +11,3 @@ examples/**
 .svelte-kit/
 .vercel/
 **/*generated/
-~partytown/

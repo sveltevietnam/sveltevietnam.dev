@@ -108,7 +108,6 @@ jobs:
           PUBLIC_COOKIE_COLOR_SCHEME: ${{ vars.PUBLIC_COOKIE_COLOR_SCHEME }}
           COOKIE_LANGUAGE: ${{ vars.COOKIE_LANGUAGE }}
           # public env
-          PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID: ${{ vars.PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID }}
           PUBLIC_DISCORD_WS_URL: ${{ vars.PUBLIC_DISCORD_WS_URL }}
           PUBLIC_MODE: ${{ vars.PUBLIC_MODE }}
           # mailer service
