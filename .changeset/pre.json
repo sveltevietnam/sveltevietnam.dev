@@ -9,6 +9,7 @@
     "@services/mailer": "0.0.0"
   },
   "changesets": [
+    "afraid-gifts-shave",
     "afraid-mayflies-explain",
     "beige-mails-eat",
     "breezy-spiders-press",
