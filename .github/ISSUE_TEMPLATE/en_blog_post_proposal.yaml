@@ -142,6 +142,8 @@ body:
         - ecosystem
         - tooling
         - community
+        - inside
+        - technical
     validations:
       required: false
 
