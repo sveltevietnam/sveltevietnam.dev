@@ -1,6 +1,6 @@
 ---
 inject: true
-to: "src/routes/[[lang=lang]]/(prototype)/blog/_page/data.ts"
+to: "src/routes/[[lang=lang]]/blog/_page/data.ts"
 after: "HYGEN MARKER - POST"
 skip_if: "<%= listing.alias %>,"
 ---

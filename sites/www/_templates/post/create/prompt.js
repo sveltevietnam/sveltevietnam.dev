@@ -71,7 +71,7 @@ module.exports = {
         path: `../(posts)/${slug}/_page/data`,
         alias: `post_${shortDateStr}_${titleForId.replace(/-/g, '_')}`,
       },
-      baseDir: `src/routes/[[lang=lang]]/(prototype)/blog/(posts)/${slug}`,
+      baseDir: `src/routes/[[lang=lang]]/blog/(posts)/${slug}`,
     };
   },
 };
