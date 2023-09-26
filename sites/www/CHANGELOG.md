@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.9
+
+### Minor Changes
+
+- [`b1f7909`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/b1f7909eacc97234368f8042f5a500e56c8b6d72) Thanks [@vnphanquang](https://github.com/vnphanquang)! - deprecate Google Analytics setup code (gtag, partytown) in favor of Cloudflare Zaraz, see #144
+
 ## 1.0.0-next.8
 
 ### Patch Changes
