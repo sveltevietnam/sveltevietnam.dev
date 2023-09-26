@@ -18,30 +18,82 @@ body:
 
         Note that the content of the linked blog post will stay on its original site and will not be copied to *sveltevietnam.dev*; only a link is added. To propose blog post whose content is published on *sveltevietnam.dev* itself, use the [EN - Proposal for Blog Post Publication](https://github.com/sveltevietnam/sveltevietnam.dev/issues/new/choose) instead.
 
-        ## Request Details
+  - type: markdown
+    attributes:
+      value: |
+        ## Link
 
         Request must include at least one of the following link.
   - type: input
     id: link-en
     attributes:
-      label: Link to external blog post in English (if any)
+      label: Link (English)
       placeholder: link to dev.to, personal blog, ...
     validations:
       required: false
   - type: input
     id: link-vi
     attributes:
-      label: Link to external blog post in Vietnamese (if any)
+      label: Link (Vietnamese)
       placeholder: link to dev.to, personal blog, ...
     validations:
       required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Author
+
+        Author name to display in the linked post
+  - type: input
+    id: author-en
+    attributes:
+      label: Author (English)
+      placeholder: Phương Trần
+    validations:
+      required: false
+  - type: input
+    id: author-vi
+    attributes:
+      label: Author (Vietnamese)
+      placeholder: Trần Phương
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Description
+
+        A short description about the blog post or display in the linked post
+  - type: input
+    id: description-en
+    attributes:
+      label: Description (English)
+      placeholder: My blog post about Svelte
+    validations:
+      required: false
+  - type: input
+    id: description-vi
+    attributes:
+      label: Description (Vietnamese)
+      placeholder: Bài viết của tôi về Svelte
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Additional Information
+
+        You may include any relevant information that you wish administrators to take note.
   - type: textarea
     id: additional
     attributes:
       label: Additional Information
-      description: You may include any relevant information that you wish administrators to take note.
     validations:
       required: false
+
   - type: markdown
     attributes:
       value: |

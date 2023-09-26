@@ -18,30 +18,82 @@ body:
 
         Chú ý rằng nội dung bài viết sẽ vẫn đặt tại trang nguồn chứ không sao chép sang *sveltevietnam.dev*. Nếu bạn muốn đăng bài ngay trên trang *sveltevietnam.dev*, hãy dùng mẫu issue [VI - Đề nghị đăng bài](https://github.com/sveltevietnam/sveltevietnam.dev/issues/new/choose).
 
-        ## Nội dung yêu cầu
+  - type: markdown
+    attributes:
+      value: |
+        ## Đường dẫn
 
         Bạn cần cung cấp ít nhất một trong hai đường dẫn sau đây:
   - type: input
     id: link-en
     attributes:
-      label: Đường dẫn đến bài viết bằng tiếng Anh (nếu có)
+      label: Đường dẫn (tiếng Việt)
       placeholder: dẫn đến dev.to, personal blog, ...
     validations:
       required: false
   - type: input
     id: link-vi
     attributes:
-      label: Đường dẫn đến bài viết bằng tiếng Việt (nếu có)
+      label: Đường dẫn (tiếng Anh)
       placeholder: dẫn đến dev.to, personal blog, ...
     validations:
       required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Tác giả
+
+        Tên tác giả để hiển thị trên bài viết liên kết
+  - type: input
+    id: author-vi
+    attributes:
+      label: Tác giả (tiếng Việt)
+      placeholder: Trần Phương
+    validations:
+      required: false
+  - type: input
+    id: author-en
+    attributes:
+      label: Tác giả (tiếng Anh)
+      placeholder: Phương Trần
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Mô tả
+
+        Mô tả ngắn gọn để hiện thi trên bài viết liên kết
+  - type: input
+    id: description-vi
+    attributes:
+      label: Mô tả (tiếng Việt)
+      placeholder: Bài viết của tôi về Svelte
+    validations:
+      required: false
+  - type: input
+    id: description-en
+    attributes:
+      label: Mô tả (tiếng Anh)
+      placeholder: My blog post about Svelte
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Thông tin bổ sung
+
+        Thêm bất cứ thông tin nào bạn nghĩ ban quản trị cần biết.
   - type: textarea
     id: additional
     attributes:
       label: Thông tin bổ sung
-      description: Thêm bất cứ thông tin nào bạn nghĩ ban quản trị cần biết.
     validations:
       required: false
+
   - type: markdown
     attributes:
       value: |
