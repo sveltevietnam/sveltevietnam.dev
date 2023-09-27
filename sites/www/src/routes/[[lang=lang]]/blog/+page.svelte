@@ -64,7 +64,7 @@
     </section>
 
     {#if topPosts.length || topExternalPost}
-      <section class="flex upto-tb:flex-col gap-6 tb:gap-10">
+      <section class="flex upto-tb:flex-col gap-10 tb:gap-[60px]">
         <h2 class="sr-only">{t.recent.title}</h2>
         <div class="flex-1">
           {#if topPosts[0]}
@@ -73,14 +73,14 @@
             </div>
           {/if}
         </div>
-        <div class="space-y-6 flex-1">
+        <div class="space-y-10 flex-1">
           {#if topPosts[1]}
-            <div use:intersect class="tb:before:hidden before:separator before:mb-6">
+            <div use:intersect class="tb:before:hidden before:separator before:mb-10">
               <BlogPostItem lang={data.language} post={topPosts[1]} />
             </div>
           {/if}
           {#if topExternalPost}
-            <div use:intersect class="before:separator before:mb-6">
+            <div use:intersect class="before:separator before:mb-10">
               <ExternalBlogPostItem lang={data.language} post={topExternalPost} />
             </div>
           {/if}
@@ -88,7 +88,7 @@
       </section>
     {/if}
 
-    <div class="grid grid-cols-1 pc:grid-cols-2 gap-[60px] tb:gap-[40px]">
+    <div class="grid grid-cols-1 pc:grid-cols-2 gap-[60px]">
       <section>
         <ConsecutiveFadeUpIntro selector=".char">
           <h2 class="tp-h2 uppercase">
@@ -146,7 +146,7 @@
       </section>
     </div>
 
-    <div class="grid grid-cols-1 tb:grid-cols-[2fr,1fr] gap-[60px] tb:gap-10">
+    <div class="grid grid-cols-1 tb:grid-cols-[2fr,1fr] gap-[60px]">
       <section>
         <ConsecutiveFadeUpIntro selector=".char">
           <h2 class="tp-h2 uppercase after:mt-2 after:separator">
@@ -154,15 +154,15 @@
           </h2>
         </ConsecutiveFadeUpIntro>
         {#if otherPosts.length}
-          <ul class="space-y-6 mt-6">
+          <ul class="space-y-10 mt-10">
             {#each otherPosts as post}
-              <li class="first-of-type:before:hidden before:mb-6 before:separator" use:intersect>
+              <li class="first-of-type:before:hidden before:mb-10 before:separator" use:intersect>
                 <BlogPostItem lang={data.language} {post} />
               </li>
             {/each}
           </ul>
         {:else}
-          <div use:intersect class="mt-6">
+          <div use:intersect class="mt-10">
             <ToBeAnnounced>
               <p class="text-center">
                 {t.posts.tba.description}
@@ -185,15 +185,15 @@
             </h2>
           </ConsecutiveFadeUpIntro>
           {#if otherExternalPosts.length}
-            <ul class="space-y-6 mt-6">
+            <ul class="space-y-10 mt-10">
               {#each otherExternalPosts as post}
-                <li class="first-of-type:before:hidden before:mb-6 before:separator" use:intersect>
+                <li class="first-of-type:before:hidden before:mb-10 before:separator" use:intersect>
                   <ExternalBlogPostItem lang={data.language} {post} />
                 </li>
               {/each}
             </ul>
           {:else}
-            <div use:intersect class="mt-6">
+            <div use:intersect class="mt-10">
               <ToBeAnnounced>
                 <p class="text-center">
                   {t.externalPosts.tba.description}
