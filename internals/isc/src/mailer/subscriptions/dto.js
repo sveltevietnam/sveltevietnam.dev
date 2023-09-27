@@ -2,7 +2,9 @@ import { string as zString, object as zObject, enum as zEnum, coerce as zCoerce 
 
 import { LanguageSchema } from '../../common/dto';
 
-export const SUBSCRIPTION_DOMAINS = /** @type {const} */ (['job', 'event']);
+export const SUBSCRIPTION_DOMAINS = /** @type {const} */ (['job', 'event', 'blog']);
+export const SubscriptionDomainSchema = zEnum(SUBSCRIPTION_DOMAINS);
+/** @typedef {typeof SUBSCRIPTION_DOMAINS[number]} SubscriptionDomain */
 
 export const GetSubscriptionResponseSchema = zObject({
   name: zString(),
@@ -16,7 +18,7 @@ export const GetSubscriptionResponseSchema = zObject({
 export const CreateSubscriptionRequestSchema = zObject({
   name: zString().min(1),
   email: zString().min(1).email(),
-  domain: zEnum(SUBSCRIPTION_DOMAINS),
+  domain: SubscriptionDomainSchema,
   language: LanguageSchema,
 });
 /**

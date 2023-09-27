@@ -20,6 +20,16 @@ module.exports = plugin(
         'min-width': '0',
       },
     });
+
+    addUtilities({
+      '.separator': {
+        display: 'block',
+        height: '1px',
+        width: '100%',
+        background: 'currentcolor',
+        opacity: '20%',
+      },
+    });
   },
   { theme },
 );
