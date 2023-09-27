@@ -95,18 +95,23 @@
   </div> -->
   <ul class="ctas divide-border c-intersect divide-y" use:intersect>
     <li>
-      <a class="cta font-medium" href={SOCIAL_LINKS.discord} target="_blank" rel="noreferrer">
+      <a
+        class="c-link-box font-medium"
+        href={SOCIAL_LINKS.discord}
+        target="_blank"
+        rel="noreferrer"
+      >
         <span>{t.ctas.discord}</span>
         <svg inline-src="icon/external-link" />
       </a>
     </li>
     <li>
-      <a class="cta font-medium" href={PEOPLE_PATH} rel="noreferrer">
+      <a class="c-link-box font-medium" href={PEOPLE_PATH} rel="noreferrer">
         <span>{t.ctas.nominate}</span>
       </a>
     </li>
     <li>
-      <a class="cta font-medium" href={SOCIAL_LINKS.github} target="_blank" rel="noreferrer">
+      <a class="c-link-box font-medium" href={SOCIAL_LINKS.github} target="_blank" rel="noreferrer">
         <span>{t.ctas.contribute}</span>
         <svg inline-src="icon/external-link" />
       </a>
@@ -172,68 +177,9 @@
     grid-area: ctas;
     margin-top: 30px;
 
-    @screen sp {
-      margin-left: 32px;
-    }
-
     @screen tb {
       max-width: 548px;
       margin-top: 60px;
-    }
-  }
-
-  .cta {
-    --transition-duration: 300ms;
-
-    position: relative;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 16px 0;
-
-    &::before {
-      content: '';
-
-      position: absolute;
-      inset: 0;
-      transform-origin: left;
-      transform: scaleX(0);
-
-      opacity: 0;
-      background-color: theme('colors.design.fg.1');
-
-      transition-timing-function: ease-in-out;
-      transition-duration: var(--transition-duration);
-      transition-property: opacity, transform;
-    }
-
-    & span,
-    & svg {
-      transition-timing-function: ease-in-out;
-      transition-duration: var(--transition-duration);
-      transition-property: color, transform;
-    }
-
-    &:hover {
-      &::before {
-        transform: scaleX(1);
-        opacity: 1;
-      }
-
-      & span,
-      & svg {
-        color: theme('colors.design.bg.1');
-      }
-
-      & span {
-        transform: translateX(12px);
-      }
-
-      & svg {
-        transform: translateX(-12px);
-      }
     }
   }
 

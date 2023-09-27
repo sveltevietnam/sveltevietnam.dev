@@ -91,3 +91,58 @@
     fill: currentcolor;
   }
 }
+
+.c-link-box {
+  --transition-duration: 300ms;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 16px 0;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    inset: 0;
+    transform-origin: left;
+    transform: scaleX(0);
+
+    opacity: 0;
+    background-color: theme('colors.design.fg.1');
+
+    transition-timing-function: ease-in-out;
+    transition-duration: var(--transition-duration);
+    transition-property: opacity, transform;
+  }
+
+  & span,
+  & svg {
+    transition-timing-function: ease-in-out;
+    transition-duration: var(--transition-duration);
+    transition-property: color, transform;
+  }
+
+  &:hover {
+    &::before {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+
+    & span,
+    & svg {
+      color: theme('colors.design.bg.1');
+    }
+
+    & span {
+      transform: translateX(12px);
+    }
+
+    & svg {
+      transform: translateX(-12px);
+    }
+  }
+}
