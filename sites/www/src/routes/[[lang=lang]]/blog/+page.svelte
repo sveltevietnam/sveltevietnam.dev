@@ -6,6 +6,7 @@
   import { ExternalBlogPostItem } from '$client/components/ExternalBlogPostItem';
   import { MailRegistrationForm } from '$client/components/MailRegistrationForm';
   import { SplitText } from '$client/components/SplitText';
+  import ToBeAnnounced from '$client/components/ToBeAnnounced/ToBeAnnounced.svelte';
 
   import type { PageData } from './$types';
 
@@ -62,28 +63,30 @@
       </div>
     </section>
 
-    <section class="flex upto-tb:flex-col gap-6 tb:gap-10">
-      <h2 class="sr-only">{t.recent.title}</h2>
-      <div class="flex-1">
-        {#if topPosts[0]}
-          <div use:intersect>
-            <BlogPostItem lang={data.language} post={topPosts[0]} alwaysVertical />
-          </div>
-        {/if}
-      </div>
-      <div class="space-y-6 flex-1">
-        {#if topPosts[1]}
-          <div use:intersect class="tb:before:hidden before:separator before:mb-6">
-            <BlogPostItem lang={data.language} post={topPosts[1]} />
-          </div>
-        {/if}
-        {#if topExternalPost}
-          <div use:intersect class="before:separator before:mb-6">
-            <ExternalBlogPostItem lang={data.language} post={topExternalPost} />
-          </div>
-        {/if}
-      </div>
-    </section>
+    {#if topPosts.length || topExternalPost}
+      <section class="flex upto-tb:flex-col gap-6 tb:gap-10">
+        <h2 class="sr-only">{t.recent.title}</h2>
+        <div class="flex-1">
+          {#if topPosts[0]}
+            <div use:intersect>
+              <BlogPostItem lang={data.language} post={topPosts[0]} alwaysVertical />
+            </div>
+          {/if}
+        </div>
+        <div class="space-y-6 flex-1">
+          {#if topPosts[1]}
+            <div use:intersect class="tb:before:hidden before:separator before:mb-6">
+              <BlogPostItem lang={data.language} post={topPosts[1]} />
+            </div>
+          {/if}
+          {#if topExternalPost}
+            <div use:intersect class="before:separator before:mb-6">
+              <ExternalBlogPostItem lang={data.language} post={topExternalPost} />
+            </div>
+          {/if}
+        </div>
+      </section>
+    {/if}
 
     <div class="grid grid-cols-1 pc:grid-cols-2 gap-[60px] tb:gap-[40px]">
       <section>
@@ -150,13 +153,29 @@
             <SplitText text={t.posts.title} />
           </h2>
         </ConsecutiveFadeUpIntro>
-        <ul class="space-y-6 mt-6">
-          {#each otherPosts as post}
-            <li class="first-of-type:before:hidden before:mb-6 before:separator" use:intersect>
-              <BlogPostItem lang={data.language} {post} />
-            </li>
-          {/each}
-        </ul>
+        {#if otherPosts.length}
+          <ul class="space-y-6 mt-6">
+            {#each otherPosts as post}
+              <li class="first-of-type:before:hidden before:mb-6 before:separator" use:intersect>
+                <BlogPostItem lang={data.language} {post} />
+              </li>
+            {/each}
+          </ul>
+        {:else}
+          <div use:intersect class="mt-6">
+            <ToBeAnnounced>
+              <p class="text-center">
+                {t.posts.tba.description}
+                <a
+                  href={ISSUE_TEMPLATE_LINK[data.language].proposePost}
+                  class="c-link"
+                  target="_blank"
+                  rel="noreferrer">{t.posts.tba.cta}</a
+                >.
+              </p>
+            </ToBeAnnounced>
+          </div>
+        {/if}
       </section>
       <div>
         <section>
@@ -165,13 +184,29 @@
               <SplitText text={t.externalPosts.title} />
             </h2>
           </ConsecutiveFadeUpIntro>
-          <ul class="space-y-6 mt-6">
-            {#each otherExternalPosts as post}
-              <li class="first-of-type:before:hidden before:mb-6 before:separator" use:intersect>
-                <ExternalBlogPostItem lang={data.language} {post} />
-              </li>
-            {/each}
-          </ul>
+          {#if otherExternalPosts.length}
+            <ul class="space-y-6 mt-6">
+              {#each otherExternalPosts as post}
+                <li class="first-of-type:before:hidden before:mb-6 before:separator" use:intersect>
+                  <ExternalBlogPostItem lang={data.language} {post} />
+                </li>
+              {/each}
+            </ul>
+          {:else}
+            <div use:intersect class="mt-6">
+              <ToBeAnnounced>
+                <p class="text-center">
+                  {t.externalPosts.tba.description}
+                  <a
+                    href={ISSUE_TEMPLATE_LINK[data.language].requestExternalPost}
+                    class="c-link"
+                    target="_blank"
+                    rel="noreferrer">{t.externalPosts.tba.cta}</a
+                  >.
+                </p>
+              </ToBeAnnounced>
+            </div>
+          {/if}
         </section>
         <div
           class="border-current border rounded-[20px] p-6 tb:mx-6 mt-[60px] tb:sticky tb:top-[calc(var(--header-height)+60px)]"
