@@ -5,6 +5,7 @@ export const en = {
       description: 'Select the emails you want to receive',
       job: 'Receive emails about frontend and Svelte jobs',
       event: 'Receive emails about Svelte Vietnam events',
+      blog: 'Receive emails about new blog posts',
     },
     submit: 'Update my preferences',
   },
