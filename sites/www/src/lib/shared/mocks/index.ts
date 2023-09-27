@@ -1,4 +1,5 @@
 import jobImg from '$shared/assets/images/fallback/job.webp';
+import type { ExternalPost, Post } from '$shared/data/blog';
 import type { Contributor, Event, Job, Project, Sponsor } from '$shared/types';
 
 import vietnamImg from './vietnam-image.webp';
@@ -230,4 +231,59 @@ export function createMockedProjects(length = 2) {
   }
 
   return projects;
+}
+
+export function createMockedPost(length = 3) {
+  const posts: Post[] = [];
+  for (let i = 0; i < length; i++) {
+    posts.push({
+      slug: 'behind-the-screen-a-yes-code-blog-of-svelte-vietnam',
+      date: new Date().toISOString(),
+      title: {
+        en: 'Behind the Screen: A Yes-Code Blog of Svelte Vietnam',
+        vi: 'Behind the Screen: blog chạy bằng cơm (và code)',
+      },
+      description: {
+        en: 'Look behind the curtain and dive into the nuts and bolts of how we build a minimal static blog using code as the content management system',
+        vi: 'Cùng nhìn lại những định hướng về hạ tầng và kỹ thuật giúp xây dựng một trang blog Svelte Việt Nam đơn giản và hiệu quả',
+      },
+      authors: [
+        {
+          name: {
+            en: 'Quang Phan',
+            vi: 'Phan Quang',
+          },
+          avatarUrl: 'https://avatars.githubusercontent.com/u/25895844?v=4',
+          links: {
+            github: 'https://github.com/vnphanquang',
+          },
+          title: {
+            en: 'Developer, Open source contributor',
+            vi: 'Lập trình viên, thành viên cộng đồng Open source',
+          },
+        },
+      ],
+      // add OG image
+      keywords: ['svelte', 'kit', 'static', 'blog', 'yes-code', 'content-management-system'],
+      tags: ['technical', 'inside'],
+    });
+  }
+  return posts;
+}
+
+export function createMockedExternalPost(length = 3) {
+  const posts: ExternalPost[] = [];
+  for (let i = 0; i < length; i++) {
+    posts.push({
+      href: '#',
+      title: 'An External Linked Blog Post',
+      description:
+        'A summary / short description for the linked blog post. This can be of any length but we should try to limit it to as short as possible to only bare necessary information.',
+      author: {
+        en: 'Phương Trần',
+        vi: 'Tràn Phương',
+      },
+    });
+  }
+  return posts;
 }

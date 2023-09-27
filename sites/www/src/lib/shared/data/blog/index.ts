@@ -3,7 +3,21 @@ import type { ComponentType, SvelteComponent } from 'svelte';
 import { resolveLangText, type LangText, type Language } from '$shared/services/i18n';
 import type { ProfileLinks } from '$shared/types';
 
-export type PostTag = 'svelte' | 'kit' | 'ecosystem' | 'tooling' | 'community';
+export type PostTag =
+  | 'svelte'
+  | 'kit'
+  | 'ecosystem'
+  | 'tooling'
+  | 'community'
+  | 'inside'
+  | 'technical';
+
+export type ExternalPost = {
+  title: LangText;
+  href: LangText;
+  author: LangText;
+  description: LangText;
+};
 
 export type PostAuthor = {
   name: LangText;
@@ -35,6 +49,15 @@ export function localizePost(language: Language, post: Post) {
       name: resolveLangText(language, author.name),
       title: resolveLangText(language, author.title),
     })),
+  };
+}
+
+export function localizeExternalPost(language: Language, post: ExternalPost) {
+  return {
+    title: resolveLangText(language, post.title),
+    href: resolveLangText(language, post.href),
+    description: resolveLangText(language, post.description),
+    author: resolveLangText(language, post.author),
   };
 }
 
