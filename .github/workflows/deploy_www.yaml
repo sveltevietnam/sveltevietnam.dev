@@ -134,7 +134,7 @@ jobs:
 
       - name: Create commit comment
         if: ${{ github.event_name != 'pull_request' }}
-        uses: peter-evans/commit-comment@v2
+        uses: peter-evans/commit-comment@v3
         with:
           body: |
             ## ⚡ Successfully Cloudflare Pages deployed!
@@ -149,6 +149,7 @@ jobs:
         if: ${{ github.event_name == 'pull_request' }}
         uses: mshick/add-pr-comment@v2
         with:
+          message-id: www
           message: |
             ## ⚡ Successfully Cloudflare Pages deployed!
             | Name | Link |
