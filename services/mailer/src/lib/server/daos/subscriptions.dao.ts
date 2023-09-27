@@ -1,10 +1,12 @@
 import type { D1Database } from '@cloudflare/workers-types';
+import type { SubscriptionDomain } from '@internals/isc/mailer';
 
 const TABLE_NAME = 'subscriptions';
 
 export type DomainSubscription = {
   job: boolean;
   event: boolean;
+  blog: boolean;
 };
 
 export type Subscription = DomainSubscription & {
@@ -13,9 +15,6 @@ export type Subscription = DomainSubscription & {
   created_at: string;
   updated_at: string;
 };
-
-export const SUBSCRIPTION_DOMAINS = ['job', 'event'] as const;
-export type SubscriptionDomain = (typeof SUBSCRIPTION_DOMAINS)[number];
 
 export function getSubscriptionByEmail(d1: D1Database, email: string) {
   return d1
@@ -56,10 +55,17 @@ export function updateDomainSubscription(
     UPDATE subscriptions
         SET event = ?1,
             job = ?2,
-            updated_at = ?3
-        WHERE email = ?4
+            blog = ?3,
+            updated_at = ?4
+        WHERE email = ?5
     `,
     )
-    .bind(Number(subscription.event), Number(subscription.job), new Date().toISOString(), email)
+    .bind(
+      /* ?1 */ Number(subscription.event),
+      /* ?2 */ Number(subscription.job),
+      /* ?3 */ Number(subscription.blog),
+      /* ?4 */ new Date().toISOString(),
+      /* ?5 */ email,
+    )
     .run();
 }

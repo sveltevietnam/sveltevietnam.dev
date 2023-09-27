@@ -10,6 +10,7 @@ export const GetSubscriptionResponseSchema = zObject({
   name: zString(),
   job: zCoerce.boolean(),
   event: zCoerce.boolean(),
+  blog: zCoerce.boolean(),
 });
 /**
  * @typedef {import('../../common/types').CommonResponseDTO<import('zod').infer<typeof GetSubscriptionResponseSchema>>} GetSubscriptionResponseDTO
@@ -31,6 +32,7 @@ export const CreateSubscriptionRequestSchema = zObject({
 export const UpdateDomainSubscriptionRequestSchema = zObject({
   job: zCoerce.boolean(),
   event: zCoerce.boolean(),
+  blog: zCoerce.boolean(),
 });
 /**
  * @typedef {import('../../common/types').CommonResponseDTO} UpdateDomainSubscriptionResponseDTO
