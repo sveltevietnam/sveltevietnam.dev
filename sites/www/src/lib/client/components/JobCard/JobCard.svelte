@@ -32,7 +32,11 @@
         <time datetime={job.expiresAt}>{new Date(job.expiresAt).toLocaleDateString()}</time>
       {/if}
     </p>
-    <a class="title font-medium tp-h5" href={job.href} target="_blank">{job.title}</a>
+    <a
+      class="title c-link c-link--preserved w-fit font-medium tp-h5"
+      href={job.href}
+      target="_blank">{job.title}</a
+    >
   </div>
   <div class="tags">
     {#each tags as tag}
@@ -69,11 +73,6 @@
   .title {
     display: block;
     margin-top: 12px;
-    transition: color 400ms ease-out;
-
-    &:hover {
-      color: theme('colors.design.link.title');
-    }
   }
 
   .tags {

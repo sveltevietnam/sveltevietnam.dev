@@ -64,7 +64,7 @@
             {/if}
           </div>
           <div>
-            <a class="title font-bold tp-h4" {href}>{name}</a>
+            <a class="c-link c-link--preserved font-bold tp-h4" {href}>{name}</a>
             <p class="description line-clamp-3 tb:line-clamp-4">{@html description}</p>
             <div class="by">
               <p class="whitespace-nowrap font-medium">{t.by}:</p>
@@ -184,15 +184,6 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-    }
-  }
-
-  .title {
-    display: block;
-    transition: color 250ms ease-out;
-
-    &:hover {
-      color: theme('colors.design.link.title');
     }
   }
 

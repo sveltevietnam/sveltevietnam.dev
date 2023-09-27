@@ -1,7 +1,7 @@
 <script lang="ts">
   import { intersect } from '$client/actions/intersect';
   import { Breadcrumbs } from '$client/components/Breadcrumbs';
-  import ConsecutiveFadeUpIntro from '$client/components/ConsecutiveFadeUpIntro/ConsecutiveFadeUpIntro.svelte';
+  import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
   import { EventCard } from '$client/components/EventCard';
   import { MailRegistrationForm } from '$client/components/MailRegistrationForm';
   import { SplitText } from '$client/components/SplitText';
