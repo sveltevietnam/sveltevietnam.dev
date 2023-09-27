@@ -1,6 +1,6 @@
 export const en = {
   name: 'Name',
-  cta: 'Notify me',
+  cta: 'Register',
   validation: {
     error: {
       email: {

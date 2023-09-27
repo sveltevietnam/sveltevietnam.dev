@@ -17,11 +17,11 @@
         {project.description}
       </span>
     </p>
-    {#if project.collaboration}
+    {#if project.by}
       <p class="space-x-4">
         <svg inline-src="google/handshake" class="inline-block" />
         <span>
-          {project.collaboration}
+          {project.by}
         </span>
       </p>
     {/if}
