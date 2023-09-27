@@ -97,6 +97,7 @@
       <p class="error">{$errors.turnstile[0]}</p>
     {/if}
     <div
+      class="turnstile"
       turnstile-sitekey={PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY}
       turnstile-theme={colorScheme === 'system' ? 'auto' : colorScheme}
       turnstile-response-field-name="turnstile"
@@ -120,5 +121,17 @@
     font-size: theme('fontSize.2xs');
     font-style: italic;
     color: theme('colors.status.error');
+  }
+
+  .turnstile:global(:not([turnstile-rendered])) {
+    &[turnstile-size='compact'] {
+      width: 130px;
+      height: 120px;
+    }
+
+    &:not([turnstile-size='compact']) {
+      width: 300px;
+      height: 65px;
+    }
   }
 </style>

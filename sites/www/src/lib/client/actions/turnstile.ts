@@ -169,6 +169,7 @@ export const turnstile: Action<HTMLElement, TurnstileParameters | undefined, Tur
           undefined,
         callback: (token) => {
           node.dispatchEvent(new CustomEvent('turnstile', { detail: token }));
+          node.toggleAttribute('turnstile-rendered', true);
         },
         'error-callback': (error) => {
           node.dispatchEvent(new CustomEvent('turnstile:error', { detail: error }));
