@@ -2,6 +2,7 @@ import {
   createSubscriptionRequest,
   MAILER_ERRORS,
   type CreateSubscriptionResponseDTO,
+  type SubscriptionDomain,
 } from '@internals/isc/mailer';
 import { error, fail } from '@sveltejs/kit';
 import type { RequestEvent } from '@sveltejs/kit';
@@ -14,7 +15,7 @@ import { validateToken } from '$server/services/turnstile';
 
 import { translations } from './translation';
 
-export async function mail<E extends RequestEvent>(event: E, domain: 'job' | 'event') {
+export async function mail<E extends RequestEvent>(event: E, domain: SubscriptionDomain) {
   const { request, locals, fetch } = event;
 
   // create i18n-aware validation schema
