@@ -39,8 +39,8 @@ export const en = {
       primaryTasks: [
         `☑ Publish the <a class="c-link" href="${CODE_OF_CONDUCT_PATH}">Code of Conduct</a> page with basic design`,
         `☑ Design the infrastructure and bootstrap <a class="c-link" href="https://mailer.sveltevietnam.dev" target="_blank" rel="noreferrer">mailer service</a> to manage user subscriptions for email notifications`,
-        `☐ Publish the <a class="c-link" href="${EVENTS_PATH}">Events</a> page with basic design`,
-        `☐ Publish the <a class="c-link" href="${BLOG_PATH}">Blog</a> page with basic design`,
+        `☑ Publish the <a class="c-link" href="${EVENTS_PATH}">Events</a> page with basic design`,
+        `☑ Publish the <a class="c-link" href="${BLOG_PATH}">Blog</a> page with basic design`,
         `☐ Introduce the “Technical Reference” and “<a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/CONTRIBUTING.md" rel="noreferrer" target="_blank">Contributing Guidelines</a>” documents`,
         '☐ Set up processes to publish blog posts or link posts via <a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/issues/new/choose" rel="noreferrer" target="_blank">Github issue</a>, and <a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/DEV_BLOG_POST.md" rel="noreferrer" target="_blank">guidelines for coding blog posts</a>',
         '☐ Design the “Svelte Vietnam Community 2023 Survey”',
