@@ -38,8 +38,8 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
       canonical: `https://sveltevietnam.dev/${language}/blog`,
     },
     posts: {
-      internal: createMockedPost(10),
-      external: createMockedExternalPost(5),
+      internal: createMockedPost(0),
+      external: createMockedExternalPost(0),
     },
     mailForm,
   };

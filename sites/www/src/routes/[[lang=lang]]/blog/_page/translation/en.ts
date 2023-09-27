@@ -18,16 +18,24 @@ export const en = {
     description:
       'Svelte Vietnam welcomes everyone to write and share their posts or link their own posts on this blog. This is the most practical and direct way that members can contribute to the community.',
     links: {
-      proposePost: 'Send proposal for blog post',
-      requestExternalPost: 'Send request to link external post',
+      proposePost: 'Submit a proposal for blog post',
+      requestExternalPost: 'Submit a request to link external post',
       readCodeGuidelines: 'Read "Blog Post: Implementation Guidelines"',
     },
   },
   posts: {
-    title: 'More Posts',
+    title: 'Posts',
+    tba: {
+      description: 'No post is available yet.',
+      cta: 'Propose your blog post',
+    },
   },
   externalPosts: {
     title: 'Linked Posts',
+    tba: {
+      description: 'No post is available yet.',
+      cta: 'Request to link yours',
+    },
   },
   mail: {
     description: 'Register for email notification about new blog posts',

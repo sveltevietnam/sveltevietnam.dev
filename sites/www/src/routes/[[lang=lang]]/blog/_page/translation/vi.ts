@@ -24,9 +24,17 @@ export const vi = {
   },
   posts: {
     title: 'Bài viết',
+    tba: {
+      description: 'Chưa có bài viết nào.',
+      cta: 'Gởi đề xuất đăng bài',
+    },
   },
   externalPosts: {
     title: 'Liên kết',
+    tba: {
+      description: 'Chưa có bài viết nào.',
+      cta: 'Gởi yêu cầu liên kết bài viết của bạn',
+    },
   },
   mail: {
     description: 'Đăng kí nhận thông báo khi có bài viết mới',
