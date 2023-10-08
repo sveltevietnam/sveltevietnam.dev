@@ -1,5 +1,11 @@
 import { LOAD_DEPENDENCIES, SOCIAL_LINKS } from '$shared/constants';
-import { createMockedJobs, createMockedProjects, createMockedSponsors } from '$shared/mocks';
+import {
+  createMockedExternalPosts,
+  createMockedJobs,
+  createMockedPosts,
+  createMockedProjects,
+  createMockedSponsors,
+} from '$shared/mocks';
 import { ROADMAP_PATH } from '$shared/services/navigation';
 
 import type { PageServerLoad } from './$types';
@@ -27,6 +33,10 @@ export const load: PageServerLoad = async ({ depends, locals: { language } }) =>
   const tMeta = metaTranslations[language];
   return {
     events: [],
+    posts: {
+      internal: createMockedPosts(2),
+      external: createMockedExternalPosts(1)[0],
+    },
     jobs: createMockedJobs(),
     projects: createMockedProjects(4),
     sponsors: createMockedSponsors(),

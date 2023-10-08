@@ -233,7 +233,7 @@ export function createMockedProjects(length = 2) {
   return projects;
 }
 
-export function createMockedPost(length = 3) {
+export function createMockedPosts(length = 3) {
   const posts: Post[] = [];
   for (let i = 0; i < length; i++) {
     posts.push({
@@ -258,8 +258,8 @@ export function createMockedPost(length = 3) {
             github: 'https://github.com/vnphanquang',
           },
           title: {
-            en: 'Developer, Open source contributor',
-            vi: 'Lập trình viên, thành viên cộng đồng Open source',
+            en: 'Developer, open source contributor',
+            vi: 'Lập trình viên, thành viên cộng đồng open source',
           },
         },
       ],
@@ -271,7 +271,7 @@ export function createMockedPost(length = 3) {
   return posts;
 }
 
-export function createMockedExternalPost(length = 3) {
+export function createMockedExternalPosts(length = 3) {
   const posts: ExternalPost[] = [];
   for (let i = 0; i < length; i++) {
     posts.push({

@@ -209,7 +209,7 @@
           {/if}
         </section>
         <div
-          class="border-current border rounded-[20px] p-6 tb:mx-6 mt-[60px] tb:sticky tb:top-[calc(var(--header-height)+60px)]"
+          class="border-current border rounded-[20px] p-6 mt-[60px] tb:sticky tb:top-[calc(var(--header-height)+60px)] max-w-[320px]"
           use:intersect
         >
           <p>{t.mail.description}</p>

@@ -8,8 +8,7 @@ export const en = {
     title: 'Introduction',
     description: [
       'This is where Svelte Vietnam community members share and spread knowledge, ideas, and their experience in Svelte and open source communities around the world.',
-      'You may find that this blog operates a bit differently compared to other systems. Read "<a href="#" class="c-link">Behind the Screen: A Yes-code blog of Svelte Vietnam</a>" to understand the decisions behind the infrastructure design of Svelte Vietnam Blog.',
-      'Tham gia <a href="https://discord.sveltevietnam.dev" target="_blank" rel="noreferrer">Discord Svelte Việt Nam</a> để thảo luận trực tiếp với cộng đồng và ban quản trị về các vấn đề xoay quanh việc viết blog. ',
+      'You may find that this blog operates a bit differently compared to other systems. Read "<a href="#" class="c-link">Behind the Screen: A Yes-code Blog of Svelte Vietnam</a>" to understand the decisions behind its infrastructure design.',
       'Join <a class="c-link" href="https://discord.sveltevietnam.dev" target="_blank" rel="noreferrer">Svelte Vietnam Discord</a> to discuss directly with the community and admins about requests and issues related to writing blog posts.',
     ],
   },
@@ -31,7 +30,7 @@ export const en = {
     },
   },
   externalPosts: {
-    title: 'Linked Posts',
+    title: 'Links',
     tba: {
       description: 'No post is available yet.',
       cta: 'Request to link yours',
