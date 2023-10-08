@@ -4,7 +4,7 @@ import { mailSchema } from '$client/components/MailRegistrationForm';
 import { mail } from '$server/actions/mail/mail.server';
 import { translations as mailT } from '$server/actions/mail/translation';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
-import { createMockedExternalPost, createMockedPost } from '$shared/mocks';
+import { createMockedExternalPosts, createMockedPosts } from '$shared/mocks';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { Actions, PageServerLoad } from './$types';
@@ -38,8 +38,8 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
       canonical: `https://sveltevietnam.dev/${language}/blog`,
     },
     posts: {
-      internal: createMockedPost(10),
-      external: createMockedExternalPost(5),
+      internal: createMockedPosts(10),
+      external: createMockedExternalPosts(5),
     },
     mailForm,
   };

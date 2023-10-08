@@ -21,11 +21,16 @@ export const en = {
   },
   events: {
     title: 'Next Event',
-    description: 'Join the community to share your experience, products, and all thing Svelte',
+    description:
+      'Join the community to share your experience, products, and all thing Svelte and open source',
     tba: {
       description: 'No event is planned yet.',
       cta: 'Register for notification about the next event.',
     },
+  },
+  posts: {
+    title: 'Recent Posts',
+    description: `Besides <a class="c-link" href=${SOCIAL_LINKS.discord} target="_blank" rel="noreferrer">Discord</a>, the Svelte Vietnam Blog is our most official and practical channel for sharing.`,
   },
   jobs: {
     title: 'Recent Jobs',

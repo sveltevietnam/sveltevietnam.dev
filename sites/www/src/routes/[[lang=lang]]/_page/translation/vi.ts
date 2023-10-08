@@ -21,11 +21,16 @@ export const vi = {
   },
   events: {
     title: 'Sự kiện sắp tới',
-    description: 'Gặp gỡ, cùng nhau chia sẻ kinh nghiệm, sản phẩm, và mọi thứ liên quan đến Svelte',
+    description:
+      'Gặp gỡ, cùng nhau chia sẻ kinh nghiệm, sản phẩm, và mọi thứ liên quan đến Svelte và open source',
     tba: {
       description: 'Chưa có sự kiện nào.',
       cta: 'Đăng ký cập nhật sự kiến mới nhất.',
     },
+  },
+  posts: {
+    title: 'Bài viết',
+    description: `Ngoài <a class="c-link" href=${SOCIAL_LINKS.discord} target="_blank" rel="noreferrer">Discord</a>, Blog của Svelte Việt Nam là kênh chia sẻ chính thống và thiết thực nhất.`,
   },
   jobs: {
     title: 'Việc làm mới',

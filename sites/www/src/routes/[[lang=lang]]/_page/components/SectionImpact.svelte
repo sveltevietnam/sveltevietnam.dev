@@ -75,7 +75,7 @@
       {/each}
     </ul>
   </div>
-  <div class="projects-pagination c-container-design">
+  <div class="projects-pagination c-container-design" use:intersect>
     <button class="pagination-btn mr-6" on:click={() => emblaApi?.scrollPrev()}>
       <svg
         inline-src="icon/caret"

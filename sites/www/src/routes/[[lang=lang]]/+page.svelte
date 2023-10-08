@@ -7,6 +7,7 @@
   import SectionImpact from './_page/components/SectionImpact.svelte';
   import SectionIntro from './_page/components/SectionIntro/SectionIntro.svelte';
   import SectionJobs from './_page/components/SectionJobs.svelte';
+  import SectionPosts from './_page/components/SectionPosts.svelte';
   import SectionSponsor from './_page/components/SectionSponsor.svelte';
   import './_page/page.css';
 
@@ -39,6 +40,11 @@
     </p>
   </section>
   <SectionEvents lang={data.language} events={data.events} />
+  <SectionPosts
+    lang={data.language}
+    posts={data.posts.internal}
+    externalPost={data.posts.external}
+  />
   <SectionJobs lang={data.language} jobs={data.jobs} />
   <SectionImpact lang={data.language} projects={data.projects} />
   <SectionSponsor lang={data.language} sponsors={data.sponsors} />
