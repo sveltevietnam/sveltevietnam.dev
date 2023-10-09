@@ -20,9 +20,13 @@ If you get stuck and this document does not help, reach out to our maintainers a
    - add metadata in `(posts)/[slug]/_page/data.ts`, inspect types and play around to see what options are available,
    - generally, other files can be ignored, but feel free to add your own customization / adjustments should it be necessary.
 
-   For components that are only used within your blog post, declare in `(posts)/[slug]/_page/components/*.svelte`.
-
 4. Open a PR when you have finished development.
+
+### How and where do I make components?
+
+For components that are only used within your blog post, declare in `(posts)/[slug]/_page/components/*.svelte`.
+
+If you find a piece of code elsewhere in the codebase that you want to enhance or reuse, declare in `lib/client/components/`.
 
 ## Architecture
 
