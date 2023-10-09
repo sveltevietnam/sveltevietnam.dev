@@ -143,6 +143,7 @@
             </a>
           </li>
         </ul>
+        <p class="mt-4" use:intersect>{@html t.contribute.contact}</p>
       </section>
     </div>
 
