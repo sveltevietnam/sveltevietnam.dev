@@ -1,3 +1,5 @@
+import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
+
 export const en = {
   title: 'Blog',
   subtitle: 'Learn to share. Sharing is learning',
@@ -17,10 +19,11 @@ export const en = {
     description:
       'Svelte Vietnam welcomes everyone to write and share their posts or link their own posts on this blog. This is the most practical and direct way that members can contribute to the community.',
     links: {
-      proposePost: 'Submit a proposal for blog post',
-      requestExternalPost: 'Submit a request to link external post',
+      proposePost: 'Submit a proposal for blog post (Github issue)',
+      requestExternalPost: 'Submit a request to link external post (Github issue)',
       readCodeGuidelines: 'Read "Blog Post: Implementation Guidelines"',
     },
+    contact: `If you do not use Github, contact administrators via <a class="c-link" href="${SOCIAL_LINKS.discord}" target="_blank" rel="noreferrer">Discord</a> or <a class="c-link" href="mailto:${EMAILS.blog}" target="_blank" rel="noreferrer">${EMAILS.blog}</a>.`,
   },
   posts: {
     title: 'Posts',
