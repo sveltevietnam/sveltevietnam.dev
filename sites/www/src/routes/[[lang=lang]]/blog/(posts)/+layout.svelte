@@ -191,6 +191,13 @@
           </ul>
         </nav>
       </aside>
+
+      <p>
+        {t.editLink.intro}
+        <a class="c-link" href={post?.githubUrl} target="_blank" rel="noreferrer"
+          >{t.editLink.label}</a
+        >
+      </p>
     </div>
     <section
       class="mt-[160px] grid grid-cols-[2fr,1fr] p-10 border border-current rounded-[20px] gap-10"

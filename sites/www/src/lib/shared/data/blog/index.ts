@@ -30,6 +30,7 @@ export type Post = {
   date: string;
   title: LangText;
   description: LangText;
+  githubUrl: LangText;
   tags?: PostTag[];
   authors: PostAuthor[];
   ogImage?: string;
@@ -44,6 +45,7 @@ export function localizePost(language: Language, post: Post) {
     title: resolveLangText(language, post.title),
     description: resolveLangText(language, post.description),
     keywords: post.keywords?.map((tag) => resolveLangText(language, tag)),
+    githubUrl: resolveLangText(language, post.githubUrl),
     authors: post.authors.map((author) => ({
       ...author,
       name: resolveLangText(language, author.name),
