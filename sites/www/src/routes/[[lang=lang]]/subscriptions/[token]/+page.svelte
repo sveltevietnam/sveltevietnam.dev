@@ -36,7 +36,7 @@
   }
 </script>
 
-<main class="c-container-design flex-1 pb-[120px] tb:pb-40">
+<main class="c-container-design flex-1 pb-[120px] tb:pb-[200px]">
   <h1 class="tp-h1 mt-8 pc:mt-[60px] uppercase">{t.title}</h1>
   <section class="mt-8 pc:mt-[60px]">
     <form action="?/update" method="POST" use:enhance class="space-y-6">

@@ -297,7 +297,13 @@ importers:
       '@internals/utils':
         specifier: workspace:^
         version: link:../../internals/utils
+      '@svelte-put/avatar':
+        specifier: ^3.0.0
+        version: 3.0.0(svelte@4.2.0)
       '@svelte-put/clickoutside':
+        specifier: ^3.0.0
+        version: 3.0.0
+      '@svelte-put/copy':
         specifier: ^3.0.0
         version: 3.0.0
       '@svelte-put/modal':
@@ -306,12 +312,18 @@ importers:
       '@svelte-put/noti':
         specifier: ^1.1.0
         version: 1.1.0
+      '@svelte-put/preprocess-auto-slug':
+        specifier: ^1.0.1
+        version: 1.0.1(svelte@4.2.0)
       '@svelte-put/preprocess-inline-svg':
         specifier: ^2.1.3
         version: 2.1.3(svelte@4.2.0)
       '@svelte-put/shortcut':
         specifier: ^3.0.0
         version: 3.0.0
+      '@svelte-put/toc':
+        specifier: ^4.0.0
+        version: 4.0.0(svelte@4.2.0)
       '@sveltejs/adapter-cloudflare':
         specifier: 2.3.3
         version: 2.3.3(@sveltejs/kit@1.25.0)
@@ -1638,8 +1650,21 @@ packages:
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
     dev: true
 
+  /@svelte-put/avatar@3.0.0(svelte@4.2.0):
+    resolution: {integrity: sha512-uuKuHlBslqjmcd9jPnhlmf3TmYCPCMjBnP6dFW5CSTDofKo1tLY0KAvjf5Sy605o2y5e9zgMQovFzbJONiTagQ==}
+    peerDependencies:
+      svelte: ^3.55.0 || ^4.0.0
+    dependencies:
+      md5: 2.3.0
+      svelte: 4.2.0
+    dev: true
+
   /@svelte-put/clickoutside@3.0.0:
     resolution: {integrity: sha512-a2aA0+uMo2LGK4bwQE+etra57cJuqQsXRkI0IM+cPzjIowqUg5CMSSeQ6YsXBJUdtzm/s6WQKcmoswK/875wtA==}
+    dev: true
+
+  /@svelte-put/copy@3.0.0:
+    resolution: {integrity: sha512-zfQ68bTC1Mmfairu0fN5y5NPkXV7XUjuPsP+Ntqb8TD6xTa8czBLvgsFxUzOT8hcxfHyXJ8acIhK9V4xgpE94w==}
     dev: true
 
   /@svelte-put/modal@1.0.2(svelte@4.2.0):
@@ -1661,6 +1686,17 @@ packages:
     resolution: {integrity: sha512-NL1xOkuBj+t4WThMYXnwbNVKoa+yJgy7cuxaPEwKNMcl4h/NZivzuGcvSKBM4okGO5z7Ck4aUlS3Wh5VmGDDyg==}
     dev: true
 
+  /@svelte-put/preprocess-auto-slug@1.0.1(svelte@4.2.0):
+    resolution: {integrity: sha512-hfNWTQtGyeaijaE/gVlywczXsHW/aedsaRVBC0PqwdkMKm8zFVg8qAS2YpsDnUEaA5ycFuS/+/bxOKvgZLfE8Q==}
+    peerDependencies:
+      svelte: ^3.55.0 || ^4.0.0
+    dependencies:
+      github-slugger: 2.0.0
+      magic-string: 0.30.3
+      svelte: 4.2.0
+      svelte-parse-markup: 0.1.2(svelte@4.2.0)
+    dev: true
+
   /@svelte-put/preprocess-inline-svg@2.1.3(svelte@4.2.0):
     resolution: {integrity: sha512-Q+8t+PEw0J2x81gdfHbsmCZY1wKRE0dJWkGGIDvNWU4fbYP7qAeC5fkORJiXILKaYFG2N87WMvAEA3QYMTt14Q==}
     peerDependencies:
@@ -1676,6 +1712,14 @@ packages:
 
   /@svelte-put/shortcut@3.0.0:
     resolution: {integrity: sha512-nZg3pwpTi9wUsvQPlqOzEsxZcF2jmY5j+VBq/20IUjjd2OpM92XqZAga0PCCjE6OuEobOt58UMnC2QZgOvk0tQ==}
+    dev: true
+
+  /@svelte-put/toc@4.0.0(svelte@4.2.0):
+    resolution: {integrity: sha512-Z7iWtG1XMQXaeyzV1PZJ47STaBRGEhbW5EHBZOjcoqIrimBNKhtGMNhfecanFBQZZKblT1BCsq5OfOjf/vpFyQ==}
+    peerDependencies:
+      svelte: ^3.55.0 || ^4.0.0
+    dependencies:
+      svelte: 4.2.0
     dev: true
 
   /@sveltejs/adapter-cloudflare@2.3.3(@sveltejs/kit@1.25.0):
@@ -2670,6 +2714,10 @@ packages:
     resolution: {integrity: sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==}
     dev: true
 
+  /charenc@0.0.2:
+    resolution: {integrity: sha512-yrLQ/yVUFXkzg7EDQsPieE/53+0RlaWTs+wBrvW36cyilJ2SaDWfl4Yj7MtLTXleV9uEKefbAGUPv2/iWSooRA==}
+    dev: true
+
   /check-error@1.0.2:
     resolution: {integrity: sha512-BrgHpW9NURQgzoNyjfq0Wu6VFO6D7IZEmJNdtgNqpzGG8RuNFHt2jQxWlAs4HMe119chBnv+34syEZtc6IhLtA==}
     dev: true
@@ -2926,6 +2974,10 @@ packages:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+    dev: true
+
+  /crypt@0.0.2:
+    resolution: {integrity: sha512-mCxBlsHFYh9C+HVpiEacem8FEBnMXgU9gy4zmNC+SXAZNB/1idgp/aulFJ4FgCi7GPEVbfyng092GqL2k2rmow==}
     dev: true
 
   /css-declaration-sorter@6.4.1(postcss@8.4.29):
@@ -4187,6 +4239,10 @@ packages:
     resolution: {integrity: sha512-SyHy3T1v2NUXn29OsWdxmK6RwHD+vkj3v8en8AOBZ1wBQ/hCAQ5bAQTD02kW4W9tUp/3Qh6J8r9EvntiyCmOOw==}
     dev: true
 
+  /github-slugger@2.0.0:
+    resolution: {integrity: sha512-IaOQ9puYtjrkq7Y0Ygl9KDZnrf/aiUJYUpVf89y8kyaxbRG7Y1SrX/jaumrv81vc61+kiMempujsM3Yw7w5qcw==}
+    dev: true
+
   /glob-parent@5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
     engines: {node: '>= 6'}
@@ -4684,6 +4740,10 @@ packages:
     dependencies:
       call-bind: 1.0.2
       has-tostringtag: 1.0.0
+    dev: true
+
+  /is-buffer@1.1.6:
+    resolution: {integrity: sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==}
     dev: true
 
   /is-buffer@2.0.5:
@@ -5299,6 +5359,14 @@ packages:
 
   /mathml-tag-names@2.1.3:
     resolution: {integrity: sha512-APMBEanjybaPzUrfqU0IMU5I0AswKMH7k8OTLs0vvV4KZpExkTkY87nR/zpbuTPj+gARop7aGUbl11pnDfW6xg==}
+    dev: true
+
+  /md5@2.3.0:
+    resolution: {integrity: sha512-T1GITYmFaKuO91vxyoQMFETst+O71VUPEU3ze5GNzDm0OWdP8v1ziTaAEPUr/3kLsY3Sftgz242A1SetQiDL7g==}
+    dependencies:
+      charenc: 0.0.2
+      crypt: 0.0.2
+      is-buffer: 1.1.6
     dev: true
 
   /mdn-data@2.0.28:

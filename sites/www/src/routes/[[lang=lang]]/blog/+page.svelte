@@ -46,7 +46,7 @@
   <div class="mt-6" use:intersect>
     <Breadcrumbs breadcrumbs={data.breadcrumbs} />
   </div>
-  <div class="space-y-[60px] tb:space-y-[120px] pb-[120px] tb:pb-40 mt-8">
+  <div class="space-y-[60px] tb:space-y-[120px] pb-[120px] tb:pb-[200px] mt-8 tb:mt-[60px]">
     <section class="tb:flex tb:justify-between tb:flex-row" use:intersect>
       <div class="">
         <h1 class="tp-h1 uppercase">{t.title}</h1>

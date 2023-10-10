@@ -3,6 +3,7 @@
 /// <reference types="vite/client" />
 /// <reference types="@sveltejs/adapter-cloudflare" />
 
+import type { preparePageData } from '$shared/data/blog';
 import type { Language } from '$shared/services/i18n';
 import type { ColorScheme } from '$shared/types';
 
@@ -22,7 +23,6 @@ declare global {
     interface PageData {
       colorScheme: ColorScheme;
       language: Language;
-      supportedLanguages: Language[];
       meta?: {
         title?: string;
         description?: string;
@@ -46,6 +46,9 @@ declare global {
           creator?: string;
         };
       };
+      // for [blog]/(posts) pages
+      post?: ReturnType<typeof preparePageData>['post'];
+      supportedLanguages?: Language[];
     }
 
     interface Platform {

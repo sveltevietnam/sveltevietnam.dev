@@ -2,6 +2,7 @@ import child_process from 'child_process';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+import autoSlug from '@svelte-put/preprocess-auto-slug';
 import adapter from '@sveltejs/adapter-cloudflare';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 import { mdsvex, defineMDSveXConfig } from 'mdsvex';
@@ -18,7 +19,24 @@ const mdsvexConfig = defineMDSveXConfig({
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   extensions: ['.svelte', ...mdsvexConfig.extensions],
-  preprocess: [vitePreprocess(), mdsvex(mdsvexConfig)],
+  preprocess: [
+    vitePreprocess(),
+    mdsvex(mdsvexConfig),
+    autoSlug((defaultOptions) => ({
+      tags: ['h2', 'h3', 'h4', 'h5', 'h6'],
+      files: ({ filename }) => {
+        return filename.endsWith('.md.svelte');
+      },
+      anchor: {
+        content: '#',
+        position: 'prepend',
+        properties: {
+          ...defaultOptions.anchor.properties,
+          class: 'heading-anchor',
+        },
+      },
+    })),
+  ],
   kit: {
     adapter: adapter({
       routes: {
