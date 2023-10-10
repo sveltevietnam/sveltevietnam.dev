@@ -8,5 +8,5 @@ export const en = {
     title: 'Table of Contents',
     linkLabelToTitle: 'Title',
   },
-  mailingListCall: 'Register to receive notification about new posts from the Svelte Vietnam blog',
+  mailingListCall: 'Register to receive notification about new posts from the Svelte Vietnam Blog',
 } satisfies typeof import('./vi').vi;

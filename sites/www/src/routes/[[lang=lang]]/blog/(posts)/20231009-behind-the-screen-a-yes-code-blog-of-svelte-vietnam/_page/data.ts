@@ -37,6 +37,6 @@ export const post = {
 } satisfies Post;
 
 export const content = {
-  // en: En,
+  en: En,
   vi: Vi,
 } satisfies BlogContent;

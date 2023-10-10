@@ -30,5 +30,6 @@ LICENSE
 api/
 **/*generated/
 *.css
+*.md.svelte
 
 docs/PROJECT_REFERENCES.md

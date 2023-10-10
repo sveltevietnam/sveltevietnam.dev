@@ -49,6 +49,7 @@ export const intersect: Action<HTMLElement, IntersectParameters | undefined, Int
     observer.observe(node);
 
     return {
+      update() {},
       destroy() {
         observer.unobserve(node);
       },

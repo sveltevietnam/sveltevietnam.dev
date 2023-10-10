@@ -105,16 +105,18 @@
     </section>
 
     <div class="grid grid-cols-[3fr,1fr] gap-[60px] mt-[60px]">
-      <section
-        class="post-content prose dark:prose-invert max-w-full rose-svelte-vn"
-        use:toc={{
-          store: tocStore,
-          selector: ':where(h2,h3,h4,h5,h6)',
-          observe: true,
-        }}
-      >
-        <slot />
-      </section>
+      {#key data.language}
+        <section
+          class="post-content prose dark:prose-invert max-w-full rose-svelte-vn"
+          use:toc={{
+            store: tocStore,
+            selector: ':where(h2,h3,h4,h5,h6)',
+            observe: true,
+          }}
+        >
+          <slot />
+        </section>
+      {/key}
 
       <aside class="space-y-[60px]">
         <ul class="flex items-center gap-4">
@@ -174,13 +176,15 @@
                       attribute: 'data-current',
                     },
                   }}
-                  class="c-link c-link--preserved inline-block data-current:text-primary my-2"
+                  class="data-current:text-primary my-2 block"
                   class:ml-4={level === '3'}
                   class:ml-8={level === '4'}
                   class:ml-12={level === '5'}
                   class:ml-16={level === '6'}
                 >
-                  {tocItem.text}
+                  <span class="c-link c-link--preserved">
+                    {tocItem.text}
+                  </span>
                 </a>
               </li>
             {/each}
