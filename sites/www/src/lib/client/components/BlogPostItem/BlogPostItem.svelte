@@ -24,7 +24,9 @@
         alt={tPost.title}
         width="540"
         height="300"
-        class="w-full h-auto object-cover object-center"
+        class="h-auto object-cover object-center max-w-full w-full {!alwaysVertical
+          ? 'tb:w-[200px]'
+          : ''}"
       />
     {:else}
       <div class="fallback-thumbnail">
@@ -46,7 +48,7 @@
     <p>{tPost.description}</p>
     <div class="flex items-center justify-between">
       <p class="font-medium">{tPost.authors.map((a) => a.name).join(', ')}</p>
-      <p class="text-design-neutral-2">{formateDateForBlog(lang, tPost.date)}</p>
+      <time class="text-design-neutral-2">{formateDateForBlog(lang, tPost.date)}</time>
     </div>
   </div>
 </article>

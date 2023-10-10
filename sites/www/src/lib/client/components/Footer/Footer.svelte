@@ -128,9 +128,9 @@
         aria-current={isCurrentPage(pathname, CODE_OF_CONDUCT_PATH)}>{t.navigation.codeOfConduct}</a
       >
       <span aria-disabled class="vertical-separator">|</span>
-      <a href={RSS_PATH} class="c-link-neutral" target="_blank">RSS</a>
+      <a href={RSS_PATH} class="c-link-neutral" target="_blank" rel="noopener">RSS</a>
       <span aria-disabled class="vertical-separator">|</span>
-      <a href={SITEMAP_PATH} class="c-link-neutral" target="_blank">Sitemap</a>
+      <a href={SITEMAP_PATH} class="c-link-neutral" target="_blank" rel="noopener">Sitemap</a>
     </p>
   </div>
 </footer>

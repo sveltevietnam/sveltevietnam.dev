@@ -31,11 +31,7 @@ body:
 
         - Title for display: Developer Advocate at Company C
         - Avatar URL: ...
-        - Social links:
-            - twitter: https://twitter.com/example-nguyenvana
-            - github: https://github.com/example-nguyenvana
-            - linkedin: https://linkedin.com/in/example-nguyenvana
-            - personal website: https://example-nguyenvana.dev
+        - Profile Link: https://github.com/example-nguyenvana
 
         # ... thêm đồng tác giả theo mẫu trên (nếu có)
         ```

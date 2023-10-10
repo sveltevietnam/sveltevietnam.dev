@@ -1,7 +1,6 @@
 import type { ComponentType, SvelteComponent } from 'svelte';
 
 import { resolveLangText, type LangText, type Language } from '$shared/services/i18n';
-import type { ProfileLinks } from '$shared/types';
 
 export type PostTag =
   | 'svelte'
@@ -22,7 +21,7 @@ export type ExternalPost = {
 export type PostAuthor = {
   name: LangText;
   title?: LangText;
-  links?: ProfileLinks;
+  link?: LangText;
   avatarUrl?: string;
 };
 
@@ -35,6 +34,7 @@ export type Post = {
   authors: PostAuthor[];
   ogImage?: string;
   keywords?: LangText[];
+  readMinutes?: number;
 };
 
 /** resolve any LangText to a string */
@@ -48,6 +48,7 @@ export function localizePost(language: Language, post: Post) {
       ...author,
       name: resolveLangText(language, author.name),
       title: resolveLangText(language, author.title),
+      link: resolveLangText(language, author.link),
     })),
   };
 }

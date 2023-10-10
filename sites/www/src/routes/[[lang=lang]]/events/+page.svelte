@@ -37,7 +37,7 @@
       />
     </div>
   </section>
-  <div class="space-y-[60px] tb:space-y-[120px] pb-[120px] tb:pb-40">
+  <div class="space-y-[60px] tb:space-y-[120px] pb-[120px] tb:pb-[200px]">
     <section>
       <ConsecutiveFadeUpIntro selector=".char">
         <h2 class="tp-h2 uppercase">

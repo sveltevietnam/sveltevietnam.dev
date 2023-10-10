@@ -51,10 +51,6 @@
     }
   }
 
-  li[data-current]:not([data-current='false']) {
-    cursor: text;
-  }
-
   a {
     --underline-height: 2px;
 
@@ -79,7 +75,6 @@
     }
 
     &[aria-current]:not([aria-current='false']) {
-      pointer-events: none;
       color: var(--active-color);
     }
 
