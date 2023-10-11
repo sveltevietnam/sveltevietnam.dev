@@ -20,6 +20,7 @@
   import type { ColorScheme } from '$shared/types';
 
   /** translations */
+  export let action = '?/mail';
   export let superValidated: SuperValidated<MailSchema>;
   export let language: Language;
   export let colorScheme: ColorScheme;
@@ -56,7 +57,7 @@
   }
 </script>
 
-<form class="space-y-2 {cls}" method="POST" use:enhance action="?/mail" autocomplete="on">
+<form class="space-y-2 {cls}" method="POST" use:enhance {action} autocomplete="on">
   <div class="relative">
     {#if $errors.name?.length}
       <p class="error">

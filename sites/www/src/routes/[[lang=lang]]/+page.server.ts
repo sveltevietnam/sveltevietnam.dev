@@ -1,14 +1,9 @@
 import { LOAD_DEPENDENCIES, SOCIAL_LINKS } from '$shared/constants';
-import {
-  createMockedExternalPosts,
-  createMockedJobs,
-  createMockedPosts,
-  createMockedProjects,
-  createMockedSponsors,
-} from '$shared/mocks';
+import { createMockedJobs, createMockedProjects, createMockedSponsors } from '$shared/mocks';
 import { ROADMAP_PATH } from '$shared/services/navigation';
 
 import type { PageServerLoad } from './$types';
+import { EXTERNAL_POSTS, INTERNAL_POSTS } from './blog/_page/data';
 
 const metaTranslations = {
   vi: {
@@ -34,8 +29,8 @@ export const load: PageServerLoad = async ({ depends, locals: { language } }) =>
   return {
     events: [],
     posts: {
-      internal: createMockedPosts(2),
-      external: createMockedExternalPosts(1)[0],
+      internal: INTERNAL_POSTS.slice(0, 2),
+      external: EXTERNAL_POSTS.at(0),
     },
     jobs: createMockedJobs(),
     projects: createMockedProjects(4),

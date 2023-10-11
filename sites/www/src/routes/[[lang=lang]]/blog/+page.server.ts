@@ -1,8 +1,4 @@
-import { superValidate } from 'sveltekit-superforms/client';
-
-import { mailSchema } from '$client/components/MailRegistrationForm';
 import { mail } from '$server/actions/mail/mail.server';
-import { translations as mailT } from '$server/actions/mail/translation';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
@@ -26,12 +22,10 @@ const metaTranslations = {
 export const load: PageServerLoad = async ({ url, depends, locals: { language } }) => {
   depends(LOAD_DEPENDENCIES.LANGUAGE);
   const tMeta = metaTranslations[language];
-  const mailForm = await superValidate(mailSchema);
   return {
     breadcrumbs: buildBreadcrumbs(url.pathname),
     translations: {
       page: pageT[language],
-      mail: mailT[language],
     },
     meta: {
       ...tMeta,
@@ -41,7 +35,6 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
       internal: INTERNAL_POSTS,
       external: EXTERNAL_POSTS,
     },
-    mailForm,
   };
 };
 

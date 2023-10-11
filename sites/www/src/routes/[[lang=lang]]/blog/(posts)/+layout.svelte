@@ -6,7 +6,6 @@
   import { page } from '$app/stores';
   import { Breadcrumbs } from '$client/components/Breadcrumbs';
   import { FallbackImage } from '$client/components/FallbackImage';
-  import MailRegistrationForm from '$client/components/MailRegistrationForm/MailRegistrationForm.svelte';
   import { noti } from '$client/notifications';
   import type { Breadcrumb } from '$shared/services/navigation';
   import { formateDateForBlog } from '$shared/utils/datetime';
@@ -24,7 +23,6 @@
   $: encodedTitle = encodeURIComponent(post?.title ?? '');
 
   $: t = data.translations.layout;
-  $: tMail = data.translations.mail;
 
   function onCopiedCanonical() {
     noti.info(t.urlCopyNotice);
@@ -35,7 +33,7 @@
 
 <main class="c-container-design">
   <Breadcrumbs {breadcrumbs} class="mt-6" />
-  <article class="mt-8 pb-[120px] tb:pb-[200px] tb:mt-[60px]">
+  <article class="mt-8 tb:mt-[60px]">
     {#if isLangNotSupported}
       <p class="mb-[60px] p-4 border rounded-lg border-design-neutral-1">
         {@html t.unsupportedLanguage}
@@ -199,17 +197,6 @@
         >
       </p>
     </div>
-    <section
-      class="mt-[160px] grid grid-cols-[2fr,1fr] p-10 border border-current rounded-[20px] gap-10"
-    >
-      <p class="tp-h2 font-medium">{t.mailingListCall}</p>
-      <MailRegistrationForm
-        t={tMail}
-        language={data.language}
-        colorScheme={data.colorScheme}
-        superValidated={data.mailForm}
-      />
-    </section>
   </article>
 </main>
 
