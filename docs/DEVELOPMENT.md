@@ -43,13 +43,23 @@ To extend the `@recommended` list, add the extension ID to the `extensions` arra
 
 ## Code standard
 
-### Commit Guidelines
+> [!IMPORTANT]
+> Rules are to be broken. There will always be exceptions. The following guidelines are not set in stone, but rather a set of recommendations to help us work together more effectively.
+
+### What is a Good Commit / Pull Request?
+
+A commit should:
+
+1. have a descriptive message that hints at what the commit is about, exceptionally helpful for other contributors and reviewers.
+2. encapsulate a complete change, i.e a single feature, bug fix, or refactor that can make sense on its own.
+3. ideally capture a working state of the application / site. If not, it should be marked as `[WIP]` in its commit message.
+4. span a limited scope and has minimal footprint. If a commit does too much or has changes to many files, it is an indicator that the changes might be broken down into smaller commits.
+
+Similarly, each pull request (PR) should work towards one issue or self-contained goal.
+
+### Commit Message Guidelines
 
 We follow the [Conventional Commits][conventionalcommits] guidelines for writing git commit message. Please familiarize yourself with the guidelines and be consistent.
-
-Each commit encapsulates a complete change and ideally captures a **working state** of the application / site.
-
-Each pull request (PR) should work towards one issue or self-contained goal.
 
 ### Code Style Enforcement
 

@@ -27,7 +27,7 @@ If you have a PR ready as your proposed implementation, you can [create an issue
 
 ## Development
 
-Follow the guidelines at [DEV_SETUP].
+Follow the guidelines at [DEVELOPMENT].
 
 <!-- GITHUB -->
 
@@ -38,5 +38,5 @@ Follow the guidelines at [DEV_SETUP].
 
 <!-- internal references -->
 
-[DEV_SETUP]: ./docs/DEV_SETUP.md
+[DEVELOPMENT]: ./docs/DEVELOPMENT.md
 [DEV_BLOG_POST]: ./docs/DEV_BLOG_POST.md

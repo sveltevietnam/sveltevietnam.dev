@@ -12,7 +12,7 @@ If you get stuck and this document does not help, reach out to our maintainers a
 
 ## Steps
 
-1. Clone the repo, and follow [DEV_SETUP](./DEV_SETUP.md) to get the site running on local dev.
+1. Clone the repo, and follow [DEVELOPMENT](./DEVELOPMENT.md) to get the site running on local dev.
 2. Run `pnpm post:create` at `sites/www` directory, and follow the prompts to setup a new blog post.
 3. Use git to track newly generated files and start from there:
 
