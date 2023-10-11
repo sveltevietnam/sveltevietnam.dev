@@ -12,24 +12,6 @@ module.exports = plugin(
 
     addComponents(components);
     addUtilities(utilities);
-
-    addUtilities({
-      '.square': {
-        'aspect-ratio': '1 / 1',
-        'min-height': '0',
-        'min-width': '0',
-      },
-    });
-
-    addUtilities({
-      '.separator': {
-        display: 'block',
-        height: '1px',
-        width: '100%',
-        background: 'currentcolor',
-        opacity: '20%',
-      },
-    });
   },
   { theme },
 );

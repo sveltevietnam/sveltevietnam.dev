@@ -146,3 +146,24 @@
     }
   }
 }
+
+.c-link-image {
+  position: relative;
+  overflow: hidden;
+  display: block;
+
+  :where(& img) {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+
+    object-fit: cover;
+    object-position: center;
+
+    transition: transform 400ms ease-out;
+  }
+
+  :where(&:hover img) {
+    transform: scale(1.05);
+  }
+}

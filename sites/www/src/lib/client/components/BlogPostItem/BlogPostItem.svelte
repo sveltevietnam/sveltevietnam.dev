@@ -12,30 +12,31 @@
   export { cls as class };
 
   $: tPost = localizePost(lang, post);
+  $: href = `${BLOG_PATH}/${tPost.slug}`;
 
   const titleClass = 'tp-h4 font-bold c-link c-link--preserved';
 </script>
 
 <article class={cls} class:always-vertical={alwaysVertical}>
   <div>
-    {#if tPost.ogImage}
-      <img
-        src={tPost.ogImage}
-        alt={tPost.title}
-        width="540"
-        height="300"
-        class="h-auto object-cover object-center max-w-full w-full {!alwaysVertical
-          ? 'tb:w-[200px]'
-          : ''}"
-      />
-    {:else}
-      <div class="fallback-thumbnail">
-        <FallbackImage />
-      </div>
-    {/if}
+    <a {href} class="c-link-image">
+      {#if tPost.ogImage}
+        <img
+          src={tPost.ogImage}
+          alt={tPost.title}
+          width="540"
+          height="300"
+          class={!alwaysVertical ? 'tb:w-[200px]' : ''}
+        />
+      {:else}
+        <div class="fallback-thumbnail">
+          <FallbackImage />
+        </div>
+      {/if}
+    </a>
   </div>
   <div class="content">
-    <a href="{BLOG_PATH}/{tPost.slug}" class="block w-fit">
+    <a {href} class="block w-fit">
       <slot name="title" class={titleClass} text={tPost.title}>
         <span class={titleClass}>{tPost.title}</span>
       </slot>
