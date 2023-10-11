@@ -4,7 +4,6 @@
   import { Breadcrumbs } from '$client/components/Breadcrumbs';
   import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
   import { ExternalBlogPostItem } from '$client/components/ExternalBlogPostItem';
-  import { MailRegistrationForm } from '$client/components/MailRegistrationForm';
   import { SplitText } from '$client/components/SplitText';
   import ToBeAnnounced from '$client/components/ToBeAnnounced/ToBeAnnounced.svelte';
 
@@ -13,7 +12,6 @@
   export let data: PageData;
 
   $: t = data.translations.page;
-  $: tMail = data.translations.mail;
 
   const ISSUE_TEMPLATE_LINK = {
     vi: {
@@ -46,7 +44,7 @@
   <div class="mt-6" use:intersect>
     <Breadcrumbs breadcrumbs={data.breadcrumbs} />
   </div>
-  <div class="space-y-[60px] tb:space-y-[120px] pb-[120px] tb:pb-[200px] mt-8 tb:mt-[60px]">
+  <div class="space-y-[60px] tb:space-y-[120px] mt-8 tb:mt-[60px]">
     <section class="tb:flex tb:justify-between tb:flex-row" use:intersect>
       <div class="">
         <h1 class="tp-h1 uppercase">{t.title}</h1>
@@ -209,19 +207,6 @@
             </div>
           {/if}
         </section>
-        <div
-          class="border-current border rounded-[20px] p-6 mt-[60px] tb:sticky tb:top-[calc(var(--header-height)+60px)] max-w-[320px]"
-          use:intersect
-        >
-          <p>{t.mail.description}</p>
-          <MailRegistrationForm
-            t={tMail}
-            language={data.language}
-            colorScheme={data.colorScheme}
-            superValidated={data.mailForm}
-            class="mt-6"
-          />
-        </div>
       </div>
     </div>
   </div>

@@ -8,7 +8,6 @@ export const vi = {
     title: 'Mục lục',
     linkLabelToTitle: 'Tiêu đề',
   },
-  mailingListCall: 'Đăng kí nhận thông báo bài viết mới từ Blog của Svelte Việt Nam',
   editLink: {
     intro: 'Bạn tìm thấy lỗi chính ta hay cần đính chính nội dung?',
     label: 'Sửa đổi trang này tại Github',

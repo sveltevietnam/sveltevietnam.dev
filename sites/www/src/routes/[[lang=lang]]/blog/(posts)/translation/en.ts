@@ -8,7 +8,6 @@ export const en = {
     title: 'Table of Contents',
     linkLabelToTitle: 'Title',
   },
-  mailingListCall: 'Register to receive notification about new posts from the Svelte Vietnam Blog',
   editLink: {
     intro: 'Found a typo or need correction?',
     label: 'Edit this page on Github',
