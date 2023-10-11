@@ -23,7 +23,7 @@
 
 <div class="c-container-design pb-[120px] tb:pb-[200px]">
   <div
-    class="mt-[160px] grid grid-cols-1 tb:grid-cols-[2fr,1fr] p-8 tb:p-10 border border-current rounded-[20px] gap-8 tb:gap-10"
+    class="mt-[60px] tb:mt-[160px] grid grid-cols-1 tb:grid-cols-[2fr,1fr] p-8 tb:p-10 border border-current rounded-[20px] gap-8 tb:gap-10"
   >
     <p class="tp-h2 font-medium">{t.mailingListCall}</p>
     <MailRegistrationForm
