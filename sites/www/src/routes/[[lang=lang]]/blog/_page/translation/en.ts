@@ -26,16 +26,16 @@ export const en = {
     contact: `If you do not use Github, contact administrators via <a class="c-link" href="${SOCIAL_LINKS.discord}" target="_blank" rel="noreferrer">Discord</a> or <a class="c-link" href="mailto:${EMAILS.blog}" target="_blank" rel="noreferrer">${EMAILS.blog}</a>.`,
   },
   posts: {
-    title: 'Posts',
+    title: 'Other Posts',
     tba: {
-      description: 'No post is available yet.',
+      description: 'No other post is available yet.',
       cta: 'Propose your blog post',
     },
   },
   externalPosts: {
     title: 'Links',
     tba: {
-      description: 'No post is available yet.',
+      description: 'No link is available yet.',
       cta: 'Request to link yours',
     },
   },
