@@ -26,16 +26,16 @@ export const vi = {
     contact: `Nếu bạn không sử dụng Github, hãy liên hệ với ban quản trị qua <a class="c-link" href="${SOCIAL_LINKS.discord}" target="_blank" rel="noreferrer">Discord</a> hoặc hòm thư <a class="c-link" href="mailto:${EMAILS.blog}" target="_blank" rel="noreferrer">${EMAILS.blog}</a>.`,
   },
   posts: {
-    title: 'Bài viết',
+    title: 'Bài viết khác',
     tba: {
-      description: 'Chưa có bài viết nào.',
+      description: 'Chưa có bài viết khác nào.',
       cta: 'Gởi đề xuất đăng bài',
     },
   },
   externalPosts: {
     title: 'Liên kết',
     tba: {
-      description: 'Chưa có bài viết nào.',
+      description: 'Chưa có liên kết nào.',
       cta: 'Gởi yêu cầu liên kết bài viết của bạn',
     },
   },

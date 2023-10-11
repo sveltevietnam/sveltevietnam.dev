@@ -4,10 +4,10 @@ import { mailSchema } from '$client/components/MailRegistrationForm';
 import { mail } from '$server/actions/mail/mail.server';
 import { translations as mailT } from '$server/actions/mail/translation';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
-import { createMockedExternalPosts, createMockedPosts } from '$shared/mocks';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { Actions, PageServerLoad } from './$types';
+import { INTERNAL_POSTS, EXTERNAL_POSTS } from './_page/data';
 import { translations as pageT } from './_page/translation';
 
 const metaTranslations = {
@@ -38,8 +38,8 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
       canonical: `https://sveltevietnam.dev/${language}/blog`,
     },
     posts: {
-      internal: createMockedPosts(10),
-      external: createMockedExternalPosts(5),
+      internal: INTERNAL_POSTS,
+      external: EXTERNAL_POSTS,
     },
     mailForm,
   };
