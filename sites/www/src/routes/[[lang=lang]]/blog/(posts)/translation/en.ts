@@ -8,6 +8,7 @@ export const en = {
     title: 'Table of Contents',
     linkLabelToTitle: 'Title',
   },
+  share: 'Share',
   editLink: {
     intro: 'Found a typo or need correction?',
     label: 'Edit this page on Github',

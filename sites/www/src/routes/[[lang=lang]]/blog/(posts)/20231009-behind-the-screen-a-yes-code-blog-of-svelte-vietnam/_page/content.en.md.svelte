@@ -28,7 +28,7 @@ Writers can also [request to link relevant external posts from other platforms](
   alt="authors"
   loading="lazy"
   decoding="async"
-  class="h-[320px] mx-auto rounded w-auto max-w-full"
+  class="tb:w-[570px] mx-auto rounded max-w-full h-auto"
   height="320"
   width="570"
 />
@@ -51,7 +51,7 @@ It is important to emphasize the undeniable values that “no-code" solutions ha
   alt="confused man"
   loading="lazy"
   decoding="async"
-  class="h-[320px] mx-auto rounded w-auto max-w-full"
+  class="tb:w-[570px] mx-auto rounded max-w-full h-auto"
   height="320"
   width="570"
 />
@@ -60,7 +60,7 @@ Perhaps it is because developers have to remember `ls` and also file explorer to
 
 If Wordpress is “no-code”, then our Blog is “yes-code” by the rationale already discussed. If most writers are developers - those who already know the `ls` command - then who are we abstracting the complexity for? If we know that hard-coding a blog post is fast, easy, and free, then why would we need a content management system? By removing unnecessary abstraction, we can avoid complexity for administrators in system maintenance and lower the infrastructure cost. The source code is also more accessible because now you only have to run a few commands to replicate a working environment rather than rely on third-party services to emulate an otherwise heavy-weighted infrastructure. And finally, writer and coder can code and write instead of learning a new editor with new features and buttons that, when clicked, would explode the whole system because the editor maintainer obviously “did not have time to account for this edge case” as they usually say in explanation to product owner during incident postmortem sessions.
 
-<svg inline-src="./images/tech-and-bug" class="my-8 mx-auto h-[320px]" />
+<svg inline-src="./images/tech-and-bug" class="my-8 mx-auto max-w-full w-[320px] h-auto" />
 
 ## Let’s go with the flow
 
@@ -89,7 +89,7 @@ Besides, apart from the “**[Blog Post: Implementation Guidelines](https://gith
   alt="creative blank paper"
   loading="lazy"
   decoding="async"
-  class="h-[320px] mx-auto rounded w-auto max-w-full"
+  class="tb:w-[570px] mx-auto rounded max-w-full h-auto"
   height="320"
   width="570"
 />
@@ -107,7 +107,7 @@ In a few words, the Svelte Vietnam Blog is a yes-code platform; each blog post i
   alt="let's write"
   loading="lazy"
   decoding="async"
-  class="h-[400px] mx-auto rounded w-auto max-w-full"
-  height="400"
-  width="600"
+  class="tb:tb:w-[570px] mx-auto rounded w-auto max-w-full"
+  height="360"
+  width="540"
 />

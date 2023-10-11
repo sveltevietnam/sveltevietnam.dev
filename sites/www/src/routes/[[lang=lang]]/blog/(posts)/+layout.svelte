@@ -102,7 +102,7 @@
       </div>
     </section>
 
-    <div class="grid grid-cols-[3fr,1fr] gap-[60px] mt-[60px]">
+    <div class="post-grid mt-[60px]">
       {#key data.language}
         <section
           class="post-content prose dark:prose-invert max-w-full rose-svelte-vn"
@@ -113,11 +113,16 @@
           }}
         >
           <slot />
+          <p>
+            {t.editLink.intro}
+            <a href={post?.githubUrl} target="_blank" rel="noreferrer">{t.editLink.label}</a>
+          </p>
         </section>
       {/key}
 
-      <aside class="space-y-[60px]">
-        <ul class="flex items-center gap-4">
+      <section>
+        <h2 class="tp-h3 after:mt-2 after:separator">{t.share}</h2>
+        <ul class="post-share flex items-center gap-4 mt-8">
           <li>
             <button
               class="p-[10px] block w-fit c-link-neutral border border-current rounded-full"
@@ -158,44 +163,37 @@
             </a>
           </li>
         </ul>
+      </section>
 
-        <nav aria-label={t.tableOfContents.title} class="toc">
-          <h2 class="tp-h3 font-medium after:mt-2 after:separator">{t.tableOfContents.title}</h2>
-          <ul class="mt-8">
-            {#each tocItems as tocItem (tocItem.id)}
-              {@const level = tocItem.element.tagName.slice(1)}
-              <li>
-                <!-- svelte-ignore a11y-missing-attribute -->
-                <a
-                  use:toclink={{
-                    tocItem,
-                    store: tocStore,
-                    observe: {
-                      attribute: 'data-current',
-                    },
-                  }}
-                  class="data-current:text-primary my-2 block"
-                  class:ml-4={level === '3'}
-                  class:ml-8={level === '4'}
-                  class:ml-12={level === '5'}
-                  class:ml-16={level === '6'}
-                >
-                  <span class="c-link c-link--preserved">
-                    {tocItem.text}
-                  </span>
-                </a>
-              </li>
-            {/each}
-          </ul>
-        </nav>
-      </aside>
-
-      <p>
-        {t.editLink.intro}
-        <a class="c-link" href={post?.githubUrl} target="_blank" rel="noreferrer"
-          >{t.editLink.label}</a
-        >
-      </p>
+      <nav aria-label={t.tableOfContents.title} class="post-toc">
+        <h2 class="tp-h3 font-medium after:mt-2 after:separator">{t.tableOfContents.title}</h2>
+        <ul class="mt-8">
+          {#each tocItems as tocItem (tocItem.id)}
+            {@const level = tocItem.element.tagName.slice(1)}
+            <li>
+              <!-- svelte-ignore a11y-missing-attribute -->
+              <a
+                use:toclink={{
+                  tocItem,
+                  store: tocStore,
+                  observe: {
+                    attribute: 'data-current',
+                  },
+                }}
+                class="data-current:text-primary my-2 block"
+                class:ml-4={level === '3'}
+                class:ml-8={level === '4'}
+                class:ml-12={level === '5'}
+                class:ml-16={level === '6'}
+              >
+                <span class="c-link c-link--preserved">
+                  {tocItem.text}
+                </span>
+              </a>
+            </li>
+          {/each}
+        </ul>
+      </nav>
     </div>
   </article>
 </main>
@@ -225,8 +223,44 @@
     }
   }
 
-  .toc {
-    position: sticky;
-    top: calc(var(--header-height) + 60px);
+  .post-grid {
+    position: relative;
+
+    display: grid;
+    grid-template-areas:
+      'toc'
+      'content'
+      'share';
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, auto);
+    row-gap: 60px;
+
+    @screen tb {
+      grid-template-areas:
+        'content share'
+        'content toc';
+      grid-template-columns: 3fr 1fr;
+      grid-template-rows: auto 1fr;
+      column-gap: 60px;
+    }
+  }
+
+  .post-content {
+    grid-area: content;
+  }
+
+  .post-share {
+    grid-area: share;
+    height: fit-content;
+  }
+
+  .post-toc {
+    grid-area: toc;
+    height: fit-content;
+
+    @screen tb {
+      position: sticky;
+      top: calc(var(--header-height) + 60px);
+    }
   }
 </style>

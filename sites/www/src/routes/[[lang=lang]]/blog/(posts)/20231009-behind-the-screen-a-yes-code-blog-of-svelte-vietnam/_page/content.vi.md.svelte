@@ -28,7 +28,7 @@ Ngoài ra, người viết còn có thể [gởi yêu cầu liên kết bài vi�
   alt="authors"
   loading="lazy"
   decoding="async"
-  class="h-[320px] mx-auto rounded w-auto max-w-full"
+  class="tb:w-[570px] mx-auto rounded h-auto max-w-full"
   height="320"
   width="570"
 />
@@ -50,7 +50,7 @@ Chúng ta không thể phủ nhận được giá trị mà các giải pháp no
   alt="confused man"
   loading="lazy"
   decoding="async"
-  class="h-[320px] mx-auto rounded w-auto max-w-full"
+  class="tb:w-[570px] mx-auto rounded h-auto max-w-full"
   height="320"
   width="570"
 />
@@ -59,7 +59,7 @@ Có lẽ vì các lập trình viên phải nhớ câu lệnh `ls` và nhớ c�
 
 Thế thì nếu Wordpress là “no-code”, thì Blog của chúng ta là “yes-code”, xuất phát từ những tư duy trên. Nếu đa số người viết đều là lập trình viên - những người đã biết dùng câu lệnh `ls` - thì ta che đi sự phức tạp cho ai nữa. Nếu ta biết rằng việc tự tay code lên một bài viết là nhanh chóng, dễ dàng, và tự do thì đâu cần một hệ thống quản lý nội dung (content management sysytem, CMS) để làm gì. Bằng cách giảm đi các lớp đậy (abstraction), ta không phải phóng đại thêm sự phức tạp đã có cho ban quản trị trong việc bảo trì hệ thống và chi trả cho hạ tầng. Mã nguồn cũng sẽ dễ tiếp cận hơn vì bây giờ bạn chỉ cần chạy vài câu lệnh là có được cả hệ thống, thay vì phải giả lập hạ tầng bằng các dịch vụ thứ ba. Và cuối cùng, người viết, hay người code, có thể đi code và đi viết, thay vì đi làm quen với một editor khác, với những cái nút và tính năng mới lạ mà khi nhấn vào thì cả hệ thống vỡ hết vì nhà phát triển editor “không có thời gian để tính đến trường hợp đấy” như họ hay nói trong các buổi giải trình lý do bug cho product owner.
 
-<svg inline-src="./images/tech-and-bug" class="my-8 mx-auto h-[320px]" />
+<svg inline-src="./images/tech-and-bug" class="my-8 mx-auto max-w-full w-[320px] h-auto" />
 
 ## Đến đâu thì lo đến đấy
 
@@ -88,7 +88,7 @@ Bên cạnh đó, ngoài văn bản “**[Blog Post: Implementation Guidelines](
   alt="creative blank paper"
   loading="lazy"
   decoding="async"
-  class="h-[320px] mx-auto rounded w-auto max-w-full"
+  class="tb:w-[570px] mx-auto rounded h-auto max-w-full"
   height="320"
   width="570"
 />
@@ -106,7 +106,7 @@ Nói tóm lại, Blog của Svelte Việt Nam là một nền tảng “yes-code
   alt="let's write"
   loading="lazy"
   decoding="async"
-  class="h-[400px] mx-auto rounded w-auto max-w-full"
-  height="400"
-  width="600"
+  class="tb:w-[570px] mx-auto rounded w-auto max-w-full"
+  height="360"
+  width="540"
 />

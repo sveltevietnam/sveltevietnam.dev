@@ -8,8 +8,9 @@ export const vi = {
     title: 'Mục lục',
     linkLabelToTitle: 'Tiêu đề',
   },
+  share: 'Chia sẻ',
   editLink: {
     intro: 'Bạn tìm thấy lỗi chính ta hay cần đính chính nội dung?',
-    label: 'Sửa đổi trang này tại Github',
+    label: 'Sửa trang này tại Github',
   },
 };
