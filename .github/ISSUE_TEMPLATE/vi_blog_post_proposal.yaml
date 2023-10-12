@@ -110,6 +110,22 @@ body:
   - type: markdown
     attributes:
       value: |
+        ## Ngôn ngữ gốc
+
+        Chọn ngôn ngữ tự nhiên nhất cho bài viết
+  - type: dropdown
+    id: original-language
+    attributes:
+      label: Original Language
+      options:
+        - Tiếng Việt
+        - Tiếng Anh
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
         ## Từ khoá (Keywords)
 
         Điền chuỗi các từ khoá, cách nhau bằng dấu phẩy (dùng cho meta tags). Ví dụ:

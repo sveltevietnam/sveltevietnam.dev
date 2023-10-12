@@ -6,10 +6,10 @@ unless_exists: true
 import type { BlogContent } from '$shared/data/blog';
 import type { Post } from '$shared/data/blog';
 
-<% if (languages.en) { -%>
+<% if (languageMap.en) { -%>
 import En from './content.en.md.svelte';
 <% } -%>
-<% if (languages.vi) { -%>
+<% if (languageMap.vi) { -%>
 import Vi from './content.vi.md.svelte';
 <% } -%>
 
@@ -17,7 +17,15 @@ export const post = {
   slug: '<%= post.slug %>',
   date: '<%= post.date %>',
   title: '<%= post.title %>',
-  description: '',
+  description: {
+    en: '',
+    vi: '',
+  },
+  githubUrl: {
+    en: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5B%5Blang=lang%5D%5D/blog/(posts)/<%= post.slug %>/_page/content.en.md.svelte',
+    vi: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5B%5Blang=lang%5D%5D/blog/(posts)/<%= post.slug %>/_page/content.vi.md.svelte',
+  },
+  originalLang: '<%= post.originalLang %>',
   /** optional metadata fields */
   authors: [
     {
@@ -28,10 +36,10 @@ export const post = {
 } satisfies Post;
 
 export const content = {
-<% if (languages.en) { -%>
+<% if (languageMap.en) { -%>
   en: En,
 <% } -%>
-<% if (languages.vi) { -%>
+<% if (languageMap.vi) { -%>
   vi: Vi,
 <% } -%>
 } satisfies BlogContent;

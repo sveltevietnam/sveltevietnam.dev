@@ -1,5 +1,5 @@
 ---
-to: "<%= languages.en ? `${baseDir}/_page/content.en.md.svelte` : null %>"
+to: "<%= languageMap.en ? `${baseDir}/_page/content.en.md.svelte` : null %>"
 unless_exists: true
 ---
 

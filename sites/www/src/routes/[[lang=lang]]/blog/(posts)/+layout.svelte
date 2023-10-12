@@ -34,11 +34,6 @@
 <main class="c-container-design">
   <Breadcrumbs {breadcrumbs} class="mt-6" />
   <article class="mt-8 tb:mt-[60px]">
-    {#if isLangNotSupported}
-      <p class="mb-[60px] p-4 border rounded-lg border-design-neutral-1">
-        {@html t.unsupportedLanguage}
-      </p>
-    {/if}
     <section>
       {#if post?.ogImage}
         <img
@@ -85,22 +80,41 @@
             </li>
           {/each}
         </ul>
-        <div class="separator" />
-      </div>
-      <div class="flex justify-between text-design-neutral-2 mt-2 tp-cap1">
-        {#if post?.readMinutes}
-          <p class="shrink-0">
-            {post.readMinutes}
-            {t.readMinutes}
-          </p>
-        {/if}
-        {#if post?.date}
-          <p class="text-right flex-1 shrink-0">
-            {formateDateForBlog(data.language, post?.date)}
-          </p>
-        {/if}
+        <div class="tp-cap1 text-design-neutral-2">
+          <div class="separator mb-2" />
+          <div class="flex justify-between text-design-neutral-2 tp-cap1">
+            <div class="shrink-0">
+              {#if !isLangNotSupported}
+                <p>
+                  {#if data.language === post?.originalLang}
+                    {t.language.original}
+                  {:else}
+                    {t.language.translated}
+                  {/if}
+                </p>
+              {/if}
+              {#if post?.readMinutes}
+                <p class="mt-1">
+                  {post.readMinutes}
+                  {t.readMinutes}
+                </p>
+              {/if}
+            </div>
+            {#if post?.date}
+              <p class="text-right flex-1 shrink-0">
+                {formateDateForBlog(data.language, post?.date)}
+              </p>
+            {/if}
+          </div>
+        </div>
       </div>
     </section>
+
+    {#if isLangNotSupported}
+      <p class="mt-[60px] p-4 border rounded-lg border-design-neutral-1">
+        {@html t.language.unsupported}
+      </p>
+    {/if}
 
     <div class="post-grid mt-[60px]">
       {#key data.language}
@@ -180,7 +194,7 @@
                     attribute: 'data-current',
                   },
                 }}
-                class="data-current:text-primary my-2 block"
+                class="tb:data-current:text-primary my-2 block"
                 class:ml-4={level === '3'}
                 class:ml-8={level === '4'}
                 class:ml-12={level === '5'}

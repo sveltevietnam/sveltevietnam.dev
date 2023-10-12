@@ -110,6 +110,22 @@ body:
   - type: markdown
     attributes:
       value: |
+        ## Original Language
+
+        Choose the language that feel more natural for you or your readers
+  - type: dropdown
+    id: original-language
+    attributes:
+      label: Original Language
+      options:
+        - Vietnamese
+        - English
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
         ## Keywords
 
         Provide an optional comma-separated list of keywords, used for meta tags

@@ -1,5 +1,5 @@
 ---
-to: "<%= languages.vi ? `${baseDir}/_page/content.vi.md.svelte` : null %>"
+to: "<%= languageMap.vi ? `${baseDir}/_page/content.vi.md.svelte` : null %>"
 unless_exists: true
 ---
 
