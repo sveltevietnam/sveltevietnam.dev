@@ -7,6 +7,7 @@
   import { Breadcrumbs } from '$client/components/Breadcrumbs';
   import { FallbackImage } from '$client/components/FallbackImage';
   import { noti } from '$client/notifications';
+  import { textTip } from '$client/tooltips';
   import type { Breadcrumb } from '$shared/services/navigation';
   import { formateDateForBlog } from '$shared/utils/datetime';
 
@@ -85,13 +86,22 @@
           <div class="flex justify-between text-design-neutral-2 tp-cap1">
             <div class="shrink-0">
               {#if !isLangNotSupported}
-                <p>
-                  {#if data.language === post?.originalLang}
-                    {t.language.original}
-                  {:else}
-                    {t.language.translated}
-                  {/if}
-                </p>
+                {@const text =
+                  data.language === post?.originalLang
+                    ? t.language.original
+                    : t.language.translated}
+                {#key data.language}
+                  <p>
+                    {text.label}
+                    <svg
+                      inline-src="google/info"
+                      class="inline-block fill-current align-text-top ml-1 cursor-help"
+                      height="16"
+                      width="16"
+                      use:textTip={{ content: text.description }}
+                    />
+                  </p>
+                {/key}
               {/if}
               {#if post?.readMinutes}
                 <p class="mt-1">

@@ -272,6 +272,9 @@ importers:
 
   sites/www:
     dependencies:
+      '@floating-ui/dom':
+        specifier: ^1.5.3
+        version: 1.5.3
       cookie:
         specifier: ^0.5.0
         version: 0.5.0
@@ -324,6 +327,9 @@ importers:
       '@svelte-put/toc':
         specifier: ^4.0.0
         version: 4.0.0(svelte@4.2.0)
+      '@svelte-put/tooltip':
+        specifier: ^1.0.0
+        version: 1.0.0
       '@sveltejs/adapter-cloudflare':
         specifier: 2.3.3
         version: 2.3.3(@sveltejs/kit@1.25.0)
@@ -1504,6 +1510,23 @@ packages:
       - utf-8-validate
     dev: false
 
+  /@floating-ui/core@1.5.0:
+    resolution: {integrity: sha512-kK1h4m36DQ0UHGj5Ah4db7R0rHemTqqO0QLvUqi1/mUUp3LuAWbWxdxSIf/XsnH9VS6rRVPLJCncjRzUvyCLXg==}
+    dependencies:
+      '@floating-ui/utils': 0.1.6
+    dev: false
+
+  /@floating-ui/dom@1.5.3:
+    resolution: {integrity: sha512-ClAbQnEqJAKCJOEbbLo5IUlZHkNszqhuxS4fHAVxRPXPya6Ysf2G8KypnYcOTpx6I8xcgF9bbHb6g/2KpbV8qA==}
+    dependencies:
+      '@floating-ui/core': 1.5.0
+      '@floating-ui/utils': 0.1.6
+    dev: false
+
+  /@floating-ui/utils@0.1.6:
+    resolution: {integrity: sha512-OfX7E2oUDYxtBvsuS4e/jSn4Q9Qb6DzgeYtsAdkPZ47znpoNsMgZw0+tVijiv3uGNR6dgNlty6r9rzIzHjtd/A==}
+    dev: false
+
   /@flydotio/dockerfile@0.4.9:
     resolution: {integrity: sha512-MGRoe83XgcJ8iFeXNiRCrReRCOq25FIMPr1yfan2pyVO2KnAWCKSToso8g4457hkjrYuXX41/EoTwqbHlrbdyw==}
     engines: {node: '>=16.0.0'}
@@ -1726,6 +1749,10 @@ packages:
       svelte: ^3.55.0 || ^4.0.0
     dependencies:
       svelte: 4.2.0
+    dev: true
+
+  /@svelte-put/tooltip@1.0.0:
+    resolution: {integrity: sha512-s071HEzyZVSqQFP8K4fmi0OjWcP0fsn/AGZSR2jh0W5EOXp3NXC3t3P/+kKbTxUYIox+K+AcaVufq7Xn8sf39A==}
     dev: true
 
   /@sveltejs/adapter-cloudflare@2.3.3(@sveltejs/kit@1.25.0):
