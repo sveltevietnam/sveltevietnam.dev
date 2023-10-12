@@ -10,7 +10,7 @@ The proposal mentioned above helps you focus on the content and delegate the imp
 
 If you get stuck and this document does not help, reach out to our maintainers at the [#blog channel in Svelte Vietnam discord](https://discord.com/channels/1066621936546877450/1140975328781676616).
 
-## Steps
+## General Steps
 
 1. Clone the repo, and follow [DEV_SETUP](./DEV_SETUP.md) to get the site running on local dev.
 2. Run `pnpm post:create` at `sites/www` directory, and follow the prompts to setup a new blog post.
@@ -22,11 +22,22 @@ If you get stuck and this document does not help, reach out to our maintainers a
 
 4. Open a PR when you have finished development.
 
-### How and where do I make components?
+## How and where do I make components?
 
 For components that are only used within your blog post, declare in `(posts)/[slug]/_page/components/*.svelte`.
 
 If you find a piece of code elsewhere in the codebase that you want to enhance or reuse, declare in `lib/client/components/`.
+
+## Blog Post Publication Check List
+
+Follow the following check list to ensure your blog post is ready for publication.
+
+- Images:
+  - Have a good thumbnail or OG image
+  - Optimize all images, ideally use [webp](https://developers.google.com/speed/webp) format
+  - Make sure all images are responsive and its aspect ratio is kept (i.e avoid stretching on screen resize)
+- Provide in `_page/data.ts` as much metadata as possible, especially `description` and `keywords`, available options can be seen at [lib/shared/data/blog](../sites/www/src/lib/shared/data/blog/index.ts).
+- Add entry to [sitemap.xml](<../sites/www/src/routes/(api)/sitemap.xml/+server.ts>) and [rss.xml](<../sites/www/src/routes/(api)/rss.xml/+server.ts>)
 
 ## Architecture
 
