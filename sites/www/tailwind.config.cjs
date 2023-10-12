@@ -10,6 +10,10 @@ const config = {
             css: {
               '--tw-prose-body': theme('colors.design.fg.1'),
               '--tw-prose-invert-body': theme('colors.design.fg.1'),
+              'a:not(.heading-anchor)': {
+                '@apply c-link': {},
+                'text-decoration': 'none',
+              },
             },
           },
         };
