@@ -2,6 +2,7 @@ require('../postcss/css-node-loader.cjs');
 
 const components = {
   // HYGEN INJECTION MARKER
+  ...require('./tooltip.css'),
   ...require('./tag.css'),
   ...require('./loader.css'),
   ...require('./action-card.css'),
