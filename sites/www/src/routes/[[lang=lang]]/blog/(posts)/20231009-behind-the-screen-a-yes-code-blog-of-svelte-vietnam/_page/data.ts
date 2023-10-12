@@ -21,6 +21,7 @@ export const post = {
     en: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5B%5Blang=lang%5D%5D/blog/(posts)/20231009-behind-the-screen-a-yes-code-blog-of-svelte-vietnam/_page/content.en.md.svelte',
     vi: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5B%5Blang=lang%5D%5D/blog/(posts)/20231009-behind-the-screen-a-yes-code-blog-of-svelte-vietnam/_page/content.vi.md.svelte',
   },
+  originalLang: 'vi',
   authors: [authors.vnphanquang],
   keywords: ['blog', 'svelte', 'vietnam', 'yes-code', 'svelte vietnam'],
   ogImage,

@@ -1,7 +1,7 @@
 async function promptLanguages(prompter) {
-  const { languages } = await prompter.prompt({
+  const { languageMap } = await prompter.prompt({
     type: 'multiselect',
-    name: 'languages',
+    name: 'languageMap',
     message: 'What languages does your post provide? (choose all that apply)',
     hint: '(Use <space> to select, <return> to submit)',
     required: true,
@@ -24,13 +24,34 @@ async function promptLanguages(prompter) {
     },
   });
 
-  if (languages.vi || languages.en) return languages;
+  if (languageMap.vi || languageMap.en) return languageMap;
   return promptLanguages(prompter);
 }
 
 module.exports = {
   prompt: async ({ prompter }) => {
-    const languages = await promptLanguages(prompter);
+    const languageMap = await promptLanguages(prompter);
+
+    let selectedLangs = Object.entries(languageMap)
+      .filter(([_, selected]) => selected)
+      .map(([lang]) => lang);
+    let originalLang = selectedLangs[0];
+    if (selectedLangs.length > 1) {
+      ({ originalLang } = await prompter.prompt({
+        type: 'select',
+        message: 'What is the original language of your post?',
+        name: 'originalLang',
+        required: true,
+        choices: [
+          { name: 'Vietnamese', value: 'vi' },
+          { name: 'English', value: 'en' },
+        ],
+        result(name) {
+          return this.map(name)[name];
+        },
+      }));
+    }
+
     /** @type {{ title: string }} */
     let { title } = await prompter.prompt({
       type: 'input',
@@ -58,8 +79,9 @@ module.exports = {
     const slug = `${shortDateStr}-${titleForId}`;
 
     return {
-      languages,
+      languageMap,
       post: {
+        originalLang,
         slug,
         date: date.toISOString(),
         title,

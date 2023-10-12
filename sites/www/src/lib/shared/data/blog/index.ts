@@ -31,6 +31,7 @@ export type Post = {
   title: LangText;
   description: LangText;
   githubUrl: LangText;
+  originalLang?: Language;
   tags?: PostTag[];
   authors: PostAuthor[];
   ogImage?: string;
