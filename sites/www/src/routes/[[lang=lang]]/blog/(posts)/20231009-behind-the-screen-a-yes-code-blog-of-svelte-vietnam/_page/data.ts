@@ -1,3 +1,4 @@
+import { authors } from '$routes/[[lang=lang]]/blog/_page/authors';
 import type { BlogContent } from '$shared/data/blog';
 import type { Post } from '$shared/data/blog';
 
@@ -20,20 +21,7 @@ export const post = {
     en: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5B%5Blang=lang%5D%5D/blog/(posts)/20231009-behind-the-screen-a-yes-code-blog-of-svelte-vietnam/_page/content.en.md.svelte',
     vi: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5B%5Blang=lang%5D%5D/blog/(posts)/20231009-behind-the-screen-a-yes-code-blog-of-svelte-vietnam/_page/content.vi.md.svelte',
   },
-  authors: [
-    {
-      name: {
-        vi: 'Phan Quang',
-        en: 'Quang Phan',
-      },
-      title: {
-        en: 'Admin of Svelte Vietnam',
-        vi: 'Quản trị viên Svelte Việt Nam',
-      },
-      link: 'https://github.com/vnphanquang',
-      avatarUrl: 'https://avatars.githubusercontent.com/u/25895844?v=4',
-    },
-  ],
+  authors: [authors.vnphanquang],
   keywords: ['blog', 'svelte', 'vietnam', 'yes-code', 'svelte vietnam'],
   ogImage,
   tags: ['inside', 'technical'],
