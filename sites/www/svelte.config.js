@@ -6,6 +6,8 @@ import autoSlug from '@svelte-put/preprocess-auto-slug';
 import adapter from '@sveltejs/adapter-cloudflare';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 import { mdsvex, defineMDSveXConfig } from 'mdsvex';
+import remarkContainers from 'remark-containers';
+import remarkGfm from 'remark-gfm';
 
 import pkg from './package.json' assert { type: 'json' };
 
@@ -14,6 +16,7 @@ const commitHash = child_process.execSync('git rev-parse --short HEAD').toString
 
 const mdsvexConfig = defineMDSveXConfig({
   extensions: ['.md.svelte'],
+  remarkPlugins: [remarkContainers, remarkGfm],
 });
 
 /** @type {import('@sveltejs/kit').Config} */
