@@ -4,20 +4,26 @@
   import type { PageData } from './$types';
   import SectionCommunity from './_page/components/SectionCommunity.svelte';
   import SectionEvents from './_page/components/SectionEvents.svelte';
-  import SectionImpact from './_page/components/SectionImpact.svelte';
+  // import SectionImpact from './_page/components/SectionImpact.svelte';
   import SectionIntro from './_page/components/SectionIntro/SectionIntro.svelte';
-  import SectionJobs from './_page/components/SectionJobs.svelte';
+  // import SectionJobs from './_page/components/SectionJobs.svelte';
   import SectionPosts from './_page/components/SectionPosts.svelte';
-  import SectionSponsor from './_page/components/SectionSponsor.svelte';
+  // import SectionSponsor from './_page/components/SectionSponsor.svelte';
   import './_page/page.css';
 
   export let data: PageData;
 </script>
 
-<main class="page">
+<main class="pb-[120px] tb:pb-[200px]">
   <SectionIntro lang={data.language} />
   <SectionCommunity lang={data.language} />
-  <section class="c-container-design mb-20 bg-bg-300 py-6 text-fg-100" use:intersect>
+  <SectionEvents lang={data.language} events={data.events} />
+  <SectionPosts
+    lang={data.language}
+    posts={data.posts.internal}
+    externalPost={data.posts.external}
+  />
+  <!-- <section class="c-container-design mb-20 bg-bg-300 py-6 text-fg-100" use:intersect>
     <p>
       <svg
         class="inline-block"
@@ -38,14 +44,8 @@
       >
       {@html data.underConstructionNote}
     </p>
-  </section>
-  <SectionEvents lang={data.language} events={data.events} />
-  <SectionPosts
-    lang={data.language}
-    posts={data.posts.internal}
-    externalPost={data.posts.external}
-  />
-  <SectionJobs lang={data.language} jobs={data.jobs} />
+  </section> -->
+  <!-- <SectionJobs lang={data.language} jobs={data.jobs} />
   <SectionImpact lang={data.language} projects={data.projects} />
-  <SectionSponsor lang={data.language} sponsors={data.sponsors} />
+  <SectionSponsor lang={data.language} sponsors={data.sponsors} /> -->
 </main>

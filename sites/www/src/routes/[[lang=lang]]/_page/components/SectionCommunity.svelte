@@ -105,11 +105,11 @@
         <svg inline-src="icon/external-link" />
       </a>
     </li>
-    <li>
+    <!-- <li>
       <a class="c-link-box font-medium" href={PEOPLE_PATH} rel="noreferrer">
         <span>{t.ctas.nominate}</span>
       </a>
-    </li>
+    </li> -->
     <li>
       <a class="c-link-box font-medium" href={SOCIAL_LINKS.github} target="_blank" rel="noreferrer">
         <span>{t.ctas.contribute}</span>

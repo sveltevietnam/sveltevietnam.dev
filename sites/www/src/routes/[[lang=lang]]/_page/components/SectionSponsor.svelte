@@ -40,11 +40,9 @@
 <style lang="postcss">
   .sponsors {
     margin-top: 80px;
-    padding-bottom: 120px;
 
     @screen tb {
       margin-top: 120px;
-      padding-bottom: 108px;
     }
   }
 

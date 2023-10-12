@@ -13,7 +13,7 @@
 
   export let lang: Language;
   export let posts: Post[];
-  export let externalPost: ExternalPost;
+  export let externalPost: ExternalPost | undefined;
 
   $: t = translations[lang].posts;
 </script>
