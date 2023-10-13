@@ -19,6 +19,7 @@ export const en = {
     linkLabelToTitle: 'Title',
   },
   share: 'Share',
+  more: 'More Posts',
   editLink: {
     intro: 'Found a typo or need correction?',
     label: 'Edit this page on Github',
