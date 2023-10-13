@@ -4,7 +4,9 @@
   import { toc, toclink, createTocStore } from '@svelte-put/toc';
 
   import { page } from '$app/stores';
+  import { BlogPostItem } from '$client/components/BlogPostItem';
   import { Breadcrumbs } from '$client/components/Breadcrumbs';
+  import ExternalBlogPostItem from '$client/components/ExternalBlogPostItem/ExternalBlogPostItem.svelte';
   import { FallbackImage } from '$client/components/FallbackImage';
   import { noti } from '$client/notifications';
   import { textTip } from '$client/tooltips';
@@ -144,9 +146,25 @@
         </section>
       {/key}
 
-      <section>
+      <section class="post-others">
+        <h2 class="tp-h3 after:mt-2 after:separator">{t.more}</h2>
+        <ul class="mt-8 space-y-8">
+          {#each data.more.external as post}
+            <li class="before:mb-8 before:separator first-of-type:before:hidden">
+              <BlogPostItem {post} lang={data.language} alwaysVertical />
+            </li>
+          {/each}
+          {#each data.more.internal as post}
+            <li class="before:mb-8 before:separator">
+              <ExternalBlogPostItem {post} lang={data.language} />
+            </li>
+          {/each}
+        </ul>
+      </section>
+
+      <section class="post-share">
         <h2 class="tp-h3 after:mt-2 after:separator">{t.share}</h2>
-        <ul class="post-share flex items-center gap-4 mt-8">
+        <ul class="flex items-center gap-4 mt-8">
           <li>
             <button
               class="p-[10px] block w-fit c-link-neutral border border-current rounded-full"
@@ -189,35 +207,37 @@
         </ul>
       </section>
 
-      <nav aria-label={t.tableOfContents.title} class="post-toc">
-        <h2 class="tp-h3 font-medium after:mt-2 after:separator">{t.tableOfContents.title}</h2>
-        <ul class="mt-8">
-          {#each tocItems as tocItem (tocItem.id)}
-            {@const level = tocItem.element.tagName.slice(1)}
-            <li>
-              <!-- svelte-ignore a11y-missing-attribute -->
-              <a
-                use:toclink={{
-                  tocItem,
-                  store: tocStore,
-                  observe: {
-                    attribute: 'data-current',
-                  },
-                }}
-                class="tb:data-current:text-primary my-2 block"
-                class:ml-4={level === '3'}
-                class:ml-8={level === '4'}
-                class:ml-12={level === '5'}
-                class:ml-16={level === '6'}
-              >
-                <span class="c-link c-link--preserved">
-                  {tocItem.text}
-                </span>
-              </a>
-            </li>
-          {/each}
-        </ul>
-      </nav>
+      <section class="post-toc">
+        <nav aria-label={t.tableOfContents.title}>
+          <h2 class="tp-h3 font-medium after:mt-2 after:separator">{t.tableOfContents.title}</h2>
+          <ul class="mt-8">
+            {#each tocItems as tocItem (tocItem.id)}
+              {@const level = tocItem.element.tagName.slice(1)}
+              <li>
+                <!-- svelte-ignore a11y-missing-attribute -->
+                <a
+                  use:toclink={{
+                    tocItem,
+                    store: tocStore,
+                    observe: {
+                      attribute: 'data-current',
+                    },
+                  }}
+                  class="tb:data-current:text-primary my-2 block"
+                  class:ml-4={level === '3'}
+                  class:ml-8={level === '4'}
+                  class:ml-12={level === '5'}
+                  class:ml-16={level === '6'}
+                >
+                  <span class="c-link c-link--preserved">
+                    {tocItem.text}
+                  </span>
+                </a>
+              </li>
+            {/each}
+          </ul>
+        </nav>
+      </section>
     </div>
   </article>
 </main>
@@ -254,17 +274,19 @@
     grid-template-areas:
       'toc'
       'content'
-      'share';
+      'share'
+      'others';
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, auto);
+    grid-template-rows: repeat(4, auto);
     row-gap: 60px;
 
     @screen tb {
       grid-template-areas:
         'content share'
-        'content toc';
+        'content toc'
+        'content others';
       grid-template-columns: 3fr 1fr;
-      grid-template-rows: auto 1fr;
+      grid-template-rows: auto 1fr auto;
       column-gap: 60px;
     }
   }
@@ -278,13 +300,19 @@
     height: fit-content;
   }
 
+  .post-others {
+    grid-area: others;
+    height: fit-content;
+  }
+
   .post-toc {
     grid-area: toc;
-    height: fit-content;
 
-    @screen tb {
-      position: sticky;
-      top: calc(var(--header-height) + 60px);
+    & nav {
+      @screen tb {
+        position: sticky;
+        top: calc(var(--header-height) + 60px);
+      }
     }
   }
 </style>
