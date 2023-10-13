@@ -1,5 +1,6 @@
 import Mustache from 'mustache';
 
+import { INTERNAL_POSTS } from '$routes/[[lang=lang]]/blog/_page/data';
 import { LANGUAGES } from '$shared/services/i18n';
 import {
   BLOG_PATH,
@@ -32,6 +33,14 @@ type SiteMapUrl = {
 
 export const GET: RequestHandler = ({ url }) => {
   const urls: SiteMapUrl[] = [
+    ...INTERNAL_POSTS.flatMap((p) =>
+      makeUrl(url.origin, {
+        loc: `${BLOG_PATH}/${p.slug}`,
+        lastmod: toW3CDate(new Date(p.date)),
+        changefreq: 'yearly',
+        priority: 0.8,
+      }),
+    ),
     ...makeUrl(url.origin, {
       loc: '',
       lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
@@ -108,13 +117,14 @@ export const GET: RequestHandler = ({ url }) => {
 };
 
 function makeUrl(origin: string, url: SiteMapUrl): SiteMapUrl[] {
+  const loc = url.loc.startsWith('/') ? url.loc : `/${url.loc}`;
   return LANGUAGES.map((locLang) => ({
     ...url,
-    loc: `${origin}/${locLang}${url.loc}`,
+    loc: `${origin}/${locLang}${loc}`,
     alternates:
       url.alternates ??
       LANGUAGES.map((lang) => ({
-        href: `${origin}/${lang}${url.loc}`,
+        href: `${origin}/${lang}${loc}`,
         hreflang: lang,
       })),
   }));

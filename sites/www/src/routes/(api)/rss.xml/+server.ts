@@ -1,5 +1,9 @@
 import Mustache from 'mustache';
 
+import { INTERNAL_POSTS } from '$routes/[[lang=lang]]/blog/_page/data';
+import { LANGUAGES, resolveLangText } from '$shared/services/i18n';
+import { BLOG_PATH } from '$shared/services/navigation';
+
 import type { RequestHandler } from './$types';
 import template from './rss.template.xml?raw';
 
@@ -12,15 +16,15 @@ type RssItem = {
 };
 
 export const GET: RequestHandler = ({ url }) => {
-  const items: RssItem[] = [
-    // {
-    //   title: 'Svelte Vietnam',
-    //   description: '',
-    //   link: `${url.origin}/${...}`,
-    //   guid: 'home',
-    //   pubDate: new Date('2022-12-04').toUTCString(),
-    // },
-  ];
+  const items: RssItem[] = INTERNAL_POSTS.flatMap((p) =>
+    LANGUAGES.map((l) => ({
+      title: resolveLangText(l, p.title),
+      description: resolveLangText(l, p.description),
+      link: `${url.origin}/${l}${BLOG_PATH}/${p.slug}`,
+      guid: p.slug,
+      pubDate: new Date(p.date).toUTCString(),
+    })),
+  );
   const xml = Mustache.render(template, {
     title: 'Svelte Vietnam',
     link: url.origin,
