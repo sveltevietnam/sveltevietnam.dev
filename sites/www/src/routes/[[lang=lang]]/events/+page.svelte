@@ -158,7 +158,7 @@
           use:intersect
         >
           {t.actions.discord}
-          <a href={SOCIAL_LINKS.discord} class="c-link" target="_blank" rel="noreferrer">
+          <a href={SOCIAL_LINKS.discord} class="c-link" external>
             {commonT[data.language].sveltevienam} Discord
           </a>
         </p>

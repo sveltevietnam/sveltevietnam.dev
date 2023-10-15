@@ -13,7 +13,7 @@
 </script>
 
 <article class="space-y-3 {cls}">
-  <a href={tPost.href} rel="noreferrer" target="_blank" class="block w-fit">
+  <a href={tPost.href} class="block w-fit" external>
     <svg inline-src="icon/external-link" class="inline-block mb-2 mr-2" />
     <slot name="title" class={titleClass} text={tPost.title}>
       <span class={titleClass}>{tPost.title}</span>

@@ -19,12 +19,7 @@
   <section class="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-10">
     <h2 hidden>Call to Action</h2>
     <a href={SOCIAL_LINKS.openCollective} class="c-btn h-24">{@html t.ctas.sponsor}</a>
-    <a
-      href="mailto:{EMAILS.sponsor}"
-      target="_blank"
-      rel="noreferrer"
-      class="c-btn c-btn--outlined h-24"
-    >
+    <a href="mailto:{EMAILS.sponsor}" class="c-btn c-btn--outlined h-24" external>
       <span>{@html t.ctas.question}</span>
     </a>
   </section>
@@ -34,10 +29,7 @@
     <p>{@html t.why.description}</p>
   </section>
 
-  <a
-    href={SOCIAL_LINKS.openCollective}
-    target="_blank"
-    rel="noreferrer"
-    class="c-btn justify-self-center bg-bg-200">{t.sponsors.cta}</a
+  <a href={SOCIAL_LINKS.openCollective} external class="c-btn justify-self-center bg-bg-200"
+    >{t.sponsors.cta}</a
   >
 </main>

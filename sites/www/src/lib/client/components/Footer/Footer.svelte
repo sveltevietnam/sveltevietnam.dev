@@ -47,18 +47,13 @@
         <p class="footer-section-title tp-h4 font-medium">{t.contact.title}</p>
         <ul>
           <li>
-            <a href={SOCIAL_LINKS.discord} target="_blank" class="c-link-neutral" rel="noreferrer">
+            <a href={SOCIAL_LINKS.discord} class="c-link-neutral" external>
               <svg inline-src="simpleicon/discord" width="24" height="24" />
               <span>{commonT[lang].sveltevienam}</span>
             </a>
           </li>
           <li>
-            <a
-              href="mailto:{EMAILS.contact}"
-              target="_blank"
-              class="c-link-neutral"
-              rel="noreferrer"
-            >
+            <a href="mailto:{EMAILS.contact}" class="c-link-neutral" external>
               <svg inline-src="google/mail" width="24" height="24" />
               <span>{EMAILS.contact}</span>
             </a>
@@ -73,22 +68,22 @@
   </div>
   <ul class="footer-socials c-container-design">
     <li>
-      <a href={SOCIAL_LINKS.openCollective} target="_blank" rel="noreferrer" class="c-link-neutral">
+      <a href={SOCIAL_LINKS.openCollective} class="c-link-neutral" external>
         <svg height="16" width="16" inline-src="simpleicon/opencollective" />
       </a>
     </li>
     <li>
-      <a href={SOCIAL_LINKS.github} target="_blank" rel="noreferrer" class="c-link-neutral">
+      <a href={SOCIAL_LINKS.github} class="c-link-neutral" external>
         <svg height="16" width="16" inline-src="simpleicon/github" />
       </a>
     </li>
     <li>
-      <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noreferrer" class="c-link-neutral">
+      <a href={SOCIAL_LINKS.twitter} class="c-link-neutral" external>
         <svg height="16" width="16" inline-src="simpleicon/twitter" />
       </a>
     </li>
     <li>
-      <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer" class="c-link-neutral">
+      <a href={SOCIAL_LINKS.facebook} class="c-link-neutral" external>
         <svg height="16" width="16" inline-src="simpleicon/facebook" />
       </a>
     </li>
@@ -105,13 +100,13 @@
       <span aria-disabled class="vertical-separator">|</span>
       <span>
         {t.poweredBy}
-        <a href="https://kit.svelte.dev/" target="_blank" rel="noreferrer">
+        <a href="https://kit.svelte.dev/" external>
           <svg class="inline-block" height="14" width="14" inline-src="svelte" />
         </a>
-        <a href="https://tailwindcss.com/" target="_blank" rel="noreferrer">
+        <a href="https://tailwindcss.com/" external>
           <svg class="inline-block" height="14" width="14" inline-src="simpleicon/tailwindcss" />
         </a>
-        <a href="https://www.cloudflare.com/" target="_blank" rel="noreferrer">
+        <a href="https://www.cloudflare.com/" external>
           <svg
             class="inline-block"
             height="14"
@@ -128,9 +123,9 @@
         aria-current={isCurrentPage(pathname, CODE_OF_CONDUCT_PATH)}>{t.navigation.codeOfConduct}</a
       >
       <span aria-disabled class="vertical-separator">|</span>
-      <a href={RSS_PATH} class="c-link-neutral" target="_blank" rel="noopener">RSS</a>
+      <a href={RSS_PATH} class="c-link-neutral" external>RSS</a>
       <span aria-disabled class="vertical-separator">|</span>
-      <a href={SITEMAP_PATH} class="c-link-neutral" target="_blank" rel="noopener">Sitemap</a>
+      <a href={SITEMAP_PATH} class="c-link-neutral" external>Sitemap</a>
     </p>
   </div>
 </footer>

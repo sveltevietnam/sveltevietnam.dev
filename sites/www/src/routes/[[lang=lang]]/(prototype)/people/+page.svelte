@@ -17,12 +17,7 @@
     <section class="c-action-card">
       <h2 class="c-page@h2 justify-self-start">{t.who.title}</h2>
       <p class="text-left">{@html t.who.description}</p>
-      <a
-        href={GITHUB_LINKS.ISSUE.CONTRIBUTOR_NOMINATION}
-        rel="noreferrer"
-        target="_blank"
-        class="c-btn">{t.who.cta}</a
-      >
+      <a href={GITHUB_LINKS.ISSUE.CONTRIBUTOR_NOMINATION} class="c-btn" external>{t.who.cta}</a>
     </section>
 
     <section class="c-action-card">

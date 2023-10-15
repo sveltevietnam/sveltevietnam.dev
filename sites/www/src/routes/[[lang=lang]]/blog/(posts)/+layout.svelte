@@ -69,12 +69,7 @@
               />
               <div>
                 <p class="font-medium">
-                  <a
-                    href={author.link}
-                    rel="noreferrer"
-                    target="_blank"
-                    class="c-link c-link--preserved"
-                  >
+                  <a href={author.link} class="c-link c-link--preserved" external>
                     {author.name}
                   </a>
                 </p>
@@ -141,7 +136,7 @@
           <slot />
           <p>
             {t.editLink.intro}
-            <a href={post?.githubUrl} target="_blank" rel="noreferrer">{t.editLink.label}</a>
+            <a href={post?.githubUrl} external>{t.editLink.label}</a>
           </p>
         </section>
       {/key}
@@ -178,8 +173,7 @@
             <a
               href="https://www.facebook.com/sharer/sharer.php?u={encodedCanonical}"
               class="p-[10px] block w-fit c-link-neutral border border-current rounded-full"
-              target="_blank"
-              rel="noreferrer"
+              external
             >
               <svg inline-src="simpleicon/facebook" width="20" height="20" />
             </a>
@@ -188,8 +182,7 @@
             <a
               href="https://twitter.com/intent/tweet?url={encodedCanonical}&text={encodedTitle}"
               class="p-[10px] block w-fit c-link-neutral border border-current rounded-full"
-              target="_blank"
-              rel="noreferrer"
+              external
             >
               <svg inline-src="simpleicon/twitter" width="20" height="20" />
             </a>
@@ -198,8 +191,7 @@
             <a
               href="https://www.linkedin.com/shareArticle?mini=true&url={encodedCanonical}&title={encodedTitle}"
               class="p-[10px] block w-fit c-link-neutral border border-current rounded-full"
-              target="_blank"
-              rel="noreferrer"
+              external
             >
               <svg inline-src="simpleicon/linkedin" width="20" height="20" />
             </a>

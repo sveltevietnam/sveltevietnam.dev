@@ -5,9 +5,12 @@ import { fileURLToPath } from 'url';
 import autoSlug from '@svelte-put/preprocess-auto-slug';
 import adapter from '@sveltejs/adapter-cloudflare';
 import { vitePreprocess } from '@sveltejs/kit/vite';
+import MagicString from 'magic-string';
 import { mdsvex, defineMDSveXConfig } from 'mdsvex';
 import remarkContainers from 'remark-containers';
 import remarkGfm from 'remark-gfm';
+import { walk } from 'svelte/compiler';
+import { parse } from 'svelte-parse-markup';
 
 import pkg from './package.json' assert { type: 'json' };
 
@@ -18,6 +21,63 @@ const mdsvexConfig = defineMDSveXConfig({
   extensions: ['.md.svelte'],
   remarkPlugins: [remarkContainers, remarkGfm],
 });
+
+/** @type {import('svelte/compiler').PreprocessorGroup} */
+const externalLink = {
+  markup(o) {
+    const { content, filename } = o;
+    const s = new MagicString(content);
+    const ast = parse(content, { filename });
+
+    walk(ast.html, {
+      enter(node) {
+        if (node.type === 'Element' && node.name === 'a') {
+          let external = node.attributes.some((attr) => attr.name === 'external');
+          if (!external) {
+            const hrefAttr = node.attributes.find((attr) => attr.name === 'href');
+            if (hrefAttr && hrefAttr.value?.[0]?.type === 'Text') {
+              /** @type {string} */
+              const href = hrefAttr.value[0]?.raw;
+              try {
+                if (href.startsWith('mailto')) {
+                  external = true;
+                } else if (href.startsWith('http')) {
+                  const url = new URL(href);
+                  external = !['localhost', 'sveltevietnam'].includes(url);
+                }
+              } catch (error) {
+                /* */
+              }
+            }
+          }
+
+          const firstChild = node.children[0];
+          if (external && firstChild) {
+            let attrs = ' ';
+            if (node.attributes.every((attr) => attr.name !== 'target')) attrs += 'target="_blank"';
+            const relAttr = node.attributes.find((attr) => attr.name === 'rel');
+            if (!relAttr) {
+              attrs += 'rel="noreferrer noopener"';
+            } else {
+              const value = relAttr.value?.[0];
+              if (value?.type === 'Text') {
+                if (!value.raw.includes('noreferrer')) s.appendLeft(value.end, ' noreferrer');
+                if (!value.raw.includes('noopener')) s.appendLeft(value.end, ' noopener');
+              }
+            }
+
+            s.appendLeft(firstChild.start - 1, attrs);
+          }
+        }
+      },
+    });
+
+    return {
+      code: s.toString(),
+      map: s.generateMap(),
+    };
+  },
+};
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -39,6 +99,7 @@ const config = {
         },
       },
     })),
+    externalLink,
   ],
   kit: {
     adapter: adapter({
