@@ -30,9 +30,9 @@
     <p>
       <strong>{name}</strong>
       {translations[language].message}
-      <a href={SOCIAL_LINKS.discord} class="c-link" target="_blank" rel="noreferrer"
-        >{commonT[language].sveltevienam} Discord</a
-      >.
+      <a href={SOCIAL_LINKS.discord} class="c-link" external>
+        {commonT[language].sveltevienam} Discord
+      </a>.
     </p>
   </div>
 </BaseNotification>

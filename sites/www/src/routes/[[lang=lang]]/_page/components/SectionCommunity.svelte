@@ -95,23 +95,18 @@
   </div> -->
   <ul class="ctas divide-border c-intersect divide-y" use:intersect>
     <li>
-      <a
-        class="c-link-box font-medium"
-        href={SOCIAL_LINKS.discord}
-        target="_blank"
-        rel="noreferrer"
-      >
+      <a class="c-link-box font-medium" href={SOCIAL_LINKS.discord} external>
         <span>{t.ctas.discord}</span>
         <svg inline-src="icon/external-link" />
       </a>
     </li>
     <!-- <li>
-      <a class="c-link-box font-medium" href={PEOPLE_PATH} rel="noreferrer">
+      <a class="c-link-box font-medium" href={PEOPLE_PATH}>
         <span>{t.ctas.nominate}</span>
       </a>
     </li> -->
     <li>
-      <a class="c-link-box font-medium" href={SOCIAL_LINKS.github} target="_blank" rel="noreferrer">
+      <a class="c-link-box font-medium" href={SOCIAL_LINKS.github} external>
         <span>{t.ctas.contribute}</span>
         <svg inline-src="icon/external-link" />
       </a>

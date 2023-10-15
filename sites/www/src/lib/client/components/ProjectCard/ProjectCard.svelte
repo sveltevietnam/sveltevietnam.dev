@@ -26,12 +26,7 @@
       </p>
     {/if}
     {#if project.href}
-      <a
-        href={project.href}
-        target="_blank"
-        rel="noreferrer"
-        class="c-btn--with-icon c-btn c-btn--text w-fit"
-      >
+      <a href={project.href} class="c-btn--with-icon c-btn c-btn--text w-fit" external>
         <span>View details</span>
         <svg inline-src="google/arrow-right-alt" />
       </a>

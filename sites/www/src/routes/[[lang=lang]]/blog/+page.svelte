@@ -108,12 +108,7 @@
         <p use:intersect class="mt-6">{t.contribute.description}</p>
         <ul class="divider-border divide-y font-medium mt-4 max-w-[548px]" use:intersect>
           <li>
-            <a
-              href={ISSUE_TEMPLATE_LINK[data.language].proposePost}
-              class="c-link-box"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a href={ISSUE_TEMPLATE_LINK[data.language].proposePost} class="c-link-box" external>
               <span>{t.contribute.links.proposePost}</span>
               <svg inline-src="icon/external-link" />
             </a>
@@ -122,8 +117,7 @@
             <a
               href={ISSUE_TEMPLATE_LINK[data.language].requestExternalPost}
               class="c-link-box"
-              target="_blank"
-              rel="noreferrer"
+              external
             >
               <span>{t.contribute.links.requestExternalPost}</span>
               <svg inline-src="icon/external-link" />
@@ -133,8 +127,7 @@
             <a
               href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/DEV_BLOG_POST.md"
               class="c-link-box"
-              target="_blank"
-              rel="noreferrer"
+              external
             >
               <span>{t.contribute.links.readCodeGuidelines}</span>
               <svg inline-src="icon/external-link" />
@@ -165,11 +158,8 @@
             <ToBeAnnounced>
               <p class="text-center">
                 {t.posts.tba.description}
-                <a
-                  href={ISSUE_TEMPLATE_LINK[data.language].proposePost}
-                  class="c-link"
-                  target="_blank"
-                  rel="noreferrer">{t.posts.tba.cta}</a
+                <a href={ISSUE_TEMPLATE_LINK[data.language].proposePost} class="c-link" external
+                  >{t.posts.tba.cta}</a
                 >.
               </p>
             </ToBeAnnounced>
@@ -199,8 +189,7 @@
                   <a
                     href={ISSUE_TEMPLATE_LINK[data.language].requestExternalPost}
                     class="c-link"
-                    target="_blank"
-                    rel="noreferrer">{t.externalPosts.tba.cta}</a
+                    external>{t.externalPosts.tba.cta}</a
                   >.
                 </p>
               </ToBeAnnounced>

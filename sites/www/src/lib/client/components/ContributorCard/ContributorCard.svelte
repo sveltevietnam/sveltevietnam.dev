@@ -21,7 +21,7 @@
       <ul class="flex items-center space-x-4">
         {#each Object.entries(contributor.links) as [ref, href]}
           <li>
-            <a {href} target="_blank" rel="noreferrer" title="ref">
+            <a {href} title="ref" external>
               <ContributorLink {ref} />
             </a>
           </li>

@@ -16,34 +16,19 @@
   <section class="c-action-card">
     <p>{@html t.description}</p>
     <div class="max-md:flex-col max-md:space-y-4 flex items-center md:space-x-4">
-      <a
-        href={GITHUB_LINKS.ISSUE.PUBLIC_PROJECT}
-        target="_blank"
-        rel="noreferrer"
-        class="c-btn--with-icon c-btn"
-      >
+      <a href={GITHUB_LINKS.ISSUE.PUBLIC_PROJECT} class="c-btn--with-icon c-btn" external>
         <span>
           {@html t.ctas.github}
         </span>
         <svg inline-src="simpleicon/github" />
       </a>
-      <a
-        href={SOCIAL_LINKS.discord}
-        target="_blank"
-        rel="noreferrer"
-        class="c-btn--with-icon c-btn"
-      >
+      <a href={SOCIAL_LINKS.discord} class="c-btn--with-icon c-btn" external>
         <span>
           {t.ctas.discord}
         </span>
         <svg inline-src="simpleicon/discord" />
       </a>
-      <a
-        href="mailto:{EMAILS.impact}"
-        target="_blank"
-        rel="noreferrer"
-        class="c-btn c-btn--outlined"
-      >
+      <a href="mailto:{EMAILS.impact}" class="c-btn c-btn--outlined" external>
         <span>
           {@html t.ctas.email}
         </span>
