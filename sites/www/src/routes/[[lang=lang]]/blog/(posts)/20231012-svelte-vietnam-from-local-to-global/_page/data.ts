@@ -13,7 +13,7 @@ export const post = {
     vi: 'Svelte Việt Nam: từ vườn nhà vươn ra thế giới',
   },
   description: {
-    en: 'What is Svelte Vietnam? How does it come about? Why? This post attempts to answer these questions.',
+    en: "What is Svelte Vietnam? How does it come about? Why is it even necessary? Let's get to the bottom of these questions in this blog post.",
     vi: 'Svelte Việt Nam là gì, khởi đầu từ đâu, vì sao cần phải có? Hãy cùng tìm câu trả lời trong bài viết này.',
   },
   authors: [authors.vnphanquang],
