@@ -25,7 +25,7 @@ Contribution and discussion are welcome.
 
 ## Contributing
 
-See [CONTRIBUTING] for reporting & development guidelines.
+See [CONTRIBUTING] on how you can contribute to the Svelte Vietnam project.
 
 <!-- LOCAL -->
 
