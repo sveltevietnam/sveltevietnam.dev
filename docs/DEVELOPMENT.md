@@ -1,6 +1,6 @@
 # Development Setup
 
-This document discusses necessary steps to get sveltevietnam.dev running on local development environment.
+This document discusses necessary steps to get sveltevietnam.dev running on local development environment. Read [TECHNICAL REFERENCES](./TECHNICAL_REFERNCES.md) for an overview of the project's technical stack.
 
 ## Getting Help
 
@@ -55,11 +55,15 @@ A commit should:
 3. ideally capture a working state of the application / site. If not, it should be marked as `[WIP]` in its commit message.
 4. span a limited scope and has minimal footprint. If a commit does too much or has changes to many files, it is an indicator that the changes might be broken down into smaller commits.
 
-Similarly, each pull request (PR) should work towards one issue or self-contained goal.
+Similarly, each pull request (PR) should work towards one issue or self-contained goal. If your PR contains a single commit, `merge rebase` (fast-forward). If there are multiple commits and you want to keep the merge history, prefer `merge commit` over `squash`, unless there are dirty commits in the branch.
 
 ### Commit Message Guidelines
 
 We follow the [Conventional Commits][conventionalcommits] guidelines for writing git commit message. Please familiarize yourself with the guidelines and be consistent.
+
+```bash
+[feat | fix | chore](scope): "[message beginning with a verb: add | change | remove]"
+```
 
 ### Code Style Enforcement
 
