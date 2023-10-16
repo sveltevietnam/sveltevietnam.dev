@@ -28,7 +28,7 @@
   "dependencies": {
     "@tsndr/cloudflare-worker-jwt": "^2.2.2",
     "mustache": "^4.2.0",
-    "zod": "^3.22.2"
+    "zod": "^3.22.3"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20230904.0",

@@ -28,7 +28,7 @@
     "fastify-plugin": "^4.5.1",
     "lodash.debounce": "^4.0.8",
     "uuid": "^9.0.1",
-    "zod": "^3.22.2"
+    "zod": "^3.22.3"
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.4.9",
