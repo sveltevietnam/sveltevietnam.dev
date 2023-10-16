@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.5
+
+### Minor Changes
+
+- [#146](https://github.com/sveltevietnam/sveltevietnam.dev/pull/146) [`cb3d0cb`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/cb3d0cba787a723cb3cbd351ae129a8ff0fa4f9b) Thanks [@vnphanquang](https://github.com/vnphanquang)! - add `blog` as a new subscription domain
+
 ## 1.0.0-next.4
 
 ### Patch Changes
