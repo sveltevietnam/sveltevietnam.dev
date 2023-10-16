@@ -89,7 +89,7 @@
     <div class="grid grid-cols-1 pc:grid-cols-2 gap-[60px]">
       <section>
         <ConsecutiveFadeUpIntro selector=".char">
-          <h2 class="tp-h2 uppercase">
+          <h2 class="tp-h2 uppercase after:mt-2 after:separator">
             <SplitText text={t.introduction.title} />
           </h2>
         </ConsecutiveFadeUpIntro>
@@ -101,7 +101,7 @@
       </section>
       <section>
         <ConsecutiveFadeUpIntro selector=".char">
-          <h2 class="tp-h2 uppercase">
+          <h2 class="tp-h2 uppercase after:mt-2 after:separator">
             <SplitText text={t.contribute.title} />
           </h2>
         </ConsecutiveFadeUpIntro>
@@ -155,12 +155,14 @@
           </ul>
         {:else}
           <div use:intersect class="mt-10">
-            <ToBeAnnounced>
-              <p class="text-center">
+            <ToBeAnnounced class="text-center">
+              <p class="tp-h4">
                 {t.posts.tba.description}
+              </p>
+              <p class="mt-4">
                 <a href={ISSUE_TEMPLATE_LINK[data.language].proposePost} class="c-link" external
                   >{t.posts.tba.cta}</a
-                >.
+                >
               </p>
             </ToBeAnnounced>
           </div>
@@ -183,14 +185,16 @@
             </ul>
           {:else}
             <div use:intersect class="mt-10">
-              <ToBeAnnounced>
-                <p class="text-center">
+              <ToBeAnnounced class="text-center">
+                <p class="tp-h4">
                   {t.externalPosts.tba.description}
+                </p>
+                <p class="mt-4">
                   <a
                     href={ISSUE_TEMPLATE_LINK[data.language].requestExternalPost}
                     class="c-link"
                     external>{t.externalPosts.tba.cta}</a
-                  >.
+                  >
                 </p>
               </ToBeAnnounced>
             </div>

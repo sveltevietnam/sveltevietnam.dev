@@ -28,14 +28,14 @@ export const en = {
   posts: {
     title: 'Other Posts',
     tba: {
-      description: 'No other post is available yet.',
+      description: 'No other post is available yet',
       cta: 'Propose your blog post',
     },
   },
   externalPosts: {
     title: 'Links',
     tba: {
-      description: 'No link is available yet.',
+      description: 'No link is available yet',
       cta: 'Request to link yours',
     },
   },

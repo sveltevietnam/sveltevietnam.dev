@@ -57,57 +57,60 @@
   }
 </script>
 
-<form class="space-y-2 {cls}" method="POST" use:enhance {action} autocomplete="on">
-  <div class="relative">
-    {#if $errors.name?.length}
-      <p class="error">
-        {$errors.name[0]}
-      </p>
-    {/if}
-    <input
-      class="c-input"
-      type="text"
-      name="name"
-      placeholder={t.name}
-      autocomplete="name"
-      bind:value={$form.name}
-      {...$constraints.name}
-    />
-  </div>
-  <div class="relative">
-    {#if $errors.email?.length}
-      <p class="error">
-        {$errors.name?.[0]}
-      </p>
-    {/if}
-    <input
-      class="c-input"
-      type="email"
-      name="email"
-      placeholder="Email"
-      autocomplete="email"
-      bind:value={$form.email}
-      {...$constraints.email}
-    />
-  </div>
-  <div class="flex items-end justify-between">
-    <button type="submit" class="c-btn" data-loading={$delayed}>
-      {t.cta}
-    </button>
-    {#if $errors.turnstile?.length}
-      <p class="error">{$errors.turnstile[0]}</p>
-    {/if}
+<form class="space-y-6 {cls}" method="POST" use:enhance {action} autocomplete="on">
+  <div class="space-y-3">
+    <div class="relative">
+      {#if $errors.name?.length}
+        <p class="error">
+          {$errors.name[0]}
+        </p>
+      {/if}
+      <input
+        class="c-input"
+        type="text"
+        name="name"
+        placeholder={t.name}
+        autocomplete="name"
+        bind:value={$form.name}
+        {...$constraints.name}
+      />
+    </div>
+    <div class="relative">
+      {#if $errors.email?.length}
+        <p class="error">
+          {$errors.name?.[0]}
+        </p>
+      {/if}
+      <input
+        class="c-input"
+        type="email"
+        name="email"
+        placeholder="Email"
+        autocomplete="email"
+        bind:value={$form.email}
+        {...$constraints.email}
+      />
+    </div>
     <div
       class="turnstile"
       turnstile-sitekey={PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY}
       turnstile-theme={colorScheme === 'system' ? 'auto' : colorScheme}
       turnstile-response-field-name="turnstile"
       turnstile-response-field
-      turnstile-size="compact"
+      turnstile-size="normal"
       turnstile-language={language}
       use:turnstile
       on:turnstile={(e) => ($form.turnstile = e.detail)}
     />
+  </div>
+
+  <div class="space-y-12">
+    {#if $errors.turnstile?.length}
+      <p class="error">{$errors.turnstile[0]}</p>
+    {/if}
+    <button type="submit" class="c-btn w-full" data-loading={$delayed}>
+      {t.cta}
+    </button>
   </div>
 </form>
 
@@ -124,15 +127,24 @@
     color: theme('colors.status.error');
   }
 
-  .turnstile:global(:not([turnstile-rendered])) {
-    &[turnstile-size='compact'] {
-      width: 130px;
-      height: 120px;
-    }
+  .turnstile {
+    overflow: hidden;
 
-    &:not([turnstile-size='compact']) {
-      width: 300px;
-      height: 65px;
+    &:global(:not([turnstile-rendered])) {
+      &[turnstile-size='compact'] {
+        width: 130px;
+        height: 120px;
+      }
+
+      &:not([turnstile-size='compact']) {
+        width: 300px;
+        height: 65px;
+      }
     }
+  }
+
+  .turnstile :global(iframe) {
+    width: 100% !important;
+    max-width: 100%;
   }
 </style>

@@ -56,8 +56,10 @@
         {:else}
           <div use:intersect>
             <ToBeAnnounced>
-              <p class="text-center">
+              <p class="text-center tp-h4 font-medium">
                 {t.upcomingEvents.tba.description}
+              </p>
+              <p class="mt-4">
                 <a href="#mail" class="c-link">{t.upcomingEvents.tba.cta}</a>
               </p>
             </ToBeAnnounced>
@@ -151,7 +153,7 @@
           <a class="c-link text-xs w-fit" href="{SPONSOR_PATH}#why">
             {t.actions.sponsor.whyNeedSponsor}
           </a>
-          <a href={SPONSOR_PATH} class="c-btn mt-2 w-fit">{t.actions.sponsor.cta}</a>
+          <a href={SPONSOR_PATH} class="c-btn mt-4">{t.actions.sponsor.cta}</a>
         </section>
         <p
           class="text-center self-center pc:col-span-3 sp:w-8/12 justify-self-center"

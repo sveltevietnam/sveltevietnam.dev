@@ -28,15 +28,15 @@ export const vi = {
   posts: {
     title: 'Bài viết khác',
     tba: {
-      description: 'Chưa có bài viết khác nào.',
+      description: 'Chưa có bài viết nào khác',
       cta: 'Gởi đề xuất đăng bài',
     },
   },
   externalPosts: {
     title: 'Liên kết',
     tba: {
-      description: 'Chưa có liên kết nào.',
-      cta: 'Gởi yêu cầu liên kết bài viết của bạn',
+      description: 'Chưa có liên kết nào',
+      cta: 'Gởi yêu cầu liên kết',
     },
   },
   mail: {
