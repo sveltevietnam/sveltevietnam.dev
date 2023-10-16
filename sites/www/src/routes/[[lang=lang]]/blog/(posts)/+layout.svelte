@@ -4,6 +4,7 @@
   import { toc, toclink, createTocStore } from '@svelte-put/toc';
 
   import { page } from '$app/stores';
+  import { intersect } from '$client/actions/intersect';
   import { BlogPostItem } from '$client/components/BlogPostItem';
   import { Breadcrumbs } from '$client/components/Breadcrumbs';
   import ExternalBlogPostItem from '$client/components/ExternalBlogPostItem/ExternalBlogPostItem.svelte';
@@ -34,7 +35,7 @@
   $: tocItems = Object.values($tocStore.items);
 </script>
 
-<main class="c-container-design">
+<main class="c-container-design" use:intersect>
   <Breadcrumbs {breadcrumbs} class="mt-6" />
   <article class="mt-8 tb:mt-[60px]">
     <section>
