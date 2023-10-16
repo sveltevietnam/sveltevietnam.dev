@@ -13,7 +13,9 @@
     </div>
   </div>
 {:else if variant === 'figure'}
-  <div class={cls}>
+  <div
+    class="{cls} w-full border rounded-[16px] border-design-border-1 p-8 flex flex-col items-center justify-center"
+  >
     <img src={figure} alt="to be announced" width="357" height="357" class="m-auto max-w-full" />
     <div class="mt-6">
       <slot />

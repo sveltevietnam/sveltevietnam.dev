@@ -62,7 +62,7 @@
       </section>
     </div>
     <div class="footer-logo">
-      <SvelteVietnamLogo version="themed" width={76} height={86} />
+      <!-- <SvelteVietnamLogo version="themed" width={76} height={86} /> -->
       <p>Svelte <br aria-disabled /> Vietnam</p>
     </div>
   </div>

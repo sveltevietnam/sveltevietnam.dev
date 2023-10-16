@@ -141,8 +141,8 @@
         </section>
       {/key}
 
-      <section class="post-others">
-        <h2 class="tp-h3 after:mt-2 after:separator">{t.more}</h2>
+      <section class="post-more">
+        <h2 class="tp-h3 after:mt-2 after:separator font-medium">{t.more}</h2>
         <ul class="mt-8 space-y-8">
           {#each data.more.external as post}
             <li class="before:mb-8 before:separator first-of-type:before:hidden">
@@ -267,7 +267,7 @@
       'toc'
       'content'
       'share'
-      'others';
+      'more';
     grid-template-columns: 1fr;
     grid-template-rows: repeat(4, auto);
     row-gap: 60px;
@@ -276,7 +276,7 @@
       grid-template-areas:
         'content share'
         'content toc'
-        'content others';
+        'content more';
       grid-template-columns: 3fr 1fr;
       grid-template-rows: auto 1fr auto;
       column-gap: 60px;
@@ -292,8 +292,8 @@
     height: fit-content;
   }
 
-  .post-others {
-    grid-area: others;
+  .post-more {
+    grid-area: more;
     height: fit-content;
   }
 

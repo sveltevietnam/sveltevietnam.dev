@@ -24,8 +24,8 @@ export const en = {
     description:
       'Join the community to share your experience, products, and all thing Svelte and open source',
     tba: {
-      description: 'No event is planned yet.',
-      cta: 'Register for notification about the next event.',
+      description: 'No event is planned yet',
+      cta: 'Register for notification about the next event',
     },
   },
   posts: {
