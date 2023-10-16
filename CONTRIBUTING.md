@@ -2,15 +2,34 @@
 
 Thank you for stopping by. [svelte-vietnam][github] welcomes and appreciates your contribution.
 
-## Content
+There are a couple of ways that you can start contributing to the Svelte Vietnam project today.
 
-Share your ideas and experience with the community and beyond by writing blog posts or link your existing blog posts to _sveltevietnam.dev_. Use [github issue templates](https://github.com/sveltevietnam/sveltevietnam.dev/issues/new/choose) or take a look at [DEV_BLOG_POST] to get started.
+## [Svelte Vietnam Discord][sveltevietnam.discord]
 
-## Reporting Issues
+[Discord][sveltevietnam.discord] is our primary communication channel. Say hello, participate in conversations, get help, help others, and give feedbacks to administrators.
 
-Before opening a new issue, [first search for existing issues][github.issues] to avoid duplications.
+## Translations
 
-When you start working on an issue, make sure you are asked to be assigned to it.
+There is an ongoing effort to translate Svelte sites ([svelte.dev](https://svelte.dev), [kit.svelte.dev](https://kit.svelte.dev/), [learn.svelte.dev]) to Vietnamese. You can:
+
+- contribute translation to [learn.sveltevietnam.dev](https://github.com/sveltevietnam/learn.svelte.dev/issues/1), our forked version of [learn.svelte.dev],
+- join the [Svelte Vietnam Discord][sveltevietnam.discord] and participate in the `#translation` channel,
+- provide your feedback and ideas in the original issue #149.
+
+> [!NOTE]
+> Currently we are only focusing on translating [learn.svelte.dev] first because its repo is isolated from the others, making it easy to manage, sync, and deploy.
+
+## The [Svelte Vietnam Blog][sveltevietnam.blog]
+
+Submit your blog post or link a post you already published somewhere. This is a great way to contribute and at, the same time, express yourself and share your ideas and experience with the community.
+
+- Learn more by visiting the [Svelte Vietnam Blog][sveltevietnam.blog].
+- Join the `#blog` channel in [Discord][sveltevietnam.discord] for further discussion.
+
+## Issues
+
+> [!IMPORTANT]
+> Before opening a new issue, [first search for existing issues][github.issues.open] to avoid duplications. When you start working on an issue, make sure you are asked to be assigned to it.
 
 ### Bug Report
 
@@ -21,11 +40,9 @@ Please include as much details as possible:
 
 ### Feature Request
 
-If you have an idea and don't know where to start yet, consider [opening a discussion][github.discussions] first.
+If you have an idea and don't know where to start yet, consider [opening a discussion][github.discussions] first. If you have a PR ready as your proposed implementation, you can [create an issue][github.issues] and a PR that references it.
 
-If you have a PR ready as your proposed implementation, you can [create an issue][github.issues] and a PR that references it.
-
-## Development
+## Code
 
 Follow the guidelines at [DEVELOPMENT].
 
@@ -39,4 +56,6 @@ Follow the guidelines at [DEVELOPMENT].
 <!-- internal references -->
 
 [DEVELOPMENT]: ./docs/DEVELOPMENT.md
-[DEV_BLOG_POST]: ./docs/DEV_BLOG_POST.md
+[sveltevietnam.blog]: https://sveltevietnam.dev/blog
+[sveltevietnam.discord]: https://discord.sveltevietnam.dev
+[learn.svelte.dev]: https://learn.svelte.dev
