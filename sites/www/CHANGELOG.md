@@ -1,5 +1,47 @@
 # Changelog
 
+## 1.0.0-next.10
+
+### Minor Changes
+
+- [#150](https://github.com/sveltevietnam/sveltevietnam.dev/pull/150) [`dfa705b`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/dfa705b7c6ba261451b8107af59c9100f5e08d55) Thanks [@vnphanquang](https://github.com/vnphanquang)! - Add a text tooltip with description for the language indicator in blog post layout
+
+- [#150](https://github.com/sveltevietnam/sveltevietnam.dev/pull/150) [`c87af40`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/c87af409171afae5ea69b2d78be5c19e67afd60b) Thanks [@vnphanquang](https://github.com/vnphanquang)! - add "More Posts" section to blog post layout
+
+- [#146](https://github.com/sveltevietnam/sveltevietnam.dev/pull/146) [`b8b7434`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/b8b743425f1d4931d2ce4cdbde98b2a5cc8b7567) Thanks [@vnphanquang](https://github.com/vnphanquang)! - first draft implementation of `/blog` listing page
+
+- [#150](https://github.com/sveltevietnam/sveltevietnam.dev/pull/150) [`be29fa8`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/be29fa868fb789dad185a87ab5741aaf8c79ad15) Thanks [@vnphanquang](https://github.com/vnphanquang)! - Blog Post - [VI] Svelte Việt Nam: từ vườn nhà vươn ra thế giới
+
+- [#150](https://github.com/sveltevietnam/sveltevietnam.dev/pull/150) [`5df5f5c`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/5df5f5ce2ab4643114d57fa01e05137ebd2533ca) Thanks [@vnphanquang](https://github.com/vnphanquang)! - Add a language indicator (translated or original) to blog post layout
+
+- [#150](https://github.com/sveltevietnam/sveltevietnam.dev/pull/150) [`10e959a`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/10e959ad072e013279987b5f0dc71ae3be67d339) Thanks [@vnphanquang](https://github.com/vnphanquang)! - [Vietnamese] Blog post "Behind the Screen: blog chạy bằng cơm (và code)"
+
+- [#146](https://github.com/sveltevietnam/sveltevietnam.dev/pull/146) [`6ad601b`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/6ad601b4ae163cf76882a5e51d4590828cea2818) Thanks [@vnphanquang](https://github.com/vnphanquang)! - add `blog` domain subscription to user preferences page
+
+- [#150](https://github.com/sveltevietnam/sveltevietnam.dev/pull/150) [`b46d174`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/b46d174e1687e154a2895aa77dbfc3c043b47363) Thanks [@vnphanquang](https://github.com/vnphanquang)! - [EN] "Behind the Screen: A Yes-Code Blog of Svelte Vietnam" blog post
+
+- [#150](https://github.com/sveltevietnam/sveltevietnam.dev/pull/150) [`730b083`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/730b08390ab270d7ef5dcc8c16f583fb1e012258) Thanks [@vnphanquang](https://github.com/vnphanquang)! - enhance `Breadcrumbs` when path is too wide, render a blur layer on scroll
+
+- [#150](https://github.com/sveltevietnam/sveltevietnam.dev/pull/150) [`3eab59b`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/3eab59bd7c1e054dcd2a40d269a8434db6ce3423) Thanks [@vnphanquang](https://github.com/vnphanquang)! - Mobile layout for blog post page
+
+- [#150](https://github.com/sveltevietnam/sveltevietnam.dev/pull/150) [`d8d20f6`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/d8d20f695f9ac1d6b50c60c92cffc13fb4d195b9) Thanks [@vnphanquang](https://github.com/vnphanquang)! - [EN] Svelte Vietnam: from Local to Global
+
+- [#150](https://github.com/sveltevietnam/sveltevietnam.dev/pull/150) [`01db075`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/01db07599c8aa36876f1dab245f67a1152ede680) Thanks [@vnphanquang](https://github.com/vnphanquang)! - First draft PC version of common blog post (post detail) page layout
+
+- [#150](https://github.com/sveltevietnam/sveltevietnam.dev/pull/150) [`c7923f4`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/c7923f4ac31b484e521c723a45a1acaca240ec23) Thanks [@vnphanquang](https://github.com/vnphanquang)! - add new blog posts to rss and sitemap
+
+- [#150](https://github.com/sveltevietnam/sveltevietnam.dev/pull/150) [`da2583e`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/da2583efb587775fae44366cc3aec7fc91d0c1c1) Thanks [@vnphanquang](https://github.com/vnphanquang)! - refactor common all external anchor tag attributes (`rel` and `target`) into a automatic svelte preprocessor
+
+### Patch Changes
+
+- [#146](https://github.com/sveltevietnam/sveltevietnam.dev/pull/146) [`00f878d`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/00f878dee1b0566263ffbb8d92fcc4ca65ea2912) Thanks [@vnphanquang](https://github.com/vnphanquang)! - extract `c-link-box` css component
+
+- [#146](https://github.com/sveltevietnam/sveltevietnam.dev/pull/146) [`dc2607c`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/dc2607c64b5e3b66dee9ca276351119d657bc049) Thanks [@vnphanquang](https://github.com/vnphanquang)! - add in empty state for /blog listing section
+
+- [#146](https://github.com/sveltevietnam/sveltevietnam.dev/pull/146) [`a921738`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/a92173886a13a4ae8c254ca0945ed2b808189202) Thanks [@vnphanquang](https://github.com/vnphanquang)! - give turnstile container div a default width & height until loaded successfully to avoid layout shift
+
+- [#150](https://github.com/sveltevietnam/sveltevietnam.dev/pull/150) [`25111f1`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/25111f1206420b208b11ecea564bbf8374c0e427) Thanks [@vnphanquang](https://github.com/vnphanquang)! - Add github link to edit page to blog post layout
+
 ## 1.0.0-next.9
 
 ### Minor Changes
