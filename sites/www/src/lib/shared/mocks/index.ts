@@ -1,4 +1,4 @@
-import { posts as allRealPosts } from '$routes/[[lang=lang]]/blog/_page/data';
+import { INTERNAL_POSTS } from '$routes/[[lang=lang]]/blog/_page/data';
 import jobImg from '$shared/assets/images/fallback/job.webp';
 import type { ExternalPost, Post } from '$shared/data/blog';
 import type { Contributor, Event, Job, Project, Sponsor } from '$shared/types';
@@ -237,7 +237,7 @@ export function createMockedProjects(length = 2) {
 export function createMockedPosts(length = 3) {
   const posts: Post[] = [];
   for (let i = 0; i < length; i++) {
-    posts.push(allRealPosts[0]);
+    posts.push(INTERNAL_POSTS[0]);
   }
   return posts;
 }
