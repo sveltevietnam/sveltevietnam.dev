@@ -4,6 +4,7 @@ import type { Post } from '$shared/data/blog';
 
 import En from './content.en.md.svelte';
 import Vi from './content.vi.md.svelte';
+import ogImage from './images/thumbnail.webp';
 
 export const post = {
   slug: '20231012-svelte-vietnam-from-local-to-global',
@@ -23,9 +24,9 @@ export const post = {
   },
   originalLang: 'vi',
   keywords: ['blog', 'svelte', 'vietnam', 'community', 'identity'],
-  // ogImage
+  ogImage,
   tags: ['community', 'inside'],
-  readMinutes: 8,
+  readMinutes: 10,
 } satisfies Post;
 
 export const content = {
