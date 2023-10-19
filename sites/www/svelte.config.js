@@ -43,7 +43,7 @@ const externalLink = {
                   external = true;
                 } else if (href.startsWith('http')) {
                   const url = new URL(href);
-                  external = !['localhost', 'sveltevietnam'].includes(url);
+                  external = !['localhost', 'sveltevietnam.dev'].includes(url.hostname);
                 }
               } catch (error) {
                 /* */
