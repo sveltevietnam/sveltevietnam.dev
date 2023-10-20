@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.0-next.11
+
+### Minor Changes
+
+- [`8e8e801`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/8e8e8011a3a815dd2f2326e0d0cb4c7b2d35a0dc) Thanks [@vnphanquang](https://github.com/vnphanquang)! - implement a global context for locking scroll
+
+- [`38748fe`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/38748fe8af3a6e04753398b0ac4766bb5ff2b3e1) Thanks [@vnphanquang](https://github.com/vnphanquang)! - refactor color schema into a Svelte context
+
+- [`082ec33`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/082ec33b30dfee66a86dc953b23653a347f11858) Thanks [@vnphanquang](https://github.com/vnphanquang)! - QR code generator in blog post layout for quick sharing
+
+### Patch Changes
+
+- [`a8a2ff0`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/a8a2ff08e9b715e34f4c677bd620b8c929f4aae9) Thanks [@vnphanquang](https://github.com/vnphanquang)! - fix externalLink preprocess - should compare href hostname, not the whole url
+
 ## 1.0.0-next.10
 
 ### Minor Changes
