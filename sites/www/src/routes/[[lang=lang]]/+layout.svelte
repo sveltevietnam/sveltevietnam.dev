@@ -1,5 +1,6 @@
 <script lang="ts">
   import { localizeUrl } from '@internals/utils/url';
+  import { lockscroll } from '@svelte-put/lockscroll';
   import ModalPortal from '@svelte-put/modal/ModalPortal.svelte';
   import { onMount } from 'svelte';
 
@@ -10,6 +11,7 @@
   import { Header } from '$client/components/Header';
   import { SplashScreen } from '$client/components/SplashScreen/index.js';
   import { setColorSchemeContext } from '$client/contexts/colorScheme.js';
+  import { setLockScrollContext } from '$client/contexts/lockscroll.js';
   import { modalStore } from '$client/modals';
   import NotificationPortal from '$client/notifications/NotificationPortal.svelte';
   import { noti, notiStore } from '$client/notifications/index.js';
@@ -64,8 +66,11 @@
 
   $: if ($updated) noti.info(translations[data.language].newVersion);
 
+  const lockScrollStore = setLockScrollContext();
   setColorSchemeContext(data.colorScheme);
 </script>
+
+<svelte:document use:lockscroll={lockScrollStore} />
 
 <Header pathname={data.pathname} lang={data.language} />
 <slot />
