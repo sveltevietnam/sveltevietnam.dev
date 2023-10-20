@@ -3,24 +3,19 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import autoSlug from '@svelte-put/preprocess-auto-slug';
+import inlineSvg from '@svelte-put/preprocess-inline-svg';
 import adapter from '@sveltejs/adapter-cloudflare';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 import MagicString from 'magic-string';
-import { mdsvex, defineMDSveXConfig } from 'mdsvex';
-import remarkContainers from 'remark-containers';
-import remarkGfm from 'remark-gfm';
+import { mdsvex } from 'mdsvex';
 import { walk } from 'svelte/compiler';
 import { parse } from 'svelte-parse-markup';
 
+import { mdsvexConfig } from './mdsvex.config.js';
 import pkg from './package.json' assert { type: 'json' };
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const commitHash = child_process.execSync('git rev-parse --short HEAD').toString().trim();
-
-const mdsvexConfig = defineMDSveXConfig({
-  extensions: ['.md.svelte'],
-  remarkPlugins: [remarkContainers, remarkGfm],
-});
 
 /** @type {import('svelte/compiler').PreprocessorGroup} */
 const externalLink = {
@@ -100,6 +95,21 @@ const config = {
       },
     })),
     externalLink,
+    inlineSvg(
+      [
+        {
+          directories: [path.resolve(__dirname, 'src/lib/shared/assets/images/svg')],
+          attributes: {
+            height: '24',
+            width: '24',
+          },
+        },
+      ],
+      {
+        inlineSrcAttributeName: 'inline-src',
+        keepInlineSrcAttribute: true,
+      },
+    ),
   ],
   kit: {
     adapter: adapter({

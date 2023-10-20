@@ -17,8 +17,8 @@ export const load: LayoutServerLoad = async ({ url, depends, locals: { language 
   return {
     breadcrumbs: buildBreadcrumbs(url.pathname),
     more: {
-      external: morePosts.slice(0, 1),
-      internal: EXTERNAL_POSTS.slice(0, 1),
+      internal: morePosts.slice(0, 1),
+      external: EXTERNAL_POSTS.slice(0, 1),
     },
     translations: {
       layout: translations[language],

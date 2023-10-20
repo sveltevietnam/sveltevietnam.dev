@@ -161,12 +161,12 @@
       <section class="post-more">
         <h2 class="tp-h3 after:mt-2 after:separator font-medium">{t.more}</h2>
         <ul class="mt-8 space-y-8">
-          {#each data.more.external as post}
+          {#each data.more.internal as post}
             <li class="before:mb-8 before:separator first-of-type:before:hidden">
               <BlogPostItem {post} lang={data.language} alwaysVertical />
             </li>
           {/each}
-          {#each data.more.internal as post}
+          {#each data.more.external as post}
             <li class="before:mb-8 before:separator">
               <ExternalBlogPostItem {post} lang={data.language} />
             </li>
@@ -176,7 +176,7 @@
 
       <section class="post-share">
         <h2 class="tp-h3 after:mt-2 after:separator">{t.share}</h2>
-        <ul class="flex items-center gap-4 mt-8">
+        <ul class="flex items-center gap-4 mt-8 flex-wrap">
           <li>
             <a
               href="https://www.facebook.com/sharer/sharer.php?u={encodedCanonical}"
@@ -293,7 +293,7 @@
       'content'
       'share'
       'more';
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     grid-template-rows: repeat(4, auto);
     row-gap: 60px;
 
@@ -302,7 +302,7 @@
         'content share'
         'content toc'
         'content more';
-      grid-template-columns: 3fr 1fr;
+      grid-template-columns: minmax(400px, 3fr) minmax(200px, 1fr);
       grid-template-rows: auto 1fr auto;
       column-gap: 60px;
     }
