@@ -61,7 +61,7 @@
     "hygen": "^6.2.11",
     "magic-string": "^0.30.5",
     "mdsvex": "^0.11.0",
-    "postcss": "^8.4.29",
+    "postcss": "^8.4.31",
     "postcss-color-scheme": "^0.3.2",
     "postcss-custom-selectors": "^7.1.4",
     "postcss-html": "^1.5.0",
