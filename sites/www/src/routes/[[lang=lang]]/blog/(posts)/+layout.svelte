@@ -150,7 +150,8 @@
           }}
         >
           <slot />
-          <p>
+          <hr />
+          <p class="text-sm">
             {t.editLink.intro}
             <a href={post?.githubUrl} external>{t.editLink.label}</a>
           </p>
