@@ -24,4 +24,9 @@ export const en = {
     intro: 'Found a typo or need correction?',
     label: 'Edit this page on Github',
   },
+  qr: {
+    title: 'QR Code',
+    description: 'Share and scan this QR code for quick access to the blog post.',
+    download: 'Download',
+  },
 } satisfies typeof import('./vi').vi;

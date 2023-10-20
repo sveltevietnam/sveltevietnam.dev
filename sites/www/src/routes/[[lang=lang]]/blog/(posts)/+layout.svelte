@@ -9,6 +9,8 @@
   import { Breadcrumbs } from '$client/components/Breadcrumbs';
   import ExternalBlogPostItem from '$client/components/ExternalBlogPostItem/ExternalBlogPostItem.svelte';
   import { FallbackImage } from '$client/components/FallbackImage';
+  import { modalStore } from '$client/modals';
+  import { QRCode } from '$client/modals/QRCode';
   import { noti } from '$client/notifications';
   import { textTip } from '$client/tooltips';
   import type { Breadcrumb } from '$shared/services/navigation';
@@ -33,6 +35,19 @@
   }
   const tocStore = createTocStore();
   $: tocItems = Object.values($tocStore.items);
+
+  async function onClickQRLink() {
+    modalStore.push({
+      component: QRCode,
+      props: {
+        data: meta?.canonical ?? '',
+        texts: {
+          ...t.qr,
+          filename: post?.slug ?? 'qr',
+        },
+      },
+    });
+  }
 </script>
 
 <main class="c-container-design" use:intersect>
@@ -162,15 +177,6 @@
         <h2 class="tp-h3 after:mt-2 after:separator">{t.share}</h2>
         <ul class="flex items-center gap-4 mt-8">
           <li>
-            <button
-              class="p-[10px] block w-fit c-link-neutral border border-current rounded-full"
-              on:copied={onCopiedCanonical}
-              use:copy={{ text: meta?.canonical ?? '' }}
-            >
-              <svg inline-src="google/share" width="20" height="20" />
-            </button>
-          </li>
-          <li>
             <a
               href="https://www.facebook.com/sharer/sharer.php?u={encodedCanonical}"
               class="p-[10px] block w-fit c-link-neutral border border-current rounded-full"
@@ -196,6 +202,23 @@
             >
               <svg inline-src="simpleicon/linkedin" width="20" height="20" />
             </a>
+          </li>
+          <li>
+            <button
+              class="p-[10px] block w-fit c-link-neutral border border-current rounded-full"
+              on:copied={onCopiedCanonical}
+              use:copy={{ text: meta?.canonical ?? '' }}
+            >
+              <svg inline-src="google/share" width="20" height="20" />
+            </button>
+          </li>
+          <li>
+            <button
+              class="p-[10px] block w-fit c-link-neutral border border-current rounded-full"
+              on:click={onClickQRLink}
+            >
+              <svg inline-src="google/qr-code-2" width="20" height="20" />
+            </button>
           </li>
         </ul>
       </section>

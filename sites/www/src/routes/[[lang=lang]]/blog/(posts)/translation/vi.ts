@@ -24,4 +24,9 @@ export const vi = {
     intro: 'Bạn tìm thấy lỗi chính ta hay cần đính chính nội dung?',
     label: 'Sửa trang này tại Github',
   },
+  qr: {
+    title: 'Mã QR',
+    description: 'Chia sẻ và quét mã này để dễ dàng truy cập vào bài viết nhé!',
+    download: 'Tải về',
+  },
 };
