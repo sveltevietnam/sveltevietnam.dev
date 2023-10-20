@@ -13,17 +13,16 @@
   import { superForm } from 'sveltekit-superforms/client';
 
   import { turnstile } from '$client/actions/turnstile';
+  import { getColorSchemeContext } from '$client/contexts/colorScheme';
   import type { FormMessage } from '$client/forms';
   import { noti } from '$client/notifications';
   import { PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
   import type { Language } from '$shared/services/i18n';
-  import type { ColorScheme } from '$shared/types';
 
   /** translations */
   export let action = '?/mail';
   export let superValidated: SuperValidated<MailSchema>;
   export let language: Language;
-  export let colorScheme: ColorScheme;
   export let t = {
     name: 'Name',
     cta: 'Notify me',
@@ -55,6 +54,9 @@
         noti.info($message.text);
     }
   }
+
+  const colorSchemeStore = getColorSchemeContext();
+  $: preferred = colorSchemeStore.preferred;
 </script>
 
 <form class="space-y-6 {cls}" method="POST" use:enhance {action} autocomplete="on">
@@ -94,7 +96,7 @@
     <div
       class="turnstile"
       turnstile-sitekey={PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY}
-      turnstile-theme={colorScheme === 'system' ? 'auto' : colorScheme}
+      turnstile-theme={$preferred}
       turnstile-response-field-name="turnstile"
       turnstile-response-field
       turnstile-size="normal"

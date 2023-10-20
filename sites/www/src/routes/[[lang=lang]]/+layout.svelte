@@ -9,24 +9,15 @@
   import { Footer } from '$client/components/Footer';
   import { Header } from '$client/components/Header';
   import { SplashScreen } from '$client/components/SplashScreen/index.js';
+  import { setColorSchemeContext } from '$client/contexts/colorScheme.js';
   import { modalStore } from '$client/modals';
   import NotificationPortal from '$client/notifications/NotificationPortal.svelte';
   import { noti, notiStore } from '$client/notifications/index.js';
-  import { PUBLIC_COOKIE_COLOR_SCHEME, PUBLIC_DISCORD_WS_URL } from '$env/static/public';
+  import { PUBLIC_DISCORD_WS_URL } from '$env/static/public';
   import { LANGUAGES } from '$shared/services/i18n/index.js';
   import { translations } from '$shared/services/i18n/translations/notification';
-  import type { ColorScheme } from '$shared/types';
 
   export let data;
-
-  $: clientColorScheme = data.colorScheme;
-  async function changeColorScheme(e: CustomEvent<ColorScheme>) {
-    const scheme = e.detail;
-    if (clientColorScheme === scheme) return;
-    clientColorScheme = scheme;
-    document.documentElement.dataset.colorScheme = scheme;
-    document.cookie = `${PUBLIC_COOKIE_COLOR_SCHEME}=${scheme}; path=/; SameSite=Lax; Secure`;
-  }
 
   type DiscordEventData = {
     type: 'message';
@@ -72,14 +63,11 @@
   });
 
   $: if ($updated) noti.info(translations[data.language].newVersion);
+
+  setColorSchemeContext(data.colorScheme);
 </script>
 
-<Header
-  pathname={data.pathname}
-  lang={data.language}
-  colorScheme={clientColorScheme}
-  on:colorSchemeChange={changeColorScheme}
-/>
+<Header pathname={data.pathname} lang={data.language} />
 <slot />
 <Footer lang={data.language} {version} pathname={data.pathname} />
 

@@ -4,7 +4,6 @@
   import { afterNavigate } from '$app/navigation';
   import type { Language } from '$shared/services/i18n';
   import { HOME_PATH, isCurrentPage } from '$shared/services/navigation';
-  import type { ColorScheme } from '$shared/types';
   import { clamp } from '$shared/utils/clamp';
 
   import { SvelteVietnamLogo } from '../SvelteVietnamLogo';
@@ -15,7 +14,6 @@
 
   export let pathname: string;
   export let lang: Language;
-  export let colorScheme: ColorScheme;
 
   let mobileOverlayOpen = false;
   function toggleMobileOverlay() {
@@ -50,7 +48,7 @@
         <span>Svelte <br aria-disabled /> Vietnam</span>
       </svelte:element>
     </div>
-    <ColorSchemeMenu {lang} {colorScheme} on:colorSchemeChange class="color-scheme" />
+    <ColorSchemeMenu {lang} class="color-scheme" />
 
     <button class="mobile-open" on:click={toggleMobileOverlay}>
       <svg

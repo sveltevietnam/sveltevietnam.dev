@@ -1,20 +1,16 @@
 <script lang="ts">
   import { clickoutside } from '@svelte-put/clickoutside';
-  import { createEventDispatcher } from 'svelte';
   import { slide, fade } from 'svelte/transition';
 
+  import { getColorSchemeContext } from '$client/contexts/colorScheme';
   import type { Language } from '$shared/services/i18n';
   import { translations } from '$shared/services/i18n/translations/color-scheme';
-  import type { ColorScheme } from '$shared/types';
 
   import ColorSchemeIcon from './ColorSchemeIcon.svelte';
 
   export let lang: Language;
-  export let colorScheme: ColorScheme;
   let cls = '';
   export { cls as class };
-
-  const dispatch = createEventDispatcher<{ colorSchemeChange: ColorScheme }>();
 
   const SCHEMES = {
     light: {
@@ -31,22 +27,20 @@
   function toggleThemeMenu() {
     themeMenuOpen = !themeMenuOpen;
   }
-  function changeColorScheme(_scheme: ColorScheme) {
-    dispatch('colorSchemeChange', _scheme);
-  }
-
   $: t = translations[lang];
+
+  const colorSchemeStore = getColorSchemeContext();
 </script>
 
 <div class="color-scheme-menu {cls}" data-expanded={themeMenuOpen}>
-  {#key colorScheme}
+  {#key $colorSchemeStore}
     <button
       class="color-scheme-menu__toggler"
       on:click|stopPropagation={toggleThemeMenu}
       in:fade|local={{ duration: 150 }}
       aria-label="Color scheme menu"
     >
-      <ColorSchemeIcon scheme={SCHEMES[colorScheme].scheme} width={24} height={24} />
+      <ColorSchemeIcon scheme={SCHEMES[$colorSchemeStore].scheme} width={24} height={24} />
     </button>
   {/key}
   {#key themeMenuOpen}
@@ -76,9 +70,9 @@
           {#each Object.values(SCHEMES) as s}
             <li>
               <button
-                on:click={() => changeColorScheme(s.scheme)}
+                on:click={() => colorSchemeStore.change(s.scheme)}
                 class="color-scheme-menu__option"
-                class:text-primary={colorScheme === s.scheme}
+                class:text-primary={$colorSchemeStore === s.scheme}
               >
                 <ColorSchemeIcon scheme={s.scheme} />
                 <span class="whitespace-nowrap">{t[s.scheme]}</span>
