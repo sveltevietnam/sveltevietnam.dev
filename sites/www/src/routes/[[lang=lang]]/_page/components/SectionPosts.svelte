@@ -38,11 +38,11 @@
       {/if}
     </div>
     <div class="space-y-10 flex-1">
-      {#if posts[1]}
+      {#each posts.slice(1) as post}
         <div use:intersect class="tb:before:hidden before:separator before:mb-10">
-          <BlogPostItem {lang} post={posts[1]} />
+          <BlogPostItem {lang} {post} />
         </div>
-      {/if}
+      {/each}
       {#if externalPost}
         <div use:intersect class="before:separator before:mb-10">
           <ExternalBlogPostItem {lang} post={externalPost} />

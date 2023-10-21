@@ -31,8 +31,8 @@
   function splitPosts(posts: typeof data.posts) {
     const { internal, external } = posts;
     return {
-      topPosts: internal.slice(0, 2),
-      otherPosts: internal.slice(2),
+      topPosts: internal.slice(0, 3),
+      otherPosts: internal.slice(3),
       topExternalPost: external.at(0),
       otherExternalPosts: external.slice(1),
     };
@@ -72,11 +72,11 @@
           {/if}
         </div>
         <div class="space-y-10 flex-1">
-          {#if topPosts[1]}
+          {#each topPosts.slice(1) as post}
             <div use:intersect class="tb:before:hidden before:separator before:mb-10">
-              <BlogPostItem lang={data.language} post={topPosts[1]} />
+              <BlogPostItem lang={data.language} {post} />
             </div>
-          {/if}
+          {/each}
           {#if topExternalPost}
             <div use:intersect class="before:separator before:mb-10">
               <ExternalBlogPostItem lang={data.language} post={topExternalPost} />

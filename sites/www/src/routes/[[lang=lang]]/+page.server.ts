@@ -29,7 +29,7 @@ export const load: PageServerLoad = async ({ depends, locals: { language } }) =>
   return {
     events: [],
     posts: {
-      internal: INTERNAL_POSTS.slice(0, 2),
+      internal: INTERNAL_POSTS.slice(0, 3),
       external: EXTERNAL_POSTS.at(0),
     },
     jobs: createMockedJobs(),
