@@ -4,13 +4,14 @@ import type { Post } from '$shared/data/blog';
 
 import En from './content.en.md.svelte';
 import Vi from './content.vi.md.svelte';
+import ogImage from './images/thumbnail.webp';
 
 export const post = {
   slug: '20231020-lets-write-a-simple-svelte-preprocessor',
   date: '2023-10-20T09:48:21.982Z',
   title: {
     en: "Let's Write a Simple Svelte Preprocessor",
-    vi: 'Cùng viết một Svelte preprocessor đơn giản',
+    vi: 'Viết một Svelte preprocessor đơn giản',
   },
   description: {
     en: 'Simple use case for Svelte preprocessor as an introduction to those who have not written one before',
@@ -23,7 +24,7 @@ export const post = {
   originalLang: 'vi',
   authors: [authors.vnphanquang],
   keywords: ['svelte', 'preprocessor', 'plugin'],
-  // ogImage
+  ogImage,
   tags: ['technical', 'svelte', 'ecosystem'],
   readMinutes: 12,
 } satisfies Post;

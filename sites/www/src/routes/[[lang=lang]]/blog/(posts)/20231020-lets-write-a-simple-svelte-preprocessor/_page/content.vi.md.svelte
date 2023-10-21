@@ -22,7 +22,7 @@ thì ta sẽ dùng:
 <ExternalLink href="...">...</ExternalLink>
 ```
 
-Với cách này, ta sẽ phải thiết lập [prop](https://svelte.dev/docs/svelte-components#script-1-export-creates-a-component-prop) là bước trung gian để truyền thuộc tính của `a` như `class`,  `aria-`, `data-`, … Vì dùng component, ta mất đi quyền truy cập trực tiếp tới phần tử `a` (`HTMLAnchorElement`), gây khó khăn cho việc sửa đổi style, quản lý sự kiện (event handling), hoặc sử dụng Svelte animation và transition.
+Với cách này, ta sẽ phải thiết lập [prop](https://svelte.dev/docs/svelte-components#script-1-export-creates-a-component-prop) là bước trung gian để truyền thuộc tính của `a` như `class`,  `aria-`, `data-`, … Ngoài ra, khi dùng component, ta mất đi quyền truy cập trực tiếp tới phần tử `a` (`HTMLAnchorElement`), gây khó khăn cho việc sửa đổi style, quản lý sự kiện (event handling), hoặc sử dụng Svelte animation và transition.
 
 ```svelte
 <a animate:flip transition:fly /> <!-- ✅ -->
@@ -33,7 +33,7 @@ Với cách này, ta sẽ phải thiết lập [prop](https://svelte.dev/docs/sv
 <ExternalLink animate:flip transition:fly /> <!-- ❌ -->
 ```
 
-Với Svelte, thông thường mình sẽ tránh viết component nếu không thật sự cần thiết. Một điểm mình thích ở Svelte là nó cung cấp các directive tiện lợi dành riêng cho phần tử HTML thuần, như `animate`, `transition`, `use`, `on`; Svelte gián tiếp khuyến khích mình sử dụng các công nghệ thuần túy nhiều hơn. Trước đây khi mình đã quá quen với React, việc viết HTML thuần trở nên lạ lẫm, đặc biệt là khi áp dụng các mô hình quy mô (và cồng kềnh) như [Atomic Design](https://atomicdesign.bradfrost.com/chapter-2/). Không nói đến việc đúng sai, nhưng quay trở về với HTML làm mình cảm thấy rất nhẹ nhàng.
+Với Svelte, thông thường mình sẽ tránh viết component nếu không thật sự cần thiết. Một điểm mình thích ở Svelte là nó cung cấp các directive tiện lợi dành riêng cho phần tử HTML thuần, như `animate`, `transition`, `use`, `on`; qua đó, một cách gián tiếp, Svelte khuyến khích mình sử dụng các công nghệ thuần túy nhiều hơn. Trước đây khi mình đã quá quen với React, việc viết HTML thuần trở nên lạ lẫm, đặc biệt là khi áp dụng các mô hình quy mô (và cồng kềnh) như [Atomic Design](https://atomicdesign.bradfrost.com/chapter-2/). Không nói đến việc đúng sai, nhưng quay trở về với HTML làm mình cảm thấy rất nhẹ nhàng.
 
 ### Svelte Action
 
@@ -50,7 +50,7 @@ Svelte cung cấp một giải pháp để thao tác trên `HTMLElement` gọi l
 <a href="..." use:externalLink></a>
 ```
 
-Vậy là xong, đơn giản nhỉ? Tuy nhiên, cách này cần có Javascript (JS), và chỉ hoạt động trên browser sau khi trang đã render, có nghĩa là trong HTML ban đầu trả về từ response sẽ không có các thuộc tính đó. Nhưng nếu bạn không quan tâm về SSR (ví dụ như với một ứng dụng SPA) thì giải pháp này là đủ.
+Vậy là xong, đơn giản nhỉ? Tuy nhiên, cách này cần có Javascript (JS), và chỉ hoạt động trên browser sau khi trang đã render, có nghĩa là trong HTML ban đầu trả về từ response sẽ không có các thuộc tính đó. Nhưng nếu bạn không quan tâm về server-side-rendering (ví dụ như với một ứng dụng SPA) thì giải pháp này là đủ.
 
 ### Vite Plugin
 
@@ -60,9 +60,9 @@ Trong [plugin API](https://vitejs.dev/guide/api-plugin.html) của [Vite](https:
 2. dùng [regex](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions) hoặc [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) để tìm thẻ `a`, và biến đổi mã để thêm các chuỗi kí tự cho các thuộc tính cần thiết,
 3. trả về mã đã biến đổi, và source map đã được cập nhật.
 
-Phương án này mang tính nâng cao hơn, đòi hỏi bạn cần có kinh nghiệm làm việc với các công cụ nền tảng, ở tầng thấp. Cách này là đủ nếu ta đang viết HTML thuần không dùng framework gì, hoặc nếu ta thiết lập Svelte để tạo ra các trang tĩnh không có JS gì cả ([csr](https://kit.svelte.dev/docs/page-options#csr) đã được tắt).
+Phương án này mang tính nâng cao hơn, đòi hỏi bạn cần có kinh nghiệm làm việc với các công cụ nền tảng, ở tầng thấp. Cách này là đủ nếu ta đang viết HTML thuần không dùng framework gì, hoặc nếu ta thiết lập Svelte để tạo ra các trang tĩnh không cần đến JS ([csr](https://kit.svelte.dev/docs/page-options#csr) đã được tắt).
 
-Tuy nhiên, SvelteKit sẽ mặc định sử dụng một kỹ thuật gọi là [hydration](https://en.wikipedia.org/wiki/Hydration_(web_development)) để biến một trang web tĩnh trở thành động trong môi trường phù hợp để Svelte thực hiện các tác vụ cần có JS. Hãy tưởng tượng rằng SvelteKit có 2 phiên bản cho trang web của bạn: một là HTML đã được prerender hoặc render từ server, và hai là một phiên bản tương tự nằm trong JS. Khi hydration xảy ra, phiên bản Javscript sẽ thay thế phiên bản HTML. Vite plugin của chúng ta ở trên chỉ thay đổi phiên bản HTML, phiên bản Javscript vẫn chưa được cập nhật, nên khi hydration xảy ra, các thuộc tính đã thêm vào sẽ biến mất.
+Tuy nhiên, SvelteKit sẽ mặc định sử dụng một kỹ thuật gọi là [hydration](https://en.wikipedia.org/wiki/Hydration_(web_development)) để biến một trang web tĩnh trở thành động trong môi trường phù hợp để Svelte thực hiện các tác vụ cần có JS. Hãy tưởng tượng rằng SvelteKit có hai phiên bản cho trang web của bạn: một là HTML đã được prerender hoặc render từ server, và hai là một phiên bản tương tự nằm trong JS. Khi hydration xảy ra, phiên bản Javscript sẽ thay thế phiên bản HTML. Vite plugin của chúng ta ở trên chỉ thay đổi phiên bản HTML, phiên bản Javscript vẫn chưa được cập nhật, nên khi hydration xảy ra, các thuộc tính đã thêm vào sẽ biến mất.
 
 Vậy là cách này trái ngược với action. Action thì có được sau hydration, nhưng không có ở HTML ban đầu; còn vite plugin thì có được ở HTML mà lại mất đi sau hydration.
 
@@ -70,10 +70,10 @@ Vậy là cách này trái ngược với action. Action thì có được sau h
 
 Svelte preprocessor sẽ giúp ta làm được các việc sau:
 
-- tự động phát hiện được đường dẫn ngoài và tĩnh (sẽ giải thích sau) và thêm thuộc tính phù hợp. Thao tác này là hoàn toàn tự động, ta không cần thêm gì vào mã tại thẻ `a`,
+- phát hiện được đường dẫn ngoài và tĩnh (sẽ giải thích sau) và thêm thuộc tính phù hợp. Thao tác này là hoàn toàn tự động, ta không cần thêm gì tại thẻ `a`,
 - có được thuộc tính ở cả HTML ban đầu và sau khi hydration đã xảy ra.
 
-Nghe thật kì diệu phải không? Svelte preprocessor được chạy tuần tự nhau (và trước SvelteKit). Nếu bạn để ý thì lý do bạn dùng được Typescript, SASS, hay PostCSS trong Svelte chính là nhờ các preprocessor đấy.
+Nghe thật kì diệu phải không? Nếu bạn để ý thì lý do bạn dùng được Typescript, SASS, hay PostCSS trong Svelte chính là nhờ các preprocessor đấy.
 
 ## Viết preprocessor
 
@@ -136,7 +136,7 @@ Nhờ vào các thư viện có sẵn, các thao tác khó khăn nhất trở n�
 
 - [magic-string](https://github.com/Rich-Harris/magic-string): viết bởi chính [Rich Harris](https://github.com/Rich-Harris) (tác giả của Svelte), giúp ta thực hiện các thao tác biến đổi mã nguồn và tạo source map.
 - [svelte-parse-markup](https://github.com/bluwy/svelte-parse-markup): viết bởi [Bjorn Lu](https://github.com/bluwy) (thành viên tích cực của Svelte và Vite), giúp biến mã nguồn thành `AST`.
-- để biết `AST` trông ra sao, bạn có thể sử dụng [Svelte REPL](https://svelte.dev/repl/hello-world?version=4) và đổi cửa sổ xuất sang “AST output”.
+- Để biết `AST` trông ra sao, bạn có thể sử dụng [Svelte REPL](https://svelte.dev/repl/hello-world?version=4) và đổi cửa sổ xuất sang “AST output”.
 
 Như vậy là, ta thấy preprocessor có rất nhiều điểm tương đồng với phương án Vite plugin. Điểm khác biệt là ta đang biến đổi chính mã nguồn Svelte (biến mã Svelte này thành một mã Svelte khác) chứ không phải chỉ thao tác trên HTML trong kết quả build.
 
@@ -152,7 +152,7 @@ Khi nãy, ta có nói rằng đoạn mã preprocessor trên chỉ hoạt động
 <a href={SOME_VARIABLE}>...</a>
 ```
 
-Trong trường hợp này, preprocessor sẽ không phát hiện được đây là đường dẫn ngoài. Để giải quyết vấn đề này, ta có thể gán một thuộc tính bất kì làm dấu hiệu cho preprocessor: nếu thẻ `a` có thuộc tính này, nó chình là đường dẫn ngoài. Ví dụ:
+Trong trường hợp này, preprocessor ta vừa viết sẽ không phát hiện được đây là đường dẫn ngoài. Để giải quyết vấn đề này, ta có thể tự quy ước một thuộc tính bất kì làm dấu hiệu cho preprocessor: nếu thẻ `a` có thuộc tính này, nó chính là đường dẫn ngoài. Ví dụ:
 
 ```diff
 - <a href={SOME_VARIABLE}>...</a>
@@ -163,7 +163,7 @@ Khi đó, ta cần thay đổi một tí mã preprocessor của chúng ta xem n�
 
 ```diff
 - let external = false;
-+ let external = node.attributes.some((attr) => attr.name === 'external');
++ let external = node.attributes.some((attr) => attr.name === 'data-external');
 
 // ... thay đổi code tương ứng
 ```

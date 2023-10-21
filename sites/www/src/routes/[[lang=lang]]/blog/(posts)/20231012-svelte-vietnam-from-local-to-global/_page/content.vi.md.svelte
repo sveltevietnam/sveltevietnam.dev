@@ -12,7 +12,6 @@ Trở lại năm 2022, đây là một năm quan trọng với Svelte. Trước 
 \* Snowpack đã dừng phát triển. Thay vào đó là [Vite](https://vitejs.dev/) đến từ cộng đồng Vue. Ngày nay, hai cộng đồng Vite và Svelte cũng có nhiều liên kết chặt chẽ tương tự.
 :::
 
-
 ## Mã nguồn mở
 
 Svelte Việt Nam là một dự án mã nguồn mở (open source). Nói đúng hơn là một tập hợp các dự án mã nguồn mở được quản lý và đóng góp từ cộng đồng qua [Svelte Việt Nam Github Organization](https://github.com/sveltevietnam). Hiện tại, tất cả mã nguồn của Svelte Việt Nam, bao gồm cả trang bạn đang đọc, là công khai. Bất kì ai đều có thể truy cập và tham gia đóng góp.
