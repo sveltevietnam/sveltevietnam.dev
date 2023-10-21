@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.0-next.12
+
+### Minor Changes
+
+- [`4012b38`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/4012b3839560e1dedabf72f561441d6b9f818cce) Thanks [@vnphanquang](https://github.com/vnphanquang)! - Blog post: [EN] "Let's Write a Simple Svelte Preprocessor"
+
+- [`02d0942`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/02d09429bf411039affe5a1c9cdc8ce3f701d18c) Thanks [@vnphanquang](https://github.com/vnphanquang)! - implement syntax highlight with [shikiji](https://github.com/antfu/shikiji/tree/main), integrated with the `highlight` option of `mdsvex`
+
+- [`23227ab`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/23227ab7334cb5a72f478adc205e5f9d97f30f54) Thanks [@vnphanquang](https://github.com/vnphanquang)! - Blog Post: [VI] Cùng viết một Svelte preprocessor đơn giản
+
+### Patch Changes
+
+- [`ae3f9e6`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/ae3f9e6de83eab568c9673a197f5079f2c1160f9) Thanks [@vnphanquang](https://github.com/vnphanquang)! - Increase number of internal posts to show on post highlight section (top of blog page and home page) to 3
+
 ## 1.0.0-next.11
 
 ### Minor Changes
