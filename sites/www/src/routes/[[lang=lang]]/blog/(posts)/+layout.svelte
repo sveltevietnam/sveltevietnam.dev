@@ -66,7 +66,7 @@
         <FallbackImage class="h-[500px] w-auto" />
       {/if}
       <div class="space-y-6 mt-8">
-        <h1 class="tp-h1 font-bold">{post?.title}</h1>
+        <h1 class="tp-h2 font-bold">{post?.title}</h1>
         <ul class="flex items-center flex-wrap gap-2">
           {#each post?.tags ?? [] as tag}
             <li class="c-tag">{tag}</li>
