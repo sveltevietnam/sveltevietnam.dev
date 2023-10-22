@@ -41,7 +41,7 @@ export const vi = {
         `☑ Thiết kế hạ tầng và khởi tạo <a class="c-link" href="https://mailer.sveltevietnam.dev" target="_blank" rel="noreferrer">service mailer</a> để quản lý hệ thống người dùng đăng kí nhận thông báo qua email`,
         `☑ Ra mắt trang <a class="c-link" href="${EVENTS_PATH}">Sự kiện</a> với thiết kế sơ khởi`,
         `☑ Ra mắt trang <a class="c-link" href="${BLOG_PATH}">Blog</a> với thiết kế sơ khởi`,
-        `☐ Hoàn thiện văn bản “Technical Reference” và “<a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/CONTRIBUTING.md" rel="noreferrer" target="_blank">Contributing Guidelines</a>”`,
+        `☑ Hoàn thiện văn bản “<a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/TECHNICAL_REFERNCES.md" rel="noreferrer" target="_blank">Technical Reference</a>” và “<a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/CONTRIBUTING.md" rel="noreferrer" target="_blank">Contributing Guidelines</a>”`,
         '☑ Thiết lập quy trình đăng bài hoặc liên kết bài viết thông qua <a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/issues/new/choose" rel="noreferrer" target="_blank">Github issue</a> và <a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/DEV_BLOG_POST.md" rel="noreferrer" target="_blank">hướng dẫn code trực tiếp bài viết</a>',
         '☐ Thiết kế “Khảo sát Cộng đồng Svelte Việt Nam 2023”',
       ],
