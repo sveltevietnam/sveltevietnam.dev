@@ -10,7 +10,7 @@ export const en = {
     title: 'Introduction',
     description: [
       'This is where Svelte Vietnam community members share and spread knowledge, ideas, and their experience in Svelte and open source communities around the world.',
-      'You may find that this blog operates a bit differently compared to other systems. Read "<a href="#" class="c-link">Behind the Screen: A Yes-code Blog of Svelte Vietnam</a>" to understand the decisions behind its infrastructure design.',
+      'You may find that this blog operates a bit differently compared to other systems. Read "<a href="/blog/20231009-behind-the-screen-a-yes-code-blog-of-svelte-vietnam" class="c-link">Behind the Screen: A Yes-code Blog of Svelte Vietnam</a>" to understand the decisions behind its infrastructure design.',
       'Join <a class="c-link" href="https://discord.sveltevietnam.dev" target="_blank" rel="noreferrer">Svelte Vietnam Discord</a> to discuss directly with the community and admins about requests and issues related to writing blog posts.',
     ],
   },

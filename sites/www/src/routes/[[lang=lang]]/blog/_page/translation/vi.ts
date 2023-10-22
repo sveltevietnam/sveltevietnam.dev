@@ -10,7 +10,7 @@ export const vi = {
     title: 'Giới thiệu',
     description: [
       'Đây là nơi để thành viên Svelte Việt Nam chia sẻ và lan rộng kiến thức, ý tưởng, cảm nhận của mình qua các trải nghiệm với open source và cộng đồng Svelte trên khắp thế giới.',
-      'Bạn có thể bắt gặp một số khác biệt về phương thức và quy trình vận hành của blog so với các hệ thống khác. Đọc thêm “<a href="#" class="c-link">Behind the Screen: blog chạy bằng cơm (và code)</a>” để hiểu thêm những quyết định đằng sau thiết kế hạ tầng của trang Blog Svelte Việt Nam.',
+      'Bạn có thể bắt gặp một số khác biệt về phương thức và quy trình vận hành của blog so với các hệ thống khác. Đọc thêm “<a href="/blog/20231009-behind-the-screen-a-yes-code-blog-of-svelte-vietnam" class="c-link">Behind the Screen: blog chạy bằng cơm (và code)</a>” để hiểu thêm những quyết định đằng sau thiết kế hạ tầng của trang Blog Svelte Việt Nam.',
       'Tham gia <a class="c-link" href="https://discord.sveltevietnam.dev" target="_blank" rel="noreferrer">Discord Svelte Việt Nam</a> để thảo luận trực tiếp hơn với cộng đồng và ban quản trị về các vấn đề xoay quanh việc viết blog. ',
     ],
   },
