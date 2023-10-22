@@ -52,14 +52,14 @@
     "dts": "dts-buddy && publint"
   },
   "devDependencies": {
-    "dts-buddy": "^0.2.4",
-    "publint": "^0.2.2"
+    "dts-buddy": "^0.3.0",
+    "publint": "^0.2.5"
   },
   "volta": {
     "extends": "../../package.json"
   },
   "dependencies": {
     "@internals/utils": "workspace:1.0.0-next.1",
-    "zod": "^3.22.2"
+    "zod": "^3.22.4"
   }
 }
