@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.14
+
+### Minor Changes
+
+- [`1e0daa2`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/1e0daa2f939388d7e04b3df7d14fb6f18e7950d8) Thanks [@vnphanquang](https://github.com/vnphanquang)! - apply key visual image for blog listing page
+
 ## 1.0.0-next.13
 
 ### Patch Changes
