@@ -56,7 +56,7 @@ export const HEADER_PATHS = [
   // JOBS_PATH,
   // IMPACT_PATH,
   // PEOPLE_PATH,
-  // SPONSOR_PATH,
+  SPONSOR_PATH,
 ];
 export const FOOTER_PATHS = [
   HOME_PATH,
@@ -65,7 +65,7 @@ export const FOOTER_PATHS = [
   // JOBS_PATH,
   // IMPACT_PATH,
   // PEOPLE_PATH,
-  // SPONSOR_PATH,
+  SPONSOR_PATH,
   ROADMAP_PATH,
   DESIGN_PATH,
 ];
@@ -76,7 +76,7 @@ export const ALL_PATHS = [
   // JOBS_PATH,
   // IMPACT_PATH,
   // PEOPLE_PATH,
-  // SPONSOR_PATH,
+  SPONSOR_PATH,
   CODE_OF_CONDUCT_PATH,
   ROADMAP_PATH,
   DESIGN_PATH,
