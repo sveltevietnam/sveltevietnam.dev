@@ -45,13 +45,13 @@
   <div class="mt-6" use:intersect>
     <Breadcrumbs breadcrumbs={data.breadcrumbs} />
   </div>
-  <section class="tb:flex tb:justify-between tb:flex-row tb:mb-16 mb-[40px]" use:intersect>
+  <section class="tb:flex tb:justify-between tb:flex-row tb:mb-[120px] mb-[80px]" use:intersect>
     <div class="tb:mt-[100px] mt-8">
       <h1 class="tp-h1 uppercase">{t.title}</h1>
       <p class="tp-h4 mt-6 tb:mt-8">{t.subtitle}</p>
     </div>
-    <div class="sp:mt-8">
-      <img src={keyVisuals} alt="" width="546" height="546" class="w-full h-auto max-w-[546px]" />
+    <div class="sp:mt-8 tb:mt-6">
+      <img src={keyVisuals} alt="" width="532" height="370" class="w-full h-auto max-w-[532px]" />
     </div>
   </section>
   <div class="space-y-[60px] tb:space-y-[120px]">
