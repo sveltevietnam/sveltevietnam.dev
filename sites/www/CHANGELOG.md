@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.13
+
+### Patch Changes
+
+- [`64f4130`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/64f413046df3da253a3d5e0d7986aad7c78face0) Thanks [@vnphanquang](https://github.com/vnphanquang)! - insert definitive link to blog post in blog introduction section
+
 ## 1.0.0-next.12
 
 ### Minor Changes
