@@ -10,9 +10,10 @@
   import { translations as commonT } from '$shared/services/i18n/translations/common';
   import { SPONSOR_PATH } from '$shared/services/navigation';
 
+  import type { PageData } from './$types';
   import keyVisuals from './_page/images/key-visuals.webp';
 
-  export let data;
+  export let data: PageData;
 
   $: t = data.translations.page;
   $: tMail = data.translations.mail;

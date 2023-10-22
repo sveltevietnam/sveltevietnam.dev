@@ -8,6 +8,7 @@
   import ToBeAnnounced from '$client/components/ToBeAnnounced/ToBeAnnounced.svelte';
 
   import type { PageData } from './$types';
+  import keyVisuals from './_page/images/key-visuals.webp';
 
   export let data: PageData;
 
@@ -44,44 +45,43 @@
   <div class="mt-6" use:intersect>
     <Breadcrumbs breadcrumbs={data.breadcrumbs} />
   </div>
-  <div class="space-y-[60px] tb:space-y-[120px] mt-8 tb:mt-[60px]">
-    <section class="tb:flex tb:justify-between tb:flex-row" use:intersect>
-      <div class="">
-        <h1 class="tp-h1 uppercase">{t.title}</h1>
-        <p class="tp-h4 mt-6 tb:mt-8">{t.subtitle}</p>
-      </div>
-      <div class="sp:mt-8">
-        <!-- <img
-          src={keyVisuals}
-          alt=""
-          width="548"
-          height="547"
-          class="w-full h-auto max-w-[548px]"
-        /> -->
-      </div>
-    </section>
-
+  <section class="tb:flex tb:justify-between tb:flex-row tb:mb-16 mb-[40px]" use:intersect>
+    <div class="tb:mt-[100px] mt-8">
+      <h1 class="tp-h1 uppercase">{t.title}</h1>
+      <p class="tp-h4 mt-6 tb:mt-8">{t.subtitle}</p>
+    </div>
+    <div class="sp:mt-8">
+      <img src={keyVisuals} alt="" width="546" height="546" class="w-full h-auto max-w-[546px]" />
+    </div>
+  </section>
+  <div class="space-y-[60px] tb:space-y-[120px]">
     {#if topPosts.length || topExternalPost}
-      <section class="flex upto-tb:flex-col gap-10 tb:gap-[60px]">
-        <h2 class="sr-only">{t.recent.title}</h2>
-        <div class="flex-1">
-          {#if topPosts[0]}
-            <div use:intersect>
-              <BlogPostItem lang={data.language} post={topPosts[0]} alwaysVertical />
-            </div>
-          {/if}
-        </div>
-        <div class="space-y-10 flex-1">
-          {#each topPosts.slice(1) as post}
-            <div use:intersect class="tb:before:hidden before:separator before:mb-10">
-              <BlogPostItem lang={data.language} {post} />
-            </div>
-          {/each}
-          {#if topExternalPost}
-            <div use:intersect class="before:separator before:mb-10">
-              <ExternalBlogPostItem lang={data.language} post={topExternalPost} />
-            </div>
-          {/if}
+      <section class="tb:gap-[60px]">
+        <ConsecutiveFadeUpIntro selector=".char">
+          <h2 class="tp-h2 uppercase">
+            <SplitText text={t.recent.title} />
+          </h2>
+        </ConsecutiveFadeUpIntro>
+        <div class="flex upto-tb:flex-col gap-10 mt-10">
+          <div class="flex-1">
+            {#if topPosts[0]}
+              <div use:intersect>
+                <BlogPostItem lang={data.language} post={topPosts[0]} alwaysVertical />
+              </div>
+            {/if}
+          </div>
+          <div class="space-y-10 flex-1">
+            {#each topPosts.slice(1) as post}
+              <div use:intersect class="first-of-type:before:hidden before:separator before:mb-10">
+                <BlogPostItem lang={data.language} {post} />
+              </div>
+            {/each}
+            {#if topExternalPost}
+              <div use:intersect class="before:separator before:mb-10">
+                <ExternalBlogPostItem lang={data.language} post={topExternalPost} />
+              </div>
+            {/if}
+          </div>
         </div>
       </section>
     {/if}
@@ -89,7 +89,7 @@
     <div class="grid grid-cols-1 pc:grid-cols-2 gap-[60px]">
       <section>
         <ConsecutiveFadeUpIntro selector=".char">
-          <h2 class="tp-h2 uppercase after:mt-2 after:separator">
+          <h2 class="tp-h2 uppercase">
             <SplitText text={t.introduction.title} />
           </h2>
         </ConsecutiveFadeUpIntro>
@@ -101,7 +101,7 @@
       </section>
       <section>
         <ConsecutiveFadeUpIntro selector=".char">
-          <h2 class="tp-h2 uppercase after:mt-2 after:separator">
+          <h2 class="tp-h2 uppercase">
             <SplitText text={t.contribute.title} />
           </h2>
         </ConsecutiveFadeUpIntro>

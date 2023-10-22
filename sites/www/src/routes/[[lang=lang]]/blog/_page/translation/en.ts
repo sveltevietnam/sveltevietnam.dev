@@ -4,7 +4,7 @@ export const en = {
   title: 'Blog',
   subtitle: 'Learn to share. Sharing is learning',
   recent: {
-    title: 'Most recent posts',
+    title: 'Recent posts',
   },
   introduction: {
     title: 'Introduction',
