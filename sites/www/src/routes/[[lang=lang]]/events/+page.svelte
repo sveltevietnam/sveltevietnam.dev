@@ -122,7 +122,6 @@
           <MailRegistrationForm
             t={tMail}
             language={data.language}
-            colorScheme={data.colorScheme}
             superValidated={data.mailForm}
             class="mt-6"
           />

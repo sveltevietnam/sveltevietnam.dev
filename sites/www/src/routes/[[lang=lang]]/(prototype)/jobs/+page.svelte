@@ -49,12 +49,7 @@
       <div class="c-graphic" />
       <h2 class="c-page@h2">{t.actions.candidate.title}</h2>
       <p>{t.actions.candidate.description}</p>
-      <MailRegistrationForm
-        t={tMail}
-        language={data.language}
-        colorScheme={data.colorScheme}
-        superValidated={data.mailForm}
-      />
+      <MailRegistrationForm t={tMail} language={data.language} superValidated={data.mailForm} />
     </section>
   </div>
 
