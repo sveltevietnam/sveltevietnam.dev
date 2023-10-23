@@ -45,11 +45,12 @@
     splashStore.set(iSplash);
   });
 
-  function onAnimationEnd() {
+  function onAnimationEnd(event: AnimationEvent) {
     iSplash = { ...iSplash, done: true };
     dispatch('splashed', iSplash);
     splashStore.set(iSplash);
     document.documentElement.classList.toggle('splashed', true);
+    (event.target as HTMLDivElement)?.remove();
   }
 </script>
 
