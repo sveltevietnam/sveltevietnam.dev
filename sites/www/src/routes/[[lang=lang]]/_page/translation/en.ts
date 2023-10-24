@@ -1,4 +1,5 @@
 import { SOCIAL_LINKS } from '$shared/constants';
+import { SPONSOR_PATH } from '$shared/services/navigation';
 
 export const en = {
   intro: {
@@ -44,5 +45,9 @@ export const en = {
   sponsor: {
     title: 'Sponsors',
     description: 'Help sustain the community and support its growth by becoming a sponsor',
+    tba: {
+      description: 'Sponsors will be listed here.',
+      cta: `Learn more`,
+    },
   },
 } satisfies typeof import('./vi').vi;

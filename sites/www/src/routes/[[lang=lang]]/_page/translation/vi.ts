@@ -1,4 +1,5 @@
 import { SOCIAL_LINKS } from '$shared/constants';
+import { SPONSOR_PATH } from '$shared/services/navigation';
 
 export const vi = {
   intro: {
@@ -46,5 +47,9 @@ export const vi = {
     title: 'Nhà tài trợ',
     description:
       'Giúp cộng đồng Svelte Việt Nam phát triển bền vững bằng cách trở thành nhà tài trợ',
+    tba: {
+      description: 'Nhà tài trợ sẽ được liệt kê tại đây',
+      cta: `Tìm hiểu thêm`,
+    },
   },
 };

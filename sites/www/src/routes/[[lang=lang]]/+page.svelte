@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { intersect } from '$client/actions/intersect';
+  // import { intersect } from '$client/actions/intersect';
 
   import type { PageData } from './$types';
   import SectionCommunity from './_page/components/SectionCommunity.svelte';
@@ -8,7 +8,7 @@
   import SectionIntro from './_page/components/SectionIntro/SectionIntro.svelte';
   // import SectionJobs from './_page/components/SectionJobs.svelte';
   import SectionPosts from './_page/components/SectionPosts.svelte';
-  // import SectionSponsor from './_page/components/SectionSponsor.svelte';
+  import SectionSponsor from './_page/components/SectionSponsor.svelte';
   import './_page/page.css';
 
   export let data: PageData;
@@ -45,7 +45,7 @@
       {@html data.underConstructionNote}
     </p>
   </section> -->
-  <!-- <SectionJobs lang={data.language} jobs={data.jobs} />
-  <SectionImpact lang={data.language} projects={data.projects} />
-  <SectionSponsor lang={data.language} sponsors={data.sponsors} /> -->
+  <!-- <SectionJobs lang={data.language} jobs={data.jobs} /> -->
+  <!-- <SectionImpact lang={data.language} projects={data.projects} /> -->
+  <SectionSponsor lang={data.language} sponsors={data.sponsors} />
 </main>

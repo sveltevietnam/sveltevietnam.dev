@@ -1,5 +1,5 @@
 import { LOAD_DEPENDENCIES, SOCIAL_LINKS } from '$shared/constants';
-import { createMockedJobs, createMockedProjects, createMockedSponsors } from '$shared/mocks';
+// import { createMockedJobs, createMockedProjects, createMockedSponsors } from '$shared/mocks';
 import { ROADMAP_PATH } from '$shared/services/navigation';
 
 import type { PageServerLoad } from './$types';
@@ -32,9 +32,9 @@ export const load: PageServerLoad = async ({ depends, locals: { language } }) =>
       internal: INTERNAL_POSTS.slice(0, 3),
       external: EXTERNAL_POSTS.at(0),
     },
-    jobs: createMockedJobs(),
-    projects: createMockedProjects(4),
-    sponsors: createMockedSponsors(),
+    jobs: [],
+    projects: [],
+    sponsors: [],
     underConstructionNote: UNDER_CONSTRUCTION_NOTE[language],
     meta: {
       ...tMeta,
