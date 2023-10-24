@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.15
+
+### Minor Changes
+
+- [#158](https://github.com/sveltevietnam/sveltevietnam.dev/pull/158) [`92fc5d5`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/92fc5d5a82020023e7bd6d9ae6fbbac8d4e3b8af) Thanks [@vnphanquang](https://github.com/vnphanquang)! - first draft of page "Sponsor" (#157)
+
 ## 1.0.0-next.14
 
 ### Minor Changes
