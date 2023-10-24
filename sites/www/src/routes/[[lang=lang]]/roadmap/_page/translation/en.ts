@@ -48,7 +48,7 @@ export const en = {
       secondaryTasks: {
         title: 'Related tasks as preparation for the next milestone',
         items: [
-          `☐ Publish the <a class="c-link" href="${SPONSOR_PATH}">Sponsors</a> page with basic design`,
+          `☑ Publish the <a class="c-link" href="${SPONSOR_PATH}">Sponsors</a> page with basic design`,
           `☐ Send request to create Svelte Vietnam's Open Collective`,
         ],
       },

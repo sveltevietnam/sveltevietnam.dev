@@ -48,7 +48,7 @@ export const vi = {
       secondaryTasks: {
         title: 'Công việc liên quan và liên kết với cột mốc sau',
         items: [
-          `☐ Ra mắt trang <a class="c-link" href="${SPONSOR_PATH}">Tài trợ</a> với thiết kế sơ khởi`,
+          `☑ Ra mắt trang <a class="c-link" href="${SPONSOR_PATH}">Tài trợ</a> với thiết kế sơ khởi`,
           '☐ Gởi yêu cầu thành lập Open Collective của Svelte Việt Nam',
         ],
       },

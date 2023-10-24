@@ -4,6 +4,7 @@
   import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
   import { SplitText } from '$client/components/SplitText';
   import { SvelteVietnamLogo } from '$client/components/SvelteVietnamLogo';
+  import { ToBeAnnounced } from '$client/components/ToBeAnnounced';
   import type { Language } from '$shared/services/i18n';
   import { SPONSOR_PATH } from '$shared/services/navigation';
   import type { Sponsor } from '$shared/types';
@@ -26,15 +27,30 @@
     </a>
   </ConsecutiveFadeUpIntro>
   <p class="section-desc mt-6" use:intersect>{t.description}</p>
-  <!-- FIXME: refactor to plain css here -->
-  <ul use:intersect>
-    {#each sponsors as _}
-      <li class="flex items-center space-x-2 pc:space-x-4">
-        <SvelteVietnamLogo width={50} height={56} version="themed" class="sp:w-[32px] sp:h-auto" />
-        <p class="text-[11px] uppercase pc:text-[20px] leading-normal">Svelte<br />Vietnam</p>
-      </li>
-    {/each}
-  </ul>
+  {#if sponsors.length}
+    <ul use:intersect>
+      {#each sponsors as _}
+        <li class="flex items-center space-x-2 pc:space-x-4">
+          <SvelteVietnamLogo
+            width={50}
+            height={56}
+            version="themed"
+            class="sp:w-[32px] sp:h-auto"
+          />
+          <p class="text-[11px] uppercase pc:text-[20px] leading-normal">Svelte<br />Vietnam</p>
+        </li>
+      {/each}
+    </ul>
+  {:else}
+    <div use:intersect class="mt-100 tb:mt-[60px]">
+      <ToBeAnnounced>
+        <p class="text-center">
+          {t.tba.description}
+          <a href={SPONSOR_PATH} class="c-link">{t.tba.cta}</a>
+        </p>
+      </ToBeAnnounced>
+    </div>
+  {/if}
 </section>
 
 <style lang="postcss">
