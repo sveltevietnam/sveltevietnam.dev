@@ -6,8 +6,6 @@
   import { HOME_PATH, isCurrentPage } from '$shared/services/navigation';
   import { clamp } from '$shared/utils/clamp';
 
-  import { SvelteVietnamLogo } from '../SvelteVietnamLogo';
-
   import ColorSchemeMenu from './components/ColorSchemeMenu.svelte';
   import LanguageNav from './components/LanguageNav.svelte';
   import PageNav from './components/PageNav.svelte';
@@ -44,7 +42,7 @@
         }}
         class="contents"
       >
-        <SvelteVietnamLogo version="themed" width={50} height={56} />
+        <svg inline-src="sveltevietnam" width="50" height="56" class="c-logo c-logo--themed" />
         <span>Svelte <br aria-disabled /> Vietnam</span>
       </svelte:element>
     </div>

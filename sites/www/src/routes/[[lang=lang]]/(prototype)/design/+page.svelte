@@ -1,6 +1,5 @@
 <script lang="ts">
   import { Breadcrumbs } from '$client/components/Breadcrumbs';
-  import { SvelteVietnamLogo } from '$client/components/SvelteVietnamLogo';
 
   import type { PageData } from './$types';
   import imgNonla from './_page/images/logo-concept-nonla.webp';
@@ -45,21 +44,36 @@
           <li class="logo-card-wrapper">
             <dt class="tp-caption2">{t.logo.versions.versions.original}</dt>
             <dd class="logo-card bg-design-bg-1">
-              <SvelteVietnamLogo version="original" />
+              <svg
+                inline-src="sveltevietnam"
+                width="50"
+                height="56"
+                class="c-logo c-logo--original"
+              />
               <p>SVELTE<br />VIETNAM</p>
             </dd>
           </li>
           <li class="logo-card-wrapper">
             <dt class="tp-caption2">{t.logo.versions.versions.positive}</dt>
             <dd class="logo-card bg-design-grayscale-light-1 text-design-grayscale-dark-1">
-              <SvelteVietnamLogo version="positive" />
+              <svg
+                inline-src="sveltevietnam"
+                width="50"
+                height="56"
+                class="c-logo c-logo--positive"
+              />
               <p>SVELTE<br />VIETNAM</p>
             </dd>
           </li>
           <li class="logo-card-wrapper">
             <dt class="tp-caption2">{t.logo.versions.versions.negative}</dt>
             <dd class="logo-card bg-design-grayscale-dark-1 text-design-grayscale-light-1">
-              <SvelteVietnamLogo version="negative" />
+              <svg
+                inline-src="sveltevietnam"
+                width="50"
+                height="56"
+                class="c-logo c-logo--negative"
+              />
               <p>SVELTE<br />VIETNAM</p>
             </dd>
           </li>

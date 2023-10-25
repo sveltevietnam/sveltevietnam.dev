@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { SvelteVietnamLogo } from '$client/components/SvelteVietnamLogo';
   import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
   import { translations as commonT } from '$shared/services/i18n/translations/common';
@@ -62,7 +61,7 @@
       </section>
     </div>
     <div class="footer-logo">
-      <!-- <SvelteVietnamLogo version="themed" width={76} height={86} /> -->
+      <!-- <svg inline-src="sveltevietnam" width={76} height={86} class="c-logo c-logo--themed" /> -->
       <p>Svelte <br aria-disabled /> Vietnam</p>
     </div>
   </div>

@@ -3,7 +3,6 @@
   import { AnimatedArrowCircle } from '$client/components/AnimatedArrowCircle';
   import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
   import { SplitText } from '$client/components/SplitText';
-  import { SvelteVietnamLogo } from '$client/components/SvelteVietnamLogo';
   import { ToBeAnnounced } from '$client/components/ToBeAnnounced';
   import type { Language } from '$shared/services/i18n';
   import { SPONSOR_PATH } from '$shared/services/navigation';
@@ -31,11 +30,11 @@
     <ul use:intersect>
       {#each sponsors as _}
         <li class="flex items-center space-x-2 pc:space-x-4">
-          <SvelteVietnamLogo
-            width={50}
-            height={56}
-            version="themed"
-            class="sp:w-[32px] sp:h-auto"
+          <svg
+            inline-src="sveltevietnam"
+            width="50"
+            height="56"
+            class="c-logo c-logo--themed sp:w-[32px] sp:h-auto"
           />
           <p class="text-[11px] uppercase pc:text-[20px] leading-normal">Svelte<br />Vietnam</p>
         </li>
