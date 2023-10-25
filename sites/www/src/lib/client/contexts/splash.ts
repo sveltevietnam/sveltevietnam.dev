@@ -4,30 +4,39 @@ import { writable } from 'svelte/store';
 import { browser } from '$app/environment';
 
 const SPLASH_CONTEXT_ID = 'splash';
+const HYDRATED_AT_ATTRIBUTE = 'data-hydrated-at';
+const SPLASHED_AT_ATTRIBUTE = 'data-splashed-at';
 
 type SplashStoreValue = {
   done: boolean;
+  isSlowHydration: boolean;
 };
 
 function createSplashStore() {
-  const store = writable<SplashStoreValue>({ done: false });
+  const store = writable<SplashStoreValue>({ done: false, isSlowHydration: false });
+
+  function splash(splashedAt: Date, hydratedAt: Date) {
+    store.set({
+      done: true,
+      isSlowHydration: hydratedAt.getTime() - splashedAt.getTime() > 2000,
+    });
+  }
 
   if (browser) {
-    document.documentElement.toggleAttribute('data-hydrated', true);
+    const hydratedAt = new Date();
+    document.documentElement.setAttribute(HYDRATED_AT_ATTRIBUTE, hydratedAt.toISOString());
 
-    const splashEl = document.getElementById('splash');
-    if (splashEl) {
-      if (document.documentElement.hasAttribute('data-splashed')) {
-        store.set({ done: true });
-      } else {
-        const intervalId = setInterval(() => {
-          if (document.documentElement.hasAttribute('data-splashed')) {
-            store.set({ done: true });
-            splashEl.remove();
-            clearInterval(intervalId);
-          }
-        }, 500);
-      }
+    let splashedAt = document.documentElement.getAttribute(SPLASHED_AT_ATTRIBUTE);
+    if (splashedAt) {
+      splash(new Date(splashedAt), hydratedAt);
+    } else {
+      const intervalId = setInterval(() => {
+        splashedAt = document.documentElement.getAttribute(SPLASHED_AT_ATTRIBUTE);
+        if (splashedAt) {
+          clearInterval(intervalId);
+          splash(new Date(splashedAt), hydratedAt);
+        }
+      }, 500);
     }
   }
 

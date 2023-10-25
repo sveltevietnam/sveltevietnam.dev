@@ -22,7 +22,7 @@
   export let data;
 
   // CONTEXTS
-  setSplashContext();
+  const splashStore = setSplashContext();
   const lockScrollStore = setLockScrollContext();
   setColorSchemeContext(data.colorScheme);
 
@@ -70,6 +70,14 @@
   });
 
   $: if ($updated) noti.info(translations[data.language].newVersion);
+
+  let notifiedAboutSlowHydration = false;
+  $: if ($splashStore.isSlowHydration) {
+    if (!notifiedAboutSlowHydration) {
+      notifiedAboutSlowHydration = true;
+      noti.info(translations[data.language].slowHydration);
+    }
+  }
 </script>
 
 <svelte:document use:lockscroll={lockScrollStore} />
