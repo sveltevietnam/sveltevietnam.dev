@@ -71,7 +71,8 @@ export const handle: Handle = async ({ event, resolve }) => {
     transformPageChunk: ({ html }) =>
       html
         .replace('%cookie-color-scheme%', event.locals.colorScheme)
-        .replace('%language%', event.locals.language),
+        .replace('%language%', event.locals.language)
+        .replace('%splash-variant%', Math.random() < 0.75 ? 'short' : 'long'),
   });
 
   return response;

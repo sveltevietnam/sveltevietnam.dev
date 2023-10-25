@@ -9,9 +9,9 @@
   import { updated } from '$app/stores';
   import { Footer } from '$client/components/Footer';
   import { Header } from '$client/components/Header';
-  import { SplashScreen } from '$client/components/SplashScreen/index.js';
   import { setColorSchemeContext } from '$client/contexts/colorScheme.js';
   import { setLockScrollContext } from '$client/contexts/lockscroll.js';
+  import { setSplashContext } from '$client/contexts/splash.js';
   import { modalStore } from '$client/modals';
   import NotificationPortal from '$client/notifications/NotificationPortal.svelte';
   import { noti, notiStore } from '$client/notifications/index.js';
@@ -20,6 +20,11 @@
   import { translations } from '$shared/services/i18n/translations/notification';
 
   export let data;
+
+  // CONTEXTS
+  setSplashContext();
+  const lockScrollStore = setLockScrollContext();
+  setColorSchemeContext(data.colorScheme);
 
   type DiscordEventData = {
     type: 'message';
@@ -65,9 +70,6 @@
   });
 
   $: if ($updated) noti.info(translations[data.language].newVersion);
-
-  const lockScrollStore = setLockScrollContext();
-  setColorSchemeContext(data.colorScheme);
 </script>
 
 <svelte:document use:lockscroll={lockScrollStore} />
@@ -79,5 +81,3 @@
 <!-- portals -->
 <ModalPortal store={modalStore} class="z-modal" />
 <NotificationPortal store={notiStore} />
-
-<SplashScreen variant={data.splashScreenVariant} />

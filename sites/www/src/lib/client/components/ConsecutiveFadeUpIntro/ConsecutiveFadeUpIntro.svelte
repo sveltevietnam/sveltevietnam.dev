@@ -3,12 +3,13 @@
   import { derived, writable, type Unsubscriber } from 'svelte/store';
 
   import { gsap, Back } from '$3rd/gsap';
-  import { splash } from '$client/components/SplashScreen';
+  import { getSplashContext } from '$client/contexts/splash';
 
   export let selector = '';
   let cls = '';
   export { cls as class };
 
+  const splashStore = getSplashContext();
   const intersected = writable(false);
   let node: HTMLElement;
   let ctx: gsap.Context;
@@ -28,7 +29,7 @@
       );
       observer.observe(node);
 
-      const trigger = derived([splash, intersected], ([$splash, $intersected]) => {
+      const trigger = derived([splashStore, intersected], ([$splash, $intersected]) => {
         return $splash?.done && $intersected;
       });
       unsub = trigger.subscribe((intro) => {
