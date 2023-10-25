@@ -4,7 +4,7 @@
 
   import { gsap } from '$3rd/gsap';
   import { intersect } from '$client/actions/intersect';
-  import { splash } from '$client/components/SplashScreen';
+  import { getSplashContext } from '$client/contexts/splash';
   import type { Language } from '$shared/services/i18n';
   import { translations as commonT } from '$shared/services/i18n/translations/common';
 
@@ -47,7 +47,8 @@
     };
   });
 
-  $: if (intersected && $splash?.done && introTimeline) {
+  const splashStore = getSplashContext();
+  $: if (intersected && $splashStore?.done && introTimeline) {
     introTimeline.play();
   }
 </script>
@@ -145,7 +146,10 @@
 
     display: flex;
     justify-content: center;
-    opacity: 0;
+
+    :global(html:--splashed) & {
+      opacity: 0;
+    }
 
     & svg {
       width: 328px;
@@ -204,7 +208,6 @@
 
     color: theme('colors.design.grayscale.dark.1');
 
-    opacity: 0;
     background: linear-gradient(to bottom, var(--bg-from), var(--bg-to));
     border-radius: 16px;
 
@@ -216,6 +219,10 @@
       padding: 24px;
 
       border-radius: 20px;
+    }
+
+    :global(html:--splashed) & {
+      opacity: 0;
     }
 
     &.intro-card--svelte {
@@ -300,12 +307,15 @@
       position: absolute;
       top: calc(var(--top) + var(--delta-top));
       transform-origin: center;
-      transform: translateX(var(--initial-translate-x)) translateY(var(--initial-translate-y))
-        rotateX(0) rotateY(0) rotateZ(var(--rotate-z-from)) scale(1);
+      transform: rotateX(0) rotateY(0) rotateZ(var(--rotate-z-from));
 
       height: auto;
 
-      opacity: 0;
+      :global(html:--splashed) & {
+        transform: translateX(var(--initial-translate-x)) translateY(var(--initial-translate-y))
+          rotateX(0) rotateY(0) rotateZ(var(--rotate-z-from)) scale(1);
+        opacity: 0;
+      }
     }
 
     & .star {

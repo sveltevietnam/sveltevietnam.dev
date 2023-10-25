@@ -225,35 +225,37 @@
       </section>
 
       <section class="post-toc">
-        <nav aria-label={t.tableOfContents.title}>
-          <h2 class="tp-h3 font-medium after:mt-2 after:separator">{t.tableOfContents.title}</h2>
-          <ul class="mt-8">
-            {#each tocItems as tocItem (tocItem.id)}
-              {@const level = tocItem.element.tagName.slice(1)}
-              <li>
-                <!-- svelte-ignore a11y-missing-attribute -->
-                <a
-                  use:toclink={{
-                    tocItem,
-                    store: tocStore,
-                    observe: {
-                      attribute: 'data-current',
-                    },
-                  }}
-                  class="tb:data-current:text-primary my-2 block"
-                  class:ml-4={level === '3'}
-                  class:ml-8={level === '4'}
-                  class:ml-12={level === '5'}
-                  class:ml-16={level === '6'}
-                >
-                  <span class="c-link c-link--preserved">
-                    {tocItem.text}
-                  </span>
-                </a>
-              </li>
-            {/each}
-          </ul>
-        </nav>
+        {#if tocItems.length}
+          <nav aria-label={t.tableOfContents.title}>
+            <h2 class="tp-h3 font-medium after:mt-2 after:separator">{t.tableOfContents.title}</h2>
+            <ul class="mt-8">
+              {#each tocItems as tocItem (tocItem.id)}
+                {@const level = tocItem.element.tagName.slice(1)}
+                <li>
+                  <!-- svelte-ignore a11y-missing-attribute -->
+                  <a
+                    use:toclink={{
+                      tocItem,
+                      store: tocStore,
+                      observe: {
+                        attribute: 'data-current',
+                      },
+                    }}
+                    class="tb:data-current:text-primary my-2 block"
+                    class:ml-4={level === '3'}
+                    class:ml-8={level === '4'}
+                    class:ml-12={level === '5'}
+                    class:ml-16={level === '6'}
+                  >
+                    <span class="c-link c-link--preserved">
+                      {tocItem.text}
+                    </span>
+                  </a>
+                </li>
+              {/each}
+            </ul>
+          </nav>
+        {/if}
       </section>
     </div>
   </article>

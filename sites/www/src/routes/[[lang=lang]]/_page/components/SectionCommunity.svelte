@@ -5,10 +5,10 @@
   import { intersect } from '$client/actions/intersect';
   import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
   import { SplitText } from '$client/components/SplitText';
-  // import { splash } from '$client/components/SplashScreen';
+  // import { getSplashContext } from '$client/contexts/splash';
   import { SOCIAL_LINKS } from '$shared/constants';
   import type { Language } from '$shared/services/i18n';
-  import { PEOPLE_PATH } from '$shared/services/navigation';
+  // import { PEOPLE_PATH } from '$shared/services/navigation';
 
   // import communityShapeEllipse from '../images/community-shape-ellipse.webp';
   // import communityShapePolygon from '../images/community-shape-polygon.webp';
@@ -58,7 +58,8 @@
   //   };
   // });
 
-  // $: if (shapesIntersected && $splash?.done && shapeContainerElement) {
+  // const splashStore = getSplashContext();
+  // $: if (shapesIntersected && $splashStore?.done && shapeContainerElement) {
   //   gsap.to(shapeContainerElement.querySelectorAll('img'), {
   //     rotateX: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-x').toString(),
   //     rotateY: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-y').toString(),
