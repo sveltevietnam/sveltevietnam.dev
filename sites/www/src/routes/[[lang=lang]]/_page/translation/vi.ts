@@ -1,5 +1,4 @@
 import { SOCIAL_LINKS } from '$shared/constants';
-import { SPONSOR_PATH } from '$shared/services/navigation';
 
 export const vi = {
   intro: {

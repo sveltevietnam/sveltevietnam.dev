@@ -1,4 +1,4 @@
 /* https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-custom-selectors */
 @custom-selector :--current :is([data-current]:not([data-current="false"]),[aria-current]:not([aria-current="false"]));
-@custom-selector :--hydrated :is([data-hydrated]);
-@custom-selector :--splashed :is([data-splashed]);
+@custom-selector :--hydrated :is([data-hydrated-at]);
+@custom-selector :--splashed :is([data-splashed-at]);
