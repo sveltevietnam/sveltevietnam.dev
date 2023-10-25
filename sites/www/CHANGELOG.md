@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.0-next.16
+
+### Minor Changes
+
+- [#161](https://github.com/sveltevietnam/sveltevietnam.dev/pull/161) [`ab421a3`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/ab421a3f3396689b34acee8a363f29655a6b3d8a) Thanks [@vnphanquang](https://github.com/vnphanquang)! - refactor to use inline-src svg and css classes for sveltevietnam logo
+
+- [#161](https://github.com/sveltevietnam/sveltevietnam.dev/pull/161) [`7104ce4`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/7104ce4ac2519e034dfa285fa5314ea1b6b633d3) Thanks [@vnphanquang](https://github.com/vnphanquang)! - refactor `SplashScreen` out of the hydration zone and progressively enable JS animation (#160)
+
+- [#161](https://github.com/sveltevietnam/sveltevietnam.dev/pull/161) [`149af5b`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/149af5beabac3d8d738e763e4aa72a58e1ac7d36) Thanks [@vnphanquang](https://github.com/vnphanquang)! - Notify via toast if hydration happens more than 2 seconds after splash has ended
+
 ## 1.0.0-next.15
 
 ### Minor Changes
