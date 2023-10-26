@@ -8,11 +8,12 @@
 
   const translations = {
     vi: {
-      mailingListCall: 'Đăng kí nhận thông báo bài viết mới từ Blog của Svelte Việt Nam',
+      title: 'Bản tin Blog Svelte Việt Nam',
+      description: 'Đăng ký nhận thông báo để không bỏ lỡ bài viết mới từ Svelte Việt Nam',
     },
     en: {
-      mailingListCall:
-        'Register to receive notification about new posts from the Svelte Vietnam Blog',
+      title: 'The Svelte Vietnam Blog Newsletter',
+      description: 'Subscribe to receive notification for new blog post from Svelte Vietnam',
     },
   };
 
@@ -24,9 +25,18 @@
 
 <div class="c-container-design pb-[120px] tb:pb-[200px]" use:intersect>
   <div
-    class="mt-[60px] tb:mt-[160px] grid grid-cols-1 tb:grid-cols-[2fr,1fr] p-8 tb:p-10 border border-current rounded-[16px] gap-8 tb:gap-10"
+    class="mt-[60px] tb:mt-[160px] grid grid-cols-1 tb:grid-cols-[3fr,2fr] p-8 tb:p-10 border border-current rounded-[16px] gap-8 tb:gap-20 lg:gap-32"
   >
-    <p class="tp-h2 font-medium">{t.mailingListCall}</p>
+    <div class="space-y-6">
+      <p class="tp-h3 font-medium">{t.title}</p>
+      <p>{t.description}</p>
+      <svg
+        inline-src="../roadmap/_page/images/key-visuals.svg"
+        class="opacity-5"
+        height="100"
+        width="328"
+      />
+    </div>
     <MailRegistrationForm
       t={tMail}
       language={data.language}
