@@ -12,7 +12,7 @@ export const en = {
     ctas: {
       sponsor: 'Sponsor Svelte Vietnam via Open Collective',
       discord: 'Chat with the community via the Svelte Vietnam Discord',
-      email: `Send questions to <em>${EMAILS.sponsor}</em>`,
+      email: `Send questions to <em>${EMAILS.SPONSOR}</em>`,
       events: 'Help organize or provide space for events',
       blog: 'Share products, ideas, and experience through Blog',
       github: 'Participate in ongoing projects at Github',
@@ -31,7 +31,7 @@ export const en = {
           '<strong>Create</strong> high-quality content, events, and activities to promote community growth and open source initiatives.',
       },
     },
-    inspect: `As discussed in the <a href="#how" class="c-link">previous section</a>, the list of sponsors, donations, and expenses are recorded publicly by the <a class="c-link" href="${SOCIAL_LINKS.openCollective}" target="_blank" rel="noreferrer noopener">Svelte Vietnam Open Collective</a>.`,
+    inspect: `As discussed in the <a href="#how" class="c-link">previous section</a>, the list of sponsors, donations, and expenses are recorded publicly by the <a class="c-link" href="${SOCIAL_LINKS.OPEN_COLLECTIVE}" target="_blank" rel="noreferrer noopener">Svelte Vietnam Open Collective</a>.`,
   },
   benefits: {
     title: 'What do I get as a sponsor for Svelte Vietnam?',

@@ -63,9 +63,9 @@ export const GET: RequestHandler = async ({ url }) => {
     subject: resource,
   };
   switch (resource) {
-    case `account:${EMAILS.contact}`:
-    case `mailto:${EMAILS.contact}`:
-      webfinger.aliases = [`account:${EMAILS.contact}`, `mailto:${EMAILS.contact}`];
+    case `account:${EMAILS.CONTACT}`:
+    case `mailto:${EMAILS.CONTACT}`:
+      webfinger.aliases = [`account:${EMAILS.CONTACT}`, `mailto:${EMAILS.CONTACT}`];
       webfinger.links = [
         {
           rel: 'http://webfinger.net/rel/profile-page',
@@ -74,7 +74,7 @@ export const GET: RequestHandler = async ({ url }) => {
         ...SVELTE_VIETNAM_AVATAR_LINKS,
       ];
       break;
-    case `mailto:${EMAILS.coc}`:
+    case `mailto:${EMAILS.COC}`:
       webfinger.links = [
         {
           rel: 'http://webfinger.net/rel/profile-page',
@@ -83,7 +83,7 @@ export const GET: RequestHandler = async ({ url }) => {
         ...SVELTE_VIETNAM_AVATAR_LINKS,
       ];
       break;
-    case `mailto:${EMAILS.events}`:
+    case `mailto:${EMAILS.EVENTS}`:
       webfinger.links = [
         {
           rel: 'http://webfinger.net/rel/profile-page',
@@ -92,7 +92,7 @@ export const GET: RequestHandler = async ({ url }) => {
         ...SVELTE_VIETNAM_AVATAR_LINKS,
       ];
       break;
-    case `mailto:${EMAILS.impact}`:
+    case `mailto:${EMAILS.IMPACT}`:
       webfinger.links = [
         {
           rel: 'http://webfinger.net/rel/profile-page',
@@ -101,7 +101,7 @@ export const GET: RequestHandler = async ({ url }) => {
         ...SVELTE_VIETNAM_AVATAR_LINKS,
       ];
       break;
-    case `mailto:${EMAILS.sponsor}`:
+    case `mailto:${EMAILS.SPONSOR}`:
       webfinger.links = [
         {
           rel: 'http://webfinger.net/rel/profile-page',

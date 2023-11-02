@@ -28,11 +28,11 @@
         <p>{@html t.notice.description}</p>
         <p>{@html t.notice.action}</p>
         <div class="flex items-center gap-4 upto-tb:flex-col">
-          <a href={SOCIAL_LINKS.discord} class="c-btn w-fit">
+          <a href={SOCIAL_LINKS.DISCORD} class="c-btn w-fit">
             {t.notice.ctas.discord}
           </a>
           <p>
-            Email: <a class="c-link" href="mailto:{EMAILS.coc}">{EMAILS.coc}</a>
+            Email: <a class="c-link" href="mailto:{EMAILS.COC}">{EMAILS.COC}</a>
           </p>
         </div>
       </div>

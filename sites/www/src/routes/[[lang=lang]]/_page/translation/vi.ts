@@ -12,7 +12,7 @@ export const vi = {
   },
   community: {
     title: 'Cộng đồng',
-    description: `Tham gia <a class="c-link" href=${SOCIAL_LINKS.discord} target="_blank" rel="noreferrer">Discord của Svelte Việt Nam</a> để cùng giao lưu, trao đổi thông tin, hỏi đáp, và hỗ trợ nhau.<br>Để đóng góp vào mã nguồn của trang web này hoặc các dự án open source từ Svelte Việt Nam, truy cập trang <a class="c-link" href="${SOCIAL_LINKS.github}" target="_blank" rel="noreferrer">Github của Svelte Việt Nam</a>.`,
+    description: `Tham gia <a class="c-link" href=${SOCIAL_LINKS.DISCORD} target="_blank" rel="noreferrer">Discord của Svelte Việt Nam</a> để cùng giao lưu, trao đổi thông tin, hỏi đáp, và hỗ trợ nhau.<br>Để đóng góp vào mã nguồn của trang web này hoặc các dự án open source từ Svelte Việt Nam, truy cập trang <a class="c-link" href="${SOCIAL_LINKS.GITHUB}" target="_blank" rel="noreferrer">Github của Svelte Việt Nam</a>.`,
     ctas: {
       discord: 'Tham gia ngay tại Discord',
       nominate: 'Đề cử thành viên tiêu biểu',
@@ -30,7 +30,7 @@ export const vi = {
   },
   posts: {
     title: 'Bài viết',
-    description: `Ngoài <a class="c-link" href=${SOCIAL_LINKS.discord} target="_blank" rel="noreferrer">Discord</a>, Blog của Svelte Việt Nam là kênh chia sẻ chính thống và thiết thực nhất.`,
+    description: `Ngoài <a class="c-link" href=${SOCIAL_LINKS.DISCORD} target="_blank" rel="noreferrer">Discord</a>, Blog của Svelte Việt Nam là kênh chia sẻ chính thống và thiết thực nhất.`,
   },
   jobs: {
     title: 'Việc làm mới',

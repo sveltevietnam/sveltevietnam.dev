@@ -8,7 +8,7 @@ export const en = {
   ctas: {
     github: 'Share <strong>publicly</strong> at Github',
     discord: 'Share at Discord',
-    email: `Email <em>${EMAILS.impact}</em>`,
+    email: `Email <em>${EMAILS.IMPACT}</em>`,
   },
   projectsInNeed: {
     title: 'Projects in Need',

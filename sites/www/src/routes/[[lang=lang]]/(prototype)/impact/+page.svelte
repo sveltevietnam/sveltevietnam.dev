@@ -22,13 +22,13 @@
         </span>
         <svg inline-src="simpleicon/github" />
       </a>
-      <a href={SOCIAL_LINKS.discord} class="c-btn--with-icon c-btn" external>
+      <a href={SOCIAL_LINKS.DISCORD} class="c-btn--with-icon c-btn" external>
         <span>
           {t.ctas.discord}
         </span>
         <svg inline-src="simpleicon/discord" />
       </a>
-      <a href="mailto:{EMAILS.impact}" class="c-btn c-btn--outlined" external>
+      <a href="mailto:{EMAILS.IMPACT}" class="c-btn c-btn--outlined" external>
         <span>
           {@html t.ctas.email}
         </span>

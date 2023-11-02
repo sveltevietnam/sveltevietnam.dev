@@ -78,19 +78,19 @@
         <p>{@html t.how.description}</p>
         <ul class="divider-border divide-y font-medium mt-3 max-w-[548px]">
           <li>
-            <a href={SOCIAL_LINKS.openCollective} class="c-link-box" external>
+            <a href={SOCIAL_LINKS.OPEN_COLLECTIVE} class="c-link-box" external>
               <span>{t.how.ctas.sponsor}</span>
               <svg inline-src="icon/external-link" />
             </a>
           </li>
           <li>
-            <a href={SOCIAL_LINKS.discord} class="c-link-box" external>
+            <a href={SOCIAL_LINKS.DISCORD} class="c-link-box" external>
               <span>{t.how.ctas.discord}</span>
               <svg inline-src="icon/external-link" />
             </a>
           </li>
           <li>
-            <a href="mailto:{EMAILS.sponsor}" class="c-link-box" external>
+            <a href="mailto:{EMAILS.SPONSOR}" class="c-link-box" external>
               <span>{@html t.how.ctas.email}</span>
               <svg inline-src="icon/external-link" />
             </a>
@@ -111,7 +111,7 @@
             </a>
           </li>
           <li>
-            <a href={SOCIAL_LINKS.github} class="c-link-box" external>
+            <a href={SOCIAL_LINKS.GITHUB} class="c-link-box" external>
               <span>{t.how.ctas.github}</span>
               <svg inline-src="icon/external-link" />
             </a>

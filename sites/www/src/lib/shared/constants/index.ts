@@ -3,21 +3,21 @@ export const LOAD_DEPENDENCIES = {
 } as const;
 
 export const SOCIAL_LINKS = {
-  github: 'https://github.com/sveltevietnam',
-  discord: 'https://discord.sveltevietnam.dev',
-  twitter: 'https://twitter.com/sveltevietnam',
-  facebook: 'https://facebook.com/sveltevietnam',
-  openCollective: 'https://opencollective.com/sveltevietnam',
+  GITHUB: 'https://github.com/sveltevietnam',
+  DISCORD: 'https://discord.sveltevietnam.dev',
+  TWITTER: 'https://twitter.com/sveltevietnam',
+  FACEBOOK: 'https://facebook.com/sveltevietnam',
+  OPEN_COLLECTIVE: 'https://opencollective.com/sveltevietnam',
 } as const;
 
 export const EMAILS = {
-  admin: 'admin@sveltevietnam.dev',
-  blog: 'blog@sveltevietnam.dev',
-  contact: 'contact@sveltevietnam.dev',
-  coc: 'coc@sveltevietnam.dev',
-  events: 'events@sveltevietnam.dev',
-  impact: 'impact@sveltevietnam.dev',
-  sponsor: 'sponsor@sveltevietnam.dev',
+  ADMIN: 'admin@sveltevietnam.dev',
+  BLOG: 'blog@sveltevietnam.dev',
+  CONTACT: 'contact@sveltevietnam.dev',
+  COC: 'coc@sveltevietnam.dev',
+  EVENTS: 'events@sveltevietnam.dev',
+  IMPACT: 'impact@sveltevietnam.dev',
+  SPONSOR: 'sponsor@sveltevietnam.dev',
 } as const;
 
 export const GITHUB_LINKS = {

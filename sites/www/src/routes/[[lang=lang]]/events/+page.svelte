@@ -99,8 +99,8 @@
           </div>
           <p>
             Email
-            <a href="mailto:{EMAILS.events}" class="c-link">
-              {EMAILS.events}
+            <a href="mailto:{EMAILS.EVENTS}" class="c-link">
+              {EMAILS.EVENTS}
             </a>
           </p>
         </section>
@@ -160,7 +160,7 @@
           use:intersect
         >
           {t.actions.discord}
-          <a href={SOCIAL_LINKS.discord} class="c-link" external>
+          <a href={SOCIAL_LINKS.DISCORD} class="c-link" external>
             {commonT[data.language].sveltevienam} Discord
           </a>
         </p>

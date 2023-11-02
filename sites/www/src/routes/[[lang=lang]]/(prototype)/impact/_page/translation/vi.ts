@@ -8,7 +8,7 @@ export const vi = {
   ctas: {
     github: 'Chia sẻ <strong>công khai</strong> tại github',
     discord: 'Chi sẻ tại Discord',
-    email: `Email <em>${EMAILS.impact}</em>`,
+    email: `Email <em>${EMAILS.IMPACT}</em>`,
   },
   projectsInNeed: {
     title: 'Dự án cần giúp đỡ',

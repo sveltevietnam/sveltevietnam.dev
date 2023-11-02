@@ -12,7 +12,7 @@ export const vi = {
     ctas: {
       sponsor: 'Tài trợ Svelte Việt Nam thông qua Open Collective',
       discord: 'Gặp gỡ cộng đồng qua Discord của Svelte Việt Nam',
-      email: `Gởi thắc mắc đến <em>${EMAILS.sponsor}</em>`,
+      email: `Gởi thắc mắc đến <em>${EMAILS.SPONSOR}</em>`,
       events: 'Giúp tổ chức hoặc cung cấp địa điểm cho các sự kiện',
       blog: 'Chia sẻ sản phẩm, ý tưởng, kinh nghiệm qua Blog',
       github: 'Tham gia các dự án tại Github',
@@ -31,7 +31,7 @@ export const vi = {
           '<strong>Sáng tạo</strong> các hoạt động và sự kiện để thành viên có thể gặp gỡ, kết nối, khuyến khích một tư duy cộng đồng, chia sẻ, đồng phát triển.',
       },
     },
-    inspect: `Như đã đề cập ở <a href="#how" class="c-link">phần trên</a>, danh sách nhà tài trợ, cũng như các khoản thu, chi đều được lưu trữ một cách công khai tại <a class="c-link" href="${SOCIAL_LINKS.openCollective}" target="_blank" rel="noreferrer noopener">Open Collective của Svelte Việt Nam</a>.`,
+    inspect: `Như đã đề cập ở <a href="#how" class="c-link">phần trên</a>, danh sách nhà tài trợ, cũng như các khoản thu, chi đều được lưu trữ một cách công khai tại <a class="c-link" href="${SOCIAL_LINKS.OPEN_COLLECTIVE}" target="_blank" rel="noreferrer noopener">Open Collective của Svelte Việt Nam</a>.`,
   },
   benefits: {
     title: 'Tôi được gì khi tài trợ cho Svelte Việt nam?',

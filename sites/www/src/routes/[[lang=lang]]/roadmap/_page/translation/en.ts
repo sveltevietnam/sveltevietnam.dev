@@ -50,7 +50,7 @@ export const en = {
         title: 'Related tasks as preparation for the next milestone',
         items: [
           `☑ Publish the <a class="c-link" href="${SPONSOR_PATH}">Sponsors</a> page with basic design`,
-          `☑ Send request to create <a class="c-link" href="${SOCIAL_LINKS.opencollective}" target="_blank" rel="noreferrer">Svelte Vietnam's Open Collective</a>`,
+          `☑ Send request to create <a class="c-link" href="${SOCIAL_LINKS.OPEN_COLLECTIVE}" target="_blank" rel="noreferrer">Svelte Vietnam's Open Collective</a>`,
         ],
       },
     },

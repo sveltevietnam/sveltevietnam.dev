@@ -23,7 +23,7 @@ export const vi = {
       requestExternalPost: 'Gởi yêu cầu liên kết bài viết ngoài (Github issue)',
       readCodeGuidelines: 'Đọc hướng dẫn code bài trực tiếp',
     },
-    contact: `Nếu bạn không sử dụng Github, hãy liên hệ với ban quản trị qua <a class="c-link" href="${SOCIAL_LINKS.discord}" target="_blank" rel="noreferrer">Discord</a> hoặc hòm thư <a class="c-link" href="mailto:${EMAILS.blog}" target="_blank" rel="noreferrer">${EMAILS.blog}</a>.`,
+    contact: `Nếu bạn không sử dụng Github, hãy liên hệ với ban quản trị qua <a class="c-link" href="${SOCIAL_LINKS.DISCORD}" target="_blank" rel="noreferrer">Discord</a> hoặc hòm thư <a class="c-link" href="mailto:${EMAILS.BLOG}" target="_blank" rel="noreferrer">${EMAILS.BLOG}</a>.`,
   },
   posts: {
     title: 'Bài viết khác',

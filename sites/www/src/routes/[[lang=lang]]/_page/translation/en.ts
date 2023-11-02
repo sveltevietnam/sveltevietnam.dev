@@ -12,7 +12,7 @@ export const en = {
   },
   community: {
     title: 'Community',
-    description: `Join the <a class="c-link" href=${SOCIAL_LINKS.discord} target="_blank" rel="noreferrer">Svelte Vietnam Discord</a> and start having conversations, help or seek help from other members.<br>To contribute to the source code of this website or other open source projects from Svelte Vietnam, visit the <a class="c-link" href="${SOCIAL_LINKS.github}" target="_blank" rel="noreferrer">Svelte Vietnam Github</a> page.`,
+    description: `Join the <a class="c-link" href=${SOCIAL_LINKS.DISCORD} target="_blank" rel="noreferrer">Svelte Vietnam Discord</a> and start having conversations, help or seek help from other members.<br>To contribute to the source code of this website or other open source projects from Svelte Vietnam, visit the <a class="c-link" href="${SOCIAL_LINKS.GITHUB}" target="_blank" rel="noreferrer">Svelte Vietnam Github</a> page.`,
     ctas: {
       discord: 'Join now at Discord',
       nominate: 'Nominate contributor',
@@ -30,7 +30,7 @@ export const en = {
   },
   posts: {
     title: 'Recent Posts',
-    description: `Besides <a class="c-link" href=${SOCIAL_LINKS.discord} target="_blank" rel="noreferrer">Discord</a>, the Svelte Vietnam Blog is our most official and practical channel for sharing.`,
+    description: `Besides <a class="c-link" href=${SOCIAL_LINKS.DISCORD} target="_blank" rel="noreferrer">Discord</a>, the Svelte Vietnam Blog is our most official and practical channel for sharing.`,
   },
   jobs: {
     title: 'Recent Jobs',

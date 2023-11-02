@@ -11,7 +11,7 @@ export const vi = {
       label: 'Bản dịch tay',
       description: 'Bài viết đã được dịch tay sang ngôn ngữ hiện tại.',
     },
-    unsupported: `Bài viết đang hiện thị với ngôn ngữ gốc vì chưa được dịch sang ngôn ngữ bạn đã chọn. Nếu có thể, hay tham gia <a href="${SOCIAL_LINKS.github}" class="c-link" target="_blank" rel="noreferrer">Github</a> và <a href="${SOCIAL_LINKS.discord}" class="c-link" target="_blank" rel="noreferrer">Discord</a> để hỗ trợ dịch bài bạn nhé. Xin cảm ơn!`,
+    unsupported: `Bài viết đang hiện thị với ngôn ngữ gốc vì chưa được dịch sang ngôn ngữ bạn đã chọn. Nếu có thể, hay tham gia <a href="${SOCIAL_LINKS.GITHUB}" class="c-link" target="_blank" rel="noreferrer">Github</a> và <a href="${SOCIAL_LINKS.DISCORD}" class="c-link" target="_blank" rel="noreferrer">Discord</a> để hỗ trợ dịch bài bạn nhé. Xin cảm ơn!`,
   },
   readMinutes: 'phút đọc',
   tableOfContents: {

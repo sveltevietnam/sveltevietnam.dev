@@ -30,7 +30,7 @@
     <p>
       <strong>{name}</strong>
       {translations[language].message}
-      <a href={SOCIAL_LINKS.discord} class="c-link" external>
+      <a href={SOCIAL_LINKS.DISCORD} class="c-link" external>
         {commonT[language].sveltevienam} Discord
       </a>.
     </p>

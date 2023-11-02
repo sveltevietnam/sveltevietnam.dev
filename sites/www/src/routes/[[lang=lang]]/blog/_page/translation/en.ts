@@ -23,7 +23,7 @@ export const en = {
       requestExternalPost: 'Submit a request to link external post (Github issue)',
       readCodeGuidelines: 'Read "Blog Post: Implementation Guidelines"',
     },
-    contact: `If you do not use Github, contact administrators via <a class="c-link" href="${SOCIAL_LINKS.discord}" target="_blank" rel="noreferrer">Discord</a> or <a class="c-link" href="mailto:${EMAILS.blog}" target="_blank" rel="noreferrer">${EMAILS.blog}</a>.`,
+    contact: `If you do not use Github, contact administrators via <a class="c-link" href="${SOCIAL_LINKS.DISCORD}" target="_blank" rel="noreferrer">Discord</a> or <a class="c-link" href="mailto:${EMAILS.BLOG}" target="_blank" rel="noreferrer">${EMAILS.BLOG}</a>.`,
   },
   posts: {
     title: 'Other Posts',

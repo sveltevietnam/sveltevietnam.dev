@@ -46,15 +46,15 @@
         <p class="footer-section-title tp-h4 font-medium">{t.contact.title}</p>
         <ul>
           <li>
-            <a href={SOCIAL_LINKS.discord} class="c-link-neutral" external>
+            <a href={SOCIAL_LINKS.DISCORD} class="c-link-neutral" external>
               <svg inline-src="simpleicon/discord" width="24" height="24" />
               <span>{commonT[lang].sveltevienam}</span>
             </a>
           </li>
           <li>
-            <a href="mailto:{EMAILS.contact}" class="c-link-neutral" external>
+            <a href="mailto:{EMAILS.CONTACT}" class="c-link-neutral" external>
               <svg inline-src="google/mail" width="24" height="24" />
-              <span>{EMAILS.contact}</span>
+              <span>{EMAILS.CONTACT}</span>
             </a>
           </li>
         </ul>
@@ -67,22 +67,22 @@
   </div>
   <ul class="footer-socials c-container-design">
     <li>
-      <a href={SOCIAL_LINKS.openCollective} class="c-link-neutral" external>
+      <a href={SOCIAL_LINKS.OPEN_COLLECTIVE} class="c-link-neutral" external>
         <svg height="16" width="16" inline-src="simpleicon/opencollective" />
       </a>
     </li>
     <li>
-      <a href={SOCIAL_LINKS.github} class="c-link-neutral" external>
+      <a href={SOCIAL_LINKS.GITHUB} class="c-link-neutral" external>
         <svg height="16" width="16" inline-src="simpleicon/github" />
       </a>
     </li>
     <li>
-      <a href={SOCIAL_LINKS.twitter} class="c-link-neutral" external>
+      <a href={SOCIAL_LINKS.TWITTER} class="c-link-neutral" external>
         <svg height="16" width="16" inline-src="simpleicon/twitter" />
       </a>
     </li>
     <li>
-      <a href={SOCIAL_LINKS.facebook} class="c-link-neutral" external>
+      <a href={SOCIAL_LINKS.FACEBOOK} class="c-link-neutral" external>
         <svg height="16" width="16" inline-src="simpleicon/facebook" />
       </a>
     </li>
