@@ -1,19 +1,28 @@
+import ogImageEn from '$shared/assets/images/og/og-sponsor.en.png';
+import ogImageVi from '$shared/assets/images/og/og-sponsor.vi.png';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
+import type { Language } from '$shared/services/i18n';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { PageServerLoad } from './$types';
 import { translations } from './_page/translation';
 
-const metaTranslations = {
+const metaTranslations: Record<Language, App.PageData['meta']> = {
   vi: {
     title: 'Tài trợ | Svelte Việt Nam',
     description: 'Chung tay phát triển cộng đồng Svelte Việt Nam',
     keywords: ['tài trợ', 'đóng góp'],
+    og: {
+      image: ogImageVi,
+    },
   },
   en: {
     title: 'Sponsor | Svelte Vietnam',
     description: 'Grow together with the Svelte Vietnam community',
     keywords: ['sponsor', 'contribute'],
+    og: {
+      image: ogImageEn,
+    },
   },
 };
 

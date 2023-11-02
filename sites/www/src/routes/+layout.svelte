@@ -3,6 +3,7 @@
 
   import { page } from '$app/stores';
   import { PUBLIC_MODE } from '$env/static/public';
+  import ogImageHome from '$shared/assets/images/og/og-home.png';
   import { LANGUAGES } from '$shared/services/i18n';
 
   import '../lib/client/styles/app.css';
@@ -21,7 +22,7 @@
   $: ogDescription = meta?.og?.description ?? description;
   $: ogType = meta?.og?.type ?? 'website';
   $: ogUrl = meta?.og?.url ?? canonical;
-  $: ogImage = meta?.og?.image ?? `${$page.url.origin}/images/og/home.webp`;
+  $: ogImage = meta?.og?.image ?? ogImageHome;
   $: ogImageAlt = meta?.og?.imageAlt ?? title;
 
   $: twitterTitle = meta?.twitter?.title ?? ogTitle;

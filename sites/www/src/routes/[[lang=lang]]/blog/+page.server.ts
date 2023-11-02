@@ -1,12 +1,14 @@
 import { mail } from '$server/actions/mail/mail.server';
+import ogImage from '$shared/assets/images/og/og-blog.png';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
+import type { Language } from '$shared/services/i18n';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { Actions, PageServerLoad } from './$types';
 import { INTERNAL_POSTS, EXTERNAL_POSTS } from './_page/data';
 import { translations as pageT } from './_page/translation';
 
-const metaTranslations = {
+const metaTranslations: Record<Language, App.PageData['meta']> = {
   vi: {
     title: 'Blog | Svelte Việt Nam',
     description: '',
@@ -30,6 +32,9 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
     meta: {
       ...tMeta,
       canonical: `https://sveltevietnam.dev/${language}/blog`,
+      og: {
+        image: ogImage,
+      },
     },
     posts: {
       internal: INTERNAL_POSTS,

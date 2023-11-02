@@ -1,11 +1,12 @@
 import { LOAD_DEPENDENCIES, SOCIAL_LINKS } from '$shared/constants';
+import type { Language } from '$shared/services/i18n';
 // import { createMockedJobs, createMockedProjects, createMockedSponsors } from '$shared/mocks';
 import { ROADMAP_PATH } from '$shared/services/navigation';
 
 import type { PageServerLoad } from './$types';
 import { EXTERNAL_POSTS, INTERNAL_POSTS } from './blog/_page/data';
 
-const metaTranslations = {
+const metaTranslations: Record<Language, App.PageData['meta']> = {
   vi: {
     title: 'Trang chủ | Svelte Việt Nam',
     description: 'Cộng đồng và trung tâm thông tin cho Svelte tại Việt Nam',
