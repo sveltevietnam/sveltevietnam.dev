@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.17
+
+### Minor Changes
+
+- [`7a2d2c8`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/7a2d2c8be69656a70eac36d4f4cd4843f4369e34) Thanks [@vnphanquang](https://github.com/vnphanquang)! - setup OG images for each completed pages
+
 ## 1.0.0-next.16
 
 ### Minor Changes
