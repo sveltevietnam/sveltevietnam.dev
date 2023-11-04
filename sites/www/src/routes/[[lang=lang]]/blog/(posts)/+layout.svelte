@@ -140,7 +140,7 @@
     {/if}
 
     <div class="post-grid mt-[60px]">
-      {#key data.language}
+      {#key data.language && data.pathname}
         <section
           class="post-content prose dark:prose-invert max-w-full rose-svelte-vn"
           use:toc={{
