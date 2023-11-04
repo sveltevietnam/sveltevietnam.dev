@@ -22,7 +22,7 @@
           trigger: headerSectionElement,
           start: 0,
           end: 'bottom top',
-          scrub: true,
+          scrub: 2,
         },
       });
       parallaxTimeline.fromTo(
