@@ -41,7 +41,7 @@
       {/each}
     </ul>
   {:else}
-    <div use:intersect class="mt-100 tb:mt-[60px]">
+    <div use:intersect class="mt-10 tb:mt-[60px]">
       <ToBeAnnounced>
         <p class="text-center">
           {t.tba.description}
