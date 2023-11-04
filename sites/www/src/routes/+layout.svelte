@@ -3,7 +3,7 @@
 
   import { page } from '$app/stores';
   import { PUBLIC_MODE } from '$env/static/public';
-  import ogImageHome from '$shared/assets/images/og/og-home.png';
+  import ogImageHome from '$shared/assets/images/og/og-home.jpg';
   import { LANGUAGES } from '$shared/services/i18n';
 
   import '../lib/client/styles/app.css';

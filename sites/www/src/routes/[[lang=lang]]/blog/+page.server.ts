@@ -1,5 +1,5 @@
 import { mail } from '$server/actions/mail/mail.server';
-import ogImage from '$shared/assets/images/og/og-blog.png';
+import ogImage from '$shared/assets/images/og/og-blog.jpg';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
 import type { Language } from '$shared/services/i18n';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';

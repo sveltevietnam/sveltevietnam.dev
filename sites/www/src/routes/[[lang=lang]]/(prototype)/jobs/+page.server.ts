@@ -3,6 +3,8 @@ import { superValidate } from 'sveltekit-superforms/server';
 import { mailSchema } from '$client/components/MailRegistrationForm';
 import { mail } from '$server/actions/mail/mail.server';
 import { translations as tMail } from '$server/actions/mail/translation';
+import ogImageEn from '$shared/assets/images/og/og-jobs.en.jpg';
+import ogImageVi from '$shared/assets/images/og/og-jobs.vi.jpg';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
 import { createMockedJobs } from '$shared/mocks';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
@@ -15,11 +17,17 @@ const metaTranslations = {
     title: 'Công việc | Svelte Việt Nam',
     description: 'Công việc dành cho lập trình viên Svelte tại Việt Nam',
     keywords: ['công việc', 'việc làm', 'tuyển dụng'],
+    og: {
+      image: ogImageVi,
+    },
   },
   en: {
     title: 'Jobs | Svelte Vietnam',
     description: 'Job board for Svelte developers in Vietnam',
     keywords: ['code', 'conduct', 'community', 'rules'],
+    og: {
+      image: ogImageEn,
+    },
   },
 };
 
