@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.18
+
+### Patch Changes
+
+- [#167](https://github.com/sveltevietnam/sveltevietnam.dev/pull/167) [`8848d4e`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/8848d4ea22ac71b01500634e60948bbb4f15da17) Thanks [@vnphanquang](https://github.com/vnphanquang)! - trigger `toc` to rerun as user navigates between blog posts (via the "Other Posts" section)
+
 ## 1.0.0-next.17
 
 ### Minor Changes
