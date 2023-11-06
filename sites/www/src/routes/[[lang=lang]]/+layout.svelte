@@ -19,7 +19,9 @@
   import { LANGUAGES } from '$shared/services/i18n/index.js';
   import { translations } from '$shared/services/i18n/translations/notification';
 
-  export let data;
+  import type { LayoutData } from './$types';
+
+  export let data: LayoutData;
 
   // CONTEXTS
   const splashStore = setSplashContext();
