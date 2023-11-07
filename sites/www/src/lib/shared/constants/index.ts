@@ -12,6 +12,7 @@ export const SOCIAL_LINKS = {
 
 export const EMAILS = {
   ADMIN: 'admin@sveltevietnam.dev',
+  JOBS: 'jobs@sveltevietnam.dev',
   BLOG: 'blog@sveltevietnam.dev',
   CONTACT: 'contact@sveltevietnam.dev',
   COC: 'coc@sveltevietnam.dev',

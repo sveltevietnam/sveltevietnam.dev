@@ -60,8 +60,8 @@ export const vi = {
       objective:
         'xây dựng hạ tầng và quy trình đăng tuyển, tổng hợp việc làm liên quan đến Svelte hoặc Front-end.',
       primaryTasks: [
+        `☑ Ra mắt trang <a class="c-link" href="${JOBS_PATH}">Việc làm</a> với thiết kế sơ khởi`,
         '☐ Phát triển web scraper và cron job để tổng hợp công việc tự động',
-        `☐ Ra mắt trang <a class="c-link" href="${JOBS_PATH}">Việc làm</a> với thiết kế sơ khởi`,
         '☐ Thiết lập quy trình đăng tuyển việc làm dành riêng cho nhà tài trợ',
       ],
     },

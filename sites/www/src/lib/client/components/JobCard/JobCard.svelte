@@ -19,13 +19,15 @@
 </script>
 
 <article class="job-card {cls}">
-  <img src={job.image || companyFallbackImg} alt={job.company} height="80" width="80" />
+  <a href={job.href} external class="contents">
+    <img src={job.image || companyFallbackImg} alt={job.company} height="80" width="80" />
+  </a>
   <div class="details">
     <p class="font-medium">
       <svg inline-src="icon/building" width="16" height="16" class="inline-block" />
       {job.company}
     </p>
-    <p class="datetime tp-body2">
+    <p class="datetime">
       <span>{t.posted}</span>
       <time datetime={job.createdAt}>{new Date(job.createdAt).toLocaleDateString()}</time>
       {#if job.expiresAt}
@@ -34,9 +36,9 @@
         <time datetime={job.expiresAt}>{new Date(job.expiresAt).toLocaleDateString()}</time>
       {/if}
     </p>
-    <a class="title c-link c-link--preserved w-fit font-medium tp-h5" href={job.href} external
-      >{job.title}</a
-    >
+    <p class="mt-3 w-fit font-medium tp-h5">
+      <a class="c-link c-link--preserved" href={job.href} external>{job.title}</a>
+    </p>
   </div>
   <div class="tags">
     {#each tags as tag}
@@ -68,11 +70,6 @@
   .datetime {
     margin-top: 6px;
     color: theme('colors.design.neutral.2');
-  }
-
-  .title {
-    display: block;
-    margin-top: 12px;
   }
 
   .tags {

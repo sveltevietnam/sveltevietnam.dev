@@ -68,12 +68,12 @@
         {/if}
       </div>
     </section>
-    <section class="">
+    <section>
       <h2 class="sr-only">{t.actions.title}</h2>
       <div
         class="grid sp:grid-rows-3 tb:grid-cols-2 tb-to-pc:grid-rows-2 gap-8 tb:gap-6 pc:grid-cols-3"
       >
-        <section class="action-card" use:intersect>
+        <section class="c-action-card" use:intersect>
           <div class="flex items-center justify-between">
             <h3 class="tp-h3 font-medium">{t.actions.share.title}</h3>
             <svg
@@ -104,7 +104,7 @@
             </a>
           </p>
         </section>
-        <section class="action-card" use:intersect id="mail">
+        <section class="c-action-card" use:intersect id="mail">
           <div class="flex items-center justify-between">
             <h3 class="tp-h3 font-medium">{t.actions.participate.title}</h3>
             <svg
@@ -121,7 +121,7 @@
           <p class="flex-1 mt-6">{t.actions.participate.description}</p>
           <MailRegistrationForm t={tMail} superValidated={data.mailForm} class="mt-6" />
         </section>
-        <section class="action-card" use:intersect>
+        <section class="c-action-card" use:intersect>
           <div class="flex items-center justify-between">
             <h3 class="tp-h3 font-medium">{t.actions.sponsor.title}</h3>
             <svg
@@ -189,20 +189,3 @@
     </section>
   </div>
 </main>
-
-<style lang="postcss">
-  .action-card {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-
-    padding: 24px;
-
-    border: 1px solid currentcolor;
-    border-radius: 20px;
-
-    @screen tb {
-      padding: 32px;
-    }
-  }
-</style>

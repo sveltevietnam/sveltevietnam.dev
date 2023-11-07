@@ -1,3 +1,4 @@
+/* FIXME: this should be a utility? */
 .c-container {
   max-width: 1200px;
   margin-right: auto;
@@ -31,5 +32,21 @@
 
   @screen xl {
     --container-min-padding-x: 160px;
+  }
+}
+
+
+.c-action-card {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  padding: 24px;
+
+  border: 1px solid currentcolor;
+  border-radius: 20px;
+
+  @screen tb {
+    padding: 32px;
   }
 }

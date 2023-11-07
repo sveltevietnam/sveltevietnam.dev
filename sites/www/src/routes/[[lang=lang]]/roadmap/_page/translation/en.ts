@@ -60,8 +60,8 @@ export const en = {
       objective:
         'build infrastructure and processes for posting and scraping jobs related to Svelte or Front-end.',
       primaryTasks: [
+        `☑ Publish the <a class="c-link" href="${JOBS_PATH}">Jobs</a> page with basic design`,
         '☐ Develop a web scarper and cron job to automatically find related jobs',
-        `☐ Publish the <a class="c-link" href="${JOBS_PATH}">Jobs</a> page with basic design`,
         '☐ Set up processes for sponsors to post and link jobs',
       ],
     },

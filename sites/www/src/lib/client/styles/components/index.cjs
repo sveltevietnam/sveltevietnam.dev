@@ -6,7 +6,6 @@ const components = {
   ...require('./tooltip.css'),
   ...require('./tag.css'),
   ...require('./loader.css'),
-  ...require('./action-card.css'),
   ...require('./avatar.css'),
   ...require('./btn.css'),
   ...require('./container.css'),
@@ -16,6 +15,7 @@ const components = {
   ...require('./page.css'),
   ...require('./sponsor.css'),
   ...require('./intro.css'),
+  ...require('./typography.css'),
 };
 
 module.exports = { components };

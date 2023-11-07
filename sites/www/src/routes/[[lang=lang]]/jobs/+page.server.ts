@@ -6,7 +6,6 @@ import { translations as tMail } from '$server/actions/mail/translation';
 import ogImageEn from '$shared/assets/images/og/og-jobs.en.jpg';
 import ogImageVi from '$shared/assets/images/og/og-jobs.vi.jpg';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
-import { createMockedJobs } from '$shared/mocks';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { PageServerLoad, Actions } from './$types';
@@ -16,7 +15,7 @@ const metaTranslations = {
   vi: {
     title: 'Công việc | Svelte Việt Nam',
     description: 'Công việc dành cho lập trình viên Svelte tại Việt Nam',
-    keywords: ['công việc', 'việc làm', 'tuyển dụng'],
+    keywords: ['công việc', 'việc làm', 'tuyển dụng', 'dự án'],
     og: {
       image: ogImageVi,
     },
@@ -24,7 +23,7 @@ const metaTranslations = {
   en: {
     title: 'Jobs | Svelte Vietnam',
     description: 'Job board for Svelte developers in Vietnam',
-    keywords: ['code', 'conduct', 'community', 'rules'],
+    keywords: ['job', 'work', 'employment', 'posting', 'recruitment', 'partner', 'project'],
     og: {
       image: ogImageEn,
     },
@@ -42,10 +41,10 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
       mail: tMail[language],
     },
     jobs: {
-      fromSponsors: createMockedJobs(6),
+      fromSponsors: [],
       fromRecruitmentSites: {
-        collectedAt: new Date(),
-        jobs: createMockedJobs(),
+        collectedAt: new Date('2023-11-07'),
+        jobs: [],
       },
     },
     meta: {
