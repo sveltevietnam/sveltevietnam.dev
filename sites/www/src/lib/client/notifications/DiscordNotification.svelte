@@ -14,14 +14,16 @@
 <script lang="ts">
   import type { NotificationInstance } from '@svelte-put/noti';
 
-  import type { Language } from '$shared/services/i18n';
+  import { getLangContext } from '$client/contexts/lang';
 
   import BaseNotification from './BaseNotification.svelte';
 
   export let notification: NotificationInstance;
   export let avatarURL: string;
   export let name: string;
-  export let language: Language;
+
+  const langStore = getLangContext();
+  $: lang = $langStore;
 </script>
 
 <BaseNotification {notification} intent="info" on:resolve icon={false}>
@@ -29,9 +31,9 @@
     <img src={avatarURL} alt="discord profile" class="c-avatar" width="28" height="28" />
     <p>
       <strong>{name}</strong>
-      {translations[language].message}
+      {translations[lang].message}
       <a href={SOCIAL_LINKS.DISCORD} class="c-link" external>
-        {commonT[language].sveltevienam} Discord
+        {commonT[lang].sveltevienam} Discord
       </a>.
     </p>
   </div>

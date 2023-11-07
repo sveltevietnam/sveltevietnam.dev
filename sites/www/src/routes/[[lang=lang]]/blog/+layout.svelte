@@ -6,19 +6,8 @@
 
   export let data: LayoutData;
 
-  const translations = {
-    vi: {
-      title: 'Bản tin Blog Svelte Việt Nam',
-      description: 'Đăng ký nhận thông báo để không bỏ lỡ bài viết mới từ Svelte Việt Nam',
-    },
-    en: {
-      title: 'The Svelte Vietnam Blog Newsletter',
-      description: 'Subscribe to receive notification for new blog post from Svelte Vietnam',
-    },
-  };
-
   $: tMail = data.translations.mail;
-  $: t = translations[data.language];
+  $: t = data.translations.layout;
 </script>
 
 <slot />
@@ -39,7 +28,6 @@
     </div>
     <MailRegistrationForm
       t={tMail}
-      language={data.language}
       superValidated={data.mailForm}
       action="/{data.language}/blog?/mail"
     />

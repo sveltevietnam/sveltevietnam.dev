@@ -1,13 +1,15 @@
 <script lang="ts">
-  import type { Language } from '$shared/services/i18n';
+  import { getLangContext } from '$client/contexts/lang';
   import type { Job } from '$shared/types';
 
   import { translations } from './translation';
 
-  export let lang: Language;
   export let job: Job;
   let cls = '';
   export { cls as class };
+
+  const langStore = getLangContext();
+  $: lang = $langStore;
 
   $: t = translations[lang];
 

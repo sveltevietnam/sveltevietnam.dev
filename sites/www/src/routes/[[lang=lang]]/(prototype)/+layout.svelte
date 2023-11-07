@@ -5,17 +5,10 @@
   import { WireframeVersionNotice } from '$client/modals/WireframeVersionNotice';
   import { WireframeVersionNoticeCache } from '$client/modals/WireframeVersionNotice/WireframeVersionNotice.cache';
 
-  export let data;
-
   onMount(() => {
     const cache = new WireframeVersionNoticeCache();
     if (cache.shouldShow !== false) {
-      modalStore.push({
-        component: WireframeVersionNotice,
-        props: {
-          lang: data.language,
-        },
-      });
+      modalStore.push({ component: WireframeVersionNotice });
     }
   });
 </script>

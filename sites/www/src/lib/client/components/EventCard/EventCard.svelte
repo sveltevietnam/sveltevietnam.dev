@@ -1,17 +1,19 @@
 <script lang="ts">
   import { AnimatedArrowCircle } from '$client/components/AnimatedArrowCircle';
+  import { getLangContext } from '$client/contexts/lang';
   import defaultFallbackImg from '$shared/assets/images/fallback/default.webp';
   import sponsorFallbackImg from '$shared/assets/images/fallback/sponsor.webp';
-  import type { Language } from '$shared/services/i18n';
   import type { Event } from '$shared/types';
   import { formatDate } from '$shared/utils/datetime';
 
   import { translations } from './translation';
 
-  export let lang: Language;
   export let event: Event;
   let cls = '';
   export { cls as class };
+
+  const langStore = getLangContext();
+  $: lang = $langStore;
 
   $: t = translations[lang];
   $: rStartDate = new Date(event.startDate);

@@ -10,6 +10,7 @@
   import { Footer } from '$client/components/Footer';
   import { Header } from '$client/components/Header';
   import { setColorSchemeContext } from '$client/contexts/colorScheme.js';
+  import { setLangContext } from '$client/contexts/lang';
   import { setLockScrollContext } from '$client/contexts/lockscroll.js';
   import { setSplashContext } from '$client/contexts/splash.js';
   import { modalStore } from '$client/modals';
@@ -27,6 +28,9 @@
   const splashStore = setSplashContext();
   const lockScrollStore = setLockScrollContext();
   setColorSchemeContext(data.colorScheme);
+  const lang = setLangContext(data.language);
+
+  $: $lang = data.language;
 
   type DiscordEventData = {
     type: 'message';
@@ -61,6 +65,14 @@
     }
   });
 
+  /**
+   * If going from a localized url to a non-localized url,
+   * reroute to keep the lang segment. For example:
+   * navigate from `/en/blog` to `/events` will reroute to `/en/events`
+   *
+   * This allows all links in site to exclude lang segment but user
+   * still sees a consistent display language, unless they change it explicitly
+   */
   beforeNavigate(({ to, cancel, from }) => {
     const fromLang = from?.params?.lang;
     const toLang = to?.params?.lang;
@@ -71,22 +83,24 @@
     }
   });
 
-  $: if ($updated) noti.info(translations[data.language].newVersion);
+  let notifiedAboutNewVersion = false;
+  $: if ($updated && !notifiedAboutNewVersion) {
+    notifiedAboutNewVersion = true;
+    noti.info(translations[data.language].newVersion);
+  }
 
   let notifiedAboutSlowHydration = false;
-  $: if ($splashStore.isSlowHydration) {
-    if (!notifiedAboutSlowHydration) {
-      notifiedAboutSlowHydration = true;
-      noti.info(translations[data.language].slowHydration);
-    }
+  $: if ($splashStore.isSlowHydration && !notifiedAboutSlowHydration) {
+    notifiedAboutSlowHydration = true;
+    noti.info(translations[data.language].slowHydration);
   }
 </script>
 
 <svelte:document use:lockscroll={lockScrollStore} />
 
-<Header pathname={data.pathname} lang={data.language} />
+<Header pathname={data.pathname} />
 <slot />
-<Footer lang={data.language} {version} pathname={data.pathname} />
+<Footer pathname={data.pathname} {version} />
 
 <!-- portals -->
 <ModalPortal store={modalStore} class="z-modal" />

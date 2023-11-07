@@ -163,12 +163,12 @@
         <ul class="mt-8 space-y-8">
           {#each data.more.internal as post}
             <li class="before:mb-8 before:separator first-of-type:before:hidden">
-              <BlogPostItem {post} lang={data.language} alwaysVertical />
+              <BlogPostItem {post} alwaysVertical />
             </li>
           {/each}
           {#each data.more.external as post}
             <li class="before:mb-8 before:separator">
-              <ExternalBlogPostItem {post} lang={data.language} />
+              <ExternalBlogPostItem {post} />
             </li>
           {/each}
         </ul>

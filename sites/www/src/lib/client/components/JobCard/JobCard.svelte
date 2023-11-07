@@ -1,14 +1,16 @@
 <script lang="ts">
+  import { getLangContext } from '$client/contexts/lang';
   import companyFallbackImg from '$shared/assets/images/fallback/company.webp';
-  import type { Language } from '$shared/services/i18n';
   import type { Job } from '$shared/types';
 
   import { translations } from './translation';
 
-  export let lang: Language;
   export let job: Job;
   let cls = '';
   export { cls as class };
+
+  const langStore = getLangContext();
+  $: lang = $langStore;
 
   $: t = translations[lang];
   $: tags = [!!job.sponsor && t.sponsored, job.salary, job.location, job.locationPolicy].filter(

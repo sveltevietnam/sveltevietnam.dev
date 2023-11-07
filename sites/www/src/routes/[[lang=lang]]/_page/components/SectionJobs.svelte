@@ -4,14 +4,16 @@
   import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
   import { JobCard } from '$client/components/JobCard';
   import { SplitText } from '$client/components/SplitText';
-  import type { Language } from '$shared/services/i18n';
+  import { getLangContext } from '$client/contexts/lang';
   import { JOBS_PATH } from '$shared/services/navigation';
   import type { Job } from '$shared/types';
 
   import { translations } from '../translation';
 
-  export let lang: Language;
   export let jobs: Job[];
+
+  const langStore = getLangContext();
+  $: lang = $langStore;
 
   $: t = translations[lang].jobs;
 </script>
@@ -29,7 +31,7 @@
   <ul>
     {#each jobs as job}
       <li class="shrink-0" use:intersect>
-        <JobCard {job} {lang} class="h-full" />
+        <JobCard {job} class="h-full" />
       </li>
     {/each}
   </ul>

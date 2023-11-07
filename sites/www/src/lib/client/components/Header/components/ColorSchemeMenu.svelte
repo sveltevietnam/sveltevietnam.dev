@@ -3,12 +3,14 @@
   import { slide, fade } from 'svelte/transition';
 
   import { getColorSchemeContext } from '$client/contexts/colorScheme';
-  import type { Language } from '$shared/services/i18n';
+  import { getLangContext } from '$client/contexts/lang';
   import { translations } from '$shared/services/i18n/translations/color-scheme';
 
   import ColorSchemeIcon from './ColorSchemeIcon.svelte';
 
-  export let lang: Language;
+  const langStore = getLangContext();
+  $: lang = $langStore;
+
   let cls = '';
   export { cls as class };
 

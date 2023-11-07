@@ -5,14 +5,16 @@
   import { EventCard } from '$client/components/EventCard';
   import { SplitText } from '$client/components/SplitText';
   import { ToBeAnnounced } from '$client/components/ToBeAnnounced';
-  import type { Language } from '$shared/services/i18n';
+  import { getLangContext } from '$client/contexts/lang';
   import { EVENTS_PATH } from '$shared/services/navigation';
   import type { Event } from '$shared/types';
 
   import { translations } from '../translation';
 
-  export let lang: Language;
   export let events: Event[];
+
+  const langStore = getLangContext();
+  $: lang = $langStore;
 
   $: t = translations[lang].events;
 </script>
@@ -32,7 +34,7 @@
       <ul class="sp:ml-8">
         {#each events as event}
           <li use:intersect>
-            <EventCard {event} {lang} />
+            <EventCard {event} />
           </li>
         {/each}
       </ul>

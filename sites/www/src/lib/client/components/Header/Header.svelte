@@ -2,7 +2,6 @@
   import { fly } from 'svelte/transition';
 
   import { afterNavigate } from '$app/navigation';
-  import type { Language } from '$shared/services/i18n';
   import { HOME_PATH, isCurrentPage } from '$shared/services/navigation';
   import { clamp } from '$shared/utils/clamp';
 
@@ -11,7 +10,6 @@
   import PageNav from './components/PageNav.svelte';
 
   export let pathname: string;
-  export let lang: Language;
 
   let mobileOverlayOpen = false;
   function toggleMobileOverlay() {
@@ -46,7 +44,7 @@
         <span>Svelte <br aria-disabled /> Vietnam</span>
       </svelte:element>
     </div>
-    <ColorSchemeMenu {lang} class="color-scheme" />
+    <ColorSchemeMenu class="color-scheme" />
 
     <button class="mobile-open" on:click={toggleMobileOverlay}>
       <svg
@@ -85,8 +83,8 @@
         data-open={mobileOverlayOpen}
         transition:fly={{ duration: 200, x: 50 }}
       >
-        <LanguageNav {pathname} {lang} class="languages" />
-        <PageNav {pathname} {lang} class="pages" />
+        <LanguageNav {pathname} class="languages" />
+        <PageNav {pathname} class="pages" />
         <button class="mobile-close" on:click={toggleMobileOverlay}>
           <svg inline-src="icon/x" width="44" height="44" />
         </button>

@@ -15,14 +15,10 @@
 </script>
 
 <main class="pb-[120px] tb:pb-[200px]">
-  <SectionIntro lang={data.language} />
-  <SectionCommunity lang={data.language} />
-  <SectionEvents lang={data.language} events={data.events} />
-  <SectionPosts
-    lang={data.language}
-    posts={data.posts.internal}
-    externalPost={data.posts.external}
-  />
+  <SectionIntro />
+  <SectionCommunity />
+  <SectionEvents events={data.events} />
+  <SectionPosts posts={data.posts.internal} externalPost={data.posts.external} />
   <!-- <section class="c-container-design mb-20 bg-bg-300 py-6 text-fg-100" use:intersect>
     <p>
       <svg
@@ -45,7 +41,7 @@
       {@html data.underConstructionNote}
     </p>
   </section> -->
-  <!-- <SectionJobs lang={data.language} jobs={data.jobs} /> -->
-  <!-- <SectionImpact lang={data.language} projects={data.projects} /> -->
-  <SectionSponsor lang={data.language} sponsors={data.sponsors} />
+  <!-- <SectionJobs jobs={data.jobs} /> -->
+  <!-- <SectionImpact projects={data.projects} /> -->
+  <SectionSponsor sponsors={data.sponsors} />
 </main>

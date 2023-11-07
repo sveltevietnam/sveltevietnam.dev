@@ -1,11 +1,13 @@
 <script lang="ts">
-  import type { Language } from '$shared/services/i18n';
+  import { getLangContext } from '$client/contexts/lang';
   import { HEADER_PATHS, getPathLabel, isCurrentPage } from '$shared/services/navigation';
 
   export let pathname: string;
-  export let lang: Language;
   let cls = '';
   export { cls as class };
+
+  const langStore = getLangContext();
+  $: lang = $langStore;
 </script>
 
 <nav aria-label="pages" data-sveltekit-preload-data="hover">

@@ -4,14 +4,16 @@
   import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
   import { SplitText } from '$client/components/SplitText';
   import { ToBeAnnounced } from '$client/components/ToBeAnnounced';
-  import type { Language } from '$shared/services/i18n';
+  import { getLangContext } from '$client/contexts/lang';
   import { SPONSOR_PATH } from '$shared/services/navigation';
   import type { Sponsor } from '$shared/types';
 
   import { translations } from '../translation';
 
-  export let lang: Language;
   export let sponsors: Sponsor[];
+
+  const langStore = getLangContext();
+  $: lang = $langStore;
 
   $: t = translations[lang].sponsor;
 </script>

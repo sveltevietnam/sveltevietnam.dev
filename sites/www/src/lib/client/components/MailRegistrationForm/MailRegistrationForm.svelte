@@ -14,21 +14,23 @@
 
   import { turnstile } from '$client/actions/turnstile';
   import { getColorSchemeContext } from '$client/contexts/colorScheme';
+  import { getLangContext } from '$client/contexts/lang';
   import type { FormMessage } from '$client/forms';
   import { noti } from '$client/notifications';
   import { PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
-  import type { Language } from '$shared/services/i18n';
 
   /** translations */
   export let action = '?/mail';
   export let superValidated: SuperValidated<MailSchema>;
-  export let language: Language;
   export let t = {
     name: 'Name',
     cta: 'Notify me',
   };
   let cls = '';
   export { cls as class };
+
+  const langStore = getLangContext();
+  $: lang = $langStore;
 
   const { form, enhance, constraints, errors, delayed, message } = superForm<
     MailSchema,
@@ -100,7 +102,7 @@
       turnstile-response-field-name="turnstile"
       turnstile-response-field
       turnstile-size="normal"
-      turnstile-language={language}
+      turnstile-language={lang}
       use:turnstile
       on:turnstile={(e) => ($form.turnstile = e.detail)}
     />

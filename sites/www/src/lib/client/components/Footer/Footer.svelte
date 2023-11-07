@@ -1,6 +1,6 @@
 <script lang="ts">
+  import { getLangContext } from '$client/contexts/lang';
   import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
-  import type { Language } from '$shared/services/i18n';
   import { translations as commonT } from '$shared/services/i18n/translations/common';
   import {
     CODE_OF_CONDUCT_PATH,
@@ -15,7 +15,9 @@
 
   export let pathname: string;
   export let version: string;
-  export let lang: Language;
+
+  const langStore = getLangContext();
+  $: lang = $langStore;
 
   $: t = translations[lang];
 </script>

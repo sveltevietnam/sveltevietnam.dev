@@ -5,12 +5,14 @@
   import { createEventDispatcher } from 'svelte';
   import { fade, fly } from 'svelte/transition';
 
-  import type { Language } from '$shared/services/i18n';
+  import { getLangContext } from '$client/contexts/lang';
 
   import { WireframeVersionNoticeCache } from './WireframeVersionNotice.cache';
   import { translations } from './translation';
 
-  export let lang: Language;
+  const langStore = getLangContext();
+  $: lang = $langStore;
+
   $: t = translations[lang];
 
   const cache = new WireframeVersionNoticeCache();

@@ -1,11 +1,13 @@
 <script lang="ts">
+  import { getLangContext } from '$client/contexts/lang';
   import { localizeExternalPost, type ExternalPost } from '$shared/data/blog';
-  import type { Language } from '$shared/services/i18n';
 
-  export let lang: Language;
   export let post: ExternalPost;
   let cls = '';
   export { cls as class };
+
+  const langStore = getLangContext();
+  $: lang = $langStore;
 
   $: tPost = localizeExternalPost(lang, post);
 

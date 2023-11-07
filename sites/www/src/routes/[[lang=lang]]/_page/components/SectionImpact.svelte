@@ -6,14 +6,16 @@
   import { AnimatedArrowCircle } from '$client/components/AnimatedArrowCircle';
   import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
   import { SplitText } from '$client/components/SplitText';
-  import type { Language } from '$shared/services/i18n';
+  import { getLangContext } from '$client/contexts/lang';
   import { IMPACT_PATH } from '$shared/services/navigation';
   import type { Project } from '$shared/types';
 
   import { translations } from '../translation';
 
-  export let lang: Language;
   export let projects: Project[];
+
+  const langStore = getLangContext();
+  $: lang = $langStore;
 
   $: t = translations[lang].impact;
 

@@ -13,21 +13,7 @@
   export let data: PageData;
 
   $: t = data.translations.page;
-
-  const ISSUE_TEMPLATE_LINK = {
-    vi: {
-      proposePost:
-        'https://github.com/sveltevietnam/sveltevietnam.dev/issues/new?assignees=vnphanquang&labels=page%3Ablog%2Ccontent%3Ablog%2Cblog%3Apending&projects=&template=vi_blog_post_proposal.yaml&title=%C4%90%E1%BB%81+ngh%E1%BB%8B+%C4%91%C4%83ng+b%C3%A0i%3A+%3Ct%E1%BB%B1a+%C4%91%E1%BB%81+b%C3%A0i+vi%E1%BA%BFt%3E',
-      requestExternalPost:
-        'https://github.com/sveltevietnam/sveltevietnam.dev/issues/new?assignees=vnphanquang&labels=page%3Ablog%2Ccontent%3Ablog&projects=&template=vi_external_blog_post_link_request.yaml&title=Li%C3%AAn+k%E1%BA%BFt+b%C3%A0i+vi%E1%BA%BFt+ngo%C3%A0i%3A+%3Ct%E1%BB%B1a+%C4%91%E1%BB%81+b%C3%A0i+vi%E1%BA%BFt%3E',
-    },
-    en: {
-      proposePost:
-        'https://github.com/sveltevietnam/sveltevietnam.dev/issues/new?assignees=vnphanquang&labels=page%3Ablog%2Ccontent%3Ablog%2Cblog%3Apending&projects=&template=en_blog_post_proposal.yaml&title=Blog+Post+Proposal%3A+%3Cshort+title+of+blog+post%3E',
-      requestExternalPost:
-        'https://github.com/sveltevietnam/sveltevietnam.dev/issues/new?assignees=vnphanquang&labels=page%3Ablog%2Ccontent%3Ablog&projects=&template=en_external_blog_post_link_request.yaml&title=External+Blog+Post+Link+Request%3A+%3Cshort+title+of+blog+post%3E',
-    },
-  } as const;
+  $: issueTemplateLinks = data.issueTemplateLinks;
 
   function splitPosts(posts: typeof data.posts) {
     const { internal, external } = posts;
@@ -66,19 +52,19 @@
           <div class="flex-1">
             {#if topPosts[0]}
               <div use:intersect>
-                <BlogPostItem lang={data.language} post={topPosts[0]} alwaysVertical />
+                <BlogPostItem post={topPosts[0]} alwaysVertical />
               </div>
             {/if}
           </div>
           <div class="space-y-10 flex-1">
             {#each topPosts.slice(1) as post}
               <div use:intersect class="first-of-type:before:hidden before:separator before:mb-10">
-                <BlogPostItem lang={data.language} {post} />
+                <BlogPostItem {post} />
               </div>
             {/each}
             {#if topExternalPost}
               <div use:intersect class="before:separator before:mb-10">
-                <ExternalBlogPostItem lang={data.language} post={topExternalPost} />
+                <ExternalBlogPostItem post={topExternalPost} />
               </div>
             {/if}
           </div>
@@ -108,17 +94,13 @@
         <p use:intersect class="mt-6">{t.contribute.description}</p>
         <ul class="divider-border divide-y font-medium mt-4 max-w-[548px]" use:intersect>
           <li>
-            <a href={ISSUE_TEMPLATE_LINK[data.language].proposePost} class="c-link-box" external>
+            <a href={issueTemplateLinks.proposePost} class="c-link-box" external>
               <span>{t.contribute.links.proposePost}</span>
               <svg inline-src="icon/external-link" />
             </a>
           </li>
           <li>
-            <a
-              href={ISSUE_TEMPLATE_LINK[data.language].requestExternalPost}
-              class="c-link-box"
-              external
-            >
+            <a href={issueTemplateLinks.requestExternalPost} class="c-link-box" external>
               <span>{t.contribute.links.requestExternalPost}</span>
               <svg inline-src="icon/external-link" />
             </a>
@@ -149,7 +131,7 @@
           <ul class="space-y-10 mt-10">
             {#each otherPosts as post}
               <li class="first-of-type:before:hidden before:mb-10 before:separator" use:intersect>
-                <BlogPostItem lang={data.language} {post} />
+                <BlogPostItem {post} />
               </li>
             {/each}
           </ul>
@@ -160,7 +142,7 @@
                 {t.posts.tba.description}
               </p>
               <p class="mt-4">
-                <a href={ISSUE_TEMPLATE_LINK[data.language].proposePost} class="c-link" external
+                <a href={issueTemplateLinks.proposePost} class="c-link" external
                   >{t.posts.tba.cta}</a
                 >
               </p>
@@ -179,7 +161,7 @@
             <ul class="space-y-10 mt-10">
               {#each otherExternalPosts as post}
                 <li class="first-of-type:before:hidden before:mb-10 before:separator" use:intersect>
-                  <ExternalBlogPostItem lang={data.language} {post} />
+                  <ExternalBlogPostItem {post} />
                 </li>
               {/each}
             </ul>
@@ -190,10 +172,8 @@
                   {t.externalPosts.tba.description}
                 </p>
                 <p class="mt-4">
-                  <a
-                    href={ISSUE_TEMPLATE_LINK[data.language].requestExternalPost}
-                    class="c-link"
-                    external>{t.externalPosts.tba.cta}</a
+                  <a href={issueTemplateLinks.requestExternalPost} class="c-link" external
+                    >{t.externalPosts.tba.cta}</a
                   >
                 </p>
               </ToBeAnnounced>

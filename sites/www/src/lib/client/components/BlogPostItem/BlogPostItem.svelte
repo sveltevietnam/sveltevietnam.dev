@@ -1,15 +1,17 @@
 <script lang="ts">
   import { FallbackImage } from '$client/components/FallbackImage';
+  import { getLangContext } from '$client/contexts/lang';
   import { localizePost, type Post } from '$shared/data/blog';
-  import type { Language } from '$shared/services/i18n';
   import { BLOG_PATH } from '$shared/services/navigation';
   import { formateDateForBlog } from '$shared/utils/datetime';
 
   export let alwaysVertical = false;
   export let post: Post;
-  export let lang: Language;
   let cls = '';
   export { cls as class };
+
+  const langStore = getLangContext();
+  $: lang = $langStore;
 
   $: tPost = localizePost(lang, post);
   $: href = `${BLOG_PATH}/${tPost.slug}`;

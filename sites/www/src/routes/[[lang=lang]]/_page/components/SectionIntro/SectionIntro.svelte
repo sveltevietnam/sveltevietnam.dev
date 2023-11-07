@@ -4,8 +4,8 @@
 
   import { gsap } from '$3rd/gsap';
   import { intersect } from '$client/actions/intersect';
+  import { getLangContext } from '$client/contexts/lang';
   import { getSplashContext } from '$client/contexts/splash';
-  import type { Language } from '$shared/services/i18n';
   import { translations as commonT } from '$shared/services/i18n/translations/common';
 
   import { translations } from '../../translation';
@@ -23,7 +23,8 @@
   import introSvelteVietnamImg from './images/intro-sveltevietnam.svg';
   import introVietnamImg from './images/intro-vietnam.svg';
 
-  export let lang: Language;
+  const langStore = getLangContext();
+  $: lang = $langStore;
 
   $: t = translations[lang].intro;
 

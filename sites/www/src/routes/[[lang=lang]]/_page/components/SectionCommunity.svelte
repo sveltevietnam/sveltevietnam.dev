@@ -5,9 +5,9 @@
   import { intersect } from '$client/actions/intersect';
   import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
   import { SplitText } from '$client/components/SplitText';
+  import { getLangContext } from '$client/contexts/lang';
   // import { getSplashContext } from '$client/contexts/splash';
   import { SOCIAL_LINKS } from '$shared/constants';
-  import type { Language } from '$shared/services/i18n';
   // import { PEOPLE_PATH } from '$shared/services/navigation';
 
   // import communityShapeEllipse from '../images/community-shape-ellipse.webp';
@@ -15,7 +15,8 @@
   // import communityShapeStar from '../images/community-shape-star.webp';
   import { translations } from '../translation';
 
-  export let lang: Language;
+  const langStore = getLangContext();
+  $: lang = $langStore;
 
   $: t = translations[lang].community;
 

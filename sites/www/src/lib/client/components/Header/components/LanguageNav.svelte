@@ -2,14 +2,17 @@
   import { localizeUrl } from '@internals/utils/url';
 
   import { invalidate } from '$app/navigation';
+  import { getLangContext } from '$client/contexts/lang';
   import { LOAD_DEPENDENCIES } from '$shared/constants';
   import { LANGUAGES } from '$shared/services/i18n';
   import type { Language } from '$shared/services/i18n';
 
   export let pathname: string;
-  export let lang: Language;
   let cls = '';
   export { cls as class };
+
+  const langStore = getLangContext();
+  $: lang = $langStore;
 
   function changeLanguage(lang: Language) {
     if (lang !== document.documentElement.getAttribute('lang')) {

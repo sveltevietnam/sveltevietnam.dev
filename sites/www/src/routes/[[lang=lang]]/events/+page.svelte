@@ -50,7 +50,7 @@
           <ul class="space-y-10 tb:space-y-[60px]">
             {#each data.events.upcoming as event}
               <li use:intersect>
-                <EventCard {event} lang={data.language} />
+                <EventCard {event} />
               </li>
             {/each}
           </ul>
@@ -119,12 +119,7 @@
             </svg>
           </div>
           <p class="flex-1 mt-6">{t.actions.participate.description}</p>
-          <MailRegistrationForm
-            t={tMail}
-            language={data.language}
-            superValidated={data.mailForm}
-            class="mt-6"
-          />
+          <MailRegistrationForm t={tMail} superValidated={data.mailForm} class="mt-6" />
         </section>
         <section class="action-card" use:intersect>
           <div class="flex items-center justify-between">
@@ -177,7 +172,7 @@
           <ul class="space-y-10 tb:space-y-[60px]">
             {#each data.events.past as event}
               <li use:intersect>
-                <EventCard {event} lang={data.language} />
+                <EventCard {event} />
               </li>
             {/each}
           </ul>

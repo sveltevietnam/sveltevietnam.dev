@@ -21,6 +21,21 @@ const metaTranslations: Record<Language, App.PageData['meta']> = {
   },
 };
 
+const issueTemplateLinks = {
+  vi: {
+    proposePost:
+      'https://github.com/sveltevietnam/sveltevietnam.dev/issues/new?assignees=vnphanquang&labels=page%3Ablog%2Ccontent%3Ablog%2Cblog%3Apending&projects=&template=vi_blog_post_proposal.yaml&title=%C4%90%E1%BB%81+ngh%E1%BB%8B+%C4%91%C4%83ng+b%C3%A0i%3A+%3Ct%E1%BB%B1a+%C4%91%E1%BB%81+b%C3%A0i+vi%E1%BA%BFt%3E',
+    requestExternalPost:
+      'https://github.com/sveltevietnam/sveltevietnam.dev/issues/new?assignees=vnphanquang&labels=page%3Ablog%2Ccontent%3Ablog&projects=&template=vi_external_blog_post_link_request.yaml&title=Li%C3%AAn+k%E1%BA%BFt+b%C3%A0i+vi%E1%BA%BFt+ngo%C3%A0i%3A+%3Ct%E1%BB%B1a+%C4%91%E1%BB%81+b%C3%A0i+vi%E1%BA%BFt%3E',
+  },
+  en: {
+    proposePost:
+      'https://github.com/sveltevietnam/sveltevietnam.dev/issues/new?assignees=vnphanquang&labels=page%3Ablog%2Ccontent%3Ablog%2Cblog%3Apending&projects=&template=en_blog_post_proposal.yaml&title=Blog+Post+Proposal%3A+%3Cshort+title+of+blog+post%3E',
+    requestExternalPost:
+      'https://github.com/sveltevietnam/sveltevietnam.dev/issues/new?assignees=vnphanquang&labels=page%3Ablog%2Ccontent%3Ablog&projects=&template=en_external_blog_post_link_request.yaml&title=External+Blog+Post+Link+Request%3A+%3Cshort+title+of+blog+post%3E',
+  },
+} as const;
+
 export const load: PageServerLoad = async ({ url, depends, locals: { language } }) => {
   depends(LOAD_DEPENDENCIES.LANGUAGE);
   const tMeta = metaTranslations[language];
@@ -29,6 +44,7 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
     translations: {
       page: pageT[language],
     },
+    issueTemplateLinks: issueTemplateLinks[language],
     meta: {
       ...tMeta,
       canonical: `https://sveltevietnam.dev/${language}/blog`,

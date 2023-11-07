@@ -26,7 +26,7 @@
     <ul class="grid grid-cols-1 gap-10 md:grid-cols-2">
       {#each fromSponsors as job}
         <li>
-          <JobCard {job} lang={data.language} />
+          <JobCard {job} />
         </li>
       {/each}
     </ul>
@@ -49,7 +49,7 @@
       <div class="c-graphic" />
       <h2 class="c-page@h2">{t.actions.candidate.title}</h2>
       <p>{t.actions.candidate.description}</p>
-      <MailRegistrationForm t={tMail} language={data.language} superValidated={data.mailForm} />
+      <MailRegistrationForm t={tMail} superValidated={data.mailForm} />
     </section>
   </div>
 
@@ -61,7 +61,7 @@
     <ul class="grid grid-cols-1 gap-10 md:grid-cols-2">
       {#each fromRecruitmentSites.jobs as job}
         <li>
-          <JobCard {job} lang={data.language} />
+          <JobCard {job} />
         </li>
       {/each}
     </ul>
