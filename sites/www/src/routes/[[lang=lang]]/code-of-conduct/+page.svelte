@@ -22,68 +22,64 @@
   </section>
 
   <div class="space-y-[60px] tb:space-y-[120px] py-[60px] tb:pb-[200px] tb:pt-[120px]">
-    <section class="border border-current rounded-[20px] p-6 tb:p-8" use:intersect>
+    <section use:intersect>
       <h2 class="sr-only">{t.notice.title}</h2>
       <div class="space-y-4">
         <p>{@html t.notice.description}</p>
         <p>{@html t.notice.action}</p>
-        <div class="flex items-center gap-4 upto-tb:flex-col">
-          <a href={SOCIAL_LINKS.DISCORD} class="c-btn w-fit">
-            {t.notice.ctas.discord}
-          </a>
-          <p>
-            Email: <a class="c-link" href="mailto:{EMAILS.COC}">{EMAILS.COC}</a>
-          </p>
-        </div>
+        <ul class="divider-border divide-y font-medium mt-4 max-w-[548px]" use:intersect>
+          <li>
+            <a href={SOCIAL_LINKS.DISCORD} class="c-link-box" external>
+              <span>{t.notice.ctas.discord}</span>
+              <svg inline-src="icon/external-link" />
+            </a>
+          </li>
+          <li>
+            <a class="c-link-box" href="mailto:{EMAILS.COC}" external>
+              <span>Email {EMAILS.COC}</span>
+              <svg inline-src="icon/external-link" />
+            </a>
+          </li>
+        </ul>
       </div>
     </section>
 
-    <section class="space-y-6">
+    <section>
       <ConsecutiveFadeUpIntro selector=".char">
         <h2 class="tp-h2 font-medium uppercase">
           <SplitText text={t.excerpt.title} />
         </h2>
       </ConsecutiveFadeUpIntro>
-      <p use:intersect>{@html t.excerpt.intro}</p>
-      <figure class="excerpt" use:intersect>
-        <blockquote>
+      <p class="mt-6" use:intersect>{@html t.excerpt.intro}</p>
+      <div class="relative tb:pr-[48px] tb:pl-[140px] mt-10 tb:mt-[60px]" use:intersect>
+        <blockquote cite="https://sveltesociety.dev/about">
+          <div aria-disabled class="tb:absolute top-[-18px] left-[95px] flex gap-0.5 upto-tb:mb-3">
+            <svg inline-src="icon/quote-open" width="16" height="30" />
+            <svg
+              class="text-design-neutral-2"
+              inline-src="icon/quote-open"
+              width="16"
+              height="30"
+            />
+          </div>
           <p>{@html t.excerpt.quote}</p>
+          <div
+            aria-disabled
+            class="tb:absolute bottom-6 right-0 flex gap-0.5 upto-tb:mt-3 upto-tb:ml-auto w-fit"
+          >
+            <svg
+              class="text-design-neutral-2"
+              inline-src="icon/quote-close"
+              width="16"
+              height="30"
+            />
+            <svg inline-src="icon/quote-close" width="16" height="30" />
+          </div>
+          <footer class="mt-5 text-design-neutral-2">
+            <cite class="not-italic">{@html t.excerpt.caption}</cite>
+          </footer>
         </blockquote>
-        <figcaption>{@html t.excerpt.caption}</figcaption>
-      </figure>
+      </div>
     </section>
   </div>
 </main>
-
-<style lang="postcss">
-  .excerpt {
-    display: grid;
-    grid-template-areas:
-      'line quote'
-      'line caption';
-    grid-template-columns: auto 1fr;
-    row-gap: 24px;
-    column-gap: 16px;
-
-    &::before {
-      content: '';
-
-      display: grid;
-      grid-area: line;
-
-      width: 4px;
-      height: 100%;
-
-      background-color: currentcolor;
-    }
-
-    & blockquote {
-      grid-area: quote;
-    }
-
-    & figcaption {
-      grid-area: caption;
-      padding-bottom: 8px;
-    }
-  }
-</style>
