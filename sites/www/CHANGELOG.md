@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.0.0-next.19
+
+### Minor Changes
+
+- [`2e374a6`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/2e374a630431d6420410947ab51cb6a3be22a111) Thanks [@vnphanquang](https://github.com/vnphanquang)! - First draft for Jobs page with initial design & TBA sections ([#169](https://github.com/sveltevietnam/sveltevietnam.dev/issues/169))
+
+### Patch Changes
+
+- [`1606b73`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/1606b7341fa2d77ae34e3818850aa516c50823de) Thanks [@vnphanquang](https://github.com/vnphanquang)! - Apply updated design to code-of-conduct page
+
+- [`11af78e`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/11af78e6641e2ef019ec0540055bb862f3fc5baf) Thanks [@vnphanquang](https://github.com/vnphanquang)! - refactor lang props into global Svelte context
+
 ## 1.0.0-next.18
 
 ### Patch Changes
