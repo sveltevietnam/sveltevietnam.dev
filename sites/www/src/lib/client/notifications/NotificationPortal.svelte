@@ -9,7 +9,7 @@
 </script>
 
 <!-- notification portal, typically setup at somewhere global like root layout -->
-<aside class="notification-portal" role="log" aria-label="notifications">
+<div class="notification-portal" role="log" aria-label="notifications">
   {#each $store.notifications as notification (notification.id)}
     <div animate:flip={{ duration: 200 }}>
       <div transition:fly={{ duration: 280, x: 80, easing: cubicOut }}>
@@ -17,7 +17,7 @@
       </div>
     </div>
   {/each}
-</aside>
+</div>
 
 <style lang="postcss">
   .notification-portal {
