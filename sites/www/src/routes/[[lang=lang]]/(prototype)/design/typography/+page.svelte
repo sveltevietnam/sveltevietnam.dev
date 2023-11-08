@@ -12,20 +12,16 @@
       fontFamily: 'Lora',
       sp: {
         class: 'tp-h1@sp',
-        fontSize: '48px',
-        lineHeight: '61px',
+        fontSize: '3rem',
+        lineHeight: '1.25',
         letterSpacing: '4%',
       },
       pc: {
         class: 'tp-h1@pc',
-        fontSize: '64px',
-        lineHeight: '82px',
+        fontSize: '4rem',
+        lineHeight: '1.2813',
         letterSpacing: '6%',
       },
-      // paragraphSpacing: {
-      //   pc: '0px',
-      //   sp: '8px',
-      // },
       example: 'Heading 1',
     },
     {
@@ -34,20 +30,16 @@
       fontFamily: 'Lora',
       sp: {
         class: 'tp-h2@sp',
-        fontSize: '32px',
-        lineHeight: '41px',
+        fontSize: '2rem',
+        lineHeight: '1.2813',
         letterSpacing: '4%',
       },
       pc: {
         class: 'tp-h2@pc',
-        fontSize: '48px',
-        lineHeight: '61px',
+        fontSize: '3rem',
+        lineHeight: '1.25',
         letterSpacing: '4%',
       },
-      // paragraphSpacing: {
-      //   pc: '8px',
-      //   sp: 'px',
-      // },
       example: 'Heading 2',
     },
     {
@@ -56,20 +48,16 @@
       fontFamily: 'Lora',
       sp: {
         class: 'tp-h3@sp',
-        fontSize: '24px',
-        lineHeight: '36px',
+        fontSize: '1.4rem',
+        lineHeight: '1.5',
         letterSpacing: '0%',
       },
       pc: {
         class: 'tp-h3@pc',
-        fontSize: '32px',
-        lineHeight: '41px',
+        fontSize: '2rem',
+        lineHeight: '1.2813',
         letterSpacing: '4%',
       },
-      // paragraphSpacing: {
-      //   pc: '0px',
-      //   sp: 'px',
-      // },
       example: 'Heading 3',
     },
     {
@@ -78,20 +66,16 @@
       fontFamily: 'Inter',
       sp: {
         class: 'tp-h4@sp',
-        fontSize: '20px',
-        lineHeight: '24px',
+        fontSize: '1.25rem',
+        lineHeight: '1.2',
         letterSpacing: '0%',
       },
       pc: {
         class: 'tp-h4@pc',
-        fontSize: '24px',
-        lineHeight: '31px',
+        fontSize: '1.5rem',
+        lineHeight: '1.292',
         letterSpacing: '0%',
       },
-      // paragraphSpacing: {
-      //   pc: '8px',
-      //   sp: 'px',
-      // },
       example: 'Heading 4',
     },
     {
@@ -100,20 +84,16 @@
       fontFamily: 'Inter',
       sp: {
         class: 'tp-h5@sp',
-        fontSize: '18px',
-        lineHeight: '24px',
+        fontSize: '1.125rem',
+        lineHeight: '1.333',
         letterSpacing: '0%',
       },
       pc: {
         class: 'tp-h5@pc',
-        fontSize: '18px',
-        lineHeight: '22px',
+        fontSize: '1.125rem',
+        lineHeight: '1.333',
         letterSpacing: '0%',
       },
-      // paragraphSpacing: {
-      //   pc: '12px',
-      //   sp: 'px',
-      // },
       example: 'Heading 5',
     },
     {
@@ -122,20 +102,16 @@
       fontFamily: 'Inter',
       sp: {
         class: 'tp-body1@sp',
-        fontSize: '16px',
-        lineHeight: '24px',
+        fontSize: '1rem',
+        lineHeight: '1.5',
         letterSpacing: '0%',
       },
       pc: {
         class: 'tp-body1@pc',
-        fontSize: '16px',
-        lineHeight: '24px',
+        fontSize: '1rem',
+        lineHeight: '1.5',
         letterSpacing: '0%',
       },
-      // paragraphSpacing: {
-      //   pc: '12px',
-      //   sp: 'px',
-      // },
       example: 'Body 1',
     },
     {
@@ -144,20 +120,16 @@
       fontFamily: 'Inter',
       sp: {
         class: 'tp-body2@sp',
-        fontSize: '14px',
-        lineHeight: '24px',
+        fontSize: '0.875rem',
+        lineHeight: '1.714',
         letterSpacing: '0%',
       },
       pc: {
         class: 'tp-body2@pc',
-        fontSize: '14px',
-        lineHeight: '24px',
+        fontSize: '0.875rem',
+        lineHeight: '1.714',
         letterSpacing: '0%',
       },
-      // paragraphSpacing: {
-      //   pc: '12px',
-      //   sp: 'px',
-      // },
       example: 'Body 2',
     },
     {
@@ -166,20 +138,16 @@
       fontFamily: 'Inter',
       sp: {
         class: 'tp-cap1@sp',
-        fontSize: '14px',
-        lineHeight: '22px',
+        fontSize: '0.875rem',
+        lineHeight: '1.571',
         letterSpacing: '0%',
       },
       pc: {
         class: 'tp-cap1@pc',
-        fontSize: '14px',
-        lineHeight: '22px',
+        fontSize: '0.875rem',
+        lineHeight: '1.571',
         letterSpacing: '0%',
       },
-      // paragraphSpacing: {
-      //   pc: '0%',
-      //   sp: 'px',
-      // },
       example: 'Caption 1',
     },
     {
@@ -188,44 +156,18 @@
       fontFamily: 'Inter',
       sp: {
         class: 'tp-cap2@sp',
-        fontSize: '12px',
-        lineHeight: '22px',
+        fontSize: '0.75rem',
+        lineHeight: '1.833',
         letterSpacing: '0%',
       },
       pc: {
         class: 'tp-cap2@pc',
-        fontSize: '12px',
-        lineHeight: '22px',
+        fontSize: '0.75rem',
+        lineHeight: '1.833',
         letterSpacing: '0%',
       },
-      // paragraphSpacing: {
-      //   pc: '0%',
-      //   sp: 'px',
-      // },
       example: 'Caption 2',
     },
-    // {
-    //   name: 'Link',
-    //   class: 'tp-link underline',
-    //   fontFamily: 'Inter',
-    //   sp: {
-    //     class: 'tp-link@sp',
-    //     fontSize: '16px',
-    //     lineHeight: '24px',
-    //     letterSpacing: '0%',
-    //   },
-    //   pc: {
-    //     class: 'tp-link@pc',
-    //     fontSize: '16px',
-    //     lineHeight: '24px',
-    //     letterSpacing: '0%',
-    //   },
-    //   // paragraphSpacing: {
-    //   //   pc: '12px',
-    //   //   sp: 'px',
-    //   // },
-    //   example: 'Link',
-    // },
   ];
 </script>
 
