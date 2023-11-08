@@ -142,7 +142,7 @@
     <div class="post-grid mt-[60px]">
       {#key data.language && data.pathname}
         <section
-          class="post-content prose dark:prose-invert max-w-full rose-svelte-vn"
+          class="post-content prose dark:prose-invert max-w-full prose-svelte-vn"
           use:toc={{
             store: tocStore,
             selector: ':where(h2,h3,h4,h5,h6)',
@@ -151,7 +151,7 @@
         >
           <slot />
           <hr />
-          <p class="text-sm">
+          <p class="tp-body2">
             {t.editLink.intro}
             <a href={post?.githubUrl} external>{t.editLink.label}</a>
           </p>

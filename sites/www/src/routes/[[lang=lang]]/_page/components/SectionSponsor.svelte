@@ -38,7 +38,7 @@
             height="56"
             class="c-logo c-logo--themed sp:w-[32px] sp:h-auto"
           />
-          <p class="text-[11px] uppercase pc:text-[20px] leading-normal">Svelte<br />Vietnam</p>
+          <p class="uppercase tp-h5 leading-normal">Svelte<br />Vietnam</p>
         </li>
       {/each}
     </ul>

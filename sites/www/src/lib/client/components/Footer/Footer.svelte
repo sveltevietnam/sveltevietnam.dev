@@ -62,10 +62,9 @@
         </ul>
       </section>
     </div>
-    <div class="footer-logo">
-      <!-- <svg inline-src="sveltevietnam" width={76} height={86} class="c-logo c-logo--themed" /> -->
-      <p>Svelte <br aria-disabled /> Vietnam</p>
-    </div>
+    <p class="upto-pc:hidden tp-h3 uppercase leading-normal text-right">
+      Svelte <br class="" /> Vietnam
+    </p>
   </div>
   <ul class="footer-socials c-container-design">
     <li>
@@ -234,19 +233,6 @@
       display: flex;
       gap: 8px;
       align-items: center;
-    }
-  }
-
-  .footer-logo {
-    display: none;
-    gap: 24px;
-
-    font-size: 30px;
-    line-height: normal;
-    text-transform: uppercase;
-
-    @screen pc {
-      display: flex;
     }
   }
 
