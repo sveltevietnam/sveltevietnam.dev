@@ -1,15 +1,15 @@
 /* --------------H1-------------- */
 .tp-h1\@sp {
   font-family: theme('fontFamily.lora');
-  font-size: 48px;
-  line-height: 61px;
+  font-size: 3rem; /* 48px */;
+  line-height: 1.25; /* 60px */
   letter-spacing: 0.04em;
 }
 
 .tp-h1\@pc {
   font-family: theme('fontFamily.lora');
-  font-size: 64px;
-  line-height: 82px;
+  font-size: 4rem; /* 64px */
+  line-height: 1.2813; /* 82px */
   letter-spacing: 0.06em;
 }
 
@@ -24,15 +24,15 @@
 /* --------------H2-------------- */
 .tp-h2\@sp {
   font-family: theme('fontFamily.lora');
-  font-size: 32px;
-  line-height: 41px;
+  font-size: 2rem; /* 32px */
+  line-height: 1.2813; /* 41px */
   letter-spacing: 0.04em;
 }
 
 .tp-h2\@pc {
   font-family: theme('fontFamily.lora');
-  font-size: 48px;
-  line-height: 61px;
+  font-size: 3rem; /* 48px */
+  line-height: 1.25; /* 60px */
   letter-spacing: 0.04em;
 }
 
@@ -47,15 +47,15 @@
 /* --------------H3-------------- */
 .tp-h3\@sp {
   font-family: theme('fontFamily.lora');
-  font-size: 24px;
-  line-height: 36px;
+  font-size: 1.5rem; /* 24px */
+  line-height: 1.5; /* 36px */
   letter-spacing: 0;
 }
 
 .tp-h3\@pc {
   font-family: theme('fontFamily.lora');
-  font-size: 32px;
-  line-height: 41px;
+  font-size: 2rem; /* 32px */
+  line-height: 1.2813; /* 41px */
   letter-spacing: 0.04em;
 }
 
@@ -70,15 +70,15 @@
 /* --------------H4-------------- */
 .tp-h4\@sp {
   font-family: theme('fontFamily.inter');
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 1.25rem; /* 20px */
+  line-height: 1.2; /* 24px */
   letter-spacing: 0;
 }
 
 .tp-h4\@pc {
   font-family: theme('fontFamily.inter');
-  font-size: 24px;
-  line-height: 31px;
+  font-size: 1.5rem; /* 24px */
+  line-height: 1.292; /* 31px */
   letter-spacing: 0;
 }
 
@@ -93,8 +93,8 @@
 /* --------------H5-------------- */
 .tp-h5\@sp {
   font-family: theme('fontFamily.inter');
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.333; /* 24px */
   letter-spacing: 0;
 }
 
@@ -113,8 +113,8 @@
 /* --------------BODY-1-------------- */
 .tp-body1\@sp {
   font-family: theme('fontFamily.inter');
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 1rem; /* 16px */
+  line-height: 1.5rem; /* 24px */
   letter-spacing: 0;
 }
 
@@ -133,8 +133,8 @@
 /* --------------BODY-2-------------- */
 .tp-body2\@sp {
   font-family: theme('fontFamily.inter');
-  font-size: 14px;
-  line-height: 24px;
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.714; /* 24px */
   letter-spacing: 0;
 }
 
@@ -153,8 +153,8 @@
 /* --------------CATPTION-1-------------- */
 .tp-cap1\@sp {
   font-family: theme('fontFamily.inter');
-  font-size: 14px;
-  line-height: 22px;
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.571; /* 22px */
   letter-spacing: 0;
 }
 
@@ -173,8 +173,8 @@
 /* --------------CATPTION-2-------------- */
 .tp-cap2\@sp {
   font-family: theme('fontFamily.inter');
-  font-size: 12px;
-  line-height: 22px;
+  font-size: 0.75rem; /* 12px */
+  line-height: 1.833 ; /* 22px */
   letter-spacing: 0;
 }
 
@@ -189,24 +189,3 @@
     @apply tp-cap2@pc;
   }
 }
-
-/* --------------LINK-------------- */
-
-/* .tp-link\@sp {
-  font-family: theme('fontFamily.inter');
-}
-
-.tp-link\@pc {
-  font-family: theme('fontFamily.inter');
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0;
-}
-
-.tp-link {
-  @apply tp-link@pc;
-
-  @screen tb {
-    @apply tp-link@pc;
-  }
-} */
