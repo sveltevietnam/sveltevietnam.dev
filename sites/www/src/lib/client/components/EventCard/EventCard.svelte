@@ -54,18 +54,22 @@
 </script>
 
 <article class="event-card {cls}">
-  <p class="tp-h4 font-medium date">
+  <p class="tp-h4 font-medium flex items-center font-lora date">
     <time datetime={rStartDate.toISOString()}>{formatDate(rStartDate)}</time>
     <AnimatedArrowCircle height={32} width={32} handle="#{event.id}" />
   </p>
-  <div class="content">
-    <a href={event.href} class="title tp-h4 font-medium" id={event.id}>
+  <div class="flex-1">
+    <a
+      href={event.href}
+      class="block transition-[color] duration-[400ms] hover:text-design-link-title title tp-h4 font-medium"
+      id={event.id}
+    >
       {event.title}
     </a>
-    <p class="description">
+    <p class="mt-6">
       {@html event.description}
     </p>
-    <dl class="details">
+    <dl class="grid grid-cols-[auto,1fr] gap-y-3 mt-4 gap-x-6">
       <dt class="font-medium">{t.location}:</dt>
       <dd>
         {event.location}
@@ -79,10 +83,10 @@
       {#if event.speakers.length}
         <dt class="font-medium">{t.speakers}:</dt>
         <dd>
-          <ul class="speakers">
+          <ul class="flex flex-wrap gap-y-3 gap-x-4 items-center">
             {#each event.speakers as { image, name, href }}
               <li>
-                <svelte:element this={href ? 'a' : 'div'} {href} class="speaker">
+                <svelte:element this={href ? 'a' : 'div'} {href} class="flex gap-x-2 items-center">
                   <img
                     src={image || defaultFallbackImg}
                     width="24"
@@ -101,10 +105,10 @@
       {#if event.sponsors.length}
         <dt class="font-medium">{t.sponsors}:</dt>
         <dd>
-          <ul class="sponsors">
+          <ul class="flex flex-wrap gap-y-3 gap-x-4 items-center">
             {#each event.sponsors as { href, image, name }}
               <li>
-                <svelte:element this={href ? 'a' : 'div'} {href} class="sponsor">
+                <svelte:element this={href ? 'a' : 'div'} {href} class="flex gap-x-2 items-center">
                   <img src={image || sponsorFallbackImg} width="24" height="24" alt={name} />
                   <p>{name}</p>
                 </svelte:element>
@@ -134,10 +138,6 @@
   }
 
   .date {
-    display: flex;
-    align-items: center;
-    font-family: theme('fontFamily.lora');
-
     & :global(svg) {
       --animated-color: theme('colors.design.neutral.2');
 
@@ -151,56 +151,5 @@
         margin-left: 8px;
       }
     }
-  }
-
-  .content {
-    flex: 1;
-    font-size: 14px;
-
-    @screen tb {
-      font-size: 16px;
-    }
-  }
-
-  .title {
-    display: block;
-    transition: color 400ms ease-out;
-
-    &:hover {
-      color: theme('colors.design.link.title');
-    }
-  }
-
-  .description {
-    margin-top: 24px;
-  }
-
-  .details {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    row-gap: 12px;
-    column-gap: 8px;
-
-    margin-top: 16px;
-
-    @screen tb {
-      column-gap: 24px;
-    }
-  }
-
-  .speakers,
-  .sponsors {
-    display: flex;
-    flex-wrap: wrap;
-    row-gap: 12px;
-    column-gap: 16px;
-    align-items: center;
-  }
-
-  .speaker,
-  .sponsor {
-    display: flex;
-    column-gap: 8px;
-    align-items: center;
   }
 </style>
