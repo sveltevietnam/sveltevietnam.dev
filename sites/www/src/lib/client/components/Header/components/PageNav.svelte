@@ -15,7 +15,11 @@
     {#each HEADER_PATHS as href}
       {@const current = isCurrentPage(pathname, href)}
       <li data-current={current}>
-        <a aria-current={current} {href} class="c-link c-link--preserved">
+        <a
+          aria-current={current}
+          {href}
+          class="c-link c-link--preserved uppercase whitespace-nowrap relative sp:p-4 sp:tp-h2@sp sp:block"
+        >
           {getPathLabel(href, lang)}
         </a>
       </li>
@@ -55,22 +59,6 @@
 
   a {
     --underline-height: 2px;
-
-    position: relative;
-
-    display: block;
-
-    font-size: 14px;
-    text-transform: uppercase;
-    white-space: nowrap;
-
-    /* transition: color var(--transition-duration) var(--transition-timing-function); */
-
-    @screen sp {
-      padding: 16px;
-      font-size: 32px;
-      line-height: 1.5;
-    }
 
     &:hover {
       color: var(--active-color);

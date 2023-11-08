@@ -1,5 +1,9 @@
 /* page level components */
 
+/** @deprecated
+  FIXME: for wireframe pages only, remove when design has completed
+*/
+
 .c-page {
   @apply c-container;
 

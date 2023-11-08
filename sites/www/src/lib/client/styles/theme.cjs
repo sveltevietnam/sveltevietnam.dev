@@ -7,7 +7,7 @@ const theme = {
         max: '767px',
       },
       'upto-tb': {
-        max: '768px',
+        max: '767px',
       },
       tb: {
         // tablet
@@ -20,6 +20,9 @@ const theme = {
       pc: {
         // desktop
         min: '1024px',
+      },
+      'upto-pc': {
+        max: '1023px',
       },
     },
     fontSize: {

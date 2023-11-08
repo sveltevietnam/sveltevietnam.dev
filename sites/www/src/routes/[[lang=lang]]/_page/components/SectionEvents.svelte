@@ -31,7 +31,7 @@
   <p class="section-desc mt-6" use:intersect>{t.description}</p>
   <div class="listing">
     {#if events.length}
-      <ul class="sp:ml-8">
+      <ul class="space-y-10">
         {#each events as event}
           <li use:intersect>
             <EventCard {event} />

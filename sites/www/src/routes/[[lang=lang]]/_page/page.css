@@ -9,7 +9,7 @@
     @space-x 24px;
   }
 
-  transition: color 500ms cubic-bezier(0.13, -0.27, 0.48, 1.54);
+  transition: color 400ms cubic-bezier(0.13, -0.27, 0.48, 1.54);
 
   &:hover {
     color: theme('colors.design.link.title');
