@@ -39,9 +39,9 @@
         {/each}
       </ul>
     {:else}
-      <div use:intersect>
+      <div use:intersect class="text-center">
         <ToBeAnnounced>
-          <p class="text-center">
+          <p>
             {t.tba.description}
             <a href="{EVENTS_PATH}#mail" class="c-link">{t.tba.cta}</a>
           </p>

@@ -55,9 +55,9 @@
             {/each}
           </ul>
         {:else}
-          <div use:intersect>
+          <div use:intersect class="text-center">
             <ToBeAnnounced>
-              <p class="text-center tp-h4 font-medium">
+              <p class="tp-h4 font-medium">
                 {t.upcomingEvents.tba.description}
               </p>
               <p class="mt-4">
@@ -177,9 +177,9 @@
             {/each}
           </ul>
         {:else}
-          <div use:intersect>
+          <div use:intersect class="text-center">
             <ToBeAnnounced>
-              <p class="text-center">
+              <p>
                 {t.pastEvents.tba}
               </p>
             </ToBeAnnounced>
