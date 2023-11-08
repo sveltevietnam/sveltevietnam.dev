@@ -22,74 +22,83 @@
   }
 </script>
 
-<nav aria-label="languages" data-sveltekit-preload-data="hover" data-sveltekit-noscroll>
-  <ul class={cls}>
-    {#each LANGUAGES as language}
-      {@const current = language === lang}
-      <li>
-        <a
-          lang={language}
-          aria-current={current}
-          href={localizeUrl(pathname, language, LANGUAGES).toString()}
-          on:click={() => changeLanguage(language)}
+<nav
+  aria-label="languages"
+  data-sveltekit-preload-data="hover"
+  data-sveltekit-noscroll
+  class="contents"
+>
+  <ul class="flex items-center w-fit h-8 px-3 border border-current rounded-full {cls}">
+    <li>
+      <a
+        lang="en"
+        aria-current={lang === 'en'}
+        href={localizeUrl(pathname, 'en', LANGUAGES).toString()}
+        on:click={() => changeLanguage('en')}
+      >
+        <span class="sr-only">English</span>
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          {language}
-        </a>
-      </li>
-    {/each}
+          <path
+            d="M2 18V6H9.52344V7.55859H3.81055V11.2148H9.13086V12.7676H3.81055V16.4414H9.59375V18H2Z"
+            fill="currentcolor"
+          />
+          <path
+            d="M21.6274 6V18H19.9634L13.8638 9.19922H13.7524V18H11.9419V6H13.6177L19.7231 14.8125H19.8345V6H21.6274Z"
+            fill="currentcolor"
+          />
+        </svg>
+      </a>
+    </li>
+    <li class="h-3 bg-current w-px mx-2" />
+    <li>
+      <a
+        lang="vi"
+        aria-current={lang === 'vi'}
+        href={localizeUrl(pathname, 'vi', LANGUAGES).toString()}
+        on:click={() => changeLanguage('vi')}
+      >
+        <span class="sr-only">Tiếng Việt</span>
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6.95703 6L10.2969 15.7734H10.4316L13.7715 6H15.7285L11.4102 18H9.31836L5 6H6.95703Z"
+            fill="currentcolor"
+          />
+          <path d="M19.272 6V18H17.4614V6H19.272Z" fill="currentcolor" />
+        </svg>
+      </a>
+    </li>
   </ul>
 </nav>
 
 <style lang="postcss">
-  nav {
-    display: contents;
+  a {
+    display: block;
+    text-transform: uppercase;
+    transition: opacity var(--transition-duration) var(--transition-timing-function);
 
-    & > ul {
-      display: flex;
-      align-items: center;
-
-      width: fit-content;
-      height: 35px;
-
-      font-size: 16px;
-      font-weight: 500;
-      line-height: normal;
-
-      border: 1px solid currentcolor;
-      border-radius: 30px;
-
-      @screen upto-tb {
-        height: 40px;
-        font-size: theme('fontSize.xl');
-      }
+    &[aria-current='false'] {
+      color: currentcolor;
+      opacity: 0.6;
     }
 
-    & li:last-of-type {
-      border-left: 1px solid theme('colors.design.fg.1');
+    &:hover {
+      opacity: 1;
     }
 
-    & a {
-      display: block;
-      padding: 0 12px;
-      text-transform: uppercase;
-      transition: opacity var(--transition-duration) var(--transition-timing-function);
-
-      @screen upto-tb {
-        padding: 0 16px;
-      }
-
-      &[aria-current='false'] {
-        color: currentcolor;
-        opacity: 0.6;
-      }
-
-      &:hover {
-        opacity: 1;
-      }
-
-      &[aria-current]:not([aria-current='false']) {
-        color: var(--active-color);
-      }
+    &[aria-current]:not([aria-current='false']) {
+      color: var(--active-color);
     }
   }
 </style>
