@@ -21,7 +21,7 @@
   "dependencies": {
     "@fastify/helmet": "^11.1.1",
     "@fastify/websocket": "^8.2.0",
-    "@types/node": "^20.8.10",
+    "@types/node": "^20.9.0",
     "discord.js": "^14.13.0",
     "dotenv": "^16.3.1",
     "fastify": "^4.24.3",
@@ -32,9 +32,9 @@
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.4.10",
-    "@types/lodash.debounce": "^4.0.8",
-    "@types/uuid": "^9.0.6",
-    "@types/ws": "^8.5.8"
+    "@types/lodash.debounce": "^4.0.9",
+    "@types/uuid": "^9.0.7",
+    "@types/ws": "^8.5.9"
   },
   "volta": {
     "extends": "../../package.json"
