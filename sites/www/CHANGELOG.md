@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.20
+
+### Patch Changes
+
+- [`414e9e8`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/414e9e8d2ae23906e956f7d56c7ba2e4e02e4d77) Thanks [@vnphanquang](https://github.com/vnphanquang)! - Change all links with root domain to `www`, following redirect rule configuration in Cloudflare
+
 ## 1.0.0-next.19
 
 ### Minor Changes
