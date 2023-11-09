@@ -7,7 +7,7 @@
 <img src="https://raw.githubusercontent.com/sveltevietnam/branding/main/sveltevietnam-logo.png" align="left" width="192" height="192"/>
 <img align="left" width="0" height="192" hspace="2" vspace="2" />
 
-Svelte Vietnam official site at [sveltevietnam.dev](https://sveltevietnam.dev)
+Svelte Vietnam official site at [sveltevietnam.dev](https://www.sveltevietnam.dev)
 
 [![Discord][socials.discord.badge]][socials.discord] [![Twitter][socials.twitter.badge]][socials.twitter] [![Facebook][socials.facebook.badge]][socials.facebook]
 
@@ -21,7 +21,7 @@ Contribution and discussion are welcome.
 ## Status
 
 > [!IMPORTANT]
-> This site is in active design & development; [join the Discord server][socials.discord] and have a chat with us, or see the [Roadmap](https://sveltevietnam.dev/roadmap).
+> This site is in active design & development; [join the Discord server][socials.discord] and have a chat with us, or see the [Roadmap](https://www.sveltevietnam.dev/roadmap).
 
 ## Contributing
 

@@ -1,5 +1,6 @@
 import { LOAD_DEPENDENCIES } from '$shared/constants';
 import { createMockedContributors } from '$shared/mocks';
+import { PEOPLE_PATH, ROOT_URL } from '$shared/services/navigation';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { PageServerLoad } from './$types';
@@ -29,7 +30,7 @@ export const load: PageServerLoad = ({ url, depends, locals: { language } }) => 
     contributors: createMockedContributors(),
     meta: {
       ...tMeta,
-      canonical: `https://sveltevietnam.dev/${language}/people`,
+      canonical: `${ROOT_URL}/${language}${PEOPLE_PATH}`,
     },
   };
 };

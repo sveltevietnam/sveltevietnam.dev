@@ -1,5 +1,6 @@
 import { LOAD_DEPENDENCIES } from '$shared/constants';
 import { createMockedProjects } from '$shared/mocks';
+import { IMPACT_PATH, ROOT_URL } from '$shared/services/navigation';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { PageServerLoad } from './$types';
@@ -32,7 +33,7 @@ export const load: PageServerLoad = ({ url, depends, locals: { language } }) => 
     },
     meta: {
       ...tMeta,
-      canonical: `https://sveltevietnam.dev/${language}/impact`,
+      canonical: `${ROOT_URL}/${language}${IMPACT_PATH}`,
     },
   };
 };

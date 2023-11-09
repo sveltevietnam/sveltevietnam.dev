@@ -147,7 +147,7 @@ Previously, I said that this preprocessor only works for links that are "externa
 
 ```svelte
 <!-- static -->
-<a href="https://sveltevietnam.dev">...</a>
+<a href="https://www.sveltevietnam.dev">...</a>
 
 <!-- not static -->
 <a href={SOME_VARIABLE}>...</a>

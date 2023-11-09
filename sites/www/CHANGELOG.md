@@ -178,9 +178,9 @@
 
 ### Minor Changes
 
-- [`3831267`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/3831267327795a3650d10bf943da60ab8c0e4ac6) Thanks [@vnphanquang](https://github.com/vnphanquang)! - Introduce the new [Code of Conduct](https://sveltevietnam.dev/code-of-conduct) page with basic design
+- [`3831267`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/3831267327795a3650d10bf943da60ab8c0e4ac6) Thanks [@vnphanquang](https://github.com/vnphanquang)! - Introduce the new [Code of Conduct](https://www.sveltevietnam.dev/code-of-conduct) page with basic design
 
-- [#129](https://github.com/sveltevietnam/sveltevietnam.dev/pull/129) [`2e0e847`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/2e0e8477fbe0b79fd9efd49f3fbf5d834b47625a) Thanks [@vnphanquang](https://github.com/vnphanquang)! - Introduce the new [Roadmap](https://sveltevietnam.dev/roadmap) page
+- [#129](https://github.com/sveltevietnam/sveltevietnam.dev/pull/129) [`2e0e847`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/2e0e8477fbe0b79fd9efd49f3fbf5d834b47625a) Thanks [@vnphanquang](https://github.com/vnphanquang)! - Introduce the new [Roadmap](https://www.sveltevietnam.dev/roadmap) page
 
 ### Patch Changes
 

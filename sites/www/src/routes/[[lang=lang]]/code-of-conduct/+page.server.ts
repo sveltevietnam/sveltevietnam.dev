@@ -2,6 +2,7 @@ import ogImageEn from '$shared/assets/images/og/og-coc.en.jpg';
 import ogImageVi from '$shared/assets/images/og/og-coc.vi.jpg';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
 import type { Language } from '$shared/services/i18n';
+import { CODE_OF_CONDUCT_PATH, ROOT_URL } from '$shared/services/navigation';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { PageServerLoad } from './$types';
@@ -36,7 +37,7 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
     },
     meta: {
       ...tMeta,
-      canonical: `https://sveltevietnam.dev/${language}/code-of-conduct`,
+      canonical: `${ROOT_URL}/${language}${CODE_OF_CONDUCT_PATH}`,
     },
   };
 };

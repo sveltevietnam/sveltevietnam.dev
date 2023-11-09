@@ -1,6 +1,6 @@
 import { LOAD_DEPENDENCIES, SOCIAL_LINKS } from '$shared/constants';
 import type { Language } from '$shared/services/i18n';
-import { ROADMAP_PATH } from '$shared/services/navigation';
+import { ROADMAP_PATH, ROOT_URL } from '$shared/services/navigation';
 
 import type { PageServerLoad } from './$types';
 import { EXTERNAL_POSTS, INTERNAL_POSTS } from './blog/_page/data';
@@ -39,7 +39,7 @@ export const load: PageServerLoad = async ({ depends, locals: { language } }) =>
     underConstructionNote: UNDER_CONSTRUCTION_NOTE[language],
     meta: {
       ...tMeta,
-      canonical: `https://sveltevietnam.dev/${language}`,
+      canonical: `${ROOT_URL}/${language}`,
     },
   };
 };

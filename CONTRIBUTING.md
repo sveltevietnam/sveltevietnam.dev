@@ -56,6 +56,6 @@ Follow the guidelines at [DEVELOPMENT].
 <!-- internal references -->
 
 [DEVELOPMENT]: ./docs/DEVELOPMENT.md
-[sveltevietnam.blog]: https://sveltevietnam.dev/blog
+[sveltevietnam.blog]: https://www.sveltevietnam.dev/blog
 [sveltevietnam.discord]: https://discord.sveltevietnam.dev
 [learn.svelte.dev]: https://learn.svelte.dev

@@ -4,7 +4,14 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { error } from '@sveltejs/kit';
 
-import { EMAILS } from '$shared/constants';
+import { EMAILS } from '../../../../lib/shared/constants';
+import {
+  CODE_OF_CONDUCT_PATH,
+  EVENTS_PATH,
+  IMPACT_PATH,
+  ROOT_URL,
+  SPONSOR_PATH,
+} from '../../../../lib/shared/services/navigation';
 
 /** https://www.rfc-editor.org/rfc/rfc7033#section-4.4.4 */
 type WebFingerLink = {
@@ -36,17 +43,17 @@ const SVELTE_VIETNAM_AVATAR_LINKS: WebFingerLink[] = [
   {
     rel: 'http://webfinger.net/rel/avatar',
     type: 'image/jpeg',
-    href: 'https://sveltevietnam.dev/logo/original.jpg',
+    href: `${ROOT_URL}/logo/original.jpg`,
   },
   {
     rel: 'http://webfinger.net/rel/avatar',
     type: 'image/png',
-    href: 'https://sveltevietnam.dev/logo/original.png',
+    href: `${ROOT_URL}/logo/original.png`,
   },
   {
     rel: 'http://webfinger.net/rel/avatar',
     type: 'image/svg+xml',
-    href: 'https://sveltevietnam.dev/logo/original.svg',
+    href: `${ROOT_URL}/logo/original.svg`,
   },
 ];
 
@@ -69,7 +76,7 @@ export const GET: RequestHandler = async ({ url }) => {
       webfinger.links = [
         {
           rel: 'http://webfinger.net/rel/profile-page',
-          href: 'https://sveltevietnam.dev',
+          href: ROOT_URL,
         },
         ...SVELTE_VIETNAM_AVATAR_LINKS,
       ];
@@ -78,7 +85,7 @@ export const GET: RequestHandler = async ({ url }) => {
       webfinger.links = [
         {
           rel: 'http://webfinger.net/rel/profile-page',
-          href: 'https://sveltevietnam.dev/code-of-conduct',
+          href: `${ROOT_URL}${CODE_OF_CONDUCT_PATH}`,
         },
         ...SVELTE_VIETNAM_AVATAR_LINKS,
       ];
@@ -87,7 +94,7 @@ export const GET: RequestHandler = async ({ url }) => {
       webfinger.links = [
         {
           rel: 'http://webfinger.net/rel/profile-page',
-          href: 'https://sveltevietnam.dev/events',
+          href: `${ROOT_URL}${EVENTS_PATH}`,
         },
         ...SVELTE_VIETNAM_AVATAR_LINKS,
       ];
@@ -96,7 +103,7 @@ export const GET: RequestHandler = async ({ url }) => {
       webfinger.links = [
         {
           rel: 'http://webfinger.net/rel/profile-page',
-          href: 'https://sveltevietnam.dev/impact',
+          href: `${ROOT_URL}${IMPACT_PATH}`,
         },
         ...SVELTE_VIETNAM_AVATAR_LINKS,
       ];
@@ -105,7 +112,7 @@ export const GET: RequestHandler = async ({ url }) => {
       webfinger.links = [
         {
           rel: 'http://webfinger.net/rel/profile-page',
-          href: 'https://sveltevietnam.dev/sponsor',
+          href: `${ROOT_URL}${SPONSOR_PATH}`,
         },
         ...SVELTE_VIETNAM_AVATAR_LINKS,
       ];

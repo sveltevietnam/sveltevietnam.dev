@@ -1,6 +1,7 @@
 import type { ComponentType, SvelteComponent } from 'svelte';
 
 import { resolveLangText, type LangText, type Language } from '$shared/services/i18n';
+import { BLOG_PATH, ROOT_URL } from '$shared/services/navigation';
 
 export type PostTag =
   | 'svelte'
@@ -98,7 +99,7 @@ export function preparePageData(language: Language, post: Post, content: BlogCon
         image: lPost.ogImage,
         imageAlt: lPost.title,
       },
-      canonical: `https://sveltevietnam.dev/${language}/blog/${lPost.slug}`,
+      canonical: `${ROOT_URL}/${language}${BLOG_PATH}/${lPost.slug}`,
     },
   };
 }

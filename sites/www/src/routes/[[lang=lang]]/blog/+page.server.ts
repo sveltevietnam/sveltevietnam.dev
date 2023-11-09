@@ -2,6 +2,7 @@ import { mail } from '$server/actions/mail/mail.server';
 import ogImage from '$shared/assets/images/og/og-blog.jpg';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
 import type { Language } from '$shared/services/i18n';
+import { BLOG_PATH, ROOT_URL } from '$shared/services/navigation';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { Actions, PageServerLoad } from './$types';
@@ -47,7 +48,7 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
     issueTemplateLinks: issueTemplateLinks[language],
     meta: {
       ...tMeta,
-      canonical: `https://sveltevietnam.dev/${language}/blog`,
+      canonical: `${ROOT_URL}/${language}${BLOG_PATH}`,
       og: {
         image: ogImage,
       },

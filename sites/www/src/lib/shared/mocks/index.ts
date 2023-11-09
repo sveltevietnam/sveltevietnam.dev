@@ -1,6 +1,7 @@
 import { INTERNAL_POSTS } from '$routes/[[lang=lang]]/blog/_page/data';
 import jobImg from '$shared/assets/images/fallback/job.webp';
 import type { ExternalPost, Post } from '$shared/data/blog';
+import { ROOT_URL } from '$shared/services/navigation';
 import type { Contributor, Event, Job, Project, Sponsor } from '$shared/types';
 
 import vietnamImg from './vietnam-image.webp';
@@ -227,7 +228,7 @@ export function createMockedProjects(length = 2) {
       description:
         'Svelte Việt Nam đang trong giai đoạn khởi tạo, hướng đến trở thành một cộng đồng chính thống và nơi thảo luận, tổng hợp tin tức, sự kiện, việc làm cho thành viên là bất cứ ai quan tâm đến Svelte và các công nghệ trong cùng hệ sinh thái.<br>Svelte Việt Nam chào đón tất cả mọi người ko kể tuổi tác, giới tính, tính ngưỡng tôn giáo, ...',
       by: 'Cộng đồng open source Svelte Việt Nam',
-      href: 'https://sveltevietnam.dev',
+      href: ROOT_URL,
     });
   }
 

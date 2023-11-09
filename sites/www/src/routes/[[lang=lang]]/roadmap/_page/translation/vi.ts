@@ -7,6 +7,8 @@ import {
   HOME_PATH,
   JOBS_PATH,
   ROADMAP_PATH,
+  ROOT_URL,
+  SITEMAP_PATH,
   SPONSOR_PATH,
 } from '$shared/services/navigation';
 
@@ -29,7 +31,7 @@ export const vi = {
         '☑ Khởi tạo <a class="c-link" href="https://github.com/sveltevietnam/branding" rel="noreferrer" target="_blank">branding repository</a> để lưu trữ các phiên bản logo và văn bản “Branding Guidelines" (bàn về việc sử dụng logo và các hình ảnh của Svelte Việt Nam)',
         `☑ Ra mắt <a class="c-link" href="${HOME_PATH}">Trang chủ</a> với thiết kế sơ khởi`,
         '☑ Thiết lập websocket service và bot cho Discord server, định hướng phát triển dần để nâng cao trải nghiệm thành viên tại cả Discord và trang web sveltevietnam.dev',
-        '☑ Thiết lập metadata và SEO cơ bản, bao gồm <a class="c-link" href="https://sveltevietnam.dev/sitemap.xml" rel="noreferrer" target="_blank">sitemap.xml</a>, Google Search Console, Google Analytics',
+        `☑ Thiết lập metadata và SEO cơ bản, bao gồm <a class="c-link" href="${ROOT_URL}${SITEMAP_PATH}" rel="noreferrer" target="_blank">sitemap.xml</a>, Google Search Console, Google Analytics`,
         `☑ Ra mắt trang <a class="c-link" href="${ROADMAP_PATH}">Lộ trình</a>`,
       ],
     },

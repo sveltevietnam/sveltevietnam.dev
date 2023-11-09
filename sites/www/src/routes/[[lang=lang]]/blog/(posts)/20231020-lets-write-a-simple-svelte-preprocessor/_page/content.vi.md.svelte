@@ -146,7 +146,7 @@ Khi nãy, ta có nói rằng đoạn mã preprocessor trên chỉ hoạt động
 
 ```svelte
 <!-- tĩnh -->
-<a href="https://sveltevietnam.dev">...</a>
+<a href="https://www.sveltevietnam.dev">...</a>
 
 <!-- không tĩnh -->
 <a href={SOME_VARIABLE}>...</a>
@@ -168,7 +168,7 @@ Khi đó, ta cần thay đổi một tí mã preprocessor của chúng ta xem n�
 // ... thay đổi code tương ứng
 ```
 
-Ngoài ra, ta cũng sẽ gặp lỗi nếu thẻ `a` đã có sẵn thuộc tính `rel` hay `target`. Ta có thể mở rộng đoạn mã trên để kiểm tra và xử lý những tình huống này. Để tránh dài dòng, bạn có thể đọc [đoạn mã hoàn chỉnh tại đây](https://github.com/sveltevietnam/sveltevietnam.dev/blob/a8a2ff08e9b715e34f4c677bd620b8c929f4aae9/sites/www/svelte.config.js#L25-L80) - đây là đoạn mã được sử dụng bởi [sveltevietnam.dev](http://sveltevietnam.dev) cho mục đích tương tự trên chính trang bạn đang đọc.
+Ngoài ra, ta cũng sẽ gặp lỗi nếu thẻ `a` đã có sẵn thuộc tính `rel` hay `target`. Ta có thể mở rộng đoạn mã trên để kiểm tra và xử lý những tình huống này. Để tránh dài dòng, bạn có thể đọc [đoạn mã hoàn chỉnh tại đây](https://github.com/sveltevietnam/sveltevietnam.dev/blob/a8a2ff08e9b715e34f4c677bd620b8c929f4aae9/sites/www/svelte.config.js#L25-L80) - đây là đoạn mã được sử dụng bởi [sveltevietnam.dev](https://www.sveltevietnam.dev) cho mục đích tương tự trên chính trang bạn đang đọc.
 
 ## Thắc mắc
 

@@ -59,7 +59,7 @@ jobs:
         }}
       url: |-
         ${{
-            needs.pre_jobs.outputs.mode == 'production' && 'https://sveltevietnam.dev'
+            needs.pre_jobs.outputs.mode == 'production' && 'https://www.sveltevietnam.dev'
         ||  needs.pre_jobs.outputs.mode == 'preview'    && 'https://preview.sveltevietnam.dev'
         ||                                                  steps.cloudflare-pages-deploy.outputs.url
         }}

@@ -1,4 +1,5 @@
 import { LOAD_DEPENDENCIES } from '$shared/constants';
+import { DESIGN_PATH, ROOT_URL } from '$shared/services/navigation';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { PageServerLoad } from './$types';
@@ -27,7 +28,7 @@ export const load: PageServerLoad = ({ url, depends, locals: { language } }) => 
     },
     meta: {
       ...tMeta,
-      canonical: `https://sveltevietnam.dev/${language}/design`,
+      canonical: `${ROOT_URL}/${language}${DESIGN_PATH}`,
     },
   };
 };

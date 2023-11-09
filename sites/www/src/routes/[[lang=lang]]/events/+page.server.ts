@@ -7,6 +7,7 @@ import ogImageEn from '$shared/assets/images/og/og-events.en.jpg';
 import ogImageVi from '$shared/assets/images/og/og-events.vi.jpg';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
 import type { Language } from '$shared/services/i18n';
+import { EVENTS_PATH, ROOT_URL } from '$shared/services/navigation';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { PageServerLoad, Actions } from './$types';
@@ -47,7 +48,7 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
     },
     meta: {
       ...tMeta,
-      canonical: `https://sveltevietnam.dev/${language}/events`,
+      canonical: `${ROOT_URL}/${language}${EVENTS_PATH}`,
     },
     mailForm,
   };
