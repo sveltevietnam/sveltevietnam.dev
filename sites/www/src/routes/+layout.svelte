@@ -23,11 +23,12 @@
   $: ogType = meta?.og?.type ?? 'website';
   $: ogUrl = meta?.og?.url ?? canonical;
   $: ogImage = meta?.og?.image ?? ogImageHome;
+  $: absoluteOgImage = ogImage.startsWith('/') ? `${$page.url.origin}${ogImage}` : ogImage;
   $: ogImageAlt = meta?.og?.imageAlt ?? title;
 
   $: twitterTitle = meta?.twitter?.title ?? ogTitle;
   $: twitterDescription = meta?.twitter?.description ?? ogDescription;
-  $: twitterImage = meta?.twitter?.image ?? ogImage;
+  $: twitterImage = meta?.twitter?.image ?? absoluteOgImage;
   $: twitterImageAlt = meta?.twitter?.imageAlt ?? ogImageAlt;
   $: twitterCard = meta?.twitter?.card ?? 'summary_large_image';
   $: twitterSite = meta?.twitter?.site ?? '@sveltevietnam';
@@ -43,7 +44,7 @@
   <meta property="og:title" content={ogTitle} />
   <meta property="og:description" content={ogDescription} />
   <meta property="og:type" content={ogType} />
-  <meta property="og:image" content={ogImage} />
+  <meta property="og:image" content={absoluteOgImage} />
   <meta property="og:image:alt" content={ogImageAlt} />
   <meta property="og:url" content={ogUrl} />
 

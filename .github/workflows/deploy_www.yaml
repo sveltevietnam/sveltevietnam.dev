@@ -130,7 +130,6 @@ jobs:
             || needs.pre_jobs.outputs.mode == 'preview' && 'preview'
             || github.ref_name
             }}
-          wranglerVersion: "3.14"
 
       - name: Create commit comment
         if: ${{ github.event_name != 'pull_request' }}

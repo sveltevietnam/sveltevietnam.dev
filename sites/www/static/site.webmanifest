@@ -1,8 +1,8 @@
 {
   "name": "Svelte Vietnam",
   "short_name": "Svelte Vietnam",
-  "theme_color": "#201e1a",
-  "background_color": "#201e1a",
+  "theme_color": "#000000",
+  "background_color": "#FFFFFF",
   "start_url": "https://www.sveltevietnam.dev",
   "display": "standalone",
   "icons": [
