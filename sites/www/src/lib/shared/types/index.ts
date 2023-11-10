@@ -1,5 +1,3 @@
-export type ColorScheme = 'light' | 'dark' | 'system';
-
 export type Event = {
   id: string;
   title: string;

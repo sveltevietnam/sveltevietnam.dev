@@ -3,7 +3,6 @@ import { derived, writable } from 'svelte/store';
 
 import { browser } from '$app/environment';
 import { PUBLIC_COOKIE_COLOR_SCHEME } from '$env/static/public';
-import type { ColorScheme } from '$shared/types';
 
 const COLOR_SCHEME_CONTEXT_ID = 'colorscheme';
 

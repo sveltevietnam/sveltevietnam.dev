@@ -17,5 +17,6 @@ module.exports = {
   globals: {
     App: 'readonly',
     __BUILD_TIMESTAMP__: 'readonly',
+    ColorScheme: 'readonly',
   },
 };

@@ -1,6 +1,4 @@
 <script lang="ts">
-  import type { ColorScheme } from '$shared/types';
-
   export let scheme: ColorScheme;
   export let width = 20;
   export let height = 20;

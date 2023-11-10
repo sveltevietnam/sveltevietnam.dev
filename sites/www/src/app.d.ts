@@ -5,13 +5,13 @@
 
 import type { preparePageData } from '$shared/data/blog';
 import type { Language } from '$shared/services/i18n';
-import type { ColorScheme } from '$shared/types';
 
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
 // and what to do when importing types
 declare global {
   declare const __BUILD_TIMESTAMP__: string;
+  declare type ColorScheme = 'light' | 'dark' | 'system';
   namespace App {
     interface Locals {
       userId: string;

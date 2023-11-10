@@ -9,7 +9,7 @@
   import { updated } from '$app/stores';
   import { Footer } from '$client/components/Footer';
   import { Header } from '$client/components/Header';
-  import { setColorSchemeContext } from '$client/contexts/colorScheme.js';
+  import { setColorSchemeContext } from '$client/contexts/color-scheme.js';
   import { setLangContext } from '$client/contexts/lang';
   import { setLockScrollContext } from '$client/contexts/lockscroll.js';
   import { setSplashContext } from '$client/contexts/splash.js';

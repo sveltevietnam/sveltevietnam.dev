@@ -4,7 +4,6 @@ import type { Handle } from '@sveltejs/kit';
 import { COOKIE_LANGUAGE, COOKIE_USER_ID } from '$env/static/private';
 import { PUBLIC_COOKIE_COLOR_SCHEME } from '$env/static/public';
 import { LANGUAGES } from '$shared/services/i18n';
-import type { ColorScheme } from '$shared/types';
 
 const COMMON_COOKIE_CONFIG = { path: '/', secure: true, httpOnly: true };
 

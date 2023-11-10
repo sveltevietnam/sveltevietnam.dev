@@ -6,7 +6,7 @@
   import { createEventDispatcher, onMount } from 'svelte';
   import { fade, fly } from 'svelte/transition';
 
-  import { getColorSchemeContext } from '$client/contexts/colorScheme';
+  import { getColorSchemeContext } from '$client/contexts/color-scheme';
   import { getLockScrollContext } from '$client/contexts/lockscroll';
 
   const DEFAULT_TEXTS = {

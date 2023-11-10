@@ -13,7 +13,7 @@
   import { superForm } from 'sveltekit-superforms/client';
 
   import { turnstile } from '$client/actions/turnstile';
-  import { getColorSchemeContext } from '$client/contexts/colorScheme';
+  import { getColorSchemeContext } from '$client/contexts/color-scheme';
   import { getLangContext } from '$client/contexts/lang';
   import type { FormMessage } from '$client/forms';
   import { noti } from '$client/notifications';

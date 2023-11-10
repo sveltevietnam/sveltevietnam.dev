@@ -2,7 +2,7 @@
   import { clickoutside } from '@svelte-put/clickoutside';
   import { slide, fade } from 'svelte/transition';
 
-  import { getColorSchemeContext } from '$client/contexts/colorScheme';
+  import { getColorSchemeContext } from '$client/contexts/color-scheme';
   import { getLangContext } from '$client/contexts/lang';
   import { translations } from '$shared/services/i18n/translations/color-scheme';
 
