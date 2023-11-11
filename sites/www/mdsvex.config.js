@@ -23,6 +23,7 @@ const shiki = await getHighlighterCore({
   ],
   langs: [
     import('shikiji/langs/javascript.mjs'),
+    import('shikiji/langs/typescript.mjs'),
     import('shikiji/langs/svelte.mjs'),
     import('shikiji/langs/diff.mjs'),
   ],
@@ -34,11 +35,32 @@ export const mdsvexConfig = defineMDSveXConfig({
   remarkPlugins: [remarkContainers, remarkGfm],
   highlight: {
     async highlighter(code, lang) {
+      const highlightLines = [];
+      code = code.replace(/^\/\/\/\s*highlight:(.*)\s*\n/, (_, group) => {
+        /** @type {string} */ (group)
+          .trim()
+          .split(',')
+          .forEach((lineStr) => {
+            lineStr = lineStr.trim().replace(/[^0-9-]/g, '');
+            if (lineStr.includes('-')) {
+              const [start, end] = lineStr.split('-');
+              for (let line = Number(start.trim()); line <= Number(end.trim()); line++) {
+                highlightLines.push(line);
+              }
+            } else {
+              highlightLines.push(Number(lineStr));
+            }
+          });
+        return '';
+      });
       const html = shiki.codeToHtml(code, {
         lang,
         theme: 'github-dark-dimmed',
         transforms: {
           line(node, line) {
+            if (highlightLines.includes(line)) {
+              node.properties['data-line-highlighted'] = true;
+            }
             node.properties['data-line'] = line;
           },
         },
