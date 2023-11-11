@@ -16,6 +16,9 @@
   import type { Breadcrumb } from '$shared/services/navigation';
   import { formateDateForBlog } from '$shared/utils/datetime';
 
+  import '../../../../lib/client/styles/code.css';
+  import '../../../../lib/client/styles/heading-anchor.css';
+
   import type { LayoutData } from './$types';
 
   export let data: LayoutData;
@@ -262,30 +265,6 @@
 </main>
 
 <style lang="postcss">
-  :global(:where(h2, h3, h4, h5, h6)) {
-    position: relative;
-
-    & :global(.heading-anchor) {
-      position: absolute;
-      top: 0;
-      right: 100%;
-      bottom: 0;
-
-      margin-right: 8px;
-
-      font-weight: inherit;
-      text-decoration: none;
-
-      opacity: 0;
-
-      transition: opacity 200ms theme('transitionTimingFunction.DEFAULT');
-    }
-
-    &:hover :global(.heading-anchor) {
-      opacity: 1;
-    }
-  }
-
   .post-grid {
     position: relative;
 

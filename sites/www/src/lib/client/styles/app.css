@@ -77,19 +77,4 @@
   *[id] {
     scroll-margin: calc(1.5 * theme('spacing.header'));
   }
-
-  code .line::before{
-    content: attr(data-line);
-
-    display: inline-block;
-
-    width: 3ch;
-    margin-right: 16px;
-
-    font-variant-numeric: tabular-nums;
-    color: currentcolor;
-    text-align: right;
-
-    opacity: 0.5;
-  }
 }
