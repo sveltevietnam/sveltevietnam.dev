@@ -51,6 +51,18 @@
       },
     });
   }
+
+  let stats = '';
+  $: {
+    stats = '';
+    if (post?.readMinutes) {
+      stats += `${post.readMinutes} ${t.readMinutes}`;
+    }
+    if (post?.wordCount) {
+      if (stats) stats += ', ';
+      stats += `${post.wordCount} ${t.word}`;
+    }
+  }
 </script>
 
 <main class="c-container-design" use:intersect>
@@ -119,10 +131,9 @@
                   </p>
                 {/key}
               {/if}
-              {#if post?.readMinutes}
+              {#if stats}
                 <p class="mt-1">
-                  {post.readMinutes}
-                  {t.readMinutes}
+                  {stats}
                 </p>
               {/if}
             </div>

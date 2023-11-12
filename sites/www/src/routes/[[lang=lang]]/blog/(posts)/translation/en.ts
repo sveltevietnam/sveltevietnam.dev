@@ -14,6 +14,7 @@ export const en = {
     unsupported: `The blog is displayed in its original language as translation has not been provided yet. If possible, please join <a href="${SOCIAL_LINKS.GITHUB}" class="c-link" target="_blank" rel="noreferrer">Github</a> and <a href="${SOCIAL_LINKS.DISCORD}" class="c-link" target="_blank" rel="noreferrer">Discord</a> to help with translation. Thank you!`,
   },
   readMinutes: 'min read',
+  word: 'words',
   tableOfContents: {
     title: 'Table of Contents',
     linkLabelToTitle: 'Title',
