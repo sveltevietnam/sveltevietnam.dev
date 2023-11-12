@@ -53,7 +53,7 @@
     mask-size: var(--icon-size);
   }
 
-  & p {
+  &p, & p {
     margin: 0;
   }
 

@@ -52,6 +52,10 @@
     });
   }
 
+  $: langVersion =
+    data.language === post?.originalLang || isLangNotSupported
+      ? t.language.original
+      : t.language.translated;
   let stats = '';
   $: {
     stats = '';
@@ -113,24 +117,18 @@
           <div class="separator mb-2" />
           <div class="flex justify-between text-design-neutral-2 tp-cap1">
             <div class="shrink-0">
-              {#if !isLangNotSupported}
-                {@const text =
-                  data.language === post?.originalLang
-                    ? t.language.original
-                    : t.language.translated}
-                {#key data.language}
-                  <p>
-                    {text.label}
-                    <svg
-                      inline-src="google/info"
-                      class="inline-block fill-current align-text-top ml-1 cursor-help"
-                      height="16"
-                      width="16"
-                      use:textTip={{ content: text.description }}
-                    />
-                  </p>
-                {/key}
-              {/if}
+              {#key data.language}
+                <p>
+                  {langVersion.label}
+                  <svg
+                    inline-src="google/info"
+                    class="inline-block fill-current align-text-top ml-1 cursor-help"
+                    height="16"
+                    width="16"
+                    use:textTip={{ content: langVersion.description }}
+                  />
+                </p>
+              {/key}
               {#if stats}
                 <p class="mt-1">
                   {stats}
@@ -148,7 +146,7 @@
     </section>
 
     {#if isLangNotSupported}
-      <p class="mt-[60px] p-4 border rounded-lg border-design-neutral-1">
+      <p class="c-callout c-callout--warning mt-[60px]">
         {@html t.language.unsupported}
       </p>
     {/if}
