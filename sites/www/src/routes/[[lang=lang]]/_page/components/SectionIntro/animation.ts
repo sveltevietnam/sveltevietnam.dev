@@ -83,7 +83,7 @@ export function createScrollTimeline(sectionElement: HTMLElement) {
       end: SCROLL_DELTA,
       pin: true,
       pinSpacing: false,
-      scrub: 0.2,
+      scrub: 2,
       invalidateOnRefresh: true,
       onRefresh() {
         const communitySection = document.getElementById('community');
