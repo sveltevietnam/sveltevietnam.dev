@@ -27,6 +27,10 @@ export const post = {
   ogImage,
   tags: ['inside', 'technical'],
   readMinutes: 11,
+  wordCount: {
+    vi: '~2130',
+    en: '~1630',
+  },
 } satisfies Post;
 
 export const content = {

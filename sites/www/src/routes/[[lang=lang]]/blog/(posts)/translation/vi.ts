@@ -14,6 +14,7 @@ export const vi = {
     unsupported: `Bài viết đang hiện thị với ngôn ngữ gốc vì chưa được dịch sang ngôn ngữ bạn đã chọn. Nếu có thể, hay tham gia <a href="${SOCIAL_LINKS.GITHUB}" class="c-link" target="_blank" rel="noreferrer">Github</a> và <a href="${SOCIAL_LINKS.DISCORD}" class="c-link" target="_blank" rel="noreferrer">Discord</a> để hỗ trợ dịch bài bạn nhé. Xin cảm ơn!`,
   },
   readMinutes: 'phút đọc',
+  word: 'từ',
   tableOfContents: {
     title: 'Mục lục',
     linkLabelToTitle: 'Tiêu đề',

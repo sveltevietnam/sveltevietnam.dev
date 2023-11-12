@@ -36,6 +36,7 @@ export const post = {
   // ogImage,
   tags: ['svelte', 'kit', 'technical', 'inside', 'ecosystem'],
   readMinutes: 16,
+  wordCount: '~3000',
 } satisfies Post;
 
 export const content = {

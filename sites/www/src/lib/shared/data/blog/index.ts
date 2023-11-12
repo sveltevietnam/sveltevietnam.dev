@@ -38,6 +38,7 @@ export type Post = {
   ogImage?: string;
   keywords?: LangText[];
   readMinutes?: number;
+  wordCount?: LangText;
 };
 
 /** resolve any LangText to a string */
@@ -54,6 +55,7 @@ export function localizePost(language: Language, post: Post) {
       title: resolveLangText(language, author.title),
       link: resolveLangText(language, author.link),
     })),
+    wordCount: resolveLangText(language, post.wordCount),
   };
 }
 
