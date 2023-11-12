@@ -153,7 +153,7 @@ export function createCardParallaxTimeline(sectionElement: HTMLElement) {
       trigger: sectionElement,
       start: SCROLL_DELTA,
       end: 'bottom top',
-      scrub: 0.1,
+      scrub: 1.5,
       invalidateOnRefresh: true,
     },
   });
