@@ -111,3 +111,7 @@ In a few words, the Svelte Vietnam Blog is a yes-code platform; each blog post i
   height="360"
   width="540"
 />
+
+:::div c-callout c-callout--info
+In the second part of the "Behind the Screen" blog series, where I share my experience and lessons learned while building **sveltevietnam.dev**, we will discuss how to implement dark mode. Read more [here](http://localhost:5005/en/blog/20231110-behind-the-screen-dark-mode-with-sveltekit-tailwindcss-and-postcss)!
+:::
