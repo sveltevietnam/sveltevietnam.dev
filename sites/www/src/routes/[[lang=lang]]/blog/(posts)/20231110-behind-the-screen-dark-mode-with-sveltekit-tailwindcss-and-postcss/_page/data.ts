@@ -4,13 +4,14 @@ import type { Post } from '$shared/data/blog';
 
 import En from './content.en.md.svelte';
 import Vi from './content.vi.md.svelte';
+import ogImage from './images/thumbnail.webp';
 
 export const post = {
   slug: '20231110-behind-the-screen-dark-mode-with-sveltekit-tailwindcss-and-postcss',
   date: '2023-11-10T06:11:34.187Z',
   title: {
-    en: 'Behind the Screen: Dark Mode with SvelteKit, PostCSS, and TailwindCSS',
-    vi: 'Behind the Screen: giao diện tối (dark mode) với SvelteKit, PostCSS, và TailwindCSS',
+    en: 'Productive Dark Mode with SvelteKit, PostCSS, and TailwindCSS (Behind the Screen)',
+    vi: 'Giao diện tối (dark mode) với SvelteKit, PostCSS, và TailwindCSS (Behind the Screen)',
   },
   description: {
     en: 'How sveltevietnam.dev sets up a light-dark mode switch that enables good user experience without trading off developer productivity',
@@ -34,7 +35,7 @@ export const post = {
     'hook',
     'vanilla',
   ],
-  // ogImage,
+  ogImage,
   tags: ['svelte', 'kit', 'technical', 'inside', 'ecosystem'],
   readMinutes: 18,
   wordCount: {
