@@ -1,5 +1,4 @@
 <script lang="ts">
-  import figure from './tba-figure.webp';
   export let variant: 'text' | 'figure' = 'figure';
   let cls = '';
   export { cls as class };
@@ -16,9 +15,17 @@
   <div
     class="{cls} w-full border rounded-[16px] border-design-border-1 p-8 flex flex-col items-center justify-center"
   >
-    <img src={figure} alt="to be announced" width="357" height="357" class="m-auto max-w-full" />
+    <svg inline-src="./tba-figure.svg" class="m-auto max-w-full w-[357px]" />
     <div class="mt-6">
       <slot />
     </div>
   </div>
 {/if}
+
+<style lang="postcss">
+  svg :global(.__megaphone) {
+    @light global {
+      fill: black;
+    }
+  }
+</style>
