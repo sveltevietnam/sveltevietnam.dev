@@ -300,6 +300,10 @@
 
   .post-content {
     grid-area: content;
+
+    & :global(img) {
+      max-width: 100%;
+    }
   }
 
   .post-share {

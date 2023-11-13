@@ -10,8 +10,8 @@ export const post = {
   slug: '20231009-behind-the-screen-a-yes-code-blog-of-svelte-vietnam',
   date: '2023-10-09T05:14:08.377Z',
   title: {
-    en: 'Behind the Screen: A Yes-Code Blog of Svelte Vietnam',
-    vi: 'Behind the Screen: blog chạy bằng cơm (và code)',
+    en: 'A Yes-Code Blog of Svelte Vietnam (Behind the Screen)',
+    vi: 'Blog chạy bằng cơm (và code) (Behind the Screen)',
   },
   description: {
     en: 'Look behind the curtain and discuss the rationale behind the technical design of the Svelte Vietnam Blog',
