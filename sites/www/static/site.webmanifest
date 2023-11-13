@@ -3,7 +3,7 @@
   "short_name": "Svelte Vietnam",
   "theme_color": "#000000",
   "background_color": "#FFFFFF",
-  "start_url": "https://www.sveltevietnam.dev",
+  "start_url": ".",
   "display": "standalone",
   "icons": [
     {
