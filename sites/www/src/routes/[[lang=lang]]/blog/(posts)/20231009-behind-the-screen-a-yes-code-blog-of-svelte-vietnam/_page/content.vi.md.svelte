@@ -110,3 +110,7 @@ Nói tóm lại, Blog của Svelte Việt Nam là một nền tảng “yes-code
   height="360"
   width="540"
 />
+
+:::div c-callout c-callout--info
+Trong phần thứ hai của chuỗi bài viết "Behind the Screen", nơi mình chia sẻ những kinh nghiệm và bài học trong quá trình xây dựng **sveltevietnam.dev**, ta cùng bàn về cách thực hiện chế độ tối (dark mode). Hãy đọc tiếp [tại đây](http://localhost:5005/en/blog/20231110-behind-the-screen-dark-mode-with-sveltekit-tailwindcss-and-postcss) bạn nhé!
+:::
