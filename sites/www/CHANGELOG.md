@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.0.0-next.21
+
+### Minor Changes
+
+- [#173](https://github.com/sveltevietnam/sveltevietnam.dev/pull/173) [`9dd84e7`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/9dd84e76dcbe06fb6b8b8f06564ed017defb612b) Thanks [@vnphanquang](https://github.com/vnphanquang)! - new EN blog post: "Productive Dark Mode with SvelteKit, PostCSS, and TailwindCSS (Behind the Screen)" (part 2 of Behind the Screen series)
+
+- [#173](https://github.com/sveltevietnam/sveltevietnam.dev/pull/173) [`7ef8abd`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/7ef8abdf3fd44ff2ccf4160949472665c06151a0) Thanks [@vnphanquang](https://github.com/vnphanquang)! - New VI blog post: "Giao diện tối (dark mode) với SvelteKit, PostCSS, và TailwindCSS (Behind the Screen)" (part 2 of Behind the Screen series)
+
+### Patch Changes
+
+- [#173](https://github.com/sveltevietnam/sveltevietnam.dev/pull/173) [`a3e260e`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/a3e260e2ef7dafe50c52615356fb64e37f59bfd3) Thanks [@vnphanquang](https://github.com/vnphanquang)! - Link between parts of the Behind the Screen blog series
+
 ## 1.0.0-next.20
 
 ### Patch Changes
