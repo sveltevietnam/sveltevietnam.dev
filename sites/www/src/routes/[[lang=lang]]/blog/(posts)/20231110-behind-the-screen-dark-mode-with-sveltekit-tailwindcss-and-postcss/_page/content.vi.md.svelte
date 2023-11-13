@@ -4,9 +4,7 @@
   import semanticColorPaletteImage from './images/semantic-color-palette.webp';
 </script>
 
-Ngày nay, giao diện tối (dark mode) đang dần trở thành một tính năng phổ biến và thậm chí là cần thiết để mang lại một trải nghiệm hoàn thiện cho người dùng. Tuy bề ngoài vấn đề là đơn giản nhưng thực tế công việc này đòi hỏi một sự tỉ mỉ và kết hợp nhiều chi tiết nhỏ, tập hợp từ nhiều công nghệ khác nhau.
-
-Bài viết này lấy ví dụ trong ngữ cảnh ta dùng Svelte và SvelteKit, tuy nhiên đa số các chi tiết là phi ngôn ngữ, bạn có thể áp dụng chúng vào bất kì framework hay dự án front-end nào.
+Ngày nay, giao diện tối (dark mode) đang dần trở thành một tính năng phổ biến và thậm chí là cần thiết để mang lại một trải nghiệm hoàn thiện cho người dùng. Tuy bề ngoài vấn đề là đơn giản nhưng thực tế công việc này đòi hỏi một sự tỉ mỉ và kết hợp nhiều chi tiết nhỏ, tập hợp từ nhiều công nghệ khác nhau. Bài viết này lấy ví dụ trong ngữ cảnh ta dùng Svelte và SvelteKit, tuy nhiên đa số các chi tiết là phi ngôn ngữ, bạn có thể áp dụng chúng vào bất kì framework hay dự án front-end nào.
 
 ## Chế độ tối với CSS
 
@@ -24,10 +22,12 @@ html {
 }
 ```
 
-Chú ý rằng [:root](https://developer.mozilla.org/en-US/docs/Web/CSS/:root) thật ra chỉ là `html`, ta dùng nó theo quy ước chung để khai báo biến CSS. Khi thay đổi giá trị của các biến `--color-*` thì giao diện sẽ tự động cập nhật theo. Hãy tưởng tượng ta có một tính năng thần kỳ, một [At-rule](https://developer.mozilla.org/en-US/docs/Web/CSS/At-rule) có tên là `@dark` có khả năng kích hoạt nội dung bên trong khi chế độ tối được bật.
+Chú ý rằng [:root](https://developer.mozilla.org/en-US/docs/Web/CSS/:root) thật ra chỉ là `html`, ta dùng nó theo quy ước chung để khai báo biến CSS. Khi thay đổi giá trị của các biến `--color-*` thì giao diện sẽ tự động cập nhật theo.
+
+Hãy tưởng tượng ta có một tính năng thần kỳ, một [At-rule](https://developer.mozilla.org/en-US/docs/Web/CSS/At-rule) có tên là `@dark` có khả năng kích hoạt nội dung bên trong khi chế độ tối được bật:
 
 ```diff
-///highlight: 4-8
+///highlight: 5
 :root {
   --color-bg: white;
   --color-fg: black;
@@ -243,12 +243,10 @@ module.exports = {
 };
 ```
 
-Hãy xem qua docs [tại github](https://github.com/vnphanquang/postcss-color-scheme#tailwind-support) để biết chi tiết cách cài đặt.
-
-Ngoài ra, ta có thể thêm các biến CSS vào tùy chỉnh `theme` trong tailwind:
+Hãy xem qua docs [tại github](https://github.com/vnphanquang/postcss-color-scheme#tailwind-support) để biết chi tiết cách cài đặt. Ngoài ra, ta có thể thêm các biến CSS vào tùy chỉnh `theme` trong tailwind:
 
 ```diff
-///highlight: 7-10
+///highlight: 10, 11
 // tailwind.config.cjs
 /** @type {import("tailwindcss").Config } */
 module.exports = {
@@ -256,8 +254,12 @@ module.exports = {
   darkMode: '',
   plugins: [require('postcss-color-scheme/lib/tailwind')],
 + theme: {
-+   fg: 'var(--color-fg)',
-+   bg: 'var(--color-bg)',
++   extend: {
++     colors: {
++       fg: 'var(--color-fg)',
++       bg: 'var(--color-bg)',
++     },
++   },
 + },
 };
 ```
@@ -291,6 +293,24 @@ function changeColorScheme(scheme) {
 ```
 
 Chú ý rằng nếu bạn đang dùng [tính năng Server-side Rendering của SvelteKit](https://kit.svelte.dev/docs/page-options#ssr) thì đoạn code trên chỉ chạy được ở phía client vì nó tham chiếu đến `document`.
+
+:::div c-callout c-callout--info
+
+Ngày nay, với tính năng [:has](https://developer.mozilla.org/en-US/docs/Web/CSS/:has) của CSS, ta có thể giản lược giải pháp trong bài viết này hơn nữa và không cần đến cả Javascript:
+
+```svelte
+<input id="is-dark" />
+
+<style>
+  :root:has(#is-dark:checked) {
+    /* thiết lập tương ứng */
+  }
+</style>
+```
+
+Bỏ đi sự phụ thuộc vào Javascript sẽ giúp ứng dụng của ta dễ tiếp cận hơn (accessible) cho người dùng. **sveltevietnam.dev** được phát triển trong thời gian `:has` được hỗ trợ rộng rãi nên vẫn chưa tận dụng được tính năng này. Mình chắc chắn sẽ thử nghiệm và cải thiện trong thời gian tới.
+
+:::
 
 ## Ghi nhớ tùy chỉnh với cookie và SvelteKit
 
@@ -326,7 +346,7 @@ function changeColorScheme(scheme) {
 }
 ```
 
-Thường cookie được thiết lập ở phía server. Tuy nhiên trong trường hợp này, ta làm chủ được cookie sử dụng cho việc gì, và nó cũng không mang thông tin nhảy cảm như định danh hay API key. Dùng `document.cookie` sẽ tiện hơn nhiều vì ta không cần phải cài đặt [form action](https://kit.svelte.dev/docs/form-actions) hay [API endpoint](https://kit.svelte.dev/docs/routing#server).
+Thường cookie được thiết lập ở phía server. Tuy nhiên trong trường hợp này, ta làm chủ được cookie sử dụng cho việc gì, và nó cũng không mang thông tin nhảy cảm như định danh hay khóa API. Dùng `document.cookie` sẽ tiện hơn nhiều vì ta không cần phải cài đặt [form action](https://kit.svelte.dev/docs/form-actions) hay [API endpoint](https://kit.svelte.dev/docs/routing#server).
 
 <h3 id="thiet-lap-o-server">Thiết lập ở server</h3>
 
