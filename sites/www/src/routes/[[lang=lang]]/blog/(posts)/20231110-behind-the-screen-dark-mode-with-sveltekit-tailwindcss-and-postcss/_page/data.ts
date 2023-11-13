@@ -4,7 +4,8 @@ import type { Post } from '$shared/data/blog';
 
 import En from './content.en.md.svelte';
 import Vi from './content.vi.md.svelte';
-import ogImage from './images/thumbnail.webp';
+import ogImage from './images/thumbnail.png';
+import thumbnail from './images/thumbnail.png?enhanced';
 
 export const post = {
   slug: '20231110-behind-the-screen-dark-mode-with-sveltekit-tailwindcss-and-postcss',
@@ -36,6 +37,7 @@ export const post = {
     'vanilla',
   ],
   ogImage,
+  thumbnail,
   tags: ['svelte', 'kit', 'technical', 'inside', 'ecosystem'],
   readMinutes: 18,
   wordCount: {

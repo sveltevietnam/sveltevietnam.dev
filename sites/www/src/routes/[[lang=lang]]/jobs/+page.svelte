@@ -8,7 +8,7 @@
   import { ToBeAnnounced } from '$client/components/ToBeAnnounced';
   import { SPONSOR_PATH } from '$shared/services/navigation';
 
-  import keyVisuals from './_page/images/key-visuals.webp';
+  import keyVisuals from './_page/images/key-visuals.png?enhanced';
 
   export let data;
 
@@ -28,11 +28,9 @@
       <p class="tp-h5 leading-normal mt-6 tb:mt-8">{t.subtitle}</p>
     </div>
     <div class="sp:mt-8">
-      <img
+      <enhanced:img
         src={keyVisuals}
         alt="hands passing suitcases through a circular band"
-        width="496"
-        height="500"
         class="w-full h-auto max-w-[548px]"
       />
     </div>

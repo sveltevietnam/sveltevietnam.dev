@@ -4,7 +4,8 @@ import type { Post } from '$shared/data/blog';
 
 import En from './content.en.md.svelte';
 import Vi from './content.vi.md.svelte';
-import ogImage from './images/thumbnail.webp';
+import ogImage from './images/thumbnail.png';
+import thumbnail from './images/thumbnail.png?enhanced';
 
 export const post = {
   slug: '20231009-behind-the-screen-a-yes-code-blog-of-svelte-vietnam',
@@ -25,6 +26,7 @@ export const post = {
   authors: [authors.vnphanquang],
   keywords: ['blog', 'svelte', 'vietnam', 'yes-code', 'svelte vietnam'],
   ogImage,
+  thumbnail,
   tags: ['inside', 'technical'],
   readMinutes: 11,
   wordCount: {

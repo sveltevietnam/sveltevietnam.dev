@@ -22,12 +22,10 @@
 <article class={cls} class:always-vertical={alwaysVertical}>
   <div>
     <a {href} class="c-link-image">
-      {#if tPost.ogImage}
-        <img
-          src={tPost.ogImage}
+      {#if tPost.thumbnail}
+        <enhanced:img
+          src={tPost.thumbnail}
           alt={tPost.title}
-          width="540"
-          height="300"
           class={!alwaysVertical ? 'tb:w-[200px]' : ''}
         />
       {:else}

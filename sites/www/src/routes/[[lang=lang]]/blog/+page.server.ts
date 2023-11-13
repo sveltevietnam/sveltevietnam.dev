@@ -12,12 +12,14 @@ import { translations as pageT } from './_page/translation';
 const metaTranslations: Record<Language, App.PageData['meta']> = {
   vi: {
     title: 'Blog | Svelte Việt Nam',
-    description: '',
+    description:
+      'Nơi để mọi người cùng viết và chia sẻ kinh nghiệm và kiến thức về hệ sinh thái và cộng đồng Svelte',
     keywords: ['blog', 'viết', 'chia sẻ', 'cộng đồng', 'tham gia', 'đóng góp'],
   },
   en: {
     title: 'Blog | Svelte Vietnam',
-    description: '',
+    description:
+      'A place for everyone to write, share experience and knowledge about Svelte, its ecosystem and community',
     keywords: ['blog', 'writing', 'sharing', 'community', 'involvement', 'contribution'],
   },
 };

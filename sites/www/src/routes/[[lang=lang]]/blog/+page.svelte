@@ -8,7 +8,7 @@
   import ToBeAnnounced from '$client/components/ToBeAnnounced/ToBeAnnounced.svelte';
 
   import type { PageData } from './$types';
-  import keyVisuals from './_page/images/key-visuals.webp';
+  import keyVisuals from './_page/images/key-visuals.png?enhanced';
 
   export let data: PageData;
 
@@ -37,7 +37,11 @@
       <p class="tp-h4 mt-6 tb:mt-8">{t.subtitle}</p>
     </div>
     <div class="sp:mt-8 tb:mt-6">
-      <img src={keyVisuals} alt="" width="532" height="370" class="w-full h-auto max-w-[532px]" />
+      <enhanced:img
+        src={keyVisuals}
+        alt="a blog page coming out of a hole"
+        class="w-full h-auto max-w-[532px]"
+      />
     </div>
   </section>
   <div class="space-y-[60px] tb:space-y-[120px]">

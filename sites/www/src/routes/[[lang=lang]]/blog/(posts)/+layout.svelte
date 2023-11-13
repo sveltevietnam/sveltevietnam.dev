@@ -73,14 +73,8 @@
   <Breadcrumbs {breadcrumbs} class="mt-6" />
   <article class="mt-8 tb:mt-[60px]">
     <section>
-      {#if post?.ogImage}
-        <img
-          src={post?.ogImage}
-          alt={post?.title}
-          width="1000"
-          height="500"
-          class="w-full h-auto"
-        />
+      {#if post?.thumbnail}
+        <enhanced:img src={post?.thumbnail} alt={post?.title} class="w-full h-auto" />
       {:else}
         <FallbackImage class="h-[500px] w-auto" />
       {/if}

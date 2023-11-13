@@ -4,7 +4,8 @@ import type { Post } from '$shared/data/blog';
 
 import En from './content.en.md.svelte';
 import Vi from './content.vi.md.svelte';
-import ogImage from './images/thumbnail.webp';
+import ogImage from './images/thumbnail.png';
+import thumbnail from './images/thumbnail.png?enhanced';
 
 export const post = {
   slug: '20231020-lets-write-a-simple-svelte-preprocessor',
@@ -25,6 +26,7 @@ export const post = {
   authors: [authors.vnphanquang],
   keywords: ['svelte', 'preprocessor', 'plugin'],
   ogImage,
+  thumbnail,
   tags: ['technical', 'svelte', 'ecosystem'],
   readMinutes: 12,
   wordCount: {

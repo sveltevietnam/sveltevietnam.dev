@@ -35,6 +35,7 @@ export type Post = {
   originalLang?: Language;
   tags?: PostTag[];
   authors: PostAuthor[];
+  thumbnail?: string;
   ogImage?: string;
   keywords?: LangText[];
   readMinutes?: number;
