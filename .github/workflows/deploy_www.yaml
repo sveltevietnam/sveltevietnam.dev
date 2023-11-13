@@ -50,6 +50,9 @@ jobs:
     needs: pre_jobs
     if: (needs.pre_jobs.outputs.should_skip != 'true' && needs.pre_jobs.outputs.reason != 'paths') || (needs.pre_jobs.outputs.paths_result && !fromJSON(needs.pre_jobs.outputs.paths_result).www.should_skip)
     runs-on: ubuntu-latest
+    env:
+      npm_config_platform: linux
+      npm_config_arch: x64
     environment:
       name: |-
         ${{
@@ -95,6 +98,10 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --ignore-scripts
+        continue-on-error: false
+
+      - name: Rebuild sharp
+        run: cd sites/www && npm rebuild sharp
         continue-on-error: false
 
       - name: Build
