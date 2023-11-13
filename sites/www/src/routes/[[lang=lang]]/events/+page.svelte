@@ -11,7 +11,6 @@
   import { SPONSOR_PATH } from '$shared/services/navigation';
 
   import type { PageData } from './$types';
-  import keyVisuals from './_page/images/key-visuals.webp';
 
   export let data: PageData;
 
@@ -29,13 +28,7 @@
       <p class="tp-h4 mt-6 tb:mt-8">{t.subtitle}</p>
     </div>
     <div class="sp:mt-8">
-      <img
-        src={keyVisuals}
-        alt="people meet together through events"
-        width="548"
-        height="547"
-        class="w-full h-auto max-w-[548px]"
-      />
+      <svg inline-src="./_page/images/key-visuals" class="w-full h-auto max-w-[548px]" />
     </div>
   </section>
   <div class="space-y-[60px] tb:space-y-[120px] pb-[120px] tb:pb-[200px]">
