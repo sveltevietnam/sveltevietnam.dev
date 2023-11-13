@@ -1,5 +1,5 @@
 User-agent: *
 Sitemap: https://www.sveltevietnam.dev/sitemap.xml
-Disallow: vi/subscriptions/
-Disallow: en/subscriptions/
+Disallow: /vi/subscriptions/
+Disallow: /en/subscriptions/
 
