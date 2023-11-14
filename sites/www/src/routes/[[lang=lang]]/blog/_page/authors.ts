@@ -1,5 +1,7 @@
 import type { PostAuthor } from '$shared/data/blog';
 
+import vnphanquangAvatarUrl from './images/authors/vnphanquang.png?format=webp';
+
 export const authors = {
   vnphanquang: {
     name: {
@@ -11,6 +13,6 @@ export const authors = {
       vi: 'Lập trình viên, quản trị viên Svelte Việt Nam',
     },
     link: 'https://github.com/vnphanquang',
-    avatarUrl: 'https://avatars.githubusercontent.com/u/25895844?v=4',
+    avatarUrl: vnphanquangAvatarUrl,
   },
 } satisfies Record<string, PostAuthor>;

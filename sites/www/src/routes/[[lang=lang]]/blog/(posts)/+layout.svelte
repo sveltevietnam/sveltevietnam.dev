@@ -1,5 +1,4 @@
 <script lang="ts">
-  import Avatar from '@svelte-put/avatar/Avatar.svelte';
   import { copy } from '@svelte-put/copy';
   import { toc, toclink, createTocStore } from '@svelte-put/toc';
 
@@ -89,12 +88,12 @@
         <ul class="flex items-start gap-6">
           {#each post?.authors ?? [] as author}
             <li class="flex items-center gap-3">
-              <!-- extract into global avatar component -->
-              <Avatar
-                class="rounded-full"
+              <img
                 src={author.avatarUrl}
-                uiAvatar={author.name}
-                size={40}
+                alt={author.name}
+                class="rounded-full"
+                height="40"
+                width="40"
               />
               <div>
                 <p class="font-medium">
@@ -189,6 +188,7 @@
               class="p-[10px] block w-fit c-link-neutral border border-current rounded-full"
               external
             >
+              <span class="sr-only">facebook</span>
               <svg inline-src="simpleicon/facebook" width="20" height="20" />
             </a>
           </li>
@@ -198,6 +198,7 @@
               class="p-[10px] block w-fit c-link-neutral border border-current rounded-full"
               external
             >
+              <span class="sr-only">twitter (x)</span>
               <svg inline-src="simpleicon/twitter" width="20" height="20" />
             </a>
           </li>
@@ -207,6 +208,7 @@
               class="p-[10px] block w-fit c-link-neutral border border-current rounded-full"
               external
             >
+              <span class="sr-only">linkedin</span>
               <svg inline-src="simpleicon/linkedin" width="20" height="20" />
             </a>
           </li>
@@ -216,6 +218,7 @@
               on:copied={onCopiedCanonical}
               use:copy={{ text: meta?.canonical ?? '' }}
             >
+              <span class="sr-only">copy link</span>
               <svg inline-src="google/share" width="20" height="20" />
             </button>
           </li>
@@ -224,6 +227,7 @@
               class="p-[10px] block w-fit c-link-neutral border border-current rounded-full"
               on:click={onClickQRLink}
             >
+              <span class="sr-only">QR code</span>
               <svg inline-src="google/qr-code-2" width="20" height="20" />
             </button>
           </li>

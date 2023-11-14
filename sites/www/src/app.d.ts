@@ -12,6 +12,12 @@ import type { Language } from '$shared/services/i18n';
 declare global {
   declare const __BUILD_TIMESTAMP__: string;
   declare type ColorScheme = 'light' | 'dark' | 'system';
+
+  declare module '*?format=webp' {
+    const src: string;
+    export default src;
+  }
+
   namespace App {
     interface Locals {
       userId: string;
