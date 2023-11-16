@@ -9,11 +9,11 @@ This is the second part of the "Behind the Screen" blog series, where I share my
 :::
 
 
-Today, dark mode is becoming a common and even necessary feature to provide a complete user experience. Although the problem seems simple on the surface, it does require meticulous work and a combination of many small details from many different technologies. This blog post discusses the implementation of dark mode with Svelte and SvelteKit. However, most of the details are language-agnostic, you can apply them to any framework and front-end project.
+Today, dark mode is becoming a common and even necessary feature to provide a complete user experience. Although the problem seems simple on the surface, it does require meticulous work and a combination of many small details from many different technologies. This blog post discusses one of many possible implementations of dark mode with Svelte and SvelteKit. Most of the details, however, are language-agnostic, you can apply them to any framework and front-end project.
 
 ## Dark Mode with CSS
 
-First, we look at the simplest way to implement a dark mode with CSS Custom Properties. Let's take an example where we have set up a system like this:
+First, we look at the simplest strategy to implement a dark mode with CSS Custom Properties. Let's take an example where we have set up a system like this:
 
 ```css
 :root {
@@ -44,11 +44,11 @@ Imagine now we have a magical [At-rule](https://developer.mozilla.org/en-US/docs
 }
 ```
 
-In the above CSS, the default mode is light. When `@dark` is active, we will change the value of the corresponding CSS variables to the dark mode. If we could do this, we would have completed more than half of the work. Unfortunately, CSS does not support this magical syntax. But don't worry: in the following sections we will try to simulate the `@dark` feature.
+In the above CSS, the default mode is light. When `@dark` is active, we change the value of the corresponding CSS variables to express dark mode. If we could do this, we would have completed more than half of the work. Unfortunately, CSS does not support this magical syntax. But don't worry: in the following sections, we will try to simulate the `@dark` feature.
 
 ## When Is It Dark?
 
-When does dark mode take effect? Most applications will allow users to choose between `light` and `dark` modes in some settings. However, if the user has just visited the application for the first time, is it `light` or `dark`?
+When does dark mode take effect? Many applications will allow users to choose between `light` and `dark` modes in some settings. However, if the user has just visited the application for the first time, is it `light` or `dark`?
 
 The answer is that we need to look into the operating system (OS) settings with the help of the CSS media query [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme):
 
@@ -69,7 +69,7 @@ So, there are four possible situations:
 3. User has explicitly selected `light` mode
 4. User has explicitly selected `dark` mode
 
-As a result, our magical `@dark` needs to handle (2) and (4). (2) is OS settings, and (4) is user preference.
+As a result, our magical `@dark` needs to handle (2) and (4); (2) is OS settings, and (4) is user preference.
 
 ### User Preference
 
@@ -229,7 +229,7 @@ When we setup dark mode (regardless of using `@dark` or not), we will encounter 
 This section is not essential; it discusses setup with [TailwindCSS](https://tailwindcss.com/) to improve developer productivity. If you do not use TailwindCSS or are not interested, feel free to skip to [the next section](#mode-switching-with-js).
 :::
 
-It will be very convenient if we can use the following syntax:
+It will be convenient if we can use the following syntax:
 
 ```svelte
 <div class="bg-blue-500 dark:bg-red-500 light:text-gray-500" />
@@ -319,7 +319,11 @@ Not relying on Javascript means our application is more accessible. **svelteviet
 
 ## Caching User Preference with Cookie and SvelteKit
 
-The most common method to store the current display mode is to use web storage such as [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) or [sessionStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage). However, JS needs to be loaded before we can access web storage, which results in a common flash-of-content issue because the UI first renders in its default mode then updated to the correct settings only after they are read by JS. We can work around this by blocking the application from rendering until JS is loaded, but this also degrades the user experience, and worse, the application will not work if the user cannot access JS (which happens more often than we think, read more [here](https://kryogenix.org/code/browser/everyonehasjs.html)).
+The most common method to store the current display mode is to use web storage such as [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) or [sessionStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage). However, JS needs to be loaded before we can access web storage, which results in a common flash-of-content issue because the UI first renders in its default mode then updated to the correct settings only after they are read by JS. We can work around this by blocking the application from rendering until JS is loaded, but this also degrades user experience, and worse, the application will not work if a user cannot access JS (which happens more often than we think, read more [here](https://kryogenix.org/code/browser/everyonehasjs.html)).
+
+:::div c-callout c-callout--warning
+A workaround for this workaround is to work around once more: you can technically have a blocking script tag (vanilla JS) that does the necessary logics to initiate the correct display mode. In SvelteKit this script tag would typically be placed in `app.html` before any app markup. I will let you be the judge of whether this is a good idea or not.
+:::
 
 If our application is static or an SPA, there is no other choice (as far as I know). But if we have a server, we can do much better with cookie. Cookie can be read by both client and server, which helps us set the correct value for `data-color-scheme` in the initial HTML response. Let's go through each step.
 
@@ -376,7 +380,7 @@ export const handle = async ({ event, resolve }) => {
 }
 ```
 
-Note line *11*, we use `transformPageChunk`, a function provided by SvelteKit in `resolve`, to replace the string `cookie-color-scheme` with the value of the cookie. To complete the setup, we need to modify `src/app.html` a bit:
+Note *line 11*, we use `transformPageChunk`, a function provided by SvelteKit in `resolve`, to replace the string `cookie-color-scheme` with the value of the cookie. To complete the setup, we need to modify `src/app.html` a bit:
 
 ```diff
 <!-- src/app.html -->
@@ -451,7 +455,7 @@ With the above code, we can access `colorScheme` from the [data](https://kit.sve
 </script>
 ```
 
-However, if we want to access `colorScheme` from child components, we might have to pass down the `prop` multiple times to reach the desired component (children, grandchildren, great-grandchildren, ...). A more elegant way is to use [Svelte context](https://svelte.dev/docs/svelte#setcontext), combined with [store](https://svelte.dev/docs/svelte-store).
+However, if we want to access `colorScheme` from child components, we might have to pass down a `prop` multiple times util we reach the desired component (children, grandchildren, great-grandchildren, ...). A more elegant way is to use [Svelte context](https://svelte.dev/docs/svelte#setcontext), combined with [store](https://svelte.dev/docs/svelte-store).
 
 First, we create a separate file to define the context and the necessary logic:
 
@@ -512,7 +516,7 @@ export function getColorSchemeContext() {
 ```
 
 ::: div c-callout c-callout--info
-If you are using typescript, reference the equivalent source code from sveltevietnam.dev [here](https://github.com/sveltevietnam/sveltevietnam.dev/blob/203ec9b35de9a4bd462ad750c549bba182aaa3c0/sites/www/src/lib/client/contexts/color-scheme.ts). I will not discuss the above code in details, if you have any questions or want to discuss more, be sure to reach out in our [Discord](https://discord.sveltevietnam.dev)!
+If you are using typescript, reference the equivalent source code from sveltevietnam.dev [here](https://github.com/sveltevietnam/sveltevietnam.dev/blob/203ec9b35de9a4bd462ad750c549bba182aaa3c0/sites/www/src/lib/client/contexts/color-scheme.ts). I will not discuss the above code in details, if you have any question or want to discuss more, be sure to reach out in our [Discord](https://discord.sveltevietnam.dev)!
 :::
 
 Now, we can use `setColorSchemeContext` to declare the context:
@@ -550,7 +554,7 @@ The truth is, the above details are not the most complicated part; once we under
 
 Each project and design team have their own conventions and standards, but the most important thing, from the perspective of a developer, is the presence of a technical voice in the design process, especially from the beginning. With my limited experience in the industry, what seems obvious to a developer is not always easy to understand for a designer, and vice versa. Collaboration between the two sides will simply help developers be able to use what designers make and avoid changes to the source code or design later down the road.
 
-Pay special attention to your color palette. Each color should be a design token that is communicated clearly to both designers and developers. Color palette is probably the first and most important element in any design system. Organizing a color palette to be compatible with applications with dark mode will be a bit more complicated than usual because each color can exist in two versions for two display modes. Here is how *sveltevietnam.dev* organizes its color palette, as an example.
+Pay special attention to your color palette. Each color should be a design token that is communicated clearly to both designers and developers. Color palette is probably the first and most important element in any design system. Organizing a color palette to be compatible with applications with dark mode is be a bit more complicated than usual because each color can exist in two versions for two display modes. Here is how *sveltevietnam.dev* organizes its color palette, as an example.
 
 First, we distinguish between primitive colors and semantic/contextual colors. Primitive colors are the basic colors we already know: blue, red, yellow, ...
 
@@ -562,7 +566,7 @@ First, we distinguish between primitive colors and semantic/contextual colors. P
   decoding="async"
 />
 
-Other colors will be build upon the basic ones, depending on different contexts within the application, i.e. colors for foreground or background, primary or secondary, status colors such as success, warning, error, ...
+Other colors will be built upon the these primitives, depending on different contexts within the application, i.e. colors for foreground or background, primary or secondary, status colors such as success, warning, error, ...
 
 <img
   src={semanticColorPaletteImage}
@@ -576,4 +580,4 @@ The *sveltevietnam.dev* project uses Figma as the design tool and takes advantag
 
 ## Closing
 
-We have discussed a lot of different details and aspects of implementing dark mode in SvelteKit application in particular, and a front-end project in general. If you are still reading, that is amazing - thank you for enduring my lengthy writing! If you have any questions or comments, be sure to join our [Discord](https://discord.sveltevietnam.dev) to discuss further!
+We have discussed a lot of different details and aspects of implementing dark mode in a SvelteKit application in particular, and a front-end project in general. If you are still reading, that is amazing - thank you for enduring my lengthy writing! If you have any question or comment, be sure to drop by our [Discord](https://discord.sveltevietnam.dev) and discuss further!

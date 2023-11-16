@@ -375,7 +375,7 @@ export const handle = async ({ event, resolve }) => {
 }
 ```
 
-Hãy chú ý dòng *11*, ta dùng `transformPageChunk`, một hàm được SvelteKit cung cấp trong `resolve`, để thay đổi chuỗi `cookie-color-scheme` theo gía trị của cookie. Để hoàn thiện thiết lập, ta cần sửa `src/app.html` một tí:
+Hãy chú ý *dòng 11*, ta dùng `transformPageChunk`, một hàm được SvelteKit cung cấp trong `resolve`, để thay đổi chuỗi `cookie-color-scheme` theo gía trị của cookie. Để hoàn thiện thiết lập, ta cần sửa `src/app.html` một tí:
 
 ```diff
 <!-- src/app.html -->
