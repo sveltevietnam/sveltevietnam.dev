@@ -334,8 +334,8 @@ importers:
         specifier: 2.3.3
         version: 2.3.3(@sveltejs/kit@1.27.6)
       '@sveltejs/enhanced-img':
-        specifier: ^0.1.2
-        version: 0.1.2(svelte@4.2.3)
+        specifier: ^0.1.4
+        version: 0.1.4(svelte@4.2.3)
       '@sveltejs/kit':
         specifier: ^1.27.6
         version: 1.27.6(svelte@4.2.3)(vite@4.5.0)
@@ -1799,8 +1799,8 @@ packages:
       worktop: 0.8.0-next.15
     dev: true
 
-  /@sveltejs/enhanced-img@0.1.2(svelte@4.2.3):
-    resolution: {integrity: sha512-lN7fJVd6l0/9rcS6eHvhO5ztP3SYXVYiLOyHWp+5wrKixLWmK5Z7nUcni/bkQ66b12qzPHHb7Y6pQLjkuzqAAA==}
+  /@sveltejs/enhanced-img@0.1.4(svelte@4.2.3):
+    resolution: {integrity: sha512-R0nbA8U5q+j0oPxNh7i8qlQIEBtGxWDbI5T4O07U9v0ACxdAxI9Tybup6FBRph5JXSRVzf7BMy8S2mjPJYd3dQ==}
     dependencies:
       magic-string: 0.30.5
       svelte-parse-markup: 0.1.2(svelte@4.2.3)

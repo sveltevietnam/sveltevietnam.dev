@@ -45,7 +45,7 @@
     "@svelte-put/toc": "^4.0.0",
     "@svelte-put/tooltip": "^1.0.1",
     "@sveltejs/adapter-cloudflare": "2.3.3",
-    "@sveltejs/enhanced-img": "^0.1.2",
+    "@sveltejs/enhanced-img": "^0.1.4",
     "@sveltejs/kit": "^1.27.6",
     "@tailwindcss/typography": "^0.5.10",
     "@total-typescript/ts-reset": "^0.5.1",
