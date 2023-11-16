@@ -3,8 +3,11 @@
 .c-tag {
   @apply tp-cap1;
 
-  padding: 4px 12px;
+  padding: 6px 12px;
+
+  line-height: 1;
   color: theme('colors.design.neutral.2');
+
   border: 1px solid theme('colors.design.border.1');
   border-radius: 9999999px;
 
