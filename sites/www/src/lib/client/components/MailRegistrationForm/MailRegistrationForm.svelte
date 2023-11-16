@@ -108,7 +108,7 @@
     />
   </div>
 
-  <div class="space-y-12">
+  <div class="space-y-12 relative">
     {#if $errors.turnstile?.length}
       <p class="error">{$errors.turnstile[0]}</p>
     {/if}
