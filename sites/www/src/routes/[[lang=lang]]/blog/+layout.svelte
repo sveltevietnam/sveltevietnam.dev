@@ -21,7 +21,7 @@
       <p>{t.description}</p>
       <svg
         inline-src="../roadmap/_page/images/key-visuals.svg"
-        class="opacity-5"
+        class="opacity-5 max-w-full"
         height="100"
         width="328"
       />
