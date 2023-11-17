@@ -22,20 +22,20 @@
 	<div class="mt-6" use:intersect>
 		<Breadcrumbs breadcrumbs={data.breadcrumbs} />
 	</div>
-	<section class="tb:flex tb:justify-between tb:flex-row mb-[60px] tb:mb-16" use:intersect>
-		<div class="tb:max-w-[500px] tb:mt-[100px] mt-8">
+	<section class="mb-[60px] tb:mb-16 tb:flex tb:flex-row tb:justify-between" use:intersect>
+		<div class="mt-8 tb:mt-[100px] tb:max-w-[500px]">
 			<h1 class="tp-h1 uppercase">{t.title}</h1>
-			<p class="tp-h5 leading-normal mt-6 tb:mt-8">{t.subtitle}</p>
+			<p class="tp-h5 mt-6 leading-normal tb:mt-8">{t.subtitle}</p>
 		</div>
 		<div class="sp:mt-8">
 			<enhanced:img
 				src={keyVisuals}
 				alt="hands passing suitcases through a circular band"
-				class="w-full h-auto max-w-[548px]"
+				class="h-auto w-full max-w-[548px]"
 			/>
 		</div>
 	</section>
-	<div class="space-y-[60px] tb:space-y-[120px] pb-[120px] tb:pb-[200px]">
+	<div class="space-y-[60px] pb-[120px] tb:space-y-[120px] tb:pb-[200px]">
 		<section>
 			<ConsecutiveFadeUpIntro selector=".char">
 				<h2 class="tp-h2 uppercase">
@@ -69,24 +69,24 @@
 
 		<section>
 			<h2 class="sr-only">{t.actions.title}</h2>
-			<div class="grid grid-cols-1 tb:grid-cols-2 gap-8">
+			<div class="grid grid-cols-1 gap-8 tb:grid-cols-2">
 				<section class="c-action-card" use:intersect id="sponsor">
 					<h3 class="tp-h3 font-medium">{t.actions.recruiter.title}</h3>
-					<div class="flex-1 mt-6">
+					<div class="mt-6 flex-1">
 						<p>{t.actions.recruiter.description}</p>
 						<ul class="mt-4 space-y-1">
 							<li>1. {@html t.actions.recruiter.steps.sponsor}</li>
 							<li>2. {@html t.actions.recruiter.steps.contact}</li>
 						</ul>
 					</div>
-					<a class="c-link text-xs w-fit mt-4" href="{SPONSOR_PATH}#why">
+					<a class="c-link mt-4 w-fit text-xs" href="{SPONSOR_PATH}#why">
 						{t.actions.recruiter.whyNeedSponsor}
 					</a>
 					<a href={SPONSOR_PATH} class="c-btn mt-4">{t.actions.recruiter.cta}</a>
 				</section>
 				<section class="c-action-card" use:intersect id="mail">
 					<h3 class="tp-h3 font-medium">{t.actions.candidate.title}</h3>
-					<p class="flex-1 mt-6">{t.actions.candidate.description}</p>
+					<p class="mt-6 flex-1">{t.actions.candidate.description}</p>
 					<MailRegistrationForm t={tMail} superValidated={data.mailForm} class="mt-6" />
 				</section>
 			</div>

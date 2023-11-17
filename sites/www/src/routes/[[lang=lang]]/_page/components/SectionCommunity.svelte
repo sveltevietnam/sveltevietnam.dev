@@ -1,89 +1,89 @@
 <script lang="ts">
-  // import { onMount } from 'svelte';
+	// import { onMount } from 'svelte';
 
-  // import { Power1, gsap } from '$3rd/gsap';
-  import { intersect } from '$client/actions/intersect';
-  import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
-  import { SplitText } from '$client/components/SplitText';
-  import { getLangContext } from '$client/contexts/lang';
-  // import { getSplashContext } from '$client/contexts/splash';
-  import { SOCIAL_LINKS } from '$shared/constants';
-  // import { PEOPLE_PATH } from '$shared/services/navigation';
+	// import { Power1, gsap } from '$3rd/gsap';
+	import { intersect } from '$client/actions/intersect';
+	import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
+	import { SplitText } from '$client/components/SplitText';
+	import { getLangContext } from '$client/contexts/lang';
+	// import { getSplashContext } from '$client/contexts/splash';
+	import { SOCIAL_LINKS } from '$shared/constants';
+	// import { PEOPLE_PATH } from '$shared/services/navigation';
 
-  // import communityShapeEllipse from '../images/community-shape-ellipse.webp';
-  // import communityShapePolygon from '../images/community-shape-polygon.webp';
-  // import communityShapeStar from '../images/community-shape-star.webp';
-  import { translations } from '../translation';
+	// import communityShapeEllipse from '../images/community-shape-ellipse.webp';
+	// import communityShapePolygon from '../images/community-shape-polygon.webp';
+	// import communityShapeStar from '../images/community-shape-star.webp';
+	import { translations } from '../translation';
 
-  const langStore = getLangContext();
-  $: lang = $langStore;
+	const langStore = getLangContext();
+	$: lang = $langStore;
 
-  $: t = translations[lang].community;
+	$: t = translations[lang].community;
 
-  // shapes
-  // let shapeContainerElement: HTMLElement;
+	// shapes
+	// let shapeContainerElement: HTMLElement;
 
-  // let shapesIntersected = false;
-  // let parallaxTimeline: gsap.core.Timeline;
+	// let shapesIntersected = false;
+	// let parallaxTimeline: gsap.core.Timeline;
 
-  // let ctx: gsap.Context;
+	// let ctx: gsap.Context;
 
-  // $: if (shapeContainerElement) {
-  //   ctx = gsap.context(() => {
-  //     parallaxTimeline = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: shapeContainerElement,
-  //         start: 'top bottom',
-  //         end: 'bottom top',
-  //         scrub: true,
-  //       },
-  //     });
-  //     parallaxTimeline.fromTo(
-  //       'img',
-  //       {
-  //         x: (_, target: HTMLElement) => Number(gsap.getProperty(target, '--parallax-x')) * -1,
-  //         y: (_, target: HTMLElement) => Number(gsap.getProperty(target, '--parallax-y')) * -1,
-  //       },
-  //       {
-  //         x: (_, target: HTMLElement) => gsap.getProperty(target, '--parallax-x').toString(),
-  //         y: (_, target: HTMLElement) => gsap.getProperty(target, '--parallax-y').toString(),
-  //       },
-  //       0,
-  //     );
-  //   }, shapeContainerElement);
-  // }
+	// $: if (shapeContainerElement) {
+	//   ctx = gsap.context(() => {
+	//     parallaxTimeline = gsap.timeline({
+	//       scrollTrigger: {
+	//         trigger: shapeContainerElement,
+	//         start: 'top bottom',
+	//         end: 'bottom top',
+	//         scrub: true,
+	//       },
+	//     });
+	//     parallaxTimeline.fromTo(
+	//       'img',
+	//       {
+	//         x: (_, target: HTMLElement) => Number(gsap.getProperty(target, '--parallax-x')) * -1,
+	//         y: (_, target: HTMLElement) => Number(gsap.getProperty(target, '--parallax-y')) * -1,
+	//       },
+	//       {
+	//         x: (_, target: HTMLElement) => gsap.getProperty(target, '--parallax-x').toString(),
+	//         y: (_, target: HTMLElement) => gsap.getProperty(target, '--parallax-y').toString(),
+	//       },
+	//       0,
+	//     );
+	//   }, shapeContainerElement);
+	// }
 
-  // onMount(() => {
-  //   return () => {
-  //     ctx?.revert();
-  //   };
-  // });
+	// onMount(() => {
+	//   return () => {
+	//     ctx?.revert();
+	//   };
+	// });
 
-  // const splashStore = getSplashContext();
-  // $: if (shapesIntersected && $splashStore?.done && shapeContainerElement) {
-  //   gsap.to(shapeContainerElement.querySelectorAll('img'), {
-  //     rotateX: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-x').toString(),
-  //     rotateY: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-y').toString(),
-  //     rotateZ: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-z').toString(),
-  //     scale: (_, target: HTMLElement) => gsap.getProperty(target, '--scale').toString(),
-  //     duration: 2.5,
-  //     yoyo: true,
-  //     repeat: -1,
-  //     ease: Power1.easeInOut,
-  //   });
-  // }
+	// const splashStore = getSplashContext();
+	// $: if (shapesIntersected && $splashStore?.done && shapeContainerElement) {
+	//   gsap.to(shapeContainerElement.querySelectorAll('img'), {
+	//     rotateX: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-x').toString(),
+	//     rotateY: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-y').toString(),
+	//     rotateZ: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-z').toString(),
+	//     scale: (_, target: HTMLElement) => gsap.getProperty(target, '--scale').toString(),
+	//     duration: 2.5,
+	//     yoyo: true,
+	//     repeat: -1,
+	//     ease: Power1.easeInOut,
+	//   });
+	// }
 </script>
 
 <section class="community c-container-design" id="community">
-  <h2 class="section-title tp-h2 uppercase">
-    <ConsecutiveFadeUpIntro selector=".char" class="inline-block">
-      <SplitText text={t.title} />
-    </ConsecutiveFadeUpIntro>
-  </h2>
-  <p class="section-desc c-intersect mt-6" use:intersect>
-    {@html t.description}
-  </p>
-  <!-- <div
+	<h2 class="section-title tp-h2 uppercase">
+		<ConsecutiveFadeUpIntro selector=".char" class="inline-block">
+			<SplitText text={t.title} />
+		</ConsecutiveFadeUpIntro>
+	</h2>
+	<p class="section-desc c-intersect mt-6" use:intersect>
+		{@html t.description}
+	</p>
+	<!-- <div
     class="shapes c-intersect"
     role="figure"
     aria-label="geometric shapes"
@@ -95,92 +95,92 @@
     <img class="polygon" src={communityShapePolygon} alt="polygon" width="308" height="390" />
     <img class="star" src={communityShapeStar} alt="star" width="181" height="181" />
   </div> -->
-  <ul class="ctas divide-border c-intersect divide-y" use:intersect>
-    <li>
-      <a class="c-link-box font-medium" href={SOCIAL_LINKS.DISCORD} external>
-        <span>{t.ctas.discord}</span>
-        <svg inline-src="icon/external-link" />
-      </a>
-    </li>
-    <!-- <li>
+	<ul class="ctas divide-border c-intersect divide-y" use:intersect>
+		<li>
+			<a class="c-link-box font-medium" href={SOCIAL_LINKS.DISCORD} external>
+				<span>{t.ctas.discord}</span>
+				<svg inline-src="icon/external-link" />
+			</a>
+		</li>
+		<!-- <li>
       <a class="c-link-box font-medium" href={PEOPLE_PATH}>
         <span>{t.ctas.nominate}</span>
       </a>
     </li> -->
-    <li>
-      <a class="c-link-box font-medium" href={SOCIAL_LINKS.GITHUB} external>
-        <span>{t.ctas.contribute}</span>
-        <svg inline-src="icon/external-link" />
-      </a>
-    </li>
-  </ul>
+		<li>
+			<a class="c-link-box font-medium" href={SOCIAL_LINKS.GITHUB} external>
+				<span>{t.ctas.contribute}</span>
+				<svg inline-src="icon/external-link" />
+			</a>
+		</li>
+	</ul>
 </section>
 
 <style lang="postcss">
-  .community {
-    --gradient-offset: 200px;
+	.community {
+		--gradient-offset: 200px;
 
-    /* overflow: hidden; */
+		/* overflow: hidden; */
 
-    /* display: grid; */
+		/* display: grid; */
 
-    /* grid-template-areas:
+		/* grid-template-areas:
       'title'
       'description'
       'shapes'
       'ctas'; */
 
-    padding-top: 80px;
-    padding-bottom: 80px;
-    background: linear-gradient(
-      to bottom,
-      theme('colors.design.bg.1'),
-      theme('colors.design.bg.2') var(--gradient-offset),
-      theme('colors.design.bg.2') calc(100% - var(--gradient-offset)),
-      theme('colors.design.bg.1') 100%
-    );
+		padding-top: 80px;
+		padding-bottom: 80px;
+		background: linear-gradient(
+			to bottom,
+			theme('colors.design.bg.1'),
+			theme('colors.design.bg.2') var(--gradient-offset),
+			theme('colors.design.bg.2') calc(100% - var(--gradient-offset)),
+			theme('colors.design.bg.1') 100%
+		);
 
-    @screen tb {
-      --gradient-offset: 200px;
+		@screen tb {
+			--gradient-offset: 200px;
 
-      /* grid-template-areas:
+			/* grid-template-areas:
         'title shapes'
         'description shapes'
         'ctas shapes';
       grid-template-columns: minmax(380px, auto) auto; */
 
-      /* justify-content: space-between; */
-      padding-top: 160px;
-    }
+			/* justify-content: space-between; */
+			padding-top: 160px;
+		}
 
-    /* @screen pc {
+		/* @screen pc {
       grid-template-columns: minmax(560px, auto) auto;
     } */
-  }
+	}
 
-  .section-title {
-    grid-area: title;
-  }
+	.section-title {
+		grid-area: title;
+	}
 
-  .section-desc {
-    grid-area: description;
+	.section-desc {
+		grid-area: description;
 
-    @screen sp {
-      margin-top: 24px;
-    }
-  }
+		@screen sp {
+			margin-top: 24px;
+		}
+	}
 
-  .ctas {
-    grid-area: ctas;
-    margin-top: 30px;
+	.ctas {
+		grid-area: ctas;
+		margin-top: 30px;
 
-    @screen tb {
-      max-width: 548px;
-      margin-top: 60px;
-    }
-  }
+		@screen tb {
+			max-width: 548px;
+			margin-top: 60px;
+		}
+	}
 
-  /* .shapes {
+	/* .shapes {
     position: relative;
 
     grid-area: shapes;
