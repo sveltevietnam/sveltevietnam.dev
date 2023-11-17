@@ -28,7 +28,7 @@ export const primitives = {
 	orange: {
 		50: 'hsl(10, 86%, 95%)',
 		100: 'hsl(10, 86%, 91%)',
-		200: 'hsl(10), 86%, 82%)',
+		200: 'hsl(10, 86%, 82%)',
 		300: 'hsl(10, 86%, 73%)',
 		400: 'hsl(10, 86%, 64%)',
 		500: 'hsl(10, 86%, 55%)',
@@ -115,75 +115,5 @@ export const primitives = {
 		700: 'hsl(47, 12%, 37%)',
 		800: 'hsl(49, 12%, 28%)',
 		900: 'hsl(40, 10%, 11%)',
-	},
-
-	status: {
-		info: '#00D0EA',
-		success: '#35D39D',
-		warning: '#FFC02E',
-		error: '#EF4D61',
-	},
-	grayscale: {
-		light: {
-			100: '#ffffff',
-			200: '#E5E5E5',
-			300: '#999999',
-			400: '#4C4C4C',
-		},
-		dark: {
-			100: '#1C1C1C',
-			200: '#585757',
-			300: '#969696',
-			400: '#E8E8E8',
-		},
-	},
-	fg: {
-		100: 'var(--color-fg-100)',
-		200: 'var(--color-fg-200)',
-		300: 'var(--color-fg-300)',
-		400: 'var(--color-fg-400)',
-	},
-	bg: {
-		100: 'var(--color-bg-100)',
-		200: 'var(--color-bg-200)',
-		300: 'var(--color-bg-300)',
-		400: 'var(--color-bg-400)',
-	},
-	primary: '#ef4623',
-	svelte: '#ef4623',
-	// FIXME temporary, refactor once there is a consistent color palette
-	design: {
-		link: {
-			DEFAULT: 'var(--color-link)',
-			title: 'var(--color-link-title)',
-		},
-		border: {
-			1: 'var(--color-border-1)',
-		},
-		grayscale: {
-			light: {
-				1: '#FFFFFF',
-				2: '#EDECE8',
-				3: '#DBDBDB',
-			},
-			dark: {
-				1: '#000000',
-				2: '#0D0D0D',
-				3: '#201E1A',
-				4: '#3F3F3F',
-			},
-		},
-		fg: {
-			1: 'var(--color-fg-1)',
-			2: 'var(--color-fg-2)',
-		},
-		bg: {
-			1: 'var(--color-bg-1)',
-			2: 'var(--color-bg-2)',
-		},
-		neutral: {
-			1: '#ACACAC',
-			2: '#707070',
-		},
 	},
 };

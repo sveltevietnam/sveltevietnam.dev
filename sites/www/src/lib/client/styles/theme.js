@@ -1,3 +1,5 @@
+import { primitives } from './colors.js';
+
 /** @type {import('tailwindcss').Config['theme']} */
 export const theme = {
 	extend: {
@@ -36,6 +38,7 @@ export const theme = {
 			header: 'var(--header-height)',
 		},
 		colors: {
+			...primitives,
 			status: {
 				info: '#00D0EA',
 				success: '#35D39D',
