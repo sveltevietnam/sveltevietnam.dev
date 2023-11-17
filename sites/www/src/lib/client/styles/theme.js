@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config['theme']} */
-const theme = {
+export const theme = {
   extend: {
     screens: {
       sp: {
@@ -119,5 +119,3 @@ const theme = {
     },
   },
 };
-
-module.exports = { theme };

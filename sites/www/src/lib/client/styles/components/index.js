@@ -1,6 +1,6 @@
-require('../postcss/css-node-loader.cjs');
+import '../postcss/css-node-loader.js';
 
-const components = {
+export const components = {
   // HYGEN INJECTION MARKER
   ...require('./callout.css'),
   ...require('./logo.css'),
@@ -18,5 +18,3 @@ const components = {
   ...require('./intro.css'),
   ...require('./typography.css'),
 };
-
-module.exports = { components };

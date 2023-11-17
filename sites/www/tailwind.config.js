@@ -1,7 +1,10 @@
-const sveltevietnam = require('./src/lib/client/styles/postcss/tailwind.cjs');
+import tailwindcssTypography from '@tailwindcss/typography';
+import postcssColorScheme from 'postcss-color-scheme/lib/tailwind.js';
+
+import sveltevietnam from './src/lib/client/styles/postcss/tailwind.js';
 
 /** @type {import("tailwindcss").Config } */
-const config = {
+export default {
   theme: {
     extend: {
       typography: ({ theme }) => {
@@ -22,11 +25,5 @@ const config = {
   },
   darkMode: '',
   content: ['./src/**/*.{html,js,svelte,ts,md}', 'svelte.config.js'],
-  plugins: [
-    sveltevietnam,
-    require('postcss-color-scheme/lib/tailwind'),
-    require('@tailwindcss/typography'),
-  ],
+  plugins: [sveltevietnam, postcssColorScheme, tailwindcssTypography],
 };
-
-module.exports = config;

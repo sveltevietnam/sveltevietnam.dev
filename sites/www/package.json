@@ -30,7 +30,6 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20231025.0",
-    "@csstools/postcss-global-data": "^2.1.0",
     "@internals/isc": "workspace:^",
     "@internals/utils": "workspace:^",
     "@svelte-put/clickoutside": "^3.0.0",

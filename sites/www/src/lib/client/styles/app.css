@@ -6,6 +6,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-custom-selectors */
+@custom-selector :--current :is([data-current]:not([data-current="false"]),[aria-current]:not([aria-current="false"]));
+
 @layer base {
   :root {
     --header-height: 82px;

@@ -1,4 +1,4 @@
-html:--hydrated .c-intro {
+html[data-hydrated-at] .c-intro {
   --animation-delay: 0ms;
   --translate-direction: 1;
   --translate-x: calc(var(--translate-direction) * 40px);
@@ -11,7 +11,7 @@ html:--hydrated .c-intro {
   animation-delay: var(--animation-delay);
 }
 
-html:--splashed .c-intro.c-intro--intersected {
+html[data-splashed-at] .c-intro.c-intro--intersected {
   animation-name: c-intro-animation;
 }
 
