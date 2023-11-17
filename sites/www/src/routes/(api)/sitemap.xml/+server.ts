@@ -5,6 +5,7 @@ import { LANGUAGES } from '$shared/services/i18n';
 import {
   BLOG_PATH,
   CODE_OF_CONDUCT_PATH,
+  DESIGN_COLORS_PATH,
   DESIGN_PATH,
   DESIGN_TYPOGRAPHY_PATH,
   EVENTS_PATH,
@@ -103,6 +104,12 @@ export const GET: RequestHandler = ({ url }) => {
     }),
     ...makeUrl(url.origin, {
       loc: DESIGN_TYPOGRAPHY_PATH,
+      lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
+      changefreq: 'yearly',
+      priority: 0.2,
+    }),
+    ...makeUrl(url.origin, {
+      loc: DESIGN_COLORS_PATH,
       lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
       changefreq: 'yearly',
       priority: 0.2,

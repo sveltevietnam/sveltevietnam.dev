@@ -10,4 +10,5 @@ export const en = {
   roadmap: 'Roadmap',
   design: 'Design',
   typography: 'Typography',
+  colors: 'Colors',
 } satisfies typeof import('./vi').vi;

@@ -19,6 +19,7 @@ export const CODE_OF_CONDUCT_PATH = '/code-of-conduct';
 export const ROADMAP_PATH = '/roadmap';
 export const DESIGN_PATH = '/design';
 export const DESIGN_TYPOGRAPHY_PATH = '/design/typography';
+export const DESIGN_COLORS_PATH = '/design/colors';
 
 export function getPathLabel(path: string, lang: Language) {
   const t = translations[lang];
@@ -45,6 +46,8 @@ export function getPathLabel(path: string, lang: Language) {
       return t.design;
     case DESIGN_TYPOGRAPHY_PATH:
       return t.typography;
+    case DESIGN_COLORS_PATH:
+      return t.colors;
     default:
       return '';
   }
@@ -82,6 +85,7 @@ export const ALL_PATHS = [
   ROADMAP_PATH,
   DESIGN_PATH,
   DESIGN_TYPOGRAPHY_PATH,
+  DESIGN_COLORS_PATH,
 ];
 
 export function isCurrentPage(pathname: string, href: string) {

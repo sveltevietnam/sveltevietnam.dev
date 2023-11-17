@@ -9,5 +9,6 @@ export const vi = {
   codeOfConduct: 'Quy tắc ứng xử',
   roadmap: 'Lộ trình',
   design: 'Thiết kế',
-  typography: 'Typography',
+  typography: 'Chữ viết',
+  colors: 'Màu sắc',
 };
