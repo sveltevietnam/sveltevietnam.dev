@@ -47,6 +47,7 @@
     <ColorSchemeMenu class="color-scheme" />
 
     <button class="mobile-open" on:click={toggleMobileOverlay}>
+      <span class="sr-only">Open mobile menu</span>
       <svg
         width="44"
         height="44"
@@ -86,6 +87,7 @@
         <LanguageNav {pathname} class="languages" />
         <PageNav {pathname} class="pages" />
         <button class="mobile-close" on:click={toggleMobileOverlay}>
+          <span class="sr-only">Close mobile menu</span>
           <svg inline-src="icon/x" width="44" height="44" />
         </button>
       </div>
