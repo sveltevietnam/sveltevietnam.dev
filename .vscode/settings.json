@@ -3,5 +3,8 @@
 	"files.associations": {
 		"*.md.svelte": "markdown"
 	},
-	"prettier.documentSelectors": ["**/*.svelte"]
+	"prettier.documentSelectors": ["**/*.svelte"],
+	"[svelte]": {
+		"editor.defaultFormatter": "svelte.svelte-vscode"
+	}
 }
