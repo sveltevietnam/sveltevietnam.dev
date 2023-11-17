@@ -4,7 +4,7 @@ import { createSignedGetRequestFactory, createSignedRequestFactory } from '../..
  * @type {import('../../common/types.js').CommonGetRequestFactory<true>}
  */
 export const createGetSubscriptionRequest = createSignedGetRequestFactory('/subscriptions', {
-  token: true,
+	token: true,
 });
 
 /**
@@ -16,6 +16,6 @@ export const createSubscriptionRequest = createSignedRequestFactory('/subscripti
  * @type {import('../../common/types.js').CommonRequestFactory<import('./dto.js').UpdateDomainSubscriptionRequestDTO, true>}
  */
 export const createUpdateDomainSubscriptionRequest = createSignedRequestFactory('/subscriptions', {
-  method: 'PATCH',
-  token: true,
+	method: 'PATCH',
+	token: true,
 });

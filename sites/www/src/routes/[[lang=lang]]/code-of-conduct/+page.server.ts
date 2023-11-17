@@ -9,35 +9,35 @@ import type { PageServerLoad } from './$types';
 import { translations } from './_page/translation';
 
 const metaTranslations: Record<Language, App.PageData['meta']> = {
-  vi: {
-    title: 'Quy tắc ứng xử | Svelte Việt Nam',
-    description: 'Quy tắc ứng xử dành cho thành viên trong cộng đồng Svelte Việt Nam',
-    keywords: ['quy tắc', 'nội quy', 'điều lệ', 'cộng đồng'],
-    og: {
-      image: ogImageVi,
-    },
-  },
-  en: {
-    title: 'Code of Conduct | Svelte Vietnam',
-    description: 'Code of Conduct for members in the Svelte Vietnam community',
-    keywords: ['code', 'conduct', 'community', 'rules'],
-    og: {
-      image: ogImageEn,
-    },
-  },
+	vi: {
+		title: 'Quy tắc ứng xử | Svelte Việt Nam',
+		description: 'Quy tắc ứng xử dành cho thành viên trong cộng đồng Svelte Việt Nam',
+		keywords: ['quy tắc', 'nội quy', 'điều lệ', 'cộng đồng'],
+		og: {
+			image: ogImageVi,
+		},
+	},
+	en: {
+		title: 'Code of Conduct | Svelte Vietnam',
+		description: 'Code of Conduct for members in the Svelte Vietnam community',
+		keywords: ['code', 'conduct', 'community', 'rules'],
+		og: {
+			image: ogImageEn,
+		},
+	},
 };
 
 export const load: PageServerLoad = async ({ url, depends, locals: { language } }) => {
-  depends(LOAD_DEPENDENCIES.LANGUAGE);
-  const tMeta = metaTranslations[language];
-  return {
-    breadcrumbs: buildBreadcrumbs(url.pathname),
-    translations: {
-      page: translations[language],
-    },
-    meta: {
-      ...tMeta,
-      canonical: `${ROOT_URL}/${language}${CODE_OF_CONDUCT_PATH}`,
-    },
-  };
+	depends(LOAD_DEPENDENCIES.LANGUAGE);
+	const tMeta = metaTranslations[language];
+	return {
+		breadcrumbs: buildBreadcrumbs(url.pathname),
+		translations: {
+			page: translations[language],
+		},
+		meta: {
+			...tMeta,
+			canonical: `${ROOT_URL}/${language}${CODE_OF_CONDUCT_PATH}`,
+		},
+	};
 };

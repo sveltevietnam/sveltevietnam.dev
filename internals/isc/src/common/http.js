@@ -1,9 +1,9 @@
 import { signRequest } from '@internals/utils/signature';
 
 export const COMMON_HEADERS = {
-  TOKEN: 'x-token',
-  CLIENT_ID: 'x-client-id',
-  CLIENT_SIGNATURE: 'x-client-signature',
+	TOKEN: 'x-token',
+	CLIENT_ID: 'x-client-id',
+	CLIENT_SIGNATURE: 'x-client-signature',
 };
 
 /**
@@ -12,19 +12,19 @@ export const COMMON_HEADERS = {
  * @returns
  */
 export function createErrorJSONResponse(error) {
-  /** @satisfies {import('./types').CommonErrorResponseDTO} */
-  const data = {
-    success: false,
-    code: error.code,
-  };
+	/** @satisfies {import('./types').CommonErrorResponseDTO} */
+	const data = {
+		success: false,
+		code: error.code,
+	};
 
-  const headers = new Headers();
-  headers.set('content-type', 'application/json');
+	const headers = new Headers();
+	headers.set('content-type', 'application/json');
 
-  return new Response(JSON.stringify(data), {
-    status: error.status,
-    headers,
-  });
+	return new Response(JSON.stringify(data), {
+		status: error.status,
+		headers,
+	});
 }
 
 /**
@@ -34,12 +34,12 @@ export function createErrorJSONResponse(error) {
  * @returns {Promise<Request>}
  */
 function signRequestX(request, config) {
-  request.headers.set(COMMON_HEADERS.CLIENT_ID, config.clientID);
-  return signRequest({
-    request,
-    secret: config.clientSecret,
-    header: COMMON_HEADERS.CLIENT_SIGNATURE,
-  });
+	request.headers.set(COMMON_HEADERS.CLIENT_ID, config.clientID);
+	return signRequest({
+		request,
+		secret: config.clientSecret,
+		header: COMMON_HEADERS.CLIENT_SIGNATURE,
+	});
 }
 
 /**
@@ -50,30 +50,30 @@ function signRequestX(request, config) {
  * @returns {import('./types').CommonRequestFactory<Data, HasToken>}
  */
 export function createSignedRequestFactory(
-  endpoint,
-  init = { token: /** @type {HasToken} */ (false) },
+	endpoint,
+	init = { token: /** @type {HasToken} */ (false) },
 ) {
-  return async function (data, config) {
-    const internal = config === 'internal';
-    const url = new URL(internal ? 'http://127.0.0.1' : config.serviceURL);
-    url.pathname = endpoint;
-    let request = new Request(url, {
-      method: 'POST',
-      ...init,
-      body: JSON.stringify(data),
-    });
-    request.headers.set('content-type', 'application/json');
-    request.headers.set('accept', 'application/json');
-    if (!internal) {
-      request = await signRequestX(request, config);
-      if (init?.token)
-        request.headers.set(
-          COMMON_HEADERS.TOKEN,
-          /** @type {import('./types').CommonRequestConfig<true>} */ (config).token,
-        );
-    }
-    return request;
-  };
+	return async function (data, config) {
+		const internal = config === 'internal';
+		const url = new URL(internal ? 'http://127.0.0.1' : config.serviceURL);
+		url.pathname = endpoint;
+		let request = new Request(url, {
+			method: 'POST',
+			...init,
+			body: JSON.stringify(data),
+		});
+		request.headers.set('content-type', 'application/json');
+		request.headers.set('accept', 'application/json');
+		if (!internal) {
+			request = await signRequestX(request, config);
+			if (init?.token)
+				request.headers.set(
+					COMMON_HEADERS.TOKEN,
+					/** @type {import('./types').CommonRequestConfig<true>} */ (config).token,
+				);
+		}
+		return request;
+	};
 }
 
 /**
@@ -83,24 +83,24 @@ export function createSignedRequestFactory(
  * @returns {import('./types').CommonGetRequestFactory<HasToken>}
  */
 export function createSignedGetRequestFactory(
-  endpoint,
-  init = { token: /** @type {HasToken} */ (false) },
+	endpoint,
+	init = { token: /** @type {HasToken} */ (false) },
 ) {
-  return async function (config) {
-    const internal = config === 'internal';
-    const url = new URL(internal ? 'http://127.0.0.1' : config.serviceURL);
-    url.pathname = endpoint;
-    let request = new Request(url, { method: 'GET', ...init });
-    request.headers.set('content-type', 'application/json');
-    request.headers.set('accept', 'application/json');
-    if (!internal) {
-      request = await signRequestX(request, config);
-      if (init?.token)
-        request.headers.set(
-          COMMON_HEADERS.TOKEN,
-          /** @type {import('./types').CommonRequestConfig<true>} */ (config).token,
-        );
-    }
-    return request;
-  };
+	return async function (config) {
+		const internal = config === 'internal';
+		const url = new URL(internal ? 'http://127.0.0.1' : config.serviceURL);
+		url.pathname = endpoint;
+		let request = new Request(url, { method: 'GET', ...init });
+		request.headers.set('content-type', 'application/json');
+		request.headers.set('accept', 'application/json');
+		if (!internal) {
+			request = await signRequestX(request, config);
+			if (init?.token)
+				request.headers.set(
+					COMMON_HEADERS.TOKEN,
+					/** @type {import('./types').CommonRequestConfig<true>} */ (config).token,
+				);
+		}
+		return request;
+	};
 }

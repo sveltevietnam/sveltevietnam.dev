@@ -23,9 +23,6 @@ importers:
       '@vnphanquang/eslint-config':
         specifier: ^2.0.0
         version: 2.0.0(eslint@8.53.0)(typescript@5.2.2)
-      '@vnphanquang/prettierrc':
-        specifier: ^1.0.1
-        version: 1.0.1
       eslint:
         specifier: ^8.53.0
         version: 8.53.0
@@ -2287,10 +2284,6 @@ packages:
       - eslint-import-resolver-webpack
       - supports-color
       - typescript
-    dev: true
-
-  /@vnphanquang/prettierrc@1.0.1:
-    resolution: {integrity: sha512-7P7WvaKx5kWMXLpMz30lno+IP30T+wdAx2Z9Xx6lze3bOvZ9WQwRiA5gUkUkT+cfN1Hy5csVt6ArYoWYORim2A==}
     dev: true
 
   /abbrev@1.1.1:

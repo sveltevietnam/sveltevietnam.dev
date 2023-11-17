@@ -14,46 +14,46 @@ import type { PageServerLoad, Actions } from './$types';
 import { translations as pageT } from './_page/translation';
 
 const metaTranslations: Record<Language, App.PageData['meta']> = {
-  vi: {
-    title: 'Sự kiện | Svelte Việt Nam',
-    description: 'Gặp gỡ cộng đồng Svelte tại Việt Nam',
-    keywords: ['sự kiện', 'cộng đồng', 'gặp mặt'],
-    og: {
-      image: ogImageVi,
-    },
-  },
-  en: {
-    title: 'Events | Svelte Vietnam',
-    description: 'Meet up with people of Svelte in Vietnam',
-    keywords: ['event', 'community', 'meetup'],
-    og: {
-      image: ogImageEn,
-    },
-  },
+	vi: {
+		title: 'Sự kiện | Svelte Việt Nam',
+		description: 'Gặp gỡ cộng đồng Svelte tại Việt Nam',
+		keywords: ['sự kiện', 'cộng đồng', 'gặp mặt'],
+		og: {
+			image: ogImageVi,
+		},
+	},
+	en: {
+		title: 'Events | Svelte Vietnam',
+		description: 'Meet up with people of Svelte in Vietnam',
+		keywords: ['event', 'community', 'meetup'],
+		og: {
+			image: ogImageEn,
+		},
+	},
 };
 
 export const load: PageServerLoad = async ({ url, depends, locals: { language } }) => {
-  depends(LOAD_DEPENDENCIES.LANGUAGE);
-  const tMeta = metaTranslations[language];
-  const mailForm = await superValidate(mailSchema);
-  return {
-    breadcrumbs: buildBreadcrumbs(url.pathname),
-    translations: {
-      page: pageT[language],
-      mail: mailT[language],
-    },
-    events: {
-      upcoming: [],
-      past: [],
-    },
-    meta: {
-      ...tMeta,
-      canonical: `${ROOT_URL}/${language}${EVENTS_PATH}`,
-    },
-    mailForm,
-  };
+	depends(LOAD_DEPENDENCIES.LANGUAGE);
+	const tMeta = metaTranslations[language];
+	const mailForm = await superValidate(mailSchema);
+	return {
+		breadcrumbs: buildBreadcrumbs(url.pathname),
+		translations: {
+			page: pageT[language],
+			mail: mailT[language],
+		},
+		events: {
+			upcoming: [],
+			past: [],
+		},
+		meta: {
+			...tMeta,
+			canonical: `${ROOT_URL}/${language}${EVENTS_PATH}`,
+		},
+		mailForm,
+	};
 };
 
 export const actions: Actions = {
-  mail: async (event) => mail(event, 'event'),
+	mail: async (event) => mail(event, 'event'),
 };

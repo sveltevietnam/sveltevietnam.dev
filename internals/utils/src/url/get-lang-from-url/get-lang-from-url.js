@@ -9,9 +9,9 @@ import { isUrlLocalized } from '../is-url-localized/is-url-localized';
  * @returns {undefined extends F ? (L | null) : L}
  */
 export function getLangFromUrl(url, langs, fallback = undefined) {
-  const found = langs.find((l) => isUrlLocalized(url, l)) ?? null;
-  if (fallback === undefined) {
-    return /** @type {any} */ (found);
-  }
-  return /** @type {any} */ (found ?? fallback);
+	const found = langs.find((l) => isUrlLocalized(url, l)) ?? null;
+	if (fallback === undefined) {
+		return /** @type {any} */ (found);
+	}
+	return /** @type {any} */ (found ?? fallback);
 }

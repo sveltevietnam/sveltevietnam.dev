@@ -7,77 +7,78 @@
 @tailwind utilities;
 
 /* https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-custom-selectors */
-@custom-selector :--current :is([data-current]:not([data-current="false"]),[aria-current]:not([aria-current="false"]));
+@custom-selector :--current
+	:is([data-current]:not([data-current='false']), [aria-current]:not([aria-current='false']));
 
 @layer base {
-  :root {
-    --header-height: 82px;
+	:root {
+		--header-height: 82px;
 
-    @screen tb {
-      --header-height: 88px;
-    }
+		@screen tb {
+			--header-height: 88px;
+		}
 
-    /* foreground colors */
-    --color-fg-100: theme('colors.grayscale.dark.100');
-    --color-fg-200: theme('colors.grayscale.dark.200');
-    --color-fg-300: theme('colors.grayscale.dark.300');
-    --color-fg-400: theme('colors.grayscale.dark.400');
+		/* foreground colors */
+		--color-fg-100: theme('colors.grayscale.dark.100');
+		--color-fg-200: theme('colors.grayscale.dark.200');
+		--color-fg-300: theme('colors.grayscale.dark.300');
+		--color-fg-400: theme('colors.grayscale.dark.400');
 
-    /* background colors */
-    --color-bg-100: theme('colors.grayscale.light.100');
-    --color-bg-200: theme('colors.grayscale.light.200');
-    --color-bg-300: theme('colors.grayscale.light.300');
-    --color-bg-400: theme('colors.grayscale.light.400');
+		/* background colors */
+		--color-bg-100: theme('colors.grayscale.light.100');
+		--color-bg-200: theme('colors.grayscale.light.200');
+		--color-bg-300: theme('colors.grayscale.light.300');
+		--color-bg-400: theme('colors.grayscale.light.400');
 
-    /* reactive colors */
-    --color-link: #1773CE;
-    --color-link-title: theme('colors.design.neutral.2');
+		/* reactive colors */
+		--color-link: #1773ce;
+		--color-link-title: theme('colors.design.neutral.2');
 
-    --color-border-1: theme('colors.design.grayscale.light.3');
-    --color-fg-1: theme('colors.design.grayscale.dark.1');
-    --color-fg-2: theme('colors.design.grayscale.dark.2');
-    --color-bg-1: theme('colors.design.grayscale.light.1');
-    --color-bg-2: theme('colors.design.grayscale.light.2');
-    --color-shadow: theme(colors.design.grayscale.dark.1 / 10%);
+		--color-border-1: theme('colors.design.grayscale.light.3');
+		--color-fg-1: theme('colors.design.grayscale.dark.1');
+		--color-fg-2: theme('colors.design.grayscale.dark.2');
+		--color-bg-1: theme('colors.design.grayscale.light.1');
+		--color-bg-2: theme('colors.design.grayscale.light.2');
+		--color-shadow: theme(colors.design.grayscale.dark.1 / 10%);
 
-    @dark {
-      /* foreground colors */
-      --color-fg-100: theme('colors.grayscale.light.100');
-      --color-fg-200: theme('colors.grayscale.light.200');
-      --color-fg-300: theme('colors.grayscale.light.300');
-      --color-fg-400: theme('colors.grayscale.light.400');
+		@dark {
+			/* foreground colors */
+			--color-fg-100: theme('colors.grayscale.light.100');
+			--color-fg-200: theme('colors.grayscale.light.200');
+			--color-fg-300: theme('colors.grayscale.light.300');
+			--color-fg-400: theme('colors.grayscale.light.400');
 
-      /* background colors */
-      --color-bg-100: theme('colors.grayscale.dark.100');
-      --color-bg-200: theme('colors.grayscale.dark.200');
-      --color-bg-300: theme('colors.grayscale.dark.300');
-      --color-bg-400: theme('colors.grayscale.dark.400');
+			/* background colors */
+			--color-bg-100: theme('colors.grayscale.dark.100');
+			--color-bg-200: theme('colors.grayscale.dark.200');
+			--color-bg-300: theme('colors.grayscale.dark.300');
+			--color-bg-400: theme('colors.grayscale.dark.400');
 
-      /* reactive colors */
-      --color-link: #0A84FE;
-      --color-border-1: theme('colors.design.grayscale.dark.4');
-      --color-fg-1: theme('colors.design.grayscale.light.1');
-      --color-fg-2: theme('colors.design.grayscale.light.2');
-      --color-bg-1: theme('colors.design.grayscale.dark.1');
-      --color-bg-2: theme('colors.design.grayscale.dark.2');
-      --color-shadow: theme(colors.design.grayscale.light.1 / 10%);
-    }
-  }
+			/* reactive colors */
+			--color-link: #0a84fe;
+			--color-border-1: theme('colors.design.grayscale.dark.4');
+			--color-fg-1: theme('colors.design.grayscale.light.1');
+			--color-fg-2: theme('colors.design.grayscale.light.2');
+			--color-bg-1: theme('colors.design.grayscale.dark.1');
+			--color-bg-2: theme('colors.design.grayscale.dark.2');
+			--color-shadow: theme(colors.design.grayscale.light.1 / 10%);
+		}
+	}
 
-  html {
-    height: 100%;
+	html {
+		height: 100%;
 
-    @apply tp-body1;
+		@apply tp-body1;
 
-    color: theme('colors.design.fg.1');
-    background-color: theme('colors.design.bg.1');
-  }
+		color: theme('colors.design.fg.1');
+		background-color: theme('colors.design.bg.1');
+	}
 
-  *:disabled {
-    cursor: not-allowed;
-  }
+	*:disabled {
+		cursor: not-allowed;
+	}
 
-  *[id] {
-    scroll-margin: calc(1.5 * theme('spacing.header'));
-  }
+	*[id] {
+		scroll-margin: calc(1.5 * theme('spacing.header'));
+	}
 }

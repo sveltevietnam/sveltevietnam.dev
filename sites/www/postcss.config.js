@@ -13,15 +13,15 @@ import { mixins } from './src/lib/client/styles/mixins/index.js';
 
 /** @type {import('postcss-load-config').Config} */
 export default {
-  plugins: [
-    postcssImport,
-    tailwindCssNesting(postcssNesting),
-    postcssCustomSelectors,
-    postcssMixins({ mixins }),
-    tailwindcss,
-    postcssSpaceBetween,
-    postcssColorScheme,
-    autoprefixer,
-    ...(process.env.NODE_ENV !== 'development' ? [cssnano] : []),
-  ],
+	plugins: [
+		postcssImport,
+		tailwindCssNesting(postcssNesting),
+		postcssCustomSelectors,
+		postcssMixins({ mixins }),
+		tailwindcss,
+		postcssSpaceBetween,
+		postcssColorScheme,
+		autoprefixer,
+		...(process.env.NODE_ENV !== 'development' ? [cssnano] : []),
+	],
 };

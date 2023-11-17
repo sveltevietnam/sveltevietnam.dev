@@ -1,65 +1,65 @@
 {
-  "name": "@internals/utils",
-  "author": {
-    "email": "developers@sveltevietnam.dev",
-    "name": "Svelte Vietnam",
-    "url": "https://www.sveltevietnam.dev"
-  },
-  "version": "1.0.0-next.1",
-  "description": "utilities for sveltevietnam.dev projects",
-  "private": true,
-  "svelte": "./src/index.js",
-  "main": "src/index.js",
-  "module": "src/index.js",
-  "types": "types/index.d.ts",
-  "type": "module",
-  "exports": {
-    ".": {
-      "types": "./types/index.d.ts",
-      "svelte": "./src/index.js",
-      "import": "./src/index.js"
-    },
-    "./url": {
-      "types": "./types/index.d.ts",
-      "svelte": "./src/url/index.js",
-      "import": "./src/url/index.js"
-    },
-    "./signature": {
-      "types": "./types/index.d.ts",
-      "svelte": "./src/signature/index.js",
-      "import": "./src/signature/index.js"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      "url": [
-        "./types/index.d.ts"
-      ],
-      "signature": [
-        "./types/index.d.ts"
-      ]
-    }
-  },
-  "files": [
-    "src",
-    "types"
-  ],
-  "scripts": {
-    "lint": "run-p lint:*",
-    "lint:es": "eslint . --ignore-path=\"../../.eslintignore\"",
-    "format": "prettier --ignore-path ../../.prettierignore --write .",
-    "test:unit": "vitest --ui --coverage",
-    "test:ci": "vitest run --coverage",
-    "dts": "dts-buddy && publint"
-  },
-  "devDependencies": {
-    "@vitest/coverage-istanbul": "^0.34.6",
-    "@vitest/ui": "^0.34.6",
-    "dts-buddy": "^0.4.0",
-    "publint": "^0.2.5",
-    "vitest": "^0.34.6"
-  },
-  "volta": {
-    "extends": "../../package.json"
-  }
+	"name": "@internals/utils",
+	"author": {
+		"email": "developers@sveltevietnam.dev",
+		"name": "Svelte Vietnam",
+		"url": "https://www.sveltevietnam.dev"
+	},
+	"version": "1.0.0-next.1",
+	"description": "utilities for sveltevietnam.dev projects",
+	"private": true,
+	"svelte": "./src/index.js",
+	"main": "src/index.js",
+	"module": "src/index.js",
+	"types": "types/index.d.ts",
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./types/index.d.ts",
+			"svelte": "./src/index.js",
+			"import": "./src/index.js"
+		},
+		"./url": {
+			"types": "./types/index.d.ts",
+			"svelte": "./src/url/index.js",
+			"import": "./src/url/index.js"
+		},
+		"./signature": {
+			"types": "./types/index.d.ts",
+			"svelte": "./src/signature/index.js",
+			"import": "./src/signature/index.js"
+		}
+	},
+	"typesVersions": {
+		"*": {
+			"url": [
+				"./types/index.d.ts"
+			],
+			"signature": [
+				"./types/index.d.ts"
+			]
+		}
+	},
+	"files": [
+		"src",
+		"types"
+	],
+	"scripts": {
+		"lint": "run-p lint:*",
+		"lint:es": "eslint . --ignore-path=\"../../.eslintignore\"",
+		"format": "prettier --ignore-path ../../.prettierignore --write .",
+		"test:unit": "vitest --ui --coverage",
+		"test:ci": "vitest run --coverage",
+		"dts": "dts-buddy && publint"
+	},
+	"devDependencies": {
+		"@vitest/coverage-istanbul": "^0.34.6",
+		"@vitest/ui": "^0.34.6",
+		"dts-buddy": "^0.4.0",
+		"publint": "^0.2.5",
+		"vitest": "^0.34.6"
+	},
+	"volta": {
+		"extends": "../../package.json"
+	}
 }

@@ -1,28 +1,28 @@
 html[data-hydrated-at] .c-intro {
-  --animation-delay: 0ms;
-  --translate-direction: 1;
-  --translate-x: calc(var(--translate-direction) * 40px);
+	--animation-delay: 0ms;
+	--translate-direction: 1;
+	--translate-x: calc(var(--translate-direction) * 40px);
 
-  opacity: 0;
+	opacity: 0;
 
-  animation-duration: 300ms;
-  animation-timing-function: ease-out;
-  animation-fill-mode: forwards;
-  animation-delay: var(--animation-delay);
+	animation-duration: 300ms;
+	animation-timing-function: ease-out;
+	animation-fill-mode: forwards;
+	animation-delay: var(--animation-delay);
 }
 
 html[data-splashed-at] .c-intro.c-intro--intersected {
-  animation-name: c-intro-animation;
+	animation-name: c-intro-animation;
 }
 
 @keyframes c-intro-animation {
-  from {
-    transform: translate3d(0, var(--translate-x), 0);
-    opacity: 0;
-  }
+	from {
+		transform: translate3d(0, var(--translate-x), 0);
+		opacity: 0;
+	}
 
-  to {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-  }
+	to {
+		transform: translate3d(0, 0, 0);
+		opacity: 1;
+	}
 }

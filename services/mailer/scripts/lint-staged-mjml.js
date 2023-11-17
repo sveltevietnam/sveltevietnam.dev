@@ -10,7 +10,7 @@ const htmlPath = mjmlPath.replace('.mjml', '');
 const mjmlConfigPath = resolve(__dirname, '../.mjmlconfig');
 
 execSync(
-  `pnpm mjml ${mjmlPath} -o ${htmlPath} --config.mjmlConfigPath ${mjmlConfigPath} --config.minify=true --config.beautify=false`,
+	`pnpm mjml ${mjmlPath} -o ${htmlPath} --config.mjmlConfigPath ${mjmlConfigPath} --config.minify=true --config.beautify=false`,
 );
 
 // add to git

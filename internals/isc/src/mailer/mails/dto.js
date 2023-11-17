@@ -5,13 +5,13 @@ import { LanguageSchema } from '../../common/dto.js';
 export const EMAIL_TEMPLATES = /** @type {const} */ (['WELCOME']);
 
 export const SendRequestSchema = zObject({
-  language: LanguageSchema,
-  templateId: zEnum(EMAIL_TEMPLATES),
-  variables: zRecord(zString(), zString()).optional(),
-  to: zObject({
-    email: zString().email().min(1),
-    name: zString().min(1),
-  }),
+	language: LanguageSchema,
+	templateId: zEnum(EMAIL_TEMPLATES),
+	variables: zRecord(zString(), zString()).optional(),
+	to: zObject({
+		email: zString().email().min(1),
+		name: zString().min(1),
+	}),
 });
 /**
  * @typedef {import('../../common/types.js').CommonResponseDTO} SendResponseDTO

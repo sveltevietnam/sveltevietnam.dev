@@ -7,7 +7,7 @@ import { createMailerSvelteKitError } from '$server/errors';
 import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async ({ params: { token } }) => {
-  const isValid = await jwt.verify(token, JWT_SECRET);
-  if (!isValid) throw createMailerSvelteKitError('VERIFY_INVALID_TOKEN');
-  return json(true);
+	const isValid = await jwt.verify(token, JWT_SECRET);
+	if (!isValid) throw createMailerSvelteKitError('VERIFY_INVALID_TOKEN');
+	return json(true);
 };

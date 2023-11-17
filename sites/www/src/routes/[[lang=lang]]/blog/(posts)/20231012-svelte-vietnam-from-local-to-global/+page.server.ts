@@ -5,6 +5,6 @@ import type { PageServerLoad } from './$types';
 import { post, content } from './_page/data';
 
 export const load: PageServerLoad = ({ depends, locals: { language } }) => {
-  depends(LOAD_DEPENDENCIES.LANGUAGE);
-  return preparePageData(language, post, content);
+	depends(LOAD_DEPENDENCIES.LANGUAGE);
+	return preparePageData(language, post, content);
 };

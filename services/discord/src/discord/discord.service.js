@@ -9,43 +9,43 @@ import { DiscordWebsocket } from './discord.websocket.js';
  */
 
 export class DiscordService {
-  /** @type {Client} */
-  #client;
+	/** @type {Client} */
+	#client;
 
-  /** @type {string} */
-  #token;
+	/** @type {string} */
+	#token;
 
-  /** @type {import('fastify').FastifyBaseLogger} */
-  #logger;
+	/** @type {import('fastify').FastifyBaseLogger} */
+	#logger;
 
-  /** @type {DiscordBot} */
-  bot;
+	/** @type {DiscordBot} */
+	bot;
 
-  /** @type {DiscordWebsocket} */
-  websocket;
+	/** @type {DiscordWebsocket} */
+	websocket;
 
-  /**
-   * @param {string} token
-   * @param {import('fastify').FastifyBaseLogger} logger
-   */
-  constructor(token, logger) {
-    this.#token = token;
-    this.#logger = logger;
-    this.#client = new Client({
-      intents: [
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.MessageContent,
-        GatewayIntentBits.GuildMembers,
-        GatewayIntentBits.GuildPresences,
-      ],
-    });
-    this.#client.login(this.#token);
-    this.bot = new DiscordBot(this.#client);
-    this.websocket = new DiscordWebsocket(this.#client);
-  }
+	/**
+	 * @param {string} token
+	 * @param {import('fastify').FastifyBaseLogger} logger
+	 */
+	constructor(token, logger) {
+		this.#token = token;
+		this.#logger = logger;
+		this.#client = new Client({
+			intents: [
+				GatewayIntentBits.Guilds,
+				GatewayIntentBits.GuildMessages,
+				GatewayIntentBits.MessageContent,
+				GatewayIntentBits.GuildMembers,
+				GatewayIntentBits.GuildPresences,
+			],
+		});
+		this.#client.login(this.#token);
+		this.bot = new DiscordBot(this.#client);
+		this.websocket = new DiscordWebsocket(this.#client);
+	}
 
-  destroy() {
-    this.#client.destroy();
-  }
+	destroy() {
+		this.#client.destroy();
+	}
 }

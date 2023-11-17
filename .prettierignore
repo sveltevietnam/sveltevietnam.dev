@@ -29,7 +29,6 @@ LICENSE
 .vercel/
 api/
 **/*generated/
-*.css
 *.md.svelte
 
 docs/PROJECT_REFERENCES.md

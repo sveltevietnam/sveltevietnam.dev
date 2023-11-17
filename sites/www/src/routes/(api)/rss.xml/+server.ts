@@ -8,34 +8,34 @@ import type { RequestHandler } from './$types';
 import template from './rss.template.xml?raw';
 
 type RssItem = {
-  title: string;
-  description: string;
-  link: string;
-  guid: string;
-  pubDate: string;
+	title: string;
+	description: string;
+	link: string;
+	guid: string;
+	pubDate: string;
 };
 
 export const GET: RequestHandler = ({ url }) => {
-  const items: RssItem[] = INTERNAL_POSTS.flatMap((p) =>
-    LANGUAGES.map((l) => ({
-      title: resolveLangText(l, p.title),
-      description: resolveLangText(l, p.description),
-      link: `${url.origin}/${l}${BLOG_PATH}/${p.slug}`,
-      guid: p.slug,
-      pubDate: new Date(p.date).toUTCString(),
-    })),
-  );
-  const xml = Mustache.render(template, {
-    title: 'Svelte Vietnam',
-    link: url.origin,
-    description: 'The go-to, one-stop information hub for the Svelte community in Vietnam',
-    lastBuildDate: new Date(__BUILD_TIMESTAMP__).toUTCString(),
-    copyright: `Copyright ${new Date().getFullYear()}, Svelte Vietnam`,
-    items,
-  });
-  const headers = {
-    'Cache-Control': 'max-age=0, s-maxage=3600',
-    'Content-Type': 'application/xml',
-  };
-  return new Response(xml, { headers });
+	const items: RssItem[] = INTERNAL_POSTS.flatMap((p) =>
+		LANGUAGES.map((l) => ({
+			title: resolveLangText(l, p.title),
+			description: resolveLangText(l, p.description),
+			link: `${url.origin}/${l}${BLOG_PATH}/${p.slug}`,
+			guid: p.slug,
+			pubDate: new Date(p.date).toUTCString(),
+		})),
+	);
+	const xml = Mustache.render(template, {
+		title: 'Svelte Vietnam',
+		link: url.origin,
+		description: 'The go-to, one-stop information hub for the Svelte community in Vietnam',
+		lastBuildDate: new Date(__BUILD_TIMESTAMP__).toUTCString(),
+		copyright: `Copyright ${new Date().getFullYear()}, Svelte Vietnam`,
+		items,
+	});
+	const headers = {
+		'Cache-Control': 'max-age=0, s-maxage=3600',
+		'Content-Type': 'application/xml',
+	};
+	return new Response(xml, { headers });
 };

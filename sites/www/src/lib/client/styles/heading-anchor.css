@@ -1,27 +1,27 @@
 :where(h2, h3, h4, h5, h6) {
-  position: relative;
+	position: relative;
 
-  & .heading-anchor {
-    position: absolute;
-    top: 0;
-    right: 100%;
-    bottom: 0;
+	& .heading-anchor {
+		position: absolute;
+		top: 0;
+		right: 100%;
+		bottom: 0;
 
-    margin-right: 2px;
+		margin-right: 2px;
 
-    font-weight: inherit;
-    text-decoration: none;
+		font-weight: inherit;
+		text-decoration: none;
 
-    opacity: 0;
+		opacity: 0;
 
-    transition: opacity 200ms theme('transitionTimingFunction.DEFAULT');
+		transition: opacity 200ms theme('transitionTimingFunction.DEFAULT');
 
-    @screen tb {
-      margin-right: 8px;
-    }
-  }
+		@screen tb {
+			margin-right: 8px;
+		}
+	}
 
-  &:hover .heading-anchor {
-    opacity: 1;
-  }
+	&:hover .heading-anchor {
+		opacity: 1;
+	}
 }

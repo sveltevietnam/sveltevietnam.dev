@@ -1,39 +1,39 @@
 .c-logo {
-  --logo-color-bg: white;
-  --logo-color-fg: black;
+	--logo-color-bg: white;
+	--logo-color-fg: black;
 
-  & .fg {
-    fill: var(--logo-color-bg);
-  }
+	& .fg {
+		fill: var(--logo-color-bg);
+	}
 
-  & .bg {
-    fill: var(--logo-color-fg);
-    transition: fill var(--transition-duration, 250ms)
-      var(--transition-timing-function, ease-in-out);
-  }
+	& .bg {
+		fill: var(--logo-color-fg);
+		transition: fill var(--transition-duration, 250ms)
+			var(--transition-timing-function, ease-in-out);
+	}
 
-  &.c-logo--original {
-    --logo-color-bg: white;
-    --logo-color-fg: theme('colors.svelte');
-  }
+	&.c-logo--original {
+		--logo-color-bg: white;
+		--logo-color-fg: theme('colors.svelte');
+	}
 
-  &.c-logo--positive {
-    --logo-color-bg: white;
-    --logo-color-fg: black;
-  }
+	&.c-logo--positive {
+		--logo-color-bg: white;
+		--logo-color-fg: black;
+	}
 
-  &.c-logo--negative {
-    --logo-color-bg: black;
-    --logo-color-fg: white;
-  }
+	&.c-logo--negative {
+		--logo-color-bg: black;
+		--logo-color-fg: white;
+	}
 
-  &.c-logo--themed {
-    --logo-color-bg: white;
-    --logo-color-fg: black;
+	&.c-logo--themed {
+		--logo-color-bg: white;
+		--logo-color-fg: black;
 
-    @dark {
-      --logo-color-bg: black;
-      --logo-color-fg: white;
-    }
-  }
+		@dark {
+			--logo-color-bg: black;
+			--logo-color-fg: white;
+		}
+	}
 }

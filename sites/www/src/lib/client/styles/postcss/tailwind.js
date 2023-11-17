@@ -5,13 +5,13 @@ import { theme } from '../theme.js';
 import { utilities } from '../utilities/index.js';
 
 export default plugin(
-  ({ addVariant, addComponents, addUtilities }) => {
-    const dataCurrent = '&[data-current]:not([data-current="false"])';
-    addVariant('data-current', dataCurrent);
-    addVariant('aria-current', '&[aria-current]:not([aria-current="false"])');
+	({ addVariant, addComponents, addUtilities }) => {
+		const dataCurrent = '&[data-current]:not([data-current="false"])';
+		addVariant('data-current', dataCurrent);
+		addVariant('aria-current', '&[aria-current]:not([aria-current="false"])');
 
-    addComponents(components);
-    addUtilities(utilities);
-  },
-  { theme },
+		addComponents(components);
+		addUtilities(utilities);
+	},
+	{ theme },
 );

@@ -15,12 +15,12 @@ import { sign, verify } from '../signature/signature.js';
  * @returns {Promise<string>}
  */
 async function getMessageFromRequest(request) {
-  request = request.clone();
-  if (request.method === 'GET') {
-    return new URL(request.url).toString();
-  } else {
-    return await request.text();
-  }
+	request = request.clone();
+	if (request.method === 'GET') {
+		return new URL(request.url).toString();
+	} else {
+		return await request.text();
+	}
 }
 
 /**
@@ -29,10 +29,10 @@ async function getMessageFromRequest(request) {
  * @returns {Promise<Request>} signed request
  */
 export async function signRequest({ request, secret, header = 'x-signature' }) {
-  const message = await getMessageFromRequest(request);
-  const signature = await sign({ message, secret });
-  request.headers.set(header, signature);
-  return request;
+	const message = await getMessageFromRequest(request);
+	const signature = await sign({ message, secret });
+	request.headers.set(header, signature);
+	return request;
 }
 
 /**
@@ -41,8 +41,8 @@ export async function signRequest({ request, secret, header = 'x-signature' }) {
  * @returns
  */
 export async function verifyRequest({ request, secret, header = 'x-signature' }) {
-  const message = await getMessageFromRequest(request);
-  const signature = request.headers.get(header) ?? '';
+	const message = await getMessageFromRequest(request);
+	const signature = request.headers.get(header) ?? '';
 
-  return await verify({ message, signature, secret });
+	return await verify({ message, signature, secret });
 }

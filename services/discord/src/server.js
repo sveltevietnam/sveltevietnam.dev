@@ -8,37 +8,37 @@ import { FastifyDiscord } from './discord/index.js';
 import { FastifyEnv } from './env.js';
 
 const fastify = Fastify({
-  logger: true,
+	logger: true,
 });
 
 await fastify
-  .register(FastifyEnv)
-  .register(FastifyDiscord)
-  .register(FastifyWebsocket)
-  .register(FastifyHelmet);
+	.register(FastifyEnv)
+	.register(FastifyDiscord)
+	.register(FastifyWebsocket)
+	.register(FastifyHelmet);
 
 fastify.get('/healthz', async () => {
-  return { status: 'ok' };
+	return { status: 'ok' };
 });
 
 fastify.get('/', async (request, reply) => {
-  reply.redirect(301, fastify.env.DISCORD_SVELTEVIETNAM_INVITE_URL);
+	reply.redirect(301, fastify.env.DISCORD_SVELTEVIETNAM_INVITE_URL);
 });
 
 fastify.get('/websocket', { websocket: true }, (connection, request) => {
-  request.discord.websocket.connect(connection);
+	request.discord.websocket.connect(connection);
 });
 
 /**
  * Run the server!
  */
 try {
-  await fastify.ready();
-  await fastify.listen({
-    port: fastify.env.PORT,
-    host: fastify.env.MODE === 'production' ? '0.0.0.0' : 'localhost',
-  });
+	await fastify.ready();
+	await fastify.listen({
+		port: fastify.env.PORT,
+		host: fastify.env.MODE === 'production' ? '0.0.0.0' : 'localhost',
+	});
 } catch (err) {
-  fastify.log.error(err);
-  process.exit(1);
+	fastify.log.error(err);
+	process.exit(1);
 }

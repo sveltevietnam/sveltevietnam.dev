@@ -5,41 +5,41 @@
 */
 
 .c-page {
-  @apply c-container;
+	@apply c-container;
 
-  display: grid;
-  row-gap: 40px;
-  padding-bottom: 80px;
+	display: grid;
+	row-gap: 40px;
+	padding-bottom: 80px;
 
-  @screen md {
-    row-gap: 80px;
-  }
+	@screen md {
+		row-gap: 80px;
+	}
 }
 
 .c-page\@header {
-  @space-y 24px;
+	@space-y 24px;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 
-  height: 600px;
+	height: 600px;
 
-  text-align: center;
+	text-align: center;
 }
 
 .c-page\@h1 {
-  font-size: 60px;
-  font-weight: 700;
-  text-transform: uppercase;
+	font-size: 60px;
+	font-weight: 700;
+	text-transform: uppercase;
 }
 
 .c-page\@h1-sub {
-  font-size: 32px;
+	font-size: 32px;
 }
 
 .c-page\@h2 {
-  font-size: 32px;
-  font-weight: 700;
+	font-size: 32px;
+	font-weight: 700;
 }

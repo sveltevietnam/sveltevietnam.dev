@@ -1,3 +1,3 @@
 export const vi = {
-  sveltevienam: 'Svelte Việt Nam',
+	sveltevienam: 'Svelte Việt Nam',
 };

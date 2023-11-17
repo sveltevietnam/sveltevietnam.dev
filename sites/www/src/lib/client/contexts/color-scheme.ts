@@ -11,30 +11,30 @@ const COLOR_SCHEME_CONTEXT_ID = 'colorscheme';
  * @returns user's color scheme preference
  */
 function getPrefersColorScheme() {
-  if (!browser) return 'light';
-  return window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+	if (!browser) return 'light';
+	return window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
 function createColorSchemeStore(initial: ColorScheme) {
-  const store = writable<ColorScheme>(initial);
+	const store = writable<ColorScheme>(initial);
 
-  const preferred = derived(store, (c) => (c === 'system' ? getPrefersColorScheme() : c));
+	const preferred = derived(store, (c) => (c === 'system' ? getPrefersColorScheme() : c));
 
-  return {
-    subscribe: store.subscribe,
-    change(scheme: ColorScheme) {
-      document.documentElement.dataset.colorScheme = scheme;
-      document.cookie = `${PUBLIC_COOKIE_COLOR_SCHEME}=${scheme}; path=/; SameSite=Lax; Secure; Max-Age=604800`;
-      store.set(scheme);
-    },
-    preferred,
-  };
+	return {
+		subscribe: store.subscribe,
+		change(scheme: ColorScheme) {
+			document.documentElement.dataset.colorScheme = scheme;
+			document.cookie = `${PUBLIC_COOKIE_COLOR_SCHEME}=${scheme}; path=/; SameSite=Lax; Secure; Max-Age=604800`;
+			store.set(scheme);
+		},
+		preferred,
+	};
 }
 
 export function setColorSchemeContext(initial: ColorScheme) {
-  return setContext(COLOR_SCHEME_CONTEXT_ID, createColorSchemeStore(initial));
+	return setContext(COLOR_SCHEME_CONTEXT_ID, createColorSchemeStore(initial));
 }
 
 export function getColorSchemeContext() {
-  return getContext<ReturnType<typeof setColorSchemeContext>>(COLOR_SCHEME_CONTEXT_ID);
+	return getContext<ReturnType<typeof setColorSchemeContext>>(COLOR_SCHEME_CONTEXT_ID);
 }

@@ -7,20 +7,20 @@ export const SubscriptionDomainSchema = zEnum(SUBSCRIPTION_DOMAINS);
 /** @typedef {typeof SUBSCRIPTION_DOMAINS[number]} SubscriptionDomain */
 
 export const GetSubscriptionResponseSchema = zObject({
-  name: zString(),
-  job: zCoerce.boolean(),
-  event: zCoerce.boolean(),
-  blog: zCoerce.boolean(),
+	name: zString(),
+	job: zCoerce.boolean(),
+	event: zCoerce.boolean(),
+	blog: zCoerce.boolean(),
 });
 /**
  * @typedef {import('../../common/types').CommonResponseDTO<import('zod').infer<typeof GetSubscriptionResponseSchema>>} GetSubscriptionResponseDTO
  */
 
 export const CreateSubscriptionRequestSchema = zObject({
-  name: zString().min(1),
-  email: zString().min(1).email(),
-  domain: SubscriptionDomainSchema,
-  language: LanguageSchema,
+	name: zString().min(1),
+	email: zString().min(1).email(),
+	domain: SubscriptionDomainSchema,
+	language: LanguageSchema,
 });
 /**
  * @typedef {import('../../common/types').CommonResponseDTO} CreateSubscriptionResponseDTO
@@ -30,9 +30,9 @@ export const CreateSubscriptionRequestSchema = zObject({
  */
 
 export const UpdateDomainSubscriptionRequestSchema = zObject({
-  job: zCoerce.boolean(),
-  event: zCoerce.boolean(),
-  blog: zCoerce.boolean(),
+	job: zCoerce.boolean(),
+	event: zCoerce.boolean(),
+	blog: zCoerce.boolean(),
 });
 /**
  * @typedef {import('../../common/types').CommonResponseDTO} UpdateDomainSubscriptionResponseDTO

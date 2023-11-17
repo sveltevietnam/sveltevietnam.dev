@@ -1,8 +1,8 @@
 .c-avatar {
-  aspect-ratio: 1 / 1;
+	aspect-ratio: 1 / 1;
 
-  object-fit: cover;
-  object-position: center;
-  background-color: theme('colors.bg.300');
-  border-radius: theme('borderRadius.full');
+	object-fit: cover;
+	object-position: center;
+	background-color: theme('colors.bg.300');
+	border-radius: theme('borderRadius.full');
 }

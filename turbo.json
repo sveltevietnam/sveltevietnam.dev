@@ -1,28 +1,28 @@
 {
-  "$schema": "https://turborepo.org/schema.json",
-  "pipeline": {
-    "dts": {
-      "dependsOn": ["^dts"],
-      "outputs": ["types/**"],
-      "cache": true
-    },
-    "test:ci": {
-      "dependsOn": ["^test:ci", "dts"],
-      "outputs": ["coverage/**"],
-      "cache": true
-    },
-    "build": {
-      "dependsOn": ["^build"],
-      "outputs": [".svelte-kit/**"]
-    },
-    "lint": {
-      "outputs": []
-    },
-    "format": {
-      "outputs": []
-    },
-    "dev": {
-      "cache": false
-    }
-  }
+	"$schema": "https://turborepo.org/schema.json",
+	"pipeline": {
+		"dts": {
+			"dependsOn": ["^dts"],
+			"outputs": ["types/**"],
+			"cache": true
+		},
+		"test:ci": {
+			"dependsOn": ["^test:ci", "dts"],
+			"outputs": ["coverage/**"],
+			"cache": true
+		},
+		"build": {
+			"dependsOn": ["^build"],
+			"outputs": [".svelte-kit/**"]
+		},
+		"lint": {
+			"outputs": []
+		},
+		"format": {
+			"outputs": []
+		},
+		"dev": {
+			"cache": false
+		}
+	}
 }

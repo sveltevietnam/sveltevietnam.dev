@@ -1,4 +1,10 @@
+/** @type {import('prettier').Config} */
 module.exports = {
-  ...require('@vnphanquang/prettierrc'),
-  plugins: [require('prettier-plugin-svelte'), require('prettier-plugin-tailwindcss')],
+	semi: true,
+	useTabs: true,
+	singleQuote: true,
+	trailingComma: 'all',
+	printWidth: 100,
+	plugins: ['prettier-plugin-svelte', 'prettier-plugin-tailwindcss'],
+	overrides: [{ files: '*.svelte', options: { parser: 'svelte' } }],
 };

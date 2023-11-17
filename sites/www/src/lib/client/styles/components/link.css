@@ -3,167 +3,169 @@
 @custom-selector :--preserved .c-link--preserved;
 
 .c-link {
-  &:where(:not(:--icon)) {
-    --underline-color: currentcolor;
+	&:where(:not(:--icon)) {
+		--underline-color: currentcolor;
 
-    will-change: background-size;
+		will-change: background-size;
 
-    display: inline;
+		display: inline;
 
-    background-image: linear-gradient(to right, var(--underline-color), var(--underline-color));
-    background-repeat: no-repeat;
-    background-position: left bottom;
+		background-image: linear-gradient(to right, var(--underline-color), var(--underline-color));
+		background-repeat: no-repeat;
+		background-position: left bottom;
 
-    transition: color 250ms ease-in-out;
+		transition: color 250ms ease-in-out;
 
-    &:where(:not(:--preserved)) {
-      color: theme('colors.design.link.DEFAULT');
-      background-size: 100% var(--underline-height, 1px);
+		&:where(:not(:--preserved)) {
+			color: theme('colors.design.link.DEFAULT');
+			background-size: 100% var(--underline-height, 1px);
 
-      &:hover {
-        animation: underline-swipe 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
-      }
-    }
+			&:hover {
+				animation: underline-swipe 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+			}
+		}
 
-    &:where(:--preserved) {
-      background-position: left bottom;
-      background-size: 0 var(--underline-height, 1px);
-      transition: color 250ms ease-in-out, background-size 250ms ease-in-out;
+		&:where(:--preserved) {
+			background-position: left bottom;
+			background-size: 0 var(--underline-height, 1px);
+			transition:
+				color 250ms ease-in-out,
+				background-size 250ms ease-in-out;
 
-      &:--current,
-      &:hover {
-        background-size: 100% var(--underline-height, 1px);
-      }
-    }
-  }
+			&:--current,
+			&:hover {
+				background-size: 100% var(--underline-height, 1px);
+			}
+		}
+	}
 
-  &:where(:--icon) {
-    & :--__icon {
-      transform-origin: center;
-      transition: transform 200ms ease;
-    }
+	&:where(:--icon) {
+		& :--__icon {
+			transform-origin: center;
+			transition: transform 200ms ease;
+		}
 
-    &:hover {
-      & :--__icon {
-        transform: scale(1.05);
-      }
-    }
+		&:hover {
+			& :--__icon {
+				transform: scale(1.05);
+			}
+		}
 
-    &:active {
-      & :--__icon {
-        transform: scale(0.95);
-      }
-    }
-  }
+		&:active {
+			& :--__icon {
+				transform: scale(0.95);
+			}
+		}
+	}
 }
 
 @keyframes underline-swipe {
-  0% {
-    background-position: right bottom;
-    background-size: 100% var(--underline-height, 1px);
-  }
+	0% {
+		background-position: right bottom;
+		background-size: 100% var(--underline-height, 1px);
+	}
 
-  50% {
-    background-position: right bottom;
-    background-size: 0 var(--underline-height, 1px);
-  }
+	50% {
+		background-position: right bottom;
+		background-size: 0 var(--underline-height, 1px);
+	}
 
-  51% {
-    background-position: left bottom;
-    background-size: 0 var(--underline-height, 1px);
-  }
+	51% {
+		background-position: left bottom;
+		background-size: 0 var(--underline-height, 1px);
+	}
 
-  100% {
-    background-position: left bottom;
-    background-size: 100% var(--underline-height, 1px);
-  }
+	100% {
+		background-position: left bottom;
+		background-size: 100% var(--underline-height, 1px);
+	}
 }
 
 .c-link-neutral {
-  transition: color 400ms ease-out;
+	transition: color 400ms ease-out;
 
-  &:hover,
-  &[aria-current]:not([aria-current="false"]) {
-    color: theme('colors.design.link.title');
-  }
+	&:hover,
+	&[aria-current]:not([aria-current='false']) {
+		color: theme('colors.design.link.title');
+	}
 
-  & svg {
-    fill: currentcolor;
-  }
+	& svg {
+		fill: currentcolor;
+	}
 }
 
 .c-link-box {
-  --transition-duration: 300ms;
+	--transition-duration: 300ms;
 
-  position: relative;
+	position: relative;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 
-  padding: 16px 0;
+	padding: 16px 0;
 
-  &::before {
-    content: '';
+	&::before {
+		content: '';
 
-    position: absolute;
-    inset: 0;
-    transform-origin: left;
-    transform: scaleX(0);
+		position: absolute;
+		inset: 0;
+		transform-origin: left;
+		transform: scaleX(0);
 
-    opacity: 0;
-    background-color: theme('colors.design.fg.1');
+		opacity: 0;
+		background-color: theme('colors.design.fg.1');
 
-    transition-timing-function: ease-in-out;
-    transition-duration: var(--transition-duration);
-    transition-property: opacity, transform;
-  }
+		transition-timing-function: ease-in-out;
+		transition-duration: var(--transition-duration);
+		transition-property: opacity, transform;
+	}
 
-  & span,
-  & svg {
-    transition-timing-function: ease-in-out;
-    transition-duration: var(--transition-duration);
-    transition-property: color, transform;
-  }
+	& span,
+	& svg {
+		transition-timing-function: ease-in-out;
+		transition-duration: var(--transition-duration);
+		transition-property: color, transform;
+	}
 
-  &:hover {
-    &::before {
-      transform: scaleX(1);
-      opacity: 1;
-    }
+	&:hover {
+		&::before {
+			transform: scaleX(1);
+			opacity: 1;
+		}
 
-    & span,
-    & svg {
-      color: theme('colors.design.bg.1');
-    }
+		& span,
+		& svg {
+			color: theme('colors.design.bg.1');
+		}
 
-    & span {
-      transform: translateX(12px);
-    }
+		& span {
+			transform: translateX(12px);
+		}
 
-    & svg {
-      transform: translateX(-12px);
-    }
-  }
+		& svg {
+			transform: translateX(-12px);
+		}
+	}
 }
 
 .c-link-image {
-  position: relative;
-  overflow: hidden;
-  display: block;
+	position: relative;
+	overflow: hidden;
+	display: block;
 
-  :where(& img) {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
+	:where(& img) {
+		width: 100%;
+		max-width: 100%;
+		height: auto;
 
-    object-fit: cover;
-    object-position: center;
+		object-fit: cover;
+		object-position: center;
 
-    transition: transform 400ms ease-out;
-  }
+		transition: transform 400ms ease-out;
+	}
 
-  :where(&:hover img) {
-    transform: scale(1.05);
-  }
+	:where(&:hover img) {
+		transform: scale(1.05);
+	}
 }

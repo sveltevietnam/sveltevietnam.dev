@@ -1,65 +1,65 @@
 {
-  "name": "@internals/isc",
-  "author": {
-    "email": "developers@sveltevietnam.dev",
-    "name": "Svelte Vietnam",
-    "url": "https://www.sveltevietnam.dev"
-  },
-  "version": "1.0.0-next.2",
-  "description": "Inter-service Communication",
-  "private": true,
-  "svelte": "./src/index.js",
-  "main": "src/index.js",
-  "module": "src/index.js",
-  "types": "types/index.d.ts",
-  "type": "module",
-  "exports": {
-    ".": {
-      "types": "./types/index.d.ts",
-      "svelte": "./src/index.js",
-      "import": "./src/index.js"
-    },
-    "./common": {
-      "types": "./types/index.d.ts",
-      "svelte": "./src/common/index.js",
-      "import": "./src/common/index.js"
-    },
-    "./mailer": {
-      "types": "./types/index.d.ts",
-      "svelte": "./src/mailer/index.js",
-      "import": "./src/mailer/index.js"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      "common": [
-        "./types/index.d.ts"
-      ],
-      "mailer": [
-        "./types/index.d.ts"
-      ]
-    }
-  },
-  "files": [
-    "src",
-    "types"
-  ],
-  "scripts": {
-    "lint": "eslint . --ignore-path=\"../../.eslintignore\"",
-    "format": "prettier --ignore-path ../../.prettierignore --write .",
-    "test:unit": "vitest --ui --coverage",
-    "test:ci": "vitest run --coverage",
-    "dts": "dts-buddy && publint"
-  },
-  "devDependencies": {
-    "dts-buddy": "^0.4.0",
-    "publint": "^0.2.5"
-  },
-  "volta": {
-    "extends": "../../package.json"
-  },
-  "dependencies": {
-    "@internals/utils": "workspace:1.0.0-next.1",
-    "zod": "^3.22.4"
-  }
+	"name": "@internals/isc",
+	"author": {
+		"email": "developers@sveltevietnam.dev",
+		"name": "Svelte Vietnam",
+		"url": "https://www.sveltevietnam.dev"
+	},
+	"version": "1.0.0-next.2",
+	"description": "Inter-service Communication",
+	"private": true,
+	"svelte": "./src/index.js",
+	"main": "src/index.js",
+	"module": "src/index.js",
+	"types": "types/index.d.ts",
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./types/index.d.ts",
+			"svelte": "./src/index.js",
+			"import": "./src/index.js"
+		},
+		"./common": {
+			"types": "./types/index.d.ts",
+			"svelte": "./src/common/index.js",
+			"import": "./src/common/index.js"
+		},
+		"./mailer": {
+			"types": "./types/index.d.ts",
+			"svelte": "./src/mailer/index.js",
+			"import": "./src/mailer/index.js"
+		}
+	},
+	"typesVersions": {
+		"*": {
+			"common": [
+				"./types/index.d.ts"
+			],
+			"mailer": [
+				"./types/index.d.ts"
+			]
+		}
+	},
+	"files": [
+		"src",
+		"types"
+	],
+	"scripts": {
+		"lint": "eslint . --ignore-path=\"../../.eslintignore\"",
+		"format": "prettier --ignore-path ../../.prettierignore --write .",
+		"test:unit": "vitest --ui --coverage",
+		"test:ci": "vitest run --coverage",
+		"dts": "dts-buddy && publint"
+	},
+	"devDependencies": {
+		"dts-buddy": "^0.4.0",
+		"publint": "^0.2.5"
+	},
+	"volta": {
+		"extends": "../../package.json"
+	},
+	"dependencies": {
+		"@internals/utils": "workspace:1.0.0-next.1",
+		"zod": "^3.22.4"
+	}
 }

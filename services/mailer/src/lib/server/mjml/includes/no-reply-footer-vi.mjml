@@ -1,18 +1,16 @@
-<mj-section padding-top="0" >
-  <mj-column>
-    <mj-divider />
-    <mj-include path="./socials.mjml" />
-    <mj-text mj-class="footer-text">
-      <a href="{{mailURL}}">Xem trên web</a> |
-      <a href="{{subscriptionURL}}">Quản lý đăng ký</a>
-    </mj-text>
-    <mj-text mj-class="footer-text">
-      Bạn đang đọc một email tự động.
-      Vui lòng không phản hồi vì chúng tôi không thể trả lời thông qua hòm thư này.
-      Nếu cần hỗ trợ, hãy liên hệ thông qua
-      <a href="https://discord.sveltevietnam.dev">Discord</a> hoặc email đến
-      <a href="mailto:contact@sveltevietnam.dev">contact@sveltevietnam.dev</a>.
-      Xin cảm ơn.
-    </mj-text>
-  </mj-column>
+<mj-section padding-top="0">
+	<mj-column>
+		<mj-divider />
+		<mj-include path="./socials.mjml" />
+		<mj-text mj-class="footer-text">
+			<a href="{{mailURL}}">Xem trên web</a> |
+			<a href="{{subscriptionURL}}">Quản lý đăng ký</a>
+		</mj-text>
+		<mj-text mj-class="footer-text">
+			Bạn đang đọc một email tự động. Vui lòng không phản hồi vì chúng tôi không thể trả lời thông
+			qua hòm thư này. Nếu cần hỗ trợ, hãy liên hệ thông qua
+			<a href="https://discord.sveltevietnam.dev">Discord</a> hoặc email đến
+			<a href="mailto:contact@sveltevietnam.dev">contact@sveltevietnam.dev</a>. Xin cảm ơn.
+		</mj-text>
+	</mj-column>
 </mj-section>

@@ -1,27 +1,27 @@
 .section-title-container {
-  @space-x 16px;
+	@space-x 16px;
 
-  display: flex;
-  align-items: center;
-  width: fit-content;
+	display: flex;
+	align-items: center;
+	width: fit-content;
 
-  @screen tb {
-    @space-x 24px;
-  }
+	@screen tb {
+		@space-x 24px;
+	}
 
-  transition: color 400ms cubic-bezier(0.13, -0.27, 0.48, 1.54);
+	transition: color 400ms cubic-bezier(0.13, -0.27, 0.48, 1.54);
 
-  &:hover {
-    color: theme('colors.design.link.title');
-  }
+	&:hover {
+		color: theme('colors.design.link.title');
+	}
 }
 
 .arrow-circle {
-  width: 48px;
-  height: 48px;
+	width: 48px;
+	height: 48px;
 
-  @screen tb {
-    width: 64px;
-    height: 64px;
-  }
+	@screen tb {
+		width: 64px;
+		height: 64px;
+	}
 }

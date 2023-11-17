@@ -7,21 +7,21 @@ import type { LayoutServerLoad } from './$types';
 import { translations } from './translation';
 
 export const load: LayoutServerLoad = async ({ url, depends, locals: { language } }) => {
-  let morePosts = INTERNAL_POSTS;
-  const slug = url.pathname.split('/').at(-1);
-  if (slug) {
-    morePosts = morePosts.filter((p) => p.slug !== slug);
-  }
+	let morePosts = INTERNAL_POSTS;
+	const slug = url.pathname.split('/').at(-1);
+	if (slug) {
+		morePosts = morePosts.filter((p) => p.slug !== slug);
+	}
 
-  depends(LOAD_DEPENDENCIES.LANGUAGE);
-  return {
-    breadcrumbs: buildBreadcrumbs(url.pathname),
-    more: {
-      internal: morePosts.slice(0, 1),
-      external: EXTERNAL_POSTS.slice(0, 1),
-    },
-    translations: {
-      layout: translations[language],
-    },
-  };
+	depends(LOAD_DEPENDENCIES.LANGUAGE);
+	return {
+		breadcrumbs: buildBreadcrumbs(url.pathname),
+		more: {
+			internal: morePosts.slice(0, 1),
+			external: EXTERNAL_POSTS.slice(0, 1),
+		},
+		translations: {
+			layout: translations[language],
+		},
+	};
 };

@@ -1,6 +1,7 @@
 {
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "files.associations": {
-    "*.md.svelte": "markdown"
-  }
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"files.associations": {
+		"*.md.svelte": "markdown"
+	},
+	"prettier.documentSelectors": ["**/*.svelte"]
 }

@@ -1,37 +1,37 @@
 .shiki {
-  padding-inline: 0;
+	padding-inline: 0;
 
-  & code {
-    display: inline-block;
-    min-width: 100%;
-  }
+	& code {
+		display: inline-block;
+		min-width: 100%;
+	}
 
-  & .line {
-    --padding-inline-start: 1ch;
-    --padding-inline-end: 3ch;
+	& .line {
+		--padding-inline-start: 1ch;
+		--padding-inline-end: 3ch;
 
-    padding-inline-start: var(--padding-inline-start);
-    padding-inline-end: var(--padding-inline-end);
+		padding-inline-start: var(--padding-inline-start);
+		padding-inline-end: var(--padding-inline-end);
 
-    &::before {
-      content: attr(data-line);
+		&::before {
+			content: attr(data-line);
 
-      display: inline-block;
+			display: inline-block;
 
-      width: 3ch;
-      margin-right: 2ch;
+			width: 3ch;
+			margin-right: 2ch;
 
-      font-variant-numeric: tabular-nums;
-      color: currentcolor;
-      text-align: right;
+			font-variant-numeric: tabular-nums;
+			color: currentcolor;
+			text-align: right;
 
-      opacity: 0.5;
-    }
+			opacity: 0.5;
+		}
 
-    &[data-line-highlighted] {
-      display: inline-block;
-      width: 100%;
-      background-color: #2d343f;
-    }
-  }
+		&[data-line-highlighted] {
+			display: inline-block;
+			width: 100%;
+			background-color: #2d343f;
+		}
+	}
 }
