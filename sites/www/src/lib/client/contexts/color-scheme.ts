@@ -24,7 +24,7 @@ function createColorSchemeStore(initial: ColorScheme) {
     subscribe: store.subscribe,
     change(scheme: ColorScheme) {
       document.documentElement.dataset.colorScheme = scheme;
-      document.cookie = `${PUBLIC_COOKIE_COLOR_SCHEME}=${scheme}; path=/; SameSite=Lax; Secure`;
+      document.cookie = `${PUBLIC_COOKIE_COLOR_SCHEME}=${scheme}; path=/; SameSite=Lax; Secure; Max-Age=604800`;
       store.set(scheme);
     },
     preferred,
