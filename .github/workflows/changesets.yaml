@@ -34,7 +34,7 @@ jobs:
         uses: changesets/action@v1
         with:
           version: pnpm ci:version
-          publish: pnpm ci:publish
+          # publish: pnpm ci:publish # not publishing anything at the moment
           commit: "chore(release): changesets versioning & publication"
           title: "Changesets: Versioning & Publication"
           createGithubReleases: true
