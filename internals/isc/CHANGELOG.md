@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.0-next.3
+
+### Patch Changes
+
+- [`5883cec`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/5883cecdb8b4f34f06ac0cc0d23e296b0d43d2a9) Thanks [@vnphanquang](https://github.com/vnphanquang)! - Switch to tabs for indentation
+
+- Updated dependencies [[`5883cec`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/5883cecdb8b4f34f06ac0cc0d23e296b0d43d2a9)]:
+  - @internals/utils@1.0.0-next.2
+
 ## 1.0.0-next.2
 
 ### Patch Changes
