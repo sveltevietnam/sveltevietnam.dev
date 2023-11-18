@@ -1,14 +1,16 @@
-html[data-hydrated-at] .c-intro {
+.c-intro {
 	--animation-delay: 0ms;
 	--translate-direction: 1;
 	--translate-x: calc(var(--translate-direction) * 40px);
-
-	opacity: 0;
 
 	animation-duration: 300ms;
 	animation-timing-function: ease-out;
 	animation-fill-mode: forwards;
 	animation-delay: var(--animation-delay);
+}
+
+html[data-hydrated-at] .c-intro {
+	opacity: 0;
 }
 
 html[data-splashed-at] .c-intro.c-intro--intersected {
