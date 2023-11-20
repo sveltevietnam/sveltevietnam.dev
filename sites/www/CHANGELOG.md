@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.23
+
+### Patch Changes
+
+- [`b3d0a40`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/b3d0a402a10bc6ebcd7f9c83333e9fc5c53c66f7) Thanks [@vnphanquang](https://github.com/vnphanquang)! - Add a progressbar during page navigation, hepls as signifier for people on slow network
+
 ## 1.0.0-next.22
 
 ### Minor Changes
