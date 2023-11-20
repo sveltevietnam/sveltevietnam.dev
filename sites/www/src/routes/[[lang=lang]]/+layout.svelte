@@ -6,7 +6,7 @@
 
 	import { version } from '$app/environment';
 	import { beforeNavigate, goto } from '$app/navigation';
-	import { updated } from '$app/stores';
+	import { navigating, updated } from '$app/stores';
 	import { Footer } from '$client/components/Footer';
 	import { Header } from '$client/components/Header';
 	import { setColorSchemeContext } from '$client/contexts/color-scheme.js';
@@ -21,6 +21,7 @@
 	import { translations } from '$shared/services/i18n/translations/notification';
 
 	import type { LayoutData } from './$types';
+	import PageLoadIndicator from './_page/components/PageLoadIndicator.svelte';
 
 	export let data: LayoutData;
 
@@ -97,6 +98,10 @@
 </script>
 
 <svelte:document use:lockscroll={lockScrollStore} />
+
+{#if $navigating}
+	<PageLoadIndicator />
+{/if}
 
 <Header pathname={data.pathname} />
 <slot />
