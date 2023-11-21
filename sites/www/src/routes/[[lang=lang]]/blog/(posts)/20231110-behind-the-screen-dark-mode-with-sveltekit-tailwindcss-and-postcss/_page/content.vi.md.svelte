@@ -409,9 +409,9 @@ Nếu bạn dùng Typescript, có thể thêm đoạn mã sau vào `src/app.d.ts
 
 ```typescript
 declare global {
-  declare type ColorScheme = 'light' | 'dark' | 'system';
-
   namespace App {
+    declare type ColorScheme = 'light' | 'dark' | 'system';
+
     interface Locals {
       colorScheme: ColorScheme;
     }
@@ -474,7 +474,7 @@ function getPrefersColorScheme() {
 }
 
 /**
- * @param {ColorScheme} initial
+ * @param {App.ColorScheme} initial
  */
 function createColorSchemeStore(initial) {
   const store = writable(initial);
@@ -484,7 +484,7 @@ function createColorSchemeStore(initial) {
   return {
     subscribe: store.subscribe,
     /**
-     * @param {ColorScheme} scheme
+     * @param {App.ColorScheme} scheme
      */
     change(scheme) {
       document.documentElement.dataset.colorScheme = scheme;
@@ -496,7 +496,7 @@ function createColorSchemeStore(initial) {
 }
 
 /**
- * @param {ColorScheme} initial
+ * @param {App.ColorScheme} initial
  */
 export function setColorSchemeContext(initial) {
   return setContext(COLOR_SCHEME_CONTEXT_ID, createColorSchemeStore(initial));
