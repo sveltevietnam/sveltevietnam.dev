@@ -52,8 +52,9 @@
 
 <style lang="postcss">
 	.notification {
-		--element-color: theme('colors.design.bg.1');
-		--surface-color: theme('colors.design.bg.2');
+		--text-color: theme('colors.info.text');
+		--element-color: theme('colors.info.element');
+		--surface-color: theme('colors.info.surface.DEFAULT');
 
 		pointer-events: auto;
 
@@ -68,25 +69,31 @@
 		min-width: 200px;
 		padding: 16px;
 
+		color: var(--text-color);
+
 		background-color: var(--surface-color);
 		border-radius: 4px;
 
 		&.notification--info {
+			--text-color: theme('colors.info.text');
 			--element-color: theme('colors.info.element');
 			--surface-color: theme('colors.info.surface.DEFAULT');
 		}
 
 		&.notification--success {
+			--text-color: theme('colors.success.text');
 			--element-color: theme('colors.success.element');
 			--surface-color: theme('colors.success.surface.DEFAULT');
 		}
 
 		&.notification--warning {
+			--text-color: theme('colors.warning.text');
 			--element-color: theme('colors.warning.element');
 			--surface-color: theme('colors.warning.surface.DEFAULT');
 		}
 
 		&.notification--error {
+			--text-color: theme('colors.error.text');
 			--element-color: theme('colors.error.element');
 			--surface-color: theme('colors.error.surface.DEFAULT');
 		}

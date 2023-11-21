@@ -16,6 +16,6 @@
 	}
 
 	&:invalid:not(:placeholder-shown) {
-		border-color: theme('colors.status.error');
+		border-color: theme('colors.error.surface.200');
 	}
 }

@@ -17,7 +17,7 @@ export default {
 		postcssImport,
 		tailwindCssNesting(postcssNesting),
 		postcssCustomSelectors,
-		postcssMixins({ mixins }),
+		postcssMixins(),
 		tailwindcss,
 		postcssSpaceBetween,
 		postcssColorScheme,

@@ -1,4 +1,4 @@
-import { primitives } from './colors.js';
+import { primitives, semantics } from './colors.js';
 
 /** @type {import('tailwindcss').Config['theme']} */
 export const theme = {
@@ -39,12 +39,7 @@ export const theme = {
 		},
 		colors: {
 			...primitives,
-			status: {
-				info: '#00D0EA',
-				success: '#35D39D',
-				warning: '#FFC02E',
-				error: '#EF4D61',
-			},
+			...semantics,
 			grayscale: {
 				light: {
 					100: '#ffffff',

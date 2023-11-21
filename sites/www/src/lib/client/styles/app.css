@@ -1,6 +1,7 @@
 @import url('../../shared/assets/fonts/inter/inter.font.css');
 @import url('../../shared/assets/fonts/lora/lora.font.css');
 @import url('./splash.css');
+@import url('./colors.css');
 
 @tailwind base;
 @tailwind components;

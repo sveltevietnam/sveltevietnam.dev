@@ -117,3 +117,22 @@ export const primitives = {
 		900: 'hsl(40, 10%, 11%)',
 	},
 };
+
+const status = Object.fromEntries(
+	['info', 'success', 'warning', 'error'].map((key) => [
+		key,
+		{
+			surface: {
+				DEFAULT: `var(--color-${key}-surface)`,
+				100: `var(--color-${key}-surface-100)`,
+				200: `var(--color-${key}-surface-200)`,
+			},
+			element: `var(--color-${key}-element)`,
+			text: `var(--color-${key}-text)`,
+		},
+	]),
+);
+
+export const semantics = {
+	...status,
+};

@@ -1,0 +1,75 @@
+@define-mixin colors-light {
+	/* info */
+	--color-info-surface: theme('colors.blue.50');
+	--color-info-surface-100: theme('colors.blue.100');
+	--color-info-surface-200: theme('colors.blue.200');
+	--color-info-element: theme('colors.blue.700');
+	--color-info-text: theme('colors.blue.700');
+
+	/* success */
+	--color-success-surface: theme('colors.emerald.50');
+	--color-success-surface-100: theme('colors.emerald.100');
+	--color-success-surface-200: theme('colors.emerald.200');
+	--color-success-element: theme('colors.emerald.900');
+	--color-success-text: theme('colors.emerald.900');
+
+	/* warning */
+	--color-warning-surface: theme('colors.amber.50');
+	--color-warning-surface-100: theme('colors.amber.100');
+	--color-warning-surface-200: theme('colors.amber.200');
+	--color-warning-element: theme('colors.amber.900');
+	--color-warning-text: theme('colors.amber.900');
+
+	/* error */
+	--color-error-surface: theme('colors.folly.50');
+	--color-error-surface-100: theme('colors.folly.100');
+	--color-error-surface-200: theme('colors.folly.200');
+	--color-error-element: theme('colors.folly.700');
+	--color-error-text: theme('colors.folly.700');
+}
+
+@define-mixin colors-dark {
+	/* info */
+	--color-info-surface: theme('colors.blue.900');
+	--color-info-surface-100: theme('colors.blue.800');
+	--color-info-surface-200: theme('colors.blue.700');
+	--color-info-element: theme('colors.blue.200');
+	--color-info-text: theme('colors.blue.200');
+
+	/* success */
+	--color-success-surface: theme('colors.emerald.900');
+	--color-success-surface-100: theme('colors.emerald.800');
+	--color-success-surface-200: theme('colors.emerald.700');
+	--color-success-element: theme('colors.emerald.50');
+	--color-success-text: theme('colors.emerald.50');
+
+	/* warning */
+	--color-warning-surface: theme('colors.amber.900');
+	--color-warning-surface-100: theme('colors.amber.800');
+	--color-warning-surface-200: theme('colors.amber.700');
+	--color-warning-element: theme('colors.amber.50');
+	--color-warning-text: theme('colors.amber.50');
+
+	/* error */
+	--color-error-surface: theme('colors.folly.900');
+	--color-error-surface-100: theme('colors.folly.800');
+	--color-error-surface-200: theme('colors.folly.700');
+	--color-error-element: theme('colors.folly.200');
+	--color-error-text: theme('colors.folly.200');
+}
+
+.inverted {
+	@mixin colors-dark;
+
+	@dark {
+		@mixin colors-light;
+	}
+}
+
+:root {
+	@mixin colors-light;
+
+	@dark {
+		@mixin colors-dark;
+	}
+}

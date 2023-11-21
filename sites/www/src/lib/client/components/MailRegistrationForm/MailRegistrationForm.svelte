@@ -128,7 +128,7 @@
 
 		font-size: theme('fontSize.2xs');
 		font-style: italic;
-		color: theme('colors.status.error');
+		color: theme('colors.error.surface.200');
 	}
 
 	.turnstile {
