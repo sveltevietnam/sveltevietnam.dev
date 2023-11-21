@@ -15,14 +15,14 @@ function getPrefersColorScheme() {
 	return window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
-function createColorSchemeStore(initial: ColorScheme) {
-	const store = writable<ColorScheme>(initial);
+function createColorSchemeStore(initial: App.ColorScheme) {
+	const store = writable<App.ColorScheme>(initial);
 
 	const preferred = derived(store, (c) => (c === 'system' ? getPrefersColorScheme() : c));
 
 	return {
 		subscribe: store.subscribe,
-		change(scheme: ColorScheme) {
+		change(scheme: App.ColorScheme) {
 			document.documentElement.dataset.colorScheme = scheme;
 			document.cookie = `${PUBLIC_COOKIE_COLOR_SCHEME}=${scheme}; path=/; SameSite=Lax; Secure; Max-Age=604800`;
 			store.set(scheme);
@@ -31,7 +31,7 @@ function createColorSchemeStore(initial: ColorScheme) {
 	};
 }
 
-export function setColorSchemeContext(initial: ColorScheme) {
+export function setColorSchemeContext(initial: App.ColorScheme) {
 	return setContext(COLOR_SCHEME_CONTEXT_ID, createColorSchemeStore(initial));
 }
 

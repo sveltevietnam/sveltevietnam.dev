@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let scheme: ColorScheme;
+	export let scheme: App.ColorScheme;
 	export let width = 20;
 	export let height = 20;
 </script>

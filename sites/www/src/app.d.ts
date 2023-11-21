@@ -11,7 +11,6 @@ import type { Language } from '$shared/services/i18n';
 // and what to do when importing types
 declare global {
 	declare const __BUILD_TIMESTAMP__: string;
-	declare type ColorScheme = 'light' | 'dark' | 'system';
 
 	declare module '*?format=webp' {
 		const src: string;
@@ -19,6 +18,10 @@ declare global {
 	}
 
 	namespace App {
+		// color scheme
+		declare const COLOR_SCHEMES = ['light', 'dark', 'system'] as const;
+		declare type ColorScheme = (typeof COLOR_SCHEMES)[number];
+
 		interface Locals {
 			userId: string;
 			colorScheme: ColorScheme;
