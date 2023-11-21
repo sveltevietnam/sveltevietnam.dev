@@ -1,16 +1,16 @@
 <script lang="ts" context="module">
-	export type NotificationIntent = 'info' | 'success' | 'warning' | 'error';
+	export type NotificationIntent = App.Status;
 </script>
 
 <script lang="ts">
 	import type { NotificationInstance } from '@svelte-put/noti';
 	import { createEventDispatcher } from 'svelte';
 
-	export let notification: NotificationInstance;
+	export let notification: NotificationInstance | undefined = undefined;
 	export let intent: NotificationIntent | undefined;
 	export let icon = true;
 
-	const { progress } = notification;
+	const { progress } = notification ?? {};
 
 	const dispatch = createEventDispatcher<{ resolve: undefined }>();
 	const dismiss = () => dispatch('resolve');
@@ -18,8 +18,8 @@
 
 <div
 	class="notification notification--{intent}"
-	on:mouseenter={progress.pause}
-	on:mouseleave={progress.resume}
+	on:mouseenter={progress?.pause}
+	on:mouseleave={progress?.resume}
 	role="presentation"
 >
 	{#if icon}
@@ -41,16 +41,19 @@
 	<button on:click={dismiss} type="button" class="dismiss-btn">
 		<svg inline-src="icon/x" width="24" height="24" />
 	</button>
-	<div
-		class="progress"
-		class:paused={$progress.state === 'paused'}
-		style={`--progress-duration: ${notification.timeout}ms;`}
-	/>
+	{#if notification && progress}
+		<div
+			class="progress"
+			class:paused={$progress?.state === 'paused'}
+			style={`--progress-duration: ${notification.timeout}ms;`}
+		/>
+	{/if}
 </div>
 
 <style lang="postcss">
 	.notification {
-		--notification-color: theme('colors.design.bg.2');
+		--element-color: theme('colors.design.bg.1');
+		--surface-color: theme('colors.design.bg.2');
 
 		pointer-events: auto;
 
@@ -65,30 +68,32 @@
 		min-width: 200px;
 		padding: 16px;
 
-		color: theme('colors.design.grayscale.dark.1');
-
-		background-color: color-mix(in srgb, var(--notification-color) 20%, white 80%);
+		background-color: var(--surface-color);
 		border-radius: 4px;
 
 		&.notification--info {
-			--notification-color: theme('colors.status.info');
+			--element-color: theme('colors.info.element');
+			--surface-color: theme('colors.info.surface.DEFAULT');
 		}
 
 		&.notification--success {
-			--notification-color: theme('colors.status.success');
+			--element-color: theme('colors.success.element');
+			--surface-color: theme('colors.success.surface.DEFAULT');
 		}
 
 		&.notification--warning {
-			--notification-color: theme('colors.status.warning');
+			--element-color: theme('colors.warning.element');
+			--surface-color: theme('colors.warning.surface.DEFAULT');
 		}
 
 		&.notification--error {
-			--notification-color: theme('colors.status.error');
+			--element-color: theme('colors.error.element');
+			--surface-color: theme('colors.error.surface.DEFAULT');
 		}
 	}
 
 	.icon {
-		fill: var(--notification-color);
+		fill: var(--element-color);
 	}
 
 	.content {
@@ -104,7 +109,7 @@
 
 		height: 3px;
 
-		background-color: var(--notification-color);
+		background-color: var(--element-color);
 
 		animation: progress var(--progress-duration) linear;
 	}

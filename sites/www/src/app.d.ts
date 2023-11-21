@@ -18,6 +18,10 @@ declare global {
 	}
 
 	namespace App {
+		// status
+		declare const STATUSES = ['info', 'success', 'warning', 'error'] as const;
+		declare type Status = (typeof STATUSES)[number];
+
 		// color scheme
 		declare const COLOR_SCHEMES = ['light', 'dark', 'system'] as const;
 		declare type ColorScheme = (typeof COLOR_SCHEMES)[number];
