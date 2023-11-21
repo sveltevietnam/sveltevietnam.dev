@@ -3,6 +3,7 @@
 /// <reference types="vite/client" />
 /// <reference types="@sveltejs/adapter-cloudflare" />
 
+import type { COLOR_SCHEMES, STATUSES } from '$shared/constants';
 import type { preparePageData } from '$shared/data/blog';
 import type { Language } from '$shared/services/i18n';
 
@@ -10,8 +11,6 @@ import type { Language } from '$shared/services/i18n';
 // for information about these interfaces
 // and what to do when importing types
 declare global {
-	declare const __BUILD_TIMESTAMP__: string;
-
 	declare module '*?format=webp' {
 		const src: string;
 		export default src;
@@ -19,11 +18,9 @@ declare global {
 
 	namespace App {
 		// status
-		declare const STATUSES = ['info', 'success', 'warning', 'error'] as const;
 		declare type Status = (typeof STATUSES)[number];
 
 		// color scheme
-		declare const COLOR_SCHEMES = ['light', 'dark', 'system'] as const;
 		declare type ColorScheme = (typeof COLOR_SCHEMES)[number];
 
 		interface Locals {

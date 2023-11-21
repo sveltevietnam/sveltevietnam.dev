@@ -32,3 +32,6 @@ export const GITHUB_LINKS = {
 		PUBLIC_PROJECT: '',
 	},
 };
+
+export const STATUSES = ['info', 'success', 'warning', 'error'] as const;
+export const COLOR_SCHEMES = ['light', 'dark', 'system'] as const;
