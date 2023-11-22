@@ -148,7 +148,7 @@
 		display: flex;
 		justify-content: center;
 
-		:global(html:--splashed) & {
+		:global(html[data-splashed-at]) & {
 			opacity: 0;
 		}
 
@@ -222,7 +222,7 @@
 			border-radius: 20px;
 		}
 
-		:global(html:--splashed) & {
+		:global(html[data-splashed-at]) & {
 			opacity: 0;
 		}
 
@@ -312,7 +312,7 @@
 
 			height: auto;
 
-			:global(html:--splashed) & {
+			:global(html[data-splashed-at]) & {
 				transform: translateX(var(--initial-translate-x)) translateY(var(--initial-translate-y))
 					rotateX(0) rotateY(0) rotateZ(var(--rotate-z-from)) scale(1);
 				opacity: 0;
