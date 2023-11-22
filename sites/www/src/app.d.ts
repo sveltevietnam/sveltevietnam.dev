@@ -11,6 +11,8 @@ import type { Language } from '$shared/services/i18n';
 // for information about these interfaces
 // and what to do when importing types
 declare global {
+	declare const __BUILD_TIMESTAMP__: string;
+
 	declare module '*?format=webp' {
 		const src: string;
 		export default src;

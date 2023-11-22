@@ -1,3 +1,5 @@
+/** https://www.sitemaps.org/protocol.html */
+
 import Mustache from 'mustache';
 
 import { INTERNAL_POSTS } from '$routes/[[lang=lang]]/blog/_page/data';
