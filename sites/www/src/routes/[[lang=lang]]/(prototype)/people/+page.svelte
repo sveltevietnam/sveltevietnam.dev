@@ -79,7 +79,7 @@
 
 			height: theme('spacing.6');
 
-			border-color: theme('colors.bg.300');
+			border-color: theme('colors.bg.200');
 			border-style: solid;
 		}
 

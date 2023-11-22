@@ -107,7 +107,7 @@
 		transition:fade={{ duration: 200 }}
 	/>
 	<div
-		class="relative border bg-design-bg-1 p-10"
+		class="relative border bg-bg p-10"
 		use:clickoutside={{ limit: { parent: container } }}
 		on:clickoutside={clickOutside}
 		transition:fly={{ duration: 200, y: 50 }}

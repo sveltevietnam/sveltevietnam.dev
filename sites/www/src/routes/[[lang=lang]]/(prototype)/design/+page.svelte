@@ -43,7 +43,7 @@
 				<ul class="flex items-center gap-8 sp:flex-col">
 					<li class="logo-card-wrapper">
 						<dt class="tp-caption2">{t.logo.versions.versions.original}</dt>
-						<dd class="logo-card bg-design-bg-1">
+						<dd class="logo-card bg-bg">
 							<svg
 								inline-src="sveltevietnam"
 								width="50"
@@ -85,14 +85,14 @@
 				<div class="w-fit border px-4 py-4 font-inter tb:px-10 tb:py-5">
 					<p class="typeface-caption">Typeface</p>
 					<p class="typeface-heading">Inter</p>
-					<div class="my-3 h-px w-full bg-design-fg-1" />
+					<div class="my-3 h-px w-full bg-fg" />
 					<div class="typeface-bold">
 						<p>Inter / Bold</p>
 						<p>abcdefghijklmnopqrstuvwxyz</p>
 						<p class="uppercase">abcdefghijklmnopqrstuvwxyz</p>
 						<p class="uppercase">0123456789</p>
 					</div>
-					<div class="my-3 h-px w-full bg-design-fg-1" />
+					<div class="my-3 h-px w-full bg-fg" />
 					<div class="typeface-normal">
 						<p>Inter / Regular</p>
 						<p>abcdefghijklmnopqrstuvwxyz</p>

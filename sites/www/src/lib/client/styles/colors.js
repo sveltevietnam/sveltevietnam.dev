@@ -176,4 +176,13 @@ export const semantics = {
 	neutral: {
 		DEFAULT: 'var(--color-neutral)',
 	},
+	bg: {
+		DEFAULT: 'var(--color-bg)',
+		100: 'var(--color-bg-100)',
+		200: 'var(--color-bg-200)',
+	},
+	fg: {
+		DEFAULT: 'var(--color-fg)',
+		100: 'var(--color-fg-100)',
+	},
 };

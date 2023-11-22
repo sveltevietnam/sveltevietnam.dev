@@ -33,6 +33,8 @@ export const vi = {
 				outline: 'Nét ngoài',
 				neutral: 'Trung tính',
 				gradient: 'Gradient',
+				foreground: 'Chi tiết',
+				background: 'Nền',
 			},
 		},
 		status: {

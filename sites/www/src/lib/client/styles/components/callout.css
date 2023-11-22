@@ -33,7 +33,7 @@
 		width: var(--icon-background-size);
 		height: var(--icon-background-size);
 
-		background-color: theme('colors.design.bg.1');
+		background-color: theme('colors.bg.DEFAULT');
 		border-radius: 50%;
 	}
 

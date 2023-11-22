@@ -1,4 +1,13 @@
 @define-mixin colors-light {
+	/* foreground */
+	--color-fg: theme('colors.grayscale.950');
+	--color-fg-100: theme('colors.grayscale.800');
+
+	/* background */
+	--color-bg: theme('colors.grayscale.white');
+	--color-bg-100: theme('colors.grayscale.50');
+	--color-bg-200: theme('colors.grayscale.100');
+
 	/* link */
 	--color-link: theme('colors.orange.DEFAULT');
 
@@ -40,6 +49,15 @@
 }
 
 @define-mixin colors-dark {
+	/* foreground */
+	--color-fg: theme('colors.grayscale.white');
+	--color-fg-100: theme('colors.grayscale.100');
+
+	/* background */
+	--color-bg: theme('colors.grayscale.black');
+	--color-bg-100: theme('colors.grayscale.900');
+	--color-bg-200: theme('colors.grayscale.800');
+
 	/* link */
 	--color-link: theme('colors.orange.500');
 

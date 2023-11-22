@@ -278,7 +278,7 @@ Sau đó ta có thể sử dụng như sau:
 <style>
   div {
     color: theme('colors.fg');
-    background-color: theme('colors.bg');
+    background-color: theme('colors.bg.DEFAULT');
   }
 </style>
 ```

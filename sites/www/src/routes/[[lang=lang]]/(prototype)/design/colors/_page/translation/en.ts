@@ -33,6 +33,8 @@ export const en = {
 				outline: 'Outline',
 				neutral: 'Neutral',
 				gradient: 'Gradient',
+				foreground: 'Foreground',
+				background: 'Background',
 			},
 		},
 		status: {

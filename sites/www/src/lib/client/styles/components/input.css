@@ -12,7 +12,7 @@
 	}
 
 	&:focus {
-		outline: 1px solid theme('colors.fg.200');
+		outline: 1px solid currentcolor;
 	}
 
 	&:invalid:not(:placeholder-shown) {

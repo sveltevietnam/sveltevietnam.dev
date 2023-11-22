@@ -207,7 +207,7 @@
 		margin-left: 20px;
 		padding: 16px;
 
-		color: theme('colors.design.grayscale.dark.1');
+		color: theme('colors.grayscale.950');
 
 		background: linear-gradient(to bottom, var(--bg-from), var(--bg-to));
 		border-radius: 16px;

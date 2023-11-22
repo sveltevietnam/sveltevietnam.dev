@@ -10,7 +10,7 @@
 	align-items: center;
 	justify-content: center;
 
-	background-color: theme('colors.design.bg.1');
+	background-color: theme('colors.bg.DEFAULT');
 
 	animation-name: splash-out;
 	animation-duration: calc(var(--animation-out-duration) * 0.6);
@@ -43,7 +43,7 @@
 	font-size: 34px;
 	text-transform: uppercase;
 
-	background-color: theme('colors.design.bg.1');
+	background-color: theme('colors.bg.DEFAULT');
 }
 
 .splash--short {
@@ -137,7 +137,7 @@
 			transform-origin: right;
 			transform: scaleX(1);
 
-			background-color: theme('colors.design.bg.1');
+			background-color: theme('colors.bg.DEFAULT');
 
 			animation-name: splash-in-long-step-1-title-overlay, splash-in-long-step-2-title-overlay,
 				splash-in-long-step-3-title-overlay;

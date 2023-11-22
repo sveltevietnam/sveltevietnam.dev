@@ -138,7 +138,7 @@
 		margin-left: 12px;
 		padding: 40px 12px 12px;
 
-		color: theme('colors.design.grayscale.light.1');
+		color: theme('colors.grayscale.white');
 
 		border-top-left-radius: 40px;
 		border-top-right-radius: 40px;
@@ -250,11 +250,11 @@
 		}
 
 		&::-moz-progress-bar {
-			background-color: theme('colors.design.fg.1');
+			background-color: theme('colors.fg.DEFAULT');
 		}
 
 		&::-webkit-progress-value {
-			background-color: theme('colors.design.fg.1');
+			background-color: theme('colors.fg.DEFAULT');
 		}
 
 		@screen tb {

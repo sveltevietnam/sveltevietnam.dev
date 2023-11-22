@@ -64,7 +64,7 @@
 	}
 
 	nav[data-scrollable]:not([data-scrollable='false']) {
-		--blur-background-from: theme('colors.design.bg.1');
+		--blur-background-from: theme('colors.bg.DEFAULT');
 		--blur-background-to: rgb(0 0 0 / 0%);
 
 		position: relative;

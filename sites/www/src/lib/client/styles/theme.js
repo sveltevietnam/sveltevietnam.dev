@@ -55,26 +55,10 @@ export const theme = {
 					400: '#E8E8E8',
 				},
 			},
-			fg: {
-				100: 'var(--color-fg-100)',
-				200: 'var(--color-fg-200)',
-				300: 'var(--color-fg-300)',
-				400: 'var(--color-fg-400)',
-			},
-			bg: {
-				100: 'var(--color-bg-100)',
-				200: 'var(--color-bg-200)',
-				300: 'var(--color-bg-300)',
-				400: 'var(--color-bg-400)',
-			},
 			primary: '#ef4623',
 			svelte: '#ef4623',
 			// FIXME temporary, refactor once there is a consistent color palette
 			design: {
-				link: {
-					DEFAULT: 'var(--color-link)',
-					title: 'var(--color-link-title)',
-				},
 				grayscale: {
 					light: {
 						1: '#FFFFFF',
@@ -87,14 +71,6 @@ export const theme = {
 						3: '#201E1A',
 						4: '#3F3F3F',
 					},
-				},
-				fg: {
-					1: 'var(--color-fg-1)',
-					2: 'var(--color-fg-2)',
-				},
-				bg: {
-					1: 'var(--color-bg-1)',
-					2: 'var(--color-bg-2)',
 				},
 				neutral: {
 					1: '#ACACAC',

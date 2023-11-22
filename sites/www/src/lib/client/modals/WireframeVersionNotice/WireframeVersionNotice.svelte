@@ -54,7 +54,7 @@
 		transition:fade={{ duration: 200 }}
 	/>
 	<div
-		class="mx-6 space-y-4 rounded bg-bg-300 p-6 text-center shadow-lg md:p-10"
+		class="mx-6 space-y-4 rounded bg-bg-200 p-6 text-center shadow-lg md:p-10"
 		use:clickoutside
 		on:clickoutside={clickOutside}
 		transition:fly={{ duration: 200, y: 50 }}
@@ -68,11 +68,11 @@
 			{@html t.feedbacks}
 		</p>
 		<div class="flex items-center justify-center space-x-4">
-			<button on:click={takeIn} type="button" class="c-btn bg-bg-400 text-fg-400">
+			<button on:click={takeIn} type="button" class="bg-bg-400 text-fg-400 c-btn">
 				{t.ctas.continue}
 			</button>
 			{#if shouldShow === true}
-				<button on:click={doNotShowAgain} type="button" class="c-btn c-btn--outlined border-bg-400">
+				<button on:click={doNotShowAgain} type="button" class="border-bg-400 c-btn c-btn--outlined">
 					{t.ctas.doNotShowAgain}
 				</button>
 			{/if}

@@ -5,7 +5,7 @@
 </script>
 
 {#if variant === 'text'}
-	<div class="w-full rounded-[16px] border border-design-fg-1 pb-14 pt-20 {cls}">
+	<div class="w-full rounded-[16px] border pb-14 pt-20 {cls}">
 		<svg inline-src="tba" width="323" height="94" class="mx-auto max-w-full" />
 		<div class="mt-10">
 			<slot />

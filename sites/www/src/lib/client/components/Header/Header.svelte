@@ -104,7 +104,7 @@
 		inset: 0;
 
 		opacity: var(--opacity);
-		background-color: theme('colors.design.bg.1');
+		background-color: theme('colors.bg.DEFAULT');
 		border-bottom: 1px solid theme('colors.outline.DEFAULT');
 	}
 
@@ -200,9 +200,9 @@
 		background: radial-gradient(
 			circle at -500px -500px,
 			rgba(242 161 11/ 30%),
-			theme('colors.design.bg.1') 80%
+			theme('colors.bg.DEFAULT') 80%
 		);
-		background-color: theme('colors.design.bg.1');
+		background-color: theme('colors.bg.DEFAULT');
 
 		@screen upto-tb {
 			&[data-open]:not([data-open='false']) {

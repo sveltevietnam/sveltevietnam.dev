@@ -279,7 +279,7 @@ and use them as follows:
 <style>
   div {
     color: theme('colors.fg');
-    background-color: theme('colors.bg');
+    background-color: theme('colors.bg.DEFAULT');
   }
 </style>
 ```

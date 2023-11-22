@@ -215,6 +215,47 @@
 				<div class="flex flex-wrap items-stretch gap-10">
 					<ul class="flex flex-wrap gap-3">
 						<li class="swatch-card">
+							<div class="__color border bg-bg" />
+							<div class="__description">
+								<p>{t.semantic.brand.colors.background}</p>
+								<p>base</p>
+							</div>
+						</li>
+						<li class="swatch-card">
+							<div class="__color bg-bg-100" />
+							<div class="__description">
+								<p>{t.semantic.brand.colors.background}</p>
+								<p>100</p>
+							</div>
+						</li>
+						<li class="swatch-card">
+							<div class="__color bg-bg-200" />
+							<div class="__description">
+								<p>{t.semantic.brand.colors.background}</p>
+								<p>200</p>
+							</div>
+						</li>
+					</ul>
+
+					<ul class="flex flex-wrap gap-3">
+						<li class="swatch-card">
+							<div class="__color bg-fg" />
+							<div class="__description">
+								<p>{t.semantic.brand.colors.foreground}</p>
+								<p>base</p>
+							</div>
+						</li>
+						<li class="swatch-card">
+							<div class="__color bg-fg-100" />
+							<div class="__description">
+								<p>{t.semantic.brand.colors.foreground}</p>
+								<p>100</p>
+							</div>
+						</li>
+					</ul>
+
+					<ul class="flex flex-wrap gap-3">
+						<li class="swatch-card">
 							<div class="__color bg-outline" />
 							<div class="__description">
 								<p>{t.semantic.brand.colors.outline}</p>
@@ -396,25 +437,23 @@
 	}
 
 	.swatch-card {
-		overflow: hidden;
 		display: flex;
 		flex-direction: column;
-
 		width: fit-content;
-
 		border-radius: 4px;
 
 		& .__color {
-			aspect-ratio: 1 / 1;
 			width: 100%;
 			min-width: 100px;
-			height: auto;
+			height: 100px;
+			border-radius: 4px 4px 0 0;
 		}
 
 		& .__description {
 			flex: 1;
 			padding: 12px;
 			background-color: theme('colors.grayscale.200');
+			border-radius: 0 0 4px 4px;
 
 			& p {
 				font-size: theme('fontSize.sm');

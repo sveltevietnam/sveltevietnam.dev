@@ -1,6 +1,4 @@
 <script lang="ts">
-	// import { intersect } from '$client/actions/intersect';
-
 	import type { PageData } from './$types';
 	import SectionCommunity from './_page/components/SectionCommunity.svelte';
 	import SectionEvents from './_page/components/SectionEvents.svelte';
@@ -19,28 +17,6 @@
 	<SectionCommunity />
 	<SectionEvents events={data.events} />
 	<SectionPosts posts={data.posts.internal} externalPost={data.posts.external} />
-	<!-- <section class="c-container-design mb-20 bg-bg-300 py-6 text-fg-100" use:intersect>
-		<p>
-			<svg
-				class="inline-block"
-				xmlns="http://www.w3.org/2000/svg"
-				width="24"
-				height="24"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="2"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				><rect x="2" y="6" width="20" height="8" rx="1" /><path d="M17 14v7" /><path
-					d="M7 14v7"
-				/><path d="M17 3v3" /><path d="M7 3v3" /><path d="M10 14 2.3 6.3" /><path
-					d="m14 6 7.7 7.7"
-				/><path d="m8 6 8 8" /></svg
-			>
-			{@html data.underConstructionNote}
-		</p>
-	</section> -->
 	<!-- <SectionJobs jobs={data.jobs} /> -->
 	<!-- <SectionImpact projects={data.projects} /> -->
 	<SectionSponsor sponsors={data.sponsors} />

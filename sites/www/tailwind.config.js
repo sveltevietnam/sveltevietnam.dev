@@ -11,8 +11,8 @@ export default {
 				return {
 					DEFAULT: {
 						css: {
-							'--tw-prose-body': theme('colors.design.fg.1'),
-							'--tw-prose-invert-body': theme('colors.design.fg.1'),
+							'--tw-prose-body': theme('colors.fg.DEFAULT'),
+							'--tw-prose-invert-body': theme('colors.fg.DEFAULT'),
 							'--tw-prose-bold': 'inherit',
 							'a:not(.heading-anchor)': {
 								'@apply c-link': {},

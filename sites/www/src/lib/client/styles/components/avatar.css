@@ -3,6 +3,6 @@
 
 	object-fit: cover;
 	object-position: center;
-	background-color: theme('colors.bg.300');
+	background-color: theme('colors.bg.200');
 	border-radius: theme('borderRadius.full');
 }

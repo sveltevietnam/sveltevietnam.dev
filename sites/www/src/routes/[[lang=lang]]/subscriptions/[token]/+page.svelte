@@ -84,8 +84,8 @@
 		/* taken from Daisy UI Toggle component */
 		--handle-sign: -1;
 		--handle-offset: calc(1.5rem * var(--handle-sign));
-		--toggle-bg: theme('colors.design.bg.1');
-		--toggle-fg: theme('colors.design.fg.1');
+		--toggle-bg: theme('colors.bg.DEFAULT');
+		--toggle-fg: theme('colors.fg.DEFAULT');
 		--toggle-opacity: 0.5;
 
 		cursor: pointer;

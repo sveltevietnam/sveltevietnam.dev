@@ -137,7 +137,7 @@
 
 				& rect,
 				& path {
-					fill: theme('colors.design.bg.1');
+					fill: theme('colors.bg.DEFAULT');
 				}
 			}
 
@@ -146,7 +146,7 @@
 				z-index: 1;
 				top: -5px;
 
-				background-color: theme('colors.design.bg.1');
+				background-color: theme('colors.bg.DEFAULT');
 				border: 1px solid currentcolor;
 				border-radius: 8px;
 				box-shadow:
