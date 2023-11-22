@@ -8,7 +8,7 @@
 	border-radius: 4px;
 
 	&::placeholder {
-		color: theme('colors.design.neutral.2');
+		color: theme('colors.fg.200');
 	}
 
 	&:focus {

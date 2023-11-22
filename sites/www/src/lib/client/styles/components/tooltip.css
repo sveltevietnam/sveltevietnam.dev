@@ -10,7 +10,7 @@
 	padding: 4px 8px;
 
 	opacity: 0;
-	background-color: theme('colors.design.bg.2');
+	background-color: theme('colors.bg.100');
 	border-radius: 4px;
 
 	transition: opacity 150ms ease-in-out;
@@ -28,5 +28,5 @@
 	width: 14px;
 	height: 14px;
 
-	background-color: theme('colors.design.bg.2');
+	background-color: theme('colors.bg.100');
 }

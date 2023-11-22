@@ -42,7 +42,7 @@
 				{#if href}
 					<a {href} class="c-link c-link--mixed shrink-0">{label}</a>
 				{:else}
-					<span class="whitespace-nowrap text-design-neutral-2">{label}</span>
+					<span class="whitespace-nowrap text-fg-200">{label}</span>
 				{/if}
 				{#if !last}
 					<svg inline-src="icon/caret" width="14" height="14" class="shrink-0" />

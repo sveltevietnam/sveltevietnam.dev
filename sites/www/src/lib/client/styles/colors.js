@@ -184,5 +184,6 @@ export const semantics = {
 	fg: {
 		DEFAULT: 'var(--color-fg)',
 		100: 'var(--color-fg-100)',
+		200: 'var(--color-fg-200)',
 	},
 };

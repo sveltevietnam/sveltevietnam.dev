@@ -26,7 +26,6 @@
 		<div class="mt-8 tb:mt-[100px] tb:max-w-[500px]">
 			<h1 class="tp-h1 uppercase">{t.title}</h1>
 			<p class="tp-h4 mt-6 tb:mt-8">{t.subtitle}</p>
-			<button class="c-btn c-btn--text w-fit">A BUTTON TEXT</button>
 		</div>
 		<div class="sp:mt-8">
 			<svg inline-src="./_page/images/key-visuals" class="h-auto w-full max-w-[548px]" />

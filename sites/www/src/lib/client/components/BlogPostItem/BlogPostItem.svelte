@@ -49,7 +49,7 @@
 		<p>{tPost.description}</p>
 		<div class="flex items-center justify-between">
 			<p class="font-medium">{tPost.authors.map((a) => a.name).join(', ')}</p>
-			<time class="text-design-neutral-2">{formateDateForBlog(lang, tPost.date)}</time>
+			<time class="text-fg-200">{formateDateForBlog(lang, tPost.date)}</time>
 		</div>
 	</div>
 </article>

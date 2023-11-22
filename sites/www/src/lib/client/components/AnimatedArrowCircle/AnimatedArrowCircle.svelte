@@ -110,7 +110,7 @@
 		}
 
 		& .circle {
-			fill: theme('colors.design.neutral.2 / 30%');
+			fill: theme('colors.grayscale.600 / 30%');
 		}
 	}
 
@@ -124,7 +124,7 @@
 		}
 
 		& .circle {
-			fill: theme('colors.design.neutral.2 / 30%');
+			fill: theme('colors.grayscale.600 / 30%');
 		}
 	}
 

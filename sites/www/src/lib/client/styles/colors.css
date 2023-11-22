@@ -2,6 +2,7 @@
 	/* foreground */
 	--color-fg: theme('colors.grayscale.950');
 	--color-fg-100: theme('colors.grayscale.800');
+	--color-fg-200: theme('colors.grayscale.600');
 
 	/* background */
 	--color-bg: theme('colors.grayscale.white');
@@ -51,7 +52,8 @@
 @define-mixin colors-dark {
 	/* foreground */
 	--color-fg: theme('colors.grayscale.white');
-	--color-fg-100: theme('colors.grayscale.100');
+	--color-fg-100: theme('colors.grayscale.200');
+	--color-fg-200: theme('colors.grayscale.400');
 
 	/* background */
 	--color-bg: theme('colors.grayscale.black');

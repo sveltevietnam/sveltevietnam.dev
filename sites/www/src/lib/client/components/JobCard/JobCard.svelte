@@ -69,7 +69,7 @@
 
 	.datetime {
 		margin-top: 6px;
-		color: theme('colors.design.neutral.2');
+		color: theme('colors.fg.200');
 	}
 
 	.tags {

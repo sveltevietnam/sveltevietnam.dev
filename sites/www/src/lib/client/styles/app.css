@@ -18,14 +18,6 @@
 		@screen tb {
 			--header-height: 88px;
 		}
-
-		/* reactive colors */
-		--color-shadow: theme(colors.design.grayscale.dark.1 / 10%);
-
-		@dark {
-			/* reactive colors */
-			--color-shadow: theme(colors.design.grayscale.light.1 / 10%);
-		}
 	}
 
 	*,

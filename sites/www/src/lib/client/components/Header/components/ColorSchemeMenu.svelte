@@ -149,9 +149,6 @@
 				background-color: theme('colors.bg.DEFAULT');
 				border: 1px solid currentcolor;
 				border-radius: 8px;
-				box-shadow:
-					0 1px 3px 0 var(--color-shadow),
-					0 1px 2px -1px var(--color-shadow);
 			}
 		}
 	}

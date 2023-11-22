@@ -61,7 +61,7 @@
 	<div class="flex-1">
 		<a
 			href={event.href}
-			class="title tp-h4 block font-medium transition-[color] duration-[400ms] hover:text-design-link-title"
+			class="title tp-h4 block font-medium transition-[color] duration-[400ms] hover:text-fg-200"
 			id={event.id}
 		>
 			{event.title}
@@ -139,7 +139,7 @@
 
 	.date {
 		& :global(svg) {
-			--animated-color: theme('colors.design.neutral.2');
+			--animated-color: theme('colors.grayscale.600');
 
 			width: 18px;
 			height: 18px;

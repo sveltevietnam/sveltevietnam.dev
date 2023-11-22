@@ -106,9 +106,9 @@
 						</li>
 					{/each}
 				</ul>
-				<div class="tp-cap1 text-design-neutral-2">
+				<div class="tp-cap1 text-fg-200">
 					<div class="mb-2 separator" />
-					<div class="tp-cap1 flex justify-between text-design-neutral-2">
+					<div class="tp-cap1 flex justify-between text-fg-200">
 						<div class="shrink-0">
 							{#key data.language}
 								<p>
