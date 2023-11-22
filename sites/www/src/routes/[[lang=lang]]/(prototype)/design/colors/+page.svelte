@@ -193,28 +193,20 @@
 					<li class="swatch primitive-base bg-blue">base</li>
 				</ul>
 			</section>
-
-			<section>
-				<h3 class="tp-h3 font-medium">{t.primitives.colors.neutral}</h3>
-				<ul class="primitive-group">
-					<li class="swatch bg-neutral-50">50</li>
-					<li class="swatch bg-neutral-100">100</li>
-					<li class="swatch bg-neutral-200">200</li>
-					<li class="swatch bg-neutral-300">300</li>
-					<li class="swatch bg-neutral-400">400</li>
-					<li class="swatch bg-neutral-500">500</li>
-					<li class="swatch bg-neutral-600">600</li>
-					<li class="swatch bg-neutral-700">700</li>
-					<li class="swatch bg-neutral-800">800</li>
-					<li class="swatch bg-neutral-900">900</li>
-					<li class="swatch primitive-base bg-neutral">base</li>
-				</ul>
-			</section>
 		</section>
 
 		<section>
 			<h2 class="tp-h2 font-medium">{t.semantic.title}</h2>
 			<p class="mt-6">{t.semantic.description}</p>
+
+			<section class="mt-[60px] max-w-full space-y-[60px] overflow-auto">
+				<h3 class="tp-h3 font-medium">{t.semantic.brand.title}</h3>
+
+				<div class="swatch-card">
+					<div class="bg-link" />
+					<p>{t.semantic.brand.colors.link}</p>
+				</div>
+			</section>
 
 			<section class="mt-[60px] max-w-full space-y-[60px] overflow-auto">
 				<h3 class="tp-h3 font-medium">{t.semantic.status.title}</h3>
@@ -282,7 +274,7 @@
 		padding: 24px;
 		line-height: 1;
 		text-align: center;
-		border-radius: 8px;
+		border-radius: 4px;
 
 		&.swatch--status {
 			padding: 16px;
@@ -329,6 +321,27 @@
 		}
 	}
 
+	.swatch-card {
+		overflow: hidden;
+		width: fit-content;
+		background-color: theme('colors.neutral.200');
+		border-radius: 4px;
+
+		& div {
+			aspect-ratio: 1 / 1;
+			width: 100%;
+			min-width: 100px;
+			height: auto;
+		}
+
+		& p {
+			padding: 12px;
+			font-size: theme('fontSize.sm');
+			line-height: 1;
+			color: black;
+		}
+	}
+
 	.status-colors {
 		& td,
 		& th {
@@ -366,7 +379,9 @@
 			height: 60px;
 
 			font-size: theme('fontSize.xs');
+			line-height: 1;
 			color: theme('colors.white.DEFAULT');
+			text-align: center;
 
 			border-radius: 50%;
 

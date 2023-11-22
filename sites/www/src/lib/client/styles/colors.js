@@ -103,19 +103,19 @@ export const primitives = {
 		800: 'hsl(220, 92%, 28%)',
 		900: 'hsl(220, 92%, 19%)',
 	},
-	neutral: {
-		50: 'hsl(48, 12%, 92%)',
-		100: 'hsl(50, 13%, 91%)',
-		200: 'hsl(44, 12%, 82%)',
-		300: 'hsl(49, 12%, 73%)',
-		400: 'hsl(49, 12%, 64%)',
-		DEFAULT: 'hsl(45, 4%, 56%)',
-		500: 'hsl(50, 12%, 55%)',
-		600: 'hsl(50, 12%, 46%)',
-		700: 'hsl(47, 12%, 37%)',
-		800: 'hsl(49, 12%, 28%)',
-		900: 'hsl(40, 10%, 11%)',
-	},
+	// neutral: {
+	// 	50: 'hsl(48, 12%, 92%)',
+	// 	100: 'hsl(50, 13%, 91%)',
+	// 	200: 'hsl(44, 12%, 82%)',
+	// 	300: 'hsl(49, 12%, 73%)',
+	// 	400: 'hsl(49, 12%, 64%)',
+	// 	DEFAULT: 'hsl(45, 4%, 56%)',
+	// 	500: 'hsl(50, 12%, 55%)',
+	// 	600: 'hsl(50, 12%, 46%)',
+	// 	700: 'hsl(47, 12%, 37%)',
+	// 	800: 'hsl(49, 12%, 28%)',
+	// 	900: 'hsl(40, 10%, 11%)',
+	// },
 };
 
 const status = Object.fromEntries(
@@ -133,6 +133,24 @@ const status = Object.fromEntries(
 	]),
 );
 
+// const brand = Object.fromEntries(
+// 	['primary', 'default'].map((key) => [
+// 		key,
+// 		{
+// 			surface: {
+// 				DEFAULT: `var(--color-${key}-surface)`,
+// 				100: `var(--color-${key}-surface-100)`,
+// 				200: `var(--color-${key}-surface-200)`,
+// 			},
+// 			element: `var(--color-${key}-element)`,
+// 			text: `var(--color-${key}-text)`,
+// 		},
+// 	]),
+// );
+
 export const semantics = {
 	...status,
+	link: {
+		DEFAULT: 'var(--color-link)',
+	},
 };

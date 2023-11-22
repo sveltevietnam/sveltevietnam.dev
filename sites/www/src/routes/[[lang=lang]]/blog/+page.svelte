@@ -98,13 +98,13 @@
 				<p use:intersect class="mt-6">{t.contribute.description}</p>
 				<ul class="divider-border mt-4 max-w-[548px] divide-y font-medium" use:intersect>
 					<li>
-						<a href={issueTemplateLinks.proposePost} class="c-link-box" external>
+						<a href={issueTemplateLinks.proposePost} class="c-link c-link--box" external>
 							<span>{t.contribute.links.proposePost}</span>
 							<svg inline-src="icon/external-link" />
 						</a>
 					</li>
 					<li>
-						<a href={issueTemplateLinks.requestExternalPost} class="c-link-box" external>
+						<a href={issueTemplateLinks.requestExternalPost} class="c-link c-link--box" external>
 							<span>{t.contribute.links.requestExternalPost}</span>
 							<svg inline-src="icon/external-link" />
 						</a>
@@ -112,7 +112,7 @@
 					<li>
 						<a
 							href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/DEV_BLOG_POST.md"
-							class="c-link-box"
+							class="c-link c-link--box"
 							external
 						>
 							<span>{t.contribute.links.readCodeGuidelines}</span>

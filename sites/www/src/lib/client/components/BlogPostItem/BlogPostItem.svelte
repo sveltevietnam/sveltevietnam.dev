@@ -21,7 +21,7 @@
 
 <article class={cls} class:always-vertical={alwaysVertical}>
 	<div>
-		<a {href} class="c-link-image">
+		<a {href} class="c-link c-link--image">
 			{#if tPost.thumbnail}
 				<enhanced:img
 					src={tPost.thumbnail}

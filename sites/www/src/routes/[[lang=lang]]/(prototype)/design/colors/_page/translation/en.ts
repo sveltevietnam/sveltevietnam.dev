@@ -25,6 +25,14 @@ export const en = {
 			text: 'Text',
 			element: 'Element',
 		},
+		brand: {
+			title: 'Brand',
+			colors: {
+				primary: 'Primary',
+				secondary: 'Secondary',
+				link: 'Hyperlink',
+			},
+		},
 		status: {
 			title: 'Status',
 			notification:
@@ -35,6 +43,9 @@ export const en = {
 				warning: 'Warning',
 				error: 'Error',
 			},
+		},
+		others: {
+			title: 'Others',
 		},
 	},
 } satisfies typeof import('./vi').vi;

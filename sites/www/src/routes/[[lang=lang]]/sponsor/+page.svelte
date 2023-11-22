@@ -78,19 +78,19 @@
 				<p>{@html t.how.description}</p>
 				<ul class="divider-border mt-3 max-w-[548px] divide-y font-medium">
 					<li>
-						<a href={SOCIAL_LINKS.OPEN_COLLECTIVE} class="c-link-box" external>
+						<a href={SOCIAL_LINKS.OPEN_COLLECTIVE} class="c-link c-link--box" external>
 							<span>{t.how.ctas.sponsor}</span>
 							<svg inline-src="icon/external-link" />
 						</a>
 					</li>
 					<li>
-						<a href={SOCIAL_LINKS.DISCORD} class="c-link-box" external>
+						<a href={SOCIAL_LINKS.DISCORD} class="c-link c-link--box" external>
 							<span>{t.how.ctas.discord}</span>
 							<svg inline-src="icon/external-link" />
 						</a>
 					</li>
 					<li>
-						<a href="mailto:{EMAILS.SPONSOR}" class="c-link-box" external>
+						<a href="mailto:{EMAILS.SPONSOR}" class="c-link c-link--box" external>
 							<span>{@html t.how.ctas.email}</span>
 							<svg inline-src="icon/external-link" />
 						</a>
@@ -101,17 +101,17 @@
 				<p>{t.how.contribute}</p>
 				<ul class="divider-border mt-3 max-w-[548px] divide-y font-medium">
 					<li>
-						<a href={EVENTS_PATH} class="c-link-box">
+						<a href={EVENTS_PATH} class="c-link c-link--box">
 							<span>{t.how.ctas.events}</span>
 						</a>
 					</li>
 					<li>
-						<a href={BLOG_PATH} class="c-link-box">
+						<a href={BLOG_PATH} class="c-link c-link--box">
 							<span>{t.how.ctas.blog}</span>
 						</a>
 					</li>
 					<li>
-						<a href={SOCIAL_LINKS.GITHUB} class="c-link-box" external>
+						<a href={SOCIAL_LINKS.GITHUB} class="c-link c-link--box" external>
 							<span>{t.how.ctas.github}</span>
 							<svg inline-src="icon/external-link" />
 						</a>

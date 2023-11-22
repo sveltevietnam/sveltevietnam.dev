@@ -25,6 +25,14 @@ export const vi = {
 			text: 'Văn bản',
 			element: 'Chi tiết khác',
 		},
+		brand: {
+			title: 'Thương hiệu',
+			colors: {
+				primary: 'Chính',
+				secondary: 'Phụ',
+				link: 'Đường dẫn',
+			},
+		},
 		status: {
 			title: 'Trạng thái',
 			notification: 'Đây là một thông báo mẫu thể hiện trạng thái của ứng dụng / hệ thống.',
@@ -34,6 +42,9 @@ export const vi = {
 				warning: 'Cảnh báo',
 				error: 'Lỗi',
 			},
+		},
+		others: {
+			title: 'Khác',
 		},
 	},
 };

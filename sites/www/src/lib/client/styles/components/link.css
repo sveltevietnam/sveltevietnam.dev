@@ -1,9 +1,139 @@
-@custom-selector :--icon .c-link--icon;
-@custom-selector :--__icon :is(img, svg);
 @custom-selector :--preserved .c-link--preserved;
+@custom-selector :--mixed .c-link--mixed;
+@custom-selector :--box .c-link--box;
+@custom-selector :--__icon :is(img, svg); /* nested icon within c-link */
+@custom-selector :--icon :is(.c-link--icon, :has(:--__icon));
+@custom-selector :--image .c-link--image;
 
 .c-link {
-	&:where(:not(:--icon)) {
+	/*
+		Links that are a box, on hover a background layer swipe from left to right.
+		For example:
+
+		```html
+		<a class="c-link c-link--box" href={SOCIAL_LINKS.DISCORD} external>
+			<span>{t.ctas.discord}</span>
+			<svg inline-src="icon/external-link" />
+		</a>
+		```
+	*/
+	&:where(:--box) {
+		--transition-duration: 300ms;
+
+		position: relative;
+
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		padding: 16px 0;
+
+		&::before {
+			content: '';
+
+			position: absolute;
+			inset: 0;
+			transform-origin: left;
+			transform: scaleX(0);
+
+			opacity: 0;
+			background-color: currentcolor;
+
+			transition-timing-function: ease-in-out;
+			transition-duration: var(--transition-duration);
+			transition-property: opacity, transform;
+		}
+
+		& span,
+		& svg {
+			transition-timing-function: ease-in-out;
+			transition-duration: var(--transition-duration);
+			transition-property: transform, filter;
+		}
+
+		&:hover {
+			&::before {
+				transform: scaleX(1);
+				opacity: 1;
+			}
+
+			& span,
+			& svg {
+				filter: invert(100%);
+			}
+
+			& span {
+				transform: translateX(12px);
+			}
+
+			& svg {
+				transform: translateX(-12px);
+			}
+		}
+	}
+
+	/*
+		Thumbnails as links. For example:
+
+		```html
+		<a {href} class="c-link c-link--image">
+			<enhanced:img src={tPost.thumbnail} alt={tPost.title} />
+		</a>
+		```
+	*/
+	&:where(:--image) {
+		position: relative;
+		overflow: hidden;
+		display: block;
+
+		:where(& img) {
+			width: 100%;
+			max-width: 100%;
+			height: auto;
+
+			object-fit: cover;
+			object-position: center;
+
+			transition: transform 400ms ease-out;
+		}
+
+		:where(&:hover img) {
+			transform: scale(1.05);
+		}
+	}
+
+	/*
+		Links that are just icon and no text. For example:
+
+		```html
+		<a href={SOCIAL_LINKS.GITHUB} class="c-link c-link--icon" external>
+			<svg height="16" width="16" inline-src="simpleicon/github" />
+		</a>
+		```
+	*/
+	&:where(:--icon:not(:--box, :--image)),
+	/*
+		Links that inherit color from parent and on hover mix with only a percentage of "colors.link",
+		also have no underline effect. Often seen in breadcrumbs and footer links. For example:
+
+		```html
+		<a {href} class="c-link c-link--mixed">Home</a>
+		```
+	*/
+	&:where(:--mixed) {
+		transition: color 400ms ease-out;
+
+		&:hover,
+		&[aria-current]:not([aria-current='false']) {
+			color: color-mix(in hsl shorter hue, currentcolor, theme('colors.link.DEFAULT') 50%);
+		}
+
+		& svg {
+			fill: currentcolor;
+		}
+	}
+
+	&:where(:not(:--icon, :--mixed, :--image, :--box)) {
 		--underline-color: currentcolor;
 
 		will-change: background-size;
@@ -17,7 +147,7 @@
 		transition: color 250ms ease-in-out;
 
 		&:where(:not(:--preserved)) {
-			color: theme('colors.design.link.DEFAULT');
+			color: theme('colors.link.DEFAULT');
 			background-size: 100% var(--underline-height, 1px);
 
 			&:hover {
@@ -25,6 +155,7 @@
 			}
 		}
 
+		/* links that inherit color from parent, only change to "colors.link" on hover */
 		&:where(:--preserved) {
 			background-position: left bottom;
 			background-size: 0 var(--underline-height, 1px);
@@ -35,25 +166,6 @@
 			&:--current,
 			&:hover {
 				background-size: 100% var(--underline-height, 1px);
-			}
-		}
-	}
-
-	&:where(:--icon) {
-		& :--__icon {
-			transform-origin: center;
-			transition: transform 200ms ease;
-		}
-
-		&:hover {
-			& :--__icon {
-				transform: scale(1.05);
-			}
-		}
-
-		&:active {
-			& :--__icon {
-				transform: scale(0.95);
 			}
 		}
 	}
@@ -78,94 +190,5 @@
 	100% {
 		background-position: left bottom;
 		background-size: 100% var(--underline-height, 1px);
-	}
-}
-
-.c-link-neutral {
-	transition: color 400ms ease-out;
-
-	&:hover,
-	&[aria-current]:not([aria-current='false']) {
-		color: theme('colors.design.link.title');
-	}
-
-	& svg {
-		fill: currentcolor;
-	}
-}
-
-.c-link-box {
-	--transition-duration: 300ms;
-
-	position: relative;
-
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-
-	padding: 16px 0;
-
-	&::before {
-		content: '';
-
-		position: absolute;
-		inset: 0;
-		transform-origin: left;
-		transform: scaleX(0);
-
-		opacity: 0;
-		background-color: theme('colors.design.fg.1');
-
-		transition-timing-function: ease-in-out;
-		transition-duration: var(--transition-duration);
-		transition-property: opacity, transform;
-	}
-
-	& span,
-	& svg {
-		transition-timing-function: ease-in-out;
-		transition-duration: var(--transition-duration);
-		transition-property: color, transform;
-	}
-
-	&:hover {
-		&::before {
-			transform: scaleX(1);
-			opacity: 1;
-		}
-
-		& span,
-		& svg {
-			color: theme('colors.design.bg.1');
-		}
-
-		& span {
-			transform: translateX(12px);
-		}
-
-		& svg {
-			transform: translateX(-12px);
-		}
-	}
-}
-
-.c-link-image {
-	position: relative;
-	overflow: hidden;
-	display: block;
-
-	:where(& img) {
-		width: 100%;
-		max-width: 100%;
-		height: auto;
-
-		object-fit: cover;
-		object-position: center;
-
-		transition: transform 400ms ease-out;
-	}
-
-	:where(&:hover img) {
-		transform: scale(1.05);
 	}
 }

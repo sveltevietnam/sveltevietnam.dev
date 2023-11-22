@@ -40,7 +40,7 @@
 			{@const last = i === breadcrumbs.length - 1}
 			<li {...last && { 'aria-current': 'page' }} class="contents">
 				{#if href}
-					<a {href} class="c-link-neutral shrink-0">{label}</a>
+					<a {href} class="c-link c-link--mixed shrink-0">{label}</a>
 				{:else}
 					<span class="whitespace-nowrap text-design-neutral-2">{label}</span>
 				{/if}

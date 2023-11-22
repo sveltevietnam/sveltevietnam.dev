@@ -36,7 +36,7 @@
 						{#each FOOTER_PATHS as href}
 							{@const current = isCurrentPage(pathname, href)}
 							<li>
-								<a aria-current={current} {href} class="c-link-neutral"
+								<a aria-current={current} {href} class="c-link c-link--mixed"
 									>{getPathLabel(href, lang)}</a
 								>
 							</li>
@@ -48,13 +48,13 @@
 				<p class="footer-section-title tp-h4 font-medium">{t.contact.title}</p>
 				<ul>
 					<li>
-						<a href={SOCIAL_LINKS.DISCORD} class="c-link-neutral" external>
+						<a href={SOCIAL_LINKS.DISCORD} class="c-link c-link--mixed" external>
 							<svg inline-src="simpleicon/discord" width="24" height="24" />
 							<span>{commonT[lang].sveltevienam}</span>
 						</a>
 					</li>
 					<li>
-						<a href="mailto:{EMAILS.CONTACT}" class="c-link-neutral" external>
+						<a href="mailto:{EMAILS.CONTACT}" class="c-link c-link--mixed" external>
 							<svg inline-src="google/mail" width="24" height="24" />
 							<span>{EMAILS.CONTACT}</span>
 						</a>
@@ -68,22 +68,26 @@
 	</div>
 	<ul class="footer-socials c-container-design">
 		<li>
-			<a href={SOCIAL_LINKS.OPEN_COLLECTIVE} class="c-link-neutral" external>
+			<a href={SOCIAL_LINKS.OPEN_COLLECTIVE} class="c-link" external>
+				<span class="sr-only">Open Collective</span>
 				<svg height="16" width="16" inline-src="simpleicon/opencollective" />
 			</a>
 		</li>
 		<li>
-			<a href={SOCIAL_LINKS.GITHUB} class="c-link-neutral" external>
+			<a href={SOCIAL_LINKS.GITHUB} class="c-link" external>
+				<span class="sr-only">Github</span>
 				<svg height="16" width="16" inline-src="simpleicon/github" />
 			</a>
 		</li>
 		<li>
-			<a href={SOCIAL_LINKS.TWITTER} class="c-link-neutral" external>
+			<a href={SOCIAL_LINKS.TWITTER} class="c-link" external>
+				<span class="sr-only">Twitter</span>
 				<svg height="16" width="16" inline-src="simpleicon/twitter" />
 			</a>
 		</li>
 		<li>
-			<a href={SOCIAL_LINKS.FACEBOOK} class="c-link-neutral" external>
+			<a href={SOCIAL_LINKS.FACEBOOK} class="c-link" external>
+				<span class="sr-only">Facebook</span>
 				<svg height="16" width="16" inline-src="simpleicon/facebook" />
 			</a>
 		</li>
@@ -119,13 +123,13 @@
 		<p class="footer-additional-links">
 			<a
 				href={CODE_OF_CONDUCT_PATH}
-				class="c-link-neutral"
+				class="c-link c-link--mixed"
 				aria-current={isCurrentPage(pathname, CODE_OF_CONDUCT_PATH)}>{t.navigation.codeOfConduct}</a
 			>
 			<span aria-disabled class="vertical-separator">|</span>
-			<a href={RSS_PATH} class="c-link-neutral" external>RSS</a>
+			<a href={RSS_PATH} class="c-link c-link--mixed" external>RSS</a>
 			<span aria-disabled class="vertical-separator">|</span>
-			<a href={SITEMAP_PATH} class="c-link-neutral" external>Sitemap</a>
+			<a href={SITEMAP_PATH} class="c-link c-link--mixed" external>Sitemap</a>
 		</p>
 	</div>
 </footer>
