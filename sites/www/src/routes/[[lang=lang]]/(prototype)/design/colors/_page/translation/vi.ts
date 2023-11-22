@@ -10,7 +10,7 @@ export const vi = {
 			amber: 'Vàng (amber)',
 			emerald: 'Lục nhạt (emerald)',
 			blue: 'Lam (blue)',
-			neutral: 'Trung tính (neutral)',
+			stone: 'Đá (stone)',
 		},
 	},
 	semantic: {
@@ -31,6 +31,8 @@ export const vi = {
 				secondary: 'Phụ',
 				link: 'Đường dẫn',
 				outline: 'Nét ngoài',
+				neutral: 'Trung tính',
+				gradient: 'Gradient',
 			},
 		},
 		status: {

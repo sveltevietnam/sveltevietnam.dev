@@ -186,6 +186,23 @@
 					<li class="swatch primitive-base bg-blue">base</li>
 				</ul>
 			</section>
+
+			<section>
+				<h3 class="tp-h3 font-medium">{t.primitives.colors.stone}</h3>
+				<ul class="primitive-group">
+					<li class="swatch bg-stone-50">50</li>
+					<li class="swatch bg-stone-100">100</li>
+					<li class="swatch bg-stone-200">200</li>
+					<li class="swatch bg-stone-300">300</li>
+					<li class="swatch bg-stone-400">400</li>
+					<li class="swatch bg-stone-500">500</li>
+					<li class="swatch bg-stone-600">600</li>
+					<li class="swatch bg-stone-700">700</li>
+					<li class="swatch bg-stone-800">800</li>
+					<li class="swatch bg-stone-900">900</li>
+					<li class="swatch primitive-base bg-stone">base</li>
+				</ul>
+			</section>
 		</section>
 
 		<section>
@@ -195,29 +212,51 @@
 			<section class="mt-[60px] max-w-full space-y-[60px] overflow-auto">
 				<h3 class="tp-h3 font-medium">{t.semantic.brand.title}</h3>
 
-				<div class="flex flex-wrap gap-10">
-					<div class="swatch-card">
-						<div class="bg-link" />
-						<p>{t.semantic.brand.colors.link}</p>
-					</div>
-
+				<div class="flex flex-wrap items-stretch gap-10">
 					<ul class="flex flex-wrap gap-3">
 						<li class="swatch-card">
-							<div class="bg-outline" />
-							<p>{t.semantic.brand.colors.outline}</p>
-							<p>base</p>
+							<div class="__color bg-outline" />
+							<div class="__description">
+								<p>{t.semantic.brand.colors.outline}</p>
+								<p>base</p>
+							</div>
 						</li>
 						<li class="swatch-card">
-							<div class="bg-outline-100" />
-							<p>{t.semantic.brand.colors.outline}</p>
-							<p>100</p>
+							<div class="__color bg-outline-100" />
+							<div class="__description">
+								<p>{t.semantic.brand.colors.outline}</p>
+								<p>100</p>
+							</div>
 						</li>
 						<li class="swatch-card">
-							<div class="bg-outline-200" />
-							<p>{t.semantic.brand.colors.outline}</p>
-							<p>200</p>
+							<div class="__color bg-outline-200" />
+							<div class="__description">
+								<p>{t.semantic.brand.colors.outline}</p>
+								<p>200</p>
+							</div>
 						</li>
 					</ul>
+
+					<div class="swatch-card">
+						<div class="__color bg-link" />
+						<div class="__description">
+							<p>{t.semantic.brand.colors.link}</p>
+						</div>
+					</div>
+
+					<div class="swatch-card">
+						<div class="__color bg-neutral" />
+						<div class="__description">
+							<p>{t.semantic.brand.colors.neutral}</p>
+						</div>
+					</div>
+
+					<div class="swatch-card">
+						<div class="__color bg-gradient-to-t from-neutral to-transparent" />
+						<div class="__description">
+							<p>{t.semantic.brand.colors.gradient}</p>
+						</div>
+					</div>
 				</div>
 			</section>
 
@@ -280,7 +319,7 @@
 		margin-top: calc(-1 * theme('spacing.header'));
 		padding-top: calc(theme('spacing.header') + 20px);
 		padding-bottom: 80px;
-		background: theme('colors.design.bg.2');
+		background: theme('colors.neutral.DEFAULT');
 	}
 
 	.swatch {
@@ -358,36 +397,37 @@
 
 	.swatch-card {
 		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+
 		width: fit-content;
-		background-color: theme('colors.neutral.200');
+
 		border-radius: 4px;
 
-		& div {
+		& .__color {
 			aspect-ratio: 1 / 1;
 			width: 100%;
 			min-width: 100px;
 			height: auto;
 		}
 
-		& p {
-			margin-block-start: 12px;
-			margin-block-end: 8px;
-			padding-inline: 12px;
+		& .__description {
+			flex: 1;
+			padding: 12px;
+			background-color: theme('colors.grayscale.200');
 
-			font-size: theme('fontSize.sm');
-			line-height: 1;
-			color: black;
+			& p {
+				font-size: theme('fontSize.sm');
+				line-height: 1;
+				color: black;
 
-			&:first-of-type {
-				font-weight: theme('fontWeight.medium');
-			}
+				&:first-of-type {
+					font-weight: theme('fontWeight.medium');
+				}
 
-			&:not(:first-of-type) {
-				margin-block-start: 8px;
-			}
-
-			&:last-child {
-				margin-bottom: 12px;
+				&:not(:first-of-type) {
+					margin-block-start: 8px;
+				}
 			}
 		}
 	}

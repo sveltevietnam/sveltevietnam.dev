@@ -118,7 +118,12 @@
 
 <style lang="postcss">
 	.community {
-		--gradient-offset: 200px;
+		--padding-top: 80px;
+		--padding-bottom: 80px;
+		--gradient-top: 130px;
+		--gradient-bottom: 130px;
+
+		position: relative;
 
 		/* overflow: hidden; */
 
@@ -130,19 +135,58 @@
       'shapes'
       'ctas'; */
 
-		padding-top: 80px;
-		padding-bottom: 80px;
-		background: linear-gradient(
-			to bottom,
-			theme('colors.design.bg.1'),
-			theme('colors.design.bg.2') var(--gradient-offset),
-			theme('colors.design.bg.2') calc(100% - var(--gradient-offset)),
-			theme('colors.design.bg.1') 100%
-		);
+		padding-top: var(--padding-top);
+		padding-bottom: var(--padding-bottom);
+
+		/* @screen pc {
+      grid-template-columns: minmax(560px, auto) auto;
+    } */
+
+		/* &::before, &::after {
+			content: '';
+
+			position: absolute;
+			z-index: -1;
+			left: 0;
+
+			width: 100%;
+			height: 130px;
+
+			@screen tb {
+				height: 360px;
+			}
+		}
+
+		&::before {
+			bottom: calc(100% - var(--padding-top));
+			background-image: linear-gradient(to top, theme('colors.neutral.DEFAULT'), transparent);
+		}
+
+		&::after {
+			top: calc(100% - var(--padding-bottom));
+			background-image: linear-gradient(to bottom, theme('colors.neutral.DEFAULT'), transparent);
+		} */
+
+		&::before {
+			content: '';
+
+			position: absolute;
+			z-index: -1;
+			top: calc(var(--padding-top) - var(--gradient-top));
+			right: 0;
+			bottom: calc(var(--padding-bottom) - var(--gradient-bottom));
+			left: 0;
+
+			background-image: linear-gradient(
+				to bottom,
+				transparent,
+				theme('colors.neutral.DEFAULT') var(--gradient-top),
+				theme('colors.neutral.DEFAULT') calc(100% - var(--gradient-bottom)),
+				transparent
+			);
+		}
 
 		@screen tb {
-			--gradient-offset: 200px;
-
 			/* grid-template-areas:
         'title shapes'
         'description shapes'
@@ -150,12 +194,10 @@
       grid-template-columns: minmax(380px, auto) auto; */
 
 			/* justify-content: space-between; */
-			padding-top: 160px;
+			--padding-top: 160px;
+			--gradient-top: 360px;
+			--gradient-bottom: 360px;
 		}
-
-		/* @screen pc {
-      grid-template-columns: minmax(560px, auto) auto;
-    } */
 	}
 
 	.section-title {

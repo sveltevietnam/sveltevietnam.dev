@@ -10,7 +10,7 @@ export const en = {
 			amber: 'Amber',
 			emerald: 'Emerald',
 			blue: 'Blue',
-			neutral: 'Neutral',
+			stone: 'Stone',
 		},
 	},
 	semantic: {
@@ -31,6 +31,8 @@ export const en = {
 				secondary: 'Secondary',
 				link: 'Hyperlink',
 				outline: 'Outline',
+				neutral: 'Neutral',
+				gradient: 'Gradient',
 			},
 		},
 		status: {

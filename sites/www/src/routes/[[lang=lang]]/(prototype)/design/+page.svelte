@@ -110,7 +110,7 @@
 		margin-top: calc(-1 * theme('spacing.header'));
 		padding-top: calc(theme('spacing.header') + 20px);
 		padding-bottom: 80px;
-		background: theme('colors.design.bg.2');
+		background: theme('colors.neutral.DEFAULT');
 	}
 
 	.logo-card-wrapper {

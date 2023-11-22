@@ -93,10 +93,7 @@
 		</li>
 	</ul>
 	<div class="footer-bottom c-container-design tp-cap2">
-		<p class="footer-version">
-			{t.version}
-			{version}
-		</p>
+		<p>{t.version} {version}</p>
 		<p class="footer-info">
 			<span>
 				{new Date().getFullYear()} © {commonT[lang].sveltevienam}
@@ -137,7 +134,7 @@
 <style lang="postcss">
 	footer {
 		position: relative;
-		background-color: theme('colors.design.bg.2');
+		background-color: theme('colors.neutral.DEFAULT');
 		border-top: 1px solid theme('colors.outline.DEFAULT');
 
 		&::before {
@@ -151,11 +148,7 @@
 
 			height: 150px;
 
-			background: linear-gradient(
-				to bottom,
-				theme('colors.design.bg.1'),
-				theme('colors.design.bg.2') 100%
-			);
+			background: linear-gradient(to bottom, transparent, theme('colors.neutral.DEFAULT') 100%);
 
 			@screen pc {
 				height: 200px;
@@ -282,10 +275,6 @@
 			padding-top: 12px;
 			padding-bottom: 12px;
 		}
-	}
-
-	.footer-version {
-		color: theme('colors.design.neutral.2');
 	}
 
 	.footer-info {
