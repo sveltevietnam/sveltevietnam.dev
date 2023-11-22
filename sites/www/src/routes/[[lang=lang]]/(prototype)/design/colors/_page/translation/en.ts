@@ -3,8 +3,7 @@ export const en = {
 	primitives: {
 		title: 'Primitive Colors',
 		colors: {
-			white: 'White',
-			black: 'Black',
+			grayscale: 'Grayscale',
 			orange: 'Orange',
 			green: 'Green',
 			folly: 'Folly',
@@ -31,6 +30,7 @@ export const en = {
 				primary: 'Primary',
 				secondary: 'Secondary',
 				link: 'Hyperlink',
+				outline: 'Outline',
 			},
 		},
 		status: {

@@ -3,8 +3,7 @@ export const vi = {
 	primitives: {
 		title: 'Màu gốc (Primitive)',
 		colors: {
-			white: 'Trắng (white)',
-			black: 'Đen (black)',
+			grayscale: 'Thang xám (grayscale)',
 			orange: 'Cam (orange)',
 			green: 'Lục đậm (green)',
 			folly: 'Tím (folly)',
@@ -31,6 +30,7 @@ export const vi = {
 				primary: 'Chính',
 				secondary: 'Phụ',
 				link: 'Đường dẫn',
+				outline: 'Nét ngoài',
 			},
 		},
 		status: {

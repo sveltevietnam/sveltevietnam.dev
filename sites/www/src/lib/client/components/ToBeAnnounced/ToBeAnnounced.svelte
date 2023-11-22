@@ -12,9 +12,7 @@
 		</div>
 	</div>
 {:else if variant === 'figure'}
-	<div
-		class="{cls} flex w-full flex-col items-center justify-center rounded-[16px] border border-design-border-1 p-8"
-	>
+	<div class="{cls} flex w-full flex-col items-center justify-center rounded-[16px] border p-8">
 		<svg inline-src="./tba-figure.svg" class="m-auto w-[357px] max-w-full" />
 		<div class="mt-6">
 			<slot />

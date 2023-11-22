@@ -105,7 +105,7 @@
 
 		opacity: var(--opacity);
 		background-color: theme('colors.design.bg.1');
-		border-bottom: 1px solid theme('colors.design.border.1');
+		border-bottom: 1px solid theme('colors.outline.DEFAULT');
 	}
 
 	header {

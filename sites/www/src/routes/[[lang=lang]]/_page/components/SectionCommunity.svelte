@@ -95,7 +95,7 @@
     <img class="polygon" src={communityShapePolygon} alt="polygon" width="308" height="390" />
     <img class="star" src={communityShapeStar} alt="star" width="181" height="181" />
   </div> -->
-	<ul class="ctas divide-border c-intersect divide-y" use:intersect>
+	<ul class="ctas c-intersect divide-y divide-outline" use:intersect>
 		<li>
 			<a class="c-link c-link--box font-medium" href={SOCIAL_LINKS.DISCORD} external>
 				<span>{t.ctas.discord}</span>

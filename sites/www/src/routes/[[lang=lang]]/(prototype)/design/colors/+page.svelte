@@ -59,36 +59,29 @@
 			<h2 class="tp-h2 font-medium">{t.primitives.title}</h2>
 
 			<section>
-				<h3 class="tp-h3 font-medium">{t.primitives.colors.white}</h3>
-				<ul class="primitive-group">
-					<li class="swatch bg-white-50">50</li>
-					<li class="swatch bg-white-100">100</li>
-					<li class="swatch bg-white-200">200</li>
-					<li class="swatch bg-white-300">300</li>
-					<li class="swatch bg-white-400">400</li>
-					<li class="swatch bg-white-500">500</li>
-					<li class="swatch bg-white-600">600</li>
-					<li class="swatch bg-white-700">700</li>
-					<li class="swatch bg-white-800">800</li>
-					<li class="swatch bg-white-900">900</li>
-					<li class="swatch primitive-base border border-black bg-white text-black">base</li>
-				</ul>
-			</section>
-
-			<section>
-				<h3 class="tp-h3 font-medium">{t.primitives.colors.black}</h3>
-				<ul class="primitive-group">
-					<li class="swatch bg-black-50">50</li>
-					<li class="swatch bg-black-100">100</li>
-					<li class="swatch bg-black-200">200</li>
-					<li class="swatch bg-black-300">300</li>
-					<li class="swatch bg-black-400">400</li>
-					<li class="swatch bg-black-500">500</li>
-					<li class="swatch bg-black-600">600</li>
-					<li class="swatch bg-black-700">700</li>
-					<li class="swatch bg-black-800">800</li>
-					<li class="swatch bg-black-900">900</li>
-					<li class="swatch primitive-base bg-black">base</li>
+				<h3 class="tp-h3 font-medium">{t.primitives.colors.grayscale}</h3>
+				<ul class="primitive-group grayscale">
+					<li
+						class="swatch primitive-base border border-grayscale-black bg-white text-grayscale-black"
+					>
+						white
+					</li>
+					<li class="swatch bg-grayscale-50">50</li>
+					<li class="swatch bg-grayscale-100">100</li>
+					<li class="swatch bg-grayscale-200">200</li>
+					<li class="swatch bg-grayscale-300">300</li>
+					<li class="swatch bg-grayscale-400">400</li>
+					<li class="swatch bg-grayscale-500">500</li>
+					<li class="swatch bg-grayscale-600">600</li>
+					<li class="swatch bg-grayscale-700">700</li>
+					<li class="swatch bg-grayscale-800">800</li>
+					<li class="swatch bg-grayscale-900">900</li>
+					<li class="swatch bg-grayscale-950">950</li>
+					<li
+						class="swatch primitive-base border border-grayscale-white bg-grayscale-black text-grayscale-white"
+					>
+						black
+					</li>
 				</ul>
 			</section>
 
@@ -202,9 +195,29 @@
 			<section class="mt-[60px] max-w-full space-y-[60px] overflow-auto">
 				<h3 class="tp-h3 font-medium">{t.semantic.brand.title}</h3>
 
-				<div class="swatch-card">
-					<div class="bg-link" />
-					<p>{t.semantic.brand.colors.link}</p>
+				<div class="flex flex-wrap gap-10">
+					<div class="swatch-card">
+						<div class="bg-link" />
+						<p>{t.semantic.brand.colors.link}</p>
+					</div>
+
+					<ul class="flex flex-wrap gap-3">
+						<li class="swatch-card">
+							<div class="bg-outline" />
+							<p>{t.semantic.brand.colors.outline}</p>
+							<p>base</p>
+						</li>
+						<li class="swatch-card">
+							<div class="bg-outline-100" />
+							<p>{t.semantic.brand.colors.outline}</p>
+							<p>100</p>
+						</li>
+						<li class="swatch-card">
+							<div class="bg-outline-200" />
+							<p>{t.semantic.brand.colors.outline}</p>
+							<p>200</p>
+						</li>
+					</ul>
 				</div>
 			</section>
 
@@ -238,7 +251,7 @@
 										</div>
 									</td>
 									<td>
-										<div class="flex flex-wrap items-center justify-center gap-2">
+										<div class="flex flex-wrap items-center justify-center gap-2 text-sm">
 											<p class="inline {statusColorClasses[status].text}">
 												{t.semantic.common.text}
 											</p>
@@ -277,7 +290,7 @@
 		border-radius: 4px;
 
 		&.swatch--status {
-			padding: 16px;
+			padding: 12px;
 			font-size: theme('fontSize.sm');
 		}
 	}
@@ -292,7 +305,7 @@
 		font-size: 18px;
 		font-weight: theme('fontWeight.medium');
 		line-height: 1;
-		color: theme('colors.black.DEFAULT');
+		color: theme('colors.grayscale.black');
 		text-align: center;
 
 		@screen tb {
@@ -304,12 +317,12 @@
 		}
 
 		:global(:where(& > *:nth-child(n + 7))) {
-			color: theme('colors.white.DEFAULT');
+			color: theme('colors.grayscale.white');
 		}
 
 		:global(:where(& .primitive-base)) {
 			grid-column: span 2;
-			color: theme('colors.white.DEFAULT');
+			color: theme('colors.grayscale.white');
 
 			@screen tb {
 				grid-column: span 5;
@@ -317,6 +330,28 @@
 
 			@screen pc {
 				grid-column: span 10;
+			}
+		}
+
+		&.grayscale {
+			@screen tb {
+				grid-template-columns: repeat(6, 1fr);
+			}
+
+			@screen pc {
+				grid-template-columns: repeat(11, 1fr);
+			}
+
+			:global(:where(& .primitive-base)) {
+				/* grid-column: span 2; */
+
+				@screen tb {
+					grid-column: span 6;
+				}
+
+				@screen pc {
+					grid-column: span 11;
+				}
 			}
 		}
 	}
@@ -335,10 +370,25 @@
 		}
 
 		& p {
-			padding: 12px;
+			margin-block-start: 12px;
+			margin-block-end: 8px;
+			padding-inline: 12px;
+
 			font-size: theme('fontSize.sm');
 			line-height: 1;
 			color: black;
+
+			&:first-of-type {
+				font-weight: theme('fontWeight.medium');
+			}
+
+			&:not(:first-of-type) {
+				margin-block-start: 8px;
+			}
+
+			&:last-child {
+				margin-bottom: 12px;
+			}
 		}
 	}
 
@@ -346,9 +396,9 @@
 		& td,
 		& th {
 			padding: 8px;
-			border-right: 1px solid theme('colors.design.border.1');
-			border-bottom: 1px solid theme('colors.design.border.1');
-			border-left: 1px solid theme('colors.design.border.1');
+			border-right: 1px solid theme('colors.outline.DEFAULT');
+			border-bottom: 1px solid theme('colors.outline.DEFAULT');
+			border-left: 1px solid theme('colors.outline.DEFAULT');
 
 			&:first-child {
 				border-left: none;
@@ -380,13 +430,13 @@
 
 			font-size: theme('fontSize.xs');
 			line-height: 1;
-			color: theme('colors.white.DEFAULT');
+			color: theme('colors.grayscale.white');
 			text-align: center;
 
 			border-radius: 50%;
 
 			@dark global {
-				color: theme('colors.black.DEFAULT');
+				color: theme('colors.grayscale.black');
 			}
 		}
 	}

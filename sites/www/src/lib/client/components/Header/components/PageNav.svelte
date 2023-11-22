@@ -11,7 +11,7 @@
 </script>
 
 <nav aria-label="pages" data-sveltekit-preload-data="hover">
-	<ul class="sp:divide-y sp:divide-design-border-1 {cls}">
+	<ul class="sp:divide-y sp:divide-outline {cls}">
 		{#each HEADER_PATHS as href}
 			{@const current = isCurrentPage(pathname, href)}
 			<li data-current={current}>

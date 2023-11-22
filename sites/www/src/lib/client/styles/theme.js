@@ -41,6 +41,7 @@ export const theme = {
 			...primitives,
 			...semantics,
 			grayscale: {
+				...primitives.grayscale,
 				light: {
 					100: '#ffffff',
 					200: '#E5E5E5',
@@ -73,9 +74,6 @@ export const theme = {
 				link: {
 					DEFAULT: 'var(--color-link)',
 					title: 'var(--color-link-title)',
-				},
-				border: {
-					1: 'var(--color-border-1)',
 				},
 				grayscale: {
 					light: {

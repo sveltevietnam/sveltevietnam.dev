@@ -2,6 +2,11 @@
 	/* link */
 	--color-link: theme('colors.orange.DEFAULT');
 
+	/* outline */
+	--color-outline: theme('colors.grayscale.200');
+	--color-outline-100: theme('colors.grayscale.300');
+	--color-outline-200: theme('colors.grayscale.950');
+
 	/* info */
 	--color-info-surface: theme('colors.blue.50');
 	--color-info-surface-100: theme('colors.blue.100');
@@ -34,6 +39,11 @@
 @define-mixin colors-dark {
 	/* link */
 	--color-link: theme('colors.orange.500');
+
+	/* outline */
+	--color-outline: theme('colors.grayscale.800');
+	--color-outline-100: theme('colors.grayscale.700');
+	--color-outline-200: theme('colors.grayscale.300');
 
 	/* info */
 	--color-info-surface: theme('colors.blue.900');

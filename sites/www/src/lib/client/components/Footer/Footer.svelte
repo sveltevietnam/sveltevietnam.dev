@@ -138,7 +138,7 @@
 	footer {
 		position: relative;
 		background-color: theme('colors.design.bg.2');
-		border-top: 1px solid theme('colors.design.border.1');
+		border-top: 1px solid theme('colors.outline.DEFAULT');
 
 		&::before {
 			content: '';
@@ -272,7 +272,7 @@
 		padding-top: 20px;
 		padding-bottom: 20px;
 
-		border-top: 1px solid theme('colors.design.border.1');
+		border-top: 1px solid theme('colors.outline.DEFAULT');
 
 		@screen pc {
 			flex-direction: row;

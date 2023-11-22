@@ -181,7 +181,7 @@
 	<div class="c-container-design pb-40 pt-20">
 		{#each TYPOGRAPHY as typo, i (typo.name)}
 			{#if i > 0}
-				<div class="my-12 h-px w-full bg-design-border-1" />
+				<div class="my-12 h-px w-full bg-outline" />
 			{/if}
 			<section>
 				<div class="grid grid-cols-[1fr,auto,auto] gap-x-8 gap-y-1">
@@ -225,7 +225,7 @@
 					</div>
 				</div>
 				<ul
-					class="{typo.class} flex h-full flex-col items-center justify-center border border-design-border-1 p-4 text-right tb:text-center"
+					class="{typo.class} flex h-full flex-col items-center justify-center border p-4 text-right tb:text-center"
 				>
 					{#each ['font-bold', 'font-medium', 'font-normal'] as weight}
 						<li class={weight}>{typo.example}</li>

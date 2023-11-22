@@ -31,10 +31,6 @@
 		--color-bg-300: theme('colors.grayscale.light.300');
 		--color-bg-400: theme('colors.grayscale.light.400');
 
-		/* reactive colors */
-		--color-link-title: theme('colors.design.neutral.2');
-
-		--color-border-1: theme('colors.design.grayscale.light.3');
 		--color-fg-1: theme('colors.design.grayscale.dark.1');
 		--color-fg-2: theme('colors.design.grayscale.dark.2');
 		--color-bg-1: theme('colors.design.grayscale.light.1');
@@ -55,13 +51,18 @@
 			--color-bg-400: theme('colors.grayscale.dark.400');
 
 			/* reactive colors */
-			--color-border-1: theme('colors.design.grayscale.dark.4');
 			--color-fg-1: theme('colors.design.grayscale.light.1');
 			--color-fg-2: theme('colors.design.grayscale.light.2');
 			--color-bg-1: theme('colors.design.grayscale.dark.1');
 			--color-bg-2: theme('colors.design.grayscale.dark.2');
 			--color-shadow: theme(colors.design.grayscale.light.1 / 10%);
 		}
+	}
+
+	*,
+	::before,
+	::after {
+		border-color: inherit;
 	}
 
 	html {
@@ -71,6 +72,7 @@
 
 		color: theme('colors.design.fg.1');
 		background-color: theme('colors.design.bg.1');
+		border-color: theme('colors.outline.DEFAULT');
 	}
 
 	*:disabled {

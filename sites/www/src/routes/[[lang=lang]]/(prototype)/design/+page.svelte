@@ -32,9 +32,9 @@
 			<section class="space-y-12">
 				<h3 class="tp-h3 font-medium">{t.logo.concept.title}</h3>
 				<ul class="flex items-center gap-8 sp:flex-col">
-					<li class="border border-design-border-1 px-12 py-6">{t.logo.concept.inspiration}</li>
-					<li class="border border-design-border-1 px-12 py-6">{t.logo.concept.vietnam}</li>
-					<li class="border border-design-border-1 px-12 py-6">{t.logo.concept.community}</li>
+					<li class="border px-12 py-6">{t.logo.concept.inspiration}</li>
+					<li class="border px-12 py-6">{t.logo.concept.vietnam}</li>
+					<li class="border px-12 py-6">{t.logo.concept.community}</li>
 				</ul>
 			</section>
 
@@ -82,7 +82,7 @@
 
 			<section class="space-y-12">
 				<h3 class="tp-h3 font-medium">{t.logo.typeface.title}</h3>
-				<div class="w-fit border border-design-border-1 px-4 py-4 font-inter tb:px-10 tb:py-5">
+				<div class="w-fit border px-4 py-4 font-inter tb:px-10 tb:py-5">
 					<p class="typeface-caption">Typeface</p>
 					<p class="typeface-heading">Inter</p>
 					<div class="my-3 h-px w-full bg-design-fg-1" />
@@ -126,7 +126,7 @@
 
 		padding: 32px 52px;
 
-		border: 1px solid theme('colors.design.border.1');
+		border: 1px solid theme('colors.outline.DEFAULT');
 	}
 
 	.typeface-caption {

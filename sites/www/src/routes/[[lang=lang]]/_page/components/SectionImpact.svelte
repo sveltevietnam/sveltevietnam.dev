@@ -243,10 +243,10 @@
 		width: 80px;
 		height: 2px;
 		appearance: none;
-		background-color: theme('colors.design.border.1');
+		background-color: theme('colors.outline.DEFAULT');
 
 		&::-webkit-progress-bar {
-			background-color: theme('colors.design.border.1');
+			background-color: theme('colors.outline.DEFAULT');
 		}
 
 		&::-moz-progress-bar {
