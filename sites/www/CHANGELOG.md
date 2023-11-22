@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.0-next.24
+
+### Minor Changes
+
+- [`0c8e953`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/0c8e953db746b042f58eef90dc4d25d8d80e100e) Thanks [@vnphanquang](https://github.com/vnphanquang)! - Consistent linear gradient background, stone color primitive, and neutral semantic color
+
+- [`af7c61c`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/af7c61c02d45b27598f3a72de4618de3a6f77033) Thanks [@vnphanquang](https://github.com/vnphanquang)! - consistent foreground & background colors
+
+- [`ab81c69`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/ab81c69431d0edf13a966447221983c7244797e6) Thanks [@vnphanquang](https://github.com/vnphanquang)! - revamped and consistent c-link css component with new dedicated link color
+
+### Patch Changes
+
+- [`9922ca9`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/9922ca9b8115e60647216444f32e6e97efe0b12c) Thanks [@vnphanquang](https://github.com/vnphanquang)! - Consistent border colors as 'outline' design token name
+
 ## 1.0.0-next.23
 
 ### Patch Changes
