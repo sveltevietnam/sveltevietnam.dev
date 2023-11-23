@@ -27,11 +27,14 @@
 	$: ({ topPosts, otherPosts, topExternalPost, otherExternalPosts } = splitPosts(data.posts));
 </script>
 
-<main class="c-container-design">
-	<div class="mt-6" use:intersect>
+<main>
+	<div class="c-container-design mt-6" use:intersect>
 		<Breadcrumbs breadcrumbs={data.breadcrumbs} />
 	</div>
-	<section class="mb-[80px] tb:mb-[120px] tb:flex tb:flex-row tb:justify-between" use:intersect>
+	<section
+		class="c-container-design mb-[80px] tb:mb-[120px] tb:flex tb:flex-row tb:justify-between"
+		use:intersect
+	>
 		<div class="mt-8 tb:mt-[100px]">
 			<h1 class="tp-h1 uppercase">{t.title}</h1>
 			<p class="tp-h4 mt-6 tb:mt-8">{t.subtitle}</p>
@@ -46,7 +49,7 @@
 	</section>
 	<div class="space-y-[60px] tb:space-y-[120px]">
 		{#if topPosts.length || topExternalPost}
-			<section class="tb:gap-[60px]">
+			<section class="c-container-design tb:gap-[60px]">
 				<ConsecutiveFadeUpIntro selector=".char">
 					<h2 class="tp-h2 uppercase">
 						<SplitText text={t.recent.title} />
@@ -76,7 +79,7 @@
 			</section>
 		{/if}
 
-		<div class="grid grid-cols-1 gap-[60px] pc:grid-cols-2">
+		<div class="gradient-wrapper c-container-design grid grid-cols-1 gap-[60px] pc:grid-cols-2">
 			<section>
 				<ConsecutiveFadeUpIntro selector=".char">
 					<h2 class="tp-h2 uppercase">
@@ -124,7 +127,7 @@
 			</section>
 		</div>
 
-		<div class="grid grid-cols-1 gap-[60px] tb:grid-cols-[2fr,1fr]">
+		<div class="c-container-design grid grid-cols-1 gap-[60px] tb:grid-cols-[2fr,1fr]">
 			<section>
 				<ConsecutiveFadeUpIntro selector=".char">
 					<h2 class="tp-h2 uppercase after:mt-2 after:separator">
@@ -188,3 +191,37 @@
 		</div>
 	</div>
 </main>
+
+<style lang="postcss">
+	.gradient-wrapper {
+		--gradient-height: 160px;
+		--gradient-offset: 80px;
+
+		position: relative;
+
+		&::before {
+			pointer-events: none;
+			content: '';
+
+			position: absolute;
+			z-index: -1;
+			top: calc(var(--gradient-offset) - var(--gradient-height));
+			right: 0;
+			bottom: calc(var(--gradient-offset) - var(--gradient-height));
+			left: 0;
+
+			background: linear-gradient(
+				to bottom,
+				transparent,
+				theme('colors.neutral.DEFAULT') var(--gradient-offset),
+				theme('colors.neutral.DEFAULT') calc(100% - var(--gradient-offset)),
+				transparent
+			);
+		}
+
+		@screen tb {
+			--gradient-height: 280px;
+			--gradient-offset: 132px;
+		}
+	}
+</style>

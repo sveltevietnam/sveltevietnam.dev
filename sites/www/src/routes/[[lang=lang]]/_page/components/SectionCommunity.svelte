@@ -120,83 +120,36 @@
 	.community {
 		--padding-top: 80px;
 		--padding-bottom: 80px;
-		--gradient-top: 130px;
-		--gradient-bottom: 130px;
+		--gradient-top-height: 130px;
+		--gradient-bottom-height: 130px;
 
 		position: relative;
-
-		/* overflow: hidden; */
-
-		/* display: grid; */
-
-		/* grid-template-areas:
-      'title'
-      'description'
-      'shapes'
-      'ctas'; */
-
 		padding-top: var(--padding-top);
 		padding-bottom: var(--padding-bottom);
 
-		/* @screen pc {
-      grid-template-columns: minmax(560px, auto) auto;
-    } */
-
-		/* &::before, &::after {
-			content: '';
-
-			position: absolute;
-			z-index: -1;
-			left: 0;
-
-			width: 100%;
-			height: 130px;
-
-			@screen tb {
-				height: 360px;
-			}
-		}
-
-		&::before {
-			bottom: calc(100% - var(--padding-top));
-			background-image: linear-gradient(to top, theme('colors.neutral.DEFAULT'), transparent);
-		}
-
-		&::after {
-			top: calc(100% - var(--padding-bottom));
-			background-image: linear-gradient(to bottom, theme('colors.neutral.DEFAULT'), transparent);
-		} */
-
 		&::before {
 			content: '';
 
 			position: absolute;
 			z-index: -1;
-			top: calc(var(--padding-top) - var(--gradient-top));
+			top: calc(var(--padding-top) - var(--gradient-top-height));
 			right: 0;
-			bottom: calc(var(--padding-bottom) - var(--gradient-bottom));
+			bottom: calc(var(--padding-bottom) - var(--gradient-bottom-height));
 			left: 0;
 
 			background-image: linear-gradient(
 				to bottom,
 				transparent,
-				theme('colors.neutral.DEFAULT') var(--gradient-top),
-				theme('colors.neutral.DEFAULT') calc(100% - var(--gradient-bottom)),
+				theme('colors.neutral.DEFAULT') var(--gradient-top-height),
+				theme('colors.neutral.DEFAULT') calc(100% - var(--gradient-bottom-height)),
 				transparent
 			);
 		}
 
 		@screen tb {
-			/* grid-template-areas:
-        'title shapes'
-        'description shapes'
-        'ctas shapes';
-      grid-template-columns: minmax(380px, auto) auto; */
-
-			/* justify-content: space-between; */
 			--padding-top: 160px;
-			--gradient-top: 360px;
-			--gradient-bottom: 360px;
+			--gradient-top-height: 360px;
+			--gradient-bottom-height: 360px;
 		}
 	}
 
@@ -221,74 +174,4 @@
 			margin-top: 60px;
 		}
 	}
-
-	/* .shapes {
-    position: relative;
-
-    grid-area: shapes;
-
-    aspect-ratio: 285 / 277;
-    width: clamp(100px, 79.1vw, 285px);
-    height: auto;
-    margin-left: auto;
-
-    @screen sp {
-      margin-top: 20px;
-    }
-
-    @screen tb {
-      aspect-ratio: 453 / 478;
-      width: clamp(100px, 25vw, 453px);
-      height: auto;
-    }
-
-    & img {
-      position: absolute;
-
-      &.ellipse {
-        --parallax-x: 15px;
-        --parallax-y: -40px;
-
-        --rotate-x: -5deg;
-        --rotate-y: 10deg;
-        --rotate-z: -3deg;
-        --scale: 0.98;
-
-        bottom: 0;
-        left: 0;
-        width: 80%;
-        height: auto;
-      }
-
-      &.polygon {
-        --parallax-x: -20px;
-        --parallax-y: 30px;
-
-        --rotate-x: -4deg;
-        --rotate-y: 8deg;
-        --rotate-z: 2deg;
-        --scale: 0.97;
-
-        top: 0;
-        left: 3%;
-        width: 68%;
-        height: auto;
-      }
-
-      &.star {
-        --parallax-x: -20px;
-        --parallax-y: -60px;
-
-        --rotate-x: -10deg;
-        --rotate-y: 12deg;
-        --rotate-z: -5deg;
-        --scale: 1.05;
-
-        right: 0;
-        bottom: 19.3%;
-        width: 40%;
-        height: auto;
-      }
-    }
-  } */
 </style>
