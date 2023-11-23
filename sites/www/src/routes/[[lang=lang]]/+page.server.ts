@@ -3,7 +3,7 @@ import type { WithContext, Organization } from 'schema-dts';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
 import { SVELTE_VIETNAM_ORG } from '$shared/data/structured';
 import type { Language } from '$shared/services/i18n';
-import { ROADMAP_PATH, ROOT_URL } from '$shared/services/navigation';
+import { ROOT_URL } from '$shared/services/navigation';
 
 import type { PageServerLoad } from './$types';
 import { EXTERNAL_POSTS, INTERNAL_POSTS } from './blog/_page/data';
@@ -21,11 +21,6 @@ const metaTranslations: Record<Language, App.PageData['meta']> = {
 	},
 };
 
-const UNDER_CONSTRUCTION_NOTE = {
-	vi: `Trang Svelte Việt Nam vẫn đang trong giai đoạn phát triển. Dữ liệu hiển thị dưới đây chỉ để làm mẫu. Trong thời gian này bạn hãy tham gia <a href="${SOCIAL_LINKS.DISCORD}" target="_blank" class="c-link" rel="noreferrer">discord của cộng đồng</a> hoặc xem <a class="c-link" href=${ROADMAP_PATH}>Lộ trình</a>.`,
-	en: `The Svelte Vietnam site is still active development. The data shown below is for mocking only. In the meantime, have a chat with us at <a href="${SOCIAL_LINKS.DISCORD}" target="_blank" class="c-link" rel="noreferrer">our discord</a> or see the <a class="c-link" href=${ROADMAP_PATH}>Roadmap</a>.`,
-};
-
 export const load: PageServerLoad = async ({ depends, locals: { language } }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	const tMeta = metaTranslations[language];
@@ -39,7 +34,6 @@ export const load: PageServerLoad = async ({ depends, locals: { language } }) =>
 		jobs: [],
 		projects: [],
 		sponsors: [],
-		underConstructionNote: UNDER_CONSTRUCTION_NOTE[language],
 		meta: {
 			...tMeta,
 			canonical: `${ROOT_URL}/${language}`,
