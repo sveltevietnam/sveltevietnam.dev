@@ -1,4 +1,7 @@
-import { LOAD_DEPENDENCIES, SOCIAL_LINKS } from '$shared/constants';
+import type { WithContext, Organization } from 'schema-dts';
+
+import { LOAD_DEPENDENCIES } from '$shared/constants';
+import { SVELTE_VIETNAM_ORG } from '$shared/data/structured';
 import type { Language } from '$shared/services/i18n';
 import { ROADMAP_PATH, ROOT_URL } from '$shared/services/navigation';
 
@@ -40,6 +43,10 @@ export const load: PageServerLoad = async ({ depends, locals: { language } }) =>
 		meta: {
 			...tMeta,
 			canonical: `${ROOT_URL}/${language}`,
+			structured: JSON.stringify({
+				'@context': 'https://schema.org',
+				...SVELTE_VIETNAM_ORG,
+			} satisfies WithContext<Organization>),
 		},
 	};
 };

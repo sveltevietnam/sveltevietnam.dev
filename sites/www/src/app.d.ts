@@ -40,6 +40,7 @@ declare global {
 				description?: string;
 				keywords?: string[];
 				canonical?: string;
+				structured?: string; // Structured Data LD+JSON
 				og?: {
 					title?: string;
 					description?: string;

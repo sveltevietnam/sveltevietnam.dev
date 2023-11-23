@@ -73,6 +73,11 @@
 		href={localizeUrl($page.url, 'vi', LANGUAGES).toString()}
 	/>
 
+	<!-- structured data in ld+json -->
+	{#if meta?.structured}
+		{@html `${'<script type="application/ld+json">'}${meta.structured}${'</script>'}`}
+	{/if}
+
 	<meta name="mode" content={PUBLIC_MODE} />
 </svelte:head>
 
