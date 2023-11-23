@@ -7,7 +7,7 @@ export function alternateShapes() {
 	gsap.to('.intro-backdrop img', {
 		rotateX: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-x').toString(),
 		rotateY: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-y').toString(),
-		rotateZ: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-z-to').toString(),
+		rotateZ: (_, target: HTMLElement) => gsap.getProperty(target, '--rotate-z').toString(),
 		scale: (_, target: HTMLElement) => gsap.getProperty(target, '--scale').toString(),
 		repeat: -1,
 		yoyo: true,

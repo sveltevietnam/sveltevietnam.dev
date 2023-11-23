@@ -52,6 +52,11 @@
 </section>
 
 <style lang="postcss">
+	.events {
+		position: relative;
+		z-index: 2;
+	}
+
 	.listing {
 		margin-top: 40px;
 

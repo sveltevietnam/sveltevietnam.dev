@@ -15,13 +15,13 @@
 		createIntroTimeline,
 		createScrollTimeline,
 	} from './animation';
-	import introShapeEllipse from './images/intro-shape-ellipse.webp';
-	import introShapeStar from './images/intro-shape-star.webp';
-	import introShapeTriangleLarge from './images/intro-shape-triangle-large.webp';
-	import introShapeTriangleSmall from './images/intro-shape-triangle-small.webp';
-	import introSvelteImg from './images/intro-svelte.svg';
-	import introSvelteVietnamImg from './images/intro-sveltevietnam.svg';
-	import introVietnamImg from './images/intro-vietnam.svg';
+	import rhombusLargeImg from './images/rhombus-large.png?enhanced';
+	import rhombusSmallImg from './images/rhombus-small.png?enhanced';
+	import shapeSvelte from './images/shape-svelte.svg';
+	import shapeSvelteVietnamImg from './images/shape-sveltevietnam.svg';
+	import shapeVietnamImg from './images/shape-vietnam.svg';
+	import starImg from './images/star.png?enhanced';
+	import tabletImg from './images/tablet.png?enhanced';
 
 	const langStore = getLangContext();
 	$: lang = $langStore;
@@ -63,7 +63,7 @@
 	bind:this={sectionElement}
 >
 	<h1 title={commonT[lang].sveltevienam} class="intro-title">
-		<svg inline-src="./images/intro-title" width="824" height="301" />
+		<svg inline-src="./images/shape-title" width="824" height="301" />
 	</h1>
 	<div
 		class="intro-cards embla c-container-design"
@@ -82,7 +82,7 @@
 		<ul class="embla__container">
 			<li class="embla__slide intro-card intro-card--svelte">
 				<article>
-					<img src={introSvelteImg} alt="swirling winged-shaped star" width="60" height="60" />
+					<img src={shapeSvelte} alt="swirling winged-shaped star" width="60" height="60" />
 					<div>
 						<p class="tp-h3 font-bold">Svelte</p>
 						<div class="separator" aria-disabled />
@@ -92,7 +92,7 @@
 			</li>
 			<li class="embla__slide intro-card intro-card--vietnam">
 				<article>
-					<img src={introVietnamImg} alt="five-pointed star" width="60" height="60" />
+					<img src={shapeVietnamImg} alt="five-pointed star" width="60" height="60" />
 					<div>
 						<p class="tp-h3 font-bold">Vietnam</p>
 						<div class="separator" aria-disabled />
@@ -102,7 +102,7 @@
 			</li>
 			<li class="embla__slide intro-card intro-card--sveltevietnam">
 				<article>
-					<img src={introSvelteVietnamImg} alt="eight-pointed start" width="60" height="60" />
+					<img src={shapeSvelteVietnamImg} alt="eight-pointed start" width="60" height="60" />
 					<div>
 						<p class="tp-h3 font-bold">{commonT[lang].sveltevienam}</p>
 						<div class="separator" aria-disabled />
@@ -112,23 +112,15 @@
 			</li>
 		</ul>
 	</div>
+	<div aria-disabled class="intro-mesh">
+		<svg inline-src="./images/mesh" />
+		<div class="radial-gradients" />
+	</div>
 	<div aria-disabled class="intro-backdrop">
-		<img src={introShapeStar} alt="star" width="174" height="174" class="star" />
-		<img src={introShapeEllipse} alt="ellipse" width="317" height="505" class="ellipse" />
-		<img
-			src={introShapeTriangleLarge}
-			alt="triangle large"
-			width="461"
-			height="399"
-			class="triangle-large"
-		/>
-		<img
-			src={introShapeTriangleSmall}
-			alt="triangle small"
-			width="100"
-			height="86"
-			class="triangle-small"
-		/>
+		<enhanced:img src={starImg} alt="3D star" class="star" />
+		<enhanced:img src={tabletImg} alt="3D tablet" class="tablet" />
+		<enhanced:img src={rhombusLargeImg} alt="large 3D rhombus" class="rhombus-large" />
+		<enhanced:img src={rhombusSmallImg} alt="small 3D rhombus" class="rhombus-small" />
 	</div>
 </section>
 
@@ -279,6 +271,73 @@
 		}
 	}
 
+	.intro-mesh {
+		position: absolute;
+		z-index: -1;
+		top: calc(-1 * var(--header-height));
+		right: 0;
+		bottom: 0;
+		left: 0;
+
+		overflow: hidden;
+
+		max-width: 100%;
+
+		&::after {
+			content: '';
+
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			left: 0;
+
+			height: 250px;
+
+			background: linear-gradient(to bottom, transparent, theme('colors.bg.DEFAULT'));
+
+			@screen tb {
+				height: 400px;
+			}
+		}
+
+		& .radial-gradients {
+			&::before,
+			&::after {
+				content: '';
+
+				position: absolute;
+				top: 50%;
+				right: 0;
+				transform: translate(50%, -50%);
+
+				width: 400px;
+				height: 400px;
+
+				background: radial-gradient(theme('colors.bg.DEFAULT'), transparent);
+				border-radius: 50%;
+
+				@screen pc {
+					width: 600px;
+					height: 600px;
+				}
+			}
+
+			&::before {
+				left: 0;
+				transform: translate(-50%, -50%);
+			}
+		}
+
+		& svg {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+
+			opacity: 0.4;
+		}
+	}
+
 	.intro-backdrop {
 		position: absolute;
 		z-index: -1;
@@ -289,12 +348,15 @@
 		max-width: 100%;
 
 		& img {
+			/* sizing */
+			--width-pc: 500;
+			--width-sp: 200;
+
 			/* alternating pulsating animation */
 			--animation-delay: calc(var(--initial-transition-delay) + var(--initial-transition-duration));
 			--rotate-x: 0deg;
 			--rotate-y: 0deg;
-			--rotate-z-from: 0deg;
-			--rotate-z-to: 0deg;
+			--rotate-z: 0deg;
 			--scale: 1;
 
 			/* positioning */
@@ -308,30 +370,35 @@
 			position: absolute;
 			top: calc(var(--top) + var(--delta-top));
 			transform-origin: center;
-			transform: rotateX(0) rotateY(0) rotateZ(var(--rotate-z-from));
+			transform: rotateX(0) rotateY(0) rotateZ(0);
 
+			width: clamp(
+				calc(var(--width-sp) * 1px),
+				calc(100vw * var(--width-pc) / 1440),
+				calc(var(--width-pc) * 1px)
+			);
 			height: auto;
 
 			:global(html[data-splashed-at]) & {
 				transform: translateX(var(--initial-translate-x)) translateY(var(--initial-translate-y))
-					rotateX(0) rotateY(0) rotateZ(var(--rotate-z-from)) scale(1);
+					rotateX(0) rotateY(0) rotateZ(0) scale(1);
 				opacity: 0;
 			}
 		}
 
 		& .star {
+			--width-pc: 248;
+			--width-sp: 144;
 			--initial-translate-x: -200px;
 			--initial-translate-y: -200px;
 			--rotate-x: -10deg;
 			--rotate-y: 12deg;
-			--rotate-z-from: 0deg;
-			--rotate-z-to: 10deg;
+			--rotate-z: 10deg;
 			--scale: 1.05;
-			--top: 38px;
-			--right: calc(50% + 92px);
+			--top: 10px;
+			--right: calc(50% + 63px);
 
 			right: calc(var(--right) + var(--delta-right));
-			width: clamp(83px, 12vw, 174px);
 
 			@screen tb {
 				--top: 44px;
@@ -339,87 +406,84 @@
 			}
 
 			@screen pc {
-				--top: 15px;
-				--right: calc(50% + 281px);
+				--top: 0;
+				--right: calc(50% + 270px);
 			}
 		}
 
-		& .ellipse {
+		& .tablet {
+			--width-pc: 480;
+			--width-sp: 280;
 			--initial-translate-x: -200px;
 			--initial-translate-y: 50px;
 			--initial-transition-delay: 400ms;
 			--rotate-x: -5deg;
 			--rotate-y: 10deg;
-			--rotate-z-from: -38deg;
-			--rotate-z-to: -25deg;
+			--rotate-z: 10deg;
 			--scale: 0.98;
-			--top: 180px;
-			--right: calc(50% + 58px);
+			--top: 155px;
+			--right: calc(50% + 14px);
 
 			right: calc(var(--right) + var(--delta-right));
-			width: clamp(175px, 22vw, 317px);
 
 			@screen tb {
-				--top: 260px;
-				--right: calc(50% + 140px);
+				--top: 200px;
+				--right: calc(50% + 120px);
 			}
 
 			@screen pc {
-				--top: 321px;
-				--right: calc(50% + 165px);
+				--top: 269px;
+				--right: calc(50% + 135px);
 			}
 		}
 
-		& .triangle-small {
+		& .rhombus-small {
+			--width-pc: 188;
+			--width-sp: 110;
 			--initial-translate-x: 200px;
 			--initial-translate-y: -200px;
 			--initial-transition-delay: 300ms;
 			--rotate-x: -4deg;
 			--rotate-y: 8deg;
-			--rotate-z-from: -94deg;
-			--rotate-z-to: -80deg;
+			--rotate-z: -6deg;
 			--scale: 1.2;
-			--top: 25px;
-			--left: calc(50% + 64px);
+			--top: 0;
+			--left: calc(50% + 32px);
 
 			left: calc(var(--left) + var(--delta-left));
-			transform-origin: 50% calc(56%);
-			width: clamp(52px, 6.3vw, 94px);
 
 			@screen tb {
-				--top: 60px;
-				--left: calc(50% + 80px);
+				--left: calc(50% + 120px);
 			}
 
 			@screen pc {
-				--top: 42px;
+				--left: calc(50% + 110px);
 			}
 		}
 
-		& .triangle-large {
+		& .rhombus-large {
+			--width-pc: 658;
+			--width-sp: 384;
 			--initial-translate-x: 200px;
 			--initial-translate-y: 100px;
 			--initial-transition-delay: 200ms;
 			--rotate-x: -4deg;
 			--rotate-y: 8deg;
-			--rotate-z-from: -135deg;
-			--rotate-z-to: -140deg;
+			--rotate-z: -5deg;
 			--scale: 0.95;
-			--top: 88px;
-			--left: calc(50% + 83px);
+			--top: 74px;
+			--left: calc(50% - 4px);
 
 			left: calc(var(--left) + var(--delta-left));
-			transform-origin: 50% calc(65.5%);
-			width: clamp(255px, 32vw, 461px);
 
 			@screen tb {
-				--top: 160px;
-				--left: calc(50% + 120px);
+				--top: 180px;
+				--left: calc(50% + 32px);
 			}
 
 			@screen pc {
-				--top: 155px;
-				--left: calc(50% + 90px);
+				--top: 152px;
+				--left: calc(50% + 44px);
 			}
 		}
 	}

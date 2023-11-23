@@ -14,7 +14,7 @@ export const en = {
 		title: 'Community',
 		description: `Join the <a class="c-link" href=${SOCIAL_LINKS.DISCORD} target="_blank" rel="noreferrer">Svelte Vietnam Discord</a> and start having conversations, help or seek help from other members.<br>To contribute to the source code of this website or other open source projects from Svelte Vietnam, visit the <a class="c-link" href="${SOCIAL_LINKS.GITHUB}" target="_blank" rel="noreferrer">Svelte Vietnam Github</a> page.`,
 		ctas: {
-			discord: 'Join now at Discord',
+			discord: 'Join now in Discord',
 			nominate: 'Nominate contributor',
 			contribute: 'Contribute at Github',
 		},

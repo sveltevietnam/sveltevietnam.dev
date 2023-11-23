@@ -12,7 +12,7 @@
 	export let data: PageData;
 </script>
 
-<main class="pb-[120px] tb:pb-[200px]">
+<main class="relative pb-[120px] tb:pb-[200px]">
 	<SectionIntro />
 	<SectionCommunity />
 	<SectionEvents events={data.events} />
