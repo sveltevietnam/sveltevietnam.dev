@@ -17,7 +17,7 @@
 		let unsub: Unsubscriber;
 		ctx = gsap.context(() => {
 			const elements = node.querySelectorAll(selector);
-			gsap.set(elements, { opacity: 0, y: 50, rotate: 10 });
+			gsap.set(elements, { opacity: 0, y: 20, rotate: 10 });
 
 			const observer = new IntersectionObserver(
 				(entries) => {
@@ -38,9 +38,9 @@
 						opacity: 1,
 						y: 0,
 						rotate: 0,
-						duration: 0.4,
+						duration: 0.6,
 						ease: Back.easeOut.config(1.4),
-						stagger: 0.04,
+						stagger: 0.05,
 					});
 					observer?.unobserve(node);
 				}
