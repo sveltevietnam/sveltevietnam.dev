@@ -251,7 +251,7 @@
 												attribute: 'data-current',
 											},
 										}}
-										class="my-2 block tb:data-current:text-primary"
+										class="my-2 block tb:data-current:text-link"
 										class:ml-4={level === '3'}
 										class:ml-8={level === '4'}
 										class:ml-12={level === '5'}

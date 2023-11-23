@@ -98,7 +98,7 @@
 		}
 
 		&[aria-current]:not([aria-current='false']) {
-			color: var(--active-color);
+			color: theme('colors.link.DEFAULT');
 		}
 	}
 </style>

@@ -74,7 +74,7 @@
 							<button
 								on:click={() => colorSchemeStore.change(s.scheme)}
 								class="color-scheme-menu__option"
-								class:text-primary={$colorSchemeStore === s.scheme}
+								class:text-link={$colorSchemeStore === s.scheme}
 							>
 								<ColorSchemeIcon scheme={s.scheme} />
 								<span class="whitespace-nowrap">{t[s.scheme]}</span>
@@ -101,7 +101,7 @@
 		border-radius: 16px;
 
 		&:hover {
-			color: theme('colors.svelte');
+			color: theme('colors.link.DEFAULT');
 		}
 	}
 
@@ -112,7 +112,7 @@
 		padding: 10px;
 
 		&:hover {
-			color: theme('colors.svelte');
+			color: theme('colors.link.DEFAULT');
 		}
 
 		& span {

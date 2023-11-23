@@ -40,9 +40,7 @@ export const theme = {
 		colors: {
 			...primitives,
 			...semantics,
-			primary: '#ef4623',
 			svelte: '#ef4623',
-			// FIXME temporary, refactor once there is a consistent color palette
 		},
 		zIndex: {
 			px: '1',

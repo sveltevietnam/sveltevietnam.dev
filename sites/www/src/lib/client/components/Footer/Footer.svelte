@@ -36,7 +36,7 @@
 						{#each FOOTER_PATHS as href}
 							{@const current = isCurrentPage(pathname, href)}
 							<li>
-								<a aria-current={current} {href} class="c-link c-link--mixed"
+								<a aria-current={current} {href} class="c-link c-link--lazy"
 									>{getPathLabel(href, lang)}</a
 								>
 							</li>
@@ -48,13 +48,13 @@
 				<p class="footer-section-title tp-h4 font-medium">{t.contact.title}</p>
 				<ul>
 					<li>
-						<a href={SOCIAL_LINKS.DISCORD} class="c-link c-link--mixed" external>
+						<a href={SOCIAL_LINKS.DISCORD} class="c-link c-link--lazy" external>
 							<svg inline-src="simpleicon/discord" width="24" height="24" />
 							<span>{commonT[lang].sveltevienam}</span>
 						</a>
 					</li>
 					<li>
-						<a href="mailto:{EMAILS.CONTACT}" class="c-link c-link--mixed" external>
+						<a href="mailto:{EMAILS.CONTACT}" class="c-link c-link--lazy" external>
 							<svg inline-src="google/mail" width="24" height="24" />
 							<span>{EMAILS.CONTACT}</span>
 						</a>
@@ -120,13 +120,13 @@
 		<p class="footer-additional-links">
 			<a
 				href={CODE_OF_CONDUCT_PATH}
-				class="c-link c-link--mixed"
+				class="c-link c-link--lazy"
 				aria-current={isCurrentPage(pathname, CODE_OF_CONDUCT_PATH)}>{t.navigation.codeOfConduct}</a
 			>
 			<span aria-disabled class="vertical-separator">|</span>
-			<a href={RSS_PATH} class="c-link c-link--mixed" external>RSS</a>
+			<a href={RSS_PATH} class="c-link c-link--lazy" external>RSS</a>
 			<span aria-disabled class="vertical-separator">|</span>
-			<a href={SITEMAP_PATH} class="c-link c-link--mixed" external>Sitemap</a>
+			<a href={SITEMAP_PATH} class="c-link c-link--lazy" external>Sitemap</a>
 		</p>
 	</div>
 </footer>

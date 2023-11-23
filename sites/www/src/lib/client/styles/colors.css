@@ -1,8 +1,8 @@
 @define-mixin colors-light {
 	/* foreground */
 	--color-fg: theme('colors.grayscale.950');
-	--color-fg-100: theme('colors.grayscale.800');
-	--color-fg-200: theme('colors.grayscale.600');
+	--color-fg-100: theme('colors.grayscale.900');
+	--color-fg-200: theme('colors.grayscale.800');
 
 	/* background */
 	--color-bg: theme('colors.grayscale.white');
@@ -10,7 +10,7 @@
 	--color-bg-200: theme('colors.grayscale.100');
 
 	/* link */
-	--color-link: theme('colors.orange.DEFAULT');
+	--color-link: theme('colors.orange.700');
 
 	/* outline */
 	--color-outline: theme('colors.grayscale.200');
@@ -61,7 +61,7 @@
 	--color-bg-200: theme('colors.grayscale.800');
 
 	/* link */
-	--color-link: theme('colors.orange.500');
+	--color-link: theme('colors.orange.400');
 
 	/* outline */
 	--color-outline: theme('colors.grayscale.800');

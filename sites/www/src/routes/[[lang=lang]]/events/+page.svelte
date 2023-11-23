@@ -138,9 +138,11 @@
 						</svg>
 					</div>
 					<p class="mt-6 flex-1">{t.actions.sponsor.description}</p>
-					<a class="c-link w-fit text-xs" href="{SPONSOR_PATH}#why">
-						{t.actions.sponsor.whyNeedSponsor}
-					</a>
+					<p class="text-xs">
+						<a class="c-link" href="{SPONSOR_PATH}#why">
+							{t.actions.sponsor.whyNeedSponsor}
+						</a>
+					</p>
 					<a href={SPONSOR_PATH} class="c-btn mt-4">{t.actions.sponsor.cta}</a>
 				</section>
 				<p

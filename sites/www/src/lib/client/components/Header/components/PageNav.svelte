@@ -59,14 +59,7 @@
 
 	a {
 		--underline-height: 2px;
-
-		&:hover {
-			color: var(--active-color);
-		}
-
-		&[aria-current]:not([aria-current='false']) {
-			color: var(--active-color);
-		}
+		--transition-duration: 250ms;
 
 		@media (768px <= width <= 850px) {
 			font-size: calc(14 / 850 * 100vw);

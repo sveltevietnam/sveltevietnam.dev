@@ -31,7 +31,7 @@
 		&[data-line-highlighted] {
 			display: inline-block;
 			width: 100%;
-			background-color: #2d343f;
+			background-color: hsl(215deg 39% 18%);
 		}
 	}
 }

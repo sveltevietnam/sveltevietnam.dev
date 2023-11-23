@@ -79,9 +79,11 @@
 							<li>2. {@html t.actions.recruiter.steps.contact}</li>
 						</ul>
 					</div>
-					<a class="c-link mt-4 w-fit text-xs" href="{SPONSOR_PATH}#why">
-						{t.actions.recruiter.whyNeedSponsor}
-					</a>
+					<p class="mt-4 text-xs">
+						<a class="c-link" href="{SPONSOR_PATH}#why">
+							{t.actions.recruiter.whyNeedSponsor}
+						</a>
+					</p>
 					<a href={SPONSOR_PATH} class="c-btn mt-4">{t.actions.recruiter.cta}</a>
 				</section>
 				<section class="c-action-card" use:intersect id="mail">

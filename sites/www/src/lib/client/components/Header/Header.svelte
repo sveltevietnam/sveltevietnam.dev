@@ -109,7 +109,6 @@
 	}
 
 	header {
-		--active-color: theme('colors.svelte');
 		--transition-duration: 250ms;
 		--transition-timing-function: ease-in-out;
 
@@ -173,10 +172,10 @@
 		}
 
 		& a:hover {
-			color: var(--active-color);
+			color: theme('colors.link.DEFAULT');
 
 			& :global(svg) {
-				--logo-color-fg: theme('colors.svelte');
+				--logo-color-fg: theme('colors.link.DEFAULT');
 			}
 		}
 	}
