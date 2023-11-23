@@ -1,7 +1,5 @@
 <script>
   import devtoolsSSRImage from './images/devtools-ssr-html.webp';
-  import primitiveColorPaletteImage from './images/primitive-color-palette.webp';
-  import semanticColorPaletteImage from './images/semantic-color-palette.webp';
 </script>
 
 :::div c-callout c-callout--info
@@ -550,33 +548,15 @@ and `getColorSchemeContext` for accessing the context:
 
 ## Effective Collaboration with Designers
 
-The truth is, the above details are not the most complicated part; once we understand and implement them for the first time, the next times will be similar and easier. The harder part of making a dark mode, or any color system in general, is communication between designers and developers.
+The truth is, the above details are **not** the most complicated part; once we understand and implement them for the first time, the next will be similar and easier. The harder part of making a dark mode, or any color system in general, is communication between designers and developers.
 
 Each project and design team have their own conventions and standards, but the most important thing, from the perspective of a developer, is the presence of a technical voice in the design process, especially from the beginning. With my limited experience in the industry, what seems obvious to a developer is not always easy to understand for a designer, and vice versa. Collaboration between the two sides will simply help developers be able to use what designers make and avoid changes to the source code or design later down the road.
 
-Pay special attention to your color palette. Each color should be a design token that is communicated clearly to both designers and developers. Color palette is probably the first and most important element in any design system. Organizing a color palette to be compatible with applications with dark mode is be a bit more complicated than usual because each color can exist in two versions for two display modes. Here is how *sveltevietnam.dev* organizes its color palette, as an example.
+Pay special attention to your color palette. Each color should be a design token that is communicated clearly to both designers and developers. Color palette is probably the first and most important element in any design system. Organizing a color palette to be compatible with applications with dark mode is be a bit more complicated than usual because each color can exist in two versions for two display modes.
 
-First, we distinguish between primitive colors and semantic/contextual colors. Primitive colors are the basic colors we already know: blue, red, yellow, ...
+At *sveltevietnam.dev*, we distinguish between primitive colors and semantic/contextual colors. Primitive colors are the basic colors we already know: blue, red, yellow, ... Other colors will be built upon the these primitives, depending on different contexts within the application, i.e. colors for foreground or background, primary or secondary, status colors such as success, warning, error, ... To learn more about our implementation with this system, visit the dedicated [Colors of Svelte Vietnam](/design/colors) page.
 
-<img
-  src={primitiveColorPaletteImage}
-  alt="example of basic color palette of white: base, 50, 100, 200, 300, ..., 900"
-  class="rounded mx-auto max-w-xl"
-  loading="lazy"
-  decoding="async"
-/>
-
-Other colors will be built upon the these primitives, depending on different contexts within the application, i.e. colors for foreground or background, primary or secondary, status colors such as success, warning, error, ...
-
-<img
-  src={semanticColorPaletteImage}
-  alt="example of semantic color: primary color with two versions for light and dark mode"
-  class="rounded mx-auto max-w-2xl"
-  loading="lazy"
-  decoding="async"
-/>
-
-The *sveltevietnam.dev* project uses Figma as the design tool and takes advantage of the [Variable](https://help.figma.com/hc/en-us/sections/14506605769879-Variables) feature to represent the color palettes, which helps designers be aware of the corresponding design tokens that translate to CSS variables during the development process.
+The *sveltevietnam.dev* project also uses Figma as the design tool and takes advantage of the [Variable](https://help.figma.com/hc/en-us/sections/14506605769879-Variables) feature to represent the color palettes, which helps designers be aware of the corresponding design tokens that translate to CSS variables during the development process.
 
 ## Closing
 

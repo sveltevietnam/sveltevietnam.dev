@@ -1,7 +1,5 @@
 <script>
   import devtoolsSSRImage from './images/devtools-ssr-html.webp';
-  import primitiveColorPaletteImage from './images/primitive-color-palette.webp';
-  import semanticColorPaletteImage from './images/semantic-color-palette.webp';
 </script>
 
 :::div c-callout c-callout--info
@@ -545,33 +543,15 @@ Và sử dụng `getColorSchemeContext` để truy cập context:
 
 ## Hợp tác hiệu quả với thiết kế viên
 
-Thật ra, các chi tiết thực hiện bên trên không phải là điều phức tạp nhất; một khi ta đã hiểu và thực hiện lần đầu, các lần sau sẽ tương tự và dễ dàng hơn. Điều khó hơn trong việc làm ra một giao diện tối, hay nói chung về bất cứ hệ thống màu sắc nào, là giao tiếp hiệu quả giữa đội ngũ thiết kế và kỹ thuật.
+Thật ra, các chi tiết thực hiện bên trên **không** phải là điều phức tạp nhất; một khi ta đã hiểu và thực hiện lần đầu, các lần sau sẽ tương tự và dễ dàng hơn. Điều khó hơn trong việc làm ra một giao diện tối, hay nói chung về bất cứ hệ thống màu sắc nào, là giao tiếp hiệu quả giữa đội ngũ thiết kế và kỹ thuật.
 
 Mỗi dự án và đội ngũ thiết kế sẽ có những quy ước và cách làm riêng, tuy nhiên điều quan trọng nhất, đứng trên phương diện của một lập trình viên, là sự có mặt của tiếng nói kỹ thuật trong quá trình thiết kế, đặc biệt là từ những bước đầu. Với kinh nghiệm ít ỏi của mình trong ngành, những suy nghĩ tưởng chừng là hiển nhiên đối với lập trình viên không phải bao giờ cũng dễ hiểu đối với thiết kế viên, và ngược lại. Hợp tác giữa hai bên nói tóm lại sẽ giúp lập trình viên sử dụng được những gì thiết kế viên làm ra và tránh thay đổi tới mã nguồn hoặc bản vẽ về sau.
 
-Hãy chú ý tới thiết kế bảng màu (color palette). Mỗi màu nên là một "design token" được giao tiếp rõ ràng cho cả thiết kế viên và lập trình viên. Bảng màu có lẽ là yếu tố đầu tiên và quan trọng nhất trong mọi "design system". Cách tổ chức bảng màu để tương thích với các ứng dụng có chế độ tối sẽ phức tạp hơn bình thường một tí vì mỗi màu có thể tồn tại hai phiên bản cho hai giao diện tương tứng. Sau đây là cách *sveltevietnam.dev* tổ chức bảng màu.
+Hãy chú ý tới thiết kế bảng màu (color palette). Mỗi màu nên là một "design token" được giao tiếp rõ ràng cho cả thiết kế viên và lập trình viên. Bảng màu có lẽ là yếu tố đầu tiên và quan trọng nhất trong mọi "design system". Cách tổ chức bảng màu để tương thích với các ứng dụng có chế độ tối sẽ phức tạp hơn bình thường một tí vì mỗi màu có thể tồn tại hai phiên bản cho hai giao diện tương tứng.
 
-Trước tiên, cần phân biệt giữa bảng màu gốc (primitive colors) và bảng màu ngữ nghĩa (contextual/semantic colors). Bảng màu gốc là các màu cơ bản ta đã biết: xanh, đỏ, vàng, ...
+Tại *sveltevietnam.dev*, mình phân biệt giữa bảng màu gốc (primitive colors) và bảng màu ngữ nghĩa (contextual/semantic colors). Bảng màu gốc là các màu cơ bản ta đã biết: xanh, đỏ, vàng, ... Các màu khác sẽ được xây dựng dựa trên bảng màu cơ bản này tùy theo từng ngữ cảnh trong ứng dụng. Ví dụ, màu cho nền hay văn bản, chính (primary) hay phụ (secondary), thể hiện trạng thái như thành công, cảnh báo, thất bại, ... Để hiểu rõ thêm về cách triển khai hệ thống vừa nêu, bạn có thể ghé thăm trang [Màu sắc của Svelte Việt Nam](/design/colors).
 
-<img
-  src={primitiveColorPaletteImage}
-  alt="ví dụ bảng màu gốc: màu trắng base, 50, 100, 200, 300, ..., 900"
-  class="rounded mx-auto max-w-xl"
-  loading="lazy"
-  decoding="async"
-/>
-
-Các màu khác sẽ được xây dựng dựa trên bảng màu cơ bản này tùy theo từng ngữ cảnh trong ứng dụng. Ví dụ, màu cho nền hay văn bản, chính (primary) hay phụ (secondary), thể hiện trạng thái như thành công, cảnh báo, thất bại, ...
-
-<img
-  src={semanticColorPaletteImage}
-  alt="ví dụ bảng màu ngữ nghĩa: màu chính với hai phiên bản cho giao diện sáng và tối"
-  class="rounded mx-auto max-w-2xl"
-  loading="lazy"
-  decoding="async"
-/>
-
-Dự án *sveltevietnam.dev* sự dụng Figma làm công cụ thiết kế và tận dụng tính năng [Variable](https://help.figma.com/hc/en-us/sections/14506605769879-Variables) để thể hiện các bảng màu trên. Cách này giúp thiết kế viên chủ động ý thức được về các design token tương ứng tới các biến CSS trong quá trình phát triển dự án.
+Dự án *sveltevietnam.dev* cũng sử dụng Figma làm công cụ thiết kế và tận dụng tính năng [Variable](https://help.figma.com/hc/en-us/sections/14506605769879-Variables) để thể hiện các bảng màu trên. Cách này giúp thiết kế viên chủ động ý thức được về các design token tương ứng tới các biến CSS trong quá trình phát triển dự án.
 
 ## Kết bài
 
