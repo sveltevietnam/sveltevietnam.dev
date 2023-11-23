@@ -51,4 +51,15 @@ export const vi = {
 			title: 'Khác',
 		},
 	},
+	developers: {
+		title: 'Phát triển',
+		description:
+			'Các tài nguyên liệt kê sau đây giúp lập trình viên hiểu rõ hơn về cách triển khai hệ thống màu sắc nêu trên.',
+		links: {
+			jsToken: 'Khai báo từ khóa cho màu sắc với Javascript',
+			tailwindConfig: 'Cấu hình TailwindCSS sử dụng các khai báo vừa nêu',
+			cssVariables: 'Xây dựng màu ngữ nghĩa từ màu gốc với CSS custom property',
+			app: 'Stylesheet toàn cục tích hợp các màu ngữ nghĩa vừa nêu',
+		},
+	},
 };

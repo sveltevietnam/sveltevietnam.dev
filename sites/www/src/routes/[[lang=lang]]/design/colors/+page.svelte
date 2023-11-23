@@ -352,6 +352,53 @@
 				</div>
 			</section>
 		</section>
+
+		<section>
+			<h2 class="tp-h2 font-medium">{t.developers.title}</h2>
+			<p class="mt-6">{t.developers.description}</p>
+			<ul class="divider-border mt-[60px] max-w-[660px] divide-y font-medium">
+				<li>
+					<a
+						href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/lib/client/styles/colors/index.js"
+						class="c-link c-link--box"
+						external
+					>
+						<span>{t.developers.links.jsToken}</span>
+						<svg inline-src="icon/external-link" />
+					</a>
+				</li>
+				<li>
+					<a
+						href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/lib/client/styles/theme.js"
+						class="c-link c-link--box"
+						external
+					>
+						<span>{t.developers.links.tailwindConfig}</span>
+						<svg inline-src="icon/external-link" />
+					</a>
+				</li>
+				<li>
+					<a
+						href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/lib/client/styles/colors/colors.css"
+						class="c-link c-link--box"
+						external
+					>
+						<span>{t.developers.links.cssVariables}</span>
+						<svg inline-src="icon/external-link" />
+					</a>
+				</li>
+				<li>
+					<a
+						href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/lib/client/styles/app.css"
+						class="c-link c-link--box"
+						external
+					>
+						<span>{t.developers.links.app}</span>
+						<svg inline-src="icon/external-link" />
+					</a>
+				</li>
+			</ul>
+		</section>
 	</div>
 </main>
 
