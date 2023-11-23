@@ -13,7 +13,7 @@
 	$: t = translations[lang].community;
 </script>
 
-<section class="community c-container-design" id="community">
+<section class="community max-w-pad" id="community">
 	<h2 class="section-title tp-h2 uppercase">
 		<ConsecutiveFadeUpIntro selector=".char" class="inline-block">
 			<SplitText text={t.title} />

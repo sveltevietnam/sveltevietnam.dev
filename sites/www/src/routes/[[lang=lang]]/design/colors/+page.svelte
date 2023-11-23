@@ -50,11 +50,11 @@
 </script>
 
 <main class="tp-body1">
-	<div class="heading-container c-container-design">
+	<div class="heading-container max-w-pad">
 		<Breadcrumbs breadcrumbs={data.breadcrumbs} class="mb-10" />
 		<h1 class="tp-h2@sp font-medium uppercase tb:tp-h1@pc">{t.title}</h1>
 	</div>
-	<div class="c-container-design space-y-[120px] pb-40 pt-20">
+	<div class="space-y-[120px] pb-40 pt-20 max-w-pad">
 		<section class="space-y-[60px]">
 			<h2 class="tp-h2 font-medium">{t.primitives.title}</h2>
 

@@ -66,7 +66,7 @@
 		<svg inline-src="./images/shape-title" width="824" height="301" />
 	</h1>
 	<div
-		class="intro-cards embla c-container-design"
+		class="intro-cards embla max-w-pad"
 		use:embla={{
 			options: {
 				align: 'start',

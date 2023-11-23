@@ -174,11 +174,11 @@
 </script>
 
 <main class="tp-body1">
-	<div class="heading-container c-container-design">
+	<div class="heading-container max-w-pad">
 		<Breadcrumbs breadcrumbs={data.breadcrumbs} class="mb-10" />
 		<h1 class="tp-h2@sp font-medium uppercase tb:tp-h1@pc">{t.title}</h1>
 	</div>
-	<div class="c-container-design pb-40 pt-20">
+	<div class="pb-40 pt-20 max-w-pad">
 		{#each TYPOGRAPHY as typo, i (typo.name)}
 			{#if i > 0}
 				<div class="my-12 h-px w-full bg-outline" />

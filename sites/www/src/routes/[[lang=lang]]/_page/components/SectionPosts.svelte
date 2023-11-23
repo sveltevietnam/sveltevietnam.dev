@@ -20,7 +20,7 @@
 	$: t = translations[lang].posts;
 </script>
 
-<section class="c-container-design mt-[80px] tb:mt-[120px]">
+<section class="mt-[80px] max-w-pad tb:mt-[120px]">
 	<ConsecutiveFadeUpIntro selector=":is(.arrow, .char)">
 		<a href={BLOG_PATH} title={t.title} class="section-title-container">
 			<h2 class=" tp-h2 uppercase">

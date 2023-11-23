@@ -68,7 +68,7 @@
 	}
 </script>
 
-<main class="c-container-design" use:intersect>
+<main class="max-w-pad" use:intersect>
 	<Breadcrumbs {breadcrumbs} class="mt-6" />
 	<article class="mt-8 tb:mt-[60px]">
 		<section>

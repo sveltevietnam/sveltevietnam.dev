@@ -23,7 +23,7 @@
 </script>
 
 <footer>
-	<div class="footer-top c-container-design">
+	<div class="footer-top max-w-pad">
 		<div class="footer-sections">
 			<section class="footer-about-us">
 				<p class="footer-section-title tp-h4 font-medium">{t.aboutUs.title}</p>
@@ -66,7 +66,7 @@
 			Svelte <br class="" /> Vietnam
 		</p>
 	</div>
-	<ul class="footer-socials c-container-design">
+	<ul class="footer-socials max-w-pad">
 		<li>
 			<a href={SOCIAL_LINKS.OPEN_COLLECTIVE} class="c-link" external>
 				<span class="sr-only">Open Collective</span>
@@ -92,7 +92,7 @@
 			</a>
 		</li>
 	</ul>
-	<div class="footer-bottom c-container-design tp-cap2">
+	<div class="footer-bottom tp-cap2 max-w-pad">
 		<p>{t.version} {version}</p>
 		<p class="footer-info">
 			<span>

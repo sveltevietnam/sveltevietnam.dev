@@ -50,11 +50,11 @@
 </script>
 
 <main>
-	<div class="c-container-design mt-6" use:intersect>
+	<div class="mt-6 max-w-pad" use:intersect>
 		<Breadcrumbs breadcrumbs={data.breadcrumbs} />
 	</div>
 	<section
-		class="c-container-design mb-[80px] tb:mb-[120px] tb:flex tb:flex-row tb:justify-between"
+		class="mb-[80px] max-w-pad tb:mb-[120px] tb:flex tb:flex-row tb:justify-between"
 		use:intersect
 		bind:this={headerSectionElement}
 	>
@@ -70,7 +70,7 @@
 		</div>
 	</section>
 	<div class="space-y-[60px] pb-[120px] tb:space-y-[120px] tb:pb-[200px]">
-		<section class="gradient-wrapper c-container-design space-y-6">
+		<section class="gradient-wrapper space-y-6 max-w-pad">
 			<h2 class="tp-h2" use:intersect id="how">
 				{t.how.title}
 			</h2>
@@ -119,7 +119,7 @@
 				</ul>
 			</div>
 		</section>
-		<section class="c-container-design space-y-6" use:intersect>
+		<section class="space-y-6 max-w-pad" use:intersect>
 			<h2 class="tp-h2" id="why">
 				{t.why.title}
 			</h2>
@@ -133,7 +133,7 @@
 			</div>
 			<p>{@html t.why.inspect}</p>
 		</section>
-		<section class="c-container-design space-y-6" use:intersect>
+		<section class="space-y-6 max-w-pad" use:intersect>
 			<h2 class="tp-h2" id="benefits">
 				{t.benefits.title}
 			</h2>

@@ -18,7 +18,7 @@
 	$: tMail = data.translations.mail;
 </script>
 
-<main class="c-container-design">
+<main class="max-w-pad">
 	<div class="mt-6" use:intersect>
 		<Breadcrumbs breadcrumbs={data.breadcrumbs} />
 	</div>

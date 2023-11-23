@@ -28,11 +28,11 @@
 </script>
 
 <main>
-	<div class="c-container-design mt-6" use:intersect>
+	<div class="mt-6 max-w-pad" use:intersect>
 		<Breadcrumbs breadcrumbs={data.breadcrumbs} />
 	</div>
 	<section
-		class="c-container-design mb-[80px] tb:mb-[120px] tb:flex tb:flex-row tb:justify-between"
+		class="mb-[80px] max-w-pad tb:mb-[120px] tb:flex tb:flex-row tb:justify-between"
 		use:intersect
 	>
 		<div class="mt-8 tb:mt-[100px]">
@@ -49,7 +49,7 @@
 	</section>
 	<div class="space-y-[60px] tb:space-y-[120px]">
 		{#if topPosts.length || topExternalPost}
-			<section class="c-container-design tb:gap-[60px]">
+			<section class="max-w-pad tb:gap-[60px]">
 				<ConsecutiveFadeUpIntro selector=".char">
 					<h2 class="tp-h2 uppercase">
 						<SplitText text={t.recent.title} />
@@ -79,7 +79,7 @@
 			</section>
 		{/if}
 
-		<div class="gradient-wrapper c-container-design grid grid-cols-1 gap-[60px] pc:grid-cols-2">
+		<div class="gradient-wrapper grid grid-cols-1 gap-[60px] max-w-pad pc:grid-cols-2">
 			<section>
 				<ConsecutiveFadeUpIntro selector=".char">
 					<h2 class="tp-h2 uppercase">
@@ -127,7 +127,7 @@
 			</section>
 		</div>
 
-		<div class="c-container-design grid grid-cols-1 gap-[60px] tb:grid-cols-[2fr,1fr]">
+		<div class="grid grid-cols-1 gap-[60px] max-w-pad tb:grid-cols-[2fr,1fr]">
 			<section>
 				<ConsecutiveFadeUpIntro selector=".char">
 					<h2 class="tp-h2 uppercase after:mt-2 after:separator">

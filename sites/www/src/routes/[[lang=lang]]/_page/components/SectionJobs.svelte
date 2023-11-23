@@ -18,7 +18,7 @@
 	$: t = translations[lang].jobs;
 </script>
 
-<section class="jobs c-container-design">
+<section class="jobs max-w-pad">
 	<ConsecutiveFadeUpIntro selector=":is(.arrow, .char)">
 		<a href={JOBS_PATH} title={t.title} class="section-title-container">
 			<h2 class="tp-h2 uppercase">

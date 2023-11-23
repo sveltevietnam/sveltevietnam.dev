@@ -30,7 +30,7 @@
 
 <header>
 	<div class="backdrop" style="--opacity: {backdropOpacity}" aria-disabled />
-	<div class="c-container-design">
+	<div class="max-w-pad">
 		<div class="logo">
 			<svelte:element
 				this={isHomePage ? 'div' : 'a'}

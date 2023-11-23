@@ -30,7 +30,7 @@
 </script>
 
 <section class="impact">
-	<div class="c-container-design">
+	<div class="max-w-pad">
 		<ConsecutiveFadeUpIntro selector=":is(.arrow, .char)">
 			<a href={IMPACT_PATH} title={t.title} class="section-title-container">
 				<h2 class="tp-h2 uppercase">
@@ -45,7 +45,7 @@
 		<p class="section-desc mt-6 pc:mt-8" use:intersect>{t.description}</p>
 	</div>
 	<div
-		class="embla projects c-container-design"
+		class="embla projects max-w-pad"
 		use:intersect
 		use:embla={{
 			options: {
@@ -77,7 +77,7 @@
 			{/each}
 		</ul>
 	</div>
-	<div class="projects-pagination c-container-design" use:intersect>
+	<div class="projects-pagination max-w-pad" use:intersect>
 		<button class="pagination-btn mr-6" on:click={() => emblaApi?.scrollPrev()}>
 			<svg
 				inline-src="icon/caret"

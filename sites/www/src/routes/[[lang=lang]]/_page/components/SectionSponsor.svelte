@@ -18,7 +18,7 @@
 	$: t = translations[lang].sponsor;
 </script>
 
-<section class="sponsors c-container-design">
+<section class="sponsors max-w-pad">
 	<ConsecutiveFadeUpIntro selector=":is(.arrow, .char)">
 		<a href={SPONSOR_PATH} title={t.title} class="section-title-container">
 			<h2 class="tp-h2 uppercase">

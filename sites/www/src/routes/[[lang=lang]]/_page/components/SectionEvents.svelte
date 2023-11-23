@@ -19,7 +19,7 @@
 	$: t = translations[lang].events;
 </script>
 
-<section class="events c-container-design">
+<section class="events max-w-pad">
 	<ConsecutiveFadeUpIntro selector=":is(.arrow, .char)">
 		<a href={EVENTS_PATH} title={t.title} class="section-title-container">
 			<h2 class=" tp-h2 uppercase">
