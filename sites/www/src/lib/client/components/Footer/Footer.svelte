@@ -68,25 +68,25 @@
 	</div>
 	<ul class="footer-socials max-w-pad">
 		<li>
-			<a href={SOCIAL_LINKS.OPEN_COLLECTIVE} class="c-link" external>
+			<a href={SOCIAL_LINKS.OPEN_COLLECTIVE} class="c-link c-link--icon" external>
 				<span class="sr-only">Open Collective</span>
 				<svg height="16" width="16" inline-src="simpleicon/opencollective" />
 			</a>
 		</li>
 		<li>
-			<a href={SOCIAL_LINKS.GITHUB} class="c-link" external>
+			<a href={SOCIAL_LINKS.GITHUB} class="c-link c-link--icon" external>
 				<span class="sr-only">Github</span>
 				<svg height="16" width="16" inline-src="simpleicon/github" />
 			</a>
 		</li>
 		<li>
-			<a href={SOCIAL_LINKS.TWITTER} class="c-link" external>
+			<a href={SOCIAL_LINKS.TWITTER} class="c-link c-link--icon" external>
 				<span class="sr-only">Twitter</span>
 				<svg height="16" width="16" inline-src="simpleicon/twitter" />
 			</a>
 		</li>
 		<li>
-			<a href={SOCIAL_LINKS.FACEBOOK} class="c-link" external>
+			<a href={SOCIAL_LINKS.FACEBOOK} class="c-link c-link--icon" external>
 				<span class="sr-only">Facebook</span>
 				<svg height="16" width="16" inline-src="simpleicon/facebook" />
 			</a>

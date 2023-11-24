@@ -193,7 +193,7 @@
 					<li>
 						<a
 							href="https://www.facebook.com/sharer/sharer.php?u={encodedCanonical}"
-							class="c-link block w-fit rounded-full border border-current p-[10px]"
+							class="c-link c-link--icon block w-fit rounded-full border border-current p-[10px]"
 							external
 						>
 							<span class="sr-only">facebook</span>
@@ -203,7 +203,7 @@
 					<li>
 						<a
 							href="https://twitter.com/intent/tweet?url={encodedCanonical}&text={encodedTitle}"
-							class="c-link block w-fit rounded-full border border-current p-[10px]"
+							class="c-link c-link--icon block w-fit rounded-full border border-current p-[10px]"
 							external
 						>
 							<span class="sr-only">twitter (x)</span>
@@ -213,7 +213,7 @@
 					<li>
 						<a
 							href="https://www.linkedin.com/shareArticle?mini=true&url={encodedCanonical}&title={encodedTitle}"
-							class="c-link block w-fit rounded-full border border-current p-[10px]"
+							class="c-link c-link--icon block w-fit rounded-full border border-current p-[10px]"
 							external
 						>
 							<span class="sr-only">linkedin</span>
@@ -222,7 +222,7 @@
 					</li>
 					<li>
 						<button
-							class="c-link block w-fit rounded-full border border-current p-[10px]"
+							class="c-link c-link--icon block w-fit rounded-full border border-current p-[10px]"
 							on:copied={onCopiedCanonical}
 							use:copy={{ text: meta?.canonical ?? '' }}
 						>
@@ -232,7 +232,7 @@
 					</li>
 					<li>
 						<button
-							class="c-link block w-fit rounded-full border border-current p-[10px]"
+							class="c-link c-link--icon block w-fit rounded-full border border-current p-[10px]"
 							on:click={onClickQRLink}
 						>
 							<span class="sr-only">QR code</span>
