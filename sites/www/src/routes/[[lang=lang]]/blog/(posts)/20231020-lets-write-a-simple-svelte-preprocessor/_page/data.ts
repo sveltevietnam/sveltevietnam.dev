@@ -2,8 +2,8 @@ import { authors } from '$routes/[[lang=lang]]/blog/_page/authors';
 import type { BlogContent } from '$shared/data/blog';
 import type { Post } from '$shared/data/blog';
 
-import En from './content.en.md.svelte';
-import Vi from './content.vi.md.svelte';
+import En from './content.en.md.svelte?mdsvex';
+import Vi from './content.vi.md.svelte?mdsvex';
 import ogImage from './images/thumbnail.png';
 import thumbnail from './images/thumbnail.png?enhanced';
 

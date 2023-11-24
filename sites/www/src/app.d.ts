@@ -18,6 +18,16 @@ declare global {
 		export default src;
 	}
 
+	/**
+	 * Svelte fails to automatically type imported mdsvex-svelte hybrid files
+	 * that have code blocks in it. This module is a workaround for that
+	 */
+	declare module '*.svelte?mdsvex' {
+		const component: import('svelte').ComponentType<import('svelte').SvelteComponent>;
+
+		export default component;
+	}
+
 	namespace App {
 		// status
 		declare type Status = (typeof STATUSES)[number];
