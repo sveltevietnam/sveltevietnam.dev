@@ -193,7 +193,7 @@
 	}
 
 	.gradient-wrapper {
-		--gradient-height: 160px;
+		--gradient-height: 200px;
 		--gradient-offset: 80px;
 
 		position: relative;
@@ -219,8 +219,8 @@
 		}
 
 		@screen tb {
-			--gradient-height: 280px;
-			--gradient-offset: 132px;
+			--gradient-height: 360px;
+			--gradient-offset: 150px;
 		}
 	}
 </style>
