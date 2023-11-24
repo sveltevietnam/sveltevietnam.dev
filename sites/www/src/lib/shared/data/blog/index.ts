@@ -1,7 +1,10 @@
+import type { BlogPosting, BreadcrumbList, WithContext } from 'schema-dts';
 import type { ComponentType, SvelteComponent } from 'svelte';
 
 import { resolveLangVar, type LangVar, type Language } from '$shared/services/i18n';
 import { BLOG_PATH, ROOT_URL } from '$shared/services/navigation';
+
+import { SVELTE_VIETNAM_ORG, SVELTE_VIETNAM_BLOG } from '../structured';
 
 export type PostTag =
 	| 'svelte'
@@ -104,6 +107,50 @@ export function preparePageData(language: Language, post: Post, content: BlogCon
 				imageAlt: lPost.title,
 			},
 			canonical,
+			structured: JSON.stringify([
+				{
+					'@context': 'https://schema.org',
+					'@type': 'BreadcrumbList',
+					itemListElement: [
+						{
+							'@type': 'ListItem',
+							position: 1,
+							name: 'Blog',
+							item: `${ROOT_URL}/${language}${BLOG_PATH}`,
+						},
+						{
+							'@type': 'ListItem',
+							position: 2,
+							name: lPost.title,
+							item: `${ROOT_URL}/${language}${BLOG_PATH}`,
+						},
+					],
+				} as WithContext<BreadcrumbList>,
+				{
+					'@context': 'https://schema.org',
+					'@type': 'BlogPosting',
+					'@id': `${canonical}/#BlogPosting`,
+					url: canonical,
+					mainEntityOfPage: canonical,
+					headline: lPost.title,
+					name: lPost.title,
+					description: lPost.description,
+					datePublished: lPost.date,
+					dateModified: lPost.date,
+					image: lPost.ogImage,
+					author: lPost.authors.map((author) => ({
+						'@type': 'Person',
+						name: author.name,
+						...(author.link && { url: author.link }),
+						...(author.avatarUrl && { image: author.avatarUrl }),
+					})),
+					inLang: language,
+					publisher: SVELTE_VIETNAM_ORG,
+					isPartOf: SVELTE_VIETNAM_BLOG,
+					wordCount: lPost.wordCount,
+					keywords: lPost.keywords,
+				} as WithContext<BlogPosting>,
+			]),
 		} satisfies App.PageData['meta'],
 	};
 }

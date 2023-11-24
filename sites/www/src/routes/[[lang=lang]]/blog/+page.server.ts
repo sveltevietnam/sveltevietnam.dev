@@ -1,6 +1,9 @@
+import type { WithContext, Blog } from 'schema-dts';
+
 import { mail } from '$server/actions/mail/mail.server';
 import ogImage from '$shared/assets/images/og/og-blog.jpg';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
+import { SVELTE_VIETNAM_BLOG } from '$shared/data/structured';
 import type { Language } from '$shared/services/i18n';
 import { BLOG_PATH, ROOT_URL } from '$shared/services/navigation';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
@@ -54,6 +57,10 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
 			og: {
 				image: ogImage,
 			},
+			structured: JSON.stringify({
+				'@context': 'https://schema.org',
+				...SVELTE_VIETNAM_BLOG,
+			} as WithContext<Blog>),
 		},
 		posts: {
 			internal: INTERNAL_POSTS,
