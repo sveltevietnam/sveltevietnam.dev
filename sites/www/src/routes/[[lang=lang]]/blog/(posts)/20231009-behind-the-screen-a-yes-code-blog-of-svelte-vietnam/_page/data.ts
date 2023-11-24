@@ -30,8 +30,8 @@ export const post = {
 	tags: ['inside', 'technical'],
 	readMinutes: 11,
 	wordCount: {
-		vi: '~2130',
-		en: '~1630',
+		vi: 2130,
+		en: 1630,
 	},
 } satisfies Post;
 

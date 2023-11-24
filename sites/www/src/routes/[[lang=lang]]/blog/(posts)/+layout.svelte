@@ -63,7 +63,7 @@
 		}
 		if (post?.wordCount) {
 			if (stats) stats += ', ';
-			stats += `${post.wordCount} ${t.word}`;
+			stats += `~${post.wordCount} ${t.word}`;
 		}
 	}
 </script>

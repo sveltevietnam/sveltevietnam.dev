@@ -39,7 +39,7 @@ export type Post = {
 	ogImage?: string;
 	keywords?: LangVar<string>[];
 	readMinutes?: number;
-	wordCount?: LangVar<string>;
+	wordCount?: LangVar<number>;
 };
 
 /** resolve any LangVar to a string */

@@ -30,8 +30,8 @@ export const post = {
 	tags: ['technical', 'svelte', 'ecosystem'],
 	readMinutes: 12,
 	wordCount: {
-		vi: '~2060',
-		en: '~1720',
+		vi: 2060,
+		en: 1720,
 	},
 } satisfies Post;
 
