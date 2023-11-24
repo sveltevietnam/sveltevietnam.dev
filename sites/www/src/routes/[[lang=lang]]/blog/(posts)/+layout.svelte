@@ -88,20 +88,28 @@
 				<ul class="flex items-start gap-6">
 					{#each post?.authors ?? [] as author}
 						<li class="flex items-center gap-3">
-							<img
-								src={author.avatarUrl}
-								alt={author.name}
-								class="rounded-full"
-								height="40"
-								width="40"
-							/>
+							<a
+								href={author.link}
+								external
+								class:contents={!author.link}
+								class="c-link c-link--image clip-ellipse"
+							>
+								<span class="sr-only">{author.name}</span>
+								<img
+									src={author.avatarUrl}
+									alt={author.name}
+									class="c-avatar"
+									height="56"
+									width="56"
+								/>
+							</a>
 							<div>
 								<p class="font-medium">
 									<a href={author.link} class="c-link c-link--preserved" external>
 										{author.name}
 									</a>
 								</p>
-								<p class="tp-cap1">{author.title}</p>
+								<p class="tp-cap1 text-fg-200">{author.title}</p>
 							</div>
 						</li>
 					{/each}

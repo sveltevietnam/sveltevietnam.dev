@@ -1,8 +1,15 @@
 .c-avatar {
+	@apply clip-ellipse;
+
 	aspect-ratio: 1 / 1;
+	width: 56px;
+	height: 56px;
 
 	object-fit: cover;
 	object-position: center;
-	background-color: theme('colors.bg.200');
-	border-radius: theme('borderRadius.full');
+	background-color: theme('colors.bg.DEFAULT');
+
+	.c-link:has(&) {
+		@apply clip-ellipse;
+	}
 }

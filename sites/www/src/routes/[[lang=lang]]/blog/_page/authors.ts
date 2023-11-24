@@ -12,7 +12,7 @@ export const authors = {
 			en: 'Developer, admin of Svelte Vietnam',
 			vi: 'Lập trình viên, quản trị viên Svelte Việt Nam',
 		},
-		link: 'https://github.com/vnphanquang',
+		link: 'https://vnphanquang.com',
 		avatarUrl: vnphanquangAvatarUrl,
 	},
 } satisfies Record<string, PostAuthor>;
