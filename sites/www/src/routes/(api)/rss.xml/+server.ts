@@ -1,7 +1,7 @@
 import Mustache from 'mustache';
 
 import { INTERNAL_POSTS } from '$routes/[[lang=lang]]/blog/_page/data';
-import { LANGUAGES, resolveLangText } from '$shared/services/i18n';
+import { LANGUAGES, resolveLangVar } from '$shared/services/i18n';
 import { BLOG_PATH } from '$shared/services/navigation';
 
 import type { RequestHandler } from './$types';
@@ -18,8 +18,8 @@ type RssItem = {
 export const GET: RequestHandler = ({ url }) => {
 	const items: RssItem[] = INTERNAL_POSTS.flatMap((p) =>
 		LANGUAGES.map((l) => ({
-			title: resolveLangText(l, p.title),
-			description: resolveLangText(l, p.description),
+			title: resolveLangVar(l, p.title) ?? '',
+			description: resolveLangVar(l, p.description) ?? '',
 			link: `${url.origin}/${l}${BLOG_PATH}/${p.slug}`,
 			guid: p.slug,
 			pubDate: new Date(p.date).toUTCString(),

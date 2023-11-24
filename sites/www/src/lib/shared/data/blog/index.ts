@@ -1,6 +1,6 @@
 import type { ComponentType, SvelteComponent } from 'svelte';
 
-import { resolveLangText, type LangText, type Language } from '$shared/services/i18n';
+import { resolveLangVar, type LangVar, type Language } from '$shared/services/i18n';
 import { BLOG_PATH, ROOT_URL } from '$shared/services/navigation';
 
 export type PostTag =
@@ -13,59 +13,59 @@ export type PostTag =
 	| 'technical';
 
 export type ExternalPost = {
-	title: LangText;
-	href: LangText;
-	author: LangText;
-	description: LangText;
+	title: LangVar<string>;
+	href: LangVar<string>;
+	author: LangVar<string>;
+	description: LangVar<string>;
 };
 
 export type PostAuthor = {
-	name: LangText;
-	title?: LangText;
-	link?: LangText;
+	name: LangVar<string>;
+	title?: LangVar<string>;
+	link?: LangVar<string>;
 	avatarUrl?: string;
 };
 
 export type Post = {
 	slug: string;
 	date: string;
-	title: LangText;
-	description: LangText;
-	githubUrl: LangText;
+	title: LangVar<string>;
+	description: LangVar<string>;
+	githubUrl: LangVar<string>;
 	originalLang?: Language;
 	tags?: PostTag[];
 	authors: PostAuthor[];
 	thumbnail?: string;
 	ogImage?: string;
-	keywords?: LangText[];
+	keywords?: LangVar<string>[];
 	readMinutes?: number;
-	wordCount?: LangText;
+	wordCount?: LangVar<string>;
 };
 
-/** resolve any LangText to a string */
+/** resolve any LangVar to a string */
 export function localizePost(language: Language, post: Post) {
 	return {
 		...post,
-		title: resolveLangText(language, post.title),
-		description: resolveLangText(language, post.description),
-		keywords: post.keywords?.map((tag) => resolveLangText(language, tag)),
-		githubUrl: resolveLangText(language, post.githubUrl),
+		title: resolveLangVar(language, post.title),
+		description: resolveLangVar(language, post.description),
+		keywords: post.keywords?.map((tag) => resolveLangVar(language, tag) ?? ''),
+		githubUrl: resolveLangVar(language, post.githubUrl),
 		authors: post.authors.map((author) => ({
 			...author,
-			name: resolveLangText(language, author.name),
-			title: resolveLangText(language, author.title),
-			link: resolveLangText(language, author.link),
+			name: resolveLangVar(language, author.name),
+			title: resolveLangVar(language, author.title),
+			link: resolveLangVar(language, author.link),
 		})),
-		wordCount: resolveLangText(language, post.wordCount),
+		wordCount: resolveLangVar(language, post.wordCount),
 	};
 }
 
 export function localizeExternalPost(language: Language, post: ExternalPost) {
 	return {
-		title: resolveLangText(language, post.title),
-		href: resolveLangText(language, post.href),
-		description: resolveLangText(language, post.description),
-		author: resolveLangText(language, post.author),
+		title: resolveLangVar(language, post.title),
+		href: resolveLangVar(language, post.href),
+		description: resolveLangVar(language, post.description),
+		author: resolveLangVar(language, post.author),
 	};
 }
 
@@ -90,6 +90,7 @@ export function localizeBlogContent(language: Language, content: BlogContent) {
 
 export function preparePageData(language: Language, post: Post, content: BlogContent) {
 	const lPost = localizePost(language, post);
+	const canonical = `${ROOT_URL}/${language}${BLOG_PATH}/${lPost.slug}`;
 	return {
 		supportedLanguages: Object.keys(content) as Language[],
 		post: lPost,
@@ -102,7 +103,7 @@ export function preparePageData(language: Language, post: Post, content: BlogCon
 				image: lPost.ogImage,
 				imageAlt: lPost.title,
 			},
-			canonical: `${ROOT_URL}/${language}${BLOG_PATH}/${lPost.slug}`,
-		},
+			canonical,
+		} satisfies App.PageData['meta'],
 	};
 }
