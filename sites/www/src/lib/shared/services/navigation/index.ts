@@ -1,10 +1,11 @@
 import { delocalizeUrl } from '@internals/utils/url';
 
+import { dev } from '$app/environment';
 import type { Language } from '$shared/services/i18n';
 import { LANGUAGES } from '$shared/services/i18n';
 import { translations } from '$shared/services/i18n/translations/navigation';
 
-export const ROOT_URL = 'https://www.sveltevietnam.dev';
+export const ROOT_URL = dev ? 'http://localhost:5005' : 'https://www.sveltevietnam.dev';
 export const SITEMAP_PATH = '/sitemap.xml';
 export const RSS_PATH = '/rss.xml';
 
@@ -53,7 +54,6 @@ export function getPathLabel(path: string, lang: Language) {
 	}
 }
 
-// export const HEADER_PATHS = [EVENTS_PATH, JOBS_PATH, IMPACT_PATH, PEOPLE_PATH, SPONSOR_PATH];
 export const HEADER_PATHS = [
 	EVENTS_PATH,
 	BLOG_PATH,
