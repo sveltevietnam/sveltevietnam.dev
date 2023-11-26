@@ -1,6 +1,6 @@
-import { authors } from '$routes/[[lang=lang]]/blog/_page/authors';
 import type { BlogContent } from '$shared/data/blog';
 import type { Post } from '$shared/data/blog';
+import { people } from '$shared/data/people';
 
 import En from './content.en.md.svelte?mdsvex';
 import Vi from './content.vi.md.svelte?mdsvex';
@@ -22,7 +22,7 @@ export const post = {
 		en: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5B%5Blang=lang%5D%5D/blog/(posts)/20231110-behind-the-screen-dark-mode-with-sveltekit-tailwindcss-and-postcss/_page/content.en.md.svelte',
 		vi: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5B%5Blang=lang%5D%5D/blog/(posts)/20231110-behind-the-screen-dark-mode-with-sveltekit-tailwindcss-and-postcss/_page/content.vi.md.svelte',
 	},
-	authors: [authors.vnphanquang],
+	authors: [people.vnphanquang],
 	originalLang: 'vi',
 	keywords: [
 		'svelte',

@@ -1,8 +1,15 @@
-import type { PostAuthor } from '$shared/data/blog';
+import type { LangVar } from '$shared/services/i18n';
 
 import vnphanquangAvatarUrl from './images/authors/vnphanquang.png?format=webp';
 
-export const authors = {
+export type Person = {
+	name: LangVar<string>;
+	title?: LangVar<string>;
+	link?: LangVar<string>;
+	avatarUrl?: string;
+};
+
+export const people = {
 	vnphanquang: {
 		name: {
 			vi: 'Phan Quang',
@@ -15,4 +22,4 @@ export const authors = {
 		link: 'https://vnphanquang.com',
 		avatarUrl: vnphanquangAvatarUrl,
 	},
-} satisfies Record<string, PostAuthor>;
+} satisfies Record<string, Person>;

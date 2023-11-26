@@ -1,10 +1,10 @@
 import type { BlogPosting, BreadcrumbList, WithContext } from 'schema-dts';
 import type { ComponentType, SvelteComponent } from 'svelte';
 
+import type { Person } from '$shared/data/people';
+import { SVELTE_VIETNAM_ORG, SVELTE_VIETNAM_BLOG } from '$shared/data/structured';
 import { resolveLangVar, type LangVar, type Language } from '$shared/services/i18n';
 import { BLOG_PATH, ROOT_URL } from '$shared/services/navigation';
-
-import { SVELTE_VIETNAM_ORG, SVELTE_VIETNAM_BLOG } from '../structured';
 
 export type PostTag =
 	| 'svelte'
@@ -22,13 +22,6 @@ export type ExternalPost = {
 	description: LangVar<string>;
 };
 
-export type PostAuthor = {
-	name: LangVar<string>;
-	title?: LangVar<string>;
-	link?: LangVar<string>;
-	avatarUrl?: string;
-};
-
 export type Post = {
 	slug: string;
 	date: string;
@@ -37,7 +30,7 @@ export type Post = {
 	githubUrl: LangVar<string>;
 	originalLang?: Language;
 	tags?: PostTag[];
-	authors: PostAuthor[];
+	authors: Person[];
 	thumbnail?: string;
 	ogImage?: string;
 	keywords?: LangVar<string>[];
