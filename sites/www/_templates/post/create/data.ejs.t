@@ -3,7 +3,7 @@ to: <%= baseDir %>/_page/data.ts
 unless_exists: true
 ---
 
-import type { BlogContent } from '$shared/data/blog';
+import type { PostContent } from '$shared/data/blog';
 import type { Post } from '$shared/data/blog';
 
 <% if (languageMap.en) { -%>
@@ -32,16 +32,16 @@ export const post = {
     },
   ],
   /** optional metadata fields */
-  # originalLang: '<%= post.originalLang %>',
-	# keywords: ['blog', 'svelte', 'vietnam'],
-	# ogImage: '',
-	# thumbnail: '',
-	# tags: [],
-	# readMinutes: 10,
-	# wordCount: {
-	# 	vi: 1000,
-	# 	en: 1000,
-	# },
+  // originalLang: '<%= post.originalLang %>',
+	// keywords: ['blog', 'svelte', 'vietnam'],
+	// ogImage: '',
+	// thumbnail: '',
+	// tags: [],
+	// readMinutes: 10,
+	// wordCount: {
+	// 	vi: 1000,
+	// 	en: 1000,
+	// },
 } satisfies Post;
 
 export const content = {
@@ -51,4 +51,4 @@ export const content = {
 <% if (languageMap.vi) { -%>
   vi: Vi,
 <% } -%>
-} satisfies BlogContent;
+} satisfies PostContent;

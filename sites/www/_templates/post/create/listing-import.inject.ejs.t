@@ -1,6 +1,6 @@
 ---
 inject: true
-to: "src/routes/[[lang=lang]]/blog/_page/data.ts"
+to: "src/lib/shared/data/blog/index.ts"
 before: "HYGEN MARKER - IMPORT"
 skip_if: "import { post as <%= listing.alias %> }"
 ---

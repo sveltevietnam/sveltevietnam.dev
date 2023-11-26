@@ -3,13 +3,13 @@ import type { WithContext, Blog } from 'schema-dts';
 import { mail } from '$server/actions/mail/mail.server';
 import ogImage from '$shared/assets/images/og/og-blog.jpg';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
+import { INTERNAL_POSTS, EXTERNAL_POSTS } from '$shared/data/blog';
 import { SVELTE_VIETNAM_BLOG } from '$shared/data/structured';
 import type { Language } from '$shared/services/i18n';
 import { BLOG_PATH, ROOT_URL } from '$shared/services/navigation';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { Actions, PageServerLoad } from './$types';
-import { INTERNAL_POSTS, EXTERNAL_POSTS } from './_page/data';
 import { translations as pageT } from './_page/translation';
 
 const metaTranslations: Record<Language, App.PageData['meta']> = {

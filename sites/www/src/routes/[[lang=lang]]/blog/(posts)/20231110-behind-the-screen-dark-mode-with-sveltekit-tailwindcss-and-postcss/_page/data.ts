@@ -1,4 +1,4 @@
-import type { BlogContent } from '$shared/data/blog';
+import type { PostContent } from '$shared/data/blog';
 import type { Post } from '$shared/data/blog';
 import { people } from '$shared/data/people';
 
@@ -49,4 +49,4 @@ export const post = {
 export const content = {
 	en: En,
 	vi: Vi,
-} satisfies BlogContent;
+} satisfies PostContent;

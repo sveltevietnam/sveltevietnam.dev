@@ -1,7 +1,6 @@
 import { LOAD_DEPENDENCIES } from '$shared/constants';
+import { EXTERNAL_POSTS, INTERNAL_POSTS } from '$shared/data/blog';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
-
-import { EXTERNAL_POSTS, INTERNAL_POSTS } from '../_page/data';
 
 import type { LayoutServerLoad } from './$types';
 import { translations } from './translation';

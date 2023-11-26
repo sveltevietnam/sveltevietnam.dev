@@ -1,12 +1,12 @@
 import type { WithContext, Organization } from 'schema-dts';
 
 import { LOAD_DEPENDENCIES } from '$shared/constants';
+import { EXTERNAL_POSTS, INTERNAL_POSTS } from '$shared/data/blog';
 import { SVELTE_VIETNAM_ORG } from '$shared/data/structured';
 import type { Language } from '$shared/services/i18n';
 import { ROOT_URL } from '$shared/services/navigation';
 
 import type { PageServerLoad } from './$types';
-import { EXTERNAL_POSTS, INTERNAL_POSTS } from './blog/_page/data';
 
 const metaTranslations: Record<Language, App.PageData['meta']> = {
 	vi: {
