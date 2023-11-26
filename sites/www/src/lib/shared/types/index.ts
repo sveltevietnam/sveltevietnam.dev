@@ -1,29 +1,14 @@
-export type Event = {
-	id: string;
-	title: string;
-	location: string;
-	startDate: string;
-	endDate: string;
-	description: string;
-	href: string;
-	speakers: EventSpeaker[];
-	sponsors: Sponsor[];
-};
-
-export type EventSpeaker = {
-	image?: string;
-	name: string;
-	title?: string;
-	href?: string;
-};
+import type { LangVar } from '$shared/services/i18n';
 
 export type Sponsor = {
 	id: string;
 	/** inline svg with height of 40 */
 	image: string;
-	name: string;
+	name: LangVar<string>;
 	href?: string;
 };
+
+/* ------↓ WIREFRAME ↓------- */
 
 export type Job = {
 	id: string;
