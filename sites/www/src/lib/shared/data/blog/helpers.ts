@@ -74,7 +74,7 @@ export function preparePageData(language: Language, post: Post, content: PostCon
 							'@type': 'ListItem',
 							position: 2,
 							name: lPost.title,
-							item: `${ROOT_URL}/${language}${BLOG_PATH}`,
+							item: canonical,
 						},
 					],
 				} as WithContext<BreadcrumbList>,
