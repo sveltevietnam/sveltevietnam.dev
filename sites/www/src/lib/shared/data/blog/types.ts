@@ -3,6 +3,8 @@ import type { ComponentType, SvelteComponent } from 'svelte';
 import type { Person } from '$shared/data/people';
 import type { LangVar, Language } from '$shared/services/i18n';
 
+import type { localizeExternalPost, localizePost } from './helpers';
+
 export type PostTag =
 	| 'svelte'
 	| 'kit'
@@ -19,6 +21,8 @@ export type ExternalPost = {
 	description: LangVar<string>;
 };
 
+export type LocalizedExternalPost = ReturnType<typeof localizeExternalPost>;
+
 export type Post = {
 	slug: string;
 	date: string;
@@ -34,6 +38,8 @@ export type Post = {
 	readMinutes?: number;
 	wordCount?: LangVar<number>;
 };
+
+export type LocalizedPost = ReturnType<typeof localizePost>;
 
 type LangPostContent = {
 	vi: ComponentType<SvelteComponent>;

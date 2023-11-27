@@ -3,7 +3,12 @@ import type { WithContext, Blog } from 'schema-dts';
 import { mail } from '$server/actions/mail/mail.server';
 import ogImage from '$shared/assets/images/og/og-blog.jpg';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
-import { INTERNAL_POSTS, EXTERNAL_POSTS } from '$shared/data/blog';
+import {
+	INTERNAL_POSTS,
+	EXTERNAL_POSTS,
+	localizePost,
+	localizeExternalPost,
+} from '$shared/data/blog';
 import { SVELTE_VIETNAM_BLOG } from '$shared/data/structured';
 import type { Language } from '$shared/services/i18n';
 import { BLOG_PATH, ROOT_URL } from '$shared/services/navigation';
@@ -63,8 +68,8 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
 			} as WithContext<Blog>),
 		},
 		posts: {
-			internal: INTERNAL_POSTS,
-			external: EXTERNAL_POSTS,
+			internal: INTERNAL_POSTS.map((post) => localizePost(language, post)),
+			external: EXTERNAL_POSTS.map((post) => localizeExternalPost(language, post)),
 		},
 	};
 };

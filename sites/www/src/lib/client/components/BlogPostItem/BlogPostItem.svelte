@@ -1,20 +1,19 @@
 <script lang="ts">
 	import { FallbackImage } from '$client/components/FallbackImage';
 	import { getLangContext } from '$client/contexts/lang';
-	import { localizePost, type Post } from '$shared/data/blog';
+	import type { LocalizedPost } from '$shared/data/blog';
 	import { BLOG_PATH } from '$shared/services/navigation';
 	import { formateDateForBlog } from '$shared/utils/datetime';
 
 	export let alwaysVertical = false;
-	export let post: Post;
+	export let post: LocalizedPost;
 	let cls = '';
 	export { cls as class };
 
 	const langStore = getLangContext();
 	$: lang = $langStore;
 
-	$: tPost = localizePost(lang, post);
-	$: href = `${BLOG_PATH}/${tPost.slug}`;
+	$: href = `${BLOG_PATH}/${post.slug}`;
 
 	const titleClass = 'tp-h4 font-bold c-link c-link--preserved';
 </script>
@@ -22,10 +21,10 @@
 <article class={cls} class:always-vertical={alwaysVertical}>
 	<div>
 		<a {href} class="c-link c-link--image">
-			{#if tPost.thumbnail}
+			{#if post.thumbnail}
 				<enhanced:img
-					src={tPost.thumbnail}
-					alt={tPost.title}
+					src={post.thumbnail}
+					alt={post.title}
 					class={!alwaysVertical ? 'tb:w-[200px]' : ''}
 				/>
 			{:else}
@@ -37,19 +36,19 @@
 	</div>
 	<div class="content">
 		<a {href} class="block w-fit">
-			<slot name="title" class={titleClass} text={tPost.title}>
-				<span class={titleClass}>{tPost.title}</span>
+			<slot name="title" class={titleClass} text={post.title}>
+				<span class={titleClass}>{post.title}</span>
 			</slot>
 		</a>
 		<ul class="flex flex-wrap items-center gap-2">
-			{#each tPost?.tags ?? [] as tag}
+			{#each post?.tags ?? [] as tag}
 				<li class="c-tag">{tag}</li>
 			{/each}
 		</ul>
-		<p>{tPost.description}</p>
+		<p>{post.description}</p>
 		<div class="flex items-center justify-between">
-			<p class="font-medium">{tPost.authors.map((a) => a.name).join(', ')}</p>
-			<time class="text-fg-200">{formateDateForBlog(lang, tPost.date)}</time>
+			<p class="font-medium">{post.authors.map((a) => a.name).join(', ')}</p>
+			<time class="text-fg-200">{formateDateForBlog(lang, post.date)}</time>
 		</div>
 	</div>
 </article>

@@ -6,12 +6,12 @@
 	import { SplitText } from '$client/components/SplitText';
 	import { ToBeAnnounced } from '$client/components/ToBeAnnounced';
 	import { getLangContext } from '$client/contexts/lang';
+	import type { LocalizedEvent } from '$shared/data/events';
 	import { EVENTS_PATH } from '$shared/services/navigation';
-	import type { Event } from '$shared/types';
 
 	import { translations } from '../translation';
 
-	export let events: Event[];
+	export let events: LocalizedEvent[];
 
 	const langStore = getLangContext();
 	$: lang = $langStore;

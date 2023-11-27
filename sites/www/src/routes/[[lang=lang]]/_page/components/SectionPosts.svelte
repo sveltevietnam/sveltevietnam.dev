@@ -6,13 +6,13 @@
 	import ExternalBlogPostItem from '$client/components/ExternalBlogPostItem/ExternalBlogPostItem.svelte';
 	import { SplitText } from '$client/components/SplitText';
 	import { getLangContext } from '$client/contexts/lang';
-	import type { ExternalPost, Post } from '$shared/data/blog';
+	import type { LocalizedExternalPost, LocalizedPost } from '$shared/data/blog';
 	import { BLOG_PATH } from '$shared/services/navigation';
 
 	import { translations } from '../translation';
 
-	export let posts: Post[];
-	export let externalPost: ExternalPost | undefined;
+	export let posts: LocalizedPost[];
+	export let externalPost: LocalizedExternalPost | undefined;
 
 	const langStore = getLangContext();
 	$: lang = $langStore;

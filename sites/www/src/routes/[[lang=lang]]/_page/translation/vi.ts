@@ -20,7 +20,7 @@ export const vi = {
 		},
 	},
 	events: {
-		title: 'Sự kiện sắp tới',
+		title: 'Sự kiện',
 		description:
 			'Gặp gỡ, cùng nhau chia sẻ kinh nghiệm, sản phẩm, và mọi thứ liên quan đến Svelte và open source',
 		tba: {

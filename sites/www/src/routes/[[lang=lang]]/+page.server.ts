@@ -1,7 +1,13 @@
 import type { WithContext, Organization } from 'schema-dts';
 
 import { LOAD_DEPENDENCIES } from '$shared/constants';
-import { EXTERNAL_POSTS, INTERNAL_POSTS } from '$shared/data/blog';
+import {
+	EXTERNAL_POSTS,
+	INTERNAL_POSTS,
+	localizeExternalPost,
+	localizePost,
+} from '$shared/data/blog';
+import { listEvents } from '$shared/data/events';
 import { SVELTE_VIETNAM_ORG } from '$shared/data/structured';
 import type { Language } from '$shared/services/i18n';
 import { ROOT_URL } from '$shared/services/navigation';
@@ -24,12 +30,15 @@ const metaTranslations: Record<Language, App.PageData['meta']> = {
 export const load: PageServerLoad = async ({ depends, locals: { language } }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	const tMeta = metaTranslations[language];
+
+	const events = listEvents(language);
 	return {
-		events: [],
-		// events: createMockedEvents(4),
+		events: [...events.upcoming, ...events.ongoing],
 		posts: {
-			internal: INTERNAL_POSTS.slice(0, 3),
-			external: EXTERNAL_POSTS.at(0),
+			internal: INTERNAL_POSTS.slice(0, 3).map((post) => localizePost(language, post)),
+			external: EXTERNAL_POSTS.slice(0, 1)
+				.map((post) => localizeExternalPost(language, post))
+				.at(0),
 		},
 		jobs: [],
 		projects: [],

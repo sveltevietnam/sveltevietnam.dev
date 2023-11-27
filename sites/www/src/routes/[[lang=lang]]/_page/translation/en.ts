@@ -20,7 +20,7 @@ export const en = {
 		},
 	},
 	events: {
-		title: 'Next Event',
+		title: 'Events',
 		description:
 			'Join the community to share your experience, products, and all thing Svelte and open source',
 		tba: {

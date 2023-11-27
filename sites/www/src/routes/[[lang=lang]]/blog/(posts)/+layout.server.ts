@@ -1,5 +1,10 @@
 import { LOAD_DEPENDENCIES } from '$shared/constants';
-import { EXTERNAL_POSTS, INTERNAL_POSTS } from '$shared/data/blog';
+import {
+	EXTERNAL_POSTS,
+	INTERNAL_POSTS,
+	localizeExternalPost,
+	localizePost,
+} from '$shared/data/blog';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { LayoutServerLoad } from './$types';
@@ -16,8 +21,8 @@ export const load: LayoutServerLoad = async ({ url, depends, locals: { language 
 	return {
 		breadcrumbs: buildBreadcrumbs(url.pathname),
 		more: {
-			internal: morePosts.slice(0, 1),
-			external: EXTERNAL_POSTS.slice(0, 1),
+			internal: morePosts.slice(0, 1).map((post) => localizePost(language, post)),
+			external: EXTERNAL_POSTS.slice(0, 1).map((post) => localizeExternalPost(language, post)),
 		},
 		translations: {
 			layout: translations[language],

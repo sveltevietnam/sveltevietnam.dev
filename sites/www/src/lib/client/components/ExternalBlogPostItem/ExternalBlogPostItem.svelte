@@ -1,26 +1,20 @@
 <script lang="ts">
-	import { getLangContext } from '$client/contexts/lang';
-	import { localizeExternalPost, type ExternalPost } from '$shared/data/blog';
+	import type { LocalizedExternalPost } from '$shared/data/blog';
 
-	export let post: ExternalPost;
+	export let post: LocalizedExternalPost;
 	let cls = '';
 	export { cls as class };
-
-	const langStore = getLangContext();
-	$: lang = $langStore;
-
-	$: tPost = localizeExternalPost(lang, post);
 
 	const titleClass = 'tp-h4 font-bold c-link c-link--preserved';
 </script>
 
 <article class="space-y-3 {cls}">
-	<a href={tPost.href} class="block w-fit" external>
+	<a href={post.href} class="block w-fit" external>
 		<svg inline-src="icon/external-link" class="mb-2 mr-2 inline-block" />
-		<slot name="title" class={titleClass} text={tPost.title}>
-			<span class={titleClass}>{tPost.title}</span>
+		<slot name="title" class={titleClass} text={post.title}>
+			<span class={titleClass}>{post.title}</span>
 		</slot>
 	</a>
-	<p>{tPost.description}</p>
-	<p class="font-medium">{tPost.author}</p>
+	<p>{post.description}</p>
+	<p class="font-medium">{post.author}</p>
 </article>
