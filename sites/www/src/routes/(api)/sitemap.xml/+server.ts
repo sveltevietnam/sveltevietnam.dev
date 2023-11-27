@@ -2,7 +2,7 @@
 
 import Mustache from 'mustache';
 
-import { INTERNAL_POSTS } from '$routes/[[lang=lang]]/blog/_page/data';
+import { INTERNAL_POSTS } from '$shared/data/blog';
 import { LANGUAGES } from '$shared/services/i18n';
 import {
 	BLOG_PATH,
