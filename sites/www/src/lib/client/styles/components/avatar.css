@@ -1,6 +1,4 @@
 .c-avatar {
-	@apply clip-ellipse;
-
 	aspect-ratio: 1 / 1;
 	width: 56px;
 	height: 56px;
@@ -9,7 +7,20 @@
 	object-position: center;
 	background-color: theme('colors.bg.DEFAULT');
 
-	.c-link:has(&) {
+	&:where(.c-avatar--sm) {
+		width: 24px;
+		height: 24px;
+	}
+
+	&:not(:where(.c-avatar--ellipse)) {
+		border-radius: 50%;
+	}
+
+	&:where(.c-avatar--ellipse) {
 		@apply clip-ellipse;
+
+		.c-link:has(&) {
+			@apply clip-ellipse;
+		}
 	}
 }
