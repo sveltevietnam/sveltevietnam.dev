@@ -8,6 +8,7 @@ export const SOCIAL_LINKS = {
 	TWITTER: 'https://twitter.com/sveltevietnam',
 	FACEBOOK: 'https://facebook.com/sveltevietnam',
 	OPEN_COLLECTIVE: 'https://opencollective.com/sveltevietnam',
+	YOUTUBE: 'https://www.youtube.com/@sveltevietnam',
 } as const;
 
 export const EMAILS = {

@@ -1,7 +1,8 @@
-import type { BreadcrumbList, Organization, Blog } from 'schema-dts';
+import type { BreadcrumbList, Organization, Blog, Person as StructuredPerson } from 'schema-dts';
 
 import { SOCIAL_LINKS } from '$shared/constants';
-import type { Breadcrumb } from '$shared/services/navigation';
+import type { localizePerson } from '$shared/data/people';
+import { ROOT_URL, type Breadcrumb } from '$shared/services/navigation';
 
 export const SVELTE_VIETNAM_ORG = {
 	'@type': 'Organization',
@@ -38,4 +39,14 @@ export function buildStructuredBreadcrumbs(crumbs: Breadcrumb[]) {
 			...(crumb.href && { item: crumb.href }),
 		})),
 	} satisfies BreadcrumbList;
+}
+
+export function structurePerson(person: ReturnType<typeof localizePerson>) {
+	return {
+		'@type': 'Person',
+		name: person.name,
+		...(person.title && { description: person.title }),
+		...(person.link && { url: person.link }),
+		...(person.avatarUrl && { image: ROOT_URL + person.avatarUrl }),
+	} satisfies StructuredPerson;
 }
