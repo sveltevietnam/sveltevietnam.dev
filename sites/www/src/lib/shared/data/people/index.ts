@@ -27,7 +27,7 @@ export const people = {
 export function localizePerson(language: Language, person: Person) {
 	return {
 		...person,
-		name: resolveLangVar(language, person.name) ?? '',
+		name: resolveLangVar(language, person.name),
 		title: resolveLangVar(language, person.title),
 		link: resolveLangVar(language, person.link),
 	};

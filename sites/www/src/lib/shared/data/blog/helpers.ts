@@ -13,7 +13,7 @@ export function localizePost(language: Language, post: Post) {
 		...post,
 		title: resolveLangVar(language, post.title),
 		description: resolveLangVar(language, post.description),
-		keywords: post.keywords?.map((tag) => resolveLangVar(language, tag) ?? ''),
+		keywords: post.keywords?.map((tag) => resolveLangVar(language, tag)),
 		githubUrl: resolveLangVar(language, post.githubUrl),
 		authors: post.authors.map((author) => localizePerson(language, author)),
 		wordCount: resolveLangVar(language, post.wordCount),
