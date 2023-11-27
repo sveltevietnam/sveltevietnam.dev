@@ -1,6 +1,7 @@
 import type { BlogPosting, BreadcrumbList, WithContext } from 'schema-dts';
 
-import { SVELTE_VIETNAM_ORG, SVELTE_VIETNAM_BLOG } from '$shared/data/structured';
+import { localizePerson } from '$shared/data/people';
+import { SVELTE_VIETNAM_ORG, SVELTE_VIETNAM_BLOG, structurePerson } from '$shared/data/structured';
 import { resolveLangVar, type Language } from '$shared/services/i18n';
 import { BLOG_PATH, ROOT_URL } from '$shared/services/navigation';
 
@@ -14,12 +15,7 @@ export function localizePost(language: Language, post: Post) {
 		description: resolveLangVar(language, post.description),
 		keywords: post.keywords?.map((tag) => resolveLangVar(language, tag) ?? ''),
 		githubUrl: resolveLangVar(language, post.githubUrl),
-		authors: post.authors.map((author) => ({
-			...author,
-			name: resolveLangVar(language, author.name),
-			title: resolveLangVar(language, author.title),
-			link: resolveLangVar(language, author.link),
-		})),
+		authors: post.authors.map((author) => localizePerson(language, author)),
 		wordCount: resolveLangVar(language, post.wordCount),
 	};
 }
@@ -90,12 +86,7 @@ export function preparePageData(language: Language, post: Post, content: PostCon
 					datePublished: lPost.date,
 					dateModified: lPost.date,
 					image: ROOT_URL + lPost.ogImage,
-					author: lPost.authors.map((author) => ({
-						'@type': 'Person',
-						name: author.name,
-						...(author.link && { url: author.link }),
-						...(author.avatarUrl && { image: ROOT_URL + author.avatarUrl }),
-					})),
+					author: lPost.authors.map(structurePerson),
 					inLang: language,
 					publisher: SVELTE_VIETNAM_ORG,
 					isPartOf: SVELTE_VIETNAM_BLOG,

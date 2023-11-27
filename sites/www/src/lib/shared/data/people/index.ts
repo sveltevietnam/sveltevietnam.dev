@@ -1,4 +1,4 @@
-import type { LangVar } from '$shared/services/i18n';
+import { resolveLangVar, type LangVar, type Language } from '$shared/services/i18n';
 
 import vnphanquangAvatarUrl from './avatars/vnphanquang.png?format=webp';
 
@@ -23,3 +23,12 @@ export const people = {
 		avatarUrl: vnphanquangAvatarUrl,
 	},
 } satisfies Record<string, Person>;
+
+export function localizePerson(language: Language, person: Person) {
+	return {
+		...person,
+		name: resolveLangVar(language, person.name) ?? '',
+		title: resolveLangVar(language, person.title),
+		link: resolveLangVar(language, person.link),
+	};
+}
