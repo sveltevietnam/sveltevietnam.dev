@@ -4,7 +4,26 @@ import { localizePerson } from '$shared/data/people';
 import { resolveLangVar, type Language } from '$shared/services/i18n';
 import { EVENTS_PATH, ROOT_URL, getPathLabel } from '$shared/services/navigation';
 
-import type { Event, StructureEvent } from './types';
+import type { Event, LocalizedEvent, StructureEvent } from './types';
+
+export function getEventStatus(event: LocalizedEvent) {
+	const now = new Date();
+	if (event.startDate.toUpperCase() === 'TBA') {
+		return 'upcoming';
+	}
+	const startDate = new Date(event.startDate);
+	if (startDate > now) {
+		return 'upcoming';
+	}
+	if (
+		startDate <= now &&
+		(event.endDate.toUpperCase() === 'TBA' || new Date(event.startDate) > now)
+	) {
+		return 'ongoing';
+	}
+
+	return 'past';
+}
 
 export function localizeEvent(language: Language, event: Event) {
 	return {

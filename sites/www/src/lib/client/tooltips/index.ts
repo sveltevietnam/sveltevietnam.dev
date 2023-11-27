@@ -15,8 +15,9 @@ export const textTip = prepare({
 		arrowEl.className = 'c-tooltip-arrow';
 		tooltip.prepend(arrowEl);
 
-		autoUpdate(node, tooltip, async () => {
-			const { x, y, middlewareData, placement } = await computePosition(node, tooltip, {
+		const tElement = tooltip as HTMLElement;
+		autoUpdate(node, tElement, async () => {
+			const { x, y, middlewareData, placement } = await computePosition(node, tElement, {
 				middleware: [
 					offset(16),
 					arrow({
@@ -26,8 +27,8 @@ export const textTip = prepare({
 					shift(),
 				],
 			});
-			tooltip.style.left = `${x}px`;
-			tooltip.style.top = `${y}px`;
+			tElement.style.left = `${x}px`;
+			tElement.style.top = `${y}px`;
 
 			const staticSide = (
 				{

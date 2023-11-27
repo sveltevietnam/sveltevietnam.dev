@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { AnimatedArrowCircle } from '$client/components/AnimatedArrowCircle';
 	import { getLangContext } from '$client/contexts/lang';
+	import { textTip } from '$client/tooltips';
 	import defaultFallbackImg from '$shared/assets/images/fallback/default.webp';
 	import sponsorFallbackImg from '$shared/assets/images/fallback/sponsor.webp';
 	import type { LocalizedEvent } from '$shared/data/events';
+	import { getEventStatus } from '$shared/data/events/helpers';
 	import { EVENTS_PATH } from '$shared/services/navigation';
 	import { formatDate } from '$shared/utils/datetime';
 
@@ -17,6 +18,7 @@
 	$: lang = $langStore;
 
 	$: t = translations[lang];
+	$: status = getEventStatus(event);
 	// $: monthFormatter = new Intl.DateTimeFormat(lang, { month: 'long' });
 
 	function formatTimeStr(event: LocalizedEvent) {
@@ -61,16 +63,26 @@
 			{@const rStartDate = new Date(event.startDate)}
 			<time datetime={rStartDate.toISOString()}>{formatDate(rStartDate)}</time>
 		{/if}
-		<AnimatedArrowCircle height={32} width={32} handle="#{event.slug}" />
 	</p>
 	<div class="flex-1">
-		<a
-			href={`${EVENTS_PATH}/${event.slug}`}
-			class="title tp-h4 block font-medium transition-[color] duration-[400ms] hover:text-fg-200"
-			id={event.slug}
-		>
-			{event.title}
-		</a>
+		<p>
+			<a
+				href={`${EVENTS_PATH}/${event.slug}`}
+				class="c-link c-link--preserved tp-h4 font-medium"
+				id={event.slug}
+			>
+				{event.title}
+			</a>
+			{#if status === 'ongoing'}
+				<svg
+					inline-src="google/campaign"
+					width="32"
+					height="32"
+					class="inline-block cursor-help fill-amber align-bottom"
+					use:textTip={{ content: 'This event is happening right now. Join us!' }}
+				/>
+			{/if}
+		</p>
 		<p class="mt-6">
 			{@html event.description}
 		</p>
