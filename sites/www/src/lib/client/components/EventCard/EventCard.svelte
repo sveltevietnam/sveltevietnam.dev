@@ -3,12 +3,13 @@
 	import { getLangContext } from '$client/contexts/lang';
 	import defaultFallbackImg from '$shared/assets/images/fallback/default.webp';
 	import sponsorFallbackImg from '$shared/assets/images/fallback/sponsor.webp';
-	import type { Event } from '$shared/types';
+	import type { LocalizedEvent } from '$shared/data/events';
+	import { EVENTS_PATH } from '$shared/services/navigation';
 	import { formatDate } from '$shared/utils/datetime';
 
 	import { translations } from './translation';
 
-	export let event: Event;
+	export let event: LocalizedEvent;
 	let cls = '';
 	export { cls as class };
 
@@ -16,10 +17,9 @@
 	$: lang = $langStore;
 
 	$: t = translations[lang];
-	$: rStartDate = new Date(event.startDate);
 	// $: monthFormatter = new Intl.DateTimeFormat(lang, { month: 'long' });
 
-	function formatTimeStr(event: Event) {
+	function formatTimeStr(event: LocalizedEvent) {
 		const { startDate, endDate } = event;
 		const start = new Date(startDate);
 		const startYear = start.getFullYear();
@@ -55,47 +55,76 @@
 
 <article class="event-card {cls}">
 	<p class="date tp-h4 flex items-center font-lora font-medium">
-		<time datetime={rStartDate.toISOString()}>{formatDate(rStartDate)}</time>
-		<AnimatedArrowCircle height={32} width={32} handle="#{event.id}" />
+		{#if event.startDate === 'TBA'}
+			<p>TBA</p>
+		{:else}
+			{@const rStartDate = new Date(event.startDate)}
+			<time datetime={rStartDate.toISOString()}>{formatDate(rStartDate)}</time>
+		{/if}
+		<AnimatedArrowCircle height={32} width={32} handle="#{event.slug}" />
 	</p>
 	<div class="flex-1">
 		<a
-			href={event.href}
+			href={`${EVENTS_PATH}/${event.slug}`}
 			class="title tp-h4 block font-medium transition-[color] duration-[400ms] hover:text-fg-200"
-			id={event.id}
+			id={event.slug}
 		>
 			{event.title}
 		</a>
 		<p class="mt-6">
 			{@html event.description}
 		</p>
-		<dl class="mt-4 grid grid-cols-[auto,1fr] gap-x-6 gap-y-3">
+		<dl class="mt-4 grid grid-cols-[auto,1fr] items-center gap-x-6 gap-y-3">
 			<dt class="font-medium">{t.location}:</dt>
 			<dd>
-				{event.location}
+				{@html event.location}
 			</dd>
 
 			<dt class="font-medium">{t.time}:</dt>
 			<dd>
-				<time datetime={rStartDate.toISOString()}>{formatTimeStr(event)}</time>
+				{#if event.startDate === 'TBA'}
+					<p>TBA</p>
+				{:else}
+					{@const rStartDate = new Date(event.startDate)}
+					<time datetime={rStartDate.toISOString()}>{formatTimeStr(event)}</time>
+				{/if}
 			</dd>
 
 			{#if event.speakers.length}
 				<dt class="font-medium">{t.speakers}:</dt>
 				<dd>
 					<ul class="flex flex-wrap items-center gap-x-4 gap-y-3">
-						{#each event.speakers as { image, name, href }}
-							<li>
-								<svelte:element this={href ? 'a' : 'div'} {href} class="flex items-center gap-x-2">
+						{#each event.speakers as { avatarUrl, name, link }}
+							<li class="flex items-center gap-2">
+								{#if link}
+									<a href={link} class="c-link c-link--image" external>
+										<span class="sr-only">{name}</span>
+										<img
+											src={avatarUrl || defaultFallbackImg}
+											width="24"
+											height="24"
+											alt={name}
+											class="c-avatar c-avatar--sm"
+										/>
+									</a>
+								{:else}
 									<img
-										src={image || defaultFallbackImg}
+										src={avatarUrl || defaultFallbackImg}
 										width="24"
 										height="24"
 										alt={name}
-										class="c-avatar"
+										class="c-avatar c-avatar--sm"
 									/>
-									<p>{name}</p>
-								</svelte:element>
+								{/if}
+								<p>
+									{#if link}
+										<a href={link} class="c-link c-link--preserved" external>
+											{name}
+										</a>
+									{:else}
+										{name}
+									{/if}
+								</p>
 							</li>
 						{/each}
 					</ul>

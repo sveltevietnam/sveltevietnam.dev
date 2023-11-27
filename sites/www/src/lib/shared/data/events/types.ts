@@ -20,7 +20,9 @@ export type Event = {
 	thumbnail: LangVar<string>;
 };
 
+export type LocalizedEvent = ReturnType<typeof localizeEvent>;
+
 export type StructureEvent = (
-	lEvent: ReturnType<typeof localizeEvent>,
+	lEvent: LocalizedEvent,
 	language: Language,
 ) => WithContext<StructuredEvent>;

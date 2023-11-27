@@ -1,6 +1,9 @@
 export const vi = {
 	title: 'Sự kiện',
 	subtitle: 'Gặp gỡ, trao đổi, chia sẻ về Svelte và open source',
+	ongoingEvents: {
+		title: 'Đang diễn ra',
+	},
 	upcomingEvents: {
 		title: 'Sự kiện mới',
 		tba: {

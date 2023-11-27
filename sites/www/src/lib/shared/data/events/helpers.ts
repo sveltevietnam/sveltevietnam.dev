@@ -16,6 +16,10 @@ export function localizeEvent(language: Language, event: Event) {
 		keywords: resolveLangVar(language, event.keywords),
 		ogImage: resolveLangVar(language, event.ogImage),
 		thumbnail: resolveLangVar(language, event.thumbnail),
+		sponsors: event.sponsors.map((sponsor) => ({
+			...sponsor,
+			name: resolveLangVar(language, sponsor.name),
+		})),
 	};
 }
 

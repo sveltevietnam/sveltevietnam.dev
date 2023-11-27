@@ -1,6 +1,9 @@
 export const en = {
 	title: 'Events',
 	subtitle: 'Meetups, conferences about Svelte and open source',
+	ongoingEvents: {
+		title: 'Happening Now',
+	},
 	upcomingEvents: {
 		title: 'Upcoming Events',
 		tba: {

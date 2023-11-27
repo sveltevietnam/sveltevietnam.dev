@@ -32,6 +32,24 @@
 		</div>
 	</section>
 	<div class="space-y-[60px] pb-[120px] tb:space-y-[120px] tb:pb-[200px]">
+		{#if data.events.ongoing.length}
+			<section>
+				<ConsecutiveFadeUpIntro selector=".char">
+					<h2 class="tp-h2 uppercase">
+						<SplitText text={t.ongoingEvents.title} />
+					</h2>
+				</ConsecutiveFadeUpIntro>
+				<div class="mt-10 tb:mt-[60px]">
+					<ul class="space-y-10 tb:space-y-[60px]">
+						{#each data.events.ongoing as event}
+							<li use:intersect>
+								<EventCard {event} />
+							</li>
+						{/each}
+					</ul>
+				</div>
+			</section>
+		{/if}
 		<section>
 			<ConsecutiveFadeUpIntro selector=".char">
 				<h2 class="tp-h2 uppercase">
@@ -39,7 +57,7 @@
 				</h2>
 			</ConsecutiveFadeUpIntro>
 			<div class="mt-10 tb:mt-[60px]">
-				{#if data.events.past.length}
+				{#if data.events.upcoming.length}
 					<ul class="space-y-10 tb:space-y-[60px]">
 						{#each data.events.upcoming as event}
 							<li use:intersect>

@@ -6,6 +6,7 @@ import { translations as mailT } from '$server/actions/mail/translation';
 import ogImageEn from '$shared/assets/images/og/og-events.en.jpg';
 import ogImageVi from '$shared/assets/images/og/og-events.vi.jpg';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
+import { listEvents } from '$shared/data/events';
 import type { Language } from '$shared/services/i18n';
 import { EVENTS_PATH, ROOT_URL } from '$shared/services/navigation';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
@@ -42,10 +43,7 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
 			page: pageT[language],
 			mail: mailT[language],
 		},
-		events: {
-			upcoming: [],
-			past: [],
-		},
+		events: listEvents(language),
 		meta: {
 			...tMeta,
 			canonical: `${ROOT_URL}/${language}${EVENTS_PATH}`,
