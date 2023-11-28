@@ -40,7 +40,7 @@ declare global {
 			colorScheme: ColorScheme;
 			language: Language;
 			version: string;
-			referer?: URL;
+			internalReferer?: URL;
 		}
 		interface PageData {
 			colorScheme: ColorScheme;

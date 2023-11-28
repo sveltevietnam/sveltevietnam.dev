@@ -14,9 +14,15 @@
 
 	animation-name: splash-out;
 	animation-duration: calc(var(--animation-out-duration) * 0.6);
+	animation-play-state: running;
 	animation-timing-function: ease;
 	animation-fill-mode: forwards;
 	animation-delay: calc(var(--animation-in-duration) + var(--animation-out-duration) * 0.4);
+
+	&[data-splash-skip='true'] {
+		display: none;
+		animation-play-state: paused;
+	}
 }
 
 @keyframes splash-out {
@@ -32,6 +38,7 @@
 .splash-icon,
 .splash-title {
 	position: relative;
+	animation-play-state: inherit;
 }
 
 .splash-title {
@@ -117,6 +124,7 @@
 			animation-name: splash-in-long-step-1-icon, splash-in-long-step-2-icon,
 				splash-in-long-step-3-icon;
 			animation-duration: var(--step-1-duration), var(--step-2-duration), var(--step-3-duration);
+			animation-play-state: inherit;
 			animation-timing-function: var(--animation-timing-function-1),
 				var(--animation-timing-function-1), var(--animation-timing-function-2);
 			animation-fill-mode: forwards;
@@ -142,6 +150,7 @@
 			animation-name: splash-in-long-step-1-title-overlay, splash-in-long-step-2-title-overlay,
 				splash-in-long-step-3-title-overlay;
 			animation-duration: var(--step-1-duration), var(--step-2-duration), var(--step-3-duration);
+			animation-play-state: inherit;
 			animation-timing-function: var(--animation-timing-function-1),
 				var(--animation-timing-function-1), var(--animation-timing-function-2);
 			animation-fill-mode: forwards;
@@ -154,6 +163,7 @@
 
 			animation-name: splash-in-long-step-1-title, splash-in-long-step-3-title;
 			animation-duration: var(--step-1-duration), var(--step-3-duration);
+			animation-play-state: inherit;
 			animation-timing-function: var(--animation-timing-function-1),
 				var(--animation-timing-function-2);
 			animation-fill-mode: forwards;

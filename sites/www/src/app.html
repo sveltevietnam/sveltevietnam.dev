@@ -44,7 +44,12 @@
 	</head>
 	<body>
 		<!-- SplashScreen -->
-		<div class="splash splash--%splash-variant%" aria-disabled id="splash">
+		<div
+			class="splash splash--%splash-variant%"
+			aria-disabled
+			id="splash"
+			data-splash-skip="%splash-skip%"
+		>
 			<div class="splash-icon">
 				<svg
 					class="c-logo c-logo--themed"
@@ -147,11 +152,20 @@
 			</div>
 			<script>
 				const splashEl = document.getElementById('splash');
-				if (splashEl) {
+				function cleanup() {
+					document.documentElement.setAttribute('data-splashed-at', new Date().toISOString());
+					// if (splashEl) splashEl.remove();
+				}
+
+				if (!splashEl) {
+					document.documentElement.setAttribute('data-splashed-at', new Date().toISOString());
+				} else {
+					if (splashEl.hasAttribute('data-splash-skip')) {
+						cleanup();
+					}
 					splashEl.addEventListener('animationend', (el) => {
 						if (!splashEl.isSameNode(el.target)) return;
-						document.documentElement.setAttribute('data-splashed-at', new Date().toISOString());
-						splashEl.remove();
+						cleanup();
 					});
 				}
 			</script>
