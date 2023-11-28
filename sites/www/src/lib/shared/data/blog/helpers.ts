@@ -17,6 +17,7 @@ export function localizePost(language: Language, post: Post) {
 		githubUrl: resolveLangVar(language, post.githubUrl),
 		authors: post.authors.map((author) => localizePerson(language, author)),
 		wordCount: resolveLangVar(language, post.wordCount),
+		ogImage: resolveLangVar(language, post.ogImage),
 	};
 }
 
