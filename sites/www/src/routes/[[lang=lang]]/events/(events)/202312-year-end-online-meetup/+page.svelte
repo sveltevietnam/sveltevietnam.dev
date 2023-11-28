@@ -9,6 +9,7 @@
 	import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
 	import { isEventWithinOneDay } from '$shared/data/events';
 	import { SPONSOR_PATH } from '$shared/services/navigation';
+	import { formatDate, formatDateAndTime, formatTime } from '$shared/utils/datetime';
 
 	import kvImage from '../../_page/images/key-visuals.png?format=webp&imagetools';
 
@@ -36,18 +37,15 @@
 			<!-- time -->
 			<!-- TODO: candidate for Svelte 5 snippet -->
 			<p>
-				{#if event.startDate.toUpperCase() !== 'TBA'}
-					<time datetime={event.startDate}
-						>{new Date(event.startDate).toLocaleDateString(lang)}</time
-					>
-				{/if}
-				{#if !isWithinOneDay}
+				{#if isWithinOneDay}
+					{formatDate(event.startDate)},
+					<time datetime={event.startDate}>{formatTime(event.startDate)}</time>
 					-
-					{#if event.endDate.toUpperCase() !== 'TBA'}
-						<time datetime={event.endDate}>{new Date(event.endDate).toLocaleDateString(lang)}</time>
-					{:else}
-						{t.tba}
-					{/if}
+					<time datetime={event.endDate}>{formatTime(event.endDate)}</time>
+				{:else}
+					<time datetime={event.startDate}>{formatDateAndTime(event.startDate)}</time>
+					-
+					<time datetime={event.endDate}>{formatDateAndTime(event.endDate)}</time>
 				{/if}
 			</p>
 			<!-- location -->
@@ -97,22 +95,15 @@
 				<!-- time -->
 				<dt class="font-medium">{t.time}:</dt>
 				<dd>
-					{#if event.startDate.toUpperCase() !== 'TBA'}
-						<time datetime={event.startDate}
-							>{new Date(event.startDate).toLocaleDateString(lang)}</time
-						>
-						{#if !isWithinOneDay}
-							-
-							{#if event.endDate.toUpperCase() !== 'TBA'}
-								<time datetime={event.endDate}
-									>{new Date(event.endDate).toLocaleDateString(lang)}</time
-								>
-							{:else}
-								{t.tba}
-							{/if}
-						{/if}
+					{#if isWithinOneDay}
+						{formatDate(event.startDate)},
+						<time datetime={event.startDate}>{formatTime(event.startDate)}</time>
+						-
+						<time datetime={event.endDate}>{formatTime(event.endDate)}</time>
 					{:else}
-						<p class="first-letter:lowercase">{t.tba}</p>
+						<time datetime={event.startDate}>{formatDateAndTime(event.startDate)}</time>
+						-
+						<time datetime={event.endDate}>{formatDateAndTime(event.endDate)}</time>
 					{/if}
 				</dd>
 

@@ -3,9 +3,9 @@
 	import { textTip } from '$client/tooltips';
 	import defaultFallbackImg from '$shared/assets/images/fallback/default.jpg?w=56&format=webp&imagetools';
 	import type { LocalizedEvent } from '$shared/data/events';
-	import { getEventStatus } from '$shared/data/events';
+	import { getEventStatus, isEventWithinOneDay } from '$shared/data/events';
 	import { EVENTS_PATH } from '$shared/services/navigation';
-	import { formatDate } from '$shared/utils/datetime';
+	import { formatDate, formatDateAndTime, formatTime } from '$shared/utils/datetime';
 
 	import { translations } from './translation';
 
@@ -18,40 +18,7 @@
 
 	$: t = translations[lang];
 	$: status = getEventStatus(event);
-	// $: monthFormatter = new Intl.DateTimeFormat(lang, { month: 'long' });
-
-	function formatTimeStr(event: LocalizedEvent) {
-		const { startDate, endDate } = event;
-		const start = new Date(startDate);
-		const startYear = start.getFullYear();
-		const startMonth = start.getMonth() + 1;
-		const startDay = start.getDate();
-		const startHour = start.getHours().toString().padStart(2, '0');
-		const startMinute = start.getMinutes().toString().padStart(2, '0');
-
-		const end = new Date(endDate);
-		const endYear = end.getFullYear();
-		const endMonth = end.getMonth() + 1;
-		const endDay = end.getDate();
-		const endHour = end.getHours().toString().padStart(2, '0');
-		const endMinute = end.getMinutes().toString().padStart(2, '0');
-
-		if (startYear === endYear && startMonth === endMonth && startDay === endDay) {
-			return `${startHour}:${startMinute} - ${endHour}:${endMinute}`;
-		} else if (startYear !== endYear) {
-			return `${startYear}-${startMonth.toString().padStart(2, '0')}-${startDay
-				.toString()
-				.padStart(2, '0')} ${startHour}:${startMinute} - ${endYear}-${endMonth
-				.toString()
-				.padStart(2, '0')}-${endDay.toString().padStart(2, '0')} ${endHour}:${endMinute}`;
-		} else {
-			return `${startMonth.toString().padStart(2, '0')}-${startDay
-				.toString()
-				.padStart(2, '0')} ${startHour}:${startMinute} - ${endMonth
-				.toString()
-				.padStart(2, '0')}-${endDay.toString().padStart(2, '0')} ${endHour}:${endMinute}`;
-		}
-	}
+	$: isWithinOneDay = isEventWithinOneDay(event);
 </script>
 
 <article class="event-card {cls}">
@@ -59,8 +26,7 @@
 		{#if event.startDate === 'TBA'}
 			TBA
 		{:else}
-			{@const rStartDate = new Date(event.startDate)}
-			<time datetime={rStartDate.toISOString()}>{formatDate(rStartDate)}</time>
+			<time datetime={event.startDate}>{formatDate(event.startDate)}</time>
 		{/if}
 	</p>
 	<div class="flex-1">
@@ -93,11 +59,14 @@
 
 			<dt class="font-medium">{t.time}:</dt>
 			<dd>
-				{#if event.startDate === 'TBA'}
-					<p>TBA</p>
+				{#if isWithinOneDay}
+					<time datetime={event.startDate}>{formatTime(event.startDate)}</time>
+					-
+					<time datetime={event.endDate}>{formatTime(event.endDate)}</time>
 				{:else}
-					{@const rStartDate = new Date(event.startDate)}
-					<time datetime={rStartDate.toISOString()}>{formatTimeStr(event)}</time>
+					<time datetime={event.startDate}>{formatDateAndTime(event.startDate)}</time>
+					-
+					<time datetime={event.endDate}>{formatDateAndTime(event.endDate)}</time>
 				{/if}
 			</dd>
 
