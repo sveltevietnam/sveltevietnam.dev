@@ -21,6 +21,15 @@
 	$: event = data.event;
 	$: people = data.people;
 	$: isWithinOneDay = isEventWithinOneDay(event);
+
+	// params in seconds
+	function generateTimeSlot(offset: number, duration: number) {
+		let ms = new Date(event.startDate).getTime() + offset * 1_000 * 60;
+		const startDate = new Date(ms);
+		const endDate = new Date(ms + duration * 1_000 * 60);
+
+		return `${formatTime(startDate)} - ${formatTime(endDate)}`;
+	}
 </script>
 
 <main class="relative overflow-hidden">
@@ -112,11 +121,11 @@
 			</dl>
 			<ul class="timeline mt-10">
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="tp-body2 text-fg-200">09:00 - 09:20</time>
+					<time datetime="" class="tp-body2 text-fg-200">{generateTimeSlot(0, 20)}</time>
 					<p class="tp-h5 font-medium">{t.timeline.introduction}</p>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="tp-body2 text-fg-200">09:20 - 09:40</time>
+					<time datetime="" class="tp-body2 text-fg-200">{generateTimeSlot(20, 20)}</time>
 					<div class="space-y-3">
 						<p class="tp-h5 font-medium">{t.timeline.video1.title}</p>
 						<p>{t.timeline.video1.about}</p>
@@ -124,7 +133,7 @@
 					</div>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="tp-body2 text-fg-200">09:40 - 10:00</time>
+					<time datetime="" class="tp-body2 text-fg-200">{generateTimeSlot(40, 20)}</time>
 					<p class="tp-h5 font-medium">{t.timeline.discussion1}</p>
 				</li>
 				<li class="space-y-2" use:intersect>
@@ -133,14 +142,14 @@
 					</p>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<!-- <time datetime="" class="tp-body2 text-fg-200">HH:MM - HH:MM</time> -->
+					<time datetime="" class="tp-body2 text-fg-200">{generateTimeSlot(120, 20)}</time>
 					<div class="space-y-3">
 						<p class="tp-h5 font-medium">{t.timeline.video2}</p>
 						<Person person={people.vnphanquang} />
 					</div>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<!-- <time datetime="" class="tp-body2 text-fg-200">HH:MM - HH:MM</time> -->
+					<time datetime="" class="tp-body2 text-fg-200">{generateTimeSlot(140, 10)}</time>
 					<p class="tp-h5 font-medium">{t.timeline.closing}</p>
 				</li>
 			</ul>
