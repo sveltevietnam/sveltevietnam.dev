@@ -25,6 +25,18 @@ export function getEventStatus(event: LocalizedEvent) {
 	return 'past';
 }
 
+export function isEventWithinOneDay(event: LocalizedEvent) {
+	if (event.startDate.toUpperCase() === event.endDate.toUpperCase()) {
+		return true;
+	}
+	if (event.startDate.toUpperCase() === 'TBA' || event.endDate.toUpperCase() === 'TBA') {
+		return false;
+	}
+	return (
+		new Date(event.startDate).toLocaleDateString() === new Date(event.endDate).toLocaleDateString()
+	);
+}
+
 export function localizeEvent(language: Language, event: Event) {
 	return {
 		...event,
