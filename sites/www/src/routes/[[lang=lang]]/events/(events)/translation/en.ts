@@ -13,7 +13,7 @@ export const en = {
 		},
 	},
 	timeline: {
-		title: 'Chương trình',
+		title: 'Timeline',
 	},
 	images: {
 		title: 'Gallery',
