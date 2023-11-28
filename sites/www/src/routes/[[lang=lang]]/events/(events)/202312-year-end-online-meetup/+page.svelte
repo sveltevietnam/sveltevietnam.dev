@@ -3,7 +3,6 @@
 	import { Breadcrumbs } from '$client/components/Breadcrumbs';
 	import { Person } from '$client/components/Person';
 	import { ToBeAnnounced } from '$client/components/ToBeAnnounced';
-	import { getLangContext } from '$client/contexts/lang';
 	import fallbackPrimaryImage from '$shared/assets/images/fallback/default.jpg?enhanced&w=1200&imagetools';
 	import fallbackSecondaryImage from '$shared/assets/images/fallback/default.jpg?enhanced&w=900&imagetools';
 	import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
@@ -19,9 +18,6 @@
 
 	$: t = data.translations.page;
 
-	const langStore = getLangContext();
-	$: lang = $langStore;
-
 	$: event = data.event;
 	$: people = data.people;
 	$: isWithinOneDay = isEventWithinOneDay(event);
@@ -33,7 +29,7 @@
 	</div>
 	<div class="mt-[80px] max-w-pad" use:intersect>
 		<h1 class="tp-h1">{event.title}</h1>
-		<div class="mt-4 space-y-4 pb-[140px] tb:pb-[280px]">
+		<div class="mt-6 space-y-2 pb-[120px] tb:pb-[260px]">
 			<!-- time -->
 			<!-- TODO: candidate for Svelte 5 snippet -->
 			<p>
@@ -68,6 +64,7 @@
 		/>
 	</div>
 	<div class="space-y-[60px] pb-[120px] tb:space-y-[120px] tb:pb-[200px]">
+		<p class="max-w-pad" use:intersect>{@html t.description}</p>
 		<section class="max-w-pad">
 			<h2 class="tp-h2 uppercase" use:intersect>{t.timeline.title}</h2>
 			<section class="c-callout c-callout--info mt-6 space-y-4" use:intersect>
@@ -89,7 +86,7 @@
 				</ul>
 			</section>
 			<dl
-				class="mt-6 grid grid-cols-[auto,1fr] items-center gap-2 border-b border-dashed border-outline-200 py-6 leading-none"
+				class="mt-6 grid grid-cols-[auto,1fr] items-center gap-2 border-b border-dashed border-outline-200 py-6"
 				use:intersect
 			>
 				<!-- time -->
@@ -115,11 +112,11 @@
 			</dl>
 			<ul class="timeline mt-10">
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="tp-body2 text-fg-200">09:00 - 09:15</time>
+					<time datetime="" class="tp-body2 text-fg-200">09:00 - 09:20</time>
 					<p class="tp-h5 font-medium">{t.timeline.introduction}</p>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="tp-body2 text-fg-200">09:15 - 09:30</time>
+					<time datetime="" class="tp-body2 text-fg-200">09:20 - 09:40</time>
 					<div class="space-y-3">
 						<p class="tp-h5 font-medium">{t.timeline.video1.title}</p>
 						<p>{t.timeline.video1.about}</p>
@@ -127,7 +124,7 @@
 					</div>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="tp-body2 text-fg-200">09:30 - 10:00</time>
+					<time datetime="" class="tp-body2 text-fg-200">09:40 - 10:00</time>
 					<p class="tp-h5 font-medium">{t.timeline.discussion1}</p>
 				</li>
 				<li class="space-y-2" use:intersect>
