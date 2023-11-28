@@ -57,7 +57,7 @@
 <article class="event-card {cls}">
 	<p class="date tp-h4 flex items-center font-lora font-medium">
 		{#if event.startDate === 'TBA'}
-			<p>TBA</p>
+			TBA
 		{:else}
 			{@const rStartDate = new Date(event.startDate)}
 			<time datetime={rStartDate.toISOString()}>{formatDate(rStartDate)}</time>
