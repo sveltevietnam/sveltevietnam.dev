@@ -3,6 +3,7 @@
 import Mustache from 'mustache';
 
 import { INTERNAL_POSTS } from '$shared/data/blog';
+import { EVENTS } from '$shared/data/events';
 import { LANGUAGES } from '$shared/services/i18n';
 import {
 	BLOG_PATH,
@@ -42,6 +43,12 @@ export const GET: RequestHandler = ({ url }) => {
 				lastmod: toW3CDate(new Date(p.date)),
 				changefreq: 'yearly',
 				priority: 0.8,
+			}),
+		),
+		...EVENTS.flatMap((p) =>
+			makeUrl(url.origin, {
+				loc: `${BLOG_PATH}/${p.slug}`,
+				priority: 0.7,
 			}),
 		),
 		...makeUrl(url.origin, {

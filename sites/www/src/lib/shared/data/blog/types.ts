@@ -33,7 +33,7 @@ export type Post = {
 	tags?: PostTag[];
 	authors: Person[];
 	thumbnail?: string;
-	ogImage?: string;
+	ogImage?: LangVar<string>;
 	keywords?: LangVar<string>[];
 	readMinutes?: number;
 	wordCount?: LangVar<number>;
