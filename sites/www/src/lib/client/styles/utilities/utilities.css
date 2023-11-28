@@ -24,29 +24,14 @@
 }
 
 .max-w-pad {
-	--container-max-width: 100vw;
-	--container-min-padding-x: 16px;
-	--container-padding-x: max(
-		var(--container-min-padding-x),
-		calc((100vw - var(--container-max-width)) / 2)
-	);
-
+	/** see app.css for pad-padding-x setup */
 	max-width: 100vw;
-	padding-right: var(--container-padding-x);
-	padding-left: var(--container-padding-x);
+	padding-right: var(--pad-padding-x);
+	padding-left: var(--pad-padding-x);
+}
 
-	@screen tb {
-		--container-min-padding-x: 40px;
-		--container-max-width: 1024px;
-	}
-
-	@screen pc {
-		--container-max-width: 1440px;
-	}
-
-	@screen xl {
-		--container-min-padding-x: 160px;
-	}
+.backface-hidden {
+	backface-visibility: hidden;
 }
 
 .clip-ellipse {

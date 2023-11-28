@@ -36,6 +36,7 @@ export const theme = {
 		},
 		spacing: {
 			header: 'var(--header-height)',
+			'w-pad': 'var(--pad-padding-x, 0)',
 		},
 		colors: {
 			...primitives,
