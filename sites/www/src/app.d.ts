@@ -13,7 +13,7 @@ import type { Language } from '$shared/services/i18n';
 declare global {
 	declare const __BUILD_TIMESTAMP__: string;
 
-	declare module '*?format=webp' {
+	declare module '*&imagetools' {
 		const src: string;
 		export default src;
 	}

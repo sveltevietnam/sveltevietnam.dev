@@ -1,4 +1,4 @@
-import jobImg from '$shared/assets/images/fallback/job.webp';
+import jobImg from '$shared/assets/images/fallback/default.jpg?w=100&format=webp&imagetools';
 import { INTERNAL_POSTS } from '$shared/data/blog';
 import type { ExternalPost, Post } from '$shared/data/blog';
 import type { Event } from '$shared/data/events';

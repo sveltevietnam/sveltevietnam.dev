@@ -1,6 +1,6 @@
 import { resolveLangVar, type LangVar, type Language } from '$shared/services/i18n';
 
-import vnphanquangAvatarUrl from './avatars/vnphanquang.png?format=webp';
+import vnphanquangAvatarUrl from './avatars/vnphanquang.png?format=webp&imagetools';
 
 export type Person = {
 	name: LangVar<string>;

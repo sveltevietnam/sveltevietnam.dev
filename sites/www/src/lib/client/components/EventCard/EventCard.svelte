@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { getLangContext } from '$client/contexts/lang';
 	import { textTip } from '$client/tooltips';
-	import defaultFallbackImg from '$shared/assets/images/fallback/default.webp';
-	import sponsorFallbackImg from '$shared/assets/images/fallback/sponsor.webp';
+	import defaultFallbackImg from '$shared/assets/images/fallback/default.jpg?w=56&format=webp&imagetools';
 	import type { LocalizedEvent } from '$shared/data/events';
-	import { getEventStatus } from '$shared/data/events/helpers';
+	import { getEventStatus } from '$shared/data/events';
 	import { EVENTS_PATH } from '$shared/services/navigation';
 	import { formatDate } from '$shared/utils/datetime';
 
@@ -150,7 +149,7 @@
 						{#each event.sponsors as { href, image, name }}
 							<li>
 								<svelte:element this={href ? 'a' : 'div'} {href} class="flex items-center gap-x-2">
-									<img src={image || sponsorFallbackImg} width="24" height="24" alt={name} />
+									<img src={image || defaultFallbackImg} width="24" height="24" alt={name} />
 									<p>{name}</p>
 								</svelte:element>
 							</li>
