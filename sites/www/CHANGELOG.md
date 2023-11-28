@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.25
+
+### Minor Changes
+
+- [`2632caf`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/2632cafdb1b3902f20c28714aabdc2ba479585ca) Thanks [@vnphanquang](https://github.com/vnphanquang)! - Quality of Life improvement for users without JS - skip Splash for consecutive page visit
+
 ## 1.0.0-next.24
 
 ### Minor Changes
