@@ -9,6 +9,8 @@ export type Person = {
 	avatarUrl?: string;
 };
 
+export type LocalizedPerson = ReturnType<typeof localizePerson>;
+
 export const people = {
 	vnphanquang: {
 		name: {

@@ -8,6 +8,7 @@
 	import { Breadcrumbs } from '$client/components/Breadcrumbs';
 	import ExternalBlogPostItem from '$client/components/ExternalBlogPostItem/ExternalBlogPostItem.svelte';
 	import { FallbackImage } from '$client/components/FallbackImage';
+	import { Person } from '$client/components/Person';
 	import { modalStore } from '$client/modals';
 	import { QRCode } from '$client/modals/QRCode';
 	import { noti } from '$client/notifications';
@@ -86,40 +87,9 @@
 				</ul>
 				<!-- <div class="separator" /> -->
 				<ul class="flex items-start gap-6">
-					{#each post?.authors ?? [] as author}
-						<li class="flex items-center gap-3">
-							{#if author.link}
-								<a href={author.link} external class="c-link c-link--image clip-ellipse">
-									<span class="sr-only">{author.name}</span>
-									<img
-										src={author.avatarUrl}
-										alt={author.name}
-										class="c-avatar c-avatar--ellipse"
-										height="56"
-										width="56"
-									/>
-								</a>
-							{:else}
-								<img
-									src={author.avatarUrl}
-									alt={author.name}
-									class="c-avatar c-avatar--ellipse"
-									height="56"
-									width="56"
-								/>
-							{/if}
-							<div>
-								<p class="font-medium">
-									{#if author.link}
-										<a href={author.link} class="c-link c-link--preserved" external>
-											{author.name}
-										</a>
-									{:else}
-										{author.name}
-									{/if}
-								</p>
-								<p class="tp-cap1 text-fg-200">{author.title}</p>
-							</div>
+					{#each post?.authors ?? [] as person}
+						<li>
+							<Person {person} />
 						</li>
 					{/each}
 				</ul>
