@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.26
+
+### Minor Changes
+
+- [#183](https://github.com/sveltevietnam/sveltevietnam.dev/pull/183) [`9f9fe22`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/9f9fe22e4e14ae8db949e799fc46fa18a508da1b) Thanks [@vnphanquang](https://github.com/vnphanquang)! - new page for event "Online Meetup Year-End 2023"
+
 ## 1.0.0-next.25
 
 ### Minor Changes
