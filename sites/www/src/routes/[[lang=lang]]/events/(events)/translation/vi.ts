@@ -5,6 +5,7 @@ export const vi = {
 	time: 'Thời gian',
 	location: 'Địa điểm',
 	tba: 'Sẽ được thông báo sau',
+	tentative: 'dự kiến',
 	sponsors: {
 		title: 'Nhà tài trợ',
 		tba: {

@@ -52,6 +52,7 @@
 					-
 					<time datetime={event.endDate}>{formatDateAndTime(event.endDate)}</time>
 				{/if}
+				({t.tentative})
 			</p>
 			<!-- location -->
 			{#if event.location.toUpperCase() !== 'TBA'}
@@ -93,6 +94,7 @@
 						</a>
 					</li>
 				</ul>
+				<p>{t.proposal.guidelines}</p>
 			</section>
 			<dl
 				class="mt-6 grid grid-cols-[auto,1fr] items-center gap-2 border-b border-dashed border-outline-200 py-6"
@@ -111,6 +113,7 @@
 						-
 						<time datetime={event.endDate}>{formatDateAndTime(event.endDate)}</time>
 					{/if}
+					({t.tentative})
 				</dd>
 
 				<!-- location -->
@@ -127,14 +130,14 @@
 				<li class="space-y-2" use:intersect>
 					<time datetime="" class="tp-body2 text-fg-200">{generateTimeSlot(20, 20)}</time>
 					<div class="space-y-3">
-						<p class="tp-h5 font-medium">{t.timeline.video1.title}</p>
+						<p class="tp-h5 font-medium">{t.timeline.video}: "{t.timeline.video1.title}"</p>
 						<p>{t.timeline.video1.about}</p>
 						<Person person={people.vnphanquang} />
 					</div>
 				</li>
 				<li class="space-y-2" use:intersect>
 					<time datetime="" class="tp-body2 text-fg-200">{generateTimeSlot(40, 20)}</time>
-					<p class="tp-h5 font-medium">{t.timeline.discussion1}</p>
+					<p class="tp-h5 font-medium">{t.timeline.discussion}: {t.timeline.discussion1}</p>
 				</li>
 				<li class="space-y-2" use:intersect>
 					<p class="py-6">
@@ -144,7 +147,7 @@
 				<li class="space-y-2" use:intersect>
 					<time datetime="" class="tp-body2 text-fg-200">{generateTimeSlot(120, 20)}</time>
 					<div class="space-y-3">
-						<p class="tp-h5 font-medium">{t.timeline.video2}</p>
+						<p class="tp-h5 font-medium">{t.timeline.video}: "{t.timeline.video2}"</p>
 						<Person person={people.vnphanquang} />
 					</div>
 				</li>

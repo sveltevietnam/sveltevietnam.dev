@@ -5,6 +5,7 @@ export const en = {
 	time: 'Schedule',
 	location: 'Location',
 	tba: 'To be announced',
+	tentative: 'tentative',
 	sponsors: {
 		title: 'Sponsors',
 		tba: {
