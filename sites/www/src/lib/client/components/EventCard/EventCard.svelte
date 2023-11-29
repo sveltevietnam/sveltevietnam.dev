@@ -60,6 +60,7 @@
 			<dt class="font-medium">{t.time}:</dt>
 			<dd>
 				{#if isWithinOneDay}
+					{formatDate(event.startDate)},
 					<time datetime={event.startDate}>{formatTime(event.startDate)}</time>
 					-
 					<time datetime={event.endDate}>{formatTime(event.endDate)}</time>

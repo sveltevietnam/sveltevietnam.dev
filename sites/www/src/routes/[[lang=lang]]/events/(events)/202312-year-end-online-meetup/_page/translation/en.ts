@@ -14,13 +14,24 @@ export const en = {
 	timeline: {
 		...common.timeline,
 		introduction: 'Meet and Greet',
-		discussion1: 'Live Discussion: Feedback from Community',
+		discussion: 'Live Discussion',
+		discussion1: 'Feedback from Community',
+		video: 'Video Stream',
 		video1: {
-			title: 'Video Stream: "A Svelte Vietnam"',
+			title: 'A Svelte Vietnam',
 			about: 'Some statistics about the Svelte Vietnam project, and a few words from admin',
 		},
-		video2: 'Video Stream: "A Few Secrets of sveltevietnam.dev"',
+		video2: 'A Few Secrets of sveltevietnam.dev',
+		// demo1: {
+		// 	title: 'Live Demo: "Writing a Post for the Svelte Vietnam Blog',
+		// 	demo: 'A very quick demo about the making of a static blog post. Through this, I hope you can see how easy it is to write / code a post and get a feel of the workflow and codebase of sveltevietnam.dev.',
+		// },
 		closing: 'Closing Remarks',
+	},
+	proposal: {
+		...common.proposal,
+		guidelines:
+			'Your video or presentation should be less than 20 minutes. Its content should be about a project, product, or experience related to communities or technologies in the Svelte ecosystem.',
 	},
 	images: {
 		...common.images,

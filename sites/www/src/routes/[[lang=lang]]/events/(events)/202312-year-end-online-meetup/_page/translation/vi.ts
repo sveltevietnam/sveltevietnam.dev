@@ -4,7 +4,7 @@ export const vi = {
 	...common,
 	description:
 		'Đây là sự kiện đầu tiên của cộng đồng Svelte Việt Nam và cuối cùng của năm 2023, \
-		khi chúng ta đang dần khép lại thêm một năm đầy biến động, nhiều thay đổi API và tràn ngập tin tức về AI. \
+		khi chúng ta đang dần đi hết thêm một năm đầy biến động, nhiều thay đổi API và tràn ngập tin tức về AI. \
 		Sự kiện lần này dự kiến sẽ kéo dài khoảng hai giờ rưỡi, kết hợp giữa \
 		video quay trước và thảo luận trực tiếp. Chúng ta học hỏi từ các sự kiện từ \
 		<a class="c-link" href="https://www.sveltesummit.com/" rel="noreferrer" target="_blank">Svelte Summit</a>, \
@@ -14,13 +14,25 @@ export const vi = {
 	timeline: {
 		...common.timeline,
 		introduction: 'Giới thiệu và làm quen',
-		discussion1: 'Thảo luận: phản hồi từ cộng đồng',
+		discussion: 'Thảo luận',
+		discussion1: 'Phản hồi từ cộng đồng',
+		video: 'Video stream',
 		video1: {
-			title: 'Video stream: "Một Svelte Việt Nam"',
-			about: 'Thông tin chung về thực trạng dự án Svelte Việt Nam, và vài lời từ ban quản trị',
+			title: 'Một Svelte Việt Nam',
+			about:
+				'Thống kê, thông tin chung về thực trạng dự án Svelte Việt Nam, và vài lời từ ban quản trị',
 		},
-		video2: 'Video stream: "Vài bí mật về sveltevietnam.dev"',
+		video2: 'Vài bí mật về sveltevietnam.dev',
+		// demo1: {
+		// 	title: 'Live demo: "Viết bài cho Blog Svelte Việt Nam"',
+		// 	demo: 'Giới thiệu nhanh cách khởi tạo một bài viết tĩnh, qua đó hy vọng giúp bạn hiểu hơn về cách vận hành của sveltevietnam.dev',
+		// },
 		closing: 'Lời kết',
+	},
+	proposal: {
+		...common.proposal,
+		guidelines:
+			'Video hoặc phiên thuyết trình của bạn nên có độ dài không quá 15 phút và có nội dung liên quan đến dự án, sản phẩm, kinh nghiệm, hay trải nghiệm về cộng đồng hoặc các công nghệ xoay quanh hệ sinh thái Svelte.',
 	},
 	images: {
 		...common.images,
