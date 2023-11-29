@@ -51,7 +51,7 @@
 		<p class="mt-6">
 			{@html event.description}
 		</p>
-		<dl class="mt-4 grid grid-cols-[auto,1fr] items-center gap-x-6 gap-y-3">
+		<dl class="mt-4 grid grid-cols-[auto,1fr] items-baseline gap-x-6 gap-y-3">
 			<dt class="font-medium">{t.location}:</dt>
 			<dd>
 				{@html event.location}
@@ -75,7 +75,7 @@
 				<dd>
 					<ul class="flex flex-wrap items-center gap-x-4 gap-y-3">
 						{#each event.speakers as { avatarUrl, name, link }}
-							<li class="flex items-center gap-2">
+							<li class="space-x-1">
 								{#if link}
 									<a href={link} class="c-link c-link--image" external>
 										<span class="sr-only">{name}</span>
@@ -84,7 +84,7 @@
 											width="24"
 											height="24"
 											alt={name}
-											class="c-avatar c-avatar--sm"
+											class="c-avatar c-avatar--sm inline-block"
 										/>
 									</a>
 								{:else}
@@ -96,15 +96,13 @@
 										class="c-avatar c-avatar--sm"
 									/>
 								{/if}
-								<p>
-									{#if link}
-										<a href={link} class="c-link c-link--preserved" external>
-											{name}
-										</a>
-									{:else}
+								{#if link}
+									<a href={link} class="c-link c-link--preserved" external>
 										{name}
-									{/if}
-								</p>
+									</a>
+								{:else}
+									{name}
+								{/if}
 							</li>
 						{/each}
 					</ul>
