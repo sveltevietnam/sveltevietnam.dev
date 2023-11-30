@@ -86,6 +86,7 @@
 	&:where(:--image) {
 		position: relative;
 		overflow: hidden;
+		display: inline-block;
 
 		:where(& img) {
 			width: 100%;
