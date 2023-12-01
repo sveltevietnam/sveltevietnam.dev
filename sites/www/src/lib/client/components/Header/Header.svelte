@@ -40,7 +40,13 @@
 				}}
 				class="contents"
 			>
-				<svg inline-src="sveltevietnam" width="50" height="56" class="c-logo c-logo--themed" />
+				<svg
+					inline-src="sveltevietnam"
+					width="50"
+					height="56"
+					class="c-logo c-logo--themed"
+					id="header-logo"
+				/>
 				<span>Svelte <br aria-disabled /> Vietnam</span>
 			</svelte:element>
 		</div>

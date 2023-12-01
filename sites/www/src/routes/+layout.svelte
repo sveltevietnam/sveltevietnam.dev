@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { localizeUrl } from '@internals/utils/url';
+	import { onMount } from 'svelte';
 
 	import { page } from '$app/stores';
 	import { PUBLIC_MODE } from '$env/static/public';
@@ -33,6 +34,11 @@
 	$: twitterCard = meta?.twitter?.card ?? 'summary_large_image';
 	$: twitterSite = meta?.twitter?.site ?? '@sveltevietnam';
 	$: twitterCreator = meta?.twitter?.creator ?? '@sveltevietnam';
+
+	onMount(async () => {
+		(await import('$client/services/easter/hat-blow')).default();
+		(await import('$client/services/easter/ascii-pho')).default();
+	});
 </script>
 
 <svelte:head>
