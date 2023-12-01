@@ -160,7 +160,7 @@
 				if (!splashEl) {
 					document.documentElement.setAttribute('data-splashed-at', new Date().toISOString());
 				} else {
-					if (splashEl.hasAttribute('data-splash-skip')) {
+					if (splashEl.getAttribute('data-splash-skip') === 'true') {
 						cleanup();
 					}
 					splashEl.addEventListener('animationend', (el) => {

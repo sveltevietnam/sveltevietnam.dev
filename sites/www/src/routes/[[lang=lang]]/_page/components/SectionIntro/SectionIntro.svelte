@@ -35,6 +35,13 @@
 	let introTimeline: gsap.core.Timeline;
 
 	$: if (sectionElement) {
+		gsap.set('.intro-title', { opacity: 0 });
+		gsap.set('.intro-card', { opacity: 0 });
+		gsap.set('.intro-backdrop img', {
+			opacity: 0,
+			transform:
+				'translateX(var(--initial-translate-x)) translateY(var(--initial-translate-y)) rotateX(0) rotateY(0) rotateZ(0) scale(1)',
+		});
 		ctx = gsap.context(() => {
 			createCardParallaxTimeline(sectionElement);
 			createScrollTimeline(sectionElement);
@@ -140,10 +147,6 @@
 		display: flex;
 		justify-content: center;
 
-		:global(html[data-splashed-at]) & {
-			opacity: 0;
-		}
-
 		& svg {
 			width: 328px;
 			height: auto;
@@ -212,10 +215,6 @@
 			padding: 24px;
 
 			border-radius: 20px;
-		}
-
-		:global(html[data-splashed-at]) & {
-			opacity: 0;
 		}
 
 		&.intro-card--svelte {
@@ -378,12 +377,6 @@
 				calc(var(--width-pc) * 1px)
 			);
 			height: auto;
-
-			:global(html[data-splashed-at]) & {
-				transform: translateX(var(--initial-translate-x)) translateY(var(--initial-translate-y))
-					rotateX(0) rotateY(0) rotateZ(0) scale(1);
-				opacity: 0;
-			}
 		}
 
 		& .star {
