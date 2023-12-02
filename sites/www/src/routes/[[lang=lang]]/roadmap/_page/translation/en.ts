@@ -47,7 +47,7 @@ export const en = {
 				`☑ Introduce the “<a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/TECHNICAL_REFERNCES.md" rel="noreferrer" target="_blank">Technical Reference</a>” and “<a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/CONTRIBUTING.md" rel="noreferrer" target="_blank">Contributing Guidelines</a>” documents`,
 				'☑ Set up processes to publish blog posts or link posts via <a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/issues/new/choose" rel="noreferrer" target="_blank">Github issue</a>, and <a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/DEV_BLOG_POST.md" rel="noreferrer" target="_blank">guidelines for coding blog posts</a>',
 				'☑ Set up dedicated Open Graph images for all current pages',
-				'☐ Support progressive enhancement (solution or fallback for users without Javascript), especially for critical features including i18n routing, color theme switching, mobile header nav menu, and splash screen',
+				'☑ Support progressive enhancement (solution or fallback for users without Javascript), especially for critical features including i18n routing, color theme switching, mobile header nav menu, and splash screen',
 				'☐ Organize the first online community meetup',
 				'☐ Draft content and design for “Svelte Vietnam Community 2023 Survey”',
 			],
