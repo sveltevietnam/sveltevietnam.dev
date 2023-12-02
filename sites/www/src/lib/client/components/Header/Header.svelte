@@ -187,8 +187,6 @@
 	}
 
 	.mobile-wrapper {
-		pointer-events: none;
-
 		position: fixed;
 		z-index: theme('zIndex.overlay');
 		inset: 0;
@@ -222,8 +220,13 @@
 		}
 	}
 
+	#header-mobile-overlay-toggler:not(:checked) + .mobile-wrapper {
+		@screen upto-tb {
+			pointer-events: none;
+		}
+	}
+
 	#header-mobile-overlay-toggler:checked + .mobile-wrapper {
-		pointer-events: auto;
 		transform: translateX(0);
 		opacity: 1;
 	}
