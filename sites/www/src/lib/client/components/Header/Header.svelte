@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
-
 	import { afterNavigate } from '$app/navigation';
+	import { getLockScrollContext } from '$client/contexts/lockscroll';
 	import { HOME_PATH, isCurrentPage } from '$shared/services/navigation';
 	import { clamp } from '$shared/utils/clamp';
 
@@ -12,13 +11,14 @@
 	export let pathname: string;
 
 	let mobileOverlayOpen = false;
-	function toggleMobileOverlay() {
-		mobileOverlayOpen = !mobileOverlayOpen;
-	}
 
 	afterNavigate(() => {
 		mobileOverlayOpen = false;
 	});
+
+	const lockScrollStore = getLockScrollContext();
+
+	$: $lockScrollStore = mobileOverlayOpen;
 
 	const MAX_SCROLL_Y = 320;
 	let scrollY = 0;
@@ -52,7 +52,7 @@
 		</div>
 		<ColorSchemeMenu class="color-scheme" />
 
-		<button class="mobile-open" on:click={toggleMobileOverlay}>
+		<label class="mobile-open" for="header-mobile-overlay-toggler">
 			<span class="sr-only">Open mobile menu</span>
 			<svg
 				width="44"
@@ -83,21 +83,21 @@
 					stroke-linejoin="round"
 				/>
 			</svg>
-		</button>
-		{#key mobileOverlayOpen}
-			<div
-				class="mobile-wrapper"
-				data-open={mobileOverlayOpen}
-				transition:fly={{ duration: 200, x: 50 }}
-			>
-				<LanguageNav {pathname} class="languages" />
-				<PageNav {pathname} class="pages" />
-				<button class="mobile-close" on:click={toggleMobileOverlay}>
-					<span class="sr-only">Close mobile menu</span>
-					<svg inline-src="icon/x" width="44" height="44" />
-				</button>
-			</div>
-		{/key}
+		</label>
+		<input
+			type="checkbox"
+			id="header-mobile-overlay-toggler"
+			hidden
+			bind:checked={mobileOverlayOpen}
+		/>
+		<div class="mobile-wrapper">
+			<LanguageNav {pathname} class="languages" />
+			<PageNav {pathname} class="pages" />
+			<label class="mobile-close" for="header-mobile-overlay-toggler">
+				<span class="sr-only">Close mobile menu</span>
+				<svg inline-src="icon/x" width="44" height="44" />
+			</label>
+		</div>
 	</div>
 </header>
 
@@ -187,11 +187,14 @@
 	}
 
 	.mobile-wrapper {
+		pointer-events: none;
+
 		position: fixed;
 		z-index: theme('zIndex.overlay');
 		inset: 0;
+		transform: translateX(50px);
 
-		display: none;
+		display: grid;
 		grid-template-areas:
 			'languages mobile-close'
 			'pages pages';
@@ -202,6 +205,7 @@
 
 		padding: 16px;
 
+		opacity: 0;
 		background: radial-gradient(
 			circle at -500px -500px,
 			rgba(242 161 11/ 30%),
@@ -209,15 +213,19 @@
 		);
 		background-color: theme('colors.bg.DEFAULT');
 
-		@screen upto-tb {
-			&[data-open]:not([data-open='false']) {
-				display: grid;
-			}
-		}
+		transition-timing-function: ease-out;
+		transition-duration: 200ms;
+		transition-property: transform, opacity;
 
 		@screen tb {
 			display: contents;
 		}
+	}
+
+	#header-mobile-overlay-toggler:checked + .mobile-wrapper {
+		pointer-events: auto;
+		transform: translateX(0);
+		opacity: 1;
 	}
 
 	.mobile-close {
