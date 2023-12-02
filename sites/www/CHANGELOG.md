@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0-next.27
+
+### Minor Changes
+
+- [#186](https://github.com/sveltevietnam/sveltevietnam.dev/pull/186) [`f98757a`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/f98757af0ce4d5ad6349e81e9d28ca694bb6f556) Thanks [@vnphanquang](https://github.com/vnphanquang)! - progressive enhancement for mobile header overlay menu
+
+- [#186](https://github.com/sveltevietnam/sveltevietnam.dev/pull/186) [`6de93bc`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/6de93bc5144b0fda29d8755deb2166a964e209ab) Thanks [@vnphanquang](https://github.com/vnphanquang)! - progressive enhancement support for `ColorSchemeMenu` (no JS dropdown, fallback form submission with query param for no JS users) (#185)
+
 ## 1.0.0-next.26
 
 ### Minor Changes
