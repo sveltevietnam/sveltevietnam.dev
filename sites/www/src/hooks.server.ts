@@ -61,7 +61,10 @@ export const handle: Handle = async ({ event, resolve }) => {
 		languageFromUrl = 'vi';
 	}
 
-	locals.colorScheme = (cookies.get(PUBLIC_COOKIE_COLOR_SCHEME) as App.ColorScheme) || 'system';
+	locals.colorScheme =
+		(url.searchParams.get('color-scheme') as App.ColorScheme) ||
+		(cookies.get(PUBLIC_COOKIE_COLOR_SCHEME) as App.ColorScheme) ||
+		'system';
 	cookies.set(PUBLIC_COOKIE_COLOR_SCHEME, locals.colorScheme, {
 		...COMMON_COOKIE_CONFIG,
 		httpOnly: false,
