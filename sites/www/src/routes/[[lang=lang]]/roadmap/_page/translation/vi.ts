@@ -47,6 +47,8 @@ export const vi = {
 				`☑ Hoàn thiện văn bản “<a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/TECHNICAL_REFERNCES.md" rel="noreferrer" target="_blank">Technical Reference</a>” và “<a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/CONTRIBUTING.md" rel="noreferrer" target="_blank">Contributing Guidelines</a>”`,
 				'☑ Thiết lập quy trình đăng bài hoặc liên kết bài viết thông qua <a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/issues/new/choose" rel="noreferrer" target="_blank">Github issue</a> và <a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/DEV_BLOG_POST.md" rel="noreferrer" target="_blank">hướng dẫn code trực tiếp bài viết</a>',
 				'☑ Thiết lập hình Open Graph riêng cho mỗi trang đã hoàn thiện',
+				'☐ Hỗ trợ cho người dùng không truy cập được Javascript (cải tiến tăng dần), đặc biệt đối với các tính năng thiết yếu như điều hướng đa ngôn ngữ, thay đổi chế độ giao diện, menu trên di động, và màn hình chờ',
+				'☐ Tổ chức buổi gặp mặt cộng đồng trực tuyến đầu tiên',
 				'☐ Sơ thảo nội dung và thiết kế cho “Khảo sát Cộng đồng Svelte Việt Nam 2023”',
 			],
 			secondaryTasks: {
