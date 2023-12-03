@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.28
+
+### Minor Changes
+
+- [`d00d189`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/d00d18950b5fdeda32eb1c0349678269062d0781) Thanks [@vnphanquang](https://github.com/vnphanquang)! - `/design/blog` page for reference to design of typography, code blocks, and common component of the Svelte Vietnam Blog (#188)
+
 ## 1.0.0-next.27
 
 ### Minor Changes
