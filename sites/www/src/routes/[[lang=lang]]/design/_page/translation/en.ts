@@ -1,5 +1,12 @@
 export const en = {
 	title: 'Design of Svelte Vietnam',
+	links: {
+		description:
+			'Please visit the following pages for in-depth topics of the Svelte Vietnam design.',
+		typography: 'Design for typography',
+		colors: 'Design for color palettes',
+		blog: 'Design for blog posts',
+	},
 	logo: {
 		title: 'Logo',
 		inspiration: {

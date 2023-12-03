@@ -1,5 +1,11 @@
 <script lang="ts">
+	import { intersect } from '$client/actions/intersect';
 	import { Breadcrumbs } from '$client/components/Breadcrumbs';
+	import {
+		DESIGN_BLOG_PATH,
+		DESIGN_COLORS_PATH,
+		DESIGN_TYPOGRAPHY_PATH,
+	} from '$shared/services/navigation';
 
 	import type { PageData } from './$types';
 	import imgNonla from './_page/images/logo-concept-nonla.webp';
@@ -16,10 +22,30 @@
 	</div>
 
 	<div class="space-y-20 pb-48 pt-20 max-w-pad">
+		<section use:intersect>
+			<p>{t.links.description}</p>
+			<ul class="divider-border mt-3 max-w-[548px] divide-y font-medium">
+				<li>
+					<a href={DESIGN_TYPOGRAPHY_PATH} class="c-link c-link--box">
+						<span>{t.links.typography}</span>
+					</a>
+				</li>
+				<li>
+					<a href={DESIGN_COLORS_PATH} class="c-link c-link--box">
+						<span>{t.links.colors}</span>
+					</a>
+				</li>
+				<li>
+					<a href={DESIGN_BLOG_PATH} class="c-link c-link--box">
+						<span>{t.links.blog}</span>
+					</a>
+				</li>
+			</ul>
+		</section>
 		<section class="space-y-16">
-			<h2 class="tp-h2 font-medium">Logo</h2>
+			<h2 class="tp-h2 font-medium" use:intersect>Logo</h2>
 
-			<section class="space-y-12">
+			<section class="space-y-12" use:intersect>
 				<h3 class="tp-h3 font-medium">{t.logo.inspiration.title}</h3>
 				<p>{@html t.logo.inspiration.content}</p>
 				<div class="flex items-center gap-8">
@@ -29,7 +55,7 @@
 				</div>
 			</section>
 
-			<section class="space-y-12">
+			<section class="space-y-12" use:intersect>
 				<h3 class="tp-h3 font-medium">{t.logo.concept.title}</h3>
 				<ul class="flex items-center gap-8 sp:flex-col">
 					<li class="border px-12 py-6">{t.logo.concept.inspiration}</li>
@@ -38,7 +64,7 @@
 				</ul>
 			</section>
 
-			<section class="space-y-12">
+			<section class="space-y-12" use:intersect>
 				<h3 class="tp-h3 font-medium">{t.logo.versions.title}</h3>
 				<ul class="flex items-center gap-8 sp:flex-col">
 					<li class="logo-card-wrapper">
@@ -80,7 +106,7 @@
 				</ul>
 			</section>
 
-			<section class="space-y-12">
+			<section class="space-y-12" use:intersect>
 				<h3 class="tp-h3 font-medium">{t.logo.typeface.title}</h3>
 				<div class="w-fit border px-4 py-4 font-inter tb:px-10 tb:py-5">
 					<p class="typeface-caption">Typeface</p>

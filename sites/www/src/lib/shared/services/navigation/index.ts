@@ -21,6 +21,7 @@ export const ROADMAP_PATH = '/roadmap';
 export const DESIGN_PATH = '/design';
 export const DESIGN_TYPOGRAPHY_PATH = '/design/typography';
 export const DESIGN_COLORS_PATH = '/design/colors';
+export const DESIGN_BLOG_PATH = '/design/blog';
 
 export function getPathLabel(path: string, lang: Language) {
 	const t = translations[lang];
@@ -49,6 +50,8 @@ export function getPathLabel(path: string, lang: Language) {
 			return t.typography;
 		case DESIGN_COLORS_PATH:
 			return t.colors;
+		case DESIGN_BLOG_PATH:
+			return t.blog;
 		default:
 			return '';
 	}

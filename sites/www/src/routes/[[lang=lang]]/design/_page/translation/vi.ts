@@ -1,5 +1,12 @@
 export const vi = {
 	title: 'Thiết kế Svelte Việt Nam',
+	links: {
+		description:
+			'Hãy xem qua các trang dưới đây về mỗi chủ đề khác nhau của thiết kế Svelte Việt Nam.',
+		typography: 'Thiết kế hệ thống kích thước và khoảng cách văn bản',
+		colors: 'Thiết kế hệ thống bảng màu',
+		blog: 'Thiết kế hệ thống cho bài viết',
+	},
 	logo: {
 		title: 'Logo',
 		inspiration: {

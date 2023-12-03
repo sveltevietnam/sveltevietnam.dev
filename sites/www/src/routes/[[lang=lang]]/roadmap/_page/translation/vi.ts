@@ -2,7 +2,10 @@ import { SOCIAL_LINKS } from '$shared/constants';
 import {
 	BLOG_PATH,
 	CODE_OF_CONDUCT_PATH,
+	DESIGN_BLOG_PATH,
+	DESIGN_COLORS_PATH,
 	DESIGN_PATH,
+	DESIGN_TYPOGRAPHY_PATH,
 	EVENTS_PATH,
 	HOME_PATH,
 	JOBS_PATH,
@@ -48,6 +51,7 @@ export const vi = {
 				'☑ Thiết lập quy trình đăng bài hoặc liên kết bài viết thông qua <a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/issues/new/choose" rel="noreferrer" target="_blank">Github issue</a> và <a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/DEV_BLOG_POST.md" rel="noreferrer" target="_blank">hướng dẫn code trực tiếp bài viết</a>',
 				'☑ Thiết lập hình Open Graph riêng cho mỗi trang đã hoàn thiện',
 				'☑ Hỗ trợ cho người dùng không truy cập được Javascript (cải tiến tăng dần), đặc biệt đối với các tính năng thiết yếu như điều hướng đa ngôn ngữ, thay đổi chế độ giao diện, menu trên di động, và màn hình chờ',
+				`☑ Giới thiệu nhóm trang <a class="c-link" href="${DESIGN_PATH}">Thiết kế</a> ghi lại các chi tiết thiết kế của Svelte Việt Nam, bao gồm logo, <a class="c-link" href="${DESIGN_TYPOGRAPHY_PATH}">chữ viết</a>, <a class="c-link" href="${DESIGN_COLORS_PATH}">màu sắc</a>, và <a class="c-link" href="${DESIGN_BLOG_PATH}">blog</a>`,
 				'☐ Tổ chức buổi gặp mặt cộng đồng trực tuyến đầu tiên',
 				'☐ Sơ thảo nội dung và thiết kế cho “Khảo sát Cộng đồng Svelte Việt Nam 2023”',
 			],

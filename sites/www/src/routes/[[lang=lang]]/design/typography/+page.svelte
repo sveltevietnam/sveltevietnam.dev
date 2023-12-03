@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { intersect } from '$client/actions/intersect';
 	import { Breadcrumbs } from '$client/components/Breadcrumbs';
 
 	import type { PageData } from './$types';
@@ -183,7 +184,7 @@
 			{#if i > 0}
 				<div class="my-12 h-px w-full bg-outline" />
 			{/if}
-			<section>
+			<section use:intersect>
 				<div class="grid grid-cols-[1fr,auto,auto] gap-x-8 gap-y-1">
 					<div class="contents">
 						<p class="font-medium">Name</p>

@@ -2,7 +2,10 @@ import { SOCIAL_LINKS } from '$shared/constants';
 import {
 	BLOG_PATH,
 	CODE_OF_CONDUCT_PATH,
+	DESIGN_BLOG_PATH,
+	DESIGN_COLORS_PATH,
 	DESIGN_PATH,
+	DESIGN_TYPOGRAPHY_PATH,
 	EVENTS_PATH,
 	HOME_PATH,
 	JOBS_PATH,
@@ -48,6 +51,7 @@ export const en = {
 				'☑ Set up processes to publish blog posts or link posts via <a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/issues/new/choose" rel="noreferrer" target="_blank">Github issue</a>, and <a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/DEV_BLOG_POST.md" rel="noreferrer" target="_blank">guidelines for coding blog posts</a>',
 				'☑ Set up dedicated Open Graph images for all current pages',
 				'☑ Support progressive enhancement (solution or fallback for users without Javascript), especially for critical features including i18n routing, color theme switching, mobile header nav menu, and splash screen',
+				`☑ Introduce the <a class="c-link" href="${DESIGN_PATH}">Design</a> page group that documents the design details of Svelte Vietnam, including logo, <a class="c-link" href="${DESIGN_TYPOGRAPHY_PATH}">typography</a>, <a class="c-link" href="${DESIGN_COLORS_PATH}">colors</a>, and <a class="c-link" href="${DESIGN_BLOG_PATH}">blog</a>`,
 				'☐ Organize the first online community meetup',
 				'☐ Draft content and design for “Svelte Vietnam Community 2023 Survey”',
 			],

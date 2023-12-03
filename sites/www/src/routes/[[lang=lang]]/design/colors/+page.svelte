@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { intersect } from '$client/actions/intersect';
 	import { Breadcrumbs } from '$client/components/Breadcrumbs';
 	import BaseNotification from '$client/notifications/BaseNotification.svelte';
 	import { STATUSES } from '$shared/constants';
@@ -49,16 +50,16 @@
 	} as const;
 </script>
 
-<main class="tp-body1">
+<main>
 	<div class="heading-container max-w-pad">
 		<Breadcrumbs breadcrumbs={data.breadcrumbs} class="mb-10" />
 		<h1 class="tp-h2@sp font-medium uppercase tb:tp-h1@pc">{t.title}</h1>
 	</div>
 	<div class="space-y-[120px] pb-40 pt-20 max-w-pad">
 		<section class="space-y-[60px]">
-			<h2 class="tp-h2 font-medium">{t.primitives.title}</h2>
+			<h2 class="tp-h2 font-medium" use:intersect>{t.primitives.title}</h2>
 
-			<section>
+			<section use:intersect>
 				<h3 class="tp-h3 font-medium">{t.primitives.colors.grayscale}</h3>
 				<ul class="primitive-group grayscale">
 					<li
@@ -85,7 +86,7 @@
 				</ul>
 			</section>
 
-			<section>
+			<section use:intersect>
 				<h3 class="tp-h3 font-medium">{t.primitives.colors.orange}</h3>
 				<ul class="primitive-group">
 					<li class="swatch bg-orange-50">50</li>
@@ -102,7 +103,7 @@
 				</ul>
 			</section>
 
-			<section>
+			<section use:intersect>
 				<h3 class="tp-h3 font-medium">{t.primitives.colors.green}</h3>
 				<ul class="primitive-group">
 					<li class="swatch bg-green-50">50</li>
@@ -119,7 +120,7 @@
 				</ul>
 			</section>
 
-			<section>
+			<section use:intersect>
 				<h3 class="tp-h3 font-medium">{t.primitives.colors.folly}</h3>
 				<ul class="primitive-group">
 					<li class="swatch bg-folly-50">50</li>
@@ -136,7 +137,7 @@
 				</ul>
 			</section>
 
-			<section>
+			<section use:intersect>
 				<h3 class="tp-h3 font-medium">{t.primitives.colors.amber}</h3>
 				<ul class="primitive-group">
 					<li class="swatch bg-amber-50">50</li>
@@ -153,7 +154,7 @@
 				</ul>
 			</section>
 
-			<section>
+			<section use:intersect>
 				<h3 class="tp-h3 font-medium">{t.primitives.colors.emerald}</h3>
 				<ul class="primitive-group">
 					<li class="swatch bg-emerald-50">50</li>
@@ -170,7 +171,7 @@
 				</ul>
 			</section>
 
-			<section>
+			<section use:intersect>
 				<h3 class="tp-h3 font-medium">{t.primitives.colors.blue}</h3>
 				<ul class="primitive-group">
 					<li class="swatch bg-blue-50">50</li>
@@ -187,7 +188,7 @@
 				</ul>
 			</section>
 
-			<section>
+			<section use:intersect>
 				<h3 class="tp-h3 font-medium">{t.primitives.colors.stone}</h3>
 				<ul class="primitive-group">
 					<li class="swatch bg-stone-50">50</li>
@@ -206,14 +207,14 @@
 		</section>
 
 		<section>
-			<h2 class="tp-h2 font-medium">{t.semantic.title}</h2>
-			<p class="mt-6">{t.semantic.description}</p>
+			<h2 class="tp-h2 font-medium" use:intersect>{t.semantic.title}</h2>
+			<p class="mt-6" use:intersect>{t.semantic.description}</p>
 
 			<section class="mt-[60px] max-w-full space-y-[60px] overflow-auto">
-				<h3 class="tp-h3 font-medium">{t.semantic.brand.title}</h3>
+				<h3 class="tp-h3 font-medium" use:intersect>{t.semantic.brand.title}</h3>
 
 				<div class="flex flex-wrap items-stretch gap-10">
-					<ul class="flex flex-wrap gap-3">
+					<ul class="flex flex-wrap gap-3" use:intersect>
 						<li class="swatch-card">
 							<div class="__color border bg-bg" />
 							<div class="__description">
@@ -237,7 +238,7 @@
 						</li>
 					</ul>
 
-					<ul class="flex flex-wrap gap-3">
+					<ul class="flex flex-wrap gap-3" use:intersect>
 						<li class="swatch-card">
 							<div class="__color bg-fg" />
 							<div class="__description">
@@ -254,7 +255,7 @@
 						</li>
 					</ul>
 
-					<ul class="flex flex-wrap gap-3">
+					<ul class="flex flex-wrap gap-3" use:intersect>
 						<li class="swatch-card">
 							<div class="__color bg-outline" />
 							<div class="__description">
@@ -302,8 +303,8 @@
 			</section>
 
 			<section class="mt-[60px] max-w-full space-y-[60px] overflow-auto">
-				<h3 class="tp-h3 font-medium">{t.semantic.status.title}</h3>
-				<div class="max-w-full overflow-auto">
+				<h3 class="tp-h3 font-medium" use:intersect>{t.semantic.status.title}</h3>
+				<div class="max-w-full overflow-auto" use:intersect>
 					<table class="status-colors w-full border-collapse">
 						<thead>
 							<tr>
@@ -354,9 +355,9 @@
 		</section>
 
 		<section>
-			<h2 class="tp-h2 font-medium">{t.developers.title}</h2>
-			<p class="mt-6">{t.developers.description}</p>
-			<ul class="divider-border mt-[60px] max-w-[660px] divide-y font-medium">
+			<h2 class="tp-h2 font-medium" use:intersect>{t.developers.title}</h2>
+			<p class="mt-6" use:intersect>{t.developers.description}</p>
+			<ul class="divider-border mt-[60px] max-w-[660px] divide-y font-medium" use:intersect>
 				<li>
 					<a
 						href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/lib/client/styles/colors/index.js"
