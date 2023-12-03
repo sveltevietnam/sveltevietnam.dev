@@ -22,11 +22,15 @@ If you get stuck and this document does not help, reach out to our maintainers a
 
 4. Open a PR when you have finished development.
 
+Visit the [Design | Blog](https://www.sveltevietnam.dev/design/blog) page for more information about the design, conventions, and common components.
+
 ## How and where do I make components?
 
-For components that are only used within your blog post, declare in `(posts)/[slug]/_page/components/*.svelte`.
+General guidelines
 
-If you find a piece of code elsewhere in the codebase that you want to enhance or reuse, declare in `lib/client/components/`.
+- For components that are only used within your blog post, declare in `(posts)/[slug]/_page/components/*.svelte`.
+- If you find a piece of code elsewhere in the codebase that you want to enhance or reuse, declare in `lib/client/components/`.
+- Prefer CSS component (init with cd `sites/www` & `hygen css create`) over JS component when possible. A good indicator is that if your component does not contain complex markup or runtime logics, CSS component is a perfect fit.
 
 ## Blog Post Publication Check List
 
