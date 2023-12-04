@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { FallbackImage } from '$client/components/FallbackImage';
 	import { getLangContext } from '$client/contexts/lang';
+	import fallbackThumbnail from '$shared/assets/images/fallback/default.jpg?w=1000&enhanced&imagetools';
 	import type { LocalizedPost } from '$shared/data/blog';
 	import { BLOG_PATH } from '$shared/services/navigation';
 	import { formateDateForBlog } from '$shared/utils/datetime';
@@ -28,9 +28,11 @@
 					class={!alwaysVertical ? 'tb:w-[200px]' : ''}
 				/>
 			{:else}
-				<div class="fallback-thumbnail">
-					<FallbackImage />
-				</div>
+				<enhanced:img
+					src={fallbackThumbnail}
+					alt={post.title}
+					class={!alwaysVertical ? 'tb:w-[200px]' : ''}
+				/>
 			{/if}
 		</a>
 	</div>

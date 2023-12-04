@@ -7,12 +7,12 @@
 	import { BlogPostItem } from '$client/components/BlogPostItem';
 	import { Breadcrumbs } from '$client/components/Breadcrumbs';
 	import ExternalBlogPostItem from '$client/components/ExternalBlogPostItem/ExternalBlogPostItem.svelte';
-	import { FallbackImage } from '$client/components/FallbackImage';
 	import { Person } from '$client/components/Person';
 	import { modalStore } from '$client/modals';
 	import { QRCode } from '$client/modals/QRCode';
 	import { noti } from '$client/notifications';
 	import { textTip } from '$client/tooltips';
+	import fallbackThumbnail from '$shared/assets/images/fallback/default.jpg?w=2000&enhanced&imagetools';
 	import type { Breadcrumb } from '$shared/services/navigation';
 	import { formateDateForBlog } from '$shared/utils/datetime';
 
@@ -76,7 +76,7 @@
 			{#if post?.thumbnail}
 				<enhanced:img src={post?.thumbnail} alt={post?.title} class="h-auto w-full" />
 			{:else}
-				<FallbackImage class="h-[500px] w-auto" />
+				<enhanced:img src={fallbackThumbnail} alt={post?.title} class="h-auto w-full" />
 			{/if}
 			<div class="mt-8 space-y-6">
 				<h1 class="tp-h2 font-bold">{post?.title}</h1>
