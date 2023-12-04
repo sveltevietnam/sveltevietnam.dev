@@ -4,7 +4,7 @@
 	import { SOCIAL_LINKS } from '$shared/constants';
 </script>
 
-<section class="space-y-10 text-left max-w-pad">
+<section class="space-y-10 overflow-auto text-left max-w-pad">
 	<p class="heading">:)</p>
 	<p>
 		Oh nice. You have reached the "Blue Screen of Death". The application is absolutely fine; as is
@@ -44,6 +44,7 @@
 	}
 
 	.heading {
-		font-size: 8rem;
+		font-size: 5rem;
+		line-height: normal;
 	}
 </style>

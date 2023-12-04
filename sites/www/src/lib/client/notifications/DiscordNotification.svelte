@@ -18,7 +18,7 @@
 
 	import BaseNotification from './BaseNotification.svelte';
 
-	export let notification: NotificationInstance;
+	export let notification: NotificationInstance | undefined = undefined;
 	export let avatarURL: string;
 	export let name: string;
 
@@ -44,5 +44,10 @@
 		display: flex;
 		gap: 16px;
 		align-items: center;
+	}
+
+	img {
+		width: 28px;
+		height: 28px;
 	}
 </style>

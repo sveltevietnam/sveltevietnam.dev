@@ -167,7 +167,7 @@
 			</section>
 
 			<section class="post-share">
-				<h2 class="tp-h3 after:mt-2 after:separator">{t.share}</h2>
+				<h2 class="tp-h3 after:mt-2 after:separator" id="share">{t.share}</h2>
 				<ul class="mt-8 flex flex-wrap items-center gap-4">
 					<li>
 						<a

@@ -303,7 +303,7 @@
 			</section>
 
 			<section class="mt-[60px] max-w-full space-y-[60px] overflow-auto">
-				<h3 class="tp-h3 font-medium" use:intersect>{t.semantic.status.title}</h3>
+				<h3 class="tp-h3 font-medium" use:intersect id="status">{t.semantic.status.title}</h3>
 				<div class="max-w-full overflow-auto" use:intersect>
 					<table class="status-colors w-full border-collapse">
 						<thead>
