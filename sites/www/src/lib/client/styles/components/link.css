@@ -45,8 +45,9 @@
 
 		& span {
 			display: inline-block;
-			mix-blend-mode: difference;
-			transition: transform var(--transition-duration) ease-in-out;
+			transition-timing-function: ease-in-out;
+			transition-duration: var(--transition-duration);
+			transition-property: transform, filter;
 		}
 
 		&[external]:not([external='false']),
@@ -64,9 +65,10 @@
 				height: 24px;
 
 				background-color: currentcolor;
-				mix-blend-mode: difference;
 
-				transition: transform var(--transition-duration) ease-in-out;
+				transition-timing-function: ease-in-out;
+				transition-duration: var(--transition-duration);
+				transition-property: transform, filter;
 
 				mask-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNNS44OTgxOSAxOC4xMDU1TDE3LjE0ODIgNi44NTU0NyIgc3Ryb2tlPSJjdXJyZW50Y29sb3IiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogIDxwYXRoIGQ9Ik04LjI1IDZIMThWMTUuNzUiIHN0cm9rZT0iY3VycmVudGNvbG9yIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiLz4KPC9zdmc+Cg==');
 			}
@@ -81,10 +83,12 @@
 
 			&::after {
 				transform: translateX(calc(-1 * var(--hover-translate-x)));
+				filter: invert(1);
 			}
 
 			& span {
 				transform: translateX(var(--hover-translate-x));
+				filter: invert(1);
 			}
 		}
 	}
