@@ -11,6 +11,11 @@ export const vi = {
 		<a class="c-link" href="https://viteconf.org/" rel="noreferrer" target="_blank">Vite Conf</a>, \
 		và các sự kiện khác trong hệ sinh thái web. Hy vọng rằng, đây sẽ là tiền lệ cho nhiều sự kiện về sau! \
 		',
+	links: {
+		watch: 'Xem livestream (ẩn danh, cầm bắp rang ngồi xem!)',
+		join: 'Tham gia trực tiếp (cười lên nào, sẽ lên sóng đó!) - sẽ thông báo sau',
+		discuss: 'Thảo luận cùng cộng đồng tại Discord',
+	},
 	timeline: {
 		...common.timeline,
 		introduction: 'Giới thiệu và làm quen',

@@ -13,6 +13,7 @@
 	import kvImage from '../../_page/images/key-visuals.png?format=webp&imagetools';
 
 	import type { PageData } from './$types';
+	import { EVENT_LINKS } from './_page/data';
 
 	export let data: PageData;
 
@@ -38,7 +39,7 @@
 	</div>
 	<div class="mt-[80px] max-w-pad" use:intersect>
 		<h1 class="tp-h1">{event.title}</h1>
-		<div class="mt-6 space-y-2 pb-[120px] tb:pb-[260px]">
+		<div class="mt-6 space-y-[60px] pb-[60px]">
 			<!-- time -->
 			<!-- TODO: candidate for Svelte 5 snippet -->
 			<p>
@@ -54,10 +55,23 @@
 				{/if}
 				({t.tentative})
 			</p>
-			<!-- location -->
-			{#if event.location.toUpperCase() !== 'TBA'}
-				<p>{@html event.location}</p>
-			{/if}
+			<ul class="divider-border max-w-[548px] divide-y font-medium">
+				<li>
+					<a href={EVENT_LINKS.STREAM} class="c-link c-link--box" external>
+						<span>{t.links.watch}</span>
+					</a>
+				</li>
+				<li>
+					<p href={EVENT_LINKS.JOIN} class="c-link c-link--box" external>
+						<span>{t.links.join}</span>
+					</p>
+				</li>
+				<li>
+					<a href={EVENT_LINKS.DISCORD} class="c-link c-link--box" external>
+						<span>{t.links.discuss}</span>
+					</a>
+				</li>
+			</ul>
 		</div>
 	</div>
 	<div

@@ -11,6 +11,11 @@ export const en = {
 		<a class="c-link" href="https://www.sveltesummit.com/" rel="noreferrer" target="_blank">Svelte Summit</a>, \
 		<a class="c-link" href="https://viteconf.org/" rel="noreferrer" target="_blank">Vite Conf</a>, \
 		and other events in the web platform ecosystem, and hopefully can establish a precedent for many more events to come.',
+	links: {
+		watch: 'Watch the live stream (stay anonymous with popcorn!)',
+		join: 'Join the meetup (smile, you will be on camera!) - to be announced',
+		discuss: 'Join community chat at Discord',
+	},
 	timeline: {
 		...common.timeline,
 		introduction: 'Meet and Greet',
