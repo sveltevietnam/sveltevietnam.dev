@@ -91,6 +91,12 @@
 				<svg height="16" width="16" inline-src="simpleicon/facebook" />
 			</a>
 		</li>
+		<li>
+			<a href={SOCIAL_LINKS.YOUTUBE} class="c-link c-link--icon" external>
+				<span class="sr-only">Youtube</span>
+				<svg height="16" width="16" inline-src="simpleicon/youtube" />
+			</a>
+		</li>
 	</ul>
 	<div class="footer-bottom tp-cap2 max-w-pad">
 		<p>{t.version} {version}</p>
