@@ -103,13 +103,11 @@
 					<li>
 						<a href={issueTemplateLinks.proposePost} class="c-link c-link--box" external>
 							<span>{t.contribute.links.proposePost}</span>
-							<svg inline-src="icon/external-link" />
 						</a>
 					</li>
 					<li>
 						<a href={issueTemplateLinks.requestExternalPost} class="c-link c-link--box" external>
 							<span>{t.contribute.links.requestExternalPost}</span>
-							<svg inline-src="icon/external-link" />
 						</a>
 					</li>
 					<li>
@@ -119,7 +117,6 @@
 							external
 						>
 							<span>{t.contribute.links.readCodeGuidelines}</span>
-							<svg inline-src="icon/external-link" />
 						</a>
 					</li>
 				</ul>

@@ -84,13 +84,11 @@
 					<li>
 						<a href={SOCIAL_LINKS.DISCORD} class="c-link c-link--box" external>
 							<span>{t.proposal.links.discord}</span>
-							<svg inline-src="icon/external-link" />
 						</a>
 					</li>
 					<li>
 						<a href="mailto:{EMAILS.EVENTS}" class="c-link c-link--box" external>
 							<span>{t.proposal.links.email}</span>
-							<svg inline-src="icon/external-link" />
 						</a>
 					</li>
 				</ul>

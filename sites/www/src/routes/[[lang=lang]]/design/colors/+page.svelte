@@ -365,7 +365,6 @@
 						external
 					>
 						<span>{t.developers.links.jsToken}</span>
-						<svg inline-src="icon/external-link" />
 					</a>
 				</li>
 				<li>
@@ -375,7 +374,6 @@
 						external
 					>
 						<span>{t.developers.links.tailwindConfig}</span>
-						<svg inline-src="icon/external-link" />
 					</a>
 				</li>
 				<li>
@@ -385,7 +383,6 @@
 						external
 					>
 						<span>{t.developers.links.cssVariables}</span>
-						<svg inline-src="icon/external-link" />
 					</a>
 				</li>
 				<li>
@@ -395,7 +392,6 @@
 						external
 					>
 						<span>{t.developers.links.app}</span>
-						<svg inline-src="icon/external-link" />
 					</a>
 				</li>
 			</ul>

@@ -80,19 +80,16 @@
 					<li>
 						<a href={SOCIAL_LINKS.OPEN_COLLECTIVE} class="c-link c-link--box" external>
 							<span>{t.how.ctas.sponsor}</span>
-							<svg inline-src="icon/external-link" />
 						</a>
 					</li>
 					<li>
 						<a href={SOCIAL_LINKS.DISCORD} class="c-link c-link--box" external>
 							<span>{t.how.ctas.discord}</span>
-							<svg inline-src="icon/external-link" />
 						</a>
 					</li>
 					<li>
 						<a href="mailto:{EMAILS.SPONSOR}" class="c-link c-link--box" external>
 							<span>{@html t.how.ctas.email}</span>
-							<svg inline-src="icon/external-link" />
 						</a>
 					</li>
 				</ul>
@@ -113,7 +110,6 @@
 					<li>
 						<a href={SOCIAL_LINKS.GITHUB} class="c-link c-link--box" external>
 							<span>{t.how.ctas.github}</span>
-							<svg inline-src="icon/external-link" />
 						</a>
 					</li>
 				</ul>

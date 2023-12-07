@@ -15,61 +15,76 @@
 		```html
 		<a class="c-link c-link--box" href={SOCIAL_LINKS.DISCORD} external>
 			<span>{t.ctas.discord}</span>
-			<svg inline-src="icon/external-link" />
 		</a>
 		```
+
+		Notice the text is wrapped in span. This is required for transition to work.
 	*/
 	&:where(:--box) {
+		--padding-y: 16px;
 		--transition-duration: 300ms;
+		--hover-translate-x: 12px;
 
 		position: relative;
-
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-
-		padding: 16px 0;
+		display: block;
+		padding: var(--padding-y) 0;
 
 		&::before {
 			content: '';
 
 			position: absolute;
+			z-index: -1;
 			inset: 0;
 			transform-origin: left;
 			transform: scaleX(0);
 
-			opacity: 0;
 			background-color: currentcolor;
 
-			transition-timing-function: ease-in-out;
-			transition-duration: var(--transition-duration);
-			transition-property: opacity, transform;
+			transition: transform var(--transition-duration) ease-in-out;
 		}
 
-		& span,
-		& svg {
-			transition-timing-function: ease-in-out;
-			transition-duration: var(--transition-duration);
-			transition-property: transform, filter;
+		& span {
+			display: inline-block;
+			mix-blend-mode: difference;
+			transition: transform var(--transition-duration) ease-in-out;
+		}
+
+		&[external]:not([external='false']),
+		&[href^='http'] {
+			padding-right: 32px;
+
+			&::after {
+				content: '';
+
+				position: absolute;
+				top: var(--padding-y);
+				right: 0;
+
+				width: 24px;
+				height: 24px;
+
+				background-color: currentcolor;
+				mix-blend-mode: difference;
+
+				transition: transform var(--transition-duration) ease-in-out;
+
+				mask-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNNS44OTgxOSAxOC4xMDU1TDE3LjE0ODIgNi44NTU0NyIgc3Ryb2tlPSJjdXJyZW50Y29sb3IiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogIDxwYXRoIGQ9Ik04LjI1IDZIMThWMTUuNzUiIHN0cm9rZT0iY3VycmVudGNvbG9yIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiLz4KPC9zdmc+Cg==');
+			}
 		}
 
 		&:hover {
+			background-size: 100% 100%;
+
 			&::before {
 				transform: scaleX(1);
-				opacity: 1;
 			}
 
-			& span,
-			& svg {
-				filter: invert(100%);
+			&::after {
+				transform: translateX(calc(-1 * var(--hover-translate-x)));
 			}
 
 			& span {
-				transform: translateX(12px);
-			}
-
-			& svg {
-				transform: translateX(-12px);
+				transform: translateX(var(--hover-translate-x));
 			}
 		}
 	}

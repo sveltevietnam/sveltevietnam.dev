@@ -31,13 +31,11 @@
 					<li>
 						<a href={SOCIAL_LINKS.DISCORD} class="c-link c-link--box" external>
 							<span>{t.notice.ctas.discord}</span>
-							<svg inline-src="icon/external-link" />
 						</a>
 					</li>
 					<li>
 						<a class="c-link c-link--box" href="mailto:{EMAILS.COC}" external>
 							<span>Email {EMAILS.COC}</span>
-							<svg inline-src="icon/external-link" />
 						</a>
 					</li>
 				</ul>
