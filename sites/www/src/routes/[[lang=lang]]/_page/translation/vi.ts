@@ -12,11 +12,12 @@ export const vi = {
 	},
 	community: {
 		title: 'Cộng đồng',
-		description: `Tham gia <a class="c-link" href=${SOCIAL_LINKS.DISCORD} target="_blank" rel="noreferrer">Discord của Svelte Việt Nam</a> để cùng giao lưu, trao đổi thông tin, hỏi đáp, và hỗ trợ nhau.<br>Để đóng góp vào mã nguồn của trang web này hoặc các dự án open source từ Svelte Việt Nam, truy cập trang <a class="c-link" href="${SOCIAL_LINKS.GITHUB}" target="_blank" rel="noreferrer">Github của Svelte Việt Nam</a>.`,
+		description: `Tham gia <a class="c-link" href=${SOCIAL_LINKS.DISCORD} target="_blank" rel="noreferrer">Discord của Svelte Việt Nam</a> để cùng giao lưu, trao đổi thông tin, hỏi đáp, và hỗ trợ nhau. Để đóng góp vào mã nguồn của trang web này hoặc các dự án open source từ Svelte Việt Nam, truy cập trang <a class="c-link" href="${SOCIAL_LINKS.GITHUB}" target="_blank" rel="noreferrer">Github của Svelte Việt Nam</a>.`,
 		ctas: {
-			discord: 'Tham gia ngay tại Discord',
-			nominate: 'Đề cử thành viên tiêu biểu',
-			contribute: 'Đóng góp tại Github',
+			learn: 'Học Svelte và SvelteKit tại trang hướng dẫn đã dịch',
+			discord: 'Tham gia thảo luận cộng đồng tại Discord',
+			// nominate: 'Đề cử thành viên tiêu biểu',
+			contribute: 'Đóng góp vào dự án mã nguồn mở tại Github',
 		},
 	},
 	events: {

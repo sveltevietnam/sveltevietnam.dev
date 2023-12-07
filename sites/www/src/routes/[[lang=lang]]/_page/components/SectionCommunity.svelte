@@ -24,6 +24,12 @@
 	</p>
 	<ul class="ctas c-intersect divide-y divide-outline" use:intersect>
 		<li>
+			<a class="c-link c-link--box font-medium" href="https://learn.sveltevietnam.dev" external>
+				<span>{t.ctas.learn}</span>
+				<svg inline-src="icon/external-link" />
+			</a>
+		</li>
+		<li>
 			<a class="c-link c-link--box font-medium" href={SOCIAL_LINKS.DISCORD} external>
 				<span>{t.ctas.discord}</span>
 				<svg inline-src="icon/external-link" />
