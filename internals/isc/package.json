@@ -47,13 +47,11 @@
 	"scripts": {
 		"lint": "eslint . --ignore-path=\"../../.eslintignore\"",
 		"format": "prettier --ignore-path ../../.prettierignore --write .",
-		"test:unit": "vitest --ui --coverage",
-		"test:ci": "vitest run --coverage",
 		"dts": "dts-buddy && publint"
 	},
 	"devDependencies": {
-		"dts-buddy": "^0.4.0",
-		"publint": "^0.2.5"
+		"dts-buddy": "^0.4.1",
+		"publint": "^0.2.6"
 	},
 	"volta": {
 		"extends": "../../package.json"
