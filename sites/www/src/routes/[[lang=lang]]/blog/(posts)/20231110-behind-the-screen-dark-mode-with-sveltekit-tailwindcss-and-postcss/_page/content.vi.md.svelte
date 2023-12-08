@@ -348,7 +348,7 @@ function changeColorScheme(scheme) {
 }
 ```
 
-Thường cookie được thiết lập ở phía server. Tuy nhiên trong trường hợp này, ta làm chủ được cookie sử dụng cho việc gì, và nó cũng không mang thông tin nhảy cảm như định danh hay khóa API. Dùng `document.cookie` sẽ tiện hơn nhiều vì ta không cần phải cài đặt [form action](https://kit.svelte.dev/docs/form-actions) hay [API endpoint](https://kit.svelte.dev/docs/routing#server).
+Thường cookie được thiết lập ở phía server. Tuy nhiên trong trường hợp này, ta làm chủ được cookie sử dụng cho việc gì, và nó cũng không mang thông tin nhạy cảm như định danh hay khóa API. Dùng `document.cookie` sẽ tiện hơn nhiều vì ta không cần phải cài đặt [form action](https://kit.svelte.dev/docs/form-actions) hay [API endpoint](https://kit.svelte.dev/docs/routing#server).
 
 <h3 id="thiet-lap-o-server">Thiết lập ở server</h3>
 
