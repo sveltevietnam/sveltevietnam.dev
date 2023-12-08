@@ -22,7 +22,7 @@ export const vi = {
 	share: 'Chia sẻ',
 	more: 'Bài viết khác',
 	editLink: {
-		intro: 'Bạn tìm thấy lỗi chính ta hay cần đính chính nội dung?',
+		intro: 'Bạn tìm thấy lỗi chính tả hay cần đính chính nội dung?',
 		label: 'Sửa trang này tại Github',
 	},
 	qr: {
