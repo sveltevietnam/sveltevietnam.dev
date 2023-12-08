@@ -56,14 +56,16 @@ export const mdsvexConfig = defineMDSveXConfig({
 			const html = shiki.codeToHtml(code, {
 				lang,
 				theme: 'github-dark-dimmed',
-				transforms: {
-					line(node, line) {
-						if (highlightLines.includes(line)) {
-							node.properties['data-line-highlighted'] = true;
-						}
-						node.properties['data-line'] = line;
+				transformers: [
+					{
+						line(node, line) {
+							if (highlightLines.includes(line)) {
+								node.properties['data-line-highlighted'] = true;
+							}
+							node.properties['data-line'] = line;
+						},
 					},
-				},
+				],
 			});
 			return escapeHtml(html);
 		},
