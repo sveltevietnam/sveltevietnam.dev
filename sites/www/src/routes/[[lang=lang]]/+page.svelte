@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
 	import type { PageData } from './$types';
 	import SectionCommunity from './_page/components/SectionCommunity.svelte';
 	import SectionEvents from './_page/components/SectionEvents.svelte';
@@ -10,6 +12,10 @@
 	import './_page/page.css';
 
 	export let data: PageData;
+
+	onMount(async () => {
+		(await import('$client/services/easter/hat-blow')).default();
+	});
 </script>
 
 <main class="relative pb-[120px] tb:pb-[200px]">

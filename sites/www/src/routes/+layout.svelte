@@ -36,7 +36,6 @@
 	$: twitterCreator = meta?.twitter?.creator ?? '@sveltevietnam';
 
 	onMount(async () => {
-		(await import('$client/services/easter/hat-blow')).default();
 		(await import('$client/services/easter/ascii-pho')).default();
 	});
 </script>
