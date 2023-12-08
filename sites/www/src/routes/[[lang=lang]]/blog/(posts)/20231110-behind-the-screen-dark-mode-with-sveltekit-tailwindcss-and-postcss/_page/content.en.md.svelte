@@ -3,7 +3,7 @@
 </script>
 
 :::div c-callout c-callout--info
-This is the second part of the "Behind the Screen" blog series, where I share my experience and lessons learned while building **sveltevietnam.dev**. You can read the [first part here](/blog/20231009-behind-the-screen-a-yes-code-blog-of-svelte-vietnam) (not a prerequisite for this post).
+This is the second part of the "Behind the Screen" blog series, where I share my experience and lessons learned while building *sveltevietnam.dev*. You can read the [first part here](/blog/20231009-behind-the-screen-a-yes-code-blog-of-svelte-vietnam) (not a prerequisite for this post).
 :::
 
 
