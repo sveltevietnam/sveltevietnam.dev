@@ -76,7 +76,7 @@ These two timestamps are critical for our problem at hand. After `SplashScreen`,
 
 ## No Javascript? No Cry
 
-If I tell you that over 90% of *sveltevietnam.dev* is still usable without Javascript (JS), you might as well say: that is stupid, why not use JS? The fact is, some people indeed cannot access JS due to security concerns; some others choose to turn it off to protect their privacy and improve performance (I sometimes do, and you too should try). I can hear you say: these users account for a very small percentage. True, but what is more important is to acknowledge that any user can potentially be without JS. I recommend giving [this diagram](https://www.kryogenix.org/code/browser/everyonehasjs.html) a read; it will lead you to many wonderful resources to convince you of this argument. In short, supporting no-JS scenario means we value user experience regardless of their context.
+If I tell you that over 90% of *sveltevietnam.dev* is still usable without Javascript (JS), you might as well say: that is stupid, why not use JS? The fact is, some people indeed cannot access JS due to security concerns; some others choose to turn it off to protect their privacy and improve performance (I sometimes do, and you too should try). I can hear you say: these users account for a very small percentage. True, but what is more important is to acknowledge that any user can potentially be without JS. I recommend giving [this diagram](https://www.kryogenix.org/code/browser/everyonehasjs.html) a read; it will lead you to many wonderful resources to convince you of this argument. All in all, supporting no-JS scenario means we value user experience regardless of their context.
 
 Implementing this is no easy task, especially if one is used to relying on JS and developing single page applications (SPA). Fortunately, Svelte and SvelteKit provide a lot of tools for this task. The web platform and its standard APIs have aslo matured over the years and are becoming less and less dependent of JS. "Progressive enhancement" is a term often implies the capability to support non-JS users.
 
@@ -94,7 +94,7 @@ To turn off JS, you can open devtool, press "Ctrl + Shift + P" (which triggers t
 
 I have spent quite some time testing and experimenting with these features, especially those with animation, to make sure they are compatible and can transition seamlessly from when there is no JS to when there is. Of course, achieving 100% is not realistic, and we cannot deny that JS is necessary to enhance user experience. Currently, the features that unfortunately only work with JS are:
 
-- some animation such as those found in section titles or the intro sectio of the home page,
+- some animation such as those found in section titles or the intro section of the home page,
 - tooltip,
 - push notification,
 - table of contents in blog posts,
@@ -152,10 +152,10 @@ If you are reading this in the future, the 404 page might have changed, but hope
 
 <img src={blueScreenOfDeathImage} class="max-w-full border" width="1024" height="658" alt="sveltevietnam.dev version of the Blue Screen of Death" />
 
-## Homework for You: A Svelte Vietnam Logo
+## Homework: A Svelte Vietnam Logo
 
 At the top left corner of *sveltevietnam.dev* is, most of the time, a Svelte Vietnam logo. When you are not on the home page, clicking on the logo will redirect you back to the home page. When you are on the home page, however, you will feel like the logo is not clickable. But try clicking on the logo **twelve times** and see what happens (hint: it is better if you are on desktop instead of mobile)!
 
 ## Closing
 
-Above are a few tiny details through which I hope you can understand more about how *sveltevietnam.dev* is designed and built. Fun is a must-have here. For any application, the first user is us the developers; if we feel joy using it, perhaps tat is already a success. Whether you are writing React or Svelte, HTMX or Astro, Golang or Rust, have a bit of fun, however tiny it might be, yeah?
+Above are a few tiny details through which I hope you can understand more about how *sveltevietnam.dev* is designed and built. Fun is a must-have here. For any application, the first user is us developers; if we feel joy using it, perhaps that is already a success. Whether you are writing React or Svelte, HTMX or Astro, Golang or Rust, have a bit of fun, however tiny it might be, yeah?
