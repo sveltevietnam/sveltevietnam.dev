@@ -34,7 +34,7 @@
 	$: t = data.translations.layout;
 
 	function onCopiedCanonical() {
-		noti.info(t.urlCopyNotice);
+		noti.success(t.urlCopyNotice);
 	}
 	const tocStore = createTocStore();
 	$: tocItems = Object.values($tocStore.items);
