@@ -295,12 +295,12 @@
 			transform: translate(-50%, -50%);
 		}
 
-		& svg {
+		& a {
 			filter: grayscale(1);
-		}
 
-		& a:hover svg {
-			filter: none;
+			&:hover {
+				filter: none;
+			}
 		}
 	}
 
