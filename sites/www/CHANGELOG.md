@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0-next.30
+
+### Minor Changes
+
+- [`6ebeb19`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/6ebeb19de02936efdc8259c691e81f231c6b4869) Thanks [@vnphanquang](https://github.com/vnphanquang)! - refactor brand icons & google icons to use lucide for consistency
+
+- [#197](https://github.com/sveltevietnam/sveltevietnam.dev/pull/197) [`12fd898`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/12fd89855ae5c749ed95b8caab7099d358e65002) Thanks [@vnphanquang](https://github.com/vnphanquang)! - copy button for code blocks in mdsvex context
+
 ## 1.0.0-next.29
 
 ### Minor Changes
