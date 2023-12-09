@@ -80,6 +80,12 @@
 			</a>
 		</li>
 		<li>
+			<a href={SOCIAL_LINKS.YOUTUBE} class="c-link c-link--icon" external>
+				<span class="sr-only">Youtube</span>
+				<svg height="16" width="16" inline-src="simpleicon/youtube" />
+			</a>
+		</li>
+		<li>
 			<a href={SOCIAL_LINKS.TWITTER} class="c-link c-link--icon" external>
 				<span class="sr-only">Twitter</span>
 				<svg height="16" width="16" inline-src="simpleicon/twitter" />
@@ -89,12 +95,6 @@
 			<a href={SOCIAL_LINKS.FACEBOOK} class="c-link c-link--icon" external>
 				<span class="sr-only">Facebook</span>
 				<svg height="16" width="16" inline-src="simpleicon/facebook" />
-			</a>
-		</li>
-		<li>
-			<a href={SOCIAL_LINKS.YOUTUBE} class="c-link c-link--icon" external>
-				<span class="sr-only">Youtube</span>
-				<svg height="16" width="16" inline-src="simpleicon/youtube" />
 			</a>
 		</li>
 	</ul>
