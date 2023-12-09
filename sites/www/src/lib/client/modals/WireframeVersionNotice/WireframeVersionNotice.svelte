@@ -60,7 +60,23 @@
 		transition:fly={{ duration: 200, y: 50 }}
 	>
 		<p class="tp-h3 font-bold uppercase">{t.title}</p>
-		<svg inline-src="google/handyman" height="40" width="40" class="mx-auto" />
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="40"
+			height="40"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="2"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			class="mx-auto"
+			><rect x="2" y="6" width="20" height="8" rx="1" /><path d="M17 14v7" /><path
+				d="M7 14v7"
+			/><path d="M17 3v3" /><path d="M7 3v3" /><path d="M10 14 2.3 6.3" /><path
+				d="m14 6 7.7 7.7"
+			/><path d="m8 6 8 8" /></svg
+		>
 		<p>
 			{@html t.description}
 		</p>

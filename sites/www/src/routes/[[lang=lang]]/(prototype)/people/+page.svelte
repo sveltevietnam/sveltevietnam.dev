@@ -24,19 +24,19 @@
 			<h2 class="font-bold">{t.how.title}</h2>
 			<ol>
 				<li>
-					<svg class="marker" inline-src="google/volunteer-activism" />
+					<!-- <svg class="marker" inline-src="google/volunteer-activism" /> -->
 					<p class="text">{t.how.steps.contribute}</p>
 				</li>
 				<li>
-					<svg class="marker" inline-src="google/thumb-up" />
+					<!-- <svg class="marker" inline-src="google/thumb-up" /> -->
 					<p>{t.how.steps.nominate}</p>
 				</li>
 				<li>
-					<svg class="marker" inline-src="google/verified" />
+					<!-- <svg class="marker" inline-src="google/verified" /> -->
 					<p>{t.how.steps.verify}</p>
 				</li>
 				<li>
-					<svg class="marker" inline-src="google/social-leaderboard" />
+					<!-- <svg class="marker" inline-src="google/social-leaderboard" /> -->
 					<p>{t.how.steps.recognize}</p>
 				</li>
 			</ol>

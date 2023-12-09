@@ -9,17 +9,17 @@
 	<div class="space-y-4 md:space-y-8 md:py-10">
 		<div class="flex items-center space-x-4">
 			<p class="title">{project.name}</p>
-			<svg inline-src="google/eco" />
+			<!-- <svg inline-src="google/eco" /> -->
 		</div>
 		<p class="space-x-4">
-			<svg inline-src="google/diversity-1" class="inline-block" />
+			<!-- <svg inline-src="google/diversity-1" class="inline-block" /> -->
 			<span>
 				{project.description}
 			</span>
 		</p>
 		{#if project.by}
 			<p class="space-x-4">
-				<svg inline-src="google/handshake" class="inline-block" />
+				<!-- <svg inline-src="google/handshake" class="inline-block" /> -->
 				<span>
 					{project.by}
 				</span>
@@ -28,7 +28,7 @@
 		{#if project.href}
 			<a href={project.href} class="c-btn c-btn--with-icon c-btn--text w-fit" external>
 				<span>View details</span>
-				<svg inline-src="google/arrow-right-alt" />
+				<!-- <svg inline-src="google/arrow-right-alt" /> -->
 			</a>
 		{/if}
 	</div>
@@ -39,13 +39,7 @@
 		display: flex;
 
 		@screen upto-tb {
-			@space-y theme('spacing.6');
-
 			flex-direction: column;
-		}
-
-		@screen md {
-			@space-x theme('spacing.10');
 		}
 	}
 

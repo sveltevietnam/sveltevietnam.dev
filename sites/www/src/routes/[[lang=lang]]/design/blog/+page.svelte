@@ -2,6 +2,8 @@
 	import { intersect } from '$client/actions/intersect';
 	import { Breadcrumbs } from '$client/components/Breadcrumbs';
 
+	import '../../../../lib/client/styles/code.css';
+
 	import type { PageData } from './$types';
 	import CodeBlock from './_page/components/CodeBlock.md.svelte';
 

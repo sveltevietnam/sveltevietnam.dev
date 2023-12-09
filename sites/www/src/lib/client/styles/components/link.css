@@ -128,7 +128,7 @@
 
 		```html
 		<a href={SOCIAL_LINKS.GITHUB} class="c-link c-link--icon" external>
-			<svg height="16" width="16" inline-src="simpleicon/github" />
+			<svg height="16" width="16" inline-src="lucide/github" />
 		</a>
 		```
 	*/

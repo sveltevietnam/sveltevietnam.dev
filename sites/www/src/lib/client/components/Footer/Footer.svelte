@@ -55,7 +55,7 @@
 					</li>
 					<li>
 						<a href="mailto:{EMAILS.CONTACT}" class="c-link c-link--lazy" external>
-							<svg inline-src="google/mail" width="24" height="24" />
+							<svg inline-src="lucide/mail" width="24" height="24" />
 							<span>{EMAILS.CONTACT}</span>
 						</a>
 					</li>
@@ -76,25 +76,25 @@
 		<li>
 			<a href={SOCIAL_LINKS.GITHUB} class="c-link c-link--icon" external>
 				<span class="sr-only">Github</span>
-				<svg height="16" width="16" inline-src="simpleicon/github" />
+				<svg height="16" width="16" inline-src="lucide/github" />
 			</a>
 		</li>
 		<li>
 			<a href={SOCIAL_LINKS.YOUTUBE} class="c-link c-link--icon" external>
 				<span class="sr-only">Youtube</span>
-				<svg height="16" width="16" inline-src="simpleicon/youtube" />
+				<svg height="16" width="16" inline-src="lucide/youtube" />
 			</a>
 		</li>
 		<li>
 			<a href={SOCIAL_LINKS.TWITTER} class="c-link c-link--icon" external>
 				<span class="sr-only">Twitter</span>
-				<svg height="16" width="16" inline-src="simpleicon/twitter" />
+				<svg height="16" width="16" inline-src="lucide/twitter" />
 			</a>
 		</li>
 		<li>
 			<a href={SOCIAL_LINKS.FACEBOOK} class="c-link c-link--icon" external>
 				<span class="sr-only">Facebook</span>
-				<svg height="16" width="16" inline-src="simpleicon/facebook" />
+				<svg height="16" width="16" inline-src="lucide/facebook" />
 			</a>
 		</li>
 	</ul>

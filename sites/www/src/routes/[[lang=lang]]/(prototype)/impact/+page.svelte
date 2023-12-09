@@ -20,7 +20,7 @@
 				<span>
 					{@html t.ctas.github}
 				</span>
-				<svg inline-src="simpleicon/github" />
+				<svg inline-src="lucide/github" />
 			</a>
 			<a href={SOCIAL_LINKS.DISCORD} class="c-btn c-btn--with-icon" external>
 				<span>

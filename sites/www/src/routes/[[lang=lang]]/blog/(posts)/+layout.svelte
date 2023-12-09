@@ -101,7 +101,7 @@
 								<p>
 									{langVersion.label}
 									<svg
-										inline-src="google/info"
+										inline-src="lucide/info"
 										class="ml-1 inline-block cursor-help align-text-top"
 										height="16"
 										width="16"
@@ -176,7 +176,7 @@
 							external
 						>
 							<span class="sr-only">facebook</span>
-							<svg inline-src="simpleicon/facebook" width="20" height="20" />
+							<svg inline-src="lucide/facebook" width="20" height="20" />
 						</a>
 					</li>
 					<li>
@@ -186,7 +186,7 @@
 							external
 						>
 							<span class="sr-only">twitter (x)</span>
-							<svg inline-src="simpleicon/twitter" width="20" height="20" />
+							<svg inline-src="lucide/twitter" width="20" height="20" />
 						</a>
 					</li>
 					<li>
@@ -196,7 +196,7 @@
 							external
 						>
 							<span class="sr-only">linkedin</span>
-							<svg inline-src="simpleicon/linkedin" width="20" height="20" />
+							<svg inline-src="lucide/linkedin" width="20" height="20" />
 						</a>
 					</li>
 					<li>
@@ -206,7 +206,7 @@
 							use:copy={{ text: meta?.canonical ?? '' }}
 						>
 							<span class="sr-only">copy link</span>
-							<svg inline-src="google/share" width="20" height="20" />
+							<svg inline-src="lucide/link" width="20" height="20" />
 						</button>
 					</li>
 					<li>
@@ -215,7 +215,7 @@
 							on:click={onClickQRLink}
 						>
 							<span class="sr-only">QR code</span>
-							<svg inline-src="google/qr-code-2" width="20" height="20" />
+							<svg inline-src="lucide/qr-code" width="20" height="20" />
 						</button>
 					</li>
 				</ul>

@@ -40,10 +40,10 @@
 			</a>
 			{#if status === 'ongoing'}
 				<svg
-					inline-src="google/campaign"
+					inline-src="lucide/radio"
 					width="32"
 					height="32"
-					class="inline-block cursor-help fill-amber align-bottom"
+					class="inline-block cursor-help stroke-amber align-bottom"
 					use:textTip={{ content: 'This event is happening right now. Join us!' }}
 				/>
 			{/if}

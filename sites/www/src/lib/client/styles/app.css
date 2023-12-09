@@ -62,8 +62,7 @@
 		scroll-margin: calc(1.5 * theme('spacing.header'));
 	}
 
-	svg[inline-src^='simpleicon/'],
-	svg[inline-src^='google/'] {
+	svg[inline-src^='simpleicon/'] {
 		fill: currentcolor;
 	}
 }
