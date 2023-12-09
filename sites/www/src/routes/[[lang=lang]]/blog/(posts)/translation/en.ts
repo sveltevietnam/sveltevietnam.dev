@@ -1,7 +1,7 @@
 import { SOCIAL_LINKS } from '$shared/constants';
 
 export const en = {
-	urlCopyNotice: 'Blog post was saved to clipboard',
+	urlCopyNotice: 'Copied link to blog post to clipboard',
 	language: {
 		original: {
 			label: 'Original language',
