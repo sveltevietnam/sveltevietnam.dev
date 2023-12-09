@@ -32,7 +32,7 @@ export type Post = {
 	originalLang?: Language;
 	tags?: PostTag[];
 	authors: Person[];
-	thumbnail?: string;
+	thumbnail?: LangVar<string>;
 	ogImage?: LangVar<string>;
 	keywords?: LangVar<string>[];
 	readMinutes?: number;
