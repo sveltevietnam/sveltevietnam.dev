@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.29
+
+### Minor Changes
+
+- [#191](https://github.com/sveltevietnam/sveltevietnam.dev/pull/191) [`af65a6a`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/af65a6aa3c43e6a61e539ddd8679c081ae5c05da) Thanks [@vnphanquang](https://github.com/vnphanquang)! - New blog post VI "Một vài bí mật về sveltevietnam.dev (Behind the Screen)"
+
 ## 1.0.0-next.28
 
 ### Minor Changes
