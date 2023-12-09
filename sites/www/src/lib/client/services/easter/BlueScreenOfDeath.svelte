@@ -21,7 +21,7 @@
 		/>
 		<div class="space-y-2 text-base">
 			<p>While you are at it, join our discord for fun, yeah?</p>
-			<p class="text-xs">(We won't be able to fix your error anyway)</p>
+			<p class="text-xs">(We won't be able to fix YOUR error anyway)</p>
 		</div>
 	</div>
 </section>
