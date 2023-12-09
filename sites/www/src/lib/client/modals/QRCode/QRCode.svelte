@@ -113,7 +113,7 @@
 		transition:fly={{ duration: 200, y: 50 }}
 	>
 		<button class="absolute right-6 top-6" on:click={dismiss}>
-			<svg inline-src="google/close" width="24" height="24" class="fill-current" />
+			<svg inline-src="google/close" width="24" height="24" />
 		</button>
 		<div class="space-y-6">
 			<p class="tp-h2 font-medium after:mt-2 after:separator">{texts.title}</p>

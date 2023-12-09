@@ -26,7 +26,10 @@
 			<p use:intersect>{@html t.codeblock.description}</p>
 			<div class="prose max-w-full" use:intersect>
 				<pre class="shiki github-dark-dimmed"><code
-						>```{t.codeblock.language}<br />{t.codeblock.sourceCode}<br />```</code
+						><span class="line" data-line="1">```</span>
+<span class="line" data-line="2">{t.codeblock.language}</span>
+<span class="line" data-line="3">{t.codeblock.sourceCode}</span>
+<span class="line" data-line="4">```</span></code
 					></pre>
 			</div>
 			<p use:intersect>{t.codeblock.example}</p>
@@ -60,8 +63,9 @@
 				<p use:intersect>{@html t.components.callout.container}</p>
 				<div class="prose max-w-full" use:intersect>
 					<pre class="shiki github-dark-dimmed"><code
-							>:::div c-callout c-callout--info<br />{t.components.callout.examples.info}<br
-							/>:::</code
+							><span class="line" data-line="1">:::div c-callout c-callout--info</span>
+<span class="line" data-line="2">{t.components.callout.examples.info}</span>
+<span class="line" data-line="3">:::</span></code
 						></pre>
 				</div>
 			</section>

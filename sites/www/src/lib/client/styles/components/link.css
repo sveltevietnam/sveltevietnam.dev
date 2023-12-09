@@ -148,10 +148,6 @@
 		&[aria-current]:not([aria-current='false']) {
 			color: var(--link-active-color);
 		}
-
-		& svg {
-			fill: currentcolor;
-		}
 	}
 
 	&:where(:not(:--icon, :--lazy, :--image, :--box)) {

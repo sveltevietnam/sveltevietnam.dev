@@ -102,7 +102,7 @@
 									{langVersion.label}
 									<svg
 										inline-src="google/info"
-										class="ml-1 inline-block cursor-help fill-current align-text-top"
+										class="ml-1 inline-block cursor-help align-text-top"
 										height="16"
 										width="16"
 										use:textTip={{ content: langVersion.description }}
