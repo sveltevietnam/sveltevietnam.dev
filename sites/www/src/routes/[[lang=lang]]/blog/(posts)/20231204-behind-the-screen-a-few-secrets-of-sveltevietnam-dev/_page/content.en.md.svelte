@@ -1,7 +1,7 @@
 <script>
 	import BaseNotification from '$client/notifications/BaseNotification.svelte';
 	import DiscordNotification from '$client/notifications/DiscordNotification.svelte';
-	import notificationHoverImage from './images/notification-hover.gif';
+	import notificationHoverImage from './images/notification-hover-en.gif';
 	import fallbackAvatar from '$shared/assets/images/fallback/default.jpg?w=60&imagetools';
 	import devToolsSlow3gImage from './images/devtools-slow-3g.jpg?format=webp&imagetools';
 	import disableJavascriptImage from './images/disable-javascript.png?format=webp&imagetools';
@@ -11,7 +11,7 @@
 </script>
 
 :::div c-callout c-callout--info
-This is a supplementary post to a [video with the same title](TBA), streamed at the recent "[Online Meetup Year-End 2023](/events/202312-year-end-online-meetup)" event. It is also part three of the "Behind the Screen" series, where I share my experience and lessons learned while building *sveltevietnam.dev*. You can find the previous part at "[Productive Dark Mode with SvelteKit, PostCSS, and TailwindCSS (Behind the Screen) ](/blog/20231110-behind-the-screen-dark-mode-with-sveltekit-tailwindcss-and-postcss)".
+This is a supplementary post to a [video with the same title](TBA), streamed at the recent "[Online Meetup Year-End 2023](/events/202312-year-end-online-meetup)" event. It is also part three of the "Behind the Screen" series, where I share my experience and lessons learned while building *sveltevietnam.dev*. You can find the previous part at "[Productive Dark Mode with SvelteKit, PostCSS, and TailwindCSS](/blog/20231110-behind-the-screen-dark-mode-with-sveltekit-tailwindcss-and-postcss)".
 :::
 
 ## Push Notification
@@ -26,7 +26,7 @@ Perhaps you have encountered a system notification while visiting *sveltevietnam
 
 There is nothing so surprising about this: push notification is a common part of web applications. Push notification of *sveltevietnam.dev* has four variants, corresponding to four popular status or intent: `info`, `success`, `warning`, and `error`. You can see example for each variant at the [Design | Colors](/design/colors#status) page.
 
-By default, each notification has an internal timer: it will automatically be dismissed upon timeout. However, if you hover over the notification (or touch and hold on touch devices), its timer will pause so that you will have time to read or interact, for example copying content or choosing the appropriate action. You can test this right now by clicking on the link copy button in the [Share](#share) section of this blog post.
+By default, each notification has an internal timer: it will automatically be dismissed upon timeout. However, if you hover over the notification (or touch and hold on touch devices), its timer will pause so that you have time to read or interact, for example copying content or choosing the appropriate action. You can test this right now by clicking on the link copy icon button in the [Share](#share) section of this blog post.
 
 <img src={notificationHoverImage} alt="trigger notification with share button, then hover over it to see timer pauses" width="2155" height="1343" class="max-w-full border" />
 
