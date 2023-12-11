@@ -10,7 +10,7 @@
 	import { SPONSOR_PATH } from '$shared/services/navigation';
 	import { formatDate, formatDateAndTime, formatTime } from '$shared/utils/datetime';
 
-	import kvImage from '../../_page/images/key-visuals.png?format=webp&imagetools';
+	import kvImage from '../../_page/images/key-visuals-without-grid.png?format=webp&imagetools';
 
 	import type { PageData } from './$types';
 	import { EVENT_LINKS } from './_page/data';
