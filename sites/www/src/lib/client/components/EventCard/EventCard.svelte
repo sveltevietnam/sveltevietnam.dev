@@ -76,7 +76,7 @@
 				<dd>
 					<ul class="flex flex-wrap items-center gap-x-4 gap-y-3">
 						{#each event.speakers as { avatarUrl, name, link }}
-							<li class="space-x-1">
+							<li class="flex items-center gap-1">
 								{#if link}
 									<a href={link} class="c-link c-link--image" external>
 										<span class="sr-only">{name}</span>
