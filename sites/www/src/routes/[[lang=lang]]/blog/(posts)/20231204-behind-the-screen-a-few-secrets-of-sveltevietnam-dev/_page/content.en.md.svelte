@@ -8,6 +8,7 @@
 	import notFoundPageImage from './images/not-found-page.png?format=webp&imagetools';
 	import blueScreenOfDeathImage from './images/blue-screen-of-death.png?format=webp&imagetools';
 	import asciiPhoImage from './images/ascii-pho.jpg?format=webp&imagetools';
+	import emailImage from './images/email-en.jpg?format=webp&imagetools';
 </script>
 
 :::div c-callout c-callout--info
@@ -109,6 +110,18 @@ Since we mentioned the devtool above, if you look at the "Console" window, somet
 <img src={asciiPhoImage} class="mx-auto max-w-full" width="512" height="486" alt="a bolw of phở drawn in ascii texts" />
 
 Why? Because I think it is fun. That's all.
+
+## The Svelte Vietnam Newsletter
+
+When you subscribe to the Svelte Vietnam newsletter through the forms at the [Events](/events), [Jobs](/jobs), and [Blog](/blog) pages, you will receive an email that looks like this:
+
+<img src={emailImage} class="border mx-auto max-w-full" width="1415" height="950" alt="screenshot of registration confirmation email" />
+
+The email template is inspired by popular services such as Google, Cloudflare, Vercel, ..., attempting to stay minimal and content-focused. Pay attention to the bottom of the email, the *"View on web"* link allows you to view the email as a standalone web page, while *"Manage subscription"* allows you to customize what type of content Svelte Vietnam should notify you about.
+
+:::div c-callout c-callout--warning
+You should not share links in the above email with anyone as it might contain your personal information!
+:::
 
 ## Roadmap Illustrations
 

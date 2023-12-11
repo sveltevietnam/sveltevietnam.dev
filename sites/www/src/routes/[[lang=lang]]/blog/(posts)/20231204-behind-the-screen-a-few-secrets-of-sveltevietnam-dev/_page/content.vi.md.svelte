@@ -8,10 +8,11 @@
 	import notFoundPageImage from './images/not-found-page.png?format=webp&imagetools';
 	import blueScreenOfDeathImage from './images/blue-screen-of-death.png?format=webp&imagetools';
 	import asciiPhoImage from './images/ascii-pho.jpg?format=webp&imagetools';
+	import emailImage from './images/email-vi.jpg?format=webp&imagetools';
 </script>
 
 :::div c-callout c-callout--info
-Bài viết này bổ trợ cho [video cùng tên](TBA) tên được chiếu tại sự kiện "[Gặp nhau trực tuyến cuối năm 2023](/events/202312-year-end-online-meetup)". Đây cũng là phần thứ ba trong chuỗi bài viết có tên “Behind the Screen”, nơi mình chia sẻ những kinh nghiệm và bài học trong quá trình xây dựng *sveltevietnam.dev*. Bạn có thể tìm đọc bài viết trước "[Giao diện tối (dark mode) với SvelteKit, PostCSS, và TailwindCSS](/blog/20231110-behind-the-screen-dark-mode-with-sveltekit-tailwindcss-and-postcss)".
+Bài viết này bổ trợ cho [video cùng tên](TBA) được chiếu tại sự kiện "[Gặp nhau trực tuyến cuối năm 2023](/events/202312-year-end-online-meetup)". Đây cũng là phần thứ ba trong chuỗi bài viết có tên “Behind the Screen”, nơi mình chia sẻ những kinh nghiệm và bài học trong quá trình xây dựng *sveltevietnam.dev*. Bạn có thể tìm đọc bài viết trước "[Giao diện tối (dark mode) với SvelteKit, PostCSS, và TailwindCSS](/blog/20231110-behind-the-screen-dark-mode-with-sveltekit-tailwindcss-and-postcss)".
 :::
 
 ## Thông báo đẩy
@@ -109,6 +110,18 @@ Nhân tiện nhắc đến devtool, nếu mở cửa sổ "Console", bạn sẽ 
 <img src={asciiPhoImage} class="mx-auto max-w-full" width="512" height="486" alt="một tô (bát) phở được vẽ bằng kí tự ascii" />
 
 Nếu bạn thắc mắc tại sao, thì câu trả lời là vì mình thấy nó vui, đơn giản vậy thôi. Hết rồi.
+
+## Hòm thư Svelte Việt Nam
+
+Khi bạn đăng kí nhận tin từ Svelte Việt Nam thông qua các biểu mẫu tại trang [Sự kiện](/events), [Việc làm](/jobs), và các trang [Blog](/blog), bạn sẽ nhận một email trông như sau:
+
+<img src={emailImage} class="border mx-auto max-w-full" width="1415" height="947" alt="chụp màn hình email xác nhận đã đăng kí" />
+
+Mẫu email trên được lấy ý tưởng từ nhiều trang lớn như Google, Cloudflare, Vercel, ..., hướng đến sự tối giản và tập trung vào nội dung. Hãy chú ý phần dưới của email, *"Xem trên web"* giúp bạn xem email như một trang web độc lập, *"Quản lý đăng ký"* giúp tùy chỉnh nội dung nào Svelte Việt Nam nên thông báo cho bạn.
+
+:::div c-callout c-callout--warning
+Bạn không nên chia sẻ các đường dẫn trong email trên cho bất cứ ai vì nó có thể chứa thông tin cá nhân và quyền riêng tư của bạn!
+:::
 
 ## Minh họa lộ trình
 
