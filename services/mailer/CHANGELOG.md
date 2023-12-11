@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.7
+
+### Patch Changes
+
+- [`b38245d`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/b38245d7295ad554f7beeeb87c8fbc8689646c24) Thanks [@vnphanquang](https://github.com/vnphanquang)! - update social icons src to reflect those in www
+
 ## 1.0.0-next.6
 
 ### Minor Changes
