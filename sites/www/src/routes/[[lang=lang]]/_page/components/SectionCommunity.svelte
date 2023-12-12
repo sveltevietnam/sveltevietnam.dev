@@ -59,6 +59,7 @@
 		padding-bottom: var(--padding-bottom);
 
 		&::before {
+			pointer-events: none;
 			content: '';
 
 			position: absolute;
