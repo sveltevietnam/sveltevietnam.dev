@@ -50,7 +50,7 @@
 		"dts": "dts-buddy && publint"
 	},
 	"devDependencies": {
-		"dts-buddy": "^0.4.1",
+		"dts-buddy": "^0.4.3",
 		"publint": "^0.2.6"
 	},
 	"volta": {
