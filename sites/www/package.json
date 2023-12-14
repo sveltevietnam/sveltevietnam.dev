@@ -45,7 +45,7 @@
 		"@svelte-put/tooltip": "^1.0.1",
 		"@sveltejs/adapter-cloudflare": "2.3.4",
 		"@sveltejs/enhanced-img": "^0.1.5",
-		"@sveltejs/kit": "^1.30.1",
+		"@sveltejs/kit": "^1.30.3",
 		"@tailwindcss/typography": "^0.5.10",
 		"@total-typescript/ts-reset": "^0.5.1",
 		"@types/mustache": "^4.2.5",

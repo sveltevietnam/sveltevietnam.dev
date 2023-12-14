@@ -193,10 +193,10 @@ importers:
         version: 2.1.3(svelte@4.2.8)
       '@sveltejs/adapter-cloudflare':
         specifier: 2.3.4
-        version: 2.3.4(@sveltejs/kit@1.30.1)
+        version: 2.3.4(@sveltejs/kit@1.30.3)
       '@sveltejs/kit':
-        specifier: ^1.30.1
-        version: 1.30.1(svelte@4.2.8)(vite@4.5.0)
+        specifier: ^1.30.3
+        version: 1.30.3(svelte@4.2.8)(vite@4.5.0)
       '@total-typescript/ts-reset':
         specifier: ^0.5.1
         version: 0.5.1
@@ -259,7 +259,7 @@ importers:
         version: 3.6.2(postcss-load-config@5.0.2)(postcss@8.4.32)(svelte@4.2.8)
       sveltekit-superforms:
         specifier: ^1.11.0
-        version: 1.11.0(@sveltejs/kit@1.30.1)(svelte@4.2.8)(zod@3.22.4)
+        version: 1.11.0(@sveltejs/kit@1.30.3)(svelte@4.2.8)(zod@3.22.4)
       tailwindcss:
         specifier: ^3.3.6
         version: 3.3.6
@@ -326,13 +326,13 @@ importers:
         version: 1.0.1
       '@sveltejs/adapter-cloudflare':
         specifier: 2.3.4
-        version: 2.3.4(@sveltejs/kit@1.30.1)
+        version: 2.3.4(@sveltejs/kit@1.30.3)
       '@sveltejs/enhanced-img':
         specifier: ^0.1.5
         version: 0.1.5(svelte@4.2.8)
       '@sveltejs/kit':
-        specifier: ^1.30.1
-        version: 1.30.1(svelte@4.2.8)(vite@4.5.0)
+        specifier: ^1.30.3
+        version: 1.30.3(svelte@4.2.8)(vite@4.5.0)
       '@tailwindcss/typography':
         specifier: ^0.5.10
         version: 0.5.10(tailwindcss@3.3.6)
@@ -422,7 +422,7 @@ importers:
         version: 0.1.2(svelte@4.2.8)
       sveltekit-superforms:
         specifier: ^1.11.0
-        version: 1.11.0(@sveltejs/kit@1.30.1)(svelte@4.2.8)(zod@3.22.4)
+        version: 1.11.0(@sveltejs/kit@1.30.3)(svelte@4.2.8)(zod@3.22.4)
       tailwindcss:
         specifier: ^3.3.6
         version: 3.3.6
@@ -2129,13 +2129,13 @@ packages:
     resolution: {integrity: sha512-dmXUx8dHUHWzN5z1+XsVzLv4KIDFImDVlzVEV9OYTepyfMdmxZszyFYWuM3Ns3D3cS4g+uOID+pq3mBsM3KHOA==}
     dev: true
 
-  /@sveltejs/adapter-cloudflare@2.3.4(@sveltejs/kit@1.30.1):
+  /@sveltejs/adapter-cloudflare@2.3.4(@sveltejs/kit@1.30.3):
     resolution: {integrity: sha512-+5Msbm7svrZjaBt0KapNh2zEaMRfrhbTRBWRXrFa+w+KFRQnHjFIPvWz/NQ11XKVu7dRe7mkzqvqieL2b0hpJw==}
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
     dependencies:
       '@cloudflare/workers-types': 4.20231121.0
-      '@sveltejs/kit': 1.30.1(svelte@4.2.8)(vite@4.5.0)
+      '@sveltejs/kit': 1.30.3(svelte@4.2.8)(vite@4.5.0)
       esbuild: 0.18.20
       worktop: 0.8.0-next.15
     dev: true
@@ -2151,8 +2151,8 @@ packages:
       - svelte
     dev: true
 
-  /@sveltejs/kit@1.30.1(svelte@4.2.8)(vite@4.5.0):
-    resolution: {integrity: sha512-N4hMFTRmnkB0q1uB93wfM8As2q4zYI2FQ01K8dQOCAWbm2y6mB0pmF12ILO+zbEim13csBLO0JyAWJRSd101hQ==}
+  /@sveltejs/kit@1.30.3(svelte@4.2.8)(vite@4.5.0):
+    resolution: {integrity: sha512-0DzVXfU4h+tChFvoc8C61IqErCyskD4ydSIDjpKS2lYlEzIYrtYrY7juSqACFxqcvZAnOEXvSY+zZ8br0+ZMMg==}
     engines: {node: ^16.14 || >=18}
     hasBin: true
     requiresBuild: true
@@ -2977,7 +2977,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001570
-      electron-to-chromium: 1.4.611
+      electron-to-chromium: 1.4.612
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.22.2)
     dev: true
@@ -3909,8 +3909,8 @@ packages:
     resolution: {integrity: sha512-RyJX0q/zOkAoefZhB9XHghGeATVP0Q3mwA253XD/zj2OeXc+JZB9pCaEv6R578JUYaWM9PRhye0kXvd/V1cQ3Q==}
     dev: true
 
-  /electron-to-chromium@1.4.611:
-    resolution: {integrity: sha512-ZtRpDxrjHapOwxtv+nuth5ByB8clyn8crVynmRNGO3wG3LOp8RTcyZDqwaI6Ng6y8FCK2hVZmJoqwCskKbNMaw==}
+  /electron-to-chromium@1.4.612:
+    resolution: {integrity: sha512-dM8BMtXtlH237ecSMnYdYuCkib2QHq0kpWfUnavjdYsyr/6OsAwg5ZGUfnQ9KD1Ga4QgB2sqXlB2NT8zy2GnVg==}
     dev: true
 
   /embla-carousel-reactive-utils@8.0.0-rc15(embla-carousel@8.0.0-rc15):
@@ -9450,14 +9450,14 @@ packages:
       periscopic: 3.1.0
     dev: true
 
-  /sveltekit-superforms@1.11.0(@sveltejs/kit@1.30.1)(svelte@4.2.8)(zod@3.22.4):
+  /sveltekit-superforms@1.11.0(@sveltejs/kit@1.30.3)(svelte@4.2.8)(zod@3.22.4):
     resolution: {integrity: sha512-43hhy34Eb57erD2b+3Z6A97NBQHQ+ePXmGxeOqOATd7OeI1Vo/fw+vd5yGE9w/ql8DGDUqW1LKb4D3rJXdxSYg==}
     peerDependencies:
       '@sveltejs/kit': 1.x
       svelte: 3.x || 4.x
       zod: 3.x
     dependencies:
-      '@sveltejs/kit': 1.30.1(svelte@4.2.8)(vite@4.5.0)
+      '@sveltejs/kit': 1.30.3(svelte@4.2.8)(vite@4.5.0)
       svelte: 4.2.8
       zod: 3.22.4
     dev: true
