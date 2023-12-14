@@ -1,5 +1,5 @@
 /** @type {import('stylelint').Config} */
-module.exports = {
+export default {
 	extends: [
 		'stylelint-config-standard',
 		'stylelint-config-html/svelte',
