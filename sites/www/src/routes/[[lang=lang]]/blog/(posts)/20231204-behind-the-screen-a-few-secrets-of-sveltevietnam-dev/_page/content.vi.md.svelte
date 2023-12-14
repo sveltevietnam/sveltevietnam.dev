@@ -12,7 +12,7 @@
 </script>
 
 :::div c-callout c-callout--info
-Bài viết này bổ trợ cho [video cùng tên](TBA) được chiếu tại sự kiện "[Gặp nhau trực tuyến cuối năm 2023](/events/202312-year-end-online-meetup)". Đây cũng là phần thứ ba trong chuỗi bài viết có tên “Behind the Screen”, nơi mình chia sẻ những kinh nghiệm và bài học trong quá trình xây dựng *sveltevietnam.dev*. Bạn có thể tìm đọc bài viết trước "[Giao diện tối (dark mode) với SvelteKit, PostCSS, và TailwindCSS](/blog/20231110-behind-the-screen-dark-mode-with-sveltekit-tailwindcss-and-postcss)".
+Bài viết này bổ trợ cho [video cùng tên](https://youtu.be/BaoljjKpLIU) được chiếu tại sự kiện "[Gặp nhau trực tuyến cuối năm 2023](/events/202312-year-end-online-meetup)". Đây cũng là phần thứ ba trong chuỗi bài viết có tên “Behind the Screen”, nơi mình chia sẻ những kinh nghiệm và bài học trong quá trình xây dựng *sveltevietnam.dev*. Bạn có thể tìm đọc bài viết trước "[Giao diện tối (dark mode) với SvelteKit, PostCSS, và TailwindCSS](/blog/20231110-behind-the-screen-dark-mode-with-sveltekit-tailwindcss-and-postcss)".
 :::
 
 ## Thông báo đẩy

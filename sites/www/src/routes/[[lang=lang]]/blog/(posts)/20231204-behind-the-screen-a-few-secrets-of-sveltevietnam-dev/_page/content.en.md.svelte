@@ -12,7 +12,7 @@
 </script>
 
 :::div c-callout c-callout--info
-This is a supplementary post to a [video with the same title](TBA), streamed at the recent "[Online Meetup Year-End 2023](/events/202312-year-end-online-meetup)" event. It is also part three of the "Behind the Screen" series, where I share my experience and lessons learned while building *sveltevietnam.dev*. You can find the previous part at "[Productive Dark Mode with SvelteKit, PostCSS, and TailwindCSS](/blog/20231110-behind-the-screen-dark-mode-with-sveltekit-tailwindcss-and-postcss)".
+This is a supplementary post to a [video with the same title](https://youtu.be/BaoljjKpLIU), streamed at the recent "[Online Meetup Year-End 2023](/events/202312-year-end-online-meetup)" event. It is also part three of the "Behind the Screen" series, where I share my experience and lessons learned while building *sveltevietnam.dev*. You can find the previous part at "[Productive Dark Mode with SvelteKit, PostCSS, and TailwindCSS](/blog/20231110-behind-the-screen-dark-mode-with-sveltekit-tailwindcss-and-postcss)".
 :::
 
 ## Push Notification
