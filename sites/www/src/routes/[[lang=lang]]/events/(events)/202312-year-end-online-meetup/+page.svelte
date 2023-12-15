@@ -5,7 +5,6 @@
 	import { ToBeAnnounced } from '$client/components/ToBeAnnounced';
 	import fallbackPrimaryImage from '$shared/assets/images/fallback/default.jpg?enhanced&w=1200&imagetools';
 	import fallbackSecondaryImage from '$shared/assets/images/fallback/default.jpg?enhanced&w=900&imagetools';
-	import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
 	import { isEventWithinOneDay } from '$shared/data/events';
 	import { SPONSOR_PATH } from '$shared/services/navigation';
 	import { formatDate, formatDateAndTime, formatTime } from '$shared/utils/datetime';
@@ -91,6 +90,7 @@
 		<p class="max-w-pad" use:intersect>{@html t.description}</p>
 		<section class="max-w-pad">
 			<h2 class="tp-h2 uppercase" use:intersect>{t.timeline.title}</h2>
+			<!-- NOTES: speaker application is closed
 			<section class="c-callout c-callout--info mt-6 space-y-4" use:intersect>
 				<h3 class="tp-h4 font-medium" id="become-a-speaker">{t.proposal.title}</h3>
 				<p>{t.proposal.description}</p>
@@ -108,6 +108,7 @@
 				</ul>
 				<p>{t.proposal.guidelines}</p>
 			</section>
+			-->
 			<dl
 				class="mt-6 grid grid-cols-[auto,1fr] items-center gap-2 border-b border-dashed border-outline-200 py-6"
 				use:intersect
@@ -152,19 +153,18 @@
 					<p class="tp-h5 font-medium">{t.timeline.discussion}: {t.timeline.discussion1}</p>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<p class="py-6">
-						<a href="#become-a-speaker" class="c-link">{t.proposal.inPageLink}</a>
-					</p>
+					<time datetime="" class="tp-body2 text-fg-200">{generateTimeSlot(60, 30)}</time>
+					<p class="tp-h5 font-medium">{t.timeline.discussion2}</p>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="tp-body2 text-fg-200">{generateTimeSlot(120, 20)}</time>
+					<time datetime="" class="tp-body2 text-fg-200">{generateTimeSlot(90, 20)}</time>
 					<div class="space-y-3">
 						<p class="tp-h5 font-medium">{t.timeline.video}: "{t.timeline.video2}"</p>
 						<Person person={people.vnphanquang} />
 					</div>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="tp-body2 text-fg-200">{generateTimeSlot(140, 10)}</time>
+					<time datetime="" class="tp-body2 text-fg-200">{generateTimeSlot(110, 10)}</time>
 					<p class="tp-h5 font-medium">{t.timeline.closing}</p>
 				</li>
 			</ul>

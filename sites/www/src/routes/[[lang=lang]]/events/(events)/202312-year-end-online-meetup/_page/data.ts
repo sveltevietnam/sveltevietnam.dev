@@ -26,7 +26,7 @@ export const event = {
 		en: 'This is the first-ever online meetup of the Svelte Vietnam community, and also the last of 2023.',
 	},
 	startDate: '2023-12-16T02:00:00.000Z',
-	endDate: '2023-12-16T04:30:00.000Z',
+	endDate: '2023-12-16T04:00:00.000Z',
 	location: {
 		vi: `Trực tuyến tại <a class="c-link" href="${EVENT_LINKS.STREAM}" target="_blank" rel="noreferrer">Youtube</a> và <a class="c-link" href="${EVENT_LINKS.DISCORD}" target="_blank" rel="noreferrer">Discord</a> (chi tiết sẽ được cập nhật)`,
 		en: `Live via <a class="c-link" href="${EVENT_LINKS.STREAM}" target="_blank" rel="noreferrer">Youtube</a> and <a class="c-link" href="${EVENT_LINKS.DISCORD}" target="_blank" rel="noreferrer">Discord</a> (specifics are to be announced)`,

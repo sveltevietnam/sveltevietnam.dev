@@ -5,7 +5,7 @@ export const vi = {
 	description:
 		'Đây là sự kiện đầu tiên của cộng đồng Svelte Việt Nam và cuối cùng của năm 2023, \
 		khi chúng ta đang dần đi hết thêm một năm đầy biến động, nhiều thay đổi API và tràn ngập tin tức về AI. \
-		Sự kiện lần này dự kiến sẽ kéo dài khoảng hai giờ rưỡi, kết hợp giữa \
+		Sự kiện lần này dự kiến sẽ kéo dài khoảng hai giờ, kết hợp giữa \
 		video quay trước và thảo luận trực tiếp. Chúng ta học hỏi từ các sự kiện từ \
 		<a class="c-link" href="https://www.sveltesummit.com/" rel="noreferrer" target="_blank">Svelte Summit</a>, \
 		<a class="c-link" href="https://viteconf.org/" rel="noreferrer" target="_blank">Vite Conf</a>, \
@@ -21,6 +21,7 @@ export const vi = {
 		introduction: 'Giới thiệu và làm quen',
 		discussion: 'Thảo luận',
 		discussion1: 'Phản hồi từ cộng đồng',
+		discussion2: 'Thảo luận tự do',
 		video: 'Video stream',
 		video1: {
 			title: 'Một Svelte Việt Nam',
@@ -28,10 +29,6 @@ export const vi = {
 				'Thống kê, thông tin chung về thực trạng dự án Svelte Việt Nam, và vài lời từ ban quản trị',
 		},
 		video2: 'Vài bí mật về sveltevietnam.dev',
-		// demo1: {
-		// 	title: 'Live demo: "Viết bài cho Blog Svelte Việt Nam"',
-		// 	demo: 'Giới thiệu nhanh cách khởi tạo một bài viết tĩnh, qua đó hy vọng giúp bạn hiểu hơn về cách vận hành của sveltevietnam.dev',
-		// },
 		closing: 'Lời kết',
 	},
 	proposal: {

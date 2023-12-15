@@ -5,7 +5,7 @@ export const en = {
 	description:
 		'This is the first event of the Svelte Vietnam community and the last of 2023 \
 		as we come closer to the end of yet another year full of API changes and AI news. \
-		The event is expected to last for about two and a half hours, with \
+		The event is expected to last for about two hours, with \
 		a combination of pre-record videos and live discussions. \
 		We take inspiration from past events of \
 		<a class="c-link" href="https://www.sveltesummit.com/" rel="noreferrer" target="_blank">Svelte Summit</a>, \
@@ -21,16 +21,13 @@ export const en = {
 		introduction: 'Meet and Greet',
 		discussion: 'Live Discussion',
 		discussion1: 'Feedback from Community',
+		discussion2: 'Open Discussion',
 		video: 'Video Stream',
 		video1: {
 			title: 'A Svelte Vietnam',
 			about: 'Some statistics about the Svelte Vietnam project, and a few words from admin',
 		},
 		video2: 'A Few Secrets of sveltevietnam.dev',
-		// demo1: {
-		// 	title: 'Live Demo: "Writing a Post for the Svelte Vietnam Blog',
-		// 	demo: 'A very quick demo about the making of a static blog post. Through this, I hope you can see how easy it is to write / code a post and get a feel of the workflow and codebase of sveltevietnam.dev.',
-		// },
 		closing: 'Closing Remarks',
 	},
 	proposal: {
