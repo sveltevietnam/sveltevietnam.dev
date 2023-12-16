@@ -61,9 +61,9 @@
 					</a>
 				</li>
 				<li>
-					<p href={EVENT_LINKS.JOIN} class="c-link c-link--box" external>
-						<span>{t.links.join}</span>
-					</p>
+					<a href={EVENT_LINKS.JOIN} class="c-link c-link--box" external>
+						<span>{@html t.links.join}</span>
+					</a>
 				</li>
 				<li>
 					<a href={EVENT_LINKS.DISCORD} class="c-link c-link--box" external>

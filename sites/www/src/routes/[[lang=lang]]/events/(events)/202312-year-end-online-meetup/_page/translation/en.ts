@@ -13,7 +13,7 @@ export const en = {
 		and other events in the web platform ecosystem, and hopefully can establish a precedent for many more events to come.',
 	links: {
 		watch: 'Watch the live stream (stay anonymous with popcorn!)',
-		join: 'Join the meetup (smile, you will be on camera!) - to be announced',
+		join: 'Join the meetup (smile, you will be on camera!)<br>Password: <em>sveltevietnam</em>',
 		discuss: 'Join community chat at Discord',
 	},
 	timeline: {

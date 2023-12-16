@@ -10,8 +10,7 @@ import thumbnailVi from './images/thumbnail-vi.jpg?enhanced';
 
 export const EVENT_LINKS = {
 	STREAM: 'https://www.youtube.com/watch?v=AUtnGxmYocw',
-	JOIN: 'TBA',
-	// TODO: replace with definite links once set up
+	JOIN: 'https://vdo.ninja/?room=2023_sveltevietnam_meetup&hash=9a0d&trb=2000&m&sl&l&tips',
 	DISCORD: 'https://discord.gg/dUSMxnCT?event=1182232622647234560',
 };
 
@@ -28,8 +27,8 @@ export const event = {
 	startDate: '2023-12-16T02:00:00.000Z',
 	endDate: '2023-12-16T04:00:00.000Z',
 	location: {
-		vi: `Trực tuyến tại <a class="c-link" href="${EVENT_LINKS.STREAM}" target="_blank" rel="noreferrer">Youtube</a> và <a class="c-link" href="${EVENT_LINKS.DISCORD}" target="_blank" rel="noreferrer">Discord</a> (chi tiết sẽ được cập nhật)`,
-		en: `Live via <a class="c-link" href="${EVENT_LINKS.STREAM}" target="_blank" rel="noreferrer">Youtube</a> and <a class="c-link" href="${EVENT_LINKS.DISCORD}" target="_blank" rel="noreferrer">Discord</a> (specifics are to be announced)`,
+		vi: `Trực tuyến tại <a class="c-link" href="${EVENT_LINKS.STREAM}" target="_blank" rel="noreferrer">Youtube</a> và <a class="c-link" href="${EVENT_LINKS.DISCORD}" target="_blank" rel="noreferrer">Discord</a>`,
+		en: `Live via <a class="c-link" href="${EVENT_LINKS.STREAM}" target="_blank" rel="noreferrer">Youtube</a> and <a class="c-link" href="${EVENT_LINKS.DISCORD}" target="_blank" rel="noreferrer">Discord</a>`,
 	},
 	speakers: [people.vnphanquang],
 	sponsors: [],

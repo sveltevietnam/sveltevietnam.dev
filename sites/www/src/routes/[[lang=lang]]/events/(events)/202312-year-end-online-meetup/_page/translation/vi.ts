@@ -13,7 +13,7 @@ export const vi = {
 		',
 	links: {
 		watch: 'Xem livestream (ẩn danh, cầm bắp rang ngồi xem!)',
-		join: 'Tham gia trực tiếp (cười lên nào, sẽ lên sóng đó!) - sẽ thông báo sau',
+		join: 'Tham gia trực tiếp (cười lên nào, sẽ lên sóng đó!)<br>Password: <em>sveltevietnam</em>',
 		discuss: 'Thảo luận cùng cộng đồng tại Discord',
 	},
 	timeline: {
