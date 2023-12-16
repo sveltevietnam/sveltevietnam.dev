@@ -3,8 +3,6 @@
 	import { Breadcrumbs } from '$client/components/Breadcrumbs';
 	import { Person } from '$client/components/Person';
 	import { ToBeAnnounced } from '$client/components/ToBeAnnounced';
-	import fallbackPrimaryImage from '$shared/assets/images/fallback/default.jpg?enhanced&w=1200&imagetools';
-	import fallbackSecondaryImage from '$shared/assets/images/fallback/default.jpg?enhanced&w=900&imagetools';
 	import { isEventWithinOneDay } from '$shared/data/events';
 	import { SPONSOR_PATH } from '$shared/services/navigation';
 	import { formatDate, formatDateAndTime, formatTime } from '$shared/utils/datetime';
@@ -13,6 +11,9 @@
 
 	import type { PageData } from './$types';
 	import { EVENT_LINKS } from './_page/data';
+	import imgSecretsOfSvelteVietnamDev from './_page/images/a-few-secrets-of-sveltevietnamdev.jpg?enhanced&imagetools';
+	import imgLivestreamMoment from './_page/images/livestream-moment.jpg?enhanced&imagetools';
+	import imgStateOfSvelteVietnam2023 from './_page/images/state-of-sveltevietnam-2023.jpg?enhanced&imagetools';
 
 	export let data: PageData;
 
@@ -52,17 +53,11 @@
 					-
 					<time datetime={event.endDate}>{formatDateAndTime(event.endDate)}</time>
 				{/if}
-				({t.tentative})
 			</p>
 			<ul class="divider-border max-w-[548px] divide-y font-medium">
 				<li>
 					<a href={EVENT_LINKS.STREAM} class="c-link c-link--box" external>
-						<span>{t.links.watch}</span>
-					</a>
-				</li>
-				<li>
-					<a href={EVENT_LINKS.JOIN} class="c-link c-link--box" external>
-						<span>{@html t.links.join}</span>
+						<span>{t.links.rewatch}</span>
 					</a>
 				</li>
 				<li>
@@ -87,7 +82,10 @@
 		/>
 	</div>
 	<div class="space-y-[60px] pb-[120px] tb:space-y-[120px] tb:pb-[200px]">
-		<p class="max-w-pad" use:intersect>{@html t.description}</p>
+		<div class="max-w-pad">
+			<p use:intersect>{@html t.description}</p>
+			<p use:intersect class="c-callout c-callout--info mt-8">{@html t.credit}</p>
+		</div>
 		<section class="max-w-pad">
 			<h2 class="tp-h2 uppercase" use:intersect>{t.timeline.title}</h2>
 			<!-- NOTES: speaker application is closed
@@ -126,7 +124,6 @@
 						-
 						<time datetime={event.endDate}>{formatDateAndTime(event.endDate)}</time>
 					{/if}
-					({t.tentative})
 				</dd>
 
 				<!-- location -->
@@ -143,7 +140,11 @@
 				<li class="space-y-2" use:intersect>
 					<time datetime="" class="tp-body2 text-fg-200">{generateTimeSlot(20, 20)}</time>
 					<div class="space-y-3">
-						<p class="tp-h5 font-medium">{t.timeline.video}: "{t.timeline.video1.title}"</p>
+						<p class="tp-h5 font-medium">
+							<a class="c-link" href={EVENT_LINKS.VIDEO1}
+								>{t.timeline.video}: "{t.timeline.video1.title}"</a
+							>
+						</p>
 						<p>{t.timeline.video1.about}</p>
 						<Person person={people.vnphanquang} />
 					</div>
@@ -159,7 +160,11 @@
 				<li class="space-y-2" use:intersect>
 					<time datetime="" class="tp-body2 text-fg-200">{generateTimeSlot(90, 20)}</time>
 					<div class="space-y-3">
-						<p class="tp-h5 font-medium">{t.timeline.video}: "{t.timeline.video2}"</p>
+						<p class="tp-h5 font-medium">
+							<a class="c-link" href={EVENT_LINKS.VIDEO2}
+								>{t.timeline.video}: "{t.timeline.video2}"</a
+							>
+						</p>
 						<Person person={people.vnphanquang} />
 					</div>
 				</li>
@@ -191,24 +196,40 @@
 						<enhanced:img
 							src={event.thumbnail}
 							alt="laptop openning in dark gradient background"
-							class="rounded-2xl"
+							class="rounded-lg"
 						/>
 						<figcaption class="tp-cap1 mt-4 text-fg-200">{t.images.cover}</figcaption>
 					</figure>
-					{#each new Array(2) as _}
-						<figure use:intersect>
-							<enhanced:img src={fallbackPrimaryImage} alt="placeholder" class="rounded-2xl" />
-							<figcaption class="tp-cap1 mt-4 text-fg-200">{t.images.placeholder}</figcaption>
-						</figure>
-					{/each}
+					<figure use:intersect>
+						<enhanced:img
+							src={imgLivestreamMoment}
+							alt="three community members having fun during livestream"
+							class="rounded-lg border"
+						/>
+						<figcaption class="tp-cap1 mt-4 text-fg-200">{t.images.moment}</figcaption>
+					</figure>
 				</div>
 				<div class="upto-tb:contents tb:space-y-6">
-					{#each new Array(4) as _}
-						<figure use:intersect>
-							<enhanced:img src={fallbackSecondaryImage} alt="placeholder" class="rounded-2xl" />
-							<figcaption class="tp-cap1 mt-4 text-fg-200">{t.images.placeholder}</figcaption>
-						</figure>
-					{/each}
+					<figure use:intersect>
+						<enhanced:img
+							src={imgStateOfSvelteVietnam2023}
+							alt="video thumbnail: State of Svelte Vietnam 2023"
+							class="rounded-lg border"
+						/>
+						<figcaption class="tp-cap1 mt-4 text-fg-200">
+							Video thumbnail: "{t.timeline.video1.title}"
+						</figcaption>
+					</figure>
+					<figure use:intersect>
+						<enhanced:img
+							src={imgSecretsOfSvelteVietnamDev}
+							alt="video thumbnail: A Few Secrets of sveltevietnam.dev"
+							class="rounded-lg border"
+						/>
+						<figcaption class="tp-cap1 mt-4 text-fg-200">
+							Video thumbnail: "{t.timeline.video2}"
+						</figcaption>
+					</figure>
 				</div>
 			</div>
 		</section>

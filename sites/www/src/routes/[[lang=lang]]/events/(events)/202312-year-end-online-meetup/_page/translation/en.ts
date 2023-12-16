@@ -3,17 +3,24 @@ import { en as common } from '../../../translation/en';
 export const en = {
 	...common,
 	description:
-		'This is the first event of the Svelte Vietnam community and the last of 2023 \
-		as we come closer to the end of yet another year full of API changes and AI news. \
-		The event is expected to last for about two hours, with \
+		'This was the first event of the Svelte Vietnam community and the last of 2023 \
+		as we came closer to the end of yet another year full of API changes and AI news. \
+		The event lasted for about two hours, with \
 		a combination of pre-record videos and live discussions. \
-		We take inspiration from past events of \
+		We took inspiration from past events of \
 		<a class="c-link" href="https://www.sveltesummit.com/" rel="noreferrer" target="_blank">Svelte Summit</a>, \
 		<a class="c-link" href="https://viteconf.org/" rel="noreferrer" target="_blank">Vite Conf</a>, \
-		and other events in the web platform ecosystem, and hopefully can establish a precedent for many more events to come.',
+		and other events in the web platform ecosystem, and hopefully would establish a precedent for many more events to come.',
+	credit:
+		'Shout out to community members who took time to join the meetup: \
+		Tymon, Bắc, Tuấn, and those in or outside the community who watched the livestream at Youtube.\
+		<br><br>\
+		A big thanks to Huy Mai for giving us permission to use his music for the event.\
+		',
 	links: {
-		watch: 'Watch the live stream (stay anonymous with popcorn!)',
-		join: 'Join the meetup (smile, you will be on camera!)<br>Password: <em>sveltevietnam</em>',
+		rewatch: 'Re-watch the livestream on Youtube',
+		// watch: 'Watch the live stream (stay anonymous with popcorn!)',
+		// join: 'Join the meetup (smile, you will be on camera!)<br>Password: <em>sveltevietnam</em>',
 		discuss: 'Join community chat at Discord',
 	},
 	timeline: {
@@ -38,5 +45,6 @@ export const en = {
 	images: {
 		...common.images,
 		cover: 'Event cover image',
+		moment: 'Livestream moment. Members: Tymon, Bắc, Tuấn (not visible), and Quang',
 	},
 } satisfies typeof import('./vi').vi;

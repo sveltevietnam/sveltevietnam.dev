@@ -12,6 +12,8 @@ export const EVENT_LINKS = {
 	STREAM: 'https://www.youtube.com/watch?v=AUtnGxmYocw',
 	JOIN: 'https://vdo.ninja/?room=2023_sveltevietnam_meetup&hash=9a0d&trb=2000&m&sl&l&tips',
 	DISCORD: 'https://discord.gg/dUSMxnCT?event=1182232622647234560',
+	VIDEO1: 'https://youtu.be/L109MSzC5nk',
+	VIDEO2: 'https://youtu.be/BaoljjKpLIU',
 };
 
 export const event = {

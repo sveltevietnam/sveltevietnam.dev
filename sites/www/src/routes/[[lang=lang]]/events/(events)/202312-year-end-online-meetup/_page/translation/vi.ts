@@ -11,9 +11,17 @@ export const vi = {
 		<a class="c-link" href="https://viteconf.org/" rel="noreferrer" target="_blank">Vite Conf</a>, \
 		và các sự kiện khác trong hệ sinh thái web. Hy vọng rằng, đây sẽ là tiền lệ cho nhiều sự kiện về sau! \
 		',
+	credit:
+		'Xin cảm ơn các thành viên đã tham gia thảo trực tiếp: \
+		anh Tymon, anh Bắc, anh Tuấn, và các thành viên trong và ngoài cộng đồng đã \
+		xem livestream tại Youtube.\
+		<br><br>\
+		Đặc biệt, xin cảm ơn Huy Mai đã sáng tác và đóng góp âm nhạc cho sự kiện.\
+		',
 	links: {
-		watch: 'Xem livestream (ẩn danh, cầm bắp rang ngồi xem!)',
-		join: 'Tham gia trực tiếp (cười lên nào, sẽ lên sóng đó!)<br>Password: <em>sveltevietnam</em>',
+		rewatch: 'Xem lại livestream tại Youtube',
+		// watch: 'Xem livestream (ẩn danh, cầm bắp rang ngồi xem!)',
+		// join: 'Tham gia trực tiếp (cười lên nào, sẽ lên sóng đó!)<br>Password: <em>sveltevietnam</em>',
 		discuss: 'Thảo luận cùng cộng đồng tại Discord',
 	},
 	timeline: {
@@ -39,5 +47,6 @@ export const vi = {
 	images: {
 		...common.images,
 		cover: 'Ảnh bìa sự kiện',
+		moment: 'Khoảnh khắc livestream. Thành viên: Tymon, Bắc, Tuấn (ẩn hình), và Quang',
 	},
 };
