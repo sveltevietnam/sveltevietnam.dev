@@ -25,7 +25,7 @@ export const en = {
 		example: 'For example, using the svelte language will produce the following result:',
 		supportedLanguages:
 			'\
-		Currently, the supported languages are svelte, javascript, typescript, and diff. \
+		Currently, the supported languages are svelte, javascript, typescript, and shellscript. \
 		If you need to add more language, inspect the "shikiji" configuration at \
 		<a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/mdsvex.config.js#L24" target="_blank" rel="noreferrer">mdsvex.config.js</a>.\
 		',
@@ -43,14 +43,14 @@ export const en = {
 				'\
 				These are details put inside highlighted boxes that express additional context to support the current document, \
 				for when you want to capture readers attention to important messages or instructions. \
-				To use, you need to add to your HTML element the class "c-callout" together with one of the following modifiers: \
-				"c-callout--info", "c-callout--success", "c-callout--warning", "c-callout-error".\
+				To use, you need to add to your HTML element the class `c-callout` together with one of the following modifiers: \
+				`c-callout--info`, `c-callout--success`, `c-callout--warning`, `c-callout-error`.\
 				',
 			examples: {
-				info: 'Use "c-callout-info" to express a generic notification or instruction',
-				success: 'Use "c-callout-success" to express a completion, or encouragement',
-				warning: 'Use "c-callout-warning" to express, unsurprisingly, a warning',
-				error: 'Use "c-callout-error" to express a bad scenario, an error, or discouragement',
+				info: 'Use `c-callout-info` to express a generic notification or instruction',
+				success: 'Use `c-callout-success` to express a completion, or encouragement',
+				warning: 'Use `c-callout-warning` to express, unsurprisingly, a warning',
+				error: 'Use `c-callout-error` to express a bad scenario, an error, or discouragement',
 			},
 			container:
 				'\

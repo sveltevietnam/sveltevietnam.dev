@@ -5,7 +5,9 @@
 	import '../../../../lib/client/styles/code.css';
 
 	import type { PageData } from './$types';
-	import CodeBlock from './_page/components/CodeBlock.md.svelte';
+	import CodeBlock from './_page/components/CodeBlock.md.svelte?mdsvex';
+	import CodeBlockDiff from './_page/components/CodeBlockDiff.md.svelte?mdsvex';
+	import CodeBlockHighlight from './_page/components/CodeBlockHighlight.md.svelte?mdsvex';
 
 	export let data: PageData;
 
@@ -23,22 +25,71 @@
 			<p>{@html t.typography.description}</p>
 		</section>
 
-		<section class="space-y-6">
-			<h2 class="tp-h2 font-medium" use:intersect>{t.codeblock.title}</h2>
-			<p use:intersect>{@html t.codeblock.description}</p>
-			<div class="prose max-w-full" use:intersect>
-				<pre class="shiki github-dark-dimmed"><code
-						><span class="line" data-line="1">```</span>
-<span class="line" data-line="2">{t.codeblock.language}</span>
-<span class="line" data-line="3">{t.codeblock.sourceCode}</span>
-<span class="line" data-line="4">```</span></code
-					></pre>
+		<section>
+			<div class="space-y-6">
+				<h2 class="tp-h2 font-medium" use:intersect>{t.codeblock.title}</h2>
+				<p use:intersect>{@html t.codeblock.description}</p>
+				<div class="prose max-w-full" use:intersect>
+					<pre class="shiki github-dark-dimmed"><code
+							><span class="line" data-line="1">```{t.codeblock.language}</span>
+<span class="line" data-line="2">{t.codeblock.sourceCode}</span>
+<span class="line" data-line="3">```</span></code
+						></pre>
+				</div>
+				<p use:intersect>{t.codeblock.example}</p>
+				<div class="prose max-w-full" use:intersect>
+					<CodeBlock />
+				</div>
+				<p use:intersect>{@html t.codeblock.supportedLanguages}</p>
 			</div>
-			<p use:intersect>{t.codeblock.example}</p>
-			<div class="prose max-w-full" use:intersect>
-				<CodeBlock />
-			</div>
-			<p use:intersect>{@html t.codeblock.supportedLanguages}</p>
+
+			<section class="mt-10 space-y-6">
+				<h3 class="tp-h3 font-medium" use:intersect>Diff</h3>
+				<p use:intersect>
+					To visualize code change, you can wrap the lines in comment with the directive `:::diff +`
+					or `:::diff -`. For example, the following markdown...
+				</p>
+				<div class="prose max-w-full" use:intersect>
+					<pre class="shiki github-dark-dimmed"><code
+							><span class="line" data-line="1">```javascript</span>
+<span class="line" data-line="2">// :::diff -</span>
+<span class="line" data-line="3">// export const OLD = 'old';</span>
+<span class="line" data-line="4">// :::</span>
+<span class="line" data-line="5">// :::diff +</span>
+<span class="line" data-line="6">// export const NEW = 'new';</span>
+<span class="line" data-line="7">// :::</span>
+<span class="line" data-line="8">```</span></code
+						></pre>
+				</div>
+				<p>...will render this:</p>
+				<div class="prose max-w-full" use:intersect>
+					<CodeBlockDiff />
+				</div>
+			</section>
+
+			<section class="mt-10 space-y-6">
+				<h3 class="tp-h3 font-medium" use:intersect>Highlight</h3>
+				<p use:intersect>
+					Similarly, for highlighting text, you can wrap the lines in comment with the directive
+					`:::highlight`. For example, the following markdown...
+				</p>
+				<div class="prose max-w-full" use:intersect>
+					<pre class="shiki github-dark-dimmed"><code
+							><span class="line" data-line="1">```javascript</span>
+<span class="line" data-line="2">{'function handle({ event, resolve }) {'}</span>
+<span class="line" data-line="3">  // :::highlight</span>
+<code class="line" data-line="4">  console.log(event);</code>
+<span class="line" data-line="5">  // :::</span>
+<span class="line" data-line="6">  return resolve(event);</span>
+<span class="line" data-line="7">{'}'}</span>
+<span class="line" data-line="8">```</span></code
+						></pre>
+				</div>
+				<p>...will render this:</p>
+				<div class="prose max-w-full" use:intersect>
+					<CodeBlockHighlight />
+				</div>
+			</section>
 		</section>
 
 		<section>

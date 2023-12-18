@@ -1,5 +1,5 @@
 <script>
-  import devtoolsSSRImage from './images/devtools-ssr-html.webp';
+	import devtoolsSSRImage from './images/devtools-ssr-html.webp';
 </script>
 
 :::div c-callout c-callout--info
@@ -15,13 +15,13 @@ First, we look at the simplest strategy to implement a dark mode with CSS Custom
 
 ```css
 :root {
-  --color-bg: white;
-  --color-fg: black;
+	--color-bg: white;
+	--color-fg: black;
 }
 
 html {
-  background-color: var(--color-bg);
-  color: var(--color-fg);
+	background-color: var(--color-bg);
+	color: var(--color-fg);
 }
 ```
 
@@ -29,17 +29,18 @@ Notice that [:root](https://developer.mozilla.org/en-US/docs/Web/CSS/:root) is a
 
 Imagine now we have a magical [At-rule](https://developer.mozilla.org/en-US/docs/Web/CSS/At-rule) called `@dark` that can activate the declarations inside when dark mode is turned on:
 
-```diff
-///highlight: 5
+```css
 :root {
-  --color-bg: white;
-  --color-fg: black;
-+
-+ @dark {
-+   --color-fg: black;
-+   --color-bg: white;
-+ }
+	--color-bg: white;
+	--color-fg: black;
 }
+
+/* :::diff + */
+@dark {
+	--color-fg: black;
+	--color-bg: white;
+}
+/* ::: */
 ```
 
 In the above CSS, the default mode is light. When `@dark` is active, we change the value of the corresponding CSS variables to express dark mode. If we could do this, we would have completed more than half of the work. Unfortunately, CSS does not support this magical syntax. But don't worry: in the following sections, we will try to simulate the `@dark` feature.
@@ -52,11 +53,11 @@ The answer is that we need to look into the operating system (OS) settings with 
 
 ```css
 @media (prefers-color-scheme: dark) {
-  /* CSS setup for dark mode */
+	/* CSS setup for dark mode */
 }
 
 @media (prefers-color-scheme: light) {
-  /* CSS setup for light mode */
+	/* CSS setup for light mode */
 }
 ```
 
@@ -75,7 +76,7 @@ For (4), we need to setup additional HTML that can express user experience and i
 
 ```svelte
 <html data-color-scheme="dark">
-  <!-- application content -->
+	<!-- application content -->
 </html>
 ```
 
@@ -83,7 +84,7 @@ The value of `data-color-scheme` is `dark`, `light`, or `system`. `system` means
 
 ```css
 :root[data-color-scheme="dark"] {
-  /* corresponding setup */
+	/* corresponding setup */
 }
 ```
 
@@ -93,20 +94,21 @@ For (2), we almost took care of it with `prefers-color-scheme` as seen above. Ho
 
 ```css
 @media (prefers-color-scheme: dark) {
-  :root {
-    /* ... */
-  }
+	:root {
+		/* ... */
+	}
 }
 ```
 
 For example, a user has selected `light` in the application settings but the OS is `dark`, the above CSS will still take effect, because `prefers-color-scheme` is still `dark`. To be more precise, we need to negate such case:
 
-```diff
-///highlight: 2
+```css
 @media (prefers-color-scheme: dark) {
-+  :root:not([data-color-scheme="light"]) {
-    /* ... */
-  }
+	/* :::diff + */
+	:root:not([data-color-scheme="light"]) {
+	/* ::: */
+		/* ... */
+	}
 }
 ```
 
@@ -117,30 +119,33 @@ This means: if the default mode of the OS is `dark` and the user has not explici
 Finally, we are ready to rewrite the CSS in the previous section and replace `@dark`:
 
 ```css
-///highlight: 8,9,16
 /* light */
 :root {
-  --color-bg: white;
-  --color-fg: black;
+	--color-bg: white;
+	--color-fg: black;
 }
 
 /* dark, as in (2) */
+/* :::highlight */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-color-scheme="light"]) {
-    --color-bg: black;
-    --color-fg: white;
-  }
+	:root:not([data-color-scheme="light"]) {
+/* ::: */
+		--color-bg: black;
+		--color-fg: white;
+	}
 }
 
 /* dark, as in (4) */
+/* :::highlight */
 :root[data-color-scheme="dark"] {
-  --color-bg: black;
-  --color-fg: white;
+/* ::: */
+	--color-bg: black;
+	--color-fg: white;
 }
 
 html {
-  background-color: var(--color-bg);
-  color: var(--color-fg);
+	background-color: var(--color-bg);
+	color: var(--color-fg);
 }
 ```
 
@@ -149,34 +154,38 @@ html {
 I can hear you say "That is very complicated!". Yes, it will be super inconvenient if we need to memorize and be this verbose each time we apply some CSS rules for dark mode. For example, imagine we want to change the style of an element with class `.box`:
 
 ```css
-///highlight: 6,7,13
 .box {
-  background-color: blue;
+	background-color: blue;
 }
 
 /* dark, as in (2) */
+/* :::highlight */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-color-scheme="light"]) .box {
-    background-color: red;
-  }
+	:root:not([data-color-scheme="light"]) .box {
+/* ::: */
+		background-color: red;
+	}
 }
 
 /* dark, as in (4) */
+/* :::highlight */
 :root[data-color-scheme="dark"] .box {
-  background-color: red;
+/* ::: */
+	background-color: red;
 }
 ```
 
 That is such a headache. Fortunately, I have abstracted this into a [PostCSS](https://postcss.org/) plugin called [postcss-color-scheme](https://github.com/vnphanquang/postcss-color-scheme), providing the `@dark` syntax itself:
 
 ```css
-///highlight: 4
 .box {
-  background-color: blue;
+	background-color: blue;
 
-  @dark {
-    background-color: red;
-  }
+/* :::highlight */
+	@dark {
+/* ::: */
+		background-color: red;
+	}
 }
 ```
 
@@ -190,13 +199,13 @@ After using Svelte for a while, you will know that CSS in Svelte is "component-s
 <div class="box" />
 
 <style>
-  .box {
-    background-color: blue;
-  }
+	.box {
+		background-color: blue;
+	}
 
-  .something-else {
-    color: blue;
-  }
+	.something-else {
+		color: blue;
+	}
 </style>
 ```
 
@@ -204,20 +213,21 @@ Svelte will add a hash to the class `.box`, making it into something like `.box.
 
 ```css
 :global(.something-else) {
-  color: blue;
+	color: blue;
 }
 ```
 
 When we setup dark mode (regardless of using `@dark` or not), we will encounter this situation, because `html` or `:root` does not exist locally in the component. In that case, remember to add `:global`. Or if using `postcss-color-scheme` add `global` like this:
 
 ```css
-///highlight: 4
 .box {
-  background-color: blue;
+	background-color: blue;
 
-  @dark global {
-    background-color: red;
-  }
+	/* :::highlight */
+	@dark global {
+	/* ::: */
+		background-color: red;
+	}
 }
 ```
 
@@ -235,35 +245,37 @@ It will be convenient if we can use the following syntax:
 
 `dark:` and `light:` are called [variant](https://tailwindcss.com/docs/adding-custom-styles#arbitrary-variants) in Tailwind. The `postcs-color-scheme` plugin adds to your Tailwind config and make these two variants available.
 
-```diff
-///highlight: 5,6
+```javascript
 // tailwind.config.cjs
 /** @type {import("tailwindcss").Config } */
 module.exports = {
-  // your config ...
-+ darkMode: '',
-+ plugins: [require('postcss-color-scheme/lib/tailwind')],
+	// your config ...
+	// :::diff +
+	darkMode: '',
+	plugins: [require('postcss-color-scheme/lib/tailwind')],
+	// :::
 };
 ```
 
 Read more about this setup at [github](https://github.com/vnphanquang/postcss-color-scheme#tailwind-support). Additionally, we can add the CSS variables to Tailwind's color config:
 
-```diff
-///highlight: 10, 11
+```javascript
 // tailwind.config.cjs
 /** @type {import("tailwindcss").Config } */
 module.exports = {
-  // your config ...
-  darkMode: '',
-  plugins: [require('postcss-color-scheme/lib/tailwind')],
-+ theme: {
-+   extend: {
-+     colors: {
-+       fg: 'var(--color-fg)',
-+       bg: 'var(--color-bg)',
-+     },
-+   },
-+ },
+	// your config ...
+	darkMode: '',
+	plugins: [require('postcss-color-scheme/lib/tailwind')],
+	// :::diff +
+	theme: {
+		extend: {
+			colors: {
+				fg: 'var(--color-fg)',
+				bg: 'var(--color-bg)',
+			},
+		},
+	},
+	// :::
 };
 ```
 
@@ -275,10 +287,10 @@ and use them as follows:
 
 <!-- in css -->
 <style>
-  div {
-    color: theme('colors.fg');
-    background-color: theme('colors.bg.DEFAULT');
-  }
+	div {
+		color: theme('colors.fg');
+		background-color: theme('colors.bg.DEFAULT');
+	}
 </style>
 ```
 
@@ -291,7 +303,7 @@ To let user swtich between the two display modes, we can capture an event from s
  * @param {'dark' | 'light' | 'system'} scheme
  */
 function changeColorScheme(scheme) {
-  document.documentElement.dataset.colorScheme = scheme;
+	document.documentElement.dataset.colorScheme = scheme;
 }
 ```
 
@@ -305,9 +317,9 @@ Nowadays, with the CSS [:has](https://developer.mozilla.org/en-US/docs/Web/CSS/:
 <input id="is-dark" />
 
 <style>
-  :root:has(#is-dark:checked) {
-    /* corresponding setup */
-  }
+	:root:has(#is-dark:checked) {
+		/* corresponding setup */
+	}
 </style>
 ```
 
@@ -329,9 +341,11 @@ If our application is static or an SPA, there is no other choice (as far as I kn
 
 Firstly, we add `PUBLIC_COOKIE_COLOR_SCHEME` to `.env` to set a public environment variable that can be accessed from both client and server (read more about environment variables [here](https://kit.svelte.dev/docs/modules#$env-static-public)):
 
-```diff
+```bash
 # .env
-+ PUBLIC_COOKIE_COLOR_SCHEME=color-scheme
+# :::diff +
+PUBLIC_COOKIE_COLOR_SCHEME=color-scheme
+# :::
 ```
 
 ::: div c-callout c-callout--info
@@ -340,16 +354,19 @@ We use this variable to store the name of the cookie. We can alternatively use t
 
 Next, we use the [document.cookie](https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie) API to set the cookie from the client. Add this to the `changeColorScheme` function:
 
-```diff
-///highlight: 1, 8
-+ import { PUBLIC_COOKIE_COLOR_SCHEME } from '$env/static/public';
+```javascript
+// :::diff +
+import { PUBLIC_COOKIE_COLOR_SCHEME } from '$env/static/public';
+// :::
 
 /**
  * @param {'dark' | 'light' | 'system'} scheme
  */
 function changeColorScheme(scheme) {
-  document.documentElement.dataset.colorScheme = scheme;
-+ document.cookie = `${PUBLIC_COOKIE_COLOR_SCHEME}=${scheme}; path=/; SameSite=Lax; Secure`;
+	document.documentElement.dataset.colorScheme = scheme;
+	// :::diff +
+	document.cookie = `${PUBLIC_COOKIE_COLOR_SCHEME}=${scheme}; path=/; SameSite=Lax; Secure`;
+	// :::
 }
 ```
 
@@ -360,30 +377,35 @@ Cookies are often set on the server side. However, in this particular case, we h
 We use SvelteKit [hooks.server](https://kit.svelte.dev/docs/hooks) to read the cookie and set the correct value for `data-color-scheme` in the HTML response.
 
 ```javascript
-///highlight: 11
 // src/hooks.server.js
 import { PUBLIC_COOKIE_COLOR_SCHEME } from '$env/static/public';
 
 /** @type {import('@sveltejs/kit).Handle} */
 export const handle = async ({ event, resolve }) => {
-  const { locals, cookies } = event;
+	const { locals, cookies } = event;
 
-  locals.colorScheme = (cookies.get(PUBLIC_COOKIE_COLOR_SCHEME)) || 'system';
+	locals.colorScheme = (cookies.get(PUBLIC_COOKIE_COLOR_SCHEME)) || 'system';
 
-  const response = await resolve(event, {
-    transformPageChunk: ({ html }) => html.replace('%cookie-color-scheme%', event.locals.colorScheme)
-  });
+	const response = await resolve(event, {
+		// :::highlight
+		transformPageChunk: ({ html }) => html.replace('%cookie-color-scheme%', event.locals.colorScheme)
+		// :::
+	});
 
-  return response;
+	return response;
 }
 ```
 
 Note *line 11*, we use `transformPageChunk`, a function provided by SvelteKit in `resolve`, to replace the string `cookie-color-scheme` with the value of the cookie. To complete the setup, we need to modify `src/app.html` a bit:
 
-```diff
+```svelte
 <!-- src/app.html -->
-- <html>
-+ <html data-color-scheme="%cookie-color-scheme%">
+<!-- :::diff - -->
+<html>
+<!-- :::diff -->
+<!-- :::diff + -->
+<html data-color-scheme="%cookie-color-scheme%">
+<!-- :::diff -->
 ```
 
 ---
@@ -399,11 +421,11 @@ So, we can imagine a user journey as follows:
 We can verify that the HTML returned from server has the correct `data-color-scheme` value by looking at the Network tab in Chrome Devtools right on the page you are reading:
 
 <img
-  src={devtoolsSSRImage}
-  alt="Screenshot of Chrome Devtools Network tab, showing the correct data-color-scheme attribute"
-  loading="lazy"
-  decoding="async"
-  class="rounded"
+	src={devtoolsSSRImage}
+	alt="Screenshot of Chrome Devtools Network tab, showing the correct data-color-scheme attribute"
+	loading="lazy"
+	decoding="async"
+	class="rounded"
 />
 
 ### Typescript Support
@@ -412,13 +434,13 @@ If you are using Typescript, add the following to `src/app.d.ts` to satisfy the 
 
 ```typescript
 declare global {
-  namespace App {
-    declare type ColorScheme = 'light' | 'dark' | 'system';
+	namespace App {
+		declare type ColorScheme = 'light' | 'dark' | 'system';
 
-    interface Locals {
-      colorScheme: ColorScheme;
-    }
-  }
+		interface Locals {
+			colorScheme: ColorScheme;
+		}
+	}
 }
 ```
 
@@ -431,25 +453,27 @@ This section is optional. It discusses how we can setup a global Svelte context 
 In the code snippet in the [Setup on the Server](#set-up-on-the-server) section above, we save the value of the cookie to `event.locals.colorScheme`. The [locals](https://kit.svelte.dev/docs/types#app-locals) object of SvelteKit allows us to access shared states from `hook.server`, `layout.server`, or `page.server`.
 
 ```javascript
-///highlight: 5
 // src/routes/+layout.server.js
 import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = ({ locals }) => {
-  return { colorScheme: locals.colorScheme };
+	// :::highlight
+	return { colorScheme: locals.colorScheme };
+	// :::
 };
 ```
 
 With the above code, we can access `colorScheme` from the [data](https://kit.svelte.dev/docs/load) object in `+layout` or `+server` files:
 
 ```svelte
-///highlight: 6
 <!-- src/routes/+layout.svelte -->
 <script>
-  /** @type {import('./$types).LayoutData} */
-  export let data;
+	/** @type {import('./$types).LayoutData} */
+	export let data;
 
-  console.log(data.colorScheme);
+	// :::highlight
+	console.log(data.colorScheme);
+	// :::
 </script>
 ```
 
@@ -472,44 +496,44 @@ const COLOR_SCHEME_CONTEXT_ID = 'colorscheme';
  * @returns user's color scheme preference
  */
 function getPrefersColorScheme() {
-  if (!browser) return 'light';
-  return window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+	if (!browser) return 'light';
+	return window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
 /**
  * @param {App.ColorScheme} initial
  */
 function createColorSchemeStore(initial) {
-  const store = writable(initial);
+	const store = writable(initial);
 
-  const preferred = derived(store, (c) => (c === 'system' ? getPrefersColorScheme() : c));
+	const preferred = derived(store, (c) => (c === 'system' ? getPrefersColorScheme() : c));
 
-  return {
-    subscribe: store.subscribe,
-    /**
-     * @param {App.ColorScheme} scheme
-     */
-    change(scheme) {
-      document.documentElement.dataset.colorScheme = scheme;
-      document.cookie = `${PUBLIC_COOKIE_COLOR_SCHEME}=${scheme}; path=/; SameSite=Lax; Secure`;
-      store.set(scheme);
-    },
-    preferred,
-  };
+	return {
+		subscribe: store.subscribe,
+		/**
+		 * @param {App.ColorScheme} scheme
+		 */
+		change(scheme) {
+			document.documentElement.dataset.colorScheme = scheme;
+			document.cookie = `${PUBLIC_COOKIE_COLOR_SCHEME}=${scheme}; path=/; SameSite=Lax; Secure`;
+			store.set(scheme);
+		},
+		preferred,
+	};
 }
 
 /**
  * @param {App.ColorScheme} initial
  */
 export function setColorSchemeContext(initial) {
-  return setContext(COLOR_SCHEME_CONTEXT_ID, createColorSchemeStore(initial));
+	return setContext(COLOR_SCHEME_CONTEXT_ID, createColorSchemeStore(initial));
 }
 
 /**
  * @returns {ReturnType<getContext<ReturnType<typeof setColorSchemeContext>>}
  */
 export function getColorSchemeContext() {
-  return getContext(COLOR_SCHEME_CONTEXT_ID);
+	return getContext(COLOR_SCHEME_CONTEXT_ID);
 }
 ```
 
@@ -519,15 +543,21 @@ If you are using typescript, reference the equivalent source code from sveltevie
 
 Now, we can use `setColorSchemeContext` to declare the context:
 
-```diff
+```svelte
 <!-- src/routes/+layout.svelte -->
 <script>
-+ import { setColorSchemeContext } from '$lib/contexts/color-scheme';
-  /** @type {import('./$types).LayoutData} */
-  export let data;
+	// :::diff +
+	import { setColorSchemeContext } from '$lib/contexts/color-scheme';
+	// :::
+	/** @type {import('./$types).LayoutData} */
+	export let data;
 
-- console.log(data.colorScheme);
-+ setColorSchemeContext(data.colorScheme);
+	// :::diff -
+	console.log(data.colorScheme);
+	// :::
+	// ::: diff +
+	setColorSchemeContext(data.colorScheme);
+	// :::
 </script>
 ```
 
@@ -536,11 +566,11 @@ and `getColorSchemeContext` for accessing the context:
 ```svelte
 <!-- SomeComponent.svelte -->
 <script>
-  import { getColorSchemeContext } from '$lib/contexts/color-scheme';
+	import { getColorSchemeContext } from '$lib/contexts/color-scheme';
 
-  const colorSchemeStore = getColorSchemeContext();
+	const colorSchemeStore = getColorSchemeContext();
 
-  $: preferred = colorSchemeStore.preferred;
+	$: preferred = colorSchemeStore.preferred;
 </script>
 ```
 

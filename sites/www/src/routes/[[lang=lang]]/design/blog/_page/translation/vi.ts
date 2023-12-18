@@ -25,7 +25,7 @@ export const vi = {
 		example: 'Ví dụ, sử dụng ngôn ngữ svelte sẽ cho kết quả hiện thị đoạn mã như sau:',
 		supportedLanguages:
 			'\
-		Hiện tại, các ngôn ngữ được hỗ trợ là: svelte, javascript, typescript, và diff. \
+		Hiện tại, các ngôn ngữ được hỗ trợ là: svelte, javascript, typescript, và shellscript. \
 		Nếu có nhu cầu thêm ngôn ngữ khác, hãy tham khảo cấu hình "shikiji" tại \
 		<a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/mdsvex.config.js#L24" target="_blank" rel="noreferrer">mdsvex.config.js</a>.\
 		',
@@ -43,15 +43,15 @@ export const vi = {
 				'\
 			Đây là chi tiết đươc đặt trong một ô màu, mang ngữ nghĩa bổ sung cho văn bản hiện tại, \
 			thường dùng khi bạn muốn người đọc nhanh chóng nhận biết và chú ý vào một hướng dẫn, lời nhắn nào đó. \
-			Để sử dụng, bạn cần thêm vào phần tử HTML một lớp "c-callout" và một trong nhưng biến thể sau đây: \
-			"c-callout--info", "c-callout--success", "c-callout--warning", "c-callout-error".\
+			Để sử dụng, bạn cần thêm vào phần tử HTML một lớp `c-callout` và một trong nhưng biến thể sau đây: \
+			`c-callout--info`, `c-callout--success`, `c-callout--warning`, `c-callout-error`.\
 			',
 			examples: {
-				info: 'Dùng "c-callout-info" để thể hiện một hướng dẫn, thông báo chung',
+				info: 'Dùng `c-callout-info` để thể hiện một hướng dẫn, thông báo chung',
 				success:
-					'Dùng "c-callout-success" để thể hiện một chi tiết mang tính hoàn thiện, thành công, khuyến khích',
-				warning: 'Dùng "c-callout-warning" để thể hiện một cảnh báo',
-				error: 'Dùng "c-callout-error" để thể hiện một thông báo lỗi hoặc một tình huống xấu',
+					'Dùng `c-callout-success` để thể hiện một chi tiết mang tính hoàn thiện, thành công, khuyến khích',
+				warning: 'Dùng `c-callout-warning` để thể hiện một cảnh báo',
+				error: 'Dùng `c-callout-error` để thể hiện một thông báo lỗi hoặc một tình huống xấu',
 			},
 			container:
 				'\

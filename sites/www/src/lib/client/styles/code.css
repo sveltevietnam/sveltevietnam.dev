@@ -10,6 +10,8 @@
 		--padding-inline-start: 1ch;
 		--padding-inline-end: 3ch;
 
+		display: inline-block;
+		width: 100%;
 		padding-inline-start: var(--padding-inline-start);
 		padding-inline-end: var(--padding-inline-end);
 
@@ -18,8 +20,8 @@
 
 			display: inline-block;
 
-			width: 3ch;
-			margin-right: 2ch;
+			width: 4ch;
+			margin-right: 3ch;
 
 			font-variant-numeric: tabular-nums;
 			color: currentcolor;
@@ -32,6 +34,30 @@
 			display: inline-block;
 			width: 100%;
 			background-color: hsl(215deg 39% 18%);
+		}
+
+		&[data-line-diff] {
+			&::after {
+				position: absolute;
+				left: 1ch;
+				display: inline-block;
+			}
+
+			&[data-line-diff='+'] {
+				background-color: hsl(123.04deg 36.07% 42.94% / 15%);
+
+				&::after {
+					content: '+';
+				}
+			}
+
+			&[data-line-diff='-'] {
+				background-color: hsl(3.12deg 74.76% 59.61% / 10%);
+
+				&::after {
+					content: '-';
+				}
+			}
 		}
 	}
 }
