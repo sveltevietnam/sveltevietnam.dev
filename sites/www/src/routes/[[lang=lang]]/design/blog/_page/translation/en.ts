@@ -29,6 +29,16 @@ export const en = {
 		If you need to add more language, inspect the "shikiji" configuration at \
 		<a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/mdsvex.config.js#L24" target="_blank" rel="noreferrer">mdsvex.config.js</a>.\
 		',
+		diff: {
+			description:
+				'To visualize code change, you can wrap the lines in comment with the directive `:::diff +` or `:::diff -`. For example, the following markdown...',
+			example: '...will render as',
+		},
+		highlight: {
+			description:
+				'Similarly, for highlighting text, you can wrap the lines in comment with the directive `:::highlight`. For example, the following markdown...',
+			example: '...will render as',
+		},
 	},
 	components: {
 		title: 'Common Components',

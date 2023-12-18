@@ -45,10 +45,7 @@
 
 			<section class="mt-10 space-y-6">
 				<h3 class="tp-h3 font-medium" use:intersect>Diff</h3>
-				<p use:intersect>
-					To visualize code change, you can wrap the lines in comment with the directive `:::diff +`
-					or `:::diff -`. For example, the following markdown...
-				</p>
+				<p use:intersect>{t.codeblock.diff.description}</p>
 				<div class="prose max-w-full" use:intersect>
 					<pre class="shiki github-dark-dimmed"><code
 							><span class="line" data-line="1">```javascript</span>
@@ -61,7 +58,7 @@
 <span class="line" data-line="8">```</span></code
 						></pre>
 				</div>
-				<p>...will render this:</p>
+				<p>{t.codeblock.diff.example}:</p>
 				<div class="prose max-w-full" use:intersect>
 					<CodeBlockDiff />
 				</div>
@@ -69,10 +66,7 @@
 
 			<section class="mt-10 space-y-6">
 				<h3 class="tp-h3 font-medium" use:intersect>Highlight</h3>
-				<p use:intersect>
-					Similarly, for highlighting text, you can wrap the lines in comment with the directive
-					`:::highlight`. For example, the following markdown...
-				</p>
+				<p use:intersect>{t.codeblock.highlight.description}</p>
 				<div class="prose max-w-full" use:intersect>
 					<pre class="shiki github-dark-dimmed"><code
 							><span class="line" data-line="1">```javascript</span>
@@ -85,7 +79,7 @@
 <span class="line" data-line="8">```</span></code
 						></pre>
 				</div>
-				<p>...will render this:</p>
+				<p>{t.codeblock.highlight.example}:</p>
 				<div class="prose max-w-full" use:intersect>
 					<CodeBlockHighlight />
 				</div>

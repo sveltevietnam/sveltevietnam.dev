@@ -29,6 +29,16 @@ export const vi = {
 		Nếu có nhu cầu thêm ngôn ngữ khác, hãy tham khảo cấu hình "shikiji" tại \
 		<a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/mdsvex.config.js#L24" target="_blank" rel="noreferrer">mdsvex.config.js</a>.\
 		',
+		diff: {
+			description:
+				'Để thể hiện thay đổi trong mã nguồn, bạn có thể gói các dòng mã cần thiết trong dòng chú thích với chỉ thị `:::diff +` hoặc `:::diff -`. Ví dụ, đoạn mã sau...',
+			example: '...sẽ hiển thị',
+		},
+		highlight: {
+			description:
+				'Tương tự, để làm nổi bật một đoạn mã, bạn có thể gói các dòng mã cần thiết trong dòng chú thích với chỉ thị `:::highlight`. Ví dụ, đoạn mã sau...',
+			example: '...sẽ hiển thị',
+		},
 	},
 	components: {
 		title: 'Thành phần thường gặp',
