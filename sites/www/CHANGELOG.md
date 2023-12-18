@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.31
+
+### Minor Changes
+
+- [#204](https://github.com/sveltevietnam/sveltevietnam.dev/pull/204) [`e7debd3`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/e7debd304f2043608fc5dc4df5a64e2c61add2ce) Thanks [@vnphanquang](https://github.com/vnphanquang)! - improve `EnhancedCodeBlock` copy function to exclude diff-removed lines
+
 ## 1.0.0-next.30
 
 ### Minor Changes
