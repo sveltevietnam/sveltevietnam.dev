@@ -1,15 +1,28 @@
 <script lang="ts">
-	import { copy } from '@svelte-put/copy';
+	import { copy, type TextResolverInput } from '@svelte-put/copy';
 	import { fly } from 'svelte/transition';
 
 	let trigger: HTMLButtonElement;
+
+	function copyText(input: TextResolverInput<'click'>) {
+		const codeNode = input.node.getElementsByTagName('code')[0];
+		if (!codeNode) return '';
+		let text = '';
+		for (const lineNode of codeNode.children) {
+			// assuming shikiji build output and transformers set up at mdsvex.config.js
+			if ((lineNode as HTMLElement).dataset.lineDiff === '-') continue;
+			text += (lineNode.textContent || '') + '\n';
+		}
+
+		return text;
+	}
 
 	let copied = false;
 	function onCopied() {
 		copied = true;
 		setTimeout(() => {
 			copied = false;
-		}, 1200);
+		}, 1800);
 	}
 </script>
 
@@ -26,7 +39,7 @@
 			<svg inline-src="lucide/copy" width="20" height="20" in:fly={{ y: 10 }} />
 		{/if}
 	</button>
-	<div use:copy={{ trigger }} on:copied={onCopied}>
+	<div use:copy={{ trigger, text: copyText }} on:copied={onCopied}>
 		<slot>
 			<!-- <pre><code>...</code></pre> -->
 		</slot>
