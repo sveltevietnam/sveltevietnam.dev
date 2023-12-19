@@ -3,11 +3,13 @@
 	import { superForm } from 'sveltekit-superforms/client';
 
 	import type { FormMessage } from '$client/forms';
-	import { noti } from '$client/notifications';
+	import { getNotificationContext } from '$client/notifications';
 
 	import type { PageData } from './$types';
 
 	export let data: PageData;
+
+	const noti = getNotificationContext();
 
 	$: t = data.translations.page;
 	const { form, enhance, message } = superForm<
@@ -18,20 +20,20 @@
 		multipleSubmits: 'prevent',
 		delayMs: 500,
 		onError({ result }) {
-			noti.error(result.error.message);
+			noti.helpers.error(result.error.message);
 		},
 	});
 
 	$: if ($message) {
 		switch ($message.type) {
 			case 'error':
-				noti.error($message.text);
+				noti.helpers.error($message.text);
 				break;
 			case 'success':
-				noti.success($message.text);
+				noti.helpers.success($message.text);
 				break;
 			default:
-				noti.info($message.text);
+				noti.helpers.info($message.text);
 		}
 	}
 </script>

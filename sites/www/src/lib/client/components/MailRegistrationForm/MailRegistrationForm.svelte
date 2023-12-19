@@ -16,7 +16,7 @@
 	import { getColorSchemeContext } from '$client/contexts/color-scheme';
 	import { getLangContext } from '$client/contexts/lang';
 	import type { FormMessage } from '$client/forms';
-	import { noti } from '$client/notifications';
+	import { getNotificationContext } from '$client/notifications';
 	import { PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
 
 	/** translations */
@@ -32,6 +32,8 @@
 	const langStore = getLangContext();
 	$: lang = $langStore;
 
+	const noti = getNotificationContext();
+
 	const { form, enhance, constraints, errors, delayed, message } = superForm<
 		MailSchema,
 		FormMessage
@@ -40,20 +42,20 @@
 		multipleSubmits: 'prevent',
 		delayMs: 500,
 		onError({ result }) {
-			noti.error(result.error.message);
+			noti.helpers.error(result.error.message);
 		},
 	});
 
 	$: if ($message) {
 		switch ($message.type) {
 			case 'error':
-				noti.error($message.text);
+				noti.helpers.error($message.text);
 				break;
 			case 'success':
-				noti.success($message.text);
+				noti.helpers.success($message.text);
 				break;
 			default:
-				noti.info($message.text);
+				noti.helpers.info($message.text);
 		}
 	}
 

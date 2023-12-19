@@ -1,11 +1,12 @@
 <script lang="ts">
-	import type { NotificationStore } from '@svelte-put/noti';
 	import Notification from '@svelte-put/noti/Notification.svelte';
 	import { flip } from 'svelte/animate';
 	import { cubicOut } from 'svelte/easing';
 	import { fly } from 'svelte/transition';
 
-	export let store: NotificationStore;
+	import { getNotificationContext } from '.';
+
+	const { store } = getNotificationContext();
 </script>
 
 <!-- notification portal, typically setup at somewhere global like root layout -->
