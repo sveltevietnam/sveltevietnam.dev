@@ -28,16 +28,16 @@
 </script>
 
 <main>
-	<div class="mt-6 max-w-pad" use:intersect>
+	<div class="max-w-pad mt-6" use:intersect>
 		<Breadcrumbs breadcrumbs={data.breadcrumbs} />
 	</div>
 	<section
-		class="mb-[80px] max-w-pad tb:mb-[120px] tb:flex tb:flex-row tb:justify-between"
+		class="max-w-pad mb-[80px] tb:mb-[120px] tb:flex tb:flex-row tb:justify-between"
 		use:intersect
 	>
 		<div class="mt-8 tb:mt-[100px]">
-			<h1 class="tp-h1 uppercase">{t.title}</h1>
-			<p class="tp-h4 mt-6 tb:mt-8">{t.subtitle}</p>
+			<h1 class="c-text-h1 uppercase">{t.title}</h1>
+			<p class="c-text-h4 mt-6 tb:mt-8">{t.subtitle}</p>
 		</div>
 		<div class="sp:mt-8 tb:mt-6">
 			<enhanced:img
@@ -51,7 +51,7 @@
 		{#if topPosts.length || topExternalPost}
 			<section class="max-w-pad tb:gap-[60px]">
 				<ConsecutiveFadeUpIntro selector=".char">
-					<h2 class="tp-h2 uppercase">
+					<h2 class="c-text-h2 uppercase">
 						<SplitText text={t.recent.title} />
 					</h2>
 				</ConsecutiveFadeUpIntro>
@@ -79,10 +79,10 @@
 			</section>
 		{/if}
 
-		<div class="gradient-wrapper grid grid-cols-1 gap-[60px] max-w-pad pc:grid-cols-2">
+		<div class="gradient-wrapper max-w-pad grid grid-cols-1 gap-[60px] pc:grid-cols-2">
 			<section>
 				<ConsecutiveFadeUpIntro selector=".char">
-					<h2 class="tp-h2 uppercase">
+					<h2 class="c-text-h2 uppercase">
 						<SplitText text={t.introduction.title} />
 					</h2>
 				</ConsecutiveFadeUpIntro>
@@ -94,7 +94,7 @@
 			</section>
 			<section>
 				<ConsecutiveFadeUpIntro selector=".char">
-					<h2 class="tp-h2 uppercase">
+					<h2 class="c-text-h2 uppercase">
 						<SplitText text={t.contribute.title} />
 					</h2>
 				</ConsecutiveFadeUpIntro>
@@ -124,10 +124,10 @@
 			</section>
 		</div>
 
-		<div class="grid grid-cols-1 gap-[60px] max-w-pad tb:grid-cols-[2fr,1fr]">
+		<div class="max-w-pad grid grid-cols-1 gap-[60px] tb:grid-cols-[2fr,1fr]">
 			<section>
 				<ConsecutiveFadeUpIntro selector=".char">
-					<h2 class="tp-h2 uppercase after:mt-2 after:separator">
+					<h2 class="c-text-h2 uppercase after:mt-2 after:separator">
 						<SplitText text={t.posts.title} />
 					</h2>
 				</ConsecutiveFadeUpIntro>
@@ -142,7 +142,7 @@
 				{:else}
 					<div use:intersect class="mt-10">
 						<ToBeAnnounced class="text-center">
-							<p class="tp-h4">
+							<p class="c-text-h4">
 								{t.posts.tba.description}
 							</p>
 							<p class="mt-4">
@@ -157,7 +157,7 @@
 			<div>
 				<section>
 					<ConsecutiveFadeUpIntro selector=".char">
-						<h2 class="tp-h2 uppercase after:mt-2 after:separator">
+						<h2 class="c-text-h2 uppercase after:mt-2 after:separator">
 							<SplitText text={t.externalPosts.title} />
 						</h2>
 					</ConsecutiveFadeUpIntro>
@@ -172,7 +172,7 @@
 					{:else}
 						<div use:intersect class="mt-10">
 							<ToBeAnnounced class="text-center">
-								<p class="tp-h4">
+								<p class="c-text-h4">
 									{t.externalPosts.tba.description}
 								</p>
 								<p class="mt-4">

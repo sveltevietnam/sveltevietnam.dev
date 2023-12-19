@@ -37,8 +37,8 @@
 	<div class="max-w-pad" use:intersect>
 		<Breadcrumbs breadcrumbs={data.breadcrumbs} class="mt-6" />
 	</div>
-	<div class="mt-[80px] max-w-pad" use:intersect>
-		<h1 class="tp-h1">{event.title}</h1>
+	<div class="max-w-pad mt-[80px]" use:intersect>
+		<h1 class="c-text-h1">{event.title}</h1>
 		<div class="mt-6 space-y-[60px] pb-[60px]">
 			<!-- time -->
 			<!-- TODO: candidate for Svelte 5 snippet -->
@@ -87,10 +87,10 @@
 			<p use:intersect class="c-callout c-callout--info mt-8">{@html t.credit}</p>
 		</div>
 		<section class="max-w-pad">
-			<h2 class="tp-h2 uppercase" use:intersect>{t.timeline.title}</h2>
+			<h2 class="c-text-h2 uppercase" use:intersect>{t.timeline.title}</h2>
 			<!-- NOTES: speaker application is closed
 			<section class="c-callout c-callout--info mt-6 space-y-4" use:intersect>
-				<h3 class="tp-h4 font-medium" id="become-a-speaker">{t.proposal.title}</h3>
+				<h3 class="c-text-h4 font-medium" id="become-a-speaker">{t.proposal.title}</h3>
 				<p>{t.proposal.description}</p>
 				<ul class="divider-border mt-3 max-w-[548px] divide-y font-medium">
 					<li>
@@ -134,13 +134,13 @@
 			</dl>
 			<ul class="timeline mt-10">
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="tp-body2 text-fg-200">{generateTimeSlot(0, 20)}</time>
-					<p class="tp-h5 font-medium">{t.timeline.introduction}</p>
+					<time datetime="" class="c-text-body2 text-fg-200">{generateTimeSlot(0, 20)}</time>
+					<p class="c-text-h5 font-medium">{t.timeline.introduction}</p>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="tp-body2 text-fg-200">{generateTimeSlot(20, 20)}</time>
+					<time datetime="" class="c-text-body2 text-fg-200">{generateTimeSlot(20, 20)}</time>
 					<div class="space-y-3">
-						<p class="tp-h5 font-medium">
+						<p class="c-text-h5 font-medium">
 							<a class="c-link" href={EVENT_LINKS.VIDEO1}
 								>{t.timeline.video}: "{t.timeline.video1.title}"</a
 							>
@@ -150,17 +150,17 @@
 					</div>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="tp-body2 text-fg-200">{generateTimeSlot(40, 20)}</time>
-					<p class="tp-h5 font-medium">{t.timeline.discussion}: {t.timeline.discussion1}</p>
+					<time datetime="" class="c-text-body2 text-fg-200">{generateTimeSlot(40, 20)}</time>
+					<p class="c-text-h5 font-medium">{t.timeline.discussion}: {t.timeline.discussion1}</p>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="tp-body2 text-fg-200">{generateTimeSlot(60, 30)}</time>
-					<p class="tp-h5 font-medium">{t.timeline.discussion2}</p>
+					<time datetime="" class="c-text-body2 text-fg-200">{generateTimeSlot(60, 30)}</time>
+					<p class="c-text-h5 font-medium">{t.timeline.discussion2}</p>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="tp-body2 text-fg-200">{generateTimeSlot(90, 20)}</time>
+					<time datetime="" class="c-text-body2 text-fg-200">{generateTimeSlot(90, 20)}</time>
 					<div class="space-y-3">
-						<p class="tp-h5 font-medium">
+						<p class="c-text-h5 font-medium">
 							<a class="c-link" href={EVENT_LINKS.VIDEO2}
 								>{t.timeline.video}: "{t.timeline.video2}"</a
 							>
@@ -169,14 +169,14 @@
 					</div>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="tp-body2 text-fg-200">{generateTimeSlot(110, 10)}</time>
-					<p class="tp-h5 font-medium">{t.timeline.closing}</p>
+					<time datetime="" class="c-text-body2 text-fg-200">{generateTimeSlot(110, 10)}</time>
+					<p class="c-text-h5 font-medium">{t.timeline.closing}</p>
 				</li>
 			</ul>
 		</section>
 
 		<section class="max-w-pad">
-			<h2 class="tp-h2 uppercase" use:intersect>{t.sponsors.title}</h2>
+			<h2 class="c-text-h2 uppercase" use:intersect>{t.sponsors.title}</h2>
 			<div class="mt-[60px] text-center" use:intersect>
 				<ToBeAnnounced>
 					<p>
@@ -188,7 +188,7 @@
 		</section>
 
 		<section class="max-w-pad">
-			<h2 class="tp-h2 uppercase" use:intersect>{t.images.title}</h2>
+			<h2 class="c-text-h2 uppercase" use:intersect>{t.images.title}</h2>
 
 			<div class="mt-[60px] grid gap-6 tb:grid-cols-[3fr,2fr]">
 				<div class="upto-tb:contents tb:space-y-6">
@@ -198,7 +198,7 @@
 							alt="laptop openning in dark gradient background"
 							class="rounded-lg"
 						/>
-						<figcaption class="tp-cap1 mt-4 text-fg-200">{t.images.cover}</figcaption>
+						<figcaption class="c-text-cap1 mt-4 text-fg-200">{t.images.cover}</figcaption>
 					</figure>
 					<figure use:intersect>
 						<enhanced:img
@@ -206,7 +206,7 @@
 							alt="three community members having fun during livestream"
 							class="rounded-lg border"
 						/>
-						<figcaption class="tp-cap1 mt-4 text-fg-200">{t.images.moment}</figcaption>
+						<figcaption class="c-text-cap1 mt-4 text-fg-200">{t.images.moment}</figcaption>
 					</figure>
 				</div>
 				<div class="upto-tb:contents tb:space-y-6">
@@ -216,7 +216,7 @@
 							alt="video thumbnail: State of Svelte Vietnam 2023"
 							class="rounded-lg border"
 						/>
-						<figcaption class="tp-cap1 mt-4 text-fg-200">
+						<figcaption class="c-text-cap1 mt-4 text-fg-200">
 							Video thumbnail: "{t.timeline.video1.title}"
 						</figcaption>
 					</figure>
@@ -226,7 +226,7 @@
 							alt="video thumbnail: A Few Secrets of sveltevietnam.dev"
 							class="rounded-lg border"
 						/>
-						<figcaption class="tp-cap1 mt-4 text-fg-200">
+						<figcaption class="c-text-cap1 mt-4 text-fg-200">
 							Video thumbnail: "{t.timeline.video2}"
 						</figcaption>
 					</figure>

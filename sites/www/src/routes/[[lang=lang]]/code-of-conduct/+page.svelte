@@ -18,7 +18,7 @@
 	</div>
 
 	<section class="mt-8 tb:mt-[60px]">
-		<h1 class="tp-h1 font-medium uppercase" use:intersect>{t.title}</h1>
+		<h1 class="c-text-h1 font-medium uppercase" use:intersect>{t.title}</h1>
 	</section>
 
 	<div class="space-y-[60px] py-[60px] tb:space-y-[120px] tb:pb-[200px] tb:pt-[120px]">
@@ -44,7 +44,7 @@
 
 		<section>
 			<ConsecutiveFadeUpIntro selector=".char">
-				<h2 class="tp-h2 font-medium uppercase">
+				<h2 class="c-text-h2 font-medium uppercase">
 					<SplitText text={t.excerpt.title} />
 				</h2>
 			</ConsecutiveFadeUpIntro>

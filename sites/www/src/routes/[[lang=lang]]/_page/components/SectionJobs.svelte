@@ -21,7 +21,7 @@
 <section class="jobs max-w-pad">
 	<ConsecutiveFadeUpIntro selector=":is(.arrow, .char)">
 		<a href={JOBS_PATH} title={t.title} class="section-title-container">
-			<h2 class="tp-h2 uppercase">
+			<h2 class="c-text-h2 uppercase">
 				<SplitText text={t.title} />
 			</h2>
 			<AnimatedArrowCircle class="arrow h-12 w-12 tb:h-16 tb:w-16" handle="parent" />

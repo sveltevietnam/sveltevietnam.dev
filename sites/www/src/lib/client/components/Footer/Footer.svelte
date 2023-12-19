@@ -26,11 +26,11 @@
 	<div class="footer-top max-w-pad">
 		<div class="footer-sections">
 			<section class="footer-about-us">
-				<p class="footer-section-title tp-h4 font-medium">{t.aboutUs.title}</p>
+				<p class="footer-section-title c-text-h4 font-medium">{t.aboutUs.title}</p>
 				<p>{t.aboutUs.description}</p>
 			</section>
 			<section class="footer-navigation">
-				<p class="footer-section-title tp-h4 font-medium">{t.navigation.title}</p>
+				<p class="footer-section-title c-text-h4 font-medium">{t.navigation.title}</p>
 				<nav aria-label="all internal pages" data-sveltekit-preload-data="hover">
 					<ul>
 						{#each FOOTER_PATHS as href}
@@ -45,7 +45,7 @@
 				</nav>
 			</section>
 			<section class="footer-contact">
-				<p class="footer-section-title tp-h4 font-medium">{t.contact.title}</p>
+				<p class="footer-section-title c-text-h4 font-medium">{t.contact.title}</p>
 				<ul>
 					<li>
 						<a href={SOCIAL_LINKS.DISCORD} class="c-link c-link--lazy" external>
@@ -62,7 +62,7 @@
 				</ul>
 			</section>
 		</div>
-		<p class="tp-h3 text-right uppercase leading-normal upto-pc:hidden">
+		<p class="c-text-h3 text-right uppercase leading-normal upto-pc:hidden">
 			Svelte <br class="" /> Vietnam
 		</p>
 	</div>
@@ -98,7 +98,7 @@
 			</a>
 		</li>
 	</ul>
-	<div class="footer-bottom tp-cap2 max-w-pad">
+	<div class="footer-bottom max-w-pad c-text-cap2">
 		<p>{t.version} {version}</p>
 		<p class="footer-info">
 			<span>

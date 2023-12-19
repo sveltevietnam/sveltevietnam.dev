@@ -1,8 +1,19 @@
-/* page level components */
+/* FIXME: refactor when no longer used (in wireframe) */
+.c-sponsor {
+	width: auto;
+	min-height: 40px;
+	background-color: theme('colors.bg.200');
+	border-radius: theme('borderRadius.DEFAULT');
+}
 
-/** @deprecated
-  FIXME: for wireframe pages only, remove when design has completed
-*/
+.c-graphic {
+	aspect-ratio: 1 / 1;
+	min-width: 120px;
+	min-height: 120px;
+
+	background-color: theme('colors.bg.100');
+	border-radius: theme('borderRadius.DEFAULT');
+}
 
 .c-page {
 	display: grid;

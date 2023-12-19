@@ -1,0 +1,22 @@
+/* --------------H1-------------- */
+.c-text-h1\@sp {
+	font-family: theme('fontFamily.lora');
+	font-size: 3rem; /* 48px */
+	line-height: 1.25; /* 60px */
+	letter-spacing: 0.04em;
+}
+
+.c-text-h1\@pc {
+	font-family: theme('fontFamily.lora');
+	font-size: 4rem; /* 64px */
+	line-height: 1.2813; /* 82px */
+	letter-spacing: 0.06em;
+}
+
+.c-text-h1 {
+	@apply c-text-h1@sp;
+
+	@screen tb {
+		@apply c-text-h1@pc;
+	}
+}

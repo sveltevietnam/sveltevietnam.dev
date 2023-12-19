@@ -24,8 +24,8 @@
 	</div>
 	<section class="mb-[60px] tb:mb-16 tb:flex tb:flex-row tb:justify-between" use:intersect>
 		<div class="mt-8 tb:mt-[100px] tb:max-w-[500px]">
-			<h1 class="tp-h1 uppercase">{t.title}</h1>
-			<p class="tp-h5 mt-6 leading-normal tb:mt-8">{t.subtitle}</p>
+			<h1 class="c-text-h1 uppercase">{t.title}</h1>
+			<p class="c-text-h5 mt-6 leading-normal tb:mt-8">{t.subtitle}</p>
 		</div>
 		<div class="sp:mt-8">
 			<enhanced:img
@@ -38,7 +38,7 @@
 	<div class="space-y-[60px] pb-[120px] tb:space-y-[120px] tb:pb-[200px]">
 		<section>
 			<ConsecutiveFadeUpIntro selector=".char">
-				<h2 class="tp-h2 uppercase">
+				<h2 class="c-text-h2 uppercase">
 					<SplitText text={t.fromSponsors.title} />
 				</h2>
 			</ConsecutiveFadeUpIntro>
@@ -55,7 +55,7 @@
 				{:else}
 					<div use:intersect class="text-center">
 						<ToBeAnnounced>
-							<p class="tp-h4 font-medium">
+							<p class="c-text-h4 font-medium">
 								{t.fromSponsors.tba.description}
 							</p>
 							<p class="mt-4">
@@ -70,8 +70,8 @@
 		<section>
 			<h2 class="sr-only">{t.actions.title}</h2>
 			<div class="grid grid-cols-1 gap-8 tb:grid-cols-2">
-				<section class="c-action-card" use:intersect id="sponsor">
-					<h3 class="tp-h3 font-medium">{t.actions.recruiter.title}</h3>
+				<section class="c-card-action" use:intersect id="sponsor">
+					<h3 class="c-text-h3 font-medium">{t.actions.recruiter.title}</h3>
 					<div class="mt-6 flex-1">
 						<p>{t.actions.recruiter.description}</p>
 						<ul class="mt-4 space-y-1">
@@ -86,8 +86,8 @@
 					</p>
 					<a href={SPONSOR_PATH} class="c-btn mt-4">{t.actions.recruiter.cta}</a>
 				</section>
-				<section class="c-action-card" use:intersect id="mail">
-					<h3 class="tp-h3 font-medium">{t.actions.candidate.title}</h3>
+				<section class="c-card-action" use:intersect id="mail">
+					<h3 class="c-text-h3 font-medium">{t.actions.candidate.title}</h3>
 					<p class="mt-6 flex-1">{t.actions.candidate.description}</p>
 					<MailRegistrationForm t={tMail} superValidated={data.mailForm} class="mt-6" />
 				</section>
@@ -96,7 +96,7 @@
 
 		<section>
 			<ConsecutiveFadeUpIntro selector=".char">
-				<h2 class="tp-h2 uppercase">
+				<h2 class="c-text-h2 uppercase">
 					<SplitText text={t.fromRecruitmentSites.title} />
 				</h2>
 			</ConsecutiveFadeUpIntro>
@@ -117,7 +117,7 @@
 				{:else}
 					<div use:intersect class="text-center">
 						<ToBeAnnounced>
-							<p class="tp-h4 font-medium">
+							<p class="c-text-h4 font-medium">
 								{t.fromRecruitmentSites.tba.description}
 							</p>
 							<p class="mt-4">

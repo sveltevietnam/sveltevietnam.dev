@@ -23,13 +23,6 @@
 	background: theme('colors.outline.DEFAULT');
 }
 
-.max-w-pad {
-	/** see app.css for pad-padding-x setup */
-	max-width: 100vw;
-	padding-right: var(--pad-padding-x);
-	padding-left: var(--pad-padding-x);
-}
-
 .backface-hidden {
 	backface-visibility: hidden;
 }

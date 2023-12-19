@@ -14,7 +14,7 @@
 </script>
 
 <section class="community max-w-pad" id="community">
-	<h2 class="section-title tp-h2 uppercase">
+	<h2 class="section-title c-text-h2 uppercase">
 		<ConsecutiveFadeUpIntro selector=".char" class="inline-block">
 			<SplitText text={t.title} />
 		</ConsecutiveFadeUpIntro>

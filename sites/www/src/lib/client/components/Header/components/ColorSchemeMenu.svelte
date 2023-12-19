@@ -69,7 +69,7 @@
 							>
 								<input type="submit" value={scheme} name="color-scheme" hidden />
 								<ColorSchemeIcon {scheme} />
-								<span class="tp-body2 ml-2">{t[scheme]}</span>
+								<span class="c-text-body2 ml-2">{t[scheme]}</span>
 							</label>
 						</form>
 					</li>

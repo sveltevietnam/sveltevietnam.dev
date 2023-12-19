@@ -12,12 +12,12 @@
 
 <slot />
 
-<div class="pb-[120px] max-w-pad tb:pb-[200px]" use:intersect>
+<div class="max-w-pad pb-[120px] tb:pb-[200px]" use:intersect>
 	<div
 		class="mt-[60px] grid grid-cols-1 gap-8 rounded-[16px] border border-current p-8 lg:gap-32 tb:mt-[160px] tb:grid-cols-[3fr,2fr] tb:gap-20 tb:p-10"
 	>
 		<div class="space-y-6">
-			<p class="tp-h3 font-medium">{t.title}</p>
+			<p class="c-text-h3 font-medium">{t.title}</p>
 			<p>{t.description}</p>
 			<svg
 				inline-src="../roadmap/_page/images/key-visuals.svg"

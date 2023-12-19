@@ -1,4 +1,4 @@
-import { primitives, semantics } from './colors/index.js';
+import { primitives, semantics } from './colors/colors.js';
 
 /** @type {import('tailwindcss').Config['theme']} */
 export const theme = {
@@ -35,7 +35,7 @@ export const theme = {
 			lora: ['Lora', 'serif'],
 		},
 		spacing: {
-			header: 'var(--header-height)',
+			header: 'var(--header-height, 0)',
 			'w-pad': 'var(--pad-padding-x, 0)',
 		},
 		colors: {

@@ -1,7 +1,0 @@
-/* FIXME: refactor when no longer used (in wireframe) */
-.c-sponsor {
-	width: auto;
-	min-height: 40px;
-	background-color: theme('colors.bg.200');
-	border-radius: theme('borderRadius.DEFAULT');
-}

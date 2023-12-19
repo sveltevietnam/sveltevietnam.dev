@@ -8,7 +8,7 @@ My objective then was not to replace React, but to restructure and apply optimiz
 
 Back to 2022, this was an important year for Svelte. [Rich Harris](https://github.com/Rich-Harris) had quit his full-time job to [join Vercel](https://vercel.com/blog/vercel-welcomes-rich-harris-creator-of-svelte), followed by [Simon](https://github.com/dummdidumm). These two with other members from the Svelte core team really pushed forward development of [Svelte Kit](https://svelte.dev/blog/sveltekit-beta), an innovative metaframework for Svelte (think Next for React or Nuxt for Vue). The Svelte community, during all of this, had been expanding quickly both in breadth and depth ([Svelte Discord](https://svelte.dev/chat), [Svelte Society](https://sveltesociety.dev/), [Svelte Radio](https://www.svelteradio.com/), [Svelte Summit](https://www.sveltesummit.com/), [Svelte Sirens](https://sveltesirens.dev/), and many more local communities around the world). In December, [Svelte Kit 1.0](https://svelte.dev/blog/announcing-sveltekit-1.0) was finally and officially released. All signs led towards an unprecedented global interest growth and adoption of Svelte. In Vietnam where I was based, the local Svelte community at this time was fragmented or hardly present. This is the reason why the Svelte Vietnam project was created.
 
-::: div tp-cap2
+::: div c-text-cap2
 \* Snowpack is no longer maintained. [Vite](https://vitejs.dev/), which came from the Vue community, has become somewhat of a standard. Today, Vite and Svelte communities have a strong connection similar to how Snowpack and Svelte used to do.
 :::
 
@@ -42,7 +42,7 @@ However, is the Vietnam community ready for all of this? Most of my colleagues d
 
 Svelte Vietnam, therefore, is my personal social experiment. I am tempted to know whether my reasoning, as I have laid out in this post, is grounded and sufficient. Two years from now, there might be a part two to this post; it is certain that a lot if not most of the arguments here will become outdated, but I hope that what I am doing right now will still be of value.
 
-::: div tp-cap2
+::: div c-text-cap2
 \* Open Collective is a platform for fundraising and managing sponsorship with high transparency. All financial contributions and spending are made public. This is one of the primary reasons why I choose it.
 :::
 

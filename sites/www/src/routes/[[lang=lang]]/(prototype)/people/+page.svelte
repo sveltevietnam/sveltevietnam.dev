@@ -14,13 +14,13 @@
 	</section>
 
 	<div class="actions">
-		<section class="c-action-card">
+		<section class="c-card-action">
 			<h2 class="c-page@h2 justify-self-start">{t.who.title}</h2>
 			<p class="text-left">{@html t.who.description}</p>
 			<a href={GITHUB_LINKS.ISSUE.CONTRIBUTOR_NOMINATION} class="c-btn" external>{t.who.cta}</a>
 		</section>
 
-		<section class="c-action-card">
+		<section class="c-card-action">
 			<h2 class="font-bold">{t.how.title}</h2>
 			<ol>
 				<li>

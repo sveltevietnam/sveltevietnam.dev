@@ -1,0 +1,19 @@
+/* --------------CATPTION-1-------------- */
+.c-text-cap1\@sp {
+	font-family: theme('fontFamily.inter');
+	font-size: 0.875rem; /* 14px */
+	line-height: 1.571; /* 22px */
+	letter-spacing: 0;
+}
+
+.c-text-cap1\@pc {
+	@apply c-text-cap1@sp;
+}
+
+.c-text-cap1 {
+	@apply c-text-cap1@sp;
+
+	@screen tb {
+		@apply c-text-cap1@pc;
+	}
+}

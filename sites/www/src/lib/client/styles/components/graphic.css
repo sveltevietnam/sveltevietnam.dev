@@ -1,9 +1,0 @@
-/* FIXME: refactor when no longer used (in wireframe) */
-.c-graphic {
-	aspect-ratio: 1 / 1;
-	min-width: 120px;
-	min-height: 120px;
-
-	background-color: theme('colors.bg.100');
-	border-radius: theme('borderRadius.DEFAULT');
-}
