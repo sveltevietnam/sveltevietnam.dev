@@ -13,7 +13,7 @@
 		<p class="c-page@h1-sub">{t.subtitle}</p>
 	</section>
 
-	<section class="c-action-card">
+	<section class="c-card-action">
 		<p>{@html t.description}</p>
 		<div class="max-md:flex-col max-md:space-y-4 flex items-center md:space-x-4">
 			<a href={GITHUB_LINKS.ISSUE.PUBLIC_PROJECT} class="c-btn c-btn--with-icon" external>

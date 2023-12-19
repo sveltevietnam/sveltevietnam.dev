@@ -15,13 +15,13 @@
 	$: t = data.translations.page;
 </script>
 
-<main class="tp-body1">
+<main class="c-text-body1">
 	<div class="heading-container max-w-pad">
 		<Breadcrumbs breadcrumbs={data.breadcrumbs} class="mb-10" />
-		<h1 class="tp-h1 font-medium uppercase">{t.title}</h1>
+		<h1 class="c-text-h1 font-medium uppercase">{t.title}</h1>
 	</div>
 
-	<div class="space-y-20 pb-48 pt-20 max-w-pad">
+	<div class="max-w-pad space-y-20 pb-48 pt-20">
 		<section use:intersect>
 			<p>{t.links.description}</p>
 			<ul class="divider-border mt-3 max-w-[548px] divide-y font-medium">
@@ -43,10 +43,10 @@
 			</ul>
 		</section>
 		<section class="space-y-16">
-			<h2 class="tp-h2 font-medium" use:intersect>Logo</h2>
+			<h2 class="c-text-h2 font-medium" use:intersect>Logo</h2>
 
 			<section class="space-y-12" use:intersect>
-				<h3 class="tp-h3 font-medium">{t.logo.inspiration.title}</h3>
+				<h3 class="c-text-h3 font-medium">{t.logo.inspiration.title}</h3>
 				<p>{@html t.logo.inspiration.content}</p>
 				<div class="flex items-center gap-8">
 					<img src={imgNonla} alt="nón lá" width="106" height="106" />
@@ -56,7 +56,7 @@
 			</section>
 
 			<section class="space-y-12" use:intersect>
-				<h3 class="tp-h3 font-medium">{t.logo.concept.title}</h3>
+				<h3 class="c-text-h3 font-medium">{t.logo.concept.title}</h3>
 				<ul class="flex items-center gap-8 sp:flex-col">
 					<li class="border px-12 py-6">{t.logo.concept.inspiration}</li>
 					<li class="border px-12 py-6">{t.logo.concept.vietnam}</li>
@@ -65,10 +65,10 @@
 			</section>
 
 			<section class="space-y-12" use:intersect>
-				<h3 class="tp-h3 font-medium">{t.logo.versions.title}</h3>
+				<h3 class="c-text-h3 font-medium">{t.logo.versions.title}</h3>
 				<ul class="flex items-center gap-8 sp:flex-col">
 					<li class="logo-card-wrapper">
-						<dt class="tp-caption2">{t.logo.versions.versions.original}</dt>
+						<dt class="c-text-caption2">{t.logo.versions.versions.original}</dt>
 						<dd class="logo-card bg-bg">
 							<svg
 								inline-src="sveltevietnam"
@@ -80,7 +80,7 @@
 						</dd>
 					</li>
 					<li class="logo-card-wrapper">
-						<dt class="tp-caption2">{t.logo.versions.versions.positive}</dt>
+						<dt class="c-text-caption2">{t.logo.versions.versions.positive}</dt>
 						<dd class="logo-card bg-grayscale-white text-grayscale-black">
 							<svg
 								inline-src="sveltevietnam"
@@ -92,7 +92,7 @@
 						</dd>
 					</li>
 					<li class="logo-card-wrapper">
-						<dt class="tp-caption2">{t.logo.versions.versions.negative}</dt>
+						<dt class="c-text-caption2">{t.logo.versions.versions.negative}</dt>
 						<dd class="logo-card bg-grayscale-black text-grayscale-white">
 							<svg
 								inline-src="sveltevietnam"
@@ -107,7 +107,7 @@
 			</section>
 
 			<section class="space-y-12" use:intersect>
-				<h3 class="tp-h3 font-medium">{t.logo.typeface.title}</h3>
+				<h3 class="c-text-h3 font-medium">{t.logo.typeface.title}</h3>
 				<div class="w-fit border px-4 py-4 font-inter tb:px-10 tb:py-5">
 					<p class="typeface-caption">Typeface</p>
 					<p class="typeface-heading">Inter</p>

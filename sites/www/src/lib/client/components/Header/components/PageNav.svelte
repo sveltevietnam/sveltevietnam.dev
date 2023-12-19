@@ -18,7 +18,7 @@
 				<a
 					aria-current={current}
 					{href}
-					class="c-link c-link--preserved relative whitespace-nowrap uppercase sp:tp-h2@sp sp:block sp:p-4"
+					class="c-link c-link--preserved relative whitespace-nowrap uppercase sp:c-text-h2@sp sp:block sp:p-4"
 				>
 					{getPathLabel(href, lang)}
 				</a>

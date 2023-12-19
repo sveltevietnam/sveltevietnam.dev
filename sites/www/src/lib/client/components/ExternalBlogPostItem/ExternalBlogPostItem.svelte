@@ -5,7 +5,7 @@
 	let cls = '';
 	export { cls as class };
 
-	const titleClass = 'tp-h4 font-bold c-link c-link--preserved';
+	const titleClass = 'c-text-h4 font-bold c-link c-link--preserved';
 </script>
 
 <article class="space-y-3 {cls}">

@@ -17,17 +17,17 @@
 <main>
 	<div class="heading-container max-w-pad">
 		<Breadcrumbs breadcrumbs={data.breadcrumbs} class="mb-10" />
-		<h1 class="tp-h2@sp font-medium uppercase tb:tp-h1@pc">{t.title}</h1>
+		<h1 class="c-text-h2@sp font-medium uppercase tb:c-text-h1@pc">{t.title}</h1>
 	</div>
-	<div class="space-y-[60px] pb-40 pt-20 max-w-pad">
+	<div class="max-w-pad space-y-[60px] pb-40 pt-20">
 		<section class="space-y-6" use:intersect>
-			<h2 class="tp-h2 font-medium">{t.typography.title}</h2>
+			<h2 class="c-text-h2 font-medium">{t.typography.title}</h2>
 			<p>{@html t.typography.description}</p>
 		</section>
 
 		<section>
 			<div class="space-y-6">
-				<h2 class="tp-h2 font-medium" use:intersect>{t.codeblock.title}</h2>
+				<h2 class="c-text-h2 font-medium" use:intersect>{t.codeblock.title}</h2>
 				<p use:intersect>{@html t.codeblock.description}</p>
 				<div class="prose max-w-full" use:intersect>
 					<pre class="shiki github-dark-dimmed"><code
@@ -44,7 +44,7 @@
 			</div>
 
 			<section class="mt-10 space-y-6">
-				<h3 class="tp-h3 font-medium" use:intersect>Diff</h3>
+				<h3 class="c-text-h3 font-medium" use:intersect>Diff</h3>
 				<p use:intersect>{t.codeblock.diff.description}</p>
 				<div class="prose max-w-full" use:intersect>
 					<pre class="shiki github-dark-dimmed"><code
@@ -65,7 +65,7 @@
 			</section>
 
 			<section class="mt-10 space-y-6">
-				<h3 class="tp-h3 font-medium" use:intersect>Highlight</h3>
+				<h3 class="c-text-h3 font-medium" use:intersect>Highlight</h3>
 				<p use:intersect>{t.codeblock.highlight.description}</p>
 				<div class="prose max-w-full" use:intersect>
 					<pre class="shiki github-dark-dimmed"><code
@@ -87,11 +87,11 @@
 		</section>
 
 		<section>
-			<h2 class="tp-h2 font-medium" use:intersect>{t.components.title}</h2>
+			<h2 class="c-text-h2 font-medium" use:intersect>{t.components.title}</h2>
 			<p class="mt-6" use:intersect>{t.components.description}</p>
 
 			<section class="mt-10 space-y-6">
-				<h3 class="tp-h3 font-medium" use:intersect>{t.components.callout.title}</h3>
+				<h3 class="c-text-h3 font-medium" use:intersect>{t.components.callout.title}</h3>
 				<p use:intersect>{t.components.callout.description}</p>
 				<ul class="space-y-6">
 					<li class="c-callout c-callout--info" use:intersect>

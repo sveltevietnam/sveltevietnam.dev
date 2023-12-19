@@ -2,4 +2,4 @@
 	export let content = 'Placeholder content';
 </script>
 
-<p class="tp-cap1">{content}</p>
+<p class="c-text-cap1">{content}</p>

@@ -53,14 +53,14 @@
 <main>
 	<div class="heading-container max-w-pad">
 		<Breadcrumbs breadcrumbs={data.breadcrumbs} class="mb-10" />
-		<h1 class="tp-h2@sp font-medium uppercase tb:tp-h1@pc">{t.title}</h1>
+		<h1 class="c-text-h2@sp font-medium uppercase tb:c-text-h1@pc">{t.title}</h1>
 	</div>
-	<div class="space-y-[120px] pb-40 pt-20 max-w-pad">
+	<div class="max-w-pad space-y-[120px] pb-40 pt-20">
 		<section class="space-y-[60px]">
-			<h2 class="tp-h2 font-medium" use:intersect>{t.primitives.title}</h2>
+			<h2 class="c-text-h2 font-medium" use:intersect>{t.primitives.title}</h2>
 
 			<section use:intersect>
-				<h3 class="tp-h3 font-medium">{t.primitives.colors.grayscale}</h3>
+				<h3 class="c-text-h3 font-medium">{t.primitives.colors.grayscale}</h3>
 				<ul class="primitive-group grayscale">
 					<li
 						class="swatch primitive-base border border-grayscale-black bg-white text-grayscale-black"
@@ -87,7 +87,7 @@
 			</section>
 
 			<section use:intersect>
-				<h3 class="tp-h3 font-medium">{t.primitives.colors.orange}</h3>
+				<h3 class="c-text-h3 font-medium">{t.primitives.colors.orange}</h3>
 				<ul class="primitive-group">
 					<li class="swatch bg-orange-50">50</li>
 					<li class="swatch bg-orange-100">100</li>
@@ -104,7 +104,7 @@
 			</section>
 
 			<section use:intersect>
-				<h3 class="tp-h3 font-medium">{t.primitives.colors.green}</h3>
+				<h3 class="c-text-h3 font-medium">{t.primitives.colors.green}</h3>
 				<ul class="primitive-group">
 					<li class="swatch bg-green-50">50</li>
 					<li class="swatch bg-green-100">100</li>
@@ -121,7 +121,7 @@
 			</section>
 
 			<section use:intersect>
-				<h3 class="tp-h3 font-medium">{t.primitives.colors.folly}</h3>
+				<h3 class="c-text-h3 font-medium">{t.primitives.colors.folly}</h3>
 				<ul class="primitive-group">
 					<li class="swatch bg-folly-50">50</li>
 					<li class="swatch bg-folly-100">100</li>
@@ -138,7 +138,7 @@
 			</section>
 
 			<section use:intersect>
-				<h3 class="tp-h3 font-medium">{t.primitives.colors.amber}</h3>
+				<h3 class="c-text-h3 font-medium">{t.primitives.colors.amber}</h3>
 				<ul class="primitive-group">
 					<li class="swatch bg-amber-50">50</li>
 					<li class="swatch bg-amber-100">100</li>
@@ -155,7 +155,7 @@
 			</section>
 
 			<section use:intersect>
-				<h3 class="tp-h3 font-medium">{t.primitives.colors.emerald}</h3>
+				<h3 class="c-text-h3 font-medium">{t.primitives.colors.emerald}</h3>
 				<ul class="primitive-group">
 					<li class="swatch bg-emerald-50">50</li>
 					<li class="swatch bg-emerald-100">100</li>
@@ -172,7 +172,7 @@
 			</section>
 
 			<section use:intersect>
-				<h3 class="tp-h3 font-medium">{t.primitives.colors.blue}</h3>
+				<h3 class="c-text-h3 font-medium">{t.primitives.colors.blue}</h3>
 				<ul class="primitive-group">
 					<li class="swatch bg-blue-50">50</li>
 					<li class="swatch bg-blue-100">100</li>
@@ -189,7 +189,7 @@
 			</section>
 
 			<section use:intersect>
-				<h3 class="tp-h3 font-medium">{t.primitives.colors.stone}</h3>
+				<h3 class="c-text-h3 font-medium">{t.primitives.colors.stone}</h3>
 				<ul class="primitive-group">
 					<li class="swatch bg-stone-50">50</li>
 					<li class="swatch bg-stone-100">100</li>
@@ -207,11 +207,11 @@
 		</section>
 
 		<section>
-			<h2 class="tp-h2 font-medium" use:intersect>{t.semantic.title}</h2>
+			<h2 class="c-text-h2 font-medium" use:intersect>{t.semantic.title}</h2>
 			<p class="mt-6" use:intersect>{t.semantic.description}</p>
 
 			<section class="mt-[60px] max-w-full space-y-[60px] overflow-auto">
-				<h3 class="tp-h3 font-medium" use:intersect>{t.semantic.brand.title}</h3>
+				<h3 class="c-text-h3 font-medium" use:intersect>{t.semantic.brand.title}</h3>
 
 				<div class="flex flex-wrap items-stretch gap-10">
 					<ul class="flex flex-wrap gap-3" use:intersect>
@@ -303,7 +303,7 @@
 			</section>
 
 			<section class="mt-[60px] max-w-full space-y-[60px] overflow-auto">
-				<h3 class="tp-h3 font-medium" use:intersect id="status">{t.semantic.status.title}</h3>
+				<h3 class="c-text-h3 font-medium" use:intersect id="status">{t.semantic.status.title}</h3>
 				<div class="max-w-full overflow-auto" use:intersect>
 					<table class="status-colors w-full border-collapse">
 						<thead>
@@ -355,7 +355,7 @@
 		</section>
 
 		<section>
-			<h2 class="tp-h2 font-medium" use:intersect>{t.developers.title}</h2>
+			<h2 class="c-text-h2 font-medium" use:intersect>{t.developers.title}</h2>
 			<p class="mt-6" use:intersect>{t.developers.description}</p>
 			<ul class="divider-border mt-[60px] max-w-[660px] divide-y font-medium" use:intersect>
 				<li>

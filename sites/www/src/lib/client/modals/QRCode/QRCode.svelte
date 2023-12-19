@@ -116,7 +116,7 @@
 			<svg inline-src="lucide/x" width="24" height="24" />
 		</button>
 		<div class="space-y-6">
-			<p class="tp-h2 font-medium after:mt-2 after:separator">{texts.title}</p>
+			<p class="c-text-h2 font-medium after:mt-2 after:separator">{texts.title}</p>
 			<p class="">{texts.description}</p>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"

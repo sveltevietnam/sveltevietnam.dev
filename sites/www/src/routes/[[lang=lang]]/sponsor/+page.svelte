@@ -50,17 +50,17 @@
 </script>
 
 <main>
-	<div class="mt-6 max-w-pad" use:intersect>
+	<div class="max-w-pad mt-6" use:intersect>
 		<Breadcrumbs breadcrumbs={data.breadcrumbs} />
 	</div>
 	<section
-		class="mb-[80px] max-w-pad tb:mb-[120px] tb:flex tb:flex-row tb:justify-between"
+		class="max-w-pad mb-[80px] tb:mb-[120px] tb:flex tb:flex-row tb:justify-between"
 		use:intersect
 		bind:this={headerSectionElement}
 	>
 		<div class="mt-8 tb:mt-[100px]">
-			<h1 class="tp-h1 uppercase">{t.title}</h1>
-			<p class="tp-h4 mt-6 tb:mt-8">{t.subtitle}</p>
+			<h1 class="c-text-h1 uppercase">{t.title}</h1>
+			<p class="c-text-h4 mt-6 tb:mt-8">{t.subtitle}</p>
 		</div>
 		<div class="sp:mt-8 tb:mt-10">
 			<svg
@@ -70,8 +70,8 @@
 		</div>
 	</section>
 	<div class="space-y-[60px] pb-[120px] tb:space-y-[120px] tb:pb-[200px]">
-		<section class="gradient-wrapper space-y-6 max-w-pad">
-			<h2 class="tp-h2" use:intersect id="how">
+		<section class="gradient-wrapper max-w-pad space-y-6">
+			<h2 class="c-text-h2" use:intersect id="how">
 				{t.how.title}
 			</h2>
 			<div use:intersect>
@@ -115,8 +115,8 @@
 				</ul>
 			</div>
 		</section>
-		<section class="space-y-6 max-w-pad" use:intersect>
-			<h2 class="tp-h2" id="why">
+		<section class="max-w-pad space-y-6" use:intersect>
+			<h2 class="c-text-h2" id="why">
 				{t.why.title}
 			</h2>
 			<p>{@html t.why.description}</p>
@@ -129,8 +129,8 @@
 			</div>
 			<p>{@html t.why.inspect}</p>
 		</section>
-		<section class="space-y-6 max-w-pad" use:intersect>
-			<h2 class="tp-h2" id="benefits">
+		<section class="max-w-pad space-y-6" use:intersect>
+			<h2 class="c-text-h2" id="benefits">
 				{t.benefits.title}
 			</h2>
 			<p>{t.benefits.description}</p>

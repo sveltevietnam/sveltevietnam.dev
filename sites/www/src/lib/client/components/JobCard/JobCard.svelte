@@ -36,7 +36,7 @@
 				<time datetime={job.expiresAt}>{new Date(job.expiresAt).toLocaleDateString()}</time>
 			{/if}
 		</p>
-		<p class="tp-h5 mt-3 w-fit font-medium">
+		<p class="c-text-h5 mt-3 w-fit font-medium">
 			<a class="c-link c-link--preserved" href={job.href} external>{job.title}</a>
 		</p>
 	</div>

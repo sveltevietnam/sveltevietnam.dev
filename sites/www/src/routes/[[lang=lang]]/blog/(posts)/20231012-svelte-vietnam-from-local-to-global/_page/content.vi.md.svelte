@@ -8,7 +8,7 @@ Lúc bấy giờ, mục tiêu của mình không phải là thay thế React, m�
 
 Trở lại năm 2022, đây là một năm quan trọng với Svelte. Trước đó Rich Harris đã rời công việc để [tham gia Vercel](https://vercel.com/blog/vercel-welcomes-rich-harris-creator-of-svelte), theo sau là [Simon](https://github.com/dummdidumm). Hai người này cùng rất nhiều thành viên khác trong core team Svelte đã thúc đẩy phát triển [Svelte Kit](https://svelte.dev/blog/sveltekit-beta), một metaframework vượt trội (so sánh như Next cho React hay Nuxt cho Vue vậy). Cộng đồng Svelte theo đà đã phát triển rộng và sâu hơn một cách nhanh chóng ([Svelte Discord](https://svelte.dev/chat), [Svelte Society](https://sveltesociety.dev/), [Svelte Radio](https://www.svelteradio.com/), [Svelte Summit](https://www.sveltesummit.com/), [Svelte Sirens](https://sveltesirens.dev/), và nhiều cộng đồng nhỏ trên nhiều quốc gia). Tháng 12, [Svelte Kit 1.0 chính thức ra mắt](https://svelte.dev/blog/announcing-sveltekit-1.0). Vậy là mình không còn lý do gì để nghi ngờ sự phát triển của Svelte. Mình đoán rằng lập trình viên cũng như doanh nghiệp lớn nhỏ dần sẽ tìm đến Svelte giống như một giải pháp thực tế, nghiêm túc như React hay Vue vậy. Lúc này, Svelte tại Việt Nam vẫn còn rất cục bộ, thiếu liên kết, thông tin, và một cộng đồng. Đó chính là lý do Svelte Việt Nam ra đời.
 
-::: div tp-cap2
+::: div c-text-cap2
 \* Snowpack đã dừng phát triển. Thay vào đó là [Vite](https://vitejs.dev/) đến từ cộng đồng Vue. Ngày nay, hai cộng đồng Vite và Svelte cũng có nhiều liên kết chặt chẽ tương tự.
 :::
 
@@ -42,7 +42,7 @@ Tuy nhiên, cộng đồng Việt Nam có sẵn sàng cho những thứ trên ha
 
 Vì vậy, Svelte Việt Nam là một thí nghiệm xã hội của mình. Mình muốn thử xem tất cả những thứ mình suy nghĩ ở trên có đúng và đủ không. Có lẽ hai năm sau mình sẽ viết phần hai của bài này, chắc chắn rằng sẽ có nhiều thứ không còn đúng nữa, nhưng hy vọng rằng những điều mình đang làm vẫn có ý nghĩa.
 
-::: div tp-cap2
+::: div c-text-cap2
 \* Open Collective là nền tảng nhận tài trợ với tính minh bạch cao, tất cả khoản thu, chi đều công khai. Đó là một trong những lý do mình chọn giải pháp này.
 :::
 

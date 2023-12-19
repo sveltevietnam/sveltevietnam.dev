@@ -1,11 +1,12 @@
 import { readFileSync } from 'fs';
+import Module from 'node:module';
 
 import postcss from 'postcss';
 import postcssCustomSelectors from 'postcss-custom-selectors';
 import postcssJs from 'postcss-js';
 import postcssMixins from 'postcss-mixins';
 
-import { mixins } from '../mixins/index.js';
+import { mixins } from './mixins.js';
 
 /**
  *
@@ -23,4 +24,11 @@ function cssResolver(module, filename) {
 	module.exports = jss;
 }
 
-require.extensions['.css'] = cssResolver;
+/**
+ * @param {string} path - should be import.meta.url
+ */
+export function createRequire(path) {
+	const require = Module.createRequire(path);
+	require.extensions['.css'] = cssResolver;
+	return require;
+}

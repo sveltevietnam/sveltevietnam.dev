@@ -26,7 +26,7 @@
 
 <nav
 	aria-label="breadcrumb"
-	class="tp-body2 {cls}"
+	class="c-text-body2 {cls}"
 	data-scrollable={scrollable}
 	data-scrollable-left={scrollableLeft}
 	data-scrollable-right={scrollableRight}

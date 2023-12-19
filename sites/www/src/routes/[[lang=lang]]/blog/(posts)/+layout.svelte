@@ -81,7 +81,7 @@
 				<enhanced:img src={fallbackThumbnail} alt={post?.title} class="h-auto w-full" />
 			{/if}
 			<div class="mt-8 space-y-6">
-				<h1 class="tp-h2 font-bold">{post?.title}</h1>
+				<h1 class="c-text-h2 font-bold">{post?.title}</h1>
 				<ul class="flex flex-wrap items-center gap-2">
 					{#each post?.tags ?? [] as tag}
 						<li class="c-tag">{tag}</li>
@@ -95,9 +95,9 @@
 						</li>
 					{/each}
 				</ul>
-				<div class="tp-cap1 text-fg-200">
+				<div class="c-text-cap1 text-fg-200">
 					<div class="mb-2 separator" />
-					<div class="tp-cap1 flex justify-between text-fg-200">
+					<div class="c-text-cap1 flex justify-between text-fg-200">
 						<div class="shrink-0">
 							{#key data.language}
 								<p>
@@ -136,7 +136,7 @@
 		<div class="post-grid mt-[60px]">
 			{#key data.language && data.pathname}
 				<section
-					class="post-content prose-svelte-vn prose max-w-full dark:prose-invert"
+					class="post-content prose-svelte-vn dark:prose-invert prose max-w-full"
 					use:toc={{
 						store: tocStore,
 						selector: ':where(h2,h3,h4,h5,h6)',
@@ -145,7 +145,7 @@
 				>
 					<slot />
 					<hr />
-					<p class="tp-body2">
+					<p class="c-text-body2">
 						{t.editLink.intro}
 						<a href={post?.githubUrl} external>{t.editLink.label}</a>
 					</p>
@@ -153,7 +153,7 @@
 			{/key}
 
 			<section class="post-more">
-				<h2 class="tp-h3 font-medium after:mt-2 after:separator">{t.more}</h2>
+				<h2 class="c-text-h3 font-medium after:mt-2 after:separator">{t.more}</h2>
 				<ul class="mt-8 space-y-8">
 					{#each data.more.internal as post}
 						<li class="before:mb-8 before:separator first-of-type:before:hidden">
@@ -169,7 +169,7 @@
 			</section>
 
 			<section class="post-share">
-				<h2 class="tp-h3 after:mt-2 after:separator" id="share">{t.share}</h2>
+				<h2 class="c-text-h3 after:mt-2 after:separator" id="share">{t.share}</h2>
 				<ul class="mt-8 flex flex-wrap items-center gap-4">
 					<li>
 						<a
@@ -226,7 +226,9 @@
 			<section class="post-toc">
 				{#if tocItems.length}
 					<nav aria-label={t.tableOfContents.title}>
-						<h2 class="tp-h3 font-medium after:mt-2 after:separator">{t.tableOfContents.title}</h2>
+						<h2 class="c-text-h3 font-medium after:mt-2 after:separator">
+							{t.tableOfContents.title}
+						</h2>
 						<ul class="mt-8">
 							{#each tocItems as tocItem (tocItem.id)}
 								{@const level = tocItem.element.tagName.slice(1)}

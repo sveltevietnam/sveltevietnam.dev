@@ -24,8 +24,8 @@
 	</div>
 	<section class="mb-[60px] tb:mb-16 tb:flex tb:flex-row tb:justify-between" use:intersect>
 		<div class="mt-8 tb:mt-[100px] tb:max-w-[500px]">
-			<h1 class="tp-h1 uppercase">{t.title}</h1>
-			<p class="tp-h4 mt-6 tb:mt-8">{t.subtitle}</p>
+			<h1 class="c-text-h1 uppercase">{t.title}</h1>
+			<p class="c-text-h4 mt-6 tb:mt-8">{t.subtitle}</p>
 		</div>
 		<div class="sp:mt-8">
 			<svg inline-src="./_page/images/key-visuals" class="h-auto w-full max-w-[548px]" />
@@ -35,7 +35,7 @@
 		{#if data.events.ongoing.length}
 			<section>
 				<ConsecutiveFadeUpIntro selector=".char">
-					<h2 class="tp-h2 uppercase">
+					<h2 class="c-text-h2 uppercase">
 						<SplitText text={t.ongoingEvents.title} />
 					</h2>
 				</ConsecutiveFadeUpIntro>
@@ -52,7 +52,7 @@
 		{/if}
 		<section>
 			<ConsecutiveFadeUpIntro selector=".char">
-				<h2 class="tp-h2 uppercase">
+				<h2 class="c-text-h2 uppercase">
 					<SplitText text={t.upcomingEvents.title} />
 				</h2>
 			</ConsecutiveFadeUpIntro>
@@ -68,7 +68,7 @@
 				{:else}
 					<div use:intersect class="text-center">
 						<ToBeAnnounced>
-							<p class="tp-h4 font-medium">
+							<p class="c-text-h4 font-medium">
 								{t.upcomingEvents.tba.description}
 							</p>
 							<p class="mt-4">
@@ -84,9 +84,9 @@
 			<div
 				class="grid gap-8 sp:grid-rows-3 tb:grid-cols-2 tb:gap-6 tb-to-pc:grid-rows-2 pc:grid-cols-3"
 			>
-				<section class="c-action-card" use:intersect>
+				<section class="c-card-action" use:intersect>
 					<div class="flex items-center justify-between">
-						<h3 class="tp-h3 font-medium">{t.actions.share.title}</h3>
+						<h3 class="c-text-h3 font-medium">{t.actions.share.title}</h3>
 						<svg
 							width="56"
 							height="41"
@@ -115,9 +115,9 @@
 						</a>
 					</p>
 				</section>
-				<section class="c-action-card" use:intersect id="mail">
+				<section class="c-card-action" use:intersect id="mail">
 					<div class="flex items-center justify-between">
-						<h3 class="tp-h3 font-medium">{t.actions.participate.title}</h3>
+						<h3 class="c-text-h3 font-medium">{t.actions.participate.title}</h3>
 						<svg
 							width="53"
 							height="41"
@@ -132,9 +132,9 @@
 					<p class="mt-6 flex-1">{t.actions.participate.description}</p>
 					<MailRegistrationForm t={tMail} superValidated={data.mailForm} class="mt-6" />
 				</section>
-				<section class="c-action-card" use:intersect>
+				<section class="c-card-action" use:intersect>
 					<div class="flex items-center justify-between">
-						<h3 class="tp-h3 font-medium">{t.actions.sponsor.title}</h3>
+						<h3 class="c-text-h3 font-medium">{t.actions.sponsor.title}</h3>
 						<svg
 							width="47"
 							height="41"
@@ -176,7 +176,7 @@
 		</section>
 		<section>
 			<ConsecutiveFadeUpIntro selector=".char">
-				<h2 class="tp-h2 uppercase">
+				<h2 class="c-text-h2 uppercase">
 					<SplitText text={t.pastEvents.title} />
 				</h2>
 			</ConsecutiveFadeUpIntro>

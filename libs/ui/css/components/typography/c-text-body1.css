@@ -1,0 +1,19 @@
+/* --------------BODY-1-------------- */
+.c-text-body1\@sp {
+	font-family: theme('fontFamily.inter');
+	font-size: 1rem; /* 16px */
+	line-height: 1.5rem; /* 24px */
+	letter-spacing: 0;
+}
+
+.c-text-body1\@pc {
+	@apply c-text-body1@sp;
+}
+
+.c-text-body1 {
+	@apply c-text-body1@sp;
+
+	@screen tb {
+		@apply c-text-body1@pc;
+	}
+}

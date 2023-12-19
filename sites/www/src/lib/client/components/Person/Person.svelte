@@ -38,6 +38,6 @@
 				{person.name}
 			{/if}
 		</p>
-		<p class="tp-cap1 text-fg-200">{person.title}</p>
+		<p class="c-text-cap1 text-fg-200">{person.title}</p>
 	</div>
 </div>

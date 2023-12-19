@@ -33,7 +33,7 @@
 	<div class="max-w-pad">
 		<ConsecutiveFadeUpIntro selector=":is(.arrow, .char)">
 			<a href={IMPACT_PATH} title={t.title} class="section-title-container">
-				<h2 class="tp-h2 uppercase">
+				<h2 class="c-text-h2 uppercase">
 					<SplitText text={t.title} />
 				</h2>
 				<AnimatedArrowCircle
@@ -66,7 +66,7 @@
 						{/if}
 					</div>
 					<div>
-						<a class="c-link c-link--preserved tp-h4 font-bold" {href}>{name}</a>
+						<a class="c-link c-link--preserved c-text-h4 font-bold" {href}>{name}</a>
 						<p class="description line-clamp-3 tb:line-clamp-4">{@html description}</p>
 						<div class="by">
 							<p class="whitespace-nowrap font-medium">{t.by}:</p>

@@ -1,0 +1,31 @@
+:root {
+	--header-height: 82px;
+
+	@screen tb {
+		--header-height: 88px;
+	}
+}
+
+html {
+	height: 100%;
+
+	@apply c-text-body1;
+
+	color: theme('colors.fg.DEFAULT');
+	background-color: theme('colors.bg.DEFAULT');
+	border-color: theme('colors.outline.DEFAULT');
+}
+
+*,
+::before,
+::after {
+	border-color: inherit;
+}
+
+*:disabled {
+	cursor: not-allowed;
+}
+
+*[id] {
+	scroll-margin: calc(1.5 * theme('spacing.header'));
+}

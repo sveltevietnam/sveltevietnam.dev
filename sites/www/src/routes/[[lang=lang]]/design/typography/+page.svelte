@@ -9,16 +9,16 @@
 	const TYPOGRAPHY = [
 		{
 			name: 'H1',
-			class: 'tp-h1',
+			class: 'c-text-h1',
 			fontFamily: 'Lora',
 			sp: {
-				class: 'tp-h1@sp',
+				class: 'c-text-h1@sp',
 				fontSize: '3rem',
 				lineHeight: '1.25',
 				letterSpacing: '4%',
 			},
 			pc: {
-				class: 'tp-h1@pc',
+				class: 'c-text-h1@pc',
 				fontSize: '4rem',
 				lineHeight: '1.2813',
 				letterSpacing: '6%',
@@ -27,16 +27,16 @@
 		},
 		{
 			name: 'H2',
-			class: 'tp-h2',
+			class: 'c-text-h2',
 			fontFamily: 'Lora',
 			sp: {
-				class: 'tp-h2@sp',
+				class: 'c-text-h2@sp',
 				fontSize: '2rem',
 				lineHeight: '1.2813',
 				letterSpacing: '4%',
 			},
 			pc: {
-				class: 'tp-h2@pc',
+				class: 'c-text-h2@pc',
 				fontSize: '3rem',
 				lineHeight: '1.25',
 				letterSpacing: '4%',
@@ -45,16 +45,16 @@
 		},
 		{
 			name: 'H3',
-			class: 'tp-h3',
+			class: 'c-text-h3',
 			fontFamily: 'Lora',
 			sp: {
-				class: 'tp-h3@sp',
+				class: 'c-text-h3@sp',
 				fontSize: '1.4rem',
 				lineHeight: '1.5',
 				letterSpacing: '0%',
 			},
 			pc: {
-				class: 'tp-h3@pc',
+				class: 'c-text-h3@pc',
 				fontSize: '2rem',
 				lineHeight: '1.2813',
 				letterSpacing: '4%',
@@ -63,16 +63,16 @@
 		},
 		{
 			name: 'H4',
-			class: 'tp-h4',
+			class: 'c-text-h4',
 			fontFamily: 'Inter',
 			sp: {
-				class: 'tp-h4@sp',
+				class: 'c-text-h4@sp',
 				fontSize: '1.25rem',
 				lineHeight: '1.2',
 				letterSpacing: '0%',
 			},
 			pc: {
-				class: 'tp-h4@pc',
+				class: 'c-text-h4@pc',
 				fontSize: '1.5rem',
 				lineHeight: '1.292',
 				letterSpacing: '0%',
@@ -81,16 +81,16 @@
 		},
 		{
 			name: 'H5',
-			class: 'tp-h5',
+			class: 'c-text-h5',
 			fontFamily: 'Inter',
 			sp: {
-				class: 'tp-h5@sp',
+				class: 'c-text-h5@sp',
 				fontSize: '1.125rem',
 				lineHeight: '1.333',
 				letterSpacing: '0%',
 			},
 			pc: {
-				class: 'tp-h5@pc',
+				class: 'c-text-h5@pc',
 				fontSize: '1.125rem',
 				lineHeight: '1.333',
 				letterSpacing: '0%',
@@ -99,16 +99,16 @@
 		},
 		{
 			name: 'Body 1',
-			class: 'tp-body1',
+			class: 'c-text-body1',
 			fontFamily: 'Inter',
 			sp: {
-				class: 'tp-body1@sp',
+				class: 'c-text-body1@sp',
 				fontSize: '1rem',
 				lineHeight: '1.5',
 				letterSpacing: '0%',
 			},
 			pc: {
-				class: 'tp-body1@pc',
+				class: 'c-text-body1@pc',
 				fontSize: '1rem',
 				lineHeight: '1.5',
 				letterSpacing: '0%',
@@ -117,16 +117,16 @@
 		},
 		{
 			name: 'Body 2',
-			class: 'tp-body2',
+			class: 'c-text-body2',
 			fontFamily: 'Inter',
 			sp: {
-				class: 'tp-body2@sp',
+				class: 'c-text-body2@sp',
 				fontSize: '0.875rem',
 				lineHeight: '1.714',
 				letterSpacing: '0%',
 			},
 			pc: {
-				class: 'tp-body2@pc',
+				class: 'c-text-body2@pc',
 				fontSize: '0.875rem',
 				lineHeight: '1.714',
 				letterSpacing: '0%',
@@ -135,16 +135,16 @@
 		},
 		{
 			name: 'Caption 1',
-			class: 'tp-cap1',
+			class: 'c-text-cap1',
 			fontFamily: 'Inter',
 			sp: {
-				class: 'tp-cap1@sp',
+				class: 'c-text-cap1@sp',
 				fontSize: '0.875rem',
 				lineHeight: '1.571',
 				letterSpacing: '0%',
 			},
 			pc: {
-				class: 'tp-cap1@pc',
+				class: 'c-text-cap1@pc',
 				fontSize: '0.875rem',
 				lineHeight: '1.571',
 				letterSpacing: '0%',
@@ -153,16 +153,16 @@
 		},
 		{
 			name: 'Caption 2',
-			class: 'tp-cap2',
+			class: 'c-text-cap2',
 			fontFamily: 'Inter',
 			sp: {
-				class: 'tp-cap2@sp',
+				class: 'c-text-cap2@sp',
 				fontSize: '0.75rem',
 				lineHeight: '1.833',
 				letterSpacing: '0%',
 			},
 			pc: {
-				class: 'tp-cap2@pc',
+				class: 'c-text-cap2@pc',
 				fontSize: '0.75rem',
 				lineHeight: '1.833',
 				letterSpacing: '0%',
@@ -174,12 +174,12 @@
 	$: t = data.translations.page;
 </script>
 
-<main class="tp-body1">
+<main class="c-text-body1">
 	<div class="heading-container max-w-pad">
 		<Breadcrumbs breadcrumbs={data.breadcrumbs} class="mb-10" />
-		<h1 class="tp-h2@sp font-medium uppercase tb:tp-h1@pc">{t.title}</h1>
+		<h1 class="c-text-h2@sp font-medium uppercase tb:c-text-h1@pc">{t.title}</h1>
 	</div>
-	<div class="pb-40 pt-20 max-w-pad">
+	<div class="max-w-pad pb-40 pt-20">
 		{#each TYPOGRAPHY as typo, i (typo.name)}
 			{#if i > 0}
 				<div class="my-12 h-px w-full bg-outline" />

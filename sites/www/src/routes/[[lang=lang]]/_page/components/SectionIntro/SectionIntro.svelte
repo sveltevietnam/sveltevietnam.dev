@@ -91,7 +91,7 @@
 				<article>
 					<img src={shapeSvelte} alt="swirling winged-shaped star" width="60" height="60" />
 					<div>
-						<p class="tp-h3 font-bold">Svelte</p>
+						<p class="c-text-h3 font-bold">Svelte</p>
 						<div class="separator" aria-disabled />
 						<p>{t.svelte}</p>
 					</div>
@@ -101,7 +101,7 @@
 				<article>
 					<img src={shapeVietnamImg} alt="five-pointed star" width="60" height="60" />
 					<div>
-						<p class="tp-h3 font-bold">Vietnam</p>
+						<p class="c-text-h3 font-bold">Vietnam</p>
 						<div class="separator" aria-disabled />
 						<p>{t.vietnam}</p>
 					</div>
@@ -111,7 +111,7 @@
 				<article>
 					<img src={shapeSvelteVietnamImg} alt="eight-pointed start" width="60" height="60" />
 					<div>
-						<p class="tp-h3 font-bold">{commonT[lang].sveltevienam}</p>
+						<p class="c-text-h3 font-bold">{commonT[lang].sveltevienam}</p>
 						<div class="separator" aria-disabled />
 						<p>{t.sveltevietnam}</p>
 					</div>

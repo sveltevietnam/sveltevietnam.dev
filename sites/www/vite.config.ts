@@ -7,6 +7,11 @@ const config: UserConfig = {
 	define: {
 		__BUILD_TIMESTAMP__: JSON.stringify(Date.now().toString()),
 	},
+	server: {
+		fs: {
+			strict: false,
+		},
+	},
 };
 
 export default config;

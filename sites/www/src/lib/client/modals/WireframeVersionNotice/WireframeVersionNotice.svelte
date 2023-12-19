@@ -59,7 +59,7 @@
 		on:clickoutside={clickOutside}
 		transition:fly={{ duration: 200, y: 50 }}
 	>
-		<p class="tp-h3 font-bold uppercase">{t.title}</p>
+		<p class="c-text-h3 font-bold uppercase">{t.title}</p>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			width="40"

@@ -13,7 +13,7 @@
 			<span class="font-bold">{contributor.fullName}</span>
 			{#if contributor.affiliation}
 				<br class="md:hidden" />
-				<span class="tp-cap2 italic">{contributor.affiliation}</span>
+				<span class="c-text-cap2 italic">{contributor.affiliation}</span>
 			{/if}
 		</p>
 		<p>{contributor.contribution}</p>

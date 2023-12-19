@@ -22,7 +22,7 @@
 </script>
 
 <article class="event-card {cls}">
-	<p class="date tp-h4 flex items-center font-lora font-medium">
+	<p class="date c-text-h4 flex items-center font-lora font-medium">
 		{#if event.startDate === 'TBA'}
 			TBA
 		{:else}
@@ -33,7 +33,7 @@
 		<p>
 			<a
 				href={`${EVENTS_PATH}/${event.slug}`}
-				class="c-link c-link--preserved tp-h4 font-medium"
+				class="c-link c-link--preserved c-text-h4 font-medium"
 				id={event.slug}
 			>
 				{event.title}

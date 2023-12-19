@@ -59,8 +59,6 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  font-style: oblique 0deg 5deg;
-  src: url('./inter-vietnamese.woff2') format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01a0-01a1,
+  font-style: oblique 0deg 5deg; unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01a0-01a1,
     U+01af-01b0, U+1ea0-1ef9, U+20ab;
 } */

@@ -17,8 +17,8 @@
 	</div>
 	<section class="mt-8 flex items-start justify-between gap-8 upto-tb:flex-col tb:mt-[60px]">
 		<div use:intersect>
-			<h1 class="tp-h1 font-medium uppercase">{t.title}</h1>
-			<p class="tp-h4 mt-6 tb:mt-8">{t.subtitle}</p>
+			<h1 class="c-text-h1 font-medium uppercase">{t.title}</h1>
+			<p class="c-text-h4 mt-6 tb:mt-8">{t.subtitle}</p>
 		</div>
 		<div use:intersect>
 			<svg
@@ -32,7 +32,7 @@
 		<section class="relative">
 			<div class="space-y-6">
 				<ConsecutiveFadeUpIntro selector=".char">
-					<h2 class="tp-h2 font-medium uppercase">
+					<h2 class="c-text-h2 font-medium uppercase">
 						<SplitText text={`${t.common.milestone}: ${t.milestones.aulac.title}`} />
 					</h2>
 				</ConsecutiveFadeUpIntro>
@@ -61,7 +61,7 @@
 		<section class="relative">
 			<div class="space-y-6">
 				<ConsecutiveFadeUpIntro selector=".char">
-					<h2 class="tp-h2 font-medium uppercase">
+					<h2 class="c-text-h2 font-medium uppercase">
 						<SplitText text={`${t.common.milestone}: ${t.milestones.tu.title}`} />
 					</h2>
 				</ConsecutiveFadeUpIntro>
@@ -103,7 +103,7 @@
 		<section class="relative">
 			<div class="space-y-6">
 				<ConsecutiveFadeUpIntro selector=".char">
-					<h2 class="tp-h2 font-medium uppercase">
+					<h2 class="c-text-h2 font-medium uppercase">
 						<SplitText text={`${t.common.milestone}: ${t.milestones.dong.title}`} />
 					</h2>
 				</ConsecutiveFadeUpIntro>
