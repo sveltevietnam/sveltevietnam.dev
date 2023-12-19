@@ -15,7 +15,7 @@
 	import { setSplashContext } from '$client/contexts/splash.js';
 	import { modalStore } from '$client/modals';
 	import NotificationPortal from '$client/notifications/NotificationPortal.svelte';
-	import { noti, notiStore } from '$client/notifications/index.js';
+	import { setNotificationContext } from '$client/notifications/index.js';
 	import { PUBLIC_DISCORD_WS_URL } from '$env/static/public';
 	import { LANGUAGES } from '$shared/services/i18n/index.js';
 	import { translations } from '$shared/services/i18n/translations/notification';
@@ -30,6 +30,7 @@
 	const lockScrollStore = setLockScrollContext();
 	setColorSchemeContext(data.colorScheme);
 	const lang = setLangContext(data.language);
+	const noti = setNotificationContext();
 
 	$: $lang = data.language;
 
@@ -49,7 +50,7 @@
 				try {
 					const payload = JSON.parse(event.data) as DiscordEventData;
 					if (payload.type === 'message') {
-						noti.discord({
+						noti.helpers.discord({
 							...payload.data,
 							language: data.language,
 						});
@@ -87,13 +88,13 @@
 	let notifiedAboutNewVersion = false;
 	$: if ($updated && !notifiedAboutNewVersion) {
 		notifiedAboutNewVersion = true;
-		noti.info(translations[data.language].newVersion);
+		noti.helpers.info(translations[data.language].newVersion);
 	}
 
 	let notifiedAboutSlowHydration = false;
 	$: if ($splashStore.isSlowHydration && !notifiedAboutSlowHydration) {
 		notifiedAboutSlowHydration = true;
-		noti.info(translations[data.language].slowHydration);
+		noti.helpers.info(translations[data.language].slowHydration);
 	}
 </script>
 
@@ -109,4 +110,4 @@
 
 <!-- portals -->
 <ModalPortal store={modalStore} class="z-modal" />
-<NotificationPortal store={notiStore} />
+<NotificationPortal />
