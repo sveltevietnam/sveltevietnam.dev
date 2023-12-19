@@ -130,13 +130,9 @@ export const GET: RequestHandler = async ({ url }) => {
 			];
 			break;
 		case '':
-			throw error(400, {
-				message: 'Missing resource parameter',
-			});
+			error(400, { message: 'Missing resource parameter' });
 		default:
-			throw error(404, {
-				message: 'Resource not found',
-			});
+			error(404, { message: 'Resource not found' });
 	}
 	const headers = {
 		'Cache-Control': 'max-age=0, s-maxage=3600',

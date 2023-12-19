@@ -45,7 +45,7 @@ export const load: PageServerLoad = async ({
 		}),
 	);
 	const json = (await response.json()) as GetSubscriptionResponseDTO;
-	if (!json.success) throw error(response.status, json.code);
+	if (!json.success) error(response.status, json.code);
 
 	const form = await superValidate(json.data, UpdateDomainSubscriptionRequestSchema);
 

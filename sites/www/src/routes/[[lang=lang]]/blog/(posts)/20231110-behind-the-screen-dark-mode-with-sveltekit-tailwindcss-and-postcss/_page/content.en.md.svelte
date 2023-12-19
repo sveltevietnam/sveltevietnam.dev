@@ -6,7 +6,6 @@
 This is the second part of the "Behind the Screen" blog series, where I share my experience and lessons learned while building *sveltevietnam.dev*. You can read the [first part here](/blog/20231009-behind-the-screen-a-yes-code-blog-of-svelte-vietnam) (not a prerequisite for this post).
 :::
 
-
 Today, dark mode is becoming a common and even necessary feature to provide a complete user experience. Although the problem seems simple on the surface, it does require meticulous work and a combination of many small details from many different technologies. This blog post discusses one of many possible implementations of dark mode with Svelte and SvelteKit. Most of the details, however, are language-agnostic, you can apply them to any framework and front-end project.
 
 ## Dark Mode with CSS
@@ -288,7 +287,7 @@ and use them as follows:
 <!-- in css -->
 <style>
 	div {
-		color: theme('colors.fg');
+		/* color: theme('colors.fg'); */
 		background-color: theme('colors.bg.DEFAULT');
 	}
 </style>

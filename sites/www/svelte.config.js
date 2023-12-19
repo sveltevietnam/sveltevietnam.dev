@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 import autoSlug from '@svelte-put/preprocess-auto-slug';
 import inlineSvg from '@svelte-put/preprocess-inline-svg';
 import adapter from '@sveltejs/adapter-cloudflare';
-import { vitePreprocess } from '@sveltejs/kit/vite';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import MagicString from 'magic-string';
 import { mdsvex } from 'mdsvex';
 import { walk } from 'svelte/compiler';

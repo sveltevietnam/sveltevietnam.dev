@@ -69,7 +69,7 @@ export async function mail<E extends RequestEvent>(event: E, domain: Subscriptio
 				text: t.alreadyRegister,
 			});
 		}
-		throw error(response.status, `${t.error.unknown} [CODE: ${data.code}]`);
+		error(response.status, `${t.error.unknown} [CODE: ${data.code}]`);
 	}
 
 	return message(form, {
