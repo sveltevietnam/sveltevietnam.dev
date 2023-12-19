@@ -18,12 +18,14 @@
 		"fonts"
 	],
 	"scripts": {
-		"build": "node css/build.js"
+		"build": "node css/build.js",
+		"gen": "hygen css create"
 	},
 	"dependencies": {
 		"@tailwindcss/typography": "^0.5.10",
 		"autoprefixer": "^10.4.16",
 		"cssnano": "^6.0.2",
+		"hygen": "^6.2.11",
 		"postcss": "^8.4.32",
 		"postcss-color-scheme": "^0.3.2",
 		"postcss-custom-selectors": "^7.1.6",
