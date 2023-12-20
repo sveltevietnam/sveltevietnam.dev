@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.0.0-next.32
+
+### Minor Changes
+
+- [#208](https://github.com/sveltevietnam/sveltevietnam.dev/pull/208) [`da0aa95`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/da0aa95281da20632a678b88d0a592990cf4d765) Thanks [@vnphanquang](https://github.com/vnphanquang)! - extract design system and CSS components to `@sveltevietnam/ui`
+
+- [`c1a0689`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/c1a06899689fdaa23ed9b07047992f3fb88235f4) Thanks [@vnphanquang](https://github.com/vnphanquang)! - upgrade to sveltekit 2 and vite 5
+
+### Patch Changes
+
+- [#207](https://github.com/sveltevietnam/sveltevietnam.dev/pull/207) [`177c638`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/177c638bdea28f2fdab1f5ca921276826cc90da0) Thanks [@vnphanquang](https://github.com/vnphanquang)! - refactor global notification store into into a Svelte context
+
 ## 1.0.0-next.31
 
 ### Minor Changes
