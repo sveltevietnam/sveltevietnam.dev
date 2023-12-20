@@ -32,12 +32,7 @@
 		<ul use:intersect>
 			{#each sponsors as _}
 				<li class="flex items-center space-x-2 pc:space-x-4">
-					<svg
-						inline-src="sveltevietnam"
-						width="50"
-						height="56"
-						class="c-logo c-logo--themed sp:h-auto sp:w-[32px]"
-					/>
+					<div class="c-logo c-logo--themed sp:w-[32px]" />
 					<p class="c-text-h5 uppercase leading-normal">Svelte<br />Vietnam</p>
 				</li>
 			{/each}
