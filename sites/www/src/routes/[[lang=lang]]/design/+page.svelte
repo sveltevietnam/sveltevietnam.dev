@@ -70,36 +70,21 @@
 					<li class="logo-card-wrapper">
 						<dt class="c-text-caption2">{t.logo.versions.versions.original}</dt>
 						<dd class="logo-card bg-bg">
-							<svg
-								inline-src="sveltevietnam"
-								width="50"
-								height="56"
-								class="c-logo c-logo--original"
-							/>
+							<div class="c-logo" />
 							<p>SVELTE<br />VIETNAM</p>
 						</dd>
 					</li>
 					<li class="logo-card-wrapper">
 						<dt class="c-text-caption2">{t.logo.versions.versions.positive}</dt>
 						<dd class="logo-card bg-grayscale-white text-grayscale-black">
-							<svg
-								inline-src="sveltevietnam"
-								width="50"
-								height="56"
-								class="c-logo c-logo--positive"
-							/>
+							<div class="c-logo c-logo--positive" />
 							<p>SVELTE<br />VIETNAM</p>
 						</dd>
 					</li>
 					<li class="logo-card-wrapper">
 						<dt class="c-text-caption2">{t.logo.versions.versions.negative}</dt>
 						<dd class="logo-card bg-grayscale-black text-grayscale-white">
-							<svg
-								inline-src="sveltevietnam"
-								width="50"
-								height="56"
-								class="c-logo c-logo--negative"
-							/>
+							<div class="c-logo c-logo--negative" />
 							<p>SVELTE<br />VIETNAM</p>
 						</dd>
 					</li>
