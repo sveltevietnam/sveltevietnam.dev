@@ -6,7 +6,8 @@
 		"@services/discord": "0.0.0",
 		"@sites/www": "0.0.0",
 		"@internals/isc": "0.0.0",
-		"@services/mailer": "0.0.0"
+		"@services/mailer": "0.0.0",
+		"@sveltevietnam/ui": "1.0.0-next.0"
 	},
 	"changesets": [
 		"afraid-gifts-shave",
@@ -18,6 +19,7 @@
 		"brown-cats-buy",
 		"calm-lies-compare",
 		"chilled-gorillas-burn",
+		"clean-owls-clap",
 		"clean-yaks-repair",
 		"clever-mirrors-refuse",
 		"cold-fireants-hope",
@@ -73,6 +75,8 @@
 		"shaggy-rivers-juggle",
 		"shaggy-walls-visit",
 		"shiny-camels-poke",
+		"shiny-needles-speak",
+		"shy-ads-raise",
 		"silly-planes-play",
 		"small-zebras-tan",
 		"smooth-cars-swim",

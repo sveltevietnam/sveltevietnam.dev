@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.8
+
+### Minor Changes
+
+- [`c1a0689`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/c1a06899689fdaa23ed9b07047992f3fb88235f4) Thanks [@vnphanquang](https://github.com/vnphanquang)! - upgrade to sveltekit 2 and vite 5
+
 ## 1.0.0-next.7
 
 ### Patch Changes
