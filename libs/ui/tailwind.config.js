@@ -1,6 +1,6 @@
-import { sveltevietnam } from './css/tailwind.js';
+import sveltevietnam from './css/tailwind.js';
 
 /** @type {import("tailwindcss").Config } */
 export default {
-	plugins: [sveltevietnam],
+	presets: [...sveltevietnam],
 };
