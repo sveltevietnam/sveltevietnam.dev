@@ -1,8 +1,8 @@
 import { localizeUrl, getLangFromUrl } from '@internals/utils/url';
 import type { Cookies, Handle } from '@sveltejs/kit';
 
-import { COOKIE_LANGUAGE, COOKIE_USER_ID } from '$env/static/private';
-import { PUBLIC_COOKIE_COLOR_SCHEME, PUBLIC_COOKIE_LAST_FRESH_VISIT } from '$env/static/public';
+import { COOKIE_LANGUAGE, COOKIE_USER_ID, COOKIE_LAST_FRESH_VISIT_AT } from '$env/static/private';
+import { PUBLIC_COOKIE_COLOR_SCHEME } from '$env/static/public';
 import { LANGUAGES } from '$shared/services/i18n';
 
 const COMMON_COOKIE_CONFIG: Parameters<Cookies['set']>[2] = {
@@ -82,13 +82,12 @@ export const handle: Handle = async ({ event, resolve }) => {
 	 * conveniently, SvelteKit will reset the 'Referer' header on page refresh, so we don't have to
 	 * manually catch the unload event and do it ourselves.
 	 */
-	let lastFreshVisit = cookies.get(PUBLIC_COOKIE_LAST_FRESH_VISIT);
-	if (!lastFreshVisit || !locals.internalReferer) {
+	let lastFreshVisitAt = cookies.get(COOKIE_LAST_FRESH_VISIT_AT);
+	if (!lastFreshVisitAt || !locals.internalReferer) {
 		shouldSkipSlash = false;
-		lastFreshVisit = Date.now().toString();
-		cookies.set(PUBLIC_COOKIE_LAST_FRESH_VISIT, lastFreshVisit, {
+		lastFreshVisitAt = Date.now().toString();
+		cookies.set(COOKIE_LAST_FRESH_VISIT_AT, lastFreshVisitAt, {
 			...COMMON_COOKIE_CONFIG,
-			httpOnly: false,
 			maxAge: 150, // 2.5 minutes,
 		});
 	}
