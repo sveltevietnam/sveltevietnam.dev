@@ -39,7 +39,7 @@ function createSplashStore() {
 					clearInterval(intervalId);
 					splash(new Date(splashedAt), hydratedAt);
 				}
-			}, 500);
+			}, 250);
 		}
 	}
 
