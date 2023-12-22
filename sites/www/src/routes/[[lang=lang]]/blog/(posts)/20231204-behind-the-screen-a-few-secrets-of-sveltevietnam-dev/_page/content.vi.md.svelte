@@ -171,3 +171,7 @@ Logo của Svelte Việt Nam gần như luôn hiển thị ở phần trên và 
 ## Kết
 
 Trên đây là một vài chi tiết rất nhỏ nhưng hy vọng qua đấy bạn có thể hiểu thêm về cách mà mình thiết kế và xây dựng trang *sveltevietnam.dev*. Phải vui! Đó là yếu tố rất quan trọng. Người dùng đầu tiên chính là người viết ra phần mềm; nếu ta thấy vui khi dùng chính sản phẩm của mình, có lẽ đó cũng là thành công rồi. Cho dù bạn có đang viết React hay Svelte, HTMX hay Astro, Golang hay Rust, chúc bạn sẽ luôn tìm thấy được niềm vui nho nhỏ đâu đấy nhé!
+
+:::div c-callout c-callout--info
+Trong phần kế tiếp của chuỗi bài viết "Behind the Screen", mình giải thích chi tiết hơn về cách thiết lập mành hình chờ (SplashScreen). Bạn có thể tìm đọc tại "[Màn hình chờ với nâng cao tăng dần](/blog/20231220-behind-the-screen-progressive-splashscreen)".
+:::

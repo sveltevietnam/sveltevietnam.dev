@@ -16,6 +16,7 @@
 	import type { Breadcrumb } from '$shared/services/navigation';
 	import { formateDateForBlog } from '$shared/utils/datetime';
 
+	import '../../../../lib/client/styles/blog.css';
 	import '../../../../lib/client/styles/code.css';
 	import '../../../../lib/client/styles/heading-anchor.css';
 
@@ -136,7 +137,7 @@
 		<div class="post-grid mt-[60px]">
 			{#key data.language && data.pathname}
 				<section
-					class="post-content prose-svelte-vn dark:prose-invert prose max-w-full"
+					class="post-content prose-svelte-vn prose max-w-full dark:prose-invert"
 					use:toc={{
 						store: tocStore,
 						selector: ':where(h2,h3,h4,h5,h6)',
