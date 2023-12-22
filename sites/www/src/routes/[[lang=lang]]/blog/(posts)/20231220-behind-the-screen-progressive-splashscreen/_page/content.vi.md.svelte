@@ -10,10 +10,10 @@
 </script>
 
 :::div c-callout c-callout--info
-Bài viết này nằm trong chuỗi bài viết "Behind the Screen". Bạn có thể tìm đọc phần trước tại "[Một vài bí mật về sveltevietnam.dev](/blog/20231204-behind-the-screen-a-few-secrets-of-sveltevietnam-dev)".
+Bài viết này nằm trong chuỗi bài viết "Behind the Screen", nơi mình chia sẻ những kinh nghiệm và bài học trong quá trình xây dựng *sveltevietnam.dev*. Bạn có thể tìm đọc phần trước tại "[Một vài bí mật về sveltevietnam.dev](/blog/20231204-behind-the-screen-a-few-secrets-of-sveltevietnam-dev)".
 :::
 
-Trong phần trước. Mình có đề cập sơ lược về màn hình chờ (SplashScreen). Màn hình này hiển thị ngay lúc đầu khi trang vừa được tải và thực hiện một số hiệu ứng chuyển động giúp thu hút sự chú ý của người dùng. Để kích hoạt màn hình chờ, bạn có thể tải lại trang (ctrl/cmd + R). Nếu bạn không dùng Javascript, hãy tắt hẳn tab trình duyệt và mới trang mới.
+Trong phần trước, mình có đề cập sơ lược về màn hình chờ (splash screen). Màn hình này hiển thị ngay lúc đầu khi trang vừa được tải và thực hiện một số hiệu ứng chuyển động giúp thu hút sự chú ý của người dùng. Để kích hoạt màn hình chờ, bạn có thể tải lại trang (ctrl/cmd + R). Nếu bạn không dùng Javascript, hãy tắt hẳn tab trình duyệt và mới trang mới.
 
 Trong bài viết này ta sẽ tìm hiểu chi tiết hơn về giá trị thực tế mà màn hình chờ mang lại cho người dùng, cũng như cách mà *sveltevietnam.dev* thiết lập màn hình chờ để phục vụ nhiều người dùng nhất có thể, kể cả người dùng không sử dụng Javascript.
 
@@ -116,8 +116,8 @@ Chú ý rằng ta có thể trực tiếp khai báo tệp `splash.css` tại `ap
 
 Chi tiết thực hiện HTML và CSS của màn hình chờ là tùy thuộc vào ứng dụng và thiết kế của dự án. Bạn có thể tham khảo màn hình chờ của *sveltevietnam.dev* tại [app.html](https://github.com/sveltevietnam/sveltevietnam.dev/blob/ac4373afcca1402834954d531b8215b3a2553c5f/sites/www/src/app.html#L47-L131) và [splash.css](https://github.com/sveltevietnam/sveltevietnam.dev/blob/ac4373afcca1402834954d531b8215b3a2553c5f/sites/www/src/lib/client/styles/splash.css). Nhìn chung, màn hình chờ thường có hai đặc điểm sau:
 
-1. có `position` là `fixed` hoặc `absolute`, với `z-index` thích hợp để che nội dung trang bên dưới,
-2. có hiệu ứng tương đối đơn giản, kéo dài từ 1-3 giây, hiệu ứng cuối cùng nên di chuyển cả phần tử màn hình chờ ra khỏi viewport để người dùng có thể tương tác được với trang web.
+- có `position` là `fixed` hoặc `absolute`, với `z-index` thích hợp để che nội dung trang bên dưới,
+- có hiệu ứng tương đối đơn giản, kéo dài từ 1-3 giây, hiệu ứng cuối cùng nên di chuyển cả phần tử màn hình chờ ra khỏi viewport để người dùng có thể tương tác được với trang web.
 
 Về cơ bản, đến đây màn hình chờ đã hoạt động. Ở các phần sau, ta tập trung cải thiện cho những tình huống đặc biệt hơn để cung cấp trải nghiệm tốt nhất cho người dùng.
 
@@ -125,7 +125,7 @@ Về cơ bản, đến đây màn hình chờ đã hoạt động. Ở các ph�
 
 Màn hình chờ chỉ nên xuất hiện một lần khi người dùng vừa truy cập vào trang web chứ không nên lặp lại mỗi khi điều hướng giữa các trang. May mắn là, nếu bạn dùng SvelteKit và [client-side-rendering (CSR) được bật](https://kit.svelte.dev/docs/page-options#csr), trang web sẽ sử dụng client-side router để điều hướng một cách thông minh mà không cần khởi tạo lại trang web: có nghĩa là màn hình chờ sẽ không bị lặp lại. Lúc này, vì hydration đã hoàn thành, các tài nguyên Javascript thiết yếu đã được tải, và trang web đã nằm trong môi trường framework, ta sẽ không gặp phải vấn đề chớp nháy trong quá trình điều hướng sang trang khác.
 
-Tuy nhiên, trong trường hợp bạn không dùng CSR hoặc người dùng không sử dụng được Javascript, mỗi điều hướng được xem như một trang web mới hoàn toàn, HTML của cả trang sẽ được khởi tạo lại, và màn hình chờ sẽ lặp lại. Để khắc phục tình huống này, ta cần thêm xử lý ở phía máy chủ với chiến lược như sau:
+Tuy nhiên, trong trường hợp bạn không dùng CSR hoặc người dùng không sử dụng được Javascript, mỗi điều hướng được xem như một trang web mới hoàn toàn, HTML của cả trang sẽ được khởi tạo lại, và màn hình chờ sẽ lặp lại. Để khắc phục tình huống này, ta cần thêm xử lý ở phía máy chủ với ý tưởng như sau:
 
 1. Nếu người dùng vào trang web lần đầu, hiển thị màn hình chờ.
 2. Nếu người dùng điều hướng nội bộ từ trong trang web (ví dụ từ trang `/a` trong `/b`), không hiển thị lại màn hình chờ.
@@ -274,7 +274,7 @@ Lưu ý: bạn cần bắt đúng sự kiện `animationend` vì màn hình ch�
 			if (splashedAt) {
 				clearInterval(intervalId);
 				// :::highlight
-				if (hydrated.getTime() > new Date(splashedAt).getTime()) {
+				if (hydrated > new Date(splashedAt)) {
 					// hydration hoàn thành sau khi màn hình chờ kết thúc
 					// chỉ thị đường truyền không ổn định:
 					// hiển thị thông báo phù hợp
@@ -299,6 +299,6 @@ Nhìn lại, ta đã hoàn thiện một màn hình chờ với những đặc �
 - có thể hoạt động kể cả khi người dùng không sử dụng Javascript,
 - khi có Javscript, có thể giúp phát hiện khi đường truyền ban đầu không ổn định.
 
-Như vậy, ta có thể xem rằng màn hình chờ đã đạt những tiêu chí cơ bản của "cải thiện tăng dần" (tạm dịch từ "[progressive enhancement](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement)"). Đây là một khái niệm quan trọng khi thiết kế trải nghiệm người dùng mà mình khuyến khích bạn nên tìm hiểu thêm nếu chưa biết đến. Quá trình thiết lập màn hình chờ đã nhắc nhở cho mình rằng sử dụng vanilla HTML, CSS, và Javascript là hoàn toàn bình thường dù ta có đang dùng framework nào đi nữa. May mắn là, thiết kế của Svelte rất gần với nền tảng web tiêu chuẩn, và các tài liệu hay bài viết trong hệ sinh thái Svelte cũng không hề can ngăn chúng ta không sử dụng vanilla. Đó là một trong những lý do khiến mình cảm thấy tự nhiên và thoái mái khi sử dụng Svelte. Hãy tham gia [Discord của Svelte Việt Nam](https://discord.sveltevietnam.dev) nếu bạn muốn thảo luận thêm về chủ đề này nhé.
+Như vậy, ta có thể xem rằng màn hình chờ đã đạt những tiêu chí cơ bản của "cải thiện tăng dần" (tạm dịch từ "[progressive enhancement](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement)"). Đây là một khái niệm quan trọng khi thiết kế trải nghiệm người dùng mà mình khuyến khích bạn nên tìm hiểu thêm nếu chưa biết đến. Quá trình thiết lập màn hình chờ đã nhắc nhở cho mình rằng sử dụng vanilla HTML, CSS, và Javascript là hoàn toàn bình thường dù ta có đang dùng framework nào đi nữa. May mắn là, thiết kế của Svelte rất gần với nền tảng web tiêu chuẩn, và các tài liệu hay bài viết trong hệ sinh thái Svelte cũng không hề can ngăn chúng ta không sử dụng vanilla. Đó là một trong những lý do khiến mình cảm thấy tự nhiên và thoái mái khi sử dụng Svelte.
 
-Xin cảm ơn!
+Hãy tham gia [Discord của Svelte Việt Nam](https://discord.sveltevietnam.dev) nếu bạn muốn thảo luận thêm về chủ đề này nhé. Xin cảm ơn!

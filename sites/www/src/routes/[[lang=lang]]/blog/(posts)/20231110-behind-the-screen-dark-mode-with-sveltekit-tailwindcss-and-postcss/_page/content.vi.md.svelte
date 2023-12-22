@@ -3,7 +3,7 @@
 </script>
 
 :::div c-callout c-callout--info
-Đây là bài viết thứ hai trong chuỗi bài viết có tên "Behind the Screen", nơi mình chia sẻ những kinh nghiệm và bài học trong quá trình xây dựng **sveltevietnam.dev**. Bạn có thể đọc bài viết đầu tiên [tại đây](/blog/20231009-behind-the-screen-a-yes-code-blog-of-svelte-vietnam) (không liên quan đến bài này).
+Đây là bài viết thứ hai trong chuỗi bài viết có tên "Behind the Screen", nơi mình chia sẻ những kinh nghiệm và bài học trong quá trình xây dựng *sveltevietnam.dev*. Bạn có thể đọc bài viết đầu tiên [tại đây](/blog/20231009-behind-the-screen-a-yes-code-blog-of-svelte-vietnam) (không liên quan đến bài này).
 :::
 
 Ngày nay, giao diện tối (dark mode) đang dần trở thành một tính năng phổ biến và thậm chí là cần thiết để mang lại một trải nghiệm hoàn thiện cho người dùng. Tuy bề ngoài vấn đề là đơn giản nhưng thực tế công việc này đòi hỏi một sự tỉ mỉ và kết hợp nhiều chi tiết nhỏ, tập hợp từ nhiều công nghệ khác nhau. Bài viết này lấy ví dụ trong ngữ cảnh ta dùng Svelte và SvelteKit, tuy nhiên đa số các chi tiết là phi ngôn ngữ, bạn có thể áp dụng chúng vào bất kì framework hay dự án front-end nào.
