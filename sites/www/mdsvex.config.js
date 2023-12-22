@@ -52,6 +52,8 @@ export const mdsvexConfig = defineMDSveXConfig({
 	highlight: { highlighter },
 });
 
+const STATUSES = ['info', 'success', 'warning', 'error'];
+
 /**
  * @returns {import('shikiji').ShikijiTransformer}
  */
@@ -65,7 +67,7 @@ function transformer() {
 			let lineNumber = 0;
 
 			/** @typedef {{ type: 'diff'; variant: '-' | '+' }} BlockDiff */
-			/** @typedef {{ type: 'highlight' }} BlockHighlight */
+			/** @typedef {{ type: 'highlight'; variant: typeof STATUSES[number]}} BlockHighlight */
 			/** @typedef {BlockDiff | BlockHighlight} Block */
 
 			/** @type {Block[]} */
@@ -84,10 +86,18 @@ function transformer() {
 					if (match) {
 						const variant = match[1];
 						blocks.push({ type: 'diff', variant });
-					} else if (/:::highlight/.test(str)) {
-						// highlight
-						blocks.push({ type: 'highlight' });
-					} else {
+					}
+
+					// highlight
+					if (!match) {
+						match = str.match(new RegExp(`:::highlight\\s?(${STATUSES.join('|')})?`));
+						if (match) {
+							const variant = match[1] ?? 'info';
+							blocks.push({ type: 'highlight', variant });
+						}
+					}
+
+					if (!match) {
 						blocks.pop();
 					}
 				}
@@ -106,18 +116,23 @@ function transformer() {
 
 				let shouldAddLineNumber = true;
 				if (blocks.length) {
-					const block = blocks.at(-1);
-					switch (block.type) {
-						case 'diff':
-							line.properties['data-line-diff'] = block.variant;
-							if (block.variant === '-') {
-								shouldAddLineNumber = false;
-								lineNumber--;
-							}
-							break;
-						case 'highlight':
-							line.properties['data-line-highlighted'] = 'true';
-							break;
+					let alreadyDiffed = false;
+					for (let i = blocks.length - 1; i >= 0; i--) {
+						const block = blocks[i];
+						switch (block.type) {
+							case 'diff':
+								if (alreadyDiffed) continue;
+								alreadyDiffed = true;
+								line.properties['data-line-diff'] = block.variant;
+								if (block.variant === '-') {
+									shouldAddLineNumber = false;
+									lineNumber--;
+								}
+								break;
+							case 'highlight':
+								line.properties['data-line-highlighted'] = block.variant;
+								break;
+						}
 					}
 				}
 				if (shouldAddLineNumber) {

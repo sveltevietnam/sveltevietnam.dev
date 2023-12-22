@@ -30,20 +30,17 @@
 			opacity: 0.5;
 		}
 
-		&[data-line-highlighted] {
+		&[data-line-diff] {
 			display: inline-block;
 			width: 100%;
-			background-color: hsl(215deg 39% 18%);
-		}
 
-		&[data-line-diff] {
 			&::after {
 				position: absolute;
 				left: 1ch;
 				display: inline-block;
 			}
 
-			&[data-line-diff='+'] {
+			&:where([data-line-diff='+']) {
 				background-color: hsl(123.04deg 36.07% 42.94% / 15%);
 
 				&::after {
@@ -51,12 +48,33 @@
 				}
 			}
 
-			&[data-line-diff='-'] {
+			&:where([data-line-diff='-']) {
 				background-color: hsl(3.12deg 74.76% 59.61% / 10%);
 
 				&::after {
 					content: '-';
 				}
+			}
+		}
+
+		&[data-line-highlighted] {
+			display: inline-block;
+			width: 100%;
+
+			&:where([data-line-highlighted='info']) {
+				background-color: hsl(215deg 39% 18%);
+			}
+
+			&:where([data-line-highlighted='success']) {
+				background-color: hsl(123deg 36% 43% / 15%);
+			}
+
+			&:where([data-line-highlighted='warning']) {
+				background-color: hsl(43deg 100% 50% / 15%);
+			}
+
+			&:where([data-line-highlighted='error']) {
+				background-color: hsl(3.12deg 74.76% 59.61% / 10%);
 			}
 		}
 	}
