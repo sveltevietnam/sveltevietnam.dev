@@ -21,7 +21,6 @@
 
 	&[data-splash-skip='true'] {
 		display: none;
-		animation-play-state: paused;
 	}
 }
 

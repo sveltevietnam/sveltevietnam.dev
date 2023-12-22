@@ -113,21 +113,18 @@
 				</svg>
 			</div>
 			<script>
-				const splashEl = document.getElementById('splash');
-				function cleanup() {
+				function stamp() {
 					document.documentElement.setAttribute('data-splashed-at', new Date().toISOString());
 					// if (splashEl) splashEl.remove();
 				}
 
-				if (!splashEl) {
-					document.documentElement.setAttribute('data-splashed-at', new Date().toISOString());
+				const splashEl = document.getElementById('splash');
+				if (!splashEl || splashEl.getAttribute('data-splash-skip') === 'true') {
+					stamp();
 				} else {
-					if (splashEl.getAttribute('data-splash-skip') === 'true') {
-						cleanup();
-					}
 					splashEl.addEventListener('animationend', (el) => {
 						if (!splashEl.isSameNode(el.target)) return;
-						cleanup();
+						stamp();
 					});
 				}
 			</script>
