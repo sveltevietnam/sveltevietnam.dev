@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0-next.33
+
+### Minor Changes
+
+- [`e312ade`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/e312ade9081a16fff1240c33afb0b360629ed55b) Thanks [@vnphanquang](https://github.com/vnphanquang)! - EN translation for blog post "Progressive Splash Screen (Behind the Screen)"
+
+- [`300163e`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/300163eb2e8761694ab36927c55540549f3343ea) Thanks [@vnphanquang](https://github.com/vnphanquang)! - new blog post "Màn hình chờ với nâng cao tăng dần (Behind the Screen)"
+
 ## 1.0.0-next.32
 
 ### Minor Changes
