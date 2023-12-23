@@ -13,22 +13,22 @@
 Bài viết này nằm trong chuỗi bài viết "Behind the Screen", nơi mình chia sẻ những kinh nghiệm và bài học trong quá trình xây dựng *sveltevietnam.dev*. Bạn có thể tìm đọc phần trước tại "[Một vài bí mật về sveltevietnam.dev](/blog/20231204-behind-the-screen-a-few-secrets-of-sveltevietnam-dev)".
 :::
 
-Trong phần trước, mình có đề cập sơ lược về màn hình chờ (splash screen). Màn hình này hiển thị ngay lúc đầu khi trang vừa được tải và thực hiện một số hiệu ứng chuyển động giúp thu hút sự chú ý của người dùng. Để kích hoạt màn hình chờ, bạn có thể tải lại trang (ctrl/cmd + R). Nếu bạn không dùng Javascript, hãy tắt hẳn tab trình duyệt và mới trang mới.
+Trong phần trước, mình có đề cập sơ lược về màn hình chờ (splash screen). Màn hình này hiển thị ngay lúc đầu khi trang vừa được tải và thực hiện một số hiệu ứng chuyển động giúp thu hút sự chú ý của người dùng và chào đón họ vào trang. Để kích hoạt màn hình chờ, bạn có thể tải lại trang (ctrl/cmd + R). Nếu bạn không dùng Javascript, hãy tắt hẳn tab trình duyệt và mới trang mới.
 
 Trong bài viết này ta sẽ tìm hiểu chi tiết hơn về giá trị thực tế mà màn hình chờ mang lại cho người dùng, cũng như cách mà *sveltevietnam.dev* thiết lập màn hình chờ để phục vụ nhiều người dùng nhất có thể, kể cả người dùng không sử dụng Javascript.
 
 ## Không chỉ để vui
 
-Thoạt nhìn màn hình chờ trông có vẻ chỉ phục vụ mục đích hoạt ảnh và giải trí. Đối với người dùng, nhận thức đó là hoàn toàn đúng và đủ. Tuy nhiên, trên phương diện kĩ thuật, màn hình chờ còn là một phương pháp "mua thời gian" trong khi hệ thống đang tải các tài nguyên thiết yếu và chuẩn bị để trang web hoạt động một cách tốt nhất. Quá trình này được gọi là "[hydration](https://kit.svelte.dev/docs/glossary#hydration)" và thường gặp trong hầu hết các framework phổ biến ngày nay. Nói ngắn gọn, hydration là giai đoạn chuyển hóa một trang web tĩnh thành động bằng cách thiết lập môi trường phù hợp để framework thực hiện các kỹ thuật cập nhật DOM theo tương tác của người dùng và biến đổi của hệ thống. Nói cách khác, nếu bạn viết Javascript trong ngữ cảnh của framework (React, Vue, Svelte, ...), các đoạn mã đó chỉ có hiệu lực sau khi hydration đã hoàn thành.
+Thoạt nhìn màn hình chờ trông có vẻ chỉ phục vụ mục đích hoạt ảnh và giải trí. Đối với người dùng, nhận thức đó là hoàn toàn đúng và đủ. Tuy nhiên, trên phương diện kĩ thuật, màn hình chờ còn là một phương pháp "câu giờ" trong khi hệ thống đang tải các tài nguyên thiết yếu và chuẩn bị để trang web hoạt động một cách tốt nhất. Quá trình này được gọi là "[hydration](https://kit.svelte.dev/docs/glossary#hydration)" và thường gặp trong hầu hết các framework phổ biến ngày nay. Nói ngắn gọn, hydration là giai đoạn chuyển hóa một trang web tĩnh thành động bằng cách thiết lập môi trường phù hợp để framework thực hiện các kỹ thuật cập nhật DOM theo tương tác của người dùng và biến đổi của hệ thống. Nói cách khác, nếu bạn viết Javascript trong ngữ cảnh của framework (React, Vue, Svelte, ...), các đoạn mã đó chỉ có hiệu lực sau khi hydration đã hoàn thành.
 
 <figure>
 	<img src={hydrationImage} class="mx-auto max-w-full rounded" width="800" height="475" alt="minh họa hydration: bên phải chưa hydration, trang web tĩnh, chỉ có HTML, CSS, và vanilla JS. Bên phải đã hydration, trang web động trong môi trường Javascript framework" />
 	<figcaption>Minh họa 1: quá trình hydration thiết lập môi trường cho framework</figcaption>
 </figure>
 
-Đối với các trang có hiệu ứng (transition, animation), một vấn đề thường gặp là trang sẽ bị chớp nháy ngay sau khi hydration vừa hoàn thành. Nhiều trang web, đặc biệt là các ứng dụng đơn trang, giải quyết điều này bằng cách chặn cho nội dung không được hiển thị cho đến khi Javascript đã tải xong (hydration đã hoàn thành). Dễ hiểu rằng việc này gây ra hai hệ quả:
+Đối với các trang có nhiều hiệu ứng (transition, animation), đặc biệt là hiệu ứng phụ thuộc vào Javascript như [GSAP](https://gsap.com/) hay [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API), một vấn đề thường gặp là trang sẽ bị chớp nháy ngay sau khi hydration vừa hoàn thành. Nhiều trang web, đặc biệt là các ứng dụng đơn trang, giải quyết điều này bằng cách chặn cho nội dung không được hiển thị cho đến khi Javascript đã tải xong (hydration đã hoàn thành). Dễ hiểu rằng việc này gây ra hai hệ quả:
 
-1. Trang web sẽ không thể dùng được cho đến khi Javascript đã được tải và hydration đã hoàn thành. Khi đường truyền không ổn định, quá trình tải tài nguyên bị trì hoãn và người dùng có thể phải chờ một khoảng thời gian lâu trước khi có thể nhìn thấy nội dung.
+1. Trang web sẽ không thể dùng được cho đến khi hydration đã hoàn thành. Khi đường truyền không ổn định, quá trình tải tài nguyên bị trì hoãn và người dùng có thể phải chờ một khoảng thời gian lâu trước khi có thể nhìn thấy nội dung.
 2. Với người dùng không sử dụng Javascript, trang web sẽ trở nên vô dụng vì không có nội dung nào được hiển thị, và hydration không bao giờ diễn ra.
 
 <figure>
@@ -54,8 +54,8 @@ Như vậy, giải pháp chặn hiển thị nội dung tuy đơn giản nhưng 
 Theo những ràng buộc mình đã trình bày ở phần trước, màn hình chờ cần thỏa mãn các điều kiện cơ bản sau:
 
 1. hiển thị đầu tiên, nằm phía trên che đi nội dung của trang web,
-2. diễn ra độc lập và không bị ảnh hưởng bởi quá trình hydration,
-3. phải hoạt động kể cả khi người dùng không sử dụng Javascript.
+2. phải hoạt động kể cả khi người dùng không sử dụng Javascript,
+3. diễn ra độc lập và không bị ảnh hưởng bởi quá trình hydration.
 
 Nói cách khác, màn hình chờ cần được thiết lập bằng HTML và CSS thuần túy và không phụ thuộc vào Javascript. Đặc biệt là, nó phải nằm ngoài phạm vi ảnh hưởng của framework, vì nếu không thì các hiệu ứng hoạt ảnh trong màn hình chờ sẽ bị giật và lặp lại khi hydration hoàn thành.
 
@@ -75,7 +75,7 @@ Trong Svelte và SvelteKit, có nhiều cách để áp dụng một đoạn mã
 	<body>
 		<!-- :::highlight -->
 		<div id="splash">
-			<!-- vanilla HTML, độc lập đối với framework và quá trình hydration -->
+			<!-- "vanilla", độc lập đối với framework và quá trình hydration -->
 		</div>
 		<!-- ::: -->
 
@@ -123,7 +123,7 @@ Về cơ bản, đến đây màn hình chờ đã hoạt động. Ở các ph�
 
 ## Tránh lặp lại khi điều hướng
 
-Màn hình chờ chỉ nên xuất hiện một lần khi người dùng vừa truy cập vào trang web chứ không nên lặp lại mỗi khi điều hướng giữa các trang. May mắn là, nếu bạn dùng SvelteKit và [client-side-rendering (CSR) được bật](https://kit.svelte.dev/docs/page-options#csr), trang web sẽ sử dụng client-side router để điều hướng một cách thông minh mà không cần khởi tạo lại trang web: có nghĩa là màn hình chờ sẽ không bị lặp lại. Lúc này, vì hydration đã hoàn thành, các tài nguyên Javascript thiết yếu đã được tải, và trang web đã nằm trong môi trường framework, ta sẽ không gặp phải vấn đề chớp nháy trong quá trình điều hướng sang trang khác.
+Màn hình chờ chỉ nên xuất hiện một lần khi người dùng vừa truy cập chứ không nên lặp lại mỗi khi điều hướng giữa các trang. May mắn là, nếu bạn dùng SvelteKit và [client-side-rendering (CSR) được bật](https://kit.svelte.dev/docs/page-options#csr), trang web sẽ sử dụng client-side router để điều hướng một cách thông minh mà không cần khởi tạo lại trang web: có nghĩa là màn hình chờ sẽ không bị lặp lại. Lúc này, vì hydration đã hoàn thành, các tài nguyên Javascript thiết yếu đã được tải, và trang web đã nằm trong môi trường framework, ta sẽ không gặp phải vấn đề chớp nháy trong quá trình điều hướng sang trang khác.
 
 Tuy nhiên, trong trường hợp bạn không dùng CSR hoặc người dùng không sử dụng được Javascript, mỗi điều hướng được xem như một trang web mới hoàn toàn, HTML của cả trang sẽ được khởi tạo lại, và màn hình chờ sẽ lặp lại. Để khắc phục tình huống này, ta cần thêm xử lý ở phía máy chủ với ý tưởng như sau:
 
@@ -260,7 +260,7 @@ Ngoài ra, trong tình huống này, ta không thể tránh được việc tran
 Lưu ý: bạn cần bắt đúng sự kiện `animationend` vì màn hình chờ có thể có nhiều hiệu ứng trên nhiều phần tử HTML. Khi hiệu ứng kết thúc ở phần từ nào, phần tử đó sẽ phát ra sự kiện `animationend` và [bubble](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#event_bubbling) lên trên. Trong ví dụ trên, hiệu ứng cuối cùng nằm tại chính phần tử `div#splash`.
 :::
 
-Ở đây, bạn lại thấy ta đã dùng vanilla JS cho đoạn mã trên. Và minh xin nhắc lại một lần nữa: điều này là hoàn toàn bình thường. Ta cần dùng vanilla vì nếu đoạn code trên nằm trong các thành phần của framework, nó sẽ không có hiệu lực cho đến khi hydration đã hoàn thành - nghĩa là đoạn mã trở nên vô dụng. Ta cũng không thiết lập các thuộc tính `defer`, `async`, hay biến đoạn mã thành `module` vì ta muốn nó chạy sớm nhất có thể, để bắt được chính xác hơn thời điểm hiệu ứng đã kết thúc (sự kiện `animationend`). Tiếp theo, ta lấy mốc thời gian khi hydration vừa hoàn thành và so sánh với mốc thời gian màn hình chờ đã có:
+Ở đây, bạn lại thấy ta đã dùng vanilla JS cho đoạn mã trên. Và minh xin nhắc lại một lần nữa: điều này là hoàn toàn bình thường. Ta cần dùng vanilla vì nếu đoạn code trên nằm trong các thành phần của framework, nó sẽ không có hiệu lực cho đến khi hydration đã hoàn thành - nghĩa là đoạn mã trở nên vô dụng. Ta cũng không thiết lập các thuộc tính [defer](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#defer), [async](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#async), hay biến đoạn mã thành [module](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#module) vì ta muốn nó chạy sớm nhất có thể, để bắt được chính xác hơn thời điểm hiệu ứng đã kết thúc (sự kiện `animationend`). Tiếp theo, ta lấy mốc thời gian khi hydration vừa hoàn thành và so sánh với mốc thời gian màn hình chờ đã có:
 
 ```svelte
 <!-- src/routes/+layout.svelte -->
@@ -288,13 +288,17 @@ Lưu ý: bạn cần bắt đúng sự kiện `animationend` vì màn hình ch�
 
 Bạn có thể đặt đoạn code trên ở nơi tùy ý - dù ở đâu đi nữa, miễn là thuộc trong phạm vi hydration, thì nó sẽ chỉ chạy khi hydration đã hoàn thành. Ngoài ra, về lý thuyết, ta có thể dùng [MutationObserver](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) để theo dõi thay đổi của thuộc tính `data-splashed-at` thay vì `setInterval`, tuy nhiên làm như vậy đoạn code sẽ trở nên dài dòng và không cần thiết.
 
+:::div c-callout c-callout--warning
+Chú ý rằng bạn có thể sẽ phải điều chỉnh điều kiện so sánh hai mốc thời gian tùy thuộc vào số lượng tài nguyên mà trang cần tải, và độ dài của hiệu ứng trên màn hình chờ. Ví dụ, *sveltevietnam.dev* chỉ hiển thị thông báo khi hydration hoàn thành ***2 giây*** sau khi splash screen đã kết thúc. Bạn hãy thử thêm bớt một vài giây để tìm giá trị phù hợp nhất cho trang của mình nhé.
+:::
+
 Để giả lập tình huống đường truyên không ổn định, bạn có thể chọn "slow 3G" tại tùy chỉnh network tướng ứng trong devtool của trình duyệt.
 
 ## Kết
 
 Nhìn lại, ta đã hoàn thiện một màn hình chờ với những đặc điểm sau:
 
-- dựa trên vanilla HTML, CSS,
+- dựa trên HTML, CSS,
 - chỉ hiển thị lần đầu mà không bị lặp lại khi điều hướng,
 - có thể hoạt động kể cả khi người dùng không sử dụng Javascript,
 - khi có Javscript, có thể giúp phát hiện khi đường truyền ban đầu không ổn định.

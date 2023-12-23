@@ -61,7 +61,7 @@ When you open the web page in devices or places that are limited in network conn
 
 :::div not-prose
 <BaseNotification intent="info">
-	<p>Interrupt has been detected due to unstable connection. We are sorry for this inconvenience!</p>
+	<p>Interrupt has been detected due to unstable network. We are sorry for this inconvenience!</p>
 </BaseNotification>
 :::
 

@@ -36,7 +36,7 @@ export const post = {
 		'user experience',
 	],
 	tags: ['inside', 'technical'],
-	readMinutes: 10,
+	readMinutes: 12,
 	ogImage: {
 		en: ogImageEn,
 		vi: ogImageVi,
@@ -46,8 +46,8 @@ export const post = {
 		vi: thumbnailVi,
 	},
 	wordCount: {
-		vi: 1000,
-		en: 1000,
+		vi: 2900,
+		en: 2300,
 	},
 } satisfies Post;
 
