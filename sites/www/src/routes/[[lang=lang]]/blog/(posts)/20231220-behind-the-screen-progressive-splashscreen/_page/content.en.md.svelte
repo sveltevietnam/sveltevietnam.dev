@@ -111,7 +111,7 @@ It is possible to declare `splash.css` directly in `app.html`. However, by doing
 
 <figure>
 	<img src={vanillaImage} class="mx-auto max-w-full rounded" width="680" height="328" alt="integrating vanilla HTML and CSS into SvelteKit" />
-	<figcaption>Illustration 4: a vanilla splash screen integrated with SvelteKit</figcaption>
+	<figcaption>Illustration 4: a vanilla splash screen integrated in SvelteKit</figcaption>
 </figure>
 
 Implementation details for a splash screen depend on the design of each application. You can refer to the splash screen implementation of *sveltevietnam.dev* at [app.html](https://github.com/sveltevietnam/sveltevietnam.dev/blob/ac4373afcca1402834954d531b8215b3a2553c5f/sites/www/src/app.html#L47-L131) and [splash.css](https://github.com/sveltevietnam/sveltevietnam.dev/blob/ac4373afcca1402834954d531b8215b3a2553c5f/sites/www/src/lib/client/styles/splash.css). In general, a splash screen often has the following characteristics:
@@ -303,6 +303,6 @@ Looking back, we have implemented a splash screen that:
 - works even when users don't use Javascript,
 - can help detect slow network when Javascript is available.
 
-It is fair to say that this splash screen implementation meets the necessary requirements for "[progressive enhancement](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement)" - an important concept in user experience design that I encourage you read more about if haven't already. The process of setting up splash screen has reminded me that using vanilla HTML, CSS, and Javascript is perfectly normal, no matter which framework is in use. Fortunately, Svelte is designed to stay close to standard web APIs; I find that most documentation and articles in the Svelte ecosystem does not discourage us from using vanilla technologies. That is one of the reasons why, for me, working with Svelte is so natural and ergonomic.
+It is fair to say that this splash screen implementation meets the necessary requirements for "[progressive enhancement](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement)" - an important concept in user experience design that I encourage you read more about if haven't already. The process of setting up splash screen has reminded me that using vanilla HTML, CSS, and Javascript is perfectly normal, no matter which framework is in use. Fortunately, Svelte is designed to stay close to standard web APIs; I find that most documentation and articles in the Svelte ecosystem do not discourage us from using vanilla technologies. That is one of the reasons why, for me, working with Svelte is so natural and ergonomic.
 
 You can join the [Svelte Vietnam Discord](https://discord.sveltevietnam.dev) for further discussion on this topic. Thank you very much for reading!
