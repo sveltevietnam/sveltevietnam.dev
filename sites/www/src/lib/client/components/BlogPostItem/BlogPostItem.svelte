@@ -6,7 +6,6 @@
 	import { formateDateForBlog } from '$shared/utils/datetime';
 
 	export let alwaysVertical = false;
-	export let subgrid = false;
 	export let hideSeries = false;
 	export let post: LocalizedPost;
 	let cls = '';
@@ -20,24 +19,22 @@
 	const titleClass = 'c-text-h4 font-bold c-link c-link--preserved';
 </script>
 
-<article class={cls} class:always-vertical={alwaysVertical} class:subgrid>
-	<div class="__thumbnail">
-		<a {href} class="c-link c-link--image">
-			{#if post.thumbnail}
-				<enhanced:img
-					src={post.thumbnail}
-					alt={post.title}
-					class={!alwaysVertical ? 'tb:w-[200px]' : ''}
-				/>
-			{:else}
-				<enhanced:img
-					src={fallbackThumbnail}
-					alt={post.title}
-					class={!alwaysVertical ? 'tb:w-[200px]' : ''}
-				/>
-			{/if}
-		</a>
-	</div>
+<article class={cls} class:always-vertical={alwaysVertical}>
+	<a {href} class="__thumbnail c-link c-link--image">
+		{#if post.thumbnail}
+			<enhanced:img
+				src={post.thumbnail}
+				alt={post.title}
+				class={!alwaysVertical ? 'tb:w-[200px]' : ''}
+			/>
+		{:else}
+			<enhanced:img
+				src={fallbackThumbnail}
+				alt={post.title}
+				class={!alwaysVertical ? 'tb:w-[200px]' : ''}
+			/>
+		{/if}
+	</a>
 	<div class="__title">
 		{#if post.series}
 			<p class="c-text-cap1 mb-1 text-green-900 dark:text-green-300" class:hidden={hideSeries}>
@@ -77,16 +74,29 @@
 				column-gap: 24px;
 			}
 		}
+	}
 
-		&.subgrid {
-			grid-row: 1 / 6;
-			grid-template-rows: subgrid;
+	:global(.blog-subgrid-list) {
+		display: grid;
+		grid-template-columns: 1fr;
+		row-gap: 40px;
+
+		@screen tb {
+			grid-template-columns: repeat(3, 1fr);
+			grid-template-rows: repeat(5, auto);
+			row-gap: 0;
+			column-gap: 40px;
+
+			& article.always-vertical {
+				grid-row: 1 / 6;
+				grid-template-rows: subgrid;
+			}
 		}
 	}
 
 	.__thumbnail {
 		grid-row: 1 / 2;
-		padding-bottom: 16px;
+		margin-bottom: 8px;
 
 		@screen tb {
 			article:not(.always-vertical) & {
@@ -110,6 +120,7 @@
 
 	.__tags {
 		grid-row: 3 / 4;
+		align-self: flex-start;
 
 		@screen tb {
 			article:not(.always-vertical) & {

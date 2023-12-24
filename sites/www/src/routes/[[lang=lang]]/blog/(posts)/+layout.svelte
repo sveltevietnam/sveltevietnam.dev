@@ -276,10 +276,10 @@
 		{#if data.inSeries.length}
 			<section>
 				<h2 class="c-text-h2 font-medium after:mt-2 after:separator" use:intersect>{t.series}</h2>
-				<ul class="mt-10 grid grid-cols-3 grid-rows-[repeat(5,auto)] gap-x-10">
+				<ul class="blog-subgrid-list mt-10">
 					{#each data.inSeries as post}
 						<li use:intersect class="contents">
-							<BlogPostItem {post} alwaysVertical subgrid hideSeries />
+							<BlogPostItem {post} alwaysVertical hideSeries />
 						</li>
 					{/each}
 				</ul>
