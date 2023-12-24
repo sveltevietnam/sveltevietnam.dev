@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.34
+
+### Minor Changes
+
+- [`d07670b`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/d07670b6402108fe0197b786d036e40c05e6004b) Thanks [@vnphanquang](https://github.com/vnphanquang)! - display blog post series and blog posts in the same series
+
 ## 1.0.0-next.33
 
 ### Minor Changes
