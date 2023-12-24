@@ -1,5 +1,6 @@
 import type { PostContent } from '$shared/data/blog';
 import type { Post } from '$shared/data/blog';
+import { getPostSeriesBySlug } from '$shared/data/blog/series';
 import { people } from '$shared/data/people';
 
 import En from './content.en.md.svelte?mdsvex';
@@ -11,8 +12,8 @@ export const post = {
 	slug: '20231009-behind-the-screen-a-yes-code-blog-of-svelte-vietnam',
 	date: '2023-10-09T05:14:08.377Z',
 	title: {
-		en: 'A Yes-Code Blog of Svelte Vietnam (Behind the Screen)',
-		vi: 'Blog chạy bằng cơm (và code) (Behind the Screen)',
+		en: 'A Yes-Code Blog of Svelte Vietnam',
+		vi: 'Blog chạy bằng cơm (và code)',
 	},
 	description: {
 		en: 'Look behind the curtain and discuss the rationale behind the technical design of the Svelte Vietnam Blog',
@@ -33,6 +34,7 @@ export const post = {
 		vi: 2130,
 		en: 1630,
 	},
+	series: getPostSeriesBySlug('behind-the-screen'),
 } satisfies Post;
 
 export const content = {

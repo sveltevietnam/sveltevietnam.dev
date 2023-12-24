@@ -1,5 +1,6 @@
 import type { PostContent } from '$shared/data/blog';
 import type { Post } from '$shared/data/blog';
+import { getPostSeriesBySlug } from '$shared/data/blog/series';
 import { people } from '$shared/data/people';
 
 import En from './content.en.md.svelte?mdsvex';
@@ -13,8 +14,8 @@ export const post = {
 	slug: '20231220-behind-the-screen-progressive-splashscreen',
 	date: '2023-12-20T10:19:08.642Z',
 	title: {
-		en: 'Progressive Splash Screen (Behind the Screen)',
-		vi: 'Màn hình chờ với nâng cao tăng dần (Behind the Screen)',
+		en: 'Progressive Splash Screen',
+		vi: 'Màn hình chờ với nâng cao tăng dần',
 	},
 	description: {
 		en: 'How sveltevietnam.dev implements a splash screen that progressively provides a welcoming user experience while buying time for the rest of the page to load',
@@ -49,6 +50,7 @@ export const post = {
 		vi: 2900,
 		en: 2300,
 	},
+	series: getPostSeriesBySlug('behind-the-screen'),
 } satisfies Post;
 
 export const content = {

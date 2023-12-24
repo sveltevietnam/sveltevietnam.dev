@@ -1,5 +1,6 @@
 import type { PostContent } from '$shared/data/blog';
 import type { Post } from '$shared/data/blog';
+import { getPostSeriesBySlug } from '$shared/data/blog/series';
 import { people } from '$shared/data/people';
 
 import En from './content.en.md.svelte?mdsvex';
@@ -11,8 +12,8 @@ export const post = {
 	slug: '20231110-behind-the-screen-dark-mode-with-sveltekit-tailwindcss-and-postcss',
 	date: '2023-11-10T06:11:34.187Z',
 	title: {
-		en: 'Productive Dark Mode with SvelteKit, PostCSS, and TailwindCSS (Behind the Screen)',
-		vi: 'Giao diện tối (dark mode) với SvelteKit, PostCSS, và TailwindCSS (Behind the Screen)',
+		en: 'Productive Dark Mode with SvelteKit, PostCSS, and TailwindCSS',
+		vi: 'Giao diện tối (dark mode) với SvelteKit, PostCSS, và TailwindCSS',
 	},
 	description: {
 		en: 'How sveltevietnam.dev sets up a light-dark mode switch that enables good user experience without trading off developer productivity',
@@ -44,6 +45,7 @@ export const post = {
 		vi: 3500,
 		en: 2970,
 	},
+	series: getPostSeriesBySlug('behind-the-screen'),
 } satisfies Post;
 
 export const content = {

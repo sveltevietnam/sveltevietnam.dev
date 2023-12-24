@@ -8,6 +8,7 @@
 	import ToBeAnnounced from '$client/components/ToBeAnnounced/ToBeAnnounced.svelte';
 
 	import type { PageData } from './$types';
+	import MailSection from './_page/components/MailSection.svelte';
 	import keyVisuals from './_page/images/key-visuals.png?enhanced';
 
 	export let data: PageData;
@@ -187,6 +188,9 @@
 			</div>
 		</div>
 	</div>
+	<section class="max-w-pad pb-[120px] tb:pb-[200px]" use:intersect>
+		<MailSection mailT={data.mail.translation} mailForm={data.mail.form} />
+	</section>
 </main>
 
 <style lang="postcss">

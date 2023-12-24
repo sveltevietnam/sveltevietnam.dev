@@ -20,7 +20,8 @@ export const vi = {
 		linkLabelToTitle: 'Tiêu đề',
 	},
 	share: 'Chia sẻ',
-	more: 'Bài viết khác',
+	latest: 'Bài viết mới',
+	series: 'Cùng chuỗi bài viết',
 	editLink: {
 		intro: 'Bạn tìm thấy lỗi chính tả hay cần đính chính nội dung?',
 		label: 'Sửa trang này tại Github',

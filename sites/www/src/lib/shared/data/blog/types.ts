@@ -23,6 +23,11 @@ export type ExternalPost = {
 
 export type LocalizedExternalPost = ReturnType<typeof localizeExternalPost>;
 
+export type PostSeries = {
+	slug: string;
+	title: LangVar<string>;
+};
+
 export type Post = {
 	slug: string;
 	date: string;
@@ -37,6 +42,7 @@ export type Post = {
 	keywords?: LangVar<string>[];
 	readMinutes?: number;
 	wordCount?: LangVar<number>;
+	series?: PostSeries;
 };
 
 export type LocalizedPost = ReturnType<typeof localizePost>;

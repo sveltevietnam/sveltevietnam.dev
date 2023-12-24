@@ -1,5 +1,6 @@
 import type { PostContent } from '$shared/data/blog';
 import type { Post } from '$shared/data/blog';
+import { getPostSeriesBySlug } from '$shared/data/blog/series';
 import { people } from '$shared/data/people';
 
 import En from './content.en.md.svelte?mdsvex';
@@ -13,8 +14,8 @@ export const post = {
 	slug: '20231204-behind-the-screen-a-few-secrets-of-sveltevietnam-dev',
 	date: '2023-12-04T06:03:22.515Z',
 	title: {
-		en: 'A Few Secrets of sveltevietnam.dev (Behind the Screen)',
-		vi: 'Một vài bí mật về sveltevietnam.dev (Behind the Screen)',
+		en: 'A Few Secrets of sveltevietnam.dev',
+		vi: 'Một vài bí mật về sveltevietnam.dev',
 	},
 	description: {
 		en: 'They are not that secret, just quite unnoticeable, but these small details really help enhance the user experience',
@@ -52,12 +53,13 @@ export const post = {
 		en: thumbnailEn,
 		vi: thumbnailVi,
 	},
-	tags: ['svelte', 'kit', 'technical', 'inside', 'community'],
+	tags: ['technical', 'inside', 'community'],
 	readMinutes: 8,
 	wordCount: {
 		vi: 2460,
 		en: 1890,
 	},
+	series: getPostSeriesBySlug('behind-the-screen'),
 } satisfies Post;
 
 export const content = {

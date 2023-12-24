@@ -20,7 +20,8 @@ export const en = {
 		linkLabelToTitle: 'Title',
 	},
 	share: 'Share',
-	more: 'More Posts',
+	latest: 'Latest Posts',
+	series: 'In this series',
 	editLink: {
 		intro: 'Found a typo or need correction?',
 		label: 'Edit this page on Github',

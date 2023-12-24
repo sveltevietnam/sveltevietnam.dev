@@ -19,6 +19,7 @@
 	import '../../../../lib/client/styles/blog.css';
 	import '../../../../lib/client/styles/code.css';
 	import '../../../../lib/client/styles/heading-anchor.css';
+	import MailSection from '../_page/components/MailSection.svelte';
 
 	import type { LayoutData } from './$types';
 
@@ -72,7 +73,7 @@
 	}
 </script>
 
-<main class="max-w-pad" use:intersect>
+<main class="max-w-pad">
 	<Breadcrumbs {breadcrumbs} class="mt-6" />
 	<article class="mt-8 tb:mt-[60px]">
 		<section>
@@ -82,7 +83,12 @@
 				<enhanced:img src={fallbackThumbnail} alt={post?.title} class="h-auto w-full" />
 			{/if}
 			<div class="mt-8 space-y-6">
-				<h1 class="c-text-h2 font-bold">{post?.title}</h1>
+				<div>
+					{#if post?.series}
+						<p class="c-text-cap1 mb-1 text-green-900 dark:text-green-300">— {post.series.title}</p>
+					{/if}
+					<h1 class="c-text-h2 font-bold">{post?.title}</h1>
+				</div>
 				<ul class="flex flex-wrap items-center gap-2">
 					{#each post?.tags ?? [] as tag}
 						<li class="c-tag">{tag}</li>
@@ -153,15 +159,15 @@
 				</section>
 			{/key}
 
-			<section class="post-more">
-				<h2 class="c-text-h3 font-medium after:mt-2 after:separator">{t.more}</h2>
+			<section class="post-latest">
+				<h2 class="c-text-h3 font-medium after:mt-2 after:separator">{t.latest}</h2>
 				<ul class="mt-8 space-y-8">
-					{#each data.more.internal as post}
+					{#each data.latest.internal as post}
 						<li class="before:mb-8 before:separator first-of-type:before:hidden">
 							<BlogPostItem {post} alwaysVertical />
 						</li>
 					{/each}
-					{#each data.more.external as post}
+					{#each data.latest.external as post}
 						<li class="before:mb-8 before:separator">
 							<ExternalBlogPostItem {post} />
 						</li>
@@ -261,6 +267,25 @@
 			</section>
 		</div>
 	</article>
+
+	<div class="space-y-[60px] pb-[120px] tb:space-y-[120px] tb:pb-[200px]">
+		<section use:intersect>
+			<MailSection mailT={data.mail.translation} mailForm={data.mail.form} />
+		</section>
+
+		{#if data.inSeries.length}
+			<section>
+				<h2 class="c-text-h2 font-medium after:mt-2 after:separator" use:intersect>{t.series}</h2>
+				<ul class="mt-10 grid grid-cols-3 grid-rows-[repeat(5,auto)] gap-x-10">
+					{#each data.inSeries as post}
+						<li use:intersect class="contents">
+							<BlogPostItem {post} alwaysVertical subgrid hideSeries />
+						</li>
+					{/each}
+				</ul>
+			</section>
+		{/if}
+	</div>
 </main>
 
 <style lang="postcss">
@@ -272,7 +297,7 @@
 			'toc'
 			'content'
 			'share'
-			'more';
+			'latest';
 		grid-template-columns: minmax(0, 1fr);
 		grid-template-rows: repeat(4, auto);
 		row-gap: 60px;
@@ -281,7 +306,7 @@
 			grid-template-areas:
 				'content share'
 				'content toc'
-				'content more';
+				'content latest';
 			grid-template-columns: minmax(400px, 3fr) minmax(200px, 1fr);
 			grid-template-rows: auto 1fr auto;
 			column-gap: 60px;
@@ -301,8 +326,8 @@
 		height: fit-content;
 	}
 
-	.post-more {
-		grid-area: more;
+	.post-latest {
+		grid-area: latest;
 		height: fit-content;
 	}
 

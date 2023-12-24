@@ -5,7 +5,7 @@ import { SVELTE_VIETNAM_ORG, SVELTE_VIETNAM_BLOG, structurePerson } from '$share
 import { resolveLangVar, type Language } from '$shared/services/i18n';
 import { BLOG_PATH, ROOT_URL } from '$shared/services/navigation';
 
-import type { PostContent, ExternalPost, Post } from './types';
+import type { PostContent, ExternalPost, Post, PostSeries } from './types';
 
 /** resolve any LangVar to a string */
 export function localizePost(language: Language, post: Post) {
@@ -19,6 +19,14 @@ export function localizePost(language: Language, post: Post) {
 		wordCount: resolveLangVar(language, post.wordCount),
 		ogImage: resolveLangVar(language, post.ogImage),
 		thumbnail: resolveLangVar(language, post.thumbnail),
+		series: !post.series ? undefined : localizePostSeries(language, post.series),
+	};
+}
+
+export function localizePostSeries(language: Language, series: PostSeries) {
+	return {
+		...series,
+		title: resolveLangVar(language, series.title),
 	};
 }
 

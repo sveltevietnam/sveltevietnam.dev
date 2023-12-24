@@ -6,6 +6,8 @@
 	import { formateDateForBlog } from '$shared/utils/datetime';
 
 	export let alwaysVertical = false;
+	export let subgrid = false;
+	export let hideSeries = false;
 	export let post: LocalizedPost;
 	let cls = '';
 	export { cls as class };
@@ -18,8 +20,8 @@
 	const titleClass = 'c-text-h4 font-bold c-link c-link--preserved';
 </script>
 
-<article class={cls} class:always-vertical={alwaysVertical}>
-	<div>
+<article class={cls} class:always-vertical={alwaysVertical} class:subgrid>
+	<div class="__thumbnail">
 		<a {href} class="c-link c-link--image">
 			{#if post.thumbnail}
 				<enhanced:img
@@ -36,22 +38,27 @@
 			{/if}
 		</a>
 	</div>
-	<div class="content">
-		<a {href} class="block w-fit">
+	<div class="__title">
+		{#if post.series}
+			<p class="c-text-cap1 mb-1 text-green-900 dark:text-green-300" class:hidden={hideSeries}>
+				— {post.series.title}
+			</p>
+		{/if}
+		<a {href} class="__title block w-fit">
 			<slot name="title" class={titleClass} text={post.title}>
 				<span class={titleClass}>{post.title}</span>
 			</slot>
 		</a>
-		<ul class="flex flex-wrap items-center gap-2">
-			{#each post?.tags ?? [] as tag}
-				<li class="c-tag">{tag}</li>
-			{/each}
-		</ul>
-		<p>{post.description}</p>
-		<div class="flex items-center justify-between">
-			<p class="font-medium">{post.authors.map((a) => a.name).join(', ')}</p>
-			<time class="text-fg-200">{formateDateForBlog(lang, post.date)}</time>
-		</div>
+	</div>
+	<ul class="__tags flex flex-wrap items-center gap-2">
+		{#each post?.tags ?? [] as tag}
+			<li class="c-tag">{tag}</li>
+		{/each}
+	</ul>
+	<p class="__description">{post.description}</p>
+	<div class="__author-and-date flex items-center justify-between">
+		<p class="font-medium">{post.authors.map((a) => a.name).join(', ')}</p>
+		<time class="text-fg-200">{formateDateForBlog(lang, post.date)}</time>
 	</div>
 </article>
 
@@ -59,39 +66,77 @@
 	article {
 		display: grid;
 		grid-template-columns: 1fr;
-		grid-template-rows: auto 1fr;
-		gap: 32px;
+		grid-template-rows: repeat(5, auto);
+		row-gap: 16px;
 
 		@screen tb {
 			&:not(.always-vertical) {
 				grid-template-columns: auto 1fr;
-				grid-template-rows: 1fr;
-				gap: 24px;
+				grid-template-rows: repeat(4, auto);
+				row-gap: 12px;
+				column-gap: 24px;
+			}
+		}
+
+		&.subgrid {
+			grid-row: 1 / 6;
+			grid-template-rows: subgrid;
+		}
+	}
+
+	.__thumbnail {
+		grid-row: 1 / 2;
+		padding-bottom: 16px;
+
+		@screen tb {
+			article:not(.always-vertical) & {
+				grid-column: 1 / 2;
+				grid-row: 1 / 5;
+				padding-bottom: 0;
 			}
 		}
 	}
 
-	.fallback-thumbnail {
-		width: 100%;
-		height: 200px;
+	.__title {
+		grid-row: 2 / 3;
 
 		@screen tb {
-			article.always-vertical & {
-				height: 300px;
-			}
-
 			article:not(.always-vertical) & {
-				width: 200px;
+				grid-column: 2 / 3;
+				grid-row: 1 / 2;
 			}
 		}
 	}
 
-	.content {
-		@space-y 16px;
+	.__tags {
+		grid-row: 3 / 4;
 
 		@screen tb {
 			article:not(.always-vertical) & {
-				@space-y 12px;
+				grid-column: 2 / 3;
+				grid-row: 2 / 3;
+			}
+		}
+	}
+
+	.__description {
+		grid-row: 4 / 5;
+
+		@screen tb {
+			article:not(.always-vertical) & {
+				grid-column: 2 / 3;
+				grid-row: 3 / 4;
+			}
+		}
+	}
+
+	.__author-and-date {
+		grid-row: 5 / 6;
+
+		@screen tb {
+			article:not(.always-vertical) & {
+				grid-column: 2 / 3;
+				grid-row: 4 / 5;
 			}
 		}
 	}
