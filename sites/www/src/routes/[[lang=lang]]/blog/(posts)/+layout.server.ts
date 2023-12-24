@@ -30,7 +30,7 @@ export const load: LayoutServerLoad = async ({ url, depends, locals: { language 
 			internal: !latestInternal ? [] : [latestInternal].map((p) => localizePost(language, p)),
 			external: EXTERNAL_POSTS.slice(0, 1).map((p) => localizeExternalPost(language, p)),
 		},
-		inSeries: inSeries.map((p) => localizePost(language, p)),
+		inSeries: inSeries.slice(0, 3).map((p) => localizePost(language, p)),
 		translations: {
 			layout: translations[language],
 		},
