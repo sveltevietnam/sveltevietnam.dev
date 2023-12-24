@@ -588,5 +588,5 @@ Dự án *sveltevietnam.dev* cũng sử dụng Figma làm công cụ thiết k�
 Chúng ta đã đi qua rất nhiều chi tiết và khía cạnh khác nhau của việc thiết lập chế độ tối cho ứng dụng SvelteKit nói riêng, và một dự án front-end nói chung. Nếu bạn vẫn còn đọc đến tận đây thì thật là xuất sắc - cảm ơn bạn đã kiên nhẫn với sự dài dòng của mình. Nếu bạn có bất kì câu hỏi hay ý kiến gì, hãy tham gia [Discord](https://discord.sveltevietnam.dev) của Svelte Việt Nam để thảo luận thêm nhé!
 
 :::div c-callout c-callout--info
-Đọc tiếp phần ba của chuỗi bài viết "Behind the Screen" [tại đây](/blog/20231204-behind-the-screen-a-few-secrets-of-sveltevietnam-dev) bạn nhé.
+Hãy đọc tiếp phần ba của chuỗi bài viết "Behind the Screen" [tại đây](/blog/20231204-behind-the-screen-a-few-secrets-of-sveltevietnam-dev) bạn nhé!
 :::

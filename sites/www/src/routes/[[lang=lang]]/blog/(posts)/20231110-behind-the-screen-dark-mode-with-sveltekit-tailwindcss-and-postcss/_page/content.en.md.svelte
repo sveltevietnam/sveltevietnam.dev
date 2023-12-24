@@ -590,3 +590,7 @@ The *sveltevietnam.dev* project also uses Figma as the design tool and takes adv
 ## Closing
 
 We have discussed a lot of different details and aspects of implementing dark mode in a SvelteKit application in particular, and a front-end project in general. If you are still reading, that is amazing - thank you for enduring my lengthy writing! If you have any question or comment, be sure to drop by our [Discord](https://discord.sveltevietnam.dev) and discuss further!
+
+:::div c-callout c-callout--info
+You can find the next post in the "Behind the Screen" series at "[A few secrets of sveltevietnam](/blog/20231204-behind-the-screen-a-few-secrets-of-sveltevietnam-dev)".
+:::
