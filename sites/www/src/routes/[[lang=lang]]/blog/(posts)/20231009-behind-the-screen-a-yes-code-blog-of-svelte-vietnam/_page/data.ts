@@ -5,8 +5,8 @@ import { people } from '$shared/data/people';
 
 import En from './content.en.md.svelte?mdsvex';
 import Vi from './content.vi.md.svelte?mdsvex';
-import ogImage from './images/thumbnail.png';
-import thumbnail from './images/thumbnail.png?enhanced';
+import thumbnail from './images/thumbnail.jpg?enhanced';
+import ogImage from './images/thumbnail.jpg?w=1400&imagetools';
 
 export const post = {
 	slug: '20231009-behind-the-screen-a-yes-code-blog-of-svelte-vietnam',

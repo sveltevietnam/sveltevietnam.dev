@@ -5,10 +5,8 @@ import { people } from '$shared/data/people';
 
 import En from './content.en.md.svelte?mdsvex';
 import Vi from './content.vi.md.svelte?mdsvex';
-import thumbnailEn from './images/thumbnail-en.jpg?enhanced';
-import ogImageEn from './images/thumbnail-en.jpg?w=1400&imagetools';
-import thumbnailVi from './images/thumbnail-vi.jpg?enhanced';
-import ogImageVi from './images/thumbnail-vi.jpg?w=1400&imagetools';
+import thumbnail from './images/thumbnail.jpg?enhanced';
+import ogImage from './images/thumbnail.jpg?w=1400&imagetools';
 
 export const post = {
 	slug: '20231220-behind-the-screen-progressive-splashscreen',
@@ -38,14 +36,8 @@ export const post = {
 	],
 	tags: ['inside', 'technical'],
 	readMinutes: 12,
-	ogImage: {
-		en: ogImageEn,
-		vi: ogImageVi,
-	},
-	thumbnail: {
-		en: thumbnailEn,
-		vi: thumbnailVi,
-	},
+	ogImage,
+	thumbnail,
 	wordCount: {
 		vi: 2900,
 		en: 2300,

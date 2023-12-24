@@ -5,8 +5,8 @@ import { people } from '$shared/data/people';
 
 import En from './content.en.md.svelte?mdsvex';
 import Vi from './content.vi.md.svelte?mdsvex';
-import thumbnail from './images/thumbnail.png?enhanced';
-import ogImage from './images/thumbnail.png?w=1400&imagetools';
+import thumbnail from './images/thumbnail.jpg?enhanced';
+import ogImage from './images/thumbnail.jpg?w=1400&imagetools';
 
 export const post = {
 	slug: '20231110-behind-the-screen-dark-mode-with-sveltekit-tailwindcss-and-postcss',
