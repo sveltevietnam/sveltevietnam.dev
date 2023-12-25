@@ -13,9 +13,9 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const { request, route, platform, locals } = event;
 
 	// get cloudflare bindings for d1 database
-	const d1 = platform?.env?.D1;
-	if (!d1) throw createMailerSvelteKitError('D1_NOT_AVAILABLE');
-	locals.d1 = d1;
+	// const d1 = platform?.env?.D1;
+	// if (!d1) throw createMailerSvelteKitError('D1_NOT_AVAILABLE');
+	// locals.d1 = d1;
 
 	// if public routes, pass through
 	if (!route.id?.includes('signed')) return resolve(event);
