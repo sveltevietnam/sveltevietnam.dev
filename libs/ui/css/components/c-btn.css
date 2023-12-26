@@ -4,6 +4,7 @@
 @custom-selector :--text .c-btn--text;
 @custom-selector :--outlined .c-btn--outlined;
 @custom-selector :--loading [data-loading]:not([data-loading='false']);
+@custom-selector :--disabled [disabled]:not([disabled='false']);
 
 .c-btn {
 	display: grid;
@@ -28,16 +29,31 @@
 		color: theme('colors.bg.DEFAULT');
 		white-space: nowrap;
 		background-color: theme('colors.fg.DEFAULT');
-		transition: opacity 250ms theme('transitionTimingFunction.DEFAULT');
+		transition: background-color 250ms theme('transitionTimingFunction.DEFAULT');
 
 		/* TODO: Need to discuss about interaction styling */
-		&:hover {
-			opacity: 0.75;
+		&:hover:not(:--disabled) {
+			background-color: theme('colors.fg.100');
+		}
+
+		&:--disabled {
+			color: theme('colors.white');
+			background-color: theme('colors.neutral.500');
 		}
 	}
 
 	&:where(:--outlined) {
 		border: 1px solid theme('colors.fg.DEFAULT');
+		transition: background-color 250ms theme('transitionTimingFunction.DEFAULT');
+
+		&:hover:not(:--disabled) {
+			background-color: theme('colors.outline.DEFAULT');
+		}
+
+		&:--disabled {
+			color: theme('colors.white');
+			background-color: theme('colors.neutral.500');
+		}
 	}
 
 	&:where(:--text) {
