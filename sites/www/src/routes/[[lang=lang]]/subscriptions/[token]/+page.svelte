@@ -60,7 +60,7 @@
 				</label>
 				<label for="blog" class="toggle-container">
 					<input class="toggle" type="checkbox" name="blog" id="blog" bind:checked={$form.blog} />
-					<p>{t.form.EMAILS.BLOG}</p>
+					<p>{t.form.emails.blog}</p>
 				</label>
 			</div>
 			<button class="c-btn" type="submit">{t.form.submit}</button>
