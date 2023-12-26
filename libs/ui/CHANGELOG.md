@@ -1,5 +1,15 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.2
+
+### Minor Changes
+
+- [`b099d2d`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/b099d2d0f77b0acb9ada670bf4b1b0617cc3d2b1) Thanks [@vnphanquang](https://github.com/vnphanquang)! - c-input for radio
+
+### Patch Changes
+
+- [`84a2ba3`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/84a2ba3c149c6a80195fd11f1d8a66c538ad0d13) Thanks [@vnphanquang](https://github.com/vnphanquang)! - basic hover & disabled styles for c-btn default & outlined variants
+
 ## 1.0.0-next.1
 
 ### Major Changes

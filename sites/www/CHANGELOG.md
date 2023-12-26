@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.35
+
+### Minor Changes
+
+- [`448cc5d`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/448cc5d9bc8e61bed910be625614e477e449a1b1) Thanks [@vnphanquang](https://github.com/vnphanquang)! - new `SplashPlayground` component for demoing splash screen more conveniently (used in "Progressive Splash Screen" blog post)
+
 ## 1.0.0-next.34
 
 ### Minor Changes
