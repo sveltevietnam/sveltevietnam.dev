@@ -81,11 +81,37 @@
 		grid-template-columns: 1fr;
 		row-gap: 40px;
 
+		@screen upto-tb {
+			& > :global(li) {
+				&::before {
+					content: '';
+
+					display: block;
+
+					width: 100%;
+					height: 1px;
+
+					background: theme('colors.outline.DEFAULT');
+				}
+
+				&:first-of-type::before {
+					display: none;
+				}
+			}
+		}
+
 		@screen tb {
 			grid-template-columns: repeat(3, 1fr);
 			grid-template-rows: repeat(5, auto);
 			row-gap: 0;
 			column-gap: 40px;
+
+			& > :global(li) {
+				display: grid;
+				grid-row: 1 / 6;
+				grid-template-columns: subgrid;
+				grid-template-rows: subgrid;
+			}
 
 			& article.always-vertical {
 				grid-row: 1 / 6;

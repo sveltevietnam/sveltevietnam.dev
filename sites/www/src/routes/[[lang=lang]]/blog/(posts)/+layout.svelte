@@ -160,7 +160,9 @@
 			{/key}
 
 			<section class="post-latest">
-				<h2 class="c-text-h3 font-medium after:mt-2 after:separator">{t.latest}</h2>
+				<h2 class="font-medium upto-tb:c-text-h2@sp tb:c-text-h3@pc after:mt-2 after:separator">
+					{t.latest}
+				</h2>
 				<ul class="mt-8 space-y-8">
 					{#each data.latest.internal as post}
 						<li class="before:mb-8 before:separator first-of-type:before:hidden">
@@ -176,7 +178,9 @@
 			</section>
 
 			<section class="post-share">
-				<h2 class="c-text-h3 after:mt-2 after:separator" id="share">{t.share}</h2>
+				<h2 class="upto-tb:c-text-h2@sp tb:c-text-h3@pc after:mt-2 after:separator" id="share">
+					{t.share}
+				</h2>
 				<ul class="mt-8 flex flex-wrap items-center gap-4">
 					<li>
 						<a
@@ -233,7 +237,7 @@
 			<section class="post-toc">
 				{#if tocItems.length}
 					<nav aria-label={t.tableOfContents.title}>
-						<h2 class="c-text-h3 font-medium after:mt-2 after:separator">
+						<h2 class="font-medium upto-tb:c-text-h2@sp tb:c-text-h3@pc after:mt-2 after:separator">
 							{t.tableOfContents.title}
 						</h2>
 						<ul class="mt-8">
@@ -278,7 +282,7 @@
 				<h2 class="c-text-h2 font-medium after:mt-2 after:separator" use:intersect>{t.series}</h2>
 				<ul class="blog-subgrid-list mt-10">
 					{#each data.inSeries as post}
-						<li use:intersect class="contents">
+						<li use:intersect>
 							<BlogPostItem {post} alwaysVertical hideSeries />
 						</li>
 					{/each}

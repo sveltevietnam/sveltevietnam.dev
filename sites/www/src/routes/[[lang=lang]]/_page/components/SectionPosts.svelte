@@ -41,7 +41,7 @@
 		</div>
 		<div class="flex-1 space-y-10">
 			{#each posts.slice(1) as post}
-				<div use:intersect class="before:mb-10 before:separator tb:before:hidden">
+				<div use:intersect class="before:mb-10 before:separator tb:first-of-type:before:hidden">
 					<BlogPostItem {post} />
 				</div>
 			{/each}
