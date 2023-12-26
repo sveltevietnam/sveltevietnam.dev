@@ -298,7 +298,7 @@ To simulate slow network, you can select "slow 3G" from the network settings wit
 
 ## Bonus: Keeping it Fun and Fresh
 
-There is rarely an opportunity such as with splash screen to express your creativity. It is a fantastic chance for a fruitful collaboration between designers and developers to create together something unique, fun for both users and the team. If you have visited *sveltevietnam.dev* (or reload the page) enough times, you might have noticed that we actually have two variants for the splash screen animation sequence. One is short and more frequent version (3/4 chance), while the other is longer (1/4 chance). You can experiment with both in the playground below. Select the desired variant and press "play".
+There is rarely an opportunity such as with splash screen to express your creativity. It is a fantastic chance for a fruitful collaboration between designers and developers to create together something unique, fun for both users and the team. If you have visited *sveltevietnam.dev* (or reload the page) enough times, you might have noticed that we actually have two variants for the splash screen animation sequence. One is short and more frequent version (3/4 chance), while the other is longer and only shows up from time to time (1/4 chance). You can experiment with both in the playground below (Javascript required). Select the desired variant and press "play".
 
 <SplashPlayground />
 

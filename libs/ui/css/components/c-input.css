@@ -1,8 +1,41 @@
-@custom-selector :--text [type='text'];
 @custom-selector :--radio [type='radio'];
+@custom-selector :--default :not(:--radio);
 
 .c-input {
-	&:--text {
+	/* shamelessly copied from daisyui radio component */
+	&:where([type='radio']) {
+		cursor: pointer;
+
+		width: 1.5rem;
+		height: 1.5rem;
+
+		appearance: none;
+		border-color: currentcolor;
+		border-width: 1px;
+		border-radius: 9999px;
+
+		&:checked {
+			background-color: currentcolor;
+			box-shadow: 0 0 0 4px theme('colors.bg.DEFAULT') inset;
+			animation: radiomark 200ms ease-out;
+		}
+
+		@keyframes radiomark {
+			0% {
+				box-shadow: 0 0 0 12px theme('colors.bg.DEFAULT') inset;
+			}
+
+			50% {
+				box-shadow: 0 0 0 3px theme('colors.bg.DEFAULT') inset;
+			}
+
+			100% {
+				box-shadow: 0 0 0 4px theme('colors.bg.DEFAULT') inset;
+			}
+		}
+	}
+
+	&:where(:--default) {
 		width: 100%;
 		min-width: 0;
 		padding: 12px 16px;
@@ -22,38 +55,5 @@
 		&:invalid:not(:placeholder-shown) {
 			border-color: theme('colors.error.surface.200');
 		}
-	}
-
-	/* shamelessly copied from daisyui radio component */
-	&[type='radio'] {
-		cursor: pointer;
-
-		width: 1.5rem;
-		height: 1.5rem;
-
-		appearance: none;
-		border-color: currentcolor;
-		border-width: 1px;
-		border-radius: 9999px;
-
-		&:checked {
-			background-color: currentcolor;
-			box-shadow: 0 0 0 4px theme('colors.bg.DEFAULT') inset;
-			animation: radiomark 200ms ease-out;
-		}
-	}
-}
-
-@keyframes radiomark {
-	0% {
-		box-shadow: 0 0 0 12px theme('colors.bg.DEFAULT') inset;
-	}
-
-	50% {
-		box-shadow: 0 0 0 3px theme('colors.bg.DEFAULT') inset;
-	}
-
-	100% {
-		box-shadow: 0 0 0 4px theme('colors.bg.DEFAULT') inset;
 	}
 }
