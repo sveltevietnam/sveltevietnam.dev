@@ -116,7 +116,7 @@ It is possible to declare `splash.css` directly in `app.html`. However, by doing
 	<figcaption>Illustration 4: a vanilla splash screen integrated in SvelteKit</figcaption>
 </figure>
 
-Implementation details for a splash screen depend on the design of each application. You can refer to the splash screen implementation of *sveltevietnam.dev* at [app.html](https://github.com/sveltevietnam/sveltevietnam.dev/blob/ac4373afcca1402834954d531b8215b3a2553c5f/sites/www/src/app.html#L47-L131) and [splash.css](https://github.com/sveltevietnam/sveltevietnam.dev/blob/ac4373afcca1402834954d531b8215b3a2553c5f/sites/www/src/lib/client/styles/splash.css). In general, a splash screen often has the following characteristics:
+Implementation details for a splash screen depend on the design of each application. You can refer to the splash screen implementation of *sveltevietnam.dev* at [app.html](https://github.com/sveltevietnam/sveltevietnam.dev/blob/fd1a7cdea3b63f53c19bb7ce6bec23f902ae3f24/sites/www/src/app.html#L47-L80) and [splash.css](https://github.com/sveltevietnam/sveltevietnam.dev/blob/fd1a7cdea3b63f53c19bb7ce6bec23f902ae3f24/libs/ui/css/components/c-splash.css). In general, a splash screen often has the following characteristics:
 
 - has `position` of `fixed` or `absolute`, with a proper `z-index` to cover the content of the page underneath,
 - has relatively simple animations, lasting from 1-3 seconds in total, and the last animation should move the entire splash screen out of the viewport so that users can interact with the site.

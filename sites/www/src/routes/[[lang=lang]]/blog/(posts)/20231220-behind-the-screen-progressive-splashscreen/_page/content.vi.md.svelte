@@ -116,7 +116,7 @@ Chú ý rằng ta có thể trực tiếp khai báo tệp `splash.css` tại `ap
 	<figcaption>Minh họa 4: màn hình chờ vanilla trong ngữ cảnh SvelteKit</figcaption>
 </figure>
 
-Chi tiết thực hiện HTML và CSS của màn hình chờ là tùy thuộc vào ứng dụng và thiết kế của dự án. Bạn có thể tham khảo màn hình chờ của *sveltevietnam.dev* tại [app.html](https://github.com/sveltevietnam/sveltevietnam.dev/blob/ac4373afcca1402834954d531b8215b3a2553c5f/sites/www/src/app.html#L47-L131) và [splash.css](https://github.com/sveltevietnam/sveltevietnam.dev/blob/ac4373afcca1402834954d531b8215b3a2553c5f/sites/www/src/lib/client/styles/splash.css). Nhìn chung, màn hình chờ thường có hai đặc điểm sau:
+Chi tiết thực hiện HTML và CSS của màn hình chờ là tùy thuộc vào ứng dụng và thiết kế của dự án. Bạn có thể tham khảo màn hình chờ của *sveltevietnam.dev* tại [app.html](https://github.com/sveltevietnam/sveltevietnam.dev/blob/fd1a7cdea3b63f53c19bb7ce6bec23f902ae3f24/sites/www/src/app.html#L47-L80) và [splash.css](https://github.com/sveltevietnam/sveltevietnam.dev/blob/fd1a7cdea3b63f53c19bb7ce6bec23f902ae3f24/libs/ui/css/components/c-splash.css). Nhìn chung, màn hình chờ thường có hai đặc điểm sau:
 
 - có `position` là `fixed` hoặc `absolute`, với `z-index` thích hợp để che nội dung trang bên dưới,
 - có hiệu ứng tương đối đơn giản, kéo dài từ 1-3 giây, hiệu ứng cuối cùng nên di chuyển cả phần tử màn hình chờ ra khỏi viewport để người dùng có thể tương tác được với trang web.
