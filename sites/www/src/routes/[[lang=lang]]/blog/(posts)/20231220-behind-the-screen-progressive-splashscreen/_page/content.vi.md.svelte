@@ -1,5 +1,7 @@
 <script>
 	import BaseNotification from '$client/notifications/BaseNotification.svelte';
+	import { SplashPlayground } from '$client/components/SplashPlayground';
+
 	import hydrationImage from './images/hydration-vi.png?format=webp&imagetools';
 	import blockingRenderImage from './images/blocking-render.png?format=webp&imagetools';
 	import splashScreenImage from './images/splash-screen.png?format=webp&imagetools';
@@ -243,9 +245,9 @@ Ngoài ra, trong tình huống này, ta không thể tránh được việc tran
 			if (!splashEl || splashEl.getAttribute('data-splash-skip')) {
 				stamp();
 			} else {
-				splashEl.addEventListener('animationend', (el) => {
+				splashEl.addEventListener('animationend', (e) => {
 					// :::highlight warning
-					if (!splashEl.isSameNode(el.target)) return;
+					if (!splashEl.isSameNode(e.target)) return;
 					// :::
 					stamp();
 				});
@@ -293,6 +295,12 @@ Chú ý rằng bạn có thể sẽ phải điều chỉnh điều kiện so sá
 :::
 
 Để giả lập tình huống đường truyên không ổn định, bạn có thể chọn "slow 3G" tại tùy chỉnh network tướng ứng trong devtool của trình duyệt.
+
+## Mở rộng: hãy làm gì đó vui
+
+Ít khi trong công việc ta có cơ hội thể hiện sự sáng tạo và phá cách như với màn hình chờ. Hãy thêm thắt hay làm gì đó thú vị cho cả người dùng và chính bạn. Nếu bạn đã ghé thăm *sveltevietnam.dev* nhiều lần (hoặc tải lại trang đủ lần), có thể bạn đã nhận ra rằng màn hình chờ ở đây có hai biến thể cho chuỗi hoạt ảnh, một biến thể ngắn thường gặp hơn (xác suất 75%), và một biến thể dài hơn (xác suất 25%). Bạn có thể trải nghiệm tại playground bên dưới. Hãy chọn biến thể bạn muốn và nhấn "chạy".
+
+<SplashPlayground />
 
 ## Kết
 

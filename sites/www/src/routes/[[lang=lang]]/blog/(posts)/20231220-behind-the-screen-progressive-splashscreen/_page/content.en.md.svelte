@@ -1,5 +1,7 @@
 <script>
 	import BaseNotification from '$client/notifications/BaseNotification.svelte';
+	import { SplashPlayground } from '$client/components/SplashPlayground';
+
 	import hydrationImage from './images/hydration-en.png?format=webp&imagetools';
 	import blockingRenderImage from './images/blocking-render.png?format=webp&imagetools';
 	import splashScreenImage from './images/splash-screen.png?format=webp&imagetools';
@@ -243,9 +245,9 @@ To achieve this, we need to detect whether hydration completes after splash scre
 			if (!splashEl || splashEl.getAttribute('data-splash-skip')) {
 				stamp();
 			} else {
-				splashEl.addEventListener('animationend', (el) => {
+				splashEl.addEventListener('animationend', (e) => {
 					// :::highlight warning
-					if (!splashEl.isSameNode(el.target)) return;
+					if (!splashEl.isSameNode(e.target)) return;
 					// :::
 					stamp();
 				});
@@ -293,6 +295,12 @@ Note that depending on how much resource your site needs to fetch and how long y
 :::
 
 To simulate slow network, you can select "slow 3G" from the network settings within the browser devtool.
+
+## Bonus: Keeping it Fun and Fresh
+
+There is rarely an opportunity such as with splash screen to express your creativity. It is a fantastic chance for a fruitful collaboration between designers and developers to create together something unique, fun for both users and the team. If you have visited *sveltevietnam.dev* (or reload the page) enough times, you might have noticed that we actually have two variants for the splash screen animation sequence. One is short and more frequent version (3/4 chance), while the other is longer (1/4 chance). You can experiment with both in the playground below. Select the desired variant and press "play".
+
+<SplashPlayground />
 
 ## Closing
 
