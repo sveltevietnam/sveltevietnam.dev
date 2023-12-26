@@ -57,9 +57,16 @@
 		mask-size: var(--icon-size);
 	}
 
-	&p,
-	& p {
+	&p {
 		margin: 0;
+	}
+
+	& p:first-of-type {
+		margin-top: 0;
+	}
+
+	& p:last-of-type {
+		margin-bottom: 0;
 	}
 
 	&.c-callout--info {
@@ -96,5 +103,5 @@
 }
 
 .prose :where(.c-callout) {
-	margin-block: 20px;
+	margin-block: 28px;
 }

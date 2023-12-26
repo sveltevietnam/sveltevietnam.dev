@@ -51,6 +51,18 @@ Như vậy, giải pháp chặn hiển thị nội dung tuy đơn giản nhưng 
 
 Đương nhiên, giải pháp này cũng không tránh khỏi một số vấn đề mà ta sẽ bàn đến ở các phần tiếp theo.
 
+## Có nên dùng màn hình chờ?
+
+Từ khi bài viết này được đăng, mình có nhận được một vài phản hồi rằng màn hình chờ, hay nói chung là những giao diện chờ (loading indicator), có thể tạo nên "cảm giác" trang web chậm hơn thực tế, làm ảnh hướng đến trải nghiệm người dùng. Nhìn chung, mình đồng ý với quan điểm này, và muốn mở rộng thêm rằng ta lúc nào cũng nên cố gắng cải thiện và tối ưu hóa để trang thực sự nhanh hơn, đặc biệt là nếu trang web mang tính cấp bách, nội dung cần được hiển thị sớm nhất có thể.
+
+:::div c-callout c-callout--success
+Với *sveltevietnam.dev*, màn hình chờ có nhiệm vụ chính là tạo nên một hoạt cảnh ấn tượng lôi cuốn người dùng, và cũng là cái cớ để chúng mình thể hiện sức sáng tạo. Đó là lý do nó được thiết kế để chạy trong thời gian ngắn và không lặp lại, như bạn sẽ thấy ở phần sau. Tính chất "che đi qua trình tải trang" là sản phẩm phụ may mắn đi kèm với màn hình chờ này.
+
+Bạn có thấy trang *sveltevietnam.dev* chậm? Hãy phản hồi cho tụi mình biết qua [Discord](https://discord.sveltevietnam.dev) nhé!
+:::
+
+Tùy vào trường hợp, bạn nên thảo luận với team và cân nhắc cẩn thận, xem xét giá trị thực tế mà màn hình chờ mang lại cho ứng dụng và người dùng. Nhưng đừng quá lo lắng, dù gì đi nữa, các kỹ thuật được giới thiệu trong bài viết này cũng có thể áp dụng cho các vấn đề khác, không chỉ riêng màn hình chờ!
+
 ## Vanilla
 
 Theo những ràng buộc mình đã trình bày ở phần trước, màn hình chờ cần thỏa mãn các điều kiện cơ bản sau:
