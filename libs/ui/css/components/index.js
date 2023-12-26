@@ -4,6 +4,7 @@ const require = createRequire(import.meta.url);
 
 export const components = {
 	// HYGEN INJECTION MARKER
+	...require('./c-splash.css'),
 	...require('./__wireframe__.css'),
 	...require('./c-avatar.css'),
 	...require('./c-btn.css'),

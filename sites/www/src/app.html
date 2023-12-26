@@ -45,15 +45,15 @@
 	<body>
 		<!-- SplashScreen -->
 		<div
-			class="splash splash--%splash-variant%"
+			class="c-splash--%splash-variant% c-splash"
 			aria-disabled
 			id="splash"
 			data-splash-skip="%splash-skip%"
 		>
-			<div class="splash-logo-wrapper">
-				<div class="splash-logo c-logo c-logo--themed"></div>
+			<div class="__logoWrapper">
+				<div class="__logo c-logo c-logo--themed"></div>
 			</div>
-			<div class="splash-title">
+			<div class="__title">
 				<svg
 					width="148"
 					height="66"
@@ -122,8 +122,8 @@
 				if (!splashEl || splashEl.getAttribute('data-splash-skip') === 'true') {
 					stamp();
 				} else {
-					splashEl.addEventListener('animationend', (el) => {
-						if (!splashEl.isSameNode(el.target)) return;
+					splashEl.addEventListener('animationend', (e) => {
+						if (!splashEl.isSameNode(e.target)) return;
 						stamp();
 					});
 				}
