@@ -56,9 +56,9 @@ Of course, this solution does not come without its own problems, which we will d
 Since the publication of this post, I have received several comments about the fact that a splash screen or loading indicator might actually hurt user experience by making things "appear" to be slower than they actually are. Generally, I agree with this point of view, and also want to expand further that you should always spend efforts to make your site actually faster, especially if it is time-critical and its content should be shown as soon as possible to users.
 
 :::div c-callout c-callout--success
-At *sveltevietnam.dev*, our splash screen's primary mission is to create an engaging and welcoming scene, and an excuse for us to be expressive with our creative ideas. That is the reason it is designed to be quick and nonrepetitive, as you would soon see. For us, the "site-loading coverup property" comes as a convenient by-product.
+At *sveltevietnam.dev*, our splash screen's primary mission is to create an engaging and welcoming scene, and an excuse for us to be expressive with our creative ideas. That is the reason it is designed to be quick and nonrepetitive, as you will soon see. For us, the "site-loading coverup property" comes as a convenient by-product.
 
-Does "sveltevietnam.dev" feels slow to you as a visitor? Let us know (via [Reddit](https://www.reddit.com/r/sveltejs/comments/18qxcf8/splash_screen_in_svelte_sveltekit_a_blog_post/?utm_source=share&utm_medium=web2x&context=3), [Twitter](https://twitter.com/sveltevietnam), or [Discord](https://discord.sveltevietnam.dev))!
+Does *sveltevietnam.dev* feels slow to you as a visitor? Let us know via [Reddit](https://www.reddit.com/r/sveltejs/comments/18qxcf8/splash_screen_in_svelte_sveltekit_a_blog_post/?utm_source=share&utm_medium=web2x&context=3), [Twitter](https://twitter.com/sveltevietnam), or [Discord](https://discord.sveltevietnam.dev)!
 :::
 
 In any case, you should discuss with your team and consider carefully if your application and audience will benefit from a splash screen. Worry not as the techniques introduced in this blog post is applicable to other use cases as well, not just splash screen!
@@ -74,12 +74,12 @@ From what we have discussed, a splash screen needs to satisfy the following basi
 In other words, splash screen needs to be in HTML and CSS without any JS dependency. More importantly, it must live outside the framework context, otherwise splash screen animations will be janky and repeat upon hydration.
 
 :::div c-callout c-callout--info
-During hydration, DOM elements might be rerendered or remounted, causing CSS animation to restart. There has been discussions about this (issue [#4308](https://github.com/sveltejs/svelte/issues/4308), [#8194](https://github.com/sveltejs/svelte/issues/8194), [#8209](https://github.com/sveltejs/svelte/issues/8209), [#7775](https://github.com/sveltejs/kit/issues/7775)), but currently there is no definitive solution from the framework. Nevetherless, no matter which framework we use, it is a good idea to keep splash screen independent from the hydration process to ensure its stability.
+During hydration, DOM elements might be rerendered or remounted, causing CSS animation to restart. There have been discussions about this (issue [#4308](https://github.com/sveltejs/svelte/issues/4308), [#8194](https://github.com/sveltejs/svelte/issues/8194), [#8209](https://github.com/sveltejs/svelte/issues/8209), [#7775](https://github.com/sveltejs/kit/issues/7775)), but currently there is no definitive solution from the framework. Nevetherless, no matter which framework we use, it is a good idea to keep splash screen independent from the hydration process to ensure its stability.
 :::
 
 Using vanilla? Doesn't it sound bizarre in today's world that is flooded with frontend frameworks? Perhaps you have been discouraged from using vanilla and told to use only what the framework provides. I assure you that using vanilla is perfectly normal, even necessary in typical situations like one presented here. Remember that frameworks come and go, but vanilla (HTML, CSS, JS) will always be there.
 
-In the content of Svelte and SvelteKit, there are many ways to apply HTML outside the "hydration zone". The simplest way is to add code directly to `app.html`:
+In the context of Svelte and SvelteKit, there are many ways to apply HTML outside the "hydration zone". The simplest way is to add code directly to `app.html`:
 
 ```svelte
 <!-- src/app.html -->
@@ -101,7 +101,7 @@ In the content of Svelte and SvelteKit, there are many ways to apply HTML outsid
 </html>
 ```
 
-If you don't already know, `app.html` is the starting template that SvelteKit uses to render page content into before sending off to clients. Hydration takes place at `%sveltekit.body%`. See the ["Project files" section in SvelteKit docs](https://kit.svelte.dev/docs/project-structure#project-files) for more details. Our `div#splash` is outside of `%sveltekit.body%` so it will not be affected by hydration. Next, for CSS, we will declare a separate file...
+If you don't already know, `app.html` is the starting template that SvelteKit uses to render page content into before sending off to clients. Hydration takes place at `%sveltekit.body%`. See the ["Project files" section in SvelteKit docs](https://kit.svelte.dev/docs/project-structure#project-files) for more details. Our `div#splash` is outside of `%sveltekit.body%` so it isn ot affected by hydration. Next, for CSS, we declare a separate file...
 
 ```css
 /* splash.css */
