@@ -280,15 +280,17 @@
 		</section>
 
 		{#if data.inSeries.length}
-			<section>
+			<section class="space-y-10">
 				<h2 class="c-text-h2 font-medium after:mt-2 after:separator" use:intersect>{t.series}</h2>
-				<ul class="blog-subgrid-list mt-10">
-					{#each data.inSeries as post}
-						<li use:intersect>
-							<BlogPostItem {post} alwaysVertical />
-						</li>
-					{/each}
-				</ul>
+				{#each data.inSeries as posts}
+					<ul class="blog-subgrid-list">
+						{#each posts as post}
+							<li use:intersect>
+								<BlogPostItem {post} alwaysVertical />
+							</li>
+						{/each}
+					</ul>
+				{/each}
 			</section>
 		{/if}
 	</div>

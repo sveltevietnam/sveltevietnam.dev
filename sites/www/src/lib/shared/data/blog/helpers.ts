@@ -107,3 +107,68 @@ export function preparePageData(language: Language, post: Post, content: PostCon
 		} satisfies App.PageData['meta'],
 	};
 }
+
+const MAX_IN_SERIES_COUNT = 3;
+/**
+ * Search for at most 3 posts in the same series with the following algorithm:
+ * - 1 is the latest post in the same series, if any,
+ * - 2 is the post that comes right after the target post that is not 1, if any.
+ * In case none is found, switch to 3, if any.
+ * - 3 is the post that comes right before the target post, if any. If same as 2, take the next one, if any.
+ *
+ * If multiple series, return an array of at most 3 posts for each series
+ */
+export function searchPostsInSameSeries(posts: Post[], post: Post) {
+	const postsInSameSeries: Post[][] = [];
+
+	if (!post.series?.length) return postsInSameSeries;
+
+	let remainingPosts = [...posts];
+	let indexOfPost = remainingPosts.findIndex((p) => p.slug === post.slug);
+	if (indexOfPost === -1) return postsInSameSeries;
+
+	let matchedPosts: Post[] = [];
+	for (const series of post.series) {
+		let left = indexOfPost - 1;
+		let right = indexOfPost + 1;
+
+		const leftBound = remainingPosts.findIndex(
+			(p) => p.series?.some((s) => s.slug === series.slug),
+		);
+		if (leftBound !== -1) {
+			const latestPostInSeries = remainingPosts[leftBound];
+			if (latestPostInSeries.slug !== post.slug) matchedPosts.push(latestPostInSeries);
+		}
+
+		while (left > leftBound || right < remainingPosts.length) {
+			if (left > leftBound) {
+				const leftPost = remainingPosts[left];
+				if (leftPost?.series?.some((s) => s.slug === series.slug)) {
+					matchedPosts.push(leftPost);
+					if (matchedPosts.length >= MAX_IN_SERIES_COUNT) break;
+				}
+				left--;
+			}
+
+			if (right < remainingPosts.length) {
+				const rightPost = remainingPosts[right];
+
+				if (rightPost?.series?.some((s) => s.slug === series.slug)) {
+					matchedPosts.push(rightPost);
+					if (matchedPosts.length >= MAX_IN_SERIES_COUNT) break;
+				}
+
+				right++;
+			}
+		}
+
+		if (matchedPosts.length) {
+			postsInSameSeries.push(matchedPosts);
+			remainingPosts = remainingPosts.filter((p) => !matchedPosts.some((_p) => _p.slug === p.slug));
+			indexOfPost = remainingPosts.findIndex((p) => p.slug === post.slug);
+			matchedPosts = [];
+		}
+	}
+
+	return postsInSameSeries.sort((a, b) => b.length - a.length);
+}

@@ -90,13 +90,14 @@
 
 					width: 100%;
 					height: 1px;
+					margin-bottom: 40px;
 
 					background: theme('colors.outline.DEFAULT');
 				}
+			}
 
-				&:first-of-type::before {
-					display: none;
-				}
+			&:first-of-type > :global(li):first-of-type::before {
+				display: none;
 			}
 		}
 
