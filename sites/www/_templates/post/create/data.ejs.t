@@ -12,6 +12,8 @@ import En from './content.en.md.svelte?mdsvex';
 <% if (languageMap.vi) { -%>
 import Vi from './content.vi.md.svelte?mdsvex';
 <% } -%>
+// import thumbnail from './images/thumbnail.jpg?enhanced';
+// import ogImage from './images/thumbnail.jpg?w=1400&imagetools';
 
 export const post = {
 	slug: '<%= post.slug %>',
@@ -50,24 +52,17 @@ export const post = {
 	// keywords: ['blog', 'svelte', 'vietnam'],
 	// tags: [],
 	// readMinutes: 10,
+	// ogImage,
+	// thumbnail,
 <% if (languageMap.en && languageMap.vi) { -%>
-	// ogImage: {
-	//	vi: '',
-	//	en: '',
-	// },
-	// thumbnail: {
-	//	vi: '',
-	//	en: '',
-	// },
 	// wordCount: {
 	// 	vi: 1000,
 	// 	en: 1000,
 	// },
 <% } else { -%>
-	// ogImage: '',
-	// thumbnail: '',
 	// wordCount: 1000,
 <% } -%>
+	// series: [],
 } satisfies Post;
 
 export const content = {

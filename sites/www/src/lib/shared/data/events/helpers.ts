@@ -37,13 +37,18 @@ export function isEventWithinOneDay(event: LocalizedEvent) {
 	);
 }
 
-export function localizeEvent(language: Language, event: Event) {
+export function localizeEvent<E extends Event>(language: Language, event: E) {
 	return {
 		...event,
 		title: resolveLangVar(language, event.title),
 		location: resolveLangVar(language, event.location),
 		description: resolveLangVar(language, event.description),
-		speakers: event.speakers.map((speaker) => localizePerson(language, speaker)),
+		speakers: Object.fromEntries(
+			Object.entries(event.speakers).map(([key, speaker]) => [
+				key,
+				localizePerson(language, speaker),
+			]),
+		) as Record<keyof E['speakers'], ReturnType<typeof localizePerson>>,
 		keywords: resolveLangVar(language, event.keywords),
 		ogImage: resolveLangVar(language, event.ogImage),
 		thumbnail: resolveLangVar(language, event.thumbnail),
@@ -54,7 +59,11 @@ export function localizeEvent(language: Language, event: Event) {
 	};
 }
 
-export function preparePageData(language: Language, event: Event, structure: StructureEvent) {
+export function preparePageData<E extends Event>(
+	language: Language,
+	event: E,
+	structure: StructureEvent,
+) {
 	const lEvent = localizeEvent(language, event);
 	const canonical = `${ROOT_URL}/${language}${EVENTS_PATH}/${lEvent.slug}`;
 	return {

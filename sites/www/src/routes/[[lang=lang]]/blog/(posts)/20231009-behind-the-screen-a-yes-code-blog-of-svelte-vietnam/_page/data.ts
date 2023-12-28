@@ -1,7 +1,7 @@
 import type { PostContent } from '$shared/data/blog';
 import type { Post } from '$shared/data/blog';
-import { getPostSeriesBySlug } from '$shared/data/blog/series';
-import { people } from '$shared/data/people';
+import { BEHIND_THE_SCREEN } from '$shared/data/blog/series';
+import { VNPHANQUANG } from '$shared/data/people';
 
 import En from './content.en.md.svelte?mdsvex';
 import Vi from './content.vi.md.svelte?mdsvex';
@@ -24,7 +24,7 @@ export const post = {
 		vi: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5B%5Blang=lang%5D%5D/blog/(posts)/20231009-behind-the-screen-a-yes-code-blog-of-svelte-vietnam/_page/content.vi.md.svelte',
 	},
 	originalLang: 'vi',
-	authors: [people.vnphanquang],
+	authors: [VNPHANQUANG],
 	keywords: ['blog', 'svelte', 'vietnam', 'yes-code', 'svelte vietnam'],
 	ogImage,
 	thumbnail,
@@ -34,7 +34,7 @@ export const post = {
 		vi: 2130,
 		en: 1630,
 	},
-	series: getPostSeriesBySlug('behind-the-screen'),
+	series: [BEHIND_THE_SCREEN],
 } satisfies Post;
 
 export const content = {

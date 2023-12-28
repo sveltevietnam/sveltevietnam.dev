@@ -85,7 +85,9 @@
 			<div class="mt-8 space-y-6">
 				<div>
 					{#if post?.series}
-						<p class="c-text-cap1 mb-1 text-green-900 dark:text-green-300">— {post.series.title}</p>
+						<p class="c-text-cap1 mb-1 text-green-900 dark:text-green-300">
+							— {post.series.map((s) => s.title).join(', ')}
+						</p>
 					{/if}
 					<h1 class="c-text-h2 font-bold">{post?.title}</h1>
 				</div>
@@ -283,7 +285,7 @@
 				<ul class="blog-subgrid-list mt-10">
 					{#each data.inSeries as post}
 						<li use:intersect>
-							<BlogPostItem {post} alwaysVertical hideSeries />
+							<BlogPostItem {post} alwaysVertical />
 						</li>
 					{/each}
 				</ul>

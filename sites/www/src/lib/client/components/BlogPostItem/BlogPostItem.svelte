@@ -38,7 +38,7 @@
 	<div class="__title">
 		{#if post.series}
 			<p class="c-text-cap1 mb-1 text-green-900 dark:text-green-300" class:hidden={hideSeries}>
-				— {post.series.title}
+				— {post.series.map((s) => s.title).join(', ')}
 			</p>
 		{/if}
 		<a {href} class="__title block w-fit">

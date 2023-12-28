@@ -1,7 +1,7 @@
 import type { PostContent } from '$shared/data/blog';
 import type { Post } from '$shared/data/blog';
-import { getPostSeriesBySlug } from '$shared/data/blog/series';
-import { people } from '$shared/data/people';
+import { BEHIND_THE_SCREEN } from '$shared/data/blog/series';
+import { VNPHANQUANG } from '$shared/data/people';
 
 import En from './content.en.md.svelte?mdsvex';
 import Vi from './content.vi.md.svelte?mdsvex';
@@ -23,7 +23,7 @@ export const post = {
 		en: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5B%5Blang=lang%5D%5D/blog/(posts)/20231220-behind-the-screen-progressive-enhancement/_page/content.en.md.svelte',
 		vi: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5B%5Blang=lang%5D%5D/blog/(posts)/20231220-behind-the-screen-progressive-enhancement/_page/content.vi.md.svelte',
 	},
-	authors: [people.vnphanquang],
+	authors: [VNPHANQUANG],
 	originalLang: 'vi',
 	keywords: [
 		'blog',
@@ -42,7 +42,7 @@ export const post = {
 		vi: 2900,
 		en: 2300,
 	},
-	series: getPostSeriesBySlug('behind-the-screen'),
+	series: [BEHIND_THE_SCREEN],
 } satisfies Post;
 
 export const content = {

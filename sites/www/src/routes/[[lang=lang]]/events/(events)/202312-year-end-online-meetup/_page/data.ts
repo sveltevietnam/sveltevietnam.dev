@@ -1,5 +1,5 @@
 import type { Event, StructureEvent } from '$shared/data/events';
-import { people } from '$shared/data/people';
+import { VNPHANQUANG } from '$shared/data/people';
 import { SVELTE_VIETNAM_ORG, structurePerson } from '$shared/data/structured';
 import { ROOT_URL } from '$shared/services/navigation';
 
@@ -32,7 +32,9 @@ export const event = {
 		vi: `Trực tuyến tại <a class="c-link" href="${EVENT_LINKS.STREAM}" target="_blank" rel="noreferrer">Youtube</a> và <a class="c-link" href="${EVENT_LINKS.DISCORD}" target="_blank" rel="noreferrer">Discord</a>`,
 		en: `Live via <a class="c-link" href="${EVENT_LINKS.STREAM}" target="_blank" rel="noreferrer">Youtube</a> and <a class="c-link" href="${EVENT_LINKS.DISCORD}" target="_blank" rel="noreferrer">Discord</a>`,
 	},
-	speakers: [people.vnphanquang],
+	speakers: {
+		vnphanquang: VNPHANQUANG,
+	},
 	sponsors: [],
 	keywords: {
 		vi: ['sự kiện', 'cộng đồng', 'gặp mặt', '2023', 'cuối năm', 'đầu tiên'],
@@ -46,7 +48,7 @@ export const event = {
 		vi: ogImageVi,
 		en: ogImageEn,
 	},
-} satisfies Event;
+} as const satisfies Event;
 
 export const structure = ((lEvent) => ({
 	'@context': 'https://schema.org',
@@ -72,5 +74,5 @@ export const structure = ((lEvent) => ({
 	],
 	inLanguage: 'vi',
 	organizer: SVELTE_VIETNAM_ORG,
-	performer: lEvent.speakers.map(structurePerson),
+	performer: Object.values(lEvent.speakers).map(structurePerson),
 })) satisfies StructureEvent;

@@ -1,6 +1,5 @@
 import { LOAD_DEPENDENCIES } from '$shared/constants';
 import { preparePageData } from '$shared/data/events';
-import { localizePerson, people } from '$shared/data/people';
 import type { Breadcrumb } from '$shared/services/navigation';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
@@ -13,9 +12,6 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
 	const prepared = preparePageData(language, event, structure);
 	return {
 		...prepared,
-		people: {
-			vnphanquang: localizePerson(language, people.vnphanquang),
-		},
 		breadcrumbs: [
 			...buildBreadcrumbs(url.pathname),
 			{ label: prepared.event.title },

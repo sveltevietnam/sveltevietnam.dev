@@ -20,7 +20,6 @@
 	$: t = data.translations.page;
 
 	$: event = data.event;
-	$: people = data.people;
 	$: isWithinOneDay = isEventWithinOneDay(event);
 
 	// params in seconds
@@ -146,7 +145,7 @@
 							>
 						</p>
 						<p>{t.timeline.video1.about}</p>
-						<Person person={people.vnphanquang} />
+						<Person person={event.speakers.vnphanquang} />
 					</div>
 				</li>
 				<li class="space-y-2" use:intersect>
@@ -165,7 +164,7 @@
 								>{t.timeline.video}: "{t.timeline.video2}"</a
 							>
 						</p>
-						<Person person={people.vnphanquang} />
+						<Person person={event.speakers.vnphanquang} />
 					</div>
 				</li>
 				<li class="space-y-2" use:intersect>

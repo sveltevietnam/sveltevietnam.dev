@@ -19,7 +19,7 @@ export function localizePost(language: Language, post: Post) {
 		wordCount: resolveLangVar(language, post.wordCount),
 		ogImage: resolveLangVar(language, post.ogImage),
 		thumbnail: resolveLangVar(language, post.thumbnail),
-		series: !post.series ? undefined : localizePostSeries(language, post.series),
+		series: !post.series ? undefined : post.series.map((s) => localizePostSeries(language, s)),
 	};
 }
 

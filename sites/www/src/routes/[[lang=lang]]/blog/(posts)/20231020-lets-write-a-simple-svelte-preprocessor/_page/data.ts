@@ -1,6 +1,6 @@
 import type { PostContent } from '$shared/data/blog';
 import type { Post } from '$shared/data/blog';
-import { people } from '$shared/data/people';
+import { VNPHANQUANG } from '$shared/data/people';
 
 import En from './content.en.md.svelte?mdsvex';
 import Vi from './content.vi.md.svelte?mdsvex';
@@ -23,7 +23,7 @@ export const post = {
 		vi: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5B%5Blang=lang%5D%5D/blog/(posts)/20231020-lets-write-a-simple-svelte-preprocessor/_page/content.vi.md.svelte',
 	},
 	originalLang: 'vi',
-	authors: [people.vnphanquang],
+	authors: [VNPHANQUANG],
 	keywords: ['svelte', 'preprocessor', 'plugin'],
 	ogImage,
 	thumbnail,

@@ -42,7 +42,7 @@ export type Post = {
 	keywords?: LangVar<string>[];
 	readMinutes?: number;
 	wordCount?: LangVar<number>;
-	series?: PostSeries;
+	series?: PostSeries[];
 };
 
 export type LocalizedPost = ReturnType<typeof localizePost>;

@@ -19,6 +19,7 @@
 	$: t = translations[lang];
 	$: status = getEventStatus(event);
 	$: isWithinOneDay = isEventWithinOneDay(event);
+	$: speakers = Object.values(event.speakers);
 </script>
 
 <article class="event-card {cls}">
@@ -71,11 +72,11 @@
 				{/if}
 			</dd>
 
-			{#if event.speakers.length}
+			{#if speakers.length}
 				<dt class="font-medium">{t.speakers}:</dt>
 				<dd>
 					<ul class="flex flex-wrap items-center gap-x-4 gap-y-3">
-						{#each event.speakers as { avatarUrl, name, link }}
+						{#each speakers as { avatarUrl, name, link }}
 							<li class="flex items-center gap-1">
 								{#if link}
 									<a href={link} class="c-link c-link--image" external>

@@ -13,7 +13,7 @@ export type Event = {
 	title: LangVar<string>;
 	location: LangVar<string>;
 	description: LangVar<string>;
-	speakers: Person[];
+	speakers: Record<string, Person>;
 	sponsors: Sponsor[];
 	keywords: LangVar<string[]>;
 	ogImage: LangVar<string>;

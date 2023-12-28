@@ -1,7 +1,7 @@
 import type { PostContent } from '$shared/data/blog';
 import type { Post } from '$shared/data/blog';
-import { getPostSeriesBySlug } from '$shared/data/blog/series';
-import { people } from '$shared/data/people';
+import { BEHIND_THE_SCREEN } from '$shared/data/blog/series';
+import { VNPHANQUANG } from '$shared/data/people';
 
 import En from './content.en.md.svelte?mdsvex';
 import Vi from './content.vi.md.svelte?mdsvex';
@@ -23,7 +23,7 @@ export const post = {
 		en: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5B%5Blang=lang%5D%5D/blog/(posts)/20231110-behind-the-screen-dark-mode-with-sveltekit-tailwindcss-and-postcss/_page/content.en.md.svelte',
 		vi: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5B%5Blang=lang%5D%5D/blog/(posts)/20231110-behind-the-screen-dark-mode-with-sveltekit-tailwindcss-and-postcss/_page/content.vi.md.svelte',
 	},
-	authors: [people.vnphanquang],
+	authors: [VNPHANQUANG],
 	originalLang: 'vi',
 	keywords: [
 		'svelte',
@@ -45,7 +45,7 @@ export const post = {
 		vi: 3500,
 		en: 2970,
 	},
-	series: getPostSeriesBySlug('behind-the-screen'),
+	series: [BEHIND_THE_SCREEN],
 } satisfies Post;
 
 export const content = {
