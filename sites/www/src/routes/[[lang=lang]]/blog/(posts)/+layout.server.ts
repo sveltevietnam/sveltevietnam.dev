@@ -27,6 +27,7 @@ export const load: LayoutServerLoad = async ({ url, depends, locals: { language 
 			for (const s of p.series) {
 				if (post.series.find((_s) => _s.slug === s.slug)) {
 					inSeries.push(p);
+					break;
 				}
 			}
 		}
