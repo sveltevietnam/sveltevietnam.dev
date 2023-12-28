@@ -41,9 +41,21 @@
 		>
 			<span class="sr-only">Copy</span>
 			{#if copied}
-				<svg inline-src="lucide/copy-check" width="20" height="20" in:fly={{ y: 10 }} />
+				<svg
+					class="stroke-white"
+					inline-src="lucide/copy-check"
+					width="20"
+					height="20"
+					in:fly={{ y: 10 }}
+				/>
 			{:else}
-				<svg inline-src="lucide/copy" width="20" height="20" in:fly={{ y: 10 }} />
+				<svg
+					class="stroke-white"
+					inline-src="lucide/copy"
+					width="20"
+					height="20"
+					in:fly={{ y: 10 }}
+				/>
 			{/if}
 		</button>
 	{/if}
