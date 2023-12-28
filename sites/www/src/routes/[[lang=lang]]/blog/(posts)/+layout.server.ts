@@ -13,6 +13,8 @@ import { buildBreadcrumbs } from '$shared/services/navigation/server';
 import type { LayoutServerLoad } from './$types';
 import { translations } from './translation';
 
+const MAX_IN_SERIES_COUNT = 3;
+
 export const load: LayoutServerLoad = async ({ url, depends, locals: { language } }) => {
 	const slug = url.pathname.split('/').at(-1);
 	const post = INTERNAL_POSTS.find((p) => p.slug === slug);
@@ -23,6 +25,7 @@ export const load: LayoutServerLoad = async ({ url, depends, locals: { language 
 	const inSeries: Post[] = [];
 	if (post.series && post.series.length) {
 		for (const p of otherPosts) {
+			if (inSeries.length >= MAX_IN_SERIES_COUNT) break;
 			if (!p.series?.length) continue;
 			for (const s of p.series) {
 				if (post.series.find((_s) => _s.slug === s.slug)) {
@@ -40,7 +43,7 @@ export const load: LayoutServerLoad = async ({ url, depends, locals: { language 
 			internal: !latestInternal ? [] : [latestInternal].map((p) => localizePost(language, p)),
 			external: EXTERNAL_POSTS.slice(0, 1).map((p) => localizeExternalPost(language, p)),
 		},
-		inSeries: inSeries.slice(0, 3).map((p) => localizePost(language, p)),
+		inSeries: inSeries.map((p) => localizePost(language, p)),
 		translations: {
 			layout: translations[language],
 		},
