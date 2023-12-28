@@ -69,7 +69,21 @@ module.exports = {
 		});
 		authorName = authorName.trim();
 
-		const date = new Date();
+		/** @type {{ title: string }} */
+		let { dateStr } = await prompter.prompt({
+			type: 'input',
+			message: 'What is the publication date (YYYY-MM-DD)? (leave blank for current date)',
+			name: 'dateStr',
+			validate(value) {
+				value = value.trim();
+				if (!value || /^\d{4}-\d{2}-\d{2}$/.test(value)) {
+					return true;
+				}
+				return false;
+			},
+		});
+
+		const date = dateStr ? new Date(dateStr) : new Date();
 		const fullYear = date.getFullYear().toString();
 		const month = (date.getMonth() + 1).toString().padStart(2, 0);
 		const day = date.getDate().toString().padStart(2, 0);
