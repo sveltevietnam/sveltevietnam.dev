@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0-next.36
+
+### Minor Changes
+
+- [`29d761d`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/29d761d9d0574da15124fa43a095c33fe656902f) Thanks [@vnphanquang](https://github.com/vnphanquang)! - better algorithm for search blog posts in the same series
+
+- [`879759d`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/879759d2adfcb9baebf0f47ee51bc75cc67587c5) Thanks [@vnphanquang](https://github.com/vnphanquang)! - More static PEOPLE & SERIES declarations, allow post to be associated with multiple series
+
 ## 1.0.0-next.35
 
 ### Minor Changes
