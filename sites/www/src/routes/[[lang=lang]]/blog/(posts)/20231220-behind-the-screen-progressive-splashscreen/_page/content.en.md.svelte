@@ -1,14 +1,14 @@
 <script>
-	import BaseNotification from '$client/notifications/BaseNotification.svelte';
-	import { SplashPlayground } from '$client/components/SplashPlayground';
+  import BaseNotification from '$client/notifications/BaseNotification.svelte';
+  import { SplashPlayground } from '$client/components/SplashPlayground';
 
-	import hydrationImage from './images/hydration-en.png?format=webp&imagetools';
-	import blockingRenderImage from './images/blocking-render.png?format=webp&imagetools';
-	import splashScreenImage from './images/splash-screen.png?format=webp&imagetools';
-	import vanillaImage from './images/vanilla.png?format=webp&imagetools';
-	import repetitionImage from './images/repetition-en.png?format=webp&imagetools';
-	import hydrationDuringSplashImage from './images/hydration-during-splash.png?format=webp&imagetools';
-	import hydrationAfterSplashImage from './images/hydration-after-splash.png?format=webp&imagetools';
+  import hydrationImage from './images/hydration-en.png?format=webp&imagetools';
+  import blockingRenderImage from './images/blocking-render.png?format=webp&imagetools';
+  import splashScreenImage from './images/splash-screen.png?format=webp&imagetools';
+  import vanillaImage from './images/vanilla.png?format=webp&imagetools';
+  import repetitionImage from './images/repetition-en.png?format=webp&imagetools';
+  import hydrationDuringSplashImage from './images/hydration-during-splash.png?format=webp&imagetools';
+  import hydrationAfterSplashImage from './images/hydration-after-splash.png?format=webp&imagetools';
 </script>
 
 :::div c-callout c-callout--info
@@ -24,8 +24,8 @@ In this post, we will dive deeper into the practical values that splash screen b
 At first glance, splash screen seems to only serve branding and entertainment purposes. For users, such perception is well intended. From a technical perspective, however, splash screen also helps buy time while the site is fetching resources and preping for later stages. This process is called "[hydration](https://kit.svelte.dev/docs/glossary#hydration)" and is common in most popular frontend frameworks nowadays. In a few words, hydration is the procedure that transforms a static web page into a dynamic one by setting up an environment necessary for the framework to perform DOM updates in response to user interactions and system changes. In other words, if you write Javascript in the context of a framework (React, Vue, Svelte, ...), those pieces of code only take effect after hydration has finished it job.
 
 <figure>
-	<img src={hydrationImage} class="mx-auto max-w-full rounded" width="800" height="475" alt="illustration for hydration: on the left, no hydration yet, the page is static with only HTML, CSS, and vanilla JS. On the right, hydration has completed, the site now livies in a framework environment" />
-	<figcaption>Illustration 1: the hydration process that sets up the correct environment for framework</figcaption>
+  <img src={hydrationImage} class="mx-auto max-w-full rounded" width="800" height="475" alt="illustration for hydration: on the left, no hydration yet, the page is static with only HTML, CSS, and vanilla JS. On the right, hydration has completed, the site now livies in a framework environment" />
+  <figcaption>Illustration 1: the hydration process that sets up the correct environment for framework</figcaption>
 </figure>
 
 For pages with many transitions and animations, especially those that require Javascript such as [GSAP](https://gsap.com/) or [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API), one common problem is a flash or glitch right after hydration has completed. Many websites, especially single-page applications, get around this by blocking the content from being displayed until Javascript has been loaded (hydration has completed). It's easy to see that this approach has two consequences:
@@ -34,8 +34,8 @@ For pages with many transitions and animations, especially those that require Ja
 2. For users who don't use Javascript, the site becomes completely useless because no content is displayed, and hydration never takes place.
 
 <figure>
-	<img src={blockingRenderImage} class="mx-auto max-w-full rounded" width="600" height="370" alt="illustration for the blocking-display solution" />
-	<figcaption>Illustration 2: the "display-blocking" solution</figcaption>
+  <img src={blockingRenderImage} class="mx-auto max-w-full rounded" width="600" height="370" alt="illustration for the blocking-display solution" />
+  <figcaption>Illustration 2: the "display-blocking" solution</figcaption>
 </figure>
 
 :::div c-callout c-callout--info
@@ -45,8 +45,8 @@ For (2), you might find it strange that there are users who don't use Javascript
 As such, although simple, this display-blocking solution does not provide the best user experience. To overcome both of the consequences above, we need to server-side-render the web page, then send HTML and CSS directly to the browser for an initial render, and let hydration take place naturally afterwards. But then we are back to square one: how to hide the glitch right after hydration has completed? The second solution is to display a splash screen.
 
 <figure>
-	<img src={splashScreenImage} class="mx-auto max-w-full rounded" width="600" height="370" alt="illustration for the splash-screen solution" />
-	<figcaption>Illustration 3: the "splash-screen" solution</figcaption>
+  <img src={splashScreenImage} class="mx-auto max-w-full rounded" width="600" height="370" alt="illustration for the splash-screen solution" />
+  <figcaption>Illustration 3: the "splash-screen" solution</figcaption>
 </figure>
 
 Of course, this solution does not come without its own problems, which we will discuss in the following sections.
@@ -85,19 +85,19 @@ In the context of Svelte and SvelteKit, there are many ways to apply HTML outsid
 <!-- src/app.html -->
 <!doctype html>
 <html>
-	<head>...</head>
-	<body>
-		<!-- :::highlight -->
-		<div id="splash">
-			<!-- "vanilla", independent from framework and its hydration -->
-		</div>
-		<!-- ::: -->
+  <head>...</head>
+  <body>
+    <!-- :::highlight -->
+    <div id="splash">
+      <!-- "vanilla", independent from framework and its hydration -->
+    </div>
+    <!-- ::: -->
 
-		<div class="contents">
-			<!-- hydration zone -->
-			%sveltekit.body%
-		</div>
-	</body>
+    <div class="contents">
+      <!-- hydration zone -->
+      %sveltekit.body%
+    </div>
+  </body>
 </html>
 ```
 
@@ -106,7 +106,7 @@ If you don't already know, `app.html` is the starting template that SvelteKit us
 ```css
 /* splash.css */
 #splash {
-	/* applicable styles for animation and such */
+  /* applicable styles for animation and such */
 }
 ```
 
@@ -115,7 +115,7 @@ If you don't already know, `app.html` is the starting template that SvelteKit us
 ```svelte
 <!-- src/routes/+layout.svelte -->
 <script>
-	import 'path/to/splash.css';
+  import 'path/to/splash.css';
 </script>
 ```
 
@@ -124,8 +124,8 @@ It is possible to declare `splash.css` directly in `app.html`. However, by doing
 :::
 
 <figure>
-	<img src={vanillaImage} class="mx-auto max-w-full rounded" width="680" height="328" alt="integrating vanilla HTML and CSS into SvelteKit" />
-	<figcaption>Illustration 4: a vanilla splash screen integrated in SvelteKit</figcaption>
+  <img src={vanillaImage} class="mx-auto max-w-full rounded" width="680" height="328" alt="integrating vanilla HTML and CSS into SvelteKit" />
+  <figcaption>Illustration 4: a vanilla splash screen integrated in SvelteKit</figcaption>
 </figure>
 
 Implementation details for a splash screen depend on the design of each application. You can refer to the splash screen implementation of *sveltevietnam.dev* at [app.html](https://github.com/sveltevietnam/sveltevietnam.dev/blob/fd1a7cdea3b63f53c19bb7ce6bec23f902ae3f24/sites/www/src/app.html#L47-L80) and [splash.css](https://github.com/sveltevietnam/sveltevietnam.dev/blob/fd1a7cdea3b63f53c19bb7ce6bec23f902ae3f24/libs/ui/css/components/c-splash.css). In general, a splash screen often has the following characteristics:
@@ -145,8 +145,8 @@ However, in case when CSR is turned off or Javascript is not available, each nav
 2. When users navigate internally (e.g. from `/a` to `/b`), do not display the splash screen again.
 
 <figure>
-	<img src={repetitionImage} class="mx-auto max-w-full rounded" width="800" height="152" alt="avoid splash screen repetition during navigation" />
-	<figcaption>Illustration 5: splash screen only runs upon the first navigation</figcaption>
+  <img src={repetitionImage} class="mx-auto max-w-full rounded" width="800" height="152" alt="avoid splash screen repetition during navigation" />
+  <figcaption>Illustration 5: splash screen only runs upon the first navigation</figcaption>
 </figure>
 
 First of all, we add an attribute to the `div#splash` element:
@@ -155,18 +155,18 @@ First of all, we add an attribute to the `div#splash` element:
 <!-- src/app.html -->
 <!doctype html>
 <html>
-	<head>...</head>
-	<body>
-		:::diff -
-		<div id="splash">
-		:::
-		:::diff +
-		<div id="splash" data-splash-skip="%splash-skip%">
-		:::
-			...
-		</div>
-		...
-	</body>
+  <head>...</head>
+  <body>
+    :::diff -
+    <div id="splash">
+    :::
+    :::diff +
+    <div id="splash" data-splash-skip="%splash-skip%">
+    :::
+      ...
+    </div>
+    ...
+  </body>
 </html>
 ```
 
@@ -177,22 +177,22 @@ First of all, we add an attribute to the `div#splash` element:
 
 /** @type {import('sveltejs/kit').Handle} */
 export const handle = async ({ event, resolve }) => {
-	const { url, request, locals } = event;
+  const { url, request, locals } = event;
 
-	// check for Referer header to know where the user is navigating from
-	const referer = request.headers.get('Referer');
-	if (referer) {
-		const urlReferer = new URL(referer);
-		if (urlReferer.origin === url.origin) {
-			locals.internalReferer = urlReferer;
-		}
-	}
+  // check for Referer header to know where the user is navigating from
+  const referer = request.headers.get('Referer');
+  if (referer) {
+    const urlReferer = new URL(referer);
+    if (urlReferer.origin === url.origin) {
+      locals.internalReferer = urlReferer;
+    }
+  }
 
-	await resolve(event, {
-		// :::highlight
-		transformPageChunk: ({ html }) => html.replace('%splash-skip%', String(!!locals.internalReferer)),
-		// :::
-	});
+  await resolve(event, {
+    // :::highlight
+    transformPageChunk: ({ html }) => html.replace('%splash-skip%', String(!!locals.internalReferer)),
+    // :::
+  });
 };
 ```
 
@@ -207,11 +207,11 @@ To turn on Javascript again, follow the same steps but replace the command with 
 ```css
 /* splash.css */
 #splash {
-	/* :::diff + */
-	&[data-splash-skip="true"] {
-		display: none;
-	}
-	/* ::: */
+  /* :::diff + */
+  &[data-splash-skip="true"] {
+    display: none;
+  }
+  /* ::: */
 }
 ```
 
@@ -220,22 +220,22 @@ To turn on Javascript again, follow the same steps but replace the command with 
 In happy cases, hydration completes while the splash screen is still running, and the system is ready to welcome users. After hydration finishes, users can immediately start interacting with the site.
 
 <figure>
-	<img src={hydrationDuringSplashImage} class="mx-auto max-w-full rounded" width="800" height="173" alt="illustration: hydration completes before splash screen ends" />
-	<figcaption>Illustration 6.1: hydration completes before splash screen ends</figcaption>
+  <img src={hydrationDuringSplashImage} class="mx-auto max-w-full rounded" width="800" height="173" alt="illustration: hydration completes before splash screen ends" />
+  <figcaption>Illustration 6.1: hydration completes before splash screen ends</figcaption>
 </figure>
 
 But, on slow network, hydration is delayed and takes place after the splash screen has ended. At this point, because the page has been rendered from the server, users can still read the content of the page, but features that require Javascript will not work until hydration has completed.
 
 <figure>
-	<img src={hydrationAfterSplashImage} class="mx-auto max-w-full rounded" width="800" height="173" alt="illustration: hydration completes after splash screen has ended" />
-	<figcaption>Illustration 6.2: hydration completes after splash screen has ended</figcaption>
+  <img src={hydrationAfterSplashImage} class="mx-auto max-w-full rounded" width="800" height="173" alt="illustration: hydration completes after splash screen has ended" />
+  <figcaption>Illustration 6.2: hydration completes after splash screen has ended</figcaption>
 </figure>
 
 Unfortunately, in situation such as this, we cannot avoid the glitch problem, as discussed in previous sections. However, we can notify users so that they understand why it happens. This approach is based on a basic principle of user experience design: always communicate and provide information about visible system changes. This is the notification used by *sveltevietnam.dev*:
 
 :::div not-prose
 <BaseNotification intent="info">
-	<p>Interrupt has been detected due to unstable network. We are sorry for this inconvenience!</p>
+  <p>Interrupt has been detected due to unstable network. We are sorry for this inconvenience!</p>
 </BaseNotification>
 :::
 
@@ -244,29 +244,29 @@ To achieve this, we need to detect whether hydration completes after splash scre
 ```svelte
 <!-- src/app.html -->
 <html>
-	<body>
-		<div id="splash">...</splash>
+  <body>
+    <div id="splash">...</splash>
 
-		<!-- :::diff + -->
-		<script>
-			function stamp() {
-				document.documentElement.setAttribute('data-splashed-at', new Date().toISOString());
-			}
+    <!-- :::diff + -->
+    <script>
+      function stamp() {
+        document.documentElement.setAttribute('data-splashed-at', new Date().toISOString());
+      }
 
-			const splashEl = document.getElementById('splash');
-			if (!splashEl || splashEl.getAttribute('data-splash-skip')) {
-				stamp();
-			} else {
-				splashEl.addEventListener('animationend', (e) => {
-					// :::highlight warning
-					if (!splashEl.isSameNode(e.target)) return;
-					// :::
-					stamp();
-				});
-			}
-		</script>
-		<!-- ::: -->
-	</body>
+      const splashEl = document.getElementById('splash');
+      if (!splashEl || splashEl.getAttribute('data-splash-skip')) {
+        stamp();
+      } else {
+        splashEl.addEventListener('animationend', (e) => {
+          // :::highlight warning
+          if (!splashEl.isSameNode(e.target)) return;
+          // :::
+          stamp();
+        });
+      }
+    </script>
+    <!-- ::: -->
+  </body>
 </html>
 ```
 
@@ -279,24 +279,24 @@ Here, you see that we are, again, using vanilla JS. Let me re-emphasize: this is
 ```svelte
 <!-- src/routes/+layout.svelte -->
 <script>
-	import { browser } from '$app/environment';
+  import { browser } from '$app/environment';
 
-	if (browser) {
-		const hydratedAt = new Date();
-		const intervalId = setInterval(() => {
-			splashedAt = document.documentElement.getAttribute('data-splashed-at');
-			if (splashedAt) {
-				clearInterval(intervalId);
-				// :::highlight
-				if (hydrated > new Date(splashedAt)) {
-					// hydration completes after splash screen
-					// indicating that the network is slow:
-					// display appropriate notification
-				}
-				// :::
-			}
-		}, 250);
-	}
+  if (browser) {
+    const hydratedAt = new Date();
+    const intervalId = setInterval(() => {
+      splashedAt = document.documentElement.getAttribute('data-splashed-at');
+      if (splashedAt) {
+        clearInterval(intervalId);
+        // :::highlight
+        if (hydrated > new Date(splashedAt)) {
+          // hydration completes after splash screen
+          // indicating that the network is slow:
+          // display appropriate notification
+        }
+        // :::
+      }
+    }, 250);
+  }
 </script>
 ```
 

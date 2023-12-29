@@ -1,14 +1,14 @@
 <script>
-	import BaseNotification from '$client/notifications/BaseNotification.svelte';
-	import { SplashPlayground } from '$client/components/SplashPlayground';
+  import BaseNotification from '$client/notifications/BaseNotification.svelte';
+  import { SplashPlayground } from '$client/components/SplashPlayground';
 
-	import hydrationImage from './images/hydration-vi.png?format=webp&imagetools';
-	import blockingRenderImage from './images/blocking-render.png?format=webp&imagetools';
-	import splashScreenImage from './images/splash-screen.png?format=webp&imagetools';
-	import vanillaImage from './images/vanilla.png?format=webp&imagetools';
-	import repetitionImage from './images/repetition-vi.png?format=webp&imagetools';
-	import hydrationDuringSplashImage from './images/hydration-during-splash.png?format=webp&imagetools';
-	import hydrationAfterSplashImage from './images/hydration-after-splash.png?format=webp&imagetools';
+  import hydrationImage from './images/hydration-vi.png?format=webp&imagetools';
+  import blockingRenderImage from './images/blocking-render.png?format=webp&imagetools';
+  import splashScreenImage from './images/splash-screen.png?format=webp&imagetools';
+  import vanillaImage from './images/vanilla.png?format=webp&imagetools';
+  import repetitionImage from './images/repetition-vi.png?format=webp&imagetools';
+  import hydrationDuringSplashImage from './images/hydration-during-splash.png?format=webp&imagetools';
+  import hydrationAfterSplashImage from './images/hydration-after-splash.png?format=webp&imagetools';
 </script>
 
 :::div c-callout c-callout--info
@@ -24,8 +24,8 @@ Trong bài viết này ta sẽ tìm hiểu chi tiết hơn về giá trị thự
 Thoạt nhìn màn hình chờ trông có vẻ chỉ phục vụ mục đích hoạt ảnh và giải trí. Đối với người dùng, nhận thức đó là hoàn toàn đúng và đủ. Tuy nhiên, trên phương diện kĩ thuật, màn hình chờ còn là một phương pháp "câu giờ" trong khi hệ thống đang tải các tài nguyên thiết yếu và chuẩn bị để trang web hoạt động một cách tốt nhất. Quá trình này được gọi là "[hydration](https://kit.svelte.dev/docs/glossary#hydration)" và thường gặp trong hầu hết các framework phổ biến ngày nay. Nói ngắn gọn, hydration là giai đoạn chuyển hóa một trang web tĩnh thành động bằng cách thiết lập môi trường phù hợp để framework thực hiện các kỹ thuật cập nhật DOM theo tương tác của người dùng và biến đổi của hệ thống. Nói cách khác, nếu bạn viết Javascript trong ngữ cảnh của framework (React, Vue, Svelte, ...), các đoạn mã đó chỉ có hiệu lực sau khi hydration đã hoàn thành.
 
 <figure>
-	<img src={hydrationImage} class="mx-auto max-w-full rounded" width="800" height="475" alt="minh họa hydration: bên phải chưa hydration, trang web tĩnh, chỉ có HTML, CSS, và vanilla JS. Bên phải đã hydration, trang web động trong môi trường Javascript framework" />
-	<figcaption>Minh họa 1: quá trình hydration thiết lập môi trường cho framework</figcaption>
+  <img src={hydrationImage} class="mx-auto max-w-full rounded" width="800" height="475" alt="minh họa hydration: bên phải chưa hydration, trang web tĩnh, chỉ có HTML, CSS, và vanilla JS. Bên phải đã hydration, trang web động trong môi trường Javascript framework" />
+  <figcaption>Minh họa 1: quá trình hydration thiết lập môi trường cho framework</figcaption>
 </figure>
 
 Đối với các trang có nhiều hiệu ứng (transition, animation), đặc biệt là hiệu ứng phụ thuộc vào Javascript như [GSAP](https://gsap.com/) hay [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API), một vấn đề thường gặp là trang sẽ bị chớp nháy ngay sau khi hydration vừa hoàn thành. Nhiều trang web, đặc biệt là các ứng dụng đơn trang, giải quyết điều này bằng cách chặn cho nội dung không được hiển thị cho đến khi Javascript đã tải xong (hydration đã hoàn thành). Dễ hiểu rằng việc này gây ra hai hệ quả:
@@ -34,8 +34,8 @@ Thoạt nhìn màn hình chờ trông có vẻ chỉ phục vụ mục đích ho
 2. Với người dùng không sử dụng Javascript, trang web sẽ trở nên vô dụng vì không có nội dung nào được hiển thị, và hydration không bao giờ diễn ra.
 
 <figure>
-	<img src={blockingRenderImage} class="mx-auto max-w-full rounded" width="600" height="370" alt="minh họa giải pháp chặn hiển thị" />
-	<figcaption>Minh họa 2: giải pháp chặn hiển thị</figcaption>
+  <img src={blockingRenderImage} class="mx-auto max-w-full rounded" width="600" height="370" alt="minh họa giải pháp chặn hiển thị" />
+  <figcaption>Minh họa 2: giải pháp chặn hiển thị</figcaption>
 </figure>
 
 :::div c-callout c-callout--info
@@ -45,8 +45,8 @@ Thoạt nhìn màn hình chờ trông có vẻ chỉ phục vụ mục đích ho
 Như vậy, giải pháp chặn hiển thị nội dung tuy đơn giản nhưng không mang lại trải nghiệm tốt nhất. Để giải quyết cả hai hệ quả trên, ta cần phải biểu hiện nội dung từ phía máy chủ (server-side-rendering), và gởi trực tiếp HTML, CSS cho trình duyệt hiển thị ban đầu, sau đó để hydration diễn ra một cách tự nhiên. Thế nhưng khi đấy ta lại quay trở về vạch xuất phát với vấn đề ban đầu: làm sao che đi việc chớp nháy do hiệu ứng trên trang khi hydration vừa hoàn thành? Giải pháp thứ hai chính là hiển thị màn hình chờ.
 
 <figure>
-	<img src={splashScreenImage} class="mx-auto max-w-full rounded" width="600" height="370" alt="minh họa giải pháp màn hình chờ" />
-	<figcaption>Minh họa 3: giải pháp màn hình chờ</figcaption>
+  <img src={splashScreenImage} class="mx-auto max-w-full rounded" width="600" height="370" alt="minh họa giải pháp màn hình chờ" />
+  <figcaption>Minh họa 3: giải pháp màn hình chờ</figcaption>
 </figure>
 
 Đương nhiên, giải pháp này cũng không tránh khỏi một số vấn đề mà ta sẽ bàn đến ở các phần tiếp theo.
@@ -85,19 +85,19 @@ Trong Svelte và SvelteKit, có nhiều cách để áp dụng một đoạn mã
 <!-- src/app.html -->
 <!doctype html>
 <html>
-	<head>...</head>
-	<body>
-		<!-- :::highlight -->
-		<div id="splash">
-			<!-- "vanilla", độc lập đối với framework và quá trình hydration -->
-		</div>
-		<!-- ::: -->
+  <head>...</head>
+  <body>
+    <!-- :::highlight -->
+    <div id="splash">
+      <!-- "vanilla", độc lập đối với framework và quá trình hydration -->
+    </div>
+    <!-- ::: -->
 
-		<div class="contents">
-			<!-- phạm vi HTML được hydration -->
-			%sveltekit.body%
-		</div>
-	</body>
+    <div class="contents">
+      <!-- phạm vi HTML được hydration -->
+      %sveltekit.body%
+    </div>
+  </body>
 </html>
 ```
 
@@ -106,7 +106,7 @@ Nếu bạn chưa biết, `app.html` là tệp mẫu SvelteKit dùng để biể
 ```css
 /* splash.css */
 #splash {
-	/* style và hiệu ứng phù hợp */
+  /* style và hiệu ứng phù hợp */
 }
 ```
 
@@ -115,7 +115,7 @@ Nếu bạn chưa biết, `app.html` là tệp mẫu SvelteKit dùng để biể
 ```svelte
 <!-- src/routes/+layout.svelte -->
 <script>
-	import 'path/to/splash.css';
+  import 'path/to/splash.css';
 </script>
 ```
 
@@ -124,8 +124,8 @@ Chú ý rằng ta có thể trực tiếp khai báo tệp `splash.css` tại `ap
 :::
 
 <figure>
-	<img src={vanillaImage} class="mx-auto max-w-full rounded" width="680" height="328" alt="minh họa tích hợp vanilla splash.css và app.html với SvelteKit" />
-	<figcaption>Minh họa 4: màn hình chờ vanilla trong ngữ cảnh SvelteKit</figcaption>
+  <img src={vanillaImage} class="mx-auto max-w-full rounded" width="680" height="328" alt="minh họa tích hợp vanilla splash.css và app.html với SvelteKit" />
+  <figcaption>Minh họa 4: màn hình chờ vanilla trong ngữ cảnh SvelteKit</figcaption>
 </figure>
 
 Chi tiết thực hiện HTML và CSS của màn hình chờ là tùy thuộc vào ứng dụng và thiết kế của dự án. Bạn có thể tham khảo màn hình chờ của *sveltevietnam.dev* tại [app.html](https://github.com/sveltevietnam/sveltevietnam.dev/blob/fd1a7cdea3b63f53c19bb7ce6bec23f902ae3f24/sites/www/src/app.html#L47-L80) và [splash.css](https://github.com/sveltevietnam/sveltevietnam.dev/blob/fd1a7cdea3b63f53c19bb7ce6bec23f902ae3f24/libs/ui/css/components/c-splash.css). Nhìn chung, màn hình chờ thường có hai đặc điểm sau:
@@ -145,8 +145,8 @@ Tuy nhiên, trong trường hợp bạn không dùng CSR hoặc người dùng k
 2. Nếu người dùng điều hướng nội bộ từ trong trang web (ví dụ từ trang `/a` trong `/b`), không hiển thị lại màn hình chờ.
 
 <figure>
-	<img src={repetitionImage} class="mx-auto max-w-full rounded" width="800" height="173" alt="minh họa: tránh lặp lại khi điều hướng" />
-	<figcaption>Minh họa 5: chỉ hiển thị màn hình chờ cho lần điều hướng đầu tiên</figcaption>
+  <img src={repetitionImage} class="mx-auto max-w-full rounded" width="800" height="173" alt="minh họa: tránh lặp lại khi điều hướng" />
+  <figcaption>Minh họa 5: chỉ hiển thị màn hình chờ cho lần điều hướng đầu tiên</figcaption>
 </figure>
 
 Trước tiên, ta thêm một thuộc tính vào phần tử `div#splash`:
@@ -155,18 +155,18 @@ Trước tiên, ta thêm một thuộc tính vào phần tử `div#splash`:
 <!-- src/app.html -->
 <!doctype html>
 <html>
-	<head>...</head>
-	<body>
-		:::diff -
-		<div id="splash">
-		:::
-		:::diff +
-		<div id="splash" data-splash-skip="%splash-skip%">
-		:::
-			...
-		</div>
-		...
-	</body>
+  <head>...</head>
+  <body>
+    :::diff -
+    <div id="splash">
+    :::
+    :::diff +
+    <div id="splash" data-splash-skip="%splash-skip%">
+    :::
+      ...
+    </div>
+    ...
+  </body>
 </html>
 ```
 
@@ -177,22 +177,22 @@ Trước tiên, ta thêm một thuộc tính vào phần tử `div#splash`:
 
 /** @type {import('sveltejs/kit').Handle} */
 export const handle = async ({ event, resolve }) => {
-	const { url, request, locals } = event;
+  const { url, request, locals } = event;
 
-	// kiểm tra header Referer để biết người dùng vừa điều hướng từ đâu
-	const referer = request.headers.get('Referer');
-	if (referer) {
-		const urlReferer = new URL(referer);
-		if (urlReferer.origin === url.origin) {
-			locals.internalReferer = urlReferer;
-		}
-	}
+  // kiểm tra header Referer để biết người dùng vừa điều hướng từ đâu
+  const referer = request.headers.get('Referer');
+  if (referer) {
+    const urlReferer = new URL(referer);
+    if (urlReferer.origin === url.origin) {
+      locals.internalReferer = urlReferer;
+    }
+  }
 
-	await resolve(event, {
-		// :::highlight
-		transformPageChunk: ({ html }) => html.replace('%splash-skip%', String(!!locals.internalReferer)),
-		// :::
-	});
+  await resolve(event, {
+    // :::highlight
+    transformPageChunk: ({ html }) => html.replace('%splash-skip%', String(!!locals.internalReferer)),
+    // :::
+  });
 };
 ```
 
@@ -207,11 +207,11 @@ Bạn có thể kiểm tra đoạn mã đã hoạt động đúng chưa bằng c
 ```css
 /* splash.css */
 #splash {
-	/* :::diff + */
-	&[data-splash-skip="true"] {
-		display: none;
-	}
-	/* ::: */
+  /* :::diff + */
+  &[data-splash-skip="true"] {
+    display: none;
+  }
+  /* ::: */
 }
 ```
 
@@ -220,22 +220,22 @@ Bạn có thể kiểm tra đoạn mã đã hoạt động đúng chưa bằng c
 Trong trường hợp mọi thứ đều tốt đẹp, hydration sẽ diễn ra trong khi màn hình chờ đang chạy, và hệ thống đã chuẩn bị đầy đủ để đón tiếp người dùng. Ngay sau khi màn hình chờ kết thúc, người dùng có thể bắt đầu tương tác với trang.
 
 <figure>
-	<img src={hydrationDuringSplashImage} class="mx-auto max-w-full rounded" width="800" height="173" alt="minh họa: hydration hoàn thành trước khi màn hình chờ kết thúc" />
-	<figcaption>Minh họa 6.1: hydration hoàn thành trước khi màn hình chờ kết thúc</figcaption>
+  <img src={hydrationDuringSplashImage} class="mx-auto max-w-full rounded" width="800" height="173" alt="minh họa: hydration hoàn thành trước khi màn hình chờ kết thúc" />
+  <figcaption>Minh họa 6.1: hydration hoàn thành trước khi màn hình chờ kết thúc</figcaption>
 </figure>
 
 Nhưng khi mạng chậm, hydration bị trì hoãn và diễn ra sau khi màn hình chờ đã kết thúc. Lúc này, vì trang web đã được biểu hiện trước từ phía máy chủ, người dùng vẫn có thể đọc nội dung trên trang, nhưng những tính năng cần có Javascript sẽ không sử dụng được cho đến khi hydration đã hoàn thành.
 
 <figure>
-	<img src={hydrationAfterSplashImage} class="mx-auto max-w-full rounded" width="800" height="173" alt="minh họa: hydration hoàn thành sau khi màn hình chờ kết thúc" />
-	<figcaption>Minh họa 6.2: hydration hoàn thành sau khi màn hình chờ kết thúc</figcaption>
+  <img src={hydrationAfterSplashImage} class="mx-auto max-w-full rounded" width="800" height="173" alt="minh họa: hydration hoàn thành sau khi màn hình chờ kết thúc" />
+  <figcaption>Minh họa 6.2: hydration hoàn thành sau khi màn hình chờ kết thúc</figcaption>
 </figure>
 
 Ngoài ra, trong tình huống này, ta không thể tránh được việc trang web bị chớp nháy một tí, như đã bàn ở các phần trước. Tuy nhiên, ta có thể thông báo cho người dùng để họ hiểu được vì sao điều này xảy ra. Cách xử lý này dựa vào nguyên tắc cơ bản của thiết kế trải nghiệm người dùng: luôn giao tiếp và cung cấp thông tin về những thay đổi của hệ thống. Đây là thông báo từ *sveltevietnam.dev* cho tình huống này:
 
 :::div not-prose
 <BaseNotification intent="info">
-	<p>Phát hiện gián đoạn do kết nối không ổn định. Xin lỗi bạn vì sự bất tiện này!</p>
+  <p>Phát hiện gián đoạn do kết nối không ổn định. Xin lỗi bạn vì sự bất tiện này!</p>
 </BaseNotification>
 :::
 
@@ -244,29 +244,29 @@ Ngoài ra, trong tình huống này, ta không thể tránh được việc tran
 ```svelte
 <!-- src/app.html -->
 <html>
-	<body>
-		<div id="splash">...</splash>
+  <body>
+    <div id="splash">...</splash>
 
-		<!-- :::diff + -->
-		<script>
-			function stamp() {
-				document.documentElement.setAttribute('data-splashed-at', new Date().toISOString());
-			}
+    <!-- :::diff + -->
+    <script>
+      function stamp() {
+        document.documentElement.setAttribute('data-splashed-at', new Date().toISOString());
+      }
 
-			const splashEl = document.getElementById('splash');
-			if (!splashEl || splashEl.getAttribute('data-splash-skip')) {
-				stamp();
-			} else {
-				splashEl.addEventListener('animationend', (e) => {
-					// :::highlight warning
-					if (!splashEl.isSameNode(e.target)) return;
-					// :::
-					stamp();
-				});
-			}
-		</script>
-		<!-- ::: -->
-	</body>
+      const splashEl = document.getElementById('splash');
+      if (!splashEl || splashEl.getAttribute('data-splash-skip')) {
+        stamp();
+      } else {
+        splashEl.addEventListener('animationend', (e) => {
+          // :::highlight warning
+          if (!splashEl.isSameNode(e.target)) return;
+          // :::
+          stamp();
+        });
+      }
+    </script>
+    <!-- ::: -->
+  </body>
 </html>
 ```
 
@@ -279,24 +279,24 @@ Lưu ý: bạn cần bắt đúng sự kiện `animationend` vì màn hình ch�
 ```svelte
 <!-- src/routes/+layout.svelte -->
 <script>
-	import { browser } from '$app/environment';
+  import { browser } from '$app/environment';
 
-	if (browser) {
-		const hydratedAt = new Date();
-		const intervalId = setInterval(() => {
-			splashedAt = document.documentElement.getAttribute('data-splashed-at');
-			if (splashedAt) {
-				clearInterval(intervalId);
-				// :::highlight
-				if (hydrated > new Date(splashedAt)) {
-					// hydration hoàn thành sau khi màn hình chờ kết thúc
-					// chỉ thị đường truyền không ổn định:
-					// hiển thị thông báo phù hợp
-				}
-				// :::
-			}
-		}, 250);
-	}
+  if (browser) {
+    const hydratedAt = new Date();
+    const intervalId = setInterval(() => {
+      splashedAt = document.documentElement.getAttribute('data-splashed-at');
+      if (splashedAt) {
+        clearInterval(intervalId);
+        // :::highlight
+        if (hydrated > new Date(splashedAt)) {
+          // hydration hoàn thành sau khi màn hình chờ kết thúc
+          // chỉ thị đường truyền không ổn định:
+          // hiển thị thông báo phù hợp
+        }
+        // :::
+      }
+    }, 250);
+  }
 </script>
 ```
 

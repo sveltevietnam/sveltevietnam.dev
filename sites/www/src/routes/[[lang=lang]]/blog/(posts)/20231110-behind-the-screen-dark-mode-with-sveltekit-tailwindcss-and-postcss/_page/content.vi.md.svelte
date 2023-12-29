@@ -1,5 +1,5 @@
 <script>
-	import devtoolsSSRImage from './images/devtools-ssr-html.webp';
+  import devtoolsSSRImage from './images/devtools-ssr-html.webp';
 </script>
 
 :::div c-callout c-callout--info
@@ -14,13 +14,13 @@ Trước tiên, hãy nhìn qua cách hiện thực hóa một giao diện tối 
 
 ```css
 :root {
-	--color-bg: white;
-	--color-fg: black;
+  --color-bg: white;
+  --color-fg: black;
 }
 
 html {
-	background-color: var(--color-bg);
-	color: var(--color-fg);
+  background-color: var(--color-bg);
+  color: var(--color-fg);
 }
 ```
 
@@ -30,14 +30,14 @@ Hãy tưởng tượng ta có một tính năng thần kỳ, một [At-rule](htt
 
 ```css
 :root {
-	--color-bg: white;
-	--color-fg: black;
+  --color-bg: white;
+  --color-fg: black;
 }
 
 /* :::diff + */
 @dark {
-	--color-fg: black;
-	--color-bg: white;
+  --color-fg: black;
+  --color-bg: white;
 }
 /* ::: */
 ```
@@ -52,11 +52,11 @@ Câu trả lời là ta sẽ phải dựa vào thiết lập của hệ điều 
 
 ```css
 @media (prefers-color-scheme: dark) {
-	/* thiết lập CSS tương ứng cho giao diện tối */
+  /* thiết lập CSS tương ứng cho giao diện tối */
 }
 
 @media (prefers-color-scheme: light) {
-	/* thiết lập CSS tương ứng cho giao diện sáng */
+  /* thiết lập CSS tương ứng cho giao diện sáng */
 }
 ```
 
@@ -75,7 +75,7 @@ Với (4), ta cần thiết lập thêm HTML để thể hiện tùy chỉnh ng�
 
 ```svelte
 <html data-color-scheme="dark">
-	<!-- nội dung ứng dụng -->
+  <!-- nội dung ứng dụng -->
 </html>
 ```
 
@@ -83,7 +83,7 @@ Giá trị của `data-color-scheme` là `dark`, `light`, hoặc `system`. `syst
 
 ```css
 :root[data-color-scheme="dark"] {
-	/* thiết lập tương ứng */
+  /* thiết lập tương ứng */
 }
 ```
 
@@ -93,9 +93,9 @@ Giá trị của `data-color-scheme` là `dark`, `light`, hoặc `system`. `syst
 
 ```css
 @media (prefers-color-scheme: dark) {
-	:root {
-		/* ... */
-	}
+  :root {
+    /* ... */
+  }
 }
 ```
 
@@ -103,11 +103,11 @@ Ví dụ người dùng có chọn `light` trong cài đặt của ứng dụng 
 
 ```css
 @media (prefers-color-scheme: dark) {
-	/* :::diff + */
-	:root:not([data-color-scheme="light"]) {
-	/* ::: */
-		/* ... */
-	}
+  /* :::diff + */
+  :root:not([data-color-scheme="light"]) {
+  /* ::: */
+    /* ... */
+  }
 }
 ```
 
@@ -120,31 +120,31 @@ Vậy là cuối cùng ta cũng có thể viết lại CSS ở phần trước v
 ```css
 /* sáng */
 :root {
-	--color-bg: white;
-	--color-fg: black;
+  --color-bg: white;
+  --color-fg: black;
 }
 
 /* tối, theo trường hợp (2) */
 /* :::highlight */
 @media (prefers-color-scheme: dark) {
-	:root:not([data-color-scheme="light"]) {
+  :root:not([data-color-scheme="light"]) {
 /* ::: */
-		--color-bg: black;
-		--color-fg: white;
-	}
+    --color-bg: black;
+    --color-fg: white;
+  }
 }
 
 /* tối, theo trường hợp (4) */
 /* :::highlight */
 :root[data-color-scheme="dark"] {
 /* ::: */
-	--color-bg: black;
-	--color-fg: white;
+  --color-bg: black;
+  --color-fg: white;
 }
 
 html {
-	background-color: var(--color-bg);
-	color: var(--color-fg);
+  background-color: var(--color-bg);
+  color: var(--color-fg);
 }
 ```
 
@@ -154,23 +154,23 @@ Mình có thể nghe bạn nói là "Trời, sao phức tạp quá vậy!?". Đ�
 
 ```css
 .box {
-	background-color: blue;
+  background-color: blue;
 }
 
 /* tối, theo trường hợp (2) */
 /* :::highlight */
 @media (prefers-color-scheme: dark) {
-	:root:not([data-color-scheme="light"]) .box {
+  :root:not([data-color-scheme="light"]) .box {
 /* ::: */
-		background-color: red;
-	}
+    background-color: red;
+  }
 }
 
 /* tối, theo trường hợp (4) */
 /* :::highlight */
 :root[data-color-scheme="dark"] .box {
 /* ::: */
-	background-color: red;
+  background-color: red;
 }
 ```
 
@@ -178,13 +178,13 @@ Quá là nhức đầu đúng không nào. May mắn là, mình đã viết mộ
 
 ```css
 .box {
-	background-color: blue;
+  background-color: blue;
 
 :::highlight
-	@dark {
+  @dark {
 :::
-		background-color: red;
-	}
+    background-color: red;
+  }
 }
 ```
 
@@ -198,13 +198,13 @@ Nếu dùng Svelte một thời gian, bạn sẽ biết rằng CSS trong Svelte 
 <div class="box" />
 
 <style>
-	.box {
-		background-color: blue;
-	}
+  .box {
+    background-color: blue;
+  }
 
-	.something-else {
-		color: blue;
-	}
+  .something-else {
+    color: blue;
+  }
 </style>
 ```
 
@@ -212,7 +212,7 @@ Svelte sẽ thêm một mã hash vào class `.box`, ví dụ `.box.s-SeNnWx1nPv6
 
 ```css
 :global(.something-else) {
-	color: blue;
+  color: blue;
 }
 ```
 
@@ -220,13 +220,13 @@ Khi ta thiết lập chế độ tối (dù có dùng `@dark` hay hay không), t
 
 ```css
 .box {
-	background-color: blue;
+  background-color: blue;
 
 :::highlight
-	@dark global {
+  @dark global {
 :::
-		background-color: red;
-	}
+    background-color: red;
+  }
 }
 ```
 
@@ -248,11 +248,11 @@ Sẽ rất tiện lợi nếu ta có thể sử dụng được cú pháp sau:
 // tailwind.config.cjs
 /** @type {import("tailwindcss").Config } */
 module.exports = {
-	// your config ...
-	// :::diff +
-	darkMode: '',
-	plugins: [require('postcss-color-scheme/lib/tailwind')],
-	// :::
+  // your config ...
+  // :::diff +
+  darkMode: '',
+  plugins: [require('postcss-color-scheme/lib/tailwind')],
+  // :::
 };
 ```
 
@@ -262,19 +262,19 @@ Hãy xem qua docs [tại github](https://github.com/vnphanquang/postcss-color-sc
 // tailwind.config.cjs
 /** @type {import("tailwindcss").Config } */
 module.exports = {
-	// your config ...
-	darkMode: '',
-	plugins: [require('postcss-color-scheme/lib/tailwind')],
-	// :::diff +
-	theme: {
-		extend: {
-			colors: {
-				fg: 'var(--color-fg)',
-				bg: 'var(--color-bg)',
-			},
-		},
-	},
-	// :::
+  // your config ...
+  darkMode: '',
+  plugins: [require('postcss-color-scheme/lib/tailwind')],
+  // :::diff +
+  theme: {
+    extend: {
+      colors: {
+        fg: 'var(--color-fg)',
+        bg: 'var(--color-bg)',
+      },
+    },
+  },
+  // :::
 };
 ```
 
@@ -286,10 +286,10 @@ Sau đó ta có thể sử dụng như sau:
 
 <!-- trong css -->
 <style>
-	div {
-		/* color: theme('colors.fg'); */
-		background-color: theme('colors.bg.DEFAULT');
-	}
+  div {
+    /* color: theme('colors.fg'); */
+    background-color: theme('colors.bg.DEFAULT');
+  }
 </style>
 ```
 
@@ -302,7 +302,7 @@ Sau đó ta có thể sử dụng như sau:
  * @param {'dark' | 'light' | 'system'} scheme
  */
 function changeColorScheme(scheme) {
-	document.documentElement.dataset.colorScheme = scheme;
+  document.documentElement.dataset.colorScheme = scheme;
 }
 ```
 
@@ -316,9 +316,9 @@ Ngày nay, với tính năng [:has](https://developer.mozilla.org/en-US/docs/Web
 <input id="is-dark" />
 
 <style>
-	:root:has(#is-dark:checked) {
-		/* thiết lập tương ứng */
-	}
+  :root:has(#is-dark:checked) {
+    /* thiết lập tương ứng */
+  }
 </style>
 ```
 
@@ -358,10 +358,10 @@ import { PUBLIC_COOKIE_COLOR_SCHEME } from '$env/static/public';
  * @param {'dark' | 'light' | 'system'} scheme
  */
 function changeColorScheme(scheme) {
-	document.documentElement.dataset.colorScheme = scheme;
-	// :::diff +
-	document.cookie = `${PUBLIC_COOKIE_COLOR_SCHEME}=${scheme}; path=/; SameSite=Lax; Secure`;
-	// :::
+  document.documentElement.dataset.colorScheme = scheme;
+  // :::diff +
+  document.cookie = `${PUBLIC_COOKIE_COLOR_SCHEME}=${scheme}; path=/; SameSite=Lax; Secure`;
+  // :::
 }
 ```
 
@@ -377,17 +377,17 @@ import { PUBLIC_COOKIE_COLOR_SCHEME } from '$env/static/public';
 
 /** @type {import('@sveltejs/kit).Handle} */
 export const handle = async ({ event, resolve }) => {
-	const { locals, cookies } = event;
+  const { locals, cookies } = event;
 
-	locals.colorScheme = (cookies.get(PUBLIC_COOKIE_COLOR_SCHEME)) || 'system';
+  locals.colorScheme = (cookies.get(PUBLIC_COOKIE_COLOR_SCHEME)) || 'system';
 
-	const response = await resolve(event, {
-		// :::highlight
-		transformPageChunk: ({ html }) => html.replace('%cookie-color-scheme%', event.locals.colorScheme)
-		// :::
-	});
+  const response = await resolve(event, {
+    // :::highlight
+    transformPageChunk: ({ html }) => html.replace('%cookie-color-scheme%', event.locals.colorScheme)
+    // :::
+  });
 
-	return response;
+  return response;
 }
 ```
 
@@ -416,11 +416,11 @@ Như vậy, ta có thể ví dụ hành trình của người dùng như sau:
 Ta có thể xác minh HTML được render từ server với giá trị `data-color-scheme` tương ứng bằng cách xem cửa sổ Network trong Devtools của Chrome ngay trên trang bạn đang đọc:
 
 <img
-	src={devtoolsSSRImage}
-	alt="Chụp màn hình cửa sổ Network, Devtook của Chrome, hiển thị đúng thuộc tính data-color-scheme"
-	loading="lazy"
-	decoding="async"
-	class="rounded"
+  src={devtoolsSSRImage}
+  alt="Chụp màn hình cửa sổ Network, Devtook của Chrome, hiển thị đúng thuộc tính data-color-scheme"
+  loading="lazy"
+  decoding="async"
+  class="rounded"
 />
 
 ### Hỗ trợ Typescript
@@ -429,13 +429,13 @@ Nếu bạn dùng Typescript, có thể thêm đoạn mã sau vào `src/app.d.ts
 
 ```typescript
 declare global {
-	namespace App {
-		declare type ColorScheme = 'light' | 'dark' | 'system';
+  namespace App {
+    declare type ColorScheme = 'light' | 'dark' | 'system';
 
-		interface Locals {
-			colorScheme: ColorScheme;
-		}
-	}
+    interface Locals {
+      colorScheme: ColorScheme;
+    }
+  }
 }
 ```
 
@@ -452,9 +452,9 @@ Trong đoạn mã ở phần [Thiết lập ở server](#thiet-lap-o-server) v�
 import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = ({ locals }) => {
-	// :::highlight
-	return { colorScheme: locals.colorScheme };
-	// :::
+  // :::highlight
+  return { colorScheme: locals.colorScheme };
+  // :::
 };
 ```
 
@@ -463,12 +463,12 @@ Với đoạn mã trên ta có thể truy cập `colorScheme` từ đối tượ
 ```svelte
 <!-- src/routes/+layout.svelte -->
 <script>
-	/** @type {import('./$types).LayoutData} */
-	export let data;
+  /** @type {import('./$types).LayoutData} */
+  export let data;
 
-	// :::highlight
-	console.log(data.colorScheme);
-	// :::
+  // :::highlight
+  console.log(data.colorScheme);
+  // :::
 </script>
 ```
 
@@ -491,44 +491,44 @@ const COLOR_SCHEME_CONTEXT_ID = 'colorscheme';
  * @returns user's color scheme preference
  */
 function getPrefersColorScheme() {
-	if (!browser) return 'light';
-	return window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  if (!browser) return 'light';
+  return window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
 /**
  * @param {App.ColorScheme} initial
  */
 function createColorSchemeStore(initial) {
-	const store = writable(initial);
+  const store = writable(initial);
 
-	const preferred = derived(store, (c) => (c === 'system' ? getPrefersColorScheme() : c));
+  const preferred = derived(store, (c) => (c === 'system' ? getPrefersColorScheme() : c));
 
-	return {
-		subscribe: store.subscribe,
-		/**
-		 * @param {App.ColorScheme} scheme
-		 */
-		change(scheme) {
-			document.documentElement.dataset.colorScheme = scheme;
-			document.cookie = `${PUBLIC_COOKIE_COLOR_SCHEME}=${scheme}; path=/; SameSite=Lax; Secure`;
-			store.set(scheme);
-		},
-		preferred,
-	};
+  return {
+    subscribe: store.subscribe,
+    /**
+     * @param {App.ColorScheme} scheme
+     */
+    change(scheme) {
+      document.documentElement.dataset.colorScheme = scheme;
+      document.cookie = `${PUBLIC_COOKIE_COLOR_SCHEME}=${scheme}; path=/; SameSite=Lax; Secure`;
+      store.set(scheme);
+    },
+    preferred,
+  };
 }
 
 /**
  * @param {App.ColorScheme} initial
  */
 export function setColorSchemeContext(initial) {
-	return setContext(COLOR_SCHEME_CONTEXT_ID, createColorSchemeStore(initial));
+  return setContext(COLOR_SCHEME_CONTEXT_ID, createColorSchemeStore(initial));
 }
 
 /**
  * @returns {ReturnType<getContext<ReturnType<typeof setColorSchemeContext>>}
  */
 export function getColorSchemeContext() {
-	return getContext(COLOR_SCHEME_CONTEXT_ID);
+  return getContext(COLOR_SCHEME_CONTEXT_ID);
 }
 ```
 
@@ -541,18 +541,18 @@ Bây giờ ta có thể sử dụng `setColorSchemeContext` để khai báo cont
 ```svelte
 <!-- src/routes/+layout.svelte -->
 <script>
-	// :::diff +
-	import { setColorSchemeContext } from '$lib/contexts/color-scheme';
-	// :::
-	/** @type {import('./$types).LayoutData} */
-	export let data;
+  // :::diff +
+  import { setColorSchemeContext } from '$lib/contexts/color-scheme';
+  // :::
+  /** @type {import('./$types).LayoutData} */
+  export let data;
 
-	// :::diff -
-	console.log(data.colorScheme);
-	// :::
-	// :::diff +
-	setColorSchemeContext(data.colorScheme);
-	// :::
+  // :::diff -
+  console.log(data.colorScheme);
+  // :::
+  // :::diff +
+  setColorSchemeContext(data.colorScheme);
+  // :::
 </script>
 ```
 
@@ -561,11 +561,11 @@ Và sử dụng `getColorSchemeContext` để truy cập context:
 ```svelte
 <!-- SomeComponent.svelte -->
 <script>
-	import { getColorSchemeContext } from '$lib/contexts/color-scheme';
+  import { getColorSchemeContext } from '$lib/contexts/color-scheme';
 
-	const colorSchemeStore = getColorSchemeContext();
+  const colorSchemeStore = getColorSchemeContext();
 
-	$: preferred = colorSchemeStore.preferred;
+  $: preferred = colorSchemeStore.preferred;
 </script>
 ```
 

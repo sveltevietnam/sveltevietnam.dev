@@ -1,14 +1,14 @@
 <script>
-	import BaseNotification from '$client/notifications/BaseNotification.svelte';
-	import DiscordNotification from '$client/notifications/DiscordNotification.svelte';
-	import notificationHoverImage from './images/notification-hover-en.gif';
-	import fallbackAvatar from '$shared/assets/images/fallback/default.jpg?w=60&imagetools';
-	import devToolsSlow3gImage from './images/devtools-slow-3g.jpg?format=webp&imagetools';
-	import disableJavascriptImage from './images/disable-javascript.png?format=webp&imagetools';
-	import notFoundPageImage from './images/not-found-page.png?format=webp&imagetools';
-	import blueScreenOfDeathImage from './images/blue-screen-of-death.png?format=webp&imagetools';
-	import asciiPhoImage from './images/ascii-pho.jpg?format=webp&imagetools';
-	import emailImage from './images/email-en.jpg?format=webp&imagetools';
+  import BaseNotification from '$client/notifications/BaseNotification.svelte';
+  import DiscordNotification from '$client/notifications/DiscordNotification.svelte';
+  import notificationHoverImage from './images/notification-hover-en.gif';
+  import fallbackAvatar from '$shared/assets/images/fallback/default.jpg?w=60&imagetools';
+  import devToolsSlow3gImage from './images/devtools-slow-3g.jpg?format=webp&imagetools';
+  import disableJavascriptImage from './images/disable-javascript.png?format=webp&imagetools';
+  import notFoundPageImage from './images/not-found-page.png?format=webp&imagetools';
+  import blueScreenOfDeathImage from './images/blue-screen-of-death.png?format=webp&imagetools';
+  import asciiPhoImage from './images/ascii-pho.jpg?format=webp&imagetools';
+  import emailImage from './images/email-en.jpg?format=webp&imagetools';
 </script>
 
 :::div c-callout c-callout--info
@@ -21,7 +21,7 @@ Perhaps you have encountered a system notification while visiting *sveltevietnam
 
 :::div not-prose
 <BaseNotification intent="info">
-	<p>A system notification, appearing and automatically dismissed after a moment at the top right corner of the page</p>
+  <p>A system notification, appearing and automatically dismissed after a moment at the top right corner of the page</p>
 </BaseNotification>
 :::
 
@@ -39,7 +39,7 @@ When there is a successful deployment to the server, the web page will display t
 
 :::div not-prose
 <BaseNotification intent="info">
-	<p>A new version of the site was released. Please reload the page at your convenience for the best experience.</p>
+  <p>A new version of the site was released. Please reload the page at your convenience for the best experience.</p>
 </BaseNotification>
 :::
 
@@ -61,7 +61,7 @@ When you open the web page in devices or places that are limited in network conn
 
 :::div not-prose
 <BaseNotification intent="info">
-	<p>Interrupt has been detected due to unstable network. We are sorry for this inconvenience!</p>
+  <p>Interrupt has been detected due to unstable network. We are sorry for this inconvenience!</p>
 </BaseNotification>
 :::
 

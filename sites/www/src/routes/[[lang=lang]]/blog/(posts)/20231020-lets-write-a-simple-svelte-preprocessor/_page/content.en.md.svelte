@@ -155,16 +155,24 @@ Previously, I said that this preprocessor only works for links that are "externa
 
 In this case, our preprocessor cannot detect the link as external. To overcome this, we can assign an arbitrary attribute as a marker for the preprocessor: if the `a` tag has this attribute, it is an external link. For example:
 
-```diff
-- <a href={SOME_VARIABLE}>...</a>
-+ <a href={SOME_VARIABLE} data-external>...</a>
+```svelte
+<!-- :::diff - -->
+<a href={SOME_VARIABLE}>...</a>
+<!-- ::: -->
+<!-- :::diff + -->
+<a href={SOME_VARIABLE} data-external>...</a>
+<!-- ::: -->
 ```
 
 Then, we need to change a bit of our preprocessor code to check if this attribute exists, and if so, perform the same operations as already discussed.
 
-```diff
+```javascript
+// :::diff -
 - let external = false;
+// :::
+// :::diff +
 + let external = node.attributes.some((attr) => attr.name === 'data-external');
+// :::
 
 // ... some other code update
 ```

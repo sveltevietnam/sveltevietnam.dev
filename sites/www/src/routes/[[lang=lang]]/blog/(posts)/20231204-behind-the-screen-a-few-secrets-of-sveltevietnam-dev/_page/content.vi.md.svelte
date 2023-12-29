@@ -1,14 +1,14 @@
 <script>
-	import BaseNotification from '$client/notifications/BaseNotification.svelte';
-	import DiscordNotification from '$client/notifications/DiscordNotification.svelte';
-	import notificationHoverImage from './images/notification-hover-vi.gif';
-	import fallbackAvatar from '$shared/assets/images/fallback/default.jpg?w=60&imagetools';
-	import devToolsSlow3gImage from './images/devtools-slow-3g.jpg?format=webp&imagetools';
-	import disableJavascriptImage from './images/disable-javascript.png?format=webp&imagetools';
-	import notFoundPageImage from './images/not-found-page.png?format=webp&imagetools';
-	import blueScreenOfDeathImage from './images/blue-screen-of-death.png?format=webp&imagetools';
-	import asciiPhoImage from './images/ascii-pho.jpg?format=webp&imagetools';
-	import emailImage from './images/email-vi.jpg?format=webp&imagetools';
+  import BaseNotification from '$client/notifications/BaseNotification.svelte';
+  import DiscordNotification from '$client/notifications/DiscordNotification.svelte';
+  import notificationHoverImage from './images/notification-hover-vi.gif';
+  import fallbackAvatar from '$shared/assets/images/fallback/default.jpg?w=60&imagetools';
+  import devToolsSlow3gImage from './images/devtools-slow-3g.jpg?format=webp&imagetools';
+  import disableJavascriptImage from './images/disable-javascript.png?format=webp&imagetools';
+  import notFoundPageImage from './images/not-found-page.png?format=webp&imagetools';
+  import blueScreenOfDeathImage from './images/blue-screen-of-death.png?format=webp&imagetools';
+  import asciiPhoImage from './images/ascii-pho.jpg?format=webp&imagetools';
+  import emailImage from './images/email-vi.jpg?format=webp&imagetools';
 </script>
 
 :::div c-callout c-callout--info
@@ -21,7 +21,7 @@ Có thể bạn đã từng bắt gặp thông báo hệ thống khi ghé thăm 
 
 :::div not-prose
 <BaseNotification intent="info">
-	<p>Một thông báo từ hệ thống, xuất hiện và tự động ẩn đi sau một khoảng thời gian tại góc phải, trên của trang</p>
+  <p>Một thông báo từ hệ thống, xuất hiện và tự động ẩn đi sau một khoảng thời gian tại góc phải, trên của trang</p>
 </BaseNotification>
 :::
 
@@ -39,7 +39,7 @@ Khi có một phiên bản mới được triển khai thành công đến máy 
 
 :::div not-prose
 <BaseNotification intent="info">
-	<p>Trang web đang được cập nhật với phiên bản mới. Tải lại trang để có trải nghiệm tốt nhất bạn nhé!</p>
+  <p>Trang web đang được cập nhật với phiên bản mới. Tải lại trang để có trải nghiệm tốt nhất bạn nhé!</p>
 </BaseNotification>
 :::
 
@@ -61,7 +61,7 @@ Khi bạn mở trang web trên các thiết bị hoặc với môi trường gi�
 
 :::div not-prose
 <BaseNotification intent="info">
-	<p>Phát hiện gián đoạn do kết nối không ổn định. Xin lỗi bạn vì sự bất tiện này!</p>
+  <p>Phát hiện gián đoạn do kết nối không ổn định. Xin lỗi bạn vì sự bất tiện này!</p>
 </BaseNotification>
 :::
 

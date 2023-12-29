@@ -154,16 +154,24 @@ Khi nãy, ta có nói rằng đoạn mã preprocessor trên chỉ hoạt động
 
 Trong trường hợp này, preprocessor ta vừa viết sẽ không phát hiện được đây là đường dẫn ngoài. Để giải quyết vấn đề này, ta có thể tự quy ước một thuộc tính bất kì làm dấu hiệu cho preprocessor: nếu thẻ `a` có thuộc tính này, nó chính là đường dẫn ngoài. Ví dụ:
 
-```diff
-- <a href={SOME_VARIABLE}>...</a>
-+ <a href={SOME_VARIABLE} data-external>...</a>
+```svelte
+<!-- :::diff - -->
+<a href={SOME_VARIABLE}>...</a>
+<!-- ::: -->
+<!-- :::diff + -->
+<a href={SOME_VARIABLE} data-external>...</a>
+<!-- ::: -->
 ```
 
 Khi đó, ta cần thay đổi một tí mã preprocessor của chúng ta xem nếu có thuộc tính này thì thực hiện các thao tác tương tự.
 
-```diff
+```javascript
+// :::diff -
 - let external = false;
+// :::
+// :::diff +
 + let external = node.attributes.some((attr) => attr.name === 'data-external');
+// :::
 
 // ... thay đổi code tương ứng
 ```

@@ -12,3 +12,7 @@ max_line_length = 100
 
 [*.inject.ejs.t]
 end_of_line = unset
+
+[*.md.svelte]
+indent_size = 2
+indent_style = space
