@@ -287,7 +287,7 @@ Sau đó ta có thể sử dụng như sau:
 <!-- trong css -->
 <style>
   div {
-    /* color: theme('colors.fg'); */
+    color: theme('colors.fg.DEFAULT');
     background-color: theme('colors.bg.DEFAULT');
   }
 </style>

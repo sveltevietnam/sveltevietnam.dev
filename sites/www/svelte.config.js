@@ -116,7 +116,6 @@ const enhanceCodeBlock = {
 const config = {
 	extensions: ['.svelte', ...mdsvexConfig.extensions],
 	preprocess: [
-		vitePreprocess(),
 		mdsvex(mdsvexConfig),
 		enhanceCodeBlock,
 		autoSlug((defaultOptions) => ({
@@ -149,6 +148,7 @@ const config = {
 				keepInlineSrcAttribute: true,
 			},
 		),
+		vitePreprocess(),
 	],
 	kit: {
 		adapter: adapter({
