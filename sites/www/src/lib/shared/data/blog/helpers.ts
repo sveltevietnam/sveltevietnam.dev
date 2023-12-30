@@ -97,7 +97,7 @@ export function preparePageData(language: Language, post: Post, content: PostCon
 					dateModified: lPost.date,
 					image: ROOT_URL + lPost.ogImage,
 					author: lPost.authors.map(structurePerson),
-					inLang: language,
+					inLanguage: language,
 					publisher: SVELTE_VIETNAM_ORG,
 					isPartOf: SVELTE_VIETNAM_BLOG,
 					wordCount: lPost.wordCount,
