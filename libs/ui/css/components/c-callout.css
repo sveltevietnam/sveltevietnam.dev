@@ -2,7 +2,7 @@
 	--padding-x: 24px;
 	--padding-y: 16px;
 	--icon-padding: 8px;
-	--icon-size: 22px;
+	--icon-size: 26px;
 	--text-color: theme('colors.info.text');
 	--element-color: theme('colors.info.element');
 	--surface-color: theme('colors.info.surface.DEFAULT');
