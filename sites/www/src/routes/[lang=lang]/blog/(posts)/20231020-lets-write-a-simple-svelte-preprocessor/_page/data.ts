@@ -19,8 +19,8 @@ export const post = {
 		vi: 'Cùng giải quyết một vấn đề đơn giản và cụ thể, thông qua đó giới thiệu cho bạn cách hoạt động của Svelte preprocessor',
 	},
 	githubUrl: {
-		en: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5B%5Blang=lang%5D%5D/blog/(posts)/20231020-lets-write-a-simple-svelte-preprocessor/_page/content.en.md.svelte',
-		vi: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5B%5Blang=lang%5D%5D/blog/(posts)/20231020-lets-write-a-simple-svelte-preprocessor/_page/content.vi.md.svelte',
+		en: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5Blang=lang%5D/blog/(posts)/20231020-lets-write-a-simple-svelte-preprocessor/_page/content.en.md.svelte',
+		vi: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5Blang=lang%5D/blog/(posts)/20231020-lets-write-a-simple-svelte-preprocessor/_page/content.vi.md.svelte',
 	},
 	originalLang: 'vi',
 	authors: [VNPHANQUANG],

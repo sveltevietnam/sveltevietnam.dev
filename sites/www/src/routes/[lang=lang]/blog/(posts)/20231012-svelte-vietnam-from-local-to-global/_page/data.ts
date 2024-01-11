@@ -20,8 +20,8 @@ export const post = {
 	},
 	authors: [VNPHANQUANG],
 	githubUrl: {
-		en: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5B%5Blang=lang%5D%5D/blog/(posts)/20231012-svelte-vietnam-from-local-to-global/_page/content.en.md.svelte',
-		vi: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5B%5Blang=lang%5D%5D/blog/(posts)/20231012-svelte-vietnam-from-local-to-global/_page/content.vi.md.svelte',
+		en: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5Blang=lang%5D/blog/(posts)/20231012-svelte-vietnam-from-local-to-global/_page/content.en.md.svelte',
+		vi: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5Blang=lang%5D/blog/(posts)/20231012-svelte-vietnam-from-local-to-global/_page/content.vi.md.svelte',
 	},
 	originalLang: 'vi',
 	keywords: ['blog', 'svelte', 'vietnam', 'community', 'identity'],

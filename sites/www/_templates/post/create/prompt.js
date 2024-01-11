@@ -104,10 +104,10 @@ module.exports = {
 				},
 			},
 			listing: {
-				path: `$routes/[[lang=lang]]/blog/(posts)/${slug}/_page/data`,
+				path: `$routes/[lang=lang]/blog/(posts)/${slug}/_page/data`,
 				alias: `post_${shortDateStr}_${titleForId.replace(/-/g, '_')}`,
 			},
-			baseDir: `src/routes/[[lang=lang]]/blog/(posts)/${slug}`,
+			baseDir: `src/routes/[lang=lang]/blog/(posts)/${slug}`,
 		};
 	},
 };

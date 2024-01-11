@@ -19,7 +19,7 @@ const CONFIG = {
 			const pages = glob(`${CONFIG.page.base}/**/+page.svelte`).sort();
 			return pages.map((p) => {
 				const dirname = path.dirname(p);
-				let name = path.relative(CONFIG.page.base, dirname.replace('[[lang=lang]]', ''));
+				let name = path.relative(CONFIG.page.base, dirname.replace('[lang=lang]', ''));
 				if (name === '') name = 'home';
 				const level = name.split('/').length;
 				return {

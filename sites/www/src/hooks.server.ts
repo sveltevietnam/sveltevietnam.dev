@@ -24,8 +24,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 		return resolve(event);
 	}
 
-	let languageFromUrl = getLangFromUrl(url, LANGUAGES);
-
 	const referer = request.headers.get('Referer');
 	if (referer) {
 		const urlReferer = new URL(referer);
@@ -34,10 +32,11 @@ export const handle: Handle = async ({ event, resolve }) => {
 		}
 	}
 
+	let languageFromUrl = getLangFromUrl(url, LANGUAGES);
 	if (!languageFromUrl) {
 		// if user comes from an internal link with lang, redirect to the same lang
 		// this is for progressive enhancement when JS is unavailable,
-		// otherwise the beforeNavigate hook in [[lang=lang]]/+layout.svelte will
+		// otherwise the beforeNavigate hook in [lang=lang]/+layout.svelte will
 		// handle the redirection with kit client-side router
 		if (locals.internalReferer) {
 			languageFromUrl = getLangFromUrl(locals.internalReferer, LANGUAGES);
@@ -46,20 +45,23 @@ export const handle: Handle = async ({ event, resolve }) => {
 			}
 		}
 
-		// if user has the EN cookie lang, redirect to EN
+		// if user has cookie lang, redirect accordingly
 		const cookieLang = cookies.get(COOKIE_LANGUAGE);
 		if (cookieLang && cookieLang !== 'vi') {
 			return Response.redirect(localizeUrl(url, cookieLang, LANGUAGES), 302);
 		}
 
-		// if user comes from a non-VN country, redirect to EN
+		// if user comes from a non-VN IP, redirect to EN
 		// REF: https://developers.cloudflare.com/workers/runtime-apis/request/#incomingrequestcfproperties
 		const countryCode = platform?.cf?.country;
 		if (countryCode && countryCode.toUpperCase() !== 'VN') {
 			return Response.redirect(localizeUrl(url, 'en', LANGUAGES), 302);
 		}
-		languageFromUrl = 'vi';
+
+		return Response.redirect(localizeUrl(url, 'vi', LANGUAGES), 302);
 	}
+	locals.language = languageFromUrl;
+	cookies.set(COOKIE_LANGUAGE, locals.language, COMMON_COOKIE_CONFIG);
 
 	locals.colorScheme =
 		(url.searchParams.get('color-scheme') as App.ColorScheme) ||
@@ -69,9 +71,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 		...COMMON_COOKIE_CONFIG,
 		httpOnly: false,
 	});
-
-	locals.language = languageFromUrl;
-	cookies.set(COOKIE_LANGUAGE, locals.language, COMMON_COOKIE_CONFIG);
 
 	let shouldSkipSlash = true;
 	/**
@@ -98,9 +97,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 				.replace('%cookie-color-scheme%', event.locals.colorScheme)
 				.replace('%language%', event.locals.language)
 				.replace('%splash-variant%', Math.random() < 0.75 ? 'short' : 'long')
-				// TODO: is there a way to detect and skip the splash screen if user has already seen one?
-				// this would be helpful for user without JS
-				// .replace('%splash-skip%', comingFromSameOrigin ? 'true' : 'false'),
 				.replace('%splash-skip%', String(shouldSkipSlash)),
 	});
 
