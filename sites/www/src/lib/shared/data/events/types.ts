@@ -23,6 +23,7 @@ export type Event = {
 export type LocalizedEvent = ReturnType<typeof localizeEvent>;
 
 export type StructureEvent = (
+	url: URL,
 	lEvent: LocalizedEvent,
 	language: Language,
 ) => WithContext<StructuredEvent>;

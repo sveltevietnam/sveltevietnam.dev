@@ -11,7 +11,6 @@ import { message, superValidate } from 'sveltekit-superforms/server';
 import type { FormMessage } from '$client/forms';
 import { MAILER_CLIENT_ID, MAILER_CLIENT_SECRET, MAILER_SERVICE_URL } from '$env/static/private';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
-import { ROOT_URL } from '$shared/services/navigation';
 
 import type { Actions, PageServerLoad } from './$types';
 import { translations as pageT } from './_page/translation';
@@ -60,7 +59,7 @@ export const load: PageServerLoad = async ({
 		},
 		meta: {
 			...metaTranslations[language],
-			canonical: `${ROOT_URL}/${language}/subscriptions`,
+			canonical: `${url.origin}/${language}/subscriptions`,
 		},
 	};
 };

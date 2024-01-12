@@ -2,7 +2,7 @@ import type { BreadcrumbList, WithContext } from 'schema-dts';
 
 import { localizePerson } from '$shared/data/people';
 import { localizeLangVar, type Language } from '$shared/services/i18n';
-import { EVENTS_PATH, ROOT_URL, getPathLabel } from '$shared/services/navigation';
+import { EVENTS_PATH, getPathLabel } from '$shared/services/navigation';
 
 import type { Event, LocalizedEvent, StructureEvent } from './types';
 
@@ -66,12 +66,13 @@ export function localizeEvent<E extends Event>(language: Language, event: E) {
 }
 
 export function preparePageData<E extends Event>(
+	url: URL,
 	language: Language,
 	event: E,
 	structure: StructureEvent,
 ) {
 	const lEvent = localizeEvent(language, event);
-	const canonical = `${ROOT_URL}/${language}${EVENTS_PATH}/${lEvent.slug}`;
+	const canonical = `${url.origin}/${language}${EVENTS_PATH}/${lEvent.slug}`;
 	return {
 		event: lEvent,
 		meta: {
@@ -93,7 +94,7 @@ export function preparePageData<E extends Event>(
 							'@type': 'ListItem',
 							position: 1,
 							name: getPathLabel(EVENTS_PATH, language),
-							item: `${ROOT_URL}/${language}${EVENTS_PATH}`,
+							item: `${url.origin}/${language}${EVENTS_PATH}`,
 						},
 						{
 							'@type': 'ListItem',
@@ -103,7 +104,7 @@ export function preparePageData<E extends Event>(
 						},
 					],
 				} as WithContext<BreadcrumbList>,
-				structure(lEvent, language),
+				structure(url, lEvent, language),
 			]),
 		} satisfies App.PageData['meta'],
 	};

@@ -2,7 +2,7 @@ import ogImageEn from '$shared/assets/images/og/og-roadmap.en.jpg';
 import ogImageVi from '$shared/assets/images/og/og-roadmap.vi.jpg';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
 import type { Language } from '$shared/services/i18n';
-import { ROADMAP_PATH, ROOT_URL } from '$shared/services/navigation';
+import { ROADMAP_PATH } from '$shared/services/navigation';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { PageServerLoad } from './$types';
@@ -41,7 +41,7 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
 		},
 		meta: {
 			...tMeta,
-			canonical: `${ROOT_URL}/${language}${ROADMAP_PATH}`,
+			canonical: `${url.origin}/${language}${ROADMAP_PATH}`,
 		},
 	};
 };

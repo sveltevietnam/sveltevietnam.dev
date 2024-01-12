@@ -8,7 +8,7 @@ import ogImageVi from '$shared/assets/images/og/og-events.vi.jpg';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
 import { listEvents } from '$shared/data/events';
 import type { Language } from '$shared/services/i18n';
-import { EVENTS_PATH, ROOT_URL } from '$shared/services/navigation';
+import { EVENTS_PATH } from '$shared/services/navigation';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { PageServerLoad, Actions } from './$types';
@@ -46,7 +46,7 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
 		events: listEvents(language),
 		meta: {
 			...tMeta,
-			canonical: `${ROOT_URL}/${language}${EVENTS_PATH}`,
+			canonical: `${url.origin}/${language}${EVENTS_PATH}`,
 		},
 		mailForm,
 	};

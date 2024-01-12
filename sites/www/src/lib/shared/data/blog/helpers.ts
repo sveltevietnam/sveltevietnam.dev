@@ -3,7 +3,7 @@ import type { BlogPosting, BreadcrumbList, WithContext } from 'schema-dts';
 import { localizePerson } from '$shared/data/people';
 import { SVELTE_VIETNAM_ORG, SVELTE_VIETNAM_BLOG, structurePerson } from '$shared/data/structured';
 import { localizeLangVar, type Language } from '$shared/services/i18n';
-import { BLOG_PATH, ROOT_URL } from '$shared/services/navigation';
+import { BLOG_PATH } from '$shared/services/navigation';
 
 import type { PostContent, ExternalPost, Post, PostSeries } from './types';
 
@@ -49,9 +49,9 @@ export function localizeBlogContent(language: Language, content: PostContent) {
 	}
 }
 
-export function preparePageData(language: Language, post: Post, content: PostContent) {
+export function preparePageData(url: URL, language: Language, post: Post, content: PostContent) {
 	const lPost = localizePost(language, post);
-	const canonical = `${ROOT_URL}/${language}${BLOG_PATH}/${lPost.slug}`;
+	const canonical = `${url.origin}/${language}${BLOG_PATH}/${lPost.slug}`;
 	return {
 		supportedLanguages: Object.keys(content) as Language[],
 		post: lPost,
@@ -74,7 +74,7 @@ export function preparePageData(language: Language, post: Post, content: PostCon
 							'@type': 'ListItem',
 							position: 1,
 							name: 'Blog',
-							item: `${ROOT_URL}/${language}${BLOG_PATH}`,
+							item: `${url.origin}/${language}${BLOG_PATH}`,
 						},
 						{
 							'@type': 'ListItem',
@@ -95,8 +95,8 @@ export function preparePageData(language: Language, post: Post, content: PostCon
 					description: lPost.description,
 					datePublished: lPost.date,
 					dateModified: lPost.date,
-					image: ROOT_URL + lPost.ogImage,
-					author: lPost.authors.map(structurePerson),
+					image: url.origin + lPost.ogImage,
+					author: lPost.authors.map((author) => structurePerson(url, author)),
 					inLanguage: language,
 					publisher: SVELTE_VIETNAM_ORG,
 					isPartOf: SVELTE_VIETNAM_BLOG,

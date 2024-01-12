@@ -1,7 +1,6 @@
 import type { Event, StructureEvent } from '$shared/data/events';
 import { VNPHANQUANG } from '$shared/data/people';
 import { SVELTE_VIETNAM_ORG, structurePerson } from '$shared/data/structured';
-import { ROOT_URL } from '$shared/services/navigation';
 
 import ogImageEn from './images/thumbnail-en.jpg';
 import thumbnailEn from './images/thumbnail-en.jpg?enhanced';
@@ -50,7 +49,7 @@ export const event = {
 	},
 } as const satisfies Event;
 
-export const structure = ((lEvent) => ({
+export const structure = ((url, lEvent) => ({
 	'@context': 'https://schema.org',
 	'@type': 'SocialEvent',
 	name: lEvent.title,
@@ -58,7 +57,7 @@ export const structure = ((lEvent) => ({
 	startDate: lEvent.startDate,
 	endDate: lEvent.endDate,
 	eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
-	image: ROOT_URL + lEvent.ogImage,
+	image: `${url.origin}/${lEvent.ogImage}`,
 	eventStatus: 'https://schema.org/EventScheduled',
 	location: [
 		{
@@ -74,5 +73,5 @@ export const structure = ((lEvent) => ({
 	],
 	inLanguage: 'vi',
 	organizer: SVELTE_VIETNAM_ORG,
-	performer: Object.values(lEvent.speakers).map(structurePerson),
+	performer: Object.values(lEvent.speakers).map((speaker) => structurePerson(url, speaker)),
 })) satisfies StructureEvent;

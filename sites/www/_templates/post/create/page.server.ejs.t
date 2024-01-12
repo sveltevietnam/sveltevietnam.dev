@@ -8,7 +8,7 @@ import { preparePageData } from '$shared/data/blog';
 import type { PageServerLoad } from './$types';
 import { post, content } from './_page/data';
 
-export const load: PageServerLoad = ({ depends, locals: { language } }) => {
+export const load: PageServerLoad = ({ url, depends, locals: { language } }) => {
   depends(LOAD_DEPENDENCIES.LANGUAGE);
-  return preparePageData(language, post, content);
+  return preparePageData(url, language, post, content);
 };

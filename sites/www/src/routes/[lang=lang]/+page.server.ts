@@ -10,7 +10,6 @@ import {
 import { listEvents } from '$shared/data/events';
 import { SVELTE_VIETNAM_ORG } from '$shared/data/structured';
 import type { Language } from '$shared/services/i18n';
-import { ROOT_URL } from '$shared/services/navigation';
 
 import type { PageServerLoad } from './$types';
 
@@ -27,7 +26,7 @@ const metaTranslations: Record<Language, App.PageData['meta']> = {
 	},
 };
 
-export const load: PageServerLoad = async ({ depends, locals: { language } }) => {
+export const load: PageServerLoad = async ({ url, depends, locals: { language } }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	const tMeta = metaTranslations[language];
 
@@ -45,7 +44,7 @@ export const load: PageServerLoad = async ({ depends, locals: { language } }) =>
 		sponsors: [],
 		meta: {
 			...tMeta,
-			canonical: `${ROOT_URL}/${language}`,
+			canonical: `${url.origin}/${language}`,
 			structured: JSON.stringify({
 				'@context': 'https://schema.org',
 				...SVELTE_VIETNAM_ORG,

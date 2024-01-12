@@ -11,7 +11,7 @@ import {
 } from '$shared/data/blog';
 import { SVELTE_VIETNAM_BLOG } from '$shared/data/structured';
 import type { Language } from '$shared/services/i18n';
-import { BLOG_PATH, ROOT_URL } from '$shared/services/navigation';
+import { BLOG_PATH } from '$shared/services/navigation';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { Actions, PageServerLoad } from './$types';
@@ -58,7 +58,7 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
 		issueTemplateLinks: issueTemplateLinks[language],
 		meta: {
 			...tMeta,
-			canonical: `${ROOT_URL}/${language}${BLOG_PATH}`,
+			canonical: `${url.origin}/${language}${BLOG_PATH}`,
 			og: {
 				image: ogImage,
 			},

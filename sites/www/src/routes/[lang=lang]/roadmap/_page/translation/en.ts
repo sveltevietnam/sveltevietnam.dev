@@ -10,7 +10,6 @@ import {
 	HOME_PATH,
 	JOBS_PATH,
 	ROADMAP_PATH,
-	ROOT_URL,
 	SITEMAP_PATH,
 	SPONSOR_PATH,
 } from '$shared/services/navigation';
@@ -34,7 +33,7 @@ export const en = {
 				'☑ Set up <a class="c-link" href="https://github.com/sveltevietnam/branding" rel="noreferrer" target="_blank">branding repository</a> to store public assets (including logo with version history) and the “Branding Guidelines" document (discussing about usage of Svelte Vietnam\'s public assets)',
 				`☑ Introduce the <a class="c-link" href="${HOME_PATH}">Home</a> page with basic design`,
 				'☑ Develop websocket service and bot for Discord server, making ways to gradually add new features to enrich experience for users on both Discord and the sveltevietnam.dev site',
-				`☑ Set up basic metadata and SEO, including <a class="c-link" href="${ROOT_URL}${SITEMAP_PATH}" rel="noreferrer" target="_blank">sitemap.xml</a>, Google Search Console, Google Analytics`,
+				`☑ Set up basic metadata and SEO, including <a class="c-link" href="${SITEMAP_PATH}" rel="noreferrer" target="_blank">sitemap.xml</a>, Google Search Console, Google Analytics`,
 				`☑ Introduce this <a class="c-link" href="${ROADMAP_PATH}">Roadmap</a> page`,
 			],
 		},

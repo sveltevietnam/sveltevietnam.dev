@@ -2,7 +2,7 @@ import ogImageEn from '$shared/assets/images/og/og-sponsor.en.jpg';
 import ogImageVi from '$shared/assets/images/og/og-sponsor.vi.jpg';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
 import type { Language } from '$shared/services/i18n';
-import { ROOT_URL, SPONSOR_PATH } from '$shared/services/navigation';
+import { SPONSOR_PATH } from '$shared/services/navigation';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { PageServerLoad } from './$types';
@@ -37,7 +37,7 @@ export const load: PageServerLoad = ({ url, depends, locals: { language } }) => 
 		},
 		meta: {
 			...tMeta,
-			canonical: `${ROOT_URL}/${language}${SPONSOR_PATH}`,
+			canonical: `${url.origin}/${language}${SPONSOR_PATH}`,
 		},
 	};
 };

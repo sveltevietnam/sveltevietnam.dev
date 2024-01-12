@@ -9,7 +9,6 @@ import {
 	CODE_OF_CONDUCT_PATH,
 	EVENTS_PATH,
 	IMPACT_PATH,
-	ROOT_URL,
 	SPONSOR_PATH,
 } from '../../../../lib/shared/services/navigation';
 
@@ -39,24 +38,6 @@ type WebFinger = {
 	links?: WebFingerLink[];
 };
 
-const SVELTE_VIETNAM_AVATAR_LINKS: WebFingerLink[] = [
-	{
-		rel: 'http://webfinger.net/rel/avatar',
-		type: 'image/jpeg',
-		href: `${ROOT_URL}/logo/original.jpg`,
-	},
-	{
-		rel: 'http://webfinger.net/rel/avatar',
-		type: 'image/png',
-		href: `${ROOT_URL}/logo/original.png`,
-	},
-	{
-		rel: 'http://webfinger.net/rel/avatar',
-		type: 'image/svg+xml',
-		href: `${ROOT_URL}/logo/original.svg`,
-	},
-];
-
 export const GET: RequestHandler = async ({ url }) => {
 	// let baseUrl = url.origin
 	let resource = decodeURI(url.searchParams.get('resource') ?? '');
@@ -65,6 +46,24 @@ export const GET: RequestHandler = async ({ url }) => {
 	if (resource.startsWith(url.origin)) {
 		resource = url.origin;
 	}
+
+	const avatarLinks = [
+		{
+			rel: 'http://webfinger.net/rel/avatar',
+			type: 'image/jpeg',
+			href: `${url.origin}/logo/original.jpg`,
+		},
+		{
+			rel: 'http://webfinger.net/rel/avatar',
+			type: 'image/png',
+			href: `${url.origin}/logo/original.png`,
+		},
+		{
+			rel: 'http://webfinger.net/rel/avatar',
+			type: 'image/svg+xml',
+			href: `${url.origin}/logo/original.svg`,
+		},
+	] satisfies WebFingerLink[];
 
 	let webfinger: WebFinger = {
 		subject: resource,
@@ -76,45 +75,45 @@ export const GET: RequestHandler = async ({ url }) => {
 			webfinger.links = [
 				{
 					rel: 'http://webfinger.net/rel/profile-page',
-					href: ROOT_URL,
+					href: url.origin,
 				},
-				...SVELTE_VIETNAM_AVATAR_LINKS,
+				...avatarLinks,
 			];
 			break;
 		case `mailto:${EMAILS.COC}`:
 			webfinger.links = [
 				{
 					rel: 'http://webfinger.net/rel/profile-page',
-					href: `${ROOT_URL}${CODE_OF_CONDUCT_PATH}`,
+					href: `${url.origin}${CODE_OF_CONDUCT_PATH}`,
 				},
-				...SVELTE_VIETNAM_AVATAR_LINKS,
+				...avatarLinks,
 			];
 			break;
 		case `mailto:${EMAILS.EVENTS}`:
 			webfinger.links = [
 				{
 					rel: 'http://webfinger.net/rel/profile-page',
-					href: `${ROOT_URL}${EVENTS_PATH}`,
+					href: `${url.origin}${EVENTS_PATH}`,
 				},
-				...SVELTE_VIETNAM_AVATAR_LINKS,
+				...avatarLinks,
 			];
 			break;
 		case `mailto:${EMAILS.IMPACT}`:
 			webfinger.links = [
 				{
 					rel: 'http://webfinger.net/rel/profile-page',
-					href: `${ROOT_URL}${IMPACT_PATH}`,
+					href: `${url.origin}${IMPACT_PATH}`,
 				},
-				...SVELTE_VIETNAM_AVATAR_LINKS,
+				...avatarLinks,
 			];
 			break;
 		case `mailto:${EMAILS.SPONSOR}`:
 			webfinger.links = [
 				{
 					rel: 'http://webfinger.net/rel/profile-page',
-					href: `${ROOT_URL}${SPONSOR_PATH}`,
+					href: `${url.origin}${SPONSOR_PATH}`,
 				},
-				...SVELTE_VIETNAM_AVATAR_LINKS,
+				...avatarLinks,
 			];
 			break;
 		case url.origin:

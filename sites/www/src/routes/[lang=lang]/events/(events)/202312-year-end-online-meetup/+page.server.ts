@@ -9,7 +9,7 @@ import { translations as pageT } from './_page/translation';
 
 export const load: PageServerLoad = async ({ url, depends, locals: { language } }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
-	const prepared = preparePageData(language, event, structure);
+	const prepared = preparePageData(url, language, event, structure);
 	return {
 		...prepared,
 		breadcrumbs: [

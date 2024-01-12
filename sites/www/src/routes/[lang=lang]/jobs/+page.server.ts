@@ -6,7 +6,7 @@ import { translations as tMail } from '$server/actions/mail/translation';
 import ogImageEn from '$shared/assets/images/og/og-jobs.en.jpg';
 import ogImageVi from '$shared/assets/images/og/og-jobs.vi.jpg';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
-import { JOBS_PATH, ROOT_URL } from '$shared/services/navigation';
+import { JOBS_PATH } from '$shared/services/navigation';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { PageServerLoad, Actions } from './$types';
@@ -50,7 +50,7 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
 		},
 		meta: {
 			...tMeta,
-			canonical: `${ROOT_URL}/${language}${JOBS_PATH}`,
+			canonical: `${url.origin}/${language}${JOBS_PATH}`,
 		},
 		mailForm,
 	};
