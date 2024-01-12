@@ -1,7 +1,7 @@
 import type { BreadcrumbList, WithContext } from 'schema-dts';
 
 import { localizePerson } from '$shared/data/people';
-import { resolveLangVar, type Language } from '$shared/services/i18n';
+import { localizeLangVar, type Language } from '$shared/services/i18n';
 import { EVENTS_PATH, ROOT_URL, getPathLabel } from '$shared/services/navigation';
 
 import type { Event, LocalizedEvent, StructureEvent } from './types';
@@ -40,9 +40,9 @@ export function isEventWithinOneDay(event: LocalizedEvent) {
 export function localizeEvent<E extends Event>(language: Language, event: E) {
 	return {
 		...event,
-		title: resolveLangVar(language, event.title),
-		location: resolveLangVar(language, event.location),
-		description: resolveLangVar(language, event.description),
+		title: localizeLangVar(language, event.title),
+		location: localizeLangVar(language, event.location),
+		description: localizeLangVar(language, event.description),
 		speakers: Object.fromEntries(
 			Object.entries(event.speakers).map(([key, speaker]) => [
 				key,
@@ -50,17 +50,17 @@ export function localizeEvent<E extends Event>(language: Language, event: E) {
 			]),
 		) as Record<keyof E['speakers'], ReturnType<typeof localizePerson>>,
 		...(event.keywords && {
-			keywords: resolveLangVar(language, event.keywords),
+			keywords: localizeLangVar(language, event.keywords),
 		}),
 		...(event.ogImage && {
-			ogImage: resolveLangVar(language, event.ogImage),
+			ogImage: localizeLangVar(language, event.ogImage),
 		}),
 		...(event.thumbnail && {
-			thumbnail: resolveLangVar(language, event.thumbnail),
+			thumbnail: localizeLangVar(language, event.thumbnail),
 		}),
 		sponsors: event.sponsors.map((sponsor) => ({
 			...sponsor,
-			name: resolveLangVar(language, sponsor.name),
+			name: localizeLangVar(language, sponsor.name),
 		})),
 	};
 }

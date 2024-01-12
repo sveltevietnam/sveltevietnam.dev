@@ -2,7 +2,7 @@ import Mustache from 'mustache';
 
 import { INTERNAL_POSTS } from '$shared/data/blog';
 import { EVENTS } from '$shared/data/events';
-import { LANGUAGES, resolveLangVar } from '$shared/services/i18n';
+import { LANGUAGES, localizeLangVar } from '$shared/services/i18n';
 import { BLOG_PATH } from '$shared/services/navigation';
 
 import type { RequestHandler } from './$types';
@@ -20,8 +20,8 @@ export const GET: RequestHandler = ({ url }) => {
 	const items: RssItem[] = [
 		...INTERNAL_POSTS.flatMap((p) =>
 			LANGUAGES.map((l) => ({
-				title: resolveLangVar(l, p.title),
-				description: resolveLangVar(l, p.description),
+				title: localizeLangVar(l, p.title),
+				description: localizeLangVar(l, p.description),
 				link: `${url.origin}/${l}${BLOG_PATH}/${p.slug}`,
 				guid: p.slug,
 				pubDate: new Date(p.date).toUTCString(),
@@ -29,8 +29,8 @@ export const GET: RequestHandler = ({ url }) => {
 		),
 		...EVENTS.flatMap((e) =>
 			LANGUAGES.map((l) => ({
-				title: resolveLangVar(l, e.title),
-				description: resolveLangVar(l, e.description),
+				title: localizeLangVar(l, e.title),
+				description: localizeLangVar(l, e.description),
 				link: `${url.origin}/${l}${BLOG_PATH}/${e.slug}`,
 				guid: e.slug,
 				pubDate: new Date(e.startDate).toUTCString(),

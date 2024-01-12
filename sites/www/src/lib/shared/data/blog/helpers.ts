@@ -2,7 +2,7 @@ import type { BlogPosting, BreadcrumbList, WithContext } from 'schema-dts';
 
 import { localizePerson } from '$shared/data/people';
 import { SVELTE_VIETNAM_ORG, SVELTE_VIETNAM_BLOG, structurePerson } from '$shared/data/structured';
-import { resolveLangVar, type Language } from '$shared/services/i18n';
+import { localizeLangVar, type Language } from '$shared/services/i18n';
 import { BLOG_PATH, ROOT_URL } from '$shared/services/navigation';
 
 import type { PostContent, ExternalPost, Post, PostSeries } from './types';
@@ -11,14 +11,14 @@ import type { PostContent, ExternalPost, Post, PostSeries } from './types';
 export function localizePost(language: Language, post: Post) {
 	return {
 		...post,
-		title: resolveLangVar(language, post.title),
-		description: resolveLangVar(language, post.description),
-		keywords: post.keywords?.map((tag) => resolveLangVar(language, tag)),
-		githubUrl: resolveLangVar(language, post.githubUrl),
+		title: localizeLangVar(language, post.title),
+		description: localizeLangVar(language, post.description),
+		keywords: post.keywords?.map((tag) => localizeLangVar(language, tag)),
+		githubUrl: localizeLangVar(language, post.githubUrl),
 		authors: post.authors.map((author) => localizePerson(language, author)),
-		wordCount: resolveLangVar(language, post.wordCount),
-		ogImage: resolveLangVar(language, post.ogImage),
-		thumbnail: resolveLangVar(language, post.thumbnail),
+		wordCount: localizeLangVar(language, post.wordCount),
+		ogImage: localizeLangVar(language, post.ogImage),
+		thumbnail: localizeLangVar(language, post.thumbnail),
 		series: !post.series ? undefined : post.series.map((s) => localizePostSeries(language, s)),
 	};
 }
@@ -26,16 +26,16 @@ export function localizePost(language: Language, post: Post) {
 export function localizePostSeries(language: Language, series: PostSeries) {
 	return {
 		...series,
-		title: resolveLangVar(language, series.title),
+		title: localizeLangVar(language, series.title),
 	};
 }
 
 export function localizeExternalPost(language: Language, post: ExternalPost) {
 	return {
-		title: resolveLangVar(language, post.title),
-		href: resolveLangVar(language, post.href),
-		description: resolveLangVar(language, post.description),
-		author: resolveLangVar(language, post.author),
+		title: localizeLangVar(language, post.title),
+		href: localizeLangVar(language, post.href),
+		description: localizeLangVar(language, post.description),
+		author: localizeLangVar(language, post.author),
 	};
 }
 
