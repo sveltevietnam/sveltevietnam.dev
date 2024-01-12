@@ -238,8 +238,8 @@ importers:
         specifier: ^3.0.1
         version: 3.0.1
       '@svelte-put/modal':
-        specifier: ^1.0.5
-        version: 1.0.5(svelte@4.2.8)
+        specifier: ^1.0.6
+        version: 1.0.6(svelte@4.2.8)
       '@svelte-put/noti':
         specifier: ^1.1.0
         version: 1.1.0
@@ -359,8 +359,8 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@svelte-put/modal':
-        specifier: ^1.0.5
-        version: 1.0.5(svelte@4.2.8)
+        specifier: ^1.0.6
+        version: 1.0.6(svelte@4.2.8)
       '@svelte-put/noti':
         specifier: ^1.1.0
         version: 1.1.0
@@ -377,8 +377,8 @@ importers:
         specifier: ^3.1.0
         version: 3.1.0
       '@svelte-put/toc':
-        specifier: ^4.0.0
-        version: 4.0.0(svelte@4.2.8)
+        specifier: ^5.0.0
+        version: 5.0.0(svelte@4.2.8)
       '@svelte-put/tooltip':
         specifier: ^1.0.1
         version: 1.0.1
@@ -2067,8 +2067,8 @@ packages:
     resolution: {integrity: sha512-b2whlOVtshrvfqhHLqi9DVU9Fzy3to4q/6MYRLc0HCJr7h0uFkksk7QZlDTxXYh//ey1UmQvQCeL51X/CkEu2w==}
     dev: true
 
-  /@svelte-put/modal@1.0.5(svelte@4.2.8):
-    resolution: {integrity: sha512-wvL85+ocCU4FeNLhdHJwtJ5qahLP+4ilYyi55TnZwSN1fGeluSAeZawJR0csbG9vog2XI8x94ex8vu+89sucuA==}
+  /@svelte-put/modal@1.0.6(svelte@4.2.8):
+    resolution: {integrity: sha512-zMDoz4n0jtYkgwsDS0W2mGJqu+OiQY0GOnVe6oo7Dlu4wTUUeHpc2Ym2Kl9oaYwt9tkH2XwAfC66gEz5+O3Gqw==}
     peerDependencies:
       svelte: ^3.55.0 || ^4.0.0
     dependencies:
@@ -2120,8 +2120,8 @@ packages:
     resolution: {integrity: sha512-EWMEDkZ0+O3yMhb9yrqe5UYisV9CNRKX6Pl/JW3x62t74CiN+3COu1L9NzZUG0omagc2Z3J14PZNYxs77IC9NA==}
     dev: true
 
-  /@svelte-put/toc@4.0.0(svelte@4.2.8):
-    resolution: {integrity: sha512-Z7iWtG1XMQXaeyzV1PZJ47STaBRGEhbW5EHBZOjcoqIrimBNKhtGMNhfecanFBQZZKblT1BCsq5OfOjf/vpFyQ==}
+  /@svelte-put/toc@5.0.0(svelte@4.2.8):
+    resolution: {integrity: sha512-tGw4xXk/tbVqxrbQlnzt4edqeOanLsWpAfWa0aCY3ba8Vu8QGTFOCVOuhJMALLOPmeTIFCTGByrqag6T2C+pUg==}
     peerDependencies:
       svelte: ^3.55.0 || ^4.0.0
     dependencies:

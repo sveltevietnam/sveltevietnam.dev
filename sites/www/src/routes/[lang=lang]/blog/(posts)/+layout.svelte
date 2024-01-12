@@ -41,7 +41,6 @@
 		noti.helpers.success(t.urlCopyNotice);
 	}
 	const tocStore = createTocStore();
-	$: tocItems = Object.values($tocStore.items);
 
 	async function onClickQRLink() {
 		modalStore.push({
@@ -237,13 +236,13 @@
 			</section>
 
 			<section class="post-toc">
-				{#if tocItems.length}
+				{#if $tocStore.items.size}
 					<nav aria-label={t.tableOfContents.title}>
 						<h2 class="font-medium upto-tb:c-text-h2@sp tb:c-text-h3@pc after:mt-2 after:separator">
 							{t.tableOfContents.title}
 						</h2>
 						<ul class="mt-8">
-							{#each tocItems as tocItem (tocItem.id)}
+							{#each $tocStore.items.values() as tocItem (tocItem.id)}
 								{@const level = tocItem.element.tagName.slice(1)}
 								<li>
 									<!-- svelte-ignore a11y-missing-attribute -->
