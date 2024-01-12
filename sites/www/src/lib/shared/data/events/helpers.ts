@@ -49,9 +49,15 @@ export function localizeEvent<E extends Event>(language: Language, event: E) {
 				localizePerson(language, speaker),
 			]),
 		) as Record<keyof E['speakers'], ReturnType<typeof localizePerson>>,
-		keywords: resolveLangVar(language, event.keywords),
-		ogImage: resolveLangVar(language, event.ogImage),
-		thumbnail: resolveLangVar(language, event.thumbnail),
+		...(event.keywords && {
+			keywords: resolveLangVar(language, event.keywords),
+		}),
+		...(event.ogImage && {
+			ogImage: resolveLangVar(language, event.ogImage),
+		}),
+		...(event.thumbnail && {
+			thumbnail: resolveLangVar(language, event.thumbnail),
+		}),
 		sponsors: event.sponsors.map((sponsor) => ({
 			...sponsor,
 			name: resolveLangVar(language, sponsor.name),

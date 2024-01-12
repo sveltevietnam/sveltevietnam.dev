@@ -2,7 +2,6 @@ import jobImg from '$shared/assets/images/fallback/default.jpg?w=100&format=webp
 import { INTERNAL_POSTS } from '$shared/data/blog';
 import type { ExternalPost, Post } from '$shared/data/blog';
 import type { Event } from '$shared/data/events';
-import { ROOT_URL } from '$shared/services/navigation';
 import type { Contributor, Job, Project, Sponsor } from '$shared/types';
 
 import vietnamImg from './vietnam-image.webp';
@@ -57,16 +56,16 @@ export function createMockedEvent() {
 		slug: 'mocked-event',
 		startDate: new Date().toISOString(),
 		endDate: new Date(new Date().setHours(new Date().getHours() + 3)).toISOString(),
-		speakers: [
-			{
+		speakers: {
+			speaker1: {
 				name: 'Speaker 1',
 			},
-			{
+			speaker2: {
 				title: 'Svelte và SvelteKit',
 				name: 'Speaker 2',
 				link: 'https://github.com/vnphanquang',
 			},
-		],
+		},
 		sponsors: createMockedSponsors(),
 	} satisfies Event;
 }
@@ -228,7 +227,7 @@ export function createMockedProjects(length = 2) {
 			description:
 				'Svelte Việt Nam đang trong giai đoạn khởi tạo, hướng đến trở thành một cộng đồng chính thống và nơi thảo luận, tổng hợp tin tức, sự kiện, việc làm cho thành viên là bất cứ ai quan tâm đến Svelte và các công nghệ trong cùng hệ sinh thái.<br>Svelte Việt Nam chào đón tất cả mọi người ko kể tuổi tác, giới tính, tính ngưỡng tôn giáo, ...',
 			by: 'Cộng đồng open source Svelte Việt Nam',
-			href: ROOT_URL,
+			href: 'https://www.sveltevietnam.dev',
 		});
 	}
 

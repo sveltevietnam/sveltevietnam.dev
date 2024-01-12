@@ -15,9 +15,9 @@ export type Event = {
 	description: LangVar<string>;
 	speakers: Record<string, Person>;
 	sponsors: Sponsor[];
-	keywords: LangVar<string[]>;
-	ogImage: LangVar<string>;
-	thumbnail: LangVar<string>;
+	keywords?: LangVar<string[]>;
+	ogImage?: LangVar<string>;
+	thumbnail?: LangVar<string>;
 };
 
 export type LocalizedEvent = ReturnType<typeof localizeEvent>;
