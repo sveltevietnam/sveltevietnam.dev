@@ -1,12 +1,12 @@
 import { localizeLangVar, type LangVar, type Language } from '$shared/services/i18n';
 
-import vnphanquangAvatarUrl from './avatars/vnphanquang.png?format=webp&imagetools';
+import vnphanquangAvatar from './avatars/vnphanquang.png?format=webp&imagetools';
 
 export type Person = {
 	name: LangVar<string>;
 	title?: LangVar<string>;
 	link?: LangVar<string>;
-	avatarUrl?: string;
+	avatarStaticPath?: string;
 };
 
 export type LocalizedPerson = ReturnType<typeof localizePerson>;
@@ -21,7 +21,7 @@ export const VNPHANQUANG = {
 		vi: 'Lập trình viên, quản trị viên Svelte Việt Nam',
 	},
 	link: 'https://vnphanquang.com',
-	avatarUrl: vnphanquangAvatarUrl,
+	avatarStaticPath: vnphanquangAvatar,
 } satisfies Person;
 
 export const PEOPLE = [VNPHANQUANG] satisfies Person[];

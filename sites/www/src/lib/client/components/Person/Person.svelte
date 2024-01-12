@@ -11,7 +11,7 @@
 		<a href={person.link} external class="c-link c-link--image clip-ellipse">
 			<span class="sr-only">{person.name}</span>
 			<img
-				src={person.avatarUrl}
+				src={person.avatarStaticPath}
 				alt={person.name}
 				class="c-avatar c-avatar--ellipse h-12 w-12"
 				height="48"
@@ -21,7 +21,7 @@
 	{:else}
 		<!-- TODO: candidate for Svelte 5 snippet -->
 		<img
-			src={person.avatarUrl}
+			src={person.avatarStaticPath}
 			alt={person.name}
 			class="c-avatar c-avatar--ellipse h-12 w-12"
 			height="48"

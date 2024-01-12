@@ -76,13 +76,13 @@
 				<dt class="font-medium">{t.speakers}:</dt>
 				<dd>
 					<ul class="flex flex-wrap items-center gap-x-4 gap-y-3">
-						{#each speakers as { avatarUrl, name, link }}
+						{#each speakers as { avatarStaticPath, name, link }}
 							<li class="flex items-center gap-1">
 								{#if link}
 									<a href={link} class="c-link c-link--image" external>
 										<span class="sr-only">{name}</span>
 										<img
-											src={avatarUrl || defaultFallbackImg}
+											src={avatarStaticPath || defaultFallbackImg}
 											width="24"
 											height="24"
 											alt={name}
@@ -91,7 +91,7 @@
 									</a>
 								{:else}
 									<img
-										src={avatarUrl || defaultFallbackImg}
+										src={avatarStaticPath || defaultFallbackImg}
 										width="24"
 										height="24"
 										alt={name}
