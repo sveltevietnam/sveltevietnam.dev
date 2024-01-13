@@ -1,4 +1,4 @@
-import { BrowserCache, BrowserCacheService } from '$client/services/cache';
+import { BrowserCache, BrowserCacheService } from '$lib/cache/browser';
 
 export interface WireframeVersionNoticeCacheData {
 	shouldShow: boolean | null;
