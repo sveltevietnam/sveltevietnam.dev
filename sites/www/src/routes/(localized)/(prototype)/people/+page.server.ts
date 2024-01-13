@@ -1,6 +1,6 @@
 import { prepareRoutePageData } from '$client/contexts/navigation';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
-import { createMockedContributors } from '$shared/mocks';
+import { createMockedContributors } from '$lib/data/mocks';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { PageServerLoad } from './$types';
