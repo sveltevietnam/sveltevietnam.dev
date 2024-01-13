@@ -3,7 +3,6 @@
 	import { toc, toclink, createTocStore } from '@svelte-put/toc';
 
 	import { page } from '$app/stores';
-	import { textTip } from '$client/tooltips';
 	import { intersect } from '$lib/actions/intersect';
 	import { BlogPostItem } from '$lib/components/BlogPostItem';
 	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
@@ -12,6 +11,7 @@
 	import { modalStore } from '$lib/modals';
 	import { QRCode } from '$lib/modals/QRCode';
 	import { getNotificationContext } from '$lib/notifications';
+	import { textTip } from '$lib/tooltips';
 	import fallbackThumbnail from '$shared/assets/images/fallback/16x9.jpg?w=2000&enhanced&imagetools';
 	import type { Breadcrumb } from '$shared/services/navigation';
 	import { formateDateForBlog } from '$shared/utils/datetime';

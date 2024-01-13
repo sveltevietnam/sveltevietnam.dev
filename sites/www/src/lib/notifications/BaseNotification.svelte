@@ -39,6 +39,7 @@
 		<slot />
 	</div>
 	<button on:click={dismiss} type="button" class="dismiss-btn">
+		<span class="sr-only">Close</span>
 		<svg inline-src="icon/x" width="24" height="24" />
 	</button>
 	{#if notification && progress}
