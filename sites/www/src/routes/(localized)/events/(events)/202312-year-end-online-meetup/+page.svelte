@@ -4,8 +4,8 @@
 	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
 	import { Person } from '$lib/components/Person';
 	import { ToBeAnnounced } from '$lib/components/ToBeAnnounced';
+	import { formatDate, formatDateAndTime, formatTime } from '$lib/utils/datetime';
 	import { isEventWithinOneDay } from '$shared/data/events';
-	import { formatDate, formatDateAndTime, formatTime } from '$shared/utils/datetime';
 
 	import kvImage from '../../_page/images/key-visuals-without-grid.png?format=webp&imagetools';
 

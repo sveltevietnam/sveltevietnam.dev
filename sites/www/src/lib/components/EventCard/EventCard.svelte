@@ -2,10 +2,10 @@
 	import { getLangContext } from '$client/contexts/lang';
 	import { getNavigationContext } from '$client/contexts/navigation';
 	import { textTip } from '$lib/tooltips';
+	import { formatDate, formatDateAndTime, formatTime } from '$lib/utils/datetime';
 	import defaultFallbackImg from '$shared/assets/images/fallback/default.jpg?w=56&format=webp&imagetools';
 	import type { LocalizedEvent } from '$shared/data/events';
 	import { getEventStatus, isEventWithinOneDay } from '$shared/data/events';
-	import { formatDate, formatDateAndTime, formatTime } from '$shared/utils/datetime';
 
 	import { translations } from './translation';
 

@@ -3,7 +3,7 @@
  */
 import Mustache from 'mustache';
 
-import { toW3CDate } from '$shared/utils/datetime';
+import { toW3CDate } from '$lib/utils/datetime';
 
 import type { RequestHandler } from './$types';
 import template from './humans.template.txt?raw';

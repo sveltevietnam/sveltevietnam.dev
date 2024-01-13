@@ -12,9 +12,9 @@
 	import { QRCode } from '$lib/modals/QRCode';
 	import { getNotificationContext } from '$lib/notifications';
 	import { textTip } from '$lib/tooltips';
+	import { formateDateForBlog } from '$lib/utils/datetime';
 	import fallbackThumbnail from '$shared/assets/images/fallback/16x9.jpg?w=2000&enhanced&imagetools';
 	import type { Breadcrumb } from '$shared/services/navigation';
-	import { formateDateForBlog } from '$shared/utils/datetime';
 
 	import '../../../../lib/css/blog.css';
 	import '../../../../lib/css/code.css';

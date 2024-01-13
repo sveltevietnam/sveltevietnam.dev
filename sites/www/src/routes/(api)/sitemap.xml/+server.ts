@@ -2,6 +2,7 @@
 
 import Mustache from 'mustache';
 
+import { toW3CDate } from '$lib/utils/datetime';
 import { INTERNAL_POSTS } from '$shared/data/blog';
 import { EVENTS } from '$shared/data/events';
 import { LANGUAGES } from '$shared/services/i18n';
@@ -19,7 +20,6 @@ import {
 	ROADMAP_PATH,
 	SPONSOR_PATH,
 } from '$shared/services/navigation';
-import { toW3CDate } from '$shared/utils/datetime';
 
 import type { RequestHandler } from './$types';
 import template from './sitemap.template.xml?raw';

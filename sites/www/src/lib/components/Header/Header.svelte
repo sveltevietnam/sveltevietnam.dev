@@ -2,7 +2,7 @@
 	import { afterNavigate } from '$app/navigation';
 	import { getLockScrollContext } from '$client/contexts/lockscroll';
 	import { getNavigationContext } from '$client/contexts/navigation';
-	import { clamp } from '$shared/utils/clamp';
+	import { clamp } from '$lib/utils/clamp';
 
 	import ColorSchemeMenu from './components/ColorSchemeMenu.svelte';
 	import LanguageNav from './components/LanguageNav.svelte';
