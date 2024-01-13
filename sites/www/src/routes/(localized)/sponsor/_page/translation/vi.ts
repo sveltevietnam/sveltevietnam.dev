@@ -1,4 +1,4 @@
-import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
+import { EMAILS, SOCIAL_LINKS } from '$lib/constants';
 
 export const vi = {
 	title: 'Tài trợ',

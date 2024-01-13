@@ -1,4 +1,4 @@
-import { EMAILS } from '$shared/constants';
+import { EMAILS } from '$lib/constants';
 
 export const vi = {
 	highlights: 'Điểm nhấn',

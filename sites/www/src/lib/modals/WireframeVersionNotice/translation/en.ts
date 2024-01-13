@@ -1,4 +1,4 @@
-import { GITHUB_LINKS } from '$shared/constants';
+import { GITHUB_LINKS } from '$lib/constants';
 
 export const en = {
 	title: 'Under Construction',

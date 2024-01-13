@@ -4,7 +4,7 @@
 /// <reference types="@sveltejs/adapter-cloudflare" />
 
 import type { LocalizedRouteMap } from '$client/contexts/navigation';
-import type { COLOR_SCHEMES, STATUSES } from '$shared/constants';
+import type { COLOR_SCHEMES, STATUSES } from '$lib/constants';
 import type { preparePageData } from '$shared/data/blog';
 import type { Language } from '$shared/services/i18n';
 

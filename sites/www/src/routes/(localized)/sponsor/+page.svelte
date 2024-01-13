@@ -5,7 +5,7 @@
 	import { gsap } from '$lib/3rd/gsap';
 	import { intersect } from '$lib/actions/intersect';
 	import { Breadcrumbs } from '$lib/components/Breadcrumbs/index.js';
-	import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
+	import { EMAILS, SOCIAL_LINKS } from '$lib/constants/index.js';
 
 	export let data;
 

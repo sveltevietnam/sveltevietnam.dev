@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { ProjectCard } from '$lib/components/ProjectCard/index.js';
-	import { EMAILS, GITHUB_LINKS, SOCIAL_LINKS } from '$shared/constants';
+	import { EMAILS, GITHUB_LINKS, SOCIAL_LINKS } from '$lib/constants/index.js';
 
 	export let data;
 

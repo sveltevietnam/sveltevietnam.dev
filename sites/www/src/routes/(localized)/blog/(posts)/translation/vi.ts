@@ -1,4 +1,4 @@
-import { SOCIAL_LINKS } from '$shared/constants';
+import { SOCIAL_LINKS } from '$lib/constants';
 
 export const vi = {
 	urlCopyNotice: 'Đã sao chép đường dẫn bài viết',

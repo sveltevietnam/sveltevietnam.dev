@@ -7,7 +7,7 @@
 	import { MailRegistrationForm } from '$lib/components/MailRegistrationForm';
 	import { SplitText } from '$lib/components/SplitText';
 	import { ToBeAnnounced } from '$lib/components/ToBeAnnounced';
-	import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
+	import { EMAILS, SOCIAL_LINKS } from '$lib/constants';
 	import { translations as commonT } from '$shared/services/i18n/translations/common';
 
 	import type { PageData } from './$types';

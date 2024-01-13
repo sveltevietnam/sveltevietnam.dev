@@ -2,7 +2,7 @@
 	import { invalidate } from '$app/navigation';
 	import { getLangContext } from '$client/contexts/lang';
 	import { getNavigationContext } from '$client/contexts/navigation';
-	import { LOAD_DEPENDENCIES } from '$shared/constants';
+	import { LOAD_DEPENDENCIES } from '$lib/constants';
 	import type { Language } from '$shared/services/i18n';
 
 	let cls = '';

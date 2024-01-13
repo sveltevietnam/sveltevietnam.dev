@@ -1,4 +1,4 @@
-import { LOAD_DEPENDENCIES } from '$shared/constants';
+import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { preparePageData } from '$shared/data/blog';
 
 import type { PageServerLoad } from './$types';

@@ -1,4 +1,4 @@
-import { GITHUB_LINKS } from '$shared/constants';
+import { GITHUB_LINKS } from '$lib/constants';
 
 export const vi = {
 	title: 'Đang thi công',

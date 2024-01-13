@@ -1,4 +1,4 @@
-import { LOAD_DEPENDENCIES } from '$shared/constants';
+import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { preparePageData } from '$shared/data/events';
 import type { Breadcrumb } from '$shared/services/navigation';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';

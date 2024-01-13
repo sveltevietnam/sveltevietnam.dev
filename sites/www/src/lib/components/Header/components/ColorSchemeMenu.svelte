@@ -3,7 +3,7 @@
 
 	import { getColorSchemeContext } from '$client/contexts/color-scheme';
 	import { getLangContext } from '$client/contexts/lang';
-	import { COLOR_SCHEMES } from '$shared/constants';
+	import { COLOR_SCHEMES } from '$lib/constants';
 	import { translations } from '$shared/services/i18n/translations/color-scheme';
 
 	import ColorSchemeIcon from './ColorSchemeIcon.svelte';

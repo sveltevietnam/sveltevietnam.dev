@@ -1,7 +1,7 @@
 import type { WithContext, Organization } from 'schema-dts';
 
 import { prepareRoutePageData } from '$client/contexts/navigation';
-import { LOAD_DEPENDENCIES } from '$shared/constants';
+import { LOAD_DEPENDENCIES } from '$lib/constants';
 import {
 	EXTERNAL_POSTS,
 	INTERNAL_POSTS,

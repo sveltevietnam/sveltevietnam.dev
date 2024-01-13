@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { ContributorCard } from '$lib/components/ContributorCard/index.js';
-	import { GITHUB_LINKS } from '$shared/constants';
+	import { GITHUB_LINKS } from '$lib/constants/index.js';
 
 	export let data;
 

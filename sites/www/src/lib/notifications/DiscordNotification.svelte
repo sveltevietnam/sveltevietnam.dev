@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-	import { SOCIAL_LINKS } from '$shared/constants';
+	import { SOCIAL_LINKS } from '$lib/constants';
 	import { translations as commonT } from '$shared/services/i18n/translations/common';
 	export const translations = {
 		en: {

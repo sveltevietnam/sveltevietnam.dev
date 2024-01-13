@@ -1,6 +1,6 @@
 import type { BreadcrumbList, Organization, Blog, Person as StructuredPerson } from 'schema-dts';
 
-import { SOCIAL_LINKS } from '$shared/constants';
+import { SOCIAL_LINKS } from '$lib/constants';
 import type { localizePerson } from '$shared/data/people';
 import { type Breadcrumb } from '$shared/services/navigation';
 

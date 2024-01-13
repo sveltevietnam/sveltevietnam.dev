@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
 
-import { LOAD_DEPENDENCIES } from '$shared/constants';
+import { LOAD_DEPENDENCIES } from '$lib/constants';
 import {
 	EXTERNAL_POSTS,
 	INTERNAL_POSTS,

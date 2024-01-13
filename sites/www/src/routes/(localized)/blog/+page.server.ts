@@ -2,8 +2,8 @@ import type { WithContext, Blog } from 'schema-dts';
 
 import { prepareRoutePageData } from '$client/contexts/navigation';
 import ogImage from '$lib/assets/images/og/og-blog.jpg';
+import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { mail } from '$lib/forms/actions/mail/mail.server';
-import { LOAD_DEPENDENCIES } from '$shared/constants';
 import {
 	INTERNAL_POSTS,
 	EXTERNAL_POSTS,

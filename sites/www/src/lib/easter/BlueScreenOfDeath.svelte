@@ -1,7 +1,7 @@
 <script lang="ts">
 	import QR from '@svelte-put/qr/svg/QR.svelte';
 
-	import { SOCIAL_LINKS } from '$shared/constants';
+	import { SOCIAL_LINKS } from '$lib/constants';
 </script>
 
 <section class="max-w-pad space-y-10 overflow-auto text-left text-white">

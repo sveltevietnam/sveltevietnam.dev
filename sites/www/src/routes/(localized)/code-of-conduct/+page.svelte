@@ -3,7 +3,7 @@
 	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
 	import { ConsecutiveFadeUpIntro } from '$lib/components/ConsecutiveFadeUpIntro';
 	import { SplitText } from '$lib/components/SplitText';
-	import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
+	import { EMAILS, SOCIAL_LINKS } from '$lib/constants';
 
 	import type { PageData } from './$types';
 

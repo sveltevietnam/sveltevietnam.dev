@@ -4,9 +4,9 @@ import { prepareRoutePageData } from '$client/contexts/navigation';
 import ogImageEn from '$lib/assets/images/og/og-jobs.en.jpg';
 import ogImageVi from '$lib/assets/images/og/og-jobs.vi.jpg';
 import { mailSchema } from '$lib/components/MailRegistrationForm';
+import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { mail } from '$lib/forms/actions/mail/mail.server';
 import { translations as tMail } from '$lib/forms/actions/mail/translation';
-import { LOAD_DEPENDENCIES } from '$shared/constants';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { PageServerLoad, Actions } from './$types';

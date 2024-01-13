@@ -1,4 +1,4 @@
-import { SOCIAL_LINKS } from '$shared/constants';
+import { SOCIAL_LINKS } from '$lib/constants';
 
 export const en = {
 	urlCopyNotice: 'Copied link to blog post to clipboard',

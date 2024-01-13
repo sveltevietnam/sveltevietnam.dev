@@ -3,7 +3,7 @@
 	import { intersect } from '$lib/actions/intersect';
 	import { ConsecutiveFadeUpIntro } from '$lib/components/ConsecutiveFadeUpIntro';
 	import { SplitText } from '$lib/components/SplitText';
-	import { SOCIAL_LINKS } from '$shared/constants';
+	import { SOCIAL_LINKS } from '$lib/constants';
 
 	import { translations } from '../translation';
 
