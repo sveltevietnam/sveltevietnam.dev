@@ -2,9 +2,9 @@
 	import embla from 'embla-carousel-svelte';
 	import { onMount } from 'svelte';
 
-	import { gsap } from '$3rd/gsap';
 	import { getLangContext } from '$client/contexts/lang';
 	import { getSplashContext } from '$client/contexts/splash';
+	import { gsap } from '$lib/3rd/gsap';
 	import { intersect } from '$lib/actions/intersect';
 	import { translations as commonT } from '$shared/services/i18n/translations/common';
 

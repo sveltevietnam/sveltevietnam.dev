@@ -1,4 +1,4 @@
-import { Power1, gsap } from '$3rd/gsap';
+import { Power1, gsap } from '$lib/3rd/gsap';
 // TODO: improve responsive animation with https://greensock.com/docs/v3/GSAP/gsap.matchMedia()??
 
 const SCROLL_DELTA = 500;

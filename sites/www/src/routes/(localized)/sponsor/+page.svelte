@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	import { gsap } from '$3rd/gsap';
 	import { Breadcrumbs } from '$client/components/Breadcrumbs';
 	import { getNavigationContext } from '$client/contexts/navigation';
+	import { gsap } from '$lib/3rd/gsap';
 	import { intersect } from '$lib/actions/intersect';
 	import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
 
