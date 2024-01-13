@@ -1,6 +1,6 @@
-import type { Event, StructureEvent } from '$shared/data/events';
-import { VNPHANQUANG } from '$shared/data/people';
-import { SVELTE_VIETNAM_ORG, structurePerson } from '$shared/data/structured';
+import type { Event, StructureEvent } from '$lib/data/events';
+import { VNPHANQUANG } from '$lib/data/people';
+import { SVELTE_VIETNAM_ORG, structurePerson } from '$lib/data/structured';
 
 import ogImageEn from './images/thumbnail-en.jpg';
 import thumbnailEn from './images/thumbnail-en.jpg?enhanced';

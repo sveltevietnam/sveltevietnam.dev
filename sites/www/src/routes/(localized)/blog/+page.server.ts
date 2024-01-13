@@ -3,14 +3,9 @@ import type { WithContext, Blog } from 'schema-dts';
 import { prepareRoutePageData } from '$client/contexts/navigation';
 import ogImage from '$lib/assets/images/og/og-blog.jpg';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
+import { INTERNAL_POSTS, EXTERNAL_POSTS, localizePost, localizeExternalPost } from '$lib/data/blog';
+import { SVELTE_VIETNAM_BLOG } from '$lib/data/structured';
 import { mail } from '$lib/forms/actions/mail/mail.server';
-import {
-	INTERNAL_POSTS,
-	EXTERNAL_POSTS,
-	localizePost,
-	localizeExternalPost,
-} from '$shared/data/blog';
-import { SVELTE_VIETNAM_BLOG } from '$shared/data/structured';
 import type { Language } from '$shared/services/i18n';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 

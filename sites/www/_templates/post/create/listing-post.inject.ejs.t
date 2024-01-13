@@ -1,6 +1,6 @@
 ---
 inject: true
-to: "src/lib/shared/data/blog/posts.ts"
+to: "src/lib/data/blog/posts.ts"
 after: "HYGEN MARKER - POST"
 skip_if: "<%= listing.alias %>,"
 ---

@@ -7,7 +7,7 @@
 	import { EventCard } from '$lib/components/EventCard';
 	import { SplitText } from '$lib/components/SplitText';
 	import { ToBeAnnounced } from '$lib/components/ToBeAnnounced';
-	import type { LocalizedEvent } from '$shared/data/events';
+	import type { LocalizedEvent } from '$lib/data/events';
 
 	import { translations } from '../translation';
 

@@ -5,8 +5,8 @@ import { building } from '$app/environment';
 import { ROUTE_MAP } from '$client/contexts/navigation';
 import { COOKIE_LANGUAGE, COOKIE_USER_ID, COOKIE_LAST_FRESH_VISIT_AT } from '$env/static/private';
 import { PUBLIC_COOKIE_COLOR_SCHEME } from '$env/static/public';
-import { INTERNAL_POSTS } from '$shared/data/blog';
-import { EVENTS } from '$shared/data/events';
+import { INTERNAL_POSTS } from '$lib/data/blog';
+import { EVENTS } from '$lib/data/events';
 import { LANGUAGES, DEFAULT_LANG, delocalizeLangVar } from '$shared/services/i18n';
 
 // FIXME: temporary legacy mapping, remove after a while

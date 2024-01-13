@@ -9,7 +9,7 @@ import {
 	localizeExternalPost,
 	localizePost,
 	searchPostsInSameSeries,
-} from '$shared/data/blog';
+} from '$lib/data/blog';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { LayoutServerLoad } from './$types';

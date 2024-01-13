@@ -2,14 +2,9 @@ import type { WithContext, Organization } from 'schema-dts';
 
 import { prepareRoutePageData } from '$client/contexts/navigation';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
-import {
-	EXTERNAL_POSTS,
-	INTERNAL_POSTS,
-	localizeExternalPost,
-	localizePost,
-} from '$shared/data/blog';
-import { listEvents } from '$shared/data/events';
-import { SVELTE_VIETNAM_ORG } from '$shared/data/structured';
+import { EXTERNAL_POSTS, INTERNAL_POSTS, localizeExternalPost, localizePost } from '$lib/data/blog';
+import { listEvents } from '$lib/data/events';
+import { SVELTE_VIETNAM_ORG } from '$lib/data/structured';
 import type { Language } from '$shared/services/i18n';
 
 import type { PageServerLoad } from './$types';

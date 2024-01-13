@@ -2,8 +2,8 @@ import { delocalizeUrl, getLangFromUrl, isUrlLocalized } from '@internals/utils/
 import type { Reroute } from '@sveltejs/kit';
 
 import { ROUTE_MAP } from '$client/contexts/navigation';
-import { INTERNAL_POSTS } from '$shared/data/blog';
-import { EVENTS } from '$shared/data/events';
+import { INTERNAL_POSTS } from '$lib/data/blog';
+import { EVENTS } from '$lib/data/events';
 import { LANGUAGES, delocalizeLangVar, DEFAULT_LANG } from '$shared/services/i18n';
 
 const REROUTE_MAP = {

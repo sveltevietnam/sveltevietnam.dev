@@ -7,7 +7,7 @@
 	import { ConsecutiveFadeUpIntro } from '$lib/components/ConsecutiveFadeUpIntro';
 	import ExternalBlogPostItem from '$lib/components/ExternalBlogPostItem/ExternalBlogPostItem.svelte';
 	import { SplitText } from '$lib/components/SplitText';
-	import type { LocalizedExternalPost, LocalizedPost } from '$shared/data/blog';
+	import type { LocalizedExternalPost, LocalizedPost } from '$lib/data/blog';
 
 	import { translations } from '../translation';
 

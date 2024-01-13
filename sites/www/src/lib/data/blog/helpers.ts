@@ -2,8 +2,8 @@ import { delocalizeUrl } from '@internals/utils';
 import type { BlogPosting, BreadcrumbList, WithContext } from 'schema-dts';
 
 import { ROUTE_MAP } from '$client/contexts/navigation';
-import { localizePerson } from '$shared/data/people';
-import { SVELTE_VIETNAM_ORG, SVELTE_VIETNAM_BLOG, structurePerson } from '$shared/data/structured';
+import { localizePerson } from '$lib/data/people';
+import { SVELTE_VIETNAM_ORG, SVELTE_VIETNAM_BLOG, structurePerson } from '$lib/data/structured';
 import {
 	LANGUAGES,
 	delocalizeLangVar,

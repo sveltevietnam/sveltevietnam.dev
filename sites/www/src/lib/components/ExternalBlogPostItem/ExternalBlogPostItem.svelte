@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { LocalizedExternalPost } from '$shared/data/blog';
+	import type { LocalizedExternalPost } from '$lib/data/blog';
 
 	export let post: LocalizedExternalPost;
 	let cls = '';

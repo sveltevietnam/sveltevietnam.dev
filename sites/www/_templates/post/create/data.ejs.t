@@ -3,8 +3,8 @@ to: <%= baseDir %>/_page/data.ts
 unless_exists: true
 ---
 
-import type { PostContent } from '$shared/data/blog';
-import type { Post } from '$shared/data/blog';
+import type { PostContent } from '$lib/data/blog';
+import type { Post } from '$lib/data/blog';
 
 <% if (languageMap.en) { -%>
 import En from './content.en.md.svelte?mdsvex';

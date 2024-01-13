@@ -1,7 +1,7 @@
 import type { BreadcrumbList, Organization, Blog, Person as StructuredPerson } from 'schema-dts';
 
 import { SOCIAL_LINKS } from '$lib/constants';
-import type { localizePerson } from '$shared/data/people';
+import type { localizePerson } from '$lib/data/people';
 import { type Breadcrumb } from '$shared/services/navigation';
 
 export const SVELTE_VIETNAM_ORG = {

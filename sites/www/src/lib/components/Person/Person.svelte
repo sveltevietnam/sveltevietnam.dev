@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { LocalizedPerson } from '$shared/data/people';
+	import type { LocalizedPerson } from '$lib/data/people';
 
 	export let person: LocalizedPerson;
 	let cls = '';

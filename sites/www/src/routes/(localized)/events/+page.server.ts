@@ -5,9 +5,9 @@ import ogImageEn from '$lib/assets/images/og/og-events.en.jpg';
 import ogImageVi from '$lib/assets/images/og/og-events.vi.jpg';
 import { mailSchema } from '$lib/components/MailRegistrationForm';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
+import { listEvents } from '$lib/data/events';
 import { mail } from '$lib/forms/actions/mail/mail.server';
 import { translations as mailT } from '$lib/forms/actions/mail/translation';
-import { listEvents } from '$shared/data/events';
 import type { Language } from '$shared/services/i18n';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 

@@ -1,6 +1,6 @@
-import type { PostContent } from '$shared/data/blog';
-import type { Post } from '$shared/data/blog';
-import { VNPHANQUANG } from '$shared/data/people';
+import type { PostContent } from '$lib/data/blog';
+import type { Post } from '$lib/data/blog';
+import { VNPHANQUANG } from '$lib/data/people';
 
 import En from './content.en.md.svelte?mdsvex';
 import Vi from './content.vi.md.svelte?mdsvex';

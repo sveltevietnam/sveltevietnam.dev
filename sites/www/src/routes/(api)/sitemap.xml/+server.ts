@@ -2,9 +2,9 @@
 
 import Mustache from 'mustache';
 
+import { INTERNAL_POSTS } from '$lib/data/blog';
+import { EVENTS } from '$lib/data/events';
 import { toW3CDate } from '$lib/utils/datetime';
-import { INTERNAL_POSTS } from '$shared/data/blog';
-import { EVENTS } from '$shared/data/events';
 import { LANGUAGES } from '$shared/services/i18n';
 import {
 	BLOG_PATH,

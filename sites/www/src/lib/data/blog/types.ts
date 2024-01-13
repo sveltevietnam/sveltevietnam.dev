@@ -1,6 +1,6 @@
 import type { ComponentType, SvelteComponent } from 'svelte';
 
-import type { Person } from '$shared/data/people';
+import type { Person } from '$lib/data/people';
 import type { LangVar, Language } from '$shared/services/i18n';
 
 import type { localizeExternalPost, localizePost } from './helpers';

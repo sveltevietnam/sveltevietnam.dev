@@ -1,7 +1,7 @@
-import type { PostContent } from '$shared/data/blog';
-import type { Post } from '$shared/data/blog';
-import { BEHIND_THE_SCREEN } from '$shared/data/blog/series';
-import { VNPHANQUANG } from '$shared/data/people';
+import type { PostContent } from '$lib/data/blog';
+import type { Post } from '$lib/data/blog';
+import { BEHIND_THE_SCREEN } from '$lib/data/blog/series';
+import { VNPHANQUANG } from '$lib/data/people';
 
 import En from './content.en.md.svelte?mdsvex';
 import Vi from './content.vi.md.svelte?mdsvex';

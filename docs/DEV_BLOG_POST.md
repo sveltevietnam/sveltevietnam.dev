@@ -40,7 +40,7 @@ Follow the following check list to ensure your blog post is ready for publicatio
   - Have a good thumbnail or OG image
   - Optimize all images, ideally use [webp](https://developers.google.com/speed/webp) format
   - Make sure all images are responsive and its aspect ratio is kept (i.e avoid stretching on screen resize)
-- Provide in `_page/data.ts` as much metadata as possible, especially `description` and `keywords`, available options can be seen at [lib/shared/data/blog](../sites/www/src/lib/shared/data/blog/index.ts).
+- Provide in `_page/data.ts` as much metadata as possible, especially `description` and `keywords`, available options can be seen at [lib/data/blog](../sites/www/src/lib/data/blog/index.ts).
 - Add entry to [sitemap.xml](<../sites/www/src/routes/(api)/sitemap.xml/+server.ts>) and [rss.xml](<../sites/www/src/routes/(api)/rss.xml/+server.ts>)
 
 ## Architecture
