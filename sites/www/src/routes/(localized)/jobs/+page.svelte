@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { Breadcrumbs } from '$client/components/Breadcrumbs';
-	import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
-	import { JobCard } from '$client/components/JobCard';
-	import { MailRegistrationForm } from '$client/components/MailRegistrationForm';
-	import { SplitText } from '$client/components/SplitText';
-	import { ToBeAnnounced } from '$client/components/ToBeAnnounced';
 	import { getNavigationContext } from '$client/contexts/navigation';
 	import { intersect } from '$lib/actions/intersect';
+	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
+	import { ConsecutiveFadeUpIntro } from '$lib/components/ConsecutiveFadeUpIntro';
+	import { JobCard } from '$lib/components/JobCard';
+	import { MailRegistrationForm } from '$lib/components/MailRegistrationForm';
+	import { SplitText } from '$lib/components/SplitText';
+	import { ToBeAnnounced } from '$lib/components/ToBeAnnounced';
 
 	import keyVisuals from './_page/images/key-visuals.png?enhanced';
 

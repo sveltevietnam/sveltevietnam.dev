@@ -74,7 +74,7 @@ const externalLink = {
 	},
 };
 
-const ENHANCED_CODE_BLOCK_COMPONENT_IMPORT = `import { EnhancedCodeBlock } from '$client/components/EnhancedCodeBlock';`;
+const ENHANCED_CODE_BLOCK_COMPONENT_IMPORT = `import { EnhancedCodeBlock } from '$lib/components/EnhancedCodeBlock';`;
 /** @type {import('svelte/compiler').PreprocessorGroup} */
 const enhanceCodeBlock = {
 	markup(o) {

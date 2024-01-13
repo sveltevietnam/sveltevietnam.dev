@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
-	import { SplitText } from '$client/components/SplitText';
 	import { getLangContext } from '$client/contexts/lang';
 	import { intersect } from '$lib/actions/intersect';
+	import { ConsecutiveFadeUpIntro } from '$lib/components/ConsecutiveFadeUpIntro';
+	import { SplitText } from '$lib/components/SplitText';
 	import { SOCIAL_LINKS } from '$shared/constants';
 
 	import { translations } from '../translation';

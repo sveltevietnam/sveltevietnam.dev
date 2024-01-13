@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Breadcrumbs } from '$client/components/Breadcrumbs';
 	import { intersect } from '$lib/actions/intersect';
+	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
 
 	import '../../../../lib/client/styles/code.css';
 

@@ -7,8 +7,6 @@
 	import { version } from '$app/environment';
 	import { beforeNavigate, goto } from '$app/navigation';
 	import { navigating, page, updated } from '$app/stores';
-	import { Footer } from '$client/components/Footer';
-	import { Header } from '$client/components/Header';
 	import { setColorSchemeContext } from '$client/contexts/color-scheme.js';
 	import { setLangContext } from '$client/contexts/lang';
 	import { setLockScrollContext } from '$client/contexts/lockscroll.js';
@@ -18,6 +16,8 @@
 	import NotificationPortal from '$client/notifications/NotificationPortal.svelte';
 	import { setNotificationContext } from '$client/notifications/index.js';
 	import { PUBLIC_DISCORD_WS_URL } from '$env/static/public';
+	import { Footer } from '$lib/components/Footer';
+	import { Header } from '$lib/components/Header';
 	import { LANGUAGES } from '$shared/services/i18n/index.js';
 	import { translations } from '$shared/services/i18n/translations/notification';
 

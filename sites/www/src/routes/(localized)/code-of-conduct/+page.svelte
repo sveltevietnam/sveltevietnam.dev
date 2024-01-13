@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Breadcrumbs } from '$client/components/Breadcrumbs';
-	import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
-	import { SplitText } from '$client/components/SplitText';
 	import { intersect } from '$lib/actions/intersect';
+	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
+	import { ConsecutiveFadeUpIntro } from '$lib/components/ConsecutiveFadeUpIntro';
+	import { SplitText } from '$lib/components/SplitText';
 	import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
 
 	import type { PageData } from './$types';

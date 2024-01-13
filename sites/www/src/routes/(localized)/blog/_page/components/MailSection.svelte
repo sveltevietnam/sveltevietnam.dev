@@ -1,8 +1,8 @@
 <script lang="ts" context="module">
 	import type { ComponentProps } from 'svelte';
 
-	import { MailRegistrationForm } from '$client/components/MailRegistrationForm';
 	import { getLangContext } from '$client/contexts/lang';
+	import { MailRegistrationForm } from '$lib/components/MailRegistrationForm';
 
 	const translations = {
 		vi: {

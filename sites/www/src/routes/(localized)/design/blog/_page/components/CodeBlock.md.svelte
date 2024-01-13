@@ -2,7 +2,7 @@
 <!-- +page.svelte -->
 
 <script>
-	import { Breadcrumbs } from '$client/components/Breadcrumbs';
+	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
 </script>
 
 <main>

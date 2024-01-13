@@ -1,6 +1,6 @@
 <script>
   import BaseNotification from '$client/notifications/BaseNotification.svelte';
-  import { SplashPlayground } from '$client/components/SplashPlayground';
+  import { SplashPlayground } from '$lib/components/SplashPlayground';
 
   import hydrationImage from './images/hydration-vi.png?format=webp&imagetools';
   import blockingRenderImage from './images/blocking-render.png?format=webp&imagetools';

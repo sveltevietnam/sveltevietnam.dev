@@ -3,15 +3,15 @@
 	import { toc, toclink, createTocStore } from '@svelte-put/toc';
 
 	import { page } from '$app/stores';
-	import { BlogPostItem } from '$client/components/BlogPostItem';
-	import { Breadcrumbs } from '$client/components/Breadcrumbs';
-	import ExternalBlogPostItem from '$client/components/ExternalBlogPostItem/ExternalBlogPostItem.svelte';
-	import { Person } from '$client/components/Person';
 	import { modalStore } from '$client/modals';
 	import { QRCode } from '$client/modals/QRCode';
 	import { getNotificationContext } from '$client/notifications';
 	import { textTip } from '$client/tooltips';
 	import { intersect } from '$lib/actions/intersect';
+	import { BlogPostItem } from '$lib/components/BlogPostItem';
+	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
+	import ExternalBlogPostItem from '$lib/components/ExternalBlogPostItem/ExternalBlogPostItem.svelte';
+	import { Person } from '$lib/components/Person';
 	import fallbackThumbnail from '$shared/assets/images/fallback/16x9.jpg?w=2000&enhanced&imagetools';
 	import type { Breadcrumb } from '$shared/services/navigation';
 	import { formateDateForBlog } from '$shared/utils/datetime';

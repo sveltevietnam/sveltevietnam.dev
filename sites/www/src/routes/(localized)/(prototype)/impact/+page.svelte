@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ProjectCard } from '$client/components/ProjectCard';
+	import { ProjectCard } from '$lib/components/ProjectCard/index.js';
 	import { EMAILS, GITHUB_LINKS, SOCIAL_LINKS } from '$shared/constants';
 
 	export let data;

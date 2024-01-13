@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ContributorCard } from '$client/components/ContributorCard';
+	import { ContributorCard } from '$lib/components/ContributorCard/index.js';
 	import { GITHUB_LINKS } from '$shared/constants';
 
 	export let data;
