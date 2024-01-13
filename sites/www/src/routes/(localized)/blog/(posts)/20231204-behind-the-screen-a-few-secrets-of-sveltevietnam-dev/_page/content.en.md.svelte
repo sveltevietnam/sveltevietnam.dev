@@ -2,7 +2,7 @@
   import BaseNotification from '$lib/notifications/BaseNotification.svelte';
   import DiscordNotification from '$lib/notifications/DiscordNotification.svelte';
   import notificationHoverImage from './images/notification-hover-en.gif';
-  import fallbackAvatar from '$shared/assets/images/fallback/default.jpg?w=60&imagetools';
+  import fallbackAvatar from '$lib/assets/images/fallback/default.jpg?w=60&imagetools';
   import devToolsSlow3gImage from './images/devtools-slow-3g.jpg?format=webp&imagetools';
   import disableJavascriptImage from './images/disable-javascript.png?format=webp&imagetools';
   import notFoundPageImage from './images/not-found-page.png?format=webp&imagetools';

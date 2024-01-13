@@ -1,11 +1,11 @@
 import { superValidate } from 'sveltekit-superforms/server';
 
 import { prepareRoutePageData } from '$client/contexts/navigation';
+import ogImageEn from '$lib/assets/images/og/og-events.en.jpg';
+import ogImageVi from '$lib/assets/images/og/og-events.vi.jpg';
 import { mailSchema } from '$lib/components/MailRegistrationForm';
 import { mail } from '$lib/forms/actions/mail/mail.server';
 import { translations as mailT } from '$lib/forms/actions/mail/translation';
-import ogImageEn from '$shared/assets/images/og/og-events.en.jpg';
-import ogImageVi from '$shared/assets/images/og/og-events.vi.jpg';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
 import { listEvents } from '$shared/data/events';
 import type { Language } from '$shared/services/i18n';

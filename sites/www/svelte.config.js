@@ -136,7 +136,7 @@ const config = {
 		inlineSvg(
 			[
 				{
-					directories: [path.resolve(__dirname, 'src/lib/shared/assets/images/svg')],
+					directories: [path.resolve(__dirname, 'src/lib/assets/images/svg')],
 					attributes: {
 						height: '24',
 						width: '24',

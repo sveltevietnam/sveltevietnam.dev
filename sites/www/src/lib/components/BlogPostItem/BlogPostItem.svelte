@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { getLangContext } from '$client/contexts/lang';
 	import { getNavigationContext } from '$client/contexts/navigation';
+	import fallbackThumbnail from '$lib/assets/images/fallback/16x9.jpg?w=1000&enhanced&imagetools';
 	import { formateDateForBlog } from '$lib/utils/datetime';
-	import fallbackThumbnail from '$shared/assets/images/fallback/16x9.jpg?w=1000&enhanced&imagetools';
 	import type { LocalizedPost } from '$shared/data/blog';
 
 	export let alwaysVertical = false;

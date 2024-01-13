@@ -4,6 +4,7 @@
 
 	import { page } from '$app/stores';
 	import { intersect } from '$lib/actions/intersect';
+	import fallbackThumbnail from '$lib/assets/images/fallback/16x9.jpg?w=2000&enhanced&imagetools';
 	import { BlogPostItem } from '$lib/components/BlogPostItem';
 	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
 	import ExternalBlogPostItem from '$lib/components/ExternalBlogPostItem/ExternalBlogPostItem.svelte';
@@ -13,7 +14,6 @@
 	import { getNotificationContext } from '$lib/notifications';
 	import { textTip } from '$lib/tooltips';
 	import { formateDateForBlog } from '$lib/utils/datetime';
-	import fallbackThumbnail from '$shared/assets/images/fallback/16x9.jpg?w=2000&enhanced&imagetools';
 	import type { Breadcrumb } from '$shared/services/navigation';
 
 	import '../../../../lib/css/blog.css';

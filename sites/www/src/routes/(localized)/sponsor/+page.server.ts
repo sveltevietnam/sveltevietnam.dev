@@ -1,6 +1,6 @@
 import { prepareRoutePageData } from '$client/contexts/navigation';
-import ogImageEn from '$shared/assets/images/og/og-sponsor.en.jpg';
-import ogImageVi from '$shared/assets/images/og/og-sponsor.vi.jpg';
+import ogImageEn from '$lib/assets/images/og/og-sponsor.en.jpg';
+import ogImageVi from '$lib/assets/images/og/og-sponsor.vi.jpg';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
 import type { Language } from '$shared/services/i18n';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
