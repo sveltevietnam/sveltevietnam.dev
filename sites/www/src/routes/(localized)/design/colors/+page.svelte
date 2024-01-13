@@ -360,7 +360,7 @@
 			<ul class="divider-border mt-[60px] max-w-[660px] divide-y font-medium" use:intersect>
 				<li>
 					<a
-						href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/lib/client/styles/colors/index.js"
+						href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/lib/css/colors/index.js"
 						class="c-link c-link--box"
 						external
 					>
@@ -369,7 +369,7 @@
 				</li>
 				<li>
 					<a
-						href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/lib/client/styles/theme.js"
+						href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/lib/css/theme.js"
 						class="c-link c-link--box"
 						external
 					>
@@ -378,7 +378,7 @@
 				</li>
 				<li>
 					<a
-						href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/lib/client/styles/colors/colors.css"
+						href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/lib/css/colors/colors.css"
 						class="c-link c-link--box"
 						external
 					>
@@ -387,7 +387,7 @@
 				</li>
 				<li>
 					<a
-						href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/lib/client/styles/app.css"
+						href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/lib/css/app.css"
 						class="c-link c-link--box"
 						external
 					>

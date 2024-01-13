@@ -16,9 +16,9 @@
 	import type { Breadcrumb } from '$shared/services/navigation';
 	import { formateDateForBlog } from '$shared/utils/datetime';
 
-	import '../../../../lib/client/styles/blog.css';
-	import '../../../../lib/client/styles/code.css';
-	import '../../../../lib/client/styles/heading-anchor.css';
+	import '../../../../lib/css/blog.css';
+	import '../../../../lib/css/code.css';
+	import '../../../../lib/css/heading-anchor.css';
 	import MailSection from '../_page/components/MailSection.svelte';
 
 	import type { LayoutData } from './$types';

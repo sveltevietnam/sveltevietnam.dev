@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Breadcrumbs } from '$lib/actions/intersect';
 	import { intersect } from '$lib/actions/intersect';
+	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
 
-	import '../../../../lib/client/styles/code.css';
+	import '../../../../lib/css/code.css';
 
 	import type { PageData } from './$types';
 	import CodeBlock from './_page/components/CodeBlock.md.svelte?mdsvex';

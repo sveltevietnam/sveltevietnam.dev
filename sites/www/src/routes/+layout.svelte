@@ -6,7 +6,7 @@
 	import ogImageHome from '$shared/assets/images/og/og-home.jpg';
 	import { LANGUAGES } from '$shared/services/i18n';
 
-	import '../lib/client/styles/app.css';
+	import '../lib/css/app.css';
 
 	const DEFAULT_KEYWORDS = ['svelte', 'vietnam'];
 
