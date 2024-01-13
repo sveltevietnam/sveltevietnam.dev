@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	import { modalStore } from '$client/modals';
-	import { WireframeVersionNotice } from '$client/modals/WireframeVersionNotice';
-	import { WireframeVersionNoticeCache } from '$client/modals/WireframeVersionNotice/WireframeVersionNotice.cache';
+	import { modalStore } from '$lib/modals';
+	import { WireframeVersionNotice } from '$lib/modals/WireframeVersionNotice';
+	import { WireframeVersionNoticeCache } from '$lib/modals/WireframeVersionNotice/WireframeVersionNotice.cache';
 
 	onMount(() => {
 		const cache = new WireframeVersionNoticeCache();

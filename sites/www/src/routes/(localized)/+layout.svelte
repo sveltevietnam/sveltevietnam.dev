@@ -12,12 +12,12 @@
 	import { setLockScrollContext } from '$client/contexts/lockscroll.js';
 	import { setNavigationContext } from '$client/contexts/navigation';
 	import { setSplashContext } from '$client/contexts/splash.js';
-	import { modalStore } from '$client/modals';
 	import NotificationPortal from '$client/notifications/NotificationPortal.svelte';
 	import { setNotificationContext } from '$client/notifications/index.js';
 	import { PUBLIC_DISCORD_WS_URL } from '$env/static/public';
 	import { Footer } from '$lib/components/Footer';
 	import { Header } from '$lib/components/Header';
+	import { modalStore } from '$lib/modals';
 	import { LANGUAGES } from '$shared/services/i18n/index.js';
 	import { translations } from '$shared/services/i18n/translations/notification';
 
