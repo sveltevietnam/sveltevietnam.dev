@@ -8,8 +8,8 @@ import {
 import { error, fail } from '@sveltejs/kit';
 import { message, superValidate } from 'sveltekit-superforms/server';
 
-import type { FormMessage } from '$client/forms';
 import { MAILER_CLIENT_ID, MAILER_CLIENT_SECRET, MAILER_SERVICE_URL } from '$env/static/private';
+import type { FormMessage } from '$lib/forms';
 import { LOAD_DEPENDENCIES } from '$shared/constants';
 
 import type { Actions, PageServerLoad } from './$types';

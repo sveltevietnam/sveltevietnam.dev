@@ -2,8 +2,8 @@ import { superValidate } from 'sveltekit-superforms/server';
 
 import { prepareRoutePageData } from '$client/contexts/navigation';
 import { mailSchema } from '$lib/components/MailRegistrationForm';
-import { mail } from '$server/actions/mail/mail.server';
-import { translations as mailT } from '$server/actions/mail/translation';
+import { mail } from '$lib/forms/actions/mail/mail.server';
+import { translations as mailT } from '$lib/forms/actions/mail/translation';
 import ogImageEn from '$shared/assets/images/og/og-events.en.jpg';
 import ogImageVi from '$shared/assets/images/og/og-events.vi.jpg';
 import { LOAD_DEPENDENCIES } from '$shared/constants';

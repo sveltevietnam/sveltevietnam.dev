@@ -14,8 +14,8 @@
 
 	import { getColorSchemeContext } from '$client/contexts/color-scheme';
 	import { getLangContext } from '$client/contexts/lang';
-	import type { FormMessage } from '$client/forms';
 	import { PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
+	import type { FormMessage } from '$lib/forms';
 	import { getNotificationContext } from '$lib/notifications';
 	import { turnstile } from '$lib/turnstile/turnstile.action';
 

@@ -9,8 +9,8 @@ import type { NumericRange, RequestEvent } from '@sveltejs/kit';
 import { message, setError, superValidate } from 'sveltekit-superforms/server';
 import { string, object } from 'zod';
 
-import type { FormMessage } from '$client/forms';
 import { MAILER_CLIENT_ID, MAILER_CLIENT_SECRET, MAILER_SERVICE_URL } from '$env/static/private';
+import type { FormMessage } from '$lib/forms';
 import { validateToken } from '$lib/turnstile/turnstile.server';
 
 import { translations } from './translation';

@@ -2,7 +2,7 @@
 	import type { UpdateDomainSubscriptionRequestSchema } from '@internals/isc/mailer';
 	import { superForm } from 'sveltekit-superforms/client';
 
-	import type { FormMessage } from '$client/forms';
+	import type { FormMessage } from '$lib/forms';
 	import { getNotificationContext } from '$lib/notifications';
 
 	import type { PageData } from './$types';
