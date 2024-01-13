@@ -1,7 +1,7 @@
 import { getContext, setContext } from 'svelte';
 import { writable } from 'svelte/store';
 
-import type { Language } from '$shared/services/i18n';
+import type { Language } from '$lib/i18n';
 
 const LANG_CONTEXT_ID = 'lang';
 

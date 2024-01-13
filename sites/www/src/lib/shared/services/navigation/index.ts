@@ -1,8 +1,8 @@
 import { delocalizeUrl } from '@internals/utils/url';
 
-import type { Language } from '$shared/services/i18n';
-import { LANGUAGES } from '$shared/services/i18n';
-import { translations } from '$shared/services/i18n/translations/navigation';
+import type { Language } from '$lib/i18n';
+import { LANGUAGES } from '$lib/i18n';
+import { translations } from '$lib/i18n/translations/navigation';
 
 export const SITEMAP_PATH = '/sitemap.xml';
 export const RSS_PATH = '/rss.xml';

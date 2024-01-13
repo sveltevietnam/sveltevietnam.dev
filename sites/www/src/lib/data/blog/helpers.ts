@@ -4,12 +4,7 @@ import type { BlogPosting, BreadcrumbList, WithContext } from 'schema-dts';
 import { ROUTE_MAP } from '$client/contexts/navigation';
 import { localizePerson } from '$lib/data/people';
 import { SVELTE_VIETNAM_ORG, SVELTE_VIETNAM_BLOG, structurePerson } from '$lib/data/structured';
-import {
-	LANGUAGES,
-	delocalizeLangVar,
-	localizeLangVar,
-	type Language,
-} from '$shared/services/i18n';
+import { LANGUAGES, delocalizeLangVar, localizeLangVar, type Language } from '$lib/i18n';
 
 import type { PostContent, ExternalPost, Post, PostSeries } from './types';
 

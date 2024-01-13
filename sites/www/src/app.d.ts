@@ -6,7 +6,7 @@
 import type { LocalizedRouteMap } from '$client/contexts/navigation';
 import type { COLOR_SCHEMES, STATUSES } from '$lib/constants';
 import type { preparePageData } from '$lib/data/blog';
-import type { Language } from '$shared/services/i18n';
+import type { Language } from '$lib/i18n';
 
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces

@@ -1,4 +1,4 @@
-import type { LangVar } from '$shared/services/i18n';
+import type { LangVar } from '$lib/i18n';
 
 export type Sponsor = {
 	id: string;

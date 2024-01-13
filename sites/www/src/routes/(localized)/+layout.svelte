@@ -15,11 +15,11 @@
 	import { PUBLIC_DISCORD_WS_URL } from '$env/static/public';
 	import { Footer } from '$lib/components/Footer';
 	import { Header } from '$lib/components/Header';
+	import { LANGUAGES } from '$lib/i18n/index.js';
+	import { translations } from '$lib/i18n/translations/notification';
 	import { modalStore } from '$lib/modals';
 	import NotificationPortal from '$lib/notifications/NotificationPortal.svelte';
 	import { setNotificationContext } from '$lib/notifications/index.js';
-	import { LANGUAGES } from '$shared/services/i18n/index.js';
-	import { translations } from '$shared/services/i18n/translations/notification';
 
 	import type { LayoutData } from './$types';
 	import PageLoadIndicator from './_page/components/PageLoadIndicator.svelte';

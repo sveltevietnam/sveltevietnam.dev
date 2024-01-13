@@ -3,7 +3,7 @@
 	import { getLangContext } from '$client/contexts/lang';
 	import { getNavigationContext } from '$client/contexts/navigation';
 	import { LOAD_DEPENDENCIES } from '$lib/constants';
-	import type { Language } from '$shared/services/i18n';
+	import type { Language } from '$lib/i18n';
 
 	let cls = '';
 	export { cls as class };

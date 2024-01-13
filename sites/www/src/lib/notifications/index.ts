@@ -1,7 +1,7 @@
 import { store } from '@svelte-put/noti';
 import { getContext, setContext } from 'svelte';
 
-import type { Language } from '$shared/services/i18n';
+import type { Language } from '$lib/i18n';
 
 import DiscordNotification from './DiscordNotification.svelte';
 import TextOnlyNotification from './TextOnlyNotification.svelte';

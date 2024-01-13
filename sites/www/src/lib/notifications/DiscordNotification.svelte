@@ -1,6 +1,6 @@
 <script lang="ts" context="module">
 	import { SOCIAL_LINKS } from '$lib/constants';
-	import { translations as commonT } from '$shared/services/i18n/translations/common';
+	import { translations as commonT } from '$lib/i18n/translations/common';
 	export const translations = {
 		en: {
 			message: 'is having a conversation at',

@@ -3,12 +3,7 @@ import type { BreadcrumbList, WithContext } from 'schema-dts';
 
 import { ROUTE_MAP } from '$client/contexts/navigation';
 import { localizePerson } from '$lib/data/people';
-import {
-	LANGUAGES,
-	delocalizeLangVar,
-	localizeLangVar,
-	type Language,
-} from '$shared/services/i18n';
+import { LANGUAGES, delocalizeLangVar, localizeLangVar, type Language } from '$lib/i18n';
 
 import type { Event, LocalizedEvent, StructureEvent } from './types';
 

@@ -2,7 +2,7 @@
 	import { getLangContext } from '$client/contexts/lang';
 	import { getNavigationContext } from '$client/contexts/navigation';
 	import { EMAILS, SOCIAL_LINKS } from '$lib/constants';
-	import { translations as commonT } from '$shared/services/i18n/translations/common';
+	import { translations as commonT } from '$lib/i18n/translations/common';
 
 	import { translations } from './translation';
 

@@ -1,7 +1,7 @@
 import { getContext, setContext } from 'svelte';
 import { derived, writable, type Readable } from 'svelte/store';
 
-import { localizeLangVar, type Language, delocalizeLangVar } from '$shared/services/i18n';
+import { localizeLangVar, type Language, delocalizeLangVar } from '$lib/i18n';
 
 const NAVIGATION_CONTEXT_ID = 'navigation';
 

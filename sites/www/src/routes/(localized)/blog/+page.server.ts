@@ -6,7 +6,7 @@ import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { INTERNAL_POSTS, EXTERNAL_POSTS, localizePost, localizeExternalPost } from '$lib/data/blog';
 import { SVELTE_VIETNAM_BLOG } from '$lib/data/structured';
 import { mail } from '$lib/forms/actions/mail/mail.server';
-import type { Language } from '$shared/services/i18n';
+import type { Language } from '$lib/i18n';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { Actions, PageServerLoad } from './$types';

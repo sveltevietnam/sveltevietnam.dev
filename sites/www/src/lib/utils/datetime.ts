@@ -1,4 +1,4 @@
-import type { Language } from '$shared/services/i18n';
+import type { Language } from '$lib/i18n';
 
 /**
  * https://www.w3.org/TR/NOTE-datetime

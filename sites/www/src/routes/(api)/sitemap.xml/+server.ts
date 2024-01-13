@@ -4,8 +4,8 @@ import Mustache from 'mustache';
 
 import { INTERNAL_POSTS } from '$lib/data/blog';
 import { EVENTS } from '$lib/data/events';
+import { LANGUAGES } from '$lib/i18n';
 import { toW3CDate } from '$lib/utils/datetime';
-import { LANGUAGES } from '$shared/services/i18n';
 import {
 	BLOG_PATH,
 	CODE_OF_CONDUCT_PATH,
