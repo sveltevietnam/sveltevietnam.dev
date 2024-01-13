@@ -9,7 +9,7 @@
 declare global {
 	declare const __BUILD_TIMESTAMP__: string;
 	namespace App {
-		declare type Language = import('@internals/isc/common').Language;
+		declare type Language = import('@internals/utils/language').Language;
 		interface Locals {
 			d1: import('@cloudflare/workers-types').D1Database;
 		}

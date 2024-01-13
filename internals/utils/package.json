@@ -28,6 +28,11 @@
 			"types": "./types/index.d.ts",
 			"svelte": "./src/signature/index.js",
 			"import": "./src/signature/index.js"
+		},
+		"./language": {
+			"types": "./types/index.d.ts",
+			"svelte": "./src/language/index.js",
+			"import": "./src/language/index.js"
 		}
 	},
 	"typesVersions": {
@@ -36,6 +41,9 @@
 				"./types/index.d.ts"
 			],
 			"signature": [
+				"./types/index.d.ts"
+			],
+			"language": [
 				"./types/index.d.ts"
 			]
 		}
@@ -55,7 +63,7 @@
 	"devDependencies": {
 		"@vitest/coverage-istanbul": "^1.1.0",
 		"@vitest/ui": "^1.1.0",
-		"dts-buddy": "^0.4.3",
+		"dts-buddy": "^0.4.4",
 		"publint": "^0.2.6",
 		"vitest": "^1.1.0"
 	},

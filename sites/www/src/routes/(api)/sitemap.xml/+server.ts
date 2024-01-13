@@ -1,6 +1,6 @@
 /** https://www.sitemaps.org/protocol.html */
 
-import { LANGUAGES } from '@internals/isc/common';
+import { LANGUAGES } from '@internals/utils/language';
 import Mustache from 'mustache';
 
 import { INTERNAL_POSTS } from '$lib/data/blog';

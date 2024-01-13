@@ -1,7 +1,6 @@
+import { localizeLangVar, delocalizeLangVar } from '@internals/utils/language';
 import { getContext, setContext } from 'svelte';
 import { derived, writable, type Readable } from 'svelte/store';
-
-import { localizeLangVar, delocalizeLangVar } from '$lib/i18n';
 
 const NAVIGATION_CONTEXT_ID = 'navigation';
 

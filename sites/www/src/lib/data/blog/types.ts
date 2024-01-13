@@ -1,7 +1,7 @@
+import type { LangVar } from '@internals/utils/language';
 import type { ComponentType, SvelteComponent } from 'svelte';
 
 import type { Person } from '$lib/data/people';
-import type { LangVar } from '$lib/i18n';
 
 import type { localizeExternalPost, localizePost } from './helpers';
 

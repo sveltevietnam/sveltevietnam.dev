@@ -1,10 +1,9 @@
-import { LANGUAGES } from '@internals/isc/common';
+import { LANGUAGES, delocalizeLangVar, localizeLangVar } from '@internals/utils/language';
 import { delocalizeUrl } from '@internals/utils/url';
 import type { BreadcrumbList, WithContext } from 'schema-dts';
 
 import { ROUTE_MAP } from '$client/contexts/navigation';
 import { localizePerson } from '$lib/data/people';
-import { delocalizeLangVar, localizeLangVar } from '$lib/i18n';
 
 import type { Event, LocalizedEvent, StructureEvent } from './types';
 

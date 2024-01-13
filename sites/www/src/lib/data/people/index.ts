@@ -1,4 +1,4 @@
-import { localizeLangVar, type LangVar } from '$lib/i18n';
+import { localizeLangVar, type LangVar } from '@internals/utils/language';
 
 import vnphanquangAvatar from './avatars/vnphanquang.png?format=webp&imagetools';
 

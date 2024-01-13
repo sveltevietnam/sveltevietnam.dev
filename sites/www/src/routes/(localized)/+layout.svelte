@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { LANGUAGES } from '@internals/utils/language';
 	import { localizeUrl } from '@internals/utils/url';
 	import { lockscroll } from '@svelte-put/lockscroll';
 	import ModalPortal from '@svelte-put/modal/ModalPortal.svelte';
@@ -15,7 +16,6 @@
 	import { PUBLIC_DISCORD_WS_URL } from '$env/static/public';
 	import { Footer } from '$lib/components/Footer';
 	import { Header } from '$lib/components/Header';
-	import { LANGUAGES } from '$lib/i18n/index.js';
 	import { translations } from '$lib/i18n/translations/notification';
 	import { modalStore } from '$lib/modals';
 	import NotificationPortal from '$lib/notifications/NotificationPortal.svelte';

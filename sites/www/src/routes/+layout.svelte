@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { LANGUAGES } from '@internals/isc/common';
+	import { LANGUAGES } from '@internals/utils/language';
 	import { onMount } from 'svelte';
 
 	import { page } from '$app/stores';

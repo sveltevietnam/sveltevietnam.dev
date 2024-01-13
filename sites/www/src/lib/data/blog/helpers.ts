@@ -1,11 +1,10 @@
-import { LANGUAGES } from '@internals/isc/common';
-import { delocalizeUrl } from '@internals/utils';
+import { LANGUAGES, delocalizeLangVar, localizeLangVar } from '@internals/utils/language';
+import { delocalizeUrl } from '@internals/utils/url';
 import type { BlogPosting, BreadcrumbList, WithContext } from 'schema-dts';
 
 import { ROUTE_MAP } from '$client/contexts/navigation';
 import { localizePerson } from '$lib/data/people';
 import { SVELTE_VIETNAM_ORG, SVELTE_VIETNAM_BLOG, structurePerson } from '$lib/data/structured';
-import { delocalizeLangVar, localizeLangVar } from '$lib/i18n';
 
 import type { PostContent, ExternalPost, Post, PostSeries } from './types';
 

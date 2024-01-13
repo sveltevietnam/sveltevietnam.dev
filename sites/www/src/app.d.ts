@@ -36,7 +36,7 @@ declare global {
 			path: string;
 			label: string;
 		};
-		declare type Language = import('@internals/isc/common').Language;
+		declare type Language = import('@internals/utils/language').Language;
 
 		interface Locals {
 			userId: string;

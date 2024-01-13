@@ -1,9 +1,8 @@
-import { LANGUAGES } from '@internals/isc/common';
+import { LANGUAGES, localizeLangVar } from '@internals/utils/language';
 import Mustache from 'mustache';
 
 import { INTERNAL_POSTS } from '$lib/data/blog';
 import { EVENTS } from '$lib/data/events';
-import { localizeLangVar } from '$lib/i18n';
 import { BLOG_PATH } from '$shared/services/navigation';
 
 import type { RequestHandler } from './$types';

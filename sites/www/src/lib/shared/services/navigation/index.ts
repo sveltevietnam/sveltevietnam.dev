@@ -1,4 +1,4 @@
-import { LANGUAGES } from '@internals/isc/common';
+import { LANGUAGES } from '@internals/utils/language';
 import { delocalizeUrl } from '@internals/utils/url';
 
 import { translations } from '$lib/i18n/translations/navigation';

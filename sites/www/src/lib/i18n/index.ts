@@ -1,4 +1,4 @@
-import { LANGUAGES } from '@internals/isc/common';
+import { LANGUAGES } from '@internals/utils/language';
 
 export type LangVar<T = string> = T | Record<App.Language, T>;
 

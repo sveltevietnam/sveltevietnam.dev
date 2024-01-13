@@ -1,11 +1,10 @@
-import { DEFAULT_LANGUAGE, LANGUAGES } from '@internals/isc/common';
+import { DEFAULT_LANGUAGE, LANGUAGES, delocalizeLangVar } from '@internals/utils/language';
 import { delocalizeUrl, getLangFromUrl, isUrlLocalized } from '@internals/utils/url';
 import type { Reroute } from '@sveltejs/kit';
 
 import { ROUTE_MAP } from '$client/contexts/navigation';
 import { INTERNAL_POSTS } from '$lib/data/blog';
 import { EVENTS } from '$lib/data/events';
-import { delocalizeLangVar } from '$lib/i18n';
 
 const REROUTE_MAP = {
 	// common pages

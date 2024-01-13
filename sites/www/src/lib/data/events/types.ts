@@ -1,7 +1,7 @@
+import type { LangVar } from '@internals/utils/language';
 import type { WithContext, Event as StructuredEvent } from 'schema-dts';
 
 import type { Person } from '$lib/data/people';
-import type { LangVar } from '$lib/i18n';
 import type { Sponsor } from '$lib/types';
 
 import type { localizeEvent } from './helpers';
