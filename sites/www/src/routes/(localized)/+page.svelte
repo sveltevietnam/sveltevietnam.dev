@@ -14,7 +14,7 @@
 	export let data: PageData;
 
 	onMount(async () => {
-		(await import('$client/services/easter/hat-blow')).default();
+		(await import('$lib/easter/hat-blow')).default();
 	});
 </script>
 

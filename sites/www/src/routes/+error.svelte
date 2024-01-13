@@ -1,6 +1,6 @@
 <script>
 	import { page } from '$app/stores';
-	import BlueScreenOfDeath from '$lib/client/services/easter/BlueScreenOfDeath.svelte';
+	import BlueScreenOfDeath from '$lib/easter/BlueScreenOfDeath.svelte';
 </script>
 
 <main class="grid h-screen w-screen place-items-center text-center">
