@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { getLangContext } from '$client/contexts/lang';
+	import { getNavigationContext } from '$client/contexts/navigation';
 	import fallbackThumbnail from '$shared/assets/images/fallback/16x9.jpg?w=1000&enhanced&imagetools';
 	import type { LocalizedPost } from '$shared/data/blog';
-	import { BLOG_PATH } from '$shared/services/navigation';
 	import { formateDateForBlog } from '$shared/utils/datetime';
 
 	export let alwaysVertical = false;
@@ -11,10 +11,11 @@
 	let cls = '';
 	export { cls as class };
 
+	const { routes } = getNavigationContext();
 	const langStore = getLangContext();
 	$: lang = $langStore;
 
-	$: href = `${BLOG_PATH}/${post.slug}`;
+	$: href = `${$routes.blog.path}/${post.slug}`;
 
 	const titleClass = 'c-text-h4 font-bold c-link c-link--preserved';
 </script>

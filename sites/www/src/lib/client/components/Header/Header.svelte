@@ -1,14 +1,12 @@
 <script lang="ts">
 	import { afterNavigate } from '$app/navigation';
 	import { getLockScrollContext } from '$client/contexts/lockscroll';
-	import { HOME_PATH, isCurrentPage } from '$shared/services/navigation';
+	import { getNavigationContext } from '$client/contexts/navigation';
 	import { clamp } from '$shared/utils/clamp';
 
 	import ColorSchemeMenu from './components/ColorSchemeMenu.svelte';
 	import LanguageNav from './components/LanguageNav.svelte';
 	import PageNav from './components/PageNav.svelte';
-
-	export let pathname: string;
 
 	let mobileOverlayOpen = false;
 
@@ -17,13 +15,14 @@
 	});
 
 	const lockScrollStore = getLockScrollContext();
+	const { routes, is } = getNavigationContext();
 
 	$: $lockScrollStore = mobileOverlayOpen;
 
 	const MAX_SCROLL_Y = 320;
 	let scrollY = 0;
 	$: backdropOpacity = clamp(scrollY / MAX_SCROLL_Y, 0, 1);
-	$: isHomePage = isCurrentPage(pathname, HOME_PATH);
+	$: isHomePage = $is($routes.home.path);
 </script>
 
 <svelte:window bind:scrollY />
@@ -35,7 +34,7 @@
 			<svelte:element
 				this={isHomePage ? 'div' : 'a'}
 				{...!isHomePage && {
-					href: HOME_PATH,
+					href: $routes.home.path,
 					title: 'Home',
 				}}
 				class="contents"
@@ -121,8 +120,8 @@
 			bind:checked={mobileOverlayOpen}
 		/>
 		<div class="mobile-wrapper">
-			<LanguageNav {pathname} class="languages" />
-			<PageNav {pathname} class="pages" />
+			<LanguageNav class="languages" />
+			<PageNav class="pages" />
 			<label class="mobile-close" for="header-mobile-overlay-toggler">
 				<span class="sr-only">Close mobile menu</span>
 				<svg inline-src="icon/x" width="44" height="44" />

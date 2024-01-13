@@ -1,9 +1,56 @@
-import { localizeUrl, getLangFromUrl } from '@internals/utils/url';
-import type { Cookies, Handle } from '@sveltejs/kit';
+import { localizeUrl, getLangFromUrl, delocalizeUrl } from '@internals/utils/url';
+import { redirect, type Cookies, type Handle } from '@sveltejs/kit';
 
+import { building } from '$app/environment';
+import { ROUTE_MAP } from '$client/contexts/navigation';
 import { COOKIE_LANGUAGE, COOKIE_USER_ID, COOKIE_LAST_FRESH_VISIT_AT } from '$env/static/private';
 import { PUBLIC_COOKIE_COLOR_SCHEME } from '$env/static/public';
-import { LANGUAGES } from '$shared/services/i18n';
+import { INTERNAL_POSTS } from '$shared/data/blog';
+import { EVENTS } from '$shared/data/events';
+import { LANGUAGES, DEFAULT_LANG, delocalizeLangVar } from '$shared/services/i18n';
+
+// FIXME: temporary legacy mapping, remove after a while
+const REDIRECT_MAP = {
+	// common pages
+	...Object.values(ROUTE_MAP).reduce(
+		(acc, routes) => {
+			if (delocalizeUrl(routes.en.path, LANGUAGES) !== delocalizeUrl(routes.vi.path, LANGUAGES)) {
+				acc[localizeUrl(routes[DEFAULT_LANG].path, 'vi', LANGUAGES)] = routes.vi.path;
+			}
+			return acc;
+		},
+		{} as Record<string, string>,
+	),
+
+	// blog post pages
+	...INTERNAL_POSTS.reduce(
+		(acc, post) => {
+			const delocalizedSlug = delocalizeLangVar(post.slug);
+			if (delocalizedSlug.en !== delocalizedSlug.vi) {
+				const defaultPath = ROUTE_MAP.blog[DEFAULT_LANG].path + '/' + delocalizedSlug[DEFAULT_LANG];
+				const viPath = ROUTE_MAP.blog.vi.path + '/' + delocalizedSlug.vi;
+				acc[localizeUrl(defaultPath, 'vi', LANGUAGES)] = viPath;
+			}
+			return acc;
+		},
+		{} as Record<string, string>,
+	),
+
+	// event detail pages
+	...EVENTS.reduce(
+		(acc, event) => {
+			const delocalizedSlug = delocalizeLangVar(event.slug);
+			if (delocalizedSlug.en !== delocalizedSlug.vi) {
+				const defaultPath =
+					ROUTE_MAP.events[DEFAULT_LANG].path + '/' + delocalizedSlug[DEFAULT_LANG];
+				const viPath = ROUTE_MAP.events.vi.path + '/' + delocalizedSlug.vi;
+				acc[localizeUrl(defaultPath, 'vi', LANGUAGES)] = viPath;
+			}
+			return acc;
+		},
+		{} as Record<string, string>,
+	),
+};
 
 const COMMON_COOKIE_CONFIG: Parameters<Cookies['set']>[2] = {
 	path: '/',
@@ -14,6 +61,12 @@ const COMMON_COOKIE_CONFIG: Parameters<Cookies['set']>[2] = {
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const { locals, cookies, url, route, platform, request } = event;
+
+	if (url.pathname in REDIRECT_MAP) {
+		const redirectUrl = new URL(url);
+		redirectUrl.pathname = REDIRECT_MAP[url.pathname];
+		redirect(301, redirectUrl);
+	}
 
 	// Ensure that the user has a unique ID
 	locals.userId = cookies.get(COOKIE_USER_ID) || crypto.randomUUID();
@@ -41,24 +94,26 @@ export const handle: Handle = async ({ event, resolve }) => {
 		if (locals.internalReferer) {
 			languageFromUrl = getLangFromUrl(locals.internalReferer, LANGUAGES);
 			if (languageFromUrl) {
-				return Response.redirect(localizeUrl(url, languageFromUrl, LANGUAGES), 302);
+				redirect(302, localizeUrl(url, languageFromUrl, LANGUAGES));
 			}
 		}
 
 		// if user has cookie lang, redirect accordingly
 		const cookieLang = cookies.get(COOKIE_LANGUAGE);
 		if (cookieLang && cookieLang !== 'vi') {
-			return Response.redirect(localizeUrl(url, cookieLang, LANGUAGES), 302);
+			redirect(302, localizeUrl(url, cookieLang, LANGUAGES));
 		}
 
 		// if user comes from a non-VN IP, redirect to EN
 		// REF: https://developers.cloudflare.com/workers/runtime-apis/request/#incomingrequestcfproperties
 		const countryCode = platform?.cf?.country;
 		if (countryCode && countryCode.toUpperCase() !== 'VN') {
-			return Response.redirect(localizeUrl(url, 'en', LANGUAGES), 302);
+			redirect(302, localizeUrl(url, 'en', LANGUAGES));
 		}
 
-		return Response.redirect(localizeUrl(url, 'vi', LANGUAGES), 302);
+		// pass through during building (kit - prerendering)
+		if (building && url.origin === 'http://sveltekit-prerender') languageFromUrl = 'vi';
+		else redirect(302, localizeUrl(url, 'vi', LANGUAGES));
 	}
 	locals.language = languageFromUrl;
 	cookies.set(COOKIE_LANGUAGE, locals.language, COMMON_COOKIE_CONFIG);

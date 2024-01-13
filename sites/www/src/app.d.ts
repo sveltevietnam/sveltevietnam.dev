@@ -3,6 +3,7 @@
 /// <reference types="vite/client" />
 /// <reference types="@sveltejs/adapter-cloudflare" />
 
+import type { LocalizedRouteMap } from '$client/contexts/navigation';
 import type { COLOR_SCHEMES, STATUSES } from '$shared/constants';
 import type { preparePageData } from '$shared/data/blog';
 import type { Language } from '$shared/services/i18n';
@@ -29,11 +30,13 @@ declare global {
 	}
 
 	namespace App {
-		// status
 		declare type Status = (typeof STATUSES)[number];
-
-		// color scheme
 		declare type ColorScheme = (typeof COLOR_SCHEMES)[number];
+		declare type Route = {
+			key: string;
+			path: string;
+			label: string;
+		};
 
 		interface Locals {
 			userId: string;
@@ -41,10 +44,15 @@ declare global {
 			language: Language;
 			version: string;
 			internalReferer?: URL;
+			routes: LocalizedRouteMap;
 		}
 		interface PageData {
 			colorScheme: ColorScheme;
 			language: Language;
+			route: {
+				current: Route;
+				alternate: Record<Language, Omit<Route, 'key'>>;
+			};
 			meta?: {
 				title?: string;
 				description?: string;

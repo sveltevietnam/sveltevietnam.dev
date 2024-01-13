@@ -1,7 +1,7 @@
 export * from './types';
 export * from './helpers';
 
-import { event as event_202312_year_end_online_meetup } from '$routes/[lang=lang]/events/(events)/202312-year-end-online-meetup/_page/data';
+import { event as event_202312_year_end_online_meetup } from '$routes/(localized)/events/(events)/202312-year-end-online-meetup/_page/data';
 // HYGEN MARKER - IMPORT [DO NOT REMOVE]
 import type { Language } from '$shared/services/i18n';
 

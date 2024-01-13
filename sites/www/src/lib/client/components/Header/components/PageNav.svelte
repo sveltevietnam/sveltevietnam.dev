@@ -1,26 +1,32 @@
 <script lang="ts">
-	import { getLangContext } from '$client/contexts/lang';
-	import { HEADER_PATHS, getPathLabel, isCurrentPage } from '$shared/services/navigation';
+	import { getNavigationContext } from '$client/contexts/navigation';
 
-	export let pathname: string;
 	let cls = '';
 	export { cls as class };
 
-	const langStore = getLangContext();
-	$: lang = $langStore;
+	const { routes, is } = getNavigationContext();
+
+	$: headerRoutes = [
+		$routes.events,
+		$routes.blog,
+		$routes.jobs,
+		// $routes.impact,
+		// $routes.people,
+		$routes.sponsor,
+	];
 </script>
 
 <nav aria-label="pages" data-sveltekit-preload-data="hover">
 	<ul class="sp:divide-y sp:divide-outline {cls}">
-		{#each HEADER_PATHS as href}
-			{@const current = isCurrentPage(pathname, href)}
+		{#each headerRoutes as { label, path }}
+			{@const current = $is(path)}
 			<li data-current={current}>
 				<a
 					aria-current={current}
-					{href}
+					href={path}
 					class="c-link c-link--preserved relative whitespace-nowrap uppercase sp:c-text-h2@sp sp:block sp:p-4"
 				>
-					{getPathLabel(href, lang)}
+					{label}
 				</a>
 			</li>
 		{/each}

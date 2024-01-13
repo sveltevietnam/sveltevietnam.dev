@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { getLangContext } from '$client/contexts/lang';
+	import { getNavigationContext } from '$client/contexts/navigation';
 	import { textTip } from '$client/tooltips';
 	import defaultFallbackImg from '$shared/assets/images/fallback/default.jpg?w=56&format=webp&imagetools';
 	import type { LocalizedEvent } from '$shared/data/events';
 	import { getEventStatus, isEventWithinOneDay } from '$shared/data/events';
-	import { EVENTS_PATH } from '$shared/services/navigation';
 	import { formatDate, formatDateAndTime, formatTime } from '$shared/utils/datetime';
 
 	import { translations } from './translation';
@@ -13,6 +13,7 @@
 	let cls = '';
 	export { cls as class };
 
+	const { routes } = getNavigationContext();
 	const langStore = getLangContext();
 	$: lang = $langStore;
 
@@ -33,7 +34,7 @@
 	<div class="flex-1">
 		<p>
 			<a
-				href={`${EVENTS_PATH}/${event.slug}`}
+				href={`${$routes.events.path}/${event.slug}`}
 				class="c-link c-link--preserved c-text-h4 font-medium"
 				id={event.slug}
 			>

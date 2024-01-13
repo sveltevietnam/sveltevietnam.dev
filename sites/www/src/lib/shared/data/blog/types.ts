@@ -29,7 +29,7 @@ export type PostSeries = {
 };
 
 export type Post = {
-	slug: string;
+	slug: LangVar<string>;
 	date: string;
 	title: LangVar<string>;
 	description: LangVar<string>;

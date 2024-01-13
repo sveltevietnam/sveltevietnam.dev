@@ -28,17 +28,17 @@ export const post = {
 		vi: '',
 	},
 	githubUrl: {
-		en: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5Blang=lang%5D/blog/(posts)/<%= post.slug %>/_page/content.en.md.svelte',
-		vi: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5Blang=lang%5D/blog/(posts)/<%= post.slug %>/_page/content.vi.md.svelte',
+		en: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/(localized)/blog/(posts)/<%= post.slug %>/_page/content.en.md.svelte',
+		vi: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/(localized)/blog/(posts)/<%= post.slug %>/_page/content.vi.md.svelte',
 	},
 <% } else { -%>
 	title: '<%= post.title %>',
 	description: '',
 <% if (languageMap.en) { -%>
-	githubUrl: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5Blang=lang%5D/blog/(posts)/<%= post.slug %>/_page/content.en.md.svelte',
+	githubUrl: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/(localized)/blog/(posts)/<%= post.slug %>/_page/content.en.md.svelte',
 	<% } -%>
 <% if (languageMap.vi) { -%>
-	githubUrl: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/%5Blang=lang%5D/blog/(posts)/<%= post.slug %>/_page/content.vi.md.svelte',
+	githubUrl: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/(localized)/blog/(posts)/<%= post.slug %>/_page/content.vi.md.svelte',
 <% } -%>
 <% } -%>
 	authors: [

@@ -1,16 +1,14 @@
 <script lang="ts">
-	import { localizeUrl } from '@internals/utils/url';
-
 	import { invalidate } from '$app/navigation';
 	import { getLangContext } from '$client/contexts/lang';
+	import { getNavigationContext } from '$client/contexts/navigation';
 	import { LOAD_DEPENDENCIES } from '$shared/constants';
-	import { LANGUAGES } from '$shared/services/i18n';
 	import type { Language } from '$shared/services/i18n';
 
-	export let pathname: string;
 	let cls = '';
 	export { cls as class };
 
+	const { current } = getNavigationContext();
 	const langStore = getLangContext();
 	$: lang = $langStore;
 
@@ -24,16 +22,16 @@
 
 <nav
 	aria-label="languages"
-	data-sveltekit-preload-data="hover"
 	data-sveltekit-noscroll
 	class="contents"
+	data-sveltekit-preload-data="hover"
 >
 	<ul class="flex h-8 w-fit items-center rounded-full border border-current px-3 {cls}">
 		<li>
 			<a
 				lang="en"
 				aria-current={lang === 'en'}
-				href={localizeUrl(pathname, 'en', LANGUAGES).toString()}
+				href={$current.alternate.en.path}
 				on:click={() => changeLanguage('en')}
 			>
 				<span class="sr-only">English</span>
@@ -60,7 +58,7 @@
 			<a
 				lang="vi"
 				aria-current={lang === 'vi'}
-				href={localizeUrl(pathname, 'vi', LANGUAGES).toString()}
+				href={$current.alternate.vi.path}
 				on:click={() => changeLanguage('vi')}
 			>
 				<span class="sr-only">Tiếng Việt</span>

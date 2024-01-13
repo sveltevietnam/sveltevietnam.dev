@@ -7,7 +7,7 @@ import type { Sponsor } from '$shared/types';
 import type { localizeEvent } from './helpers';
 
 export type Event = {
-	slug: string;
+	slug: LangVar<string>;
 	startDate: string;
 	endDate: string;
 	title: LangVar<string>;

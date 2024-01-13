@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { localizeUrl } from '@internals/utils/url';
 	import { onMount } from 'svelte';
 
 	import { page } from '$app/stores';
@@ -11,13 +10,15 @@
 
 	const DEFAULT_KEYWORDS = ['svelte', 'vietnam'];
 
+	$: route = $page.data.route;
 	$: meta = $page.data.meta;
 
 	$: title = meta?.title ?? 'Svelte Vietnam';
 	$: description =
 		meta?.description ?? 'Community and go-to information hub for people of Svelte in Vietnam';
 	$: keywords = meta?.keywords ? [...DEFAULT_KEYWORDS, ...meta.keywords] : DEFAULT_KEYWORDS;
-	$: canonical = meta?.canonical ?? `${$page.url.origin}${$page.url.pathname}`;
+	$: canonical =
+		meta?.canonical ?? `${$page.url.origin}${route?.current.path ?? $page.url.pathname}`;
 
 	$: ogTitle = meta?.og?.title ?? title;
 	$: ogDescription = meta?.og?.description ?? description;
@@ -65,18 +66,12 @@
 	<link type="text/plain" rel="author" href="{$page.url.origin}/humans.txt" />
 
 	<!-- alternative localized links -->
-	{#each LANGUAGES as lang}
-		<link
-			rel="alternate"
-			hreflang={lang}
-			href={localizeUrl($page.url, lang, LANGUAGES).toString()}
-		/>
-	{/each}
-	<link
-		rel="alternate"
-		hreflang="x-default"
-		href={localizeUrl($page.url, 'vi', LANGUAGES).toString()}
-	/>
+	{#if route}
+		{#each LANGUAGES as lang}
+			<link rel="alternate" hreflang={lang} href="{$page.url.origin}{route.alternate[lang].path}" />
+		{/each}
+		<link rel="alternate" hreflang="x-default" href="{$page.url.origin}{route.alternate.vi.path}" />
+	{/if}
 
 	<!-- structured data in ld+json -->
 	{#if meta?.structured}

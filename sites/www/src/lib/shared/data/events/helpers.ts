@@ -1,8 +1,14 @@
+import { delocalizeUrl } from '@internals/utils/url';
 import type { BreadcrumbList, WithContext } from 'schema-dts';
 
+import { ROUTE_MAP } from '$client/contexts/navigation';
 import { localizePerson } from '$shared/data/people';
-import { localizeLangVar, type Language } from '$shared/services/i18n';
-import { EVENTS_PATH, getPathLabel } from '$shared/services/navigation';
+import {
+	LANGUAGES,
+	delocalizeLangVar,
+	localizeLangVar,
+	type Language,
+} from '$shared/services/i18n';
 
 import type { Event, LocalizedEvent, StructureEvent } from './types';
 
@@ -37,9 +43,21 @@ export function isEventWithinOneDay(event: LocalizedEvent) {
 	);
 }
 
+export function findEventBySlug(lang: Language, events: Event[], slug?: string) {
+	if (!slug) return undefined;
+	return events.find((e) => localizeLangVar(lang, e.slug) === slug);
+}
+
+export function isUrlEventDetail(url: URL | string): boolean {
+	return /^\/(?:events|su-kien)\/.+$/.test(
+		delocalizeUrl(typeof url === 'string' ? url : url.pathname, LANGUAGES),
+	);
+}
+
 export function localizeEvent<E extends Event>(language: Language, event: E) {
 	return {
 		...event,
+		slug: localizeLangVar(language, event.slug),
 		title: localizeLangVar(language, event.title),
 		location: localizeLangVar(language, event.location),
 		description: localizeLangVar(language, event.description),
@@ -72,19 +90,41 @@ export function preparePageData<E extends Event>(
 	structure: StructureEvent,
 ) {
 	const lEvent = localizeEvent(language, event);
-	const canonical = `${url.origin}/${language}${EVENTS_PATH}/${lEvent.slug}`;
+	const currentEventRoute = ROUTE_MAP.events[language];
+	const canonicalPath = `${currentEventRoute.path}/${lEvent.slug}`;
+	const canonicalUrl = `${url.origin}${canonicalPath}`;
+
+	const delocalizedSlug = delocalizeLangVar(event.slug);
+	const delocalizedTitle = delocalizeLangVar(event.title);
 	return {
+		route: {
+			current: {
+				key: delocalizedSlug.en,
+				label: lEvent.title,
+				path: canonicalPath,
+			},
+			alternate: {
+				en: {
+					label: delocalizedTitle.en,
+					path: `${ROUTE_MAP.events.en.path}/${delocalizedSlug.en}`,
+				},
+				vi: {
+					label: delocalizedTitle.vi,
+					path: `${ROUTE_MAP.events.vi.path}/${delocalizedSlug.vi}`,
+				},
+			},
+		} as App.PageData['route'],
 		event: lEvent,
 		meta: {
 			title: lEvent.title,
 			description: lEvent.description,
 			keywords: lEvent.keywords,
+			canonical: canonicalUrl,
 			og: {
 				type: 'article' as const,
 				image: lEvent.ogImage,
 				imageAlt: lEvent.title,
 			},
-			canonical,
 			structured: JSON.stringify([
 				{
 					'@context': 'https://schema.org',
@@ -93,14 +133,14 @@ export function preparePageData<E extends Event>(
 						{
 							'@type': 'ListItem',
 							position: 1,
-							name: getPathLabel(EVENTS_PATH, language),
-							item: `${url.origin}/${language}${EVENTS_PATH}`,
+							name: currentEventRoute.label,
+							item: `${url.origin}${currentEventRoute.path}`,
 						},
 						{
 							'@type': 'ListItem',
 							position: 2,
 							name: lEvent.title,
-							item: canonical,
+							item: canonicalUrl,
 						},
 					],
 				} as WithContext<BreadcrumbList>,

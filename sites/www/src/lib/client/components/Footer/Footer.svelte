@@ -1,25 +1,29 @@
 <script lang="ts">
 	import { getLangContext } from '$client/contexts/lang';
+	import { getNavigationContext } from '$client/contexts/navigation';
 	import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
 	import { translations as commonT } from '$shared/services/i18n/translations/common';
-	import {
-		CODE_OF_CONDUCT_PATH,
-		FOOTER_PATHS,
-		RSS_PATH,
-		SITEMAP_PATH,
-		getPathLabel,
-		isCurrentPage,
-	} from '$shared/services/navigation';
 
 	import { translations } from './translation';
 
-	export let pathname: string;
 	export let version: string;
 
+	const { routes, is } = getNavigationContext();
 	const langStore = getLangContext();
 	$: lang = $langStore;
 
 	$: t = translations[lang];
+	$: footerRoutes = [
+		$routes.home,
+		$routes.blog,
+		$routes.events,
+		$routes.jobs,
+		// $routes.impact,
+		// $routes.people,
+		$routes.sponsor,
+		$routes.roadmap,
+		$routes.design,
+	];
 </script>
 
 <footer>
@@ -33,12 +37,10 @@
 				<p class="footer-section-title c-text-h4 font-medium">{t.navigation.title}</p>
 				<nav aria-label="all internal pages" data-sveltekit-preload-data="hover">
 					<ul>
-						{#each FOOTER_PATHS as href}
-							{@const current = isCurrentPage(pathname, href)}
+						{#each footerRoutes as { path, label }}
+							{@const current = $is(path)}
 							<li>
-								<a aria-current={current} {href} class="c-link c-link--lazy"
-									>{getPathLabel(href, lang)}</a
-								>
+								<a aria-current={current} href={path} class="c-link c-link--lazy">{label}</a>
 							</li>
 						{/each}
 					</ul>
@@ -125,14 +127,14 @@
 		</p>
 		<p class="footer-additional-links">
 			<a
-				href={CODE_OF_CONDUCT_PATH}
+				href={$routes.codeOfConduct.path}
 				class="c-link c-link--lazy"
-				aria-current={isCurrentPage(pathname, CODE_OF_CONDUCT_PATH)}>{t.navigation.codeOfConduct}</a
+				aria-current={$is($routes.codeOfConduct.path)}>{t.navigation.codeOfConduct}</a
 			>
 			<span aria-disabled class="vertical-separator">|</span>
-			<a href={RSS_PATH} class="c-link c-link--lazy" external>RSS</a>
+			<a href={$routes.rss.path} class="c-link c-link--lazy" external>RSS</a>
 			<span aria-disabled class="vertical-separator">|</span>
-			<a href={SITEMAP_PATH} class="c-link c-link--lazy" external>Sitemap</a>
+			<a href={$routes.sitemap.path} class="c-link c-link--lazy" external>Sitemap</a>
 		</p>
 	</div>
 </footer>
