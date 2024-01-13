@@ -8,8 +8,7 @@
 	export { cls as class };
 
 	const { current } = getNavigationContext();
-	const langStore = getLangContext();
-	$: lang = $langStore;
+	const { lang } = getLangContext();
 
 	function changeLanguage(lang: App.Language) {
 		if (lang !== document.documentElement.getAttribute('lang')) {
@@ -29,7 +28,7 @@
 		<li>
 			<a
 				lang="en"
-				aria-current={lang === 'en'}
+				aria-current={$lang === 'en'}
 				href={$current.alternate.en.path}
 				on:click={() => changeLanguage('en')}
 			>
@@ -56,7 +55,7 @@
 		<li>
 			<a
 				lang="vi"
-				aria-current={lang === 'vi'}
+				aria-current={$lang === 'vi'}
 				href={$current.alternate.vi.path}
 				on:click={() => changeLanguage('vi')}
 			>

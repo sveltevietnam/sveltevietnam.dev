@@ -16,10 +16,9 @@
 
 	const { routes } = getNavigationContext();
 
-	const langStore = getLangContext();
-	$: lang = $langStore;
+	const { lang } = getLangContext();
 
-	$: t = translations[lang].impact;
+	$: t = translations[$lang].impact;
 
 	let emblaProgress = 0;
 	let emblaApi: EmblaCarouselType;

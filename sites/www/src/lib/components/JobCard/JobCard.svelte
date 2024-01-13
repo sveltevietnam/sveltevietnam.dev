@@ -9,10 +9,9 @@
 	let cls = '';
 	export { cls as class };
 
-	const langStore = getLangContext();
-	$: lang = $langStore;
+	const { lang } = getLangContext();
 
-	$: t = translations[lang];
+	$: t = translations[$lang];
 	$: tags = [!!job.sponsor && t.sponsored, job.salary, job.location, job.locationPolicy].filter(
 		Boolean,
 	);

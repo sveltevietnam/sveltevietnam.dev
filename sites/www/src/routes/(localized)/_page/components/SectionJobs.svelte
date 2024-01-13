@@ -14,10 +14,9 @@
 
 	const { routes } = getNavigationContext();
 
-	const langStore = getLangContext();
-	$: lang = $langStore;
+	const { lang } = getLangContext();
 
-	$: t = translations[lang].jobs;
+	$: t = translations[$lang].jobs;
 </script>
 
 <section class="jobs max-w-pad">

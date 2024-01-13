@@ -1,19 +1,32 @@
+<script context="module" lang="ts">
+	export const translations = {
+		en: {
+			dark: 'Dark',
+			light: 'Light',
+			system: 'System',
+		},
+		vi: {
+			dark: 'Tối',
+			light: 'Sáng',
+			system: 'Hệ thống',
+		},
+	};
+</script>
+
 <script lang="ts">
 	import { clickoutside } from '@svelte-put/clickoutside';
 
 	import { getColorSchemeContext } from '$client/contexts/color-scheme';
 	import { getLangContext } from '$client/contexts/lang';
 	import { COLOR_SCHEMES } from '$lib/constants';
-	import { translations } from '$lib/i18n/translations/color-scheme';
 
 	import ColorSchemeIcon from './ColorSchemeIcon.svelte';
 
 	let cls = '';
 	export { cls as class };
 
-	const langStore = getLangContext();
-	$: lang = $langStore;
-	$: t = translations[lang];
+	const { lang } = getLangContext();
+	$: t = translations[$lang];
 
 	const colorSchemeStore = getColorSchemeContext();
 	let open = false;

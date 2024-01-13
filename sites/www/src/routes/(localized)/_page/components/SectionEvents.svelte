@@ -15,10 +15,9 @@
 
 	const { routes } = getNavigationContext();
 
-	const langStore = getLangContext();
-	$: lang = $langStore;
+	const { lang } = getLangContext();
 
-	$: t = translations[lang].events;
+	$: t = translations[$lang].events;
 </script>
 
 <section class="events max-w-pad">

@@ -1,6 +1,5 @@
 <script lang="ts" context="module">
 	import { SOCIAL_LINKS } from '$lib/constants';
-	import { translations as commonT } from '$lib/i18n/translations/common';
 	export const translations = {
 		en: {
 			message: 'is having a conversation at',
@@ -22,8 +21,7 @@
 	export let avatarURL: string;
 	export let name: string;
 
-	const langStore = getLangContext();
-	$: lang = $langStore;
+	const { lang, t } = getLangContext();
 </script>
 
 <BaseNotification {notification} intent="info" on:resolve icon={false}>
@@ -31,9 +29,9 @@
 		<img src={avatarURL} alt="discord profile" class="c-avatar" width="28" height="28" />
 		<p>
 			<strong>{name}</strong>
-			{translations[lang].message}
+			{translations[$lang].message}
 			<a href={SOCIAL_LINKS.DISCORD} class="c-link" external>
-				{commonT[lang].sveltevienam} Discord
+				{$t.common.sveltevienam} Discord
 			</a>.
 		</p>
 	</div>

@@ -12,8 +12,7 @@
 	export { cls as class };
 
 	const { routes } = getNavigationContext();
-	const langStore = getLangContext();
-	$: lang = $langStore;
+	const { lang } = getLangContext();
 
 	$: href = `${$routes.blog.path}/${post.slug}`;
 
@@ -56,7 +55,7 @@
 	<p class="__description">{post.description}</p>
 	<div class="__author-and-date flex items-center justify-between">
 		<p class="font-medium">{post.authors.map((a) => a.name).join(', ')}</p>
-		<time class="text-fg-200">{formateDateForBlog(lang, post.date)}</time>
+		<time class="text-fg-200">{formateDateForBlog($lang, post.date)}</time>
 	</div>
 </article>
 

@@ -16,10 +16,9 @@
 
 	const { routes } = getNavigationContext();
 
-	const langStore = getLangContext();
-	$: lang = $langStore;
+	const { lang } = getLangContext();
 
-	$: t = translations[lang].posts;
+	$: t = translations[$lang].posts;
 </script>
 
 <section class="max-w-pad mt-[80px] tb:mt-[120px]">

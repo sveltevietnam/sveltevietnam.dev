@@ -81,10 +81,9 @@
 		}
 	}
 
-	const langStore = getLangContext();
-	$: lang = $langStore;
+	const { lang } = getLangContext();
 
-	$: t = translations[lang];
+	$: t = translations[$lang];
 </script>
 
 <div class="not-prose">

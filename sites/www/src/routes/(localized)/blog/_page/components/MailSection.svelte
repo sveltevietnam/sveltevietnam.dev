@@ -20,10 +20,9 @@
 	export let mailForm: ComponentProps<MailRegistrationForm>['superValidated'];
 	export let mailT: ComponentProps<MailRegistrationForm>['t'];
 
-	const langStore = getLangContext();
-	$: lang = $langStore;
+	const { lang } = getLangContext();
 
-	$: t = translations[lang];
+	$: t = translations[$lang];
 </script>
 
 <div

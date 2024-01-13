@@ -6,7 +6,6 @@
 	import { getSplashContext } from '$client/contexts/splash';
 	import { gsap } from '$lib/3rd/gsap';
 	import { intersect } from '$lib/actions/intersect';
-	import { translations as commonT } from '$lib/i18n/translations/common';
 
 	import { translations } from '../../translation';
 
@@ -23,10 +22,9 @@
 	import starImg from './images/star.png?enhanced';
 	import tabletImg from './images/tablet.png?enhanced';
 
-	const langStore = getLangContext();
-	$: lang = $langStore;
+	const { lang, t } = getLangContext();
 
-	$: t = translations[lang].intro;
+	$: tComponent = translations[$lang].intro;
 
 	let sectionElement: HTMLElement;
 	let intersected = false;
@@ -69,7 +67,7 @@
 	data-intersect-threshold="0.2"
 	bind:this={sectionElement}
 >
-	<h1 title={commonT[lang].sveltevienam} class="intro-title">
+	<h1 title={$t.common.sveltevienam} class="intro-title">
 		<svg inline-src="./images/shape-title" width="824" height="301" />
 	</h1>
 	<div
@@ -93,7 +91,7 @@
 					<div>
 						<p class="c-text-h3 font-bold">Svelte</p>
 						<div class="separator" aria-disabled />
-						<p>{t.svelte}</p>
+						<p>{tComponent.svelte}</p>
 					</div>
 				</article>
 			</li>
@@ -103,7 +101,7 @@
 					<div>
 						<p class="c-text-h3 font-bold">Vietnam</p>
 						<div class="separator" aria-disabled />
-						<p>{t.vietnam}</p>
+						<p>{tComponent.vietnam}</p>
 					</div>
 				</article>
 			</li>
@@ -111,9 +109,9 @@
 				<article>
 					<img src={shapeSvelteVietnamImg} alt="eight-pointed start" width="60" height="60" />
 					<div>
-						<p class="c-text-h3 font-bold">{commonT[lang].sveltevienam}</p>
+						<p class="c-text-h3 font-bold">{$t.common.sveltevienam}</p>
 						<div class="separator" aria-disabled />
-						<p>{t.sveltevietnam}</p>
+						<p>{tComponent.sveltevietnam}</p>
 					</div>
 				</article>
 			</li>

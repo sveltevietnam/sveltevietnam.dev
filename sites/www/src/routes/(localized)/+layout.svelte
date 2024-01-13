@@ -1,3 +1,20 @@
+<script lang="ts" context="module">
+	const translations = {
+		en: {
+			newVersion:
+				'A new version of the site was released. Please reload the page at your convenience for the best experience.',
+			slowHydration:
+				'Interrupt has been detected due to unstable network. We are sorry for this inconvenience!',
+		},
+		vi: {
+			newVersion:
+				'Trang web đang được cập nhật với phiên bản mới. Tải lại trang để có trải nghiệm tốt nhất bạn nhé!',
+			slowHydration:
+				'Phát hiện gián đoạn do kết nối không ổn định. Xin lỗi bạn vì sự bất tiện này!',
+		},
+	};
+</script>
+
 <script lang="ts">
 	import { LANGUAGES } from '@internals/utils/language';
 	import { localizeUrl } from '@internals/utils/url';
@@ -16,7 +33,6 @@
 	import { PUBLIC_DISCORD_WS_URL } from '$env/static/public';
 	import { Footer } from '$lib/components/Footer';
 	import { Header } from '$lib/components/Header';
-	import { translations } from '$lib/i18n/translations/notification';
 	import { modalStore } from '$lib/modals';
 	import NotificationPortal from '$lib/notifications/NotificationPortal.svelte';
 	import { setNotificationContext } from '$lib/notifications/index.js';
@@ -30,7 +46,7 @@
 	const splashStore = setSplashContext();
 	const lockScrollStore = setLockScrollContext();
 	setColorSchemeContext(data.colorScheme);
-	const lang = setLangContext(data.language);
+	const { lang } = setLangContext(data.language);
 	const noti = setNotificationContext();
 	const { current } = setNavigationContext(lang, $page.data.route);
 

@@ -7,10 +7,9 @@
 
 	import { translations } from '../translation';
 
-	const langStore = getLangContext();
-	$: lang = $langStore;
+	const { lang } = getLangContext();
 
-	$: t = translations[lang].community;
+	$: t = translations[$lang].community;
 </script>
 
 <section class="community max-w-pad" id="community">

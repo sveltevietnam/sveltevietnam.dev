@@ -29,8 +29,7 @@
 	let cls = '';
 	export { cls as class };
 
-	const langStore = getLangContext();
-	$: lang = $langStore;
+	const { lang } = getLangContext();
 
 	const noti = getNotificationContext();
 
@@ -104,7 +103,7 @@
 			turnstile-response-field-name="turnstile"
 			turnstile-response-field
 			turnstile-size="normal"
-			turnstile-language={lang}
+			turnstile-language={$lang}
 			use:turnstile
 			on:turnstile={(e) => ($form.turnstile = e.detail)}
 		/>

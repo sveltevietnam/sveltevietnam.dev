@@ -2,17 +2,15 @@
 	import { getLangContext } from '$client/contexts/lang';
 	import { getNavigationContext } from '$client/contexts/navigation';
 	import { EMAILS, SOCIAL_LINKS } from '$lib/constants';
-	import { translations as commonT } from '$lib/i18n/translations/common';
 
 	import { translations } from './translation';
 
 	export let version: string;
 
 	const { routes, is } = getNavigationContext();
-	const langStore = getLangContext();
-	$: lang = $langStore;
+	const { lang, t } = getLangContext();
 
-	$: t = translations[lang];
+	$: tComponent = translations[$lang];
 	$: footerRoutes = [
 		$routes.home,
 		$routes.blog,
@@ -30,11 +28,11 @@
 	<div class="footer-top max-w-pad">
 		<div class="footer-sections">
 			<section class="footer-about-us">
-				<p class="footer-section-title c-text-h4 font-medium">{t.aboutUs.title}</p>
-				<p>{t.aboutUs.description}</p>
+				<p class="footer-section-title c-text-h4 font-medium">{tComponent.aboutUs.title}</p>
+				<p>{tComponent.aboutUs.description}</p>
 			</section>
 			<section class="footer-navigation">
-				<p class="footer-section-title c-text-h4 font-medium">{t.navigation.title}</p>
+				<p class="footer-section-title c-text-h4 font-medium">{tComponent.navigation.title}</p>
 				<nav aria-label="all internal pages" data-sveltekit-preload-data="hover">
 					<ul>
 						{#each footerRoutes as { path, label }}
@@ -47,12 +45,12 @@
 				</nav>
 			</section>
 			<section class="footer-contact">
-				<p class="footer-section-title c-text-h4 font-medium">{t.contact.title}</p>
+				<p class="footer-section-title c-text-h4 font-medium">{tComponent.contact.title}</p>
 				<ul>
 					<li>
 						<a href={SOCIAL_LINKS.DISCORD} class="c-link c-link--lazy" external>
 							<svg inline-src="simpleicon/discord" width="24" height="24" />
-							<span>{commonT[lang].sveltevienam}</span>
+							<span>{$t.common.sveltevienam}</span>
 						</a>
 					</li>
 					<li>
@@ -101,14 +99,14 @@
 		</li>
 	</ul>
 	<div class="footer-bottom max-w-pad c-text-cap2">
-		<p>{t.version} {version}</p>
+		<p>{tComponent.version} {version}</p>
 		<p class="footer-info">
 			<span>
-				{new Date().getFullYear()} © {commonT[lang].sveltevienam}
+				{new Date().getFullYear()} © {$t.common.sveltevienam}
 			</span>
 			<span aria-disabled class="vertical-separator">|</span>
 			<span>
-				{t.poweredBy}
+				{tComponent.poweredBy}
 				<a href="https://kit.svelte.dev/" external>
 					<svg class="inline-block" height="14" width="14" inline-src="svelte" />
 				</a>
@@ -129,7 +127,7 @@
 			<a
 				href={$routes.codeOfConduct.path}
 				class="c-link c-link--lazy"
-				aria-current={$is($routes.codeOfConduct.path)}>{t.navigation.codeOfConduct}</a
+				aria-current={$is($routes.codeOfConduct.path)}>{tComponent.navigation.codeOfConduct}</a
 			>
 			<span aria-disabled class="vertical-separator">|</span>
 			<a href={$routes.rss.path} class="c-link c-link--lazy" external>RSS</a>

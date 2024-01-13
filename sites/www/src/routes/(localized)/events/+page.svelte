@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { getLangContext } from '$client/contexts/lang';
 	import { getNavigationContext } from '$client/contexts/navigation';
 	import { intersect } from '$lib/actions/intersect';
 	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
@@ -8,15 +9,15 @@
 	import { SplitText } from '$lib/components/SplitText';
 	import { ToBeAnnounced } from '$lib/components/ToBeAnnounced';
 	import { EMAILS, SOCIAL_LINKS } from '$lib/constants';
-	import { translations as commonT } from '$lib/i18n/translations/common';
 
 	import type { PageData } from './$types';
 
 	export let data: PageData;
 
+	const { t } = getLangContext();
 	const { routes } = getNavigationContext();
 
-	$: t = data.translations.page;
+	$: tComponent = data.translations.page;
 	$: tMail = data.translations.mail;
 </script>
 
@@ -26,8 +27,8 @@
 	</div>
 	<section class="mb-[60px] tb:mb-16 tb:flex tb:flex-row tb:justify-between" use:intersect>
 		<div class="mt-8 tb:mt-[100px] tb:max-w-[500px]">
-			<h1 class="c-text-h1 uppercase">{t.title}</h1>
-			<p class="c-text-h4 mt-6 tb:mt-8">{t.subtitle}</p>
+			<h1 class="c-text-h1 uppercase">{tComponent.title}</h1>
+			<p class="c-text-h4 mt-6 tb:mt-8">{tComponent.subtitle}</p>
 		</div>
 		<div class="sp:mt-8">
 			<svg inline-src="./_page/images/key-visuals" class="h-auto w-full max-w-[548px]" />
@@ -38,7 +39,7 @@
 			<section>
 				<ConsecutiveFadeUpIntro selector=".char">
 					<h2 class="c-text-h2 uppercase">
-						<SplitText text={t.ongoingEvents.title} />
+						<SplitText text={tComponent.ongoingEvents.title} />
 					</h2>
 				</ConsecutiveFadeUpIntro>
 				<div class="mt-10 tb:mt-[60px]">
@@ -55,7 +56,7 @@
 		<section>
 			<ConsecutiveFadeUpIntro selector=".char">
 				<h2 class="c-text-h2 uppercase">
-					<SplitText text={t.upcomingEvents.title} />
+					<SplitText text={tComponent.upcomingEvents.title} />
 				</h2>
 			</ConsecutiveFadeUpIntro>
 			<div class="mt-10 tb:mt-[60px]">
@@ -71,10 +72,10 @@
 					<div use:intersect class="text-center">
 						<ToBeAnnounced>
 							<p class="c-text-h4 font-medium">
-								{t.upcomingEvents.tba.description}
+								{tComponent.upcomingEvents.tba.description}
 							</p>
 							<p class="mt-4">
-								<a href="#mail" class="c-link">{t.upcomingEvents.tba.cta}</a>
+								<a href="#mail" class="c-link">{tComponent.upcomingEvents.tba.cta}</a>
 							</p>
 						</ToBeAnnounced>
 					</div>
@@ -82,13 +83,13 @@
 			</div>
 		</section>
 		<section>
-			<h2 class="sr-only">{t.actions.title}</h2>
+			<h2 class="sr-only">{tComponent.actions.title}</h2>
 			<div
 				class="grid gap-8 sp:grid-rows-3 tb:grid-cols-2 tb:gap-6 tb-to-pc:grid-rows-2 pc:grid-cols-3"
 			>
 				<section class="c-card-action" use:intersect>
 					<div class="flex items-center justify-between">
-						<h3 class="c-text-h3 font-medium">{t.actions.share.title}</h3>
+						<h3 class="c-text-h3 font-medium">{tComponent.actions.share.title}</h3>
 						<svg
 							width="56"
 							height="41"
@@ -107,8 +108,8 @@
 						</svg>
 					</div>
 					<div class="mt-6 flex-1 space-y-1">
-						<p>{t.actions.share.description}</p>
-						<p>{t.actions.share.call}</p>
+						<p>{tComponent.actions.share.description}</p>
+						<p>{tComponent.actions.share.call}</p>
 					</div>
 					<p>
 						Email
@@ -119,7 +120,7 @@
 				</section>
 				<section class="c-card-action" use:intersect id="mail">
 					<div class="flex items-center justify-between">
-						<h3 class="c-text-h3 font-medium">{t.actions.participate.title}</h3>
+						<h3 class="c-text-h3 font-medium">{tComponent.actions.participate.title}</h3>
 						<svg
 							width="53"
 							height="41"
@@ -131,12 +132,12 @@
 							<circle cx="6.6665" cy="34.5" r="6" fill="currentcolor" />
 						</svg>
 					</div>
-					<p class="mt-6 flex-1">{t.actions.participate.description}</p>
+					<p class="mt-6 flex-1">{tComponent.actions.participate.description}</p>
 					<MailRegistrationForm t={tMail} superValidated={data.mailForm} class="mt-6" />
 				</section>
 				<section class="c-card-action" use:intersect>
 					<div class="flex items-center justify-between">
-						<h3 class="c-text-h3 font-medium">{t.actions.sponsor.title}</h3>
+						<h3 class="c-text-h3 font-medium">{tComponent.actions.sponsor.title}</h3>
 						<svg
 							width="47"
 							height="41"
@@ -157,21 +158,21 @@
 							<rect x="32.2758" y="13.8333" width="14.7242" height="13.3333" fill="currentcolor" />
 						</svg>
 					</div>
-					<p class="mt-6 flex-1">{t.actions.sponsor.description}</p>
+					<p class="mt-6 flex-1">{tComponent.actions.sponsor.description}</p>
 					<p class="text-xs">
 						<a class="c-link" href="{$routes.sponsor.path}#why">
-							{t.actions.sponsor.whyNeedSponsor}
+							{tComponent.actions.sponsor.whyNeedSponsor}
 						</a>
 					</p>
-					<a href={$routes.sponsor.path} class="c-btn mt-4">{t.actions.sponsor.cta}</a>
+					<a href={$routes.sponsor.path} class="c-btn mt-4">{tComponent.actions.sponsor.cta}</a>
 				</section>
 				<p
 					class="self-center justify-self-center text-center sp:w-8/12 pc:col-span-3"
 					use:intersect
 				>
-					{t.actions.discord}
+					{tComponent.actions.discord}
 					<a href={SOCIAL_LINKS.DISCORD} class="c-link" external>
-						{commonT[data.language].sveltevienam} Discord
+						{$t.common.sveltevienam} Discord
 					</a>
 				</p>
 			</div>
@@ -179,7 +180,7 @@
 		<section>
 			<ConsecutiveFadeUpIntro selector=".char">
 				<h2 class="c-text-h2 uppercase">
-					<SplitText text={t.pastEvents.title} />
+					<SplitText text={tComponent.pastEvents.title} />
 				</h2>
 			</ConsecutiveFadeUpIntro>
 			<div class="mt-10 tb:mt-[60px]">
@@ -195,7 +196,7 @@
 					<div use:intersect class="text-center">
 						<ToBeAnnounced>
 							<p>
-								{t.pastEvents.tba}
+								{tComponent.pastEvents.tba}
 							</p>
 						</ToBeAnnounced>
 					</div>

@@ -10,10 +10,9 @@
 	import { WireframeVersionNoticeCache } from './WireframeVersionNotice.cache';
 	import { translations } from './translation';
 
-	const langStore = getLangContext();
-	$: lang = $langStore;
+	const { lang } = getLangContext();
 
-	$: t = translations[lang];
+	$: t = translations[$lang];
 
 	const cache = new WireframeVersionNoticeCache();
 	const shouldShow = cache.shouldShow;

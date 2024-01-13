@@ -14,10 +14,9 @@
 
 	const { routes } = getNavigationContext();
 
-	const langStore = getLangContext();
-	$: lang = $langStore;
+	const { lang } = getLangContext();
 
-	$: t = translations[lang].sponsor;
+	$: t = translations[$lang].sponsor;
 </script>
 
 <section class="sponsors max-w-pad">

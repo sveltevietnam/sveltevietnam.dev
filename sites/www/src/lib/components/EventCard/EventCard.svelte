@@ -14,10 +14,9 @@
 	export { cls as class };
 
 	const { routes } = getNavigationContext();
-	const langStore = getLangContext();
-	$: lang = $langStore;
+	const { lang } = getLangContext();
 
-	$: t = translations[lang];
+	$: t = translations[$lang];
 	$: status = getEventStatus(event);
 	$: isWithinOneDay = isEventWithinOneDay(event);
 	$: speakers = Object.values(event.speakers);
