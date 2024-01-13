@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.37
+
+### Minor Changes
+
+- [`eb8c20e`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/eb8c20e021ee671742f0fb37e00b85bd004ebe18) Thanks [@vnphanquang](https://github.com/vnphanquang)! - Localize all urls (#215)
+
 ## 1.0.0-next.36
 
 ### Minor Changes
