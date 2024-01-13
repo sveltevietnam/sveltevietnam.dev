@@ -1,7 +1,7 @@
 <script lang="ts">
-	import BaseNotification from '$client/notifications/BaseNotification.svelte';
 	import { intersect } from '$lib/actions/intersect';
 	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
+	import BaseNotification from '$lib/notifications/BaseNotification.svelte';
 	import { STATUSES } from '$shared/constants';
 
 	import type { PageData } from './$types';

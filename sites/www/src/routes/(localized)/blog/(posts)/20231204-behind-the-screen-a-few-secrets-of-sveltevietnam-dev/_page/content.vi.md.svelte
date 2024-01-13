@@ -1,6 +1,6 @@
 <script>
-  import BaseNotification from '$client/notifications/BaseNotification.svelte';
-  import DiscordNotification from '$client/notifications/DiscordNotification.svelte';
+  import BaseNotification from '$lib/notifications/BaseNotification.svelte';
+  import DiscordNotification from '$lib/notifications/DiscordNotification.svelte';
   import notificationHoverImage from './images/notification-hover-vi.gif';
   import fallbackAvatar from '$shared/assets/images/fallback/default.jpg?w=60&imagetools';
   import devToolsSlow3gImage from './images/devtools-slow-3g.jpg?format=webp&imagetools';
