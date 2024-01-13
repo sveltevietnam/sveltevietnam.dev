@@ -5,11 +5,10 @@ import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { EXTERNAL_POSTS, INTERNAL_POSTS, localizeExternalPost, localizePost } from '$lib/data/blog';
 import { listEvents } from '$lib/data/events';
 import { SVELTE_VIETNAM_ORG } from '$lib/data/structured';
-import type { Language } from '$lib/i18n';
 
 import type { PageServerLoad } from './$types';
 
-const metaTranslations: Record<Language, App.PageData['meta']> = {
+const metaTranslations: Record<App.Language, App.PageData['meta']> = {
 	vi: {
 		title: 'Trang chủ | Svelte Việt Nam',
 		description: 'Cộng đồng và trung tâm thông tin cho Svelte tại Việt Nam',

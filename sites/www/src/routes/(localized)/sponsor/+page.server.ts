@@ -2,13 +2,12 @@ import { prepareRoutePageData } from '$client/contexts/navigation';
 import ogImageEn from '$lib/assets/images/og/og-sponsor.en.jpg';
 import ogImageVi from '$lib/assets/images/og/og-sponsor.vi.jpg';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
-import type { Language } from '$lib/i18n';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { PageServerLoad } from './$types';
 import { translations } from './_page/translation';
 
-const metaTranslations: Record<Language, App.PageData['meta']> = {
+const metaTranslations: Record<App.Language, App.PageData['meta']> = {
 	vi: {
 		title: 'Tài trợ | Svelte Việt Nam',
 		description: 'Chung tay phát triển cộng đồng Svelte Việt Nam',

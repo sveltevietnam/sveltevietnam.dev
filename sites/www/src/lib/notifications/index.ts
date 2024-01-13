@@ -1,8 +1,6 @@
 import { store } from '@svelte-put/noti';
 import { getContext, setContext } from 'svelte';
 
-import type { Language } from '$lib/i18n';
-
 import DiscordNotification from './DiscordNotification.svelte';
 import TextOnlyNotification from './TextOnlyNotification.svelte';
 
@@ -47,7 +45,7 @@ function createNotificationStore() {
 						intent: 'error',
 					},
 				}),
-			discord: (props: { avatarURL: string; name: string; language: Language }) =>
+			discord: (props: { avatarURL: string; name: string; language: App.Language }) =>
 				notiStore.push('discord', { props }),
 		},
 	};

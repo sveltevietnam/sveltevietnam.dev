@@ -1,7 +1,6 @@
 export * from './types';
 export * from './helpers';
 
-import type { Language } from '$lib/i18n';
 import { event as event_202312_year_end_online_meetup } from '$routes/(localized)/events/(events)/202312-year-end-online-meetup/_page/data';
 // HYGEN MARKER - IMPORT [DO NOT REMOVE]
 
@@ -13,7 +12,7 @@ export const EVENTS = [
 	event_202312_year_end_online_meetup,
 ];
 
-export function listEvents(language: Language) {
+export function listEvents(language: App.Language) {
 	const ongoing: LocalizedEvent[] = [];
 	const upcoming: LocalizedEvent[] = [];
 	const past: LocalizedEvent[] = [];

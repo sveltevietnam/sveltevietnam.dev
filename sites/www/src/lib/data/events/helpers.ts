@@ -1,9 +1,10 @@
+import { LANGUAGES } from '@internals/isc/common';
 import { delocalizeUrl } from '@internals/utils/url';
 import type { BreadcrumbList, WithContext } from 'schema-dts';
 
 import { ROUTE_MAP } from '$client/contexts/navigation';
 import { localizePerson } from '$lib/data/people';
-import { LANGUAGES, delocalizeLangVar, localizeLangVar, type Language } from '$lib/i18n';
+import { delocalizeLangVar, localizeLangVar } from '$lib/i18n';
 
 import type { Event, LocalizedEvent, StructureEvent } from './types';
 
@@ -38,7 +39,7 @@ export function isEventWithinOneDay(event: LocalizedEvent) {
 	);
 }
 
-export function findEventBySlug(lang: Language, events: Event[], slug?: string) {
+export function findEventBySlug(lang: App.Language, events: Event[], slug?: string) {
 	if (!slug) return undefined;
 	return events.find((e) => localizeLangVar(lang, e.slug) === slug);
 }
@@ -49,7 +50,7 @@ export function isUrlEventDetail(url: URL | string): boolean {
 	);
 }
 
-export function localizeEvent<E extends Event>(language: Language, event: E) {
+export function localizeEvent<E extends Event>(language: App.Language, event: E) {
 	return {
 		...event,
 		slug: localizeLangVar(language, event.slug),
@@ -80,7 +81,7 @@ export function localizeEvent<E extends Event>(language: Language, event: E) {
 
 export function preparePageData<E extends Event>(
 	url: URL,
-	language: Language,
+	language: App.Language,
 	event: E,
 	structure: StructureEvent,
 ) {

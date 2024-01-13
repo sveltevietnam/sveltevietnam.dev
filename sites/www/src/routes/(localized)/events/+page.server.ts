@@ -8,13 +8,12 @@ import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { listEvents } from '$lib/data/events';
 import { mail } from '$lib/forms/actions/mail/mail.server';
 import { translations as mailT } from '$lib/forms/actions/mail/translation';
-import type { Language } from '$lib/i18n';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { PageServerLoad, Actions } from './$types';
 import { translations as pageT } from './_page/translation';
 
-const metaTranslations: Record<Language, App.PageData['meta']> = {
+const metaTranslations: Record<App.Language, App.PageData['meta']> = {
 	vi: {
 		title: 'Sự kiện | Svelte Việt Nam',
 		description: 'Gặp gỡ cộng đồng Svelte tại Việt Nam',

@@ -1,10 +1,10 @@
 /** https://www.sitemaps.org/protocol.html */
 
+import { LANGUAGES } from '@internals/isc/common';
 import Mustache from 'mustache';
 
 import { INTERNAL_POSTS } from '$lib/data/blog';
 import { EVENTS } from '$lib/data/events';
-import { LANGUAGES } from '$lib/i18n';
 import { toW3CDate } from '$lib/utils/datetime';
 import {
 	BLOG_PATH,

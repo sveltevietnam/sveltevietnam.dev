@@ -1,7 +1,7 @@
+import { LANGUAGES } from '@internals/isc/common';
 import { delocalizeUrl, getLangFromUrl } from '@internals/utils/url';
 
 import { ROUTE_MAP } from '$client/contexts/navigation';
-import { LANGUAGES } from '$lib/i18n';
 
 import { type Breadcrumb, ALL_PATHS, getPathLabel } from '.';
 

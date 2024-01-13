@@ -1,15 +1,16 @@
+import { LANGUAGES } from '@internals/isc/common';
 import { delocalizeUrl } from '@internals/utils';
 import type { BlogPosting, BreadcrumbList, WithContext } from 'schema-dts';
 
 import { ROUTE_MAP } from '$client/contexts/navigation';
 import { localizePerson } from '$lib/data/people';
 import { SVELTE_VIETNAM_ORG, SVELTE_VIETNAM_BLOG, structurePerson } from '$lib/data/structured';
-import { LANGUAGES, delocalizeLangVar, localizeLangVar, type Language } from '$lib/i18n';
+import { delocalizeLangVar, localizeLangVar } from '$lib/i18n';
 
 import type { PostContent, ExternalPost, Post, PostSeries } from './types';
 
 /** resolve any LangVar to a string */
-export function localizePost(language: Language, post: Post) {
+export function localizePost(language: App.Language, post: Post) {
 	return {
 		...post,
 		slug: localizeLangVar(language, post.slug),
@@ -25,14 +26,14 @@ export function localizePost(language: Language, post: Post) {
 	};
 }
 
-export function localizePostSeries(language: Language, series: PostSeries) {
+export function localizePostSeries(language: App.Language, series: PostSeries) {
 	return {
 		...series,
 		title: localizeLangVar(language, series.title),
 	};
 }
 
-export function localizeExternalPost(language: Language, post: ExternalPost) {
+export function localizeExternalPost(language: App.Language, post: ExternalPost) {
 	return {
 		title: localizeLangVar(language, post.title),
 		href: localizeLangVar(language, post.href),
@@ -41,7 +42,7 @@ export function localizeExternalPost(language: Language, post: ExternalPost) {
 	};
 }
 
-export function localizeBlogContent(language: Language, content: PostContent) {
+export function localizeBlogContent(language: App.Language, content: PostContent) {
 	if ('en' in content && 'vi' in content) {
 		return content[language];
 	} else if ('en' in content) {
@@ -51,7 +52,12 @@ export function localizeBlogContent(language: Language, content: PostContent) {
 	}
 }
 
-export function preparePageData(url: URL, language: Language, post: Post, content: PostContent) {
+export function preparePageData(
+	url: URL,
+	language: App.Language,
+	post: Post,
+	content: PostContent,
+) {
 	const lPost = localizePost(language, post);
 	const currentBlogRoute = ROUTE_MAP.blog[language];
 	const canonicalPath = `${currentBlogRoute.path}/${lPost.slug}`;
@@ -77,7 +83,7 @@ export function preparePageData(url: URL, language: Language, post: Post, conten
 				},
 			},
 		} as App.PageData['route'],
-		supportedLanguages: Object.keys(content) as Language[],
+		supportedLanguages: Object.keys(content) as App.Language[],
 		post: lPost,
 		meta: {
 			title: lPost.title,
@@ -139,11 +145,11 @@ export function findPostBySlug(posts: Post[], slug?: string) {
 	return posts.find((p) => LANGUAGES.some((lang) => localizeLangVar(lang, p.slug) === slug));
 }
 
-export function isSamePost(lang: Language, post1: Post, post2: Post) {
+export function isSamePost(lang: App.Language, post1: Post, post2: Post) {
 	return localizeLangVar(lang, post1.slug) === localizeLangVar(lang, post2.slug);
 }
 
-export function isSameSeries(lang: Language, series1: PostSeries, series2: PostSeries) {
+export function isSameSeries(lang: App.Language, series1: PostSeries, series2: PostSeries) {
 	return localizeLangVar(lang, series1.slug) === localizeLangVar(lang, series2.slug);
 }
 
@@ -162,7 +168,7 @@ export function isUrlBlogPost(url: URL | string): boolean {
  *
  * If multiple series, return an array of at most 3 posts for each series
  */
-export function searchPostsInSameSeries(lang: Language, posts: Post[], post: Post) {
+export function searchPostsInSameSeries(lang: App.Language, posts: Post[], post: Post) {
 	const postsInSameSeries: Post[][] = [];
 
 	if (!post.series?.length) return postsInSameSeries;

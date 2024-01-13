@@ -1,7 +1,6 @@
+import { LANGUAGES } from '@internals/isc/common';
 import { delocalizeUrl } from '@internals/utils/url';
 
-import type { Language } from '$lib/i18n';
-import { LANGUAGES } from '$lib/i18n';
 import { translations } from '$lib/i18n/translations/navigation';
 
 export const SITEMAP_PATH = '/sitemap.xml';
@@ -21,7 +20,7 @@ export const DESIGN_TYPOGRAPHY_PATH = '/design/typography';
 export const DESIGN_COLORS_PATH = '/design/colors';
 export const DESIGN_BLOG_PATH = '/design/blog';
 
-export function getPathLabel(path: string, lang: Language) {
+export function getPathLabel(path: string, lang: App.Language) {
 	const t = translations[lang];
 	switch (path) {
 		case HOME_PATH:

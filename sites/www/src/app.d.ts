@@ -6,7 +6,6 @@
 import type { LocalizedRouteMap } from '$client/contexts/navigation';
 import type { COLOR_SCHEMES, STATUSES } from '$lib/constants';
 import type { preparePageData } from '$lib/data/blog';
-import type { Language } from '$lib/i18n';
 
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
@@ -37,6 +36,7 @@ declare global {
 			path: string;
 			label: string;
 		};
+		declare type Language = import('@internals/isc/common').Language;
 
 		interface Locals {
 			userId: string;

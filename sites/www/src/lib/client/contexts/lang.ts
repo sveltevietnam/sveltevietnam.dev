@@ -1,11 +1,9 @@
 import { getContext, setContext } from 'svelte';
 import { writable } from 'svelte/store';
 
-import type { Language } from '$lib/i18n';
-
 const LANG_CONTEXT_ID = 'lang';
 
-export function setLangContext(initial: Language) {
+export function setLangContext(initial: App.Language) {
 	const lang = writable(initial);
 	return setContext(LANG_CONTEXT_ID, lang);
 }

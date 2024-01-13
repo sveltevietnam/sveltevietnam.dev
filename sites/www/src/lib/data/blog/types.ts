@@ -1,7 +1,7 @@
 import type { ComponentType, SvelteComponent } from 'svelte';
 
 import type { Person } from '$lib/data/people';
-import type { LangVar, Language } from '$lib/i18n';
+import type { LangVar } from '$lib/i18n';
 
 import type { localizeExternalPost, localizePost } from './helpers';
 
@@ -34,7 +34,7 @@ export type Post = {
 	title: LangVar<string>;
 	description: LangVar<string>;
 	githubUrl: LangVar<string>;
-	originalLang?: Language;
+	originalLang?: App.Language;
 	tags?: PostTag[];
 	authors: Person[];
 	thumbnail?: LangVar<string>;

@@ -1,4 +1,3 @@
-import type { Language } from '@internals/isc/common';
 import type { EMAIL_TEMPLATES as ET } from '@internals/isc/mailer';
 
 import welcomeEn from './welcome-en.template?raw';
@@ -15,7 +14,7 @@ export type MailTemplate = {
 
 export const NO_REPLY_EMAIL = 'no-reply@sveltevietnam.dev';
 
-export const EMAIL_TEMPLATES: Record<(typeof ET)[number], Record<Language, MailTemplate>> = {
+export const EMAIL_TEMPLATES: Record<(typeof ET)[number], Record<App.Language, MailTemplate>> = {
 	// if template key changes, remember to update the `mails` table (template_id column) in database
 	WELCOME: {
 		vi: {

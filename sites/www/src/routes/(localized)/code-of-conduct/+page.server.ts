@@ -2,13 +2,12 @@ import { prepareRoutePageData } from '$client/contexts/navigation';
 import ogImageEn from '$lib/assets/images/og/og-coc.en.jpg';
 import ogImageVi from '$lib/assets/images/og/og-coc.vi.jpg';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
-import type { Language } from '$lib/i18n';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { PageServerLoad } from './$types';
 import { translations } from './_page/translation';
 
-const metaTranslations: Record<Language, App.PageData['meta']> = {
+const metaTranslations: Record<App.Language, App.PageData['meta']> = {
 	vi: {
 		title: 'Quy tắc ứng xử | Svelte Việt Nam',
 		description: 'Quy tắc ứng xử dành cho thành viên trong cộng đồng Svelte Việt Nam',

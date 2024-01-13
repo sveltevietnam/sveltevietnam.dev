@@ -1,12 +1,11 @@
 import type { D1Database } from '@cloudflare/workers-types';
-import type { Language } from '@internals/isc/common';
 
 const TABLE_NAME = 'mails';
 
 export type Mail = {
 	id: string;
 	email: string;
-	language: Language;
+	language: App.Language;
 	template_id: string;
 	html: string;
 	created_at: string;

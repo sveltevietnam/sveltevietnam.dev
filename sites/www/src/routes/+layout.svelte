@@ -1,10 +1,10 @@
 <script lang="ts">
+	import { LANGUAGES } from '@internals/isc/common';
 	import { onMount } from 'svelte';
 
 	import { page } from '$app/stores';
 	import { PUBLIC_MODE } from '$env/static/public';
 	import ogImageHome from '$lib/assets/images/og/og-home.jpg';
-	import { LANGUAGES } from '$lib/i18n';
 
 	import '../lib/css/app.css';
 

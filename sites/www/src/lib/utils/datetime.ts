@@ -1,5 +1,3 @@
-import type { Language } from '$lib/i18n';
-
 /**
  * https://www.w3.org/TR/NOTE-datetime
  * @param date
@@ -47,7 +45,7 @@ export function formatDateAndTime(date: Date | number | string): string {
 	return `${formatDate(date)} ${formatTime(date)}`;
 }
 
-export function formateDateForBlog(lang: Language, date: Date | number | string): string {
+export function formateDateForBlog(lang: App.Language, date: Date | number | string): string {
 	if (!isValidDate(date)) return date.toString();
 	const str = new Date(date).toLocaleDateString(lang, {
 		month: 'long',

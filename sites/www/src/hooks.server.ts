@@ -1,3 +1,4 @@
+import { LANGUAGES, DEFAULT_LANGUAGE } from '@internals/isc/common';
 import { localizeUrl, getLangFromUrl, delocalizeUrl } from '@internals/utils/url';
 import { redirect, type Cookies, type Handle } from '@sveltejs/kit';
 
@@ -7,7 +8,7 @@ import { COOKIE_LANGUAGE, COOKIE_USER_ID, COOKIE_LAST_FRESH_VISIT_AT } from '$en
 import { PUBLIC_COOKIE_COLOR_SCHEME } from '$env/static/public';
 import { INTERNAL_POSTS } from '$lib/data/blog';
 import { EVENTS } from '$lib/data/events';
-import { LANGUAGES, DEFAULT_LANG, delocalizeLangVar } from '$lib/i18n';
+import { delocalizeLangVar } from '$lib/i18n';
 
 // FIXME: temporary legacy mapping, remove after a while
 const REDIRECT_MAP = {
@@ -15,7 +16,7 @@ const REDIRECT_MAP = {
 	...Object.values(ROUTE_MAP).reduce(
 		(acc, routes) => {
 			if (delocalizeUrl(routes.en.path, LANGUAGES) !== delocalizeUrl(routes.vi.path, LANGUAGES)) {
-				acc[localizeUrl(routes[DEFAULT_LANG].path, 'vi', LANGUAGES)] = routes.vi.path;
+				acc[localizeUrl(routes[DEFAULT_LANGUAGE].path, 'vi', LANGUAGES)] = routes.vi.path;
 			}
 			return acc;
 		},
@@ -27,7 +28,8 @@ const REDIRECT_MAP = {
 		(acc, post) => {
 			const delocalizedSlug = delocalizeLangVar(post.slug);
 			if (delocalizedSlug.en !== delocalizedSlug.vi) {
-				const defaultPath = ROUTE_MAP.blog[DEFAULT_LANG].path + '/' + delocalizedSlug[DEFAULT_LANG];
+				const defaultPath =
+					ROUTE_MAP.blog[DEFAULT_LANGUAGE].path + '/' + delocalizedSlug[DEFAULT_LANGUAGE];
 				const viPath = ROUTE_MAP.blog.vi.path + '/' + delocalizedSlug.vi;
 				acc[localizeUrl(defaultPath, 'vi', LANGUAGES)] = viPath;
 			}
@@ -42,7 +44,7 @@ const REDIRECT_MAP = {
 			const delocalizedSlug = delocalizeLangVar(event.slug);
 			if (delocalizedSlug.en !== delocalizedSlug.vi) {
 				const defaultPath =
-					ROUTE_MAP.events[DEFAULT_LANG].path + '/' + delocalizedSlug[DEFAULT_LANG];
+					ROUTE_MAP.events[DEFAULT_LANGUAGE].path + '/' + delocalizedSlug[DEFAULT_LANGUAGE];
 				const viPath = ROUTE_MAP.events.vi.path + '/' + delocalizedSlug.vi;
 				acc[localizeUrl(defaultPath, 'vi', LANGUAGES)] = viPath;
 			}

@@ -3,7 +3,6 @@
 	import { getLangContext } from '$client/contexts/lang';
 	import { getNavigationContext } from '$client/contexts/navigation';
 	import { LOAD_DEPENDENCIES } from '$lib/constants';
-	import type { Language } from '$lib/i18n';
 
 	let cls = '';
 	export { cls as class };
@@ -12,7 +11,7 @@
 	const langStore = getLangContext();
 	$: lang = $langStore;
 
-	function changeLanguage(lang: Language) {
+	function changeLanguage(lang: App.Language) {
 		if (lang !== document.documentElement.getAttribute('lang')) {
 			invalidate(LOAD_DEPENDENCIES.LANGUAGE);
 			document.documentElement.setAttribute('lang', lang);

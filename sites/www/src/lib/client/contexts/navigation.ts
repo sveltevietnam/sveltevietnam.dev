@@ -1,7 +1,7 @@
 import { getContext, setContext } from 'svelte';
 import { derived, writable, type Readable } from 'svelte/store';
 
-import { localizeLangVar, type Language, delocalizeLangVar } from '$lib/i18n';
+import { localizeLangVar, delocalizeLangVar } from '$lib/i18n';
 
 const NAVIGATION_CONTEXT_ID = 'navigation';
 
@@ -136,7 +136,7 @@ export const ROUTE_MAP = {
 			label: 'Blog',
 		},
 	},
-} as const satisfies Record<string, Record<Language, Omit<App.Route, 'key'>>>;
+} as const satisfies Record<string, Record<App.Language, Omit<App.Route, 'key'>>>;
 
 const UNIVERSAL_ROUTE_MAP = {
 	sitemap: {
@@ -150,10 +150,10 @@ const UNIVERSAL_ROUTE_MAP = {
 } as const satisfies Record<string, Omit<App.Route, 'key'>>;
 
 export function prepareRoutePageData(
-	lang: Language,
+	lang: App.Language,
 	key: keyof typeof ROUTE_MAP,
 ): App.PageData['route'] {
-	const routes = ROUTE_MAP[key] as Record<Language, Omit<App.Route, 'key'>>;
+	const routes = ROUTE_MAP[key] as Record<App.Language, Omit<App.Route, 'key'>>;
 	return {
 		current: {
 			key,
@@ -164,7 +164,7 @@ export function prepareRoutePageData(
 }
 
 export function setNavigationContext(
-	lang: Readable<Language>,
+	lang: Readable<App.Language>,
 	initialRoute: App.PageData['route'],
 ) {
 	const route = writable(initialRoute);
@@ -183,7 +183,7 @@ export function setNavigationContext(
 				(acc, [key, routes]) => {
 					acc[key as keyof typeof ROUTE_MAP] = localizeLangVar(
 						$lang,
-						routes as Record<Language, Omit<App.Route, 'key'>>,
+						routes as Record<App.Language, Omit<App.Route, 'key'>>,
 					);
 					return acc;
 				},

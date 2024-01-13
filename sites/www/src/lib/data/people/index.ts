@@ -1,4 +1,4 @@
-import { localizeLangVar, type LangVar, type Language } from '$lib/i18n';
+import { localizeLangVar, type LangVar } from '$lib/i18n';
 
 import vnphanquangAvatar from './avatars/vnphanquang.png?format=webp&imagetools';
 
@@ -26,7 +26,7 @@ export const VNPHANQUANG = {
 
 export const PEOPLE = [VNPHANQUANG] satisfies Person[];
 
-export function localizePerson(language: Language, person: Person) {
+export function localizePerson(language: App.Language, person: Person) {
 	return {
 		...person,
 		name: localizeLangVar(language, person.name),
