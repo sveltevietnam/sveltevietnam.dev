@@ -6,7 +6,7 @@
 	import { ConsecutiveFadeUpIntro } from '$lib/components/ConsecutiveFadeUpIntro';
 	import { JobCard } from '$lib/components/JobCard';
 	import { SplitText } from '$lib/components/SplitText';
-	import type { Job } from '$shared/types';
+	import type { Job } from '$lib/types';
 
 	import { translations } from '../translation';
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Contributor } from '$shared/types';
+	import type { Contributor } from '$lib/types';
 
 	import ContributorLink from './ContributorLink.svelte';
 

@@ -1,8 +1,8 @@
 import type { WithContext, Event as StructuredEvent } from 'schema-dts';
 
+import type { Sponsor } from '$lib/types';
 import type { Person } from '$shared/data/people';
 import type { LangVar, Language } from '$shared/services/i18n';
-import type { Sponsor } from '$shared/types';
 
 import type { localizeEvent } from './helpers';
 

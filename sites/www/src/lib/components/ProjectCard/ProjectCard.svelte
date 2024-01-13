@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Project } from '$shared/types';
+	import type { Project } from '$lib/types';
 
 	export let project: Project;
 </script>

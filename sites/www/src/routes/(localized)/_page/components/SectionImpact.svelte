@@ -8,7 +8,7 @@
 	import { AnimatedArrowCircle } from '$lib/components/AnimatedArrowCircle';
 	import { ConsecutiveFadeUpIntro } from '$lib/components/ConsecutiveFadeUpIntro';
 	import { SplitText } from '$lib/components/SplitText';
-	import type { Project } from '$shared/types';
+	import type { Project } from '$lib/types';
 
 	import { translations } from '../translation';
 

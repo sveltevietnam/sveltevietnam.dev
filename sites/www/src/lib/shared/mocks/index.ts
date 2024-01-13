@@ -1,8 +1,8 @@
 import jobImg from '$lib/assets/images/fallback/default.jpg?w=100&format=webp&imagetools';
+import type { Contributor, Job, Project, Sponsor } from '$lib/types';
 import { INTERNAL_POSTS } from '$shared/data/blog';
 import type { ExternalPost, Post } from '$shared/data/blog';
 import type { Event } from '$shared/data/events';
-import type { Contributor, Job, Project, Sponsor } from '$shared/types';
 
 import vietnamImg from './vietnam-image.webp';
 

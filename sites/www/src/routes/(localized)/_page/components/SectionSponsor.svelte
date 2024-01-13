@@ -6,7 +6,7 @@
 	import { ConsecutiveFadeUpIntro } from '$lib/components/ConsecutiveFadeUpIntro';
 	import { SplitText } from '$lib/components/SplitText';
 	import { ToBeAnnounced } from '$lib/components/ToBeAnnounced';
-	import type { Sponsor } from '$shared/types';
+	import type { Sponsor } from '$lib/types';
 
 	import { translations } from '../translation';
 
