@@ -5,13 +5,13 @@ import {
 	type SubscriptionDomain,
 } from '@internals/isc/mailer';
 import { error, fail } from '@sveltejs/kit';
-import type { RequestEvent } from '@sveltejs/kit';
+import type { NumericRange, RequestEvent } from '@sveltejs/kit';
 import { message, setError, superValidate } from 'sveltekit-superforms/server';
 import { string, object } from 'zod';
 
 import type { FormMessage } from '$client/forms';
 import { MAILER_CLIENT_ID, MAILER_CLIENT_SECRET, MAILER_SERVICE_URL } from '$env/static/private';
-import { validateToken } from '$server/services/turnstile';
+import { validateToken } from '$lib/turnstile/turnstile.server';
 
 import { translations } from './translation';
 
@@ -69,7 +69,7 @@ export async function mail<E extends RequestEvent>(event: E, domain: Subscriptio
 				text: t.alreadyRegister,
 			});
 		}
-		error(response.status, `${t.error.unknown} [CODE: ${data.code}]`);
+		error(response.status as NumericRange<400, 599>, `${t.error.unknown} [CODE: ${data.code}]`);
 	}
 
 	return message(form, {
