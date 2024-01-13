@@ -2,9 +2,9 @@
 	import { onMount } from 'svelte';
 
 	import { gsap } from '$3rd/gsap';
-	import { intersect } from '$client/actions/intersect';
 	import { Breadcrumbs } from '$client/components/Breadcrumbs';
 	import { getNavigationContext } from '$client/contexts/navigation';
+	import { intersect } from '$lib/actions/intersect';
 	import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
 
 	export let data;

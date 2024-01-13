@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { intersect } from '$client/actions/intersect';
 	import { Breadcrumbs } from '$client/components/Breadcrumbs';
 	import { getNavigationContext } from '$client/contexts/navigation';
+	import { intersect } from '$lib/actions/intersect';
 
 	import type { PageData } from './$types';
 	import imgNonla from './_page/images/logo-concept-nonla.webp';

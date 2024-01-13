@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { intersect } from '$client/actions/intersect';
 	import { Breadcrumbs } from '$client/components/Breadcrumbs';
 	import { Person } from '$client/components/Person';
 	import { ToBeAnnounced } from '$client/components/ToBeAnnounced';
 	import { getNavigationContext } from '$client/contexts/navigation';
+	import { intersect } from '$lib/actions/intersect';
 	import { isEventWithinOneDay } from '$shared/data/events';
 	import { formatDate, formatDateAndTime, formatTime } from '$shared/utils/datetime';
 

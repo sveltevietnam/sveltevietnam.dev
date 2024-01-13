@@ -3,9 +3,9 @@
 	import { onMount } from 'svelte';
 
 	import { gsap } from '$3rd/gsap';
-	import { intersect } from '$client/actions/intersect';
 	import { getLangContext } from '$client/contexts/lang';
 	import { getSplashContext } from '$client/contexts/splash';
+	import { intersect } from '$lib/actions/intersect';
 	import { translations as commonT } from '$shared/services/i18n/translations/common';
 
 	import { translations } from '../../translation';

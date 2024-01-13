@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { intersect } from '$client/actions/intersect';
 	import { AnimatedArrowCircle } from '$client/components/AnimatedArrowCircle';
 	import { BlogPostItem } from '$client/components/BlogPostItem';
 	import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
@@ -7,6 +6,7 @@
 	import { SplitText } from '$client/components/SplitText';
 	import { getLangContext } from '$client/contexts/lang';
 	import { getNavigationContext } from '$client/contexts/navigation';
+	import { intersect } from '$lib/actions/intersect';
 	import type { LocalizedExternalPost, LocalizedPost } from '$shared/data/blog';
 
 	import { translations } from '../translation';

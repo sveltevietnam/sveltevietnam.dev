@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { intersect } from '$client/actions/intersect';
 	import { Breadcrumbs } from '$client/components/Breadcrumbs';
 	import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
 	import { SplitText } from '$client/components/SplitText';
+	import { intersect } from '$lib/actions/intersect';
 
 	import type { PageData } from './$types';
 

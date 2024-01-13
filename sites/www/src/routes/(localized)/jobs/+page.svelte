@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { intersect } from '$client/actions/intersect';
 	import { Breadcrumbs } from '$client/components/Breadcrumbs';
 	import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
 	import { JobCard } from '$client/components/JobCard';
@@ -7,6 +6,7 @@
 	import { SplitText } from '$client/components/SplitText';
 	import { ToBeAnnounced } from '$client/components/ToBeAnnounced';
 	import { getNavigationContext } from '$client/contexts/navigation';
+	import { intersect } from '$lib/actions/intersect';
 
 	import keyVisuals from './_page/images/key-visuals.png?enhanced';
 

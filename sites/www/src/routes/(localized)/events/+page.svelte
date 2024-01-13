@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { intersect } from '$client/actions/intersect';
 	import { Breadcrumbs } from '$client/components/Breadcrumbs';
 	import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
 	import { EventCard } from '$client/components/EventCard';
@@ -7,6 +6,7 @@
 	import { SplitText } from '$client/components/SplitText';
 	import { ToBeAnnounced } from '$client/components/ToBeAnnounced';
 	import { getNavigationContext } from '$client/contexts/navigation';
+	import { intersect } from '$lib/actions/intersect';
 	import { EMAILS, SOCIAL_LINKS } from '$shared/constants';
 	import { translations as commonT } from '$shared/services/i18n/translations/common';
 

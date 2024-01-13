@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { intersect } from '$client/actions/intersect';
 	import { AnimatedArrowCircle } from '$client/components/AnimatedArrowCircle';
 	import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
 	import { EventCard } from '$client/components/EventCard';
@@ -7,6 +6,7 @@
 	import { ToBeAnnounced } from '$client/components/ToBeAnnounced';
 	import { getLangContext } from '$client/contexts/lang';
 	import { getNavigationContext } from '$client/contexts/navigation';
+	import { intersect } from '$lib/actions/intersect';
 	import type { LocalizedEvent } from '$shared/data/events';
 
 	import { translations } from '../translation';

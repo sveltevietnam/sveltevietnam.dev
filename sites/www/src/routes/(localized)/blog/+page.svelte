@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { intersect } from '$client/actions/intersect';
 	import { BlogPostItem } from '$client/components/BlogPostItem';
 	import { Breadcrumbs } from '$client/components/Breadcrumbs';
 	import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
 	import { ExternalBlogPostItem } from '$client/components/ExternalBlogPostItem';
 	import { SplitText } from '$client/components/SplitText';
 	import ToBeAnnounced from '$client/components/ToBeAnnounced/ToBeAnnounced.svelte';
+	import { intersect } from '$lib/actions/intersect';
 
 	import type { PageData } from './$types';
 	import MailSection from './_page/components/MailSection.svelte';

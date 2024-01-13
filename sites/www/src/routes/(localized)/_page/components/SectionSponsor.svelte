@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { intersect } from '$client/actions/intersect';
 	import { AnimatedArrowCircle } from '$client/components/AnimatedArrowCircle';
 	import { ConsecutiveFadeUpIntro } from '$client/components/ConsecutiveFadeUpIntro';
 	import { SplitText } from '$client/components/SplitText';
 	import { ToBeAnnounced } from '$client/components/ToBeAnnounced';
 	import { getLangContext } from '$client/contexts/lang';
 	import { getNavigationContext } from '$client/contexts/navigation';
+	import { intersect } from '$lib/actions/intersect';
 	import type { Sponsor } from '$shared/types';
 
 	import { translations } from '../translation';

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { intersect } from '$client/actions/intersect';
 	import { Breadcrumbs } from '$client/components/Breadcrumbs';
 	import BaseNotification from '$client/notifications/BaseNotification.svelte';
+	import { intersect } from '$lib/actions/intersect';
 	import { STATUSES } from '$shared/constants';
 
 	import type { PageData } from './$types';
