@@ -10,7 +10,6 @@ import {
 	localizePost,
 	searchPostsInSameSeries,
 } from '$lib/data/blog';
-import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { LayoutServerLoad } from './$types';
 import { translations } from './translation';
@@ -25,7 +24,6 @@ export const load: LayoutServerLoad = async ({ url, depends, locals: { language 
 
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	return {
-		breadcrumbs: buildBreadcrumbs(url.pathname),
 		latest: {
 			internal: !latestInternal ? [] : [latestInternal].map((p) => localizePost(language, p)),
 			external: EXTERNAL_POSTS.slice(0, 1).map((p) => localizeExternalPost(language, p)),

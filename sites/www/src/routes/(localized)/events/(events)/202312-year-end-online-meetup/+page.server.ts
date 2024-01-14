@@ -1,7 +1,6 @@
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { preparePageData } from '$lib/data/events';
-import type { Breadcrumb } from '$shared/services/navigation';
-import { buildBreadcrumbs } from '$shared/services/navigation/server';
+import { buildBreadcrumbs, type Breadcrumb } from '$lib/routing/routing.server';
 
 import type { PageServerLoad } from './$types';
 import { event, structure } from './_page/data';

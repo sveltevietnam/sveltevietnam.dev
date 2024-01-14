@@ -31,11 +31,11 @@
 	import { setColorSchemeContext } from '$lib/contexts/color-scheme.js';
 	import { setLangContext } from '$lib/contexts/lang';
 	import { setLockScrollContext } from '$lib/contexts/lockscroll.js';
-	import { setNavigationContext } from '$lib/contexts/navigation';
 	import { setSplashContext } from '$lib/contexts/splash.js';
 	import { modalStore } from '$lib/modals';
 	import NotificationPortal from '$lib/notifications/NotificationPortal.svelte';
 	import { setNotificationContext } from '$lib/notifications/index.js';
+	import { setRoutingContext } from '$lib/routing/routing.context';
 
 	import type { LayoutData } from './$types';
 	import PageLoadIndicator from './_page/components/PageLoadIndicator.svelte';
@@ -48,7 +48,7 @@
 	setColorSchemeContext(data.colorScheme);
 	const { lang } = setLangContext(data.language);
 	const noti = setNotificationContext();
-	const { current } = setNavigationContext(lang, $page.data.route);
+	const { current } = setRoutingContext(lang, $page.data.route);
 
 	$: $current = $page.data.route;
 	$: $lang = data.language;

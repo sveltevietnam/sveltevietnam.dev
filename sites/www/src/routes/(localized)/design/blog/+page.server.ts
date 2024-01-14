@@ -1,6 +1,5 @@
 import { LOAD_DEPENDENCIES } from '$lib/constants';
-import { prepareRoutePageData } from '$lib/contexts/navigation';
-import { buildBreadcrumbs } from '$shared/services/navigation/server';
+import { prepareRoutePageData } from '$lib/routing/routing.server';
 
 import type { PageServerLoad } from './$types';
 import { translations as pageT } from './_page/translation';
@@ -22,7 +21,6 @@ export const load: PageServerLoad = ({ url, depends, locals: { language } }) => 
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	return {
 		route: prepareRoutePageData(language, 'design_blog'),
-		breadcrumbs: buildBreadcrumbs(url.pathname),
 		translations: {
 			page: pageT[language],
 		},

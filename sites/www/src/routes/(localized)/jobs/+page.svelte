@@ -6,13 +6,13 @@
 	import { MailRegistrationForm } from '$lib/components/MailRegistrationForm';
 	import { SplitText } from '$lib/components/SplitText';
 	import { ToBeAnnounced } from '$lib/components/ToBeAnnounced';
-	import { getNavigationContext } from '$lib/contexts/navigation';
+	import { getRoutingContext } from '$lib/routing/routing.context';
 
 	import keyVisuals from './_page/images/key-visuals.png?enhanced';
 
 	export let data;
 
-	const { routes } = getNavigationContext();
+	const { routes } = getRoutingContext();
 
 	$: t = data.translations.page;
 	$: tMail = data.translations.mail;

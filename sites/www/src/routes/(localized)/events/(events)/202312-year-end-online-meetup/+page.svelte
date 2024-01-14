@@ -3,8 +3,8 @@
 	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
 	import { Person } from '$lib/components/Person';
 	import { ToBeAnnounced } from '$lib/components/ToBeAnnounced';
-	import { getNavigationContext } from '$lib/contexts/navigation';
 	import { isEventWithinOneDay } from '$lib/data/events';
+	import { getRoutingContext } from '$lib/routing/routing.context';
 	import { formatDate, formatDateAndTime, formatTime } from '$lib/utils/datetime';
 
 	import kvImage from '../../_page/images/key-visuals-without-grid.png?format=webp&imagetools';
@@ -17,7 +17,7 @@
 
 	export let data: PageData;
 
-	const { routes } = getNavigationContext();
+	const { routes } = getRoutingContext();
 
 	$: t = data.translations.page;
 

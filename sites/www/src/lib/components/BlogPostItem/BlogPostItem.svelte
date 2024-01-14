@@ -1,8 +1,8 @@
 <script lang="ts">
 	import fallbackThumbnail from '$lib/assets/images/fallback/16x9.jpg?w=1000&enhanced&imagetools';
 	import { getLangContext } from '$lib/contexts/lang';
-	import { getNavigationContext } from '$lib/contexts/navigation';
 	import type { LocalizedPost } from '$lib/data/blog';
+	import { getRoutingContext } from '$lib/routing/routing.context';
 	import { formateDateForBlog } from '$lib/utils/datetime';
 
 	export let alwaysVertical = false;
@@ -11,7 +11,7 @@
 	let cls = '';
 	export { cls as class };
 
-	const { routes } = getNavigationContext();
+	const { routes } = getRoutingContext();
 	const { lang } = getLangContext();
 
 	$: href = `${$routes.blog.path}/${post.slug}`;

@@ -4,11 +4,10 @@ import ogImageEn from '$lib/assets/images/og/og-events.en.jpg';
 import ogImageVi from '$lib/assets/images/og/og-events.vi.jpg';
 import { mailSchema } from '$lib/components/MailRegistrationForm';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
-import { prepareRoutePageData } from '$lib/contexts/navigation';
 import { listEvents } from '$lib/data/events';
 import { mail } from '$lib/forms/actions/mail/mail.server';
 import { translations as mailT } from '$lib/forms/actions/mail/translation';
-import { buildBreadcrumbs } from '$shared/services/navigation/server';
+import { prepareRoutePageData } from '$lib/routing/routing.server';
 
 import type { PageServerLoad, Actions } from './$types';
 import { translations as pageT } from './_page/translation';
@@ -37,7 +36,6 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
 	const mailForm = await superValidate(mailSchema);
 	return {
 		route: prepareRoutePageData(language, 'events'),
-		breadcrumbs: buildBreadcrumbs(url.pathname),
 		translations: {
 			page: pageT[language],
 			mail: mailT[language],

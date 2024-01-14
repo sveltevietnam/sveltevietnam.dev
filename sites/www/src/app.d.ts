@@ -4,7 +4,6 @@
 /// <reference types="@sveltejs/adapter-cloudflare" />
 
 import type { COLOR_SCHEMES, STATUSES } from '$lib/constants';
-import type { LocalizedRouteMap } from '$lib/contexts/navigation';
 import type { preparePageData } from '$lib/data/blog';
 
 // See https://kit.svelte.dev/docs/types#app
@@ -44,7 +43,6 @@ declare global {
 			language: Language;
 			version: string;
 			internalReferer?: URL;
-			routes: LocalizedRouteMap;
 		}
 		interface PageData {
 			colorScheme: ColorScheme;

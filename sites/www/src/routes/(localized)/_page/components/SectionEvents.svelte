@@ -6,14 +6,14 @@
 	import { SplitText } from '$lib/components/SplitText';
 	import { ToBeAnnounced } from '$lib/components/ToBeAnnounced';
 	import { getLangContext } from '$lib/contexts/lang';
-	import { getNavigationContext } from '$lib/contexts/navigation';
 	import type { LocalizedEvent } from '$lib/data/events';
+	import { getRoutingContext } from '$lib/routing/routing.context';
 
 	import { translations } from '../translation';
 
 	export let events: LocalizedEvent[];
 
-	const { routes } = getNavigationContext();
+	const { routes } = getRoutingContext();
 
 	const { lang } = getLangContext();
 

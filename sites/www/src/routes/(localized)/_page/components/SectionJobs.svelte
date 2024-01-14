@@ -5,14 +5,14 @@
 	import { JobCard } from '$lib/components/JobCard';
 	import { SplitText } from '$lib/components/SplitText';
 	import { getLangContext } from '$lib/contexts/lang';
-	import { getNavigationContext } from '$lib/contexts/navigation';
+	import { getRoutingContext } from '$lib/routing/routing.context';
 	import type { Job } from '$lib/types';
 
 	import { translations } from '../translation';
 
 	export let jobs: Job[];
 
-	const { routes } = getNavigationContext();
+	const { routes } = getRoutingContext();
 
 	const { lang } = getLangContext();
 

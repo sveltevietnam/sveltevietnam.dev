@@ -12,9 +12,9 @@
 	import { modalStore } from '$lib/modals';
 	import { QRCode } from '$lib/modals/QRCode';
 	import { getNotificationContext } from '$lib/notifications';
+	import type { Breadcrumb } from '$lib/routing/routing.server';
 	import { textTip } from '$lib/tooltips';
 	import { formateDateForBlog } from '$lib/utils/datetime';
-	import type { Breadcrumb } from '$shared/services/navigation';
 
 	import '../../../../lib/css/blog.css';
 	import '../../../../lib/css/code.css';

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	import type { Breadcrumb } from '$shared/services/navigation';
+	import type { Breadcrumb } from '$lib/routing/routing.server';
 
 	export let breadcrumbs: Breadcrumb[];
 	let cls = '';

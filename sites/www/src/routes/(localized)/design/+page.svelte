@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { intersect } from '$lib/actions/intersect';
 	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
-	import { getNavigationContext } from '$lib/contexts/navigation';
+	import { getRoutingContext } from '$lib/routing/routing.context';
 
 	import type { PageData } from './$types';
 	import imgNonla from './_page/images/logo-concept-nonla.webp';
 
 	export let data: PageData;
 
-	const { routes } = getNavigationContext();
+	const { routes } = getRoutingContext();
 
 	$: t = data.translations.page;
 </script>

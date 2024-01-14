@@ -5,14 +5,14 @@
 	import { SplitText } from '$lib/components/SplitText';
 	import { ToBeAnnounced } from '$lib/components/ToBeAnnounced';
 	import { getLangContext } from '$lib/contexts/lang';
-	import { getNavigationContext } from '$lib/contexts/navigation';
+	import { getRoutingContext } from '$lib/routing/routing.context';
 	import type { Sponsor } from '$lib/types';
 
 	import { translations } from '../translation';
 
 	export let sponsors: Sponsor[];
 
-	const { routes } = getNavigationContext();
+	const { routes } = getRoutingContext();
 
 	const { lang } = getLangContext();
 

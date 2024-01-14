@@ -1,10 +1,10 @@
 import type { WithContext, Organization } from 'schema-dts';
 
 import { LOAD_DEPENDENCIES } from '$lib/constants';
-import { prepareRoutePageData } from '$lib/contexts/navigation';
 import { EXTERNAL_POSTS, INTERNAL_POSTS, localizeExternalPost, localizePost } from '$lib/data/blog';
 import { listEvents } from '$lib/data/events';
 import { SVELTE_VIETNAM_ORG } from '$lib/data/structured';
+import { prepareRoutePageData } from '$lib/routing/routing.server';
 
 import type { PageServerLoad } from './$types';
 

@@ -7,14 +7,14 @@
 	import { ConsecutiveFadeUpIntro } from '$lib/components/ConsecutiveFadeUpIntro';
 	import { SplitText } from '$lib/components/SplitText';
 	import { getLangContext } from '$lib/contexts/lang';
-	import { getNavigationContext } from '$lib/contexts/navigation';
+	import { getRoutingContext } from '$lib/routing/routing.context';
 	import type { Project } from '$lib/types';
 
 	import { translations } from '../translation';
 
 	export let projects: Project[];
 
-	const { routes } = getNavigationContext();
+	const { routes } = getRoutingContext();
 
 	const { lang } = getLangContext();
 

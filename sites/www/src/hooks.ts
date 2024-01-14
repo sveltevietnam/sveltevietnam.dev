@@ -2,9 +2,9 @@ import { DEFAULT_LANGUAGE, LANGUAGES, delocalizeLangVar } from '@internals/utils
 import { delocalizeUrl, getLangFromUrl, isUrlLocalized } from '@internals/utils/url';
 import type { Reroute } from '@sveltejs/kit';
 
-import { ROUTE_MAP } from '$lib/contexts/navigation';
 import { INTERNAL_POSTS } from '$lib/data/blog';
 import { EVENTS } from '$lib/data/events';
+import { ROUTE_MAP } from '$lib/routing/routing.map';
 
 const REROUTE_MAP = {
 	// common pages

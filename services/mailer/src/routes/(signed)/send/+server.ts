@@ -40,7 +40,9 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 	const html = Mustache.render(template.html, {
 		wwwURL: WWW_URL,
 		mailURL: `${origin}/mails/${token}`,
-		subscriptionURL: `${WWW_URL}/${language}/subscriptions/${token}`,
+		subscriptionURL: `${WWW_URL}/${language}/${
+			language === 'en' ? 'subscriptions' : 'dang-ky'
+		}/${token}`,
 		...variables,
 	});
 

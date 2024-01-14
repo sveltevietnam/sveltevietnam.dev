@@ -8,14 +8,14 @@
 	import { ToBeAnnounced } from '$lib/components/ToBeAnnounced';
 	import { EMAILS, SOCIAL_LINKS } from '$lib/constants';
 	import { getLangContext } from '$lib/contexts/lang';
-	import { getNavigationContext } from '$lib/contexts/navigation';
+	import { getRoutingContext } from '$lib/routing/routing.context';
 
 	import type { PageData } from './$types';
 
 	export let data: PageData;
 
 	const { t } = getLangContext();
-	const { routes } = getNavigationContext();
+	const { routes } = getRoutingContext();
 
 	$: tComponent = data.translations.page;
 	$: tMail = data.translations.mail;

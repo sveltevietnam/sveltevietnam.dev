@@ -6,15 +6,15 @@
 	import ExternalBlogPostItem from '$lib/components/ExternalBlogPostItem/ExternalBlogPostItem.svelte';
 	import { SplitText } from '$lib/components/SplitText';
 	import { getLangContext } from '$lib/contexts/lang';
-	import { getNavigationContext } from '$lib/contexts/navigation';
 	import type { LocalizedExternalPost, LocalizedPost } from '$lib/data/blog';
+	import { getRoutingContext } from '$lib/routing/routing.context';
 
 	import { translations } from '../translation';
 
 	export let posts: LocalizedPost[];
 	export let externalPost: LocalizedExternalPost | undefined;
 
-	const { routes } = getNavigationContext();
+	const { routes } = getRoutingContext();
 
 	const { lang } = getLangContext();
 

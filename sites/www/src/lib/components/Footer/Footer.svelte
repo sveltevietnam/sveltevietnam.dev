@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { EMAILS, SOCIAL_LINKS } from '$lib/constants';
 	import { getLangContext } from '$lib/contexts/lang';
-	import { getNavigationContext } from '$lib/contexts/navigation';
+	import { getRoutingContext } from '$lib/routing/routing.context';
 
 	import { translations } from './translation';
 
 	export let version: string;
 
-	const { routes, is } = getNavigationContext();
+	const { routes, is } = getRoutingContext();
 	const { lang, t } = getLangContext();
 
 	$: tComponent = translations[$lang];

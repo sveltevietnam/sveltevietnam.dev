@@ -3,7 +3,7 @@ import Mustache from 'mustache';
 
 import { INTERNAL_POSTS } from '$lib/data/blog';
 import { EVENTS } from '$lib/data/events';
-import { BLOG_PATH } from '$shared/services/navigation';
+import { ROUTE_MAP } from '$lib/routing/routing.map';
 
 import type { RequestHandler } from './$types';
 import template from './rss.template.xml?raw';
@@ -22,8 +22,8 @@ export const GET: RequestHandler = ({ url }) => {
 			LANGUAGES.map((l) => ({
 				title: localizeLangVar(l, p.title),
 				description: localizeLangVar(l, p.description),
-				link: `${url.origin}/${l}${BLOG_PATH}/${p.slug}`,
-				guid: p.slug,
+				link: `${url.origin}${ROUTE_MAP.blog[l].path}/${localizeLangVar(l, p.slug)}`,
+				guid: localizeLangVar(l, p.slug),
 				pubDate: new Date(p.date).toUTCString(),
 			})),
 		),
@@ -31,8 +31,8 @@ export const GET: RequestHandler = ({ url }) => {
 			LANGUAGES.map((l) => ({
 				title: localizeLangVar(l, e.title),
 				description: localizeLangVar(l, e.description),
-				link: `${url.origin}/${l}${BLOG_PATH}/${e.slug}`,
-				guid: e.slug,
+				link: `${url.origin}${ROUTE_MAP.events[l].path}/${localizeLangVar(l, e.slug)}`,
+				guid: localizeLangVar(l, e.slug),
 				pubDate: new Date(e.startDate).toUTCString(),
 			})),
 		),

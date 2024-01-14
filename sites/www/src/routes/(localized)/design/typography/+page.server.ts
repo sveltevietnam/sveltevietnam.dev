@@ -1,6 +1,5 @@
 import { LOAD_DEPENDENCIES } from '$lib/constants';
-import { prepareRoutePageData } from '$lib/contexts/navigation';
-import { buildBreadcrumbs } from '$shared/services/navigation/server';
+import { prepareRoutePageData } from '$lib/routing/routing.server';
 
 import type { PageServerLoad } from './$types';
 
@@ -26,7 +25,6 @@ export const load: PageServerLoad = ({ url, depends, locals: { language } }) => 
 				title: language === 'en' ? 'Typography' : 'Chữ viết',
 			},
 		},
-		breadcrumbs: buildBreadcrumbs(url.pathname),
 		meta: metaTranslations[language],
 	};
 };

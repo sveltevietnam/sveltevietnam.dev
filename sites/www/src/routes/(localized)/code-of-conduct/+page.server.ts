@@ -1,8 +1,7 @@
 import ogImageEn from '$lib/assets/images/og/og-coc.en.jpg';
 import ogImageVi from '$lib/assets/images/og/og-coc.vi.jpg';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
-import { prepareRoutePageData } from '$lib/contexts/navigation';
-import { buildBreadcrumbs } from '$shared/services/navigation/server';
+import { prepareRoutePageData } from '$lib/routing/routing.server';
 
 import type { PageServerLoad } from './$types';
 import { translations } from './_page/translation';
@@ -30,7 +29,6 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	return {
 		route: prepareRoutePageData(language, 'codeOfConduct'),
-		breadcrumbs: buildBreadcrumbs(url.pathname),
 		translations: {
 			page: translations[language],
 		},

@@ -1,25 +1,12 @@
 /** https://www.sitemaps.org/protocol.html */
 
-import { LANGUAGES } from '@internals/utils/language';
+import { LANGUAGES, localizeLangVar } from '@internals/utils/language';
 import Mustache from 'mustache';
 
 import { INTERNAL_POSTS } from '$lib/data/blog';
 import { EVENTS } from '$lib/data/events';
+import { ROUTE_MAP } from '$lib/routing/routing.map';
 import { toW3CDate } from '$lib/utils/datetime';
-import {
-	BLOG_PATH,
-	CODE_OF_CONDUCT_PATH,
-	DESIGN_BLOG_PATH,
-	DESIGN_COLORS_PATH,
-	DESIGN_PATH,
-	DESIGN_TYPOGRAPHY_PATH,
-	EVENTS_PATH,
-	IMPACT_PATH,
-	JOBS_PATH,
-	PEOPLE_PATH,
-	ROADMAP_PATH,
-	SPONSOR_PATH,
-} from '$shared/services/navigation';
 
 import type { RequestHandler } from './$types';
 import template from './sitemap.template.xml?raw';
@@ -40,7 +27,7 @@ export const GET: RequestHandler = ({ url }) => {
 	const urls: SiteMapUrl[] = [
 		...INTERNAL_POSTS.flatMap((p) =>
 			makeUrl(url.origin, {
-				loc: `${BLOG_PATH}/${p.slug}`,
+				loc: `${BLOG_PATH}/${localizeLangVar(l, p.slug)}`,
 				lastmod: toW3CDate(new Date(p.date)),
 				changefreq: 'yearly',
 				priority: 0.8,
@@ -48,7 +35,7 @@ export const GET: RequestHandler = ({ url }) => {
 		),
 		...EVENTS.flatMap((p) =>
 			makeUrl(url.origin, {
-				loc: `${BLOG_PATH}/${p.slug}`,
+				loc: `${BLOG_PATH}/${localizeLangVar(l, p.slug)}`,
 				priority: 0.7,
 			}),
 		),

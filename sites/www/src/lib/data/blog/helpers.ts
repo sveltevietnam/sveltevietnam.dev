@@ -2,9 +2,9 @@ import { LANGUAGES, delocalizeLangVar, localizeLangVar } from '@internals/utils/
 import { delocalizeUrl } from '@internals/utils/url';
 import type { BlogPosting, BreadcrumbList, WithContext } from 'schema-dts';
 
-import { ROUTE_MAP } from '$lib/contexts/navigation';
 import { localizePerson } from '$lib/data/people';
 import { SVELTE_VIETNAM_ORG, SVELTE_VIETNAM_BLOG, structurePerson } from '$lib/data/structured';
+import { ROUTE_MAP } from '$lib/routing/routing.map';
 
 import type { PostContent, ExternalPost, Post, PostSeries } from './types';
 

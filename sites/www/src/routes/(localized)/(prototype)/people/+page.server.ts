@@ -1,7 +1,6 @@
 import { LOAD_DEPENDENCIES } from '$lib/constants';
-import { prepareRoutePageData } from '$lib/contexts/navigation';
 import { createMockedContributors } from '$lib/data/mocks';
-import { buildBreadcrumbs } from '$shared/services/navigation/server';
+import { prepareRoutePageData } from '$lib/routing/routing.server';
 
 import type { PageServerLoad } from './$types';
 import { translations } from './_page/translation';
@@ -19,11 +18,10 @@ const metaTranslations = {
 	},
 };
 
-export const load: PageServerLoad = ({ url, depends, locals: { language } }) => {
+export const load: PageServerLoad = ({ depends, locals: { language } }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	return {
 		route: prepareRoutePageData(language, 'people'),
-		breadcrumbs: buildBreadcrumbs(url.pathname),
 		translations: {
 			page: translations[language],
 		},

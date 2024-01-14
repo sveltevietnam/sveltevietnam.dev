@@ -2,11 +2,10 @@ import type { WithContext, Blog } from 'schema-dts';
 
 import ogImage from '$lib/assets/images/og/og-blog.jpg';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
-import { prepareRoutePageData } from '$lib/contexts/navigation';
 import { INTERNAL_POSTS, EXTERNAL_POSTS, localizePost, localizeExternalPost } from '$lib/data/blog';
 import { SVELTE_VIETNAM_BLOG } from '$lib/data/structured';
 import { mail } from '$lib/forms/actions/mail/mail.server';
-import { buildBreadcrumbs } from '$shared/services/navigation/server';
+import { prepareRoutePageData } from '$lib/routing/routing.server';
 
 import type { Actions, PageServerLoad } from './$types';
 import { translations as pageT } from './_page/translation';
@@ -41,11 +40,10 @@ const issueTemplateLinks = {
 	},
 } as const;
 
-export const load: PageServerLoad = async ({ url, depends, locals: { language } }) => {
+export const load: PageServerLoad = async ({ depends, locals: { language } }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	return {
 		route: prepareRoutePageData(language, 'blog'),
-		breadcrumbs: buildBreadcrumbs(url.pathname),
 		translations: {
 			page: pageT[language],
 		},

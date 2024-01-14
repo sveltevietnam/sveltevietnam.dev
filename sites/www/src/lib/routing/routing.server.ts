@@ -1,6 +1,25 @@
-import { ROUTE_MAP } from '$lib/contexts/navigation';
+import { localizeLangVar, delocalizeLangVar } from '@internals/utils/language';
 
-import { type Breadcrumb } from '.';
+import { ROUTE_MAP } from './routing.map';
+
+export function prepareRoutePageData(
+	lang: App.Language,
+	key: keyof typeof ROUTE_MAP,
+): App.PageData['route'] {
+	const routes = ROUTE_MAP[key] as Record<App.Language, Omit<App.Route, 'key'>>;
+	return {
+		current: {
+			key,
+			...localizeLangVar(lang, routes),
+		},
+		alternate: delocalizeLangVar(routes),
+	};
+}
+
+export type Breadcrumb = {
+	label: string;
+	href?: string;
+};
 
 /**
  * Computationally hungry, use in server only

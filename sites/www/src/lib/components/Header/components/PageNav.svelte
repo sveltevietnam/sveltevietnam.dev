@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { getNavigationContext } from '$lib/contexts/navigation';
+	import { getRoutingContext } from '$lib/routing/routing.context';
 
 	let cls = '';
 	export { cls as class };
 
-	const { routes, is } = getNavigationContext();
+	const { routes, is } = getRoutingContext();
 
 	$: headerRoutes = [
 		$routes.events,

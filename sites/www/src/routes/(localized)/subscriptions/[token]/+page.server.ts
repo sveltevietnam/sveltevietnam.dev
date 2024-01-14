@@ -5,12 +5,13 @@ import {
 	createUpdateDomainSubscriptionRequest,
 	type UpdateDomainSubscriptionResponseDTO,
 } from '@internals/isc/mailer';
-import { error, fail } from '@sveltejs/kit';
+import { error, fail, type NumericRange } from '@sveltejs/kit';
 import { message, superValidate } from 'sveltekit-superforms/server';
 
 import { MAILER_CLIENT_ID, MAILER_CLIENT_SECRET, MAILER_SERVICE_URL } from '$env/static/private';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 import type { FormMessage } from '$lib/forms';
+import { prepareRoutePageData } from '$lib/routing/routing.server';
 
 import type { Actions, PageServerLoad } from './$types';
 import { translations as pageT } from './_page/translation';
@@ -44,11 +45,17 @@ export const load: PageServerLoad = async ({
 		}),
 	);
 	const json = (await response.json()) as GetSubscriptionResponseDTO;
-	if (!json.success) error(response.status, json.code);
+	if (!json.success) error(response.status as NumericRange<400, 599>, json.code);
 
 	const form = await superValidate(json.data, UpdateDomainSubscriptionRequestSchema);
 
+	const route = prepareRoutePageData(language, 'subscriptions');
+	route.current.path += `/${token}`;
+	route.alternate.en.path += `/${token}`;
+	route.alternate.vi.path += `/${token}`;
+
 	return {
+		route,
 		form,
 		translations: {
 			page: pageT[language],
@@ -57,10 +64,7 @@ export const load: PageServerLoad = async ({
 			upcoming: [],
 			past: [],
 		},
-		meta: {
-			...metaTranslations[language],
-			canonical: `${url.origin}/${language}/subscriptions`,
-		},
+		meta: metaTranslations[language],
 	};
 };
 

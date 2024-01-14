@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { afterNavigate } from '$app/navigation';
 	import { getLockScrollContext } from '$lib/contexts/lockscroll';
-	import { getNavigationContext } from '$lib/contexts/navigation';
+	import { getRoutingContext } from '$lib/routing/routing.context';
 	import { clamp } from '$lib/utils/clamp';
 
 	import ColorSchemeMenu from './components/ColorSchemeMenu.svelte';
@@ -15,7 +15,7 @@
 	});
 
 	const lockScrollStore = getLockScrollContext();
-	const { routes, is } = getNavigationContext();
+	const { routes, is } = getRoutingContext();
 
 	$: $lockScrollStore = mobileOverlayOpen;
 

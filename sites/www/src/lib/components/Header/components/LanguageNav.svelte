@@ -2,12 +2,12 @@
 	import { invalidate } from '$app/navigation';
 	import { LOAD_DEPENDENCIES } from '$lib/constants';
 	import { getLangContext } from '$lib/contexts/lang';
-	import { getNavigationContext } from '$lib/contexts/navigation';
+	import { getRoutingContext } from '$lib/routing/routing.context';
 
 	let cls = '';
 	export { cls as class };
 
-	const { current } = getNavigationContext();
+	const { current } = getRoutingContext();
 	const { lang } = getLangContext();
 
 	function changeLanguage(lang: App.Language) {

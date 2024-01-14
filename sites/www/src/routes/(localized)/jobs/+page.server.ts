@@ -4,10 +4,9 @@ import ogImageEn from '$lib/assets/images/og/og-jobs.en.jpg';
 import ogImageVi from '$lib/assets/images/og/og-jobs.vi.jpg';
 import { mailSchema } from '$lib/components/MailRegistrationForm';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
-import { prepareRoutePageData } from '$lib/contexts/navigation';
 import { mail } from '$lib/forms/actions/mail/mail.server';
 import { translations as tMail } from '$lib/forms/actions/mail/translation';
-import { buildBreadcrumbs } from '$shared/services/navigation/server';
+import { prepareRoutePageData } from '$lib/routing/routing.server';
 
 import type { PageServerLoad, Actions } from './$types';
 import { translations as tPage } from './_page/translation';
@@ -36,7 +35,6 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
 	const mailForm = await superValidate(mailSchema);
 	return {
 		route: prepareRoutePageData(language, 'jobs'),
-		breadcrumbs: buildBreadcrumbs(url.pathname),
 		translations: {
 			page: tPage[language],
 			mail: tMail[language],

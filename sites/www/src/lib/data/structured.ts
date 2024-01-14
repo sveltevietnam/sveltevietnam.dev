@@ -2,7 +2,7 @@ import type { BreadcrumbList, Organization, Blog, Person as StructuredPerson } f
 
 import { SOCIAL_LINKS } from '$lib/constants';
 import type { localizePerson } from '$lib/data/people';
-import { type Breadcrumb } from '$shared/services/navigation';
+import type { Breadcrumb } from '$lib/routing/routing.server';
 
 export const SVELTE_VIETNAM_ORG = {
 	'@type': 'Organization',

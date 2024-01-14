@@ -1,9 +1,9 @@
 <script lang="ts">
 	import defaultFallbackImg from '$lib/assets/images/fallback/default.jpg?w=56&format=webp&imagetools';
 	import { getLangContext } from '$lib/contexts/lang';
-	import { getNavigationContext } from '$lib/contexts/navigation';
 	import type { LocalizedEvent } from '$lib/data/events';
 	import { getEventStatus, isEventWithinOneDay } from '$lib/data/events';
+	import { getRoutingContext } from '$lib/routing/routing.context';
 	import { textTip } from '$lib/tooltips';
 	import { formatDate, formatDateAndTime, formatTime } from '$lib/utils/datetime';
 
@@ -13,7 +13,7 @@
 	let cls = '';
 	export { cls as class };
 
-	const { routes } = getNavigationContext();
+	const { routes } = getRoutingContext();
 	const { lang } = getLangContext();
 
 	$: t = translations[$lang];

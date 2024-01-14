@@ -5,11 +5,11 @@
 	import { intersect } from '$lib/actions/intersect';
 	import { Breadcrumbs } from '$lib/components/Breadcrumbs/index.js';
 	import { EMAILS, SOCIAL_LINKS } from '$lib/constants/index.js';
-	import { getNavigationContext } from '$lib/contexts/navigation';
+	import { getRoutingContext } from '$lib/routing/routing.context';
 
 	export let data;
 
-	const { routes } = getNavigationContext();
+	const { routes } = getRoutingContext();
 
 	$: t = data.translations.page;
 
