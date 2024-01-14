@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { afterNavigate } from '$app/navigation';
-	import { getLockScrollContext } from '$client/contexts/lockscroll';
-	import { getNavigationContext } from '$client/contexts/navigation';
+	import { getLockScrollContext } from '$lib/contexts/lockscroll';
+	import { getNavigationContext } from '$lib/contexts/navigation';
 	import { clamp } from '$lib/utils/clamp';
 
 	import ColorSchemeMenu from './components/ColorSchemeMenu.svelte';

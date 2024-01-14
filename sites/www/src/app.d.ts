@@ -3,8 +3,8 @@
 /// <reference types="vite/client" />
 /// <reference types="@sveltejs/adapter-cloudflare" />
 
-import type { LocalizedRouteMap } from '$client/contexts/navigation';
 import type { COLOR_SCHEMES, STATUSES } from '$lib/constants';
+import type { LocalizedRouteMap } from '$lib/contexts/navigation';
 import type { preparePageData } from '$lib/data/blog';
 
 // See https://kit.svelte.dev/docs/types#app

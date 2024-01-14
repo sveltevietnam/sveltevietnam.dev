@@ -3,9 +3,9 @@ import { localizeUrl, getLangFromUrl, delocalizeUrl } from '@internals/utils/url
 import { redirect, type Cookies, type Handle } from '@sveltejs/kit';
 
 import { building } from '$app/environment';
-import { ROUTE_MAP } from '$client/contexts/navigation';
 import { COOKIE_LANGUAGE, COOKIE_USER_ID, COOKIE_LAST_FRESH_VISIT_AT } from '$env/static/private';
 import { PUBLIC_COOKIE_COLOR_SCHEME } from '$env/static/public';
+import { ROUTE_MAP } from '$lib/contexts/navigation';
 import { INTERNAL_POSTS } from '$lib/data/blog';
 import { EVENTS } from '$lib/data/events';
 

@@ -2,12 +2,12 @@
 	import type { EmblaCarouselType } from 'embla-carousel';
 	import embla from 'embla-carousel-svelte';
 
-	import { getLangContext } from '$client/contexts/lang';
-	import { getNavigationContext } from '$client/contexts/navigation';
 	import { intersect } from '$lib/actions/intersect';
 	import { AnimatedArrowCircle } from '$lib/components/AnimatedArrowCircle';
 	import { ConsecutiveFadeUpIntro } from '$lib/components/ConsecutiveFadeUpIntro';
 	import { SplitText } from '$lib/components/SplitText';
+	import { getLangContext } from '$lib/contexts/lang';
+	import { getNavigationContext } from '$lib/contexts/navigation';
 	import type { Project } from '$lib/types';
 
 	import { translations } from '../translation';

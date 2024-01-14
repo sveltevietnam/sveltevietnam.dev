@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	import { getNavigationContext } from '$client/contexts/navigation';
 	import { gsap } from '$lib/3rd/gsap';
 	import { intersect } from '$lib/actions/intersect';
 	import { Breadcrumbs } from '$lib/components/Breadcrumbs/index.js';
 	import { EMAILS, SOCIAL_LINKS } from '$lib/constants/index.js';
+	import { getNavigationContext } from '$lib/contexts/navigation';
 
 	export let data;
 

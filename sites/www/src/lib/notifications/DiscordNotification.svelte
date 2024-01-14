@@ -13,7 +13,7 @@
 <script lang="ts">
 	import type { NotificationInstance } from '@svelte-put/noti';
 
-	import { getLangContext } from '$client/contexts/lang';
+	import { getLangContext } from '$lib/contexts/lang';
 
 	import BaseNotification from './BaseNotification.svelte';
 

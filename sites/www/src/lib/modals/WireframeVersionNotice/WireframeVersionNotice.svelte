@@ -5,7 +5,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import { fade, fly } from 'svelte/transition';
 
-	import { getLangContext } from '$client/contexts/lang';
+	import { getLangContext } from '$lib/contexts/lang';
 
 	import { WireframeVersionNoticeCache } from './WireframeVersionNotice.cache';
 	import { translations } from './translation';

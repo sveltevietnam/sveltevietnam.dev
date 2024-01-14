@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { getLangContext } from '$client/contexts/lang';
 	import { intersect } from '$lib/actions/intersect';
 	import { ConsecutiveFadeUpIntro } from '$lib/components/ConsecutiveFadeUpIntro';
 	import { SplitText } from '$lib/components/SplitText';
 	import { SOCIAL_LINKS } from '$lib/constants';
+	import { getLangContext } from '$lib/contexts/lang';
 
 	import { translations } from '../translation';
 

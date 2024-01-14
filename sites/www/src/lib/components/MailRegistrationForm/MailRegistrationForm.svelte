@@ -12,9 +12,9 @@
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import { superForm } from 'sveltekit-superforms/client';
 
-	import { getColorSchemeContext } from '$client/contexts/color-scheme';
-	import { getLangContext } from '$client/contexts/lang';
 	import { PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
+	import { getColorSchemeContext } from '$lib/contexts/color-scheme';
+	import { getLangContext } from '$lib/contexts/lang';
 	import type { FormMessage } from '$lib/forms';
 	import { getNotificationContext } from '$lib/notifications';
 	import { turnstile } from '$lib/turnstile/turnstile.action';

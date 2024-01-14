@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { getNavigationContext } from '$client/contexts/navigation';
 	import { intersect } from '$lib/actions/intersect';
 	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
 	import { Person } from '$lib/components/Person';
 	import { ToBeAnnounced } from '$lib/components/ToBeAnnounced';
+	import { getNavigationContext } from '$lib/contexts/navigation';
 	import { isEventWithinOneDay } from '$lib/data/events';
 	import { formatDate, formatDateAndTime, formatTime } from '$lib/utils/datetime';
 

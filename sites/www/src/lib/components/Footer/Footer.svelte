@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { getLangContext } from '$client/contexts/lang';
-	import { getNavigationContext } from '$client/contexts/navigation';
 	import { EMAILS, SOCIAL_LINKS } from '$lib/constants';
+	import { getLangContext } from '$lib/contexts/lang';
+	import { getNavigationContext } from '$lib/contexts/navigation';
 
 	import { translations } from './translation';
 

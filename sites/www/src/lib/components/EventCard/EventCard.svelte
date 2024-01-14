@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { getLangContext } from '$client/contexts/lang';
-	import { getNavigationContext } from '$client/contexts/navigation';
 	import defaultFallbackImg from '$lib/assets/images/fallback/default.jpg?w=56&format=webp&imagetools';
+	import { getLangContext } from '$lib/contexts/lang';
+	import { getNavigationContext } from '$lib/contexts/navigation';
 	import type { LocalizedEvent } from '$lib/data/events';
 	import { getEventStatus, isEventWithinOneDay } from '$lib/data/events';
 	import { textTip } from '$lib/tooltips';

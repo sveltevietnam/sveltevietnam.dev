@@ -2,8 +2,8 @@
 	import { onMount } from 'svelte';
 	import { derived, writable, type Unsubscriber } from 'svelte/store';
 
-	import { getSplashContext } from '$client/contexts/splash';
 	import { gsap, Back } from '$lib/3rd/gsap';
+	import { getSplashContext } from '$lib/contexts/splash';
 
 	export let selector = '';
 	let cls = '';

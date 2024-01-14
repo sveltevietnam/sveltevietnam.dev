@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { getLangContext } from '$client/contexts/lang';
-	import { getNavigationContext } from '$client/contexts/navigation';
 	import fallbackThumbnail from '$lib/assets/images/fallback/16x9.jpg?w=1000&enhanced&imagetools';
+	import { getLangContext } from '$lib/contexts/lang';
+	import { getNavigationContext } from '$lib/contexts/navigation';
 	import type { LocalizedPost } from '$lib/data/blog';
 	import { formateDateForBlog } from '$lib/utils/datetime';
 

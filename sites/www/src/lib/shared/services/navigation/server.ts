@@ -1,4 +1,4 @@
-import { ROUTE_MAP } from '$client/contexts/navigation';
+import { ROUTE_MAP } from '$lib/contexts/navigation';
 
 import { type Breadcrumb } from '.';
 

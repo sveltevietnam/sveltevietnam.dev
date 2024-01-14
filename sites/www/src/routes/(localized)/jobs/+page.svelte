@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { getNavigationContext } from '$client/contexts/navigation';
 	import { intersect } from '$lib/actions/intersect';
 	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
 	import { ConsecutiveFadeUpIntro } from '$lib/components/ConsecutiveFadeUpIntro';
@@ -7,6 +6,7 @@
 	import { MailRegistrationForm } from '$lib/components/MailRegistrationForm';
 	import { SplitText } from '$lib/components/SplitText';
 	import { ToBeAnnounced } from '$lib/components/ToBeAnnounced';
+	import { getNavigationContext } from '$lib/contexts/navigation';
 
 	import keyVisuals from './_page/images/key-visuals.png?enhanced';
 

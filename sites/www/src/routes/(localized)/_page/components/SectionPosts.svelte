@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { getLangContext } from '$client/contexts/lang';
-	import { getNavigationContext } from '$client/contexts/navigation';
 	import { intersect } from '$lib/actions/intersect';
 	import { AnimatedArrowCircle } from '$lib/components/AnimatedArrowCircle';
 	import { BlogPostItem } from '$lib/components/BlogPostItem';
 	import { ConsecutiveFadeUpIntro } from '$lib/components/ConsecutiveFadeUpIntro';
 	import ExternalBlogPostItem from '$lib/components/ExternalBlogPostItem/ExternalBlogPostItem.svelte';
 	import { SplitText } from '$lib/components/SplitText';
+	import { getLangContext } from '$lib/contexts/lang';
+	import { getNavigationContext } from '$lib/contexts/navigation';
 	import type { LocalizedExternalPost, LocalizedPost } from '$lib/data/blog';
 
 	import { translations } from '../translation';

@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
 	import { writable } from 'svelte/store';
 
-	import { getLangContext } from '$client/contexts/lang';
+	import { getLangContext } from '$lib/contexts/lang';
 
 	export const translations = {
 		vi: {

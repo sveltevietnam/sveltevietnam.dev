@@ -2,7 +2,7 @@ import { LANGUAGES, delocalizeLangVar, localizeLangVar } from '@internals/utils/
 import { delocalizeUrl } from '@internals/utils/url';
 import type { BreadcrumbList, WithContext } from 'schema-dts';
 
-import { ROUTE_MAP } from '$client/contexts/navigation';
+import { ROUTE_MAP } from '$lib/contexts/navigation';
 import { localizePerson } from '$lib/data/people';
 
 import type { Event, LocalizedEvent, StructureEvent } from './types';

@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { getLangContext } from '$client/contexts/lang';
-	import { getNavigationContext } from '$client/contexts/navigation';
 	import { intersect } from '$lib/actions/intersect';
 	import { AnimatedArrowCircle } from '$lib/components/AnimatedArrowCircle';
 	import { ConsecutiveFadeUpIntro } from '$lib/components/ConsecutiveFadeUpIntro';
 	import { JobCard } from '$lib/components/JobCard';
 	import { SplitText } from '$lib/components/SplitText';
+	import { getLangContext } from '$lib/contexts/lang';
+	import { getNavigationContext } from '$lib/contexts/navigation';
 	import type { Job } from '$lib/types';
 
 	import { translations } from '../translation';

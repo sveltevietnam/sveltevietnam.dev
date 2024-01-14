@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getNavigationContext } from '$client/contexts/navigation';
+	import { getNavigationContext } from '$lib/contexts/navigation';
 
 	let cls = '';
 	export { cls as class };

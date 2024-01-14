@@ -1,7 +1,7 @@
-import { prepareRoutePageData } from '$client/contexts/navigation';
 import ogImageEn from '$lib/assets/images/og/og-sponsor.en.jpg';
 import ogImageVi from '$lib/assets/images/og/og-sponsor.vi.jpg';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
+import { prepareRoutePageData } from '$lib/contexts/navigation';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
 
 import type { PageServerLoad } from './$types';

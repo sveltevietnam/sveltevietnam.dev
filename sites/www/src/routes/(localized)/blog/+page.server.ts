@@ -1,8 +1,8 @@
 import type { WithContext, Blog } from 'schema-dts';
 
-import { prepareRoutePageData } from '$client/contexts/navigation';
 import ogImage from '$lib/assets/images/og/og-blog.jpg';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
+import { prepareRoutePageData } from '$lib/contexts/navigation';
 import { INTERNAL_POSTS, EXTERNAL_POSTS, localizePost, localizeExternalPost } from '$lib/data/blog';
 import { SVELTE_VIETNAM_BLOG } from '$lib/data/structured';
 import { mail } from '$lib/forms/actions/mail/mail.server';

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { getLangContext } from '$client/contexts/lang';
 	import companyFallbackImg from '$lib/assets/images/fallback/default.jpg?w=80&format=webp&imagetools';
+	import { getLangContext } from '$lib/contexts/lang';
 	import type { Job } from '$lib/types';
 
 	import { translations } from './translation';

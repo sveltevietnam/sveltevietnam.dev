@@ -1,10 +1,10 @@
 import { superValidate } from 'sveltekit-superforms/server';
 
-import { prepareRoutePageData } from '$client/contexts/navigation';
 import ogImageEn from '$lib/assets/images/og/og-jobs.en.jpg';
 import ogImageVi from '$lib/assets/images/og/og-jobs.vi.jpg';
 import { mailSchema } from '$lib/components/MailRegistrationForm';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
+import { prepareRoutePageData } from '$lib/contexts/navigation';
 import { mail } from '$lib/forms/actions/mail/mail.server';
 import { translations as tMail } from '$lib/forms/actions/mail/translation';
 import { buildBreadcrumbs } from '$shared/services/navigation/server';
