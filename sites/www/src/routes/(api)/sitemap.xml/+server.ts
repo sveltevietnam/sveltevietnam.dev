@@ -24,100 +24,64 @@ type SiteMapUrl = {
 };
 
 export const GET: RequestHandler = ({ url }) => {
-	const urls: SiteMapUrl[] = [
+	const urls = [
 		...INTERNAL_POSTS.flatMap((p) =>
-			makeUrl(url.origin, {
-				loc: `${BLOG_PATH}/${localizeLangVar(l, p.slug)}`,
-				lastmod: toW3CDate(new Date(p.date)),
-				changefreq: 'yearly',
-				priority: 0.8,
-			}),
+			LANGUAGES.map(
+				(l) =>
+					({
+						loc: url.origin + ROUTE_MAP.blog[l].path + `/${localizeLangVar(l, p.slug)}`,
+						lastmod: toW3CDate(new Date(p.date)),
+						priority: 0.8,
+						alternates: LANGUAGES.map((l) => ({
+							hreflang: l,
+							href: url.origin + ROUTE_MAP.blog[l].path + `/${localizeLangVar(l, p.slug)}`,
+						})),
+					}) satisfies SiteMapUrl,
+			),
 		),
-		...EVENTS.flatMap((p) =>
-			makeUrl(url.origin, {
-				loc: `${BLOG_PATH}/${localizeLangVar(l, p.slug)}`,
-				priority: 0.7,
-			}),
+		...EVENTS.flatMap((e) =>
+			LANGUAGES.map(
+				(l) =>
+					({
+						loc: url.origin + ROUTE_MAP.events[l].path + `/${localizeLangVar(l, e.slug)}`,
+						lastmod: toW3CDate(new Date(e.endDate ?? e.startDate)),
+						priority: 0.7,
+						alternates: LANGUAGES.map((l) => ({
+							hreflang: l,
+							href: url.origin + ROUTE_MAP.events[l].path + `/${localizeLangVar(l, e.slug)}`,
+						})),
+					}) satisfies SiteMapUrl,
+			),
 		),
-		...makeUrl(url.origin, {
-			loc: '',
-			lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
-			changefreq: 'monthly',
-			priority: 0.5,
-		}),
-		...makeUrl(url.origin, {
-			loc: ROADMAP_PATH,
-			lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
-			changefreq: 'weekly',
-			priority: 0.6,
-		}),
-		...makeUrl(url.origin, {
-			loc: BLOG_PATH,
-			lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
-			changefreq: 'monthly',
-			priority: 0.9,
-		}),
-		...makeUrl(url.origin, {
-			loc: EVENTS_PATH,
-			lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
-			changefreq: 'monthly',
-			priority: 0.8,
-		}),
-		...makeUrl(url.origin, {
-			loc: JOBS_PATH,
-			lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
-			changefreq: 'monthly',
-			priority: 0.7,
-		}),
-		...makeUrl(url.origin, {
-			loc: IMPACT_PATH,
-			lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
-			changefreq: 'monthly',
-			priority: 0.6,
-		}),
-		...makeUrl(url.origin, {
-			loc: PEOPLE_PATH,
-			lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
-			changefreq: 'yearly',
-			priority: 0.5,
-		}),
-		...makeUrl(url.origin, {
-			loc: SPONSOR_PATH,
-			lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
-			changefreq: 'yearly',
-			priority: 0.4,
-		}),
-		...makeUrl(url.origin, {
-			loc: CODE_OF_CONDUCT_PATH,
-			lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
-			changefreq: 'yearly',
-			priority: 0.3,
-		}),
-		...makeUrl(url.origin, {
-			loc: DESIGN_PATH,
-			lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
-			changefreq: 'yearly',
-			priority: 0.2,
-		}),
-		...makeUrl(url.origin, {
-			loc: DESIGN_TYPOGRAPHY_PATH,
-			lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
-			changefreq: 'yearly',
-			priority: 0.2,
-		}),
-		...makeUrl(url.origin, {
-			loc: DESIGN_COLORS_PATH,
-			lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
-			changefreq: 'yearly',
-			priority: 0.2,
-		}),
-		...makeUrl(url.origin, {
-			loc: DESIGN_BLOG_PATH,
-			lastmod: toW3CDate(parseInt(__BUILD_TIMESTAMP__, 10)),
-			changefreq: 'yearly',
-			priority: 0.2,
-		}),
-	];
+		...[
+			[ROUTE_MAP.home, 0.5] as const,
+			[ROUTE_MAP.blog, 0.9] as const,
+			[ROUTE_MAP.events, 0.8] as const,
+			[ROUTE_MAP.roadmap, 0.6] as const,
+			[ROUTE_MAP.jobs, 0.7] as const,
+			// [ROUTE_MAP.impact, 0.6] as const,
+			// [ROUTE_MAP.people, 0.5] as const,
+			[ROUTE_MAP.sponsor, 0.6] as const,
+			[ROUTE_MAP.codeOfConduct, 0.3] as const,
+			[ROUTE_MAP.design, 0.2] as const,
+			[ROUTE_MAP.design_typography, 0.2] as const,
+			[ROUTE_MAP.design_colors, 0.2] as const,
+			[ROUTE_MAP.design_blog, 0.2] as const,
+		].flatMap(([route, priority]) =>
+			LANGUAGES.map(
+				(l) =>
+					({
+						loc: url.origin + route[l].path,
+						priority,
+						alternates: LANGUAGES.map((l) => ({
+							hreflang: l,
+							href: url.origin + route[l].path,
+						})),
+					}) satisfies SiteMapUrl,
+			),
+		),
+	] satisfies SiteMapUrl[];
+
 	const xml = Mustache.render(template, { urls });
 	const headers = {
 		'Cache-Control': 'max-age=0, s-maxage=3600',
@@ -125,17 +89,3 @@ export const GET: RequestHandler = ({ url }) => {
 	};
 	return new Response(xml, { headers });
 };
-
-function makeUrl(origin: string, url: SiteMapUrl): SiteMapUrl[] {
-	const loc = url.loc.startsWith('/') ? url.loc : `/${url.loc}`;
-	return LANGUAGES.map((locLang) => ({
-		...url,
-		loc: `${origin}/${locLang}${loc}`,
-		alternates:
-			url.alternates ??
-			LANGUAGES.map((lang) => ({
-				href: `${origin}/${lang}${loc}`,
-				hreflang: lang,
-			})),
-	}));
-}
