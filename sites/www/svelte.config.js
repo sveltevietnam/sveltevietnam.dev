@@ -163,9 +163,6 @@ const config = {
 		},
 		alias: {
 			$routes: path.resolve(__dirname, 'src/routes'),
-			$client: path.resolve(__dirname, 'src/lib/client'),
-			$server: path.resolve(__dirname, 'src/lib/server'),
-			$shared: path.resolve(__dirname, 'src/lib/shared'),
 		},
 	},
 	vitePlugin: {

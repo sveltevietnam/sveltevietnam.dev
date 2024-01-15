@@ -533,7 +533,7 @@ export function getColorSchemeContext() {
 ```
 
 ::: div c-callout c-callout--info
-Nếu dùng typescript, bạn hãy tham khảo mã nguồn tương tự của sveltevietnam.dev [tại đây](https://github.com/sveltevietnam/sveltevietnam.dev/blob/203ec9b35de9a4bd462ad750c549bba182aaa3c0/sites/www/src/lib/client/contexts/color-scheme.ts). Mình sẽ không đi chi tiết đoạn mã trên, nếu có câu hỏi hoặc cần thảo luận thêm hãy tham gia [Discord](https://discord.sveltevietnam.dev) nhé!
+Nếu dùng typescript, bạn hãy tham khảo mã nguồn tương tự của sveltevietnam.dev [tại đây](https://github.com/sveltevietnam/sveltevietnam.dev/blob/86dc2100884560bb2e8f365f563a2e0903994041/sites/www/src/lib/contexts/color-scheme.ts). Mình sẽ không đi chi tiết đoạn mã trên, nếu có câu hỏi hoặc cần thảo luận thêm hãy tham gia [Discord](https://discord.sveltevietnam.dev) nhé!
 :::
 
 Bây giờ ta có thể sử dụng `setColorSchemeContext` để khai báo context:

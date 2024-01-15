@@ -1,5 +1,5 @@
 ---
-to: src/lib/client/modals/<%=Name%>/<%=Name%>.svelte
+to: src/lib/modals/<%=Name%>/<%=Name%>.svelte
 unless_exists: true
 ---
 <script lang="ts">

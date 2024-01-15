@@ -4,13 +4,8 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { error } from '@sveltejs/kit';
 
-import { EMAILS } from '../../../../lib/shared/constants';
-import {
-	CODE_OF_CONDUCT_PATH,
-	EVENTS_PATH,
-	IMPACT_PATH,
-	SPONSOR_PATH,
-} from '../../../../lib/shared/services/navigation';
+import { EMAILS } from '../../../../lib/constants';
+import { ROUTE_MAP } from '../../../../lib/routing/routing.map';
 
 /** https://www.rfc-editor.org/rfc/rfc7033#section-4.4.4 */
 type WebFingerLink = {
@@ -84,7 +79,7 @@ export const GET: RequestHandler = async ({ url }) => {
 			webfinger.links = [
 				{
 					rel: 'http://webfinger.net/rel/profile-page',
-					href: `${url.origin}${CODE_OF_CONDUCT_PATH}`,
+					href: `${url.origin}${ROUTE_MAP.codeOfConduct.vi.path}`,
 				},
 				...avatarLinks,
 			];
@@ -93,7 +88,7 @@ export const GET: RequestHandler = async ({ url }) => {
 			webfinger.links = [
 				{
 					rel: 'http://webfinger.net/rel/profile-page',
-					href: `${url.origin}${EVENTS_PATH}`,
+					href: `${url.origin}${ROUTE_MAP.events.vi.path}`,
 				},
 				...avatarLinks,
 			];
@@ -102,7 +97,7 @@ export const GET: RequestHandler = async ({ url }) => {
 			webfinger.links = [
 				{
 					rel: 'http://webfinger.net/rel/profile-page',
-					href: `${url.origin}${IMPACT_PATH}`,
+					href: `${url.origin}${ROUTE_MAP.impact.vi.path}`,
 				},
 				...avatarLinks,
 			];
@@ -111,7 +106,7 @@ export const GET: RequestHandler = async ({ url }) => {
 			webfinger.links = [
 				{
 					rel: 'http://webfinger.net/rel/profile-page',
-					href: `${url.origin}${SPONSOR_PATH}`,
+					href: `${url.origin}${ROUTE_MAP.sponsor.vi.path}`,
 				},
 				...avatarLinks,
 			];

@@ -30,19 +30,19 @@ const CONFIG = {
 		},
 	},
 	action: {
-		base: 'src/lib/shared/actions',
+		base: 'src/lib/actions',
 		getDirs() {
 			return getDirectories(CONFIG.action.base);
 		},
 	},
 	component: {
-		base: 'src/lib/client/components',
+		base: 'src/lib/components',
 		getDirs() {
 			return getDirectories(CONFIG.component.base);
 		},
 	},
 	modal: {
-		base: 'src/lib/client/modals',
+		base: 'src/lib/modals',
 		getDirs() {
 			return getDirectories(CONFIG.modal.base);
 		},

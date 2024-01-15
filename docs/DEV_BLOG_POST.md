@@ -29,7 +29,7 @@ Visit the [Design | Blog](https://www.sveltevietnam.dev/design/blog) page for mo
 General guidelines
 
 - For components that are only used within your blog post, declare in `(posts)/[slug]/_page/components/*.svelte`.
-- If you find a piece of code elsewhere in the codebase that you want to enhance or reuse, declare in `lib/client/components/`.
+- If you find a piece of code elsewhere in the codebase that you want to enhance or reuse, declare in `lib/components/`.
 - Prefer CSS component (init with cd `sites/www` & `hygen css create`) over JS component when possible. A good indicator is that if your component does not contain complex markup or runtime logics, CSS component is a perfect fit.
 
 ## Blog Post Publication Check List
