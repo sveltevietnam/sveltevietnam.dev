@@ -51,9 +51,16 @@ export const reroute: Reroute = ({ url }) => {
 	const lang = getLangFromUrl(url, LANGUAGES);
 	if (!lang) return url.pathname;
 
+	let pathname = url.pathname;
+
+	// dynamic subscriptions pages
+	const subscriptionsViPath = ROUTE_MAP.subscriptions.vi.path;
+	if (pathname.startsWith(subscriptionsViPath)) {
+		return pathname.replace(subscriptionsViPath, REROUTE_MAP[subscriptionsViPath]);
+	}
+
 	// FIXME: workaround for https://github.com/sveltejs/kit/issues/11625
 	let suffix = '';
-	let pathname = url.pathname;
 	const segments = pathname.split('/');
 	const lastSegment = segments.at(-1);
 	if (lastSegment && /\.\w+$/.test(lastSegment)) {

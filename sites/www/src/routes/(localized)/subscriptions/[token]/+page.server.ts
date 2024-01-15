@@ -49,7 +49,8 @@ export const load: PageServerLoad = async ({
 
 	const form = await superValidate(json.data, UpdateDomainSubscriptionRequestSchema);
 
-	const route = prepareRoutePageData(language, 'subscriptions');
+	const route = structuredClone(prepareRoutePageData(language, 'subscriptions'));
+	// CAUTION: cloning here to avoid mutating the original route
 	route.current.path += `/${token}`;
 	route.alternate.en.path += `/${token}`;
 	route.alternate.vi.path += `/${token}`;

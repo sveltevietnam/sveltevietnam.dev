@@ -38,5 +38,5 @@
 			width="328"
 		/>
 	</div>
-	<MailRegistrationForm t={mailT} superValidated={mailForm} action="/{lang}/blog?/mail" />
+	<MailRegistrationForm t={mailT} superValidated={mailForm} action="/{$lang}/blog?/mail" />
 </div>

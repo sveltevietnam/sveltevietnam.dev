@@ -10,7 +10,7 @@ export const GET: RequestHandler = async ({ locals, params: { token } }) => {
 	const isValid = await jwt.verify(token, JWT_SECRET);
 	if (!isValid) throw createMailerSvelteKitError('MAIL_INVALID_TOKEN');
 	const { payload } = jwt.decode(token);
-	const id = payload.id as string;
+	const id = payload?.id as string;
 
 	if (!id) throw createMailerSvelteKitError('MAIL_NOT_FOUND');
 	const mail = await getMailById(locals.d1, id);
