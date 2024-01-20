@@ -58,10 +58,17 @@ body:
         Điền slug tùy chọn. Để trống để tự động tạo từ tiêu đề.
         Riêng slug phải bằng tiếng anh và sẽ được sử dụng cho cả bản tiếng Anh và tiếng Việt.
   - type: input
-    id: slug
+    id: slug-vi
     attributes:
-      label: Slug
-      placeholder: my-blog-post-about-something
+      label: Slug (tiếng Việt)
+      placeholder: bai-viet-cua-toi-ve-svelte
+    validations:
+      required: false
+  - type: input
+    id: slug-vi
+    attributes:
+      label: Slug (tiếng Anh)
+      placeholder: my-blog-post-about-svelte
     validations:
       required: false
 
