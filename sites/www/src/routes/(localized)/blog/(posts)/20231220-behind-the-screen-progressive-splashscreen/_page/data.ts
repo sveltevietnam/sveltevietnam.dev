@@ -23,8 +23,8 @@ export const post = {
 		vi: 'Cách sveltevietnam.dev thiếp lập màn hình chờ để chuẩn bị cho những hiệu ứng của trang và cải thiện tăng dần trải nghiệm người dùng',
 	},
 	githubUrl: {
-		en: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/(localized)/blog/(posts)/20231220-behind-the-screen-progressive-enhancement/_page/content.en.md.svelte',
-		vi: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/(localized)/blog/(posts)/20231220-behind-the-screen-progressive-enhancement/_page/content.vi.md.svelte',
+		en: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/(localized)/blog/(posts)/20231220-behind-the-screen-progressive-splashscreen/_page/content.en.md.svelte',
+		vi: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/(localized)/blog/(posts)/20231220-behind-the-screen-progressive-splashscreen/_page/content.vi.md.svelte',
 	},
 	authors: [VNPHANQUANG],
 	originalLang: 'vi',
