@@ -3,7 +3,7 @@ import { defineMDSveXConfig } from 'mdsvex';
 import remarkContainers from 'remark-containers';
 import remarkGfm from 'remark-gfm';
 import { getHighlighterCore } from 'shikiji/core';
-import { getWasmInlined } from 'shikiji/wasm';
+import loadWasm from 'shikiji/wasm';
 
 /**
  * Returns code with curly braces and backticks replaced by HTML entity equivalents
@@ -18,10 +18,7 @@ function escapeHtml(code) {
 }
 
 const shiki = await getHighlighterCore({
-	themes: [
-		// or a dynamic import if you want to do chunk splitting
-		import('shikiji/themes/github-dark-dimmed.mjs'),
-	],
+	themes: [import('shikiji/themes/github-dark-dimmed.mjs')],
 	langs: [
 		import('shikiji/langs/javascript.mjs'),
 		import('shikiji/langs/typescript.mjs'),
@@ -29,7 +26,7 @@ const shiki = await getHighlighterCore({
 		import('shikiji/langs/shellscript.mjs'),
 		import('shikiji/langs/markdown.mjs'),
 	],
-	loadWasm: getWasmInlined,
+	loadWasm,
 });
 
 /**

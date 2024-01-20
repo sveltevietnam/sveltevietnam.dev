@@ -23,7 +23,7 @@
 		"@fastify/websocket": "^8.3.1",
 		"@types/node": "^20.11.5",
 		"discord.js": "^14.14.1",
-		"dotenv": "^16.3.1",
+		"dotenv": "^16.3.2",
 		"fastify": "^4.25.2",
 		"fastify-plugin": "^4.5.1",
 		"lodash.debounce": "^4.0.8",
