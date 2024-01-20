@@ -344,10 +344,10 @@ importers:
         specifier: ^4.20231218.0
         version: 4.20231218.0
       '@internals/isc':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../internals/isc
       '@internals/utils':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../internals/utils
       '@svelte-put/clickoutside':
         specifier: ^3.0.1
@@ -395,7 +395,7 @@ importers:
         specifier: ^3.0.1
         version: 3.0.1(svelte@4.2.8)(vite@5.0.11)
       '@sveltevietnam/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../libs/ui
       '@total-typescript/ts-reset':
         specifier: ^0.5.1
