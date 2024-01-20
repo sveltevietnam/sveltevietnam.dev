@@ -22,37 +22,14 @@
 	});
 </script>
 
-<progress max="100" value={$p * 100} style="--percentage: {$p * 100}%" aria-label="page loading"
-	>{$p}%</progress
+<div
+	class="fixed left-0 right-0 top-0 z-notification h-0.5 w-full"
+	style="--percentage: {$p * 100}%"
 >
-
-<style>
-	progress {
-		--percentage: 0%;
-
-		position: fixed;
-		z-index: theme('zIndex.notification');
-		top: 0;
-		right: 0;
-		left: 0;
-
-		width: 100%;
-		height: 2px;
-
-		visibility: hidden;
-
-		&::after {
-			content: '';
-
-			position: absolute;
-			top: 0;
-			left: 0;
-
-			width: var(--percentage);
-			height: 100%;
-
-			visibility: visible;
-			background-color: theme('colors.orange.DEFAULT');
-		}
-	}
-</style>
+	<progress max="100" value={$p * 100} aria-label="page loading" class="invisible">{$p}%</progress>
+	<div
+		class="absolute left-0 top-0 h-full bg-orange"
+		style:width="var(--percentage)"
+		aria-disabled
+	/>
+</div>
