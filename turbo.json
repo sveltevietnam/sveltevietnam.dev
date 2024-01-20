@@ -22,6 +22,8 @@
 			"outputs": []
 		},
 		"dev": {
+			"dependsOn": ["@sveltevietnam/ui#build"],
+			"outputs": ["*.dist.json"],
 			"cache": false
 		}
 	}
