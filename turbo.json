@@ -3,6 +3,7 @@
 	"pipeline": {
 		"dts": {
 			"dependsOn": ["^dts"],
+			"inputs": ["src/**/*.js", "*.config.js", "src/**/*.ts"],
 			"outputs": ["types/**"],
 			"cache": true
 		},
@@ -12,8 +13,19 @@
 			"cache": true
 		},
 		"build": {
-			"dependsOn": ["^build"],
-			"outputs": [".svelte-kit/**"]
+			"dependsOn": ["^build", "^dts"],
+			"outputs": [".svelte-kit/**"],
+			"inputs": [
+				"*.config.js",
+				"src/**/*.ts",
+				"src/**/*.js",
+				"src/**/*.svelte",
+				"src/**/*.css",
+				"src/**/*.json",
+				"src/**/*.svg",
+				"src/**/*.png",
+				"src/**/*.jpg"
+			]
 		},
 		"lint": {
 			"outputs": []
@@ -22,8 +34,8 @@
 			"outputs": []
 		},
 		"dev": {
-			"dependsOn": ["@sveltevietnam/ui#build"],
-			"outputs": ["*.dist.json"],
+			"dependsOn": ["@sveltevietnam/ui#build", "@internals/isc#dts", "@internals/utils#dts"],
+			"outputs": ["**/*.dist.json", "types/index.d.ts"],
 			"cache": false
 		}
 	}
