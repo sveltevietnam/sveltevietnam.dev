@@ -124,6 +124,12 @@ const status = Object.fromEntries(
 
 export const semantics = {
 	...status,
+	primary: {
+		DEFAULT: 'var(--color-primary)',
+	},
+	secondary: {
+		DEFAULT: 'var(--color-secondary)',
+	},
 	link: {
 		DEFAULT: 'var(--color-link)',
 	},

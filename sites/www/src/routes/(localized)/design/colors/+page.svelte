@@ -280,6 +280,20 @@
 					</ul>
 
 					<div class="swatch-card">
+						<div class="__color bg-primary" />
+						<div class="__description">
+							<p>{t.semantic.brand.colors.primary}</p>
+						</div>
+					</div>
+
+					<div class="swatch-card">
+						<div class="__color bg-secondary" />
+						<div class="__description">
+							<p>{t.semantic.brand.colors.secondary}</p>
+						</div>
+					</div>
+
+					<div class="swatch-card">
 						<div class="__color bg-link" />
 						<div class="__description">
 							<p>{t.semantic.brand.colors.link}</p>
@@ -360,7 +374,7 @@
 			<ul class="divider-border mt-[60px] max-w-[660px] divide-y font-medium" use:intersect>
 				<li>
 					<a
-						href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/lib/css/colors/index.js"
+						href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/libs/ui/css/colors/colors.js"
 						class="c-link c-link--box"
 						external
 					>
@@ -369,7 +383,7 @@
 				</li>
 				<li>
 					<a
-						href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/lib/css/theme.js"
+						href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/libs/ui/css/theme.js"
 						class="c-link c-link--box"
 						external
 					>
@@ -378,20 +392,11 @@
 				</li>
 				<li>
 					<a
-						href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/lib/css/colors/colors.css"
+						href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/libs/ui/css/colors/colors.css"
 						class="c-link c-link--box"
 						external
 					>
 						<span>{t.developers.links.cssVariables}</span>
-					</a>
-				</li>
-				<li>
-					<a
-						href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/lib/css/app.css"
-						class="c-link c-link--box"
-						external
-					>
-						<span>{t.developers.links.app}</span>
 					</a>
 				</li>
 			</ul>
