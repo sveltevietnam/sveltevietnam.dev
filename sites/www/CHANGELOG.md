@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.38
+
+### Minor Changes
+
+- [#219](https://github.com/sveltevietnam/sveltevietnam.dev/pull/219) [`18f6586`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/18f65867958676ed9b8a51489e1f77810d1f0f0a) Thanks [@vnphanquang](https://github.com/vnphanquang)! - /settings page and modal, allow user custom preferences on splash screen
+
 ## 1.0.0-next.37
 
 ### Minor Changes
