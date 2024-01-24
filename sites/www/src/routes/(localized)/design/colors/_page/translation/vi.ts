@@ -59,7 +59,6 @@ export const vi = {
 			jsToken: 'Khai báo từ khóa cho màu sắc với Javascript',
 			tailwindConfig: 'Cấu hình TailwindCSS sử dụng các khai báo vừa nêu',
 			cssVariables: 'Xây dựng màu ngữ nghĩa từ màu gốc với CSS custom property',
-			app: 'Stylesheet toàn cục tích hợp các màu ngữ nghĩa vừa nêu',
 		},
 	},
 };

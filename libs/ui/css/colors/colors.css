@@ -9,6 +9,12 @@
 	--color-bg-100: theme('colors.grayscale.50');
 	--color-bg-200: theme('colors.grayscale.100');
 
+	/* primary */
+	--color-primary: theme('colors.orange.500');
+
+	/* secondary */
+	--color-secondary: theme('colors.green.500');
+
 	/* link */
 	--color-link: theme('colors.orange.700');
 
@@ -60,6 +66,12 @@
 	--color-bg-100: theme('colors.grayscale.900');
 	--color-bg-200: theme('colors.grayscale.800');
 
+	/* primary */
+	--color-primary: theme('colors.orange.300');
+
+	/* secondary */
+	--color-secondary: theme('colors.green.300');
+
 	/* link */
 	--color-link: theme('colors.orange.400');
 
@@ -106,6 +118,14 @@
 	@dark {
 		@mixin colors-light;
 	}
+}
+
+.light {
+	@mixin colors-light;
+}
+
+.dark {
+	@mixin colors-dark;
 }
 
 :root {

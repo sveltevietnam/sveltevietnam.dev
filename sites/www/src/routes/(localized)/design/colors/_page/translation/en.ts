@@ -60,7 +60,6 @@ export const en = {
 			jsToken: 'Color token declarations in Javascript',
 			tailwindConfig: 'TailwindCSS theme configuration that imports the color declarations above',
 			cssVariables: 'CSS custom properties that build the semantic colors upon primitive ones',
-			app: 'Global stylesheet that imports the CSS setup above',
 		},
 	},
 } satisfies typeof import('./vi').vi;
