@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { afterNavigate } from '$app/navigation';
 	import { getLockScrollContext } from '$lib/contexts/lockscroll';
+	import { modalStore } from '$lib/modals';
 	import { getRoutingContext } from '$lib/routing/routing.context';
 	import { clamp } from '$lib/utils/clamp';
 
@@ -23,6 +24,12 @@
 	let scrollY = 0;
 	$: backdropOpacity = clamp(scrollY / MAX_SCROLL_Y, 0, 1);
 	$: isHomePage = $is($routes.home.path);
+
+	async function openSettings() {
+		modalStore.push({
+			component: (await import('$lib/modals/Settings')).Settings,
+		});
+	}
 </script>
 
 <svelte:window bind:scrollY />
@@ -79,7 +86,17 @@
 				<span>Svelte <br aria-disabled /> Vietnam</span>
 			</svelte:element>
 		</div>
+
 		<ColorSchemeMenu class="color-scheme" />
+
+		<a
+			href={$routes.settings.path}
+			class="settings c-link c-link--icon grid aspect-square h-8 place-items-center rounded-full border border-current"
+			on:click|preventDefault={openSettings}
+		>
+			<span class="sr-only">{$routes.settings.label}</span>
+			<svg inline-src="lucide/settings" width="20" height="20" />
+		</a>
 
 		<label class="mobile-open" for="header-mobile-overlay-toggler">
 			<span class="sr-only">Open mobile menu</span>
@@ -154,16 +171,16 @@
 
 	header > div {
 		display: grid;
-		grid-template-areas: 'logo color-scheme mobile-open';
-		grid-template-columns: 1fr auto auto;
+		grid-template-areas: 'logo color-scheme mobile-open settings';
+		grid-template-columns: 1fr auto auto auto;
 		column-gap: theme('spacing.4');
 		align-items: center;
 
 		height: theme('spacing.header');
 
 		@screen tb {
-			grid-template-areas: 'logo pages color-scheme languages';
-			grid-template-columns: auto 1fr auto auto;
+			grid-template-areas: 'logo pages color-scheme languages settings';
+			grid-template-columns: auto 1fr auto auto auto;
 		}
 	}
 
@@ -173,6 +190,10 @@
 
 	:global(.pages) {
 		grid-area: pages;
+	}
+
+	:global(.settings) {
+		grid-area: settings;
 	}
 
 	:global(.languages) {

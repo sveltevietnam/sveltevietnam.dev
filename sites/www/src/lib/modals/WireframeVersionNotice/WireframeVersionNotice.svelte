@@ -46,7 +46,7 @@
 
 <svelte:window use:shortcut={{ trigger: { key: 'Escape', callback: escape } }} />
 
-<div class="relative grid h-full w-full place-items-center">
+<div class="absolute inset-0 grid h-full w-full place-items-center">
 	<div
 		aria-disabled
 		class="absolute inset-0 -z-px backdrop-blur-sm"
