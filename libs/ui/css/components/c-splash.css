@@ -92,6 +92,7 @@
 		height: 100%;
 
 		font-size: 34px;
+		color: theme('colors.fg.DEFAULT');
 		text-transform: uppercase;
 
 		background-color: theme('colors.bg.DEFAULT');
