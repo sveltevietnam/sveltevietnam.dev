@@ -76,25 +76,25 @@
 		<li>
 			<a href={SOCIAL_LINKS.GITHUB} class="c-link c-link--icon" external>
 				<span class="sr-only">Github</span>
-				<svg height="16" width="16" inline-src="lucide/github" />
+				<svg height="16" width="16" inline-src="lucide/github" stroke-width="2" />
 			</a>
 		</li>
 		<li>
 			<a href={SOCIAL_LINKS.YOUTUBE} class="c-link c-link--icon" external>
 				<span class="sr-only">Youtube</span>
-				<svg height="16" width="16" inline-src="lucide/youtube" />
+				<svg height="16" width="16" inline-src="lucide/youtube" stroke-width="2" />
 			</a>
 		</li>
 		<li>
 			<a href={SOCIAL_LINKS.TWITTER} class="c-link c-link--icon" external>
 				<span class="sr-only">Twitter</span>
-				<svg height="16" width="16" inline-src="lucide/twitter" />
+				<svg height="16" width="16" inline-src="lucide/twitter" stroke-width="2" />
 			</a>
 		</li>
 		<li>
 			<a href={SOCIAL_LINKS.FACEBOOK} class="c-link c-link--icon" external>
 				<span class="sr-only">Facebook</span>
-				<svg height="16" width="16" inline-src="lucide/facebook" />
+				<svg height="16" width="16" inline-src="lucide/facebook" stroke-width="2" />
 			</a>
 		</li>
 	</ul>
@@ -125,9 +125,15 @@
 		</p>
 		<p class="footer-additional-links">
 			<a
+				href={$routes.settings.path}
+				class="c-link c-link--lazy"
+				aria-current={$is($routes.settings.path)}>{$routes.settings.label}</a
+			>
+			<span aria-disabled class="vertical-separator">|</span>
+			<a
 				href={$routes.codeOfConduct.path}
 				class="c-link c-link--lazy"
-				aria-current={$is($routes.codeOfConduct.path)}>{tComponent.navigation.codeOfConduct}</a
+				aria-current={$is($routes.codeOfConduct.path)}>{$routes.codeOfConduct.label}</a
 			>
 			<span aria-disabled class="vertical-separator">|</span>
 			<a href={$routes.rss.path} class="c-link c-link--lazy" external>RSS</a>

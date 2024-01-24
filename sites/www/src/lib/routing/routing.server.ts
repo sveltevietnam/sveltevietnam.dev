@@ -1,4 +1,5 @@
-import { localizeLangVar, delocalizeLangVar } from '@internals/utils/language';
+import { localizeLangVar, delocalizeLangVar, LANGUAGES } from '@internals/utils/language';
+import { getLangFromUrl } from '@internals/utils/url';
 
 import { ROUTE_MAP } from './routing.map';
 
@@ -20,6 +21,16 @@ export type Breadcrumb = {
 	label: string;
 	href?: string;
 };
+
+export function findRouteFromUrl(url: URL) {
+	const lang = getLangFromUrl(url, LANGUAGES);
+	if (!lang) return undefined;
+	const pathname = url.pathname;
+	const matches = Object.values(ROUTE_MAP)
+		.filter((routes) => pathname.startsWith(routes[lang].path))
+		.sort((a, b) => a[lang].path.length - b[lang].path.length);
+	return matches.at(-1);
+}
 
 /**
  * Computationally hungry, use in server only

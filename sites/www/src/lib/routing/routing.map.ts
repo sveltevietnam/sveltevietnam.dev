@@ -100,6 +100,16 @@ export const ROUTE_MAP = {
 			label: 'Roadmap',
 		},
 	},
+	settings: {
+		vi: {
+			path: '/vi/cai-dat',
+			label: 'Cài đặt',
+		},
+		en: {
+			path: '/en/settings',
+			label: 'Settings',
+		},
+	},
 	design: {
 		vi: {
 			path: '/vi/thiet-ke',

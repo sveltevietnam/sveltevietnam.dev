@@ -6,8 +6,6 @@ export const en = {
 	},
 	navigation: {
 		title: 'Navigation',
-		codeOfConduct: 'Code of Conduct',
-		design: 'Design',
 	},
 	contact: {
 		title: 'Contact',

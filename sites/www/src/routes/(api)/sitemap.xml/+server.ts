@@ -63,6 +63,7 @@ export const GET: RequestHandler = ({ url }) => {
 			// [ROUTE_MAP.people, 0.5] as const,
 			[ROUTE_MAP.sponsor, 0.6] as const,
 			[ROUTE_MAP.codeOfConduct, 0.3] as const,
+			[ROUTE_MAP.settings, 0.4] as const,
 			[ROUTE_MAP.design, 0.2] as const,
 			[ROUTE_MAP.design_typography, 0.2] as const,
 			[ROUTE_MAP.design_colors, 0.2] as const,
