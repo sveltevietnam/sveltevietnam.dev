@@ -6,11 +6,11 @@
 This is the second part of the "Behind the Screen" blog series, where I share my experience and lessons learned while building *sveltevietnam.dev*. You can read the [first part here](/blog/20231009-behind-the-screen-a-yes-code-blog-of-svelte-vietnam) (not a prerequisite for this post).
 :::
 
-Today, dark mode is becoming a common and even necessary feature to provide a complete user experience. Although the problem seems simple on the surface, it does require meticulous work and a combination of many small details from many different technologies. This blog post discusses one of many possible implementations of dark mode with Svelte and SvelteKit. Most of the details, however, are language-agnostic, you can apply them to any framework and front-end project.
+Today, dark mode is becoming a common and even necessary feature to provide a complete user experience. Although the problem seems simple on the surface, it does require meticulous work and a combination of many small details from many different technologies. This blog post discusses one of many possible implementations of dark mode with Svelte and SvelteKit. Most of the details, however, are framework-agnostic, you can apply them to any framework and front-end project.
 
 ## Dark Mode with CSS
 
-First, we look at the simplest strategy to implement a dark mode with CSS Custom Properties. Let's take an example where we have set up a system like this:
+First, we look at the simplest strategy to implement a dark mode with [CSS Custom Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties). Let's take an example where we have set up a system like this:
 
 ```css
 :root {
@@ -192,7 +192,7 @@ Much more concise yeah? I will not discuss this plugin in details here, you can 
 
 ## CSS for Dark Mode in Svelte Component
 
-After using Svelte for a while, you will know that CSS in Svelte is "component-scoped" and the Svelte compiler will automatically purge CSS code that is not applicable in the current component. For example, we have the following Svelte component:
+After using Svelte for a while, you will know that CSS in Svelte is "component-scoped" and the Svelte compiler will automatically purge CSS code that does not match any HTML in the current component. Say, for example, we have the following Svelte component:
 
 ```svelte
 <div class="box" />
@@ -216,7 +216,7 @@ Svelte will add a hash to the class `.box`, making it into something like `.box.
 }
 ```
 
-When we setup dark mode (regardless of using `@dark` or not), we will encounter this situation, because `html` or `:root` does not exist locally in the component. In that case, remember to add `:global`. Or if using `postcss-color-scheme` add `global` like this:
+When we setup dark mode (regardless of using `@dark` or not), we will encounter this situation, because `html` or `:root` does not exist locally in the component. In that case, remember to add `:global`. Or if using `postcss-color-scheme`, just add the `global` modifier like this:
 
 ```css
 .box {
@@ -328,7 +328,7 @@ Not relying on Javascript means our application is more accessible. **svelteviet
 
 ## Caching User Preference with Cookie and SvelteKit
 
-The most common method to store the current display mode is to use web storage such as [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) or [sessionStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage). However, JS needs to be loaded before we can access web storage, which results in a common flash-of-content issue because the UI first renders in its default mode then updated to the correct settings only after they are read by JS. We can work around this by blocking the application from rendering until JS is loaded, but this also degrades user experience, and worse, the application will not work if a user cannot access JS (which happens more often than we think, read more [here](https://kryogenix.org/code/browser/everyonehasjs.html)).
+The most common method to store the current display mode is to use web storage such as [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) or [sessionStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage). However, JS needs to be loaded before we can access web storage, which results in a common flash-of-content issue because the UI first renders in its default mode then updated to the correct settings only after they are read by JS. We can work around this by blocking the application from rendering until JS is loaded, but this also degrades user experience, and worse, the application will not work if a user cannot access JS (which happens more often than we think, [read more here](https://kryogenix.org/code/browser/everyonehasjs.html)).
 
 :::div c-callout c-callout--warning
 A workaround for this workaround is to work around once more: you can technically have a blocking script tag (vanilla JS) that does the necessary logics to initiate the correct display mode. In SvelteKit this script tag would typically be placed in `app.html` before any app markup. I will let you be the judge of whether this is a good idea or not.
@@ -589,7 +589,7 @@ The *sveltevietnam.dev* project also uses Figma as the design tool and takes adv
 
 ## Closing
 
-We have discussed a lot of different details and aspects of implementing dark mode in a SvelteKit application in particular, and a front-end project in general. If you are still reading, that is amazing - thank you for enduring my lengthy writing! If you have any question or comment, be sure to drop by our [Discord](https://discord.sveltevietnam.dev) and discuss further!
+We have discussed a lot of different details and aspects of implementing dark mode in a SvelteKit application in particular, and a front-end project in general. If you are still reading, that is amazing - thank you for enduring my lengthy writing! If you have any question or comment, be sure to drop by our [Discord](https://discord.sveltevietnam.dev) for further discussion!
 
 :::div c-callout c-callout--info
 You can find the next post in the "Behind the Screen" series at "[A few secrets of sveltevietnam](/blog/20231204-behind-the-screen-a-few-secrets-of-sveltevietnam-dev)".
