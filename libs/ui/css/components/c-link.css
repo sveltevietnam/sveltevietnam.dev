@@ -142,7 +142,7 @@
 		```
 	*/
 	&:where(:--lazy) {
-		transition: color 400ms ease-out;
+		transition: color 250ms ease-out;
 
 		&:hover,
 		&[aria-current]:not([aria-current='false']) {
