@@ -6,12 +6,13 @@ import { translations as mailT } from '$lib/forms/actions/mail/translation';
 
 import type { LayoutServerLoad } from './$types';
 
-export const load: LayoutServerLoad = async ({ depends, locals: { language } }) => {
+export const load: LayoutServerLoad = async ({ depends, locals }) => {
+	const lang = locals.settings.language;
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	const mailForm = await superValidate(mailSchema);
 	return {
 		mail: {
-			translation: mailT[language],
+			translation: mailT[lang],
 			form: mailForm,
 		},
 	};

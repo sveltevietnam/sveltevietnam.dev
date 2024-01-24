@@ -1,34 +1,18 @@
-<script context="module" lang="ts">
-	export const translations = {
-		en: {
-			dark: 'Dark',
-			light: 'Light',
-			system: 'System',
-		},
-		vi: {
-			dark: 'Tối',
-			light: 'Sáng',
-			system: 'Hệ thống',
-		},
-	};
-</script>
-
 <script lang="ts">
 	import { clickoutside } from '@svelte-put/clickoutside';
 
 	import { COLOR_SCHEMES } from '$lib/constants';
-	import { getColorSchemeContext } from '$lib/contexts/color-scheme';
 	import { getLangContext } from '$lib/contexts/lang';
+	import { getSettingsContext } from '$lib/contexts/settings';
 
 	import ColorSchemeIcon from './ColorSchemeIcon.svelte';
 
 	let cls = '';
 	export { cls as class };
 
-	const { lang } = getLangContext();
-	$: t = translations[$lang];
+	const { t } = getLangContext();
+	const { colorScheme } = getSettingsContext();
 
-	const colorSchemeStore = getColorSchemeContext();
 	let open = false;
 
 	function toggle(force?: boolean) {
@@ -41,14 +25,18 @@
 <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 <div class="color-scheme-menu csm relative {cls}">
 	<label
-		for="csm-toggler"
-		class="grid h-8 cursor-pointer place-items-center rounded-2xl border border-current px-3 hover:text-link"
+		class="c-link c-link--icon grid h-8 cursor-pointer place-items-center rounded-2xl border border-current px-3"
+		id="csm-toggler"
 		on:click|stopPropagation
 	>
-		<ColorSchemeIcon scheme={$colorSchemeStore} width={24} height={24} />
+		<ColorSchemeIcon scheme={$colorScheme} width={20} height={20} />
+		<input type="checkbox" bind:checked={open} class="sr-only" />
 	</label>
-	<input type="checkbox" id="csm-toggler" hidden bind:checked={open} />
-	<div class="csm-dropdown" use:clickoutside={{ enabled: open }} on:clickoutside={() => toggle()}>
+	<div
+		class="csm-dropdown"
+		use:clickoutside={{ enabled: open }}
+		on:clickoutside={() => toggle(false)}
+	>
 		<div class="overflow-hidden">
 			<svg
 				width="12"
@@ -72,17 +60,17 @@
 						<form
 							method="GET"
 							on:submit|preventDefault={() => {
-								colorSchemeStore.change(scheme);
+								$colorScheme = scheme;
 								toggle(false);
 							}}
 						>
 							<label
-								class="w-100% flex cursor-pointer items-center p-2.5 hover:text-link"
-								class:text-link={scheme === $colorSchemeStore}
+								class="w-100% relative flex cursor-pointer items-center p-2.5 hover:text-link"
+								class:text-link={scheme === $colorScheme}
 							>
-								<input type="submit" value={scheme} name="color-scheme" hidden />
+								<input type="submit" value={scheme} name="color-scheme" class="sr-only" />
 								<ColorSchemeIcon {scheme} />
-								<span class="c-text-body2 ml-2">{t[scheme]}</span>
+								<span class="c-text-body2 ml-2">{$t.common.colorSchemes[scheme]}</span>
 							</label>
 						</form>
 					</li>
@@ -108,7 +96,7 @@
 		transition: grid-template-rows 150ms ease-out;
 	}
 
-	#csm-toggler:checked + .csm-dropdown {
+	.csm:has(#csm-toggler input:checked) .csm-dropdown {
 		grid-template-rows: 1fr;
 	}
 

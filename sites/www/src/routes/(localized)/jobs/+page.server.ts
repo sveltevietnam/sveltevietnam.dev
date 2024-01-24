@@ -30,14 +30,15 @@ const metaTranslations = {
 	},
 };
 
-export const load: PageServerLoad = async ({ url, depends, locals: { language } }) => {
+export const load: PageServerLoad = async ({ depends, locals }) => {
+	const lang = locals.settings.language;
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	const mailForm = await superValidate(mailSchema);
 	return {
-		route: prepareRoutePageData(language, 'jobs'),
+		route: prepareRoutePageData(lang, 'jobs'),
 		translations: {
-			page: tPage[language],
-			mail: tMail[language],
+			page: tPage[lang],
+			mail: tMail[lang],
 		},
 		jobs: {
 			fromSponsors: [],
@@ -46,7 +47,7 @@ export const load: PageServerLoad = async ({ url, depends, locals: { language } 
 				jobs: [],
 			},
 		},
-		meta: metaTranslations[language],
+		meta: metaTranslations[lang],
 		mailForm,
 	};
 };

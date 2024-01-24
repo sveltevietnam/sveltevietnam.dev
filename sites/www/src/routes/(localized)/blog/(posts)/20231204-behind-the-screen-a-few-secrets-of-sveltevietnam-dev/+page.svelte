@@ -1,12 +1,11 @@
 <script lang="ts">
+	import { getLangContext } from '$lib/contexts/lang';
 	import { localizeBlogContent } from '$lib/data/blog';
 
-	import type { PageData } from './$types';
 	import { content } from './_page/data';
 
-	export let data: PageData;
-
-	$: component = localizeBlogContent(data.language, content);
+	const { lang } = getLangContext();
+	$: component = localizeBlogContent($lang, content);
 </script>
 
 <svelte:component this={component} />

@@ -8,7 +8,7 @@
 	export { cls as class };
 
 	const { current } = getRoutingContext();
-	const { lang } = getLangContext();
+	const { lang, t } = getLangContext();
 
 	function changeLanguage(lang: App.Language) {
 		if (lang !== document.documentElement.getAttribute('lang')) {
@@ -19,7 +19,7 @@
 </script>
 
 <nav
-	aria-label="languages"
+	aria-label={$t.common.language}
 	data-sveltekit-noscroll
 	class="contents"
 	data-sveltekit-preload-data="hover"

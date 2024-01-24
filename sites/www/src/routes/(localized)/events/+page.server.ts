@@ -31,17 +31,18 @@ const metaTranslations: Record<App.Language, App.PageData['meta']> = {
 	},
 };
 
-export const load: PageServerLoad = async ({ url, depends, locals: { language } }) => {
+export const load: PageServerLoad = async ({ depends, locals }) => {
+	const lang = locals.settings.language;
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	const mailForm = await superValidate(mailSchema);
 	return {
-		route: prepareRoutePageData(language, 'events'),
+		route: prepareRoutePageData(lang, 'events'),
 		translations: {
-			page: pageT[language],
-			mail: mailT[language],
+			page: pageT[lang],
+			mail: mailT[lang],
 		},
-		events: listEvents(language),
-		meta: metaTranslations[language],
+		events: listEvents(lang),
+		meta: metaTranslations[lang],
 		mailForm,
 	};
 };

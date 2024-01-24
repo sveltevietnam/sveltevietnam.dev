@@ -28,9 +28,9 @@
 	import { PUBLIC_DISCORD_WS_URL } from '$env/static/public';
 	import { Footer } from '$lib/components/Footer';
 	import { Header } from '$lib/components/Header';
-	import { setColorSchemeContext } from '$lib/contexts/color-scheme.js';
 	import { setLangContext } from '$lib/contexts/lang';
 	import { setLockScrollContext } from '$lib/contexts/lockscroll.js';
+	import { setSettingsContext } from '$lib/contexts/settings';
 	import { setSplashContext } from '$lib/contexts/splash.js';
 	import { modalStore } from '$lib/modals';
 	import NotificationPortal from '$lib/notifications/NotificationPortal.svelte';
@@ -45,13 +45,16 @@
 	// CONTEXTS
 	const splashStore = setSplashContext();
 	const lockScrollStore = setLockScrollContext();
-	setColorSchemeContext(data.colorScheme);
-	const { lang } = setLangContext(data.language);
+	const { language, accessibility, colorScheme, splash } = setSettingsContext(data.settings);
+	setLangContext(language);
 	const noti = setNotificationContext();
-	const { current } = setRoutingContext(lang, $page.data.route);
+	const { current } = setRoutingContext(language, $page.data.route);
 
 	$: $current = $page.data.route;
-	$: $lang = data.language;
+	$: $language = data.settings.language;
+	$: $colorScheme = data.settings.colorScheme;
+	$: $splash = data.settings.splash;
+	$: $accessibility = data.settings.accessibility;
 
 	type DiscordEventData = {
 		type: 'message';
@@ -71,7 +74,7 @@
 					if (payload.type === 'message') {
 						noti.helpers.discord({
 							...payload.data,
-							language: data.language,
+							language: $language,
 						});
 					}
 				} catch (error) {
@@ -107,13 +110,13 @@
 	let notifiedAboutNewVersion = false;
 	$: if ($updated && !notifiedAboutNewVersion) {
 		notifiedAboutNewVersion = true;
-		noti.helpers.info(translations[data.language].newVersion);
+		noti.helpers.info(translations[$language].newVersion);
 	}
 
 	let notifiedAboutSlowHydration = false;
 	$: if ($splashStore.isSlowHydration && !notifiedAboutSlowHydration) {
 		notifiedAboutSlowHydration = true;
-		noti.helpers.info(translations[data.language].slowHydration);
+		noti.helpers.info(translations[$language].slowHydration);
 	}
 </script>
 

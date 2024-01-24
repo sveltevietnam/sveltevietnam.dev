@@ -36,17 +36,22 @@ declare global {
 			label: string;
 		};
 		declare type Language = import('@internals/utils/language').Language;
+		declare type Settings = {
+			language: Language;
+			colorScheme: ColorScheme;
+			splash: 'short' | 'long' | 'random' | 'disabled';
+			accessibility: {
+				reduceMotion: boolean;
+			};
+		};
 
 		interface Locals {
 			userId: string;
-			colorScheme: ColorScheme;
-			language: Language;
 			version: string;
 			internalReferer?: URL;
+			settings: Settings;
 		}
 		interface PageData {
-			colorScheme: ColorScheme;
-			language: Language;
 			route: {
 				current: Route;
 				alternate: Record<Language, Omit<Route, 'key'>>;
