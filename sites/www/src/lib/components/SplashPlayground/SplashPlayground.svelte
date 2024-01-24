@@ -113,7 +113,7 @@
 				<span>{t.variants.long}</span>
 			</label>
 		</div>
-		<button class="c-btn w-28" on:click={splashToggle}>
+		<button class="c-btn w-28" on:click={splashToggle} type="button">
 			{#if $controls === 'paused'}
 				{t.controls.play}
 			{:else}
@@ -148,6 +148,7 @@
 <style lang="postcss">
 	.splash-playground {
 		overflow: hidden;
+		background-color: theme('colors.bg.DEFAULT');
 		border: 1px solid theme('colors.outline.DEFAULT');
 
 		& .c-splash {
