@@ -28,12 +28,8 @@ const metaTranslations = {
 };
 
 export const prerender = false;
-export const load: PageServerLoad = async ({
-	depends,
-	locals: { language },
-	params: { token },
-	fetch,
-}) => {
+export const load: PageServerLoad = async ({ depends, locals, params: { token }, fetch }) => {
+	const lang = locals.settings.language;
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 
 	const response = await fetch(
@@ -49,7 +45,7 @@ export const load: PageServerLoad = async ({
 
 	const form = await superValidate(json.data, UpdateDomainSubscriptionRequestSchema);
 
-	const route = structuredClone(prepareRoutePageData(language, 'subscriptions'));
+	const route = structuredClone(prepareRoutePageData(lang, 'subscriptions'));
 	// CAUTION: cloning here to avoid mutating the original route
 	route.current.path += `/${token}`;
 	route.alternate.en.path += `/${token}`;
@@ -59,18 +55,19 @@ export const load: PageServerLoad = async ({
 		route,
 		form,
 		translations: {
-			page: pageT[language],
+			page: pageT[lang],
 		},
 		events: {
 			upcoming: [],
 			past: [],
 		},
-		meta: metaTranslations[language],
+		meta: metaTranslations[lang],
 	};
 };
 
 export const actions: Actions = {
-	update: async ({ request, locals: { language }, params: { token } }) => {
+	update: async ({ request, locals, params: { token } }) => {
+		const lang = locals.settings.language;
 		const form = await superValidate<typeof UpdateDomainSubscriptionRequestSchema, FormMessage>(
 			request,
 			UpdateDomainSubscriptionRequestSchema,
@@ -79,7 +76,7 @@ export const actions: Actions = {
 			return fail(400, { form });
 		}
 
-		const t = pageT[language];
+		const t = pageT[lang];
 
 		const response = await fetch(
 			await createUpdateDomainSubscriptionRequest(form.data, {

@@ -17,13 +17,14 @@ const metaTranslations = {
 	},
 };
 
-export const load: PageServerLoad = ({ url, depends, locals: { language } }) => {
+export const load: PageServerLoad = ({ depends, locals }) => {
+	const lang = locals.settings.language;
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	return {
-		route: prepareRoutePageData(language, 'design_colors'),
+		route: prepareRoutePageData(lang, 'design_colors'),
 		translations: {
-			page: pageT[language],
+			page: pageT[lang],
 		},
-		meta: metaTranslations[language],
+		meta: metaTranslations[lang],
 	};
 };

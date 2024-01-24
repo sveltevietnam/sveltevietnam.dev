@@ -40,16 +40,17 @@ const issueTemplateLinks = {
 	},
 } as const;
 
-export const load: PageServerLoad = async ({ depends, locals: { language } }) => {
+export const load: PageServerLoad = async ({ depends, locals }) => {
+	const lang = locals.settings.language;
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	return {
-		route: prepareRoutePageData(language, 'blog'),
+		route: prepareRoutePageData(lang, 'blog'),
 		translations: {
-			page: pageT[language],
+			page: pageT[lang],
 		},
-		issueTemplateLinks: issueTemplateLinks[language],
+		issueTemplateLinks: issueTemplateLinks[lang],
 		meta: {
-			...metaTranslations[language],
+			...metaTranslations[lang],
 			og: {
 				image: ogImage,
 			},
@@ -59,8 +60,8 @@ export const load: PageServerLoad = async ({ depends, locals: { language } }) =>
 			} as WithContext<Blog>),
 		},
 		posts: {
-			internal: INTERNAL_POSTS.map((post) => localizePost(language, post)),
-			external: EXTERNAL_POSTS.map((post) => localizeExternalPost(language, post)),
+			internal: INTERNAL_POSTS.map((post) => localizePost(lang, post)),
+			external: EXTERNAL_POSTS.map((post) => localizeExternalPost(lang, post)),
 		},
 	};
 };

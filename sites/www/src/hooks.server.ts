@@ -1,10 +1,16 @@
 import { LANGUAGES, DEFAULT_LANGUAGE, delocalizeLangVar } from '@internals/utils/language';
 import { localizeUrl, getLangFromUrl, delocalizeUrl } from '@internals/utils/url';
-import { redirect, type Cookies, type Handle } from '@sveltejs/kit';
+import { redirect, type Handle } from '@sveltejs/kit';
 
 import { building } from '$app/environment';
-import { COOKIE_LANGUAGE, COOKIE_USER_ID, COOKIE_LAST_FRESH_VISIT_AT } from '$env/static/private';
-import { PUBLIC_COOKIE_COLOR_SCHEME } from '$env/static/public';
+import { COOKIE_USER_ID, COOKIE_LAST_FRESH_VISIT_AT } from '$env/static/private';
+import {
+	PUBLIC_COOKIE_SETTINGS_ACCESSIBILITY_REDUCE_MOTION,
+	PUBLIC_COOKIE_SETTINGS_COLOR_SCHEME,
+	PUBLIC_COOKIE_SETTINGS_LANGUAGE,
+	PUBLIC_COOKIE_SETTINGS_SPLASH,
+} from '$env/static/public';
+import { COMMON_COOKIE_CONFIG, PUBLIC_COOKIE_CONFIG } from '$lib/constants';
 import { INTERNAL_POSTS } from '$lib/data/blog';
 import { EVENTS } from '$lib/data/events';
 import { ROUTE_MAP } from '$lib/routing/routing.map';
@@ -53,13 +59,6 @@ const REDIRECT_MAP = {
 	),
 };
 
-const COMMON_COOKIE_CONFIG: Parameters<Cookies['set']>[2] = {
-	path: '/',
-	secure: true,
-	httpOnly: true,
-	maxAge: 604800, // 7 days
-};
-
 export const handle: Handle = async ({ event, resolve }) => {
 	const { locals, cookies, url, route, platform, request } = event;
 
@@ -100,7 +99,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		}
 
 		// if user has cookie lang, redirect accordingly
-		const cookieLang = cookies.get(COOKIE_LANGUAGE);
+		const cookieLang = cookies.get(PUBLIC_COOKIE_SETTINGS_LANGUAGE);
 		if (cookieLang && cookieLang !== 'vi') {
 			redirect(302, localizeUrl(url, cookieLang, LANGUAGES));
 		}
@@ -116,19 +115,35 @@ export const handle: Handle = async ({ event, resolve }) => {
 		if (building && url.origin === 'http://sveltekit-prerender') languageFromUrl = 'vi';
 		else redirect(302, localizeUrl(url, 'vi', LANGUAGES));
 	}
-	locals.language = languageFromUrl;
-	cookies.set(COOKIE_LANGUAGE, locals.language, COMMON_COOKIE_CONFIG);
 
-	locals.colorScheme =
-		(url.searchParams.get('color-scheme') as App.ColorScheme) ||
-		(cookies.get(PUBLIC_COOKIE_COLOR_SCHEME) as App.ColorScheme) ||
-		'system';
-	cookies.set(PUBLIC_COOKIE_COLOR_SCHEME, locals.colorScheme, {
-		...COMMON_COOKIE_CONFIG,
-		httpOnly: false,
-	});
+	locals.settings = {
+		language: languageFromUrl,
+		colorScheme:
+			(url.searchParams.get('color-scheme') as App.ColorScheme) ||
+			(cookies.get(PUBLIC_COOKIE_SETTINGS_COLOR_SCHEME) as App.ColorScheme) ||
+			'system',
+		splash: (cookies.get(PUBLIC_COOKIE_SETTINGS_SPLASH) as App.Settings['splash']) || 'random',
+		accessibility: {
+			reduceMotion: cookies.get(PUBLIC_COOKIE_SETTINGS_ACCESSIBILITY_REDUCE_MOTION) === 'true',
+		},
+	} satisfies App.Settings;
+
+	// get & set settings.language
+	cookies.set(PUBLIC_COOKIE_SETTINGS_LANGUAGE, locals.settings.language, COMMON_COOKIE_CONFIG);
+	cookies.set(
+		PUBLIC_COOKIE_SETTINGS_COLOR_SCHEME,
+		locals.settings.colorScheme,
+		PUBLIC_COOKIE_CONFIG,
+	);
+	cookies.set(PUBLIC_COOKIE_SETTINGS_SPLASH, locals.settings.splash, PUBLIC_COOKIE_CONFIG);
+	cookies.set(
+		PUBLIC_COOKIE_SETTINGS_ACCESSIBILITY_REDUCE_MOTION,
+		locals.settings.accessibility.reduceMotion.toString(),
+		PUBLIC_COOKIE_CONFIG,
+	);
 
 	let shouldSkipSlash = true;
+	let splashVariant = Math.random() < 0.75 ? 'short' : 'long';
 	/**
 	 * take a timestamp for the last fresh visit, that is:
 	 *   - a visit without an "internal referer" (i.e not navigated from within the site), or
@@ -139,7 +154,12 @@ export const handle: Handle = async ({ event, resolve }) => {
 	 */
 	let lastFreshVisitAt = cookies.get(COOKIE_LAST_FRESH_VISIT_AT);
 	if (!lastFreshVisitAt || !locals.internalReferer) {
-		shouldSkipSlash = false;
+		if (locals.settings.splash !== 'disabled') {
+			shouldSkipSlash = false;
+			if (locals.settings.splash !== 'random') {
+				splashVariant = locals.settings.splash;
+			}
+		}
 		lastFreshVisitAt = Date.now().toString();
 		cookies.set(COOKIE_LAST_FRESH_VISIT_AT, lastFreshVisitAt, {
 			...COMMON_COOKIE_CONFIG,
@@ -150,9 +170,10 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const response = await resolve(event, {
 		transformPageChunk: ({ html }) =>
 			html
-				.replace('%cookie-color-scheme%', event.locals.colorScheme)
-				.replace('%language%', event.locals.language)
-				.replace('%splash-variant%', Math.random() < 0.75 ? 'short' : 'long')
+				.replace('%language%', locals.settings.language)
+				.replace('%color-scheme%', locals.settings.colorScheme)
+				.replace('%reduce-motion%', locals.settings.accessibility.reduceMotion.toString())
+				.replace('%splash-variant%', splashVariant)
 				.replace('%splash-skip%', String(shouldSkipSlash)),
 	});
 

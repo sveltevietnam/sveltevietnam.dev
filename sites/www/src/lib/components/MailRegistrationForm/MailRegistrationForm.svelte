@@ -13,8 +13,8 @@
 	import { superForm } from 'sveltekit-superforms/client';
 
 	import { PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
-	import { getColorSchemeContext } from '$lib/contexts/color-scheme';
 	import { getLangContext } from '$lib/contexts/lang';
+	import { getSettingsContext } from '$lib/contexts/settings';
 	import type { FormMessage } from '$lib/forms';
 	import { getNotificationContext } from '$lib/notifications';
 	import { turnstile } from '$lib/turnstile/turnstile.action';
@@ -58,8 +58,8 @@
 		}
 	}
 
-	const colorSchemeStore = getColorSchemeContext();
-	$: preferred = colorSchemeStore.preferred;
+	const { colorScheme } = getSettingsContext();
+	$: preferred = colorScheme.preferred;
 </script>
 
 <form class="space-y-6 {cls}" method="POST" use:enhance {action} autocomplete="on">

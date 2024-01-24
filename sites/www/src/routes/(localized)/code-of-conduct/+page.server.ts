@@ -25,13 +25,14 @@ const metaTranslations: Record<App.Language, App.PageData['meta']> = {
 	},
 };
 
-export const load: PageServerLoad = async ({ url, depends, locals: { language } }) => {
+export const load: PageServerLoad = async ({ depends, locals }) => {
+	const lang = locals.settings.language;
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	return {
-		route: prepareRoutePageData(language, 'codeOfConduct'),
+		route: prepareRoutePageData(lang, 'codeOfConduct'),
 		translations: {
-			page: translations[language],
+			page: translations[lang],
 		},
-		meta: metaTranslations[language],
+		meta: metaTranslations[lang],
 	};
 };

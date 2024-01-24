@@ -14,23 +14,24 @@ import {
 import type { LayoutServerLoad } from './$types';
 import { translations } from './translation';
 
-export const load: LayoutServerLoad = async ({ url, depends, locals: { language } }) => {
+export const load: LayoutServerLoad = async ({ url, depends, locals }) => {
+	const lang = locals.settings.language;
 	const slug = url.pathname.split('/').at(-1);
 	const post = findPostBySlug(INTERNAL_POSTS, slug);
 	if (!post) error(404, 'No such post');
 
-	const latestInternal = INTERNAL_POSTS.find((p) => !isSamePost(language, p, post));
-	const inSeries = searchPostsInSameSeries(language, INTERNAL_POSTS, post);
+	const latestInternal = INTERNAL_POSTS.find((p) => !isSamePost(lang, p, post));
+	const inSeries = searchPostsInSameSeries(lang, INTERNAL_POSTS, post);
 
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	return {
 		latest: {
-			internal: !latestInternal ? [] : [latestInternal].map((p) => localizePost(language, p)),
-			external: EXTERNAL_POSTS.slice(0, 1).map((p) => localizeExternalPost(language, p)),
+			internal: !latestInternal ? [] : [latestInternal].map((p) => localizePost(lang, p)),
+			external: EXTERNAL_POSTS.slice(0, 1).map((p) => localizeExternalPost(lang, p)),
 		},
-		inSeries: inSeries.map((posts) => posts.map((p) => localizePost(language, p))),
+		inSeries: inSeries.map((posts) => posts.map((p) => localizePost(lang, p))),
 		translations: {
-			layout: translations[language],
+			layout: translations[lang],
 		},
 	};
 };

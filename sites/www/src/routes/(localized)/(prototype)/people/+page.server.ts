@@ -18,14 +18,15 @@ const metaTranslations = {
 	},
 };
 
-export const load: PageServerLoad = ({ depends, locals: { language } }) => {
+export const load: PageServerLoad = ({ depends, locals }) => {
+	const lang = locals.settings.language;
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	return {
-		route: prepareRoutePageData(language, 'people'),
+		route: prepareRoutePageData(lang, 'people'),
 		translations: {
-			page: translations[language],
+			page: translations[lang],
 		},
 		contributors: createMockedContributors(),
-		meta: metaTranslations[language],
+		meta: metaTranslations[lang],
 	};
 };

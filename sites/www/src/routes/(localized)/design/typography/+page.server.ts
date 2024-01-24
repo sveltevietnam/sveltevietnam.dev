@@ -16,15 +16,16 @@ const metaTranslations = {
 	},
 };
 
-export const load: PageServerLoad = ({ url, depends, locals: { language } }) => {
+export const load: PageServerLoad = ({ depends, locals }) => {
+	const lang = locals.settings.language;
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	return {
-		route: prepareRoutePageData(language, 'design_typography'),
+		route: prepareRoutePageData(lang, 'design_typography'),
 		translations: {
 			page: {
-				title: language === 'en' ? 'Typography' : 'Chữ viết',
+				title: lang === 'en' ? 'Typography' : 'Chữ viết',
 			},
 		},
-		meta: metaTranslations[language],
+		meta: metaTranslations[lang],
 	};
 };

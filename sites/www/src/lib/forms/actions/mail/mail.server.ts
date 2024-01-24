@@ -19,7 +19,7 @@ export async function mail<E extends RequestEvent>(event: E, domain: Subscriptio
 	const { request, locals, fetch } = event;
 
 	// create i18n-aware validation schema
-	const t = translations[locals.language].validation;
+	const t = translations[locals.settings.language].validation;
 	const schema = object({
 		name: string({ invalid_type_error: t.error.captcha.required }).min(1, {
 			message: t.error.name.required,
@@ -51,7 +51,7 @@ export async function mail<E extends RequestEvent>(event: E, domain: Subscriptio
 				email: form.data.email,
 				name: form.data.name,
 				domain,
-				language: locals.language,
+				language: locals.settings.language,
 			},
 			{
 				clientID: MAILER_CLIENT_ID,

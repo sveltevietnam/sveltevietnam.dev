@@ -25,13 +25,14 @@ const metaTranslations: Record<App.Language, App.PageData['meta']> = {
 	},
 };
 
-export const load: PageServerLoad = ({ url, depends, locals: { language } }) => {
+export const load: PageServerLoad = ({ depends, locals }) => {
+	const lang = locals.settings.language;
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	return {
-		route: prepareRoutePageData(language, 'sponsor'),
+		route: prepareRoutePageData(lang, 'sponsor'),
 		translations: {
-			page: translations[language],
+			page: translations[lang],
 		},
-		meta: metaTranslations[language],
+		meta: metaTranslations[lang],
 	};
 };

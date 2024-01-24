@@ -9,8 +9,8 @@
 	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
 	import ExternalBlogPostItem from '$lib/components/ExternalBlogPostItem/ExternalBlogPostItem.svelte';
 	import { Person } from '$lib/components/Person';
+	import { getLangContext } from '$lib/contexts/lang';
 	import { modalStore } from '$lib/modals';
-	import { QRCode } from '$lib/modals/QRCode';
 	import { getNotificationContext } from '$lib/notifications';
 	import type { Breadcrumb } from '$lib/routing/routing.server';
 	import { textTip } from '$lib/tooltips';
@@ -25,17 +25,18 @@
 
 	export let data: LayoutData;
 
+	const { lang } = getLangContext();
+	const noti = getNotificationContext();
+
 	$: meta = $page.data.meta;
 	$: post = $page.data.post;
-	$: isLangNotSupported = !$page.data.supportedLanguages?.includes($page.data.language);
+	$: isLangNotSupported = !$page.data.supportedLanguages?.includes($lang);
 	$: breadcrumbs = [...data.breadcrumbs, { label: post?.title ?? '' }] satisfies Breadcrumb[];
 
 	$: encodedCanonical = encodeURIComponent(meta?.canonical ?? '');
 	$: encodedTitle = encodeURIComponent(post?.title ?? '');
 
 	$: t = data.translations.layout;
-
-	const noti = getNotificationContext();
 
 	function onCopiedCanonical() {
 		noti.helpers.success(t.urlCopyNotice);
@@ -44,7 +45,7 @@
 
 	async function onClickQRLink() {
 		modalStore.push({
-			component: QRCode,
+			component: (await import('$lib/modals/QRCode')).QRCode,
 			props: {
 				data: meta?.canonical ?? '',
 				texts: {
@@ -56,7 +57,7 @@
 	}
 
 	$: langVersion =
-		data.language === post?.originalLang || isLangNotSupported
+		$lang === post?.originalLang || isLangNotSupported
 			? t.language.original
 			: t.language.translated;
 	let stats = '';
@@ -107,7 +108,7 @@
 					<div class="mb-2 separator" />
 					<div class="c-text-cap1 flex justify-between text-fg-200">
 						<div class="shrink-0">
-							{#key data.language}
+							{#key $lang}
 								<p>
 									{langVersion.label}
 									<svg
@@ -127,7 +128,7 @@
 						</div>
 						{#if post?.date}
 							<p class="flex-1 shrink-0 text-right">
-								{formateDateForBlog(data.language, post?.date)}
+								{formateDateForBlog($lang, post?.date)}
 							</p>
 						{/if}
 					</div>
@@ -142,7 +143,7 @@
 		{/if}
 
 		<div class="post-grid mt-[60px]">
-			{#key data.language && data.pathname}
+			{#key $lang && data.pathname}
 				<section
 					class="post-content prose-svelte-vn prose max-w-full dark:prose-invert"
 					use:toc={{
@@ -190,7 +191,7 @@
 							external
 						>
 							<span class="sr-only">facebook</span>
-							<svg inline-src="lucide/facebook" width="20" height="20" />
+							<svg inline-src="lucide/facebook" width="20" height="20" stroke-width="2" />
 						</a>
 					</li>
 					<li>
@@ -200,7 +201,7 @@
 							external
 						>
 							<span class="sr-only">twitter (x)</span>
-							<svg inline-src="lucide/twitter" width="20" height="20" />
+							<svg inline-src="lucide/twitter" width="20" height="20" stroke-width="2" />
 						</a>
 					</li>
 					<li>
@@ -210,7 +211,7 @@
 							external
 						>
 							<span class="sr-only">linkedin</span>
-							<svg inline-src="lucide/linkedin" width="20" height="20" />
+							<svg inline-src="lucide/linkedin" width="20" height="20" stroke-width="2" />
 						</a>
 					</li>
 					<li>
@@ -220,7 +221,7 @@
 							use:copy={{ text: meta?.canonical ?? '' }}
 						>
 							<span class="sr-only">copy link</span>
-							<svg inline-src="lucide/link" width="20" height="20" />
+							<svg inline-src="lucide/link" width="20" height="20" stroke-width="2" />
 						</button>
 					</li>
 					<li>
@@ -229,7 +230,7 @@
 							on:click={onClickQRLink}
 						>
 							<span class="sr-only">QR code</span>
-							<svg inline-src="lucide/qr-code" width="20" height="20" />
+							<svg inline-src="lucide/qr-code" width="20" height="20" stroke-width="2" />
 						</button>
 					</li>
 				</ul>

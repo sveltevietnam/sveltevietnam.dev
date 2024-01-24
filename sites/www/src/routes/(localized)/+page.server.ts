@@ -21,18 +21,19 @@ const metaTranslations: Record<App.Language, App.PageData['meta']> = {
 	},
 };
 
-export const load: PageServerLoad = async ({ depends, locals: { language } }) => {
+export const load: PageServerLoad = async ({ depends, locals }) => {
+	const lang = locals.settings.language;
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
-	const tMeta = metaTranslations[language];
+	const tMeta = metaTranslations[lang];
 
-	const events = listEvents(language);
+	const events = listEvents(lang);
 	return {
-		route: prepareRoutePageData(language, 'home'),
+		route: prepareRoutePageData(lang, 'home'),
 		events: [...events.upcoming, ...events.ongoing],
 		posts: {
-			internal: INTERNAL_POSTS.slice(0, 3).map((post) => localizePost(language, post)),
+			internal: INTERNAL_POSTS.slice(0, 3).map((post) => localizePost(lang, post)),
 			external: EXTERNAL_POSTS.slice(0, 1)
-				.map((post) => localizeExternalPost(language, post))
+				.map((post) => localizeExternalPost(lang, post))
 				.at(0),
 		},
 		jobs: [],

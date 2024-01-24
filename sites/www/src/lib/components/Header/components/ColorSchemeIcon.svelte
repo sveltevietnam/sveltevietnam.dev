@@ -5,9 +5,9 @@
 </script>
 
 {#if scheme === 'light'}
-	<svg inline-src="icon/sun" {height} {width} />
+	<svg inline-src="lucide/sun" {height} {width} />
 {:else if scheme === 'dark'}
-	<svg inline-src="icon/moon" {height} {width} />
+	<svg inline-src="lucide/moon-star" {height} {width} />
 {:else}
-	<svg inline-src="icon/sliders-horizontal" {height} {width} />
+	<svg inline-src="lucide/sliders-horizontal" {height} {width} />
 {/if}
