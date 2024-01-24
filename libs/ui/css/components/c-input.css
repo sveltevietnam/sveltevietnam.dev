@@ -1,5 +1,7 @@
-@custom-selector :--radio [type='radio'];
-@custom-selector :--default :not(:--radio);
+@custom-selector :--radio-labeled .c-input--radio-labeled;
+@custom-selector :--checkbox [type='checkbox'];
+@custom-selector :--radio [type='radio']:not(:--radio-labeled);
+@custom-selector :--default :not(:--radio, :--radio-labeled, :--checkbox);
 
 .c-input {
 	/* shamelessly copied from daisyui radio component */
@@ -55,5 +57,137 @@
 		&:invalid:not(:placeholder-shown) {
 			border-color: theme('colors.error.surface.200');
 		}
+	}
+
+	/* Samelessly copied from DaisyUI */
+	&:where(:--checkbox) {
+		--chkbg: theme('colors.fg.DEFAULT');
+		--chkfg: theme('colors.bg.DEFAULT');
+
+		cursor: pointer;
+
+		flex-shrink: 0;
+
+		width: 1.5rem;
+		height: 1.5rem;
+
+		appearance: none;
+		border-color: theme('colors.outline.DEFAULT');
+		border-color: color-mix(in hsl, theme('colors.fg.DEFAULT'), transparent 50%);
+		border-width: 1px;
+		border-radius: theme('borderRadius.DEFAULT');
+
+		&:checked {
+			background-color: var(--chkbg);
+			background-image: linear-gradient(-45deg, transparent 65%, var(--chkbg) 65.99%),
+				linear-gradient(45deg, transparent 75%, var(--chkbg) 75.99%),
+				linear-gradient(-45deg, var(--chkbg) 40%, transparent 40.99%),
+				linear-gradient(
+					45deg,
+					var(--chkbg) 30%,
+					var(--chkfg) 30.99%,
+					var(--chkfg) 40%,
+					transparent 40.99%
+				),
+				linear-gradient(-45deg, var(--chkfg) 50%, var(--chkbg) 50.99%);
+			background-repeat: no-repeat;
+			animation: checkmark var(--animation-input, 200ms) ease-out;
+		}
+
+		@keyframes checkmark {
+			0% {
+				background-position-y: 5px;
+			}
+
+			50% {
+				background-position-y: -2px;
+			}
+
+			100% {
+				background-position-y: 0;
+			}
+		}
+	}
+}
+
+/* .checkbox:checked, .checkbox[checked="true"], .checkbox[aria-checked="true"] {
+  background-repeat: no-repeat;
+  animation: checkmark var(--animation-input,.2s) ease-out;
+  background-color: var(--chkbg);
+  background-image: linear-gradient(-45deg,transparent 65%,var(--chkbg) 65.99%),linear-gradient(45deg,transparent 75%,var(--chkbg) 75.99%),linear-gradient(-45deg,var(--chkbg) 40%,transparent 40.99%),linear-gradient(45deg,var(--chkbg) 30%,var(--chkfg) 30.99%,var(--chkfg) 40%,transparent 40.99%),linear-gradient(-45deg,var(--chkfg) 50%,var(--chkbg) 50.99%);
+}
+.checkbox {
+  flex-shrink: 0;
+  --chkbg: var(--fallback-bc,oklch(var(--bc)/1));
+  --chkfg: var(--fallback-b1,oklch(var(--b1)/1));
+  height: 1.5rem;
+  width: 1.5rem;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: var(--rounded-btn,.5rem);
+  border-width: 1px;
+  border-color: var(--fallback-bc,oklch(var(--bc)/var(--tw-border-opacity)));
+  --tw-border-opacity: .2;
+} */
+
+/*
+	c-input--radio-labeled
+
+	```html
+	<label>
+		<input class="c-input c-input--radio-labeled" type="radio" />
+	</label>
+	```
+*/
+label:where(:has(.c-input:--radio-labeled)) {
+	cursor: pointer;
+
+	position: relative;
+
+	display: block;
+
+	border: 2px solid theme('colors.outline.DEFAULT');
+	border-radius: theme('borderRadius.md');
+
+	transition: border-color 200ms ease-out;
+
+	&::after {
+		content: '';
+
+		position: absolute;
+		bottom: 100%;
+		left: 100%;
+		transform: translate(2px, -2px);
+
+		width: 22px;
+		height: 22px;
+
+		opacity: 0;
+		background-color: theme('colors.primary.DEFAULT');
+
+		transition-timing-function: ease-out;
+		transition-duration: 200ms;
+		transition-property: opacity, transform;
+
+		mask-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIHZpZXdCb3g9IjAgMCAyMiAyMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEgMUwxIDEzIiBzdHJva2U9ImJsYWNrIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8cGF0aCBkPSJNOSAyMUgyMSIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTcuMjkyOTcgMTQuMjYxN0wxNS43NzgyIDUuNzc2NDQiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+Cjwvc3ZnPgo=');
+		mask-repeat: no-repeat;
+	}
+
+	&:hover {
+		border-color: theme('colors.outline.200');
+	}
+
+	&:has(.c-input:--radio-labeled:checked) {
+		border-color: theme('colors.primary.DEFAULT');
+
+		&::after {
+			transform: translate(-2px, 2px);
+			opacity: 1;
+		}
+	}
+
+	& .c-input:--radio-labeled {
+		@apply sr-only;
 	}
 }
