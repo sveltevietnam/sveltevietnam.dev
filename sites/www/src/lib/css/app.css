@@ -12,4 +12,16 @@
 	svg[inline-src^='simpleicon/'] {
 		fill: currentcolor;
 	}
+
+	*:focus-visible {
+		@apply outline outline-2 outline-offset-1 outline-blue-500;
+	}
+
+	label:has(input:focus-visible) {
+		@apply outline outline-2 outline-offset-1 outline-blue-500;
+
+		& input {
+			outline: none;
+		}
+	}
 }
