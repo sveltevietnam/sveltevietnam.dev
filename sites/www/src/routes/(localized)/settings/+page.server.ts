@@ -38,10 +38,10 @@ const metaTranslations: Record<App.Language, App.PageData['meta']> = {
 };
 
 const settingsSchema = object({
-	accessibilityReduceMotion: coerce.boolean().default(false),
-	colorScheme: zEnum(COLOR_SCHEMES),
-	language: zEnum(LANGUAGES),
-	splash: zEnum(['short', 'long', 'random', 'disabled']),
+	accessibilityReduceMotion: coerce.boolean().optional(),
+	colorScheme: zEnum(COLOR_SCHEMES).optional(),
+	language: zEnum(LANGUAGES).optional(),
+	splash: zEnum(['short', 'long', 'random', 'disabled']).optional(),
 });
 
 export const load: PageServerLoad = async ({ depends, locals }) => {
@@ -72,19 +72,24 @@ export const actions: Actions = {
 			});
 		}
 
+		console.log(`Turbo ~ update: ~ parsed:`, parsed);
+
 		const { accessibilityReduceMotion, colorScheme, language, splash } = parsed.data;
 
-		if (locals.settings.colorScheme !== colorScheme) {
+		if (colorScheme !== undefined && colorScheme !== locals.settings.colorScheme) {
 			locals.settings.colorScheme = colorScheme;
 			cookies.set(PUBLIC_COOKIE_SETTINGS_COLOR_SCHEME, colorScheme, PUBLIC_COOKIE_CONFIG);
 		}
 
-		if (locals.settings.splash !== splash) {
+		if (splash !== undefined && splash !== locals.settings.splash) {
 			locals.settings.splash = splash;
 			cookies.set(PUBLIC_COOKIE_SETTINGS_SPLASH, splash, PUBLIC_COOKIE_CONFIG);
 		}
 
-		if (locals.settings.accessibility.reduceMotion !== accessibilityReduceMotion) {
+		if (
+			accessibilityReduceMotion !== undefined &&
+			accessibilityReduceMotion !== locals.settings.accessibility.reduceMotion
+		) {
 			locals.settings.accessibility.reduceMotion = accessibilityReduceMotion;
 			cookies.set(
 				PUBLIC_COOKIE_SETTINGS_ACCESSIBILITY_REDUCE_MOTION,
@@ -93,7 +98,7 @@ export const actions: Actions = {
 			);
 		}
 
-		if (locals.settings.language !== language) {
+		if (language !== undefined && language !== locals.settings.language) {
 			locals.settings.language = language;
 			cookies.set(PUBLIC_COOKIE_SETTINGS_LANGUAGE, language, PUBLIC_COOKIE_CONFIG);
 			const route = findRouteFromUrl(url);
