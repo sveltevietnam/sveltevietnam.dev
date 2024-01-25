@@ -12,7 +12,7 @@
 </script>
 
 :::div c-callout c-callout--info
-This post is part of the "Behind the Screen" series, where I share my experience and lessons learned while building *sveltevietnam.dev*. You can find the previous post at "[A Few Secrets of sveltevietnam.dev](/blog/20231204-behind-the-screen-a-few-secrets-of-sveltevietnam-dev)".
+This post is part of the "Behind the Screen" series, where I share my experience and lessons learned while building *sveltevietnam.dev*. You can find the previous post at "[A Few Secrets of sveltevietnam.dev](/en/blog/20231204-behind-the-screen-a-few-secrets-of-sveltevietnam-dev)".
 :::
 
 In the previous post, I mentioned briefly about the splash screen of sveltevietnam.dev. This is the first UI that users see when they visit the site; it plays a short introductory animation series to capture users' attention and welcome them in. You can reload the page (ctrl/cmd + R) at any point to trigger said splash screen. If you don't use Javascript, close the browser tab and open a new one.
@@ -39,7 +39,7 @@ For pages with many transitions and animations, especially those that require Ja
 </figure>
 
 :::div c-callout c-callout--info
-For (2), you might find it strange that there are users who don't use Javascript. I mentioned [this in the previous post](/blog/20231204-behind-the-screen-a-few-secrets-of-sveltevietnam-dev#no-javascript-no-cry). It happens more often than we think, and any user can fall into that situation. You can check [this diagram](https://www.kryogenix.org/code/browser/everyonehasjs.html) for more details.
+For (2), you might find it strange that there are users who don't use Javascript. I mentioned [this in the previous post](/en/blog/20231204-behind-the-screen-a-few-secrets-of-sveltevietnam-dev#no-javascript-no-cry). It happens more often than we think, and any user can fall into that situation. You can check [this diagram](https://www.kryogenix.org/code/browser/everyonehasjs.html) for more details.
 :::
 
 As such, although simple, this display-blocking solution does not provide the best user experience. To overcome both of the consequences above, we need to server-side-render the web page, then send HTML and CSS directly to the browser for an initial render, and let hydration take place naturally afterwards. But then we are back to square one: how to hide the glitch right after hydration has completed? The second solution is to display a splash screen.

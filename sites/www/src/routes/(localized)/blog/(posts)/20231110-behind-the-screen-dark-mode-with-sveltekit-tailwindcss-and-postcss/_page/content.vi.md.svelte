@@ -3,7 +3,7 @@
 </script>
 
 :::div c-callout c-callout--info
-Đây là bài viết thứ hai trong chuỗi bài viết có tên "Behind the Screen", nơi mình chia sẻ những kinh nghiệm và bài học trong quá trình xây dựng *sveltevietnam.dev*. Bạn có thể đọc bài viết đầu tiên [tại đây](/blog/20231009-behind-the-screen-a-yes-code-blog-of-svelte-vietnam) (không liên quan đến bài này).
+Đây là bài viết thứ hai trong chuỗi bài viết có tên "Behind the Screen", nơi mình chia sẻ những kinh nghiệm và bài học trong quá trình xây dựng *sveltevietnam.dev*. Bạn có thể đọc bài viết đầu tiên [tại đây](/vi/blog/20231009-behind-the-screen-blog-chay-bang-com-va-code) (không liên quan đến bài này).
 :::
 
 Ngày nay, giao diện tối (dark mode) đang dần trở thành một tính năng phổ biến và thậm chí là cần thiết để mang lại một trải nghiệm hoàn thiện cho người dùng. Tuy bề ngoài vấn đề là đơn giản nhưng thực tế công việc này đòi hỏi một sự tỉ mỉ và kết hợp nhiều chi tiết nhỏ, tập hợp từ nhiều công nghệ khác nhau. Bài viết này lấy ví dụ trong ngữ cảnh ta dùng Svelte và SvelteKit, tuy nhiên đa số các chi tiết là phi ngôn ngữ, bạn có thể áp dụng chúng vào bất kì framework hay dự án front-end nào.
@@ -579,7 +579,7 @@ Mỗi dự án và đội ngũ thiết kế sẽ có những quy ước và các
 
 Hãy chú ý tới thiết kế bảng màu (color palette). Mỗi màu nên là một "design token" được giao tiếp rõ ràng cho cả thiết kế viên và lập trình viên. Bảng màu có lẽ là yếu tố đầu tiên và quan trọng nhất trong mọi "design system". Cách tổ chức bảng màu để tương thích với các ứng dụng có chế độ tối sẽ phức tạp hơn bình thường một tí vì mỗi màu có thể tồn tại hai phiên bản cho hai giao diện tương tứng.
 
-Tại *sveltevietnam.dev*, mình phân biệt giữa bảng màu gốc (primitive colors) và bảng màu ngữ nghĩa (contextual/semantic colors). Bảng màu gốc là các màu cơ bản ta đã biết: xanh, đỏ, vàng, ... Các màu khác sẽ được xây dựng dựa trên bảng màu cơ bản này tùy theo từng ngữ cảnh trong ứng dụng. Ví dụ, màu cho nền hay văn bản, chính (primary) hay phụ (secondary), thể hiện trạng thái như thành công, cảnh báo, thất bại, ... Để hiểu rõ thêm về cách triển khai hệ thống vừa nêu, bạn có thể ghé thăm trang [Màu sắc của Svelte Việt Nam](/design/colors).
+Tại *sveltevietnam.dev*, mình phân biệt giữa bảng màu gốc (primitive colors) và bảng màu ngữ nghĩa (contextual/semantic colors). Bảng màu gốc là các màu cơ bản ta đã biết: xanh, đỏ, vàng, ... Các màu khác sẽ được xây dựng dựa trên bảng màu cơ bản này tùy theo từng ngữ cảnh trong ứng dụng. Ví dụ, màu cho nền hay văn bản, chính (primary) hay phụ (secondary), thể hiện trạng thái như thành công, cảnh báo, thất bại, ... Để hiểu rõ thêm về cách triển khai hệ thống vừa nêu, bạn có thể ghé thăm trang [Màu sắc của Svelte Việt Nam](/vi/thiet-ket/mau-sac).
 
 Dự án *sveltevietnam.dev* cũng sử dụng Figma làm công cụ thiết kế và tận dụng tính năng [Variable](https://help.figma.com/hc/en-us/sections/14506605769879-Variables) để thể hiện các bảng màu trên. Cách này giúp thiết kế viên chủ động ý thức được về các design token tương ứng tới các biến CSS trong quá trình phát triển dự án.
 
@@ -588,5 +588,5 @@ Dự án *sveltevietnam.dev* cũng sử dụng Figma làm công cụ thiết k�
 Chúng ta đã đi qua rất nhiều chi tiết và khía cạnh khác nhau của việc thiết lập chế độ tối cho ứng dụng SvelteKit nói riêng, và một dự án front-end nói chung. Nếu bạn vẫn còn đọc đến tận đây thì thật là xuất sắc - cảm ơn bạn đã kiên nhẫn với sự dài dòng của mình. Nếu bạn có bất kì câu hỏi hay ý kiến gì, hãy tham gia [Discord](https://discord.sveltevietnam.dev) của Svelte Việt Nam để thảo luận thêm nhé!
 
 :::div c-callout c-callout--info
-Hãy đọc tiếp phần ba của chuỗi bài viết "Behind the Screen" [tại đây](/blog/20231204-behind-the-screen-a-few-secrets-of-sveltevietnam-dev) bạn nhé!
+Hãy đọc tiếp phần ba của chuỗi bài viết "Behind the Screen" [tại đây](/vi/blog/20231204-behind-the-screen-mot-vai-bi-mat-ve-sveltevietnam-dev) bạn nhé!
 :::

@@ -12,7 +12,7 @@
 </script>
 
 :::div c-callout c-callout--info
-This is a supplementary post to a [video with the same title](https://youtu.be/BaoljjKpLIU) (in Vietnamese), streamed at the recent "[Online Meetup Year-End 2023](/events/202312-year-end-online-meetup)" event. It is also part three of the "Behind the Screen" series, where I share my experience and lessons learned while building *sveltevietnam.dev*. You can find the previous part at "[Productive Dark Mode with SvelteKit, PostCSS, and TailwindCSS](/blog/20231110-behind-the-screen-dark-mode-with-sveltekit-tailwindcss-and-postcss)".
+This is a supplementary post to a [video with the same title](https://youtu.be/BaoljjKpLIU) (in Vietnamese), streamed at the recent "[Online Meetup Year-End 2023](/en/events/202312-year-end-online-meetup)" event. It is also part three of the "Behind the Screen" series, where I share my experience and lessons learned while building *sveltevietnam.dev*. You can find the previous part at "[Productive Dark Mode with SvelteKit, PostCSS, and TailwindCSS](/en/blog/20231110-behind-the-screen-dark-mode-with-sveltekit-tailwindcss-and-postcss)".
 :::
 
 ## Push Notification
@@ -25,7 +25,7 @@ Perhaps you have encountered a system notification while visiting *sveltevietnam
 </BaseNotification>
 :::
 
-There is nothing so surprising about this: push notification is a common part of web applications. Push notification of *sveltevietnam.dev* has four variants, corresponding to four popular status or intent: `info`, `success`, `warning`, and `error`. You can see example for each variant at the [Design | Colors](/design/colors#status) page.
+There is nothing so surprising about this: push notification is a common part of web applications. Push notification of *sveltevietnam.dev* has four variants, corresponding to four popular status or intent: `info`, `success`, `warning`, and `error`. You can see example for each variant at the [Design | Colors](/en/design/colors#status) page.
 
 By default, each notification has an internal timer: it will automatically be dismissed upon timeout. However, if you hover over the notification (or touch and hold on touch devices), its timer will pause so that you have time to read or interact, for example copying content or choosing the appropriate action. You can test this right now by clicking on the link copy icon button in the [Share](#share) section of this blog post.
 
@@ -99,7 +99,7 @@ I have spent quite some time testing and experimenting with these features, espe
 - tooltip,
 - push notification,
 - table of contents in blog posts,
-- mail list registration forms at [Sự kiện](/events), [Việc làm](/jobs), and [Blog](/blog) pages - these forms rely on [Cloudflare Turnstile](https://developers.cloudflare.com/turnstile/) which only works when JS is enabled.
+- mail list registration forms at [Sự kiện](/en/events), [Việc làm](/en/jobs), and [Blog](/en/blog) pages - these forms rely on [Cloudflare Turnstile](https://developers.cloudflare.com/turnstile/) which only works when JS is enabled.
 
 The above sections are quite technical and tedious, aren't they? Let's switch gear and look and a few things that are lots more fun!
 
@@ -113,7 +113,7 @@ Why? Because I think it is fun. That's all.
 
 ## The Svelte Vietnam Newsletter
 
-When you subscribe to the Svelte Vietnam newsletter through the forms at the [Events](/events), [Jobs](/jobs), and [Blog](/blog) pages, you will receive an email that looks like this:
+When you subscribe to the Svelte Vietnam newsletter through the forms at the [Events](/en/events), [Jobs](/en/jobs), and [Blog](/en/blog) pages, you will receive an email that looks like this:
 
 <img src={emailImage} class="border mx-auto max-w-full" width="1415" height="950" alt="screenshot of registration confirmation email" />
 
@@ -125,7 +125,7 @@ You should not share links in the above email with anyone as it might contain yo
 
 ## Roadmap Illustrations
 
-When visiting the [Roadmap](/roadmap) page, you should see a few images in the background. The first is:
+When visiting the [Roadmap](/en/roadmap) page, you should see a few images in the background. The first is:
 
 <svg inline-src="../../../../roadmap/_page/images/au-lac.svg" class="w-full h-auto opacity-20" />
 
@@ -140,7 +140,7 @@ Next, at the "Tự" milestone, you see some rather old characters:
 <svg inline-src="../../../../roadmap/_page/images/tu_nom.svg" class="h-auto" />
 :::
 
-This is "Chữ Nôm" written in [chữ Nôm](https://vi.wikipedia.org/wiki/Ch%E1%BB%AF_N%C3%B4m), the logographic writing system of the Vietnamese language from the 13th to 20th century. During this milestone, the Svelte Vietnam project focuses on its *content* such as the [Blog](/blog) page to share information, or the [Events](/events) page to prepare for upcoming events. The blog post you are reading is also written during this milestone.
+This is "Chữ Nôm" written in [chữ Nôm](https://vi.wikipedia.org/wiki/Ch%E1%BB%AF_N%C3%B4m), the logographic writing system of the Vietnamese language from the 13th to 20th century. During this milestone, the Svelte Vietnam project focuses on its *content* such as the [Blog](/en/blog) page to share information, or the [Events](/en/events) page to prepare for upcoming events. The blog post you are reading is also written during this milestone.
 
 ---
 
@@ -148,11 +148,11 @@ Finally, we see an ancient coin at the "Đồng" milestone:
 
 <svg inline-src="../../../../roadmap/_page/images/dong.svg" class="w-full opacity-20 my-6 tb:my-10" />
 
-This is the "Thiên Phúc trấn bảo" coin, made in the early Lê dynasty as one of the first coin of Vietnam. In this milestone, continuing the role of Svelte Vietnam administrator, I plan to focus on development of the [Jobs](/jobs) page with the hope of finding a solution to collect job listings from popular recruitment channels into a single place, making job searching easier for community members. Besides, I also want to create a sustainable co-development between business and community. Instead of paying for recruitment platforms, companies can [sponsor](/sponsor) us to post jobs directly on the [Jobs](/jobs) page. The sponsorship money will be used to organize community events. Businesses invest in community, community provides quality human resources for businesses. Both sides benefit and grow from this mutualistic relationship.
+This is the "Thiên Phúc trấn bảo" coin, made in the early Lê dynasty as one of the first coin of Vietnam. In this milestone, continuing the role of Svelte Vietnam administrator, I plan to focus on development of the [Jobs](/en/jobs) page with the hope of finding a solution to collect job listings from popular recruitment channels into a single place, making job searching easier for community members. Besides, I also want to create a sustainable co-development between business and community. Instead of paying for recruitment platforms, companies can [sponsor](/en/sponsor) us to post jobs directly on the [Jobs](/en/jobs) page. The sponsorship money will be used to organize community events. Businesses invest in community, community provides quality human resources for businesses. Both sides benefit and grow from this mutualistic relationship.
 
 :::div c-callout c-callout--info
 This co-development model has existed in developed countries but is still rare in Vietnam. I mentioned this in a previous post "[Svelte Vietnam: from Local to Global
-](/blog/20231012-svelte-vietnam-from-local-to-global)". You can read it to better understand the identity Svelte Vietnam and what it tries to be.
+](/en/blog/20231012-svelte-vietnam-from-local-to-global)". You can read it to better understand the identity Svelte Vietnam and what it tries to be.
 :::
 
 ## Blue Screen
@@ -172,3 +172,7 @@ At the top left corner of *sveltevietnam.dev* is, most of the time, a Svelte Vie
 ## Closing
 
 Above are a few tiny details through which I hope you can understand more about how *sveltevietnam.dev* is designed and built. Fun is a must-have here. For any application, the first user is us developers; if we feel joy using it, perhaps that is already a success. Whether you are writing React or Svelte, HTMX or Astro, Golang or Rust, have a bit of fun, however tiny it might be, yeah?
+
+:::div c-callout c-callout--info
+In the next part of the "Behind the Screen" post series, I explain in more details how Svelte Vietnam's splash screen is implemented. You can find the post at "[Progressive Splash Screen](/en/blog/20231220-behind-the-screen-progressive-splashscreen)".
+:::

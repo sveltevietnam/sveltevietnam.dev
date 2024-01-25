@@ -22,7 +22,7 @@ Svelte Vietnam is open source and will always encourage its members to participa
 
 ## A Community
 
-Svelte Vietnam is a community for anyone interested in Svelte and open source. We have an official [Discord](https://discord.sveltevietnam.dev/) as the main communication platform, as well as the [Svelte Vietnam Blog](/blog) as a place for members to share in the form of writing. In the future, Svelte Vietnam plans to organize online and offline meetups, and events with formats learned from Svelte Summit and other communities. Through these channels, my hope is that members will have opportunities to connect and share their experience and knowledge.
+Svelte Vietnam is a community for anyone interested in Svelte and open source. We have an official [Discord](https://discord.sveltevietnam.dev/) as the main communication platform, as well as the [Svelte Vietnam Blog](/en/blog) as a place for members to share in the form of writing. In the future, Svelte Vietnam plans to organize online and offline meetups, and events with formats learned from Svelte Summit and other communities. Through these channels, my hope is that members will have opportunities to connect and share their experience and knowledge.
 
 ### Collaboration. Not Competition
 

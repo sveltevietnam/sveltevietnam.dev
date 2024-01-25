@@ -22,7 +22,7 @@ If you get stuck and this document does not help, reach out to our maintainers a
 
 4. Open a PR when you have finished development.
 
-Visit the [Design | Blog](https://www.sveltevietnam.dev/design/blog) page for more information about the design, conventions, and common components.
+Visit the [Design | Blog](https://www.sveltevietnam.dev/en/design/blog) page for more information about the design, conventions, and common components.
 
 ## How and where do I make components?
 

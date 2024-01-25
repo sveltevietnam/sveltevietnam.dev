@@ -12,7 +12,7 @@
 </script>
 
 :::div c-callout c-callout--info
-Bài viết này nằm trong chuỗi bài viết "Behind the Screen", nơi mình chia sẻ những kinh nghiệm và bài học trong quá trình xây dựng *sveltevietnam.dev*. Bạn có thể tìm đọc phần trước tại "[Một vài bí mật về sveltevietnam.dev](/blog/20231204-behind-the-screen-a-few-secrets-of-sveltevietnam-dev)".
+Bài viết này nằm trong chuỗi bài viết "Behind the Screen", nơi mình chia sẻ những kinh nghiệm và bài học trong quá trình xây dựng *sveltevietnam.dev*. Bạn có thể tìm đọc phần trước tại "[Một vài bí mật về sveltevietnam.dev](/vi/blog/20231204-behind-the-screen-mot-vai-bi-mat-ve-sveltevietnam-dev)".
 :::
 
 Trong phần trước, mình có đề cập sơ lược về màn hình chờ (splash screen). Màn hình này hiển thị ngay lúc đầu khi trang vừa được tải và thực hiện một số hiệu ứng chuyển động giúp thu hút sự chú ý của người dùng và chào đón họ vào trang. Để kích hoạt màn hình chờ, bạn có thể tải lại trang (ctrl/cmd + R). Nếu bạn không dùng Javascript, hãy tắt hẳn tab trình duyệt và mới trang mới.
@@ -39,7 +39,7 @@ Thoạt nhìn màn hình chờ trông có vẻ chỉ phục vụ mục đích ho
 </figure>
 
 :::div c-callout c-callout--info
-Ở ý (2), có thể bạn thấy lạ rằng vì sao lại có người dùng không sử dụng Javascript. Mình có đề cập đến [điều này trong bài viết trước](/blog/20231204-behind-the-screen-a-few-secrets-of-sveltevietnam-dev#kh%C3%B4ng-javascript-kh%C3%B4ng-lo). Việc này xảy ra nhiều hơn ta thường nghĩ, và bất cứ người dùng nào cũng có thể rơi vào tình huống đó. Bạn hãy xem [sơ đồ này](https://www.kryogenix.org/code/browser/everyonehasjs.html) để hiểu thêm.
+Ở ý (2), có thể bạn thấy lạ rằng vì sao lại có người dùng không sử dụng Javascript. Mình có đề cập đến [điều này trong bài viết trước](/vi/blog/20231204-behind-the-screen-mot-vai-bi-mat-ve-sveltevietnam-dev#kh%C3%B4ng-javascript-kh%C3%B4ng-lo). Việc này xảy ra nhiều hơn ta thường nghĩ, và bất cứ người dùng nào cũng có thể rơi vào tình huống đó. Bạn hãy xem [sơ đồ này](https://www.kryogenix.org/code/browser/everyonehasjs.html) để hiểu thêm.
 :::
 
 Như vậy, giải pháp chặn hiển thị nội dung tuy đơn giản nhưng không mang lại trải nghiệm tốt nhất. Để giải quyết cả hai hệ quả trên, ta cần phải biểu hiện nội dung từ phía máy chủ (server-side-rendering), và gởi trực tiếp HTML, CSS cho trình duyệt hiển thị ban đầu, sau đó để hydration diễn ra một cách tự nhiên. Thế nhưng khi đấy ta lại quay trở về vạch xuất phát với vấn đề ban đầu: làm sao che đi việc chớp nháy do hiệu ứng trên trang khi hydration vừa hoàn thành? Giải pháp thứ hai chính là hiển thị màn hình chờ.

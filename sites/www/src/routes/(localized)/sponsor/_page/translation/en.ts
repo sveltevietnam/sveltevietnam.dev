@@ -21,7 +21,7 @@ export const en = {
 	why: {
 		title: 'Why does Svelte Vietnam need sponsorship?',
 		description:
-			'Svelte Vietnam is not a business, nor does it intend to commercialize any project or product. However, money is needed if we want to build a healthy community at scale, one that can encourage members to connect, share, and grow via forums and events. To better understand what Svelte Vietnam is and trying to be, read the blog post "<a class="c-link" href="/blog/20231012-svelte-vietnam-from-local-to-global">Svelte Vietnam: from Local to Global</a>".',
+			'Svelte Vietnam is not a business, nor does it intend to commercialize any project or product. However, money is needed if we want to build a healthy community at scale, one that can encourage members to connect, share, and grow via forums and events. To better understand what Svelte Vietnam is and trying to be, read the blog post "<a class="c-link" href="/en/blog/20231012-svelte-vietnam-from-local-to-global">Svelte Vietnam: from Local to Global</a>".',
 		for: {
 			description: 'Specifically, Svelte Vietnam will use its fund for:',
 			bullets: {

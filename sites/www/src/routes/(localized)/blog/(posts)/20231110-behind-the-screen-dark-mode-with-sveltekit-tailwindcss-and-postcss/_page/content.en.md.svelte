@@ -3,7 +3,7 @@
 </script>
 
 :::div c-callout c-callout--info
-This is the second part of the "Behind the Screen" blog series, where I share my experience and lessons learned while building *sveltevietnam.dev*. You can read the [first part here](/blog/20231009-behind-the-screen-a-yes-code-blog-of-svelte-vietnam) (not a prerequisite for this post).
+This is the second part of the "Behind the Screen" blog series, where I share my experience and lessons learned while building *sveltevietnam.dev*. You can read the [first part here](/en/blog/20231009-behind-the-screen-a-yes-code-blog-of-svelte-vietnam) (not a prerequisite for this post).
 :::
 
 Today, dark mode is becoming a common and even necessary feature to provide a complete user experience. Although the problem seems simple on the surface, it does require meticulous work and a combination of many small details from many different technologies. This blog post discusses one of many possible implementations of dark mode with Svelte and SvelteKit. Most of the details, however, are framework-agnostic, you can apply them to any framework and front-end project.
@@ -583,7 +583,7 @@ Each project and design team have their own conventions and standards, but the m
 
 Pay special attention to your color palette. Each color should be a design token that is communicated clearly to both designers and developers. Color palette is probably the first and most important element in any design system. Organizing a color palette to be compatible with applications with dark mode is be a bit more complicated than usual because each color can exist in two versions for two display modes.
 
-At *sveltevietnam.dev*, we distinguish between primitive colors and semantic/contextual colors. Primitive colors are the basic colors we already know: blue, red, yellow, ... Other colors will be built upon the these primitives, depending on different contexts within the application, i.e. colors for foreground or background, primary or secondary, status colors such as success, warning, error, ... To learn more about our implementation with this system, visit the dedicated [Colors of Svelte Vietnam](/design/colors) page.
+At *sveltevietnam.dev*, we distinguish between primitive colors and semantic/contextual colors. Primitive colors are the basic colors we already know: blue, red, yellow, ... Other colors will be built upon the these primitives, depending on different contexts within the application, i.e. colors for foreground or background, primary or secondary, status colors such as success, warning, error, ... To learn more about our implementation with this system, visit the dedicated [Colors of Svelte Vietnam](/en/design/colors) page.
 
 The *sveltevietnam.dev* project also uses Figma as the design tool and takes advantage of the [Variable](https://help.figma.com/hc/en-us/sections/14506605769879-Variables) feature to represent the color palettes, which helps designers be aware of the corresponding design tokens that translate to CSS variables during the development process.
 
@@ -592,5 +592,5 @@ The *sveltevietnam.dev* project also uses Figma as the design tool and takes adv
 We have discussed a lot of different details and aspects of implementing dark mode in a SvelteKit application in particular, and a front-end project in general. If you are still reading, that is amazing - thank you for enduring my lengthy writing! If you have any question or comment, be sure to drop by our [Discord](https://discord.sveltevietnam.dev) for further discussion!
 
 :::div c-callout c-callout--info
-You can find the next post in the "Behind the Screen" series at "[A few secrets of sveltevietnam](/blog/20231204-behind-the-screen-a-few-secrets-of-sveltevietnam-dev)".
+You can find the next post in the "Behind the Screen" series at "[A few secrets of sveltevietnam](/en/blog/20231204-behind-the-screen-a-few-secrets-of-sveltevietnam-dev)".
 :::

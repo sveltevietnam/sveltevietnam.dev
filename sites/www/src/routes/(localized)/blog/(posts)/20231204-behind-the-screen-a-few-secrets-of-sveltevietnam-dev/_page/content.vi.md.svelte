@@ -12,7 +12,7 @@
 </script>
 
 :::div c-callout c-callout--info
-Bài viết này bổ trợ cho [video cùng tên](https://youtu.be/BaoljjKpLIU) được chiếu tại sự kiện "[Gặp nhau trực tuyến cuối năm 2023](/events/202312-year-end-online-meetup)". Đây cũng là phần thứ ba trong chuỗi bài viết có tên “Behind the Screen”, nơi mình chia sẻ những kinh nghiệm và bài học trong quá trình xây dựng *sveltevietnam.dev*. Bạn có thể tìm đọc bài viết trước "[Giao diện tối (dark mode) với SvelteKit, PostCSS, và TailwindCSS](/blog/20231110-behind-the-screen-dark-mode-with-sveltekit-tailwindcss-and-postcss)".
+Bài viết này bổ trợ cho [video cùng tên](https://youtu.be/BaoljjKpLIU) được chiếu tại sự kiện "[Gặp nhau trực tuyến cuối năm 2023](/vi/su-kien/202312-gap-nhau-truc-tuyen-cuoi-nam)". Đây cũng là phần thứ ba trong chuỗi bài viết có tên “Behind the Screen”, nơi mình chia sẻ những kinh nghiệm và bài học trong quá trình xây dựng *sveltevietnam.dev*. Bạn có thể tìm đọc bài viết trước "[Giao diện tối (dark mode) với SvelteKit, PostCSS, và TailwindCSS](/vi/blog/20231110-behind-the-screen-giao-dien-toi-voi-sveltekit-postcss-va-tailwindcss)".
 :::
 
 ## Thông báo đẩy
@@ -25,7 +25,7 @@ Có thể bạn đã từng bắt gặp thông báo hệ thống khi ghé thăm 
 </BaseNotification>
 :::
 
-Cũng không có gì đáng ngạc nhiên: thông báo đẩy (tiếng anh hay gọi là toast hay push notification) là một thành phần thường gặp trong các ứng dụng web. Thông báo hệ thống của *sveltevietnam.dev* có bốn biến thể tương ứng với bốn trạng thái hay mục đích thông dụng: thông tin, thành công, cảnh báo, và thất bại hay lỗi. Bạn có thể tham khảo thêm ví dụ cho từng biến thể tại trang [Thiết kế | Màu sắc](/design/colors#status).
+Cũng không có gì đáng ngạc nhiên: thông báo đẩy (tiếng anh hay gọi là toast hay push notification) là một thành phần thường gặp trong các ứng dụng web. Thông báo hệ thống của *sveltevietnam.dev* có bốn biến thể tương ứng với bốn trạng thái hay mục đích thông dụng: thông tin, thành công, cảnh báo, và thất bại hay lỗi. Bạn có thể tham khảo thêm ví dụ cho từng biến thể tại trang [Thiết kế | Màu sắc](/vi/thiet-ke/mau-sac#status).
 
 Theo mặc định, mỗi thông báo có một đồng hồ hẹn giờ bên trong: thông báo sẽ tự động biến mất khi hết giờ hẹn trong vài giây. Tuy nhiên, khi bạn rê chuột vào thông báo (hay chạm và giữ tay trên các thiết bị chạm), đồng hồ sẽ tạm dừng để bạn có thời gian đọc hoặc tương tác, ví dụ như sao chép nội dung hoặc lựa chọn hành động phù hợp. Bạn có thể thử nghiệm bằng cách nhấn vào nút sao chép đường dẫn trong phần "[Chia sẻ](#share)" của bài viết này.
 
@@ -99,7 +99,7 @@ Mình đã dành khá nhiều thời gian để thử nghiệm và kiểm tra c�
 - tooltip,
 - thông báo đẩy,
 - phần "mục lục" tại các bài viết,
-- biểu mẫu đăng kí nhận tin tại trang [Sự kiện](/events), [Việc làm](/jobs), và các trang [Blog](/blog) - phần này phụ thuộc vào [Cloudflare Turnstile](https://developers.cloudflare.com/turnstile/) và chỉ làm được khi có JS.
+- biểu mẫu đăng kí nhận tin tại trang [Sự kiện](/vi/su-kien), [Việc làm](/vi/viec-lam), và các trang [Blog](/vi/blog) - phần này phụ thuộc vào [Cloudflare Turnstile](https://developers.cloudflare.com/turnstile/) và chỉ làm được khi có JS.
 
 Các phần trên đây khá là khô khan và nặng về kỹ thuật đúng không nào? Hãy cũng thay đổi không khí và khám phá những thứ vui vẻ hơn nhé!
 
@@ -113,7 +113,7 @@ Nếu bạn thắc mắc tại sao, thì câu trả lời là vì mình thấy n
 
 ## Hòm thư Svelte Việt Nam
 
-Khi bạn đăng kí nhận tin từ Svelte Việt Nam thông qua các biểu mẫu tại trang [Sự kiện](/events), [Việc làm](/jobs), và các trang [Blog](/blog), bạn sẽ nhận một email trông như sau:
+Khi bạn đăng kí nhận tin từ Svelte Việt Nam thông qua các biểu mẫu tại trang [Sự kiện](/vi/su-kien), [Việc làm](/vi/viec-lam), và các trang [Blog](/vi/blog), bạn sẽ nhận một email trông như sau:
 
 <img src={emailImage} class="border mx-auto max-w-full" width="1415" height="947" alt="chụp màn hình email xác nhận đã đăng kí" />
 
@@ -125,7 +125,7 @@ Bạn không nên chia sẻ các đường dẫn trong email trên cho bất c�
 
 ## Minh họa lộ trình
 
-Khi ghé thăm trang [Lộ trình](/roadmap), bạn sẽ thấy một số hình ảnh chìm dưới nền. Đầu tiên là:
+Khi ghé thăm trang [Lộ trình](/vi/lo-trinh), bạn sẽ thấy một số hình ảnh chìm dưới nền. Đầu tiên là:
 
 <svg inline-src="../../../../roadmap/_page/images/au-lac.svg" class="w-full h-auto opacity-20" />
 
@@ -140,7 +140,7 @@ Tiếp đến, tại cột mốc "Tự" sẽ là các văn tự cổ:
 <svg inline-src="../../../../roadmap/_page/images/tu_nom.svg" class="h-auto" />
 :::
 
-Đây chính là từ "Chữ Nôm" viết bằng [chữ Nôm](https://vi.wikipedia.org/wiki/Ch%E1%BB%AF_N%C3%B4m). Trong giai đoạn này, dự án Svelte Việt Nam tập trung phát triển về *nội dung*: trang [Blog](/blog) để chia sẻ thông tin, trang [Sự kiện](/events) để chuẩn bị cho các sự kiện sắp tới, ... Bài viết bạn đang đọc cũng được soạn trong giai đoạn này.
+Đây chính là từ "Chữ Nôm" viết bằng [chữ Nôm](https://vi.wikipedia.org/wiki/Ch%E1%BB%AF_N%C3%B4m). Trong giai đoạn này, dự án Svelte Việt Nam tập trung phát triển về *nội dung*: trang [Blog](/vi/blog) để chia sẻ thông tin, trang [Sự kiện](/vi/su-kien) để chuẩn bị cho các sự kiện sắp tới, ... Bài viết bạn đang đọc cũng được soạn trong giai đoạn này.
 
 ---
 
@@ -148,10 +148,10 @@ Cuối cùng, ta thấy một đồng tiền ở cột mốc "Đồng":
 
 <svg inline-src="../../../../roadmap/_page/images/dong.svg" class="w-full opacity-20 my-6 tb:my-10" />
 
-Đây là đồng "Thiên Phúc trấn bảo" được đúc vào thời Tiền Lê và là một trong những đồng tiền đầu tiên của Việt Nam. Tại cột mốc này, mình - với vai trò ban quản trị Svelte Việt Nam - dự định tập trung phát triển trang [Việc làm](/jobs) với hy vọng tìm ra giải pháp tổng hợp công việc liên quan từ các kênh tuyển dụng phổ biến vào một nơi tập trung để ứng viên có thể tìm kiếm môt cách nhanh chóng. Ngoài ra, mình cũng muốn tạo ra một xu hướng đồng phát triển bền vững giữa doanh nghiệp và cộng đồng. Thay vì chi trả cho các nền tảng tuyển dụng, doanh nghiệp có thể [tài trợ](/sponsor) cho chúng ta để được đăng tuyển trực tiếp tại trang [Việc làm](/jobs). Số tiền tài trợ này sẽ được dùng để tổ chức các sự kiện cho cộng đồng. Doanh nghiệp đầu tư vào cộng đồng, cộng đồng củng cố và cung cấp nhân lực cho doanh nghiệp. Đây là một chu trình tương hỗ, giúp cả hai bên cùng phát triển.
+Đây là đồng "Thiên Phúc trấn bảo" được đúc vào thời Tiền Lê và là một trong những đồng tiền đầu tiên của Việt Nam. Tại cột mốc này, mình - với vai trò ban quản trị Svelte Việt Nam - dự định tập trung phát triển trang [Việc làm](/vi/viec-lam) với hy vọng tìm ra giải pháp tổng hợp công việc liên quan từ các kênh tuyển dụng phổ biến vào một nơi tập trung để ứng viên có thể tìm kiếm môt cách nhanh chóng. Ngoài ra, mình cũng muốn tạo ra một xu hướng đồng phát triển bền vững giữa doanh nghiệp và cộng đồng. Thay vì chi trả cho các nền tảng tuyển dụng, doanh nghiệp có thể [tài trợ](/vi/tai-tro) cho chúng ta để được đăng tuyển trực tiếp tại trang [Việc làm](/vi/viec-lam). Số tiền tài trợ này sẽ được dùng để tổ chức các sự kiện cho cộng đồng. Doanh nghiệp đầu tư vào cộng đồng, cộng đồng củng cố và cung cấp nhân lực cho doanh nghiệp. Đây là một chu trình tương hỗ, giúp cả hai bên cùng phát triển.
 
 :::div c-callout c-callout--info
-Mô hình trên đã có ở các nước phát triển nhưng còn ít tại Việt Nam. Mình có nhắc đến điều này trong bài viết "[Svelte Việt Nam: từ vườn nhà vươn ra thế giới](/blog/20231012-svelte-vietnam-from-local-to-global)". Nếu có thể bạn hãy đọc qua để hiểu thêm về định hướng phát triển của Svelte Việt Nam nhé!
+Mô hình trên đã có ở các nước phát triển nhưng còn ít tại Việt Nam. Mình có nhắc đến điều này trong bài viết "[Svelte Việt Nam: từ vườn nhà vươn ra thế giới](/vi/blog/20231012-svelte-viet-nam-tu-vuon-nha-vuon-ra-the-gioi)". Nếu có thể bạn hãy đọc qua để hiểu thêm về định hướng phát triển của Svelte Việt Nam nhé!
 :::
 
 ## Màn hình xanh
@@ -173,5 +173,5 @@ Logo của Svelte Việt Nam gần như luôn hiển thị ở phần trên và 
 Trên đây là một vài chi tiết rất nhỏ nhưng hy vọng qua đấy bạn có thể hiểu thêm về cách mà mình thiết kế và xây dựng trang *sveltevietnam.dev*. Phải vui! Đó là yếu tố rất quan trọng. Người dùng đầu tiên chính là người viết ra phần mềm; nếu ta thấy vui khi dùng chính sản phẩm của mình, có lẽ đó cũng là thành công rồi. Cho dù bạn có đang viết React hay Svelte, HTMX hay Astro, Golang hay Rust, chúc bạn sẽ luôn tìm thấy được niềm vui nho nhỏ đâu đấy nhé!
 
 :::div c-callout c-callout--info
-Trong phần kế tiếp của chuỗi bài viết "Behind the Screen", mình giải thích chi tiết hơn về cách thiết lập mành hình chờ (SplashScreen). Bạn có thể tìm đọc tại "[Màn hình chờ với nâng cao tăng dần](/blog/20231220-behind-the-screen-progressive-splashscreen)".
+Trong phần kế tiếp của chuỗi bài viết "Behind the Screen", mình giải thích chi tiết hơn về cách thiết lập mành hình chờ (SplashScreen). Bạn có thể tìm đọc tại "[Màn hình chờ với nâng cao tăng dần](/vi/blog/20231220-behind-the-screen-man-hinh-cho-voi-nang-cao-tang-dan)".
 :::

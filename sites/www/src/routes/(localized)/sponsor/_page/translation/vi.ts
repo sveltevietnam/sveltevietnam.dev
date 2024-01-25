@@ -21,7 +21,7 @@ export const vi = {
 	why: {
 		title: 'Tại sao Svelte Việt Nam cần tài trợ?',
 		description:
-			'Svelte Việt Nam không phải là một doanh nghiệp và không có dự định kinh tế hóa các dự án hay sản phẩm. Tuy nhiên, Svelte Việt Nam cần có kinh phí để xây dựng một cộng đồng lành mạnh và khuyến khích thành viên gắn kết, cùng phát triển thông qua các sự kiện và diễn đàn. Để hiểu rõ hơn định hướng phát triển của Svelte Việt Nam, hãy đọc qua bài viết "<a class="c-link" href="/blog/20231012-svelte-vietnam-from-local-to-global">Svelte Việt Nam: từ vườn nhà vươn ra thế giới</a>".',
+			'Svelte Việt Nam không phải là một doanh nghiệp và không có dự định kinh tế hóa các dự án hay sản phẩm. Tuy nhiên, Svelte Việt Nam cần có kinh phí để xây dựng một cộng đồng lành mạnh và khuyến khích thành viên gắn kết, cùng phát triển thông qua các sự kiện và diễn đàn. Để hiểu rõ hơn định hướng phát triển của Svelte Việt Nam, hãy đọc qua bài viết "<a class="c-link" href="/vi/blog/20231012-svelte-viet-nam-tu-vuon-nha-vuon-ra-the-gioi">Svelte Việt Nam: từ vườn nhà vươn ra thế giới</a>".',
 		for: {
 			description: 'Cụ thể, Svelte Việt Nam sẽ sử dụng kinh phí từ quỹ tài trợ để:',
 			bullets: {

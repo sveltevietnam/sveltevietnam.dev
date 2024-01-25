@@ -22,7 +22,7 @@ Svelte Việt Nam là open source và luôn khuyến khích các bạn tham gia 
 
 ## Một cộng đồng
 
-Svelte Việt Nam là một cộng đồng cho bất cứ ai quan tâm đến Svelte và open source. Chúng ta có [Discord](https://discord.sveltevietnam.dev/) chính thức là kênh chính để làm quen và thảo luận với nhau. Bên cạnh đó, [Blog của Svelte Việt Nam](/blog) là nơi để thành viên có thể chia sẻ dưới dạng bài viết. Trong tương lai, Svelte Việt Nam sẽ hướng đến tổ chức các buổi họp mặt trực tuyến hay trực tiếp, với hình thức có thể học hỏi từ Svelte Summit và các cộng đồng khác. Hy vọng rằng, thông qua các kênh thông tin và liên lạc trên, thành viên sẽ có cơ hội gặp gỡ, gắn kết, chia sẻ trải nghiệm và kiến thức.
+Svelte Việt Nam là một cộng đồng cho bất cứ ai quan tâm đến Svelte và open source. Chúng ta có [Discord](https://discord.sveltevietnam.dev/) chính thức là kênh chính để làm quen và thảo luận với nhau. Bên cạnh đó, [Blog của Svelte Việt Nam](/vi/blog) là nơi để thành viên có thể chia sẻ dưới dạng bài viết. Trong tương lai, Svelte Việt Nam sẽ hướng đến tổ chức các buổi họp mặt trực tuyến hay trực tiếp, với hình thức có thể học hỏi từ Svelte Summit và các cộng đồng khác. Hy vọng rằng, thông qua các kênh thông tin và liên lạc trên, thành viên sẽ có cơ hội gặp gỡ, gắn kết, chia sẻ trải nghiệm và kiến thức.
 
 ### Phi cạnh tranh. Đồng phát triển
 
