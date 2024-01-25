@@ -45,7 +45,7 @@ Follow the following check list to ensure your blog post is ready for publicatio
 
 ## Architecture
 
-We do not have a content management system (CMS), special dashboard, editor, or database for blog posts. Another way to look at it is that we are using Github as our CMS and database. Each blog post is a [svelte-kit route](https://kit.svelte.dev/docs/routing#page) located at `sites/www/src/routes/[lang]/blog/(posts)/`.
+We do not have a content management system (CMS), special dashboard, editor, or database for blog posts. Another way to look at it is that we are using Github as our CMS and database. Each blog post is a [svelte-kit route](https://kit.svelte.dev/docs/routing#page) located at `sites/www/src/routes/(localized)/blog/(posts)/`.
 
 With this strategy, we can be very flexible about how a blog post is implemented. Each post is a unique page, even if it follows a common layout structure or directory format. That means we can make full use of web technologies for data visualization, interactive elements or complex user interface in post content.
 
