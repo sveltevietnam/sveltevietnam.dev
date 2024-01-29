@@ -9,19 +9,28 @@ import postcssMixins from 'postcss-mixins';
 import { mixins } from './mixins.js';
 
 /**
- *
- * @param {import('node:module')} module
  * @param {string} filename
  */
-function cssResolver(module, filename) {
+export function jssLoader(filename) {
 	const css = readFileSync(filename, 'utf8');
 	const root = postcss.parse(css);
+
 	// apply mixins & custom-selectors here so that
 	// tailwind can pick up the correct selectors for intellisense
 	const jss = postcssJs.sync([postcssMixins({ mixins }), postcssCustomSelectors])(
 		postcssJs.objectify(root),
 	);
-	module.exports = jss;
+
+	return jss;
+}
+
+/**
+ * Custom node module resolver for css
+ * @param {import('node:module')} module
+ * @param {string} filename
+ */
+function jssModuleResolver(module, filename) {
+	module.exports = jssLoader(filename);
 }
 
 /**
@@ -29,6 +38,6 @@ function cssResolver(module, filename) {
  */
 export function createRequire(path) {
 	const require = Module.createRequire(path);
-	require.extensions['.css'] = cssResolver;
+	require.extensions['.css'] = jssModuleResolver;
 	return require;
 }

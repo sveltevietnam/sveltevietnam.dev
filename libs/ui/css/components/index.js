@@ -1,4 +1,4 @@
-import { createRequire } from '../css-node-loader.js';
+import { createRequire } from '../jss-node-loader.js';
 
 const require = createRequire(import.meta.url);
 
