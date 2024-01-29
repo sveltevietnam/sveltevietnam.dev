@@ -49,5 +49,5 @@ export default {
 		'no-descending-specificity': null,
 		'custom-property-empty-line-before': null,
 	},
-	ignoreFiles: ['**/app.html', '**/*.template.html'],
+	ignoreFiles: ['**/app.html', '**/*.template.html', '**/*.md.svelte'],
 };
