@@ -1,6 +1,6 @@
 <script>
 	import tailwindHateImage from './images/tailwind-hate-vi.png?format=webp&imagetools';
-	import tailwindInPostCSSImage from './images/tailwind-in-postcss.png?format=webp&imagetools';
+	import tailwindInPostCSSImage from './images/tailwind-in-postcss-vi.png?format=webp&imagetools';
 	import tailwindContentImage from './images/tailwind-content.png?format=webp&imagetools';
 </script>
 
@@ -41,16 +41,17 @@ Gần đây, Tailwind đã trở thành một từ khóa và chủ đề nhạy 
   <figcaption>Minh họa 1: tóm tắt thảo luận trên Twitter về TailwindCSS</figcaption>
 </figure>
 
-Đây là luận điểm mình hay chia sẻ mỗi lần được hỏi về chủ đề này: "ý tưởng Tailwind" không hề mới! Việc sử dụng lớp `mx-4` thay vì viết `margin-left: 16px; margin-right: 16px` (hay `margin-inline: 16px`) đã tồn tại hơn một thập kỉ nay trong các thư viện hay framework CSS, tiêu biểu là [Bootstrap](https://getbootstrap.com/). Nếu bạn đã từng làm việc trong một hệ thống thiết kế lớn, khả năng cao bạn cũng đã bắt gặp hoặc tự phải thiết lập những abstraction tương tự.
+Đây là luận điểm mình hay chia sẻ mỗi lần được hỏi về chủ đề này: "ý tưởng Tailwind" **không** hề mới! Việc sử dụng lớp `mx-4` thay vì viết `margin-left: 16px; margin-right: 16px` đã tồn tại hơn một thập kỉ nay trong các thư viện CSS, tiêu biểu là [Bootstrap](https://getbootstrap.com/). Nếu bạn đã từng làm việc trong một hệ thống thiết kế lớn, khả năng cao bạn cũng đã bắt gặp hoặc tự phải thiết lập những abstraction tương tự.
 
 <figure>
   {@html `<iframe width="560" height="315" src="https://www.youtube.com/embed/t-eR4hA7obg?si=1pIas2MNVjSd-SMF&amp;clip=UgkxC3P7k2e36xkOwf4m1xw7D1M3xApNvZ-d&amp;clipt=EPrhBRiVlAc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`}
   <figcaption>Video 1: ThePrimeagen nói về hệ thống anh đã làm ra hơn một thập kỉ trước</figcaption>
 </figure>
+
 Điểm khác biệt lớn nhất của Tailwind so với các giải pháp tương tự trước đây là:
 
-1. tập trung vào chức năng - cung cấp các lớp nền tảng đối chiếu trực tiếp với CSS - chứ không tạo ra các thành phần giao diện phức tạp. Ví dụ, Tailwind sẽ dừng lại ở ".ml-4" thay vì ".accordion" hay ".btn-primary",
-2. xây dựng trên nền [PostCSS](https://postcss.org/), cung cấp API để tùy chỉnh, và hỗ trợ nâng cao năng suất của lập trình viên thông qua [Language Server](https://github.com/tailwindlabs/tailwindcss-intellisense/tree/3a465543cb7aa36c258dbe094a5a2927877229b1/packages/tailwindcss-language-server) để tích hợp với các trình soạn thảo mã nguồn.
+1. tập trung vào chức năng - cung cấp các lớp nền tảng đối chiếu trực tiếp với CSS - chứ không tạo ra các thành phần giao diện phức tạp. Ví dụ, Tailwind sẽ dừng lại ở `.ml-4` thay vì `.accordion` hay `.btn-primary`,
+2. xây dựng trên nền [PostCSS](https://postcss.org/), cung cấp API để tùy chỉnh, và hỗ trợ nâng cao năng suất của lập trình viên thông qua [language server](https://github.com/tailwindlabs/tailwindcss-intellisense/tree/3a465543cb7aa36c258dbe094a5a2927877229b1/packages/tailwindcss-language-server) để tích hợp với các trình soạn thảo mã nguồn.
 
 Như vậy, Tailwind đối với mình là một công cụ tốt, và nếu sử dụng đúng cách có thể giúp ta cải thiện năng suất mà không đánh đổi chất lượng của mã nguồn.
 
@@ -121,27 +122,28 @@ Những giá trị trong thiết kế được gọi chung là "design token" v�
 
 1. sử dụng lớp tương ứng trực tiếp trong HTML, ví dụ:
 
-  ```svelte
-  <element class="font-inter text-primary"></element>
-  ```
+    ```svelte
+    <element class="font-inter text-primary"></element>
+    ```
 
 2. truy cập trong CSS bằng hàm [theme(...)](https://tailwindcss.com/docs/functions-and-directives#theme) từ Tailwind:
 
-  ```css
-  element {
-    color: theme('colors.primary');
-    font-family: theme('fontFamily.inter');
-  }
-  ```
+    ```css
+    element {
+      color: theme('colors.primary');
+      font-family: theme('fontFamily.inter');
+    }
+    ```
 
 3. truy cập từ chính Javascript. Ví dụ, ta có thể khai báo bảng màu bằng trong một tệp riêng và sử dụng mọi nơi thích hợp. Đây là cách *sveltevietnam.dev* cấu trúc bảng màu; bạn có thể đọc [mã nguồn tại đây](https://github.com/sveltevietnam/sveltevietnam.dev/blob/dec07ae0cbabfd6a1ca363b879ae3dece75c3780/libs/ui/css/colors/colors.js).
 
-  ```javascript
-  // colors.js
-  export const colors = {
-    primary: 'hsl(10 100% 54%)',
-    // ...
-  };
+    ```javascript
+    // colors.js
+    export const colors = {
+      primary: 'hsl(10 100% 54%)',
+      // ...
+    };
+    ```
 
 Tất cả dự án có sử dụng Tailwind mà mình đã tham gia đều cần thiết lập tùy chỉnh tương tự như trên, để phù hợp với thiết kế riêng của ứng dụng. Nếu bạn đã từng làm việc cho hệ thống lớn áp dụng các giải pháp đóng gói và tái sử dụng CSS, tiêu biểu như [Sass](https://sass-lang.com/), thiết lập hệ thống thiết kế là một công việc nặng nề và rất mất thời gian. Để có thể đạt được tính linh hoạt như Tailwind, có lẽ bạn đã có nhiều năm kinh nghiệm và thậm chí là đã phát triển một framework của riêng bạn mất rồi! Có rất nhiều hệ thống giao diện ra đời gần đây tích hợp Tawilwind hoặc khuyến khích sử dụng nó, ví dụ như [daisyUI](https://daisyui.com/), [Flowbite](https://flowbite.com/docs/getting-started/introduction/), [Skeleton](https://www.skeleton.dev/), [shadcn/ui](https://www.shadcn-svelte.com/).
 
@@ -175,7 +177,7 @@ Ví dụ, thay vì bỏ hết vào markup...
     text-align: center;
     font-weight: theme('fontWeight.semibold');
     border-radius: theme('borderRadius.md');
-    background-color: theme('colors.white);
+    background-color: theme('colors.white');
 
     &:hover {
       background-color: theme('colors.black');
@@ -254,7 +256,7 @@ Kết quả sau khi biên dịch sẽ là:
 Nhìn chung, mình không khuyến khích sử dụng cú pháp `@apply`. Như bạn thấy ở ví dụ trên, tính năng này tuy rất nhanh gọn nhưng lại trộn lẫn hai cú pháp khác biệt, đem lớp HTML vào CSS. Nếu bị lạm dụng, điều này khiến việc bảo trì và tối ưu khó khăn hơn. Ta thường dùng `@apply` để đóng gói một đoạn mã CSS cho việc tái sử dụng, nhưng điều này hoàn toàn có thể thực hiện bằng cách mở rộng cấu hình của Tailwind; ta sẽ đi sâu hơn về phương pháp này trong các phần sau của bài viết.
 :::
 
-Ngoài ra, sử dụng `@apply` trong các tệp `*svelte` cũng là điều nên tránh vì hai nguyên nhân. Một là đôi khi nó sẽ không hoạt động như mọng đợi, như đã [đề cập ở đây từ tài liệu của Tailwind](https://tailwindcss.com/docs/functions-and-directives#using-apply-with-per-component-css). Thứ hai là, kết quả biên dịch có thể bị ô nhiễm bởi các lớp không cần thiết. Để hiểu được ý này, hãy đi qua một cách tổng quát nhất về cách hoạt động của Tailwind.
+Ngoài ra, sử dụng `@apply` trong các tệp `*.svelte` cũng là điều nên tránh vì hai nguyên nhân. Một là đôi khi nó sẽ không hoạt động như mọng đợi, như đã [đề cập ở đây từ tài liệu của Tailwind](https://tailwindcss.com/docs/functions-and-directives#using-apply-with-per-component-css). Thứ hai là, kết quả biên dịch có thể bị ô nhiễm bởi các lớp không cần thiết. Để hiểu được ý này, hãy đi qua một cách tổng quát nhất về cách hoạt động của Tailwind.
 
 ```javascript
 // tailwind.config.js
@@ -311,4 +313,3 @@ Tóm lại, khi dùng Tailwind nên tránh sử dụng `@apply`, và nếu cần
 Hãy tạm gác lại bài viết tại đây vì đã dài rồi. Tổng kết, bản thân mình không có lý do gì để ghét một công cụ đem lại sự tiện lợi đột phá như Tailwind. Những tư duy trên là nền tảng giúp xây dựng hệ thống thiết kế và cách sử dụng CSS tại *sveltevietnam.dev* mà mình sẽ làm rõ hơn trong hai phần tiếp tới của bài viết "Styling cho Svelte Việt Nam".
 
 Hãy tham gia [Discord của Svelte Việt Nam](https://discord.sveltevietnam.dev) để thảo luận thêm về bài viết, hoặc đọc tiếp phần hai tại "[Styling cho Svelte Việt Nam: phần II - CSS Component](/vi/blog/20240125-styling-cho-svelte-viet-nam-phan-ii-css-components)". Xin cảm ơn!
-

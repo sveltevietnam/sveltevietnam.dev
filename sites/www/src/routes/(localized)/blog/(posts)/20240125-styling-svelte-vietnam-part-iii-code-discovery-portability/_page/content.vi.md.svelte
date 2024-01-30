@@ -88,7 +88,7 @@ Trong phần trước, ta thấy một cách khai báo CSS component là sử d�
 }
 ```
 
-Đây là giải pháp đơn giản nhất và nếu bạn mới sử dụng Tailwind thì nên bắt đầu từ cách này. Nhược điểm của giải pháp trên là nó không tương thích với TaiwindCSS Language Server và các plugin hỗ trợ Tailwind cho các trình soạn thảo. Khi rê chuột vào `c-component` trong phần markup, plugin không thể nhận diện được `c-btn` giống như các lớp Tailwind tiêu biểu khác.
+Đây là giải pháp đơn giản nhất và nếu bạn mới sử dụng Tailwind thì nên bắt đầu từ cách này. Nhược điểm của giải pháp trên là nó không tương thích với TaiwindCSS language server và các plugin hỗ trợ Tailwind cho các trình soạn thảo. Khi rê chuột vào `c-component` trong phần markup, plugin không thể nhận diện được `c-btn` giống như các lớp Tailwind tiêu biểu khác.
 
 <figure>
 	<img src={taliwindVSCodeIntellisenseImage} class="mx-auto max-w-full rounded" width="840" height="253" alt="rê chuột vào lớp bg-* khi đang gõ sẽ hiển thị dropdown intellisense trong vscode" />
@@ -99,12 +99,12 @@ Trong phần trước, ta thấy một cách khai báo CSS component là sử d�
 </figure>
 
 :::div c-callout c-callout--info
-Vì sao ta quan tâm đến việc một lớp có được nhận diện bởi TailwindCSS Language Server hay không? Để đảm bảo rằng mã nguồn có thể dễ dàng được "khám phá" một cách tự nhiên trong quá trình làm việc của lập trình viên. Ta chỉ cần gõ `c-` và kích hoạt trình soạn thảo để nhận diện hoặc đề xuất các CSS component trong hệ thống thiết kế của dự án, tiết kiệm thời gian và giảm thiểu sai sót.
+Vì sao ta quan tâm đến việc một lớp có được nhận diện bởi TailwindCSS language server hay không? Để đảm bảo rằng mã nguồn có thể dễ dàng được "khám phá" một cách tự nhiên trong quá trình làm việc của lập trình viên. Ta chỉ cần gõ `c-` và kích hoạt trình soạn thảo để nhận diện hoặc đề xuất các CSS component trong hệ thống thiết kế của dự án, tiết kiệm thời gian và giảm thiểu sai sót.
 :::
 
 ## Khai báo CSS Component bằng Tailwind plugin
 
-Tailwind có cung cấp [API để viết plugin](https://tailwindcss.com/docs/plugins). Đây là giải pháp rất hiệu quả nếu ta cần linh hoạt trong cấu hình và tương thích với TailwindCSS Language Server. Vì API này sử dụng Javscript và cung cấp quyền truy cập đến PostCSS, ta có thể mở rộng hầu hết mọi khía cạnh của Tailwind mà không bị giới hạn bởi cú pháp CSS như giải pháp CSS thuần túy ở phần trước.
+Tailwind có cung cấp [API để viết plugin](https://tailwindcss.com/docs/plugins). Đây là giải pháp rất hiệu quả nếu ta cần linh hoạt trong cấu hình và tương thích với TailwindCSS language server. Vì API này sử dụng Javscript và cung cấp quyền truy cập đến PostCSS, ta có thể mở rộng hầu hết mọi khía cạnh của Tailwind mà không bị giới hạn bởi cú pháp CSS như giải pháp CSS thuần túy ở phần trước.
 
 ```javascript
 // tailwind.config.js
@@ -149,7 +149,7 @@ Chú ý rằng mặc dù đoạn code `tailwind.config.js` trên được chạy
 ESM đang dần được chuẩn hóa làm mặc định trong hệ sinh thái NodeJS. Trong các phần tiếp theo sau đây, ta sẽ tiếp tục sử dụng cú pháp này.
 :::
 
-Ta còn có thể sử dụng plugin API để thêm vào các tầng [base](https://tailwindcss.com/docs/plugins#adding-base-styles), [utilities](https://tailwindcss.com/docs/plugins#adding-utilities), thay đổi [bảng màu và hệ thống đo lường](https://tailwindcss.com/docs/plugins#extending-the-configuration), hoặc khai báo [variant](https://tailwindcss.com/docs/plugins#adding-variants) mới. Tất cả tùy chỉnh vừa nêu sẽ được TailwindCSS Language Server nhận diện. Tuy nhiên, có thể bạn đã nhận ra rằng phương thức này đòi hỏi ta [phải sử dụng "CSS-in-JS"](https://tailwindcss.com/docs/plugins#css-in-js-syntax):
+Ta còn có thể sử dụng plugin API để thêm vào các tầng [base](https://tailwindcss.com/docs/plugins#adding-base-styles), [utilities](https://tailwindcss.com/docs/plugins#adding-utilities), thay đổi [bảng màu và hệ thống đo lường](https://tailwindcss.com/docs/plugins#extending-the-configuration), hoặc khai báo [variant](https://tailwindcss.com/docs/plugins#adding-variants) mới. Tất cả tùy chỉnh vừa nêu sẽ được TailwindCSS language server nhận diện. Tuy nhiên, có thể bạn đã nhận ra rằng phương thức này đòi hỏi ta [phải sử dụng "CSS-in-JS"](https://tailwindcss.com/docs/plugins#css-in-js-syntax):
 
 ```javascript
 addComponents({
@@ -166,7 +166,7 @@ addComponents({
 ### Chuyển đổi CSS sang CSS-in-JS
 
 <figure>
-	<img src={cssToJssInlineImage} class="mx-auto max-w-full rounded" width="840" height="386" alt="CSS component c-btn được chuyển đổi thành css-in-js bằng postcss-js trong cấu hình plugin Tailwind để sử dụng trong html bằng lớp  .c-btn" />
+	<img src={cssToJssInlineImage} class="mx-auto max-w-full rounded" width="840" height="386" alt="CSS component c-btn được chuyển đổi thành css-in-js bằng postcss-js trong cấu hình plugin Tailwind để sử dụng trong html bằng lớp .c-btn" />
 	<figcaption>
     Minh họa 1: quy trình chuyển đổi CSS sang CSS-in-JS để sử dụng trong cấu hình plugin Tailwind
   </figcaption>
@@ -245,9 +245,9 @@ const myplugin = definePlugin(function ({ addComponents }) {
 
 ### Tối ưu hóa bằng bước build riêng
 
-Như vậy, ta đã có một giải pháp tương đối cân bằng, vừa đảm bảo TailwindCSS Language Server nhận diện được các CSS component, vừa có thể sử dụng được cú pháp CSS tiêu chuẩn. Giải pháp vừa nêu có thể đáp ứng được hầu hết nhu cầu phổ biến, đặc biệt là đối với các dự án quy mô nhỏ với số lượng component không đáng kể.
+Như vậy, ta đã có một giải pháp tương đối cân bằng, vừa đảm bảo TailwindCSS language server nhận diện được các CSS component, vừa có thể sử dụng được cú pháp CSS tiêu chuẩn. Giải pháp vừa nêu có thể đáp ứng được hầu hết nhu cầu phổ biến, đặc biệt là đối với các dự án quy mô nhỏ với số lượng component không đáng kể.
 
-Tuy nhiên, khi số lượng component tăng lên, trải nghiệm của lập trình viên sẽ giảm dần vì tốc độ phản hồi của build tool (chẳng hạn như [Vite](https://vitejs.dev/)) và TailwindCSS Language Server, do quá trình đọc tệp và xử lý của hàm `jssLoader` là tương đối phức tạp và lặp lại thường xuyên (được kích hoạt bởi file watcher hoặc hot-module-replacement (HMR)). Để khắc phục điều này, ta có thể thực hiện các tác vụ `jssLoader` trước, xuất thành tệp cố định, và chỉ cần sử dụng lại trong cấu hình plugin tại runtime. Nói cách khác, ta sẽ tạo ra một bước build riêng cho CSS component.
+Tuy nhiên, khi số lượng component tăng lên, trải nghiệm của lập trình viên sẽ giảm dần cùng với tốc độ phản hồi của build tool (chẳng hạn như [Vite](https://vitejs.dev/)) và TailwindCSS language server, do quá trình đọc tệp và xử lý của hàm `jssLoader` là tương đối phức tạp và lặp lại thường xuyên (được kích hoạt bởi file watcher hoặc hot-module-replacement (HMR)). Để khắc phục điều này, ta có thể thực hiện các tác vụ `jssLoader` trước, xuất thành tệp cố định, và chỉ cần sử dụng lại trong cấu hình plugin tại runtime. Nói cách khác, ta sẽ tạo ra một bước build riêng cho CSS component.
 
 <figure>
 	<img src={cssToJssBuildImage} class="mx-auto max-w-full rounded" width="840" height="207" alt="build step riêng giúp lưu kết quả của quá trình chuyển đổi từ CSS sang CSS-in-JS" />

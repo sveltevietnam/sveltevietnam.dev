@@ -3,7 +3,7 @@
 	import templateBasedDevImage from './images/template-based-development.png?format=webp&imagetools';
 	import componentBasedDevImage from './images/component-based-development.png?format=webp&imagetools';
 	import atomicDesignComicImage from './images/atomic-design-comic-vi.png?format=webp&imagetools';
-	import justChangingColorImage from './images/just-changing-color.png?format=webp&imagetools';
+	import justChangingColorImage from './images/just-changing-color-vi.png?format=webp&imagetools';
 </script>
 
 Bài viết "Styling cho Svelte Việt Nam" được chia làm ba phần, liệt kê sau đây. Bạn đang đọc phần thứ hai.
@@ -47,7 +47,9 @@ Giải pháp này thường tập trung vào việc đóng gói HTML. Nếu mu�
 2. nếu cần tùy chỉnh kiểu dáng, ta nhập tệp CSS tương ứng,
 3. khi cần thêm logic để xử lý tương tác người dùng, ta nhập tệp Javascript tương ứng.
 
-Phát triển trên ý tưởng này, các framework frontend ngày nay cung cấp nhiều kỹ thuật giúp tách ghép các bộ phận UI một cách dễ dàng hơn rất nhiều. Các thành phần tách ra hay được gọi chung là "component" (thành phần). Framework giúp ta đóng gói không chỉ HTML mà còn cả CSS và Javascript một cách cục bộ và tương đối độc lập với các component khác; việc tách ghép và nhập các tệp CSS, Javascript cũng sẽ được xử lý tự động. Giải pháp này thường đòi hỏi Javascript từ framework để biểu hiện ở phía máy chủ (server-side-rendering) hoặc hoạt động ở phía trình duyệt (hydration, client-side-rendering), vì vậy mình hay gọi các component này là "**Javascript component**".
+Phát triển trên ý tưởng này, các framework frontend ngày nay cung cấp nhiều kỹ thuật giúp tách ghép các bộ phận UI một cách dễ dàng hơn rất nhiều. Các thành phần tách ra hay được gọi chung là "component" (thành phần). Framework giúp ta đóng gói không chỉ HTML mà còn cả CSS và Javascript một cách cục bộ và tương đối độc lập với các component khác; việc tách ghép và nhập các tệp CSS, Javascript cũng sẽ được xử lý tự động.
+
+Giải pháp này thường đòi hỏi Javascript từ framework để biểu hiện ở phía máy chủ (server-side-rendering) hoặc hoạt động ở phía trình duyệt (hydration, client-side-rendering), vì vậy mình hay gọi các component này là "**Javascript component**".
 
 <figure>
 	<img src={componentBasedDevImage} class="mx-auto max-w-full rounded" width="840" height="253" alt="minh họa: component được biểu hiện ra trang, chuyển cho trình duyệt, và nâng cao bằng runtime Javascript của framework" />
@@ -133,6 +135,7 @@ Sau đây là một số câu hỏi phát sinh từ ví dụ trên, dựa theo n
 	:::div c-callout c-callout--info
 	Nếu bạn làm việc trong hệ sinh thái React thì sẽ thấy rằng [component `Link` của react-router](https://reactrouter.com/en/main/components/link) dùng `to`, [component `Link` của NextJS](https://nextjs.org/docs/pages/api-reference/components/link) dùng `href`, đâu là đúng?
 	:::
+
 - `Figure` nên là atom, là molecule, hay là organism?
 - Tại sao `Figure.Image` và `Figure.Caption` cần là component riêng mà không gộp chung vào `Figure`?
 - Tại sao không tách `Heading` thành `Heading1`, `Heading2`, hay cụ thể hơn như `ArticleCard.Heading`?
@@ -196,7 +199,7 @@ Một năm sau, khi đồng nghiệp của ta cần dùng `ArticleCardHeading`, 
 Các bạn dev rất thích sử dụng thuật ngữ "seperation of concerns", tạm dịch là tách biệt mã nguồn theo nhiệm vụ. Trong các ví dụ trên, HTML (cấu trúc) và CSS (kiểu dáng) đã bị lồng ghép vào nhau. Việc một đoạn văn bản mang ngữ nghĩa h3, và việc nó có màu sắc và đường nét thể nào là hai việc tương đối độc lập. Vậy tại sao ta lại gói gọn cả hai vào chung một component? Nếu yêu cầu rằng ta phải dùng `h3` nhưng kiểu dáng lại tương ứng với `heading-2` trong hệ thống thiết kế, thì ta phải tạo ra những thủ thuật tạm bợ, thay đổi abstraction đã có để phục vụ nhu cầu mới, và tranh cãi cách nào là đúng.
 
 <figure>
-	<img src={justChangingColorImage} class="mx-auto max-w-full rounded" width="800" height="491" alt="minh họa: designer asking dev to change color of text just at this place" />
+	<img src={justChangingColorImage} class="mx-auto max-w-full rounded" width="800" height="491" alt="designer bảo dev đổi màu văn bản chỗ này thôi. Dev bảo sao chị không giết em luôn đi ạ" />
 	<figcaption>Minh họa 5: yêu cầu có thể thay đổi liên tục, abstraction thì không!</figcaption>
 </figure>
 

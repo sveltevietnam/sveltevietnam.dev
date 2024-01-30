@@ -16,7 +16,7 @@ export function jssLoader(filename) {
 	const root = postcss.parse(css);
 
 	// apply mixins & custom-selectors here so that
-	// tailwind can pick up the correct selectors for intellisense
+	// tailwind can pick up the correct representation for intellisense
 	const jss = postcssJs.sync([postcssMixins({ mixins }), postcssCustomSelectors])(
 		postcssJs.objectify(root),
 	);
