@@ -213,8 +213,8 @@ importers:
   services/mailer:
     dependencies:
       '@tsndr/cloudflare-worker-jwt':
-        specifier: ^2.4.3
-        version: 2.4.3
+        specifier: 2.4.0
+        version: 2.4.0
       mustache:
         specifier: ^4.2.0
         version: 4.2.0
@@ -2248,8 +2248,8 @@ packages:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
 
-  /@tsndr/cloudflare-worker-jwt@2.4.3:
-    resolution: {integrity: sha512-PZvHl8oHEoxFuhOMra1llWGUwAMKCjPwKHec8WqrIZv0xDf0DdwL/bbZsLXPEXTDH87EvFwbttquIMewLT7+zQ==}
+  /@tsndr/cloudflare-worker-jwt@2.4.0:
+    resolution: {integrity: sha512-pl/ZINo6S8eFOVnyWO73ghqp0rCBCyP8k4imt0TKGvoiNnAj0HjWf7jH+2GclkFB3fodN2TSHUYLQeAsLjvUkA==}
     dev: false
 
   /@types/cookie@0.6.0:
