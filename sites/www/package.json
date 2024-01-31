@@ -23,13 +23,13 @@
 		"post:create": "hygen post create"
 	},
 	"dependencies": {
-		"@floating-ui/dom": "^1.5.4",
+		"@floating-ui/dom": "^1.6.1",
 		"gsap": "^3.12.5",
 		"mustache": "^4.2.0",
 		"zod": "^3.22.4"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20240117.0",
+		"@cloudflare/workers-types": "^4.20240129.0",
 		"@internals/isc": "workspace:*",
 		"@internals/utils": "workspace:*",
 		"@svelte-put/clickoutside": "^3.0.1",
@@ -45,13 +45,13 @@
 		"@svelte-put/tooltip": "^1.0.1",
 		"@sveltejs/adapter-cloudflare": "^4.1.0",
 		"@sveltejs/enhanced-img": "^0.1.8",
-		"@sveltejs/kit": "^2.4.3",
-		"@sveltejs/vite-plugin-svelte": "^3.0.1",
+		"@sveltejs/kit": "^2.5.0",
+		"@sveltejs/vite-plugin-svelte": "^3.0.2",
 		"@sveltevietnam/ui": "workspace:*",
 		"@total-typescript/ts-reset": "^0.5.1",
 		"@types/mustache": "^4.2.5",
-		"embla-carousel": "8.0.0-rc20",
-		"embla-carousel-svelte": "8.0.0-rc20",
+		"embla-carousel": "8.0.0-rc22",
+		"embla-carousel-svelte": "8.0.0-rc22",
 		"hast-util-to-string": "^3.0.0",
 		"hygen": "^6.2.11",
 		"magic-string": "^0.30.5",

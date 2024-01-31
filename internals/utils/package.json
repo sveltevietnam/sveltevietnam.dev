@@ -61,11 +61,11 @@
 		"dts": "dts-buddy && publint"
 	},
 	"devDependencies": {
-		"@vitest/coverage-istanbul": "^1.2.1",
-		"@vitest/ui": "^1.2.1",
+		"@vitest/coverage-istanbul": "^1.2.2",
+		"@vitest/ui": "^1.2.2",
 		"dts-buddy": "^0.4.4",
 		"publint": "^0.2.7",
-		"vitest": "^1.2.1"
+		"vitest": "^1.2.2"
 	},
 	"volta": {
 		"extends": "../../package.json"
