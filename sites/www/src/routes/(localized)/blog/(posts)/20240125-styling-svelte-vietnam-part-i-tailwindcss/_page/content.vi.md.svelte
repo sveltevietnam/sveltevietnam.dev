@@ -298,7 +298,7 @@ article.svelte-hash {
 Như bạn thấy, đoạn mã đánh dấu màu vàng ở trên là không cần thiết. Ta không sử dụng lớp `rounded` ở đâu trong markup cả, nhưng vì từ khóa "rounded" trong *example.svelte* thuộc phạm vi tìm kiếm đã khai báo từ `content`, Tailwind mặc định rằng nó là cần thiết trong CSS đầu ra.
 
 <figure>
-  <img src={tailwindContentImage} class="mx-auto max-w-full rounded" width="800" height="316" alt="minh họa: Tailwind tìm kiếm từ khóa từ các tệp theo cấu hình `content`" />
+  <img src={tailwindContentImage} class="mx-auto max-w-full rounded" width="800" height="316" alt="minh họa: Tailwind tìm kiếm từ khóa từ các tệp theo cấu hình content" />
   <figcaption>Minh họa 3: Tailwind tìm kiếm từ khóa từ các tệp theo cấu hình `content`</figcaption>
 </figure>
 

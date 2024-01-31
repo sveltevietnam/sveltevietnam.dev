@@ -296,7 +296,7 @@ article.svelte-hash {
 Notice the highlighted lines in yellow: they are not needed. We do not use the `rounded` class anywhere in the markup, but since "rounded" is a matching keyword in *example.svelte*, which is included in the `content` configuration`, Tailwind thinks it is necessary in the output.
 
 <figure>
-  <img src={tailwindContentImage} class="mx-auto max-w-full rounded" width="800" height="316" alt="Tailwind searches for keywords in files specified in the `content` configuration" />
+  <img src={tailwindContentImage} class="mx-auto max-w-full rounded" width="800" height="316" alt="Tailwind searches for keywords in files specified in the content configuration" />
   <figcaption>Illustration: Tailwind searches for keywords in files specified in the `content` configuration</figcaption>
 </figure>
 
