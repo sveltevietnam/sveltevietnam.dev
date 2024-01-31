@@ -35,7 +35,7 @@ export const post = {
 	thumbnail,
 	wordCount: {
 		vi: 2300,
-		en: 1000,
+		en: 1800,
 	},
 	series: [STYLING_SVELTE_VIETNAM, BEHIND_THE_SCREEN],
 } satisfies Post;
