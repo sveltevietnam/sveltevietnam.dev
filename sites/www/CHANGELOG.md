@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0-next.39
+
+### Minor Changes
+
+- [`84c9989`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/84c9989cebc3d024819f7c87e391c134cf4312f0) Thanks [@vnphanquang](https://github.com/vnphanquang)! - 3-part blog series "Styling Svelte Vietnam" (VI)
+
+- [`c9641e2`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/c9641e26551b92e2b185dd325f61a321a1261153) Thanks [@vnphanquang](https://github.com/vnphanquang)! - EN translations of the blog series "Styling Svelte Vietnam"
+
 ## 1.0.0-next.38
 
 ### Minor Changes
