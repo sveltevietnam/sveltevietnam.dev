@@ -38,7 +38,7 @@ export const en = {
 				'☑ Support progressive enhancement (solution or fallback for users without Javascript), especially for critical features including i18n routing, color theme switching, mobile header nav menu, and splash screen',
 				'☑ Introduce the <a class="c-link" href="/en/design">Design</a> page group that documents the design details of Svelte Vietnam, including logo, <a class="c-link" href="/en/design/typography">typography</a>, <a class="c-link" href="/en/design/colors">colors</a>, and <a class="c-link" href="/en/design/blog">blog</a>',
 				'☑ Organize the <a class="c-link" href="/en/events/202312-year-end-online-meetup">first online community meetup</a>',
-				'☐ Draft content and design for “Svelte Vietnam Community 2023 Survey”',
+				'☐ Draft content and design for “Svelte Vietnam Community Survey”',
 			],
 			secondaryTasks: {
 				title: 'Related tasks as preparation for the next milestone',

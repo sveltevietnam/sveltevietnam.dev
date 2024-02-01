@@ -38,7 +38,7 @@ export const vi = {
 				'☑ Hỗ trợ cho người dùng không truy cập được Javascript (cải tiến tăng dần), đặc biệt đối với các tính năng thiết yếu như điều hướng đa ngôn ngữ, thay đổi chế độ giao diện, menu trên di động, và màn hình chờ',
 				'☑ Giới thiệu nhóm trang <a class="c-link" href="/vi/thiet-ke">Thiết kế</a> ghi lại các chi tiết thiết kế của Svelte Việt Nam, bao gồm logo, <a class="c-link" href="/vi/thiet-ke/chu-viet">chữ viết</a>, <a class="c-link" href="/vi/thiet-ke/mau-sac">màu sắc</a>, và <a class="c-link" href="/vi/thiet-ke/blog">blog</a>',
 				'☑ Tổ chức <a class="c-link" href="/vi/su-kien/202312-gap-nhau-truc-tuyen-cuoi-nam">buổi gặp mặt cộng đồng trực tuyến đầu tiên</a>',
-				'☐ Sơ thảo nội dung và thiết kế cho “Khảo sát Cộng đồng Svelte Việt Nam 2023”',
+				'☐ Sơ thảo nội dung và thiết kế cho “Khảo sát Cộng đồng Svelte Việt Nam”',
 			],
 			secondaryTasks: {
 				title: 'Công việc liên quan và liên kết với cột mốc sau',
