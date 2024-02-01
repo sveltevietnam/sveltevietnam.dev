@@ -171,7 +171,7 @@
 
 	header > div {
 		display: grid;
-		grid-template-areas: 'logo color-scheme mobile-open settings';
+		grid-template-areas: 'logo color-scheme settings mobile-open';
 		grid-template-columns: 1fr auto auto auto;
 		column-gap: theme('spacing.4');
 		align-items: center;
