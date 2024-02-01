@@ -54,10 +54,15 @@
 		on:clickoutside={clickOutside}
 		transition:fly={{ duration: 200, y: 50 }}
 	>
-		<button class="absolute right-6 top-6" on:click={dismiss}>
-			<svg inline-src="lucide/x" width="24" height="24" />
-		</button>
-		<p class="c-text-h1 font-bold">Settings</p>
+		<div class="sticky top-0 z-10 flex justify-end">
+			<button
+				on:click={dismiss}
+				class="rounded-full border bg-bg p-2 transition-colors hover:bg-fg hover:text-bg"
+			>
+				<svg inline-src="lucide/x" width="24" height="24" />
+			</button>
+		</div>
+		<p class="c-text-h1 -mt-2 font-bold">Settings</p>
 		<div class="my-10 h-px w-full bg-current" />
 		<Settings />
 	</div>
