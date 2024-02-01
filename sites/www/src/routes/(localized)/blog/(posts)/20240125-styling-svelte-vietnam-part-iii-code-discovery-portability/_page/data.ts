@@ -19,7 +19,7 @@ export const post = {
 		vi: 'Styling cho Svelte Việt Nam: phần III - khám phá và tái sử dụng mã nguồn',
 	},
 	description: {
-		en: 'Putting together a "CSS Component" approach into Tailwind and the PostCSS ecosystem for building minimal and flexible design systems',
+		en: 'Apply the "CSS Component" approach into Tailwind and the PostCSS ecosystem for building minimal and flexible design systems',
 		vi: 'Kết hợp Tailwind và hệ sinh thái PostCSS với ý tưởng CSS Component để xây dựng hệ thống thiết kế tối giản và linh hoạt',
 	},
 	githubUrl: {

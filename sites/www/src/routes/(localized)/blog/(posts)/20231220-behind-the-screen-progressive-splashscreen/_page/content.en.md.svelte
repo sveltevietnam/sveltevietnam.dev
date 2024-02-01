@@ -101,7 +101,7 @@ In the context of Svelte and SvelteKit, there are many ways to apply HTML outsid
 </html>
 ```
 
-If you don't already know, `app.html` is the starting template that SvelteKit uses to render page content into before sending off to clients. Hydration takes place at `%sveltekit.body%`. See the ["Project files" section in SvelteKit docs](https://kit.svelte.dev/docs/project-structure#project-files) for more details. Our `div#splash` is outside of `%sveltekit.body%` so it isn ot affected by hydration. Next, for CSS, we declare a separate file...
+If you don't already know, `app.html` is the starting template that SvelteKit uses to render page content into before sending off to clients. Hydration takes place at `%sveltekit.body%`. See the ["Project files" section in SvelteKit docs](https://kit.svelte.dev/docs/project-structure#project-files) for more details. Our `div#splash` is outside of `%sveltekit.body%` so it is not affected by hydration. Next, for CSS, we declare a separate file...
 
 ```css
 /* splash.css */

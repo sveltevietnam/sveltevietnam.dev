@@ -3,7 +3,7 @@
 The Svelte Vietnam Design System, packaged as [Tailwind presets](https://tailwindcss.com/docs/presets).
 
 > [!IMPORTANT]
-> The `@sveltevietnam/ui` is currently currently private for internal use but soon will be published as a standalone npm package.
+> The `@sveltevietnam/ui` is currently private for internal use but soon will be published as a standalone npm package.
 
 ## Installation
 
@@ -49,3 +49,7 @@ In your entry CSS, import `fonts.css`:
 ## Editor Support
 
 It is recommended, if possible, that you install the appropriate editor plugin/extension that adds support for TailwindCSS Language Server. If you are using VSCode, install the official [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss). This greatly improves code discovery and developer productivity.
+
+## Documentation
+
+...Coming soon...

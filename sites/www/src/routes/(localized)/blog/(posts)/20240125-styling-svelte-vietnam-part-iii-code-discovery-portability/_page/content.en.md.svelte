@@ -29,7 +29,7 @@ There are three parts to the "Styling Svelte Vietnam" blog series, listed below.
 
 ---
 
-In the last two parts, we have made the arguments for why TailwindCSS is a great tool for building design systems, and why CSS Component is a minimal solution for packaging core UI components. In this post, we will see how to connect everything together by looking at examples from *sveltevietnam.dev*.
+In the last two parts, we have made the arguments for why TailwindCSS is a great tool for building design systems, and why CSS component is a minimal solution for packaging core UI components. In this post, we will see how to connect everything together by looking at examples from *sveltevietnam.dev*.
 
 ## Tailwind @layer
 
@@ -44,7 +44,7 @@ First and foremost, we should know that TailwindCSS organizes CSS into three lay
 
 - `base` is the lowest layer, containing common CSS rules to reset default styles for HTML elements (often referred to as "reset CSS"),
 - `components` is where we will add CSS components, as discussed in the upcoming sections,
-- and finally `utilities`, as the name suggests, contains most of popular Tailwind utilities rules such as `.bg-red-500` or `.text-center`.
+- and finally `utilities`, as the name suggests, contains popular Tailwind utilities rules such as `.bg-red-500` or `.text-center`.
 
 Although `@tailwind` is a syntax specific to Tailwind, [@layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer) is a valid CSS feature - standardized since 2022. Pay special attention to the declaration order of layers: CSS rules in a later layer can override rules in previous ones regardless of [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity). This means, for example, if we have the following CSS component `.c-btn` in the `components` layer:
 
@@ -72,7 +72,7 @@ You can see that the CSS component above is prefixed with `c-`. This is a conven
 
 ## Declare CSS Component with @layer components
 
-The the previous section, we have seen one way of declaring a CSS component by using the `@layer components`:
+In the previous section, we have seen one way of declaring a CSS component via `@layer components`:
 
 ```css
 /* app.css */
@@ -86,7 +86,7 @@ The the previous section, we have seen one way of declaring a CSS component by u
 }
 ```
 
-This is probably the simplest solution and one you should start with if you are getting started with Tailwind. Its drawback is incompatibility with TailwindCSS language server and, in turn, editor extensions. When hovering over `c-component` in the markup, Tailwind extension cannot recognize `c-btn` like with other typical Tailwind classes.
+This is probably the simplest solution and one you should start with if you are getting started with Tailwind. Its drawback is incompatibility with Tailwind language server and, in turn, editor extensions. When hovering over `c-component` in the markup, Tailwind extension cannot recognize `c-btn` like with other typical Tailwind classes.
 
 <figure>
 	<img src={taliwindVSCodeIntellisenseImage} class="mx-auto max-w-full rounded" width="840" height="253" alt="hovering over any bg-* classes in the markup will trigger a intellisense dropdown in vscode" />
@@ -97,12 +97,12 @@ This is probably the simplest solution and one you should start with if you are 
 </figure>
 
 :::div c-callout c-callout--info
-Why should we care whether a class is recognized by TailwindCSS language server or not? It is to enable "code discovery", making it easy for developers to explore possible classes naturally during their daily work. One just needs to type `c-` and trigger intellisense for the editor to recognize or suggest appropriate Tailwind classes, including our soon-to-be-defined CSS components from our project design system. All in all, this saves time and helps minimize errors.
+Why should we care whether a class is recognized by Tailwind language server or not? It is to enable "code discovery", making it easy for developers to explore possible classes naturally during their daily work. One just needs to type `c-` and trigger intellisense for the editor to recognize or suggest appropriate Tailwind classes, including our soon-to-be-defined CSS components from our project design system. All in all, this saves time and helps minimize errors.
 :::
 
 ## Declare CSS Component with Tailwind Plugin
 
-Tailwind provides a powerful [API for writing plugin](https://tailwindcss.com/docs/plugins). This is an effective solution if we need flexibility in configuration or compatibility with Tailwind language server. Since this API uses Javascript and expose access to PostCSS, we can extend almost every aspect of Tailwind without being limited by CSS syntax as with pure CSS in the previous section.
+Tailwind provides a powerful [API for writing plugin](https://tailwindcss.com/docs/plugins). This is an effective solution if we need flexibility in configuration or compatibility with Tailwind language server. Since this API uses Javascript and exposes access to PostCSS, we can extend almost every aspect of Tailwind without being limited by CSS syntax as in the previous presented solution.
 
 ```javascript
 // tailwind.config.js
@@ -147,7 +147,7 @@ Notice that although the above `tailwind.config.js` is running in NodeJS context
 ESM is becoming the standard in the NodeJS ecosystem (just as it has already been in the browser). In the following sections, we will continue to use this syntax.
 :::
 
-We can also use this plugin API to add to the [base](https://tailwindcss.com/docs/plugins#adding-base-styles), [utilities](https://tailwindcss.com/docs/plugins#adding-utilities) layers, change [color palette and spacing system](https://tailwindcss.com/docs/plugins#extending-the-configuration), or declare new [variants](https://tailwindcss.com/docs/plugins#adding-variants). All of such customizations will be recognized by TailwindCSS language server. However, you may have already noticed that this method requires the [use of "CSS-in-JS"](https://tailwindcss.com/docs/plugins#css-in-js-syntax):
+We can also use this plugin API to add to the [base](https://tailwindcss.com/docs/plugins#adding-base-styles), [utilities](https://tailwindcss.com/docs/plugins#adding-utilities) layers, change [color palette and spacing system](https://tailwindcss.com/docs/plugins#extending-the-configuration), or declare new [variants](https://tailwindcss.com/docs/plugins#adding-variants). All of such customizations will be recognized by Tailwind language server. However, you may have already noticed that this method requires the [use of "CSS-in-JS"](https://tailwindcss.com/docs/plugins#css-in-js-syntax):
 
 ```javascript
 addComponents({
@@ -243,9 +243,9 @@ const myplugin = definePlugin(function ({ addComponents }) {
 
 ### Optimize with a Separate Build Step
 
-So, we now have a relatively balanced solution that ensures compatibility with Tailwind language server while still allows us to write CSS Component in plain old CSS. This solution is good enough for most common use cases, especially for projects with a small number of components.
+So, we now have a relatively balanced solution that ensures compatibility with Tailwind language server while still allows us to write CSS components in plain old CSS. This solution is good enough for most common use cases, especially for projects with a small number of components.
 
-However, as the number of components increase, developer experience will gradually degrade as the response time of build tool ([Vite](https://vitejs.dev/), for example) and language sever increases. This is due to the relatively complex and repetitive execution of file reading and processing of the `jssLoader` routine, triggered by file watcher or hot-module-replacement (HMR). To overcome this, we can perform `jssLoader` task beforehand, export it to static files, and reuse it in the plugin configuration at runtime. In other words, we will create a separate build step for CSS component.
+However, when component count increases, developer experience will gradually degrade as the response time of build tool ([Vite](https://vitejs.dev/), for example) and language sever increases. This is due to the relatively complex and repetitive execution of file reading and processing of the `jssLoader` routine, triggered by file watcher or hot-module-replacement (HMR). To overcome this, we can perform `jssLoader` task beforehand, export it to static files, and reuse it in the plugin configuration at runtime. In other words, we will create a separate build step for CSS component.
 
 <figure>
 	<img src={cssToJssBuildImage} class="mx-auto max-w-full rounded" width="840" height="207" alt="a separate build step that output the conversion process to static files" />
@@ -332,7 +332,7 @@ As discussed, a separate build step helps improve response time during developme
 
 ## Packaging for Reusability
 
-For me, the best benefit of using Tailwind plugin API is its independence from other logic of the application, making it easy to package the design system to reuse in other projects sharing the same design tokens or components.
+For me, the best benefit of using Tailwind plugin API is its independence from other parts of the application, making it easy to package the design system to reuse in other projects sharing the same design tokens or components.
 
 <figure>
 	<img src={designSystemPackageImage} class="mx-auto max-w-full rounded" width="840" height="467" alt="packaging design system including CSS components, fonts, colors, and reuse in any projects that support PostCSS and Tailwind" />

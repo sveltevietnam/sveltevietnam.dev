@@ -19,8 +19,8 @@ export const post = {
 		vi: 'Màn hình chờ với nâng cao tăng dần',
 	},
 	description: {
-		en: 'How sveltevietnam.dev implements a splash screen that progressively provides a welcoming user experience while buying time for the rest of the page to load',
-		vi: 'Cách sveltevietnam.dev thiếp lập màn hình chờ để chuẩn bị cho những hiệu ứng của trang và cải thiện tăng dần trải nghiệm người dùng',
+		en: 'Implement an progressively enhanced splash screen for sveltevietnam.dev - an expression of creativity with unexpected benefits',
+		vi: 'Thiết lập màn hình chờ cho sveltevietnam.dev, cải thiện trải nghiệm người dùng với nhiều lợi ích bất ngờ',
 	},
 	githubUrl: {
 		en: 'https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/routes/(localized)/blog/(posts)/20231220-behind-the-screen-progressive-splashscreen/_page/content.en.md.svelte',

@@ -55,7 +55,7 @@ For me, Tailwind is a great tool, and when used correctly can help boost product
 
 ## Tailwind for Quick Prototyping
 
-When building an [MVP](https://en.wikipedia.org/wiki/Minimum_viable_product) or testing ideas, a key priority is speed. Tailwind is a fitting solution for this phase as it effectively allows co-locate styles right next to markup, making it easy to set up, search, and change. Instead of spending time designing a complex project structure or coming up with a convoluted naming convention like [BEM](https://getbem.com/)...
+When building an [MVP](https://en.wikipedia.org/wiki/Minimum_viable_product) or testing ideas, a key priority is speed. Tailwind is a fitting solution for this phase as it effectively allows co-locating styles right next to markup, making it easy to set up, search, and change. Instead of spending time designing a complex project structure or coming up with a convoluted naming convention like [BEM](https://getbem.com/)...
 
 ```svelte
 <!-- BEM markup & styling -->
@@ -198,7 +198,7 @@ For example, instead of putting everything in the markup...
 </button>
 ```
 
-### Tailwind with PostCSS
+## Tailwind with PostCSS
 
 To a certain extent, we can view Tailwind simply as a [PostCSS plugin](https://postcss.org/docs/postcss-plugins). This means we can use Tailwind in conjunction with other PostCSS plugins, and, vice versa, use PostCSS API to extend Tailwind configuration.
 
@@ -264,7 +264,7 @@ export default {
 };
 ```
 
-Tailwind's configuration contains a mandatory `content` field, which instructs the Tailwind compiler ([Just-In-Time Compiler](https://tailwindcss.com/blog/just-in-time-the-next-generation-of-tailwind-css)) where in source code to read and search for applicable class names (`mx-auto`, `pl-2`, `rounded`, ...) and output corresponding CSS. Say we have the following Svelte file:
+Tailwind's configuration contains a mandatory `content` field, which instructs the Tailwind [just-in-time compiler](https://tailwindcss.com/blog/just-in-time-the-next-generation-of-tailwind-css) where in source code to read and search for applicable class names (`mx-auto`, `pl-2`, `rounded`, ...) and output corresponding CSS. Say we have the following Svelte file:
 
 ```svelte
 <!-- example.svelte -->

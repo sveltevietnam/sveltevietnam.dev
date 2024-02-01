@@ -43,7 +43,7 @@
 			<div use:intersect class="text-center">
 				<ToBeAnnounced>
 					<p>
-						{t.tba.description}
+						{t.tba.description}.
 						<a href="{$routes.events.path}#mail" class="c-link">{t.tba.cta}</a>
 					</p>
 				</ToBeAnnounced>

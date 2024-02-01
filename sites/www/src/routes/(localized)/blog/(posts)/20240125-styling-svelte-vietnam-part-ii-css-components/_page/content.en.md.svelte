@@ -30,7 +30,7 @@ There are three parts to the "Styling Svelte Vietnam" blog series, listed below.
 
 ---
 
-In this post, I will share how *sveltevietnam.dev* reuse most of its core UI components with only CSS, reducing the unnecessary dependency on Javascript that has become too common in web projects today. If you are skeptical, I hope that through these examples, my reasoning can convince you of a different perspective when analyzing UI and managing source code.
+In this post, I will share how *sveltevietnam.dev* reuse most of its core UI components with only CSS, reducing the unnecessary dependency on Javascript that has become too common in web projects today. If you are skeptical, I hope that through these examples, my reasoning can convince you of a different perspective for UI analysis and source code management.
 
 ## Javascript Component
 
@@ -47,7 +47,7 @@ These early solutions focus primarily on encapsulating HTML. To reuse Javascript
 2. if custom styling is needed, import necessary CSS files,
 3. when interaction logic is needed, import necessary Javascript files.
 
-Building upon these ideas, modern frontend frameworks provide far more sophisticated techniques for splitting and joining UI that also proves to be much more convenient for developers. The UI parts split out are referred to as "components". Frameworks help us encapsulate not only HTML but also CSS and Javascript in a local, relatively independent manner from one component to others. Javscript and CSS code splitting and injection are also handled automatically.
+Building upon these ideas, modern frontend frameworks provide far more sophisticated techniques for splitting and joining UI that also prove to be much more convenient for developers. The UI parts split out are referred to as "components". Frameworks help us encapsulate not only HTML but also CSS and Javascript in a local, relatively independent manner from one component to others. Javscript and CSS code splitting and injection are also handled automatically.
 
 Solutions that today frameworks employ usually require Javascript within the framework, either for prerendering and server-side-rendering, or hydration and client-side-rendering. For this reason, I refer to these UI parts as "**Javascript component**".
 
