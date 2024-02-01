@@ -17,7 +17,7 @@ export const en = {
 		description:
 			'\
 			Technical blog posts often contain code blocks as examples. Svelte Vietnam uses \
-			<a class="c-link" href="https://github.com/antfu/shikiji" target="_blank" rel="noreferrer">shikiji</a> \
+			<a class="c-link" href="https://github.com/shikijs/shiki" target="_blank" rel="noreferrer">shiki</a> \
 			to provide syntax highlighting. To render a code block, use the same syntax as in markdown\
 		',
 		language: 'Language',
@@ -26,7 +26,7 @@ export const en = {
 		supportedLanguages:
 			'\
 		Currently, the supported languages are svelte, javascript, typescript, and shellscript. \
-		If you need to add more language, inspect the "shikiji" configuration at \
+		If you need to add more language, inspect the "shiki" configuration at \
 		<a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/mdsvex.config.js#L24" target="_blank" rel="noreferrer">mdsvex.config.js</a>.\
 		',
 		diff: {

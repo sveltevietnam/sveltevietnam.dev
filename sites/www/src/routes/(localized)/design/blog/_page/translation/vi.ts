@@ -16,7 +16,7 @@ export const vi = {
 		description:
 			'\
 		Các bài viết mang tính kỹ thuật thường cần hiển thị các đoạn mã làm ví dụ. Svelte Việt Nam sử dụng thư viện \
-		<a class="c-link" href="https://github.com/antfu/shikiji" target="_blank" rel="noreferrer">shikiji</a> \
+		<a class="c-link" href="https://github.com/shikijs/shiki" target="_blank" rel="noreferrer">shiki</a> \
 		để cung cấp màu sắc cho cú pháp (syntax highlighting). Cầu hình hiện tại sử dụng theme "Github Dark Dimmed". \
 		Để hiển thị một đoạn code, hãy sử dụng cú pháp giống như trong markdown. \
 		',
@@ -26,7 +26,7 @@ export const vi = {
 		supportedLanguages:
 			'\
 		Hiện tại, các ngôn ngữ được hỗ trợ là: svelte, javascript, typescript, và shellscript. \
-		Nếu có nhu cầu thêm ngôn ngữ khác, hãy tham khảo cấu hình "shikiji" tại \
+		Nếu có nhu cầu thêm ngôn ngữ khác, hãy tham khảo cấu hình "shiki" tại \
 		<a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/mdsvex.config.js#L24" target="_blank" rel="noreferrer">mdsvex.config.js</a>.\
 		',
 		diff: {

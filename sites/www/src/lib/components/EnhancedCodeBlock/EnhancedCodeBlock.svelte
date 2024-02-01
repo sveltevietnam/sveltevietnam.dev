@@ -10,7 +10,7 @@
 		if (!codeNode) return '';
 		let text = '';
 		for (const lineNode of codeNode.children) {
-			// assuming shikiji build output and transformers set up at mdsvex.config.js
+			// assuming shiki build output and transformers set up at mdsvex.config.js
 			if ((lineNode as HTMLElement).dataset.lineDiff === '-') continue;
 			text += (lineNode.textContent || '') + '\n';
 		}

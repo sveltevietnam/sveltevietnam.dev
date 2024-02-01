@@ -2,8 +2,8 @@ import { toString } from 'hast-util-to-string';
 import { defineMDSveXConfig } from 'mdsvex';
 import remarkContainers from 'remark-containers';
 import remarkGfm from 'remark-gfm';
-import { getHighlighterCore } from 'shikiji/core';
-import loadWasm from 'shikiji/wasm';
+import { getHighlighterCore } from 'shiki/core';
+import loadWasm from 'shiki/wasm';
 
 /**
  * Returns code with curly braces and backticks replaced by HTML entity equivalents
@@ -18,13 +18,13 @@ function escapeHtml(code) {
 }
 
 const shiki = await getHighlighterCore({
-	themes: [import('shikiji/themes/github-dark-dimmed.mjs')],
+	themes: [import('shiki/themes/github-dark-dimmed.mjs')],
 	langs: [
-		import('shikiji/langs/javascript.mjs'),
-		import('shikiji/langs/typescript.mjs'),
-		import('shikiji/langs/svelte.mjs'),
-		import('shikiji/langs/shellscript.mjs'),
-		import('shikiji/langs/markdown.mjs'),
+		import('shiki/langs/javascript.mjs'),
+		import('shiki/langs/typescript.mjs'),
+		import('shiki/langs/svelte.mjs'),
+		import('shiki/langs/shellscript.mjs'),
+		import('shiki/langs/markdown.mjs'),
 	],
 	loadWasm,
 });
@@ -52,7 +52,7 @@ export const mdsvexConfig = defineMDSveXConfig({
 const STATUSES = ['info', 'success', 'warning', 'error'];
 
 /**
- * @returns {import('shikiji').ShikijiTransformer}
+ * @returns {import('shiki').ShikiTransformer}
  */
 function transformer() {
 	return {
