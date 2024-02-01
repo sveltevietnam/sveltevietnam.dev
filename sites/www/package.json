@@ -54,7 +54,7 @@
 		"embla-carousel-svelte": "8.0.0-rc22",
 		"hast-util-to-string": "^3.0.0",
 		"hygen": "^6.2.11",
-		"magic-string": "^0.30.5",
+		"magic-string": "^0.30.6",
 		"mdsvex": "^0.11.0",
 		"postcss": "^8.4.33",
 		"remark-containers": "^1.2.0",
