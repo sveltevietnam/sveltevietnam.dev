@@ -58,7 +58,7 @@ Since the publication of this post, I have received several comments about the f
 :::div c-callout c-callout--success
 At *sveltevietnam.dev*, our splash screen's primary mission is to create an engaging and welcoming scene, and an excuse for us to be expressive with our creative ideas. That is the reason it is designed to be quick and nonrepetitive, as you will soon see. For us, the "site-loading coverup property" comes as a convenient by-product.
 
-Does *sveltevietnam.dev* feels slow to you as a visitor? Let us know via [Reddit](https://www.reddit.com/r/sveltejs/comments/18qxcf8/splash_screen_in_svelte_sveltekit_a_blog_post/?utm_source=share&utm_medium=web2x&context=3), [Twitter](https://twitter.com/sveltevietnam), or [Discord](https://discord.sveltevietnam.dev)!
+Does *sveltevietnam.dev* feels slow to you as a visitor? Let us know via [Reddit](https://www.reddit.com/r/sveltejs/comments/18qxcf8/splash_screen_in_svelte_sveltekit_a_blog_post/?utm_source=share&utm_medium=web2x&context=3), [Twitter](https://twitter.com/sveltevietnam), or [Discord](https://discord.sveltevietnam.dev). In case you do not wish to see our splash screen anymore, feel free to turn it off completely via the [settings page](/en/settings) (or click on the settings icon on the top right of the site).
 :::
 
 In any case, you should discuss with your team and consider carefully if your application and audience will benefit from a splash screen. Worry not as the techniques introduced in this blog post is applicable to other use cases as well, not just splash screen!

@@ -58,7 +58,7 @@ Từ khi bài viết này được đăng, mình có nhận được một vài 
 :::div c-callout c-callout--success
 Với *sveltevietnam.dev*, màn hình chờ có nhiệm vụ chính là tạo nên một hoạt cảnh ấn tượng lôi cuốn người dùng, và cũng là cái cớ để chúng mình thể hiện sức sáng tạo. Đó là lý do nó được thiết kế để chạy trong thời gian ngắn và không lặp lại, như bạn sẽ thấy ở phần sau. Tính chất "che đi qua trình tải trang" là sản phẩm phụ may mắn đi kèm với màn hình chờ này.
 
-Bạn có thấy trang *sveltevietnam.dev* chậm? Hãy phản hồi cho tụi mình biết qua [Discord](https://discord.sveltevietnam.dev) nhé!
+Bạn có thấy trang *sveltevietnam.dev* chậm? Hãy phản hồi cho tụi mình biết qua [Discord](https://discord.sveltevietnam.dev). Trường hợp bạn không muốn thấy màn hình chờ nữa, hãy [vào trang cài đặt](/vi/cai-dat) (hoặc nhấn vào icon tương ứng ở góc trên bên phải) và tắt màn hình chờ nhé!
 :::
 
 Tùy vào trường hợp, bạn nên thảo luận với team và cân nhắc cẩn thận, xem xét giá trị thực tế mà màn hình chờ mang lại cho ứng dụng và người dùng. Nhưng đừng quá lo lắng, dù gì đi nữa, các kỹ thuật được giới thiệu trong bài viết này cũng có thể áp dụng cho các vấn đề khác, không chỉ riêng màn hình chờ!
