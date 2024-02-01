@@ -10,7 +10,7 @@ Buckle up as this will be a lengthy one. There will be design decisions that you
   <ul class="divider-border mt-3 max-w-[548px] divide-y">
     <li>
       <a href="/en/blog/20240125-styling-svelte-vietnam-part-i-tailwindcss" class="c-link c-link--box font-medium">
-        <strong>Part I - TailwindCSS</strong>
+        <span><strong>Part I - TailwindCSS</strong></span>
       </a>
     </li>
     <li>

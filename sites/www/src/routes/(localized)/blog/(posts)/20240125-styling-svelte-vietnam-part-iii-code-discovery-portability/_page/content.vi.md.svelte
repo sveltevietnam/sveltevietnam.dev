@@ -21,7 +21,7 @@ Bài viết "Styling cho Svelte Việt Nam" được chia làm ba phần, liệt
     </li>
     <li>
       <a href="/vi/blog/20240125-styling-cho-svelte-viet-nam-phan-iii-kham-pha-va-tai-su-dung-ma-nguon" class="c-link c-link--box">
-        <strong>Phần III - Khám phá và tái sử dụng mã nguồn</strong>
+        <span><strong>Phần III - Khám phá và tái sử dụng mã nguồn</strong></span>
       </a>
     </li>
   </ul>

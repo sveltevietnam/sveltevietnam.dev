@@ -21,7 +21,7 @@ There are three parts to the "Styling Svelte Vietnam" blog series, listed below.
     </li>
     <li>
       <a href="/en/blog/20240125-styling-svelte-vietnam-part-iii-code-discovery-portability" class="c-link c-link--box">
-        <strong>Part III - Code Discovery & Portability</strong>
+        <span><strong>Part III - Code Discovery & Portability</strong></span>
       </a>
     </li>
   </ul>

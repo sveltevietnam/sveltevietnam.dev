@@ -17,7 +17,7 @@ Bài viết "Styling cho Svelte Việt Nam" được chia làm ba phần, liệt
     </li>
     <li>
       <a href="/vi/blog/20240125-styling-cho-svelte-viet-nam-phan-ii-css-components" class="c-link c-link--box">
-        <strong>Phần II - CSS Component</strong>
+        <span><strong>Phần II - CSS Component</strong></span>
       </a>
     </li>
     <li>

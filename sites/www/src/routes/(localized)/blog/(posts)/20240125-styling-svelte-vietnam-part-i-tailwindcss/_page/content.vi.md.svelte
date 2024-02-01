@@ -10,7 +10,7 @@ Bài viết "Styling cho Svelte Việt Nam" được chia làm ba phần, liệt
   <ul class="divider-border mt-3 max-w-[548px] divide-y">
     <li>
       <a href="/vi/blog/20240125-styling-cho-svelte-viet-nam-phan-i-tailwindcss" class="c-link c-link--box font-medium">
-        <strong>Phần I - TailwindCSS</strong>
+        <span><strong>Phần I - TailwindCSS</strong></span>
       </a>
     </li>
     <li>

@@ -17,7 +17,7 @@ There are three parts to the "Styling Svelte Vietnam" blog series, listed below.
     </li>
     <li>
       <a href="/en/blog/20240125-styling-svelte-vietnam-part-ii-css-components" class="c-link c-link--box">
-        <strong>Part II - CSS Component</strong>
+        <span><strong>Part II - CSS Component</strong></span>
       </a>
     </li>
     <li>
