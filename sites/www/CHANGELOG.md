@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.40
+
+### Minor Changes
+
+- [`e9466fb`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/e9466fb91b6f038fdd586740b7dee423c5f2a4e3) Thanks [@vnphanquang](https://github.com/vnphanquang)! - migrate back from `shikiji` to `shiki` (#222)
+
 ## 1.0.0-next.39
 
 ### Minor Changes
