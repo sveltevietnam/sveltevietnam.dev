@@ -116,9 +116,9 @@ import definePlugin from 'tailwindcss/plugin';
 const myplugin = definePlugin(function ({ addComponents }) {
   addComponents({
     '.c-btn': {
-      textAlign: center;
-      backgroundColor: `theme('colors.blue.500')`;
-      color: white;
+      textAlign: 'center',
+      backgroundColor: `theme('colors.blue.500')`,
+      color: 'white',
     },
   });
 });
@@ -154,9 +154,9 @@ Ta còn có thể sử dụng plugin API để thêm vào các tầng [base](htt
 ```javascript
 addComponents({
   '.c-btn': {
-    textAlign: center;
-    backgroundColor: `theme('colors.blue.500')`;
-    color: white;
+    textAlign: 'center',
+    backgroundColor: `theme('colors.blue.500')`,
+    color: 'white',
   },
 });
 ```
@@ -229,9 +229,9 @@ const myplugin = definePlugin(function ({ addComponents }) {
   // :::diff -
   addComponents({
     '.c-btn': {
-      textAlign: center;
-      backgroundColor: `theme('colors.blue.500')`;
-      color: white;
+      textAlign: 'center',
+      backgroundColor: `theme('colors.blue.500')`,
+      color: 'white',
     },
   });
   // :::
