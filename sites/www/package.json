@@ -33,6 +33,7 @@
 		"@internals/isc": "workspace:*",
 		"@internals/utils": "workspace:*",
 		"@svelte-put/clickoutside": "^3.0.1",
+		"@svelte-put/cloudflare-turnstile": "^0.1.0",
 		"@svelte-put/copy": "^3.0.0",
 		"@svelte-put/lockscroll": "^1.0.1",
 		"@svelte-put/modal": "^1.0.6",
