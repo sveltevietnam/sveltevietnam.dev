@@ -9,6 +9,7 @@
 </script>
 
 <script lang="ts">
+	import { turnstile } from '@svelte-put/cloudflare-turnstile';
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import { superForm } from 'sveltekit-superforms/client';
 
@@ -17,7 +18,6 @@
 	import { getSettingsContext } from '$lib/contexts/settings';
 	import type { FormMessage } from '$lib/forms';
 	import { getNotificationContext } from '$lib/notifications';
-	import { turnstile } from '$lib/turnstile/turnstile.action';
 
 	/** translations */
 	export let action = '?/mail';
@@ -105,7 +105,7 @@
 			turnstile-size="normal"
 			turnstile-language={$lang}
 			use:turnstile
-			on:turnstile={(e) => ($form.turnstile = e.detail)}
+			on:turnstile={(e) => ($form.turnstile = e.detail.token)}
 		/>
 	</div>
 

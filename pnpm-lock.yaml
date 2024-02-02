@@ -352,6 +352,9 @@ importers:
       '@svelte-put/clickoutside':
         specifier: ^3.0.1
         version: 3.0.1
+      '@svelte-put/cloudflare-turnstile':
+        specifier: ^0.1.1
+        version: 0.1.1
       '@svelte-put/copy':
         specifier: ^3.0.0
         version: 3.0.0
@@ -2072,6 +2075,10 @@ packages:
 
   /@svelte-put/clickoutside@3.0.1:
     resolution: {integrity: sha512-RhuRmD2RpXF63Mb48DxKkgqIPQ458TnL8M1m6HqtnPh5/g5p+PKIn/L2SPs1s9us2Kn02Y1/txHhOSYbVi6Z2Q==}
+    dev: true
+
+  /@svelte-put/cloudflare-turnstile@0.1.1:
+    resolution: {integrity: sha512-i2lzvkiElRqn1q7EFEOJIeH37cXh+Wv6qmz32krBaWcrrbLWQH4jqmQ6Jm3EYKeZw3V8UcupCDZBihjVxyYuxA==}
     dev: true
 
   /@svelte-put/copy@3.0.0:
