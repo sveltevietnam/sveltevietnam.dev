@@ -51,11 +51,13 @@
 		}
 
 		&:focus {
-			outline: 1px solid currentcolor;
+			outline: 2px solid currentcolor;
+			outline-offset: 0;
 		}
 
 		&:invalid:not(:placeholder-shown) {
 			border-color: theme('colors.error.surface.200');
+			outline-color: theme('colors.error.surface.200');
 		}
 	}
 
