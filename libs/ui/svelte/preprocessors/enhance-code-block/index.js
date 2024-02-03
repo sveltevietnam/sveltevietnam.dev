@@ -10,7 +10,7 @@ import { parse } from 'svelte-parse-markup';
  *   path: string;
  *   default?: boolean;
  * }} [component]
- * @property {(filename?: string) => boolean} [match]
+ * @property {(filename?: string) => boolean} [files]
  */
 
 /**
@@ -23,7 +23,7 @@ const DEFAULT_CONFIG = {
 		path: '@sveltevietnam/ui/svelte/components/EnhancedCodeBlock.svelte',
 		default: true,
 	},
-	match: (filename) => filename?.endsWith('.md.svelte') ?? false,
+	files: (filename) => filename?.endsWith('.md.svelte') ?? false,
 };
 
 /**
@@ -38,47 +38,47 @@ export function enhanceCodeBlock(config = {}) {
 	return {
 		markup(o) {
 			const { content, filename } = o;
+			if (!rConfig.files(filename)) return;
+
 			const s = new MagicString(content);
 			/** @type {any} */
 			const ast = parse(content, { filename });
 
-			if (rConfig.match(filename)) {
-				const importRegex = new RegExp(`import\\s*{?\\s*${rConfig.component.name}`);
-				let isImported = importRegex.test(content);
+			const importRegex = new RegExp(`import\\s*{?\\s*${rConfig.component.name}`);
+			let isImported = importRegex.test(content);
 
-				walk(ast.html, {
-					/**
-					 * @param {any} node
-					 * @returns
-					 */
-					enter(node) {
-						if (node.type !== 'Element' || node.name !== 'pre') return;
+			walk(ast.html, {
+				/**
+				 * @param {any} node
+				 * @returns
+				 */
+				enter(node) {
+					if (node.type !== 'Element' || node.name !== 'pre') return;
 
-						const closingTag = `</${rConfig.component.name}>`;
-						const strAfter = s.slice(node.end, node.end + closingTag.length + 10);
-						if (strAfter.includes(closingTag)) return;
+					const closingTag = `</${rConfig.component.name}>`;
+					const strAfter = s.slice(node.end, node.end + closingTag.length + 10);
+					if (strAfter.includes(closingTag)) return;
 
-						s.prependRight(node.start, `<${rConfig.component.name}>`);
-						s.appendLeft(node.end, `</${rConfig.component.name}>`);
+					s.prependRight(node.start, `<${rConfig.component.name}>`);
+					s.appendLeft(node.end, `</${rConfig.component.name}>`);
 
-						if (isImported) return;
+					if (isImported) return;
 
-						const nameSegment = rConfig.component.default
-							? rConfig.component.name
-							: `{ ${rConfig.component.name} }`;
-						const importStatement = `import ${nameSegment} from '${rConfig.component.path}';`;
+					const nameSegment = rConfig.component.default
+						? rConfig.component.name
+						: `{ ${rConfig.component.name} }`;
+					const importStatement = `import ${nameSegment} from '${rConfig.component.path}';`;
 
-						if (ast.module) {
-							s.appendLeft(ast.module.content.start, importStatement);
-						} else if (ast.instance) {
-							s.appendLeft(ast.instance.content.start, importStatement);
-						} else {
-							s.append(`<script>${importStatement}</script>`);
-						}
-						isImported = true;
-					},
-				});
-			}
+					if (ast.module) {
+						s.appendLeft(ast.module.content.start, importStatement);
+					} else if (ast.instance) {
+						s.appendLeft(ast.instance.content.start, importStatement);
+					} else {
+						s.append(`<script>${importStatement}</script>`);
+					}
+					isImported = true;
+				},
+			});
 
 			return {
 				code: s.toString(),

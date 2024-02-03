@@ -6,6 +6,7 @@ import { parse } from 'svelte-parse-markup';
  * @public
  * @typedef AutoExternalLinkConfig
  * @property {string[]} hosts
+ * @property {(filename?: string) => boolean} [files]
  */
 
 /**
@@ -14,12 +15,15 @@ import { parse } from 'svelte-parse-markup';
  */
 export function autoExternalLink(config) {
 	const rConfig = {
+		files: () => true,
 		hosts: ['localhost', ...(Array.isArray(config) ? config : config.hosts)],
-		...(!Array.isArray ? config : {}),
+		...(!Array.isArray(config) ? config : {}),
 	};
 	return {
 		markup(o) {
 			const { content, filename } = o;
+			if (!rConfig.files(filename)) return;
+
 			const s = new MagicString(content);
 			/** @type {any} */
 			const ast = parse(content, { filename });

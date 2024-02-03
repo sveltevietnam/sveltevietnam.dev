@@ -19,6 +19,9 @@
 		},
 		"./svelte/preprocessors/auto-external-link": {
 			"import": "./svelte/preprocessors/auto-external-link/index.js"
+		},
+		"./svelte/preprocessors/mdsvex": {
+			"import": "./svelte/preprocessors/mdsvex/index.js"
 		}
 	},
 	"private": true,
@@ -39,7 +42,9 @@
 		"@tailwindcss/typography": "^0.5.10",
 		"autoprefixer": "^10.4.17",
 		"cssnano": "^6.0.3",
+		"hast-util-to-string": "^3.0.0",
 		"hygen": "^6.2.11",
+		"mdsvex": "^0.11.0",
 		"postcss": "^8.4.33",
 		"postcss-color-scheme": "^0.3.2",
 		"postcss-custom-selectors": "^7.1.6",
@@ -50,6 +55,9 @@
 		"postcss-mixins": "^9.0.4",
 		"postcss-nesting": "^12.0.2",
 		"postcss-space-between": "^0.2.0",
+		"remark-containers": "^1.2.0",
+		"remark-gfm": "^4.0.0",
+		"shiki": "1.0.0-beta.5",
 		"svelte": "^4.2.9",
 		"tailwindcss": "^3.4.1"
 	},

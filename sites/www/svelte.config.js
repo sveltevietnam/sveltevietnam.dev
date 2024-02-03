@@ -8,9 +8,8 @@ import adapter from '@sveltejs/adapter-cloudflare';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { autoExternalLink } from '@sveltevietnam/ui/svelte/preprocessors/auto-external-link';
 import { enhanceCodeBlock } from '@sveltevietnam/ui/svelte/preprocessors/enhance-code-block';
-import { mdsvex } from 'mdsvex';
+import { mdsvex, mdsvexDefaultConfig } from '@sveltevietnam/ui/svelte/preprocessors/mdsvex';
 
-import { mdsvexConfig } from './mdsvex.config.js';
 import pkg from './package.json' assert { type: 'json' };
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -18,9 +17,9 @@ const commitHash = child_process.execSync('git rev-parse --short HEAD').toString
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	extensions: ['.svelte', ...mdsvexConfig.extensions],
+	extensions: ['.svelte', ...mdsvexDefaultConfig.extensions],
 	preprocess: [
-		mdsvex(mdsvexConfig),
+		mdsvex(),
 		enhanceCodeBlock(),
 		autoSlug((defaultOptions) => ({
 			tags: ['h2', 'h3', 'h4', 'h5', 'h6'],

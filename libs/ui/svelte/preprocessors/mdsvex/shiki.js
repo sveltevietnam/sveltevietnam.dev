@@ -1,20 +1,21 @@
 import { toString } from 'hast-util-to-string';
-import { defineMDSveXConfig } from 'mdsvex';
-import remarkContainers from 'remark-containers';
-import remarkGfm from 'remark-gfm';
 import { getHighlighterCore } from 'shiki/core';
 import loadWasm from 'shiki/wasm';
+
+/** @type {Record<string, string>} */
+const ESCAPE_HTML_CHARACTER_MAP = {
+	'{': '&lbrace;',
+	'}': '&rbrace;',
+	'`': '&grave;',
+};
 
 /**
  * Returns code with curly braces and backticks replaced by HTML entity equivalents
  * @param {string} html - highlighted HTML
  * @returns {string} - escaped HTML
  */
-function escapeHtml(code) {
-	return code.replace(
-		/[{}`]/g,
-		(character) => ({ '{': '&lbrace;', '}': '&rbrace;', '`': '&grave;' })[character],
-	);
+function escapeHtml(html) {
+	return html.replace(/[{}`]/g, (character) => ESCAPE_HTML_CHARACTER_MAP[character]);
 }
 
 const shiki = await getHighlighterCore({
@@ -34,23 +35,16 @@ const shiki = await getHighlighterCore({
  * @param {string} code
  * @param {string} [lang]
  */
-async function highlighter(code, lang) {
+export function highlighter(code, lang) {
 	const html = shiki.codeToHtml(code, {
-		lang,
+		lang: lang || 'svelte',
 		theme: 'github-dark-dimmed',
 		transformers: [transformer()],
 	});
 	return escapeHtml(html);
 }
 
-export const mdsvexConfig = defineMDSveXConfig({
-	extensions: ['.md.svelte'],
-	remarkPlugins: [remarkContainers, remarkGfm],
-	highlight: { highlighter },
-});
-
 const STATUSES = ['info', 'success', 'warning', 'error'];
-
 /**
  * @returns {import('shiki').ShikiTransformer}
  */
@@ -60,7 +54,6 @@ function transformer() {
 			delete pre.properties['tabindex'];
 		},
 		code(code) {
-			const lines = code.children.filter((i) => i.type === 'element');
 			let lineNumber = 0;
 
 			/** @typedef {{ type: 'diff'; variant: '-' | '+' }} BlockDiff */
@@ -70,7 +63,8 @@ function transformer() {
 			/** @type {Block[]} */
 			const blocks = [];
 
-			for (const line of lines) {
+			for (const line of code.children) {
+				if (line.type !== 'element') continue;
 				lineNumber++;
 				let isMetaLine = false;
 
@@ -81,7 +75,7 @@ function transformer() {
 					// diff
 					let match = str.match(/:::diff\s+([+-])/);
 					if (match) {
-						const variant = match[1];
+						const variant = /** @type {BlockDiff['variant']} */ (match[1]);
 						blocks.push({ type: 'diff', variant });
 					}
 
