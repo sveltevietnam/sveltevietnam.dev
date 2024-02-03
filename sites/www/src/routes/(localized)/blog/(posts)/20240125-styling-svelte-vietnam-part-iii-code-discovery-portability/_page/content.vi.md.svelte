@@ -311,7 +311,7 @@ import { jssLoader } from './jss-node-loader';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // :::
 // :::diff +
-import * as components from './components.dist.json';
+import components from './components.dist.json';
 // :::
 
 const myplugin = definePlugin(function ({ addComponents }) {

@@ -2,6 +2,4 @@ import { createRequire } from '../jss-node-loader.js';
 
 const require = createRequire(import.meta.url);
 
-export const utilities = {
-	...require('./utilities.css'),
-};
+export const utilities = [require('./utilities.css')];

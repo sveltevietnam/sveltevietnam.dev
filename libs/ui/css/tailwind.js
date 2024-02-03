@@ -1,15 +1,16 @@
 import tailwindcssTypography from '@tailwindcss/typography';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import postcssColorScheme from 'postcss-color-scheme/lib/tailwind.js';
-import definePlugin from 'tailwindcss/plugin';
+import definePlugin from 'tailwindcss/plugin.js';
 
-import * as base from './base/base.dist.json';
-import * as components from './components/components.dist.json';
+import base from './base/base.dist.json';
+import components from './components/components.dist.json';
 import { theme } from './theme.js';
-import * as utilities from './utilities/utilities.dist.json';
+import utilities from './utilities/utilities.dist.json';
 
-/** @type {import('tailwindcss').Config} */
+/** @type {import('tailwindcss/types/config.js').PresetsConfig} */
 export const core = {
-	darkMode: '',
 	theme,
 	plugins: [
 		postcssColorScheme,
@@ -18,19 +19,18 @@ export const core = {
 			for (const prefix of ['data', 'aria']) {
 				addVariant(`${prefix}-current`, `&[${prefix}-current]:not([${prefix}-current="false"])`);
 			}
-
-			addBase(base);
-			addComponents(components);
+			addBase(/** @type {any} */ (base));
+			addComponents(/** @type {any} */ (components));
 			addUtilities(utilities);
 		}),
 	],
 };
 
-/** @type {import('tailwindcss').Config} */
+/** @type {import('tailwindcss/types/config.js').PresetsConfig} */
 export const typography = {
-	darkMode: '',
 	theme: {
 		extend: {
+			/** @param {{ theme: import('tailwindcss/types/config.js').PluginUtils['theme']}} param0 */
 			typography: ({ theme }) => {
 				return {
 					DEFAULT: {
@@ -51,7 +51,7 @@ export const typography = {
 	plugins: [tailwindcssTypography],
 };
 
-/** @type {Array<import('tailwindcss').Config>} */
+/** @type {import('tailwindcss/types/config.js').PresetsConfig[]} */
 export const presets = [core, typography];
 
 export default presets;

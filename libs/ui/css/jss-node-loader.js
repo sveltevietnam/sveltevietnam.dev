@@ -17,9 +17,10 @@ export function jssLoader(filename) {
 
 	// apply mixins & custom-selectors here so that
 	// tailwind can pick up the correct representation for intellisense
-	const jss = postcssJs.sync([postcssMixins({ mixins }), postcssCustomSelectors])(
-		postcssJs.objectify(root),
-	);
+	const jss = postcssJs.sync([
+		postcssMixins({ mixins }),
+		/** @type {any} */ (postcssCustomSelectors),
+	])(postcssJs.objectify(root));
 
 	return jss;
 }

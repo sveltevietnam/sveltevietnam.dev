@@ -13,7 +13,7 @@ export const base = deepMerge(
 /**
  * Deep merge two or more objects or arrays.
  * (c) 2023 Chris Ferdinandi, MIT License, https://gomakethings.com
- * @param   {Object[]} ...objs  The arrays or objects to merge
+ * @param   {Object[]} objs  The arrays or objects to merge
  * @returns {Object}          The merged arrays or objects
  */
 function deepMerge(...objs) {
@@ -28,7 +28,8 @@ function deepMerge(...objs) {
 
 	/**
 	 * Deep merge two objects
-	 * @return {Object}
+	 * @param {any} clone
+	 * @param {any} obj
 	 */
 	function mergeObj(clone, obj) {
 		for (let [key, value] of Object.entries(obj)) {
@@ -61,7 +62,7 @@ function deepMerge(...objs) {
 
 		// Otherwise, merge
 		if (type === 'array') {
-			clone = [...clone, ...structuredClone(obj)];
+			clone = [.../** @type {any[]} */ (clone), .../** @type {any[]} */ (structuredClone(obj))];
 		} else if (type === 'object') {
 			mergeObj(clone, obj);
 		} else {
@@ -69,5 +70,5 @@ function deepMerge(...objs) {
 		}
 	}
 
-	return clone;
+	return /** @type {Object} */ (clone);
 }
