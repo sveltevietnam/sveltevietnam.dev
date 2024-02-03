@@ -53,6 +53,11 @@ export function enhanceCodeBlock(config = {}) {
 					 */
 					enter(node) {
 						if (node.type !== 'Element' || node.name !== 'pre') return;
+
+						const closingTag = `</${rConfig.component.name}>`;
+						const strAfter = s.slice(node.end, node.end + closingTag.length + 10);
+						if (strAfter.includes(closingTag)) return;
+
 						s.prependRight(node.start, `<${rConfig.component.name}>`);
 						s.appendLeft(node.end, `</${rConfig.component.name}>`);
 
@@ -82,3 +87,5 @@ export function enhanceCodeBlock(config = {}) {
 		},
 	};
 }
+
+export default enhanceCodeBlock;
