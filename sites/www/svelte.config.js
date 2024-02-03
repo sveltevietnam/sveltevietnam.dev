@@ -6,6 +6,7 @@ import autoSlug from '@svelte-put/preprocess-auto-slug';
 import inlineSvg from '@svelte-put/preprocess-inline-svg';
 import adapter from '@sveltejs/adapter-cloudflare';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import { enhanceCodeBlock } from '@sveltevietnam/ui/svelte/preprocessors/enhance-code-block';
 import MagicString from 'magic-string';
 import { mdsvex } from 'mdsvex';
 import { walk } from 'svelte/compiler';
@@ -74,50 +75,12 @@ const externalLink = {
 	},
 };
 
-const ENHANCED_CODE_BLOCK_COMPONENT_IMPORT = `import { EnhancedCodeBlock } from '$lib/components/EnhancedCodeBlock';`;
-/** @type {import('svelte/compiler').PreprocessorGroup} */
-const enhanceCodeBlock = {
-	markup(o) {
-		const { content, filename } = o;
-		const s = new MagicString(content);
-		const ast = parse(content, { filename });
-
-		let isImported = /import\s*{?\s*EnhancedCodeBlock/.test(content);
-
-		if (filename.endsWith('.md.svelte')) {
-			walk(ast.html, {
-				enter(node) {
-					if (node.type !== 'Element' || node.name !== 'pre') return;
-					s.prependRight(node.start, '<EnhancedCodeBlock>');
-					s.appendLeft(node.end, '</EnhancedCodeBlock>');
-
-					if (isImported) return;
-
-					if (ast.module) {
-						s.appendLeft(ast.module.content.start, ENHANCED_CODE_BLOCK_COMPONENT_IMPORT);
-					} else if (ast.instance) {
-						s.appendLeft(ast.instance.content.start, ENHANCED_CODE_BLOCK_COMPONENT_IMPORT);
-					} else {
-						s.append(`<script>${ENHANCED_CODE_BLOCK_COMPONENT_IMPORT}</script>`);
-					}
-					isImported = true;
-				},
-			});
-		}
-
-		return {
-			code: s.toString(),
-			map: s.generateMap(),
-		};
-	},
-};
-
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	extensions: ['.svelte', ...mdsvexConfig.extensions],
 	preprocess: [
 		mdsvex(mdsvexConfig),
-		enhanceCodeBlock,
+		enhanceCodeBlock(),
 		autoSlug((defaultOptions) => ({
 			tags: ['h2', 'h3', 'h4', 'h5', 'h6'],
 			files: ({ filename }) => {

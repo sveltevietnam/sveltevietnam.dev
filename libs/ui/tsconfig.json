@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"noEmit": true,
+		"allowJs": true,
+		"checkJs": true,
+		"module": "nodenext",
+		"target": "esnext",
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"moduleResolution": "nodenext",
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"strict": true,
+		"experimentalDecorators": true,
+	},
+}
