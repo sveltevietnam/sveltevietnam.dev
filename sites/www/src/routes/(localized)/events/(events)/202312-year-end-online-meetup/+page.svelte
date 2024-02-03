@@ -142,7 +142,7 @@
 					<time datetime="" class="c-text-body2 text-fg-200">{generateTimeSlot(20, 20)}</time>
 					<div class="space-y-3">
 						<p class="c-text-h5 font-medium">
-							<a class="c-link" href={EVENT_LINKS.VIDEO1}
+							<a class="c-link" href={EVENT_LINKS.VIDEO1} external
 								>{t.timeline.video}: "{t.timeline.video1.title}"</a
 							>
 						</p>
@@ -162,7 +162,7 @@
 					<time datetime="" class="c-text-body2 text-fg-200">{generateTimeSlot(90, 20)}</time>
 					<div class="space-y-3">
 						<p class="c-text-h5 font-medium">
-							<a class="c-link" href={EVENT_LINKS.VIDEO2}
+							<a class="c-link" href={EVENT_LINKS.VIDEO2} external
 								>{t.timeline.video}: "{t.timeline.video2}"</a
 							>
 						</p>
