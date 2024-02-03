@@ -58,7 +58,7 @@
 <span class="line" data-line="8">```</span></code
 						></pre>
 				</div>
-				<p>{t.codeblock.diff.example}:</p>
+				<p use:intersect>{t.codeblock.diff.example}:</p>
 				<div class="prose max-w-full" use:intersect>
 					<CodeBlockDiff />
 				</div>
@@ -79,7 +79,7 @@
 <span class="line" data-line="8">```</span></code
 						></pre>
 				</div>
-				<p>{t.codeblock.highlight.example}:</p>
+				<p use:intersect>{t.codeblock.highlight.example}:</p>
 				<div class="prose max-w-full" use:intersect>
 					<CodeBlockHighlight />
 				</div>

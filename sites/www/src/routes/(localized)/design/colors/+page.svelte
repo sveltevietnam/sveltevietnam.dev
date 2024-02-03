@@ -279,35 +279,35 @@
 						</li>
 					</ul>
 
-					<div class="swatch-card">
+					<div class="swatch-card" use:intersect>
 						<div class="__color bg-primary" />
 						<div class="__description">
 							<p>{t.semantic.brand.colors.primary}</p>
 						</div>
 					</div>
 
-					<div class="swatch-card">
+					<div class="swatch-card" use:intersect>
 						<div class="__color bg-secondary" />
 						<div class="__description">
 							<p>{t.semantic.brand.colors.secondary}</p>
 						</div>
 					</div>
 
-					<div class="swatch-card">
+					<div class="swatch-card" use:intersect>
 						<div class="__color bg-link" />
 						<div class="__description">
 							<p>{t.semantic.brand.colors.link}</p>
 						</div>
 					</div>
 
-					<div class="swatch-card">
+					<div class="swatch-card" use:intersect>
 						<div class="__color bg-neutral" />
 						<div class="__description">
 							<p>{t.semantic.brand.colors.neutral}</p>
 						</div>
 					</div>
 
-					<div class="swatch-card">
+					<div class="swatch-card" use:intersect>
 						<div class="__color bg-gradient-to-t from-neutral to-transparent" />
 						<div class="__description">
 							<p>{t.semantic.brand.colors.gradient}</p>
