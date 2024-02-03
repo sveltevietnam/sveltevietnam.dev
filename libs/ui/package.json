@@ -16,6 +16,9 @@
 		},
 		"./svelte/preprocessors/enhance-code-block": {
 			"import": "./svelte/preprocessors/enhance-code-block/index.js"
+		},
+		"./svelte/preprocessors/auto-external-link": {
+			"import": "./svelte/preprocessors/auto-external-link/index.js"
 		}
 	},
 	"private": true,
