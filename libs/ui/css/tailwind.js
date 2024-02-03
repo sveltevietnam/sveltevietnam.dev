@@ -11,6 +11,7 @@ import utilities from './utilities/utilities.dist.json';
 
 /** @type {import('tailwindcss/types/config.js').PresetsConfig} */
 export const core = {
+	darkMode: /** @type {any} */ (''),
 	theme,
 	plugins: [
 		postcssColorScheme,
@@ -28,6 +29,7 @@ export const core = {
 
 /** @type {import('tailwindcss/types/config.js').PresetsConfig} */
 export const typography = {
+	darkMode: /** @type {any} */ (''),
 	theme: {
 		extend: {
 			/** @param {{ theme: import('tailwindcss/types/config.js').PluginUtils['theme']}} param0 */
