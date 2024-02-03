@@ -1,3 +1,3 @@
-import config from '@sveltevietnam/ui/css/postcss.config.js';
+import config from '@sveltevietnam/ui/css/postcss';
 
 export default config;

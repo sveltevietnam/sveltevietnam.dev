@@ -1,4 +1,4 @@
-@import url('@sveltevietnam/ui/fonts/fonts.css');
+@import url('@sveltevietnam/ui/css/fonts.css');
 
 @tailwind base;
 @tailwind components;
