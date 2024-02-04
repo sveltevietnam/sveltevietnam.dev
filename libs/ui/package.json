@@ -46,7 +46,7 @@
 		"hygen": "^6.2.11",
 		"mdsvex": "^0.11.0",
 		"postcss": "^8.4.33",
-		"postcss-color-scheme": "^0.3.2",
+		"postcss-color-scheme": "^1.0.1",
 		"postcss-custom-selectors": "^7.1.6",
 		"postcss-html": "^1.6.0",
 		"postcss-import": "^16.0.0",

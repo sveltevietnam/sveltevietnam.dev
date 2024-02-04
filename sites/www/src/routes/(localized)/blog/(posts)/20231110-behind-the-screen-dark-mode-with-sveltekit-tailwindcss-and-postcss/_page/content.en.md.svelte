@@ -251,7 +251,7 @@ module.exports = {
   // your config ...
   // :::diff +
   darkMode: '',
-  plugins: [require('postcss-color-scheme/lib/tailwind')],
+  plugins: [require('postcss-color-scheme/tailwind')],
   // :::
 };
 ```
@@ -264,7 +264,7 @@ Read more about this setup at [github](https://github.com/vnphanquang/postcss-co
 module.exports = {
   // your config ...
   darkMode: '',
-  plugins: [require('postcss-color-scheme/lib/tailwind')],
+  plugins: [require('postcss-color-scheme/tailwind')],
   // :::diff +
   theme: {
     extend: {
@@ -554,7 +554,7 @@ Now, we can use `setColorSchemeContext` to declare the context:
   // :::diff -
   console.log(data.colorScheme);
   // :::
-  // ::: diff +
+  // :::diff +
   setColorSchemeContext(data.colorScheme);
   // :::
 </script>

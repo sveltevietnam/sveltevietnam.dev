@@ -1,7 +1,5 @@
 import tailwindcssTypography from '@tailwindcss/typography';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import postcssColorScheme from 'postcss-color-scheme/lib/tailwind.js';
+import postcssColorScheme from 'postcss-color-scheme/tailwind';
 import definePlugin from 'tailwindcss/plugin.js';
 
 import base from './base/base.dist.json';

@@ -136,8 +136,8 @@ importers:
         specifier: ^8.4.33
         version: 8.4.33
       postcss-color-scheme:
-        specifier: ^0.3.2
-        version: 0.3.2(postcss@8.4.33)
+        specifier: ^1.0.1
+        version: 1.0.1(postcss@8.4.33)
       postcss-custom-selectors:
         specifier: ^7.1.6
         version: 7.1.6(postcss@8.4.33)
@@ -7228,9 +7228,9 @@ packages:
       postcss-selector-parser: 6.0.15
       postcss-value-parser: 4.2.0
 
-  /postcss-color-scheme@0.3.2(postcss@8.4.33):
-    resolution: {integrity: sha512-YORN1pwjaQr3ZoORGxqzjOY/BwFuEcxakM9ta0oo7bqHzSeWdZi6tlDOXkqJOeIR+IULwrUTJXKsUu8bbmoiHQ==}
-    engines: {node: '>=18.16.0', pnpm: '>=8.6.0'}
+  /postcss-color-scheme@1.0.1(postcss@8.4.33):
+    resolution: {integrity: sha512-K2xNIrLtSEMfhdTOpFV0y2CL/gm99+ZhdMp2gu91eKv4fK7kBIG8/waAUZRqICDYEdWFLYURZtm55sG04nh8/Q==}
+    engines: {node: '>=20.0.0', pnpm: '>=8.6.0'}
     peerDependencies:
       postcss: ^8.0.0
     dependencies:

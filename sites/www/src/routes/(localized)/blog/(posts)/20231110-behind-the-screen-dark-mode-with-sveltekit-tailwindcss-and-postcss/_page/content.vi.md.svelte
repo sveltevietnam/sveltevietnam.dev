@@ -251,7 +251,7 @@ module.exports = {
   // your config ...
   // :::diff +
   darkMode: '',
-  plugins: [require('postcss-color-scheme/lib/tailwind')],
+  plugins: [require('postcss-color-scheme/tailwind')],
   // :::
 };
 ```
@@ -264,7 +264,7 @@ Hãy xem qua docs [tại github](https://github.com/vnphanquang/postcss-color-sc
 module.exports = {
   // your config ...
   darkMode: '',
-  plugins: [require('postcss-color-scheme/lib/tailwind')],
+  plugins: [require('postcss-color-scheme/tailwind')],
   // :::diff +
   theme: {
     extend: {
