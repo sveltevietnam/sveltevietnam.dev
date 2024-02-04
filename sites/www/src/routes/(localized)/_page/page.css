@@ -1,18 +1,17 @@
 .section-title-container {
-	@space-x 16px;
+	@apply space-x-4;
 
 	display: flex;
 	align-items: center;
 	width: fit-content;
-
-	@screen tb {
-		@space-x 24px;
-	}
-
 	transition: color 400ms cubic-bezier(0.13, -0.27, 0.48, 1.54);
 
 	&:hover {
 		color: theme('colors.fg.200');
+	}
+
+	@screen tb {
+		@apply space-x-6;
 	}
 }
 

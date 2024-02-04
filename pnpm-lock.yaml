@@ -159,9 +159,6 @@ importers:
       postcss-nesting:
         specifier: ^12.0.2
         version: 12.0.2(postcss@8.4.33)
-      postcss-space-between:
-        specifier: ^0.2.0
-        version: 0.2.0(postcss@8.4.33)
       remark-containers:
         specifier: ^1.2.0
         version: 1.2.0
@@ -181,6 +178,9 @@ importers:
       '@types/node':
         specifier: ^20.11.16
         version: 20.11.16
+      '@types/postcss-import':
+        specifier: ^14.0.3
+        version: 14.0.3
       '@types/postcss-js':
         specifier: ^4.0.4
         version: 4.0.4
@@ -336,9 +336,6 @@ importers:
       postcss-nesting:
         specifier: ^12.0.2
         version: 12.0.2(postcss@8.4.33)
-      postcss-space-between:
-        specifier: ^0.2.0
-        version: 0.2.0(postcss@8.4.33)
       svelte:
         specifier: ^4.2.9
         version: 4.2.9
@@ -2368,6 +2365,12 @@ packages:
 
   /@types/parse5@6.0.3:
     resolution: {integrity: sha512-SuT16Q1K51EAVPz1K29DJ/sXjhSQ0zjvsypYJ6tlwVsRV9jwW5Adq2ch8Dq8kDBCkYnELS7N7VNCSB5nC56t/g==}
+    dev: true
+
+  /@types/postcss-import@14.0.3:
+    resolution: {integrity: sha512-raZhRVTf6Vw5+QbmQ7LOHSDML71A5rj4+EqDzAbrZPfxfoGzFxMHRCq16VlddGIZpHELw0BG4G0YE2ANkdZiIQ==}
+    dependencies:
+      postcss: 8.4.33
     dev: true
 
   /@types/postcss-js@4.0.4:
@@ -7658,14 +7661,6 @@ packages:
     dependencies:
       postcss: 8.4.33
     dev: true
-
-  /postcss-space-between@0.2.0(postcss@8.4.33):
-    resolution: {integrity: sha512-3GW5wr9JYK3gJ7bzK5p52glRXXZBBce7u5uFcCWaGdhBqD/97LoxCqlXFrHpnHE2QDpjWZ+0STfy0w/Awkgrvg==}
-    engines: {node: '>=16.15.0', pnpm: '>=8.0.0'}
-    peerDependencies:
-      postcss: ^8.0.0
-    dependencies:
-      postcss: 8.4.33
 
   /postcss-svgo@6.0.2(postcss@8.4.33):
     resolution: {integrity: sha512-IH5R9SjkTkh0kfFOQDImyy1+mTCb+E830+9SV1O+AaDcoHTvfsvt6WwJeo7KwcHbFnevZVCsXhDmjFiGVuwqFQ==}

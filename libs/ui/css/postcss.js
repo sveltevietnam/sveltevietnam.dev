@@ -5,7 +5,6 @@ import postcssCustomSelectors from 'postcss-custom-selectors';
 import postcssImport from 'postcss-import';
 import postcssMixins from 'postcss-mixins';
 import postcssNesting from 'postcss-nesting';
-import postcssSpaceBetween from 'postcss-space-between';
 import tailwindcss from 'tailwindcss';
 import tailwindCssNesting from 'tailwindcss/nesting/index.js';
 
@@ -17,7 +16,6 @@ export default {
 		postcssCustomSelectors,
 		postcssMixins(),
 		tailwindcss,
-		postcssSpaceBetween,
 		postcssColorScheme,
 		autoprefixer,
 		...(process.env.NODE_ENV !== 'development' ? [cssnano] : []),
