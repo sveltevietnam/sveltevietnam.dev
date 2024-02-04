@@ -168,10 +168,10 @@ Then, we need to change a bit of our preprocessor code to check if this attribut
 
 ```javascript
 // :::diff -
-- let external = false;
+let external = false;
 // :::
 // :::diff +
-+ let external = node.attributes.some((attr) => attr.name === 'data-external');
+let external = node.attributes.some((attr) => attr.name === 'data-external');
 // :::
 
 // ... some other code update

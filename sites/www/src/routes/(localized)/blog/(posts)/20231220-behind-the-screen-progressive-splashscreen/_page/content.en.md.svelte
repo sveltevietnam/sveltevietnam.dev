@@ -157,12 +157,12 @@ First of all, we add an attribute to the `div#splash` element:
 <html>
   <head>...</head>
   <body>
-    :::diff -
+    <!-- :::diff - -->
     <div id="splash">
-    :::
-    :::diff +
+    <!-- ::: -->
+    <!-- :::diff + -->
     <div id="splash" data-splash-skip="%splash-skip%">
-    :::
+    <!-- ::: -->
       ...
     </div>
     ...

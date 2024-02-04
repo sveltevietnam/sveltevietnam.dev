@@ -54,6 +54,9 @@ function transformer() {
 			delete pre.properties['tabindex'];
 		},
 		code(code) {
+			// FIXME: correct typing
+			/** @type {any[]} */
+			const lines = code.children.filter((i) => i.type === 'element');
 			let lineNumber = 0;
 
 			/** @typedef {{ type: 'diff'; variant: '-' | '+' }} BlockDiff */
@@ -63,8 +66,7 @@ function transformer() {
 			/** @type {Block[]} */
 			const blocks = [];
 
-			for (const line of code.children) {
-				if (line.type !== 'element') continue;
+			for (const line of lines) {
 				lineNumber++;
 				let isMetaLine = false;
 
