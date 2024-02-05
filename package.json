@@ -26,8 +26,9 @@
 		"dts": "turbo run dts --parallel",
 		"setup": "pnpm install && pnpm dts",
 		"prepare": "husky install",
+		"build:publish": "pnpm build --filter @sveltevietnam/ui",
 		"ci:version": "changeset version && pnpm install --no-frozen-lockfile",
-		"ci:publish": "pnpm build && changeset publish && pnpm install"
+		"ci:publish": "pnpm build:publish && changeset publish && pnpm install"
 	},
 	"devDependencies": {
 		"@changesets/changelog-github": "^0.5.0",
