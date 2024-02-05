@@ -1,5 +1,11 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.3
+
+### Minor Changes
+
+- [`1e6d446`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/1e6d4469c5a0967f1715268f23fc01369023bbfd) Thanks [@vnphanquang](https://github.com/vnphanquang)! - restructure for publishing (employ svelte-package)
+
 ## 1.0.0-next.2
 
 ### Minor Changes
