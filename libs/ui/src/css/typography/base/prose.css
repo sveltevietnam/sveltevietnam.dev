@@ -51,8 +51,8 @@
 		}
 	}
 
-	& :not(pre) > :where(code):--is-prose {
-		padding: 0.25em 0.375em;
+	& :not(pre, a) > :where(code):--is-prose {
+		padding: 0.2em 0.375em;
 
 		font-weight: 400;
 
