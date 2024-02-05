@@ -1,8 +1,8 @@
-import { createRequire } from '../jss-node-loader.js';
+import { createRequire } from '../../jss-node-loader.js';
 
 const require = createRequire(import.meta.url);
 
-export const components = [
+export default [
 	// HYGEN INJECTION MARKER
 	require('./c-splash.css'),
 	require('./__wireframe__.css'),

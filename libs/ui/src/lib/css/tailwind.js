@@ -2,9 +2,8 @@ import tailwindcssTypography from '@tailwindcss/typography';
 import postcssColorScheme from 'postcss-color-scheme/tailwind';
 import definePlugin from 'tailwindcss/plugin.js';
 
-import base from './jss/base.jss.json';
-import components from './jss/components.jss.json';
-import utilities from './jss/utilities.jss.json';
+import * as coreJss from './jss/core.js';
+import * as typographyJss from './jss/typography.js';
 import { theme } from './theme.js';
 
 /** @type {import('tailwindcss/types/config.js').PresetsConfig} */
@@ -18,9 +17,9 @@ export const core = {
 			for (const prefix of ['data', 'aria']) {
 				addVariant(`${prefix}-current`, `&[${prefix}-current]:not([${prefix}-current="false"])`);
 			}
-			addBase(/** @type {any} */ (base));
-			addComponents(/** @type {any} */ (components));
-			addUtilities(utilities);
+			addBase(coreJss.base);
+			addComponents(coreJss.components);
+			addUtilities(coreJss.utilities);
 		}),
 	],
 };
@@ -45,7 +44,12 @@ export const typography = {
 			},
 		},
 	},
-	plugins: [tailwindcssTypography],
+	plugins: [
+		tailwindcssTypography,
+		definePlugin(({ addBase }) => {
+			addBase(typographyJss.base);
+		}),
+	],
 };
 
 /** @type {import('tailwindcss/types/config.js').PresetsConfig[]} */

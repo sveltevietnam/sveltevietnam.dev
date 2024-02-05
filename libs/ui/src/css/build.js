@@ -1,27 +1,44 @@
-import { existsSync, mkdirSync, writeFile } from 'fs';
+import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { resolve, dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
-import { base } from './base/index.js';
-import { components } from './components/index.js';
-import { utilities } from './utilities/index.js';
-
 const __dirname = dirname(fileURLToPath(import.meta.url));
+
+const core = {
+	base: './core/base/index.js',
+	components: './core/components/index.js',
+	utilities: './core/utilities/index.js',
+};
+
+const typography = {
+	base: './typography/base/index.js',
+};
+
+/**
+ * @param {string} name
+ * @param {string} outDir
+ * @param {Record<string, string>} entries
+ */
+async function build(name, outDir, entries) {
+	if (!existsSync(outDir)) {
+		mkdirSync(outDir, {
+			recursive: true,
+		});
+	}
+
+	const js = (
+		await Promise.all(
+			Object.entries(entries).map(([name, path]) =>
+				import(path)
+					.then((m) => m.default)
+					.then((m) => `export const ${name} = ${JSON.stringify(m)};`),
+			),
+		)
+	).join('\n');
+	writeFileSync(join(outDir, `${name}.js`), js, 'utf-8');
+}
 
 const jssOutputDir = resolve(__dirname, '../lib/css/jss');
 
-if (!existsSync(jssOutputDir)) {
-	mkdirSync(jssOutputDir);
-}
-
-writeFile(join(jssOutputDir, './base.jss.json'), JSON.stringify(base), 'utf-8', (e) => {
-	if (e) console.error(e);
-});
-
-writeFile(join(jssOutputDir, './components.jss.json'), JSON.stringify(components), 'utf-8', (e) => {
-	if (e) console.error(e);
-});
-
-writeFile(join(jssOutputDir, './utilities.jss.json'), JSON.stringify(utilities), 'utf-8', (e) => {
-	if (e) console.error(e);
-});
+build('core', jssOutputDir, core);
+build('typography', jssOutputDir, typography);
