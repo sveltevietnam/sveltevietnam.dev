@@ -41,7 +41,7 @@ Before frontend frameworks, people used to split HTML into multiple "templates".
 	<figcaption>Illustration 1: template-based development strategy</figcaption>
 </figure>
 
-These early solutions focus primarily on encapsulating HTML. To reuse Javascript or CSS, we would need to self-manage and inject appropriate `.js`, `.css` files where applicable. Although primitive, this simple approach helps separate the responsibilities of the three pillar technologies HTML, CSS, and Javascript:
+These early solutions focus primarily on encapsulating HTML. To reuse Javascript or CSS, we would need to self-manage and inject appropriate `.js`, `.css` files where applicable. Although primitive, this simple approach helps separate responsibilities of the three pillar technologies HTML, CSS, and Javascript:
 
 1. join HTML templates to define page structure,
 2. if custom styling is needed, import necessary CSS files,
@@ -56,14 +56,14 @@ Solutions that today frameworks employ usually require Javascript within the fra
 	<figcaption>Illustration 2: component-based development strategy</figcaption>
 </figure>
 
-As you can see, frontend development has gradually become more and more complex. The boundaries between fundamental technologies are not so clear anymore: Javascript is used now not only in interaction logic but also for tooling during development and server-side data processing (thanks to NodeJS). This is not necessarily a bad thing, but the consequence is that we sometimes become too dependent on Javascript and convoluted, arguably unnecessary, setup around it.
+As you can see, frontend development has gradually become more and more complex. The boundaries between fundamental technologies are not so clear anymore: Javascript is used now not only in interaction logic but also for tooling during development and server-side data processing (thanks to NodeJS). This is not necessarily a bad thing (depends on who you ask), but the consequence is that we sometimes become too dependent on Javascript and convoluted, arguably unnecessary, setup around it.
 
 ## Atomic design
 
 How to analyze, design, and implement UI components is a hot topic. Someone once asked me why I don't hate anything, and said that everything I say sounds so vague, unopinionated, with no strong stance whatsoever. Well, there is one thing that often gives me nightmare, and that is "[Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/)".
 
 :::div c-callout c-callout--info
-To be precise, I do not hate the "Atomic Design" thinking; it does help develop a good mental modal when approaching UI design. It is the implementation that I despise. Brad Frost, author of Atomic Design, uses his theory to build design systems. In practice, however, most if not all projects using Atomic Design that I have been part of abuse Atomic Design only for the purpose of organizing source code. In my book, this should be called "Atomic Development" rather than "Atomic Design".
+To be precise, I do not hate the "Atomic Design" thinking; it does help develop a good mental model when approaching UI design. It is the implementation that I despise. Brad Frost, author of Atomic Design, uses his theory to build design systems. In practice, however, in most if not all projects using Atomic Design that I have been part of, I see people abuse Atomic Design primarily for the purpose of organizing source code. In my book, this should be called "Atomic Development" rather than "Atomic Design".
 :::
 
 "Component-first" thinking is the common theme in projects that apply Atomic Design. Everything is turned into a component, and organized into layers: atom -> molecule -> organism -> template -> and page. It is fair to say that this approach perfectly demonstrates the Javascript component era.
@@ -187,7 +187,7 @@ Creating from scratch with `h3`:
 
 :::
 
-One year later, a poor colleague needs `ArticleCardHeading` but, without reading its source code, has no idea what level it is, why it is not just a `Heading` but its own component. As the project proceeds, there will be dozens if not hundreds of components, most of which are used only once. In a brand new project, tech lead immediately calls a meeting with ten devs for three hours to discuss how many components to create, which one is an organism/molecule/atom, ...
+One year later, a poor colleague needs `ArticleCardHeading` but, without reading its source code, has no idea what level it is, why it is not just a `Heading` but its own component. As the project proceeds, there will be dozens if not hundreds of components, most of which are used only once. In a brand new project, tech lead enthusiastically calls a meeting with ten devs for three hours to discuss how many components to create, which one is an organism/molecule/atom, ...
 
 <figure>
 	<img src={atomicDesignComicImage} class="mx-auto max-w-full rounded" width="800" height="645" alt="at first, making components is very cool, but after a while it becomes a depressive, soul-sucking task" />
@@ -203,7 +203,7 @@ Developers love the "separation of concerns" talk. In the previous example, HTML
 	<figcaption>Illustration 5: requirements can change daily. Abstraction? Not so much</figcaption>
 </figure>
 
-What is a component? For me, a component has two purposes, to organize source code, or to reuse. If the example above is for organization purpose, then it does a pretty bad job because each component only has a few lines, and it abstracts away basic HTML elements like `a`, `p`, `img`, as if we were rewriting the web. What about reuse? Not quite right also, because most components are used only once inside another component. What we need to reuse most of the time is really just CSS, while other attributes need to adapt depending on the context of the application.
+What is a component? For me, a component has two purposes, to organize source code from big chunks to smaller, more maintainable pieces, or to reuse. If the example above is for organization purpose, then it does a pretty bad job because each component only has a few lines, and it abstracts away basic HTML elements like `a`, `p`, `img`, as if we were rewriting the web. What about reuse? Not quite right also, because most components are used only once inside another component. What we need to reuse most of the time is really just CSS, while other attributes need to adapt depending on the context of the application.
 
 You get the idea! Javascript component sometimes creates unnecessary abstraction layers, especially when Atomic Design is abused.
 
@@ -225,7 +225,7 @@ Here is its source code:
 
 Let's break it down: all styling needed for this UI is defined via `c-callout` and `c-callout--info` classes. You can see [the source code of `c-callout` here](https://github.com/sveltevietnam/sveltevietnam.dev/blob/7688ef2d653be7bda0138465242ee928a42794ab/libs/ui/css/components/c-callout.css). I call `c-callout` a "**CSS component**", a presentational piece of UI that only requires CSS to be implemented.
 
-No Javascript Component `Callout.svelte` is needed here because there is no special constraint on markup (e.g. must be a `p` tag), and no additional interaction logic. All we need to package is the styling, and we have done so with CSS. Let's try to rewrite the `ArticleCard` component from the previous section with the same idea:
+No Javascript component `Callout.svelte` is needed here because there is no special constraint on markup (e.g. must be a `p` tag), and no additional interaction logic. All we need to package is the styling, and we have done so with CSS. Let's try to rewrite the `ArticleCard` component from the previous section with the same idea:
 
 ```svelte
 <!-- ArticleCard.svelte -->
@@ -247,7 +247,7 @@ No more child components! All that are left are basic HTML elements, since reusa
 <h3 class="c-text-h2">...</h3>
 ```
 
-For the `figure` element, we can even further simplify `c-figure--image` by utilizing the new [:has](https://developer.mozilla.org/en-US/docs/Web/CSS/:has) selector:
+For the `figure` element, we may even be able to further simplify `c-figure--image` by utilizing the new [:has](https://developer.mozilla.org/en-US/docs/Web/CSS/:has) selector:
 
 ```css
 .c-figure {
