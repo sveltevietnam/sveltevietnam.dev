@@ -1,41 +1,168 @@
 {
 	"name": "@sveltevietnam/ui",
+	"description": "UI kit for Svelte Vietnam",
 	"version": "1.0.0-next.2",
 	"author": {
 		"email": "developers@sveltevietnam.dev",
 		"name": "Svelte Vietnam",
 		"url": "https://www.sveltevietnam.dev"
 	},
-	"description": "UI kit for Svelte Vietnam",
-	"exports": {
-		"./css/fonts.css": "./css/fonts/fonts.css",
-		"./css/postcss": "./css/postcss.js",
-		"./css/tailwind": "./css/tailwind.js",
-		"./svelte/components/EnhancedCodeBlock.svelte": {
-			"svelte": "./svelte/components/EnhancedCodeBlock.svelte"
-		},
-		"./svelte/preprocessors/enhance-code-block": {
-			"import": "./svelte/preprocessors/enhance-code-block/index.js"
-		},
-		"./svelte/preprocessors/auto-external-link": {
-			"import": "./svelte/preprocessors/auto-external-link/index.js"
-		},
-		"./svelte/preprocessors/mdsvex": {
-			"import": "./svelte/preprocessors/mdsvex/index.js"
-		}
+	"license": "MIT",
+	"homepage": "https://www.sveltevietnam.dev",
+	"bugs": {
+		"url": "https://github.com/sveltevietnam/sveltevietnam.dev/issues",
+		"email": "developers@sveltevietnam.com"
 	},
-	"private": true,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sveltevietnam/sveltevietnam.dev",
+		"directory": "libs/ui"
+	},
+	"keywords": [
+		"svelte",
+		"sveltevietnam",
+		"design system",
+		"css",
+		"component",
+		"pattern",
+		"UI",
+		"tailwind"
+	],
 	"publishConfig": {
 		"access": "public"
 	},
+	"svelte": "./dist/index.js",
+	"types": "./dist/index.d.ts",
 	"type": "module",
-	"files": [
-		"css",
-		"svelte"
-	],
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js",
+			"import": "./dist/index.js",
+			"default": "./dist/index.js"
+		},
+		"./css/colors": {
+			"types": "./dist/css/colors.d.ts",
+			"svelte": "./dist/css/colors.js",
+			"import": "./dist/css/colors.js",
+			"default": "./dist/css/colors.js"
+		},
+		"./css/fonts.css": "./dist/css/fonts/fonts.css",
+		"./css/mixins": {
+			"types": "./dist/css/mixins.d.ts",
+			"svelte": "./dist/css/mixins.js",
+			"import": "./dist/css/mixins.js",
+			"default": "./dist/css/mixins.js"
+		},
+		"./css/postcss": {
+			"types": "./dist/css/postcss.d.ts",
+			"svelte": "./dist/css/postcss.js",
+			"import": "./dist/css/postcss.js",
+			"default": "./dist/css/postcss.js"
+		},
+		"./css/tailwind": {
+			"types": "./dist/css/tailwind.d.ts",
+			"svelte": "./dist/css/tailwind.js",
+			"import": "./dist/css/tailwind.js",
+			"default": "./dist/css/tailwind.js"
+		},
+		"./css/theme": {
+			"types": "./dist/css/theme.d.ts",
+			"svelte": "./dist/css/theme.js",
+			"import": "./dist/css/theme.js",
+			"default": "./dist/css/theme.js"
+		},
+		"./components/EnhancedCodeBlock.svelte": {
+			"types": "./dist/components/EnhancedCodeBlock.svelte.d.ts",
+			"svelte": "./dist/components/EnhancedCodeBlock.svelte"
+		},
+		"./preprocessors/auto-external-link": {
+			"types": "./dist/preprocessors/auto-external-link/index.d.ts",
+			"import": "./dist/preprocessors/auto-external-link/index.js",
+			"default": "./dist/preprocessors/auto-external-link/index.js"
+		},
+		"./preprocessors/enhance-code-block": {
+			"types": "./dist/preprocessors/enhance-code-block/index.d.ts",
+			"import": "./dist/preprocessors/enhance-code-block/index.js",
+			"default": "./dist/preprocessors/enhance-code-block/index.js"
+		},
+		"./preprocessors/mdsvex": {
+			"types": "./dist/preprocessors/mdsvex/index.d.ts",
+			"import": "./dist/preprocessors/mdsvex/index.js",
+			"default": "./dist/preprocessors/mdsvex/index.js"
+		}
+	},
+	"typesVersions": {
+		"*": {
+			"css/colors": [
+				"./dist/css/colors.d.ts"
+			],
+			"css/mixins": [
+				"./dist/css/mixins.d.ts"
+			],
+			"css/postcss": [
+				"./dist/css/postcss.d.ts"
+			],
+			"css/tailwind": [
+				"./dist/css/tailwind.d.ts"
+			],
+			"css/theme": [
+				"./dist/css/theme.d.ts"
+			],
+			"components/EnhancedCodeBlock.svelte": [
+				"./dist/components/EnhancedCodeBlock.svelte.d.ts"
+			],
+			"preprocessors/auto-external-link": [
+				"./dist/preprocessors/auto-external-link/index.d.ts"
+			],
+			"preprocessors/enhance-code-block": [
+				"./dist/preprocessors/enhance-code-block/index.d.ts"
+			],
+			"preprocessors/mdsvex": [
+				"./dist/preprocessors/mdsvex/index.d.ts"
+			]
+		}
+	},
 	"scripts": {
-		"build": "node css/build.js",
+		"dev": "vite dev",
+		"build:css": "node src/css/build.js",
+		"build": "npm run build:css && vite build && npm run package",
+		"preview": "vite preview",
+		"package": "svelte-kit sync && svelte-package && publint",
+		"prepublishOnly": "npm run package",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
 		"gen": "hygen css create"
+	},
+	"files": [
+		"dist",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*"
+	],
+	"peerDependencies": {
+		"svelte": "^4.0.0",
+		"postcss": "^8.0.0",
+		"tailwindcss": "^3.0.0"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^3.0.0",
+		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/package": "^2.0.0",
+		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"@total-typescript/ts-reset": "^0.5.1",
+		"@types/node": "^20.11.16",
+		"@types/postcss-import": "^14.0.3",
+		"@types/postcss-js": "^4.0.4",
+		"@types/postcss-mixins": "^9.0.5",
+		"hygen": "^6.2.11",
+		"postcss": "^8.4.33",
+		"publint": "^0.1.9",
+		"svelte": "^4.2.9",
+		"svelte-check": "^3.6.0",
+		"tailwindcss": "^3.4.1",
+		"tslib": "^2.4.1",
+		"typescript": "^5.0.0",
+		"vite": "^5.0.11"
 	},
 	"dependencies": {
 		"@svelte-put/copy": "^3.0.0",
@@ -43,9 +170,8 @@
 		"autoprefixer": "^10.4.17",
 		"cssnano": "^6.0.3",
 		"hast-util-to-string": "^3.0.0",
-		"hygen": "^6.2.11",
+		"magic-string": "^0.30.6",
 		"mdsvex": "^0.11.0",
-		"postcss": "^8.4.33",
 		"postcss-color-scheme": "^1.0.1",
 		"postcss-custom-selectors": "^7.1.6",
 		"postcss-html": "^1.6.0",
@@ -56,15 +182,6 @@
 		"remark-containers": "^1.2.0",
 		"remark-gfm": "^4.0.0",
 		"shiki": "1.0.0-beta.5",
-		"svelte": "^4.2.9",
-		"tailwindcss": "^3.4.1"
-	},
-	"devDependencies": {
-		"@types/node": "^20.11.16",
-		"@types/postcss-import": "^14.0.3",
-		"@types/postcss-js": "^4.0.4",
-		"@types/postcss-mixins": "^9.0.5",
-		"magic-string": "^0.30.6",
 		"svelte-parse-markup": "^0.1.2"
 	},
 	"volta": {

@@ -1,4 +1,4 @@
-import { primitives, semantics } from './colors/colors.js';
+import { primitives, semantics } from './colors.js';
 
 /** @type {import('tailwindcss').Config['theme']} */
 export const theme = {

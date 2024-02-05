@@ -7,6 +7,9 @@ const config: UserConfig = {
 	define: {
 		__BUILD_TIMESTAMP__: JSON.stringify(Date.now().toString()),
 	},
+	optimizeDeps: {
+		entries: ['./src/**/*.{svelte,js,ts}'],
+	},
 	server: {
 		fs: {
 			strict: false,

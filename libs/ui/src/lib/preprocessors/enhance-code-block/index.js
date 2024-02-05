@@ -20,7 +20,7 @@ import { parse } from 'svelte-parse-markup';
 const DEFAULT_CONFIG = {
 	component: {
 		name: 'EnhancedCodeBlock',
-		path: '@sveltevietnam/ui/svelte/components/EnhancedCodeBlock.svelte',
+		path: '@sveltevietnam/ui/components/EnhancedCodeBlock.svelte',
 		default: true,
 	},
 	files: (filename) => filename?.endsWith('.md.svelte') ?? false,

@@ -6,7 +6,7 @@ import postcssCustomSelectors from 'postcss-custom-selectors';
 import postcssJs from 'postcss-js';
 import postcssMixins from 'postcss-mixins';
 
-import { mixins } from './mixins.js';
+import { mixins } from '../lib/css/mixins.js';
 
 /**
  * @param {string} filename

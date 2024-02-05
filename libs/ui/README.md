@@ -17,7 +17,7 @@ Re-export the predefined Postcss config:
 
 ```javascript
 // postcss.config.js
-import config from '@sveltevietnam/ui/css/postcss.config.js';
+import config from '@sveltevietnam/ui/css/postcss';
 
 export default config;
 ```
@@ -26,7 +26,7 @@ Add the preset to your `tailwind.config.js`:
 
 ```javascript
 // tailwind.config.js
-import sveltevietnam from '@sveltevietnam/ui/css/tailwind.js';
+import sveltevietnam from '@sveltevietnam/ui/css/tailwind';
 
 /** @type {import("tailwindcss").Config } */
 export default {
@@ -39,7 +39,7 @@ In your entry CSS, import `fonts.css`:
 
 ```css
 /* app.css */
-@import url('@sveltevietnam/ui/fonts/fonts.css');
+@import url('@sveltevietnam/ui/css/fonts.css');
 
 @tailwind base;
 @tailwind components;

@@ -2,10 +2,10 @@ import tailwindcssTypography from '@tailwindcss/typography';
 import postcssColorScheme from 'postcss-color-scheme/tailwind';
 import definePlugin from 'tailwindcss/plugin.js';
 
-import base from './base/base.dist.json';
-import components from './components/components.dist.json';
+import base from './jss/base.jss.json';
+import components from './jss/components.jss.json';
+import utilities from './jss/utilities.jss.json';
 import { theme } from './theme.js';
-import utilities from './utilities/utilities.dist.json';
 
 /** @type {import('tailwindcss/types/config.js').PresetsConfig} */
 export const core = {

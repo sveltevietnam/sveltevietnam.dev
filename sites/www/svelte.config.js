@@ -6,9 +6,9 @@ import autoSlug from '@svelte-put/preprocess-auto-slug';
 import inlineSvg from '@svelte-put/preprocess-inline-svg';
 import adapter from '@sveltejs/adapter-cloudflare';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
-import { autoExternalLink } from '@sveltevietnam/ui/svelte/preprocessors/auto-external-link';
-import { enhanceCodeBlock } from '@sveltevietnam/ui/svelte/preprocessors/enhance-code-block';
-import { mdsvex, mdsvexDefaultConfig } from '@sveltevietnam/ui/svelte/preprocessors/mdsvex';
+import { autoExternalLink } from '@sveltevietnam/ui/preprocessors/auto-external-link';
+import { enhanceCodeBlock } from '@sveltevietnam/ui/preprocessors/enhance-code-block';
+import { mdsvex, mdsvexDefaultConfig } from '@sveltevietnam/ui/preprocessors/mdsvex';
 
 import pkg from './package.json' assert { type: 'json' };
 
