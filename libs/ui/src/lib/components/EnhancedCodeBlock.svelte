@@ -1,7 +1,7 @@
 <script>
 	import { copy } from '@svelte-put/copy';
 	import { onMount } from 'svelte';
-	import { fly } from 'svelte/transition';
+	import { fade } from 'svelte/transition';
 
 	/** @type {HTMLButtonElement}*/
 	let trigger;
@@ -22,12 +22,22 @@
 		return text;
 	}
 
+	let copyTimeoutId;
 	let copied = false;
 	function onCopied() {
 		copied = true;
-		setTimeout(() => {
+	}
+	function onMouseEnterCopyButton() {
+		clearTimeout(copyTimeoutId);
+	}
+	function onMouseLeaveCopyButton() {
+		copyTimeoutId = setTimeout(() => {
 			copied = false;
 		}, 1800);
+	}
+	function onMouseLeaveContainer() {
+		clearTimeout(copyTimeoutId);
+		copied = false;
 	}
 
 	let hydrated = false;
@@ -36,55 +46,44 @@
 	});
 </script>
 
-<div class="__container">
-	{#if hydrated}
-		<button bind:this={trigger} disabled={copied}>
-			<span class="__label">Copy</span>
-			{#if copied}
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="20"
-					height="20"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="white"
-					stroke-width="1"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					class="lucide lucide-copy-check"
-					in:fly={{ y: 10 }}
-				>
-					<path d="m12 15 2 2 4-4" />
-					<rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path
-						d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
-					/>
-				</svg>
-			{:else}
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="20"
-					height="20"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="white"
-					stroke-width="1"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					class="lucide lucide-copy"
-					in:fly={{ y: 10 }}
-				>
-					<rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path
-						d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
-					/>
-				</svg>
-			{/if}
-		</button>
-	{/if}
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<div class="__container" on:mouseleave={onMouseLeaveContainer}>
 	<div use:copy={{ trigger, text: copyText }} on:copied={onCopied}>
 		<slot>
 			<!-- <pre><code>...</code></pre> -->
 		</slot>
 	</div>
+	{#if hydrated}
+		<button
+			bind:this={trigger}
+			disabled={copied}
+			on:mouseleave={onMouseLeaveCopyButton}
+			on:mouseenter={onMouseEnterCopyButton}
+		>
+			<span class="__label">Copy</span>
+			{#key copied}
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="20"
+					height="20"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					class="lucide lucide-clipboard-check"
+					in:fade={{ duration: 150 }}
+				>
+					<rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+					<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+					{#if copied}
+						<path d="m9 14 2 2 4-4" />
+					{/if}
+				</svg>
+			{/key}
+		</button>
+	{/if}
 </div>
 
 <style>
@@ -97,17 +96,30 @@
 		top: 16px;
 		right: 16px;
 
-		opacity: 0.5;
+		padding: 8px;
+
+		color: theme('colors.grayscale.400');
+
+		opacity: 0;
+		background-color: theme('colors.grayscale.900');
+		border: 1px solid theme('colors.grayscale.800');
+		border-radius: theme('borderRadius.DEFAULT');
 
 		transition: opacity 250ms ease-out;
-
-		&:hover {
-			opacity: 1;
-		}
 
 		&:disabled {
 			/* allow clicking even if already copied */
 			cursor: pointer;
+		}
+	}
+
+	.__container:hover {
+		& button {
+			opacity: 1;
+		}
+
+		& :global(pre::before) {
+			opacity: 0;
 		}
 	}
 

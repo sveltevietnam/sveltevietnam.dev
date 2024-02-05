@@ -74,7 +74,30 @@
 		emitting :where to take precedence over @tailwindcss/typography defautls
 	*/
 	& pre:--is-prose {
+		position: relative;
+		padding-top: 16px;
+		padding-bottom: 16px;
 		padding-inline: 0;
+
+		&::before {
+			content: attr(data-lang);
+
+			position: absolute;
+			top: 2ch;
+			right: 2ch;
+
+			font-size: 12px;
+			font-weight: theme('fontWeight.medium');
+			line-height: theme('lineHeight.normal');
+
+			opacity: 0.75;
+
+			transition: opacity 250ms ease-out;
+		}
+
+		&:hover::before {
+			opacity: 0;
+		}
 
 		& :where(code) {
 			display: inline-block;

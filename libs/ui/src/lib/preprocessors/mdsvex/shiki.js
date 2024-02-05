@@ -36,21 +36,24 @@ const shiki = await getHighlighterCore({
  * @param {string} [lang]
  */
 export function highlighter(code, lang) {
+	const rLang = lang || 'svelte';
 	const html = shiki.codeToHtml(code, {
-		lang: lang || 'svelte',
+		lang: rLang,
 		theme: 'github-dark-dimmed',
-		transformers: [transformer()],
+		transformers: [transformer(rLang)],
 	});
 	return escapeHtml(html);
 }
 
 const STATUSES = ['info', 'success', 'warning', 'error'];
 /**
+ * @param {string} lang
  * @returns {import('shiki').ShikiTransformer}
  */
-function transformer() {
+function transformer(lang) {
 	return {
 		pre(pre) {
+			pre.properties['data-lang'] = lang;
 			delete pre.properties['tabindex'];
 		},
 		code(code) {

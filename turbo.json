@@ -19,12 +19,9 @@
 				"*.config.js",
 				"src/**/*.ts",
 				"src/**/*.js",
-				"**/*.svelte",
-				"**/*.css",
-				"src/**/*.json",
-				"src/**/*.svg",
-				"src/**/*.png",
-				"src/**/*.jpg"
+				"src/**/*.svelte",
+				"src/**/*.css",
+				"src/**/*.json"
 			]
 		},
 		"lint": {
