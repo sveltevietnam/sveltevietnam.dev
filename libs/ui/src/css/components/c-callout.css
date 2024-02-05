@@ -18,7 +18,7 @@
 	color: var(--text-color);
 
 	background: var(--surface-color);
-	border-left: 3px solid var(--border-color);
+	border-left: 4px solid var(--border-color);
 	border-radius: 4px;
 
 	&::before {
