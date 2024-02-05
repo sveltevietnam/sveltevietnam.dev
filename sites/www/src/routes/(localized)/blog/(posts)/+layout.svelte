@@ -16,9 +16,6 @@
 	import { textTip } from '$lib/tooltips';
 	import { formateDateForBlog } from '$lib/utils/datetime';
 
-	import '../../../../lib/css/blog.css';
-	import '../../../../lib/css/code.css';
-	import '../../../../lib/css/heading-anchor.css';
 	import MailSection from '../_page/components/MailSection.svelte';
 
 	import type { LayoutData } from './$types';

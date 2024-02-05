@@ -2,8 +2,6 @@
 	import { intersect } from '$lib/actions/intersect';
 	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
 
-	import '../../../../lib/css/code.css';
-
 	import type { PageData } from './$types';
 	import CodeBlock from './_page/components/CodeBlock.md.svelte?mdsvex';
 	import CodeBlockDiff from './_page/components/CodeBlockDiff.md.svelte?mdsvex';
@@ -72,7 +70,7 @@
 							><span class="line" data-line="1">```javascript</span>
 <span class="line" data-line="2">{'function handle({ event, resolve }) {'}</span>
 <span class="line" data-line="3">  // :::highlight</span>
-<code class="line" data-line="4">  console.log(event);</code>
+<span class="line" data-line="4">  console.log(event);</span>
 <span class="line" data-line="5">  // :::</span>
 <span class="line" data-line="6">  return resolve(event);</span>
 <span class="line" data-line="7">{'}'}</span>

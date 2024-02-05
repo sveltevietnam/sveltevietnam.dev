@@ -38,10 +38,7 @@ export const typography = {
 							'--tw-prose-body': theme('colors.fg.DEFAULT'),
 							'--tw-prose-invert-body': theme('colors.fg.DEFAULT'),
 							'--tw-prose-bold': 'inherit',
-							'a:not(.heading-anchor)': {
-								'@apply c-link': {},
-								'text-decoration': 'none',
-							},
+							'--tw-prose-captions': theme('colors.fg.200'),
 						},
 					},
 				};
