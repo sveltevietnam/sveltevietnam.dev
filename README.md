@@ -7,6 +7,8 @@
 <img src="https://raw.githubusercontent.com/sveltevietnam/branding/main/sveltevietnam-logo.png" align="left" width="192" height="192"/>
 <img align="left" width="0" height="192" hspace="2" vspace="2" />
 
+<br />
+
 Svelte Vietnam official site at [sveltevietnam.dev](https://www.sveltevietnam.dev)
 
 [![Discord][socials.discord.badge]][socials.discord] [![Twitter][socials.twitter.badge]][socials.twitter] [![Facebook][socials.facebook.badge]][socials.facebook]
@@ -15,8 +17,6 @@ Svelte Vietnam official site at [sveltevietnam.dev](https://www.sveltevietnam.de
 
 For details about the context & objective of this project, read the [Project References](./docs/PROJECT_REFERENCES.md) document.
 Contribution and discussion are welcome.
-
-<br />
 
 ## Status
 
