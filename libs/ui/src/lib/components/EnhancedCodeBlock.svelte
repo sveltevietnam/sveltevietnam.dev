@@ -42,9 +42,21 @@
 			copied = false;
 		}, 1800);
 	}
+
+	let showCopyBtn = false;
+	let showCopyBtnTimeoutId;
+	function onMouseEnterContainer() {
+		clearTimeout(showCopyBtnTimeoutId);
+		showCopyBtn = true;
+	}
 	function onMouseLeaveContainer() {
-		clearTimeout(copyTimeoutId);
-		copied = false;
+		if (copied) {
+			showCopyBtnTimeoutId = setTimeout(() => {
+				showCopyBtn = false;
+			}, 1500);
+		} else {
+			showCopyBtn = false;
+		}
 	}
 
 	let hydrated = false;
@@ -56,12 +68,17 @@
 {#if groupContext}
 	<label class="codeblock-label">
 		<span>{label}</span>
-		<input class="codeblock-input" type="radio" name={groupContext.id} />
+		<input class="codeblock-input" value={label} type="radio" name={groupContext.id} />
 	</label>
 {/if}
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<section class="codeblock" on:mouseleave={onMouseLeaveContainer} class:grouped={!!groupContext}>
+<section
+	class="codeblock"
+	on:mouseenter={onMouseEnterContainer}
+	on:mouseleave={onMouseLeaveContainer}
+	class:grouped={!!groupContext}
+>
 	<div use:copy={{ trigger, text: copyText }} on:copied={onCopied}>
 		<slot>
 			<!-- <pre><code>...</code></pre> -->
@@ -69,10 +86,12 @@
 	</div>
 	{#if hydrated}
 		<button
+			class="codeblock-copy-btn"
 			bind:this={trigger}
 			disabled={copied}
 			on:mouseleave={onMouseLeaveCopyButton}
 			on:mouseenter={onMouseEnterCopyButton}
+			class:shown={showCopyBtn}
 		>
 			<span class="codeblock-sr">Copy</span>
 			{#key copied}
@@ -121,19 +140,30 @@
 		}
 	}
 
-	:where(button) {
+	:where(.codeblock-copy-btn) {
+		--color-button-fg: hsl(0deg 0% 50%);
+		--color-button-bg: hsl(0deg 0% 100%);
+		--color-button-outline: hsl(0deg 0% 75%);
+
+		/* assume integration with @sveltevietnam/ui */
+		@dark global {
+			--color-button-fg: hsl(0deg 0% 64%);
+			--color-button-bg: hsl(0deg 0% 20%);
+			--color-button-outline: hsl(0deg 0% 28%);
+		}
+
 		position: absolute;
 		top: 8px;
 		right: 8px;
 
 		padding: 8px;
 
-		color: hsl(0deg 0% 64%);
+		color: var(--color-button-fg);
 
 		opacity: 0;
-		background-color: hsl(0deg 0% 19%);
-		border: 1px solid hsl(0deg 0% 28%);
-		border-radius: 4px;
+		background-color: var(--color-button-bg);
+		border: 1px solid var(--color-button-outline);
+		border-radius: 0.375rem;
 
 		transition: opacity 250ms ease-out;
 
@@ -141,13 +171,13 @@
 			/* allow clicking even if already copied */
 			cursor: pointer;
 		}
+
+		&.shown {
+			opacity: 1;
+		}
 	}
 
 	:where(.codeblock):hover {
-		& :where(button) {
-			opacity: 1;
-		}
-
 		& :global(pre::before) {
 			opacity: 0;
 		}
@@ -170,18 +200,24 @@
 	}
 
 	:where(.codeblock-label) {
-		--color-label-bg-active: hsl(215deg 30% 10%);
-		--color-label-bg: hsl(215deg 15% 15.7%);
-		--color-label-fg: hsl(210deg 18.8% 72.9%);
-		--color-label-underline: hsl(10deg 100% 55%);
 		--underline-x-bleed: 16px;
 		--padding-left: 16px;
 		--padding-right: 16px;
+		--color-label-fg: hsl(0deg 0% 0%);
+		--color-label-bg-active: hsl(0deg 0% 100%);
+		--color-label-underline: theme('colors.primary.DEFAULT');
+		--color-label-outline: theme('colors.outline.DEFAULT');
+
+		@dark global {
+			--color-label-fg: hsl(0deg 0% 83%);
+			--color-label-bg-active: hsl(0deg 0% 12%);
+		}
 
 		cursor: pointer;
 
 		position: relative;
 		z-index: 2;
+		bottom: -1px;
 
 		grid-row: 1;
 
@@ -192,41 +228,27 @@
 		line-height: normal;
 		color: var(--color-label-fg);
 
-		background-color: var(--color-label-bg);
-		border-bottom: 1px solid currentcolor;
-
-		&::after {
-			--scale-x: 0;
-
-			content: '';
-
-			position: absolute;
-			right: calc(var(--padding-right) - var(--underline-x-bleed));
-			bottom: -1px;
-			left: calc(var(--padding-left) - var(--underline-x-bleed));
-			transform: scaleX(var(--scale-x));
-
-			height: 1px;
-
-			color: var(--color-label-underline);
-
-			background-color: currentcolor;
-		}
+		border-color: var(--color-label-outline);
+		border-style: solid;
+		border-top-width: 1px;
 
 		&:first-of-type {
+			border-left-width: 1px;
 			border-top-left-radius: 0.375rem;
 		}
 
 		&:last-of-type {
+			border-right-width: 1px;
 			border-top-right-radius: 0.375rem;
 		}
 
 		&:not(:first-of-type) {
-			border-left: 1px solid currentcolor;
+			border-left: 1px solid var(--color-label-outline);
 		}
 
 		&:has(.codeblock-input:checked) {
 			background-color: var(--color-label-bg-active);
+			border-bottom: 2px solid var(--color-label-underline);
 
 			&::after {
 				--scale-x: 1;
@@ -249,6 +271,7 @@
 
 		& .codeblock-label:first-of-type {
 			background-color: var(--color-label-bg-active);
+			border-bottom: 2px solid var(--color-label-underline);
 
 			&::after {
 				--scale-x: 1;

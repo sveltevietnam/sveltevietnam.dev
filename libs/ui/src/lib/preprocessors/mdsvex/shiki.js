@@ -20,7 +20,7 @@ function escapeHtml(html) {
 }
 
 const shiki = await getHighlighterCore({
-	themes: [import('shiki/themes/github-dark-dimmed.mjs')],
+	themes: [import('shiki/themes/dark-plus.mjs'), import('shiki/themes/light-plus.mjs')],
 	langs: [
 		import('shiki/langs/javascript.mjs'),
 		import('shiki/langs/typescript.mjs'),
@@ -35,7 +35,6 @@ const shiki = await getHighlighterCore({
  * @typedef CodeBlockMetadata
  * @property {string} __raw
  * @property {string} data-lang
- * @property {string} class
  * @property {Record<string, string>} __enhancement
  */
 
@@ -57,7 +56,6 @@ function parseLangAndMetadata(str) {
 			__raw: metaStr,
 			__enhancement: {},
 			'data-lang': lang,
-			class: '',
 		};
 		const propStrs = metaStr
 			.trim()
@@ -65,11 +63,7 @@ function parseLangAndMetadata(str) {
 			.filter((seg) => !!seg);
 		for (const propStr of propStrs) {
 			const [, key, value] = propStr.split(/([^"]+)="([^"]*)"/);
-			if (key === 'class') {
-				meta.class += value;
-			} else {
-				meta.__enhancement[key] = value;
-			}
+			meta.__enhancement[key] = value;
 		}
 	}
 
@@ -88,7 +82,10 @@ export function highlighter(code, langAndMetadataStr = '') {
 	const { lang, meta } = parseLangAndMetadata(langAndMetadataStr);
 	const html = shiki.codeToHtml(code, {
 		lang,
-		theme: 'github-dark-dimmed',
+		themes: {
+			light: 'light-plus',
+			dark: 'dark-plus',
+		},
 		transformers: [transformer()],
 		meta,
 	});
@@ -109,8 +106,10 @@ function transformer() {
 			const container = h('enhanced-code-block', [hast]);
 			if (this.options.meta) {
 				const metadata = /** @type {CodeBlockMetadata} */ (this.options.meta);
-				this.addClassToHast(hast, metadata.class ?? '');
 				for (const [key, value] of Object.entries(metadata.__enhancement)) {
+					if (key === 'class') {
+						this.addClassToHast(hast, value);
+					}
 					container.properties[key] = value;
 				}
 			}
