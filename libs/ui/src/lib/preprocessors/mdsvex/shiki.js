@@ -1,4 +1,5 @@
 import { toString } from 'hast-util-to-string';
+import { h } from 'hastscript';
 import { getHighlighterCore } from 'shiki/core';
 import loadWasm from 'shiki/wasm';
 
@@ -52,14 +53,17 @@ const STATUSES = ['info', 'success', 'warning', 'error'];
  */
 function transformer(lang) {
 	return {
-		pre(pre) {
-			pre.properties['data-lang'] = lang;
-			delete pre.properties['tabindex'];
+		root(hast) {
+			return h('enhanced:codeblock', [hast]);
 		},
-		code(code) {
+		pre(hast) {
+			hast.properties['data-lang'] = lang;
+			delete hast.properties['tabindex'];
+		},
+		code(hast) {
 			// FIXME: correct typing
 			/** @type {any[]} */
-			const lines = code.children.filter((i) => i.type === 'element');
+			const lines = hast.children.filter((i) => i.type === 'element');
 			let lineNumber = 0;
 
 			/** @typedef {{ type: 'diff'; variant: '-' | '+' }} BlockDiff */
@@ -99,12 +103,12 @@ function transformer(lang) {
 				}
 
 				if (isMetaLine) {
-					const index = code.children.indexOf(line);
-					const lineAfter = code.children.at(index + 1);
+					const index = hast.children.indexOf(line);
+					const lineAfter = hast.children.at(index + 1);
 					if (lineAfter && lineAfter.type === 'text' && lineAfter.value === '\n') {
-						code.children.splice(index + 1, 1);
+						hast.children.splice(index + 1, 1);
 					}
-					code.children.splice(index, 1);
+					hast.children.splice(index, 1);
 
 					lineNumber--;
 					continue;

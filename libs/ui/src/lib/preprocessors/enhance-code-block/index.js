@@ -11,6 +11,7 @@ import { parse } from 'svelte-parse-markup';
  *   default?: boolean;
  * }} [component]
  * @property {(filename?: string) => boolean} [files]
+ * @property {string} [element]
  */
 
 /**
@@ -24,6 +25,7 @@ const DEFAULT_CONFIG = {
 		default: true,
 	},
 	files: (filename) => filename?.endsWith('.md.svelte') ?? false,
+	element: 'enhanced:codeblock',
 };
 
 /**
@@ -53,14 +55,15 @@ export function enhanceCodeBlock(config = {}) {
 				 * @returns
 				 */
 				enter(node) {
-					if (node.type !== 'Element' || node.name !== 'pre') return;
+					if (node.type !== 'Element' || node.name !== rConfig.element) return;
 
-					const closingTag = `</${rConfig.component.name}>`;
-					const strAfter = s.slice(node.end, node.end + closingTag.length + 10);
-					if (strAfter.includes(closingTag)) return;
+					s.update(
+						node.start,
+						node.start + rConfig.elemenrt.length + 1,
+						'<' + rConfig.component.name,
+					);
 
-					s.prependRight(node.start, `<${rConfig.component.name}>`);
-					s.appendLeft(node.end, `</${rConfig.component.name}>`);
+					s.update(node.end - rConfig.element.length - 1, node.end, rConfig.component.name + '>');
 
 					if (isImported) return;
 

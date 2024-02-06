@@ -140,8 +140,8 @@
 		"!dist/**/*.spec.*"
 	],
 	"peerDependencies": {
-		"svelte": "^4.0.0",
 		"postcss": "^8.0.0",
+		"svelte": "^4.0.0",
 		"tailwindcss": "^3.0.0"
 	},
 	"devDependencies": {
@@ -170,6 +170,7 @@
 		"autoprefixer": "^10.4.17",
 		"cssnano": "^6.0.3",
 		"hast-util-to-string": "^3.0.0",
+		"hastscript": "^9.0.0",
 		"magic-string": "^0.30.6",
 		"mdsvex": "^0.11.0",
 		"postcss-color-scheme": "^1.0.1",
