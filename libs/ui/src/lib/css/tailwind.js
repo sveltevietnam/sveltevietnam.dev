@@ -17,8 +17,8 @@ export const core = {
 			for (const prefix of ['data', 'aria']) {
 				addVariant(`${prefix}-current`, `&[${prefix}-current]:not([${prefix}-current="false"])`);
 			}
-			addBase(coreJss.base);
-			addComponents(coreJss.components);
+			addBase(/** @type {any} */ (coreJss.base));
+			addComponents(/** @type {any} */ (coreJss.components));
 			addUtilities(coreJss.utilities);
 		}),
 	],
@@ -38,6 +38,9 @@ export const typography = {
 							'--tw-prose-invert-body': theme('colors.fg.DEFAULT'),
 							'--tw-prose-bold': 'inherit',
 							'--tw-prose-captions': theme('colors.fg.200'),
+							pre: {
+								'max-height': '80dvh',
+							},
 						},
 					},
 				};
@@ -47,7 +50,7 @@ export const typography = {
 	plugins: [
 		tailwindcssTypography,
 		definePlugin(({ addBase }) => {
-			addBase(typographyJss.base);
+			addBase(/** @type {any} */ (typographyJss.base));
 		}),
 	],
 };

@@ -76,6 +76,10 @@
 			"types": "./dist/components/EnhancedCodeBlock.svelte.d.ts",
 			"svelte": "./dist/components/EnhancedCodeBlock.svelte"
 		},
+		"./components/EnhancedCodeBlockGroup.svelte": {
+			"types": "./dist/components/EnhancedCodeBlockGroup.svelte.d.ts",
+			"svelte": "./dist/components/EnhancedCodeBlockGroup.svelte"
+		},
 		"./preprocessors/auto-external-link": {
 			"types": "./dist/preprocessors/auto-external-link/index.d.ts",
 			"import": "./dist/preprocessors/auto-external-link/index.js",
@@ -111,6 +115,9 @@
 			],
 			"components/EnhancedCodeBlock.svelte": [
 				"./dist/components/EnhancedCodeBlock.svelte.d.ts"
+			],
+			"components/EnhancedCodeBlockGroup.svelte": [
+				"./dist/components/EnhancedCodeBlockGroup.svelte.d.ts"
 			],
 			"preprocessors/auto-external-link": [
 				"./dist/preprocessors/auto-external-link/index.d.ts"
@@ -182,7 +189,7 @@
 		"postcss-nesting": "^12.0.2",
 		"remark-containers": "^1.2.0",
 		"remark-gfm": "^4.0.0",
-		"shiki": "1.0.0-beta.5",
+		"shiki": "1.0.0-rc.0",
 		"svelte-parse-markup": "^0.1.2"
 	},
 	"volta": {

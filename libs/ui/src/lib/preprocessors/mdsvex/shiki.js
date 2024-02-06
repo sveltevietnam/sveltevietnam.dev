@@ -32,33 +32,90 @@ const shiki = await getHighlighterCore({
 });
 
 /**
+ * @typedef CodeBlockMetadata
+ * @property {string} __raw
+ * @property {string} data-lang
+ * @property {string} class
+ * @property {Record<string, string>} __enhancement
+ */
+
+/**
+ * parse language and metadata from code block header in the format:
+ * `language|key1="value1";key2="value2";...`
+ *
+ * Example: `svelte|key1="value1";array="1,2,3,4" ; ; blank=""; key2="with semicolon \; like that"`
+ *
+ * @param {string} str
+ * @returns {{ lang: string; meta?: CodeBlockMetadata }}
+ */
+function parseLangAndMetadata(str) {
+	/** @type {CodeBlockMetadata | undefined} */
+	let meta;
+	const [lang = 'svelte', metaStr] = str.split('|');
+	if (metaStr) {
+		meta = {
+			__raw: metaStr,
+			__enhancement: {},
+			'data-lang': lang,
+			class: '',
+		};
+		const propStrs = metaStr
+			.trim()
+			.split(/(?:\s*(?<!\/);?\s*)*([^"]+="[^"]*")/)
+			.filter((seg) => !!seg);
+		for (const propStr of propStrs) {
+			const [, key, value] = propStr.split(/([^"]+)="([^"]*)"/);
+			if (key === 'class') {
+				meta.class += value;
+			} else {
+				meta.__enhancement[key] = value;
+			}
+		}
+	}
+
+	return {
+		meta,
+		lang,
+	};
+}
+
+/**
  *
  * @param {string} code
- * @param {string} [lang]
+ * @param {string} [langAndMetadataStr]
  */
-export function highlighter(code, lang) {
-	const rLang = lang || 'svelte';
+export function highlighter(code, langAndMetadataStr = '') {
+	const { lang, meta } = parseLangAndMetadata(langAndMetadataStr);
 	const html = shiki.codeToHtml(code, {
-		lang: rLang,
+		lang,
 		theme: 'github-dark-dimmed',
-		transformers: [transformer(rLang)],
+		transformers: [transformer()],
+		meta,
 	});
 	return escapeHtml(html);
 }
 
 const STATUSES = ['info', 'success', 'warning', 'error'];
 /**
- * @param {string} lang
  * @returns {import('shiki').ShikiTransformer}
  */
-function transformer(lang) {
+function transformer() {
 	return {
-		root(hast) {
-			return h('enhanced:codeblock', [hast]);
-		},
+		name: '@sveltevietnam/ui:enhance-code-block',
+
 		pre(hast) {
-			hast.properties['data-lang'] = lang;
 			delete hast.properties['tabindex'];
+
+			const container = h('enhanced-code-block', [hast]);
+			if (this.options.meta) {
+				const metadata = /** @type {CodeBlockMetadata} */ (this.options.meta);
+				this.addClassToHast(hast, metadata.class ?? '');
+				for (const [key, value] of Object.entries(metadata.__enhancement)) {
+					container.properties[key] = value;
+				}
+			}
+
+			return container;
 		},
 		code(hast) {
 			// FIXME: correct typing
