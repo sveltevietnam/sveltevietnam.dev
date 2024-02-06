@@ -139,7 +139,7 @@ function transformer() {
 					isMetaLine = true;
 
 					// diff
-					let match = str.match(/:::diff\s+([+-])/);
+					let match = str.match(/:::diff\s+([+-])(?![^\s])/);
 					if (match) {
 						const variant = /** @type {BlockDiff['variant']} */ (match[1]);
 						blocks.push({ type: 'diff', variant });
@@ -147,7 +147,7 @@ function transformer() {
 
 					// highlight
 					if (!match) {
-						match = str.match(new RegExp(`:::highlight\\s?(${STATUSES.join('|')})?`));
+						match = str.match(new RegExp(`:::highlight\\s?(${STATUSES.join('|')})?(?![^\\s])`));
 						if (match) {
 							const variant = match[1] ?? 'info';
 							blocks.push({ type: 'highlight', variant });
