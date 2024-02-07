@@ -1,5 +1,27 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.5
+
+### Minor Changes
+
+- [`173a818`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/173a818eadcae1d933183a7e2293a3f540a8fdf9) Thanks [@vnphanquang](https://github.com/vnphanquang)! - set up dual theme Light Plus, Dark Plus for shiki
+
+- [`b7f2c73`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/b7f2c736156de4c5faec9d7984f43153c930b147) Thanks [@vnphanquang](https://github.com/vnphanquang)! - better UX for copy button on code block
+
+- [`8184ec0`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/8184ec0aabab496d77a1d889e9461de78b377c8a) Thanks [@vnphanquang](https://github.com/vnphanquang)! - Support multi-tabbed code block with mdsvex & shiki (via `<enhanced-code-block group>`)
+
+- [`b7f2c73`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/b7f2c736156de4c5faec9d7984f43153c930b147) Thanks [@vnphanquang](https://github.com/vnphanquang)! - render for code block language at top right
+
+- [`e046f3a`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/e046f3a12e97b49a9ac1257936599909bcc9d1c4) Thanks [@vnphanquang](https://github.com/vnphanquang)! - better predictability and consistency for `enhance-code-block` preprocessor to rely on explicit `<enhanced:codeblock>` element (added automatically by custom shiki transformer)
+
+### Patch Changes
+
+- [`0104d40`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/0104d4074ba3036cf0187adaa30731444127ba4a) Thanks [@vnphanquang](https://github.com/vnphanquang)! - negate "box-like" styling for inline `<code>` that is in an anchor tag
+
+- [`77ac04c`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/77ac04cfb8f6528fddbb42782d903da8000ccdce) Thanks [@vnphanquang](https://github.com/vnphanquang)! - fix shiki dual theme colors for highligting and diff lines
+
+- [`4aef36f`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/4aef36f25de4ba9cda03810efbe6f700fab07b81) Thanks [@vnphanquang](https://github.com/vnphanquang)! - shiki transformer - block regex closing tag should cover HTML comments
+
 ## 1.0.0-next.4
 
 ### Minor Changes
