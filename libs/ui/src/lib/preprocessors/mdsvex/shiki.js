@@ -33,9 +33,9 @@ const shiki = await getHighlighterCore({
 
 /**
  * @typedef CodeBlockMetadata
- * @property {string} __raw
- * @property {string} data-lang
- * @property {Record<string, string>} __enhancement
+ * @property {string} [__raw]
+ * @property {string} [data-lang]
+ * @property {Record<string, string>} [__enhancement]
  */
 
 /**
@@ -48,15 +48,14 @@ const shiki = await getHighlighterCore({
  * @returns {{ lang: string; meta?: CodeBlockMetadata }}
  */
 function parseLangAndMetadata(str) {
-	/** @type {CodeBlockMetadata | undefined} */
-	let meta;
 	const [lang = 'svelte', metaStr] = str.split('|');
+	/** @type {CodeBlockMetadata} */
+	const meta = {
+		'data-lang': lang,
+	};
 	if (metaStr) {
-		meta = {
-			__raw: metaStr,
-			__enhancement: {},
-			'data-lang': lang,
-		};
+		meta.__raw = '';
+		meta.__enhancement = {};
 		const propStrs = metaStr
 			.trim()
 			.split(/(?:\s*(?<!\/);?\s*)*([^"]+="[^"]*")/)
@@ -106,11 +105,13 @@ function transformer() {
 			const container = h('enhanced-code-block', [hast]);
 			if (this.options.meta) {
 				const metadata = /** @type {CodeBlockMetadata} */ (this.options.meta);
-				for (const [key, value] of Object.entries(metadata.__enhancement)) {
-					if (key === 'class') {
-						this.addClassToHast(hast, value);
+				if (metadata.__enhancement) {
+					for (const [key, value] of Object.entries(metadata.__enhancement)) {
+						if (key === 'class') {
+							this.addClassToHast(hast, value);
+						}
+						container.properties[key] = value;
 					}
-					container.properties[key] = value;
 				}
 			}
 
