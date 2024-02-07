@@ -1,5 +1,11 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.6
+
+### Patch Changes
+
+- [`848024d`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/848024de7ea8a09f4d7ebc7299ab0e02043d21b7) Thanks [@vnphanquang](https://github.com/vnphanquang)! - shiki - should always include `data-lang` property in metadata
+
 ## 1.0.0-next.5
 
 ### Minor Changes
