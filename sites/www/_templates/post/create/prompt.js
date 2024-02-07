@@ -1,3 +1,5 @@
+const { slugify } = require('../../_utils/slugify.js');
+
 async function promptLanguages(prompter) {
 	const { languageMap } = await prompter.prompt({
 		type: 'multiselect',
@@ -69,7 +71,7 @@ module.exports = {
 		});
 		authorName = authorName.trim();
 
-		/** @type {{ title: string }} */
+		/** @type {{ dateStr: string }} */
 		let { dateStr } = await prompter.prompt({
 			type: 'input',
 			message: 'What is the publication date (YYYY-MM-DD)? (leave blank for current date)',
@@ -111,23 +113,3 @@ module.exports = {
 		};
 	},
 };
-
-/**
- * Slugify a string
- *
- * @public
- *
- * @param {string} text - text to slugify
- * @returns {string}
- */
-function slugify(text) {
-	if (!text) return text;
-	return text
-		.trim()
-		.toLowerCase()
-		.replace(/[''"]+/gi, '')
-		.replace(/[^a-z0-9\-_]+/gi, '-')
-		.replace(/-+$/, '')
-		.replace(/^-+/, '')
-		.replace(/-+/g, '-');
-}

@@ -10,6 +10,12 @@ module.exports = {
 				parser: '@typescript-eslint/parser',
 			},
 		},
+		{
+			files: ['_templates/**/*.js'],
+			rules: {
+				'@typescript-eslint/no-var-requires': 'off',
+			},
+		},
 	],
 	rules: {
 		'svelte/no-at-html-tags': 'off',

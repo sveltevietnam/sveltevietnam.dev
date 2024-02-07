@@ -8,7 +8,7 @@ import { getEventStatus, localizeEvent } from './helpers';
 import type { LocalizedEvent } from './types';
 
 export const EVENTS = [
-	// HYGEN MARKER - POST [DO NOT REMOVE]
+	// HYGEN MARKER - EVENT [DO NOT REMOVE]
 	event_202312_year_end_online_meetup,
 ];
 
