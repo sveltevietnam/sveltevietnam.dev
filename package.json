@@ -50,8 +50,8 @@
 		"stylelint-config-html": "^1.1.0",
 		"stylelint-config-standard": "^36.0.0",
 		"tslib": "^2.6.2",
-		"turbo": "^1.12.2",
+		"turbo": "^1.12.3",
 		"typescript": "^5.3.3",
-		"wrangler": "^3.26.0"
+		"wrangler": "^3.27.0"
 	}
 }
