@@ -144,7 +144,8 @@
 	"files": [
 		"dist",
 		"!dist/**/*.test.*",
-		"!dist/**/*.spec.*"
+		"!dist/**/*.spec.*",
+		"!/dist/**/jss/*.d.ts"
 	],
 	"peerDependencies": {
 		"postcss": "^8.0.0",
