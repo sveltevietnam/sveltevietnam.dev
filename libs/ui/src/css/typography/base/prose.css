@@ -1,5 +1,23 @@
 @custom-selector :--is-prose :not(:where([class~='not-prose'], [class~='not-prose'] *));
 
+/*
+	dark theme setup for shiki,
+	see https://shiki.style/guide/dual-themes
+*/
+:where(.shiki),
+:where(.shiki) :where(span) {
+	@dark {
+		font-weight: var(--shiki-dark-font-weight) !important;
+
+		/* Optional, if you also want font styles */
+		font-style: var(--shiki-dark-font-style) !important;
+		color: var(--shiki-dark) !important;
+		text-decoration: var(--shiki-dark-text-decoration) !important;
+
+		background-color: var(--shiki-dark-bg) !important;
+	}
+}
+
 .prose {
 	& figcaption:--is-prose {
 		text-align: center;
@@ -102,14 +120,25 @@
 			opacity: 0;
 		}
 
-		& :where(code) {
+		& code {
 			display: inline-block;
 			min-width: 100%;
 		}
 
-		& :where(.line) {
+		& .line {
 			--padding-inline-start: 1ch;
 			--padding-inline-end: 3ch;
+			--color-bg-info: hsl(199.4deg 100% 93.3%);
+			--color-bg-warning: hsl(52.8deg 100% 88.6%);
+			--color-bg-success: hsl(134.4deg 100% 95.1%);
+			--color-bg-error: hsl(5.5deg 100% 95.7%);
+
+			@dark {
+				--color-bg-info: hsl(215deg 39% 18%);
+				--color-bg-warning: hsl(43deg 100% 50% / 15%);
+				--color-bg-success: hsl(123.04deg 36.07% 42.94% / 15%);
+				--color-bg-error: hsl(3.12deg 74.76% 59.61% / 10%);
+			}
 
 			display: inline-block;
 			width: 100%;
@@ -131,7 +160,9 @@
 				opacity: 0.5;
 			}
 
-			&:where([data-line-diff]) {
+			&[data-line-diff] {
+				--shiki-dark-bg: transparent;
+
 				display: inline-block;
 				width: 100%;
 
@@ -141,16 +172,16 @@
 					display: inline-block;
 				}
 
-				&:where([data-line-diff='+']) {
-					background-color: hsl(123.04deg 36.07% 42.94% / 15%);
+				&[data-line-diff='+'] {
+					background-color: var(--color-bg-success) !important;
 
 					&::after {
 						content: '+';
 					}
 				}
 
-				&:where([data-line-diff='-']) {
-					background-color: hsl(3.12deg 74.76% 59.61% / 10%);
+				&[data-line-diff='-'] {
+					background-color: var(--color-bg-error) !important;
 
 					&::after {
 						content: '-';
@@ -158,44 +189,28 @@
 				}
 			}
 
-			&:where([data-line-highlighted]) {
+			&[data-line-highlighted] {
+				--shiki-dark-bg: transparent;
+
 				display: inline-block;
 				width: 100%;
 
-				&:where([data-line-highlighted='info']) {
-					background-color: hsl(215deg 39% 18%);
+				&[data-line-highlighted='info'] {
+					background-color: var(--color-bg-info) !important;
 				}
 
-				&:where([data-line-highlighted='success']) {
-					background-color: hsl(123deg 36% 43% / 15%);
+				&[data-line-highlighted='success'] {
+					background-color: var(--color-bg-success) !important;
 				}
 
-				&:where([data-line-highlighted='warning']) {
-					background-color: hsl(43deg 100% 50% / 15%);
+				&[data-line-highlighted='warning'] {
+					background-color: var(--color-bg-warning) !important;
 				}
 
-				&:where([data-line-highlighted='error']) {
-					background-color: hsl(3.12deg 74.76% 59.61% / 10%);
+				&[data-line-highlighted='error'] {
+					background-color: var(--color-bg-error) !important;
 				}
 			}
 		}
-	}
-}
-
-/*
-	dark theme setup fors shiki,
-	see https://shiki.style/guide/dual-themes
-*/
-.shiki,
-.shiki span {
-	@dark {
-		font-weight: var(--shiki-dark-font-weight) !important;
-
-		/* Optional, if you also want font styles */
-		font-style: var(--shiki-dark-font-style) !important;
-		color: var(--shiki-dark) !important;
-		text-decoration: var(--shiki-dark-text-decoration) !important;
-
-		background-color: var(--shiki-dark-bg) !important;
 	}
 }
