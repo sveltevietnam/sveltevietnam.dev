@@ -1,9 +1,25 @@
 @custom-selector :--is-prose :not(:where([class~='not-prose'], [class~='not-prose'] *));
 
+:root {
+	--color-pre-fg: hsl(0deg 0% 0%);
+	--color-pre-bg: hsl(224deg 19% 98%);
+
+	@dark {
+		--color-pre-fg: hsl(0deg 0% 83%);
+		--color-pre-bg: hsl(0deg 0% 12%);
+	}
+}
+
 /*
 	dark theme setup for shiki,
 	see https://shiki.style/guide/dual-themes
 */
+:where(.shiki) {
+	@light {
+		background-color: hsl(224deg 19% 98%) !important;
+	}
+}
+
 :where(.shiki),
 :where(.shiki) :where(span) {
 	@dark {

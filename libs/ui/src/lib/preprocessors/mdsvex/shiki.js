@@ -55,7 +55,7 @@ function parseLangAndMetadata(str) {
 	};
 	if (metaStr) {
 		meta.__raw = '';
-		meta.__enhancement = {};
+		meta.__enhancement = { lang };
 		const propStrs = metaStr
 			.trim()
 			.split(/(?:\s*(?<!\/);?\s*)*([^"]+="[^"]*")/)

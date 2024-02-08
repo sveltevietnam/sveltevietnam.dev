@@ -4,9 +4,14 @@
 	import { fade } from 'svelte/transition';
 
 	import { getEnhancedCodeBlockGroupContext } from './EnhancedCodeBlockGroup.svelte';
+	import FileIcon from './FileIcon.svelte';
 
 	/** @type {string}*/
+	export let lang = '';
+	/** @type {string}*/
 	export let label = '';
+	/** @type {string}*/
+	export let filename = '';
 
 	const groupContext = getEnhancedCodeBlockGroupContext();
 
@@ -79,49 +84,54 @@
 	on:mouseleave={onMouseLeaveContainer}
 	class:grouped={!!groupContext}
 >
-	<div use:copy={{ trigger, text: copyText }} on:copied={onCopied}>
+	{#if filename}
+		<p class="codeblock-filename">
+			<FileIcon {lang} />
+			{filename}
+		</p>
+	{/if}
+	<div class="codeblock-pre-container" use:copy={{ trigger, text: copyText }} on:copied={onCopied}>
 		<slot>
 			<!-- <pre><code>...</code></pre> -->
 		</slot>
+		{#if hydrated}
+			<button
+				class="codeblock-copy-btn"
+				bind:this={trigger}
+				disabled={copied}
+				on:mouseleave={onMouseLeaveCopyButton}
+				on:mouseenter={onMouseEnterCopyButton}
+				class:shown={showCopyBtn}
+			>
+				<span class="codeblock-sr">Copy</span>
+				{#key copied}
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="20"
+						height="20"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="lucide lucide-clipboard-check"
+						in:fade={{ duration: 150 }}
+					>
+						<rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+						<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+						{#if copied}
+							<path d="m9 14 2 2 4-4" />
+						{/if}
+					</svg>
+				{/key}
+			</button>
+		{/if}
 	</div>
-	{#if hydrated}
-		<button
-			class="codeblock-copy-btn"
-			bind:this={trigger}
-			disabled={copied}
-			on:mouseleave={onMouseLeaveCopyButton}
-			on:mouseenter={onMouseEnterCopyButton}
-			class:shown={showCopyBtn}
-		>
-			<span class="codeblock-sr">Copy</span>
-			{#key copied}
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="20"
-					height="20"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					class="lucide lucide-clipboard-check"
-					in:fade={{ duration: 150 }}
-				>
-					<rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
-					<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
-					{#if copied}
-						<path d="m9 14 2 2 4-4" />
-					{/if}
-				</svg>
-			{/key}
-		</button>
-	{/if}
 </section>
 
 <style>
 	:where(.codeblock) {
-		position: relative;
 		z-index: 1;
 		margin-block: 24px;
 
@@ -135,20 +145,62 @@
 			}
 		}
 
+		&:has(.codeblock-filename) {
+			position: relative;
+
+			& :where(.codeblock-pre-container) {
+				position: static;
+			}
+
+			& :where(.codeblock-copy-btn) {
+				top: 10px;
+				right: 16px;
+
+				padding: 0;
+
+				opacity: 1;
+				background-color: transparent;
+				border-width: 0;
+			}
+
+			& :global(pre) {
+				border-top-left-radius: 0;
+				border-top-right-radius: 0;
+
+				&::before {
+					content: none;
+				}
+			}
+		}
+
 		& :global(pre) {
 			margin-block: 0;
 		}
 	}
 
+	:where(.codeblock-pre-container) {
+		position: relative;
+	}
+
+	:where(.codeblock-filename) {
+		margin: 0;
+		padding: 12px 16px;
+
+		font-size: 12px;
+		line-height: normal;
+
+		background-color: var(--color-pre-bg);
+		border-width: 1px 1px 0;
+		border-radius: 4px 4px 0 0;
+	}
+
 	:where(.codeblock-copy-btn) {
 		--color-button-fg: hsl(0deg 0% 50%);
-		--color-button-bg: hsl(0deg 0% 100%);
 		--color-button-outline: hsl(0deg 0% 75%);
 
 		/* assume integration with @sveltevietnam/ui */
 		@dark global {
 			--color-button-fg: hsl(0deg 0% 64%);
-			--color-button-bg: hsl(0deg 0% 20%);
 			--color-button-outline: hsl(0deg 0% 28%);
 		}
 
@@ -156,12 +208,12 @@
 		top: 8px;
 		right: 8px;
 
-		padding: 8px;
+		padding: 6px;
 
 		color: var(--color-button-fg);
 
 		opacity: 0;
-		background-color: var(--color-button-bg);
+		background-color: var(--color-pre-bg);
 		border: 1px solid var(--color-button-outline);
 		border-radius: 0.375rem;
 
@@ -203,15 +255,10 @@
 		--underline-x-bleed: 16px;
 		--padding-left: 16px;
 		--padding-right: 16px;
-		--color-label-fg: hsl(0deg 0% 0%);
-		--color-label-bg-active: hsl(0deg 0% 100%);
+		--color-label-fg: var(--color-pre-fg);
+		--color-label-bg-active: var(--color-pre-bg);
 		--color-label-underline: theme('colors.primary.DEFAULT');
 		--color-label-outline: theme('colors.outline.DEFAULT');
-
-		@dark global {
-			--color-label-fg: hsl(0deg 0% 83%);
-			--color-label-bg-active: hsl(0deg 0% 12%);
-		}
 
 		cursor: pointer;
 
@@ -226,7 +273,7 @@
 
 		font-size: 14px;
 		line-height: normal;
-		color: var(--color-label-fg);
+		color: var(--color-pre-fg);
 
 		border-color: var(--color-label-outline);
 		border-style: solid;
@@ -247,12 +294,8 @@
 		}
 
 		&:has(.codeblock-input:checked) {
-			background-color: var(--color-label-bg-active);
-			border-bottom: 2px solid var(--color-label-underline);
-
-			&::after {
-				--scale-x: 1;
-			}
+			background-color: var(--color-pre-bg);
+			border-bottom-width: 0;
 		}
 	}
 
@@ -270,12 +313,8 @@
 		}
 
 		& .codeblock-label:first-of-type {
-			background-color: var(--color-label-bg-active);
-			border-bottom: 2px solid var(--color-label-underline);
-
-			&::after {
-				--scale-x: 1;
-			}
+			background-color: var(--color-pre-bg);
+			border-bottom-width: 0;
 		}
 	}
 </style>
