@@ -24,12 +24,34 @@ const shiki = await getHighlighterCore({
 	langs: [
 		import('shiki/langs/javascript.mjs'),
 		import('shiki/langs/typescript.mjs'),
+		import('shiki/langs/html.mjs'),
+		import('shiki/langs/css.mjs'),
 		import('shiki/langs/svelte.mjs'),
 		import('shiki/langs/shellscript.mjs'),
 		import('shiki/langs/markdown.mjs'),
 	],
 	loadWasm,
 });
+
+/**
+ *
+ * @param {string} code
+ * @param {string} [lang]
+ */
+export function highlighter(code, lang = 'svelte') {
+	const html = shiki.codeToHtml(code, {
+		lang,
+		themes: {
+			light: 'light-plus',
+			dark: 'dark-plus',
+		},
+		transformers: [transformer()],
+		meta: {
+			'data-lang': lang,
+		},
+	});
+	return escapeHtml(html);
+}
 
 /**
  * @typedef CodeBlockMetadata
@@ -39,56 +61,23 @@ const shiki = await getHighlighterCore({
  */
 
 /**
- * parse language and metadata from code block header in the format:
- * `language|key1="value1";key2="value2";...`
- *
- * Example: `svelte|key1="value1";array="1,2,3,4" ; ; blank=""; key2="with semicolon \; like that"`
- *
- * @param {string} str
- * @returns {{ lang: string; meta?: CodeBlockMetadata }}
- */
-function parseLangAndMetadata(str) {
-	const [lang = 'svelte', metaStr] = str.split('|');
-	/** @type {CodeBlockMetadata} */
-	const meta = {
-		'data-lang': lang,
-	};
-	if (metaStr) {
-		meta.__raw = '';
-		meta.__enhancement = { lang };
-		const propStrs = metaStr
-			.trim()
-			.split(/(?:\s*(?<!\/);?\s*)*([^"]+="[^"]*")/)
-			.filter((seg) => !!seg);
-		for (const propStr of propStrs) {
-			const [, key, value] = propStr.split(/([^"]+)="([^"]*)"/);
-			meta.__enhancement[key] = value;
-		}
-	}
-
-	return {
-		meta,
-		lang,
-	};
-}
-
-/**
- *
+ * parse metadata from the meta lines at the top of code block
+ * with format: `/// key=value` until there is no such line
  * @param {string} code
- * @param {string} [langAndMetadataStr]
+ * @param {Record<string, string>} meta
+ * @returns {string}
  */
-export function highlighter(code, langAndMetadataStr = '') {
-	const { lang, meta } = parseLangAndMetadata(langAndMetadataStr);
-	const html = shiki.codeToHtml(code, {
-		lang,
-		themes: {
-			light: 'light-plus',
-			dark: 'dark-plus',
-		},
-		transformers: [transformer()],
-		meta,
-	});
-	return escapeHtml(html);
+function parseMetadata(code, meta) {
+	// get first line
+	const line = code.slice(0, code.indexOf('\n')).trim();
+	if (!line.startsWith('///')) return code;
+
+	const metaStr = line.replace('///', '').trim();
+
+	const match = metaStr.match(/(.*)(?<!\/)=(.*)/);
+	if (match) meta[match[1].trim()] = match[2].trim();
+
+	return parseMetadata(code.slice(code.indexOf('\n') + 1), meta);
 }
 
 const STATUSES = ['info', 'success', 'warning', 'error'];
@@ -98,6 +87,14 @@ const STATUSES = ['info', 'success', 'warning', 'error'];
 function transformer() {
 	return {
 		name: '@sveltevietnam/ui:enhance-code-block',
+
+		preprocess(code) {
+			/** @type {CodeBlockMetadata} */
+			const meta = this.options.meta;
+			if (!meta.__enhancement) meta.__enhancement = {};
+			if (!('lang' in meta.__enhancement)) meta.__enhancement.lang = this.options.lang;
+			return parseMetadata(code, meta.__enhancement);
+		},
 
 		pre(hast) {
 			delete hast.properties['tabindex'];
