@@ -1,5 +1,15 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.7
+
+### Minor Changes
+
+- [`0a2c3c6`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/0a2c3c63c5b9839627872c198a92a82e11eba047) Thanks [@vnphanquang](https://github.com/vnphanquang)! - shiki - allow rendering separate filename header with `filename=""` meta prop
+
+### Patch Changes
+
+- [`9cd820e`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/9cd820e77fe1f23db04fc50381bec42d4abd0ab9) Thanks [@vnphanquang](https://github.com/vnphanquang)! - [BREAKING] shiki - change code block metadata syntax to separate line: `/// key=value;...`
+
 ## 1.0.0-next.6
 
 ### Patch Changes
