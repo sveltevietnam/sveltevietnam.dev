@@ -397,7 +397,7 @@ export const handle = async ({ event, resolve }) => {
 
 Note *line 11*, we use `transformPageChunk`, a function provided by SvelteKit in `resolve`, to replace the string `cookie-color-scheme` with the value of the cookie. To complete the setup, we need to modify `src/app.html` a bit:
 
-```svelte
+```html
 /// filename=src/app.html
 <!-- :::diff - -->
 <html>

@@ -81,7 +81,7 @@ Sử dụng vanilla? Nghe thật lạ lùng trong thời buổi ngày nay với 
 
 Trong Svelte và SvelteKit, có nhiều cách để áp dụng một đoạn mã HTML vanilla ngoài phạm vi hydration. Cách đơn giản nhất ta sẽ sử dụng là thêm mã trực tiếp vào `app.html`:
 
-```svelte
+```html
 /// filename=src/app.html
 <!doctype html>
 <html>
@@ -151,7 +151,7 @@ Tuy nhiên, trong trường hợp bạn không dùng CSR hoặc người dùng k
 
 Trước tiên, ta thêm một thuộc tính vào phần tử `div#splash`:
 
-```svelte
+```html
 /// filename=src/app.html
 <!doctype html>
 <html>
@@ -241,7 +241,7 @@ Ngoài ra, trong tình huống này, ta không thể tránh được việc tran
 
 Để làm được điều đó, ta cần phát hiện được khi nào hydration hoàn thành sau màn hình chờ. Trước hết, ta lưu lại mốc thời gian khi màn hình chờ vừa kết thúc:
 
-```svelte
+```html
 /// filename=src/app.html
 <html>
   <body>

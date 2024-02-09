@@ -81,7 +81,7 @@ Using vanilla? Doesn't it sound bizarre in today's world that is flooded with fr
 
 In the context of Svelte and SvelteKit, there are many ways to apply HTML outside the "hydration zone". The simplest way is to add code directly to `app.html`:
 
-```svelte
+```html
 /// filename=src/app.html
 <!doctype html>
 <html>
@@ -151,7 +151,7 @@ However, in case when CSR is turned off or Javascript is not available, each nav
 
 First of all, we add an attribute to the `div#splash` element:
 
-```svelte
+```html
 /// filename=src/app.html
 <!doctype html>
 <html>
@@ -241,7 +241,7 @@ Unfortunately, in situation such as this, we cannot avoid the glitch problem, as
 
 To achieve this, we need to detect whether hydration completes after splash screen has ended. First, we save the timestamp when the splash screen ends:
 
-```svelte
+```html
 /// filename=src/app.html
 <html>
   <body>
