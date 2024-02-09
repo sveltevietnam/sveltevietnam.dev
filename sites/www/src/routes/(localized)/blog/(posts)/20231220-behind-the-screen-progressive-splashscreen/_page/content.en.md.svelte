@@ -82,7 +82,7 @@ Using vanilla? Doesn't it sound bizarre in today's world that is flooded with fr
 In the context of Svelte and SvelteKit, there are many ways to apply HTML outside the "hydration zone". The simplest way is to add code directly to `app.html`:
 
 ```svelte
-<!-- src/app.html -->
+/// filename=src/app.html
 <!doctype html>
 <html>
   <head>...</head>
@@ -104,7 +104,7 @@ In the context of Svelte and SvelteKit, there are many ways to apply HTML outsid
 If you don't already know, `app.html` is the starting template that SvelteKit uses to render page content into before sending off to clients. Hydration takes place at `%sveltekit.body%`. See the ["Project files" section in SvelteKit docs](https://kit.svelte.dev/docs/project-structure#project-files) for more details. Our `div#splash` is outside of `%sveltekit.body%` so it is not affected by hydration. Next, for CSS, we declare a separate file...
 
 ```css
-/* splash.css */
+/// filename=splash.css
 #splash {
   /* applicable styles for animation and such */
 }
@@ -113,7 +113,7 @@ If you don't already know, `app.html` is the starting template that SvelteKit us
 ...and import this directly in an appropriate `+layout` or `+page`. For example, to apply to all pages, import in the root `+layout`:
 
 ```svelte
-<!-- src/routes/+layout.svelte -->
+/// filename=src/routes/+layout.svelte
 <script>
   import 'path/to/splash.css';
 </script>
@@ -152,7 +152,7 @@ However, in case when CSR is turned off or Javascript is not available, each nav
 First of all, we add an attribute to the `div#splash` element:
 
 ```svelte
-<!-- src/app.html -->
+/// filename=src/app.html
 <!doctype html>
 <html>
   <head>...</head>
@@ -173,7 +173,7 @@ First of all, we add an attribute to the `div#splash` element:
 `%splash-skip%` will be replaced with `true` or `false`, depending on whether (1) or (2) applies, by `hooks.server`:
 
 ```javascript
-// src/hooks.server.js
+/// filename=src/hooks.server.js
 
 /** @type {import('sveltejs/kit').Handle} */
 export const handle = async ({ event, resolve }) => {
@@ -205,7 +205,7 @@ You can inspect to see if the code works by disabling Javascript on the page. If
 To turn on Javascript again, follow the same steps but replace the command with "Enable Javascript". Now, the rest is to edit `splash.css` accordingly to hide the splash screen if `data-splash-skip` is `true`:
 
 ```css
-/* splash.css */
+/// filename=splash.css
 #splash {
   /* :::diff + */
   &[data-splash-skip="true"] {
@@ -242,7 +242,7 @@ Unfortunately, in situation such as this, we cannot avoid the glitch problem, as
 To achieve this, we need to detect whether hydration completes after splash screen has ended. First, we save the timestamp when the splash screen ends:
 
 ```svelte
-<!-- src/app.html -->
+/// filename=src/app.html
 <html>
   <body>
     <div id="splash">...</splash>
@@ -277,7 +277,7 @@ Be aware: you need to listen to the correct `animationend` event because splash 
 Here, you see that we are, again, using vanilla JS. Let me re-emphasize: this is perfectly normal. We need to use vanilla because if the code above lives in a framework component, it will not take effect until hydration has completed - meaning that our code would become useless. We also don't set [defer](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#defer), [async](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#async), or turn the script into a [module](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#module) because we want it to run as soon as possible to not miss the `animationend` event. Next, we get the timestamp when hydration has completed and compare it with the splash screen timestamp:
 
 ```svelte
-<!-- src/routes/+layout.svelte -->
+/// filename=src/routes/+layout.svelte
 <script>
   import { browser } from '$app/environment';
 

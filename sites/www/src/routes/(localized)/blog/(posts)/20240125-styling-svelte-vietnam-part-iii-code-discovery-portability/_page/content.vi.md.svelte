@@ -36,7 +36,7 @@ Trong hai phần trước, ta xác định rằng TailwindCSS là một công c�
 Trước hết, ta cần biết rằng TailwindCSS sắp xếp CSS vào ba layer (tầng hay lớp). Ta thường thấy ba layer này thông qua phần khai báo của Tailwind:
 
 ```css
-/* app.css */
+/// filename=app.css
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -51,7 +51,7 @@ Theo đó:
 Mặc dù cú pháp `@tailwind` là đặc hữu từ Tailwind, [CSS @layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer) là một tính năng hợp lệ của CSS - được chuẩn hóa từ năm 2022. Hãy chú ý trình tự khai báo của các layer này: quy luật CSS trong layer sau có thể ghi đè lên quy luật trong layer trước bất kể [tính specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity). Có nghĩa là, ví dụ như ta có một CSS component `.c-btn` trong layer `components`:
 
 ```css
-/* app.css */
+/// filename=app.css
 @layer components {
   .c-btn {
     /* ... */
@@ -62,7 +62,7 @@ Mặc dù cú pháp `@tailwind` là đặc hữu từ Tailwind, [CSS @layer](htt
 
 Giả sử trong một tình huống đặc biệt nào đó, ta cần quy định cho `c-btn` thuộc tính `text-align` với giá trị là `left`, ta hoàn toàn có thể sử dụng kèm lớp tương ứng trong layer `utilities`:
 
-```svelte
+```html
 <button class="c-btn text-left"></button>
 ```
 
@@ -107,7 +107,7 @@ Vì sao ta quan tâm đến việc một lớp có được nhận diện bởi 
 Tailwind có cung cấp [API để viết plugin](https://tailwindcss.com/docs/plugins). Đây là giải pháp rất hiệu quả nếu ta cần linh hoạt trong cấu hình và tương thích với TailwindCSS language server. Vì API này sử dụng Javscript và cung cấp quyền truy cập đến PostCSS, ta có thể mở rộng hầu hết mọi khía cạnh của Tailwind mà không bị giới hạn bởi cú pháp CSS như giải pháp CSS thuần túy ở phần trước.
 
 ```javascript
-// tailwind.config.js
+/// filename=tailwind.config.js
 // :::diff +
 import definePlugin from 'tailwindcss/plugin';
 // :::
@@ -137,7 +137,7 @@ export default {
 Chú ý rằng mặc dù đoạn code `tailwind.config.js` trên được chạy trong ngữ cảnh NodeJS, ta đang sử dụng [cú pháp ESM](https://nodejs.org/api/esm.html#enabling). Thường thì cú pháp này đòi hỏi thiết lập `package.json` với thuộc tính `"type": "module"`:
 
 ```javascript
-// package.json
+/// filename=package.json
 {
   // :::diff +
   "type": "module",
@@ -175,7 +175,7 @@ addComponents({
 (1) Mã nguồn cho từng CSS component được đặt trong tệp CSS riêng biệt. Ví dụ với component `c-btn` trên:
 
 ```css
-/* c-btn.css */
+/// filename=c-btn.css
 .c-btn {
   /* ... */
 }
@@ -184,7 +184,7 @@ addComponents({
 (2) Sử dụng [postcss](https://postcss.org/) và [postcss-js](https://github.com/postcss/postcss-js) để chuyển đổi các tệp CSS ở bước trước sang cấu trúc phù hợp trong Javscript:
 
 ```javascript
-// jss-node-loader.js
+/// filename=jss-node-loader.js
 import { readFileSync } from 'fs';
 import postcss from 'postcss';
 import postcssCustomSelectors from 'postcss-custom-selectors';
@@ -215,7 +215,7 @@ function jssLoader(filename) {
 (3) Áp dụng đầu ra của bước trước vào cấu hình plugin:
 
 ```javascript
-// tailwind.config.js
+/// filename=tailwind.config.js
 import definePlugin from 'tailwindcss/plugin';
 // :::diff +
 import path from 'path';
@@ -259,7 +259,7 @@ Tuy nhiên, khi số lượng component tăng lên, trải nghiệm của lập 
 Có nhiều cách để thực hiện bước build này. Bạn có thể tham khảo [mã nguồn của Daisy UI](https://github.com/saadeghi/daisyui/blob/6cbe6a6617b94c6fbee163103b43ee9a27341532/src/build.js), hoặc từ chính [dự án *sveltevietnam.dev*](https://github.com/sveltevietnam/sveltevietnam.dev/blob/da0aa95281da20632a678b88d0a592990cf4d765/libs/ui/css/build.js). Điểm chung của các giải pháp này là sử dụng hệ sinh thái PostCSS tương tự như ta đã thấy tại hàm `jssLoader` đã giới thiệu ở phần trước. Sau đây là một ví dụ đơn giản cho build script:
 
 ```javascript
-// build.js
+/// filename=build.js
 import { writeFile } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -286,7 +286,7 @@ writeFile(
 Ta cũng có thể thiết lập npm script để chạy bước build này:
 
 ```javascript
-// package.json
+/// filename=package.json
 {
   // ...
   "scripts": {
@@ -301,7 +301,7 @@ Ta cũng có thể thiết lập npm script để chạy bước build này:
 Và sử dụng kết quả build trong cấu hình plugin:
 
 ```javascript
-// tailwind.config.js
+/// filename=tailwind.config.js
 import definePlugin from 'tailwindcss/plugin';
 // :::diff -
 import path from 'path';

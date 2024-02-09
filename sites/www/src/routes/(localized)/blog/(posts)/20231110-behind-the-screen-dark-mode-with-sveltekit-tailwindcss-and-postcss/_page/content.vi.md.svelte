@@ -245,7 +245,7 @@ Sẽ rất tiện lợi nếu ta có thể sử dụng được cú pháp sau:
 `dark:` và `light:` được gọi là [variant](https://tailwindcss.com/docs/adding-custom-styles#arbitrary-variants) trong Tailwind. Plugin `postcs-color-scheme` đã nêu trong phần trước sẽ giúp thêm hai variant này.
 
 ```javascript
-// tailwind.config.cjs
+/// filename=tailwind.config.cjs
 /** @type {import("tailwindcss").Config } */
 module.exports = {
   // your config ...
@@ -259,7 +259,7 @@ module.exports = {
 Hãy xem qua docs [tại github](https://github.com/vnphanquang/postcss-color-scheme#tailwind-support) để biết chi tiết cách cài đặt. Ngoài ra, ta có thể thêm các biến CSS vào tùy chỉnh `theme` trong tailwind:
 
 ```javascript
-// tailwind.config.cjs
+/// filename=tailwind.config.cjs
 /** @type {import("tailwindcss").Config } */
 module.exports = {
   // your config ...
@@ -372,7 +372,7 @@ Thường cookie được thiết lập ở phía server. Tuy nhiên trong trư�
 Ta dùng [hooks.server](https://kit.svelte.dev/docs/hooks) của SvelteKit để đọc cookie và gán giá trị đúng cho thuộc tính `data-color-scheme` trên HTML trả về trong `response`.
 
 ```javascript
-// src/hooks.server.js
+/// filename=src/hooks.server.js
 import { PUBLIC_COOKIE_COLOR_SCHEME } from '$env/static/public';
 
 /** @type {import('@sveltejs/kit).Handle} */
@@ -394,7 +394,7 @@ export const handle = async ({ event, resolve }) => {
 Hãy chú ý *dòng 11*, ta dùng `transformPageChunk`, một hàm được SvelteKit cung cấp trong `resolve`, để thay đổi chuỗi `cookie-color-scheme` theo gía trị của cookie. Để hoàn thiện thiết lập, ta cần sửa `src/app.html` một tí:
 
 ```svelte
-<!-- src/app.html -->
+/// filename=src/app.html
 <!-- :::diff - -->
 <html>
 <!-- ::: -->
@@ -448,7 +448,7 @@ Phần mở rộng này bàn về việc thiết lập Svelte context để có 
 Trong đoạn mã ở phần [Thiết lập ở server](#thiet-lap-o-server) vừa qua, ta lưu giá trị của cookie vào `event.locals.colorScheme`. Đối tượng [locals](https://kit.svelte.dev/docs/types#app-locals) cùa SvelteKit giúp ta có thể truy cập các trạng thái server từ `hook.server`, `layout.server`, hoặc `page.server`.
 
 ```javascript
-// src/routes/+layout.server.js
+/// filename=src/routes/+layout.server.js
 import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = ({ locals }) => {
@@ -461,7 +461,7 @@ export const load: LayoutServerLoad = ({ locals }) => {
 Với đoạn mã trên ta có thể truy cập `colorScheme` từ đối tượng [data](https://kit.svelte.dev/docs/load) trong các tệp `+layout` hoặc `+server`:
 
 ```svelte
-<!-- src/routes/+layout.svelte -->
+/// filename=src/routes/+layout.svelte
 <script>
   /** @type {import('./$types).LayoutData} */
   export let data;
@@ -477,7 +477,7 @@ Tuy nhiên, nếu muốn truy cập đến `colorScheme` từ các component con
 Trước hết, ta tạo một tệp riêng để định nghĩa context và các logic cần thiết:
 
 ```javascript
-// src/lib/contexts/color-scheme.js
+/// filename=src/lib/contexts/color-scheme.js
 import { getContext, setContext } from 'svelte';
 import { derived, writable } from 'svelte/store';
 
@@ -539,7 +539,7 @@ Nếu dùng typescript, bạn hãy tham khảo mã nguồn tương tự của sv
 Bây giờ ta có thể sử dụng `setColorSchemeContext` để khai báo context:
 
 ```svelte
-<!-- src/routes/+layout.svelte -->
+/// filename=src/routes/+layout.svelte
 <script>
   // :::diff +
   import { setColorSchemeContext } from '$lib/contexts/color-scheme';
@@ -559,7 +559,7 @@ Bây giờ ta có thể sử dụng `setColorSchemeContext` để khai báo cont
 Và sử dụng `getColorSchemeContext` để truy cập context:
 
 ```svelte
-<!-- SomeComponent.svelte -->
+/// filename=SomeComponent.svelte
 <script>
   import { getColorSchemeContext } from '$lib/contexts/color-scheme';
 

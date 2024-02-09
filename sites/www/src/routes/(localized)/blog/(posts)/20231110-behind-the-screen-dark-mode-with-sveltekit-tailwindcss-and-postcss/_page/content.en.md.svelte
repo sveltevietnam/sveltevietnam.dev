@@ -245,7 +245,7 @@ It will be convenient if we can use the following syntax:
 `dark:` and `light:` are called [variant](https://tailwindcss.com/docs/adding-custom-styles#arbitrary-variants) in Tailwind. The `postcs-color-scheme` plugin adds to your Tailwind config and make these two variants available.
 
 ```javascript
-// tailwind.config.cjs
+/// filename=tailwind.config.cjs
 /** @type {import("tailwindcss").Config } */
 module.exports = {
   // your config ...
@@ -259,7 +259,7 @@ module.exports = {
 Read more about this setup at [github](https://github.com/vnphanquang/postcss-color-scheme#tailwind-support). Additionally, we can add the CSS variables to Tailwind's color config:
 
 ```javascript
-// tailwind.config.cjs
+/// filename=tailwind.config.cjs
 /** @type {import("tailwindcss").Config } */
 module.exports = {
   // your config ...
@@ -376,7 +376,7 @@ Cookies are often set on the server side. However, in this particular case, we h
 We use SvelteKit [hooks.server](https://kit.svelte.dev/docs/hooks) to read the cookie and set the correct value for `data-color-scheme` in the HTML response.
 
 ```javascript
-// src/hooks.server.js
+/// filename=src/hooks.server.js
 import { PUBLIC_COOKIE_COLOR_SCHEME } from '$env/static/public';
 
 /** @type {import('@sveltejs/kit).Handle} */
@@ -398,7 +398,7 @@ export const handle = async ({ event, resolve }) => {
 Note *line 11*, we use `transformPageChunk`, a function provided by SvelteKit in `resolve`, to replace the string `cookie-color-scheme` with the value of the cookie. To complete the setup, we need to modify `src/app.html` a bit:
 
 ```svelte
-<!-- src/app.html -->
+/// filename=src/app.html
 <!-- :::diff - -->
 <html>
 <!-- :::diff -->
@@ -452,7 +452,7 @@ This section is optional. It discusses how we can setup a global Svelte context 
 In the code snippet in the [Setup on the Server](#set-up-on-the-server) section above, we save the value of the cookie to `event.locals.colorScheme`. The [locals](https://kit.svelte.dev/docs/types#app-locals) object of SvelteKit allows us to access shared states from `hook.server`, `layout.server`, or `page.server`.
 
 ```javascript
-// src/routes/+layout.server.js
+/// filename=src/routes/+layout.server.js
 import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = ({ locals }) => {
@@ -465,7 +465,7 @@ export const load: LayoutServerLoad = ({ locals }) => {
 With the above code, we can access `colorScheme` from the [data](https://kit.svelte.dev/docs/load) object in `+layout` or `+server` files:
 
 ```svelte
-<!-- src/routes/+layout.svelte -->
+/// filename=src/routes/+layout.svelte
 <script>
   /** @type {import('./$types).LayoutData} */
   export let data;
@@ -481,7 +481,7 @@ However, if we want to access `colorScheme` from child components, we might have
 First, we create a separate file to define the context and the necessary logic:
 
 ```javascript
-// src/lib/contexts/color-scheme.js
+/// filename=src/lib/contexts/color-scheme.js
 import { getContext, setContext } from 'svelte';
 import { derived, writable } from 'svelte/store';
 
@@ -543,7 +543,7 @@ If you are using typescript, reference the equivalent source code from sveltevie
 Now, we can use `setColorSchemeContext` to declare the context:
 
 ```svelte
-<!-- src/routes/+layout.svelte -->
+/// filename=src/routes/+layout.svelte
 <script>
   // :::diff +
   import { setColorSchemeContext } from '$lib/contexts/color-scheme';
@@ -563,7 +563,7 @@ Now, we can use `setColorSchemeContext` to declare the context:
 and `getColorSchemeContext` for accessing the context:
 
 ```svelte
-<!-- SomeComponent.svelte -->
+/// filename=SomeComponent.svelte
 <script>
   import { getColorSchemeContext } from '$lib/contexts/color-scheme';
 

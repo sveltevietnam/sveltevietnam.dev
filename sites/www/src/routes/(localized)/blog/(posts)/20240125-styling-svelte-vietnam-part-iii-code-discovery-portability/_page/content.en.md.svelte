@@ -36,7 +36,7 @@ In the last two parts, we have made the arguments for why TailwindCSS is a great
 First and foremost, we should know that TailwindCSS organizes CSS into three layers. We often see these layers in Tailwind entry file:
 
 ```css
-/* app.css */
+/// filename=src/app.css
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -49,7 +49,7 @@ First and foremost, we should know that TailwindCSS organizes CSS into three lay
 Although `@tailwind` is a syntax specific to Tailwind, [@layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer) is a valid CSS feature - standardized since 2022. Pay special attention to the declaration order of layers: CSS rules in a later layer can override rules in previous ones regardless of [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity). This means, for example, if we have the following CSS component `.c-btn` in the `components` layer:
 
 ```css
-/* app.css */
+/// filename=src/app.css
 @layer components {
   .c-btn {
     /* ... */
@@ -60,7 +60,7 @@ Although `@tailwind` is a syntax specific to Tailwind, [@layer](https://develope
 
 In a particular scenario where `c-btn` needs to have `text-align` set to `left`, we can use the corresponding utility class in the `utilities` layer:
 
-```svelte
+```html
 <button class="c-btn text-left"></button>
 ```
 
@@ -75,7 +75,7 @@ You can see that the CSS component above is prefixed with `c-`. This is a conven
 In the previous section, we have seen one way of declaring a CSS component via `@layer components`:
 
 ```css
-/* app.css */
+/// filename=src/app.css
 @layer components {
   .c-btn {
     text-align: center;
@@ -105,7 +105,7 @@ Why should we care whether a class is recognized by Tailwind language server or 
 Tailwind provides a powerful [API for writing plugin](https://tailwindcss.com/docs/plugins). This is an effective solution if we need flexibility in configuration or compatibility with Tailwind language server. Since this API uses Javascript and exposes access to PostCSS, we can extend almost every aspect of Tailwind without being limited by CSS syntax as in the previous presented solution.
 
 ```javascript
-// tailwind.config.js
+/// filename=tailwind.config.js
 // :::diff +
 import definePlugin from 'tailwindcss/plugin';
 // :::
@@ -135,7 +135,7 @@ export default {
 Notice that although the above `tailwind.config.js` is running in NodeJS context, we are using [ESM syntax](https://nodejs.org/api/esm.html#enabling). Usually, this syntax requires setting up `package.json` with the `"type": "module"` property:
 
 ```javascript
-// package.json
+/// filename=package.json
 {
   // :::diff +
   "type": "module",
@@ -173,7 +173,7 @@ I am definitely not a fan of CSS-in-JS because it mixes to different syntaxes in
 (1). Source code for each CSS component is placed in a separate CSS file. For example, for the `c-btn` component above:
 
 ```css
-/* c-btn.css */
+/// filename=c-btn.css
 .c-btn {
   /* ... */
 }
@@ -182,7 +182,7 @@ I am definitely not a fan of CSS-in-JS because it mixes to different syntaxes in
 (2) Use [postcss](https://postcss.org/) and [postcss-js](https://github.com/postcss/postcss-js) to convert the CSS files from the previous step to the appropriate structure in Javscript:
 
 ```javascript
-// jss-node-loader.js
+/// filename=jss-node-loader.js
 import { readFileSync } from 'fs';
 import postcss from 'postcss';
 import postcssCustomSelectors from 'postcss-custom-selectors';
@@ -213,7 +213,7 @@ function jssLoader(filename) {
 (3) Apply output from previous step to plugin configuration:
 
 ```javascript
-// tailwind.config.js
+/// filename=tailwind.config.js
 import definePlugin from 'tailwindcss/plugin';
 // :::diff +
 import path from 'path';
@@ -257,7 +257,7 @@ However, when component count increases, developer experience will gradually deg
 There are many ways to implement this build step. You can refer to [Daisy UI source code](https://github.com/saadeghi/daisyui/blob/6cbe6a6617b94c6fbee163103b43ee9a27341532/src/build.js) or the [*sveltevietnam.dev* project source code](https://github.com/sveltevietnam/sveltevietnam.dev/blob/da0aa95281da20632a678b88d0a592990cf4d765/libs/ui/css/build.js) as examples. All of these solutions use the PostCSS ecosystem just as we have seen in `jssLoader`. Following is a simple example for such build script:
 
 ```javascript
-// build.js
+/// filename=build.js
 import { writeFile } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -284,7 +284,7 @@ writeFile(
 We can also set up a dedicated npm script for it:
 
 ```javascript
-// package.json
+/// filename=package.json
 {
   // ...
   "scripts": {
@@ -299,7 +299,7 @@ We can also set up a dedicated npm script for it:
 And finally use the output in plugin configuration:
 
 ```javascript
-// tailwind.config.js
+/// filename=tailwind.config.js
 import definePlugin from 'tailwindcss/plugin';
 // :::diff -
 import path from 'path';
