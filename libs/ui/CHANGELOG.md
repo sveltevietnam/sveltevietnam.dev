@@ -1,5 +1,11 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.8
+
+### Patch Changes
+
+- [`07f850a`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/07f850a5d9b2977b75327b923971d24691aa9f62) Thanks [@vnphanquang](https://github.com/vnphanquang)! - set fill to `currentcolor` for `FileIcon.svelte`
+
 ## 1.0.0-next.7
 
 ### Minor Changes
