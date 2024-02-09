@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { intersect } from '$lib/actions/intersect';
 	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
+	import { DateTimeRangeDisplayText } from '$lib/components/DateTimeRangeDisplayText';
 	import { Person } from '$lib/components/Person';
 	import { ToBeAnnounced } from '$lib/components/ToBeAnnounced';
-	import { isEventWithinOneDay } from '$lib/data/events';
 	import { getRoutingContext } from '$lib/routing/routing.context';
-	import { formatDate, formatDateAndTime, formatTime } from '$lib/utils/datetime';
+	import { formatTime } from '$lib/utils/datetime';
 
 	import kvImage from '../../_page/images/key-visuals-without-grid.png?format=webp&imagetools';
 
@@ -22,7 +22,6 @@
 	$: t = data.translations.page;
 
 	$: event = data.event;
-	$: isWithinOneDay = isEventWithinOneDay(event);
 
 	// params in seconds
 	function generateTimeSlot(offset: number, duration: number) {
@@ -41,20 +40,7 @@
 	<div class="max-w-pad mt-[80px]" use:intersect>
 		<h1 class="c-text-h1">{event.title}</h1>
 		<div class="mt-6 space-y-[60px] pb-[60px]">
-			<!-- time -->
-			<!-- TODO: candidate for Svelte 5 snippet -->
-			<p>
-				{#if isWithinOneDay}
-					{formatDate(event.startDate)},
-					<time datetime={event.startDate}>{formatTime(event.startDate)}</time>
-					-
-					<time datetime={event.endDate}>{formatTime(event.endDate)}</time>
-				{:else}
-					<time datetime={event.startDate}>{formatDateAndTime(event.startDate)}</time>
-					-
-					<time datetime={event.endDate}>{formatDateAndTime(event.endDate)}</time>
-				{/if}
-			</p>
+			<p><DateTimeRangeDisplayText startDate={event.startDate} endDate={event.endDate} /></p>
 			<ul class="divider-border max-w-[548px] divide-y font-medium">
 				<li>
 					<a href={EVENT_LINKS.STREAM} class="c-link c-link--box" external>
@@ -115,16 +101,7 @@
 				<!-- time -->
 				<dt class="font-medium">{t.time}:</dt>
 				<dd>
-					{#if isWithinOneDay}
-						{formatDate(event.startDate)},
-						<time datetime={event.startDate}>{formatTime(event.startDate)}</time>
-						-
-						<time datetime={event.endDate}>{formatTime(event.endDate)}</time>
-					{:else}
-						<time datetime={event.startDate}>{formatDateAndTime(event.startDate)}</time>
-						-
-						<time datetime={event.endDate}>{formatDateAndTime(event.endDate)}</time>
-					{/if}
+					<DateTimeRangeDisplayText startDate={event.startDate} endDate={event.endDate} />
 				</dd>
 
 				<!-- location -->

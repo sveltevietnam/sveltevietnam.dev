@@ -1,11 +1,12 @@
 <script lang="ts">
 	import defaultFallbackImg from '$lib/assets/images/fallback/default.jpg?w=56&format=webp&imagetools';
+	import { DateTimeRangeDisplayText } from '$lib/components/DateTimeRangeDisplayText';
 	import { getLangContext } from '$lib/contexts/lang';
 	import type { LocalizedEvent } from '$lib/data/events';
-	import { getEventStatus, isEventWithinOneDay } from '$lib/data/events';
+	import { getEventStatus } from '$lib/data/events';
 	import { getRoutingContext } from '$lib/routing/routing.context';
 	import { textTip } from '$lib/tooltips';
-	import { formatDate, formatDateAndTime, formatTime } from '$lib/utils/datetime';
+	import { formatDate } from '$lib/utils/datetime';
 
 	import { translations } from './translation';
 
@@ -18,7 +19,6 @@
 
 	$: t = translations[$lang];
 	$: status = getEventStatus(event);
-	$: isWithinOneDay = isEventWithinOneDay(event);
 	$: speakers = Object.values(event.speakers);
 </script>
 
@@ -60,16 +60,7 @@
 
 			<dt class="font-medium">{t.time}:</dt>
 			<dd>
-				{#if isWithinOneDay}
-					{formatDate(event.startDate)},
-					<time datetime={event.startDate}>{formatTime(event.startDate)}</time>
-					-
-					<time datetime={event.endDate}>{formatTime(event.endDate)}</time>
-				{:else}
-					<time datetime={event.startDate}>{formatDateAndTime(event.startDate)}</time>
-					-
-					<time datetime={event.endDate}>{formatDateAndTime(event.endDate)}</time>
-				{/if}
+				<DateTimeRangeDisplayText startDate={event.startDate} endDate={event.endDate} />
 			</dd>
 
 			{#if speakers.length}

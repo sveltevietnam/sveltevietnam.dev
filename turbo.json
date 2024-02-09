@@ -14,7 +14,7 @@
 		},
 		"build": {
 			"dependsOn": ["^build", "^dts"],
-			"outputs": [".svelte-kit/**"],
+			"outputs": [".svelte-kit/**", "dist/**"],
 			"inputs": [
 				"*.config.js",
 				"src/**/*.ts",
