@@ -223,7 +223,7 @@ Bạn nghĩ rằng giao diện ô văn bản sau đây có cấu trúc HTML như
 </p>
 ```
 
-Hãy phân tích một tí: tất cả các yếu tố xác định kiểu dáng của giao diện trên đều được định nghĩa thông qua lớp `c-callout` và `c-callout--info`. Bạn có thể xem [mã nguồn `c-callout` tại đây](https://github.com/sveltevietnam/sveltevietnam.dev/blob/7688ef2d653be7bda0138465242ee928a42794ab/libs/ui/css/components/c-callout.css). Mình gọi `c-callout` là một "**CSS component**", có nghĩa là một thành phần giao diện được thiết lập chỉ với CSS.
+Hãy phân tích một tí: tất cả các yếu tố xác định kiểu dáng của giao diện trên đều được định nghĩa thông qua lớp `c-callout` và `c-callout--info`. Bạn có thể xem [mã nguồn `c-callout` tại đây](https://github.com/sveltevietnam/sveltevietnam.dev/blob/31b7f3d8859943b42e691730b0df98e292964492/libs/ui/src/css/core/components/c-callout.css). Mình gọi `c-callout` là một "**CSS component**", có nghĩa là một thành phần giao diện được thiết lập chỉ với CSS.
 
 Ta không cần phải tạo ra một Javascript Component `Callout.svelte` vì giao diện này không đòi hỏi markup đặc biệt gì (ví dụ bắt buộc phải là thẻ `p`), và cũng không chứa logic đặc biệt gì. Tất cả mọi thứ ta cần đóng gói là kiểu dáng, và ta đã làm được điều đó bằng CSS. Hãy thử viết lại component `ArticleCard` ở phần trước với ý tưởng tương tự xem nào:
 

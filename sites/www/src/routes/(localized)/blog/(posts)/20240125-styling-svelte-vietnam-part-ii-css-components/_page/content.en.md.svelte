@@ -223,7 +223,7 @@ Here is its source code:
 </p>
 ```
 
-Let's break it down: all styling needed for this UI is defined via `c-callout` and `c-callout--info` classes. You can see [the source code of `c-callout` here](https://github.com/sveltevietnam/sveltevietnam.dev/blob/7688ef2d653be7bda0138465242ee928a42794ab/libs/ui/css/components/c-callout.css). I call `c-callout` a "**CSS component**", a presentational piece of UI that only requires CSS to be implemented.
+Let's break it down: all styling needed for this UI is defined via `c-callout` and `c-callout--info` classes. You can see [the source code of `c-callout` here](https://github.com/sveltevietnam/sveltevietnam.dev/blob/31b7f3d8859943b42e691730b0df98e292964492/libs/ui/src/css/core/components/c-callout.css). I call `c-callout` a "**CSS component**", a presentational piece of UI that only requires CSS to be implemented.
 
 No Javascript component `Callout.svelte` is needed here because there is no special constraint on markup (e.g. must be a `p` tag), and no additional interaction logic. All we need to package is the styling, and we have done so with CSS. Let's try to rewrite the `ArticleCard` component from the previous section with the same idea:
 
