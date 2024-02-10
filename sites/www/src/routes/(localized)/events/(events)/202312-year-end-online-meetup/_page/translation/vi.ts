@@ -16,7 +16,7 @@ export const vi = {
 		anh Tymon, anh Bắc, anh Tuấn, và các thành viên trong và ngoài cộng đồng đã \
 		xem livestream tại Youtube.\
 		<br><br>\
-		Đặc biệt, xin cảm ơn Huy Mai đã sáng tác và đóng góp âm nhạc cho sự kiện.\
+		Đặc biệt, xin cảm ơn <a class="c-link" href="https://maiduchuy.com/" rel="noreferrer" target="_blank">Huy Mai</a> đã sáng tác và đóng góp âm nhạc cho sự kiện.\
 		',
 	links: {
 		rewatch: 'Xem lại livestream tại Youtube',

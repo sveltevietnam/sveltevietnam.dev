@@ -15,7 +15,7 @@ export const en = {
 		'Shout out to community members who took time to join the meetup: \
 		Tymon, Bắc, Tuấn, and those in or outside the community who watched the livestream at Youtube.\
 		<br><br>\
-		A big thanks to Huy Mai for giving us permission to use his music for the event.\
+		A big thanks to <a class="c-link" href="https://maiduchuy.com/" rel="noreferrer" target="_blank">Huy Mai</a> for giving us permission to use his music for the event.\
 		',
 	links: {
 		rewatch: 'Re-watch the livestream on Youtube',
