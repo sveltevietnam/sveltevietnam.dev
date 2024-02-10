@@ -55,7 +55,7 @@ Như vậy, giải pháp chặn hiển thị nội dung tuy đơn giản nhưng 
 
 Từ khi bài viết này được đăng, mình có nhận được một vài phản hồi rằng màn hình chờ, hay nói chung là những giao diện chờ (loading indicator), có thể tạo nên "cảm giác" trang web chậm hơn thực tế, làm ảnh hướng đến trải nghiệm người dùng. Nhìn chung, mình đồng ý với quan điểm này, và muốn mở rộng thêm rằng ta lúc nào cũng nên cố gắng cải thiện và tối ưu hóa để trang thực sự nhanh hơn, đặc biệt là nếu trang web mang tính cấp bách, nội dung cần được hiển thị sớm nhất có thể.
 
-:::div c-callout c-callout--success
+:::div c-callout c-callout--success c-callout--idea
 Với *sveltevietnam.dev*, màn hình chờ có nhiệm vụ chính là tạo nên một hoạt cảnh ấn tượng lôi cuốn người dùng, và cũng là cái cớ để chúng mình thể hiện sức sáng tạo. Đó là lý do nó được thiết kế để chạy trong thời gian ngắn và không lặp lại, như bạn sẽ thấy ở phần sau. Tính chất "che đi qua trình tải trang" là sản phẩm phụ may mắn đi kèm với màn hình chờ này.
 
 Bạn có thấy trang *sveltevietnam.dev* chậm? Hãy phản hồi cho tụi mình biết qua [Discord](https://discord.sveltevietnam.dev). Trường hợp bạn không muốn thấy màn hình chờ nữa, hãy [vào trang cài đặt](/vi/cai-dat) (hoặc nhấn vào icon tương ứng ở góc trên bên phải) và tắt màn hình chờ nhé!

@@ -48,6 +48,7 @@ export default {
 		'selector-class-pattern': null,
 		'no-descending-specificity': null,
 		'custom-property-empty-line-before': null,
+		'comment-empty-line-before': null,
 	},
 	ignoreFiles: ['**/app.html', '**/*.template.html', '**/*.md.svelte'],
 };
