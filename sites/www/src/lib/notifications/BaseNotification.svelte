@@ -25,13 +25,13 @@
 	{#if icon}
 		<div class="icon">
 			{#if intent === 'info'}
-				<svg inline-src="lucide/info" width="24" height="24" />
+				<svg inline-src="lucide/info" width="24" height="24" stroke-width="2" />
 			{:else if intent === 'success'}
-				<svg inline-src="lucide/check-circle-2" width="24" height="24" />
+				<svg inline-src="lucide/check-circle-2" width="24" height="24" stroke-width="2" />
 			{:else if intent === 'warning'}
-				<svg inline-src="lucide/alert-triangle" width="24" height="24" />
+				<svg inline-src="lucide/alert-triangle" width="24" height="24" stroke-width="2" />
 			{:else if intent === 'error'}
-				<svg inline-src="lucide/x-circle" width="24" height="24" />
+				<svg inline-src="lucide/x-circle" width="24" height="24" stroke-width="2" />
 			{/if}
 		</div>
 	{/if}
