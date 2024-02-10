@@ -4,6 +4,7 @@ import type { BreadcrumbList, WithContext } from 'schema-dts';
 
 import { localizePerson } from '$lib/data/people';
 import { ROUTE_MAP } from '$lib/routing/routing.map';
+import { formatTime } from '$lib/utils/datetime';
 
 import type { Event, LocalizedEvent, StructureEvent } from './types';
 
@@ -131,4 +132,17 @@ export function preparePageData<E extends Event>(
 			]),
 		} satisfies App.PageData['meta'],
 	};
+}
+
+export function generateTimeSlot(
+	startDate: string | Date,
+	offsetSeconds: number,
+	durationSeconds: number,
+) {
+	startDate = new Date(startDate);
+	const ms = startDate.getTime() + offsetSeconds * 1_000 * 60;
+	const slotStartDate = new Date(ms);
+	const slotEndDate = new Date(ms + durationSeconds * 1_000 * 60);
+
+	return `${formatTime(slotStartDate)} - ${formatTime(slotEndDate)}`;
 }

@@ -17,7 +17,7 @@ export function listEvents(language: App.Language) {
 	const upcoming: LocalizedEvent[] = [];
 	const past: LocalizedEvent[] = [];
 	for (let i = 0; i < EVENTS.length; i++) {
-		const event = localizeEvent(language, EVENTS[i]);
+		const event = localizeEvent(language, EVENTS[i]) as LocalizedEvent;
 
 		switch (getEventStatus(event)) {
 			case 'upcoming':

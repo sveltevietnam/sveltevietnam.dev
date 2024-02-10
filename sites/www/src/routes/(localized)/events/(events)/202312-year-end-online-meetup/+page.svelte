@@ -4,8 +4,8 @@
 	import { DateTimeRangeDisplayText } from '$lib/components/DateTimeRangeDisplayText';
 	import { Person } from '$lib/components/Person';
 	import { ToBeAnnounced } from '$lib/components/ToBeAnnounced';
+	import { generateTimeSlot } from '$lib/data/events';
 	import { getRoutingContext } from '$lib/routing/routing.context';
-	import { formatTime } from '$lib/utils/datetime';
 
 	import kvImage from '../../_page/images/key-visuals-without-grid.png?format=webp&imagetools';
 
@@ -22,15 +22,6 @@
 	$: t = data.translations.page;
 
 	$: event = data.event;
-
-	// params in seconds
-	function generateTimeSlot(offset: number, duration: number) {
-		let ms = new Date(event.startDate).getTime() + offset * 1_000 * 60;
-		const startDate = new Date(ms);
-		const endDate = new Date(ms + duration * 1_000 * 60);
-
-		return `${formatTime(startDate)} - ${formatTime(endDate)}`;
-	}
 </script>
 
 <main class="relative overflow-hidden">
@@ -110,13 +101,18 @@
 					<dd class="first-letter:lowercase">{@html event.location}</dd>
 				{/if}
 			</dl>
+
 			<ul class="timeline mt-10">
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="c-text-body2 text-fg-200">{generateTimeSlot(0, 20)}</time>
+					<time datetime="" class="c-text-body2 text-fg-200"
+						>{generateTimeSlot(event.startDate, 0, 20)}</time
+					>
 					<p class="c-text-h5 font-medium">{t.timeline.introduction}</p>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="c-text-body2 text-fg-200">{generateTimeSlot(20, 20)}</time>
+					<time datetime="" class="c-text-body2 text-fg-200"
+						>{generateTimeSlot(event.startDate, 20, 20)}</time
+					>
 					<div class="space-y-3">
 						<p class="c-text-h5 font-medium">
 							<a class="c-link" href={EVENT_LINKS.VIDEO1} external
@@ -128,15 +124,21 @@
 					</div>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="c-text-body2 text-fg-200">{generateTimeSlot(40, 20)}</time>
+					<time datetime="" class="c-text-body2 text-fg-200"
+						>{generateTimeSlot(event.startDate, 40, 20)}</time
+					>
 					<p class="c-text-h5 font-medium">{t.timeline.discussion}: {t.timeline.discussion1}</p>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="c-text-body2 text-fg-200">{generateTimeSlot(60, 30)}</time>
+					<time datetime="" class="c-text-body2 text-fg-200"
+						>{generateTimeSlot(event.startDate, 60, 30)}</time
+					>
 					<p class="c-text-h5 font-medium">{t.timeline.discussion2}</p>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="c-text-body2 text-fg-200">{generateTimeSlot(90, 20)}</time>
+					<time datetime="" class="c-text-body2 text-fg-200"
+						>{generateTimeSlot(event.startDate, 90, 20)}</time
+					>
 					<div class="space-y-3">
 						<p class="c-text-h5 font-medium">
 							<a class="c-link" href={EVENT_LINKS.VIDEO2} external
@@ -147,7 +149,9 @@
 					</div>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="c-text-body2 text-fg-200">{generateTimeSlot(110, 10)}</time>
+					<time datetime="" class="c-text-body2 text-fg-200"
+						>{generateTimeSlot(event.startDate, 110, 10)}</time
+					>
 					<p class="c-text-h5 font-medium">{t.timeline.closing}</p>
 				</li>
 			</ul>
