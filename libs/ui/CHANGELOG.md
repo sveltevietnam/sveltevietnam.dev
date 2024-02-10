@@ -1,5 +1,11 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.9
+
+### Patch Changes
+
+- [`31b7f3d`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/31b7f3d8859943b42e691730b0df98e292964492) Thanks [@vnphanquang](https://github.com/vnphanquang)! - more resilient c-callout that allow placing on any background
+
 ## 1.0.0-next.8
 
 ### Patch Changes
