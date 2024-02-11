@@ -1,5 +1,13 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.10
+
+### Patch Changes
+
+- [`1c0e2c5`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/1c0e2c59025b43bfca03b7937032c0d5ade7f724) Thanks [@vnphanquang](https://github.com/vnphanquang)! - rename c-callout modifier class names for icon to be more specific
+
+- [`1b0d00f`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/1b0d00fef72dfdb461e22e9dcc3c24aa9fa4354f) Thanks [@vnphanquang](https://github.com/vnphanquang)! - explicit width & height for `FileIcon` for better consistency (in reading mode, for example)
+
 ## 1.0.0-next.9
 
 ### Patch Changes
