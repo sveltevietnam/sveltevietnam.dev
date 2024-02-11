@@ -15,7 +15,7 @@ export const en = {
 		'Shout out to community members who took time to join the meetup: \
 		Tymon, Bắc, Tuấn, and those in or outside the community who watched the livestream at Youtube.\
 		<br><br>\
-		A big thanks to <a class="c-link" href="https://maiduchuy.com/" rel="noreferrer" target="_blank">Huy Mai</a> for giving us permission to use his music for the event.\
+		A big thank to <a class="c-link" href="https://maiduchuy.com/" rel="noreferrer" target="_blank">Huy Mai</a> for giving us permission to use his music for the event.\
 		',
 	links: {
 		rewatch: 'Re-watch the livestream on Youtube',
@@ -36,11 +36,6 @@ export const en = {
 		},
 		video2: 'A Few Secrets of sveltevietnam.dev',
 		closing: 'Closing Remarks',
-	},
-	proposal: {
-		...common.proposal,
-		guidelines:
-			'Your video or presentation should be less than 20 minutes. Its content should be about a project, product, or experience related to communities or technologies in the Svelte ecosystem.',
 	},
 	images: {
 		...common.images,

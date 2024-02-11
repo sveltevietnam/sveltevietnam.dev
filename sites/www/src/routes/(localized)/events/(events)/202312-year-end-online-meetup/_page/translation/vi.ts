@@ -39,11 +39,6 @@ export const vi = {
 		video2: 'Vài bí mật về sveltevietnam.dev',
 		closing: 'Lời kết',
 	},
-	proposal: {
-		...common.proposal,
-		guidelines:
-			'Video hoặc phiên thuyết trình của bạn nên có độ dài không quá 15 phút và có nội dung liên quan đến dự án, sản phẩm, kinh nghiệm, hay trải nghiệm về cộng đồng hoặc các công nghệ xoay quanh hệ sinh thái Svelte.',
-	},
 	images: {
 		...common.images,
 		cover: 'Ảnh bìa sự kiện',

@@ -62,29 +62,10 @@
 	<div class="space-y-[60px] pb-[120px] tb:space-y-[120px] tb:pb-[200px]">
 		<div class="max-w-pad">
 			<p use:intersect>{@html t.description}</p>
-			<p use:intersect class="c-callout c-callout--info mt-8">{@html t.credit}</p>
+			<p use:intersect class="c-callout c-callout--success mt-8">{@html t.credit}</p>
 		</div>
 		<section class="max-w-pad">
 			<h2 class="c-text-h2 uppercase" use:intersect>{t.timeline.title}</h2>
-			<!-- NOTES: speaker application is closed
-			<section class="c-callout c-callout--info mt-6 space-y-4" use:intersect>
-				<h3 class="c-text-h4 font-medium" id="become-a-speaker">{t.proposal.title}</h3>
-				<p>{t.proposal.description}</p>
-				<ul class="divider-border mt-3 max-w-[548px] divide-y font-medium">
-					<li>
-						<a href={SOCIAL_LINKS.DISCORD} class="c-link c-link--box" external>
-							<span>{t.proposal.links.discord}</span>
-						</a>
-					</li>
-					<li>
-						<a href="mailto:{EMAILS.EVENTS}" class="c-link c-link--box" external>
-							<span>{t.proposal.links.email}</span>
-						</a>
-					</li>
-				</ul>
-				<p>{t.proposal.guidelines}</p>
-			</section>
-			-->
 			<dl
 				class="mt-6 grid grid-cols-[auto,1fr] items-center gap-2 border-b border-dashed border-outline-200 py-6"
 				use:intersect
@@ -104,15 +85,11 @@
 
 			<ul class="timeline mt-10">
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="c-text-body2 text-fg-200"
-						>{generateTimeSlot(event.startDate, 0, 20)}</time
-					>
+					<p class="c-text-body2 text-fg-200">{generateTimeSlot(event.startDate, 0, 20)}</p>
 					<p class="c-text-h5 font-medium">{t.timeline.introduction}</p>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="c-text-body2 text-fg-200"
-						>{generateTimeSlot(event.startDate, 20, 20)}</time
-					>
+					<p class="c-text-body2 text-fg-200">{generateTimeSlot(event.startDate, 20, 20)}</p>
 					<div class="space-y-3">
 						<p class="c-text-h5 font-medium">
 							<a class="c-link" href={EVENT_LINKS.VIDEO1} external
@@ -124,21 +101,15 @@
 					</div>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="c-text-body2 text-fg-200"
-						>{generateTimeSlot(event.startDate, 40, 20)}</time
-					>
+					<p class="c-text-body2 text-fg-200">{generateTimeSlot(event.startDate, 40, 20)}</p>
 					<p class="c-text-h5 font-medium">{t.timeline.discussion}: {t.timeline.discussion1}</p>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="c-text-body2 text-fg-200"
-						>{generateTimeSlot(event.startDate, 60, 30)}</time
-					>
+					<p class="c-text-body2 text-fg-200">{generateTimeSlot(event.startDate, 60, 30)}</p>
 					<p class="c-text-h5 font-medium">{t.timeline.discussion2}</p>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="c-text-body2 text-fg-200"
-						>{generateTimeSlot(event.startDate, 90, 20)}</time
-					>
+					<p class="c-text-body2 text-fg-200">{generateTimeSlot(event.startDate, 90, 20)}</p>
 					<div class="space-y-3">
 						<p class="c-text-h5 font-medium">
 							<a class="c-link" href={EVENT_LINKS.VIDEO2} external
@@ -149,9 +120,7 @@
 					</div>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<time datetime="" class="c-text-body2 text-fg-200"
-						>{generateTimeSlot(event.startDate, 110, 10)}</time
-					>
+					<p class="c-text-body2 text-fg-200">{generateTimeSlot(event.startDate, 110, 10)}</p>
 					<p class="c-text-h5 font-medium">{t.timeline.closing}</p>
 				</li>
 			</ul>
