@@ -6,4 +6,4 @@ import { en as common } from '../../../translation/en';
 
 export const en = {
 	...common,
-};
+} satisfies typeof import('./vi').vi;
