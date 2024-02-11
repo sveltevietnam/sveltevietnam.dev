@@ -55,7 +55,7 @@ Of course, this solution does not come without its own problems, which we will d
 
 Since the publication of this post, I have received several comments about the fact that a splash screen or loading indicator might actually hurt user experience by making things "appear" to be slower than they actually are. Generally, I agree with this point of view, and also want to expand further that you should always spend efforts to make your site actually faster, especially if it is time-critical and its content should be shown as soon as possible to users.
 
-:::div c-callout c-callout--success c-callout--idea
+:::div c-callout c-callout--success c-callout--icon-bulb
 At *sveltevietnam.dev*, our splash screen's primary mission is to create an engaging and welcoming scene, and an excuse for us to be expressive with our creative ideas. That is the reason it is designed to be quick and nonrepetitive, as you will soon see. For us, the "site-loading coverup property" comes as a convenient by-product.
 
 Does *sveltevietnam.dev* feels slow to you as a visitor? Let us know via [Reddit](https://www.reddit.com/r/sveltejs/comments/18qxcf8/splash_screen_in_svelte_sveltekit_a_blog_post/?utm_source=share&utm_medium=web2x&context=3), [Twitter](https://twitter.com/sveltevietnam), or [Discord](https://discord.sveltevietnam.dev). In case you do not wish to see our splash screen anymore, feel free to turn it off completely via the [settings page](/en/settings) (or click on the settings icon on the top right of the site).
