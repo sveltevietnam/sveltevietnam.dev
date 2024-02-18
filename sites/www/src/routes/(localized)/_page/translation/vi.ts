@@ -26,7 +26,7 @@ export const vi = {
 			'Gặp gỡ, cùng nhau chia sẻ kinh nghiệm, sản phẩm, và mọi thứ liên quan đến Svelte và open source',
 		tba: {
 			description: 'Chưa có sự kiện nào',
-			cta: 'Đăng ký cập nhật sự kiến mới nhất',
+			cta: 'Đăng ký cập nhật sự kiện mới nhất',
 		},
 	},
 	posts: {

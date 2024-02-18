@@ -8,7 +8,7 @@ export const vi = {
 		title: 'Sự kiện mới',
 		tba: {
 			description: 'Chưa có sự kiện nào.',
-			cta: 'Đăng ký cập nhật sự kiến mới nhất.',
+			cta: 'Đăng ký cập nhật sự kiện mới nhất.',
 		},
 	},
 	actions: {
