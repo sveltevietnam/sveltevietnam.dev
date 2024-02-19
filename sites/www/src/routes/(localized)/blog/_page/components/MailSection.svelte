@@ -26,7 +26,7 @@
 </script>
 
 <div
-	class="mt-[60px] grid grid-cols-1 gap-8 rounded-[16px] border border-current p-8 lg:gap-32 tb:mt-[160px] tb:grid-cols-[3fr,2fr] tb:gap-20 tb:p-10"
+	class="mt-[60px] grid grid-cols-1 gap-8 rounded-2xl border border-current p-8 lg:gap-32 tb:mt-[160px] tb:grid-cols-[3fr,2fr] tb:gap-20 tb:p-10"
 >
 	<div class="space-y-6">
 		<p class="c-text-h3 font-medium">{t.title}</p>

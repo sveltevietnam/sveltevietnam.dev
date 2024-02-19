@@ -1,9 +1,10 @@
 <script lang="ts" context="module">
-	import { object as zObject, string as zString } from 'zod';
+	import { object as zObject, string as zString, boolean as zBoolean } from 'zod';
 	export const mailSchema = zObject({
 		name: zString().min(1),
 		email: zString().email(),
 		turnstile: zString().min(1),
+		checkbox: zBoolean().optional().default(false),
 	});
 	export type MailSchema = typeof mailSchema;
 </script>
@@ -22,9 +23,10 @@
 	/** translations */
 	export let action = '?/mail';
 	export let superValidated: SuperValidated<MailSchema>;
-	export let t = {
+	export let t: { name: string; cta: string; checkbox?: string } = {
 		name: 'Name',
 		cta: 'Notify me',
+		checkbox: 'Agree to checkbox?',
 	};
 	let cls = '';
 	export { cls as class };
@@ -96,6 +98,25 @@
 				{...$constraints.email}
 			/>
 		</div>
+		{#if t.checkbox}
+			<div class="relative">
+				{#if $errors.email?.length}
+					<p class="error">
+						{$errors.name?.[0]}
+					</p>
+				{/if}
+				<label class="flex items-center gap-4">
+					<input
+						class="c-input"
+						type="checkbox"
+						name="checkbox"
+						bind:checked={$form.checkbox}
+						{...$constraints.checkbox}
+					/>
+					<span>{t.checkbox}</span>
+				</label>
+			</div>
+		{/if}
 		<div
 			class="turnstile"
 			turnstile-sitekey={PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY}
