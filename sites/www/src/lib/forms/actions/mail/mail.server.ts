@@ -7,7 +7,7 @@ import {
 import { error, fail } from '@sveltejs/kit';
 import type { NumericRange, RequestEvent } from '@sveltejs/kit';
 import { message, setError, superValidate } from 'sveltekit-superforms/server';
-import { string, object } from 'zod';
+import { string, object, boolean } from 'zod';
 
 import { MAILER_CLIENT_ID, MAILER_CLIENT_SECRET, MAILER_SERVICE_URL } from '$env/static/private';
 import type { FormMessage } from '$lib/forms';
@@ -15,12 +15,9 @@ import { validateToken } from '$lib/turnstile/turnstile.server';
 
 import { translations } from './translation';
 
-export async function mail<E extends RequestEvent>(event: E, domain: SubscriptionDomain) {
-	const { request, locals, fetch } = event;
-
-	// create i18n-aware validation schema
-	const t = translations[locals.settings.language].validation;
-	const schema = object({
+export function createMailTranslationAndSchema(lang: App.Language) {
+	const t = translations[lang].validation;
+	const s = object({
 		name: string({ invalid_type_error: t.error.captcha.required }).min(1, {
 			message: t.error.name.required,
 		}),
@@ -30,10 +27,19 @@ export async function mail<E extends RequestEvent>(event: E, domain: Subscriptio
 		turnstile: string({ invalid_type_error: t.error.captcha.required }).min(1, {
 			message: t.error.captcha.required,
 		}),
+		checkbox: boolean().optional().default(false),
 	});
+	return { t, s };
+}
+
+export async function mail<E extends RequestEvent>(event: E, domain: SubscriptionDomain) {
+	const { request, locals, fetch } = event;
+
+	// create i18n-aware validation schema
+	const { t, s } = createMailTranslationAndSchema(locals.settings.language);
 
 	// parse form object
-	const form = await superValidate<typeof schema, FormMessage>(request, schema);
+	const form = await superValidate<typeof s, FormMessage>(request, s);
 	if (!form.valid) {
 		return fail(400, { form });
 	}
