@@ -175,7 +175,6 @@
 		"@svelte-put/copy": "^3.0.0",
 		"@tailwindcss/typography": "^0.5.10",
 		"autoprefixer": "^10.4.17",
-		"cssnano": "^6.0.3",
 		"hast-util-to-string": "^3.0.0",
 		"hastscript": "^9.0.0",
 		"magic-string": "^0.30.7",

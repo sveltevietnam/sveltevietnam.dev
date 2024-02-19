@@ -48,7 +48,6 @@
 		"@types/postcss-js": "^4.0.4",
 		"@types/postcss-mixins": "^9.0.5",
 		"autoprefixer": "^10.4.17",
-		"cssnano": "^6.0.3",
 		"hygen": "^6.2.11",
 		"mjml": "^4.15.3",
 		"postcss": "^8.4.35",

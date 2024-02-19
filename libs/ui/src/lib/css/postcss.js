@@ -1,5 +1,4 @@
 import autoprefixer from 'autoprefixer';
-import cssnano from 'cssnano';
 import postcssColorScheme from 'postcss-color-scheme';
 import postcssCustomSelectors from 'postcss-custom-selectors';
 import postcssImport from 'postcss-import';
@@ -17,6 +16,5 @@ export default {
 		tailwindcss,
 		postcssColorScheme,
 		autoprefixer,
-		...(process.env.NODE_ENV !== 'development' ? [cssnano] : []),
 	],
 };
