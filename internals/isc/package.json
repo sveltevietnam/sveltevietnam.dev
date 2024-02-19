@@ -28,6 +28,11 @@
 			"types": "./types/index.d.ts",
 			"svelte": "./src/mailer/index.js",
 			"import": "./src/mailer/index.js"
+		},
+		"./www": {
+			"types": "./types/index.d.ts",
+			"svelte": "./src/www/index.js",
+			"import": "./src/www/index.js"
 		}
 	},
 	"typesVersions": {
@@ -36,6 +41,9 @@
 				"./types/index.d.ts"
 			],
 			"mailer": [
+				"./types/index.d.ts"
+			],
+			"www": [
 				"./types/index.d.ts"
 			]
 		}
