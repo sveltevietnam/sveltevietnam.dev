@@ -86,6 +86,9 @@ declare global {
 		}
 
 		interface Platform {
+			env?: {
+				D1: import('@cloudflare/workers-types').D1Database;
+			};
 			context: {
 				// eslint-disable-next-line @typescript-eslint/no-explicit-any
 				waitUntil(promise: Promise<any>): void;

@@ -1,0 +1,6 @@
+[[d1_databases]]
+binding = "D1"
+database_name = "sv_dev"
+database_id = "40b1cdbd-8467-43fd-bede-4e888069a78b"
+migrations_table = "d1_migrations"
+migrations_dir = "d1/migrations"
