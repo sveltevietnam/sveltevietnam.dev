@@ -32,6 +32,7 @@
 		"@cloudflare/workers-types": "^4.20240129.0",
 		"@internals/isc": "workspace:*",
 		"@internals/utils": "workspace:*",
+		"@svelte-put/avatar": "^3.0.0",
 		"@svelte-put/clickoutside": "^3.0.1",
 		"@svelte-put/cloudflare-turnstile": "^0.1.1",
 		"@svelte-put/copy": "^3.0.0",
