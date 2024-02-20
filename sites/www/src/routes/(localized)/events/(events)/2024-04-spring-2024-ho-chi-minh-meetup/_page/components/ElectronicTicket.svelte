@@ -1,11 +1,11 @@
 <script lang="ts">
 	import Avatar from '@svelte-put/avatar/Avatar.svelte';
-	import QR from '@svelte-put/qr/svg/QR.svelte';
 	import debounce from 'lodash.debounce';
 	import { cubicOut } from 'svelte/easing';
 	import { tweened } from 'svelte/motion';
 
 	import bgDetailImg from './bg-details.svg';
+	import desgnveloperLogoImg from './designveloper_logo.webp';
 	import titleImg from './title.svg';
 
 	export let number = 0;
@@ -109,19 +109,20 @@
 			/>
 		</div>
 		<div class="__footer">
-			<QR
-				data="https://www.sveltevietnam.dev"
-				width="64"
-				height="64"
-				moduleFill="black"
-				anchorInnerFill="black"
-				anchorOuterFill="black"
-				class="__qr"
-			/>
-			<div class="__footer-text space-y-1">
-				<p>April 27th, 2024, 09:00 GMT+0700 (tentative)</p>
-				<!-- <p>55 Phó Đức Chính, Dist. 1, Hồ Chí Minh City</p> -->
-				<p>Location is to be announced</p>
+			<p>
+				<span>Hosted by</span>
+				<img
+					src={desgnveloperLogoImg}
+					alt="designveloper"
+					width="24"
+					height="24"
+					class="__dsv-logo"
+				/>
+				<span>Designveloper</span>
+			</p>
+			<div class="shrink-0 text-right">
+				<p>April 20th, 2024, 09:00 GMT+0700</p>
+				<p>55 Phó Đức Chính, Dist. 1, Hồ Chí Minh City</p>
 			</div>
 		</div>
 	</div>
@@ -213,7 +214,7 @@
 		position: absolute;
 		z-index: 0;
 		top: -58px;
-		left: -34px;
+		left: -50px;
 
 		width: auto;
 		max-width: none;
@@ -225,6 +226,12 @@
 			top: -80px;
 			left: -60px;
 			height: 287px;
+		}
+
+		@container e-ticket (max-width: 400px) {
+			top: -50px;
+			left: -70px;
+			height: 180px;
 		}
 	}
 
@@ -247,24 +254,28 @@
 		gap: 0.5rem;
 		align-items: flex-end;
 		justify-content: space-between;
-	}
 
-	.__footer-text {
-		font-size: 0.75rem;
-		text-align: right;
+		font-size: theme('fontSize.xs');
+		line-height: 1.75;
 
 		@container e-ticket (min-width: 600px) {
-			font-size: theme('fontSize.lg');
+			font-size: theme('fontSize.base');
+		}
+
+		@container e-ticket (max-width: 400px) {
+			flex-direction: column;
+			gap: 0;
 		}
 	}
 
-	:global(.e-ticket .__qr) {
-		flex-shrink: 0;
+	.__dsv-logo {
+		display: inline-block;
 		width: auto;
-		height: 40px;
+		height: 18px;
+		vertical-align: text-bottom;
 
 		@container e-ticket (min-width: 600px) {
-			height: 64px;
+			height: 24px;
 		}
 	}
 </style>

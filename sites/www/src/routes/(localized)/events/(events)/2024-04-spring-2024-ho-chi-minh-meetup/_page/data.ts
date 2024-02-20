@@ -20,8 +20,8 @@ export const event = {
 		vi: '',
 		en: '',
 	},
-	startDate: '2024-04-27T02:00:00.000Z',
-	endDate: '2024-04-27T04:00:00.000Z',
+	startDate: '2024-04-20T02:00:00.000Z',
+	endDate: '2024-04-20T04:00:00.000Z',
 	location: {
 		vi: 'TP. Hồ Chí Minh (Chi tiết thông báo sau)',
 		en: 'Ho Chi Minh city (Specifics are to be announced)',
