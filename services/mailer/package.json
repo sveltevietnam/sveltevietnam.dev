@@ -13,9 +13,9 @@
 		"extends": "../../package.json"
 	},
 	"scripts": {
-		"dev": "vite dev --port 5007",
-		"dev:wrangler": "wrangler pages dev .svelte-kit/cloudflare --port 5007",
-		"build": "vite build --mode production",
+		"dev": "pnpm build:mjml && vite dev --port 5007",
+		"dev:wrangler": "pnpm build:mjml && wrangler pages dev .svelte-kit/cloudflare --port 5007",
+		"build": "pnpm build:mjml && vite build --mode production",
 		"build:mjml": "mjml src/lib/server/mjml/templates/*.template.mjml -o src/lib/server/mjml/templates --config.mjmlConfigPath .mjmlconfig --config.minify=true --config.beautify=false",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
