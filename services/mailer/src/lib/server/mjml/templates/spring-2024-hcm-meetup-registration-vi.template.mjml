@@ -1,0 +1,75 @@
+<mjml>
+	<mj-head>
+		<mj-title>{{title}}</mj-title>
+		<mj-include path="../includes/common-head.mjml" />
+		<mj-style>
+			p {
+				margin-top: 24px;
+				margin-bottom: 24px;
+			}
+
+			p:first-of-type {
+				margin-top: 0;
+			}
+
+			p:last-of-type {
+				margin-bottom: 0;
+			}
+
+			li:not(:last-of-type) {
+				margin-bottom: 12px;
+			}
+		</mj-style>
+	</mj-head>
+	<mj-body background-color="#ffffff">
+		<mj-include path="../includes/header.mjml" />
+
+		<mj-section padding-top="0">
+			<mj-column>
+        <mj-image
+					width="700px"
+					src="{{mailerURL}}/images/spring-2024-hcm-meetup-ticket.jpg"
+					padding-top="20px"
+					padding-bottom="40px"
+					href="{{wwwURL}}/vi/su-kien/2024-04-gap-mat-xuan-giap-thin-2024-ho-chi-minh?email={{email}}&name={{name}}"
+				/>
+				<mj-text>
+					<p>Xin chào {{name}},</p>
+					<p>
+						Cảm ơn bạn đã đăng ký tham gia sự kiện
+						"<a href="{{wwwURL}}/vi/su-kien/2024-04-gap-mat-xuan-giap-thin-2024-ho-chi-minh?email={{email}}&name={{name}}">
+							Gặp mặt Xuân Giáp Thìn 2024 - Hồ Chí Minh
+						</a>".
+						Rất vui được chào đón bạn đến với cộng đồng và hy vọng sẽ nhận được sự tham gia và
+						đóng góp của bạn tại sự kiện lần này.
+					</p>
+					<p>Sau đây là một số thông tin quan trọng:</p>
+					<ul>
+						<li>
+							Sự kiện sẽ diễn ra vào
+							<strong>ngày 20, tháng 4, năm 2024, lúc 9 giờ sáng theo giờ Việt Nam.</strong>.
+						</li>
+						<li>
+							Sự kiện được tổ chức
+							tại
+							<a href="https://maps.app.goo.gl/ymGh3Djmwjnb7ohu5">55 Phó Đức Chính, Quận 1, TP. Hồ Chí Minh</a>
+							nhờ sự tài trợ của công ty
+							<a href="https://www.designveloper.com/">Designveloper</a>.
+						</li>
+						<li>[insert instruction for parking and navigating the venue]</li>
+					</ul>
+
+					<p>
+						Hãy tham gia
+						<a href="https://discord.sveltevietnam.dev">Discord Svelte Việt Nam</a>
+						để kết nối và nhận các thông báo thường xuyên hơn từ cộng đồng nhé.
+					</p>
+					<p>Hẹn gặp bạn tại sự kiện!</p>
+					<p>Svelte Việt Nam</p>
+				</mj-text>
+			</mj-column>
+		</mj-section>
+
+		<mj-include path="../includes/no-reply-footer-vi.mjml" />
+	</mj-body>
+</mjml>

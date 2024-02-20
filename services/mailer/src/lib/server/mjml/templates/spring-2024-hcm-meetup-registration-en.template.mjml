@@ -1,0 +1,73 @@
+<mjml>
+	<mj-head>
+		<mj-title>{{title}}</mj-title>
+		<mj-include path="../includes/common-head.mjml" />
+		<mj-style>
+			p {
+				margin-top: 24px;
+				margin-bottom: 24px;
+			}
+
+			p:first-of-type {
+				margin-top: 0;
+			}
+
+			p:last-of-type {
+				margin-bottom: 0;
+			}
+
+			li:not(:last-of-type) {
+				margin-bottom: 12px;
+			}
+		</mj-style>
+	</mj-head>
+	<mj-body background-color="#ffffff">
+		<mj-include path="../includes/header.mjml" />
+
+		<mj-section padding-top="0">
+			<mj-column>
+        <mj-image
+					width="700px"
+					src="{{mailerURL}}/images/spring-2024-hcm-meetup-ticket.jpg"
+					padding-top="20px"
+					padding-bottom="40px"
+					href="{{wwwURL}}/en/events/2024-04-spring-2024-ho-chi-minh-meetup?email={{email}}&name={{name}}"
+				/>
+				<mj-text>
+					<p>Hello {{name}},</p>
+					<p>
+						You are registered for the
+						"<a href="{{wwwURL}}/en/events/2024-04-spring-2024-ho-chi-minh-meetup?email={{email}}&name={{name}}">
+							Svelte Vietnam Spring 2024 Ho Chi Minh Meetup
+						</a>".
+						We are excited that you have decided to join us.
+					</p>
+					<p>Here are a few important details:</p>
+					<ul>
+						<li>
+							The event takes place on
+							<strong>April 20th, 2024, at 9AM Vietnam time</strong>.
+						</li>
+						<li>
+							The event is hosted by
+							<a href="https://www.designveloper.com/">Designveloper</a>
+							at
+							<a href="https://maps.app.goo.gl/ymGh3Djmwjnb7ohu5">55 Phó Đức Chính, Dist. 1, Hồ Chí Minh City</a>.
+						</li>
+						<li>[insert instruction for parking and navigating the venue]</li>
+					</ul>
+
+					<p>
+						In the meantime, join the official
+						<a href="https://discord.sveltevietnam.dev">Svelte Vietnam Discord</a>
+						and have a chat with our community members.
+					</p>
+					<p>See you at the event,</p>
+					<p>The Svelte Vietnam Team</p>
+				</mj-text>
+			</mj-column>
+		</mj-section>
+
+		<mj-include path="../includes/no-reply-footer-en.mjml" />
+	</mj-body>
+</mjml>

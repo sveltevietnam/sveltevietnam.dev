@@ -50,8 +50,11 @@
 						action="?/ticket"
 					/>
 				</div>
-				<!-- <ElectronicTicket name="Quang Phan" email="vnphanquang@gmail.com" class="flex-1" /> -->
-				<ElectronicTicket class="flex-1" />
+				<ElectronicTicket
+					class="flex-1"
+					name={data.name ?? undefined}
+					email={data.email ?? undefined}
+				/>
 			</div>
 		</section>
 
