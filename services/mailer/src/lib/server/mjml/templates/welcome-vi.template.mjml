@@ -19,8 +19,8 @@
 					<a href="https://discord.sveltevietnam.dev">Discord Svelte Việt Nam</a>
 					để kết nối và nhận các thông báo thường xuyên hơn từ cộng đồng nhé.
 				</mj-text>
-				<mj-text> Hẹn gặp lại bạn, </mj-text>
-				<mj-text> Svelte Việt Nam </mj-text>
+				<mj-text>Hẹn gặp lại bạn!</mj-text>
+				<mj-text>Svelte Việt Nam</mj-text>
 			</mj-column>
 		</mj-section>
 

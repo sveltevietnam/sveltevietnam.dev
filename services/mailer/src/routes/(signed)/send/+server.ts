@@ -17,7 +17,7 @@ import { EMAIL_TEMPLATES } from '$server/mjml/templates';
 
 import type { RequestHandler } from './$types';
 
-export const POST: RequestHandler = async ({ request, locals }) => {
+export const POST: RequestHandler = async ({ request, locals, url }) => {
 	const parsed = SendRequestSchema.safeParse(await request.json());
 	if (!parsed.success) {
 		throwMailerSvelteKitError('SEND_INVALID_INPUT', parsed.error.errors[0]?.message);
@@ -34,12 +34,14 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 	// construct mail URL
 	const id = crypto.randomUUID();
 	const token = encodeURIComponent(await jwt.sign({ id, email: to.email }, JWT_SECRET));
-	const origin = new URL(request.url).origin;
 
+	const mailerURL = url.origin;
+	const mailURL = `${mailerURL}/mails/${token}`;
 	// render
 	const html = Mustache.render(template.html, {
+		mailerURL,
 		wwwURL: WWW_URL,
-		mailURL: `${origin}/mails/${token}`,
+		mailURL,
 		subscriptionURL: `${WWW_URL}/${language}/${
 			language === 'en' ? 'subscriptions' : 'dang-ky'
 		}/${token}`,
