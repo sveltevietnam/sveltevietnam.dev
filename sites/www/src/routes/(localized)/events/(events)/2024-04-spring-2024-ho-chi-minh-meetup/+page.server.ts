@@ -1,18 +1,21 @@
+// import {
+// 	createSubscriptionRequest,
+// 	MAILER_ERRORS,
+// 	type CreateSubscriptionResponseDTO,
+// } from '@internals/isc/mailer';
 import {
-	createSubscriptionRequest,
-	MAILER_ERRORS,
-	type CreateSubscriptionResponseDTO,
-} from '@internals/isc/mailer';
-import { error, fail } from '@sveltejs/kit';
-import type { NumericRange } from '@sveltejs/kit';
+	// error,
+	fail,
+} from '@sveltejs/kit';
+// import type { NumericRange } from '@sveltejs/kit';
 import { message, setError, superValidate } from 'sveltekit-superforms/server';
 
-import { MAILER_CLIENT_ID, MAILER_CLIENT_SECRET, MAILER_SERVICE_URL } from '$env/static/private';
+// import { MAILER_CLIENT_ID, MAILER_CLIENT_SECRET, MAILER_SERVICE_URL } from '$env/static/private';
 import { mailSchema } from '$lib/components/MailRegistrationForm';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { createTicket, getTicket } from '$lib/daos/event_tickets.dao';
 import { preparePageData } from '$lib/data/events';
-import { createMailerSvelteKitError } from '$lib/errors';
+import { throwSvelteKitError } from '$lib/errors';
 import type { FormMessage } from '$lib/forms';
 import { createMailTranslationAndSchema } from '$lib/forms/actions/mail/mail.server';
 import { buildBreadcrumbs, type Breadcrumb } from '$lib/routing/routing.server';
@@ -20,9 +23,8 @@ import { validateToken } from '$lib/turnstile/turnstile.server';
 
 import type { PageServerLoad } from './$types';
 import { event, structure } from './_page/data';
+import { EVENT_ID } from './_page/data';
 import { translations as pageT } from './_page/translation';
-
-const EVENT = 'spring-2024-HCM-meetup';
 
 export const load: PageServerLoad = async ({ url, depends, locals }) => {
 	const lang = locals.settings.language;
@@ -43,12 +45,10 @@ export const load: PageServerLoad = async ({ url, depends, locals }) => {
 };
 
 export const actions = {
-	ticket: async (event) => {
-		const { request, locals, fetch, platform } = event;
-
+	ticket: async ({ request, locals, fetch, platform }) => {
 		// get cloudflare bindings for d1 database
 		const d1 = platform?.env?.D1;
-		if (!d1) throw createMailerSvelteKitError('D1_NOT_AVAILABLE');
+		if (!d1) throwSvelteKitError('D1_NOT_AVAILABLE');
 
 		// create i18n-aware validation schema
 		const { t, s } = createMailTranslationAndSchema(locals.settings.language);
@@ -66,7 +66,7 @@ export const actions = {
 			return fail(400, { form });
 		}
 
-		const ticket = await getTicket(d1, form.data.email, EVENT);
+		const ticket = await getTicket(d1, form.data.email, EVENT_ID);
 		if (ticket) {
 			return message(form, {
 				type: 'success',
@@ -76,7 +76,7 @@ export const actions = {
 		await createTicket(d1, {
 			email: form.data.email,
 			name: form.data.name,
-			event: EVENT,
+			event: EVENT_ID,
 			created_at: new Date().toISOString(),
 		});
 		// TODO: send mail
