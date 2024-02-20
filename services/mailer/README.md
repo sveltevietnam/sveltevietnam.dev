@@ -18,4 +18,5 @@ pnpm wrangler d1 migrations apply sv_mailer_dev --local
 
 ```bash
 pnpm wrangler d1 execute sv_mailer_dev --file d1/seed.sql --local
+pnpm wrangler d1 execute sv_mailer_dev --command "select * from subscriptions;" --local
 ```

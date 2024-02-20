@@ -40,8 +40,7 @@
 
 	<div class="mt-[20px] space-y-[60px] pb-[120px] tb:space-y-[120px] tb:pb-[200px]">
 		<section class="max-w-pad">
-			<!-- <h2 class="c-text-h2 uppercase" use:intersect>{t.ticket.title}</h2> -->
-			<div class="flex flex-col-reverse justify-center gap-8 pc:flex-row pc:gap-10">
+			<div class="flex flex-col-reverse justify-center gap-8 pc:flex-row pc:items-end pc:gap-10">
 				<div>
 					<h2 class="c-text-h3">{t.ticket.title}</h2>
 					<MailRegistrationForm
