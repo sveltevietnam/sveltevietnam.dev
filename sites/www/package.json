@@ -25,6 +25,7 @@
 	"dependencies": {
 		"@floating-ui/dom": "^1.6.3",
 		"gsap": "^3.12.5",
+		"lodash.debounce": "^4.0.8",
 		"mustache": "^4.2.0",
 		"zod": "^3.22.4"
 	},
@@ -51,6 +52,7 @@
 		"@sveltejs/vite-plugin-svelte": "^3.0.2",
 		"@sveltevietnam/ui": "workspace:*",
 		"@total-typescript/ts-reset": "^0.5.1",
+		"@types/lodash.debounce": "^4.0.9",
 		"@types/mustache": "^4.2.5",
 		"embla-carousel": "8.0.0-rc23",
 		"embla-carousel-svelte": "8.0.0-rc23",
