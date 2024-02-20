@@ -1,8 +1,9 @@
-// import {
-// 	createSubscriptionRequest,
-// 	MAILER_ERRORS,
-// 	type CreateSubscriptionResponseDTO,
-// } from '@internals/isc/mailer';
+import {
+	// createSubscriptionRequest,
+	createSendRequest,
+	// MAILER_ERRORS,
+	// type CreateSubscriptionResponseDTO,
+} from '@internals/isc/mailer';
 import {
 	// error,
 	fail,
@@ -10,7 +11,7 @@ import {
 // import type { NumericRange } from '@sveltejs/kit';
 import { message, setError, superValidate } from 'sveltekit-superforms/server';
 
-// import { MAILER_CLIENT_ID, MAILER_CLIENT_SECRET, MAILER_SERVICE_URL } from '$env/static/private';
+import { MAILER_CLIENT_ID, MAILER_CLIENT_SECRET, MAILER_SERVICE_URL } from '$env/static/private';
 import { mailSchema } from '$lib/components/MailRegistrationForm';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { createTicket, getTicket } from '$lib/daos/event_tickets.dao';
@@ -41,6 +42,8 @@ export const load: PageServerLoad = async ({ url, depends, locals }) => {
 			page: pageT[lang],
 		},
 		ticketForm,
+		email: url.searchParams.get('email'),
+		name: url.searchParams.get('name'),
 	};
 };
 
@@ -66,27 +69,53 @@ export const actions = {
 			return fail(400, { form });
 		}
 
-		const ticket = await getTicket(d1, form.data.email, EVENT_ID);
+		const { email, name } = form.data;
+
+		const ticket = await getTicket(d1, email, EVENT_ID);
 		if (ticket) {
 			return message(form, {
 				type: 'success',
 				text: t.alreadyRegister,
 			});
 		}
+
 		await createTicket(d1, {
-			email: form.data.email,
-			name: form.data.name,
+			email,
+			name,
 			event: EVENT_ID,
 			created_at: new Date().toISOString(),
 		});
-		// TODO: send mail
+
+		await fetch(
+			await createSendRequest(
+				{
+					templateId: 'SPRING_2024_HCM_MEETUP_REGISTRATION',
+					to: { email, name },
+					language: locals.settings.language,
+					variables: {
+						name: encodeURIComponent(name),
+						email: encodeURIComponent(email),
+					},
+				},
+				{
+					clientID: MAILER_CLIENT_ID,
+					clientSecret: MAILER_CLIENT_SECRET,
+					serviceURL: MAILER_SERVICE_URL,
+				},
+			),
+		).then(async (resp) => {
+			if (!resp.ok) {
+				const json = await resp.json();
+				console.error('/send error:', json);
+			}
+		});
 
 		// if (form.data.checkbox) {
 		// 	const response = await fetch(
 		// 		await createSubscriptionRequest(
 		// 			{
-		// 				email: form.data.email,
-		// 				name: form.data.name,
+		// 				email,
+		// 				name,
 		// 				domain: 'event',
 		// 				language: locals.settings.language,
 		// 			},
