@@ -17,26 +17,26 @@ import {
 	updateDomainSubscription,
 	upsertSubscription,
 } from '$server/daos/subscriptions.dao';
-import { createMailerSvelteKitError } from '$server/errors';
+import { throwMailerSvelteKitError } from '$server/errors';
 
 import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async ({ request, locals }) => {
 	const token = request.headers.get(COMMON_HEADERS.TOKEN);
-	if (!token) throw createMailerSvelteKitError('SUBSCRIPTION_GET_NO_TOKEN');
+	if (!token) throwMailerSvelteKitError('SUBSCRIPTION_GET_NO_TOKEN');
 
 	const isValid = await jwt.verify(token, JWT_SECRET);
-	if (!isValid) throw createMailerSvelteKitError('SUBSCRIPTION_GET_INVALID_TOKEN');
+	if (!isValid) throwMailerSvelteKitError('SUBSCRIPTION_GET_INVALID_TOKEN');
 
-	const { payload } = jwt.decode(token);
-	const email = payload.email as string;
-	if (!email) throw createMailerSvelteKitError('SUBSCRIPTION_GET_NOT_FOUND');
+	const { payload } = jwt.decode<{ email: string }>(token);
+	const email = payload?.email as string;
+	if (!email) throwMailerSvelteKitError('SUBSCRIPTION_GET_NOT_FOUND');
 
 	const subscription = await getSubscriptionByEmail(locals.d1, email);
-	if (!subscription) throw createMailerSvelteKitError('SUBSCRIPTION_GET_NOT_FOUND');
+	if (!subscription) throwMailerSvelteKitError('SUBSCRIPTION_GET_NOT_FOUND');
 
 	const parsed = GetSubscriptionResponseSchema.strip().safeParse(subscription);
-	if (!parsed.success) throw createMailerSvelteKitError('SUBSCRIPTION_GET_PARSE_ERROR');
+	if (!parsed.success) throwMailerSvelteKitError('SUBSCRIPTION_GET_PARSE_ERROR');
 
 	return json({
 		success: true,
@@ -47,10 +47,7 @@ export const GET: RequestHandler = async ({ request, locals }) => {
 export const POST: RequestHandler = async ({ request, locals, fetch }) => {
 	const parsed = CreateSubscriptionRequestSchema.safeParse(await request.json());
 	if (!parsed.success) {
-		throw createMailerSvelteKitError(
-			'SUBSCRIPTION_CREATE_INVALID_INPUT',
-			parsed.error.errors[0]?.message,
-		);
+		throwMailerSvelteKitError('SUBSCRIPTION_CREATE_INVALID_INPUT', parsed.error.errors[0]?.message);
 	}
 
 	const { d1 } = locals;
@@ -59,7 +56,7 @@ export const POST: RequestHandler = async ({ request, locals, fetch }) => {
 	// pass through if email has already been registered for this domain
 	const subscription = await getSubscriptionByEmail(d1, email);
 	if (subscription?.[domain]) {
-		throw createMailerSvelteKitError('SUBSCRIPTION_CREATE_ALREADY_EXISTS');
+		throwMailerSvelteKitError('SUBSCRIPTION_CREATE_ALREADY_EXISTS');
 	}
 
 	// otherwise upsert subscription
@@ -93,19 +90,19 @@ export const POST: RequestHandler = async ({ request, locals, fetch }) => {
 
 export const PATCH: RequestHandler = async ({ request, locals }) => {
 	const token = request.headers.get(COMMON_HEADERS.TOKEN);
-	if (!token) throw createMailerSvelteKitError('SUBSCRIPTION_DOMAIN_UPDATE_NO_TOKEN');
+	if (!token) throwMailerSvelteKitError('SUBSCRIPTION_DOMAIN_UPDATE_NO_TOKEN');
 
 	const isValid = await jwt.verify(token, JWT_SECRET);
-	if (!isValid) throw createMailerSvelteKitError('SUBSCRIPTION_DOMAIN_UPDATE_INVALID_TOKEN');
+	if (!isValid) throwMailerSvelteKitError('SUBSCRIPTION_DOMAIN_UPDATE_INVALID_TOKEN');
 
 	const parsed = UpdateDomainSubscriptionRequestSchema.safeParse(await request.json());
 	if (!parsed.success) {
-		throw createMailerSvelteKitError('SUBSCRIPTION_DOMAIN_UPDATE_INVALID_INPUT');
+		throwMailerSvelteKitError('SUBSCRIPTION_DOMAIN_UPDATE_INVALID_INPUT');
 	}
 
-	const { payload } = jwt.decode(token);
-	const email = payload.email as string;
-	if (!email) throw createMailerSvelteKitError('SUBSCRIPTION_DOMAIN_UPDATE_NOT_FOUND');
+	const { payload } = jwt.decode<{ email: string }>(token);
+	const email = payload?.email as string;
+	if (!email) throwMailerSvelteKitError('SUBSCRIPTION_DOMAIN_UPDATE_NOT_FOUND');
 
 	await updateDomainSubscription(locals.d1, email, parsed.data);
 	return json({ success: true } satisfies UpdateDomainSubscriptionResponseDTO);
