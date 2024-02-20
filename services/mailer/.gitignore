@@ -1,3 +1,4 @@
 .wrangler
 wrangler.preview.toml
 wrangler.production.toml
+*.template
