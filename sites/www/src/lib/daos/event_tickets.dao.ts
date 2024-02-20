@@ -2,7 +2,7 @@ import type { D1Database } from '@cloudflare/workers-types';
 
 const TABLE_NAME = 'event_tickets';
 
-export type Ticket = {
+export type EventTicket = {
 	event: string;
 	email: string;
 	name: string;
@@ -15,7 +15,7 @@ export function getTicket(d1: D1Database, email: string, event: string) {
 	return d1
 		.prepare(`SELECT * FROM ${TABLE_NAME} WHERE email = ?1 AND event = ?2`)
 		.bind(email, event)
-		.first<Ticket>();
+		.first<EventTicket>();
 }
 
 export function createTicket(d1: D1Database, ticket: Omit<Ticket, 'num'>) {

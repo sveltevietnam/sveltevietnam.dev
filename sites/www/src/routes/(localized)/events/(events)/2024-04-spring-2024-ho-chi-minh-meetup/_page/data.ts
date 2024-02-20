@@ -7,6 +7,8 @@ import thumbnailEn from './images/thumbnail-en.jpg?enhanced';
 import ogImageVi from './images/thumbnail-vi.jpg';
 import thumbnailVi from './images/thumbnail-vi.jpg?enhanced';
 
+export const EVENT_ID = 'spring-2024-HCM-meetup';
+
 export const event = {
 	slug: {
 		en: '2024-04-spring-2024-ho-chi-minh-meetup',
