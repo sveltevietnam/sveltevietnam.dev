@@ -378,6 +378,9 @@ importers:
       gsap:
         specifier: ^3.12.5
         version: 3.12.5
+      lodash.debounce:
+        specifier: ^4.0.8
+        version: 4.0.8
       mustache:
         specifier: ^4.2.0
         version: 4.2.0
@@ -451,6 +454,9 @@ importers:
       '@total-typescript/ts-reset':
         specifier: ^0.5.1
         version: 0.5.1
+      '@types/lodash.debounce':
+        specifier: ^4.0.9
+        version: 4.0.9
       '@types/mustache':
         specifier: ^4.2.5
         version: 4.2.5

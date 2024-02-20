@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Avatar from '@svelte-put/avatar/Avatar.svelte';
 	import QR from '@svelte-put/qr/svg/QR.svelte';
+	import debounce from 'lodash.debounce';
 	import { cubicOut } from 'svelte/easing';
 	import { tweened } from 'svelte/motion';
 
@@ -25,8 +26,16 @@
 	});
 
 	let node: HTMLElement;
-	function onMouseOver(e: MouseEvent) {
+	function rotate(e: MouseEvent) {
 		const rect = node.getBoundingClientRect();
+		if (
+			e.clientX < rect.left ||
+			e.clientX > rect.right ||
+			e.clientY < rect.top ||
+			e.clientY > rect.bottom
+		)
+			return;
+
 		const cx = rect.width / 2;
 		const cy = rect.height / 2;
 
@@ -36,17 +45,23 @@
 		const dy = y - cy;
 		$rotateX = (dy / cy) * -8;
 		$rotateY = (dx / cx) * 10;
+		debouncedRotateOut();
 	}
 
-	function onMouseLeave() {
+	function rotateOut() {
+		window.removeEventListener('mousemove', rotate);
 		rotateX.set(0, {
-			delay: 1000,
 			duration: 1000,
 		});
 		rotateY.set(0, {
-			delay: 1000,
 			duration: 1000,
 		});
+	}
+
+	const debouncedRotateOut = debounce(rotateOut, 1000);
+
+	function onMouseEnter() {
+		window.addEventListener('mousemove', rotate);
 	}
 </script>
 
@@ -56,8 +71,7 @@
 		class="e-ticket"
 		style:--rotate-x="{$rotateX}deg"
 		style:--rotate-y="{$rotateY}deg"
-		on:mousemove={onMouseOver}
-		on:mouseleave={onMouseLeave}
+		on:mouseenter={onMouseEnter}
 		bind:this={node}
 	>
 		<div class="__header">
