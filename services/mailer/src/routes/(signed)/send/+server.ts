@@ -12,7 +12,7 @@ import {
 } from '$env/static/private';
 import { PUBLIC_MODE } from '$env/static/public';
 import { createMail, type Mail } from '$server/daos/mails.dao';
-import { createMailerSvelteKitError } from '$server/errors';
+import { throwMailerSvelteKitError } from '$server/errors';
 import { EMAIL_TEMPLATES } from '$server/mjml/templates';
 
 import type { RequestHandler } from './$types';
@@ -20,7 +20,7 @@ import type { RequestHandler } from './$types';
 export const POST: RequestHandler = async ({ request, locals }) => {
 	const parsed = SendRequestSchema.safeParse(await request.json());
 	if (!parsed.success) {
-		throw createMailerSvelteKitError('SEND_INVALID_INPUT', parsed.error.errors[0]?.message);
+		throwMailerSvelteKitError('SEND_INVALID_INPUT', parsed.error.errors[0]?.message);
 	}
 
 	const { templateId, variables = {}, to, language } = parsed.data;
@@ -28,7 +28,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 	// check for template
 	const template = EMAIL_TEMPLATES[templateId]?.[language];
 	if (!template) {
-		throw createMailerSvelteKitError('SEND_TEMPLATE_NOT_FOUND');
+		throwMailerSvelteKitError('SEND_TEMPLATE_NOT_FOUND');
 	}
 
 	// construct mail URL
@@ -73,7 +73,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 		});
 		if (!resp.ok) {
 			console.error('MAILCHANNELS ERROR', resp);
-			throw createMailerSvelteKitError('SEND_MAILCHANNELS_ERROR', await resp.text());
+			throwMailerSvelteKitError('SEND_MAILCHANNELS_ERROR', await resp.text());
 		}
 	}
 

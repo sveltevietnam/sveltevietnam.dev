@@ -5,7 +5,7 @@ import type { Handle, HandleServerError } from '@sveltejs/kit';
 
 import { building } from '$app/environment';
 import { getSecretFromClientId } from '$server/daos/clients.dao';
-import { createMailerSvelteKitError } from '$server/errors';
+import { throwMailerSvelteKitError } from '$server/errors';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	if (building) return resolve(event);
@@ -14,7 +14,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	// get cloudflare bindings for d1 database
 	const d1 = platform?.env?.D1;
-	if (!d1) throw createMailerSvelteKitError('D1_NOT_AVAILABLE');
+	if (!d1) throwMailerSvelteKitError('D1_NOT_AVAILABLE');
 	locals.d1 = d1;
 
 	// if public routes, pass through
@@ -26,10 +26,10 @@ export const handle: Handle = async ({ event, resolve }) => {
 	// check for client signature
 	const clientId = request.headers.get(COMMON_HEADERS.CLIENT_ID);
 	const signature = request.headers.get(COMMON_HEADERS.CLIENT_SIGNATURE);
-	if (!clientId || !signature) throw createMailerSvelteKitError('MISSING_CLIENT_ID_OR_SIGNATURE');
+	if (!clientId || !signature) throwMailerSvelteKitError('MISSING_CLIENT_ID_OR_SIGNATURE');
 
 	const secret = await getSecretFromClientId(d1, clientId);
-	if (!secret) throw createMailerSvelteKitError('CLIENT_ID_NOT_FOUND');
+	if (!secret) throwMailerSvelteKitError('CLIENT_ID_NOT_FOUND');
 
 	// verify
 	const passed = await verifyRequest({
@@ -37,7 +37,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		secret,
 		header: COMMON_HEADERS.CLIENT_SIGNATURE,
 	});
-	if (!passed) throw createMailerSvelteKitError('INVALID_SIGNATURE');
+	if (!passed) throwMailerSvelteKitError('INVALID_SIGNATURE');
 
 	return resolve(event);
 };
