@@ -1,12 +1,4 @@
-import type { LangVar } from '@internals/utils/language';
-
-export type Sponsor = {
-	id: string;
-	/** inline svg with height of 40 */
-	image: string;
-	name: LangVar<string>;
-	href?: string;
-};
+import type { Sponsor } from '$lib/data/sponors';
 
 /* ------↓ WIREFRAME ↓------- */
 
