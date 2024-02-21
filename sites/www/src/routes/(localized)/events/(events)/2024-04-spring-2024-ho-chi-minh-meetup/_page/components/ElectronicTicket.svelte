@@ -4,8 +4,9 @@
 	import { cubicOut } from 'svelte/easing';
 	import { tweened } from 'svelte/motion';
 
+	import desgnveloperLogoImg from '../images/designveloper_logo.webp';
+
 	import bgDetailImg from './bg-details.svg';
-	import desgnveloperLogoImg from './designveloper_logo.webp';
 	import titleImg from './title.svg';
 
 	export let number = 0;
