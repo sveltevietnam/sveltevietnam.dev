@@ -98,6 +98,17 @@
 				{...$constraints.email}
 			/>
 		</div>
+		<div
+			class="turnstile"
+			turnstile-sitekey={PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY}
+			turnstile-theme={$preferred}
+			turnstile-response-field-name="turnstile"
+			turnstile-response-field
+			turnstile-size="normal"
+			turnstile-language={$lang}
+			use:turnstile
+			on:turnstile={(e) => ($form.turnstile = e.detail.token)}
+		/>
 		{#if t.checkbox}
 			<div class="relative">
 				{#if $errors.email?.length}
@@ -117,17 +128,6 @@
 				</label>
 			</div>
 		{/if}
-		<div
-			class="turnstile"
-			turnstile-sitekey={PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY}
-			turnstile-theme={$preferred}
-			turnstile-response-field-name="turnstile"
-			turnstile-response-field
-			turnstile-size="normal"
-			turnstile-language={$lang}
-			use:turnstile
-			on:turnstile={(e) => ($form.turnstile = e.detail.token)}
-		/>
 	</div>
 
 	<div class="relative space-y-12">
