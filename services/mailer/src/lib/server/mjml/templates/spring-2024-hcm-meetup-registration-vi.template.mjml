@@ -32,6 +32,7 @@
 					padding-top="20px"
 					padding-bottom="40px"
 					href="{{wwwURL}}/vi/su-kien/2024-04-gap-mat-xuan-giap-thin-2024-ho-chi-minh?email={{email}}&name={{name}}"
+					alt="vé điện tử mẫu của sự kiện"
 				/>
 				<mj-text>
 					<p>Xin chào {{name}},</p>
@@ -70,6 +71,7 @@
 			</mj-column>
 		</mj-section>
 
+		<mj-include path="../includes/calendar-links.mjml" />
 		<mj-include path="../includes/no-reply-footer-vi.mjml" />
 	</mj-body>
 </mjml>

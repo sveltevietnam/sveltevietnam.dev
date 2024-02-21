@@ -1,6 +1,11 @@
 <mj-section>
 	<mj-column>
-		<mj-image width="40px" src="{{mailerURL}}/images/logo.png" />
+		<mj-image
+			width="40px"
+			src="{{mailerURL}}/images/logo.png"
+			href="{{wwwURL}}"
+			alt="Svelte Vietnam"
+		/>
 		<mj-divider />
 	</mj-column>
 </mj-section>

@@ -32,6 +32,7 @@
 					padding-top="20px"
 					padding-bottom="40px"
 					href="{{wwwURL}}/en/events/2024-04-spring-2024-ho-chi-minh-meetup?email={{email}}&name={{name}}"
+					alt="sample of electronic ticket for the event"
 				/>
 				<mj-text>
 					<p>Hello {{name}},</p>
@@ -40,7 +41,7 @@
 						"<a href="{{wwwURL}}/en/events/2024-04-spring-2024-ho-chi-minh-meetup?email={{email}}&name={{name}}">
 							Svelte Vietnam Spring 2024 Ho Chi Minh Meetup
 						</a>".
-						We are excited that you have decided to join us.
+						We are excited that you have decided to join us and look forward to your participation at the event.
 					</p>
 					<p>Here are a few important details:</p>
 					<ul>
@@ -68,6 +69,7 @@
 			</mj-column>
 		</mj-section>
 
+		<mj-include path="../includes/calendar-links.mjml" />
 		<mj-include path="../includes/no-reply-footer-en.mjml" />
 	</mj-body>
 </mjml>

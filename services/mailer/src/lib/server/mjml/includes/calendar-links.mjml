@@ -1,0 +1,41 @@
+<mj-section>
+	<mj-column>
+		<mj-text align="center">
+			<p><strong>{{addToCalendarText}}<strong></p>
+			<p style="margin-top: 24px">
+				<a href="{{googleCalendarLink}}" target="_blank" style="text-decoration: none">
+					<img
+						src="{{mailerURL}}/images/brands/google-calendar.svg"
+						height="30px"
+						alt="Google Calendar"
+						style="display: inline-block; width: auto; height: 30px; margin-left: 16px; margin-right: 16px;"
+					>
+				</a>
+				<a href="{{microsoftOutlookLink}}" target="_blank" style="text-decoration: none">
+					<img
+						src="{{mailerURL}}/images/brands/microsoft-outlook.svg"
+						height="30px"
+						alt="Microsoft Outlook"
+						style="display: inline-block; width: auto; height: 30px; margin-left: 16px; margin-right: 16px;"
+					>
+				</a>
+				<a href="{{microsoftOfficeLink}}" target="_blank" style="text-decoration: none">
+					<img
+						src="{{mailerURL}}/images/brands/microsoft-office.svg"
+						height="30px"
+						alt="Microsoft Office"
+						style="display: inline-block; width: auto; height: 30px; margin-left: 16px; margin-right: 16px;"
+					>
+				</a>
+				<a href="{{yahooCalendarLink}}" target="_blank" style="text-decoration: none">
+					<img
+						src="{{mailerURL}}/images/brands/yahoo.svg"
+						height="30px"
+						alt="Yahoo Calendar"
+						style="display: inline-block; width: auto; height: 30px; margin-left: 16px; margin-right: 16px;"
+					>
+				</a>
+			</p>
+		</mj-text>
+	</mj-column>
+</mj-section>
