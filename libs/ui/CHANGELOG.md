@@ -1,5 +1,11 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.12
+
+### Patch Changes
+
+- [`3e64684`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/3e64684360009e042cfbca086fd1aee0920110e9) Thanks [@vnphanquang](https://github.com/vnphanquang)! - `EnhancedCodeBlock` - better lang overlay for non-filename block
+
 ## 1.0.0-next.11
 
 ### Minor Changes
