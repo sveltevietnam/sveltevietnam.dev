@@ -25,5 +25,5 @@
 	<SectionPosts posts={data.posts.internal} externalPost={data.posts.external} />
 	<!-- <SectionJobs jobs={data.jobs} /> -->
 	<!-- <SectionImpact projects={data.projects} /> -->
-	<SectionSponsor sponsors={data.sponsors} />
+	<SectionSponsor />
 </main>

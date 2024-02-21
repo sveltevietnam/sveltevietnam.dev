@@ -35,7 +35,6 @@ export const vi = {
 	},
 	benefits: {
 		title: 'Tôi được gì khi tài trợ cho Svelte Việt nam?',
-		description:
-			'Nhà tài trợ sẽ được liệt kệ tại trang web này, cũng như trong các dự án và sự kiện của Svelte Việt Nam. Trong tương lai gần khi trang “Việc làm” đã được hoàn thiện, nhà tài trợ sẽ được ưu tiên trong quy trình đăng tuyển dụng. Ngoài ra, Svelte Việt Nam cũng dành nhiều cơ hội trong các sự kiện cho nhà tài trợ để quản bá thương hiệu, tổ chức, sản phẩm của họ.',
+		description: `Nhà tài trợ sẽ được liệt kệ tại trang <a class="c-link" href="${SOCIAL_LINKS.OPEN_COLLECTIVE}" target="_blank" rel="noreferrer">Open Collective</a>, cũng như trong các trang dự án và sự kiện tương ứng. Trong tương lai gần khi trang “Việc làm” đã được hoàn thiện, nhà tài trợ sẽ được ưu tiên trong quy trình đăng tuyển dụng. Ngoài ra, Svelte Việt Nam cũng dành nhiều cơ hội riêng cho nhà tài trợ để quản bá thương hiệu, tổ chức, sản phẩm của họ trong các sự kiện của cộng đồng.`,
 	},
 };

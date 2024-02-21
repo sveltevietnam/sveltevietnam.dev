@@ -6,11 +6,8 @@
 	import { ToBeAnnounced } from '$lib/components/ToBeAnnounced';
 	import { getLangContext } from '$lib/contexts/lang';
 	import { getRoutingContext } from '$lib/routing/routing.context';
-	import type { Sponsor } from '$lib/types';
 
 	import { translations } from '../translation';
-
-	export let sponsors: Sponsor[];
 
 	const { routes } = getRoutingContext();
 
@@ -28,26 +25,15 @@
 			<AnimatedArrowCircle class="arrow h-12 w-12 tb:h-16 tb:w-16" handle="parent" />
 		</a>
 	</ConsecutiveFadeUpIntro>
-	<p class="section-desc mt-6" use:intersect>{t.description}</p>
-	{#if sponsors.length}
-		<ul use:intersect>
-			{#each sponsors as _}
-				<li class="flex items-center space-x-2 pc:space-x-4">
-					<div class="c-logo c-logo--themed sp:w-[32px]" />
-					<p class="c-text-h5 uppercase leading-normal">Svelte<br />Vietnam</p>
-				</li>
-			{/each}
-		</ul>
-	{:else}
-		<div use:intersect class="mt-10 tb:mt-[60px]">
-			<ToBeAnnounced>
-				<p class="text-center">
-					{t.tba.description}
-					<a href={$routes.sponsor.path} class="c-link">{t.tba.cta}</a>
-				</p>
-			</ToBeAnnounced>
-		</div>
-	{/if}
+	<p class="section-desc mt-6" use:intersect>{@html t.description}</p>
+	<div use:intersect class="mt-10 space-y-16 tb:mt-[60px]">
+		<ToBeAnnounced>
+			<p class="text-center">
+				{@html t.tba.description}
+				<a href={$routes.sponsor.path} class="c-link">{t.tba.cta}</a>
+			</p>
+		</ToBeAnnounced>
+	</div>
 </section>
 
 <style lang="postcss">
@@ -56,18 +42,6 @@
 
 		@screen tb {
 			margin-top: 120px;
-		}
-	}
-
-	ul {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 24px;
-		margin-top: 24px;
-
-		@screen tb {
-			gap: 40px;
-			margin-top: 60px;
 		}
 	}
 </style>

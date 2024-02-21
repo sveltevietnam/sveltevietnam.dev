@@ -135,7 +135,7 @@
 			<h2 class="c-text-h2" id="benefits">
 				{t.benefits.title}
 			</h2>
-			<p>{t.benefits.description}</p>
+			<p>{@html t.benefits.description}</p>
 		</section>
 	</div>
 </main>

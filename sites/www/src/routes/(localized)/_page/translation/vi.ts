@@ -46,9 +46,9 @@ export const vi = {
 	sponsor: {
 		title: 'Nhà tài trợ',
 		description:
-			'Giúp cộng đồng Svelte Việt Nam phát triển bền vững bằng cách trở thành nhà tài trợ',
+			'Giúp cộng đồng Svelte Việt Nam phát triển bền vững bằng cách <a class="c-link" href="/vi/tai-tro">trở thành nhà tài trợ</a>',
 		tba: {
-			description: 'Nhà tài trợ sẽ được liệt kê tại đây',
+			description: `Nhà tài trợ sẽ được liệt kê tại trang <a class="c-link" href="${SOCIAL_LINKS.OPEN_COLLECTIVE}" target="_blank" rel="noreferrer">Open Collective của Svelte Việt Nam</a>.`,
 			cta: `Tìm hiểu thêm`,
 		},
 	},

@@ -35,7 +35,6 @@ export const en = {
 	},
 	benefits: {
 		title: 'What do I get as a sponsor for Svelte Vietnam?',
-		description:
-			'Sponsors are listed on this website, as well as projects and events of Svelte Vietnam. In the near future when the “Jobs” page is implemented, sponsors will have priority for their job posting requests. Svelte Vietnam also provides opportunities during its events for sponsors to promote their brands and products.',
+		description: `Sponsors are listed at our <a class="c-link" href="${SOCIAL_LINKS.OPEN_COLLECTIVE}" target="_blank">Open Collective</a>, as well as associated event or project pages. In the near future when the “Jobs” page is implemented, sponsors will have priority for their job posting requests. Svelte Vietnam also provides opportunities during its events for sponsors to promote their brands and products.`,
 	},
 } satisfies typeof import('./vi').vi;

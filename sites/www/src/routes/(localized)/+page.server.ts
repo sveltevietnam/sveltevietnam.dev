@@ -21,7 +21,7 @@ const metaTranslations: Record<App.Language, App.PageData['meta']> = {
 	},
 };
 
-export const load: PageServerLoad = async ({ depends, locals }) => {
+export const load: PageServerLoad = ({ depends, locals }) => {
 	const lang = locals.settings.language;
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	const tMeta = metaTranslations[lang];
@@ -38,7 +38,6 @@ export const load: PageServerLoad = async ({ depends, locals }) => {
 		},
 		jobs: [],
 		projects: [],
-		sponsors: [],
 		meta: {
 			...tMeta,
 			structured: JSON.stringify({

@@ -44,9 +44,10 @@ export const en = {
 	},
 	sponsor: {
 		title: 'Sponsors',
-		description: 'Help sustain the community and support its growth by becoming a sponsor',
+		description:
+			'Help sustain the community and support its growth by <a class="c-link" href="/en/sponsor">becoming a sponsor</a>',
 		tba: {
-			description: 'Sponsors will be listed here.',
+			description: `Sponsors will be listed at the <a class="c-link" href="${SOCIAL_LINKS.OPEN_COLLECTIVE}" target="_blank">Svelte Vietnam Open Collective</a> page.`,
 			cta: `Learn more`,
 		},
 	},
