@@ -116,22 +116,6 @@
 
 		border: 1px solid theme('colors.outline.DEFAULT');
 
-		&::before {
-			content: attr(data-lang);
-
-			position: absolute;
-			top: 2ch;
-			right: 2ch;
-
-			font-size: 12px;
-			font-weight: theme('fontWeight.medium');
-			line-height: theme('lineHeight.normal');
-
-			opacity: 0.75;
-
-			transition: opacity 250ms ease-out;
-		}
-
 		&:hover::before {
 			opacity: 0;
 		}

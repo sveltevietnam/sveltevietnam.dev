@@ -91,6 +91,9 @@
 		</p>
 	{/if}
 	<div class="codeblock-pre-container" use:copy={{ trigger, text: copyText }} on:copied={onCopied}>
+		{#if !filename}
+			<p class="codeblock-lang" class:shown={!showCopyBtn}>{lang}</p>
+		{/if}
 		<slot>
 			<!-- <pre><code>...</code></pre> -->
 		</slot>
@@ -166,10 +169,6 @@
 			& :global(pre) {
 				border-top-left-radius: 0;
 				border-top-right-radius: 0;
-
-				&::before {
-					content: none;
-				}
 			}
 		}
 
@@ -194,6 +193,29 @@
 		border-radius: 4px 4px 0 0;
 	}
 
+	:where(.codeblock-lang) {
+		position: absolute;
+		z-index: 1;
+		top: 2ch;
+		right: 2ch;
+
+		margin: 0;
+		padding: 0;
+
+		font-size: theme('fontSize.xs');
+		font-weight: theme('fontWeight.medium');
+		line-height: theme('lineHeight.normal');
+
+		opacity: 0;
+		backdrop-filter: blur(1px);
+
+		transition: opacity 250ms ease-out;
+
+		&.shown {
+			opacity: 1;
+		}
+	}
+
 	:where(.codeblock-copy-btn) {
 		--color-button-fg: hsl(0deg 0% 50%);
 		--color-button-outline: hsl(0deg 0% 75%);
@@ -205,6 +227,7 @@
 		}
 
 		position: absolute;
+		z-index: 2;
 		top: 8px;
 		right: 8px;
 
@@ -226,12 +249,6 @@
 
 		&.shown {
 			opacity: 1;
-		}
-	}
-
-	:where(.codeblock):hover {
-		& :global(pre::before) {
-			opacity: 0;
 		}
 	}
 
