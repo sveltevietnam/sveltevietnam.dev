@@ -105,7 +105,7 @@
 			</section>
 
 			<dl
-				class="mt-6 grid grid-cols-[auto,1fr] items-center gap-2 border-b border-dashed border-outline-200 py-6"
+				class="mt-6 grid grid-cols-[auto,1fr] items-baseline gap-2 border-b border-dashed border-outline-200 py-6"
 				use:intersect
 			>
 				<!-- time -->
