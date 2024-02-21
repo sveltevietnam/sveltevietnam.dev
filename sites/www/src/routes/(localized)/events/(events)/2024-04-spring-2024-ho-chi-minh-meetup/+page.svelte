@@ -22,7 +22,7 @@
 	$: event = data.event;
 </script>
 
-<main>
+<main id="spring-hcm-meetup-2024">
 	<section class="header relative -mt-header overflow-hidden pb-[100px] pt-header">
 		<div class="max-w-pad" use:intersect>
 			<Breadcrumbs breadcrumbs={data.breadcrumbs} class="mt-6" />
@@ -188,7 +188,7 @@
 		}
 	}
 
-	:global(footer:not(#fake-id)) {
+	:global(body):has(#spring-hcm-meetup-2024) :global(footer) {
 		background-color: transparent;
 
 		&::before {
