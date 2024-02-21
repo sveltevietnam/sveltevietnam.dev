@@ -19,8 +19,8 @@ export const event = {
 		en: 'Spring 2024 Ho Chi Minh Meetup',
 	},
 	description: {
-		vi: 'Sự kiện gặp mặt trực tiếp đầu tiên của cộng đồng Svelte Việt Nam tại thành phố Hồ Chí Minh',
-		en: 'The first offline meetup for the Svelte Vietnam community in Hồ Chí Minh city',
+		vi: 'Sự kiện gặp mặt trực tiếp đầu tiên của cộng đồng Svelte Việt Nam tại thành phố Hồ Chí Minh, đồng tổ chức bởi Designveloper',
+		en: 'The first offline meetup for the Svelte Vietnam community in Hồ Chí Minh city, hosted by Designveloper',
 	},
 	startDate: '2024-04-20T02:00:00.000Z',
 	endDate: '2024-04-20T04:00:00.000Z',
