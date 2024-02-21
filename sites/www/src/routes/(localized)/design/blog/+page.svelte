@@ -28,7 +28,7 @@
 				<h2 class="c-text-h2 font-medium" use:intersect>{t.codeblock.title}</h2>
 				<p use:intersect>{@html t.codeblock.description}</p>
 				<div class="prose max-w-full" use:intersect>
-					<pre class="shiki github-dark-dimmed"><code
+					<pre class=""><code
 							><span class="line" data-line="1">```{t.codeblock.language}</span>
 <span class="line" data-line="2">{t.codeblock.sourceCode}</span>
 <span class="line" data-line="3">```</span></code
@@ -45,7 +45,7 @@
 				<h3 class="c-text-h3 font-medium" use:intersect>Diff</h3>
 				<p use:intersect>{t.codeblock.diff.description}</p>
 				<div class="prose max-w-full" use:intersect>
-					<pre class="shiki github-dark-dimmed"><code
+					<pre class=""><code
 							><span class="line" data-line="1">```javascript</span>
 <span class="line" data-line="2">// :::diff -</span>
 <span class="line" data-line="3">// export const OLD = 'old';</span>
@@ -66,7 +66,7 @@
 				<h3 class="c-text-h3 font-medium" use:intersect>Highlight</h3>
 				<p use:intersect>{t.codeblock.highlight.description}</p>
 				<div class="prose max-w-full" use:intersect>
-					<pre class="shiki github-dark-dimmed"><code
+					<pre class=""><code
 							><span class="line" data-line="1">```javascript</span>
 <span class="line" data-line="2">{'function handle({ event, resolve }) {'}</span>
 <span class="line" data-line="3">  // :::highlight</span>
@@ -105,9 +105,21 @@
 						{t.components.callout.examples.error}
 					</li>
 				</ul>
+				<p use:intersect>{@html t.components.callout.icon}</p>
+				<ul class="space-y-6">
+					<li class="c-callout c-callout--success c-callout--icon-bulb" use:intersect>
+						{t.components.callout.examples.bulb}
+					</li>
+					<li class="c-callout c-callout--success c-callout--icon-confetti" use:intersect>
+						{t.components.callout.examples.confetti}
+					</li>
+					<li class="c-callout c-callout--success c-callout--icon-trophy" use:intersect>
+						{t.components.callout.examples.trophy}
+					</li>
+				</ul>
 				<p use:intersect>{@html t.components.callout.container}</p>
 				<div class="prose max-w-full" use:intersect>
-					<pre class="shiki github-dark-dimmed"><code
+					<pre class=""><code
 							><span class="line" data-line="1">:::div c-callout c-callout--info</span>
 <span class="line" data-line="2">{t.components.callout.examples.info}</span>
 <span class="line" data-line="3">:::</span></code

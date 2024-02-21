@@ -56,11 +56,15 @@ export const en = {
 				To use, you need to add to your HTML element the class `c-callout` together with one of the following modifiers: \
 				`c-callout--info`, `c-callout--success`, `c-callout--warning`, `c-callout-error`.\
 				',
+			icon: 'It is also possible to specify some additional special variant to change the appearance of the top left icon.',
 			examples: {
 				info: 'Use `c-callout-info` to express a generic notification or instruction',
 				success: 'Use `c-callout-success` to express a completion, or encouragement',
 				warning: 'Use `c-callout-warning` to express, unsurprisingly, a warning',
 				error: 'Use `c-callout-error` to express a bad scenario, an error, or discouragement',
+				bulb: 'Combine with `c-callout--icon-bulb` to express creativity',
+				confetti: 'Combine with `c-callout--icon-confetti` to express celebration',
+				trophy: 'Combine with `c-callout-icon-trophy` to express gratitude',
 			},
 			container:
 				'\

@@ -56,12 +56,17 @@ export const vi = {
 			Để sử dụng, bạn cần thêm vào phần tử HTML một lớp `c-callout` và một trong nhưng biến thể sau đây: \
 			`c-callout--info`, `c-callout--success`, `c-callout--warning`, `c-callout-error`.\
 			',
+			icon: 'Ngoài ra, ta còn có thể kết hợp một số biến thể đặc biệt giúp thay đổi biểu tượng ở góc trái, trên.',
 			examples: {
 				info: 'Dùng `c-callout-info` để thể hiện một hướng dẫn, thông báo chung',
 				success:
 					'Dùng `c-callout-success` để thể hiện một chi tiết mang tính hoàn thiện, thành công, khuyến khích',
 				warning: 'Dùng `c-callout-warning` để thể hiện một cảnh báo',
 				error: 'Dùng `c-callout-error` để thể hiện một thông báo lỗi hoặc một tình huống xấu',
+				bulb: 'Kết hợp với `c-callout--icon-bulb` để thể hiện ý tưởng hoặc sự sáng tạo',
+				confetti:
+					'Kết hợp với `c-callout--icon-confetti` để thể hiện một điều mới mẻ hoặc sự vui mừng',
+				trophy: 'Kết hợp vói `c-callout--icon-trophy` để thể hiện sự tuyên dương, tán thưởng',
 			},
 			container:
 				'\
