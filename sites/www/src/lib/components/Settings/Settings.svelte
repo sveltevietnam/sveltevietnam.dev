@@ -301,7 +301,7 @@
 			</label>
 		</div>
 
-		<div class="c-callout c-callout--info space-y-6">
+		<div class="space-y-6">
 			<p>{@html t.splashScreen.description}</p>
 			<SplashPlayground />
 		</div>
