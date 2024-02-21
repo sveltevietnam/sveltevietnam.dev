@@ -2,6 +2,7 @@ import { en as common } from '../../../translation/en';
 
 export const en = {
 	...common,
+	hostedBy: 'Hosted by',
 	timeline: {
 		...common.timeline,
 		introduction: 'Meet and Greet',

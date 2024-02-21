@@ -12,6 +12,7 @@
 
 	import type { PageData } from './$types';
 	import ElectronicTicket from './_page/components/ElectronicTicket.svelte';
+	import dsvLogoImage from './_page/images/designveloper_logo.webp';
 
 	export let data: PageData;
 
@@ -34,6 +35,19 @@
 				</p>
 				<p>{event.location}</p>
 			</div>
+			<p class="font-lora text-xl">
+				<span class="text-fg-100">{t.hostedBy}</span>
+				<a class="c-link c-link--lazy" href="https://www.designveloper.com">
+					<img
+						src={dsvLogoImage}
+						alt="Designveloper: realizing ideas"
+						height="40"
+						width="40"
+						class="inline-block"
+					/>
+					Designveloper
+				</a>
+			</p>
 		</div>
 	</section>
 

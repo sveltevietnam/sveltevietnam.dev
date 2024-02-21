@@ -2,6 +2,7 @@ import { vi as common } from '../../../translation/vi';
 
 export const vi = {
 	...common,
+	hostedBy: 'Đồng tổ chức bởi',
 	timeline: {
 		...common.timeline,
 		introduction: 'Giới thiệu và làm quen',
