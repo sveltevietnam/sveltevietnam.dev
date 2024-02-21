@@ -1,5 +1,11 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.11
+
+### Minor Changes
+
+- [`c874c26`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/c874c2670270f29ca06658545d922001580c5641) Thanks [@vnphanquang](https://github.com/vnphanquang)! - add --icon-confetti and --icon-trophy variants to c-callout component
+
 ## 1.0.0-next.10
 
 ### Patch Changes
