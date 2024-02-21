@@ -31,7 +31,6 @@
 			<div class="space-y-2">
 				<p>
 					<DateTimeRangeDisplayText startDate={event.startDate} endDate={event.endDate} />
-					({t.tentative})
 				</p>
 				<p>{event.location}</p>
 			</div>
