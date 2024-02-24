@@ -26,7 +26,6 @@ LICENSE
 *.toml
 *.prisma
 .svelte-kit/
-.vercel/
 api/
 **/*generated/
 *.md.svelte

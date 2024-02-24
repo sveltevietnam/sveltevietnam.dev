@@ -9,6 +9,5 @@ dist
 *.npmignore
 examples/**
 .svelte-kit/
-.vercel/
 **/*generated/
 *.md.svelte

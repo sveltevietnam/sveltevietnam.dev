@@ -4,7 +4,7 @@
 		"dts": {
 			"dependsOn": ["^dts"],
 			"inputs": ["src/**/*.js", "*.config.js", "src/**/*.ts"],
-			"outputs": ["types/**"],
+			"outputs": ["types/index.d.ts", "types/index.d.ts.map"],
 			"cache": true
 		},
 		"test:ci": {
@@ -32,7 +32,6 @@
 		},
 		"dev": {
 			"dependsOn": ["@sveltevietnam/ui#build", "@internals/isc#dts", "@internals/utils#dts"],
-			"outputs": ["**/*.dist.json", "types/index.d.ts"],
 			"cache": false,
 			"persistent": true
 		}
