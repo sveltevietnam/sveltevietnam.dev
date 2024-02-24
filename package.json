@@ -25,8 +25,8 @@
 		"test:ci": "turbo run test:ci --parallel",
 		"dts": "turbo run dts --parallel",
 		"setup": "pnpm install && pnpm dts",
-		"prepare": "husky install",
-		"build:publish": "pnpm build --filter @sveltevietnam/ui",
+		"prepare": "husky || true",
+		"build:publish": "pnpm build --filter ./libs/*",
 		"ci:version": "changeset version && pnpm install --no-frozen-lockfile",
 		"ci:publish": "pnpm build:publish && changeset publish && pnpm install"
 	},
