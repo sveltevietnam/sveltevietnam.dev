@@ -70,16 +70,30 @@
 	onMount(() => {
 		hydrated = true;
 	});
+
+	$: id = groupContext?.display === 'files' ? filename : tab;
+	/** @type {import('svelte/elements').ChangeEventHandler<HTMLInputElement>} */
+	const onChange = (e) => {
+		if (/** @type {HTMLInputElement} */ (e.target).checked) {
+			groupContext?.onSelect(id);
+		}
+	};
 </script>
 
 {#if groupContext}
-	{@const value = groupContext.display === 'files' ? filename : tab}
 	<label class="codeblock-label" class:codeblock-label--filename={groupContext.display === 'files'}>
 		{#if groupContext.display === 'files'}
 			<FileIcon {lang} />
 		{/if}
-		<span>{value}</span>
-		<input class="codeblock-input" {value} type="radio" name={groupContext.name} />
+		<span>{id}</span>
+		<input
+			class="codeblock-input"
+			value={id}
+			type="radio"
+			name={groupContext.name}
+			on:change={onChange}
+			checked={groupContext.initial === id}
+		/>
 	</label>
 {/if}
 

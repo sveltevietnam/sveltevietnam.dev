@@ -5,6 +5,8 @@
 	 * @typedef EnhancedCodeBlockGroupContext
 	 * @property {string} name - name for the code block group, mapped to the checkbox input `name` field
 	 * @property {'files' | 'tabs'} display - display mode of the code block group
+	 * @property {string} initial - initial code block identifier to display
+	 * @property {(current: string) => void} onSelect - callback when a code block is selected
 	 */
 
 	const ENHANCED_CODE_BLOCK_GROUP_CONTEXT = 'enhanced:codeblock:group';
@@ -32,8 +34,17 @@
 	export let name;
 	/** @type {EnhancedCodeBlockGroupContext['display']}*/
 	export let display = 'files';
+	/** @type {string} */
+	export let initial = '';
+	/** @type {string} */
+	export let current = '';
 
-	setEnhancedBlockGroupContext({ name, display });
+	/** @type {EnhancedCodeBlockGroupContext['onSelect']} */
+	const onSelect = (_current) => {
+		current = _current;
+	};
+
+	setEnhancedBlockGroupContext({ name, display, initial, onSelect });
 </script>
 
 <div class="codeblock-group codeblock-group--{display}" style="--cols: {cols};">
