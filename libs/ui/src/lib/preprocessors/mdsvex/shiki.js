@@ -193,6 +193,8 @@ function transformer() {
 					line.properties['data-line'] = lineNumber;
 				}
 			}
+
+			this.pre.properties['data-num-lines'] = lineNumber;
 		},
 	};
 }
