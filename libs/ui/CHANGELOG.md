@@ -1,5 +1,21 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.14
+
+### Minor Changes
+
+- [`277eeb0`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/277eeb0d8ccb578fec564a342c79da13da18f35f) Thanks [@vnphanquang](https://github.com/vnphanquang)! - allow hiding line numbers via explicit `hideLineNumber` props
+
+- [`0f5708c`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/0f5708cf75eed3cf0ec9779dbea8b47c8e500484) Thanks [@vnphanquang](https://github.com/vnphanquang)! - shiki: hide line number if only one line
+
+- [`18f2042`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/18f2042da44ff69d8132d5d140f28303c94a749d) Thanks [@vnphanquang](https://github.com/vnphanquang)! - enhanced code block group - two display modes, `tabs` and `files` (default)
+
+### Patch Changes
+
+- [`bb24026`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/bb24026158b0adf7577159ec0f7fedbf7c36e716) Thanks [@vnphanquang](https://github.com/vnphanquang)! - enhance-code-block: (group) change `id` prop to `name` for better consistency with html input, allow explicit declaration
+
+- [`7daf879`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/7daf879013943fbffb0d2f1de4b5986e21fde32b) Thanks [@vnphanquang](https://github.com/vnphanquang)! - `.first-row-last-col-fill` in `EnhancedCodeBlockGroup` should shift down 1px relatively to itself to align with lables on the left
+
 ## 1.0.0-next.13
 
 ### Patch Changes
