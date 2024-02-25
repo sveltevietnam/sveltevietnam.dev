@@ -9,7 +9,7 @@
 	/** @type {string}*/
 	export let lang = '';
 	/** @type {string}*/
-	export let label = '';
+	export let tab = '';
 	/** @type {string} */
 	export let filename = '';
 	/** @type {boolean} */
@@ -73,9 +73,13 @@
 </script>
 
 {#if groupContext}
-	<label class="codeblock-label">
-		<span>{label}</span>
-		<input class="codeblock-input" value={label} type="radio" name={groupContext.name} />
+	{@const value = groupContext.display === 'files' ? filename : tab}
+	<label class="codeblock-label" class:codeblock-label--filename={groupContext.display === 'files'}>
+		{#if groupContext.display === 'files'}
+			<FileIcon {lang} />
+		{/if}
+		<span>{value}</span>
+		<input class="codeblock-input" {value} type="radio" name={groupContext.name} />
 	</label>
 {/if}
 
@@ -87,7 +91,7 @@
 	class:grouped={!!groupContext}
 	class:hide-line-number={hideLineNumber}
 >
-	{#if filename}
+	{#if filename && (!groupContext || groupContext.display !== 'files')}
 		<p class="codeblock-filename">
 			<FileIcon {lang} />
 			{filename}
@@ -137,49 +141,6 @@
 </section>
 
 <style>
-	:where(.codeblock) {
-		z-index: 1;
-		margin-block: 24px;
-
-		&:where(.grouped) {
-			grid-column: 1 / span calc(var(--cols) + 1);
-			grid-row: 2;
-			margin-block: 0;
-
-			& :global(pre) {
-				border-top-left-radius: 0;
-			}
-		}
-
-		&:has(.codeblock-filename) {
-			position: relative;
-
-			& :where(.codeblock-pre-container) {
-				position: static;
-			}
-
-			& :where(.codeblock-copy-btn) {
-				top: 10px;
-				right: 16px;
-
-				padding: 0;
-
-				opacity: 1;
-				background-color: transparent;
-				border-width: 0;
-			}
-
-			& :global(pre) {
-				border-top-left-radius: 0;
-				border-top-right-radius: 0;
-			}
-		}
-
-		& :global(pre) {
-			margin-block: 0;
-		}
-	}
-
 	:where(.codeblock-pre-container) {
 		position: relative;
 	}
@@ -188,7 +149,7 @@
 		margin: 0;
 		padding: 12px 16px;
 
-		font-size: 12px;
+		font-size: theme('fontSize.xs');
 		line-height: normal;
 
 		background-color: var(--color-pre-bg);
@@ -291,7 +252,7 @@
 		padding-block: 12px;
 		padding-inline: var(--padding-left) var(--padding-right);
 
-		font-size: 14px;
+		font-size: theme('fontSize.sm');
 		line-height: normal;
 		color: var(--color-pre-fg);
 
@@ -299,12 +260,16 @@
 		border-style: solid;
 		border-top-width: 1px;
 
+		&:where(.codeblock-label--filename) {
+			font-size: theme('fontSize.xs');
+		}
+
 		&:first-of-type {
 			border-left-width: 1px;
 			border-top-left-radius: 0.375rem;
 		}
 
-		&:last-of-type {
+		&:last-of-type:not(.codeblock-label--filename) {
 			border-right-width: 1px;
 			border-top-right-radius: 0.375rem;
 		}
@@ -325,6 +290,60 @@
 
 	:where(.codeblock-label:has(.codeblock-input:not(:checked))) + :where(.codeblock) {
 		display: none;
+	}
+
+	:where(.codeblock) {
+		z-index: 1;
+		margin-block: 24px;
+
+		&:where(.grouped) {
+			grid-column: 1 / span calc(var(--cols) + 1);
+			grid-row: 2;
+			margin-block: 0;
+
+			& :global(pre) {
+				border-top-left-radius: 0;
+			}
+		}
+
+		& :global(pre) {
+			margin-block: 0;
+		}
+	}
+
+	:where(.codeblock:has(.codeblock-filename)) {
+		position: relative;
+
+		& :where(.codeblock-pre-container) {
+			position: static;
+		}
+	}
+
+	:where(.codeblock-label.codeblock-label--filename + .codeblock) {
+		position: static;
+
+		& :where(.codeblock-pre-container) {
+			position: static;
+		}
+	}
+
+	:where(.codeblock:has(.codeblock-filename)),
+	:where(.codeblock-label.codeblock-label--filename + .codeblock) {
+		& :global(pre) {
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+		}
+
+		& :where(.codeblock-copy-btn) {
+			top: 10px;
+			right: 16px;
+
+			padding: 0;
+
+			opacity: 1;
+			background-color: transparent;
+			border-width: 0;
+		}
 	}
 
 	:global(.codeblock-group):not(:has(.codeblock-input:checked)) {
