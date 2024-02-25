@@ -1,5 +1,11 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.13
+
+### Patch Changes
+
+- [`118dc47`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/118dc4760c44cc1734b5af27db2a64a0cb1961ad) Thanks [@vnphanquang](https://github.com/vnphanquang)! - safelisting `.shiki` class for typography preset
+
 ## 1.0.0-next.12
 
 ### Patch Changes
