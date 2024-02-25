@@ -125,16 +125,6 @@
 			min-width: 100%;
 		}
 
-		&[data-num-lines='1'] {
-			& .line {
-				padding-left: 2ch;
-
-				&::before {
-					content: none;
-				}
-			}
-		}
-
 		& .line {
 			--padding-inline-start: 1ch;
 			--padding-inline-end: 3ch;
@@ -221,6 +211,16 @@
 					background-color: var(--color-bg-error) !important;
 				}
 			}
+		}
+	}
+}
+
+:is(.prose pre:--is-prose[data-num-lines='1'], .hide-line-number) {
+	& .line {
+		padding-left: 2ch;
+
+		&::before {
+			content: none;
 		}
 	}
 }

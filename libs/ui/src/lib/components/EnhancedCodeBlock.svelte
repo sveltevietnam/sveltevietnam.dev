@@ -12,6 +12,8 @@
 	export let label = '';
 	/** @type {string} */
 	export let filename = '';
+	/** @type {boolean} */
+	export let hideLineNumber = false;
 
 	const groupContext = getEnhancedCodeBlockGroupContext();
 
@@ -83,6 +85,7 @@
 	on:mouseenter={onMouseEnterContainer}
 	on:mouseleave={onMouseLeaveContainer}
 	class:grouped={!!groupContext}
+	class:hide-line-number={hideLineNumber}
 >
 	{#if filename}
 		<p class="codeblock-filename">
