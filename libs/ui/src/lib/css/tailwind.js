@@ -27,6 +27,7 @@ export const core = {
 /** @type {import('tailwindcss/types/config.js').PresetsConfig} */
 export const typography = {
 	darkMode: /** @type {any} */ (''),
+	safelist: ['shiki'],
 	theme: {
 		extend: {
 			/** @param {{ theme: import('tailwindcss/types/config.js').PluginUtils['theme']}} param0 */

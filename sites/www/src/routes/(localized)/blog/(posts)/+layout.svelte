@@ -142,7 +142,7 @@
 		<div class="post-grid mt-[60px]">
 			{#key $lang && data.pathname}
 				<section
-					class="post-content prose-svelte-vn prose max-w-full dark:prose-invert"
+					class="post-content prose max-w-full dark:prose-invert"
 					use:toc={{
 						store: tocStore,
 						selector: ':where(h2,h3,h4,h5,h6)',
