@@ -10,7 +10,7 @@
 	export let lang = '';
 	/** @type {string}*/
 	export let label = '';
-	/** @type {string}*/
+	/** @type {string} */
 	export let filename = '';
 
 	const groupContext = getEnhancedCodeBlockGroupContext();
@@ -73,7 +73,7 @@
 {#if groupContext}
 	<label class="codeblock-label">
 		<span>{label}</span>
-		<input class="codeblock-input" value={label} type="radio" name={groupContext.id} />
+		<input class="codeblock-input" value={label} type="radio" name={groupContext.name} />
 	</label>
 {/if}
 

@@ -3,7 +3,7 @@
 
 	/**
 	 * @typedef EnhancedCodeBlockGroupContext
-	 * @property {string} id
+	 * @property {string} name
 	 */
 
 	const ENHANCED_CODE_BLOCK_GROUP_CONTEXT = 'enhanced:codeblock:group';
@@ -28,9 +28,9 @@
 	/** @type {number} */
 	export let cols;
 	/** @type {string}*/
-	export let id;
+	export let name;
 
-	setEnhancedBlockGroupContext({ id });
+	setEnhancedBlockGroupContext({ name });
 </script>
 
 <div class="codeblock-group" style="--cols: {cols};">

@@ -108,15 +108,17 @@ export function enhanceCodeBlock(config = {}) {
 								(e.name === enhancedElement || e.name === components.one.name),
 						);
 
-						let uuid = (++globalCounter).toString();
-						if (crypto?.randomUUID) {
-							uuid = crypto.randomUUID();
+						let additionalAttributes = ` cols=${codeBlockChildren.length}`;
+						const nameAttr = node.attributes.find((attr) => attr.name === 'name');
+						if (!nameAttr) {
+							let uuid = (++globalCounter).toString();
+							if (crypto?.randomUUID) {
+								uuid = crypto.randomUUID();
+							}
+							additionalAttributes += ` name="${uuid}"`;
 						}
 
-						s.appendLeft(
-							node.start + enhancedElement.length,
-							` cols=${codeBlockChildren.length} id=${uuid}`,
-						);
+						s.appendLeft(node.start + enhancedElement.length, additionalAttributes);
 
 						replaceNodeName(node, components.group);
 						if (isGroupImported) return;
