@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.41
+
+### Patch Changes
+
+- [`8d9a13a`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/8d9a13a7a5e2eab013a280eb0b7e3d2b480f0c68) Thanks [@vnphanquang](https://github.com/vnphanquang)! - enhanced code block group - allow specifiying initial code block via the `initial` prop and binding the current code block id via the `current` prop
+
 ## 1.0.0-next.40
 
 ### Minor Changes
