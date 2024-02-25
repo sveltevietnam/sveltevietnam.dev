@@ -59,7 +59,11 @@
 
 <style>
 	.first-row-last-col-fill {
+		position: relative;
+		bottom: -1px;
+
 		grid-column: -2;
+
 		border-color: theme('colors.outline.DEFAULT');
 		border-style: solid;
 		border-top-right-radius: 4px;
