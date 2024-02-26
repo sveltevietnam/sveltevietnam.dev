@@ -77,7 +77,10 @@ function parseMetadata(code, meta) {
 	const match = metaStr.match(/(.*)(?<!\/)=(.*)/);
 	if (match) meta[match[1].trim()] = match[2].trim();
 
-	return parseMetadata(code.slice(code.indexOf('\n') + 1), meta);
+	const newLineIndex = code.indexOf('\n') + 1;
+	if (!newLineIndex) return code;
+
+	return parseMetadata(code.slice(newLineIndex), meta);
 }
 
 const STATUSES = ['info', 'success', 'warning', 'error'];
