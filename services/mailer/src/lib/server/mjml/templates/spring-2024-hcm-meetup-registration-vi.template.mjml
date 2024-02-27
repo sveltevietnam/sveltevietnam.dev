@@ -27,7 +27,7 @@
 		<mj-section padding-top="0">
 			<mj-column>
         <mj-image
-					width="700px"
+					width="632px"
 					src="{{mailerURL}}/images/spring-2024-hcm-meetup-ticket.jpg"
 					padding-top="20px"
 					padding-bottom="40px"
@@ -38,7 +38,7 @@
 					<p>Xin chào {{name}},</p>
 					<p>
 						Cảm ơn bạn đã đăng ký tham gia sự kiện
-						"<a href="{{wwwURL}}/vi/su-kien/2024-04-gap-mat-xuan-giap-thin-2024-ho-chi-minh?email={{email}}&name={{name}}">
+						"<a href="{{wwwURL}}/vi/su-kien/2024-04-gap-mat-xuan-giap-thin-2024-ho-chi-minh?email={{email}}&name={{name}}" target="_blank">
 							Gặp mặt Xuân Giáp Thìn 2024 - Hồ Chí Minh
 						</a>".
 						Rất vui được chào đón bạn đến với cộng đồng và hy vọng sẽ nhận được sự tham gia và
@@ -48,23 +48,30 @@
 					<ul>
 						<li>
 							Sự kiện sẽ diễn ra vào
-							<strong>ngày 20, tháng 4, năm 2024, lúc 9 giờ sáng theo giờ Việt Nam.</strong>.
+							<strong>ngày 20, tháng 4, năm 2024, lúc 9 giờ sáng theo giờ Việt Nam</strong>.
 						</li>
 						<li>
 							Sự kiện được tổ chức
 							tại
-							<a href="https://maps.app.goo.gl/ymGh3Djmwjnb7ohu5">55 Phó Đức Chính, Quận 1, TP. Hồ Chí Minh</a>
+							<a href="https://maps.app.goo.gl/ymGh3Djmwjnb7ohu5" target="_blank">tầng 6, 55 Phó Đức Chính, Quận 1, TP. Hồ Chí Minh</a>
 							nhờ sự tài trợ của công ty
-							<a href="https://www.designveloper.com/">Designveloper</a>.
+							<a href="https://www.designveloper.com/" target="_blank">Designveloper</a>.
 						</li>
-						<li>[insert instruction for parking and navigating the venue]</li>
+						<li>Hướng dẫn gửi xe và lối vào sẽ được cung cấp khi bạn đến nơi.</li>
 					</ul>
 
 					<p>
 						Hãy tham gia
-						<a href="https://discord.sveltevietnam.dev">Discord Svelte Việt Nam</a>
+						<a href="https://discord.sveltevietnam.dev" target="_blank">Discord Svelte Việt Nam</a>
 						để kết nối và nhận các thông báo thường xuyên hơn từ cộng đồng nhé.
 					</p>
+
+					<p>
+						Nếu bạn có câu hỏi hoặc cần trợ giúp, hãy liên hệ với ban tổ chức thông qua
+						<a href="https://discord.sveltevietnam.dev" target="_blank">Discord</a> hoặc
+						<a href="mailto:events@sveltevietnam.dev">events@sveltevietnam.dev</a>.
+					</p>
+
 					<p>Hẹn gặp bạn tại sự kiện!</p>
 					<p>Svelte Việt Nam</p>
 				</mj-text>
