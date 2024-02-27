@@ -77,9 +77,9 @@
 	>
 		<div class="__header">
 			{#if name || email}
-				<Avatar size={40} gravatar={email} uiAvatar={name} class="__avatar" />
+				<Avatar size={32} gravatar={email} uiAvatar={name} class="__avatar" />
 			{:else}
-				<svg inline-src="lucide/circle-user-round" class="__avatar" width="40" height="40" />
+				<svg inline-src="lucide/circle-user-round" class="__avatar" width="32" height="32" />
 			{/if}
 			{#if name}
 				<p class="mr-auto">{name}</p>
@@ -95,35 +95,38 @@
 		</div>
 		<div class="__title">
 			<img
-				width="584"
-				height="287"
+				width="546"
+				height="248"
 				src={bgDetailImg}
 				alt="hoa đào, hoa mai"
 				class="__title-bg-details-img"
 			/>
 			<img
-				width="490"
-				height="98"
+				width="518"
+				height="85"
 				src={titleImg}
 				alt="highlighted texts with gradient colors that says 2024 Spring Meetup Svelte Vietnam"
 				class="__title-img"
 			/>
 		</div>
 		<div class="__footer">
-			<p>
-				<span>Hosted by</span>
-				<img
-					src={desgnveloperLogoImg}
-					alt="designveloper"
-					width="24"
-					height="24"
-					class="__dsv-logo"
-				/>
-				<span>Designveloper</span>
-			</p>
-			<div class="shrink-0 text-right">
+			<div class="__organizer">
+				<p class="__svelte-vietnam">Organized by Svelte Vietnam</p>
+				<p>
+					<span>Hosted by</span>
+					<img
+						src={desgnveloperLogoImg}
+						alt="designveloper"
+						width="24"
+						height="24"
+						class="__dsv-logo"
+					/>
+					<span>Designveloper</span>
+				</p>
+			</div>
+			<div class="__time-location shrink-0 text-right">
 				<p>April 20th, 2024, 09:00 GMT+0700</p>
-				<p>55 Phó Đức Chính, Dist. 1, Hồ Chí Minh City</p>
+				<p>55 Pho Duc Chinh, Dist. 1, Ho Chi Minh</p>
 			</div>
 		</div>
 	</div>
@@ -148,14 +151,13 @@
 		overflow: hidden;
 		display: grid;
 		grid-template-columns: 1fr;
-		gap: 1.5rem;
+		gap: 1rem;
 
 		width: 100%;
 		margin-inline: auto;
 		padding: 1.5rem;
 
 		font-family: theme('fontFamily.lora');
-		font-weight: theme('fontWeight.medium');
 		line-height: theme('lineHeight.normal');
 		color: #393939;
 
@@ -164,7 +166,7 @@
 
 		@container e-ticket (min-width: 600px) {
 			gap: 2.5rem;
-			max-width: 720px;
+			max-width: 632px;
 			padding-block: 2rem;
 			padding-inline: 2.5rem;
 		}
@@ -175,33 +177,26 @@
 		z-index: 1;
 
 		display: flex;
-		gap: 1rem;
+		gap: 0.5rem;
 		align-items: center;
 
+		font-size: theme('fontSize.lg');
+
 		@container e-ticket (min-width: 600px) {
-			height: 40px;
-			font-size: theme('fontSize.2xl');
+			gap: 1rem;
 		}
 	}
 
 	:global(.e-ticket .__avatar) {
 		flex-shrink: 0;
 		width: auto;
-		height: 30px;
+		height: 32px;
 		border-radius: theme('borderRadius.full');
-
-		@container e-ticket (min-width: 600px) {
-			height: 40px;
-		}
 	}
 
 	.__sv-logo {
 		width: auto;
-		height: 30px;
-
-		@container e-ticket (min-width: 600px) {
-			height: 40px;
-		}
+		height: 32px;
 	}
 
 	.__title {
@@ -214,37 +209,29 @@
 	.__title-bg-details-img {
 		position: absolute;
 		z-index: 0;
-		top: -58px;
-		left: -50px;
+		top: -60px;
+		left: 4%;
 
-		width: auto;
-		max-width: none;
-		height: 200px;
+		width: 400px;
+		max-width: 100%;
+		height: auto;
 
 		opacity: 0.25;
 
 		@container e-ticket (min-width: 600px) {
-			top: -80px;
-			left: -60px;
-			height: 287px;
-		}
-
-		@container e-ticket (max-width: 400px) {
-			top: -50px;
-			left: -70px;
-			height: 180px;
+			top: -87px;
+			left: -25px;
+			width: 546px;
 		}
 	}
 
 	.__title-img {
 		position: relative;
 		z-index: 1;
-		width: auto;
-		height: 72px;
 
-		@container e-ticket (min-width: 600px) {
-			height: 98px;
-		}
+		width: 506px;
+		max-width: 100%;
+		height: auto;
 	}
 
 	.__footer {
@@ -252,7 +239,8 @@
 		z-index: 1;
 
 		display: flex;
-		gap: 0.5rem;
+		flex-direction: column;
+		gap: 0;
 		align-items: flex-end;
 		justify-content: space-between;
 
@@ -260,12 +248,41 @@
 		line-height: 1.75;
 
 		@container e-ticket (min-width: 600px) {
-			font-size: theme('fontSize.base');
+			font-size: theme('fontSize.sm');
 		}
 
-		@container e-ticket (max-width: 400px) {
-			flex-direction: column;
-			gap: 0;
+		@container e-ticket (min-width: 400px) {
+			flex-direction: row;
+			gap: 0.5rem;
+		}
+
+		@container e-ticket (max-width: 466px) {
+			& .__time-location {
+				display: none;
+			}
+
+			& .__organizer {
+				display: flex;
+				gap: 8px;
+				align-items: baseline;
+
+				width: fit-content;
+				margin-inline: auto;
+
+				font-size: theme('fontSize.2xs');
+				white-space: nowrap;
+			}
+
+			& .__svelte-vietnam::after {
+				content: '|';
+				margin-left: 8px;
+			}
+		}
+
+		@container e-ticket (max-width: 360px) {
+			& .__svelte-vietnam {
+				display: none;
+			}
 		}
 	}
 
@@ -276,7 +293,11 @@
 		vertical-align: text-bottom;
 
 		@container e-ticket (min-width: 600px) {
-			height: 24px;
+			height: 21px;
+		}
+
+		@container e-ticket (max-width: 466px) {
+			height: 15px;
 		}
 	}
 </style>

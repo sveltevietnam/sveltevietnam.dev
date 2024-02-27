@@ -34,26 +34,32 @@
 					<DateTimeRangeDisplayText startDate={event.startDate} endDate={event.endDate} />
 				</p>
 				<p>{event.location}</p>
+				<p>
+					<span class="text-fg-100">{t.hostedBy}</span>
+					<a class="c-link c-link--lazy" href="https://www.designveloper.com">
+						<img
+							src={dsvLogoImage}
+							alt="Designveloper: realizing ideas"
+							height="24"
+							width="24"
+							class="inline-block"
+						/>
+						Designveloper
+					</a>
+				</p>
 			</div>
-			<p class="font-lora text-xl">
-				<span class="text-fg-100">{t.hostedBy}</span>
-				<a class="c-link c-link--lazy" href="https://www.designveloper.com">
-					<img
-						src={dsvLogoImage}
-						alt="Designveloper: realizing ideas"
-						height="40"
-						width="40"
-						class="inline-block"
-					/>
-					Designveloper
-				</a>
-			</p>
 		</div>
 	</section>
 
-	<div class="mt-[20px] space-y-[60px] pb-[120px] tb:space-y-[120px] tb:pb-[200px]">
+	<div class="space-y-[60px] pb-[120px] tb:space-y-[120px] tb:pb-[200px]">
 		<section class="max-w-pad">
-			<div class="flex flex-col-reverse justify-center gap-8 pc:flex-row pc:items-end pc:gap-10">
+			<p class="c-callout c-callout--success c-callout--icon-megaphone" use:intersect>
+				{@html t.ticket.description}
+			</p>
+			<div
+				class="mt-10 flex flex-col-reverse justify-center gap-8 pc:flex-row pc:items-end pc:gap-10"
+				use:intersect
+			>
 				<div>
 					<h2 class="c-text-h3">{t.ticket.title}</h2>
 					<MailRegistrationForm
@@ -64,7 +70,7 @@
 					/>
 				</div>
 				<ElectronicTicket
-					class="flex-1"
+					class="pc:basis-[632px]"
 					name={data.name ?? undefined}
 					email={data.email ?? undefined}
 				/>

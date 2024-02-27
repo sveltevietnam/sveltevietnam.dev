@@ -1,11 +1,9 @@
 import type { Event, StructureEvent } from '$lib/data/events';
-// import { VNPHANQUANG } from '$lib/data/people';
+import { VNPHANQUANG } from '$lib/data/people';
 import { SVELTE_VIETNAM_ORG, structurePerson } from '$lib/data/structured';
 
-import ogImageEn from './images/thumbnail-en.jpg';
-import thumbnailEn from './images/thumbnail-en.jpg?enhanced';
-import ogImageVi from './images/thumbnail-vi.jpg';
-import thumbnailVi from './images/thumbnail-vi.jpg?enhanced';
+import ogImage from './images/thumbnail.jpg';
+import thumbnail from './images/thumbnail.jpg?enhanced';
 
 export const EVENT_ID = 'spring-2024-HCM-meetup';
 
@@ -25,25 +23,19 @@ export const event = {
 	startDate: '2024-04-20T02:00:00.000Z',
 	endDate: '2024-04-20T04:00:00.000Z',
 	location: {
-		vi: 'Designveloper, 55 Phó Đức Chính, Quận 1, TP. Hồ Chí Minh',
-		en: 'Designveloper, 55 Phó Đức Chính, Dist. 1, Hồ Chí Minh City',
+		vi: 'Designveloper, tầng 6, 55 Phó Đức Chính, Quận 1, TP. Hồ Chí Minh',
+		en: 'Designveloper, 6th floor, 55 Pho Duc Chinh, Dist. 1, Ho Chi Minh City',
 	},
 	speakers: {
-		// vnphanquang: VNPHANQUANG,
+		vnphanquang: VNPHANQUANG,
 	},
 	sponsors: [],
 	keywords: {
 		vi: ['sự kiện', 'cộng đồng', 'gặp mặt', 'Hồ Chí Minh'],
 		en: ['event', 'community', 'meetup', 'Ho Chi Minh'],
 	},
-	thumbnail: {
-		vi: thumbnailVi,
-		en: thumbnailEn,
-	},
-	ogImage: {
-		vi: ogImageVi,
-		en: ogImageEn,
-	},
+	thumbnail,
+	ogImage,
 } as const satisfies Event;
 
 export const structure = ((url, lEvent) => ({
@@ -57,25 +49,15 @@ export const structure = ((url, lEvent) => ({
 	image: `${url.origin}/${lEvent.ogImage}`,
 	eventStatus: 'https://schema.org/EventScheduled',
 	location: [
-		// {
-		// 	'@type': 'VirtualLocation',
-		// 	name: 'Youtube',
-		// 	url: '',
-		// },
-		// {
-		// 	'@type': 'VirtualLocation',
-		// 	name: 'Discord',
-		// 	url: '',
-		// },
 		{
 			'@type': 'Place',
 			name: 'Designveloper',
 			address: {
 				'@type': 'PostalAddress',
 				addressLocality: 'District 1',
-				addressCountry: 'Việt Nam',
-				addressRegion: 'Hồ Chí Minh City',
-				streetAddress: '55 Phó Đức Chính',
+				addressCountry: 'Vietnam',
+				addressRegion: 'Ho Chi Minh City',
+				streetAddress: '6th floor, 55 Pho Duc Chinh Street',
 				postalCode: '7000000',
 				url: 'https://maps.app.goo.gl/KwjvqenCp6e6WFj88',
 			},
