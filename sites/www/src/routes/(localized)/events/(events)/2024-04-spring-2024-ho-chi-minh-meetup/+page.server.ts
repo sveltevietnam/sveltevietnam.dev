@@ -1,14 +1,11 @@
 import {
-	// createSubscriptionRequest,
+	createSubscriptionRequest,
 	createSendRequest,
-	// MAILER_ERRORS,
-	// type CreateSubscriptionResponseDTO,
+	MAILER_ERRORS,
+	type CreateSubscriptionResponseDTO,
 } from '@internals/isc/mailer';
-import {
-	// error,
-	fail,
-} from '@sveltejs/kit';
-// import type { NumericRange } from '@sveltejs/kit';
+import { error, fail } from '@sveltejs/kit';
+import type { NumericRange } from '@sveltejs/kit';
 import { message, setError, superValidate } from 'sveltekit-superforms/server';
 
 import { MAILER_CLIENT_ID, MAILER_CLIENT_SECRET, MAILER_SERVICE_URL } from '$env/static/private';
@@ -136,37 +133,37 @@ export const actions = {
 			}
 		});
 
-		// if (form.data.checkbox) {
-		// 	const response = await fetch(
-		// 		await createSubscriptionRequest(
-		// 			{
-		// 				email,
-		// 				name,
-		// 				domain: 'event',
-		// 				language: locals.settings.language,
-		// 			},
-		// 			{
-		// 				clientID: MAILER_CLIENT_ID,
-		// 				clientSecret: MAILER_CLIENT_SECRET,
-		// 				serviceURL: MAILER_SERVICE_URL,
-		// 			},
-		// 		),
-		// 	);
-		// 	const data = (await response.json()) as CreateSubscriptionResponseDTO;
+		if (form.data.checkbox) {
+			const response = await fetch(
+				await createSubscriptionRequest(
+					{
+						email,
+						name,
+						domain: 'event',
+						language: locals.settings.language,
+					},
+					{
+						clientID: MAILER_CLIENT_ID,
+						clientSecret: MAILER_CLIENT_SECRET,
+						serviceURL: MAILER_SERVICE_URL,
+					},
+				),
+			);
+			const data = (await response.json()) as CreateSubscriptionResponseDTO;
 
-		// 	if (!data.success) {
-		// 		if (data.code === MAILER_ERRORS.SUBSCRIPTION_CREATE_ALREADY_EXISTS.code) {
-		// 			return message(form, {
-		// 				type: 'success',
-		// 				text: t.alreadyRegister,
-		// 			});
-		// 		}
-		// 		error(response.status as NumericRange<400, 599>, {
-		// 			code: data.code,
-		// 			message: '`${t.error.unknown} [CODE: ${data.code}]`',
-		// 		});
-		// 	}
-		// }
+			if (!data.success) {
+				if (data.code === MAILER_ERRORS.SUBSCRIPTION_CREATE_ALREADY_EXISTS.code) {
+					return message(form, {
+						type: 'success',
+						text: t.alreadyRegister,
+					});
+				}
+				error(response.status as NumericRange<400, 599>, {
+					code: data.code,
+					message: '`${t.error.unknown} [CODE: ${data.code}]`',
+				});
+			}
+		}
 
 		return message(form, {
 			type: 'success',
