@@ -1,5 +1,17 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.15
+
+### Minor Changes
+
+- [#239](https://github.com/sveltevietnam/sveltevietnam.dev/pull/239) [`c3b0e41`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/c3b0e411c108dd98e5f8a0915b2928c79695ee71) Thanks [@vnphanquang](https://github.com/vnphanquang)! - new c-callout--icon-megaphone variant
+
+### Patch Changes
+
+- [`5a5f5c0`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/5a5f5c0d8f3e2b1d29c9a47b81bc93022861c812) Thanks [@vnphanquang](https://github.com/vnphanquang)! - shiki mdsvex - avoid infinite loop in `parseMetadata` if there is only one line
+
+- [#239](https://github.com/sveltevietnam/sveltevietnam.dev/pull/239) [`2d23f88`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/2d23f887828fa7728721ae12effab5d6f516602b) Thanks [@vnphanquang](https://github.com/vnphanquang)! - deprecate cssnano, minifying should be done by vite
+
 ## 1.0.0-next.14
 
 ### Minor Changes
