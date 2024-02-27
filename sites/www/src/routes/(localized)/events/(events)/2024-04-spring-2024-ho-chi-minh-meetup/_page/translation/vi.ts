@@ -3,9 +3,21 @@ import { vi as common } from '../../../translation/vi';
 export const vi = {
 	...common,
 	hostedBy: 'Đồng tổ chức bởi',
+	becomeSpeaker: 'Trở thành diễn giả và chia sẻ trải nghiệm của bạn với cộng đồng',
 	timeline: {
 		...common.timeline,
 		introduction: 'Giới thiệu và làm quen',
+		share: 'Phiên chia sẻ',
+		share1: {
+			title: 'Svelte, Javascript, và Web',
+			about:
+				'\
+				Phải chăng bạn là một lập trình viên Svelte, lập trình viên Javascript, lập trình viên frontend, hay lập trình viên web? \
+				Svelte có vị trí như thế nào trong hệ sinh thái web hôm nay? Bạn có nên quan tâm? \
+				Cùng xem sao nhé! \
+			',
+		},
+		discussion: 'Thảo luận tự do',
 		closing: 'Lời kết',
 	},
 	ticket: {
