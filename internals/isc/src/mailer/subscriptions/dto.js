@@ -19,7 +19,7 @@ export const GetSubscriptionResponseSchema = zObject({
 export const CreateSubscriptionRequestSchema = zObject({
 	name: zString().min(1),
 	email: zString().min(1).email(),
-	domain: SubscriptionDomainSchema,
+	domain: SubscriptionDomainSchema.optional(),
 	language: LanguageSchema,
 });
 /**

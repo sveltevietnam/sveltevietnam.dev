@@ -55,15 +55,16 @@ export const POST: RequestHandler = async ({ request, locals, fetch }) => {
 
 	// pass through if email has already been registered for this domain
 	const subscription = await getSubscriptionByEmail(d1, email);
-	if (subscription?.[domain]) {
+	if (domain && subscription?.[domain]) {
 		throwMailerSvelteKitError('SUBSCRIPTION_CREATE_ALREADY_EXISTS');
 	}
 
 	// otherwise upsert subscription
-	await upsertSubscription(d1, domain, { name, email });
+	await upsertSubscription(d1, { name, email }, domain);
 
-	// send welcome email if first time subscribing
-	if (!subscription?.email && !subscription?.job) {
+	// send welcome email if first time subscribing,
+	// but only do so if user explicitly subscribed to one domain
+	if (domain && !subscription?.email && !subscription?.job && !subscription?.blog) {
 		// TODO: message queue, retry?
 		const sendRequest = await createSendRequest(
 			{

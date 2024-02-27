@@ -25,20 +25,29 @@ export function getSubscriptionByEmail(d1: D1Database, email: string) {
 
 export function upsertSubscription(
 	d1: D1Database,
-	domain: SubscriptionDomain,
 	subscription: Pick<Subscription, 'email' | 'name'>,
+	domain?: SubscriptionDomain,
 ) {
 	return d1
 		.prepare(
+			domain
+				? `
+				INSERT INTO
+					${TABLE_NAME} (email,name,${domain},created_at)
+				VALUES(?1,?2,1,?3)
+				ON CONFLICT (email) DO UPDATE SET
+					name=?2,
+					${domain}=1,
+					updated_at=?3
 			`
-      INSERT INTO
-        ${TABLE_NAME} (email,name,${domain},created_at)
-      VALUES(?1,?2,1,?3)
-      ON CONFLICT (email) DO UPDATE SET
-        name=?2,
-        ${domain}=1,
-        updated_at=?3
-    `,
+				: `
+				INSERT INTO
+					${TABLE_NAME} (email,name,created_at)
+				VALUES(?1,?2,?3)
+				ON CONFLICT (email) DO UPDATE SET
+					name=?2,
+					updated_at=?3
+			`,
 		)
 		.bind(subscription.email, subscription.name, new Date().toISOString())
 		.run();

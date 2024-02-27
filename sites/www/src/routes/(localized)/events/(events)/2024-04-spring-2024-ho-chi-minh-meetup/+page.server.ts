@@ -133,36 +133,34 @@ export const actions = {
 			}
 		});
 
-		if (form.data.checkbox) {
-			const response = await fetch(
-				await createSubscriptionRequest(
-					{
-						email,
-						name,
-						domain: 'event',
-						language: locals.settings.language,
-					},
-					{
-						clientID: MAILER_CLIENT_ID,
-						clientSecret: MAILER_CLIENT_SECRET,
-						serviceURL: MAILER_SERVICE_URL,
-					},
-				),
-			);
-			const data = (await response.json()) as CreateSubscriptionResponseDTO;
+		const response = await fetch(
+			await createSubscriptionRequest(
+				{
+					email,
+					name,
+					domain: form.data.checkbox ? 'event' : undefined,
+					language: locals.settings.language,
+				},
+				{
+					clientID: MAILER_CLIENT_ID,
+					clientSecret: MAILER_CLIENT_SECRET,
+					serviceURL: MAILER_SERVICE_URL,
+				},
+			),
+		);
+		const data = (await response.json()) as CreateSubscriptionResponseDTO;
 
-			if (!data.success) {
-				if (data.code === MAILER_ERRORS.SUBSCRIPTION_CREATE_ALREADY_EXISTS.code) {
-					return message(form, {
-						type: 'success',
-						text: t.alreadyRegister,
-					});
-				}
-				error(response.status as NumericRange<400, 599>, {
-					code: data.code,
-					message: '`${t.error.unknown} [CODE: ${data.code}]`',
+		if (!data.success) {
+			if (data.code === MAILER_ERRORS.SUBSCRIPTION_CREATE_ALREADY_EXISTS.code) {
+				return message(form, {
+					type: 'success',
+					text: t.alreadyRegister,
 				});
 			}
+			error(response.status as NumericRange<400, 599>, {
+				code: data.code,
+				message: '`${t.error.unknown} [CODE: ${data.code}]`',
+			});
 		}
 
 		return message(form, {
