@@ -3,6 +3,7 @@
 
 	import type { Breadcrumb } from '$lib/routing/routing.server';
 
+	export let scrollIndicator: 'ellipsis' | 'blur' = 'blur';
 	export let breadcrumbs: Breadcrumb[];
 	let cls = '';
 	export { cls as class };
@@ -30,6 +31,7 @@
 	data-scrollable={scrollable}
 	data-scrollable-left={scrollableLeft}
 	data-scrollable-right={scrollableRight}
+	data-scrollable-indicator={scrollIndicator}
 >
 	<ol
 		class="flex items-center gap-3 overflow-auto scrollbar-hidden"
@@ -72,7 +74,6 @@
 		&::before,
 		&::after {
 			pointer-events: none;
-			content: '';
 
 			position: absolute;
 			z-index: 2;
@@ -81,29 +82,47 @@
 
 			display: block;
 
-			width: 100px;
-
 			opacity: 0;
 
-			transition: opacity 250ms ease;
+			transition: opacity 200ms ease;
 		}
 
-		&::before {
-			left: 0;
-			background: linear-gradient(
-				270deg,
-				var(--blur-background-to) 0%,
-				var(--blur-background-from) 100%
-			);
+		&[data-scrollable-indicator='blur'] {
+			&::before,
+			&::after {
+				content: '';
+				width: 116px;
+			}
+
+			&::before {
+				left: -16px;
+				background: linear-gradient(
+					270deg,
+					var(--blur-background-to) 0%,
+					var(--blur-background-from) 86.2%
+				);
+			}
+
+			&::after {
+				right: -16px;
+				background: linear-gradient(
+					270deg,
+					var(--blur-background-from) 0%,
+					var(--blur-background-to) 86.2%
+				);
+			}
 		}
 
-		&::after {
-			right: 0;
-			background: linear-gradient(
-				270deg,
-				var(--blur-background-from) 0%,
-				var(--blur-background-to) 100%
-			);
+		&[data-scrollable-indicator='ellipsis'] {
+			&::before {
+				content: '...';
+				right: 100%;
+			}
+
+			&::after {
+				content: '...';
+				left: 100%;
+			}
 		}
 
 		&[data-scrollable-left='true']::before {
