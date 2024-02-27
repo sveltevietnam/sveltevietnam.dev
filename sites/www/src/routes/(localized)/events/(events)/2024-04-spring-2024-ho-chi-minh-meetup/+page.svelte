@@ -25,7 +25,7 @@
 <main id="spring-hcm-meetup-2024">
 	<section class="header relative -mt-header overflow-hidden pb-[100px] pt-header">
 		<div class="max-w-pad" use:intersect>
-			<Breadcrumbs breadcrumbs={data.breadcrumbs} class="mt-6" />
+			<Breadcrumbs breadcrumbs={data.breadcrumbs} class="mt-6" scrollIndicator="ellipsis" />
 		</div>
 		<div class="max-w-pad mt-[80px] space-y-6" use:intersect>
 			<h1 class="c-text-h1">{event.title}</h1>
@@ -160,6 +160,22 @@
 					{/each}
 				</div>
 			</div>
+		</section>
+
+		<section class="max-w-pad">
+			<p class="text-center font-lora text-xl">
+				<span class="text-fg-100">{t.hostedBy}</span>
+				<a class="c-link c-link--lazy" href="https://www.designveloper.com">
+					<img
+						src={dsvLogoImage}
+						alt="Designveloper: realizing ideas"
+						height="40"
+						width="40"
+						class="inline-block"
+					/>
+					Designveloper
+				</a>
+			</p>
 		</section>
 	</div>
 </main>
