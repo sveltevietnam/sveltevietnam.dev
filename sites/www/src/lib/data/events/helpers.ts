@@ -136,13 +136,13 @@ export function preparePageData<E extends Event>(
 
 export function generateTimeSlot(
 	startDate: string | Date,
-	offsetSeconds: number,
-	durationSeconds: number,
+	offsetMinutes: number,
+	durationMinutes: number,
 ) {
 	startDate = new Date(startDate);
-	const ms = startDate.getTime() + offsetSeconds * 1_000 * 60;
+	const ms = startDate.getTime() + offsetMinutes * 1_000 * 60;
 	const slotStartDate = new Date(ms);
-	const slotEndDate = new Date(ms + durationSeconds * 1_000 * 60);
+	const slotEndDate = new Date(ms + durationMinutes * 1_000 * 60);
 
 	return `${formatTime(slotStartDate)} - ${formatTime(slotEndDate)}`;
 }

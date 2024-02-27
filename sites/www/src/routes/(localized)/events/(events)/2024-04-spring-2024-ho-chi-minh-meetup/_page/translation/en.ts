@@ -3,9 +3,21 @@ import { en as common } from '../../../translation/en';
 export const en = {
 	...common,
 	hostedBy: 'Hosted by',
+	becomeSpeaker: 'Become a speaker and share your experience with the community',
 	timeline: {
 		...common.timeline,
 		introduction: 'Meet and Greet',
+		share: 'Sharing Session',
+		share1: {
+			title: 'Svelte, Javascript, and the Web',
+			about:
+				"\
+				Are you a Svelte developer, a Javascript developer, a frontend developer, or a web developer? \
+				How does Svelte fit into the web ecosystem today? Why should you care? \
+				Let's talk! \
+			",
+		},
+		discussion: 'Open Discussion',
 		closing: 'Closing Remarks',
 	},
 	ticket: {

@@ -5,6 +5,7 @@
 	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
 	import { DateTimeRangeDisplayText } from '$lib/components/DateTimeRangeDisplayText';
 	import { MailRegistrationForm } from '$lib/components/MailRegistrationForm';
+	import { Person } from '$lib/components/Person';
 	import { ToBeAnnounced } from '$lib/components/ToBeAnnounced';
 	import { EMAILS, SOCIAL_LINKS } from '$lib/constants';
 	import { generateTimeSlot } from '$lib/data/events';
@@ -92,7 +93,11 @@
 		<section class="max-w-pad">
 			<h2 class="c-text-h2 uppercase" use:intersect>{t.timeline.title}</h2>
 
-			<section class="c-callout c-callout--info c-callout--icon-bulb mt-10 space-y-4" use:intersect>
+			<section
+				class="c-callout c-callout--info c-callout--icon-bulb mt-10 space-y-4"
+				use:intersect
+				id="become-a-speaker"
+			>
 				<h3 class="c-text-h4 font-medium" id="become-a-speaker">{t.proposal.title}</h3>
 				<p>{t.proposal.description}</p>
 				<ul class="divider-border mt-3 max-w-[548px] divide-y font-medium">
@@ -117,7 +122,7 @@
 				<!-- time -->
 				<dt class="font-medium">{t.time}:</dt>
 				<dd>
-					<DateTimeRangeDisplayText startDate={event.startDate} endDate={event.endDate} />
+					<DateTimeRangeDisplayText startDate={event.startDate} endDate={event.endDate} /> ({t.tentative})
 				</dd>
 
 				<!-- location -->
@@ -133,10 +138,26 @@
 					<p class="c-text-h5 font-medium">{t.timeline.introduction}</p>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<p class="c-text-body2 text-fg-200">{generateTimeSlot(event.startDate, 30, 90)}</p>
+					<p class="c-text-body2 text-fg-200">{generateTimeSlot(event.startDate, 30, 15)}</p>
+					<div class="space-y-3">
+						<p class="c-text-h5 font-medium">
+							{t.timeline.share}: "{t.timeline.share1.title}"
+						</p>
+						<p>{t.timeline.share1.about}</p>
+						<Person person={event.speakers.vnphanquang} />
+					</div>
+				</li>
+				<li class="space-y-2" use:intersect>
+					<p class="c-text-body2 text-fg-200">{generateTimeSlot(event.startDate, 45, 45)}</p>
 					<p>...</p>
-					<p class="c-text-h5 font-medium">{t.tba}</p>
+					<p class="c-text-h5 font-medium">
+						<a href="#become-a-speaker" class="c-link">{@html t.becomeSpeaker}</a>
+					</p>
 					<p>...</p>
+				</li>
+				<li class="space-y-2" use:intersect>
+					<p class="c-text-body2 text-fg-200">{generateTimeSlot(event.startDate, 90, 20)}</p>
+					<p class="c-text-h5 font-medium">{t.timeline.discussion}</p>
 				</li>
 				<li class="space-y-2" use:intersect>
 					<p class="c-text-body2 text-fg-200">{generateTimeSlot(event.startDate, 110, 10)}</p>
