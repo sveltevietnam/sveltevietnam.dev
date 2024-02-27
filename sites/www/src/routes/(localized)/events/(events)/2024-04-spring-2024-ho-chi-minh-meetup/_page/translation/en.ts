@@ -9,6 +9,13 @@ export const en = {
 		closing: 'Closing Remarks',
 	},
 	ticket: {
+		description:
+			'\
+			We are excited to partner with <a class="c-link" href="https://www.designveloper.com" target="_blank" rel="noreferrer">Designveloper</a>\
+			to bring you the Spring 2024 Meetup in Ho Chi Minh city, the first offline event from the Svelte Vietnam community.\
+			We welcome everyone regardless of background and skill level to join us, connect with our\
+			community, and share your Svelte experience.\
+		',
 		title: 'Reserve Your Free E-Ticket',
 		form: {
 			name: 'Name',
@@ -29,6 +36,11 @@ export const en = {
 	proposal: {
 		...common.proposal,
 		guidelines:
-			'Your video or presentation should be no more than 20 minutes. Its content should be about a project, product, or experience related to communities or technologies in the Svelte ecosystem. Check out <a class="c-link" href="https://www.sveltesummit.com/" rel="noreferrer" target="_blank">previous talks from Svelte Summit</a> for examples.',
+			'\
+			Your video or presentation should be no more than 20 minutes. \
+			Its content should be about a project, product, or experience related to \
+			communities or technologies in the Svelte ecosystem. \
+			Check out <a class="c-link" href="https://www.sveltesummit.com/" rel="noreferrer" target="_blank">previous talks from Svelte Summit</a> for examples.\
+		',
 	},
 } satisfies typeof import('./vi').vi;
