@@ -72,8 +72,9 @@
 				</div>
 				<ElectronicTicket
 					class="pc:basis-[632px]"
-					name={data.name ?? undefined}
-					email={data.email ?? undefined}
+					name={data.ticket?.name ?? ''}
+					email={data.ticket?.email ?? ''}
+					number={data.ticket?.num ?? 0}
 				/>
 			</div>
 		</section>

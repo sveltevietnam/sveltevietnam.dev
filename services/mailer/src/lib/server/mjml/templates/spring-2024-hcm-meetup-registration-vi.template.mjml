@@ -31,19 +31,42 @@
 					src="{{mailerURL}}/images/spring-2024-hcm-meetup-ticket.jpg"
 					padding-top="20px"
 					padding-bottom="40px"
-					href="{{wwwURL}}/vi/su-kien/2024-04-gap-mat-xuan-giap-thin-2024-ho-chi-minh?email={{email}}&name={{name}}"
+					href="{{personalizedEventURL}}"
 					alt="vé điện tử mẫu của sự kiện"
 				/>
 				<mj-text>
 					<p>Xin chào {{name}},</p>
 					<p>
 						Cảm ơn bạn đã đăng ký tham gia sự kiện
-						"<a href="{{wwwURL}}/vi/su-kien/2024-04-gap-mat-xuan-giap-thin-2024-ho-chi-minh?email={{email}}&name={{name}}" target="_blank">
+						"<a href="{{personalizedEventURL}}" target="_blank">
 							Gặp mặt Xuân Giáp Thìn 2024 - Hồ Chí Minh
 						</a>".
 						Rất vui được chào đón bạn đến với cộng đồng và hy vọng sẽ nhận được sự tham gia và
 						đóng góp của bạn tại sự kiện lần này.
-					</p>
+					<p>Bạn hãy sử dụng mã QR sau để check-in tại cửa sự kiện:</p>
+				</mj-text>
+        <mj-image
+					width="256px"
+					src="{{qrURL}}"
+					padding-top="40px"
+					padding-bottom="40px"
+					href="{{qrURL}}"
+					alt="your check-in QR code"
+				/>
+				<mj-text>
+					Bạn cũng có thể tự check-in bằng cách nhấn vào nút sau đây.
+					Chú ý rằng bạn chỉ có thể check-in từ
+					<strong>hai tiếng trước khi sự kiện bắt đầu</strong> cho đến
+					<strong>hai tiếng sau khi sự kiện kết thúc</strong>.
+				</mj-text>
+				<mj-button
+					color="white"
+					background-color="black"
+					padding-bottom="24px"
+					padding-top="24px"
+					href="{{selfCheckInURL}}"
+				>Tự check-in</mj-button>
+				<mj-text>
 					<p>Sau đây là một số thông tin quan trọng:</p>
 					<ul>
 						<li>

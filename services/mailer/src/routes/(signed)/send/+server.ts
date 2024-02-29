@@ -33,7 +33,18 @@ export const POST: RequestHandler = async ({ request, locals, url }) => {
 
 	// construct mail URL
 	const id = crypto.randomUUID();
-	const token = encodeURIComponent(await jwt.sign({ id, email: to.email }, JWT_SECRET));
+	const token = encodeURIComponent(
+		await jwt.sign(
+			{
+				id,
+				email: to.email,
+				sub: to.email,
+				iat: Math.floor(new Date().getTime() / 1000),
+				iss: 'mailer.sveltevietnam.dev',
+			},
+			JWT_SECRET,
+		),
+	);
 
 	const mailerURL = url.origin;
 	const mailURL = `${mailerURL}/mails/${token}`;

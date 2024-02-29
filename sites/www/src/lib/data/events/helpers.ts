@@ -60,10 +60,6 @@ export function localizeEvent<E extends Event>(language: App.Language, event: E)
 		...(event.thumbnail && {
 			thumbnail: localizeLangVar(language, event.thumbnail),
 		}),
-		sponsors: event.sponsors.map((sponsor) => ({
-			...sponsor,
-			name: localizeLangVar(language, sponsor.name),
-		})),
 	};
 }
 

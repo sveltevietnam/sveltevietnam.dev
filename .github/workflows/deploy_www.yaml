@@ -107,6 +107,7 @@ jobs:
       - name: Build
         run: pnpm run build --filter=@sites/www
         env:
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
           # cloudflare turnstile
           PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY: ${{ vars.PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY }}
           CLOUDFLARE_TURNSTILE_SECRET_KEY: ${{ secrets.CLOUDFLARE_TURNSTILE_SECRET_KEY }}
@@ -123,6 +124,9 @@ jobs:
           MAILER_CLIENT_ID: ${{ vars.MAILER_CLIENT_ID }}
           MAILER_CLIENT_SECRET: ${{ secrets.MAILER_CLIENT_SECRET }}
           MAILER_SERVICE_URL: ${{ vars.MAILER_SERVICE_URL }}
+          # qr service
+          QR_JWT_SECRET: ${{ secrets.QR_JWT_SECRET }}
+          QR_SERVICE_URL: ${{ vars.QR_SERVICE_URL }}
 
       - name: Deploy to Cloudflare
         id: cloudflare-pages-deploy

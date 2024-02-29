@@ -31,18 +31,44 @@
 					src="{{mailerURL}}/images/spring-2024-hcm-meetup-ticket.jpg"
 					padding-top="20px"
 					padding-bottom="40px"
-					href="{{wwwURL}}/en/events/2024-04-spring-2024-ho-chi-minh-meetup?email={{email}}&name={{name}}"
+					href="{{personalizedEventURL}}"
 					alt="sample of electronic ticket for the event"
 				/>
 				<mj-text>
 					<p>Hello {{name}},</p>
 					<p>
 						You are registered for the
-						"<a href="{{wwwURL}}/en/events/2024-04-spring-2024-ho-chi-minh-meetup?email={{email}}&name={{name}}" target="_blank">
+						"<a href="{{personalizedEventURL}}" target="_blank">
 							Svelte Vietnam Spring 2024 Ho Chi Minh Meetup
 						</a>".
 						We are excited that you have decided to join us and look forward to your participation at the event.
 					</p>
+					<p>
+						Below is your check-in QR code, please show it to one of our organizers at the event entrance.
+					</p>
+				</mj-text>
+        <mj-image
+					width="256px"
+					src="{{qrURL}}"
+					padding-top="40px"
+					padding-bottom="40px"
+					href="{{qrURL}}"
+					alt="your check-in QR code"
+				/>
+				<mj-text>
+					Alternatively, you can do self check-in by clicking on the following button.
+					Note that you can only self check-in from
+					<strong>two hours before the event starts</strong> until
+					<strong>two hours after it ends</strong>.
+				</mj-text>
+				<mj-button
+					color="white"
+					background-color="black"
+					padding-bottom="24px"
+					padding-top="24px"
+					href="{{selfCheckInURL}}"
+				>Self check-in</mj-button>
+				<mj-text>
 					<p>Here are a few important details:</p>
 					<ul>
 						<li>

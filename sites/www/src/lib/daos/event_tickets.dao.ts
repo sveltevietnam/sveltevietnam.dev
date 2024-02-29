@@ -18,7 +18,7 @@ export function getTicket(d1: D1Database, email: string, event: string) {
 		.first<EventTicket>();
 }
 
-export function createTicket(d1: D1Database, ticket: Omit<Ticket, 'num'>) {
+export function createTicket(d1: D1Database, ticket: Omit<EventTicket, 'num'>) {
 	const { event, email, name, created_at } = ticket;
 	return d1
 		.prepare(

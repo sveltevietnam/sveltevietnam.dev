@@ -4,18 +4,28 @@ import {
 	MAILER_ERRORS,
 	type CreateSubscriptionResponseDTO,
 } from '@internals/isc/mailer';
+import { createQrUrl } from '@internals/isc/qr';
 import { error, fail } from '@sveltejs/kit';
 import type { NumericRange } from '@sveltejs/kit';
+import jwt from '@tsndr/cloudflare-worker-jwt';
 import { message, setError, superValidate } from 'sveltekit-superforms/server';
 
-import { MAILER_CLIENT_ID, MAILER_CLIENT_SECRET, MAILER_SERVICE_URL } from '$env/static/private';
+import {
+	JWT_SECRET,
+	MAILER_CLIENT_ID,
+	MAILER_CLIENT_SECRET,
+	MAILER_SERVICE_URL,
+	QR_JWT_SECRET,
+	QR_SERVICE_URL,
+} from '$env/static/private';
 import { mailSchema } from '$lib/components/MailRegistrationForm';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
-import { createTicket, getTicket } from '$lib/daos/event_tickets.dao';
-import { preparePageData } from '$lib/data/events';
+import { createTicket, getTicket, type EventTicket } from '$lib/daos/event_tickets.dao';
+import { preparePageData, type EventQRCodeData } from '$lib/data/events';
 import { throwSvelteKitError } from '$lib/errors';
 import type { FormMessage } from '$lib/forms';
 import { createMailTranslationAndSchema } from '$lib/forms/actions/mail/mail.server';
+import { ROUTE_MAP } from '$lib/routing/routing.map';
 import { buildBreadcrumbs, type Breadcrumb } from '$lib/routing/routing.server';
 import { validateToken } from '$lib/turnstile/turnstile.server';
 
@@ -24,7 +34,16 @@ import { event, structure } from './_page/data';
 import { EVENT_ID } from './_page/data';
 import { translations as pageT } from './_page/translation';
 
-export const load: PageServerLoad = async ({ url, depends, locals }) => {
+export const load: PageServerLoad = async ({ url, depends, locals, platform }) => {
+	const email = url.searchParams.get('email');
+	let ticket: EventTicket | null = null;
+	if (email) {
+		// get cloudflare bindings for d1 database
+		const d1 = platform?.env?.D1;
+		if (d1) {
+			ticket = await getTicket(d1, email, EVENT_ID);
+		}
+	}
 	const lang = locals.settings.language;
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	const prepared = preparePageData(url, lang, event, structure);
@@ -39,8 +58,7 @@ export const load: PageServerLoad = async ({ url, depends, locals }) => {
 			page: pageT[lang],
 		},
 		ticketForm,
-		email: url.searchParams.get('email'),
-		name: url.searchParams.get('name'),
+		ticket,
 	};
 };
 
@@ -70,7 +88,7 @@ const CALENDAR_LINK_TRANSLATION = {
 };
 
 export const actions = {
-	ticket: async ({ request, locals, fetch, platform }) => {
+	ticket: async ({ request, locals, fetch, platform, url }) => {
 		// get cloudflare bindings for d1 database
 		const d1 = platform?.env?.D1;
 		if (!d1) throwSvelteKitError('D1_NOT_AVAILABLE');
@@ -108,16 +126,36 @@ export const actions = {
 			created_at: new Date().toISOString(),
 		});
 
+		const language = locals.settings.language;
+		const personalizedEventURL = `${url.origin}${ROUTE_MAP.events[language].path}/${event.slug[language]}?email=${email}`;
+
+		const qrData = await jwt.sign<EventQRCodeData>(
+			{
+				event: EVENT_ID,
+				iss: 'sveltevietnam.dev',
+				sub: email,
+				iat: Math.floor(new Date().getTime() / 1000),
+				nbf: Math.floor(new Date(event.startDate).getTime() / 1000) - 2 * 60 * 60,
+				exp: Math.floor(new Date(event.endDate).getTime() / 1000) + 2 * 60 * 60,
+			},
+			JWT_SECRET,
+		);
+		const qrURL = await createQrUrl(QR_SERVICE_URL, QR_JWT_SECRET, { data: qrData });
+		const selfCheckInURL = `${url.origin}${ROUTE_MAP.events_selfCheckIn[language].path}?qr=${qrData}`;
+
 		await fetch(
 			await createSendRequest(
 				{
 					templateId: 'SPRING_2024_HCM_MEETUP_REGISTRATION',
 					to: { email, name },
-					language: locals.settings.language,
+					language,
 					variables: {
+						...CALENDAR_LINK_TRANSLATION[language],
 						name,
 						email,
-						...CALENDAR_LINK_TRANSLATION[locals.settings.language],
+						personalizedEventURL,
+						qrURL,
+						selfCheckInURL,
 					},
 				},
 				{
@@ -139,7 +177,8 @@ export const actions = {
 					email,
 					name,
 					domain: form.data.checkbox ? 'event' : undefined,
-					language: locals.settings.language,
+					language,
+					skipMail: true,
 				},
 				{
 					clientID: MAILER_CLIENT_ID,
