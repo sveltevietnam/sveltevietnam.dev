@@ -4,8 +4,8 @@
 	import { SOCIAL_LINKS } from '$lib/constants';
 </script>
 
-<section class="max-w-pad space-y-10 overflow-auto text-left text-white">
-	<p class="heading">:)</p>
+<main class="max-w-pad space-y-10 overflow-auto text-left text-white">
+	<h1>:)</h1>
 	<p>
 		Oh nice. You have reached the "Blue Screen of Death". The application is absolutely fine; as is
 		your computer. We are definitely, 100%, not collecting any personal information (~_^).
@@ -24,13 +24,11 @@
 			<p class="text-xs">(We won't be able to fix YOUR error anyway)</p>
 		</div>
 	</div>
-</section>
+</main>
 
 <style lang="postcss">
-	section {
-		position: fixed;
-		inset: 0;
-
+	main {
+		min-height: 100dvh;
 		padding-block: 40px;
 
 		font-size: 1.5rem;
@@ -43,7 +41,7 @@
 		}
 	}
 
-	.heading {
+	h1 {
 		font-size: 5rem;
 		line-height: normal;
 	}

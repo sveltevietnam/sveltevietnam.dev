@@ -20,6 +20,16 @@ export const ROUTE_MAP = {
 			label: 'Home',
 		},
 	},
+	blueScreenOfDeath: {
+		vi: {
+			path: '/vi/man-hinh-xanh',
+			label: 'Màn hình xanh',
+		},
+		en: {
+			path: '/en/blue-screen-of-death',
+			label: 'Blue Screen of Death',
+		},
+	},
 	events: {
 		vi: {
 			path: '/vi/su-kien',
