@@ -39,3 +39,7 @@ vite.config.ts.timestamp-*
 
 # turborepo
 .turbo
+
+.wrangler
+wrangler.preview.toml
+wrangler.production.toml
