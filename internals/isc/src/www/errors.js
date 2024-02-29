@@ -12,7 +12,5 @@ export const WWW_ERRORS = /* @type {const} */ {
 		status: 500,
 	},
 
-	// Event E-Ticket Registration
-
 	// next error code: MS002
 };

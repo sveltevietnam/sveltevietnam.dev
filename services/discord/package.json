@@ -32,7 +32,6 @@
 	"devDependencies": {
 		"@flydotio/dockerfile": "^0.5.2",
 		"@types/lodash.debounce": "^4.0.9",
-		"@types/node": "^20.11.20",
 		"@types/uuid": "^9.0.8",
 		"@types/ws": "^8.5.10"
 	},

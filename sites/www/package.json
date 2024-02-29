@@ -24,13 +24,13 @@
 	},
 	"dependencies": {
 		"@floating-ui/dom": "^1.6.3",
+		"@tsndr/cloudflare-worker-jwt": "2.5.1",
 		"gsap": "^3.12.5",
 		"lodash.debounce": "^4.0.8",
 		"mustache": "^4.2.0",
 		"zod": "^3.22.4"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20240222.0",
 		"@internals/isc": "workspace:*",
 		"@internals/utils": "workspace:*",
 		"@svelte-put/avatar": "^3.0.0",

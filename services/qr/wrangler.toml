@@ -1,0 +1,4 @@
+name = "qr"
+main = "src/index.js"
+route = { pattern = "qr.sveltevietnam.dev", custom_domain = true }
+compatibility_date = "2024-02-29"

@@ -157,7 +157,6 @@
 		"@sveltejs/package": "^2.2.7",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@total-typescript/ts-reset": "^0.5.1",
-		"@types/node": "^20.11.20",
 		"@types/postcss-import": "^14.0.3",
 		"@types/postcss-js": "^4.0.4",
 		"@types/postcss-mixins": "^9.0.5",

@@ -33,6 +33,11 @@
 			"types": "./types/index.d.ts",
 			"svelte": "./src/www/index.js",
 			"import": "./src/www/index.js"
+		},
+		"./qr": {
+			"types": "./types/index.d.ts",
+			"svelte": "./src/qr/index.js",
+			"import": "./src/qr/index.js"
 		}
 	},
 	"typesVersions": {
@@ -44,6 +49,9 @@
 				"./types/index.d.ts"
 			],
 			"www": [
+				"./types/index.d.ts"
+			],
+			"qr": [
 				"./types/index.d.ts"
 			]
 		}
@@ -66,6 +74,7 @@
 	},
 	"dependencies": {
 		"@internals/utils": "workspace:*",
+		"@tsndr/cloudflare-worker-jwt": "2.5.1",
 		"zod": "^3.22.4"
 	}
 }
