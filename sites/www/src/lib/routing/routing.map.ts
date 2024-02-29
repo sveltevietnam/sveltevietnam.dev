@@ -30,6 +30,16 @@ export const ROUTE_MAP = {
 			label: 'Events',
 		},
 	},
+	events_selfCheckIn: {
+		vi: {
+			path: '/vi/su-kien/tu-check-in',
+			label: 'Tự check-in',
+		},
+		en: {
+			path: '/en/events/self-check-in',
+			label: 'Self Check-in',
+		},
+	},
 	blog: {
 		vi: {
 			path: '/vi/blog',
