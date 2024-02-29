@@ -51,7 +51,7 @@ export const POST: RequestHandler = async ({ request, locals, fetch }) => {
 	}
 
 	const { d1 } = locals;
-	const { email, domain, name, language } = parsed.data;
+	const { email, domain, name, language, skipMail } = parsed.data;
 
 	// pass through if email has already been registered for this domain
 	const subscription = await getSubscriptionByEmail(d1, email);
@@ -64,7 +64,7 @@ export const POST: RequestHandler = async ({ request, locals, fetch }) => {
 
 	// send welcome email if first time subscribing,
 	// but only do so if user explicitly subscribed to one domain
-	if (domain && !subscription?.email && !subscription?.job && !subscription?.blog) {
+	if (!skipMail && domain && !subscription?.email && !subscription?.job && !subscription?.blog) {
 		// TODO: message queue, retry?
 		const sendRequest = await createSendRequest(
 			{

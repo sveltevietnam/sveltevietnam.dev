@@ -1,4 +1,10 @@
-import { string as zString, object as zObject, enum as zEnum, coerce as zCoerce } from 'zod';
+import {
+	string as zString,
+	object as zObject,
+	enum as zEnum,
+	coerce as zCoerce,
+	boolean as zBoolean,
+} from 'zod';
 
 import { LanguageSchema } from '../../common/dto';
 
@@ -21,6 +27,7 @@ export const CreateSubscriptionRequestSchema = zObject({
 	email: zString().min(1).email(),
 	domain: SubscriptionDomainSchema.optional(),
 	language: LanguageSchema,
+	skipMail: zBoolean().default(false).optional(),
 });
 /**
  * @typedef {import('../../common/types').CommonResponseDTO} CreateSubscriptionResponseDTO
