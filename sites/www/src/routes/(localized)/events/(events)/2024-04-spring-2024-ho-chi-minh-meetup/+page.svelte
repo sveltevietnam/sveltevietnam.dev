@@ -4,6 +4,7 @@
 	import fallbackSecondaryImage from '$lib/assets/images/fallback/16x9.jpg?enhanced&w=900&imagetools';
 	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
 	import { DateTimeRangeDisplayText } from '$lib/components/DateTimeRangeDisplayText';
+	import { FrequentlyAskedQuestions } from '$lib/components/FrequentlyAskedQuestions';
 	import { MailRegistrationForm } from '$lib/components/MailRegistrationForm';
 	import { Person } from '$lib/components/Person';
 	import { ToBeAnnounced } from '$lib/components/ToBeAnnounced';
@@ -168,6 +169,13 @@
 		</section>
 
 		<section class="max-w-pad">
+			<h2 class="c-text-h2 uppercase" use:intersect>{t.faq.title}</h2>
+			<div class="mt-10" use:intersect>
+				<FrequentlyAskedQuestions entries={Object.values(t.faq.entries)} />
+			</div>
+		</section>
+
+		<section class="max-w-pad">
 			<h2 class="c-text-h2 uppercase" use:intersect>{t.images.title}</h2>
 
 			<div class="mt-[60px] grid gap-6 tb:grid-cols-[3fr,2fr]">
@@ -191,7 +199,7 @@
 		</section>
 
 		<section class="max-w-pad">
-			<p class="text-center font-lora text-xl">
+			<p class="text-center font-lora text-xl" use:intersect>
 				<span class="text-fg-100">{t.hostedBy}</span>
 				<a class="c-link c-link--lazy" href="https://www.designveloper.com">
 					<img

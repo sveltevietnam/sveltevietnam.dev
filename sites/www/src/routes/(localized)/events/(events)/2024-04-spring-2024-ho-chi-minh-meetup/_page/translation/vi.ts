@@ -35,13 +35,46 @@ export const vi = {
 		},
 	},
 	faq: {
-		whyTicket: {
-			q: 'Tại sao tôi cần phải đăng ký vé điện tử? Có cần trả phí hay không?',
-			a: 'Sự kiện này là hoàn toàn miễn phí. Tuy nhiên vì số lượng ghế ngồi có giới hạn, bạn nên đăng ký để giữ chỗ và giúp cho ban tổ chức chuẩn bị một cách tốt nhất.',
-		},
-		howToGetThere: {
-			q: 'Làm thế nào để tìm được địa điểm của sự kiện?',
-			a: 'Hiện tại ban tổ chức đang tìm kiếm địa điểm thích hợp và sẽ thông báo khi có thông tin cụ thể.',
+		title: 'Câu hỏi thường gặp',
+		entries: {
+			whyTicket: {
+				q: 'Tại sao tôi cần phải đăng ký vé điện tử? Có cần trả phí hay không?',
+				a: 'Sự kiện là hoàn toàn miễn phí. Tuy nhiên vì số lượng ghế ngồi có giới hạn, bạn nên đăng ký để giúp cho ban tổ chức chuẩn bị một cách tốt nhất.',
+			},
+			noTicket: {
+				q: 'Tôi có thể đến nếu không đăng ký vé?',
+				a: '\
+					Ban tổ chức khuyến khích bạn nên đăng ký vé điện tử. \
+					Tuy nhiên bạn vẫn có thể đến tham dự mà không cần đăng ký trước và \
+					sẽ được hỗ trợ tại cửa sự kiện. \
+				',
+			},
+			whenAndWhere: {
+				q: 'Sự kiện diễn ra khi nào và ở đâu?',
+				a: '\
+					Sự kiện sẽ diễn ra vào ngày 20 tháng 4, năm 2024, lúc 9 giờ sáng giờ Việt Nam, tại văn phòng công ty \
+					<a class="c-link" href="https://www.designveloper.com" target="_blank" rel="noreferrer">Designveloper</a>, địa chỉ \
+					<a class="c-link" href="https://maps.app.goo.gl/ymGh3Djmwjnb7ohu5" target="_blank" rel="noreferrer">tầng 6, 55 Phó Đức Chính, Quận 1, TP. Hồ Chí Minh</a>. \
+					Tòa nhà có bãi đỗ xe. Hướng dẫn sẽ được cung cấp thêm khi bạn đến nơi.<br>\
+					Bạn còn có thể tìm thấy thông tìn vừa rồi ở đầu trang này hoặc trong email sau khi đăng ký vé điện tử. \
+				',
+			},
+			requirement: {
+				q: 'Tôi cần mang theo gì khi đến sự kiện',
+				a: '\
+					Bạn chỉ cần chuẩn bị mã QR để check-in tại cửa sự kiện. Mã QR được gởi kèm email sau khi bạn đăng ký vé điện tử \
+					(nếu bạn không tìm thấy email, hãy kiểm tra hợp thư spam nhé).\
+				',
+			},
+			help: {
+				q: 'Tôi có thể tìm hỗ trợ ở đâu? Nếu tôi muốn giúp cho sự kiện thì nên làm gì?',
+				a: '\
+					Bạn hãy tham gia <a class="c-link" href="https://discord.sveltevietnam.dev" target="_blank" rel="noreferrer">Discord chính thức</a>. \
+					Tại đó bạn có thể thảo luận và tìm giúp đơ từ quản trị viên hoặc các thành viên trong cộng đồng.<br><br>\
+					Tương tự, ban tổ chức luôn có thể nhờ sự giúp đỡ của bạn trong quá trình chuẩn bị và chạy sự kiện. Nếu bạn hứng thú hãy liên lạc qua Discord nhé. \
+					Cảm ơn bạn!\
+				',
+			},
 		},
 	},
 	proposal: {

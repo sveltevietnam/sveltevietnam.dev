@@ -48,6 +48,7 @@ export const POST: RequestHandler = async ({ request, locals, url }) => {
 
 	const mailerURL = url.origin;
 	const mailURL = `${mailerURL}/mails/${token}`;
+	console.log(`Turbo ~ constPOST:RequestHandler= ~ mailURL:`, mailURL);
 	// render
 	const html = Mustache.render(template.html, {
 		mailerURL,
