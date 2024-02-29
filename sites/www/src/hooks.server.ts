@@ -62,12 +62,6 @@ const REDIRECT_MAP = {
 export const handle: Handle = async ({ event, resolve }) => {
 	const { locals, cookies, url, route, platform, request } = event;
 
-	if (url.pathname in REDIRECT_MAP) {
-		const redirectUrl = new URL(url);
-		redirectUrl.pathname = REDIRECT_MAP[url.pathname];
-		redirect(301, redirectUrl);
-	}
-
 	// Ensure that the user has a unique ID
 	locals.userId = cookies.get(COOKIE_USER_ID) || crypto.randomUUID();
 	cookies.set(COOKIE_USER_ID, locals.userId, COMMON_COOKIE_CONFIG);
@@ -75,6 +69,12 @@ export const handle: Handle = async ({ event, resolve }) => {
 	// return as is if fetching api routes
 	if (route.id?.includes('(api)')) {
 		return resolve(event);
+	}
+
+	if (url.pathname in REDIRECT_MAP) {
+		const redirectUrl = new URL(url);
+		redirectUrl.pathname = REDIRECT_MAP[url.pathname];
+		redirect(301, redirectUrl);
 	}
 
 	const referer = request.headers.get('Referer');
