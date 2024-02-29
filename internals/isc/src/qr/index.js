@@ -31,6 +31,7 @@ export const QR_ERRORS = /* @type {const} */ {
  * @typedef {{
  * 	data: string;
  * 	size?: number;
+ *  colorScheme?: 'dark' | 'light';
  * }} CreateQrUrlConfig
  */
 
