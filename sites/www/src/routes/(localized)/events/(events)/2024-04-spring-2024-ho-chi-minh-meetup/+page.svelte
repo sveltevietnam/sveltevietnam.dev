@@ -92,7 +92,7 @@
 			</div>
 		</section>
 
-		<section class="max-w-pad">
+		<section class="timeline-container max-w-pad">
 			<h2 class="c-text-h2 uppercase" use:intersect>{t.timeline.title}</h2>
 
 			<section
@@ -318,6 +318,49 @@
 
 			@screen tb {
 				padding-inline: 32px;
+			}
+		}
+	}
+
+	.timeline-container {
+		position: relative;
+
+		&::before {
+			--gradient: linear-gradient(
+				to bottom,
+				theme('colors.grayscale.white'),
+				theme('colors.grayscale.white / 92%') 20%,
+				theme('colors.grayscale.white / 92%') 80%,
+				theme('colors.grayscale.white')
+			);
+
+			content: '';
+
+			position: absolute;
+			z-index: -1;
+			top: -200px;
+			right: 0;
+			bottom: -200px;
+			left: 0;
+
+			background-image: var(--gradient), url('./_page/images/middle-bg.jpg');
+			background-repeat: no-repeat;
+			background-position: right center;
+			background-size: cover;
+
+			@dark global {
+				--gradient: linear-gradient(
+					to bottom,
+					theme('colors.grayscale.black'),
+					theme('colors.grayscale.black / 90%') 20%,
+					theme('colors.grayscale.black / 90%') 80%,
+					theme('colors.grayscale.black')
+				);
+			}
+
+			@screen tb {
+				top: -400px;
+				bottom: -400px;
 			}
 		}
 	}
