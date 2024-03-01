@@ -1,78 +1,96 @@
-# Svelte Vietnam - Enhanced Code Block
+<script>
+  import Single from './examples/single.md.svelte';
+  import SingleOneLiner from './examples/single-one-liner.md.svelte';
+  import SingleWithFilename from './examples/single-with-filename.md.svelte';
+  import FromFile from './examples/from-file.md.svelte';
+  import MetaBlockDiff from './examples/meta-block-diff.md.svelte';
+  import MetaBlockHighlight from './examples/meta-block-highlight.md.svelte';
+  import GroupFiles from './examples/group-files.md.svelte';
+  import GroupTabs from './examples/group-tabs.md.svelte';
+</script>
 
-## One-liner Single Code Block
+## Code Block
 
-```javascript
-console.log('Hello, world!');
+```markdown
+/// src=./examples/single.md.svelte
 ```
 
-## Single Code Block
+...renders:
 
-```javascript
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('Hello, world!');
-});
+<Single />
+
+### One-liner
+
+```markdown
+/// src=./examples/single-one-liner.md.svelte
 ```
 
-## Single Code Block With Filename
+...renders:
 
-```javascript
-/// filename=app.js
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('Hello, world!');
-});
+<SingleOneLiner />
+
+### With Filename Header
+
+```markdown
+/// src=./examples/single-with-filename.md.svelte
 ```
 
-## Group of Code Blocks with `tabs` Display Mode
+...renders:
 
-<enhanced-code-block group name="installation" display="tabs">
+<SingleWithFilename />
 
-```bash
-/// tab=npm
-/// hideLineNumber=true
-npm install --save-dev tailwindcss postcss @sveltevietnam/ui
-# something else to admire
+### With Source Code from Another File
+
+```markdown
+/// src=./examples/from-file.md.svelte
 ```
 
-```bash
-/// tab=pnpm
-pnpm add -D tailwindcss postcss @sveltevietnam/ui
+...renders:
+
+<FromFile />
+
+## Meta Block
+
+### Diff
+
+```markdown
+/// src=./examples/meta-block-diff.md.svelte
+/// skipMetaBlock=true
 ```
 
-```bash
-/// tab=yarn
-yarn add -D tailwindcss postcss @sveltevietnam/ui
+...renders:
+
+<MetaBlockDiff />
+
+### Highlight
+
+```markdown
+/// src=./examples/meta-block-highlight.md.svelte
+/// skipMetaBlock=true
 ```
 
-</enhanced-code-block>
+...renders
 
-## Group of Code Blocks with `files` Display Mode
+<MetaBlockHighlight />
 
-<enhanced-code-block group>
+## Group of Code Blocks
 
-```html
-/// filename=app.html
-<!DOCTYPE html>
-<head></head>
-<body>
-	<header></header>
-	<main></main>
-	<footer></footer>
-</body>
+### "Files" Display Mode
+
+```markdown
+/// src=./examples/group-files.md.svelte
 ```
 
-```css
-/// filename=app.css
-@tailwindcss base;
-@tailwindcss components;
-@tailwindcss utilities;
+...renders:
+
+<GroupFiles />
+
+### "Tabs" Display Mode
+
+```markdown
+/// src=./examples/group-tabs.md.svelte
 ```
 
-```javascript
-/// filename=app.js
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('Hello, world!');
-});
-```
+...renders:
 
-</enhanced-code-block>
+<GroupTabs />
