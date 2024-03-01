@@ -215,7 +215,7 @@
 	}
 }
 
-:is(.prose pre:--is-prose[data-num-lines='1'], .hide-line-number) {
+:is(.prose pre:--is-prose[data-num-lines='1']:not(:has(.line[data-line-diff])), .hide-line-number) {
 	& .line {
 		padding-left: 2ch;
 
