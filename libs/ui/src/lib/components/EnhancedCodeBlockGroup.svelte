@@ -70,14 +70,15 @@
 	}
 
 	:where(.codeblock-group) {
+		position: relative;
+
 		display: grid;
 		grid-template-columns: repeat(var(--cols), auto) 1fr;
 		grid-template-rows: auto 1fr;
+
 		margin-block: 24px;
 
 		&:where(.codeblock-group--files) {
-			position: relative;
-
 			& .first-row-last-col-fill {
 				border-width: 1px 1px 0 0;
 			}
