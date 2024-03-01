@@ -34,7 +34,7 @@
 		"@changesets/changelog-github": "^0.5.0",
 		"@changesets/cli": "^2.27.1",
 		"@cloudflare/workers-types": "^4.20240222.0",
-		"@types/node": "^20.11.22",
+		"@types/node": "^20.11.24",
 		"@typescript-eslint/eslint-plugin": "^7.1.0",
 		"@typescript-eslint/parser": "^7.1.0",
 		"@vnphanquang/eslint-config": "^2.0.0",
@@ -45,7 +45,7 @@
 		"lint-staged": "^15.2.2",
 		"npm-run-all": "^4.1.5",
 		"prettier": "3.2.5",
-		"prettier-plugin-svelte": "^3.2.1",
+		"prettier-plugin-svelte": "^3.2.2",
 		"prettier-plugin-tailwindcss": "^0.5.11",
 		"stylelint": "^16.2.1",
 		"stylelint-config-clean-order": "^5.4.1",
@@ -54,6 +54,6 @@
 		"tslib": "^2.6.2",
 		"turbo": "^1.12.4",
 		"typescript": "^5.3.3",
-		"wrangler": "^3.30.0"
+		"wrangler": "^3.30.1"
 	}
 }
