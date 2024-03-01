@@ -170,6 +170,16 @@ export const ROUTE_MAP = {
 			label: 'Blog',
 		},
 	},
+	design_blog_code: {
+		vi: {
+			path: '/vi/thiet-ke/blog/code',
+			label: 'Mã nguồn',
+		},
+		en: {
+			path: '/en/design/blog/code',
+			label: 'Source Code',
+		},
+	},
 	subscriptions: {
 		vi: {
 			path: '/vi/dang-ky',
