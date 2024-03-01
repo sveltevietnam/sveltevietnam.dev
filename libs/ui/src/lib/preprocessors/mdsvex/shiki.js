@@ -126,6 +126,8 @@ function transformer() {
 			return container;
 		},
 		code(hast) {
+			const metadata = /** @type {CodeBlockMetadata} */ (this.options.meta);
+
 			// FIXME: correct typing
 			/** @type {any[]} */
 			const lines = hast.children.filter((i) => i.type === 'element');
@@ -140,66 +142,70 @@ function transformer() {
 
 			for (const line of lines) {
 				lineNumber++;
-				let isMetaLine = false;
-
-				const str = toString(line).trim();
-				if (str.includes(':::')) {
-					isMetaLine = true;
-
-					// diff
-					let match = str.match(/:::diff\s+([+-])(?![^\s])/);
-					if (match) {
-						const variant = /** @type {BlockDiff['variant']} */ (match[1]);
-						blocks.push({ type: 'diff', variant });
-					}
-
-					// highlight
-					if (!match) {
-						match = str.match(new RegExp(`:::highlight\\s?(${STATUSES.join('|')})?(?![^\\s])`));
-						if (match) {
-							const variant = match[1] ?? 'info';
-							blocks.push({ type: 'highlight', variant });
-						}
-					}
-
-					if (!match) {
-						blocks.pop();
-					}
-				}
-
-				if (isMetaLine) {
-					const index = hast.children.indexOf(line);
-					const lineAfter = hast.children.at(index + 1);
-					if (lineAfter && lineAfter.type === 'text' && lineAfter.value === '\n') {
-						hast.children.splice(index + 1, 1);
-					}
-					hast.children.splice(index, 1);
-
-					lineNumber--;
-					continue;
-				}
 
 				let shouldAddLineNumber = true;
-				if (blocks.length) {
-					let alreadyDiffed = false;
-					for (let i = blocks.length - 1; i >= 0; i--) {
-						const block = blocks[i];
-						switch (block.type) {
-							case 'diff':
-								if (alreadyDiffed) continue;
-								alreadyDiffed = true;
-								line.properties['data-line-diff'] = block.variant;
-								if (block.variant === '-') {
-									shouldAddLineNumber = false;
-									lineNumber--;
-								}
-								break;
-							case 'highlight':
-								line.properties['data-line-highlighted'] = block.variant;
-								break;
+
+				let isMetaLine = false;
+
+				if (!metadata.__enhancement?.skipMetaBlock) {
+					const str = toString(line).trim();
+					if (str.includes(':::')) {
+						isMetaLine = true;
+
+						// diff
+						let match = str.match(/:::diff\s+([+-])(?![^\s])/);
+						if (match) {
+							const variant = /** @type {BlockDiff['variant']} */ (match[1]);
+							blocks.push({ type: 'diff', variant });
+						}
+
+						// highlight
+						if (!match) {
+							match = str.match(new RegExp(`:::highlight\\s?(${STATUSES.join('|')})?(?![^\\s])`));
+							if (match) {
+								const variant = match[1] ?? 'info';
+								blocks.push({ type: 'highlight', variant });
+							}
+						}
+
+						if (!match) {
+							blocks.pop();
+						}
+					}
+
+					if (isMetaLine) {
+						const index = hast.children.indexOf(line);
+						const lineAfter = hast.children.at(index + 1);
+						if (lineAfter && lineAfter.type === 'text' && lineAfter.value === '\n') {
+							hast.children.splice(index + 1, 1);
+						}
+						hast.children.splice(index, 1);
+						lineNumber--;
+						continue;
+					}
+
+					if (blocks.length) {
+						let alreadyDiffed = false;
+						for (let i = blocks.length - 1; i >= 0; i--) {
+							const block = blocks[i];
+							switch (block.type) {
+								case 'diff':
+									if (alreadyDiffed) continue;
+									alreadyDiffed = true;
+									line.properties['data-line-diff'] = block.variant;
+									if (block.variant === '-') {
+										shouldAddLineNumber = false;
+										lineNumber--;
+									}
+									break;
+								case 'highlight':
+									line.properties['data-line-highlighted'] = block.variant;
+									break;
+							}
 						}
 					}
 				}
+
 				if (shouldAddLineNumber) {
 					line.properties['data-line'] = lineNumber;
 				}
