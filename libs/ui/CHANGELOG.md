@@ -1,5 +1,21 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.16
+
+### Minor Changes
+
+- [`c6e6a10`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/c6e6a10ab9ea648972eb09c4e38e77b09592233a) Thanks [@vnphanquang](https://github.com/vnphanquang)! - `shiki` - allow rendering the content of code block from a different file, via the `/// src=relative_path.ext` meta line (using custom built MDsveX from [vnphanquang/MDsveX](https://github.com/vnphanquang/MDsveX/))
+
+- [`b72ff75`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/b72ff7570eaccd32153dcd62c6e94391a3493fb3) Thanks [@vnphanquang](https://github.com/vnphanquang)! - rewrite `EnhancedCodeBlock` to make full screen button possible (#241)
+
+- [`ef7951c`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/ef7951c166eaf2446fc34f3783f736ab3427cf26) Thanks [@vnphanquang](https://github.com/vnphanquang)! - shiki - allow skipping meta block processing (diff & highlight) via the `/// skipMetaBlock=true` meta line
+
+### Patch Changes
+
+- [`9f1c3ba`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/9f1c3ba3cba2c06c7536ebed072d27ec21357d96) Thanks [@vnphanquang](https://github.com/vnphanquang)! - shiki - render line number if there is only one applicable line but also one or more diff lines
+
+- [`de5adf0`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/de5adf098141f09108d5c25d9d2dd5ff6feb513c) Thanks [@vnphanquang](https://github.com/vnphanquang)! - allow explicit `cols` prop for `enhanced-code-block` group
+
 ## 1.0.0-next.15
 
 ### Minor Changes
