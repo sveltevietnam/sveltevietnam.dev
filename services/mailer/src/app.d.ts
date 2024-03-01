@@ -7,9 +7,9 @@
 // for information about these interfaces
 // and what to do when importing types
 declare global {
-	declare const __BUILD_TIMESTAMP__: string;
+	const __BUILD_TIMESTAMP__: string;
 	namespace App {
-		declare type Language = import('@internals/utils/language').Language;
+		type Language = import('@internals/utils/language').Language;
 		interface Locals {
 			d1: import('@cloudflare/workers-types').D1Database;
 		}

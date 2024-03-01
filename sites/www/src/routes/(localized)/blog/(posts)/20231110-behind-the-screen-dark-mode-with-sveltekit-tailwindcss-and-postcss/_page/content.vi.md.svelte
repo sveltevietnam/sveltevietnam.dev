@@ -430,7 +430,7 @@ Nếu bạn dùng Typescript, có thể thêm đoạn mã sau vào `src/app.d.ts
 ```typescript
 declare global {
   namespace App {
-    declare type ColorScheme = 'light' | 'dark' | 'system';
+    type ColorScheme = 'light' | 'dark' | 'system';
 
     interface Locals {
       colorScheme: ColorScheme;

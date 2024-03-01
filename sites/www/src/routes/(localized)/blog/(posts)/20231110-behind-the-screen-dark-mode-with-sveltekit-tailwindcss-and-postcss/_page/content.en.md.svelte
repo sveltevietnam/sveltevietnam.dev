@@ -434,7 +434,7 @@ If you are using Typescript, add the following to `src/app.d.ts` to satisfy the 
 ```typescript
 declare global {
   namespace App {
-    declare type ColorScheme = 'light' | 'dark' | 'system';
+    type ColorScheme = 'light' | 'dark' | 'system';
 
     interface Locals {
       colorScheme: ColorScheme;

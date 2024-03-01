@@ -10,9 +10,9 @@ import type { preparePageData } from '$lib/data/blog';
 // for information about these interfaces
 // and what to do when importing types
 declare global {
-	declare const __BUILD_TIMESTAMP__: string;
+	const __BUILD_TIMESTAMP__: string;
 
-	declare module '*&imagetools' {
+	module '*&imagetools' {
 		const src: string;
 		export default src;
 	}
@@ -21,22 +21,22 @@ declare global {
 	 * Svelte fails to automatically type imported mdsvex-svelte hybrid files
 	 * that have code blocks in it. This module is a workaround for that
 	 */
-	declare module '*.svelte?mdsvex' {
+	module '*.svelte?mdsvex' {
 		const component: import('svelte').ComponentType<import('svelte').SvelteComponent>;
 
 		export default component;
 	}
 
 	namespace App {
-		declare type Status = (typeof STATUSES)[number];
-		declare type ColorScheme = (typeof COLOR_SCHEMES)[number];
-		declare type Route = {
+		type Status = (typeof STATUSES)[number];
+		type ColorScheme = (typeof COLOR_SCHEMES)[number];
+		type Route = {
 			key: string;
 			path: string;
 			label: string;
 		};
-		declare type Language = import('@internals/utils/language').Language;
-		declare type Settings = {
+		type Language = import('@internals/utils/language').Language;
+		type Settings = {
 			language: Language;
 			colorScheme: ColorScheme;
 			splash: 'short' | 'long' | 'random' | 'disabled';
