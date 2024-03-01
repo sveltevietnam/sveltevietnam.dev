@@ -1,3 +1,6 @@
+import fs from 'fs';
+import path from 'path';
+
 import { toString } from 'hast-util-to-string';
 import { h } from 'hastscript';
 import { getHighlighterCore } from 'shiki/core';
@@ -33,12 +36,8 @@ const shiki = await getHighlighterCore({
 	loadWasm,
 });
 
-/**
- *
- * @param {string} code
- * @param {string} [lang]
- */
-export function highlighter(code, lang = 'svelte') {
+/** @type {Exclude<import('mdsvex').MdsvexOptions['highlight'], false>['highlighter']} */
+export const highlighter = (code, lang = 'svelte', _meta, filename) => {
 	const html = shiki.codeToHtml(code, {
 		lang,
 		themes: {
@@ -48,14 +47,16 @@ export function highlighter(code, lang = 'svelte') {
 		transformers: [transformer()],
 		meta: {
 			'data-lang': lang,
+			__filename: filename,
 		},
 	});
 	return escapeHtml(html);
-}
+};
 
 /**
  * @typedef CodeBlockMetadata
  * @property {string} [__raw]
+ * @property {string} [__filename]
  * @property {string} [data-lang]
  * @property {Record<string, string>} [__enhancement]
  */
@@ -69,7 +70,8 @@ export function highlighter(code, lang = 'svelte') {
  */
 function parseMetadata(code, meta) {
 	// get first line
-	const line = code.slice(0, code.indexOf('\n')).trim();
+	let newLineIndex = code.indexOf('\n');
+	const line = code.slice(0, newLineIndex === -1 ? undefined : newLineIndex).trim();
 	if (!line.startsWith('///')) return code;
 
 	const metaStr = line.replace('///', '').trim();
@@ -77,10 +79,9 @@ function parseMetadata(code, meta) {
 	const match = metaStr.match(/(.*)(?<!\/)=(.*)/);
 	if (match) meta[match[1].trim()] = match[2].trim();
 
-	const newLineIndex = code.indexOf('\n') + 1;
-	if (!newLineIndex) return code;
+	if (newLineIndex === -1) return code;
 
-	return parseMetadata(code.slice(newLineIndex), meta);
+	return parseMetadata(code.slice(newLineIndex + 1), meta);
 }
 
 const STATUSES = ['info', 'success', 'warning', 'error'];
@@ -96,7 +97,14 @@ function transformer() {
 			const meta = this.options.meta;
 			if (!meta.__enhancement) meta.__enhancement = {};
 			if (!('lang' in meta.__enhancement)) meta.__enhancement.lang = this.options.lang;
-			return parseMetadata(code, meta.__enhancement);
+			code = parseMetadata(code, meta.__enhancement);
+			if (meta.__enhancement.src && meta.__filename) {
+				const srcPath = path.resolve(path.dirname(meta.__filename), meta.__enhancement.src);
+				if (fs.existsSync(srcPath)) {
+					code = fs.readFileSync(srcPath, 'utf-8');
+				}
+			}
+			return code;
 		},
 
 		pre(hast) {

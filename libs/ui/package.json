@@ -177,7 +177,7 @@
 		"hast-util-to-string": "^3.0.0",
 		"hastscript": "^9.0.0",
 		"magic-string": "^0.30.7",
-		"mdsvex": "^0.11.0",
+		"mdsvex": "https://github.com/vnphanquang/MDsveX/raw/master/packages/mdsvex/mdsvex-0.11.0.tgz",
 		"postcss-color-scheme": "^1.0.1",
 		"postcss-custom-selectors": "^7.1.7",
 		"postcss-html": "^1.6.0",
