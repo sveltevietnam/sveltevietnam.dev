@@ -102,13 +102,20 @@ export function enhanceCodeBlock(config = {}) {
 					);
 
 					if (grouped) {
-						const codeBlockChildren = node.children.filter(
-							(e) =>
-								e.type === 'Element' &&
-								(e.name === enhancedElement || e.name === components.one.name),
-						);
+						let additionalAttributes = '';
 
-						let additionalAttributes = ` cols=${codeBlockChildren.length}`;
+						// process "cols" attribute
+						const colsAttr = node.attributes.find((attr) => attr.name === 'cols');
+						if (!colsAttr) {
+							const codeBlockChildren = node.children.filter(
+								(e) =>
+									e.type === 'Element' &&
+									(e.name === enhancedElement || e.name === components.one.name),
+							);
+							additionalAttributes = ` cols=${codeBlockChildren.length}`;
+						}
+
+						// process "name" attribute
 						const nameAttr = node.attributes.find((attr) => attr.name === 'name');
 						if (!nameAttr) {
 							let uuid = (++globalCounter).toString();
