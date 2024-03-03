@@ -1,5 +1,17 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.17
+
+### Minor Changes
+
+- [`7014fff`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/7014fffdded8d3f7f326a966396a257f39563213) Thanks [@vnphanquang](https://github.com/vnphanquang)! - allow `EnhancedCodeBlock` to be collapisble (no JS)
+
+### Patch Changes
+
+- [`7014fff`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/7014fffdded8d3f7f326a966396a257f39563213) Thanks [@vnphanquang](https://github.com/vnphanquang)! - prop accepted by `EnhancedCodeBlock` should be string (passed in by shiki transformer)
+
+- [`7014fff`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/7014fffdded8d3f7f326a966396a257f39563213) Thanks [@vnphanquang](https://github.com/vnphanquang)! - adaptive line number `::before` pseudoelement's width depending on the total number of lines
+
 ## 1.0.0-next.16
 
 ### Minor Changes
