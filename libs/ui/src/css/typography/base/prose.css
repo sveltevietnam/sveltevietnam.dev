@@ -150,8 +150,8 @@
 
 				display: inline-block;
 
-				width: 4ch;
-				margin-right: 3ch;
+				width: var(--num-line-width);
+				margin-right: 2ch;
 
 				font-variant-numeric: tabular-nums;
 				color: currentcolor;

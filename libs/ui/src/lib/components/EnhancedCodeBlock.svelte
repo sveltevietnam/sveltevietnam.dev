@@ -12,10 +12,19 @@
 	export let tab = '';
 	/** @type {string} */
 	export let filename = '';
-	/** @type {boolean} */
-	export let hideLineNumber = false;
+	/** @type {string} */
+	export let hideLineNumber = 'false';
+	/** @type {string | 'disabled'} */
+	export let collapsed = 'false';
+	/** @type {string | undefined} */
+	export let numLines = undefined;
 
 	const groupContext = getEnhancedCodeBlockGroupContext();
+
+	const id =
+		crypto && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2);
+	let collapsible = groupContext ? false : collapsed !== 'disabled';
+	let collapsedInputChecked = collapsible ? collapsed === 'true' : false;
 
 	/** @type {HTMLButtonElement}*/
 	let trigger;
@@ -55,11 +64,11 @@
 		hydrated = true;
 	});
 
-	$: id = groupContext?.display === 'files' ? filename : tab;
+	$: labelInGroup = groupContext?.display === 'files' ? filename : tab;
 	/** @type {import('svelte/elements').ChangeEventHandler<HTMLInputElement>} */
 	const onChange = (e) => {
 		if (/** @type {HTMLInputElement} */ (e.target).checked) {
-			groupContext?.onSelect(id);
+			groupContext?.onSelect(labelInGroup);
 		}
 	};
 </script>
@@ -67,19 +76,21 @@
 <section
 	class="codeblock"
 	class:grouped={!!groupContext}
-	class:hide-line-number={hideLineNumber}
+	class:hide-line-number={hideLineNumber !== 'false'}
 	{...groupContext && { 'data-group-display': groupContext.display }}
 	class:has-filename={filename}
+	class:collapsible={groupContext ? false : collapsible}
+	style:--num-line-width="{numLines ? numLines.length + 2 : 4}ch"
 >
 	{#if groupContext}
 		<label class="codeblock-group-label">
 			{#if groupContext.display === 'files'}
 				<span class="codeblock-filename">
 					<FileIcon {lang} />
-					{id}
+					{labelInGroup}
 				</span>
 			{:else}
-				<span>{id}</span>
+				<span>{labelInGroup}</span>
 			{/if}
 			<input
 				type="radio"
@@ -91,26 +102,94 @@
 			/>
 		</label>
 	{:else}
-		<header class="codeblock-header">
+		<label class="codeblock-header" for="codeblock-{id}-collapsed">
 			<p class="codeblock-filename">
 				<FileIcon {lang} />
 				{filename}
 			</p>
-		</header>
+		</label>
 	{/if}
 	<div class="codeblock-content">
-		<div class="codeblock-btns">
-			{#if hydrated}
-				<button
-					class="codeblock-btn codeblock-btn-copy"
-					bind:this={trigger}
-					disabled={copied}
-					on:mouseleave={onMouseLeaveCopyButton}
-					on:mouseenter={onMouseEnterCopyButton}
-					type="button"
-				>
-					<span class="sr-only">Copy</span>
-					{#key copied}
+		<div class="codeblock-content-accordion">
+			<div class="codeblock-btns">
+				{#if hydrated}
+					<button
+						class="codeblock-btn codeblock-btn-copy"
+						bind:this={trigger}
+						disabled={copied}
+						on:mouseleave={onMouseLeaveCopyButton}
+						on:mouseenter={onMouseEnterCopyButton}
+						type="button"
+					>
+						<span class="sr-only">Copy</span>
+						{#key copied}
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="20"
+								height="20"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="lucide lucide-clipboard-check"
+								in:fade={{ duration: 150 }}
+							>
+								<rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+								<path
+									d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
+								/>
+								{#if copied}
+									<path d="m9 14 2 2 4-4" />
+								{/if}
+							</svg>
+						{/key}
+					</button>
+				{/if}
+				<label class="codeblock-btn codeblock-btn-fullscreen">
+					<span class="sr-only">Fullscreen</span>
+					<input class="codeblock-fullscreen sr-only" type="checkbox" />
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="20"
+						height="20"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="lucide lucide-maximize"
+						><path d="M8 3H5a2 2 0 0 0-2 2v3" /><path d="M21 8V5a2 2 0 0 0-2-2h-3" /><path
+							d="M3 16v3a2 2 0 0 0 2 2h3"
+						/><path d="M16 21h3a2 2 0 0 0 2-2v-3" /></svg
+					>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="20"
+						height="20"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="lucide lucide-minimize"
+						><path d="M8 3v3a2 2 0 0 1-2 2H3" /><path d="M21 8h-3a2 2 0 0 1-2-2V3" /><path
+							d="M3 16h3a2 2 0 0 1 2 2v3"
+						/><path d="M16 21v-3a2 2 0 0 1 2-2h3" /></svg
+					>
+				</label>
+				{#if collapsible}
+					<label class="codeblock-btn codeblock-collapsed-indicator">
+						<input
+							class="codeblock-collapsed sr-only"
+							type="checkbox"
+							bind:checked={collapsedInputChecked}
+							id="codeblock-{id}-collapsed"
+						/>
+						<span class="sr-only">Collapse</span>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							width="20"
@@ -121,80 +200,25 @@
 							stroke-width="2"
 							stroke-linecap="round"
 							stroke-linejoin="round"
-							class="lucide lucide-clipboard-check"
-							in:fade={{ duration: 150 }}
+							class="lucide lucide-chevron-up"
 						>
-							<rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
-							<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
-							{#if copied}
-								<path d="m9 14 2 2 4-4" />
-							{/if}
+							<path d="m6 9 6 6 6-6" />
 						</svg>
-					{/key}
-				</button>
-			{/if}
-			<label class="codeblock-btn codeblock-btn-fullscreen">
-				<span class="sr-only">Fullscreen</span>
-				<input class="codeblock-fullscreen sr-only" type="checkbox" />
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="20"
-					height="20"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					class="lucide lucide-maximize"
-					><path d="M8 3H5a2 2 0 0 0-2 2v3" /><path d="M21 8V5a2 2 0 0 0-2-2h-3" /><path
-						d="M3 16v3a2 2 0 0 0 2 2h3"
-					/><path d="M16 21h3a2 2 0 0 0 2-2v-3" /></svg
-				>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="20"
-					height="20"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					class="lucide lucide-minimize"
-					><path d="M8 3v3a2 2 0 0 1-2 2H3" /><path d="M21 8h-3a2 2 0 0 1-2-2V3" /><path
-						d="M3 16h3a2 2 0 0 1 2 2v3"
-					/><path d="M16 21v-3a2 2 0 0 1 2-2h3" /></svg
-				>
-			</label>
-		</div>
-		<div
-			class="codeblock-pre-container"
-			use:copy={{ trigger, text: copyText }}
-			on:copied={onCopied}
-		>
-			<slot />
+					</label>
+				{/if}
+			</div>
+			<div
+				class="codeblock-pre-container"
+				use:copy={{ trigger, text: copyText }}
+				on:copied={onCopied}
+			>
+				<slot />
+			</div>
 		</div>
 	</div>
 </section>
 
 <style lang="postcss">
-	:where(.sr-only) {
-		position: absolute;
-
-		overflow: hidden;
-
-		width: 1px;
-		height: 1px;
-		margin: -1px;
-		padding: 0;
-
-		white-space: nowrap;
-
-		clip: rect(0, 0, 0, 0);
-		border-width: 0;
-	}
-
 	p {
 		margin: 0;
 		padding: 0;
@@ -210,21 +234,31 @@
 
 		position: relative;
 
+		overflow: hidden;
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-template-rows: auto 1fr;
 
 		margin-block: 24px;
 
+		border-width: 1px;
+		border-radius: 0.375rem;
+
 		& :global(pre) {
 			height: 100%;
 			margin-block: 0;
+
+			border-width: 1px 0 0 !important;
 			border-top-left-radius: 0;
 			border-top-right-radius: 0;
 		}
 
 		&.grouped {
 			display: contents !important;
+
+			& :global(pre) {
+				border-width: 1px !important;
+			}
 
 			& .codeblock-content {
 				display: none;
@@ -246,6 +280,31 @@
 				}
 			}
 		}
+
+		&.collapsible:not(:has(.codeblock-fullscreen:checked)) {
+			& .codeblock-header {
+				cursor: pointer;
+			}
+
+			& .codeblock-content {
+				grid-template-rows: 0fr;
+				transition: grid-template-rows 150ms ease-out;
+			}
+
+			&:not(:has(.codeblock-collapsed:checked)) {
+				& .codeblock-content {
+					grid-template-rows: 1fr;
+				}
+
+				& .codeblock-collapsed-indicator {
+					transform: rotate(180deg);
+				}
+			}
+
+			& .codeblock-collapsed-indicator {
+				display: block;
+			}
+		}
 	}
 
 	:global(.codeblock:not(.grouped, .has-filename):has(pre[data-num-lines='1'])) {
@@ -258,6 +317,7 @@
 		}
 
 		& :global(pre) {
+			border-top-width: 0 !important;
 			border-top-left-radius: 0.375rem;
 			border-top-right-radius: 0.375rem;
 		}
@@ -289,7 +349,7 @@
 		}
 
 		& .codeblock-content {
-			display: block;
+			display: grid;
 		}
 	}
 
@@ -300,7 +360,7 @@
 		}
 
 		& .codeblock-content {
-			display: block;
+			display: grid;
 		}
 	}
 
@@ -343,32 +403,33 @@
 
 	:where(.codeblock-header) {
 		padding: 12px 16px;
-
 		line-height: normal;
-
 		background-color: var(--color-pre-bg);
-		border-width: 1px 1px 0;
-		border-radius: 0.375rem 0.375rem 0 0;
 	}
 
 	:where(.codeblock-filename) {
+		width: fit-content;
 		font-size: theme('fontSize.xs');
 	}
 
 	:where(.codeblock-content) {
 		z-index: 1;
-		overflow: auto;
+		display: grid;
 		max-width: 100%;
+	}
+
+	:where(.codeblock-content-accordion) {
+		overflow: hidden;
 	}
 
 	:where(.codeblock-btns) {
 		position: absolute;
 		z-index: 2;
-		top: 10px;
-		right: 12px;
+		top: 6px;
+		right: 8px;
 
 		display: flex;
-		gap: 12px;
+		gap: 4px;
 		align-items: center;
 
 		width: fit-content;
@@ -376,8 +437,9 @@
 
 	:where(.codeblock-btn) {
 		cursor: pointer;
+		padding: 4px;
 		color: var(--color-header-fg);
-		transition: color 120ms ease-out;
+		transition: color 150ms ease-out;
 
 		&:hover {
 			color: currentcolor;
@@ -405,6 +467,11 @@
 				display: block;
 			}
 		}
+	}
+
+	:where(.codeblock-collapsed-indicator) {
+		display: none;
+		transition: transform 150ms ease-out;
 	}
 
 	:where(.codeblock-pre-container) {

@@ -57,6 +57,7 @@ export const highlighter = (code, lang = 'svelte', _meta, filename) => {
  * @typedef CodeBlockMetadata
  * @property {string} [__raw]
  * @property {string} [__filename]
+ * @property {any} [__container]
  * @property {string} [data-lang]
  * @property {Record<string, string>} [__enhancement]
  */
@@ -91,7 +92,6 @@ const STATUSES = ['info', 'success', 'warning', 'error'];
 function transformer() {
 	return {
 		name: '@sveltevietnam/ui:enhance-code-block',
-
 		preprocess(code) {
 			/** @type {CodeBlockMetadata} */
 			const meta = this.options.meta;
@@ -106,27 +106,8 @@ function transformer() {
 			}
 			return code;
 		},
-
-		pre(hast) {
-			delete hast.properties['tabindex'];
-
-			const container = h('enhanced-code-block', [hast]);
-			if (this.options.meta) {
-				const metadata = /** @type {CodeBlockMetadata} */ (this.options.meta);
-				if (metadata.__enhancement) {
-					for (const [key, value] of Object.entries(metadata.__enhancement)) {
-						if (key === 'class') {
-							this.addClassToHast(hast, value);
-						}
-						container.properties[key] = value;
-					}
-				}
-			}
-
-			return container;
-		},
 		code(hast) {
-			const metadata = /** @type {CodeBlockMetadata} */ (this.options.meta);
+			const meta = /** @type {CodeBlockMetadata} */ (this.options.meta);
 
 			// FIXME: correct typing
 			/** @type {any[]} */
@@ -147,7 +128,7 @@ function transformer() {
 
 				let isMetaLine = false;
 
-				if (!metadata.__enhancement?.skipMetaBlock) {
+				if (!meta.__enhancement?.skipMetaBlock) {
 					const str = toString(line).trim();
 					if (str.includes(':::')) {
 						isMetaLine = true;
@@ -212,6 +193,25 @@ function transformer() {
 			}
 
 			this.pre.properties['data-num-lines'] = lineNumber;
+			if (meta?.__enhancement) {
+				meta.__enhancement.numLines = lineNumber.toString();
+			}
+		},
+		pre(hast) {
+			delete hast.properties['tabindex'];
+
+			const container = h('enhanced-code-block', [hast]);
+			const meta = /** @type {CodeBlockMetadata} */ (this.options.meta);
+			if (meta?.__enhancement) {
+				for (const [key, value] of Object.entries(meta.__enhancement)) {
+					if (key === 'class') {
+						this.addClassToHast(hast, value);
+					}
+					container.properties[key] = value;
+				}
+			}
+
+			return container;
 		},
 	};
 }
