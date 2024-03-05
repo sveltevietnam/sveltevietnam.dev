@@ -1,5 +1,11 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.18
+
+### Patch Changes
+
+- [`ee3738e`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/ee3738e7f3a60d6c5d398d13a81c733062545b58) Thanks [@vnphanquang](https://github.com/vnphanquang)! - fix media query gaps with the new [range syntax](https://web.dev/articles/media-query-range-syntax)
+
 ## 1.0.0-next.17
 
 ### Minor Changes
