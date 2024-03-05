@@ -56,7 +56,7 @@
 						<SplitText text={t.recent.title} />
 					</h2>
 				</ConsecutiveFadeUpIntro>
-				<div class="mt-10 flex gap-10 upto-tb:flex-col">
+				<div class="mt-10 flex gap-10 sp:flex-col">
 					<div class="flex-1">
 						{#if topPosts[0]}
 							<div use:intersect>

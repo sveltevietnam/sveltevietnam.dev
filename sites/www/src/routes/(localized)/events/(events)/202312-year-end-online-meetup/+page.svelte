@@ -48,7 +48,7 @@
 	</div>
 	<div
 		use:intersect
-		class="absolute top-0 -z-px mix-blend-luminosity upto-tb:left-0 tb:right-w-pad"
+		class="absolute top-0 -z-px mix-blend-luminosity sp:left-0 tb:right-w-pad"
 		aria-disabled
 	>
 		<img
@@ -142,7 +142,7 @@
 			<h2 class="c-text-h2 uppercase" use:intersect>{t.images.title}</h2>
 
 			<div class="mt-[60px] grid gap-6 tb:grid-cols-[3fr,2fr]">
-				<div class="upto-tb:contents tb:space-y-6">
+				<div class="sp:contents tb:space-y-6">
 					<figure use:intersect>
 						<enhanced:img
 							src={event.thumbnail}
@@ -160,7 +160,7 @@
 						<figcaption class="c-text-cap1 mt-4 text-fg-200">{t.images.moment}</figcaption>
 					</figure>
 				</div>
-				<div class="upto-tb:contents tb:space-y-6">
+				<div class="sp:contents tb:space-y-6">
 					<figure use:intersect>
 						<enhanced:img
 							src={imgStateOfSvelteVietnam2023}

@@ -5,26 +5,19 @@ export const theme = {
 	extend: {
 		screens: {
 			sp: {
-				// smart phone
-				max: '767px',
-			},
-			'upto-tb': {
-				max: '767px',
+				raw: '(width <= 768px)',
 			},
 			tb: {
-				// tablet
-				min: '768px',
+				raw: '(width >= 768px)',
 			},
 			'tb-to-pc': {
-				min: '768px',
-				max: '1023px',
+				raw: '(768px <= width < 1024px)',
 			},
 			pc: {
-				// desktop
-				min: '1024px',
+				raw: '(width >= 1024px)',
 			},
 			'upto-pc': {
-				max: '1023px',
+				raw: '(width < 1024px)',
 			},
 		},
 		fontSize: {

@@ -159,7 +159,7 @@
 			{/key}
 
 			<section class="post-latest">
-				<h2 class="font-medium upto-tb:c-text-h2@sp tb:c-text-h3@pc after:mt-2 after:separator">
+				<h2 class="font-medium sp:c-text-h2@sp tb:c-text-h3@pc after:mt-2 after:separator">
 					{t.latest}
 				</h2>
 				<ul class="mt-8 space-y-8">
@@ -177,7 +177,7 @@
 			</section>
 
 			<section class="post-share">
-				<h2 class="upto-tb:c-text-h2@sp tb:c-text-h3@pc after:mt-2 after:separator" id="share">
+				<h2 class="sp:c-text-h2@sp tb:c-text-h3@pc after:mt-2 after:separator" id="share">
 					{t.share}
 				</h2>
 				<ul class="mt-8 flex flex-wrap items-center gap-4">
@@ -236,7 +236,7 @@
 			<section class="post-toc">
 				{#if $tocStore.items.size}
 					<nav aria-label={t.tableOfContents.title}>
-						<h2 class="font-medium upto-tb:c-text-h2@sp tb:c-text-h3@pc after:mt-2 after:separator">
+						<h2 class="font-medium sp:c-text-h2@sp tb:c-text-h3@pc after:mt-2 after:separator">
 							{t.tableOfContents.title}
 						</h2>
 						<ul class="mt-8">

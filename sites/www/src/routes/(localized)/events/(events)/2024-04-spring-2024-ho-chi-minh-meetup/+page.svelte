@@ -179,7 +179,7 @@
 			<h2 class="c-text-h2 uppercase" use:intersect>{t.images.title}</h2>
 
 			<div class="mt-[60px] grid gap-6 tb:grid-cols-[3fr,2fr]">
-				<div class="upto-tb:contents tb:space-y-6">
+				<div class="sp:contents tb:space-y-6">
 					{#each new Array(2) as _}
 						<figure use:intersect>
 							<enhanced:img src={fallbackPrimaryImage} alt="placeholder" class="rounded-2xl" />
@@ -187,7 +187,7 @@
 						</figure>
 					{/each}
 				</div>
-				<div class="upto-tb:contents tb:space-y-6">
+				<div class="sp:contents tb:space-y-6">
 					{#each new Array(3) as _}
 						<figure use:intersect>
 							<enhanced:img src={fallbackSecondaryImage} alt="placeholder" class="rounded-2xl" />

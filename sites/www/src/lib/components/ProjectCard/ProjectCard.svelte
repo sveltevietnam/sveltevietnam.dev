@@ -38,7 +38,7 @@
 	.project-card {
 		display: flex;
 
-		@screen upto-tb {
+		@screen sp {
 			flex-direction: column;
 		}
 	}

@@ -15,16 +15,13 @@
 	<div class="mt-6" use:intersect>
 		<Breadcrumbs breadcrumbs={data.breadcrumbs} />
 	</div>
-	<section class="mt-8 flex items-start justify-between gap-8 upto-tb:flex-col tb:mt-[60px]">
+	<section class="mt-8 flex items-start justify-between gap-8 sp:flex-col tb:mt-[60px]">
 		<div use:intersect>
 			<h1 class="c-text-h1 font-medium uppercase">{t.title}</h1>
 			<p class="c-text-h4 mt-6 tb:mt-8">{t.subtitle}</p>
 		</div>
 		<div use:intersect>
-			<svg
-				inline-src="./_page/images/key-visuals"
-				class="opacity-5 upto-tb:h-auto upto-tb:w-full"
-			/>
+			<svg inline-src="./_page/images/key-visuals" class="opacity-5 sp:h-auto sp:w-full" />
 		</div>
 	</section>
 
@@ -53,7 +50,7 @@
 			<div use:intersect class="absolute right-0 top-0 -z-px">
 				<svg
 					inline-src="./_page/images/au-lac"
-					class="opacity-[2%] upto-tb:top-[100px] upto-tb:h-auto upto-tb:w-full"
+					class="opacity-[2%] sp:top-[100px] sp:h-auto sp:w-full"
 				/>
 			</div>
 		</section>
@@ -92,7 +89,7 @@
 				</div>
 			</div>
 			<div class="absolute bottom-0 right-0 -z-px" use:intersect>
-				<div class="flex items-center gap-10 opacity-[2%] upto-tb:max-h-full upto-tb:flex-col">
+				<div class="flex items-center gap-10 opacity-[2%] sp:max-h-full sp:flex-col">
 					<p class="sr-only">Chữ Nôm</p>
 					<svg inline-src="./_page/images/tu_chu.svg" />
 					<svg inline-src="./_page/images/tu_nom.svg" />

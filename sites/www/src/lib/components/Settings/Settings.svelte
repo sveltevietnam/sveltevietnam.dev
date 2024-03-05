@@ -158,7 +158,7 @@
 	<section class="space-y-8">
 		<h2 class="c-text-h3">{$tGlobal.common.colorSchemes.title}</h2>
 
-		<div class="flex flex-wrap gap-6 upto-tb:justify-center">
+		<div class="flex flex-wrap gap-6 sp:justify-center">
 			<div class="basis-56 space-y-0.5">
 				<label>
 					<input

@@ -81,7 +81,7 @@
 		grid-template-columns: 1fr;
 		row-gap: 40px;
 
-		@screen upto-tb {
+		@screen sp {
 			& > :global(li) {
 				&::before {
 					content: '';

@@ -143,7 +143,7 @@ Listed below are some questions that arise from the example above, based on my o
 
 Let's say, in an imaginative but perhaps very common scenario, a designer steps in and demands that `Heading` in `ArticleCard` needs special color and line-height that no place else does. Maybe creating a new `Article.Heading` component is really the way to go. But should we make it out of a `h3` from scratch or overriding `Heading`?
 
-:::div flex upto-tb:flex-col gap-10
+:::div flex sp:flex-col gap-10
 
 :::div
 

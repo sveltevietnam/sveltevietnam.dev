@@ -143,7 +143,7 @@ Sau đây là một số câu hỏi phát sinh từ ví dụ trên, dựa theo n
 
 Giả sử thiết kế viên bảo rằng, tiêu đề (`Heading`) trong `ArticleCard` cần có màu và line-height đặc biệt mà không ở đâu khác có, vậy đúng thật là ta nên tách ra thêm một component `ArticleCard.Heading`. Nhưng ta nên tạo component này bằng cách khai báo một `h3` hoàn toàn mới hay ghi đè lên `Heading` đây?
 
-:::div flex upto-tb:flex-col gap-10
+:::div flex sp:flex-col gap-10
 
 :::div
 

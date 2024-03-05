@@ -51,14 +51,14 @@
 			<p class="mt-6" use:intersect>{@html t.excerpt.intro}</p>
 			<div class="relative mt-10 tb:mt-[60px] tb:pl-[140px] tb:pr-[48px]" use:intersect>
 				<blockquote cite="https://sveltesociety.dev/about">
-					<div aria-disabled class="left-[95px] top-[-18px] flex gap-0.5 upto-tb:mb-3 tb:absolute">
+					<div aria-disabled class="left-[95px] top-[-18px] flex gap-0.5 sp:mb-3 tb:absolute">
 						<svg inline-src="icon/quote-open" width="16" height="30" />
 						<svg class="text-fg-200" inline-src="icon/quote-open" width="16" height="30" />
 					</div>
 					<p>{@html t.excerpt.quote}</p>
 					<div
 						aria-disabled
-						class="bottom-6 right-0 flex w-fit gap-0.5 upto-tb:ml-auto upto-tb:mt-3 tb:absolute"
+						class="bottom-6 right-0 flex w-fit gap-0.5 sp:ml-auto sp:mt-3 tb:absolute"
 					>
 						<svg class="text-fg-200" inline-src="icon/quote-close" width="16" height="30" />
 						<svg inline-src="icon/quote-close" width="16" height="30" />

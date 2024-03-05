@@ -271,7 +271,7 @@
 	}
 
 	#header-mobile-overlay-toggler:not(:checked) + .mobile-wrapper {
-		@screen upto-tb {
+		@screen sp {
 			pointer-events: none;
 		}
 	}

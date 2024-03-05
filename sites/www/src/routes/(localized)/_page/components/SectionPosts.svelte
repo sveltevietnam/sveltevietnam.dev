@@ -32,7 +32,7 @@
 	</ConsecutiveFadeUpIntro>
 	<p class="section-desc mt-6" use:intersect>{@html t.description}</p>
 
-	<div class="mt-10 flex gap-10 upto-tb:flex-col tb:mt-[60px] tb:gap-[60px]">
+	<div class="mt-10 flex gap-10 sp:flex-col tb:mt-[60px] tb:gap-[60px]">
 		<div class="flex-1">
 			{#if posts[0]}
 				<div use:intersect>

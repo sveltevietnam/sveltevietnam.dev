@@ -35,7 +35,7 @@
 		align-items: flex-end;
 		justify-content: flex-start;
 
-		@screen upto-tb {
+		@screen sp {
 			left: 8px;
 		}
 

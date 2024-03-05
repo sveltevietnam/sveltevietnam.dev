@@ -87,7 +87,7 @@
 </script>
 
 <div class="not-prose">
-	<div class="mb-4 flex w-full gap-4 upto-tb:flex-col">
+	<div class="mb-4 flex w-full gap-4 sp:flex-col">
 		<div class="flex flex-1 items-center gap-3">
 			<p>{t.variants.choose}:</p>
 			<label class="flex items-center gap-1">
