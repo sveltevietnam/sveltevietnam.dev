@@ -9,9 +9,7 @@
 	/** @type {string}*/
 	export let lang = '';
 	/** @type {string}*/
-	export let tab = '';
-	/** @type {string} */
-	export let filename = '';
+	export let title = '';
 	/** @type {string} */
 	export let hideLineNumber = 'false';
 	/** @type {string | 'disabled'} */
@@ -64,11 +62,10 @@
 		hydrated = true;
 	});
 
-	$: labelInGroup = groupContext?.display === 'files' ? filename : tab;
 	/** @type {import('svelte/elements').ChangeEventHandler<HTMLInputElement>} */
 	const onChange = (e) => {
 		if (/** @type {HTMLInputElement} */ (e.target).checked) {
-			groupContext?.onSelect(labelInGroup);
+			groupContext?.onSelect(title);
 		}
 	};
 </script>
@@ -78,19 +75,19 @@
 	class:grouped={!!groupContext}
 	class:hide-line-number={hideLineNumber !== 'false'}
 	{...groupContext && { 'data-group-display': groupContext.display }}
-	class:has-filename={filename}
+	class:has-title={title}
 	class:collapsible={groupContext ? false : collapsible}
 	style:--num-line-width="{numLines ? numLines.length + 2 : 4}ch"
 >
 	{#if groupContext}
 		<label class="codeblock-group-label">
 			{#if groupContext.display === 'files'}
-				<span class="codeblock-filename">
+				<span class="codeblock-title">
 					<FileIcon {lang} />
-					{labelInGroup}
+					{title}
 				</span>
 			{:else}
-				<span>{labelInGroup}</span>
+				<span>{title}</span>
 			{/if}
 			<input
 				type="radio"
@@ -103,9 +100,9 @@
 		</label>
 	{:else}
 		<label class="codeblock-header" for="codeblock-{id}-collapsed">
-			<p class="codeblock-filename">
+			<p class="codeblock-title">
 				<FileIcon {lang} />
-				{filename}
+				{title}
 			</p>
 		</label>
 	{/if}
@@ -307,7 +304,7 @@
 		}
 	}
 
-	:global(.codeblock:not(.grouped, .has-filename):has(pre[data-num-lines='1'])) {
+	:global(.codeblock:not(.grouped, .has-title):has(pre[data-num-lines='1'])) {
 		& .codeblock-header {
 			display: none;
 		}
@@ -407,7 +404,7 @@
 		background-color: var(--color-pre-bg);
 	}
 
-	:where(.codeblock-filename) {
+	:where(.codeblock-title) {
 		width: fit-content;
 		font-size: theme('fontSize.xs');
 	}

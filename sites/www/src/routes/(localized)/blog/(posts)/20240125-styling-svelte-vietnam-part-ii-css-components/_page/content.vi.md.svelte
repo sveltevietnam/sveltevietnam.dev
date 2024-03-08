@@ -76,7 +76,7 @@ Nói ngắn gọn, các hệ thống áp dụng thiết kế Atomic mình từng
 Ví dụ, một component `ArticleCard` có thể được xây dựng như sau:
 
 ```svelte
-/// filename=ArticleCard.svelte
+/// title=ArticleCard.svelte
 <ArticleCard>
 	<Link to="/path/to/article">
 		<Heading level="3">...</Heading>
@@ -92,7 +92,7 @@ Ví dụ, một component `ArticleCard` có thể được xây dựng như sau:
 Rất đẹp mắt đúng không nào, trông như ta đang sử dụng một thư viện giao diện đẳng cấp thứ thiệt. Tuy nhiên, để viết được component trên, ta cần viết **sáu component** con: `Link`, `Heading`, `Figure`, `Figure.Image`, `Figure.Caption`, `Description`. Đặc sắc hơn, nếu bạn đã làm việc với web đủ lâu thì có thể đoán được rằng component `Link` được viết như thế nào:
 
 ```svelte
-/// filename=Link.svelte
+/// title=Link.svelte
 <script>
 	export let to = '';
 </script>
@@ -105,7 +105,7 @@ Rất đẹp mắt đúng không nào, trông như ta đang sử dụng một th
 Hay component `Heading`:
 
 ```svelte
-/// filename=Heading.svelte
+/// title=Heading.svelte
 <script>
 	export let level;
 </script>
@@ -150,7 +150,7 @@ Giả sử thiết kế viên bảo rằng, tiêu đề (`Heading`) trong `Artic
 Ghi đè style lên `Heading`:
 
 ```svelte
-/// filename=ArticleCardHeading.svelte
+/// title=ArticleCardHeading.svelte
 <Heading level="3" class="special">
 	<slot />
 </Heading>
@@ -170,7 +170,7 @@ Ghi đè style lên `Heading`:
 Tạo h3 hoàn toàn mới:
 
 ```svelte
-/// filename=ArticleCardHeading.svelte
+/// title=ArticleCardHeading.svelte
 <h3>
 	<slot />
 <h3>
@@ -228,7 +228,7 @@ Hãy phân tích một tí: tất cả các yếu tố xác định kiểu dáng
 Ta không cần phải tạo ra một Javascript Component `Callout.svelte` vì giao diện này không đòi hỏi markup đặc biệt gì (ví dụ bắt buộc phải là thẻ `p`), và cũng không chứa logic đặc biệt gì. Tất cả mọi thứ ta cần đóng gói là kiểu dáng, và ta đã làm được điều đó bằng CSS. Hãy thử viết lại component `ArticleCard` ở phần trước với ý tưởng tương tự xem nào:
 
 ```svelte
-/// filename=ArticleCard.svelte
+/// title=ArticleCard.svelte
 <article>
   <a href="/path/to/article" class="c-link">
     <h3 class="c-text-h2">...</h3>

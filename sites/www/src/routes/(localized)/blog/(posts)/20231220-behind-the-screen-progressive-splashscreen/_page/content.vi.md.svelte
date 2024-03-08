@@ -82,7 +82,7 @@ Sử dụng vanilla? Nghe thật lạ lùng trong thời buổi ngày nay với 
 Trong Svelte và SvelteKit, có nhiều cách để áp dụng một đoạn mã HTML vanilla ngoài phạm vi hydration. Cách đơn giản nhất ta sẽ sử dụng là thêm mã trực tiếp vào `app.html`:
 
 ```html
-/// filename=src/app.html
+/// title=src/app.html
 <!doctype html>
 <html>
   <head>...</head>
@@ -104,7 +104,7 @@ Trong Svelte và SvelteKit, có nhiều cách để áp dụng một đoạn mã
 Nếu bạn chưa biết, `app.html` là tệp mẫu SvelteKit dùng để biểu hiện nội dung trang, trước khi gởi về cho trình duyệt. Hydration sẽ diễn ra tại `%sveltekit.body%`. Xem thêm [phần "Project files" trong tài liệu của SvelteKit](https://kit.svelte.dev/docs/project-structure#project-files) để biết thêm chi tiết. `div#splash` của chúng ta nằm ngoài `%sveltekit.body%` nên sẽ không bị ảnh hưởng bởi hydration. Tiếp theo, đối với CSS, ta sẽ khai báo một tệp riêng...
 
 ```css
-/// filename=splash.css
+/// title=splash.css
 #splash {
   /* style và hiệu ứng phù hợp */
 }
@@ -113,7 +113,7 @@ Nếu bạn chưa biết, `app.html` là tệp mẫu SvelteKit dùng để biể
 ...và nhập tệp này trực tiếp vào `+layout` hoặc `+page` phù hợp. Ví dụ, để áp dụng lên tất cả các trang, hãy nhập vào tệp `+layout` gốc:
 
 ```svelte
-/// filename=src/routes/+layout.svelte
+/// title=src/routes/+layout.svelte
 <script>
   import 'path/to/splash.css';
 </script>
@@ -152,7 +152,7 @@ Tuy nhiên, trong trường hợp bạn không dùng CSR hoặc người dùng k
 Trước tiên, ta thêm một thuộc tính vào phần tử `div#splash`:
 
 ```html
-/// filename=src/app.html
+/// title=src/app.html
 <!doctype html>
 <html>
   <head>...</head>
@@ -173,7 +173,7 @@ Trước tiên, ta thêm một thuộc tính vào phần tử `div#splash`:
 `%splash-skip%` sẽ được thay thế bằng `true` hay `false` tùy vào tình huống (1) hay (2), từ phía server bằng tệp `hooks.server`:
 
 ```javascript
-/// filename=src/hooks.server.js
+/// title=src/hooks.server.js
 
 /** @type {import('sveltejs/kit').Handle} */
 export const handle = async ({ event, resolve }) => {
@@ -205,7 +205,7 @@ Bạn có thể kiểm tra đoạn mã đã hoạt động đúng chưa bằng c
 Để bật lại Javascript, thực hiện các thao tác tương tự nhưng thay câu lệnh bằng "Enable Javascript". Phần còn lại, ta chỉ cần chỉnh sửa `splash.css` tương ứng để ẩn đi màn hình chờ nếu `data-splash-skip` là `true`:
 
 ```css
-/// filename=splash.css
+/// title=splash.css
 #splash {
   /* :::diff + */
   &[data-splash-skip="true"] {
@@ -242,7 +242,7 @@ Ngoài ra, trong tình huống này, ta không thể tránh được việc tran
 Để làm được điều đó, ta cần phát hiện được khi nào hydration hoàn thành sau màn hình chờ. Trước hết, ta lưu lại mốc thời gian khi màn hình chờ vừa kết thúc:
 
 ```html
-/// filename=src/app.html
+/// title=src/app.html
 <html>
   <body>
     <div id="splash">...</splash>
@@ -277,7 +277,7 @@ Lưu ý: bạn cần bắt đúng sự kiện `animationend` vì màn hình ch�
 Ở đây, bạn lại thấy ta đã dùng vanilla JS cho đoạn mã trên. Và minh xin nhắc lại một lần nữa: điều này là hoàn toàn bình thường. Ta cần dùng vanilla vì nếu đoạn code trên nằm trong các thành phần của framework, nó sẽ không có hiệu lực cho đến khi hydration đã hoàn thành - nghĩa là đoạn mã trở nên vô dụng. Ta cũng không thiết lập các thuộc tính [defer](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#defer), [async](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#async), hay biến đoạn mã thành [module](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#module) vì ta muốn nó chạy sớm nhất có thể, để bắt được chính xác hơn thời điểm hiệu ứng đã kết thúc (sự kiện `animationend`). Tiếp theo, ta lấy mốc thời gian khi hydration vừa hoàn thành và so sánh với mốc thời gian màn hình chờ đã có:
 
 ```svelte
-/// filename=src/routes/+layout.svelte
+/// title=src/routes/+layout.svelte
 <script>
   import { browser } from '$app/environment';
 

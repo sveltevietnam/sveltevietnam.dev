@@ -1,19 +1,19 @@
 <enhanced-code-block group name="installation" display="tabs">
 
 ```bash
-/// tab=npm
+/// title=npm
 npm install --save-dev tailwindcss postcss @sveltevietnam/ui
 ```
 
 ```bash
-/// tab=pnpm
+/// title=pnpm
 /// hideLineNumber=true
 pnpm add -D tailwindcss postcss @sveltevietnam/ui
 # something else to admire
 ```
 
 ```bash
-/// tab=yarn
+/// title=yarn
 yarn add -D tailwindcss postcss @sveltevietnam/ui
 ```
 

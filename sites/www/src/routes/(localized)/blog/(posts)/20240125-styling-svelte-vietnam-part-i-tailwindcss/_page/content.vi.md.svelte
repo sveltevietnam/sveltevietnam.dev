@@ -259,7 +259,7 @@ Nhìn chung, mình không khuyến khích sử dụng cú pháp `@apply`. Như b
 Ngoài ra, sử dụng `@apply` trong các tệp `*.svelte` cũng là điều nên tránh vì hai nguyên nhân. Một là đôi khi nó sẽ không hoạt động như mọng đợi, như đã [đề cập ở đây từ tài liệu của Tailwind](https://tailwindcss.com/docs/functions-and-directives#using-apply-with-per-component-css). Thứ hai là, kết quả biên dịch có thể bị ô nhiễm bởi các lớp không cần thiết. Để hiểu được ý này, hãy đi qua một cách tổng quát nhất về cách hoạt động của Tailwind.
 
 ```javascript
-/// filename=tailwind.config.js
+/// title=tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
@@ -269,7 +269,7 @@ export default {
 Trong cấu hình của Tailwind có một thuộc tính bắt buộc là `content`. Trình biên dịch của Tailwind ([Just-In-Time Compiler](https://tailwindcss.com/blog/just-in-time-the-next-generation-of-tailwind-css)) sẽ đọc các tệp khai báo tại `content`, tìm các lớp khả dụng (`mx-auto`, `pl-2`, `rounded`, ...) và tạo ra CSS tương ứng. Giả sử ta có tệp Svelte:
 
 ```svelte
-/// filename=example.svelte
+/// title=example.svelte
 <article>...</article>
 
 <style lang="postcss">

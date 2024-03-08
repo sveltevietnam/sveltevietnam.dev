@@ -76,7 +76,7 @@ To be precise, I do not hate the "Atomic Design" thinking; it does help develop 
 For an example, let's look at how an `ArticleCard` component might be implemented:
 
 ```svelte
-/// filename=ArticleCard.svelte
+/// title=ArticleCard.svelte
 <ArticleCard>
 	<Link to="/path/to/article">
 		<Heading level="3">...</Heading>
@@ -92,7 +92,7 @@ For an example, let's look at how an `ArticleCard` component might be implemente
 Very eye-pleasing is it not? It looks as if we were using a fancy full-fledged UI library. Taking a closer look, we would need **six child components** - `Link`, `Heading`, `Figure`, `Figure.Image`, `Figure.Caption`, `Description` - to implement this `ArticleCard` one. Notably, if you have worked with the web long enough, you can probably guess how `Link` is implemented:
 
 ```svelte
-/// filename=Link.svelte
+/// title=Link.svelte
 <script>
 	export let to = '';
 </script>
@@ -105,7 +105,7 @@ Very eye-pleasing is it not? It looks as if we were using a fancy full-fledged U
 Or `Heading`:
 
 ```svelte
-/// filename=Heading.svelte
+/// title=Heading.svelte
 <script>
 	export let level;
 </script>
@@ -150,7 +150,7 @@ Let's say, in an imaginative but perhaps very common scenario, a designer steps 
 Overriding `Heading`:
 
 ```svelte
-/// filename=ArticleCardHeading.svelte
+/// title=ArticleCardHeading.svelte
 <Heading level="3" class="special">
 	<slot />
 </Heading>
@@ -170,7 +170,7 @@ Overriding `Heading`:
 Creating from scratch with `h3`:
 
 ```svelte
-/// filename=ArticleCardHeading.svelte
+/// title=ArticleCardHeading.svelte
 <h3>
 	<slot />
 <h3>
@@ -228,7 +228,7 @@ Let's break it down: all styling needed for this UI is defined via `c-callout` a
 No Javascript component `Callout.svelte` is needed here because there is no special constraint on markup (e.g. must be a `p` tag), and no additional interaction logic. All we need to package is the styling, and we have done so with CSS. Let's try to rewrite the `ArticleCard` component from the previous section with the same idea:
 
 ```svelte
-/// filename=ArticleCard.svelte
+/// title=ArticleCard.svelte
 <article>
   <a href="/path/to/article" class="c-link">
     <h3 class="c-text-h2">...</h3>

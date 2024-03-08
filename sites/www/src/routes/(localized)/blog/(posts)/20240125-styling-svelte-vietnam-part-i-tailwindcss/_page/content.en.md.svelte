@@ -257,7 +257,7 @@ In general, I do not recommend using `@apply`. As you can see from the example a
 Besides, using `@apply` in `*.svelte` files should be avoided for two reasons. One is the fact that it may not work as one might expect, as [discussed here in the Tailwind documentation](https://tailwindcss.com/docs/functions-and-directives#using-apply-with-per-component-css). Secondly, the build output might be polluted with unused classes. To understand this, let's have an overview of how Tailwind works.
 
 ```javascript
-/// filename=tailwind.config.js
+/// title=tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
@@ -267,7 +267,7 @@ export default {
 Tailwind's configuration contains a mandatory `content` field, which instructs the Tailwind [just-in-time compiler](https://tailwindcss.com/blog/just-in-time-the-next-generation-of-tailwind-css) where in source code to read and search for applicable class names (`mx-auto`, `pl-2`, `rounded`, ...) and output corresponding CSS. Say we have the following Svelte file:
 
 ```svelte
-/// filename=example.svelte
+/// title=example.svelte
 <article>...</article>
 
 <style lang="postcss">
