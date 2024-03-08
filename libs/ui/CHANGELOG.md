@@ -1,5 +1,15 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.19
+
+### Minor Changes
+
+- [`8e2638c`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/8e2638c5345ac43a3015f265ba7f42fbdcc307d6) Thanks [@vnphanquang](https://github.com/vnphanquang)! - consolidate `filename` and `tab` prop of `EnhancedCodeBlock` to `title`
+
+### Patch Changes
+
+- [`bf33533`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/bf33533cc2f2ea7284cbe3e590ae00293a91e9fe) Thanks [@vnphanquang](https://github.com/vnphanquang)! - safelist `sr-only` TailwindCSS class (used `EnhancedCodeBlock`)
+
 ## 1.0.0-next.18
 
 ### Patch Changes
