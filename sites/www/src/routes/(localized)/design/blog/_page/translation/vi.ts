@@ -67,6 +67,9 @@ export const vi = {
 				confetti:
 					'Kết hợp với `c-callout--icon-confetti` để thể hiện một điều mới mẻ hoặc sự vui mừng',
 				trophy: 'Kết hợp vói `c-callout--icon-trophy` để thể hiện sự tuyên dương, tán thưởng',
+				megaphone: 'Kết hợp vói `c-callout--icon-megaphone` cho thông báo hoặc kêu gọi hành động',
+				question:
+					'Kết hợp vói `c-callout--icon-question` cho câu hỏi hoặc thể hiện sự nghi vấn, trạng thái không chắc chắn',
 			},
 			container:
 				'\

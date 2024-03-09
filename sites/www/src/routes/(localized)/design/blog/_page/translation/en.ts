@@ -65,6 +65,9 @@ export const en = {
 				bulb: 'Combine with `c-callout--icon-bulb` to express creativity',
 				confetti: 'Combine with `c-callout--icon-confetti` to express celebration',
 				trophy: 'Combine with `c-callout-icon-trophy` to express gratitude',
+				megaphone: 'Combine with `c-callout-icon-megaphone` for announcement or call for action',
+				question:
+					'Combine with `c-callout-icon-question` to express uncertainty or a questioning context',
 			},
 			container:
 				'\

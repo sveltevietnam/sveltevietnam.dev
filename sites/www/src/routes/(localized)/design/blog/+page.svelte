@@ -116,6 +116,12 @@
 					<li class="c-callout c-callout--success c-callout--icon-trophy" use:intersect>
 						{t.components.callout.examples.trophy}
 					</li>
+					<li class="c-callout c-callout--success c-callout--icon-megaphone" use:intersect>
+						{t.components.callout.examples.megaphone}
+					</li>
+					<li class="c-callout c-callout--success c-callout--icon-question" use:intersect>
+						{t.components.callout.examples.question}
+					</li>
 				</ul>
 				<p use:intersect>{@html t.components.callout.container}</p>
 				<div class="prose max-w-full" use:intersect>
