@@ -1,5 +1,11 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.20
+
+### Minor Changes
+
+- [`b336319`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/b336319c8505fe39f6782bc0db1baf455443f575) Thanks [@vnphanquang](https://github.com/vnphanquang)! - add `--icon-question` variant to `c-callout`
+
 ## 1.0.0-next.19
 
 ### Minor Changes
