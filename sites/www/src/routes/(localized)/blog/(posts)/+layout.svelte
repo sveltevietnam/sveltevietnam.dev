@@ -74,11 +74,19 @@
 	<Breadcrumbs {breadcrumbs} class="mt-6" />
 	<article class="mt-8 tb:mt-[60px]">
 		<section>
-			{#if post?.thumbnail}
-				<enhanced:img src={post?.thumbnail} alt={post?.title} class="h-auto w-full" />
-			{:else}
-				<enhanced:img src={fallbackThumbnail} alt={post?.title} class="h-auto w-full" />
-			{/if}
+			<div class="relative">
+				{#if post?.thumbnail}
+					<enhanced:img src={post?.thumbnail} alt={post?.title} class="h-auto w-full" />
+				{:else}
+					<enhanced:img src={fallbackThumbnail} alt={post?.title} class="h-auto w-full" />
+				{/if}
+				<a
+					href="https://notbyai.fyi"
+					class="absolute -left-3 -top-3 text-grayscale-black hover:text-orange-700"
+				>
+					<svg inline-src="not-by-ai" height="40" width="auto" class="fill-grayscale-white" />
+				</a>
+			</div>
 			<div class="mt-8 space-y-6">
 				<div>
 					{#if post?.series}

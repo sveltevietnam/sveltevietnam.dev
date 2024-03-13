@@ -65,7 +65,7 @@
 		</p>
 	</div>
 	<div class="footer-middle max-w-pad">
-		<div class="mr-auto">
+		<div class="footer-badges">
 			<a href="https://www.thegreenwebfoundation.org/green-web-check/?url=sveltevietnam.dev">
 				<img
 					src="https://api.thegreenwebfoundation.org/greencheckimage/sveltevietnam.dev?nocache=true"
@@ -74,6 +74,9 @@
 					height="112.5"
 					class="badge-greenwebfoundation"
 				/>
+			</a>
+			<a href="https://notbyai.fyi">
+				<svg inline-src="not-by-ai" height="42" width="132" />
 			</a>
 		</div>
 		<ul class="footer-socials">
@@ -252,8 +255,8 @@
 
 	.footer-middle {
 		display: flex;
-		flex-direction: column;
-		gap: 24px;
+		flex-direction: column-reverse;
+		gap: 40px;
 
 		margin-top: 40px;
 		margin-bottom: 24px;
@@ -263,6 +266,15 @@
 			align-items: flex-end;
 			margin-top: 80px;
 		}
+	}
+
+	.footer-badges {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 16px;
+		align-items: flex-end;
+
+		margin-right: auto;
 	}
 
 	.badge-greenwebfoundation {
