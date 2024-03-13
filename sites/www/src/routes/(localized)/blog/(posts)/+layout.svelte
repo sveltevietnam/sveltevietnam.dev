@@ -140,7 +140,7 @@
 		{/if}
 
 		<div class="post-grid mt-[60px]">
-			{#key $lang && data.pathname}
+			{#key $lang && $page.url.pathname}
 				<section
 					class="post-content prose max-w-full dark:prose-invert"
 					use:toc={{
