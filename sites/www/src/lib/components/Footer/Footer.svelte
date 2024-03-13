@@ -26,78 +26,89 @@
 
 <footer>
 	<div class="footer-top max-w-pad">
-		<div class="footer-sections">
-			<section class="footer-about-us">
-				<p class="footer-section-title c-text-h4 font-medium">{tComponent.aboutUs.title}</p>
-				<p>{tComponent.aboutUs.description}</p>
-			</section>
-			<section class="footer-navigation">
-				<p class="footer-section-title c-text-h4 font-medium">{tComponent.navigation.title}</p>
-				<nav aria-label="all internal pages" data-sveltekit-preload-data="hover">
-					<ul>
-						{#each footerRoutes as { path, label }}
-							{@const current = $is(path)}
-							<li>
-								<a aria-current={current} href={path} class="c-link c-link--lazy">{label}</a>
-							</li>
-						{/each}
-					</ul>
-				</nav>
-			</section>
-			<section class="footer-contact">
-				<p class="footer-section-title c-text-h4 font-medium">{tComponent.contact.title}</p>
+		<section class="footer-about-us">
+			<p class="footer-section-title c-text-h4 font-medium">{tComponent.aboutUs.title}</p>
+			<p>{tComponent.aboutUs.description}</p>
+		</section>
+		<section class="footer-navigation">
+			<p class="footer-section-title c-text-h4 font-medium">{tComponent.navigation.title}</p>
+			<nav aria-label="all internal pages" data-sveltekit-preload-data="hover">
 				<ul>
-					<li>
-						<a href={SOCIAL_LINKS.DISCORD} class="c-link c-link--lazy" external>
-							<svg inline-src="simpleicon/discord" width="24" height="24" />
-							<span>{$t.common.sveltevienam}</span>
-						</a>
-					</li>
-					<li>
-						<a href="mailto:{EMAILS.CONTACT}" class="c-link c-link--lazy" external>
-							<svg inline-src="lucide/mail" width="24" height="24" />
-							<span>{EMAILS.CONTACT}</span>
-						</a>
-					</li>
+					{#each footerRoutes as { path, label }}
+						{@const current = $is(path)}
+						<li>
+							<a aria-current={current} href={path} class="c-link c-link--lazy">{label}</a>
+						</li>
+					{/each}
 				</ul>
-			</section>
-		</div>
-		<p class="c-text-h3 text-right uppercase leading-normal upto-pc:hidden">
+			</nav>
+		</section>
+		<section class="footer-contact">
+			<p class="footer-section-title c-text-h4 font-medium">{tComponent.contact.title}</p>
+			<ul>
+				<li>
+					<a href={SOCIAL_LINKS.DISCORD} class="c-link c-link--lazy" external>
+						<svg inline-src="simpleicon/discord" width="24" height="24" />
+						<span>{$t.common.sveltevienam}</span>
+					</a>
+				</li>
+				<li>
+					<a href="mailto:{EMAILS.CONTACT}" class="c-link c-link--lazy" external>
+						<svg inline-src="lucide/mail" width="24" height="24" />
+						<span>{EMAILS.CONTACT}</span>
+					</a>
+				</li>
+			</ul>
+		</section>
+		<p class="c-text-h3 ml-auto text-right uppercase leading-normal upto-pc:hidden">
 			Svelte <br class="" /> Vietnam
 		</p>
 	</div>
-	<ul class="footer-socials max-w-pad">
-		<li>
-			<a href={SOCIAL_LINKS.OPEN_COLLECTIVE} class="c-link c-link--icon" external>
-				<span class="sr-only">Open Collective</span>
-				<svg height="16" width="16" inline-src="simpleicon/opencollective" />
+	<div class="footer-middle max-w-pad">
+		<div class="mr-auto">
+			<a href="https://www.thegreenwebfoundation.org/green-web-check/?url=sveltevietnam.dev">
+				<img
+					src="https://api.thegreenwebfoundation.org/greencheckimage/sveltevietnam.dev?nocache=true"
+					alt="This website is hosted Green - checked by thegreenwebfoundation.org"
+					width="240"
+					height="112.5"
+					class="badge-greenwebfoundation"
+				/>
 			</a>
-		</li>
-		<li>
-			<a href={SOCIAL_LINKS.GITHUB} class="c-link c-link--icon" external>
-				<span class="sr-only">Github</span>
-				<svg height="16" width="16" inline-src="lucide/github" stroke-width="2" />
-			</a>
-		</li>
-		<li>
-			<a href={SOCIAL_LINKS.YOUTUBE} class="c-link c-link--icon" external>
-				<span class="sr-only">Youtube</span>
-				<svg height="16" width="16" inline-src="lucide/youtube" stroke-width="2" />
-			</a>
-		</li>
-		<li>
-			<a href={SOCIAL_LINKS.TWITTER} class="c-link c-link--icon" external>
-				<span class="sr-only">Twitter</span>
-				<svg height="16" width="16" inline-src="lucide/twitter" stroke-width="2" />
-			</a>
-		</li>
-		<li>
-			<a href={SOCIAL_LINKS.FACEBOOK} class="c-link c-link--icon" external>
-				<span class="sr-only">Facebook</span>
-				<svg height="16" width="16" inline-src="lucide/facebook" stroke-width="2" />
-			</a>
-		</li>
-	</ul>
+		</div>
+		<ul class="footer-socials">
+			<li>
+				<a href={SOCIAL_LINKS.OPEN_COLLECTIVE} class="c-link c-link--icon" external>
+					<span class="sr-only">Open Collective</span>
+					<svg height="16" width="16" inline-src="simpleicon/opencollective" />
+				</a>
+			</li>
+			<li>
+				<a href={SOCIAL_LINKS.GITHUB} class="c-link c-link--icon" external>
+					<span class="sr-only">Github</span>
+					<svg height="16" width="16" inline-src="lucide/github" stroke-width="2" />
+				</a>
+			</li>
+			<li>
+				<a href={SOCIAL_LINKS.YOUTUBE} class="c-link c-link--icon" external>
+					<span class="sr-only">Youtube</span>
+					<svg height="16" width="16" inline-src="lucide/youtube" stroke-width="2" />
+				</a>
+			</li>
+			<li>
+				<a href={SOCIAL_LINKS.TWITTER} class="c-link c-link--icon" external>
+					<span class="sr-only">Twitter</span>
+					<svg height="16" width="16" inline-src="lucide/twitter" stroke-width="2" />
+				</a>
+			</li>
+			<li>
+				<a href={SOCIAL_LINKS.FACEBOOK} class="c-link c-link--icon" external>
+					<span class="sr-only">Facebook</span>
+					<svg height="16" width="16" inline-src="lucide/facebook" stroke-width="2" />
+				</a>
+			</li>
+		</ul>
+	</div>
 	<div class="footer-bottom max-w-pad c-text-cap2">
 		<p>{tComponent.version} {version}</p>
 		<p class="footer-info">
@@ -169,26 +180,20 @@
 	}
 
 	.footer-top {
+		display: flex;
+		flex-direction: column;
+		gap: 32px;
+
 		width: 100%;
 		margin-top: 40px;
 
 		@screen pc {
-			display: flex;
+			flex-direction: row;
 			gap: 64px;
 			align-items: flex-start;
 			justify-content: space-between;
 
 			margin-top: 60px;
-		}
-	}
-
-	.footer-sections {
-		display: flex;
-		flex-direction: column;
-		gap: 32px;
-
-		@screen pc {
-			flex-direction: row;
 		}
 
 		@screen xl {
@@ -245,17 +250,34 @@
 		}
 	}
 
-	.footer-socials {
+	.footer-middle {
 		display: flex;
-		gap: 12px;
-		align-items: center;
+		flex-direction: column;
+		gap: 24px;
 
 		margin-top: 40px;
 		margin-bottom: 24px;
 
 		@screen pc {
-			justify-content: flex-end;
+			flex-direction: row;
+			align-items: flex-end;
 			margin-top: 80px;
+		}
+	}
+
+	.badge-greenwebfoundation {
+		margin-left: -5px;
+		margin-block: -8px;
+	}
+
+	.footer-socials {
+		display: flex;
+		gap: 12px;
+		align-items: center;
+
+		@screen pc {
+			justify-content: flex-end;
+			margin-top: 40px;
 		}
 
 		& a {
