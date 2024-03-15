@@ -1,6 +1,6 @@
-# Contributing to [svelte-vietnam][github]
+# Contributing to [Svelte Vietnam][github]
 
-Thank you for stopping by. [svelte-vietnam][github] welcomes and appreciates your contribution.
+Thank you for stopping by. [Svelte Vietnam][github] welcomes and appreciates your contribution.
 
 There are a couple of ways that you can start contributing to the Svelte Vietnam project today.
 
@@ -14,7 +14,7 @@ There is an ongoing effort to translate Svelte sites ([svelte.dev](https://svelt
 
 - contribute translation to [learn.sveltevietnam.dev](https://github.com/sveltevietnam/learn.svelte.dev/issues/1), our forked version of [learn.svelte.dev],
 - join the [Svelte Vietnam Discord][sveltevietnam.discord] and participate in the `#translation` channel,
-- provide your feedback and ideas in the original issue #149.
+- provide your feedback and ideas in the original issue [#149](https://github.com/sveltevietnam/sveltevietnam.dev/issues/149).
 
 > [!NOTE]
 > Currently we are only focusing on translating [learn.svelte.dev] first because its repo is isolated from the others, making it easy to manage, sync, and deploy.
