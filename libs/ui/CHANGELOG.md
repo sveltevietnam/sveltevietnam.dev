@@ -1,5 +1,11 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.22
+
+### Patch Changes
+
+- [`abe2fc6`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/abe2fc68f0bc6f09fec1fec0cd1599b770119e30) Thanks [@vnphanquang](https://github.com/vnphanquang)! - `EnhancedCodeBlock` - avoid using crypto to cover more env
+
 ## 1.0.0-next.21
 
 ### Patch Changes
