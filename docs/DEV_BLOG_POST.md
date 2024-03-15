@@ -40,7 +40,7 @@ Follow the following check list to ensure your blog post is ready for publicatio
   - Have a good thumbnail or OG image
   - Optimize all images, ideally use [webp](https://developers.google.com/speed/webp) format
   - Make sure all images are responsive and its aspect ratio is kept (i.e avoid stretching on screen resize)
-- Provide in `_page/data.ts` as much metadata as possible, especially `description` and `keywords`, available options can be seen at [lib/data/blog](../sites/www/src/lib/data/blog/index.ts).
+- Provide in `_page/data.ts` as much metadata as possible, especially `description` and `keywords`, available options can be seen at [lib/data/blog](https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/www/src/lib/data/blog/types.ts).
 - Add entry to [sitemap.xml](<../sites/www/src/routes/(api)/sitemap.xml/+server.ts>) and [rss.xml](<../sites/www/src/routes/(api)/rss.xml/+server.ts>)
 
 ## Architecture
@@ -51,4 +51,4 @@ With this strategy, we can be very flexible about how a blog post is implemented
 
 This strategy also reduces maintenance effort and cost of a CMS system while prompting people from the community to directly involve in the source code. However, the tradeoff is increased complexity in the publication process, and duplication of boilerplate code.
 
-For convenience, [MdSvex](https://mdsvex.pngwn.io/) is setup for `*.md.svelte` files (thanks @pngwn). That means Markdown syntax is supported in said files, so we should make use of that.
+For convenience, [MdSvex](https://mdsvex.pngwn.io/) is setup for `*.md.svelte` files (thanks [@pngwn](https://github.com/pngwn/)). That means Markdown syntax is supported in said files, so we should make use of that.
