@@ -21,8 +21,7 @@
 
 	$: currentTitle = groupContext?.title;
 
-	const id =
-		crypto && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2);
+	const id = Math.random().toString(36).slice(2);
 	let collapsible = groupContext ? false : collapsed !== 'disabled';
 	let collapsedInputChecked = collapsible ? collapsed === 'true' : false;
 
