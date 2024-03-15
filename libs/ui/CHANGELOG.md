@@ -1,5 +1,11 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.21
+
+### Patch Changes
+
+- [`c17a1d4`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/c17a1d4faffc33ac0a7fdc3e843e2306cbd24272) Thanks [@vnphanquang](https://github.com/vnphanquang)! - merge `current` and `initial` prop of `EnhancedCodeBlockGroup` to a single `title` prop to keep things simple and consistent
+
 ## 1.0.0-next.20
 
 ### Minor Changes
