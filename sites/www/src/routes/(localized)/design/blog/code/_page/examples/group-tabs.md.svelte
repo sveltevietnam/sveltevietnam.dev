@@ -1,4 +1,10 @@
-<enhanced-code-block group name="installation" display="tabs">
+<script>
+  import { writable } from 'svelte/store';
+
+  const packageManager = writable('pnpm');
+</script>
+
+<enhanced-code-block group name="installation" display="tabs" bind:title={$packageManager}>
 
 ```bash
 /// title=npm

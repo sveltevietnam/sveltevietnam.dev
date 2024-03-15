@@ -19,6 +19,8 @@
 
 	const groupContext = getEnhancedCodeBlockGroupContext();
 
+	$: currentTitle = groupContext?.title;
+
 	const id =
 		crypto && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2);
 	let collapsible = groupContext ? false : collapsed !== 'disabled';
@@ -61,13 +63,6 @@
 	onMount(() => {
 		hydrated = true;
 	});
-
-	/** @type {import('svelte/elements').ChangeEventHandler<HTMLInputElement>} */
-	const onChange = (e) => {
-		if (/** @type {HTMLInputElement} */ (e.target).checked) {
-			groupContext?.onSelect(title);
-		}
-	};
 </script>
 
 <section
@@ -92,10 +87,10 @@
 			<input
 				type="radio"
 				class="codeblock-group-selected sr-only"
-				value={id}
+				value={title}
 				name={groupContext.name}
-				on:change={onChange}
-				checked={groupContext.initial === id}
+				checked={title === $currentTitle}
+				bind:group={$currentTitle}
 			/>
 		</label>
 	{:else}
