@@ -133,9 +133,9 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build:css": "node src/css/build.js",
-		"build": "npm run build:css && vite build && npm run package",
+		"build": "npm run build:css && vite build && svelte-package",
 		"preview": "vite preview",
-		"package": "svelte-kit sync && npm run build && svelte-package && publint",
+		"package": "svelte-kit sync && npm run build && publint",
 		"prepublishOnly": "npm run package",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch"
