@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { copy } from '@svelte-put/copy';
 	import { toc, toclink, createTocStore } from '@svelte-put/toc';
+	import { fly } from 'svelte/transition';
 
 	import { page } from '$app/stores';
 	import { intersect } from '$lib/actions/intersect';
@@ -11,7 +12,6 @@
 	import { Person } from '$lib/components/Person';
 	import { getLangContext } from '$lib/contexts/lang';
 	import { modalStore } from '$lib/modals';
-	import { getNotificationContext } from '$lib/notifications';
 	import type { Breadcrumb } from '$lib/routing/routing.server';
 	import { textTip } from '$lib/tooltips';
 	import { formateDateForBlog } from '$lib/utils/datetime';
@@ -23,7 +23,6 @@
 	export let data: LayoutData;
 
 	const { lang } = getLangContext();
-	const noti = getNotificationContext();
 
 	$: meta = $page.data.meta;
 	$: post = $page.data.post;
@@ -35,9 +34,20 @@
 
 	$: t = data.translations.layout;
 
+	let copyTimeoutId: ReturnType<typeof setTimeout>;
+	let copied = false;
 	function onCopiedCanonical() {
-		noti.helpers.success(t.urlCopyNotice);
+		copied = true;
 	}
+	function onMouseEnterCopyButton() {
+		clearTimeout(copyTimeoutId);
+	}
+	function onMouseLeaveCopyButton() {
+		copyTimeoutId = setTimeout(() => {
+			copied = false;
+		}, 1800);
+	}
+
 	const tocStore = createTocStore();
 
 	async function onClickQRLink() {
@@ -119,6 +129,7 @@
 									<svg
 										inline-src="lucide/info"
 										class="ml-1 inline-block cursor-help align-text-top"
+										stroke-width="1.5"
 										height="16"
 										width="16"
 										use:textTip={{ content: langVersion.description }}
@@ -196,7 +207,7 @@
 							external
 						>
 							<span class="sr-only">facebook</span>
-							<svg inline-src="lucide/facebook" width="20" height="20" stroke-width="2" />
+							<svg inline-src="lucide/facebook" width="20" height="20" stroke-width="1.5" />
 						</a>
 					</li>
 					<li>
@@ -206,7 +217,7 @@
 							external
 						>
 							<span class="sr-only">twitter (x)</span>
-							<svg inline-src="lucide/twitter" width="20" height="20" stroke-width="2" />
+							<svg inline-src="lucide/twitter" width="20" height="20" stroke-width="1.5" />
 						</a>
 					</li>
 					<li>
@@ -216,17 +227,35 @@
 							external
 						>
 							<span class="sr-only">linkedin</span>
-							<svg inline-src="lucide/linkedin" width="20" height="20" stroke-width="2" />
+							<svg inline-src="lucide/linkedin" width="20" height="20" stroke-width="1.5" />
 						</a>
 					</li>
 					<li>
 						<button
 							class="c-link c-link--icon block w-fit rounded-full border border-current p-[10px]"
 							on:copied={onCopiedCanonical}
+							on:mouseleave={onMouseLeaveCopyButton}
+							on:mouseenter={onMouseEnterCopyButton}
 							use:copy={{ text: meta?.canonical ?? '' }}
 						>
 							<span class="sr-only">copy link</span>
-							<svg inline-src="lucide/link" width="20" height="20" stroke-width="2" />
+							{#if copied}
+								<svg
+									inline-src="lucide/clipboard-check"
+									width="20"
+									height="20"
+									stroke-width="1.5"
+									in:fly={{ duration: 200, y: 10 }}
+								/>
+							{:else}
+								<svg
+									inline-src="lucide/link"
+									width="20"
+									height="20"
+									stroke-width="1.5"
+									in:fly={{ duration: 200, y: -10 }}
+								/>
+							{/if}
 						</button>
 					</li>
 					<li>
@@ -235,7 +264,7 @@
 							on:click={onClickQRLink}
 						>
 							<span class="sr-only">QR code</span>
-							<svg inline-src="lucide/qr-code" width="20" height="20" stroke-width="2" />
+							<svg inline-src="lucide/qr-code" width="20" height="20" stroke-width="1.5" />
 						</button>
 					</li>
 				</ul>
