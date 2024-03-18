@@ -182,10 +182,11 @@
 			'info';
 		gap: theme('spacing.4');
 
-		@container event-list-item (width > 375px) {
+		@container event-list-item (width > 480px) {
 			grid-template-areas:
 				'thumbnail date-and-actions'
 				'info info';
+			grid-template-columns: 1fr auto;
 			column-gap: theme('spacing.8');
 			align-items: flex-start;
 		}
@@ -202,8 +203,9 @@
 		align-items: center;
 		justify-content: space-between;
 
-		@container event-list-item (width > 375px) {
+		@container event-list-item (width > 480px) {
 			flex-direction: column;
+			align-items: flex-end;
 		}
 	}
 
@@ -214,7 +216,7 @@
 			'day weekday';
 		gap: theme('spacing.2');
 
-		@container event-list-item (width > 375px) {
+		@container event-list-item (width > 480px) {
 			grid-template-areas:
 				'day month'
 				'weekday month';
@@ -228,7 +230,7 @@
 	.\$month {
 		grid-area: month;
 
-		@container event-list-item (width > 375px) {
+		@container event-list-item (width > 480px) {
 			writing-mode: vertical-rl;
 		}
 	}
@@ -240,7 +242,7 @@
 	.\$separator {
 		display: none;
 
-		@container event-list-item (width > 375px) {
+		@container event-list-item (width > 480px) {
 			display: block;
 		}
 	}
@@ -252,7 +254,7 @@
 		align-items: center;
 		align-self: stretch;
 
-		@container event-list-item (width > 375px) {
+		@container event-list-item (width > 480px) {
 			justify-content: flex-end;
 		}
 	}
@@ -281,6 +283,7 @@
 
 	.\$thumbnail {
 		grid-area: thumbnail;
+		flex: 1;
 		height: 100%;
 
 		& img {
