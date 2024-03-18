@@ -1,5 +1,13 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.23
+
+### Patch Changes
+
+- [`0643b09`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/0643b095ebf8f9bf07a937ad9171ae39120b501b) Thanks [@vnphanquang](https://github.com/vnphanquang)! - remove implicit `c-link--icon` with `:has`. Specifiy explicity when needed
+
+- [`82c19ca`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/82c19ca437a62e1b7f406163bb22f920cf52a1f2) Thanks [@vnphanquang](https://github.com/vnphanquang)! - remove `c-tooltip` CSS component, set up in userland instead
+
 ## 1.0.0-next.22
 
 ### Patch Changes
