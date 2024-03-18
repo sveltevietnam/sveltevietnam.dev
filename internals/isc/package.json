@@ -74,7 +74,7 @@
 	},
 	"dependencies": {
 		"@internals/utils": "workspace:*",
-		"@tsndr/cloudflare-worker-jwt": "2.5.1",
+		"@tsndr/cloudflare-worker-jwt": "2.5.3",
 		"zod": "^3.22.4"
 	}
 }

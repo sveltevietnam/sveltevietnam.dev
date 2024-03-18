@@ -6,14 +6,14 @@
 		"dev": "wrangler dev --port 5008"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20240222.0",
+		"@cloudflare/workers-types": "^4.20240314.0",
 		"@internals/isc": "workspace:1.0.0-next.3",
-		"typescript": "^5.0.4",
-		"wrangler": "^3.30.1"
+		"typescript": "^5.4.2",
+		"wrangler": "^3.34.2"
 	},
 	"dependencies": {
 		"@resvg/resvg-wasm": "^2.6.0",
 		"@svelte-put/qr": "^1.0.3",
-		"@tsndr/cloudflare-worker-jwt": "2.5.1"
+		"@tsndr/cloudflare-worker-jwt": "2.5.3"
 	}
 }
