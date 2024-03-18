@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { intersect } from '$lib/actions/intersect';
-	import { BlogPostItem } from '$lib/components/BlogPostItem';
+	import { BlogPostListItem } from '$lib/components/BlogPostListItem';
 	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
 	import { ConsecutiveFadeUpIntro } from '$lib/components/ConsecutiveFadeUpIntro';
-	import { ExternalBlogPostItem } from '$lib/components/ExternalBlogPostItem';
+	import { ExternalBlogPostListItem } from '$lib/components/ExternalBlogPostListItem';
 	import { SplitText } from '$lib/components/SplitText';
 	import ToBeAnnounced from '$lib/components/ToBeAnnounced/ToBeAnnounced.svelte';
 
@@ -60,7 +60,7 @@
 					<div class="flex-1">
 						{#if topPosts[0]}
 							<div use:intersect>
-								<BlogPostItem post={topPosts[0]} alwaysVertical />
+								<BlogPostListItem post={topPosts[0]} alwaysVertical />
 							</div>
 						{/if}
 					</div>
@@ -70,12 +70,12 @@
 								use:intersect
 								class="before:mb-10 before:separator tb:first-of-type:before:hidden"
 							>
-								<BlogPostItem {post} />
+								<BlogPostListItem {post} />
 							</div>
 						{/each}
 						{#if topExternalPost}
 							<div use:intersect class="before:mb-10 before:separator">
-								<ExternalBlogPostItem post={topExternalPost} />
+								<ExternalBlogPostListItem post={topExternalPost} />
 							</div>
 						{/if}
 					</div>
@@ -139,7 +139,7 @@
 					<ul class="mt-10 space-y-10">
 						{#each otherPosts as post}
 							<li class="before:mb-10 before:separator first-of-type:before:hidden" use:intersect>
-								<BlogPostItem {post} />
+								<BlogPostListItem {post} />
 							</li>
 						{/each}
 					</ul>
@@ -169,7 +169,7 @@
 						<ul class="mt-10 space-y-10">
 							{#each otherExternalPosts as post}
 								<li class="before:mb-10 before:separator first-of-type:before:hidden" use:intersect>
-									<ExternalBlogPostItem {post} />
+									<ExternalBlogPostListItem {post} />
 								</li>
 							{/each}
 						</ul>

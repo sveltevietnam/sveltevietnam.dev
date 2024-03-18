@@ -6,9 +6,9 @@
 	import { page } from '$app/stores';
 	import { intersect } from '$lib/actions/intersect';
 	import fallbackThumbnail from '$lib/assets/images/fallback/16x9.jpg?w=2000&enhanced&imagetools';
-	import { BlogPostItem } from '$lib/components/BlogPostItem';
+	import { BlogPostListItem } from '$lib/components/BlogPostListItem';
 	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
-	import ExternalBlogPostItem from '$lib/components/ExternalBlogPostItem/ExternalBlogPostItem.svelte';
+	import ExternalBlogPostListItem from '$lib/components/ExternalBlogPostListItem/ExternalBlogPostListItem.svelte';
 	import { Person } from '$lib/components/Person';
 	import { getLangContext } from '$lib/contexts/lang';
 	import { modalStore } from '$lib/modals';
@@ -184,12 +184,12 @@
 				<ul class="mt-8 space-y-8">
 					{#each data.latest.internal as post}
 						<li class="before:mb-8 before:separator first-of-type:before:hidden">
-							<BlogPostItem {post} alwaysVertical />
+							<BlogPostListItem {post} alwaysVertical />
 						</li>
 					{/each}
 					{#each data.latest.external as post}
 						<li class="before:mb-8 before:separator">
-							<ExternalBlogPostItem {post} />
+							<ExternalBlogPostListItem {post} />
 						</li>
 					{/each}
 				</ul>
@@ -320,7 +320,7 @@
 					<ul class="blog-subgrid-list">
 						{#each posts as post}
 							<li use:intersect>
-								<BlogPostItem {post} alwaysVertical />
+								<BlogPostListItem {post} alwaysVertical />
 							</li>
 						{/each}
 					</ul>
