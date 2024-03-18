@@ -14,7 +14,6 @@ export default [
 	require('./c-loader.css'),
 	require('./c-logo.css'),
 	require('./c-tag.css'),
-	require('./c-tooltip.css'),
 	// containers
 	require('./containers/c-card-action.css'),
 	require('./containers/c-intro.css'),
