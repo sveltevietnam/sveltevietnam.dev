@@ -2,7 +2,7 @@
 @custom-selector :--lazy .c-link--lazy;
 @custom-selector :--box .c-link--box;
 @custom-selector :--__icon :is(img, svg); /* nested icon within c-link */
-@custom-selector :--icon :is(.c-link--icon, :has(:--__icon));
+@custom-selector :--icon :is(.c-link--icon);
 @custom-selector :--image .c-link--image;
 
 .c-link {
