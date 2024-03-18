@@ -39,9 +39,13 @@ export function formatTime(date: Date | number | string): string {
 		.padStart(2, '0')}`;
 }
 
-export function formatDateAndTime(date: Date | number | string): string {
+export function formatDateAndTime(
+	date: Date | number | string,
+	order: 'date-first' | 'time-first' = 'date-first',
+): string {
 	if (!isValidDate(date)) return date.toString();
 	date = new Date(date);
+	if (order === 'time-first') return `${formatTime(date)} ${formatDate(date)}`;
 	return `${formatDate(date)} ${formatTime(date)}`;
 }
 
@@ -52,4 +56,28 @@ export function formateDateForBlog(lang: App.Language, date: Date | number | str
 		year: 'numeric',
 	});
 	return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+/**
+ * Format month in localized long format
+ */
+export function formatLongMonth(lang: App.Language, date: Date | number | string): string {
+	if (!isValidDate(date)) return date.toString();
+	date = new Date(date);
+	const formatter = Intl.DateTimeFormat(lang, {
+		month: 'long',
+	});
+	return formatter.format(date);
+}
+
+/**
+ * Format weekday in localized long format
+ */
+export function formatLongWeekDay(lang: App.Language, date: Date | number | string) {
+	if (!isValidDate(date)) return date.toString();
+	date = new Date(date);
+	const formatter = Intl.DateTimeFormat(lang, {
+		weekday: 'long',
+	});
+	return formatter.format(date);
 }

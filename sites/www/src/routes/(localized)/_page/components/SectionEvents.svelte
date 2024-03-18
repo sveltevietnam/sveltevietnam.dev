@@ -2,7 +2,7 @@
 	import { intersect } from '$lib/actions/intersect';
 	import { AnimatedArrowCircle } from '$lib/components/AnimatedArrowCircle';
 	import { ConsecutiveFadeUpIntro } from '$lib/components/ConsecutiveFadeUpIntro';
-	import { EventCard } from '$lib/components/EventCard';
+	import { EventListItem } from '$lib/components/EventListItem';
 	import { SplitText } from '$lib/components/SplitText';
 	import { ToBeAnnounced } from '$lib/components/ToBeAnnounced';
 	import { getLangContext } from '$lib/contexts/lang';
@@ -35,7 +35,7 @@
 			<ul class="space-y-10">
 				{#each events as event}
 					<li use:intersect>
-						<EventCard {event} />
+						<EventListItem {event} />
 					</li>
 				{/each}
 			</ul>

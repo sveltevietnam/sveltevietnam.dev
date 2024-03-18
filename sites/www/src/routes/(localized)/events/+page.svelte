@@ -2,7 +2,7 @@
 	import { intersect } from '$lib/actions/intersect';
 	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
 	import { ConsecutiveFadeUpIntro } from '$lib/components/ConsecutiveFadeUpIntro';
-	import { EventCard } from '$lib/components/EventCard';
+	import { EventListItem } from '$lib/components/EventListItem';
 	import { MailRegistrationForm } from '$lib/components/MailRegistrationForm';
 	import { SplitText } from '$lib/components/SplitText';
 	import { ToBeAnnounced } from '$lib/components/ToBeAnnounced';
@@ -46,7 +46,7 @@
 					<ul class="space-y-10 tb:space-y-[60px]">
 						{#each data.events.ongoing as event}
 							<li use:intersect>
-								<EventCard {event} />
+								<EventListItem {event} />
 							</li>
 						{/each}
 					</ul>
@@ -64,7 +64,7 @@
 					<ul class="space-y-10 tb:space-y-[60px]">
 						{#each data.events.upcoming as event}
 							<li use:intersect>
-								<EventCard {event} />
+								<EventListItem {event} />
 							</li>
 						{/each}
 					</ul>
@@ -188,7 +188,7 @@
 					<ul class="space-y-10 tb:space-y-[60px]">
 						{#each data.events.past as event}
 							<li use:intersect>
-								<EventCard {event} />
+								<EventListItem {event} />
 							</li>
 						{/each}
 					</ul>

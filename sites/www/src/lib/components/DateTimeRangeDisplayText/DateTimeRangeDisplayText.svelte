@@ -3,6 +3,7 @@
 
 	export let startDate: string | Date;
 	export let endDate: string | Date;
+	export let order: 'date-first' | 'time-first' = 'date-first';
 	let cls = '';
 	export { cls as class };
 
@@ -13,7 +14,9 @@
 
 <span class={cls}>
 	{#if isWithinOneDay}
-		{formatDate(startDate)},
+		{#if order === 'date-first'}
+			{formatDate(startDate)},
+		{/if}
 		{#if startDate !== 'TBA'}
 			{@const startDateD = new Date(startDate)}
 			<time datetime={startDateD.toISOString()}>{formatTime(startDateD)}</time>
@@ -27,17 +30,20 @@
 		{:else}
 			<span>TBA</span>
 		{/if}
+		{#if order === 'time-first'}
+			- {formatDate(startDate)}
+		{/if}
 	{:else}
 		{#if startDate !== 'TBA'}
 			{@const startDateD = new Date(startDate)}
-			<time datetime={startDateD.toISOString()}>{formatDateAndTime(startDateD)}</time>
+			<time datetime={startDateD.toISOString()}>{formatDateAndTime(startDateD, order)}</time>
 		{:else}
 			<span>TBA</span>
 		{/if}
 		-
 		{#if endDate !== 'TBA'}
 			{@const endDateD = new Date(endDate)}
-			<time datetime={endDateD.toISOString()}>{formatDateAndTime(endDateD)}</time>
+			<time datetime={endDateD.toISOString()}>{formatDateAndTime(endDateD, order)}</time>
 		{:else}
 			<span>TBA</span>
 		{/if}

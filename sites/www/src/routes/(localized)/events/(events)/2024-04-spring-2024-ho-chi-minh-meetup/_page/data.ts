@@ -2,8 +2,8 @@ import type { Event, StructureEvent } from '$lib/data/events';
 import { VNPHANQUANG } from '$lib/data/people';
 import { SVELTE_VIETNAM_ORG, structurePerson } from '$lib/data/structured';
 
-import ogImage from './images/thumbnail.jpg';
-import thumbnail from './images/thumbnail.jpg?enhanced';
+import ogImage from './images/og.jpg';
+import thumbnail from './images/thumbnail.jpg?enhanced&w=800&imagetools';
 
 export const EVENT_ID = 'spring-2024-HCM-meetup';
 
@@ -23,8 +23,8 @@ export const event = {
 	startDate: '2024-04-20T02:00:00.000Z',
 	endDate: '2024-04-20T04:00:00.000Z',
 	location: {
-		vi: 'Designveloper, tầng 6, 55 Phó Đức Chính, Quận 1, TP. Hồ Chí Minh',
-		en: 'Designveloper, 6th floor, 55 Pho Duc Chinh, Dist. 1, Ho Chi Minh City',
+		vi: '<a class="c-link c-link--preserved" href="https://maps.app.goo.gl/ymGh3Djmwjnb7ohu5" target="_blank" rel="noreferrer">Designveloper, tầng 6, 55 Phó Đức Chính, Quận 1, TP. Hồ Chí Minh</a>',
+		en: '<a class="c-link c-link--preserved" href="https://maps.app.goo.gl/ymGh3Djmwjnb7ohu5" target="_blank" rel="noreferrer">Designveloper, 6th floor, 55 Pho Duc Chinh, Dist. 1, Ho Chi Minh City</a>',
 	},
 	speakers: {
 		vnphanquang: VNPHANQUANG,

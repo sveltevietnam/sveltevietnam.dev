@@ -3,9 +3,7 @@
 	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
 	import { DateTimeRangeDisplayText } from '$lib/components/DateTimeRangeDisplayText';
 	import { Person } from '$lib/components/Person';
-	import { ToBeAnnounced } from '$lib/components/ToBeAnnounced';
 	import { generateTimeSlot } from '$lib/data/events';
-	import { getRoutingContext } from '$lib/routing/routing.context';
 
 	import kvImage from '../../_page/images/key-visuals-without-grid.png?format=webp&imagetools';
 
@@ -13,11 +11,10 @@
 	import { EVENT_LINKS } from './_page/data';
 	import imgSecretsOfSvelteVietnamDev from './_page/images/a-few-secrets-of-sveltevietnamdev.jpg?enhanced&imagetools';
 	import imgLivestreamMoment from './_page/images/livestream-moment.jpg?enhanced&imagetools';
+	import imgOG from './_page/images/og-en.jpg?enhanced&imagetools';
 	import imgStateOfSvelteVietnam2023 from './_page/images/state-of-sveltevietnam-2023.jpg?enhanced&imagetools';
 
 	export let data: PageData;
-
-	const { routes } = getRoutingContext();
 
 	$: t = data.translations.page;
 
@@ -127,25 +124,13 @@
 		</section>
 
 		<section class="max-w-pad">
-			<h2 class="c-text-h2 uppercase" use:intersect>{t.sponsors.title}</h2>
-			<div class="mt-[60px] text-center" use:intersect>
-				<ToBeAnnounced>
-					<p>
-						{t.sponsors.tba.description}
-						<a href={$routes.sponsor.path} class="c-link">{t.sponsors.tba.cta}</a>
-					</p>
-				</ToBeAnnounced>
-			</div>
-		</section>
-
-		<section class="max-w-pad">
 			<h2 class="c-text-h2 uppercase" use:intersect>{t.images.title}</h2>
 
 			<div class="mt-[60px] grid gap-6 tb:grid-cols-[3fr,2fr]">
 				<div class="sp:contents tb:space-y-6">
 					<figure use:intersect>
 						<enhanced:img
-							src={event.thumbnail}
+							src={imgOG}
 							alt="laptop openning in dark gradient background"
 							class="rounded-lg"
 						/>

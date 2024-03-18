@@ -35,7 +35,7 @@
 				<p>
 					<DateTimeRangeDisplayText startDate={event.startDate} endDate={event.endDate} />
 				</p>
-				<p>{event.location}</p>
+				<p>{@html event.location}</p>
 				<p>
 					<span class="text-fg-100">{t.hostedBy}</span>
 					<a class="c-link c-link--lazy" href="https://www.designveloper.com">

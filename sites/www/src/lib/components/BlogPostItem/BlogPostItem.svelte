@@ -15,8 +15,6 @@
 	const { lang } = getLangContext();
 
 	$: href = `${$routes.blog.path}/${post.slug}`;
-
-	const titleClass = 'c-text-h4 font-bold c-link c-link--preserved';
 </script>
 
 <article class={cls} class:always-vertical={alwaysVertical}>
@@ -41,10 +39,15 @@
 				— {post.series.map((s) => s.title).join(', ')}
 			</p>
 		{/if}
-		<a {href} class="__title block w-fit">
-			<slot name="title" class={titleClass} text={post.title}>
-				<span class={titleClass}>{post.title}</span>
-			</slot>
+		<a {href} class="__title c-link c-link--preserved c-text-h4 font-bold">
+			<span>{post.title}</span>
+			<svg
+				inline-src="lucide/mouse-pointer-click"
+				class="inline-block h-[1em] w-[1em]"
+				width="24"
+				height="24"
+				stroke-width="1"
+			/>
 		</a>
 	</div>
 	<ul class="__tags flex flex-wrap items-center gap-2">

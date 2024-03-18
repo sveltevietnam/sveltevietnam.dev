@@ -2,10 +2,9 @@ import type { Event, StructureEvent } from '$lib/data/events';
 import { VNPHANQUANG } from '$lib/data/people';
 import { SVELTE_VIETNAM_ORG, structurePerson } from '$lib/data/structured';
 
-import ogImageEn from './images/thumbnail-en.jpg';
-import thumbnailEn from './images/thumbnail-en.jpg?enhanced';
-import ogImageVi from './images/thumbnail-vi.jpg';
-import thumbnailVi from './images/thumbnail-vi.jpg?enhanced';
+import ogImageEn from './images/og-en.jpg';
+import ogImageVi from './images/og-vi.jpg';
+import thumbnail from './images/thumbnail.jpg?enhanced&w=800&imagetools';
 
 export const EVENT_LINKS = {
 	STREAM: 'https://www.youtube.com/watch?v=AUtnGxmYocw',
@@ -42,10 +41,7 @@ export const event = {
 		vi: ['sự kiện', 'cộng đồng', 'gặp mặt', '2023', 'cuối năm', 'đầu tiên'],
 		en: ['event', 'community', 'meetup', '2023', 'year-end', 'first'],
 	},
-	thumbnail: {
-		vi: thumbnailVi,
-		en: thumbnailEn,
-	},
+	thumbnail,
 	ogImage: {
 		vi: ogImageVi,
 		en: ogImageEn,

@@ -1,9 +1,6 @@
 export const vi = {
-	location: 'Địa điểm',
-	time: 'Thời gian',
-	speakers: 'Diễn giả',
-	sponsors: 'Tài trợ',
 	tooltips: {
+		copyLink: 'Sao chép đường dẫn đến trang sự kiện',
 		ongoing: 'Sự kiện đang diễn ra. Cùng tham gia bạn nhé!',
 	},
 };
