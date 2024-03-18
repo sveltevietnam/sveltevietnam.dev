@@ -56,7 +56,7 @@
 			{:else}
 				{@const startDate = new Date(event.startDate)}
 				<div class="$date">
-					<p class="$day c-text-h1 font-inter font-bold leading-none">
+					<p class="$day c-text-h1 font-inter font-bold leading-none tracking-normal">
 						{startDate.getDate()}
 					</p>
 					<p class="$month c-text-h4 leading-none tracking-wide">
