@@ -45,7 +45,7 @@ export const en = {
 			noTicket: {
 				q: 'Can I still come if I have not registered?',
 				a: '\
-					Although registration for an e-ticket is highly recommended; you can still come to the event without one. \
+					Although registration for an e-ticket is highly recommended, you can still come to the event without one. \
 					We will try our best to support you there.\
 				',
 			},
@@ -54,7 +54,7 @@ export const en = {
 				a: `\
 					The event takes place on the 20th of April, 2024 at 9am Vietnam Time,\
 					and is hosted by \
-					<a class="c-link" href="https://www.designveloper.com" target="_blank" rel="noreferrer">Designveloper</a> at \
+					<a class="c-link" href="https://www.designveloper.com" target="_blank" rel="noreferrer">Designveloper</a> on \
 					<a class="c-link" href="https://maps.app.goo.gl/ymGh3Djmwjnb7ohu5" target="_blank" rel="noreferrer">6th floor, 55 Pho Duc Chinh, Dist. 1, Ho Chi Minh City</a>. \
 					Parking is available at the building. Any other instructions will be given when you arrive.<br><br>\
 					The same information can be found at the top of this page and in the confirmation email upon registration. \
@@ -90,4 +90,5 @@ export const en = {
 			Check out <a class="c-link" href="https://www.sveltesummit.com/" rel="noreferrer" target="_blank">previous talks from Svelte Summit</a> for examples.\
 		',
 	},
+	imageCredit: 'Background images from Unsplash by',
 } satisfies typeof import('./vi').vi;

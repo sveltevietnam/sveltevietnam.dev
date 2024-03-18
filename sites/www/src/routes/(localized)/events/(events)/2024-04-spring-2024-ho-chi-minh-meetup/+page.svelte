@@ -198,8 +198,8 @@
 			</div>
 		</section>
 
-		<section class="max-w-pad">
-			<p class="text-center font-lora text-xl" use:intersect>
+		<section class="max-w-pad" use:intersect>
+			<p class="text-center font-lora text-xl">
 				<span class="text-fg-100">{t.hostedBy}</span>
 				<a class="c-link c-link--lazy" href="https://www.designveloper.com">
 					<img
@@ -211,6 +211,9 @@
 					/>
 					Designveloper
 				</a>
+			</p>
+			<p class="mt-6 text-center text-fg-100">
+				{t.imageCredit} <a class="c-link" href="https://unsplash.com/@taanhuyn">Taan Huyn</a>
 			</p>
 		</section>
 	</div>

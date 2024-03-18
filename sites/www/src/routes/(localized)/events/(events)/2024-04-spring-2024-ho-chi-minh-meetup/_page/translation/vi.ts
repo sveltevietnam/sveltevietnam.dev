@@ -63,15 +63,15 @@ export const vi = {
 				q: 'Tôi cần mang theo gì khi đến sự kiện',
 				a: '\
 					Bạn chỉ cần chuẩn bị mã QR để check-in tại cửa sự kiện. Mã QR được gởi kèm email sau khi bạn đăng ký vé điện tử \
-					(nếu bạn không tìm thấy email, hãy kiểm tra hợp thư spam nhé).\
+					(nếu bạn không tìm thấy email, hãy kiểm tra hộp thư spam nhé).\
 				',
 			},
 			help: {
 				q: 'Tôi có thể tìm hỗ trợ ở đâu? Nếu tôi muốn giúp cho sự kiện thì nên làm gì?',
 				a: '\
 					Bạn hãy tham gia <a class="c-link" href="https://discord.sveltevietnam.dev" target="_blank" rel="noreferrer">Discord chính thức</a>. \
-					Tại đó bạn có thể thảo luận và tìm giúp đơ từ quản trị viên hoặc các thành viên trong cộng đồng.<br><br>\
-					Tương tự, ban tổ chức luôn có thể nhờ sự giúp đỡ của bạn trong quá trình chuẩn bị và chạy sự kiện. Nếu bạn hứng thú hãy liên lạc qua Discord nhé. \
+					Tại đó bạn có thể thảo luận và tìm trợ giúp từ quản trị viên hoặc các thành viên trong cộng đồng.<br>\
+					Tương tự, ban tổ chức có thể nhờ đến sự giúp đỡ của bạn trong quá trình chuẩn bị và chạy sự kiện. Nếu bạn hứng thú hãy liên lạc qua Discord nhé. \
 					Cảm ơn bạn!\
 				',
 			},
@@ -87,4 +87,5 @@ export const vi = {
 			Bạn có thể lấy ví dụ từ <a class="c-link" href="https://www.sveltesummit.com/" rel="noreferrer" target="_blank">các bài chia sẻ trước từ Svelte Summit</a>.\
 			',
 	},
+	imageCredit: 'Hình ảnh nền từ Unsplash bởi',
 };
