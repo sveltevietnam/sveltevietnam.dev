@@ -31,7 +31,6 @@ import { validateToken } from '$lib/turnstile/turnstile.server';
 
 import type { PageServerLoad } from './$types';
 import { event, structure } from './_page/data';
-import { EVENT_ID } from './_page/data';
 import { translations as pageT } from './_page/translation';
 
 export const load: PageServerLoad = async ({ url, depends, locals, platform }) => {
@@ -41,7 +40,7 @@ export const load: PageServerLoad = async ({ url, depends, locals, platform }) =
 		// get cloudflare bindings for d1 database
 		const d1 = platform?.env?.D1;
 		if (d1) {
-			ticket = await getTicket(d1, email, EVENT_ID);
+			ticket = await getTicket(d1, email, event.id);
 		}
 	}
 	const lang = locals.settings.language;
@@ -111,7 +110,7 @@ export const actions = {
 
 		const { email, name } = form.data;
 
-		const ticket = await getTicket(d1, email, EVENT_ID);
+		const ticket = await getTicket(d1, email, event.id);
 		if (ticket) {
 			return message(form, {
 				type: 'success',
@@ -122,7 +121,7 @@ export const actions = {
 		await createTicket(d1, {
 			email,
 			name,
-			event: EVENT_ID,
+			event: event.id,
 			created_at: new Date().toISOString(),
 		});
 
@@ -131,7 +130,7 @@ export const actions = {
 
 		const qrData = await jwt.sign<EventQRCodeData>(
 			{
-				event: EVENT_ID,
+				event: event.id,
 				iss: 'sveltevietnam.dev',
 				sub: email,
 				iat: Math.floor(new Date().getTime() / 1000),

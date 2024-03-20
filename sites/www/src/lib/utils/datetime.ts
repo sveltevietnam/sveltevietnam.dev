@@ -11,7 +11,7 @@ export function toW3CDate(date: Date | number): string {
 		.padStart(2, '0')}`;
 }
 
-function isValidDate(str: Date | number | string) {
+export function isValidDate(str: Date | number | string) {
 	return !isNaN(new Date(str).getTime());
 }
 

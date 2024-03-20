@@ -29,6 +29,12 @@ export function getEventStatus(event: LocalizedEvent, bufferMs = 0) {
 	return 'past';
 }
 
+export function findEventById(lang: App.Language, events: Event[], id: string) {
+	const e = events.find((e) => e.id === id);
+	if (!e) return e;
+	return localizeEvent(lang, e);
+}
+
 export function findEventBySlug(lang: App.Language, events: Event[], slug?: string) {
 	if (!slug) return undefined;
 	return events.find((e) => localizeLangVar(lang, e.slug) === slug);

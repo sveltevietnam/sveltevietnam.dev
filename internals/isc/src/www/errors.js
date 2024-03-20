@@ -12,5 +12,26 @@ export const WWW_ERRORS = /* @type {const} */ {
 		status: 500,
 	},
 
-	// next error code: MS002
+	// events/self-checkin
+	EVENT_SELF_CHECKIN_QR_INVALID: {
+		code: 'WW002',
+		status: 400,
+	},
+
+	EVENT_SELF_CHECKIN_QR_MISSING_INFO: {
+		code: 'WW003',
+		status: 400,
+	},
+
+	EVENT_SELF_CHECKIN_FORM_MISSING_INFO: {
+		code: 'WW004',
+		status: 400,
+	},
+
+	EVENT_SELF_CHECKIN_EVENT_NOT_FOUND: {
+		code: 'WW005',
+		status: 404,
+	},
+
+	// next error code: WW006
 };
