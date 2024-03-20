@@ -48,7 +48,7 @@ export const POST: RequestHandler = async ({ request, locals, url }) => {
 
 	const mailerURL = url.origin;
 	const mailURL = `${mailerURL}/mails/${token}`;
-	console.log('SENT MAIL:', mailURL);
+	// console.log('SENT MAIL:', mailURL);
 	// render
 	const html = Mustache.render(template.html, {
 		mailerURL,
