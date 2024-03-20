@@ -5,9 +5,8 @@ import { SVELTE_VIETNAM_ORG, structurePerson } from '$lib/data/structured';
 import ogImage from './images/og.jpg';
 import thumbnail from './images/thumbnail.jpg?enhanced&w=800&imagetools';
 
-export const EVENT_ID = 'spring-2024-HCM-meetup';
-
 export const event = {
+	id: 'spring-2024-HCM-meetup',
 	slug: {
 		en: '2024-04-spring-2024-ho-chi-minh-meetup',
 		vi: '2024-04-gap-mat-xuan-giap-thin-2024-ho-chi-minh',

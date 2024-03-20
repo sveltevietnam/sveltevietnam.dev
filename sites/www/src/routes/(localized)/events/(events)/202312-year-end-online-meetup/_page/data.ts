@@ -15,6 +15,7 @@ export const EVENT_LINKS = {
 };
 
 export const event = {
+	id: '2023-year-end-online-meetup',
 	slug: {
 		en: '202312-year-end-online-meetup',
 		vi: '202312-gap-nhau-truc-tuyen-cuoi-nam',
