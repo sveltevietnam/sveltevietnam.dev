@@ -8,19 +8,21 @@ import { formatTime } from '$lib/utils/datetime';
 
 import type { Event, LocalizedEvent, StructureEvent } from './types';
 
-export function getEventStatus(event: LocalizedEvent) {
-	const now = new Date();
+/**
+ * @param {LocalizedEvent} event
+ * @param {number} bufferMs - add a millisecond buffer to event start/end date bounds. Helpful for check-in time status
+ */
+export function getEventStatus(event: LocalizedEvent, bufferMs = 0) {
+	const now = new Date().getTime();
 	if (event.startDate.toUpperCase() === 'TBA') {
 		return 'upcoming';
 	}
-	const startDate = new Date(event.startDate);
+	const startDate = new Date(event.startDate).getTime() - bufferMs;
 	if (startDate > now) {
 		return 'upcoming';
 	}
-	if (
-		startDate <= now &&
-		(event.endDate.toUpperCase() === 'TBA' || new Date(event.startDate) > now)
-	) {
+	const endDate = new Date(event.endDate).getTime() + bufferMs;
+	if (startDate <= now && (event.endDate.toUpperCase() === 'TBA' || endDate > now)) {
 		return 'ongoing';
 	}
 
