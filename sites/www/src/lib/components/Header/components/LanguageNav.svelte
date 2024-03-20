@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { invalidate } from '$app/navigation';
+	import { page } from '$app/stores';
 	import { LOAD_DEPENDENCIES } from '$lib/constants';
 	import { getLangContext } from '$lib/contexts/lang';
 	import { getRoutingContext } from '$lib/routing/routing.context';
@@ -29,7 +30,7 @@
 			<a
 				lang="en"
 				aria-current={$lang === 'en'}
-				href={$current.alternate.en.path}
+				href="{$current.alternate.en.path}{$page.url.search}"
 				on:click={() => changeLanguage('en')}
 			>
 				<span class="sr-only">English</span>
@@ -56,7 +57,7 @@
 			<a
 				lang="vi"
 				aria-current={$lang === 'vi'}
-				href={$current.alternate.vi.path}
+				href="{$current.alternate.vi.path}{$page.url.search}"
 				on:click={() => changeLanguage('vi')}
 			>
 				<span class="sr-only">Tiếng Việt</span>
