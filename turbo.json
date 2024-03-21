@@ -31,7 +31,7 @@
 			"outputs": []
 		},
 		"dev": {
-			"dependsOn": ["@sveltevietnam/ui#build", "@internals/isc#dts", "@internals/utils#dts"],
+			"dependsOn": ["^build", "^dts"],
 			"cache": false,
 			"persistent": true
 		}

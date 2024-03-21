@@ -19,7 +19,7 @@
 	"scripts": {
 		"turbo": "turbo",
 		"build": "turbo run build",
-		"dev": "turbo run dev --parallel",
+		"dev": "turbo run dev",
 		"lint": "turbo run lint --parallel",
 		"format": "turbo run format --parallel",
 		"test:ci": "turbo run test:ci --parallel",
