@@ -40,14 +40,14 @@ export const ROUTE_MAP = {
 			label: 'Events',
 		},
 	},
-	events_selfCheckIn: {
+	events_checkin: {
 		vi: {
-			path: '/vi/su-kien/tu-check-in',
-			label: 'Tự check-in',
+			path: '/vi/su-kien/check-in',
+			label: 'Check-in',
 		},
 		en: {
-			path: '/en/events/self-check-in',
-			label: 'Self Check-in',
+			path: '/en/events/check-in',
+			label: 'Check-in',
 		},
 	},
 	blog: {

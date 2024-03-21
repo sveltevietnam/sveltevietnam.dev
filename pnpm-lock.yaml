@@ -77,9 +77,6 @@ importers:
       typescript:
         specifier: ^5.4.3
         version: 5.4.3
-      wrangler:
-        specifier: ^3.36.0
-        version: 3.36.0(@cloudflare/workers-types@4.20240320.1)
 
   internals/isc:
     dependencies:

@@ -82,7 +82,7 @@ export const load: PageServerLoad = async ({ locals, depends, platform, url }) =
 	}
 
 	return {
-		route: prepareRoutePageData(lang, 'events_selfCheckIn'),
+		route: prepareRoutePageData(lang, 'events_checkin'),
 		event,
 		status,
 		form: {

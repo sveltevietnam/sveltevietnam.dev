@@ -140,7 +140,7 @@ export const actions = {
 			JWT_SECRET,
 		);
 		const qrURL = await createQrUrl(QR_SERVICE_URL, QR_JWT_SECRET, { data: qrData });
-		const selfCheckInURL = `${url.origin}${ROUTE_MAP.events_selfCheckIn[language].path}?qr=${qrData}`;
+		const selfCheckInURL = `${url.origin}${ROUTE_MAP.events_checkin[language].path}?qr=${qrData}`;
 
 		await fetch(
 			await createSendRequest(
