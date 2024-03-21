@@ -17,13 +17,13 @@
 <main>
 	<div class="heading-container max-w-pad mt-6 space-y-10">
 		<Breadcrumbs breadcrumbs={data.breadcrumbs} scrollIndicator="ellipsis" />
-		<h1 class="c-text-h1">{t.title}</h1>
+		<h1 class="c-text-h1 font-medium">{t.title}</h1>
 	</div>
 	<div class="max-w-pad mt-[120px] space-y-[60px] pb-[120px] tb:space-y-[120px] tb:pb-[200px]">
 		{#if data.status === 'ongoing'}
 			<section class="c-card-action mx-auto max-w-xl">
-				{#if !form && data.form.already}
-					<p class="c-callout c-callout--success">{t.checkin.success.already}</p>
+				{#if !form && data.form.checked}
+					<p class="c-callout c-callout--success">{data.form.checked}</p>
 				{:else}
 					<p class="mt-6">
 						{#if data.form.method === 'form'}
@@ -54,7 +54,7 @@
 								{message}
 							</p>
 						{/if}
-						{#if !form?.success && !data.form.already}
+						{#if !form?.success && !data.form.checked}
 							<button type="submit" class="c-btn w-full" disabled={form?.success}>Check in</button>
 						{/if}
 					</form>

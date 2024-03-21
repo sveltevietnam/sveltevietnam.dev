@@ -1,5 +1,5 @@
 export const vi = {
-	title: 'Tự check-in sự kiện',
+	title: 'Check in sự kiện',
 	upcoming:
 		'\
 		Háo hức đến với sự kiện? Ban tổ chức cũng vậy đó! Tuy nhiên còn hơi sớm bạn nhỉ?<br>\

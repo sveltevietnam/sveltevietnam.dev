@@ -1,5 +1,5 @@
 export const en = {
-	title: 'Event Self Check-in',
+	title: 'Event Check-in',
 	upcoming:
 		'\
 		Excited for the event? We are too. But it is a bit too early, would you agree?<br>\

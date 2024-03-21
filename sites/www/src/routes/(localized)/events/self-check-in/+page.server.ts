@@ -14,10 +14,10 @@ export const prerender = false;
 
 const metaTranslations: Record<App.Language, App.PageData['meta']> = {
 	vi: {
-		title: 'Tự Check-in | Sự kiện | Svelte Việt Nam',
+		title: 'Check-in | Sự kiện | Svelte Việt Nam',
 	},
 	en: {
-		title: 'Self Check-in | Events | Svelte Vietnam',
+		title: 'Check-in | Events | Svelte Vietnam',
 	},
 };
 
@@ -62,21 +62,34 @@ export const load: PageServerLoad = async ({ locals, depends, platform, url }) =
 	const event = findEventById(locals.settings.language, EVENTS, eventId);
 	if (!event) throwSvelteKitError('EVENT_SELF_CHECKIN_EVENT_NOT_FOUND', 'Event not found');
 
-	let already = false;
+	const status = getEventStatus(event, 7_200_000);
+
+	let checked: string | undefined;
 	if (email) {
 		const checkin = await getCheckin(d1, email, eventId);
-		already = !!checkin;
+		if (checkin) {
+			checked = pageT[lang].checkin.success.already;
+		} else if (status === 'ongoing') {
+			await createCheckin(d1, {
+				event: eventId,
+				email,
+				method,
+				created_at: new Date().toISOString(),
+				created_by: 'self',
+			});
+			checked = pageT[lang].checkin.success.ok;
+		}
 	}
 
 	return {
 		route: prepareRoutePageData(lang, 'events_selfCheckIn'),
-		status: getEventStatus(event, 7_200_000),
 		event,
+		status,
 		form: {
 			event: eventId,
 			email,
 			method,
-			already,
+			checked,
 		},
 		translations: {
 			page: pageT[lang],
