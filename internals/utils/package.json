@@ -63,7 +63,7 @@
 	"devDependencies": {
 		"@vitest/coverage-istanbul": "^1.4.0",
 		"@vitest/ui": "^1.4.0",
-		"dts-buddy": "^0.4.4",
+		"dts-buddy": "^0.4.5",
 		"publint": "^0.2.7",
 		"vitest": "^1.4.0"
 	},
