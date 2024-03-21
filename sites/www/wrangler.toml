@@ -1,6 +1,8 @@
-[[d1_databases]]
-binding = "D1"
-database_name = "sv_dev"
-database_id = "40b1cdbd-8467-43fd-bede-4e888069a78b"
-migrations_table = "d1_migrations"
-migrations_dir = "d1/migrations"
+d1_databases = [
+	{ binding = "D1", database_name = "sv", database_id = "40b1cdbd-8467-43fd-bede-4e888069a78b", migrations_table = "d1_migrations", migrations_dir = "d1/migrations" },
+]
+
+[env.production]
+d1_databases = [
+	{ binding = "D1", database_name = "sv", database_id = "fac75b01-e79d-44b8-a29c-e9793ec8ab9d", migrations_table = "d1_migrations", migrations_dir = "d1/migrations" },
+]
