@@ -68,7 +68,7 @@
 		"tiny-glob": "^0.2.9",
 		"tslib": "^2.6.2",
 		"typescript": "^5.4.3",
-		"vite": "^5.2.2",
+		"vite": "5.1.6",
 		"wrangler": "^3.36.0"
 	},
 	"volta": {

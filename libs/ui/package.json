@@ -168,7 +168,7 @@
 		"tailwindcss": "^3.4.1",
 		"tslib": "^2.6.2",
 		"typescript": "^5.4.3",
-		"vite": "^5.2.2"
+		"vite": "5.1.6"
 	},
 	"dependencies": {
 		"@svelte-put/copy": "^3.0.0",
