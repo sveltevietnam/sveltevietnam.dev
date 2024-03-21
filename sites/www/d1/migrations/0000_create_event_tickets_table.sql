@@ -1,5 +1,4 @@
 -- Migration number: 0000 	 2024-02-19T08:18:05.267Z
-DROP TABLE IF EXISTS event_tickets;
 CREATE TABLE IF NOT EXISTS event_tickets
 (
 	event TEXT NOT NULL,

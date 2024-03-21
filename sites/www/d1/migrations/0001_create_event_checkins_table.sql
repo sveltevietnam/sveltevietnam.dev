@@ -1,5 +1,4 @@
 -- Migration number: 0001 	 2024-03-19T23:46:17.667Z
-DROP TABLE IF EXISTS event_checkins;
 CREATE TABLE IF NOT EXISTS event_checkins
 (
 	event TEXT NOT NULL,
