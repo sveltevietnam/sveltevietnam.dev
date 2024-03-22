@@ -8,7 +8,8 @@
     "@internals/isc": "0.0.0",
     "@services/mailer": "0.0.0",
     "@sveltevietnam/ui": "1.0.0-next.0",
-    "@services/qr": "0.0.0"
+    "@services/qr": "0.0.0",
+    "@internals/db": "0.0.0"
   },
   "changesets": [
     "afraid-gifts-shave",
@@ -163,6 +164,7 @@
     "two-snakes-wait",
     "two-turkeys-decide",
     "unlucky-seas-greet",
+    "warm-poems-float",
     "weak-colts-yawn",
     "weak-experts-type",
     "wet-ants-rescue",
