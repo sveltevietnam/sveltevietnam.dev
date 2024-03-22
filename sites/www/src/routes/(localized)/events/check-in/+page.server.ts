@@ -1,8 +1,8 @@
+import { createCheckin, getCheckin, type EventCheckin } from '@internals/db/daos/event_checkins';
 import jwt from '@tsndr/cloudflare-worker-jwt';
 
 import { JWT_SECRET } from '$env/static/private';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
-import { createCheckin, getCheckin, type EventCheckin } from '$lib/daos/event_checkins.dao';
 import { EVENTS, findEventById, getEventStatus } from '$lib/data/events';
 import { throwSvelteKitError } from '$lib/errors';
 import { prepareRoutePageData } from '$lib/routing/routing.server';

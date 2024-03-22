@@ -1,3 +1,4 @@
+import { createMail, type Mail } from '@internals/db/daos/mails';
 import { SendRequestSchema, type SendResponseDTO } from '@internals/isc/mailer';
 import { json } from '@sveltejs/kit';
 import jwt from '@tsndr/cloudflare-worker-jwt';
@@ -11,7 +12,6 @@ import {
 	WWW_URL,
 } from '$env/static/private';
 import { PUBLIC_MODE } from '$env/static/public';
-import { createMail, type Mail } from '$server/daos/mails.dao';
 import { throwMailerSvelteKitError } from '$server/errors';
 import { EMAIL_TEMPLATES } from '$server/mjml/templates';
 

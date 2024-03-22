@@ -1,3 +1,8 @@
+import {
+	getSubscriptionByEmail,
+	updateDomainSubscription,
+	upsertSubscription,
+} from '@internals/db/daos/subscriptions';
 import { COMMON_HEADERS } from '@internals/isc/common';
 import {
 	CreateSubscriptionRequestSchema,
@@ -12,11 +17,6 @@ import { json } from '@sveltejs/kit';
 import jwt from '@tsndr/cloudflare-worker-jwt';
 
 import { JWT_SECRET } from '$env/static/private';
-import {
-	getSubscriptionByEmail,
-	updateDomainSubscription,
-	upsertSubscription,
-} from '$server/daos/subscriptions.dao';
 import { throwMailerSvelteKitError } from '$server/errors';
 
 import type { RequestHandler } from './$types';

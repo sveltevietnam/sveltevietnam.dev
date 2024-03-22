@@ -1,3 +1,0 @@
--- Migration number: 0003 	 2023-09-27T06:18:36.700Z
-ALTER TABLE subscriptions
-  ADD COLUMN blog INTEGER NOT NULL DEFAULT 0;

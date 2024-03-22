@@ -11,7 +11,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev --port 5005",
-		"dev:wrangler": "wrangler pages dev .svelte-kit/cloudflare --port 5005",
+		"dev:wrangler": "wrangler pages dev .svelte-kit/cloudflare --port 5005 --config ../../internals/db/wrangler.toml --persist-to ../../internals/db/.wrangler/state/v3",
 		"build": "vite build --mode production",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -32,6 +32,7 @@
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20240320.1",
+		"@internals/db": "workspace:*",
 		"@internals/isc": "workspace:*",
 		"@internals/utils": "workspace:*",
 		"@svelte-put/avatar": "^3.0.0",
@@ -47,7 +48,7 @@
 		"@svelte-put/shortcut": "^3.1.0",
 		"@svelte-put/toc": "^5.0.1",
 		"@svelte-put/tooltip": "^1.0.1",
-		"@sveltejs/adapter-cloudflare": "^4.2.0",
+		"@sveltejs/adapter-cloudflare": "../../sveltejs-adapter-cloudflare-4.2.0.tgz",
 		"@sveltejs/enhanced-img": "^0.1.9",
 		"@sveltejs/kit": "^2.5.4",
 		"@sveltejs/vite-plugin-svelte": "^3.0.2",

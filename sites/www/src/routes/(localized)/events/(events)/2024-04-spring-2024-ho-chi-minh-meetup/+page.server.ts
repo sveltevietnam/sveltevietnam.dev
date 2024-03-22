@@ -1,3 +1,4 @@
+import { createTicket, getTicket, type EventTicket } from '@internals/db/daos/event_tickets';
 import {
 	createSubscriptionRequest,
 	createSendRequest,
@@ -20,7 +21,6 @@ import {
 } from '$env/static/private';
 import { mailSchema } from '$lib/components/MailRegistrationForm';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
-import { createTicket, getTicket, type EventTicket } from '$lib/daos/event_tickets.dao';
 import { preparePageData, type EventQRCodeData } from '$lib/data/events';
 import { throwSvelteKitError } from '$lib/errors';
 import type { FormMessage } from '$lib/forms';

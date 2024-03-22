@@ -59,6 +59,12 @@ const config = {
 				include: ['/*'],
 				exclude: ['<all>'],
 			},
+			platformProxy: {
+				configPath: path.resolve(__dirname, '../../internals/db/wrangler.toml'),
+				persist: {
+					path: path.resolve(__dirname, '../../internals/db/.wrangler/state/v3'),
+				},
+			},
 		}),
 		version: {
 			name: `${pkg.version} (#${commitHash}@${Date.now()})`,

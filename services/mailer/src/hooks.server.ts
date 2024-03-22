@@ -1,10 +1,10 @@
+import { getSecretFromClientId } from '@internals/db/daos/isc_clients';
 import { COMMON_HEADERS } from '@internals/isc/common';
 import { MAILER_ERRORS } from '@internals/isc/mailer';
 import { verifyRequest } from '@internals/utils/signature';
 import type { Handle, HandleServerError } from '@sveltejs/kit';
 
 import { building } from '$app/environment';
-import { getSecretFromClientId } from '$server/daos/clients.dao';
 import { throwMailerSvelteKitError } from '$server/errors';
 
 export const handle: Handle = async ({ event, resolve }) => {
