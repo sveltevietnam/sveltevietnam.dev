@@ -1,4 +1,5 @@
 import { createTicket, getTicket, type EventTicket } from '@internals/db/daos/event_tickets';
+import { getSecretFromClientId } from '@internals/db/daos/isc_clients';
 import {
 	createSubscriptionRequest,
 	createSendRequest,
@@ -12,9 +13,8 @@ import jwt from '@tsndr/cloudflare-worker-jwt';
 import { message, setError, superValidate } from 'sveltekit-superforms/server';
 
 import {
+	ISC_CLIENT_ID,
 	JWT_SECRET,
-	MAILER_CLIENT_ID,
-	MAILER_CLIENT_SECRET,
 	MAILER_SERVICE_URL,
 	QR_JWT_SECRET,
 	QR_SERVICE_URL,
@@ -142,6 +142,9 @@ export const actions = {
 		const qrURL = await createQrUrl(QR_SERVICE_URL, QR_JWT_SECRET, { data: qrData });
 		const selfCheckInURL = `${url.origin}${ROUTE_MAP.events_checkin[language].path}?qr=${qrData}`;
 
+		const clientSecret = await getSecretFromClientId(d1, ISC_CLIENT_ID);
+		if (!clientSecret) throwSvelteKitError('ISC_CLIENT_SECRET_NOT_FOUND');
+
 		await fetch(
 			await createSendRequest(
 				{
@@ -158,8 +161,8 @@ export const actions = {
 					},
 				},
 				{
-					clientID: MAILER_CLIENT_ID,
-					clientSecret: MAILER_CLIENT_SECRET,
+					clientID: ISC_CLIENT_ID,
+					clientSecret,
 					serviceURL: MAILER_SERVICE_URL,
 				},
 			),
@@ -180,8 +183,8 @@ export const actions = {
 					skipMail: true,
 				},
 				{
-					clientID: MAILER_CLIENT_ID,
-					clientSecret: MAILER_CLIENT_SECRET,
+					clientID: ISC_CLIENT_ID,
+					clientSecret,
 					serviceURL: MAILER_SERVICE_URL,
 				},
 			),

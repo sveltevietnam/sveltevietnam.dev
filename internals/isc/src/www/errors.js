@@ -11,27 +11,31 @@ export const WWW_ERRORS = /* @type {const} */ {
 		code: 'WW001',
 		status: 500,
 	},
+	ISC_CLIENT_SECRET_NOT_FOUND: {
+		code: 'WW002',
+		status: 500,
+	},
 
 	// events/self-checkin
 	EVENT_SELF_CHECKIN_QR_INVALID: {
-		code: 'WW002',
-		status: 400,
-	},
-
-	EVENT_SELF_CHECKIN_QR_MISSING_INFO: {
 		code: 'WW003',
 		status: 400,
 	},
 
-	EVENT_SELF_CHECKIN_FORM_MISSING_INFO: {
+	EVENT_SELF_CHECKIN_QR_MISSING_INFO: {
 		code: 'WW004',
 		status: 400,
 	},
 
-	EVENT_SELF_CHECKIN_EVENT_NOT_FOUND: {
+	EVENT_SELF_CHECKIN_FORM_MISSING_INFO: {
 		code: 'WW005',
+		status: 400,
+	},
+
+	EVENT_SELF_CHECKIN_EVENT_NOT_FOUND: {
+		code: 'WW006',
 		status: 404,
 	},
 
-	// next error code: WW006
+	// next error code: WW007
 };

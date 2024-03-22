@@ -1,3 +1,4 @@
+import { getSecretFromClientId } from '@internals/db/daos/isc_clients';
 import {
 	createSubscriptionRequest,
 	MAILER_ERRORS,
@@ -9,7 +10,8 @@ import type { NumericRange, RequestEvent } from '@sveltejs/kit';
 import { message, setError, superValidate } from 'sveltekit-superforms/server';
 import { string, object, boolean } from 'zod';
 
-import { MAILER_CLIENT_ID, MAILER_CLIENT_SECRET, MAILER_SERVICE_URL } from '$env/static/private';
+import { ISC_CLIENT_ID, MAILER_SERVICE_URL } from '$env/static/private';
+import { throwSvelteKitError } from '$lib/errors';
 import type { FormMessage } from '$lib/forms';
 import { validateToken } from '$lib/turnstile/turnstile.server';
 
@@ -33,7 +35,11 @@ export function createMailTranslationAndSchema(lang: App.Language) {
 }
 
 export async function mail<E extends RequestEvent>(event: E, domain: SubscriptionDomain) {
-	const { request, locals, fetch } = event;
+	const { request, locals, fetch, platform } = event;
+
+	// get cloudflare bindings for d1 database
+	const d1 = platform?.env?.D1;
+	if (!d1) throwSvelteKitError('D1_NOT_AVAILABLE');
 
 	// create i18n-aware validation schema
 	const { t, s } = createMailTranslationAndSchema(locals.settings.language);
@@ -51,6 +57,9 @@ export async function mail<E extends RequestEvent>(event: E, domain: Subscriptio
 		return fail(400, { form });
 	}
 
+	const clientSecret = await getSecretFromClientId(d1, ISC_CLIENT_ID);
+	if (!clientSecret) throwSvelteKitError('ISC_CLIENT_SECRET_NOT_FOUND');
+
 	const response = await fetch(
 		await createSubscriptionRequest(
 			{
@@ -60,8 +69,8 @@ export async function mail<E extends RequestEvent>(event: E, domain: Subscriptio
 				language: locals.settings.language,
 			},
 			{
-				clientID: MAILER_CLIENT_ID,
-				clientSecret: MAILER_CLIENT_SECRET,
+				clientID: ISC_CLIENT_ID,
+				clientSecret,
 				serviceURL: MAILER_SERVICE_URL,
 			},
 		),

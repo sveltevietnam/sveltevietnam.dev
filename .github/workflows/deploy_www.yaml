@@ -121,8 +121,7 @@ jobs:
           PUBLIC_DISCORD_WS_URL: ${{ vars.PUBLIC_DISCORD_WS_URL }}
           PUBLIC_MODE: ${{ vars.PUBLIC_MODE }}
           # mailer service
-          MAILER_CLIENT_ID: ${{ vars.MAILER_CLIENT_ID }}
-          MAILER_CLIENT_SECRET: ${{ secrets.MAILER_CLIENT_SECRET }}
+          ISC_CLIENT_ID: ${{ vars.ISC_CLIENT_ID }}
           MAILER_SERVICE_URL: ${{ vars.MAILER_SERVICE_URL }}
           # qr service
           QR_JWT_SECRET: ${{ secrets.QR_JWT_SECRET }}
