@@ -1,15 +1,9 @@
-import { getSecretFromClientId } from '@internals/db/daos/isc_clients';
-import {
-	createGetSubscriptionRequest,
-	UpdateDomainSubscriptionRequestSchema,
-	type GetSubscriptionResponseDTO,
-	createUpdateDomainSubscriptionRequest,
-	type UpdateDomainSubscriptionResponseDTO,
-} from '@internals/isc/mailer';
-import { error, fail, type NumericRange } from '@sveltejs/kit';
+import { getSubscriptionByEmail, updateDomainSubscription } from '@internals/db/daos/subscriptions';
+import { fail } from '@sveltejs/kit';
+import jwt from '@tsndr/cloudflare-worker-jwt';
 import { message, superValidate } from 'sveltekit-superforms/server';
+import { object as zObject, coerce as zCoerce } from 'zod';
 
-import { ISC_CLIENT_ID, MAILER_SERVICE_URL } from '$env/static/private';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { throwSvelteKitError } from '$lib/errors';
 import type { FormMessage } from '$lib/forms';
@@ -29,14 +23,14 @@ const metaTranslations = {
 	},
 };
 
+const UpdateDomainSubscriptionRequestSchema = zObject({
+	job: zCoerce.boolean(),
+	event: zCoerce.boolean(),
+	blog: zCoerce.boolean(),
+});
+
 export const prerender = false;
-export const load: PageServerLoad = async ({
-	depends,
-	locals,
-	params: { token },
-	fetch,
-	platform,
-}) => {
+export const load: PageServerLoad = async ({ depends, locals, params: { token }, platform }) => {
 	// get cloudflare bindings for d1 database
 	const d1 = platform?.env?.D1;
 	if (!d1) throwSvelteKitError('D1_NOT_AVAILABLE');
@@ -44,22 +38,20 @@ export const load: PageServerLoad = async ({
 	const lang = locals.settings.language;
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 
-	const clientSecret = await getSecretFromClientId(d1, ISC_CLIENT_ID);
-	if (!clientSecret) throwSvelteKitError('ISC_CLIENT_SECRET_NOT_FOUND');
+	// TODO: enable after 2024.04.20 (meetup event)
+	// const mailerSecret = await getIscClientSecret(d1, ISC_MAILER_CLIENT_ID);
+	// if (!mailerSecret) throwSvelteKitError('ISC_CLIENT_NOT_FOUND');
+	// const isValid = await jwt.verify(token, mailerSecret);
+	// if (!isValid) throwSvelteKitError('SUBSCRIPTION_INVALID_TOKEN');
 
-	const response = await fetch(
-		await createGetSubscriptionRequest({
-			clientID: ISC_CLIENT_ID,
-			clientSecret,
-			serviceURL: MAILER_SERVICE_URL,
-			token,
-		}),
-	);
-	const json = (await response.json()) as GetSubscriptionResponseDTO;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	if (!json.success) error(response.status as NumericRange<400, 599>, json.code as any);
+	const { payload } = await jwt.decode<{ email: string }>(token);
+	const email = payload?.email ?? payload?.sub;
+	if (!email) throwSvelteKitError('SUBSCRIPTION_MISSING_EMAIL');
 
-	const form = await superValidate(json.data, UpdateDomainSubscriptionRequestSchema);
+	const subscription = await getSubscriptionByEmail(d1, email);
+	if (!subscription) throwSvelteKitError('SUBSCRIPTION_NOT_FOUND');
+
+	const form = await superValidate(subscription, UpdateDomainSubscriptionRequestSchema);
 
 	const route = structuredClone(prepareRoutePageData(lang, 'subscriptions'));
 	// CAUTION: cloning here to avoid mutating the original route
@@ -98,25 +90,17 @@ export const actions: Actions = {
 
 		const t = pageT[lang];
 
-		const clientSecret = await getSecretFromClientId(d1, ISC_CLIENT_ID);
-		if (!clientSecret) throwSvelteKitError('ISC_CLIENT_SECRET_NOT_FOUND');
+		// TODO: enable after 2024.04.20 (meetup event)
+		// const mailerSecret = await getIscClientSecret(d1, ISC_MAILER_CLIENT_ID);
+		// if (!mailerSecret) throwSvelteKitError('ISC_CLIENT_NOT_FOUND');
+		// const isValid = await jwt.verify(token, mailerSecret);
+		// if (!isValid) throwSvelteKitError('SUBSCRIPTION_INVALID_TOKEN');
 
-		const response = await fetch(
-			await createUpdateDomainSubscriptionRequest(form.data, {
-				clientID: ISC_CLIENT_ID,
-				clientSecret,
-				serviceURL: MAILER_SERVICE_URL,
-				token,
-			}),
-		);
-		const json = (await response.json()) as UpdateDomainSubscriptionResponseDTO;
+		const { payload } = await jwt.decode<{ email: string }>(token);
+		const email = payload?.email ?? payload?.sub;
+		if (!email) throwSvelteKitError('SUBSCRIPTION_MISSING_EMAIL');
 
-		if (!json.success) {
-			return message(form, {
-				type: 'error',
-				text: `${t.errors.unknown} [CODE: ${json.code}]`,
-			});
-		}
+		await updateDomainSubscription(d1, email, form.data);
 
 		return message(form, {
 			type: 'success',

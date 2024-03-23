@@ -1,4 +1,4 @@
-import { getSecretFromClientId } from '@internals/db/daos/isc_clients';
+import { getIscClientSecret } from '@internals/db/daos/isc_clients';
 import { COMMON_HEADERS } from '@internals/isc/common';
 import { MAILER_ERRORS } from '@internals/isc/mailer';
 import { verifyRequest } from '@internals/utils/signature';
@@ -28,8 +28,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const signature = request.headers.get(COMMON_HEADERS.CLIENT_SIGNATURE);
 	if (!clientId || !signature) throwMailerSvelteKitError('MISSING_CLIENT_ID_OR_SIGNATURE');
 
-	const secret = await getSecretFromClientId(d1, clientId);
-	if (!secret) throwMailerSvelteKitError('CLIENT_ID_NOT_FOUND');
+	const secret = await getIscClientSecret(d1, clientId);
+	if (!secret) throwMailerSvelteKitError('INVALID_ISC_CLIENT');
 
 	// verify
 	const passed = await verifyRequest({

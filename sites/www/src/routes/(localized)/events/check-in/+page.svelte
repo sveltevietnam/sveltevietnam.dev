@@ -33,15 +33,6 @@
 						{/if}
 					</p>
 					<form method="POST" use:enhance class="mt-6 space-y-6">
-						<input
-							class="c-input"
-							name="email"
-							type="email"
-							required
-							placeholder="Email"
-							value={data.form.email ?? ''}
-							hidden={data.form.method === 'qr'}
-						/>
 						<input name="event" type="text" required value={data.form.event} hidden />
 						<input name="method" type="text" required value={data.form.method} hidden />
 						{#if form}
@@ -55,6 +46,15 @@
 							</p>
 						{/if}
 						{#if !form?.success && !data.form.checked}
+							<input
+								class="c-input"
+								name="email"
+								type="email"
+								required
+								placeholder="Email"
+								value={data.form.email ?? ''}
+								hidden={data.form.method === 'qr'}
+							/>
 							<button type="submit" class="c-btn w-full" disabled={form?.success}>Check in</button>
 						{/if}
 					</form>

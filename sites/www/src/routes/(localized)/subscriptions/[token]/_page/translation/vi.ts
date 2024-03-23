@@ -9,8 +9,5 @@ export const vi = {
 		},
 		submit: 'Cập nhật thông tin',
 	},
-	errors: {
-		unknown: 'Đã có lỗi xảy ra. Vui lòng thử lại sau.',
-	},
 	success: 'Cập nhật thành công. Cảm ơn bạn!',
 };

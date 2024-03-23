@@ -1,3 +1,4 @@
+import { getIscClientSecret } from '@internals/db/daos/isc_clients';
 import { createMail, type Mail } from '@internals/db/daos/mails';
 import { SendRequestSchema, type SendResponseDTO } from '@internals/isc/mailer';
 import { json } from '@sveltejs/kit';
@@ -8,7 +9,7 @@ import {
 	DKIM_DOMAIN,
 	DKIM_PRIVATE_KEY,
 	DKIM_SELECTOR,
-	JWT_SECRET,
+	ISC_MAILER_CLIENT_ID,
 	WWW_URL,
 } from '$env/static/private';
 import { PUBLIC_MODE } from '$env/static/public';
@@ -31,18 +32,20 @@ export const POST: RequestHandler = async ({ request, locals, url }) => {
 		throwMailerSvelteKitError('SEND_TEMPLATE_NOT_FOUND');
 	}
 
+	const clientSecret = await getIscClientSecret(locals.d1, ISC_MAILER_CLIENT_ID);
+	if (!clientSecret) throwMailerSvelteKitError('ISC_CLIENT_NOT_FOUND');
+
 	// construct mail URL
 	const id = crypto.randomUUID();
 	const token = encodeURIComponent(
 		await jwt.sign(
 			{
 				id,
-				email: to.email,
 				sub: to.email,
 				iat: Math.floor(new Date().getTime() / 1000),
 				iss: 'mailer.sveltevietnam.dev',
 			},
-			JWT_SECRET,
+			clientSecret,
 		),
 	);
 

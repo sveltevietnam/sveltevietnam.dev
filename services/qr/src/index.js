@@ -30,6 +30,7 @@ export default {
 		if (!token)
 			return createErrorResponse('QR_GET_NO_TOKEN', 'Expect nonempty "token" query param');
 
+		// TODO: rotate JWT_SECRT after 2024.04.20 (meetup event)
 		const isValid = await jwt.verify(token, env.JWT_SECRET);
 		if (!isValid) return createErrorResponse('QR_GET_INVALID_TOKEN', 'Token is invalid');
 

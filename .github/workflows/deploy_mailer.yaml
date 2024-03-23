@@ -100,7 +100,6 @@ jobs:
       - name: Build
         run: pnpm run build --filter=@services/mailer
         env:
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
           WWW_URL: ${{ vars.WWW_URL }}
           # public env
           PUBLIC_MODE: ${{ vars.PUBLIC_MODE }}

@@ -11,7 +11,7 @@ export const WWW_ERRORS = /* @type {const} */ {
 		code: 'WW001',
 		status: 500,
 	},
-	ISC_CLIENT_SECRET_NOT_FOUND: {
+	ISC_CLIENT_NOT_FOUND: {
 		code: 'WW002',
 		status: 500,
 	},
@@ -37,5 +37,19 @@ export const WWW_ERRORS = /* @type {const} */ {
 		status: 404,
 	},
 
-	// next error code: WW007
+	// subscriptions
+	SUBSCRIPTION_NOT_FOUND: {
+		code: 'WW007',
+		status: 404,
+	},
+	SUBSCRIPTION_INVALID_TOKEN: {
+		code: 'WW008',
+		status: 401,
+	},
+	SUBSCRIPTION_MISSING_EMAIL: {
+		code: 'WW009',
+		status: 400,
+	},
+
+	// next error code: WW010
 };

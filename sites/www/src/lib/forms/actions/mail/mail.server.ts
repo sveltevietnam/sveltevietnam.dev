@@ -1,16 +1,16 @@
-import { getSecretFromClientId } from '@internals/db/daos/isc_clients';
+import { getIscClientSecret } from '@internals/db/daos/isc_clients';
 import {
-	createSubscriptionRequest,
-	MAILER_ERRORS,
-	type CreateSubscriptionResponseDTO,
+	getSubscriptionByEmail,
+	upsertSubscription,
 	type SubscriptionDomain,
-} from '@internals/isc/mailer';
-import { error, fail } from '@sveltejs/kit';
-import type { NumericRange, RequestEvent } from '@sveltejs/kit';
+} from '@internals/db/daos/subscriptions';
+import { createSendRequest } from '@internals/isc/mailer';
+import { fail } from '@sveltejs/kit';
+import type { RequestEvent } from '@sveltejs/kit';
 import { message, setError, superValidate } from 'sveltekit-superforms/server';
 import { string, object, boolean } from 'zod';
 
-import { ISC_CLIENT_ID, MAILER_SERVICE_URL } from '$env/static/private';
+import { ISC_WWW_CLIENT_ID, MAILER_SERVICE_URL } from '$env/static/private';
 import { throwSvelteKitError } from '$lib/errors';
 import type { FormMessage } from '$lib/forms';
 import { validateToken } from '$lib/turnstile/turnstile.server';
@@ -57,38 +57,41 @@ export async function mail<E extends RequestEvent>(event: E, domain: Subscriptio
 		return fail(400, { form });
 	}
 
-	const clientSecret = await getSecretFromClientId(d1, ISC_CLIENT_ID);
-	if (!clientSecret) throwSvelteKitError('ISC_CLIENT_SECRET_NOT_FOUND');
+	const { email, name } = form.data;
 
-	const response = await fetch(
-		await createSubscriptionRequest(
+	const subscription = await getSubscriptionByEmail(d1, email);
+	if (domain && subscription?.[domain]) {
+		return message(form, {
+			type: 'success',
+			text: t.alreadyRegister,
+		});
+	}
+
+	await upsertSubscription(d1, { name, email }, domain);
+
+	const clientSecret = await getIscClientSecret(d1, ISC_WWW_CLIENT_ID);
+	if (!clientSecret) throwSvelteKitError('ISC_CLIENT_NOT_FOUND');
+
+	await fetch(
+		await createSendRequest(
 			{
-				email: form.data.email,
-				name: form.data.name,
-				domain,
+				templateId: 'WELCOME',
+				to: { email, name },
 				language: locals.settings.language,
+				variables: { name },
 			},
 			{
-				clientID: ISC_CLIENT_ID,
+				clientID: ISC_WWW_CLIENT_ID,
 				clientSecret,
 				serviceURL: MAILER_SERVICE_URL,
 			},
 		),
-	);
-	const data = (await response.json()) as CreateSubscriptionResponseDTO;
-
-	if (!data.success) {
-		if (data.code === MAILER_ERRORS.SUBSCRIPTION_CREATE_ALREADY_EXISTS.code) {
-			return message(form, {
-				type: 'success',
-				text: t.alreadyRegister,
-			});
+	).then(async (resp) => {
+		if (!resp.ok) {
+			const json = await resp.json();
+			console.error('/send error:', json);
 		}
-		error(response.status as NumericRange<400, 599>, {
-			code: data.code,
-			message: `${t.error.unknown} [CODE: ${data.code}]`,
-		});
-	}
+	});
 
 	return message(form, {
 		type: 'success',

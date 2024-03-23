@@ -68,7 +68,7 @@
 		"migrate:create": "wrangler d1 migrations create sv --local",
 		"migrate:list": "wrangler d1 migrations list sv --local",
 		"migrate:apply": "wrangler d1 migrations apply sv --local",
-		"seed": "wrangler d1 execute sv --file src/seed.sql --local"
+		"seed:dev": "wrangler d1 execute sv --file src/seed.sql --local"
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20240320.1",

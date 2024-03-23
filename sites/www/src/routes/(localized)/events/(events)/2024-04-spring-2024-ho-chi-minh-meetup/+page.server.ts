@@ -1,19 +1,14 @@
 import { createTicket, getTicket, type EventTicket } from '@internals/db/daos/event_tickets';
-import { getSecretFromClientId } from '@internals/db/daos/isc_clients';
-import {
-	createSubscriptionRequest,
-	createSendRequest,
-	MAILER_ERRORS,
-	type CreateSubscriptionResponseDTO,
-} from '@internals/isc/mailer';
+import { getIscClientSecret } from '@internals/db/daos/isc_clients';
+import { upsertSubscription } from '@internals/db/daos/subscriptions';
+import { createSendRequest } from '@internals/isc/mailer';
 import { createQrUrl } from '@internals/isc/qr';
-import { error, fail } from '@sveltejs/kit';
-import type { NumericRange } from '@sveltejs/kit';
+import { fail } from '@sveltejs/kit';
 import jwt from '@tsndr/cloudflare-worker-jwt';
 import { message, setError, superValidate } from 'sveltekit-superforms/server';
 
 import {
-	ISC_CLIENT_ID,
+	ISC_WWW_CLIENT_ID,
 	JWT_SECRET,
 	MAILER_SERVICE_URL,
 	QR_JWT_SECRET,
@@ -128,6 +123,9 @@ export const actions = {
 		const language = locals.settings.language;
 		const personalizedEventURL = `${url.origin}${ROUTE_MAP.events[language].path}/${event.slug[language]}?email=${email}`;
 
+		const clientSecret = await getIscClientSecret(d1, ISC_WWW_CLIENT_ID);
+		if (!clientSecret) throwSvelteKitError('ISC_CLIENT_NOT_FOUND');
+
 		const qrData = await jwt.sign<EventQRCodeData>(
 			{
 				event: event.id,
@@ -137,13 +135,12 @@ export const actions = {
 				nbf: Math.floor(new Date(event.startDate).getTime() / 1000) - 2 * 60 * 60,
 				exp: Math.floor(new Date(event.endDate).getTime() / 1000) + 2 * 60 * 60,
 			},
+			// TODO: rotate JWT secret after 2024.04.20 (meetup event)
 			JWT_SECRET,
 		);
+		// TODO: rotate JWT secret after 2024.04.20 (meetup event)
 		const qrURL = await createQrUrl(QR_SERVICE_URL, QR_JWT_SECRET, { data: qrData });
 		const selfCheckInURL = `${url.origin}${ROUTE_MAP.events_checkin[language].path}?qr=${qrData}`;
-
-		const clientSecret = await getSecretFromClientId(d1, ISC_CLIENT_ID);
-		if (!clientSecret) throwSvelteKitError('ISC_CLIENT_SECRET_NOT_FOUND');
 
 		await fetch(
 			await createSendRequest(
@@ -161,7 +158,7 @@ export const actions = {
 					},
 				},
 				{
-					clientID: ISC_CLIENT_ID,
+					clientID: ISC_WWW_CLIENT_ID,
 					clientSecret,
 					serviceURL: MAILER_SERVICE_URL,
 				},
@@ -173,36 +170,7 @@ export const actions = {
 			}
 		});
 
-		const response = await fetch(
-			await createSubscriptionRequest(
-				{
-					email,
-					name,
-					domain: form.data.checkbox ? 'event' : undefined,
-					language,
-					skipMail: true,
-				},
-				{
-					clientID: ISC_CLIENT_ID,
-					clientSecret,
-					serviceURL: MAILER_SERVICE_URL,
-				},
-			),
-		);
-		const data = (await response.json()) as CreateSubscriptionResponseDTO;
-
-		if (!data.success) {
-			if (data.code === MAILER_ERRORS.SUBSCRIPTION_CREATE_ALREADY_EXISTS.code) {
-				return message(form, {
-					type: 'success',
-					text: t.alreadyRegister,
-				});
-			}
-			error(response.status as NumericRange<400, 599>, {
-				code: data.code,
-				message: '`${t.error.unknown} [CODE: ${data.code}]`',
-			});
-		}
+		await upsertSubscription(d1, { email, name }, form.data.checkbox ? 'event' : undefined);
 
 		return message(form, {
 			type: 'success',

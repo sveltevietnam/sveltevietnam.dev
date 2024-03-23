@@ -9,8 +9,5 @@ export const en = {
 		},
 		submit: 'Update my preferences',
 	},
-	errors: {
-		unknown: 'An error has occurred. Please try again later!',
-	},
 	success: 'Updated successfully. Thank you!',
 } satisfies typeof import('./vi').vi;

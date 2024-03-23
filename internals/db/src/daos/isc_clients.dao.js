@@ -6,7 +6,7 @@ const TABLE_NAME = 'isc_clients';
  * @param {string} clientId
  * @returns {Promise<string | undefined>}
  */
-export async function getSecretFromClientId(d1, clientId) {
+export async function getIscClientSecret(d1, clientId) {
 	/**
 	 * @type {{ secret: string } | null}
 	 */

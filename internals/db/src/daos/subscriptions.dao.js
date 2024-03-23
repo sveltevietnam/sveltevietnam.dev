@@ -1,6 +1,8 @@
 const TABLE_NAME = 'subscriptions';
 
-/** @typedef {Record<import('@internals/isc/mailer').SubscriptionDomain, boolean>} DomainSubscription */
+/** @typedef {'job' | 'event' | 'blog'} SubscriptionDomain */
+
+/** @typedef {Record<SubscriptionDomain, boolean>} DomainSubscription */
 /** @typedef {DomainSubscription & {
  *  email: string;
  *  name: string;
@@ -22,7 +24,7 @@ export function getSubscriptionByEmail(d1, email) {
  *
  * @param {import('@cloudflare/workers-types').D1Database} d1
  * @param {Pick<Subscription, 'email' | 'name'>} subscription
- * @param {import('@internals/isc/mailer').SubscriptionDomain} [domain]
+ * @param {SubscriptionDomain} [domain]
  * @returns {Promise<import('@cloudflare/workers-types').D1Response>}
  */
 export function upsertSubscription(d1, subscription, domain) {
