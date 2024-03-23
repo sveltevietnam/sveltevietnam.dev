@@ -59,10 +59,10 @@
 					<p class="$day c-text-h1 font-inter font-bold leading-none tracking-normal">
 						{startDate.getDate()}
 					</p>
-					<p class="$month c-text-h4 leading-none tracking-wide">
+					<p class="$month">
 						{formatLongMonth($lang, startDate)}
 					</p>
-					<p class="$weekday c-text-h5 leading-none text-fg-200">
+					<p class="$weekday">
 						{formatLongWeekDay($lang, startDate)}
 					</p>
 				</div>
@@ -103,13 +103,15 @@
 				{/if}
 			</div>
 		</div>
-		<a {href} class="$thumbnail c-link c-link--image">
-			{#if event.thumbnail}
-				<enhanced:img src={event.thumbnail} alt={event.title} />
-			{:else}
-				<enhanced:img src={defaultFallbackImg} alt={event.title} />
-			{/if}
-		</a>
+		<div class="$thumbnail">
+			<a {href} class="c-link c-link--image">
+				{#if event.thumbnail}
+					<enhanced:img src={event.thumbnail} alt={event.title} />
+				{:else}
+					<enhanced:img src={defaultFallbackImg} alt={event.title} />
+				{/if}
+			</a>
+		</div>
 		<div class="$info">
 			<p class="$title">
 				<a {href} class="c-link c-link--preserved c-text-h4">
@@ -214,12 +216,16 @@
 		grid-template-areas:
 			'day month'
 			'day weekday';
-		gap: theme('spacing.2');
+		grid-template-rows: auto auto;
+		column-gap: theme('spacing.2');
+		row-gap: theme('spacing.1');
 
 		@container event-list-item (width > 480px) {
 			grid-template-areas:
 				'day month'
 				'weekday month';
+			grid-template-rows: auto 1fr;
+			row-gap: theme('spacing.2');
 		}
 	}
 
@@ -230,13 +236,30 @@
 	.\$month {
 		grid-area: month;
 
+		padding-block-start: theme('spacing.1');
+
+		font-size: 1.125rem;
+		line-height: 1;
+		letter-spacing: 0.025em;
+
 		@container event-list-item (width > 480px) {
+			padding-block-start: 0;
+			padding-inline-start: theme('spacing.2');
 			writing-mode: vertical-rl;
+			font-size: 1.25rem;
 		}
 	}
 
 	.\$weekday {
 		grid-area: weekday;
+		font-size: 0.875rem;
+		line-height: 1;
+		color: theme('colors.fg.200');
+
+		@container event-list-item (width > 480px) {
+			padding-inline-start: theme('spacing.1');
+			font-size: 1rem;
+		}
 	}
 
 	.\$separator {
