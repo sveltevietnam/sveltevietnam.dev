@@ -34,8 +34,8 @@
 		"@changesets/cli": "^2.27.1",
 		"@cloudflare/workers-types": "^4.20240320.1",
 		"@types/node": "^20.11.30",
-		"@typescript-eslint/eslint-plugin": "^7.3.1",
-		"@typescript-eslint/parser": "^7.3.1",
+		"@typescript-eslint/eslint-plugin": "^7.4.0",
+		"@typescript-eslint/parser": "^7.4.0",
 		"@vnphanquang/eslint-config": "^2.0.0",
 		"eslint": "^8.57.0",
 		"eslint-config-prettier": "^9.1.0",
@@ -46,12 +46,12 @@
 		"prettier": "3.2.5",
 		"prettier-plugin-svelte": "^3.2.2",
 		"prettier-plugin-tailwindcss": "^0.5.12",
-		"stylelint": "^16.2.1",
+		"stylelint": "^16.3.1",
 		"stylelint-config-clean-order": "^5.4.1",
 		"stylelint-config-html": "^1.1.0",
 		"stylelint-config-standard": "^36.0.0",
 		"tslib": "^2.6.2",
-		"turbo": "^1.12.5",
+		"turbo": "^1.13.0",
 		"typescript": "^5.4.3"
 	}
 }

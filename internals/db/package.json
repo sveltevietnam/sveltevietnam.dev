@@ -76,7 +76,7 @@
 		"@internals/utils": "workspace:*",
 		"dts-buddy": "^0.4.5",
 		"publint": "^0.2.7",
-		"wrangler": "^3.36.0"
+		"wrangler": "^3.38.0"
 	},
 	"volta": {
 		"extends": "../../package.json"

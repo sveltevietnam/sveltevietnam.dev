@@ -30,7 +30,7 @@
 		"zod": "^3.22.4"
 	},
 	"devDependencies": {
-		"@flydotio/dockerfile": "^0.5.3",
+		"@flydotio/dockerfile": "^0.5.4",
 		"@types/lodash.debounce": "^4.0.9",
 		"@types/uuid": "^9.0.8",
 		"@types/ws": "^8.5.10"

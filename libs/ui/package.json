@@ -168,11 +168,11 @@
 		"tailwindcss": "^3.4.1",
 		"tslib": "^2.6.2",
 		"typescript": "^5.4.3",
-		"vite": "5.1.6"
+		"vite": "5.2.6"
 	},
 	"dependencies": {
 		"@svelte-put/copy": "^3.0.0",
-		"@tailwindcss/typography": "^0.5.10",
+		"@tailwindcss/typography": "^0.5.11",
 		"autoprefixer": "^10.4.19",
 		"hast-util-to-string": "^3.0.0",
 		"hastscript": "^9.0.0",
@@ -187,7 +187,7 @@
 		"postcss-nesting": "^12.1.0",
 		"remark-containers": "^1.2.0",
 		"remark-gfm": "^4.0.0",
-		"shiki": "1.2.0",
+		"shiki": "1.2.1",
 		"svelte-parse-markup": "^0.1.2"
 	},
 	"volta": {
