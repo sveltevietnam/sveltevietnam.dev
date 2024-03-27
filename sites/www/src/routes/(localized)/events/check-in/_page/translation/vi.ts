@@ -12,18 +12,28 @@ export const vi = {
 		để không bỏ lỡ bạn nhé!<br>\
 		Hẹn gặp lại!\
 	',
-	countdown: 'Đếm ngược đến sự kiện',
+	timer: {
+		countdown: 'Đếm ngược đến sự kiện',
+		elapsed: 'Sự kiện đã diễn ra',
+	},
 	checkin: {
-		description: {
-			form: 'Điền thông tin và nhấn nút để hoàn thành check-in.',
-			qr: 'Nhấn nút bên dưới để hoàn thành check-in',
+		or: 'hoặc',
+		qr: {
+			cta: 'Quét mã QR',
+			modal: {
+				title: 'Quét mã QR',
+				description: 'Hệ thống có thể yêu cầu quyền truy cập camera của bạn.',
+			},
 		},
+		form: 'Điền thông tin và nhấn nút để hoàn thành check-in.',
 		success: {
 			ok: 'Check in thành công. Chúc bạn một sự kiện tốt đẹp!',
 			already: 'Bạn đã check in rồi. Xin cảm ơn!',
 		},
 		error: {
 			missing: 'Vui lòng điền đầy đủ thông tin cần thiết trước khi check in. Cảm ơn bạn!',
+			invalidQR:
+				'Mã QR không hợp lệ. Bạn có thể tìm thấy mã QR trong email xác nhận đăng ký sự kiện.',
 		},
 	},
 };

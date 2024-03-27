@@ -8,7 +8,14 @@
 	$: ({ days, hours, min, sec } = tick());
 
 	function tick() {
-		const distance = new Date(date).getTime() - new Date().getTime();
+		let distance = 0;
+		const rDate = new Date(date);
+		const now = new Date();
+		if (now > rDate) {
+			distance = now.getTime() - rDate.getTime();
+		} else {
+			distance = rDate.getTime() - now.getTime();
+		}
 
 		return {
 			days: Math.floor(distance / (1000 * 60 * 60 * 24))

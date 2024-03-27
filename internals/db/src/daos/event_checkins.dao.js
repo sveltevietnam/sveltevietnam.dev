@@ -4,8 +4,8 @@ const TABLE_NAME = 'event_checkins';
  * @typedef {{
  * 	event: string;
  * 	email: string;
- * 	method: 'qr' | 'form';
- * 	created_by: 'self' | 'admin';
+ * 	method: 'token' | 'qr' | 'form';
+ * 	created_by: 'anonymous' | 'self' | 'admin';
  * 	created_at: string;
  * }} EventCheckin
  */

@@ -12,18 +12,28 @@ export const en = {
 		not miss future events.<br>\
 		See you soon!\
 	',
-	countdown: 'Event Countdown',
+	timer: {
+		countdown: 'Countdown to Event',
+		elapsed: 'Event Elapsed Time',
+	},
 	checkin: {
-		description: {
-			form: 'Please fill out the information below and submit to complete check-in.',
-			qr: 'Please click button below to complete check-in',
+		or: 'or',
+		qr: {
+			cta: 'Scan QR Code',
+			modal: {
+				title: 'Scan QR Code',
+				description: 'Additional permissions might be required to access your camera.',
+			},
 		},
+		form: 'Please fill out the information below and submit to complete check-in.',
 		success: {
 			ok: 'You are checked in. Enjoy the event!',
 			already: 'You have already checked in. Thank you!',
 		},
 		error: {
 			missing: 'Please fill out required info before submitting. Thank you!',
+			invalidQR:
+				'QR is not valid. Make sure to use the QR code attached in your event registration confirmation email.',
 		},
 	},
 } satisfies typeof import('./vi').vi;

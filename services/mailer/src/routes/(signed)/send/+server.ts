@@ -5,6 +5,7 @@ import { json } from '@sveltejs/kit';
 import jwt from '@tsndr/cloudflare-worker-jwt';
 import Mustache from 'mustache';
 
+import { dev } from '$app/environment';
 import {
 	DKIM_DOMAIN,
 	DKIM_PRIVATE_KEY,
@@ -51,7 +52,7 @@ export const POST: RequestHandler = async ({ request, locals, url }) => {
 
 	const mailerURL = url.origin;
 	const mailURL = `${mailerURL}/mails/${token}`;
-	// console.log('SENT MAIL:', mailURL);
+	if (dev) console.log('SENT MAIL:', mailURL);
 	// render
 	const html = Mustache.render(template.html, {
 		mailerURL,

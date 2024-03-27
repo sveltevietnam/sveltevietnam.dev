@@ -28,7 +28,6 @@ export const load: PageServerLoad = async ({ locals, depends, platform, url }) =
 	if (!d1) throwSvelteKitError('D1_NOT_AVAILABLE');
 
 	const lang = locals.settings.language;
-	let method: EventCheckin['method'];
 	let eventId: string | undefined = undefined;
 	let email: string | undefined = undefined;
 
@@ -36,6 +35,7 @@ export const load: PageServerLoad = async ({ locals, depends, platform, url }) =
 	const qr = decodeURIComponent(url.searchParams.get('qr') ?? '');
 	if (qr) {
 		try {
+			// TODO: rotate secret after 2024.04.20 (meetup event)
 			await jwt.verify(qr, JWT_SECRET, { throwError: true });
 		} catch (e) {
 			const message = (e as Error)?.message;
@@ -50,30 +50,27 @@ export const load: PageServerLoad = async ({ locals, depends, platform, url }) =
 		email = payload?.sub;
 		if (!email || !eventId)
 			throwSvelteKitError('EVENT_SELF_CHECKIN_QR_MISSING_INFO', 'Email or event is missing');
-
-		method = 'qr';
 	} else {
 		// Check for ?event
 		eventId = decodeURIComponent(url.searchParams.get('event') ?? '');
 		if (!eventId) throwSvelteKitError('EVENT_SELF_CHECKIN_FORM_MISSING_INFO', 'Event is missing');
-		method = 'form';
 	}
 
 	const event = findEventById(locals.settings.language, EVENTS, eventId);
 	if (!event) throwSvelteKitError('EVENT_SELF_CHECKIN_EVENT_NOT_FOUND', 'Event not found');
 
-	const status = getEventStatus(event, 7_200_000);
+	const checkinStatus = getEventStatus(event, 7_200_200);
 
 	let checked: string | undefined;
 	if (email) {
 		const checkin = await getCheckin(d1, email, eventId);
 		if (checkin) {
 			checked = pageT[lang].checkin.success.already;
-		} else if (status === 'ongoing') {
+		} else if (checkinStatus === 'ongoing') {
 			await createCheckin(d1, {
 				event: eventId,
 				email,
-				method,
+				method: 'token',
 				created_at: new Date().toISOString(),
 				created_by: 'self',
 			});
@@ -84,11 +81,13 @@ export const load: PageServerLoad = async ({ locals, depends, platform, url }) =
 	return {
 		route: prepareRoutePageData(lang, 'events_checkin'),
 		event,
-		status,
+		status: {
+			checkin: checkinStatus,
+			event: getEventStatus(event),
+		},
 		form: {
 			event: eventId,
 			email,
-			method,
 			checked,
 		},
 		translations: {
@@ -107,10 +106,22 @@ export const actions: Actions = {
 		const data = await request.formData();
 
 		const event = data.get('event')?.toString();
-		const email = data.get('email')?.toString();
-		const method = data.get('method')?.toString() as EventCheckin['method'];
+		let email = data.get('email')?.toString();
+		const qr = data.get('qr')?.toString();
+		let method: EventCheckin['method'] = 'form';
 
-		if (!method || !email || !event) {
+		if (qr) {
+			// TODO: rotate secret after 2024.04.20 (meetup event)
+			const valid = await jwt.verify(qr, JWT_SECRET);
+			if (!valid) {
+				return { success: false, message: t.checkin.error.invalidQR };
+			}
+			const { payload } = await jwt.decode(qr);
+			email = payload?.sub;
+			method = 'qr';
+		}
+
+		if (!email || !event) {
 			return { success: false, message: t.checkin.error.missing };
 		}
 
@@ -124,7 +135,7 @@ export const actions: Actions = {
 			email,
 			method,
 			created_at: new Date().toISOString(),
-			created_by: 'self',
+			created_by: 'anonymous',
 		});
 		return { success: true, message: t.checkin.success.ok };
 	},
