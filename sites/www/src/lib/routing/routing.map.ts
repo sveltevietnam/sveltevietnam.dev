@@ -1,5 +1,5 @@
 export const UNIVERSAL_ROUTE_MAP = {
-	sitemap: {
+	'sitemap.xml': {
 		path: '/sitemap.xml',
 		label: 'Sitemap',
 	},
@@ -188,6 +188,16 @@ export const ROUTE_MAP = {
 		en: {
 			path: '/en/subscriptions',
 			label: 'Subscriptions',
+		},
+	},
+	sitemap: {
+		vi: {
+			path: '/vi/sitemap',
+			label: 'Sitemap',
+		},
+		en: {
+			path: '/en/sitemap',
+			label: 'Sitemap',
 		},
 	},
 } as const satisfies Record<string, Record<App.Language, Omit<App.Route, 'key'>>>;

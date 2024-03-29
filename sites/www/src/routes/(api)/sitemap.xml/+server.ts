@@ -44,7 +44,7 @@ export const GET: RequestHandler = ({ url }) => {
 				(l) =>
 					({
 						loc: url.origin + ROUTE_MAP.events[l].path + `/${localizeLangVar(l, e.slug)}`,
-						lastmod: toW3CDate(new Date(e.endDate ?? e.startDate)),
+						lastmod: toW3CDate(new Date(e.startDate)),
 						priority: 0.7,
 						alternates: LANGUAGES.map((l) => ({
 							hreflang: l,
@@ -68,6 +68,7 @@ export const GET: RequestHandler = ({ url }) => {
 			[ROUTE_MAP.design_typography, 0.2] as const,
 			[ROUTE_MAP.design_colors, 0.2] as const,
 			[ROUTE_MAP.design_blog, 0.2] as const,
+			[ROUTE_MAP.sitemap, 0.1] as const,
 		].flatMap(([route, priority]) =>
 			LANGUAGES.map(
 				(l) =>

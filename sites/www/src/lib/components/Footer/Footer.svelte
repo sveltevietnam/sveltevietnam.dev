@@ -150,9 +150,9 @@
 				aria-current={$is($routes.codeOfConduct.path)}>{$routes.codeOfConduct.label}</a
 			>
 			<span aria-disabled class="vertical-separator">|</span>
-			<a href={$routes.rss.path} class="c-link c-link--lazy" external>RSS</a>
+			<a href={$routes.sitemap.path} class="c-link c-link--lazy">Sitemap</a>
 			<span aria-disabled class="vertical-separator">|</span>
-			<a href={$routes.sitemap.path} class="c-link c-link--lazy" external>Sitemap</a>
+			<a href={$routes.rss.path} class="c-link c-link--lazy" external>RSS</a>
 		</p>
 	</div>
 </footer>
