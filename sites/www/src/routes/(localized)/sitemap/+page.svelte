@@ -170,7 +170,11 @@
 			width: 142px;
 
 			&.card--lg {
-				width: 200px;
+				width: 172px;
+
+				@screen tb {
+					width: 200px;
+				}
 			}
 		}
 
@@ -289,9 +293,15 @@
 			background-color: theme('colors.zinc.500');
 
 			:global(html[lang='vi']) & {
-				--height: 480px;
+				--height: 484px;
 
-				top: -8px;
+				top: -18px;
+
+				@screen tb {
+					--height: 480px;
+
+					top: -8px;
+				}
 			}
 		}
 	}
