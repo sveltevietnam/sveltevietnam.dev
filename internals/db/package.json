@@ -71,12 +71,12 @@
 		"seed:dev": "wrangler d1 execute sv --file src/seed.sql --local"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20240320.1",
+		"@cloudflare/workers-types": "^4.20240405.0",
 		"@internals/isc": "workspace:*",
 		"@internals/utils": "workspace:*",
-		"dts-buddy": "^0.4.5",
+		"dts-buddy": "^0.4.6",
 		"publint": "^0.2.7",
-		"wrangler": "^3.38.0"
+		"wrangler": "^3.48.0"
 	},
 	"volta": {
 		"extends": "../../package.json"

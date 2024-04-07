@@ -31,7 +31,7 @@
 		"zod": "^3.22.4"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20240320.1",
+		"@cloudflare/workers-types": "^4.20240405.0",
 		"@csstools/postcss-global-data": "^2.1.1",
 		"@internals/db": "workspace:^",
 		"@internals/isc": "workspace:^",
@@ -41,7 +41,7 @@
 		"@svelte-put/noti": "^1.1.0",
 		"@svelte-put/preprocess-inline-svg": "^2.1.3",
 		"@sveltejs/adapter-cloudflare": "../../sveltejs-adapter-cloudflare-4.2.0.tgz",
-		"@sveltejs/kit": "^2.5.4",
+		"@sveltejs/kit": "^2.5.5",
 		"@sveltejs/vite-plugin-svelte": "^3.0.2",
 		"@total-typescript/ts-reset": "^0.5.1",
 		"@types/mjml": "^4.7.4",
@@ -57,11 +57,11 @@
 		"postcss-import": "^16.1.0",
 		"postcss-js": "^4.0.1",
 		"postcss-mixins": "^10.0.0",
-		"postcss-nesting": "^12.1.0",
+		"postcss-nesting": "^12.1.1",
 		"svelte": "^4.2.12",
-		"svelte-check": "^3.6.8",
-		"tailwindcss": "^3.4.1",
-		"vite": "5.2.6",
-		"wrangler": "^3.38.0"
+		"svelte-check": "^3.6.9",
+		"tailwindcss": "^3.4.3",
+		"vite": "^5.2.8",
+		"wrangler": "^3.48.0"
 	}
 }
