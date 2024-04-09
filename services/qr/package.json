@@ -13,7 +13,7 @@
 	},
 	"dependencies": {
 		"@resvg/resvg-wasm": "^2.6.2",
-		"@svelte-put/qr": "^1.0.5",
+		"@svelte-put/qr": "^1.2.0",
 		"@tsndr/cloudflare-worker-jwt": "2.5.3"
 	}
 }

@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { clickoutside } from '@svelte-put/clickoutside';
 	import type { ResolveTrigger } from '@svelte-put/modal';
+	import { createQrPngDataUrl } from '@svelte-put/qr';
 	import { qr } from '@svelte-put/qr/svg';
 	import { shortcut } from '@svelte-put/shortcut';
-	import { createEventDispatcher, onMount } from 'svelte';
+	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 	import { fade, fly } from 'svelte/transition';
 
 	import { getLockScrollContext } from '$lib/contexts/lockscroll';
@@ -44,57 +45,34 @@
 	};
 	const { colorScheme } = getSettingsContext();
 	$: preferred = colorScheme.preferred;
+
 	$: logo = BASE64_LOGOS[$preferred];
+	$: qrConfig = {
+		data,
+		shape: 'circle',
+		logo,
+		logoRatio: 89 / 100,
+		margin: 2,
+	} as const;
 
 	let svg: SVGElement;
 	let href = '';
 
-	$: if (svg) {
-		let cloned = svg;
-		if ($preferred === 'dark') {
-			cloned = svg.cloneNode() as SVGElement;
-			const svgImageElement = cloned.getElementsByTagName('image')?.[0];
-			if (svgImageElement) svgImageElement.setAttribute('href', BASE64_LOGOS.light);
-		}
-
-		const s = new XMLSerializer().serializeToString(cloned);
-		const base64 = `data:image/svg+xml;base64,${btoa(s)}`;
-
-		const qrWidth = svg.clientHeight;
-		const qrHeight = svg.clientWidth;
-		const padding = 20;
-
-		const canvas = document.createElement('canvas');
-		canvas.width = qrWidth + padding * 2;
-		canvas.height = qrHeight + padding * 2;
-
-		const ctx = canvas.getContext('2d');
-		if (ctx) {
-			const img = new Image(qrWidth, qrHeight);
-			img.addEventListener('load', () => {
-				// background
-				ctx.fillStyle = 'white';
-				ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-				// draw QR
-				ctx.drawImage(img, padding, padding);
-
-				// set href
-				href = canvas.toDataURL('image/png');
-				img.remove();
-			});
-			img.src = base64;
-		}
-	}
-
 	let container: HTMLElement;
 	const lockScrollStore = getLockScrollContext();
-	onMount(() => {
+	onMount(async () => {
+		href = await createQrPngDataUrl({
+			...qrConfig,
+			logo: BASE64_LOGOS.light,
+			width: 500,
+			height: 500,
+			backgroundFill: 'white',
+		});
 		if (lockScrollStore) $lockScrollStore = true;
+	});
 
-		return () => {
-			if (lockScrollStore) $lockScrollStore = false;
-		};
+	onDestroy(() => {
+		if (lockScrollStore) $lockScrollStore = false;
 	});
 </script>
 
@@ -124,12 +102,7 @@
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				bind:this={svg}
-				use:qr={{
-					data,
-					shape: 'circle',
-					logo,
-					logoRatio: 89 / 100,
-				}}
+				use:qr={qrConfig}
 				width="320"
 				height="320"
 				class="mx-auto max-w-full"
