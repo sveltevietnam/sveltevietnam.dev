@@ -45,25 +45,21 @@
 >
 	<div
 		aria-disabled
-		class="absolute inset-0 -z-px backdrop-blur"
+		class="absolute inset-0 -z-px backdrop-blur-lg"
 		transition:fade={{ duration: 200 }}
 	/>
 	<div
-		class="relative max-h-[80dvh] max-w-[min(1200px,90vw)] overflow-auto border-2 bg-bg p-10 shadow-lg"
+		class="burder-outline relative max-h-[96dvh] max-w-[min(1200px,100dvw)] overflow-auto rounded border bg-bg"
 		use:clickoutside={{ limit: { parent: container } }}
 		on:clickoutside={clickOutside}
 		transition:fly={{ duration: 200, y: 50 }}
 	>
-		<div class="sticky top-0 z-10 flex justify-end">
-			<button
-				on:click={dismiss}
-				class="rounded-full border bg-bg p-2 transition-colors hover:bg-fg hover:text-bg"
-			>
+		<div class="sticky top-0 z-10 border-b border-current bg-bg px-6 py-6 tb:px-10 tb:py-8">
+			<p class="c-text-h2 -mt-2 font-bold">Settings</p>
+			<button on:click={dismiss} class="absolute right-6 top-6 hover:text-primary active:scale-95">
 				<svg inline-src="lucide/x" width="24" height="24" />
 			</button>
 		</div>
-		<p class="c-text-h1 -mt-2 font-bold">Settings</p>
-		<div class="my-10 h-px w-full bg-current" />
-		<Settings />
+		<Settings variant="modal" />
 	</div>
 </div>
