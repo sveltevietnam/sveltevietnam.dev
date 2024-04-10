@@ -72,8 +72,6 @@ export const actions: Actions = {
 			});
 		}
 
-		console.log(`Turbo ~ update: ~ parsed:`, parsed);
-
 		const { accessibilityReduceMotion, colorScheme, language, splash } = parsed.data;
 
 		if (colorScheme !== undefined && colorScheme !== locals.settings.colorScheme) {

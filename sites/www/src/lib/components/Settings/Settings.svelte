@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	const translations = {
+	export const translations = {
 		vi: {
 			accessibility: {
 				title: 'Hỗ trợ tiếp cận',
@@ -31,6 +31,11 @@
 				title: 'Xác nhận',
 				description: 'Bạn có chắc chắn muốn đặt lại tất cả tùy chỉnh về mặc định?',
 			},
+			unsavedChanges: {
+				title: 'Unsaved Changes',
+				description:
+					'Some changes made to settings have not been saved. Are you sure you want to leave?',
+			},
 		},
 		en: {
 			accessibility: {
@@ -61,8 +66,13 @@
 				error: 'An error has occurred. Please try again later!',
 			},
 			resetConfirmation: {
-				title: 'Confirmation',
+				title: 'Irreversible Action',
 				description: 'Are you sure you want to reset all settings to defaults?',
+			},
+			unsavedChanges: {
+				title: 'Xác nhận',
+				description:
+					'Một số thay đổi đã được thực hiện trong cài đặt nhưng chưa được lưu. Bạn có chắc chắn muốn thoát không?',
 			},
 		},
 	};
@@ -72,9 +82,12 @@
 	import { onMount } from 'svelte';
 
 	import { enhance } from '$app/forms';
+	import { beforeNavigate, goto } from '$app/navigation';
+	import { createDirtyFormStore, dirtyform } from '$lib/actions/dirtyform';
 	import { getLangContext } from '$lib/contexts/lang';
 	import { getSettingsContext } from '$lib/contexts/settings';
 	import { modalStore } from '$lib/modals';
+	import { Confirmation } from '$lib/modals/Confirmation';
 	import { getNotificationContext } from '$lib/notifications';
 	import { getRoutingContext } from '$lib/routing/routing.context';
 
@@ -83,6 +96,7 @@
 	import ColorSchemeSkeleton from './ColorSchemeSkeleton.svelte';
 
 	export let variant: 'page' | 'modal' = 'page';
+	export let dirty = createDirtyFormStore();
 
 	let cls = '';
 	export { cls as class };
@@ -123,6 +137,26 @@
 			resetBtnElement.removeEventListener('click', confirmReset);
 		};
 	});
+
+	let confirmedLeaving = false;
+	beforeNavigate(({ cancel, to, willUnload }) => {
+		if (confirmedLeaving || !$dirty) return;
+		cancel();
+		if (willUnload) return;
+		const pushed = modalStore.push({
+			component: Confirmation,
+			props: {
+				title: t.unsavedChanges.title,
+				description: t.unsavedChanges.description,
+			},
+		});
+		pushed.resolve().then(({ confirmed }) => {
+			if (confirmed && to?.url) {
+				confirmedLeaving = true;
+				goto(to?.url);
+			}
+		});
+	});
 </script>
 
 <form
@@ -130,6 +164,7 @@
 	method="POST"
 	action="{$routes.settings.path}?/update"
 	use:enhance={() => {
+		dirty.reset();
 		return ({ update, result, action }) => {
 			update({ reset: false });
 			if (result.status === 400) {
@@ -142,6 +177,7 @@
 			}
 		};
 	}}
+	use:dirtyform={dirty}
 >
 	<div class="space-y-16 {variant === 'modal' ? 'px-6 pt-6 tb:px-8 tb:pt-8' : ''}">
 		<!-- TODO: https://github.com/sveltevietnam/sveltevietnam.dev/issues/68 -->

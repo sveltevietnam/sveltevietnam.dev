@@ -78,7 +78,7 @@
 		transition:fade={{ duration: 200 }}
 	/>
 	<div
-		class="relative max-h-[80dvh] max-w-[min(1200px,90vw)] overflow-auto border bg-bg p-10 shadow-lg"
+		class="relative max-h-[80dvh] max-w-[min(1200px,90vw)] overflow-auto border bg-bg p-6 shadow-lg tb:p-8"
 		use:clickoutside={{ limit: { parent: container } }}
 		on:clickoutside={clickOutside}
 		transition:fly={{ duration: 200, y: 50 }}
@@ -86,12 +86,13 @@
 		<button class="absolute right-6 top-6" on:click={dismiss}>
 			<svg inline-src="lucide/x" width="24" height="24" />
 		</button>
-		<p class="c-text-h2 font-bold">{title}</p>
-		<div class="my-10 h-px w-full bg-current" />
-		<p>{description}</p>
-		<div class="mt-10 flex items-center justify-end gap-6">
-			<button class="c-btn c-btn--outlined" type="button" on:click={cancel}>{t.cancel}</button>
-			<button class="c-btn" type="button" on:click={confirm}>{t.confirm}</button>
+		<div class="space-y-6 tb:space-y-8">
+			<p class="c-text-h3 font-bold after:mt-2 after:separator">{title}</p>
+			<p>{description}</p>
+			<div class="flex items-center justify-end gap-6">
+				<button class="c-btn c-btn--outlined" type="button" on:click={cancel}>{t.cancel}</button>
+				<button class="c-btn" type="button" on:click={confirm}>{t.confirm}</button>
+			</div>
 		</div>
 	</div>
 </div>
