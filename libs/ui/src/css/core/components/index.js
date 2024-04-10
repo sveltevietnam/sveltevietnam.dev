@@ -7,6 +7,7 @@ export default [
 	require('./c-splash.css'),
 	require('./__wireframe__.css'),
 	require('./c-avatar.css'),
+	require('./c-backdrop.css'),
 	require('./c-btn.css'),
 	require('./c-callout.css'),
 	require('./c-input.css'),
