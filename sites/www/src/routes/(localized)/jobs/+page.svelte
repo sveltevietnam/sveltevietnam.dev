@@ -86,7 +86,7 @@
 							{t.actions.recruiter.whyNeedSponsor}
 						</a>
 					</p>
-					<a href={$routes.sponsor.path} class="c-btn mt-4">{t.actions.recruiter.cta}</a>
+					<a href={$routes.sponsor.path} class="c-btn c-btn--pop mt-4">{t.actions.recruiter.cta}</a>
 				</section>
 				<section class="c-card-action" use:intersect id="mail">
 					<h3 class="c-text-h3 font-medium">{t.actions.candidate.title}</h3>

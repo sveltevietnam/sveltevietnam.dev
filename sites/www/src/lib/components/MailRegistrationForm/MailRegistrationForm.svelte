@@ -134,7 +134,7 @@
 		{#if $errors.turnstile?.length}
 			<p class="error">{$errors.turnstile[0]}</p>
 		{/if}
-		<button type="submit" class="c-btn w-full" data-loading={$delayed}>
+		<button type="submit" class="c-btn c-btn--pop w-full" data-loading={$delayed}>
 			{t.cta}
 		</button>
 	</div>

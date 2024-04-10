@@ -164,7 +164,9 @@
 							{tComponent.actions.sponsor.whyNeedSponsor}
 						</a>
 					</p>
-					<a href={$routes.sponsor.path} class="c-btn mt-4">{tComponent.actions.sponsor.cta}</a>
+					<a href={$routes.sponsor.path} class="c-btn c-btn--pop mt-4"
+						>{tComponent.actions.sponsor.cta}</a
+					>
 				</section>
 				<p
 					class="self-center justify-self-center text-center sp:w-8/12 pc:col-span-3"

@@ -84,7 +84,7 @@
 >
 	<div aria-disabled class="c-backdrop" transition:fade={{ duration: 150 }}></div>
 	<div
-		class="relative rounded bg-bg p-6 tb:p-8"
+		class="relative bg-bg p-6 tb:p-8"
 		use:clickoutside={{ limit: { parent: container } }}
 		on:clickoutside={clickOutside}
 		transition:fly={{ duration: 200, y: 20 }}

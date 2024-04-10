@@ -74,7 +74,7 @@
 >
 	<div aria-disabled class="c-backdrop" transition:fade={{ duration: 200 }} />
 	<div
-		class="burder-outline relative max-h-[96dvh] max-w-[min(1200px,100dvw)] overflow-auto rounded bg-bg"
+		class="burder-outline relative max-h-[96dvh] max-w-[min(1200px,100dvw)] overflow-auto bg-bg"
 		use:clickoutside={{ limit: { parent: container } }}
 		on:clickoutside={clickOutside}
 		transition:fly={{ duration: 200, y: 50 }}
