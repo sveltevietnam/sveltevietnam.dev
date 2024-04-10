@@ -76,7 +76,7 @@
 							use:textTip={{ content: t.tooltips.copyLink }}
 							type="button"
 							data-tooltip-placement="bottom"
-							use:copy={{ text: `${$page.url}${href}` }}
+							use:copy={{ text: `${$page.url.origin}${href}` }}
 							on:copied={onCopied}
 							on:mouseleave={onMouseLeaveCopyButton}
 							on:mouseenter={onMouseEnterCopyButton}
