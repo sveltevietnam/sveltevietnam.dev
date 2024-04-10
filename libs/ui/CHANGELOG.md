@@ -1,5 +1,13 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.24
+
+### Minor Changes
+
+- [`cfa118a`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/cfa118aa0b3908c1ec8f1c95fcc0c22981fd982a) Thanks [@vnphanquang](https://github.com/vnphanquang)! - add `c-btn-pop` variant, inpsired by viam.com
+
+- [`59f78c7`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/59f78c7c98129e5c9ed501a7786b3e1bcbe4b372) Thanks [@vnphanquang](https://github.com/vnphanquang)! - add `c-backdrop` CSS component
+
 ## 1.0.0-next.23
 
 ### Patch Changes
