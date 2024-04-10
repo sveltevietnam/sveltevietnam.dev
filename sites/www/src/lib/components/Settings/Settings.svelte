@@ -347,7 +347,7 @@
 	</div>
 
 	<section
-		class="sticky bottom-0 mt-10 flex flex-wrap justify-end gap-8 border-t border-current bg-bg pb-6 pt-6 tb:pb-8 tb:pt-8 {variant ===
+		class="sticky bottom-0 mt-10 flex flex-wrap justify-end gap-8 border-t bg-bg pb-6 pt-6 tb:pb-8 tb:pt-8 {variant ===
 		'modal'
 			? 'px-6 tb:px-8'
 			: ''}"

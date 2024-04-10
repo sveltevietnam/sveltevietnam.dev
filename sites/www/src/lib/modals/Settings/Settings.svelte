@@ -74,14 +74,12 @@
 >
 	<div aria-disabled class="c-backdrop" transition:fade={{ duration: 200 }} />
 	<div
-		class="burder-outline relative max-h-[96dvh] max-w-[min(1200px,100dvw)] overflow-auto bg-bg"
+		class="relative max-h-[96dvh] max-w-[min(1200px,100dvw)] overflow-auto bg-bg"
 		use:clickoutside={{ limit: { parent: container } }}
 		on:clickoutside={clickOutside}
 		transition:fly={{ duration: 200, y: 50 }}
 	>
-		<div
-			class="sticky top-0 z-10 border-b border-current bg-bg px-6 pb-4 pt-6 tb:px-10 tb:pb-6 tb:pt-8"
-		>
+		<div class="sticky top-0 z-10 border-b bg-bg px-6 pb-4 pt-6 tb:px-10 tb:pb-6 tb:pt-8">
 			<p class="c-text-h2 -mt-2 font-bold">Settings</p>
 			<button on:click={dismiss} class="absolute right-6 top-6 hover:text-primary active:scale-95">
 				<svg inline-src="lucide/x" width="24" height="24" />
