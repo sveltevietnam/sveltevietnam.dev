@@ -82,6 +82,8 @@
 
 	import ColorSchemeSkeleton from './ColorSchemeSkeleton.svelte';
 
+	export let variant: 'page' | 'modal' = 'page';
+
 	let cls = '';
 	export { cls as class };
 
@@ -124,7 +126,7 @@
 </script>
 
 <form
-	class="space-y-[60px] {cls}"
+	class={cls}
 	method="POST"
 	action="{$routes.settings.path}?/update"
 	use:enhance={() => {
@@ -141,173 +143,179 @@
 		};
 	}}
 >
-	<!-- TODO: https://github.com/sveltevietnam/sveltevietnam.dev/issues/68 -->
-	<!-- <section class="space-y-8">
-		<h2 class="c-text-h3">{t.accessibility.title}</h2>
-		<label class="flex w-fit items-center gap-6">
-			<p>{t.accessibility.reduceMotion}</p>
-			<input
-				class="c-input"
-				type="checkbox"
-				name="accessibilityReduceMotion"
-				bind:checked={iAccessibilityReduceMotion}
-			/>
-		</label>
-	</section> -->
+	<div class="space-y-16 {variant === 'modal' ? 'px-6 pt-6 tb:px-8 tb:pt-8' : ''}">
+		<!-- TODO: https://github.com/sveltevietnam/sveltevietnam.dev/issues/68 -->
+		<!-- <section class="space-y-8">
+			<h2 class="c-text-h3">{t.accessibility.title}</h2>
+			<label class="flex w-fit items-center gap-6">
+				<p>{t.accessibility.reduceMotion}</p>
+				<input
+					class="c-input"
+					type="checkbox"
+					name="accessibilityReduceMotion"
+					bind:checked={iAccessibilityReduceMotion}
+				/>
+			</label>
+		</section> -->
+		<section class="space-y-8">
+			<h2 class="c-text-h3">{$tGlobal.common.colorSchemes.title}</h2>
 
-	<section class="space-y-8">
-		<h2 class="c-text-h3">{$tGlobal.common.colorSchemes.title}</h2>
+			<div class="flex flex-wrap gap-6 sp:justify-center">
+				<div class="basis-56 space-y-0.5">
+					<label>
+						<input
+							class="c-input c-input--radio-labeled"
+							type="radio"
+							name="colorScheme"
+							value="light"
+							bind:group={iColorScheme}
+						/>
+						<ColorSchemeSkeleton scheme="light" />
+					</label>
+					<p class="text-center">{$tGlobal.common.colorSchemes.light}</p>
+				</div>
 
-		<div class="flex flex-wrap gap-6 sp:justify-center">
-			<div class="basis-56 space-y-0.5">
-				<label>
+				<div class="basis-56 space-y-0.5">
+					<label>
+						<input
+							class="c-input c-input--radio-labeled"
+							type="radio"
+							name="colorScheme"
+							value="dark"
+							bind:group={iColorScheme}
+						/>
+						<ColorSchemeSkeleton scheme="dark" />
+					</label>
+					<p class="text-center">{$tGlobal.common.colorSchemes.dark}</p>
+				</div>
+
+				<div class="basis-56 space-y-0.5">
+					<label>
+						<input
+							class="c-input c-input--radio-labeled"
+							type="radio"
+							name="colorScheme"
+							value="system"
+							bind:group={iColorScheme}
+						/>
+						<ColorSchemeSkeleton scheme="system" />
+					</label>
+					<p class="text-center">{$tGlobal.common.colorSchemes.system}</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="space-y-8">
+			<h2 class="c-text-h3">{$tGlobal.common.language}</h2>
+
+			<div class="flex flex-wrap items-center gap-6">
+				<label class="flex items-center gap-4 p-3">
 					<input
 						class="c-input c-input--radio-labeled"
 						type="radio"
-						name="colorScheme"
-						value="light"
-						bind:group={iColorScheme}
+						name="language"
+						value="en"
+						bind:group={iLang}
 					/>
-					<ColorSchemeSkeleton scheme="light" />
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 30" width="50" height="30">
+						<clipPath id="t">
+							<path d="M25,15h25v15zv15h-25zh-25v-15zv-15h25z" />
+						</clipPath>
+						<path d="M0,0v30h50v-30z" fill="#012169" />
+						<path d="M0,0 50,30M50,0 0,30" stroke="#fff" stroke-width="6" />
+						<path d="M0,0 50,30M50,0 0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4" />
+						<path
+							d="M-1 11h22v-12h8v12h22v8h-22v12h-8v-12h-22z"
+							fill="#C8102E"
+							stroke="#FFF"
+							stroke-width="2"
+						/>
+					</svg>
+					<p>English</p>
 				</label>
-				<p class="text-center">{$tGlobal.common.colorSchemes.light}</p>
-			</div>
 
-			<div class="basis-56 space-y-0.5">
-				<label>
+				<label class="flex items-center gap-4 p-3">
 					<input
 						class="c-input c-input--radio-labeled"
 						type="radio"
-						name="colorScheme"
-						value="dark"
-						bind:group={iColorScheme}
+						name="language"
+						value="vi"
+						bind:group={iLang}
 					/>
-					<ColorSchemeSkeleton scheme="dark" />
+					<svg
+						width="45"
+						height="30"
+						viewBox="0 0 30 20"
+						xmlns="http://www.w3.org/2000/svg"
+						version="1.1"
+					>
+						<rect width="30" height="20" fill="#da251d" />
+						<polygon points="15,4 11.47,14.85 20.71,8.15 9.29,8.15 18.53,14.85" fill="#ff0" />
+					</svg>
+					<p>Tiếng Việt</p>
 				</label>
-				<p class="text-center">{$tGlobal.common.colorSchemes.dark}</p>
 			</div>
+		</section>
 
-			<div class="basis-56 space-y-0.5">
-				<label>
+		<section class="space-y-8">
+			<h2 class="c-text-h3">{t.splashScreen.title}</h2>
+
+			<div class="flex flex-wrap items-center gap-6">
+				<label class="basis-20 p-3 text-center tb:basis-32">
 					<input
 						class="c-input c-input--radio-labeled"
 						type="radio"
-						name="colorScheme"
-						value="system"
-						bind:group={iColorScheme}
+						name="splash"
+						value="random"
+						bind:group={iSplash}
 					/>
-					<ColorSchemeSkeleton scheme="system" />
+					<p class="whitespace-nowrap">{t.splashScreen.random}</p>
 				</label>
-				<p class="text-center">{$tGlobal.common.colorSchemes.system}</p>
-			</div>
-		</div>
-	</section>
-
-	<section class="space-y-8">
-		<h2 class="c-text-h3">{$tGlobal.common.language}</h2>
-
-		<div class="flex flex-wrap items-center gap-6">
-			<label class="flex items-center gap-4 p-3">
-				<input
-					class="c-input c-input--radio-labeled"
-					type="radio"
-					name="language"
-					value="en"
-					bind:group={iLang}
-				/>
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 30" width="50" height="30">
-					<clipPath id="t">
-						<path d="M25,15h25v15zv15h-25zh-25v-15zv-15h25z" />
-					</clipPath>
-					<path d="M0,0v30h50v-30z" fill="#012169" />
-					<path d="M0,0 50,30M50,0 0,30" stroke="#fff" stroke-width="6" />
-					<path d="M0,0 50,30M50,0 0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4" />
-					<path
-						d="M-1 11h22v-12h8v12h22v8h-22v12h-8v-12h-22z"
-						fill="#C8102E"
-						stroke="#FFF"
-						stroke-width="2"
+				<label class="basis-20 p-3 text-center tb:basis-32">
+					<input
+						class="c-input c-input--radio-labeled"
+						type="radio"
+						name="splash"
+						value="short"
+						bind:group={iSplash}
 					/>
-				</svg>
-				<p>English</p>
-			</label>
+					<p>{t.splashScreen.short}</p>
+				</label>
+				<label class="basis-20 p-3 text-center tb:basis-32">
+					<input
+						class="c-input c-input--radio-labeled"
+						type="radio"
+						name="splash"
+						value="long"
+						bind:group={iSplash}
+					/>
+					<p>{t.splashScreen.long}</p>
+				</label>
+				<label class="basis-20 p-3 text-center tb:basis-32">
+					<input
+						class="c-input c-input--radio-labeled"
+						type="radio"
+						name="splash"
+						value="disabled"
+						bind:group={iSplash}
+					/>
+					<p>{t.splashScreen.disabled}</p>
+				</label>
+			</div>
 
-			<label class="flex items-center gap-4 p-3">
-				<input
-					class="c-input c-input--radio-labeled"
-					type="radio"
-					name="language"
-					value="vi"
-					bind:group={iLang}
-				/>
-				<svg
-					width="45"
-					height="30"
-					viewBox="0 0 30 20"
-					xmlns="http://www.w3.org/2000/svg"
-					version="1.1"
-				>
-					<rect width="30" height="20" fill="#da251d" />
-					<polygon points="15,4 11.47,14.85 20.71,8.15 9.29,8.15 18.53,14.85" fill="#ff0" />
-				</svg>
-				<p>Tiếng Việt</p>
-			</label>
-		</div>
-	</section>
+			<div class="space-y-6">
+				<p>{@html t.splashScreen.description}</p>
+				<SplashPlayground />
+			</div>
+		</section>
+	</div>
 
-	<section class="space-y-8">
-		<h2 class="c-text-h3">{t.splashScreen.title}</h2>
-
-		<div class="flex flex-wrap items-center gap-6">
-			<label class="basis-20 p-3 text-center tb:basis-32">
-				<input
-					class="c-input c-input--radio-labeled"
-					type="radio"
-					name="splash"
-					value="random"
-					bind:group={iSplash}
-				/>
-				<p class="whitespace-nowrap">{t.splashScreen.random}</p>
-			</label>
-			<label class="basis-20 p-3 text-center tb:basis-32">
-				<input
-					class="c-input c-input--radio-labeled"
-					type="radio"
-					name="splash"
-					value="short"
-					bind:group={iSplash}
-				/>
-				<p>{t.splashScreen.short}</p>
-			</label>
-			<label class="basis-20 p-3 text-center tb:basis-32">
-				<input
-					class="c-input c-input--radio-labeled"
-					type="radio"
-					name="splash"
-					value="long"
-					bind:group={iSplash}
-				/>
-				<p>{t.splashScreen.long}</p>
-			</label>
-			<label class="basis-20 p-3 text-center tb:basis-32">
-				<input
-					class="c-input c-input--radio-labeled"
-					type="radio"
-					name="splash"
-					value="disabled"
-					bind:group={iSplash}
-				/>
-				<p>{t.splashScreen.disabled}</p>
-			</label>
-		</div>
-
-		<div class="space-y-6">
-			<p>{@html t.splashScreen.description}</p>
-			<SplashPlayground />
-		</div>
-	</section>
-
-	<section class="flex flex-wrap justify-end gap-8">
+	<section
+		class="sticky bottom-0 mt-10 flex flex-wrap justify-end gap-8 border-t border-current bg-bg pb-6 pt-6 tb:pb-8 tb:pt-8 {variant ===
+		'modal'
+			? 'px-6 tb:px-8'
+			: ''}"
+	>
 		<button
 			class="c-btn c-btn--outlined basis-32"
 			type="submit"

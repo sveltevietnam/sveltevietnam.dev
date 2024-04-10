@@ -84,20 +84,20 @@
 >
 	<div
 		aria-disabled
-		class="absolute inset-0 -z-px backdrop-blur"
+		class="absolute inset-0 -z-px backdrop-blur-lg"
 		transition:fade={{ duration: 200 }}
 	/>
 	<div
-		class="relative border bg-bg p-10 shadow-lg"
+		class="relative border bg-bg p-10"
 		use:clickoutside={{ limit: { parent: container } }}
 		on:clickoutside={clickOutside}
 		transition:fly={{ duration: 200, y: 50 }}
 	>
-		<button class="absolute right-6 top-6" on:click={dismiss}>
+		<button class="absolute right-6 top-6 hover:text-primary active:scale-95" on:click={dismiss}>
 			<svg inline-src="lucide/x" width="24" height="24" />
 		</button>
 		<div class="space-y-6">
-			<p class="c-text-h2 font-medium after:mt-2 after:separator">{texts.title}</p>
+			<p class="c-text-h3 font-medium after:mt-2 after:separator">{texts.title}</p>
 			<p class="">{texts.description}</p>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
