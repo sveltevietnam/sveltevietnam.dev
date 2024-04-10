@@ -1,1 +1,1 @@
-export { default as Settings } from './Settings.svelte';
+export { default as Settings, translations } from './Settings.svelte';

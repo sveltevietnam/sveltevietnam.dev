@@ -5,8 +5,18 @@
 	import { createEventDispatcher, onMount } from 'svelte';
 	import { fade, fly } from 'svelte/transition';
 
-	import { Settings } from '$lib/components/Settings';
+	import type { DirtyFormStore } from '$lib/actions/dirtyform';
+	import { Settings, translations } from '$lib/components/Settings';
+	import { getLangContext } from '$lib/contexts/lang';
 	import { getLockScrollContext } from '$lib/contexts/lockscroll';
+	import { modalStore } from '$lib/modals';
+	import { Confirmation } from '$lib/modals/Confirmation';
+
+	let dirty: DirtyFormStore;
+
+	const { lang } = getLangContext();
+
+	$: t = translations[$lang];
 
 	const dispatch = createEventDispatcher<{
 		resolve: {
@@ -14,16 +24,35 @@
 		};
 	}>();
 
-	function escape() {
-		dispatch('resolve', { trigger: 'escape' });
+	async function confirm() {
+		if (!$dirty) return true;
+		const pushed = modalStore.push({
+			component: Confirmation,
+			props: {
+				title: t.unsavedChanges.title,
+				description: t.unsavedChanges.description,
+			},
+		});
+		const { confirmed } = await pushed.resolve();
+		return confirmed;
 	}
 
-	function clickOutside() {
-		dispatch('resolve', { trigger: 'clickoutside' });
+	async function escape() {
+		if (await confirm()) {
+			dispatch('resolve', { trigger: 'escape' });
+		}
 	}
 
-	function dismiss() {
-		dispatch('resolve', { trigger: 'x' });
+	async function clickOutside() {
+		if (await confirm()) {
+			dispatch('resolve', { trigger: 'clickoutside' });
+		}
+	}
+
+	async function dismiss() {
+		if (await confirm()) {
+			dispatch('resolve', { trigger: 'x' });
+		}
 	}
 
 	let container: HTMLElement;
@@ -43,23 +72,21 @@
 	class="absolute inset-0 grid h-full w-full max-w-full place-items-center"
 	bind:this={container}
 >
+	<div aria-disabled class="c-backdrop" transition:fade={{ duration: 200 }} />
 	<div
-		aria-disabled
-		class="absolute inset-0 -z-px backdrop-blur-lg"
-		transition:fade={{ duration: 200 }}
-	/>
-	<div
-		class="burder-outline relative max-h-[96dvh] max-w-[min(1200px,100dvw)] overflow-auto rounded border bg-bg"
+		class="burder-outline relative max-h-[96dvh] max-w-[min(1200px,100dvw)] overflow-auto rounded bg-bg"
 		use:clickoutside={{ limit: { parent: container } }}
 		on:clickoutside={clickOutside}
 		transition:fly={{ duration: 200, y: 50 }}
 	>
-		<div class="sticky top-0 z-10 border-b border-current bg-bg px-6 py-6 tb:px-10 tb:py-8">
+		<div
+			class="sticky top-0 z-10 border-b border-current bg-bg px-6 pb-4 pt-6 tb:px-10 tb:pb-6 tb:pt-8"
+		>
 			<p class="c-text-h2 -mt-2 font-bold">Settings</p>
 			<button on:click={dismiss} class="absolute right-6 top-6 hover:text-primary active:scale-95">
 				<svg inline-src="lucide/x" width="24" height="24" />
 			</button>
 		</div>
-		<Settings variant="modal" />
+		<Settings variant="modal" bind:dirty />
 	</div>
 </div>

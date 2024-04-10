@@ -82,16 +82,12 @@
 	class="absolute inset-0 grid h-full w-full max-w-full place-items-center"
 	bind:this={container}
 >
+	<div aria-disabled class="c-backdrop" transition:fade={{ duration: 150 }}></div>
 	<div
-		aria-disabled
-		class="absolute inset-0 -z-px backdrop-blur-lg"
-		transition:fade={{ duration: 200 }}
-	/>
-	<div
-		class="relative border bg-bg p-10"
+		class="relative rounded bg-bg p-6 tb:p-8"
 		use:clickoutside={{ limit: { parent: container } }}
 		on:clickoutside={clickOutside}
-		transition:fly={{ duration: 200, y: 50 }}
+		transition:fly={{ duration: 200, y: 20 }}
 	>
 		<button class="absolute right-6 top-6 hover:text-primary active:scale-95" on:click={dismiss}>
 			<svg inline-src="lucide/x" width="24" height="24" />
