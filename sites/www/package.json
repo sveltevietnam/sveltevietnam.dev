@@ -48,7 +48,7 @@
 		"@svelte-put/shortcut": "^3.1.0",
 		"@svelte-put/toc": "^5.0.1",
 		"@svelte-put/tooltip": "^1.0.1",
-		"@sveltejs/adapter-cloudflare": "../../sveltejs-adapter-cloudflare-4.2.0.tgz",
+		"@sveltejs/adapter-cloudflare": "^4.3.0",
 		"@sveltejs/enhanced-img": "^0.2.0",
 		"@sveltejs/kit": "^2.5.4",
 		"@sveltejs/vite-plugin-svelte": "^3.0.2",
