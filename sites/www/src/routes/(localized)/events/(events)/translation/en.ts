@@ -6,6 +6,7 @@ export const en = {
 	location: 'Location',
 	tba: 'To be announced',
 	tentative: 'tentative',
+	minutes: 'minutes',
 	sponsors: {
 		title: 'Sponsors',
 		tba: {

@@ -6,6 +6,7 @@ export const vi = {
 	location: 'Địa điểm',
 	tba: 'Sẽ được thông báo sau',
 	tentative: 'dự kiến',
+	minutes: 'phút',
 	sponsors: {
 		title: 'Nhà tài trợ',
 		tba: {

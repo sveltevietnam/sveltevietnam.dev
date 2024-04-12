@@ -9,15 +9,48 @@ export const en = {
 		introduction: 'Meet and Greet',
 		share: 'Sharing Session',
 		share1: {
+			time: '15min presentation, 10min Q&A',
 			title: 'Svelte, Javascript, and the Web',
-			about:
+			description:
 				"\
 				Are you a Svelte developer, a Javascript developer, a frontend developer, or a web developer? \
 				How does Svelte fit into the web ecosystem today? Why should you care? \
 				Let's talk! \
 			",
 		},
-		discussion: 'Open Discussion',
+		share2: {
+			time: '15min presentation, 10min Q&A',
+			title: 'Web Designer and Svelte - Journey to Discover Freedom of Creativity',
+			description:
+				'\
+				Embarking on a journey from UI/UX to Svelte as a pathway to kindle creativity, \
+				broaden design capabilities through the art of coding, and \
+				enable an unparalleled freedom to breathe life into ideas \
+				\
+			',
+		},
+		qa1: {
+			title: 'Svelte and Its Ecosystem',
+			description:
+				'\
+				Svelte is still relatively new in Vietnam, not being as popular as other comparable technologies are; \
+				it is not uncommon that you have many unanswered questions and concerns. \
+				This Q&A session will hopefully help you gain a better insight. Ask away! \
+			',
+		},
+		discussion1: {
+			title: 'Discussion: "Open Source - Challenges and Opportunities"',
+			description:
+				"\
+				Have you ever contributed to a library, source code, issue on Github, \
+				or participate in asking / answering questions via forums such as Discord, \
+				Reddit, Stack Overflow? If yes, you are already a part of the international \
+				open source community. Let's hear our members share about their story and experience with open source \
+				in this discussion session.\
+			",
+		},
+		qa: 'Q&A',
+		openDiscussion: 'Open Discussion',
 		closing: 'Closing Remarks',
 	},
 	ticket: {
@@ -91,4 +124,5 @@ export const en = {
 		',
 	},
 	imageCredit: 'Background images from Unsplash by',
+	musicCredit: 'Music used in event composed and given permission by',
 } satisfies typeof import('./vi').vi;

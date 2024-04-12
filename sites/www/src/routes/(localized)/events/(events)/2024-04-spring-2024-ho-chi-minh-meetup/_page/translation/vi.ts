@@ -9,15 +9,47 @@ export const vi = {
 		introduction: 'Giới thiệu và làm quen',
 		share: 'Phiên chia sẻ',
 		share1: {
-			title: 'Svelte, Javascript, và Web',
-			about:
+			time: '15p trình bày, 10p trả lời câu hỏi',
+			title: 'Svelte, Javascript, và nền tảng Web',
+			description:
 				'\
-				Phải chăng bạn là một lập trình viên Svelte, lập trình viên Javascript, lập trình viên frontend, hay lập trình viên web? \
+				Phải chăng bạn là một lập trình viên Svelte, lập trình viên Javascript, \
+				lập trình viên frontend, hay lập trình viên web? \
 				Svelte có vị trí như thế nào trong hệ sinh thái web hôm nay? Bạn có nên quan tâm? \
 				Cùng xem sao nhé! \
 			',
 		},
-		discussion: 'Thảo luận tự do',
+		share2: {
+			time: '15p trình bày, 10p trả lời câu hỏi',
+			title: 'Web designer và Svelte, hành trình tìm sự sáng tạo và tự do',
+			description:
+				"\
+				Hành trình từ UI/UX đến Svelte: Đây không chỉ là một con đường khơi dậy sáng tạo \
+				và khả năng 'code lách' một cách nghệ thuật mà còn là cơ hội để mở rộng khả năng \
+				thiết kế, có thể thực sự làm chủ và thể hiện ý tưởng một cách tự do nhất.\
+			",
+		},
+		qa1: {
+			title: 'Svelte và hệ sinh thái của Svelte',
+			description:
+				'\
+				Svelte chưa được phổ biến rộng tại Việt Nam so với các công nghệ khác, \
+				vì vậy chắc hẳn bạn có rất nhiều cầu hỏi cần được giải đáp. \
+				Trong phiên thảo luận này, hãy nêu lên những thắc mắc và ý kiến của bạn nhé!\
+			',
+		},
+		discussion1: {
+			title: 'Thảo luận: "Mã nguồn mở - thử thách và cơ hội"',
+			description:
+				'\
+				Bạn đã từng đóng góp vào thư viện, mã nguồn, hoặc issue tại Github, hay tham gia hỏi / trả lời câu \
+				hỏi trên các diễn đàn như Discord, Reddit, Stack Overflow chưa? Nếu có, bạn đã là một thành viên \
+				của cộng đồng mã nguồn mở. Cùng lắng nghe trải nghiệm và chia sẻ của các thành viên về mã nguồn mở trong \
+				phiên thảo luận này.\
+			',
+		},
+		qa: 'Hỏi đáp',
+		openDiscussion: 'Thảo luận tự do',
 		closing: 'Lời kết',
 	},
 	ticket: {
@@ -88,4 +120,5 @@ export const vi = {
 			',
 	},
 	imageCredit: 'Hình ảnh nền từ Unsplash bởi',
+	musicCredit: 'Âm nhạc sử dụng trong sự kiện được sáng tác và cấp quyền sử dụng bởi',
 };

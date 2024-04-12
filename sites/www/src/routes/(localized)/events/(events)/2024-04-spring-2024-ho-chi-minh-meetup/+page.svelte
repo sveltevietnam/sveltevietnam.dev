@@ -136,33 +136,75 @@
 
 			<ul class="timeline mt-10">
 				<li class="space-y-2" use:intersect>
-					<p class="c-text-body2 text-fg-200">{generateTimeSlot(event.startDate, 0, 30)}</p>
+					<div class="flex items-baseline justify-between text-fg-200">
+						<p class="c-text-body2">{generateTimeSlot(event.startDate, 0, 15)}</p>
+						<p class="c-text-cap2 text-right sp:max-w-28">15 {t.minutes}</p>
+					</div>
 					<p class="c-text-h5 font-medium">{t.timeline.introduction}</p>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<p class="c-text-body2 text-fg-200">{generateTimeSlot(event.startDate, 30, 15)}</p>
+					<div class="flex items-baseline justify-between text-fg-200">
+						<p class="c-text-body2">{generateTimeSlot(event.startDate, 15, 25)}</p>
+						<p class="c-text-cap2 text-right sp:max-w-28">{t.timeline.share1.time}</p>
+					</div>
 					<div class="space-y-3">
 						<p class="c-text-h5 font-medium">
 							{t.timeline.share}: "{t.timeline.share1.title}"
 						</p>
-						<p>{t.timeline.share1.about}</p>
+						<p>{t.timeline.share1.description}</p>
 						<Person person={event.speakers.vnphanquang} />
 					</div>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<p class="c-text-body2 text-fg-200">{generateTimeSlot(event.startDate, 45, 45)}</p>
-					<p>...</p>
-					<p class="c-text-h5 font-medium">
-						<a href="#become-a-speaker" class="c-link">{@html t.becomeSpeaker}</a>
-					</p>
-					<p>...</p>
+					<div class="flex items-baseline justify-between text-fg-200">
+						<p class="c-text-body2">{generateTimeSlot(event.startDate, 40, 25)}</p>
+						<p class="c-text-cap2 text-right sp:max-w-28">{t.timeline.share2.time}</p>
+					</div>
+					<div class="space-y-3">
+						<p class="c-text-h5 font-medium">
+							{t.timeline.share}: "{t.timeline.share2.title}"
+						</p>
+						<p>{t.timeline.share2.description}</p>
+						<Person person={event.speakers.trongnguyen24} />
+					</div>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<p class="c-text-body2 text-fg-200">{generateTimeSlot(event.startDate, 90, 20)}</p>
-					<p class="c-text-h5 font-medium">{t.timeline.discussion}</p>
+					<div class="flex items-baseline justify-between text-fg-200">
+						<p class="c-text-body2">{generateTimeSlot(event.startDate, 65, 20)}</p>
+						<p class="upto-tb:max-w-28 c-text-cap2 text-right">20 {t.minutes}</p>
+					</div>
+					<div class="space-y-3">
+						<p class="c-text-h5 font-medium">
+							{t.timeline.qa}: "{t.timeline.qa1.title}"
+						</p>
+						<p>{t.timeline.qa1.description}</p>
+						<Person person={event.speakers.vnphanquang} />
+					</div>
 				</li>
 				<li class="space-y-2" use:intersect>
-					<p class="c-text-body2 text-fg-200">{generateTimeSlot(event.startDate, 110, 10)}</p>
+					<div class="flex items-baseline justify-between text-fg-200">
+						<p class="c-text-body2">{generateTimeSlot(event.startDate, 85, 10)}</p>
+						<p class="upto-tb:max-w-28 c-text-cap2 text-right">10 {t.minutes}</p>
+					</div>
+					<div class="space-y-3">
+						<p class="c-text-h5 font-medium">
+							{t.timeline.discussion1.title}
+						</p>
+						<p>{t.timeline.discussion1.description}</p>
+					</div>
+				</li>
+				<li class="space-y-2" use:intersect>
+					<div class="flex items-baseline justify-between text-fg-200">
+						<p class="c-text-body2">{generateTimeSlot(event.startDate, 95, 20)}</p>
+						<p class="upto-tb:max-w-28 c-text-cap2 text-right">20 {t.minutes}</p>
+					</div>
+					<p class="c-text-h5 font-medium">{t.timeline.openDiscussion}</p>
+				</li>
+				<li class="space-y-2" use:intersect>
+					<div class="flex items-baseline justify-between text-fg-200">
+						<p class="c-text-body2">{generateTimeSlot(event.startDate, 115, 5)}</p>
+						<p class="upto-tb:max-w-28 c-text-cap2 text-right">5 {t.minutes}</p>
+					</div>
 					<p class="c-text-h5 font-medium">{t.timeline.closing}</p>
 				</li>
 			</ul>
@@ -199,7 +241,12 @@
 		</section>
 
 		<section class="max-w-pad" use:intersect>
-			<p class="text-center font-lora text-xl">
+			<p class="text-center text-fg-100">
+				{t.imageCredit} <a class="c-link" href="https://unsplash.com/@taanhuyn">Taan Huyn</a>,
+				<br />
+				{t.musicCredit} Huy Mai.
+			</p>
+			<p class="mt-6 text-center font-lora text-xl">
 				<span class="text-fg-100">{t.hostedBy}</span>
 				<a class="c-link c-link--lazy" href="https://www.designveloper.com">
 					<img
@@ -211,9 +258,6 @@
 					/>
 					Designveloper
 				</a>
-			</p>
-			<p class="mt-6 text-center text-fg-100">
-				{t.imageCredit} <a class="c-link" href="https://unsplash.com/@taanhuyn">Taan Huyn</a>
 			</p>
 		</section>
 	</div>

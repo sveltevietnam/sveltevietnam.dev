@@ -1,5 +1,5 @@
 import type { Event, StructureEvent } from '$lib/data/events';
-import { VNPHANQUANG } from '$lib/data/people';
+import { TRONGNGUYEN24, VNPHANQUANG } from '$lib/data/people';
 import { SVELTE_VIETNAM_ORG, structurePerson } from '$lib/data/structured';
 
 import ogImage from './images/og.jpg';
@@ -27,6 +27,7 @@ export const event = {
 	},
 	speakers: {
 		vnphanquang: VNPHANQUANG,
+		trongnguyen24: TRONGNGUYEN24,
 	},
 	sponsors: [],
 	keywords: {
