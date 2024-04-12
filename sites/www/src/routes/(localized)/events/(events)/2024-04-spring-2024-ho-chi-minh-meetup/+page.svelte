@@ -80,18 +80,6 @@
 			</div>
 		</section>
 
-		<section class="max-w-pad">
-			<h2 class="c-text-h2 uppercase" use:intersect>{t.sponsors.title}</h2>
-			<div class="mt-[60px] text-center" use:intersect>
-				<ToBeAnnounced>
-					<p>
-						{t.sponsors.tba.description}
-						<a href={$routes.sponsor.path} class="c-link">{t.sponsors.tba.cta}</a>
-					</p>
-				</ToBeAnnounced>
-			</div>
-		</section>
-
 		<section class="timeline-container max-w-pad">
 			<h2 class="c-text-h2 uppercase" use:intersect>{t.timeline.title}</h2>
 
@@ -214,6 +202,18 @@
 			<h2 class="c-text-h2 uppercase" use:intersect>{t.faq.title}</h2>
 			<div class="mt-10" use:intersect>
 				<FrequentlyAskedQuestions entries={Object.values(t.faq.entries)} />
+			</div>
+		</section>
+
+		<section class="max-w-pad">
+			<h2 class="c-text-h2 uppercase" use:intersect>{t.sponsors.title}</h2>
+			<div class="mt-[60px] text-center" use:intersect>
+				<ToBeAnnounced>
+					<p>
+						{t.sponsors.tba.description}
+						<a href={$routes.sponsor.path} class="c-link">{t.sponsors.tba.cta}</a>
+					</p>
+				</ToBeAnnounced>
 			</div>
 		</section>
 
