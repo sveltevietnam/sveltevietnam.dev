@@ -8,12 +8,12 @@ For technical discussion or assistance, reach out to our maintainers at the [#si
 
 ## Prerequisites
 
-| Dependency    | Installation                            | Description                     |
-| ------------- | --------------------------------------- | ------------------------------- |
-| [node] >= 18x | [nvm], or [volta]                       | recommended `volta`             |
-| [pnpm]        | [follow guide on website][pnpm.install] | alternative to `npm` and `yarn` |
+| Dependency | Installation                            | Description                     |
+| ---------- | --------------------------------------- | ------------------------------- |
+| [node]     | [nvm], or [volta]                       | recommended `volta`             |
+| [pnpm]     | [follow guide on website][pnpm.install] | alternative to `npm` and `yarn` |
 
-At project root, run:
+See [package.json] for preferred versions of `node` and `pnpm`. At project root, run:
 
 ```bash
 pnpm setup
@@ -76,6 +76,7 @@ To bypass hook (not recommended, for admin only), run `git commit` with the `--n
 <!-- LOCAL -->
 
 [.vscode/extensions.json]: ../.vscode/extensions.json
+[package.json]: ./package.json
 
 <!-- TECHNOLOGIES -->
 
