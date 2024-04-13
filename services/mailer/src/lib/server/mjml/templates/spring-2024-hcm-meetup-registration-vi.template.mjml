@@ -26,14 +26,14 @@
 
 		<mj-section padding-top="0">
 			<mj-column>
-        <mj-image
+        <!-- <mj-image
 					width="632px"
 					src="{{mailerURL}}/images/spring-2024-hcm-meetup-ticket.jpg"
 					padding-top="20px"
 					padding-bottom="40px"
 					href="{{personalizedEventURL}}"
 					alt="vé điện tử mẫu của sự kiện"
-				/>
+				/> -->
 				<mj-text>
 					<p>Xin chào {{name}},</p>
 					<p>
