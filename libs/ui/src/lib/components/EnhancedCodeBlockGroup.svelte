@@ -36,6 +36,8 @@
 	export let display = 'files';
 	/** @type {string | undefined} */
 	export let title;
+	let cls = '';
+	export { cls as class };
 
 	const titleStore = writable(title);
 	$: title = $titleStore;
@@ -43,7 +45,7 @@
 	setEnhancedBlockGroupContext({ name, display, title: titleStore });
 </script>
 
-<div class="codeblock-group codeblock-group--{display}" style="--cols: {cols};">
+<div class="codeblock-group codeblock-group--{display} {cls}" style="--cols: {cols};">
 	<!-- <label class="codeblock-tab">
 		<span>pnpm</span>
 		<input type="radio" name="<generated_id>" checked />

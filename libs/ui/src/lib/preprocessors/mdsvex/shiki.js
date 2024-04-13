@@ -205,7 +205,8 @@ function transformer() {
 			if (meta?.__enhancement) {
 				for (const [key, value] of Object.entries(meta.__enhancement)) {
 					if (key === 'class') {
-						this.addClassToHast(hast, value);
+						this.addClassToHast(container, value);
+						continue;
 					}
 					container.properties[key] = value;
 				}

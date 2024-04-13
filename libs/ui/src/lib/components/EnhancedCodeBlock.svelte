@@ -16,6 +16,8 @@
 	export let collapsed = 'false';
 	/** @type {string | undefined} */
 	export let numLines = undefined;
+	let cls = '';
+	export { cls as class };
 
 	const groupContext = getEnhancedCodeBlockGroupContext();
 
@@ -65,7 +67,7 @@
 </script>
 
 <section
-	class="codeblock"
+	class="codeblock {cls}"
 	class:grouped={!!groupContext}
 	class:hide-line-number={hideLineNumber !== 'false'}
 	{...groupContext && { 'data-group-display': groupContext.display }}
