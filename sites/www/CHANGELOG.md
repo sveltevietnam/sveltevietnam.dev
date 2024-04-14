@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.43
+
+### Minor Changes
+
+- [`791f3b9`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/791f3b9871acb96e512efcce0d6c18cd1331456c) Thanks [@vnphanquang](https://github.com/vnphanquang)! - new blog post "Introduction to Svelte Action: Runtime Superpower" (EN & VI)
+
 ## 1.0.0-next.42
 
 ### Minor Changes
