@@ -8,10 +8,12 @@ import { post as post_20231220_behind_the_screen_progressive_splashscreen } from
 import { post as post_20240125_styling_svelte_vietnam_part_i_tailwindcss } from '$routes/(localized)/blog/(posts)/20240125-styling-svelte-vietnam-part-i-tailwindcss/_page/data';
 import { post as post_20240125_styling_svelte_vietnam_part_ii_css_components } from '$routes/(localized)/blog/(posts)/20240125-styling-svelte-vietnam-part-ii-css-components/_page/data';
 import { post as post_20240125_styling_svelte_vietnam_part_iii_code_discovery_portability } from '$routes/(localized)/blog/(posts)/20240125-styling-svelte-vietnam-part-iii-code-discovery-portability/_page/data';
+import { post as post_20240414_introduction_to_svelte_action_runtime_superpower } from '$routes/(localized)/blog/(posts)/20240414-introduction-to-svelte-action-runtime-superpower/_page/data';
 // HYGEN MARKER - IMPORT [DO NOT REMOVE]
 
 export const INTERNAL_POSTS: Post[] = [
 	// HYGEN MARKER - POST [DO NOT REMOVE]
+	post_20240414_introduction_to_svelte_action_runtime_superpower,
 	post_20240125_styling_svelte_vietnam_part_iii_code_discovery_portability,
 	post_20240125_styling_svelte_vietnam_part_ii_css_components,
 	post_20240125_styling_svelte_vietnam_part_i_tailwindcss,

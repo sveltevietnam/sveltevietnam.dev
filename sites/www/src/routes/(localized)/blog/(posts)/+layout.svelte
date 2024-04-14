@@ -273,7 +273,10 @@
 			<section class="post-toc">
 				{#if $tocStore.items.size}
 					<nav aria-label={t.tableOfContents.title}>
-						<h2 class="font-medium sp:c-text-h2@sp tb:c-text-h3@pc after:mt-2 after:separator">
+						<h2
+							class="font-medium sp:c-text-h2@sp tb:c-text-h3@pc after:mt-2 after:separator"
+							id="toc"
+						>
 							{t.tableOfContents.title}
 						</h2>
 						<ul class="mt-8">
