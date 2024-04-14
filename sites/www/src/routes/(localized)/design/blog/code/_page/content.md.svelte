@@ -5,6 +5,7 @@
   import FromFile from './examples/from-file.md.svelte';
   import MetaBlockDiff from './examples/meta-block-diff.md.svelte';
   import MetaBlockHighlight from './examples/meta-block-highlight.md.svelte';
+  import MetaBlockFocus from './examples/meta-block-focus.md.svelte';
   import GroupFiles from './examples/group-files.md.svelte';
   import GroupTabs from './examples/group-tabs.md.svelte';
 </script>
@@ -72,6 +73,17 @@
 ...renders
 
 <MetaBlockHighlight />
+
+### Focus
+
+```markdown
+/// src=./examples/meta-block-focus.md.svelte
+/// skipMetaBlock=true
+```
+
+...renders
+
+<MetaBlockFocus />
 
 ## Group of Code Blocks
 

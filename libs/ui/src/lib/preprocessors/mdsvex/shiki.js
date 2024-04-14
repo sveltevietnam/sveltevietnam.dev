@@ -116,7 +116,8 @@ function transformer() {
 
 			/** @typedef {{ type: 'diff'; variant: '-' | '+' }} BlockDiff */
 			/** @typedef {{ type: 'highlight'; variant: typeof STATUSES[number]}} BlockHighlight */
-			/** @typedef {BlockDiff | BlockHighlight} Block */
+			/** @typedef {{ type: 'focus' }} BlockFocus */
+			/** @typedef {BlockDiff | BlockHighlight | BlockFocus} Block */
 
 			/** @type {Block[]} */
 			const blocks = [];
@@ -146,6 +147,14 @@ function transformer() {
 							if (match) {
 								const variant = match[1] ?? 'info';
 								blocks.push({ type: 'highlight', variant });
+							}
+						}
+
+						// focus
+						if (!match) {
+							match = str.match(/:::focus/);
+							if (match) {
+								blocks.push({ type: 'focus' });
 							}
 						}
 
@@ -181,6 +190,9 @@ function transformer() {
 									break;
 								case 'highlight':
 									line.properties['data-line-highlighted'] = block.variant;
+									break;
+								case 'focus':
+									line.properties['data-focus'] = '';
 									break;
 							}
 						}

@@ -212,6 +212,19 @@
 				}
 			}
 		}
+
+		&:has([data-focus]) {
+			& .line:not([data-focus]) {
+				opacity: 0.5;
+				filter: blur(0.095rem);
+				transition: filter 200ms ease-out;
+			}
+
+			&:is(:focus, :hover) .line:not([data-focus]) {
+				opacity: 1;
+				filter: blur(0);
+			}
+		}
 	}
 }
 
