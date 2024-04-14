@@ -1,5 +1,15 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.25
+
+### Minor Changes
+
+- [`067fa19`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/067fa197e62723af49ece3924fa6165804a9d855) Thanks [@vnphanquang](https://github.com/vnphanquang)! - `:::focus` metaline for codeblock
+
+### Patch Changes
+
+- [`044a3b8`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/044a3b8e8b3c9226a5996066ade2829ea5463ef6) Thanks [@vnphanquang](https://github.com/vnphanquang)! - allow passing class attributes to top-level element of `EnhancedCodeBlock` & `EnhacnedCodeBlockGroup`
+
 ## 1.0.0-next.24
 
 ### Minor Changes
