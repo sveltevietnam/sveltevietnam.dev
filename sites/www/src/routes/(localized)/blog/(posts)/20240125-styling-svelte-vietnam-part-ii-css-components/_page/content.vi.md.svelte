@@ -267,7 +267,7 @@ Cách tư duy ưu tiên CSS như thế này hoàn toàn **không** mới. Đây 
 
 ## Chiến lược phân tách giao diện
 
-Đây là một số nguyên tắc tổng quát tại *sveltevietnam.dev* khi phân tích thành phần giao diện cho việc tái sử dụng (không bàn đến mục điểm sắp xếp mã nguồn):
+Đây là một số nguyên tắc tổng quát tại *sveltevietnam.dev* khi phân tích thành phần giao diện cho việc tái sử dụng (không bàn đến mục đích sắp xếp mã nguồn):
 
 - Một giao diện có thể tách thành component để tái sử dụng chỉ khi nó được sử dụng quá ba lần ([Rule of Three](https://en.wikipedia.org/wiki/Rule_of_three_(computer_programming))).
 - Nếu thành phần chỉ đóng gói kiểu dáng, tạo CSS component. Đa số những thành phần giao diện cơ bản tại *sveltevietnam.dev* là CSS component: `c-text-...`, `c-btn`, `c-link`, `c-input`, `c-tag`, `c-loader`, ...

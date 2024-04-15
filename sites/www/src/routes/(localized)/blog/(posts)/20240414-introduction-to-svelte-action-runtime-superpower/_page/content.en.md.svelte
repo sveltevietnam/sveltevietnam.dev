@@ -22,7 +22,7 @@ No need to go far, this very page you are reading on *sveltevietnam.dev* has qui
 
 ### Example 1: Clickoutside
 
-Perhaps one of the most common applications of Svelte action is handling click event *outside an element*. If you click on the icon <svg inline-src="lucide/settings" class="inline-block" width="16" height="16" stroke-width="2"></svg> at the top right corner of this page, or the icon <svg inline-src="lucide/qr-code" class="inline-block" width="16" height="16" stroke-width="2"></svg> in the "[Share](#share)" section, a corresponding modal window will be activated. When you click on the backdrop of such modal, the window will close. To achieve this, the `clickoutside` action from the [@svelte-put/clickoutside](https://svelte-put.vnphanquang.com/docs/clickoutside) package is utilized:
+Perhaps one of the most common applications of Svelte action is handling click event *outside an element*. If you click on the icon <svg inline-src="lucide/settings" class="inline-block" width="16" height="16" stroke-width="2"></svg> at the top right corner of this page, or the icon <svg inline-src="lucide/qr-code" class="inline-block" width="16" height="16" stroke-width="2"></svg> in the "[Share](#share)" section, a corresponding modal will be activated. When you click on the backdrop of such modal, the modal will close. To achieve this, the `clickoutside` action from the [@svelte-put/clickoutside](https://svelte-put.vnphanquang.com/docs/clickoutside) package is utilized:
 
 ```svelte
 <div use:clickoutside on:clickoutside={close}>...modal...</div>
@@ -121,9 +121,9 @@ function action(node: HTMLElement) {
 
 As you can see, the power of action lies in its simplicity. Action simply opens a window to interact with the DOM, so almost everything you can do with vanilla Javascript, CSS, and HTML is feasible in Svelte action. Because it does not depend on any special Svelte syntax (e.g. `$` syntax), you can easily package action into a file and reuse it where needed.
 
-The function content of `action` will be executed when the component has been mounted into the DOM (hydration has been completed), or at "runtime".
+The function content of `action` will be executed when the component has been mounted into the DOM (hydration has been completed), aka. at "runtime".
 
-### Runtime vs Progressive Enhancement
+### JS Runtime vs Progressive Enhancement
 
 As discussed, action is only executed at runtime, meaning that during prerendering or server-side-rendering, any code within action will not take effect. For example, if you add a class to `node.classList` in action, this class will only be added after the webpage has been fully loaded in the browser.
 
@@ -368,14 +368,20 @@ type ActionAttributes = {
 ```
 
 :::div c-callout c-callout--info
-Again, it is worth acknowledging that action is just a regular Javascript function that does not depend too much on Svelte syntax. Therefore, action tends to stay stable even if Svelte changes in the future. Improvements in Svelte 5, especially runes, which now can also run in `js` or `ts` files), will even open more doors for action to better interact with other parts of the application.
+Again, it is worth acknowledging that action is just a regular Javascript function that does not depend too much on Svelte syntax. Therefore, action tends to stay stable even if Svelte changes in the future. Improvements in Svelte 5, especially runes, which now can also run in `js` or `ts` files, will open even more doors for action to better interact with other parts of the application.
 
-Svelte action is really one of the best API design I have seen.
+Svelte action is really one of the best API design I have seen!
 :::
 
 ## Closing
 
-Thank you for reading. You can see more examples of Svelte action in packages from the [svelte-put] collection. What about you? How have or will you use action in your project? Share your thoughts in our [Svelte Vietnam Discord](https://discord.sveltevietnam.dev)!
+Thank you for reading. You can see more examples of Svelte action in packages from the [svelte-put] collection. There are also a couple more articles out there if you can't get enough of Svelte action:
+
+- "[Svelte Actions Make Svelte The Best JavaScript Framework](https://joyofcode.xyz/svelte-actions-guide)" by Joy of Code.
+- "[The power of Svelte actions](https://navillus.dev/blog/power-of-svelte-actions)" by Tony Sullivan,
+- "[Introduction to Svelte Actions](https://blog.logrocket.com/svelte-actions-introduction/)" by Geoff Rich (bravo the Rich-es of Svelte!),
+
+What about you? How have or will you use action in your project? Share your thoughts in our [Svelte Vietnam Discord](https://discord.sveltevietnam.dev)!
 
 <style>
   svg.svelte {
