@@ -1,5 +1,11 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.26
+
+### Patch Changes
+
+- [`9b84546`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/9b845466bc9b9a381589bdbff0f2f093046a2092) Thanks [@vnphanquang](https://github.com/vnphanquang)! - increase blur effect for focused lines in enhanced block codes
+
 ## 1.0.0-next.25
 
 ### Minor Changes
