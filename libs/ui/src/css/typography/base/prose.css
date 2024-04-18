@@ -216,7 +216,7 @@
 		&:has([data-focus]) {
 			& .line:not([data-focus]) {
 				opacity: 0.5;
-				filter: blur(0.095rem);
+				filter: blur(0.15rem);
 				transition: filter 200ms ease-out;
 			}
 
