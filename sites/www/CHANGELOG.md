@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-next.44
+
+### Minor Changes
+
+- [`11ce85f`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/11ce85fb2c99c4100602bfe1dab76ba8bbd8f384) Thanks [@vnphanquang](https://github.com/vnphanquang)! - new blog post (EN & VI) "Come for Svelte, Stay for the Web"
+
 ## 1.0.0-next.43
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.27
+
+### Minor Changes
+
+- [`83527b9`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/83527b9816b095d344ab2ecd7bf5137804b84088) Thanks [@vnphanquang](https://github.com/vnphanquang)! - allow skipping meta blocks & enhance code blocks with `/// enhanced=false` meta line
+
 ## 1.0.0-next.26
 
 ### Patch Changes
