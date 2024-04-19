@@ -10,6 +10,16 @@ export const UNIVERSAL_ROUTE_MAP = {
 } as const satisfies Record<string, Omit<App.Route, 'key'>>;
 
 export const ROUTE_MAP = {
+	presentation: {
+		vi: {
+			path: '/vi/presentation',
+			label: 'Presentation',
+		},
+		en: {
+			path: '/en/presentation',
+			label: 'Presentation',
+		},
+	},
 	home: {
 		vi: {
 			path: '/vi',

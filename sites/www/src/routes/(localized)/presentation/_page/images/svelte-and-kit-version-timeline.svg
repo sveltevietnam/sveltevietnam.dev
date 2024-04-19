@@ -1,0 +1,128 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 672.1911966458101 104.98646565901618"
+	width="672.1911966458101" height="104.98646565901618">
+	<!-- svg-source:excalidraw -->
+
+	<defs>
+		<style class="style-fonts">
+			@font-face {
+				font-family: "Virgil";
+				src: url("https://excalidraw.com/Virgil.woff2");
+			}
+
+			@font-face {
+				font-family: "Cascadia";
+				src: url("https://excalidraw.com/Cascadia.woff2");
+			}
+
+			@font-face {
+				font-family: "Assistant";
+				src: url("https://excalidraw.com/Assistant-Regular.woff2");
+			}
+		</style>
+
+	</defs>
+	<g class="fragment fade-in">
+		<g transform="translate(44.658996247488176 15.681664382489544) rotate(0 18.424999237060547 10)"><text x="0" y="14.016"
+				font-family="Virgil, Segoe UI Emoji" font-size="16px" fill="#846358" text-anchor="start" style="white-space: pre;"
+				direction="ltr" dominant-baseline="alphabetic">2016</text></g>
+		<g stroke-linecap="round">
+			<g transform="translate(61.01894142722176 35.44993147466539) rotate(0 0 16.359945179731312)">
+				<path d="M0 0 C0 12.37, 0 24.74, 0 32.72 M0 0 C0 8.53, 0 17.06, 0 32.72" stroke="#846358" stroke-width="1"
+					fill="none"></path>
+			</g>
+		</g>
+		<mask></mask>
+		<g transform="translate(24.890729155315057 74.30480127652754) rotate(0 30.5 10)"><text x="0" y="14.016"
+				font-family="Virgil, Segoe UI Emoji" font-size="16px" fill="#846358" text-anchor="start" style="white-space: pre;"
+				direction="ltr" dominant-baseline="alphabetic">Svelte 1</text></g>
+	</g>
+
+	<g class="fragment fade-in">
+		<g transform="translate(155.69000913213404 14.318335617511366) rotate(0 19.424999237060547 10)"><text x="0" y="14.016"
+				font-family="Virgil, Segoe UI Emoji" font-size="16px" fill="#846358" text-anchor="start" style="white-space: pre;"
+				direction="ltr" dominant-baseline="alphabetic">2018</text></g>
+		<g stroke-linecap="round">
+			<g transform="translate(172.73161869435535 36.131595857153116) rotate(0 0 16.359945179731312)">
+				<path d="M0 0 C0 12.58, 0 25.17, 0 32.72 M0 0 C0 6.61, 0 13.23, 0 32.72" stroke="#846358" stroke-width="1"
+					fill="none"></path>
+			</g>
+		</g>
+		<mask></mask>
+		<g transform="translate(140.69339271738136 74.98646565901618) rotate(0 34.01250076293945 10)"><text x="0" y="14.016"
+				font-family="Virgil, Segoe UI Emoji" font-size="16px" fill="#846358" text-anchor="start" style="white-space: pre;"
+				direction="ltr" dominant-baseline="alphabetic">Svelte 2</text></g>
+		<g transform="translate(248.39636515061102 14.318335617512275) rotate(0 18.1875 10)"><text x="0" y="14.016"
+				font-family="Virgil, Segoe UI Emoji" font-size="16px" fill="#846358" text-anchor="start" style="white-space: pre;"
+				direction="ltr" dominant-baseline="alphabetic">2019</text></g>
+		<g stroke-linecap="round">
+			<g transform="translate(269.52796100776595 36.81326023964175) rotate(0 0 16.359945179731312)">
+				<path d="M0 0 C0 12.08, 0 24.16, 0 32.72 M0 0 C0 9.19, 0 18.37, 0 32.72" stroke="#846358" stroke-width="1"
+					fill="none"></path>
+			</g>
+		</g>
+		<mask></mask>
+		<g transform="translate(240.2163925607474 74.30480127652754) rotate(0 33.76250076293945 10)"><text x="0" y="14.016"
+				font-family="Virgil, Segoe UI Emoji" font-size="16px" fill="#846358" text-anchor="start" style="white-space: pre;"
+				direction="ltr" dominant-baseline="alphabetic">Svelte 3</text></g>
+	</g>
+
+	<g class="fragment fade-in">
+		<g transform="translate(372.0583937444271 13.636671235020913) rotate(0 22.512500762939453 10)"><text x="0" y="14.016"
+				font-family="Virgil, Segoe UI Emoji" font-size="16px" fill="#846358" text-anchor="start" style="white-space: pre;"
+				direction="ltr" dominant-baseline="alphabetic">2022</text></g>
+		<g stroke-linecap="round">
+			<g transform="translate(393.18998960158206 36.131595857154025) rotate(0 0 16.359945179731312)">
+				<path d="M0 0 C0 8.29, 0 16.57, 0 32.72 M0 0 C0 7.09, 0 14.18, 0 32.72" stroke="#846358" stroke-width="1"
+					fill="none"></path>
+			</g>
+		</g>
+		<mask></mask>
+		<g transform="translate(354.3351197997181 73.623136894038) rotate(0 41.63750076293945 10)"><text x="0" y="14.016"
+				font-family="Virgil, Segoe UI Emoji" font-size="16px" fill="#846358" text-anchor="start" style="white-space: pre;"
+				direction="ltr" dominant-baseline="alphabetic">SvelteKit 1</text></g>
+		<g transform="translate(463.1206456345908 72.25980812906073) rotate(0 33.4375 10)"><text x="0" y="14.016"
+				font-family="Virgil, Segoe UI Emoji" font-size="16px" fill="#846358" text-anchor="start" style="white-space: pre;"
+				direction="ltr" dominant-baseline="alphabetic">Svelte 4</text></g>
+		<g transform="translate(468.55638455369353 11.134979442401345) rotate(0 22.262500762939453 10)"><text x="0" y="14.016"
+				font-family="Virgil, Segoe UI Emoji" font-size="16px" fill="#846358" text-anchor="start" style="white-space: pre;"
+				direction="ltr" dominant-baseline="alphabetic">2023</text></g>
+		<g stroke-linecap="round">
+			<g transform="translate(494.47720722907707 36.131595857154934) rotate(0 0 16.359945179731312)">
+				<path d="M0 0 C0 12.84, 0 25.68, 0 32.72 M0 0 C0 6.95, 0 13.91, 0 32.72" stroke="#846358" stroke-width="1"
+					fill="none"></path>
+			</g>
+		</g>
+		<mask></mask>
+	</g>
+
+	<g class="fragment fade-in">
+		<g transform="translate(550.6061104523496 10) rotate(0 22.262500762939453 10)"><text x="0" y="14.016"
+				font-family="Virgil, Segoe UI Emoji" font-size="16px" fill="#846358" text-anchor="start" style="white-space: pre;"
+				direction="ltr" dominant-baseline="alphabetic">2024</text></g>
+		<g stroke-linecap="round">
+			<g transform="translate(576.5269331277332 34.99661641475359) rotate(0 0 16.359945179731312)">
+				<path d="M0 0 C0 10.9, 0 21.79, 0 32.72 M0 0 C0 9.73, 0 19.45, 0 32.72" stroke="#846358" stroke-width="1"
+					fill="none"></path>
+			</g>
+		</g>
+		<mask></mask>
+		<g transform="translate(554.4277276300445 70.43978071892707) rotate(0 36.974998474121094 10)"><text x="0" y="14.016"
+				font-family="Virgil, Segoe UI Emoji" font-size="16px" fill="#846358" text-anchor="start" style="white-space: pre;"
+				direction="ltr" dominant-baseline="alphabetic">Svelte 5?</text></g>
+	</g>
+	<g stroke-linecap="round">
+		<g transform="translate(10 51.16908103870992) rotate(0 326.09559832290506 0)">
+			<path d="M0 0 C170.26 0, 340.53 0, 652.19 0 M0 0 C135.94 0, 271.88 0, 652.19 0" stroke="#846358" stroke-width="1"
+				fill="none"></path>
+		</g>
+		<g transform="translate(10 51.16908103870992) rotate(0 326.09559832290506 0)">
+			<path d="M628.7 8.55 C634.83 6.32, 640.96 4.09, 652.19 0 M628.7 8.55 C633.6 6.77, 638.49 4.99, 652.19 0"
+				stroke="#846358" stroke-width="1" fill="none"></path>
+		</g>
+		<g transform="translate(10 51.16908103870992) rotate(0 326.09559832290506 0)">
+			<path d="M628.7 -8.55 C634.83 -6.32, 640.96 -4.09, 652.19 0 M628.7 -8.55 C633.6 -6.77, 638.49 -4.99, 652.19 0"
+				stroke="#846358" stroke-width="1" fill="none"></path>
+		</g>
+	</g>
+	<mask></mask>
+</svg>

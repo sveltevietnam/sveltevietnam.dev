@@ -1,0 +1,14 @@
+@import url('reveal.js/dist/reveal.css');
+@import url('reveal.js/dist/theme/black.css');
+
+.reveal {
+	& h2 {
+		@apply font-lora text-6xl;
+
+		text-decoration: none;
+	}
+
+	& p {
+		@apply my-10;
+	}
+}
