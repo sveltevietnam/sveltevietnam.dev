@@ -6,7 +6,10 @@ export const vi = {
 	becomeSpeaker: 'Trở thành diễn giả và chia sẻ trải nghiệm của bạn với cộng đồng',
 	timeline: {
 		...common.timeline,
-		introduction: 'Giới thiệu và làm quen',
+		introduction: {
+			title: 'Giới thiệu và làm quen',
+			description: 'Giới thiệu về Designveloper và cộng đồng Svelte Việt Nam',
+		},
 		share: 'Phiên chia sẻ',
 		share1: {
 			time: '15p trình bày, 10p trả lời câu hỏi',
@@ -37,6 +40,9 @@ export const vi = {
 				vì vậy chắc hẳn bạn có rất nhiều cầu hỏi cần được giải đáp. \
 				Trong phiên thảo luận này, hãy nêu lên những thắc mắc và ý kiến của bạn nhé!\
 			',
+		},
+		break: {
+			title: 'Giải lao & Trò chơi',
 		},
 		discussion1: {
 			title: 'Thảo luận: "Mã nguồn mở - thử thách và cơ hội"',

@@ -8,7 +8,7 @@
 	import { MailRegistrationForm } from '$lib/components/MailRegistrationForm';
 	import { Person } from '$lib/components/Person';
 	import { ToBeAnnounced } from '$lib/components/ToBeAnnounced';
-	import { EMAILS, SOCIAL_LINKS } from '$lib/constants';
+	// import { EMAILS, SOCIAL_LINKS } from '$lib/constants';
 	import { generateTimeSlot } from '$lib/data/events';
 	import { getRoutingContext } from '$lib/routing/routing.context';
 
@@ -83,7 +83,7 @@
 		<section class="timeline-container max-w-pad">
 			<h2 class="c-text-h2 uppercase" use:intersect>{t.timeline.title}</h2>
 
-			<section
+			<!-- <section
 				class="c-callout c-callout--info c-callout--icon-bulb mt-10 space-y-4"
 				use:intersect
 				id="become-a-speaker"
@@ -103,7 +103,7 @@
 					</li>
 				</ul>
 				<p>{@html t.proposal.guidelines}</p>
-			</section>
+			</section> -->
 
 			<dl
 				class="mt-6 grid grid-cols-[auto,1fr] items-baseline gap-2 border-b border-dashed border-outline-200 py-6"
@@ -128,7 +128,8 @@
 						<p class="c-text-body2">{generateTimeSlot(event.startDate, 0, 15)}</p>
 						<p class="c-text-cap2 text-right sp:max-w-28">15 {t.minutes}</p>
 					</div>
-					<p class="c-text-h5 font-medium">{t.timeline.introduction}</p>
+					<p class="c-text-h5 font-medium">{t.timeline.introduction.title}</p>
+					<p>{t.timeline.introduction.description}</p>
 				</li>
 				<li class="space-y-2" use:intersect>
 					<div class="flex items-baseline justify-between text-fg-200">
@@ -158,8 +159,8 @@
 				</li>
 				<li class="space-y-2" use:intersect>
 					<div class="flex items-baseline justify-between text-fg-200">
-						<p class="c-text-body2">{generateTimeSlot(event.startDate, 65, 20)}</p>
-						<p class="upto-tb:max-w-28 c-text-cap2 text-right">20 {t.minutes}</p>
+						<p class="c-text-body2">{generateTimeSlot(event.startDate, 65, 15)}</p>
+						<p class="upto-tb:max-w-28 c-text-cap2 text-right">15 {t.minutes}</p>
 					</div>
 					<div class="space-y-3">
 						<p class="c-text-h5 font-medium">
@@ -171,7 +172,14 @@
 				</li>
 				<li class="space-y-2" use:intersect>
 					<div class="flex items-baseline justify-between text-fg-200">
-						<p class="c-text-body2">{generateTimeSlot(event.startDate, 85, 10)}</p>
+						<p class="c-text-body2">{generateTimeSlot(event.startDate, 80, 15)}</p>
+						<p class="upto-tb:max-w-28 c-text-cap2 text-right">15 {t.minutes}</p>
+					</div>
+					<p class="c-text-h5 font-medium">{t.timeline.break.title}</p>
+				</li>
+				<li class="space-y-2" use:intersect>
+					<div class="flex items-baseline justify-between text-fg-200">
+						<p class="c-text-body2">{generateTimeSlot(event.startDate, 95, 10)}</p>
 						<p class="upto-tb:max-w-28 c-text-cap2 text-right">10 {t.minutes}</p>
 					</div>
 					<div class="space-y-3">
@@ -183,8 +191,8 @@
 				</li>
 				<li class="space-y-2" use:intersect>
 					<div class="flex items-baseline justify-between text-fg-200">
-						<p class="c-text-body2">{generateTimeSlot(event.startDate, 95, 20)}</p>
-						<p class="upto-tb:max-w-28 c-text-cap2 text-right">20 {t.minutes}</p>
+						<p class="c-text-body2">{generateTimeSlot(event.startDate, 105, 10)}</p>
+						<p class="upto-tb:max-w-28 c-text-cap2 text-right">10 {t.minutes}</p>
 					</div>
 					<p class="c-text-h5 font-medium">{t.timeline.openDiscussion}</p>
 				</li>

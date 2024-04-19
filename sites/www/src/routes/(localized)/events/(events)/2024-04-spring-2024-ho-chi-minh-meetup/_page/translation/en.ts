@@ -6,7 +6,10 @@ export const en = {
 	becomeSpeaker: 'Become a speaker and share your experience with the community',
 	timeline: {
 		...common.timeline,
-		introduction: 'Meet and Greet',
+		introduction: {
+			title: 'Meet and Greet',
+			description: 'Introduction to Designveloper and the Svelte Vietnam community',
+		},
 		share: 'Sharing Session',
 		share1: {
 			time: '15min presentation, 10min Q&A',
@@ -37,6 +40,9 @@ export const en = {
 				it is not uncommon that you have many unanswered questions and concerns. \
 				This Q&A session will hopefully help you gain a better insight. Ask away! \
 			',
+		},
+		break: {
+			title: 'Break & Game',
 		},
 		discussion1: {
 			title: 'Discussion: "Open Source - Challenges and Opportunities"',
