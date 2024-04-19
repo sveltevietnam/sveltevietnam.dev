@@ -108,6 +108,7 @@ function transformer() {
 		},
 		code(hast) {
 			const meta = /** @type {CodeBlockMetadata} */ (this.options.meta);
+			if (meta?.__enhancement?.['enhanced'] === 'false') return hast;
 
 			// FIXME: correct typing
 			/** @type {any[]} */
@@ -212,8 +213,10 @@ function transformer() {
 		pre(hast) {
 			delete hast.properties['tabindex'];
 
-			const container = h('enhanced-code-block', [hast]);
 			const meta = /** @type {CodeBlockMetadata} */ (this.options.meta);
+			if (meta?.__enhancement?.['enhanced'] === 'false') return hast;
+
+			const container = h('enhanced-code-block', [hast]);
 			if (meta?.__enhancement) {
 				for (const [key, value] of Object.entries(meta.__enhancement)) {
 					if (key === 'class') {
