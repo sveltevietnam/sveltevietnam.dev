@@ -4,6 +4,7 @@
 	import componentBasedDevImage from './images/component-based-development.png?format=webp&imagetools';
 	import atomicDesignComicImage from './images/atomic-design-comic-en.png?format=webp&imagetools';
 	import justChangingColorImage from './images/just-changing-color-en.png?format=webp&imagetools';
+	import networkTransferImage from './images/network-transfer.png?format=webp&imagetools';
 </script>
 
 There are three parts to the "Styling Svelte Vietnam" blog series, listed below. You are reading the second one.
@@ -274,6 +275,27 @@ Here are some general principles at *sveltevietnam.dev* for splitting UI into co
 - If constraint on markup or special logic is needed, *consider* making Javascript component. Examples of this at *sveltevietnam.dev* are `Breadcrumbs`, `BlogPostListItem`, `SplitText`, ...
 
 By removing unnecessary abstraction layers, the source code of *sveltevietnam.dev* has become more concise, readable, maintainable, and flexible.
+
+## Impact of Global CSS Component
+
+:::div text-right text-xs italic
+This section is added in April, 2024
+:::
+
+CSS components are often declared within a global stylesheet. In TailwindCSS, for example, declaring `c-btn` to `@layer components` adds the CSS of `c-btn` to the build output, which is a single file that the browser has to load in the beginning regardless of the page user is visiting, or whether the page actually uses `c-btn`. This means as the total number of global CSS components increases, the page takes more time to load.
+
+In reality, the total CSS transfer size often is much less than Javascript and can be even less than HTML. At the time of this writing, the very page you are reading needs to load: **69.8kB** HTML, **643kB** JS, and **37.2kB** CSS. There are a total of **21** CSS components, taking up **27%** of all loaded CSS - nearly **7** times less than HTML and **64** times less than JS.
+
+:::div text-sm italic
+Note that the numbers above are measured by Chrome devtool as seen in the "Network" tab.
+:::
+
+<figure>
+	<img src={networkTransferImage} class="mx-auto max-w-full rounded" width="600" height="531" alt="a bar chart" />
+	<figcaption>Graph 1: network transfer size of HTML, CSS, and Javascript from this page, as of version 1.0.0-next.44 (#51ce8b40@1713563981331)</figcaption>
+</figure>
+
+That being said, you do need to stay aware of the impact of global CSS, and CSS components in particular, on the total number of resources that the page needs to load. You should consider declaring CSS components only for simple, highly reusable UI components.
 
 ## Closing
 

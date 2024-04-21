@@ -94,7 +94,7 @@
 					href="https://notbyai.fyi"
 					class="absolute -left-3 -top-3 text-grayscale-black hover:text-orange-700"
 				>
-					<svg inline-src="not-by-ai" height="40" width="auto" class="fill-grayscale-white" />
+					<svg inline-src="not-by-ai" height="40" width="123" class="fill-grayscale-white" />
 				</a>
 			</div>
 			<div class="mt-8 space-y-6">

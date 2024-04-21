@@ -4,6 +4,7 @@
 	import componentBasedDevImage from './images/component-based-development.png?format=webp&imagetools';
 	import atomicDesignComicImage from './images/atomic-design-comic-vi.png?format=webp&imagetools';
 	import justChangingColorImage from './images/just-changing-color-vi.png?format=webp&imagetools';
+	import networkTransferImage from './images/network-transfer.png?format=webp&imagetools';
 </script>
 
 Bài viết "Styling cho Svelte Việt Nam" được chia làm ba phần, liệt kê sau đây. Bạn đang đọc phần thứ hai.
@@ -274,6 +275,27 @@ Cách tư duy ưu tiên CSS như thế này hoàn toàn **không** mới. Đây 
 - Nếu thành phần đòi hỏi markup cụ thể hoặc chứa logic đặc biệt, *cân nhắc* tạo Javascript component. Ví dụ cho trường hợp này tại *sveltevietnam.dev* là `Breadcrumbs`, `BlogPostListItem`, `SplitText`, ...
 
 Bằng cách bỏ đi những abstraction nặng nề, mã nguồn của *sveltevietnam.dev* đã trở nên gọn gàng hơn, dễ đọc, bảo trì, và linh hoạt hơn.
+
+## Ảnh hưởng của CSS component toàn cục
+
+:::div text-right text-xs italic
+Phần này được thêm vào bài viết vào tháng 4, năm 2024
+:::
+
+Khi sử dụng CSS component, ta thường khai báo toàn cục (global). Ví dụ với TailwindCSS, khai báo `c-btn` trong `@layer components` sẽ thêm CSS của `c-btn` vào đầu ra của nó. Đầu ra này thường là một tệp duy nhất, và ứng dụng sẽ phải tải nó ngay từ ban đầu cho dù người dùng có đang ở trang nào đi nữa, hay trang đó có sử dụng `c-btn` hay không. Điều này có nghĩa là nếu số lượng CSS component toàn cục quá lớn, thời gian tải trang sẽ tăng lên và ảnh hưởng đến trải nghiệm người dùng.
+
+Thật ra, tổng khối lượng CSS của một trang web thường là ít hơn nhiều so với Javascript, thậm chí là ít hơn cả HTML. Tại thời điểm bài viết này được viết ra, trang bạn đang đọc cần tải: **69.8kB** HTML, **643kB** JS, và **37.2kB** CSS. Trong đó, có tổng cộng **21** CSS components, chiếm **27%** CSS được tải - ít hơn gần **7** lần HTML và **64** lần JS.
+
+:::div text-sm italic
+Lưu ý: các thông số này được đo từ mục Network trong Chrome devtool.
+:::
+
+<figure>
+	<img src={networkTransferImage} class="mx-auto max-w-full rounded" width="600" height="531" alt="biểu đồ hình cột" />
+	<figcaption>Biểu đồ 1: dung lượng tải HTML, CSS, và Javascript từ trang này tại phiên bản 1.0.0-next.44 (#51ce8b40@1713563981331)</figcaption>
+</figure>
+
+Tuy vậy, bạn cần ý thực được sự ảnh hưởng của CSS component nói riêng và CSS toàn cục nói chung lên tổng số lượng tài nguyên trang web cần phải tải. Bạn nên cân nhắc chỉ khai báo CSS component cho những thành phần giao diện đơn giản, mang tính tái sử dụng cao.
 
 ## Tạm kết
 
