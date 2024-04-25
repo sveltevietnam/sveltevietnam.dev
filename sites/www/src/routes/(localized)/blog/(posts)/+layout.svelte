@@ -123,7 +123,7 @@
 					<div class="mb-2 separator" />
 					<div class="c-text-cap1 flex justify-between text-fg-200">
 						<div class="shrink-0">
-							{#key $lang}
+							{#key langVersion}
 								<p>
 									{langVersion.label}
 									<svg

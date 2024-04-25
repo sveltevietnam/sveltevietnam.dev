@@ -35,6 +35,8 @@
 	}
 </script>
 
+<!-- TODO: add a link to user's email box for self check-in -->
+
 <main>
 	<div class="heading-container max-w-pad mt-6 space-y-10">
 		<Breadcrumbs breadcrumbs={data.breadcrumbs} scrollIndicator="ellipsis" />
