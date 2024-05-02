@@ -32,14 +32,14 @@ Imagine now we have a magical [At-rule](https://developer.mozilla.org/en-US/docs
 :root {
   --color-bg: white;
   --color-fg: black;
-}
 
-/* :::diff + */
-@dark {
-  --color-fg: black;
-  --color-bg: white;
+  /* :::diff + */
+  @dark {
+    --color-fg: black;
+    --color-bg: white;
+  }
+  /* ::: */
 }
-/* ::: */
 ```
 
 In the above CSS, the default mode is light. When `@dark` is active, we change the value of the corresponding CSS variables to express dark mode. If we could do this, we would have completed more than half of the work. Unfortunately, CSS does not support this magical syntax. But don't worry: in the following sections, we will try to simulate the `@dark` feature.
@@ -112,6 +112,12 @@ For example, a user has selected `light` in the application settings but the OS 
 ```
 
 This means: if the default mode of the OS is `dark` and the user has not explicitly chosen `light`, then apply this CSS.
+
+:::div c-callout c-callout--info c-callout--icon-bulb
+**CSS Cascading Order**
+
+Can we play around with [cascading order](https://developer.mozilla.org/en-US/docs/Web/CSS/Cascade#cascading_order), in this case *specificity* and *order of appearance*, to achieve the same effect? Yes, but personally I find relying on those not necessarily easier to understand. Nor is it more concise. If you figure out a more minimal setup, I would love to hear about it in our [Discord](https://discord.sveltevietnam.dev)!
+:::
 
 ---
 
@@ -242,7 +248,7 @@ It will be convenient if we can use the following syntax:
 <div class="bg-blue-500 dark:bg-red-500 light:text-gray-500" />
 ```
 
-`dark:` and `light:` are called [variant](https://tailwindcss.com/docs/adding-custom-styles#arbitrary-variants) in Tailwind. The `postcs-color-scheme` plugin adds to your Tailwind config and make these two variants available.
+`dark:` and `light:` are called [variant](https://tailwindcss.com/docs/adding-custom-styles#arbitrary-variants) in Tailwind. The `postcss-color-scheme` plugin adds to your Tailwind config and make these two variants available.
 
 ```javascript
 /// title=tailwind.config.cjs
@@ -295,7 +301,7 @@ and use them as follows:
 
 <h2 id="mode-switching-with-js">Mode switching with JS</h2>
 
-To let user swtich between the two display modes, we can capture an event from some button or input and use the following JS snippet:
+To let user switch between the two display modes, we can capture an event from some button or input and use the following JS snippet:
 
 ```javascript
 /**
@@ -395,7 +401,7 @@ export const handle = async ({ event, resolve }) => {
 }
 ```
 
-Note *line 11*, we use `transformPageChunk`, a function provided by SvelteKit in `resolve`, to replace the string `cookie-color-scheme` with the value of the cookie. To complete the setup, we need to modify `src/app.html` a bit:
+Note *line 10*, we use `transformPageChunk`, a callback to SvelteKit `resolve`'s options, to replace the string `cookie-color-scheme` with the value of the cookie. To complete the setup, we need to modify `src/app.html` a bit:
 
 ```html
 /// title=src/app.html
@@ -414,8 +420,8 @@ So, we can imagine a user journey as follows:
 - User accesses the application for the first time, SvelteKit server hook is triggered, because the cookie `PUBLIC_COOKIE_COLOR_SCHEME` is not set, `cookie-color-scheme` is replaced with the default value `system` in the HTML response.
 - Browser receives the HTML and automatically selects the display mode based on the `prefers-color-scheme` value from the OS.
 - User explicitly changes the display mode, the cookie is set, the `data-color-scheme` attribute on `html` is updated, the corresponding CSS is activated and the interface changes accordingly.
-- If JS is enabled on the browser and the user does not manually reload the page, SvelteKit client-side router will handle the next navigations until the user journey ends. During this process, SvelteKit server hook is not triggered again.
-- When user reloads or opens the application a new page, SvelteKit server hook is triggered, the cookie is read and the `data-color-scheme` value is updated accordingly. If the value is `light` or `dark`, the CSS for light/dark mode will take effect, instead of using the OS default. The cycle above is repeated afterwards.
+- If JS is enabled on the browser and the user does not manually reload the page, SvelteKit client-side router will handle following navigation until the user journey ends. During this process, SvelteKit server hook is not triggered again.
+- When user reloads or opens the application in a new tab, SvelteKit server hook is triggered, the cookie is read and the `data-color-scheme` value is updated accordingly. If the value is `light` or `dark`, the CSS for light/dark mode will take effect, instead of using the OS default. The cycle above is repeated afterwards.
 
 We can verify that the HTML returned from server has the correct `data-color-scheme` value by looking at the Network tab in Chrome Devtools right on the page you are reading:
 
@@ -476,7 +482,7 @@ With the above code, we can access `colorScheme` from the [data](https://kit.sve
 </script>
 ```
 
-However, if we want to access `colorScheme` from child components, we might have to pass down a `prop` multiple times util we reach the desired component (children, grandchildren, great-grandchildren, ...). A more elegant way is to use [Svelte context](https://svelte.dev/docs/svelte#setcontext), combined with [store](https://svelte.dev/docs/svelte-store).
+However, if we want to access `colorScheme` from child components, we might have to pass down a `prop` multiple times until we reach the desired component (children, grandchildren, great-grandchildren, ...). A more elegant way is to use [Svelte context](https://svelte.dev/docs/svelte#setcontext), combined with [store](https://svelte.dev/docs/svelte-store).
 
 First, we create a separate file to define the context and the necessary logic:
 
@@ -537,7 +543,7 @@ export function getColorSchemeContext() {
 ```
 
 ::: div c-callout c-callout--info
-If you are using typescript, reference the equivalent source code from sveltevietnam.dev [here](https://github.com/sveltevietnam/sveltevietnam.dev/blob/86dc2100884560bb2e8f365f563a2e0903994041/sites/www/src/lib/contexts/color-scheme.ts). I will not discuss the above code in details, if you have any question or want to discuss more, be sure to reach out in our [Discord](https://discord.sveltevietnam.dev)!
+If you are using Typescript, refer to the equivalent source code from sveltevietnam.dev [here](https://github.com/sveltevietnam/sveltevietnam.dev/blob/86dc2100884560bb2e8f365f563a2e0903994041/sites/www/src/lib/contexts/color-scheme.ts). I will not discuss the above code in details, if you have any question or want to discuss more, be sure to reach out in our [Discord](https://discord.sveltevietnam.dev)!
 :::
 
 Now, we can use `setColorSchemeContext` to declare the context:
@@ -577,11 +583,11 @@ and `getColorSchemeContext` for accessing the context:
 
 ## Effective Collaboration with Designers
 
-The truth is, the above details are **not** the most complicated part; once we understand and implement them for the first time, the next will be similar and easier. The harder part of making a dark mode, or any color system in general, is communication between designers and developers.
+The truth is, the above details are **not** the most complicated parts; once we understand and implement them for the first time, the next will be similar and easier. The harder part of making a dark mode, or any color system in general, is communication between designers and developers.
 
 Each project and design team have their own conventions and standards, but the most important thing, from the perspective of a developer, is the presence of a technical voice in the design process, especially from the beginning. With my limited experience in the industry, what seems obvious to a developer is not always easy to understand for a designer, and vice versa. Collaboration between the two sides will simply help developers be able to use what designers make and avoid changes to the source code or design later down the road.
 
-Pay special attention to your color palette. Each color should be a design token that is communicated clearly to both designers and developers. Color palette is probably the first and most important element in any design system. Organizing a color palette to be compatible with applications with dark mode is be a bit more complicated than usual because each color can exist in two versions for two display modes.
+Pay special attention to your color palette. Each color should be a design token that is communicated clearly to both designers and developers. Color palette is probably the first and most important element in any design system. Organizing a color palette to be compatible with applications with dark mode is a bit more complicated than usual because each color can exist in two versions for two display modes.
 
 At *sveltevietnam.dev*, we distinguish between primitive colors and semantic/contextual colors. Primitive colors are the basic colors we already know: blue, red, yellow, ... Other colors will be built upon the these primitives, depending on different contexts within the application, i.e. colors for foreground or background, primary or secondary, status colors such as success, warning, error, ... To learn more about our implementation with this system, visit the dedicated [Colors of Svelte Vietnam](/en/design/colors) page.
 

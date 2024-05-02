@@ -32,14 +32,14 @@ Hãy tưởng tượng ta có một tính năng thần kỳ, một [At-rule](htt
 :root {
   --color-bg: white;
   --color-fg: black;
-}
 
-/* :::diff + */
-@dark {
-  --color-fg: black;
-  --color-bg: white;
+  /* :::diff + */
+  @dark {
+    --color-fg: black;
+    --color-bg: white;
+  }
+  /* ::: */
 }
-/* ::: */
 ```
 
 Trong CSS trên, chế độ mặc định là sáng. Khi `@dark` có hiệu lực, ta sẽ thay đổi giá trị của các biến CSS tương ứng với chế độ tối. Nếu làm được chuyện này, coi như ta đã hoàn thành được hơn nửa công việc. Đáng tiếc là CSS không hỗ trợ cú pháp thần kì này. Nhưng đừng lo: trong các phần tiếp ta sẽ cố gắng giả lập lại tính năng `@dark`.
@@ -391,7 +391,7 @@ export const handle = async ({ event, resolve }) => {
 }
 ```
 
-Hãy chú ý *dòng 11*, ta dùng `transformPageChunk`, một hàm được SvelteKit cung cấp trong `resolve`, để thay đổi chuỗi `cookie-color-scheme` theo gía trị của cookie. Để hoàn thiện thiết lập, ta cần sửa `src/app.html` một tí:
+Hãy chú ý *dòng 10*, ta dùng `transformPageChunk`, một hàm được SvelteKit cung cấp trong `resolve`, để thay đổi chuỗi `cookie-color-scheme` theo gía trị của cookie. Để hoàn thiện thiết lập, ta cần sửa `src/app.html` một tí:
 
 ```html
 /// title=src/app.html

@@ -54,7 +54,7 @@ export const en = {
 				'build infrastructure and processes for posting and scraping jobs related to Svelte or Front-end.',
 			primaryTasks: [
 				'☑ Publish the <a class="c-link" href="/en/jobs">Jobs</a> page with basic design',
-				'☐ Develop a web scarper and cron job to automatically find related jobs',
+				'☐ Develop a web scraper and cron job to automatically find related jobs',
 				'☐ Set up processes for sponsors to post and link jobs',
 			],
 		},
