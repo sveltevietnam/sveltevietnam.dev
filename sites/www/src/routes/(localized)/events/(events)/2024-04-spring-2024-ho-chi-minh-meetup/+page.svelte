@@ -5,7 +5,7 @@
 	import { Breadcrumbs } from '$lib/components/Breadcrumbs';
 	import { DateTimeRangeDisplayText } from '$lib/components/DateTimeRangeDisplayText';
 	import { FrequentlyAskedQuestions } from '$lib/components/FrequentlyAskedQuestions';
-	import { MailRegistrationForm } from '$lib/components/MailRegistrationForm';
+	// import { MailRegistrationForm } from '$lib/components/MailRegistrationForm';
 	import { Person } from '$lib/components/Person';
 	import { ToBeAnnounced } from '$lib/components/ToBeAnnounced';
 	// import { EMAILS, SOCIAL_LINKS } from '$lib/constants';
@@ -13,7 +13,7 @@
 	import { getRoutingContext } from '$lib/routing/routing.context';
 
 	import type { PageData } from './$types';
-	import ElectronicTicket from './_page/components/ElectronicTicket.svelte';
+	// import ElectronicTicket from './_page/components/ElectronicTicket.svelte';
 	import dsvLogoImage from './_page/images/designveloper_logo.webp';
 
 	export let data: PageData;
@@ -55,29 +55,15 @@
 
 	<div class="space-y-[60px] pb-[120px] tb:space-y-[120px] tb:pb-[200px]">
 		<section class="max-w-pad">
+			<!--
+				TODO:
+					- clean up unused resources & components
+					- add post event description (thank-you note)
+					- add images and move section to first
+			-->
 			<p class="c-callout c-callout--success c-callout--icon-megaphone" use:intersect>
 				{@html t.ticket.description}
 			</p>
-			<div
-				class="mt-10 flex flex-col-reverse justify-center gap-8 pc:flex-row pc:items-end pc:gap-10"
-				use:intersect
-			>
-				<div>
-					<h2 class="c-text-h3">{t.ticket.title}</h2>
-					<MailRegistrationForm
-						class="mt-8"
-						t={t.ticket.form}
-						superValidated={data.ticketForm}
-						action="?/ticket"
-					/>
-				</div>
-				<ElectronicTicket
-					class="pc:basis-[632px]"
-					name={data.ticket?.name ?? ''}
-					email={data.ticket?.email ?? ''}
-					number={data.ticket?.num ?? 0}
-				/>
-			</div>
 		</section>
 
 		<section class="timeline-container max-w-pad">
