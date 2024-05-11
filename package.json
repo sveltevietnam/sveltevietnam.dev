@@ -7,14 +7,12 @@
 		"name": "Svelte Vietnam",
 		"url": "https://www.sveltevietnam.dev"
 	},
-	"packageManager": "pnpm@8.15.1",
 	"engines": {
-		"pnpm": ">=8.0.0",
+		"pnpm": ">=9.0.0",
 		"node": ">=20.0.0"
 	},
 	"volta": {
-		"node": "20.10.0",
-		"pnpm": "8.15.1"
+		"node": "20.13.0"
 	},
 	"scripts": {
 		"turbo": "turbo",
