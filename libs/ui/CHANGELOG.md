@@ -1,5 +1,11 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.29
+
+### Patch Changes
+
+- [`ab9fc5e`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/ab9fc5ef513b54f90a2b4e9b631c5399040d55ec) Thanks [@vnphanquang](https://github.com/vnphanquang)! - correct path to import enhanced code block components
+
 ## 1.0.0-next.28
 
 ### Major Changes
