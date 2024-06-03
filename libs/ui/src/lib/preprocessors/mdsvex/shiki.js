@@ -55,11 +55,10 @@ export const highlighter = (code, lang = 'svelte', _meta, filename) => {
 
 /**
  * @typedef CodeBlockMetadata
- * @property {string} [__raw]
- * @property {string} [__filename]
- * @property {any} [__container]
- * @property {string} [data-lang]
- * @property {Record<string, string>} [__enhancement]
+ * @property {string} [__raw] - raw code block content
+ * @property {string} [__filename] - filename of the file containing the code block
+ * @property {string} [data-lang] - language of the code block
+ * @property {Record<string, string>} [__enhancement] - properties code block enhancement
  */
 
 /**
@@ -94,7 +93,7 @@ function transformer() {
 		name: '@sveltevietnam/ui:enhance-code-block',
 		preprocess(code) {
 			/** @type {CodeBlockMetadata} */
-			const meta = this.options.meta;
+			const meta = this.options.meta ?? {};
 			if (!meta.__enhancement) meta.__enhancement = {};
 			if (!('lang' in meta.__enhancement)) meta.__enhancement.lang = this.options.lang;
 			code = parseMetadata(code, meta.__enhancement);

@@ -1,50 +1,44 @@
 import MagicString from 'magic-string';
-import { walk } from 'svelte/compiler';
 import { parse } from 'svelte-parse-markup';
+import { walk } from 'zimmerframe';
 
 /**
- * @public
  * @typedef ComponentDefinition
- * @property {string} name
- * @property {string} path
- * @property {boolean} default
+ * @property {string} name - name of the component
+ * @property {string} path - path to import component
+ * @property {boolean} default - whether should import component from default export of module
  */
 
 /**
- * @public
  * @typedef ComponentsConfig
- * @property {ComponentDefinition} [one]
- * @property {ComponentDefinition} [group]
+ * @property {ComponentDefinition} [one] - component for single code block
+ * @property {ComponentDefinition} [group] - component for group of code blocks
  */
 
 /**
- * @public
  * @typedef EnhanceCodeBlockConfig
- * @property {ComponentsConfig} [components]
- * @property {(filename?: string) => boolean} [files]
- * @property {string} [enhancedElement]
+ * @property {ComponentsConfig} [components] - components to use for code blocks
+ * @property {(filename?: string) => boolean} [files] - a function that returns true if the file should be processed. By defaults it will match files with `.md.svelte` extension
+ * @property {string} [enhancedElement] - element name to search for and enhance. Default is `enhanced-code-block`
  */
 
-/**
- * @internal
- * @type {Required<EnhanceCodeBlockConfig>}
- */
-const DEFAULT_CONFIG = {
-	components: {
-		one: {
-			name: 'EnhancedCodeBlock',
-			path: '@sveltevietnam/ui/components/EnhancedCodeBlock.svelte',
-			default: true,
+const DEFAULT_CONFIG =
+	/** @satisfies {Required<EnhanceCodeBlockConfig> & { components: Required<ComponentsConfig>}} */ ({
+		components: {
+			one: {
+				name: 'EnhancedCodeBlock',
+				path: '@svelte-put/enhanced-code-block/components/EnhancedCodeBlock.svelte',
+				default: true,
+			},
+			group: {
+				name: 'EnhancedCodeBlockGroup',
+				path: '@svelte-put/enhanced-code-block/components/EnhancedCodeBlockGroup.svelte',
+				default: true,
+			},
 		},
-		group: {
-			name: 'EnhancedCodeBlockGroup',
-			path: '@sveltevietnam/ui/components/EnhancedCodeBlockGroup.svelte',
-			default: true,
-		},
-	},
-	files: (filename) => filename?.endsWith('.md.svelte') ?? false,
-	enhancedElement: 'enhanced-code-block',
-};
+		files: (filename) => filename?.endsWith('.md.svelte') ?? false,
+		enhancedElement: 'enhanced-code-block',
+	});
 
 let globalCounter = 0;
 
@@ -56,15 +50,18 @@ export function enhanceCodeBlock(config = {}) {
 	const { components, enhancedElement, files } = {
 		...DEFAULT_CONFIG,
 		...config,
+		components: {
+			...DEFAULT_CONFIG.components,
+			...config.components,
+		},
 	};
+
 	return {
-		markup(o) {
-			const { content, filename } = o;
+		markup({ content, filename }) {
 			if (!files(filename)) return;
 
 			const s = new MagicString(content);
-			/** @type {any} */
-			const ast = parse(content, { filename });
+			const ast = parse(content, { filename, modern: true });
 
 			let isOneImported = new RegExp(`import\\s*{?\\s*${components.one.name}`).test(content);
 			let isGroupImported = new RegExp(`import\\s*{?\\s*${components.group.name}`).test(content);
@@ -89,63 +86,67 @@ export function enhanceCodeBlock(config = {}) {
 				s.update(node.end - enhancedElement.length - 1, node.end, component.name + '>');
 			}
 
-			walk(ast.html, {
-				/**
-				 * @param {any} node
-				 * @returns
-				 */
-				enter(node) {
-					if (node.type !== 'Element' || node.name !== enhancedElement) return;
+			walk(
+				/** @type {import('svelte/compiler').ElementLike} */ (
+					/** @type {unknown} */ (ast.fragment)
+				),
+				null,
+				{
+					RegularElement(node, { next }) {
+						if (node.name !== enhancedElement) return next();
 
-					const grouped = node.attributes.some(
-						(/** @type {{ name: string; }} */ attr) => attr.name === 'group',
-					);
+						const attributes = /** @type {import('svelte/compiler').Attribute[]} */ (
+							node.attributes.filter((attr) => attr.type === 'Attribute')
+						);
 
-					if (grouped) {
-						let additionalAttributes = '';
+						const grouped = attributes.some((attr) => attr.name === 'group');
 
-						// process "cols" attribute
-						const colsAttr = node.attributes.find((attr) => attr.name === 'cols');
-						if (!colsAttr) {
-							const codeBlockChildren = node.children.filter(
-								(e) =>
-									e.type === 'Element' &&
-									(e.name === enhancedElement || e.name === components.one.name),
-							);
-							additionalAttributes = ` cols=${codeBlockChildren.length}`;
-						}
+						if (grouped) {
+							let additionalAttributes = '';
 
-						// process "name" attribute
-						const nameAttr = node.attributes.find((attr) => attr.name === 'name');
-						if (!nameAttr) {
-							let uuid = (++globalCounter).toString();
-							if (crypto?.randomUUID) {
-								uuid = crypto.randomUUID();
+							// process "cols" attribute
+							const colsAttr = attributes.find((attr) => attr.name === 'cols');
+							if (!colsAttr) {
+								const codeBlockChildren = node.fragment.nodes.filter(
+									(n) =>
+										(n.type === 'Component' && n.name === components.one.name) ||
+										(n.type === 'RegularElement' && n.name === enhancedElement),
+								);
+								additionalAttributes = ` cols={${codeBlockChildren.length}}`;
 							}
-							additionalAttributes += ` name="${uuid}"`;
+
+							// process "name" attribute
+							const nameAttr = attributes.find((attr) => attr.name === 'name');
+							if (!nameAttr) {
+								let id = (++globalCounter).toString();
+								if (crypto?.randomUUID) {
+									id = crypto.randomUUID();
+								}
+								additionalAttributes += ` name="${id}"`;
+							}
+
+							s.appendLeft(node.start + enhancedElement.length, additionalAttributes);
+
+							replaceNodeName(node, components.group);
+							if (isGroupImported) return;
+							addImport(components.group);
+							isGroupImported = true;
+						} else {
+							replaceNodeName(node, components.one);
+							if (isOneImported) return;
+							addImport(components.one);
+							isOneImported = true;
 						}
-
-						s.appendLeft(node.start + enhancedElement.length, additionalAttributes);
-
-						replaceNodeName(node, components.group);
-						if (isGroupImported) return;
-						addImport(components.group);
-						isGroupImported = true;
-					} else {
-						replaceNodeName(node, components.one);
-						if (isOneImported) return;
-						isOneImported = true;
-						addImport(components.one);
-					}
+					},
 				},
-			});
+			);
 
 			if (imports.length) {
 				const importStatement = imports.join('\n');
 				if (ast.module) {
-					s.appendLeft(ast.module.content.start, importStatement);
+					s.appendLeft(/** @type {any} */ (ast.module.content).start, importStatement);
 				} else if (ast.instance) {
-					s.appendLeft(ast.instance.content.start, importStatement);
+					s.appendLeft(/** @type {any} */ (ast.instance.content).start, importStatement);
 				} else {
 					s.append(`<script>${importStatement}</script>`);
 				}
@@ -158,5 +159,3 @@ export function enhanceCodeBlock(config = {}) {
 		},
 	};
 }
-
-export default enhanceCodeBlock;

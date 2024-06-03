@@ -1,5 +1,3 @@
-<svelte:options immutable />
-
 <script>
 	/** @type {string} */
 	export let lang;

@@ -1,37 +1,41 @@
 <script>
 	import { copy } from '@svelte-put/copy';
-	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 
-	import { getEnhancedCodeBlockGroupContext } from './EnhancedCodeBlockGroup.svelte';
 	import FileIcon from './FileIcon.svelte';
+	import { EnhancedCodeBlockGroupContext } from './enhanced-code-block-group-context.svelte.js';
 
-	/** @type {string}*/
-	export let lang = '';
-	/** @type {string}*/
-	export let title = '';
-	/** @type {string} */
-	export let hideLineNumber = 'false';
-	/** @type {string | 'disabled'} */
-	export let collapsed = 'false';
-	/** @type {string | undefined} */
-	export let numLines = undefined;
-	let cls = '';
-	export { cls as class };
-
-	const groupContext = getEnhancedCodeBlockGroupContext();
-
-	$: currentTitle = groupContext?.title;
+	/** @type {import('./EnhancedCodeBlock.svelte').EnhancedCodeBlockProps} */
+	let {
+		lang,
+		title,
+		hideLineNumber,
+		numLines,
+		collapsed,
+		class: cls,
+		style,
+		children,
+		...rest
+	} = $props();
 
 	const id = Math.random().toString(36).slice(2);
-	let collapsible = groupContext ? false : collapsed !== 'disabled';
-	let collapsedInputChecked = collapsible ? collapsed === 'true' : false;
+	const groupContext = EnhancedCodeBlockGroupContext.get();
 
-	/** @type {HTMLButtonElement}*/
-	let trigger;
+	let currentTitle = $state(groupContext?.title);
+	let collapsible = $derived(groupContext ? false : collapsed !== 'disabled');
+	let collapsedInputChecked = $state(collapsed === 'true');
+	$effect(() => {
+		if (!collapsible) collapsedInputChecked = false;
+	});
 
+	/** @type {HTMLButtonElement | undefined} */
+	let copyTrigger = $state(undefined);
+	/** @type {ReturnType<setTimeout> | undefined} */
+	let copyTimeoutId = undefined;
+	let copied = $state(false);
 	/**
 	 * @param {import('@svelte-put/copy').TextResolverInput<'click'>} input
+	 * @returns {string}
 	 */
 	function copyText(input) {
 		const codeNode = input.node.getElementsByTagName('code')[0];
@@ -42,12 +46,8 @@
 			if (/** @type {HTMLElement} */ (lineNode).dataset.lineDiff === '-') continue;
 			text += (lineNode.textContent || '') + '\n';
 		}
-
 		return text;
 	}
-
-	let copyTimeoutId;
-	let copied = false;
 	function onCopied() {
 		copied = true;
 	}
@@ -60,8 +60,8 @@
 		}, 1800);
 	}
 
-	let hydrated = false;
-	onMount(() => {
+	let hydrated = $state(false);
+	$effect(() => {
 		hydrated = true;
 	});
 </script>
@@ -69,11 +69,12 @@
 <section
 	class="codeblock {cls}"
 	class:grouped={!!groupContext}
-	class:hide-line-number={hideLineNumber !== 'false'}
+	class:hide-line-number={hideLineNumber}
 	{...groupContext && { 'data-group-display': groupContext.display }}
 	class:has-title={title}
 	class:collapsible={groupContext ? false : collapsible}
-	style:--num-line-width="{numLines ? numLines.length + 2 : 4}ch"
+	style:--num-line-width="{numLines ? numLines.length + 2 : 4}ch;{style}"
+	{...rest}
 >
 	{#if groupContext}
 		<label class="codeblock-group-label">
@@ -90,8 +91,8 @@
 				class="codeblock-group-selected sr-only"
 				value={title}
 				name={groupContext.name}
-				checked={title === $currentTitle}
-				bind:group={$currentTitle}
+				checked={title === currentTitle}
+				bind:group={currentTitle}
 			/>
 		</label>
 	{:else}
@@ -108,10 +109,10 @@
 				{#if hydrated}
 					<button
 						class="codeblock-btn codeblock-btn-copy"
-						bind:this={trigger}
+						bind:this={copyTrigger}
 						disabled={copied}
-						on:mouseleave={onMouseLeaveCopyButton}
-						on:mouseenter={onMouseEnterCopyButton}
+						onmouseleave={onMouseLeaveCopyButton}
+						onmouseenter={onMouseEnterCopyButton}
 						type="button"
 					>
 						<span class="sr-only">Copy</span>
@@ -120,21 +121,21 @@
 								xmlns="http://www.w3.org/2000/svg"
 								width="20"
 								height="20"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								class="lucide lucide-clipboard-check"
-								in:fade={{ duration: 150 }}
+								fill="currentcolor"
+								viewBox="0 0 256 256"
 							>
-								<rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
-								<path
-									d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
-								/>
 								{#if copied}
-									<path d="m9 14 2 2 4-4" />
+									<path
+										d="M168,152a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,152Zm-8-40H96a8,8,0,0,0,0,16h64a8,8,0,0,0,0-16Zm56-64V216a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V48A16,16,0,0,1,56,32H92.26a47.92,47.92,0,0,1,71.48,0H200A16,16,0,0,1,216,48ZM96,64h64a32,32,0,0,0-64,0ZM200,48H173.25A47.93,47.93,0,0,1,176,64v8a8,8,0,0,1-8,8H88a8,8,0,0,1-8-8V64a47.93,47.93,0,0,1,2.75-16H56V216H200Z"
+										in:fade={{ duration: 150 }}
+									>
+									</path>
+								{:else}
+									<path
+										d="M200,32H163.74a47.92,47.92,0,0,0-71.48,0H56A16,16,0,0,0,40,48V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V48A16,16,0,0,0,200,32Zm-72,0a32,32,0,0,1,32,32H96A32,32,0,0,1,128,32Zm72,184H56V48H82.75A47.93,47.93,0,0,0,80,64v8a8,8,0,0,0,8,8h80a8,8,0,0,0,8-8V64a47.93,47.93,0,0,0-2.75-16H200Z"
+										in:fade={{ duration: 150 }}
+									>
+									</path>
 								{/if}
 							</svg>
 						{/key}
@@ -147,32 +148,18 @@
 						xmlns="http://www.w3.org/2000/svg"
 						width="20"
 						height="20"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						class="lucide lucide-maximize"
-						><path d="M8 3H5a2 2 0 0 0-2 2v3" /><path d="M21 8V5a2 2 0 0 0-2-2h-3" /><path
-							d="M3 16v3a2 2 0 0 0 2 2h3"
-						/><path d="M16 21h3a2 2 0 0 0 2-2v-3" /></svg
+						fill="currentcolor"
+						viewBox="0 0 256 256"
 					>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="20"
-						height="20"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						class="lucide lucide-minimize"
-						><path d="M8 3v3a2 2 0 0 1-2 2H3" /><path d="M21 8h-3a2 2 0 0 1-2-2V3" /><path
-							d="M3 16h3a2 2 0 0 1 2 2v3"
-						/><path d="M16 21v-3a2 2 0 0 1 2-2h3" /></svg
-					>
+						<path
+							class="maximize"
+							d="M216,48V88a8,8,0,0,1-16,0V56H168a8,8,0,0,1,0-16h40A8,8,0,0,1,216,48ZM88,200H56V168a8,8,0,0,0-16,0v40a8,8,0,0,0,8,8H88a8,8,0,0,0,0-16Zm120-40a8,8,0,0,0-8,8v32H168a8,8,0,0,0,0,16h40a8,8,0,0,0,8-8V168A8,8,0,0,0,208,160ZM88,40H48a8,8,0,0,0-8,8V88a8,8,0,0,0,16,0V56H88a8,8,0,0,0,0-16Z"
+						></path>
+						<path
+							class="minimize"
+							d="M152,96V48a8,8,0,0,1,16,0V88h40a8,8,0,0,1,0,16H160A8,8,0,0,1,152,96ZM96,152H48a8,8,0,0,0,0,16H88v40a8,8,0,0,0,16,0V160A8,8,0,0,0,96,152Zm112,0H160a8,8,0,0,0-8,8v48a8,8,0,0,0,16,0V168h40a8,8,0,0,0,0-16ZM96,40a8,8,0,0,0-8,8V88H48a8,8,0,0,0,0,16H96a8,8,0,0,0,8-8V48A8,8,0,0,0,96,40Z"
+						></path>
+					</svg>
 				</label>
 				{#if collapsible}
 					<label class="codeblock-btn codeblock-collapsed-indicator">
@@ -187,25 +174,25 @@
 							xmlns="http://www.w3.org/2000/svg"
 							width="20"
 							height="20"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							class="lucide lucide-chevron-up"
+							fill="currentcolor"
+							viewBox="0 0 256 256"
 						>
-							<path d="m6 9 6 6 6-6" />
+							<path
+								d="M213.66,165.66a8,8,0,0,1-11.32,0L128,91.31,53.66,165.66a8,8,0,0,1-11.32-11.32l80-80a8,8,0,0,1,11.32,0l80,80A8,8,0,0,1,213.66,165.66Z"
+							>
+							</path>
 						</svg>
 					</label>
 				{/if}
 			</div>
 			<div
 				class="codeblock-pre-container"
-				use:copy={{ trigger, text: copyText }}
-				on:copied={onCopied}
+				use:copy={{ trigger: copyTrigger, text: copyText }}
+				oncopied={onCopied}
 			>
-				<slot />
+				{#if children}
+					{@render children()}
+				{/if}
 			</div>
 		</div>
 	</div>
@@ -447,16 +434,16 @@
 	}
 
 	:where(.codeblock-btn-fullscreen) {
-		& .lucide-minimize {
+		& .minimize {
 			display: none;
 		}
 
 		&:has(.codeblock-fullscreen:checked) {
-			& .lucide-maximize {
+			& .maximize {
 				display: none;
 			}
 
-			& .lucide-minimize {
+			& .minimize {
 				display: block;
 			}
 		}

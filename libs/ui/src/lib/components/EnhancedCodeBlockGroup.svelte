@@ -1,58 +1,21 @@
-<script context="module">
-	import { getContext, setContext, hasContext } from 'svelte';
-	import { writable } from 'svelte/store';
-
-	/**
-	 * @typedef EnhancedCodeBlockGroupContext
-	 * @property {string} name - name for the code block group, mapped to the checkbox input `name` field
-	 * @property {'files' | 'tabs'} display - display mode of the code block group
-	 * @property {import('svelte/store').Writable<string | undefined>} title - initial code block identifier to display
-	 */
-
-	const ENHANCED_CODE_BLOCK_GROUP_CONTEXT = 'enhanced:codeblock:group';
-
-	/**
-	 * @return {EnhancedCodeBlockGroupContext | null}
-	 */
-	export function getEnhancedCodeBlockGroupContext() {
-		if (!hasContext(ENHANCED_CODE_BLOCK_GROUP_CONTEXT)) return null;
-		return getContext(ENHANCED_CODE_BLOCK_GROUP_CONTEXT);
-	}
-
-	/**
-	 * @param {EnhancedCodeBlockGroupContext} value
-	 */
-	function setEnhancedBlockGroupContext(value) {
-		setContext(ENHANCED_CODE_BLOCK_GROUP_CONTEXT, value);
-	}
-</script>
-
 <script>
-	/** @type {number} */
-	export let cols;
-	/** @type {string}*/
-	export let name;
-	/** @type {EnhancedCodeBlockGroupContext['display']}*/
-	export let display = 'files';
-	/** @type {string | undefined} */
-	export let title;
-	let cls = '';
-	export { cls as class };
+	import { EnhancedCodeBlockGroupContext } from './enhanced-code-block-group-context.svelte.js';
 
-	const titleStore = writable(title);
-	$: title = $titleStore;
+	/** @type {import('./EnhancedCodeBlockGroup.svelte').EnhancedCodeBlockGroupProps} */
+	let { cols, name, display, title, children, class: cls, style, ...rest } = $props();
 
-	setEnhancedBlockGroupContext({ name, display, title: titleStore });
+	EnhancedCodeBlockGroupContext.set({ name, display, title });
 </script>
 
-<div class="codeblock-group codeblock-group--{display} {cls}" style="--cols: {cols};">
-	<!-- <label class="codeblock-tab">
-		<span>pnpm</span>
-		<input type="radio" name="<generated_id>" checked />
-	</label>
-	<EnhancedCodeBlock /> -->
-	<slot />
-	<div class="first-row-last-col-fill" />
+<div
+	class="codeblock-group codeblock-group--{display} {cls}"
+	style="--cols: {cols};{style}"
+	{...rest}
+>
+	{#if children}
+		{@render children()}
+	{/if}
+	<div class="first-row-last-col-fill"></div>
 </div>
 
 <style>
