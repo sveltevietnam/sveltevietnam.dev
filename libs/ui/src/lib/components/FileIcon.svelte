@@ -1,6 +1,6 @@
 <script>
-	/** @type {string} */
-	export let lang;
+	/** @type {{ lang: string }}*/
+	let { lang } = $props();
 </script>
 
 <!-- https://shiki.style/languages -->
