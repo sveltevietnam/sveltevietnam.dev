@@ -1,5 +1,11 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.28
+
+### Major Changes
+
+- [`a5c2f03`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/a5c2f0343a4e3a80bf4cb2c38cb07e642cf93d4a) Thanks [@vnphanquang](https://github.com/vnphanquang)! - migrate to Svelte 5
+
 ## 1.0.0-next.27
 
 ### Minor Changes
