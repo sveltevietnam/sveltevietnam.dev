@@ -7,11 +7,11 @@
 
 	/** @type {import('./types.d.ts').EnhancedCodeBlockProps} */
 	let {
-		lang,
-		title,
-		hideLineNumber,
-		numLines,
-		collapsed,
+		lang = '',
+		title = '',
+		hideLineNumber = 'false',
+		numLines = undefined,
+		collapsed = 'false',
 		class: cls,
 		style,
 		children,

@@ -4,11 +4,11 @@ interface EnhancedCodeBlockProps extends HTMLAttributes<HTMLElement> {
 	/**
 	 * the programming language
 	 */
-	lang: string;
+	lang?: string;
 	/**
 	 * title for the code block
 	 */
-	title: string;
+	title?: string;
 	/**
 	 * whether should hide the line number at start of each line
 	 */
