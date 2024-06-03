@@ -27,12 +27,12 @@ const DEFAULT_CONFIG =
 		components: {
 			one: {
 				name: 'EnhancedCodeBlock',
-				path: '@svelte-put/enhanced-code-block/components/EnhancedCodeBlock.svelte',
+				path: '@sveltevietnam/ui/components/EnhancedCodeBlock.svelte',
 				default: true,
 			},
 			group: {
 				name: 'EnhancedCodeBlockGroup',
-				path: '@svelte-put/enhanced-code-block/components/EnhancedCodeBlockGroup.svelte',
+				path: '@sveltevietnam/ui/components/EnhancedCodeBlockGroup.svelte',
 				default: true,
 			},
 		},
