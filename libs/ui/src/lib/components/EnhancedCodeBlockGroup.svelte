@@ -1,7 +1,7 @@
 <script>
 	import { EnhancedCodeBlockGroupContext } from './enhanced-code-block-group-context.svelte.js';
 
-	/** @type {import('./EnhancedCodeBlockGroup.svelte').EnhancedCodeBlockGroupProps} */
+	/** @type {import('./types.d.ts').EnhancedCodeBlockGroupProps} */
 	let { cols, name, display, title, children, class: cls, style, ...rest } = $props();
 
 	EnhancedCodeBlockGroupContext.set({ name, display, title });

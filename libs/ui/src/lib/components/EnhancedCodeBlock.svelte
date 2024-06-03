@@ -5,7 +5,7 @@
 	import FileIcon from './FileIcon.svelte';
 	import { EnhancedCodeBlockGroupContext } from './enhanced-code-block-group-context.svelte.js';
 
-	/** @type {import('./EnhancedCodeBlock.svelte').EnhancedCodeBlockProps} */
+	/** @type {import('./types.d.ts').EnhancedCodeBlockProps} */
 	let {
 		lang,
 		title,

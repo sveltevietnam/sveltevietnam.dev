@@ -3,7 +3,7 @@ import { getContext, setContext, hasContext } from 'svelte';
 /**
  * @typedef EnhancedCodeBlockGroupContextInit
  * @property {string} name - name for the code block group, mapped to the checkbox input `name` field
- * @property {import('./EnhancedCodeBlockGroup.svelte').EnhancedCodeBlockGroupProps['display']} display - display mode of the code block group
+ * @property {import('./types.d.ts').EnhancedCodeBlockGroupProps['display']} display - display mode of the code block group
  * @property {string} [title] - initial code block identifier to display
  */
 
@@ -12,7 +12,7 @@ export class EnhancedCodeBlockGroupContext {
 
 	// eslint-disable-next-line no-undef
 	name = $state('');
-	/** @type {import('./EnhancedCodeBlockGroup.svelte').EnhancedCodeBlockGroupProps['display']} */
+	/** @type {import('./types.d.ts').EnhancedCodeBlockGroupProps['display']} */
 	// eslint-disable-next-line no-undef
 	display = $state('files');
 	/** @type {string | undefined} */
