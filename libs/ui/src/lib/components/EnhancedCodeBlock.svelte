@@ -204,7 +204,7 @@
 		padding: 0;
 	}
 
-	:where(.codeblock) {
+	.codeblock {
 		--color-header-fg: hsl(0deg 0% 50%);
 
 		/* assume integration with @sveltevietnam/ui */
@@ -303,6 +303,10 @@
 		}
 	}
 
+	.codeblock:has(.codeblock-fullscreen:checked) {
+		border-radius: 0;
+	}
+
 	.codeblock:has(.codeblock-fullscreen:checked),
 	.codeblock.grouped:has(.codeblock-fullscreen:checked) .codeblock-content {
 		position: fixed;
@@ -344,7 +348,7 @@
 		}
 	}
 
-	:where(.codeblock-group-label) {
+	.codeblock-group-label {
 		cursor: pointer;
 
 		position: relative;
@@ -381,28 +385,28 @@
 		}
 	}
 
-	:where(.codeblock-header) {
+	.codeblock-header {
 		padding: 12px 16px;
 		line-height: normal;
 		background-color: var(--color-pre-bg);
 	}
 
-	:where(.codeblock-title) {
+	.codeblock-title {
 		width: fit-content;
 		font-size: theme('fontSize.xs');
 	}
 
-	:where(.codeblock-content) {
+	.codeblock-content {
 		z-index: 1;
 		display: grid;
 		max-width: 100%;
 	}
 
-	:where(.codeblock-content-accordion) {
+	.codeblock-content-accordion {
 		overflow: hidden;
 	}
 
-	:where(.codeblock-btns) {
+	.codeblock-btns {
 		position: absolute;
 		z-index: 2;
 		top: 6px;
@@ -415,7 +419,7 @@
 		width: fit-content;
 	}
 
-	:where(.codeblock-btn) {
+	.codeblock-btn {
 		cursor: pointer;
 		padding: 4px;
 		color: var(--color-header-fg);
@@ -426,14 +430,14 @@
 		}
 	}
 
-	:where(.codeblock-btn-copy) {
+	.codeblock-btn-copy {
 		&:disabled {
 			/* allow clicking even if already copied */
 			cursor: pointer;
 		}
 	}
 
-	:where(.codeblock-btn-fullscreen) {
+	.codeblock-btn-fullscreen {
 		& .minimize {
 			display: none;
 		}
@@ -449,12 +453,12 @@
 		}
 	}
 
-	:where(.codeblock-collapsed-indicator) {
+	.codeblock-collapsed-indicator {
 		display: none;
 		transition: transform 150ms ease-out;
 	}
 
-	:where(.codeblock-pre-container) {
+	.codeblock-pre-container {
 		height: 100%;
 	}
 </style>

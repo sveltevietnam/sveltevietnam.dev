@@ -30,7 +30,7 @@
 		border-top-right-radius: 4px;
 	}
 
-	:where(.codeblock-group) {
+	.codeblock-group {
 		position: relative;
 
 		display: grid;
