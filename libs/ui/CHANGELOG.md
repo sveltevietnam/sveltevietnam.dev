@@ -1,5 +1,15 @@
 # @sveltevietnam/ui
 
+## 1.0.0-next.30
+
+### Patch Changes
+
+- [`b28eebc`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/b28eebc934cede23b5fdf112089ab945b177503f) Thanks [@vnphanquang](https://github.com/vnphanquang)! - clear `:where` in css of enhanced code block components
+
+- [`2e8957f`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/2e8957f487419a475c7ec45bdac5633da648a36e) Thanks [@vnphanquang](https://github.com/vnphanquang)! - update FileIcon.svelte to Svelte 5 syntax
+
+- [`04d03db`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/04d03db8ef416bbd6614f5d8bcc7ba6316645c27) Thanks [@vnphanquang](https://github.com/vnphanquang)! - extract props types of enhanced-code-block components to own file
+
 ## 1.0.0-next.29
 
 ### Patch Changes
