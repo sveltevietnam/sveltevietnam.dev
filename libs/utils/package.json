@@ -1,0 +1,44 @@
+{
+	"name": "@internals/utils",
+	"version": "1.0.0-next.2",
+	"description": "utilities for sveltevietnam.dev projects",
+	"private": true,
+	"module": "src/index.js",
+	"types": "types/index.d.ts",
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./types/index.d.ts",
+			"import": "./src/index.js"
+		},
+		"./url": {
+			"types": "./types/index.d.ts",
+			"import": "./src/url/index.js"
+		},
+		"./signature": {
+			"types": "./types/index.d.ts",
+			"import": "./src/signature/index.js"
+		},
+		"./language": {
+			"types": "./types/index.d.ts",
+			"import": "./src/language/index.js"
+		}
+	},
+	"files": [
+		"src",
+		"types"
+	],
+	"scripts": {
+		"test": "vitest --ui --coverage",
+		"test:ci": "vitest run --coverage",
+		"dts": "dts-buddy && publint",
+		"lint": "run-p lint:*",
+		"lint:svelte": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"lint:es": "eslint .",
+		"lint:style": "stylelint '**/*.{svelte,css}'",
+		"format": "prettier --write ."
+	},
+	"volta": {
+		"extends": "../../package.json"
+	}
+}
