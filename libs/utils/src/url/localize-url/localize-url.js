@@ -1,6 +1,6 @@
 /**
  * @template {URL | string} U
- * @template {U extends string ? string : URL} R
+ * @template [R=U extends string ? string : URL]
  * @param {U} url
  * @param {string} lang
  * @param {ReadonlyArray<string>} langs

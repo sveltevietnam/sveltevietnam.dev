@@ -12,7 +12,7 @@ export const DEFAULT_LANGUAGE = /** @satisfies {Language}*/ ('en');
  * unpack target language property of var
  * @template T
  * @param {Language} lang
- * @param {LangVar<T>} [v=undefined]
+ * @param {LangVar<T>} [v]
  * @returns {T}
  */
 export function localizeLangVar(lang, v) {
@@ -32,7 +32,7 @@ export function localizeLangVar(lang, v) {
  * pack var as object with language properties
  * @template T
  * @param {LangVar<T>} v
- * @return {Record<Language, T>}
+ * @returns {Record<Language, T>}
  */
 export function delocalizeLangVar(v) {
 	if (
