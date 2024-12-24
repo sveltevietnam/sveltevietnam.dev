@@ -1,5 +1,7 @@
 # Contributing to [Svelte Vietnam][github]
 
+Last updated on **2024-12-24**.
+
 Thank you for stopping by. [Svelte Vietnam][github] welcomes and appreciates your contribution.
 
 There are a couple of ways that you can start contributing to the Svelte Vietnam project today.
@@ -10,18 +12,11 @@ There are a couple of ways that you can start contributing to the Svelte Vietnam
 
 ## Translations
 
-There is an ongoing effort to translate Svelte sites ([svelte.dev](https://svelte.dev), [kit.svelte.dev](https://kit.svelte.dev/), [learn.svelte.dev]) to Vietnamese. You can:
-
-- contribute translation to [learn.sveltevietnam.dev](https://github.com/sveltevietnam/learn.svelte.dev/issues/1), our forked version of [learn.svelte.dev],
-- join the [Svelte Vietnam Discord][sveltevietnam.discord] and participate in the `#translation` channel,
-- provide your feedback and ideas in the original issue [#149](https://github.com/sveltevietnam/sveltevietnam.dev/issues/149).
-
-> [!NOTE]
-> Currently we are only focusing on translating [learn.svelte.dev] first because its repo is isolated from the others, making it easy to manage, sync, and deploy.
+There is an ongoing effort to translate [svelte.dev](https://svelte.dev) to Vietnamese. You may join the [Svelte Vietnam Discord][sveltevietnam.discord] and participate in the `#translation` channel.
 
 ## The [Svelte Vietnam Blog][sveltevietnam.blog]
 
-Submit your blog post or link a post you already published somewhere. This is a great way to contribute and at, the same time, express yourself and share your ideas and experience with the community.
+Submit your blog post or link a post you already published somewhere. This is a great way to contribute and at, the same time, share your ideas and experience with the community.
 
 - Learn more by visiting the [Svelte Vietnam Blog][sveltevietnam.blog].
 - Join the `#blog` channel in [Discord][sveltevietnam.discord] for further discussion.
@@ -59,3 +54,4 @@ Follow the guidelines at [DEVELOPMENT].
 [sveltevietnam.blog]: https://www.sveltevietnam.dev/blog
 [sveltevietnam.discord]: https://discord.sveltevietnam.dev
 [learn.svelte.dev]: https://learn.svelte.dev
+

@@ -33,6 +33,8 @@ body:
       value: |
         - Operating System: Windows | MacOS | Ubuntu
         - Browser: Chrome | Firefox | Safari | Edge
+
+        or if the bug is development related, please include output of `npx envinfo --system --npmPackages svelte,vite --binaries --browsers`
     validations:
       required: true
   - type: textarea

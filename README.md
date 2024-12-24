@@ -11,7 +11,7 @@
 
 Svelte Vietnam official site at [sveltevietnam.dev](https://www.sveltevietnam.dev)
 
-[![Discord][socials.discord.badge]][socials.discord] [![Twitter][socials.twitter.badge]][socials.twitter] [![Facebook][socials.facebook.badge]][socials.facebook]
+[![Discord][socials.discord.badge]][socials.discord] [![Twitter][socials.bluesky.badge]][socials.bluesky] [![Facebook][socials.facebook.badge]][socials.facebook]
 
 [![MadeWithSvelte.com shield][socials.madewithsvelte.badge]][socials.madewithsvelte] [![MIT][license.badge]][license]
 
@@ -39,7 +39,9 @@ See [CONTRIBUTING] on how you can contribute to the Svelte Vietnam project.
 [socials.discord]: https://discord.sveltevietnam.dev
 [socials.facebook]: https://www.facebook.com/sveltevietnam
 [socials.facebook.badge]: https://img.shields.io/static/v1?label=&message=sveltevietnam&color=4267B2&logoColor=white&style=for-the-badge&logo=facebook
-[socials.twitter]: https://twitter.com/sveltevietnam
-[socials.twitter.badge]: https://img.shields.io/static/v1?label=&message=sveltevietnam&color=1DA1F2&logoColor=white&style=for-the-badge&logo=twitter
+[socials.bluesky]: https://bsky.app/profile/sveltevietnam.dev
+[socials.bluesky.badge]: https://img.shields.io/static/v1?label=&message=sveltevietnam&color=1DA1F2&logoColor=white&style=for-the-badge&logo=bluesky
 [socials.madewithsvelte]: https://madewithsvelte.com/p/svelte-vietnam/shield-link
 [socials.madewithsvelte.badge]: https://madewithsvelte.com/storage/repo-shields/4786-shield.svg
+
+

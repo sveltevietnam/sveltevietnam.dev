@@ -8,11 +8,6 @@ node_modules
 # testing
 coverage
 
-# next.js
-.next/
-out/
-build/
-
 # misc
 .DS_Store
 *.pem
@@ -20,14 +15,10 @@ build/
 # debug
 *.log*
 
-# turbo
-.turbo
-
 temp/
 
 # svelte-kit
 .svelte-kit/
-.vercel
 
 # vite temp
 vite.config.js.timestamp-*
@@ -43,3 +34,4 @@ vite.config.ts.timestamp-*
 .wrangler
 wrangler.preview.toml
 wrangler.production.toml
+

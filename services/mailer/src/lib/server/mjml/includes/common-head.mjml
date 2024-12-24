@@ -1,6 +1,0 @@
-<mj-font name="Inter" href="https://fonts.googleapis.com/css?family=Inter" />
-<mj-attributes>
-	<mj-all font-family="Inter" font-size="16px" color="#121212" line-height="1.5" />
-	<mj-divider border-width="1px" border-style="solid" border-color="#DBDBDB" />
-	<mj-class name="footer-text" font-size="12px" color="gray" align="center" />
-</mj-attributes>

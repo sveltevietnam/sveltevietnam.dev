@@ -10,9 +10,13 @@ on:
 
 env:
   CI: true
-  HUSKY: 0
 jobs:
   Version:
+    if: github.repository == 'sveltevietnam/sveltevietnam.dev' # prevents this action from running on forks
+    permissions:
+      contents: write # to create release (changesets/action)
+      id-token: write # OpenID Connect token needed for provenance
+      pull-requests: write # to create pull request (changesets/action)
     timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
@@ -21,13 +25,11 @@ jobs:
         with:
           fetch-depth: 0
       - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 9
+        uses: pnpm/action-setup@v4
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: pnpm
       - name: Install dependencies
         run: pnpm install --ignore-scripts --no-frozen-lockfile
@@ -42,3 +44,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+

@@ -23,18 +23,14 @@ export default {
 			{
 				ignoreAtRules: [
 					'tailwind',
+					'plugin',
 					'apply',
 					'layer',
 					'config',
 					'screen',
-					'mixin',
-					'define-mixin',
-					'space-x',
-					'space-y',
-					'gspace-x',
-					'gspace-y',
-					'dark',
-					'light',
+					'theme',
+					'utility',
+					'variant',
 				],
 			},
 		],
@@ -49,6 +45,9 @@ export default {
 		'no-descending-specificity': null,
 		'custom-property-empty-line-before': null,
 		'comment-empty-line-before': null,
+		'custom-property-pattern': null,
+		'import-notation': null,
 	},
-	ignoreFiles: ['**/app.html', '**/*.template.html', '**/*.md.svelte'],
+	ignoreFiles: ['**/app.html', '**/*.md.svelte'],
 };
+

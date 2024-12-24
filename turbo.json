@@ -1,20 +1,17 @@
 {
 	"$schema": "https://turborepo.org/schema.json",
-	"pipeline": {
+	"ui": "tui",
+	"tasks": {
+		"prepublishOnly": {},
 		"dts": {
 			"dependsOn": ["^dts"],
 			"inputs": ["src/**/*.js", "*.config.js", "src/**/*.ts"],
 			"outputs": ["types/index.d.ts", "types/index.d.ts.map"],
 			"cache": true
 		},
-		"test:ci": {
-			"dependsOn": ["^test:ci", "dts"],
-			"outputs": ["coverage/**"],
-			"cache": true
-		},
 		"build": {
-			"dependsOn": ["^build", "^dts"],
-			"outputs": [".svelte-kit/**", "dist/**"],
+			"dependsOn": ["^build"],
+      "outputs": ["dist/**", "build/**", ".svelte-kit/**"],
 			"inputs": [
 				"*.config.js",
 				"src/**/*.ts",
@@ -37,3 +34,4 @@
 		}
 	}
 }
+

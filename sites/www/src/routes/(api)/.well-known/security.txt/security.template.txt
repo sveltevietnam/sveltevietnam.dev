@@ -1,5 +1,0 @@
-Contact: mailto:security@sveltevietnam.dev
-Expires: {{ expires_at }}
-Preferred-Languages: en, vi
-Canonical: https://www.sveltevietnam.dev/.well-known/security.txt
-Policy: https://github.com/sveltevietnam/sveltevietnam.dev/security/policy

@@ -1,5 +1,6 @@
 packages:
+  - "libs/*"
   - "services/*"
   - "sites/*"
-  - "libs/*"
-  - "internals/*"
+  - "workers/*"
+

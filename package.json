@@ -7,49 +7,51 @@
 		"name": "Svelte Vietnam",
 		"url": "https://www.sveltevietnam.dev"
 	},
-	"engines": {
-		"pnpm": ">=9.0.0",
-		"node": ">=20.0.0"
-	},
-	"volta": {
-		"node": "20.13.0"
-	},
 	"scripts": {
+		"setup": "pnpm install && lefthook install",
 		"turbo": "turbo",
 		"build": "turbo run build",
 		"dev": "turbo run dev",
 		"lint": "turbo run lint --parallel",
 		"format": "turbo run format --parallel",
-		"test:ci": "turbo run test:ci --parallel",
 		"dts": "turbo run dts --parallel",
-		"setup": "pnpm install && pnpm dts",
-		"prepare": "husky || true",
 		"ci:version": "changeset version && pnpm install --no-frozen-lockfile",
 		"ci:publish": "changeset publish && pnpm install"
 	},
 	"devDependencies": {
 		"@changesets/changelog-github": "^0.5.0",
-		"@changesets/cli": "^2.27.1",
-		"@cloudflare/workers-types": "^4.20240405.0",
-		"@types/node": "^20.12.6",
-		"@typescript-eslint/eslint-plugin": "^7.6.0",
-		"@typescript-eslint/parser": "^7.6.0",
-		"@vnphanquang/eslint-config": "^2.0.0",
-		"eslint": "^8.0.0",
-		"eslint-config-prettier": "^9.1.0",
-		"eslint-plugin-svelte": "^2.36.0",
-		"husky": "^9.0.11",
-		"lint-staged": "^15.2.2",
+		"@changesets/cli": "^2.27.11",
+		"@eslint/compat": "^1.2.4",
+		"@types/eslint": "^9.6.1",
+		"@types/node": "^22.10.2",
+		"@vnphanquang/eslint-config": "^3.0.1",
+		"dts-buddy": "^0.5.4",
+		"eslint": "^9.17.0",
+		"eslint-plugin-jsdoc": "^50.6.1",
+		"eslint-plugin-svelte": "^2.46.1",
 		"npm-run-all": "^4.1.5",
-		"prettier": "3.2.5",
-		"prettier-plugin-svelte": "^3.2.2",
-		"prettier-plugin-tailwindcss": "^0.5.13",
-		"stylelint": "^16.3.1",
-		"stylelint-config-clean-order": "^5.4.2",
+		"prettier": "3.4.2",
+		"prettier-plugin-svelte": "^3.3.2",
+		"prettier-plugin-tailwindcss": "^0.6.9",
+		"publint": "^0.2.12",
+		"stylelint": "^16.12.0",
+		"stylelint-config-clean-order": "^6.1.0",
 		"stylelint-config-html": "^1.1.0",
-		"stylelint-config-standard": "^36.0.0",
-		"tslib": "^2.6.2",
-		"turbo": "^1.13.2",
-		"typescript": "^5.4.4"
+		"stylelint-config-standard": "^36.0.1",
+		"svelte": "5.15.0",
+		"svelte-check": "^4.1.1",
+		"tslib": "^2.8.1",
+		"turbo": "^2.3.3",
+		"typescript": "^5.7.2",
+		"typescript-eslint": "^8.18.2",
+		"vite": "^6.0.5"
+	},
+	"packageManager": "pnpm@9.12.0",
+	"engines": {
+		"pnpm": ">=9.0.0",
+		"node": ">=22.0.0"
+	},
+	"volta": {
+		"node": "22.11.0"
 	}
 }

@@ -1,5 +1,8 @@
 # Svelte Vietnam - Project References
 
+> [!NOTE]
+> Last updated on 2024-12-24
+
 ## Context
 
 [Svelte][svelte] is a web framework. One of its defining difference vs other frameworks is the focus from the beginning on building an inclusive and well-supported community.
@@ -35,8 +38,8 @@ The target audience for **sveltevietnam.dev** includes:
 
 This section lists some references to existing sites and communities for inspirations
 
-| First-party / Canonical | Community-built |
-| --- | --- |
+| First-party / Canonical                                                                                                                                                                                                                                                                      | Community-built                                                                                               |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | - [Svelte][svelte]<br/>- [Svelte-kit][svelte.kit]<br/>- [Svelte Society][svelte.society]<br/> - [Svelte Radio][svelte.radio]<br/> - [Svelte Summit][svelte.summit]<br/> - [Svelte Sirens][svelte.sirens]<br/> - [Svelte Discord][svelte.discord]<br/> - [Svelte Hackathon][svelte.hackathon] | - [Svelte Jobs][sveltejobs]<br /> - [Made with Svelte][madewithsvelte]<br /> - [Best of Svelte][bestofsvelte] |
 
 ## Branding Guidelines

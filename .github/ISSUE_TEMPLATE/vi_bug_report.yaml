@@ -33,6 +33,8 @@ body:
       value: |
         - Operating System: Windows | MacOS | Ubuntu
         - Browser: Chrome | Firefox | Safari | Edge
+
+        hoặc nếu lỗi liên quan đến quá trình phát triển,nhập đầu ra của lệnh `npx envinfo --system --npmPackages svelte,vite --binaries --browsers`
     validations:
       required: true
   - type: textarea
