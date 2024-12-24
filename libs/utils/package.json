@@ -15,10 +15,6 @@
 			"types": "./types/index.d.ts",
 			"import": "./src/url/index.js"
 		},
-		"./signature": {
-			"types": "./types/index.d.ts",
-			"import": "./src/signature/index.js"
-		},
 		"./language": {
 			"types": "./types/index.d.ts",
 			"import": "./src/language/index.js"
