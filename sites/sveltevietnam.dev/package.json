@@ -1,0 +1,48 @@
+{
+	"name": "sveltevietnam.dev",
+	"version": "1.0.0-next.44",
+	"description": "Svelte Vietnam official website",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev --port 5005",
+		"build": "vite build",
+		"preview": "vite preview",
+		"lint": "run-p lint:*",
+		"lint:svelte": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"lint:es": "eslint .",
+		"lint:style": "stylelint '**/*.{svelte,css}'",
+		"format": "prettier --write ."
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20241218.0",
+		"@internals/utils": "workspace:*",
+		"@svelte-put/preprocess-auto-slug": "^2.0.0",
+		"@svelte-put/preprocess-external-link": "^1.0.0",
+		"@sveltejs/adapter-cloudflare": "^4.9.0",
+		"@sveltejs/enhanced-img": "^0.4.4",
+		"@sveltejs/kit": "^2.15.0",
+		"@sveltejs/vite-plugin-svelte": "^5.0.3",
+		"@tailwindcss/typography": "^0.5.15",
+		"@tailwindcss/vite": "4.0.0-beta.8",
+		"@total-typescript/ts-reset": "^0.6.1",
+		"@types/mustache": "^4.2.5",
+		"postcss-color-scheme": "^2.1.0",
+		"postcss-custom-media": "^11.0.5",
+		"postcss-custom-selectors": "^8.0.4",
+		"schema-dts": "^1.1.2",
+		"svelte": "^5.15.0",
+		"sveltekit-superforms": "^2.22.1",
+		"tailwindcss": "4.0.0-beta.8",
+		"vite": "^6.0.5"
+	},
+	"dependencies": {
+		"@floating-ui/dom": "^1.6.12",
+		"gsap": "^3.12.5",
+		"mustache": "^4.2.0",
+		"valibot": "1.0.0-beta.9"
+	},
+	"volta": {
+		"extends": "../../package.json"
+	}
+}

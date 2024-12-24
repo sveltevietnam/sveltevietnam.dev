@@ -28,6 +28,12 @@ vite.config.ts.timestamp-*
 .gitsecret/keys/random_seed
 !*.secret
 
+# Env
+.env
+.env.*
+!.env.example
+!.env.test
+
 # turborepo
 .turbo
 

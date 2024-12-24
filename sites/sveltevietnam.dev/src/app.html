@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<!-- Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+		<!-- general metadata tags -->
+		<meta name="color-scheme" content="dark light" />
+		<meta name="theme-color" media="(prefers-color-scheme: light)" content="#FFFAF5" />
+		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#18140F" />
+		<meta name="msapplication-TileColor" content="#201e1a" />
+		<meta name="apple-mobile-web-app-title" content="Svelte Vietnam" />
+
+		<!-- icons -->
+		<link rel="icon" type="image/svg+xml" href="%sveltekit.assets%/favicon.svg" />
+		<link rel="shortcut icon"  href="%sveltekit.assets%/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="%sveltekit.assets%/apple-touch-icon.png" />
+		<link rel="apple-touch-icon-precomposed"
+			sizes="180x180"
+			href="%sveltekit.assets%/apple-touch-icon-precomposed.png"
+		/>
+		<link rel="mask-icon" href="%sveltekit.assets%/safari-pinned-tab.svg" color="#ef4623" />
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="%sveltekit.assets%/favicon/favicon-16x16.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="%sveltekit.assets%/favicon/favicon-32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="192x192"
+			href="%sveltekit.assets%/favicon/favicon-192x192.png"
+		/>
+
+		<!-- web manifest -->
+		<link rel="manifest" href="%sveltekit.assets%/site.webmanifest" />
+
+		<!-- SvelteKit Injected Header -->
+		%sveltekit.head%
+	</head>
+	<body>
+		<!-- SvelteKit Hydrated Content -->
+		<div class="contents">%sveltekit.body%</div>
+	</body>
+</html>
+

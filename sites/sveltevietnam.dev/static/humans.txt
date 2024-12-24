@@ -1,0 +1,26 @@
+Humans of Svelte Vietnam
+
+/* TEAM */
+
+Developer: Quang Phan
+Github: https://github.com/vnphanquang
+Bluesky: https://bsky.app/profile/vnphanquang.com
+From: Vietnam
+
+Designer: Trong Tran
+From: Vietnam
+
+/* SITE */
+
+Language: English
+Doctype: HTML5
+IDE: Neovim, VSCode
+
+/* TECHNOLOGY */
+
+Svelte: https://svelte.dev/
+Svelte-kit: https://kit.svelte.dev/
+Tailwind CSS: https://tailwindcss.com/
+Cloudflare: https://cloudflare.com/
+Typescript: https://www.typescriptlang.org/
+
