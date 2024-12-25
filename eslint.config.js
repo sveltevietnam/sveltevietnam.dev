@@ -1,9 +1,10 @@
+import { fileURLToPath } from 'node:url';
+
+import { includeIgnoreFile } from '@eslint/compat';
 import vnphanquang from '@vnphanquang/eslint-config';
 import jsdoc from 'eslint-plugin-jsdoc';
 import svelte from 'eslint-plugin-svelte';
 import tseslint from 'typescript-eslint';
-import { fileURLToPath } from 'node:url';
-import { includeIgnoreFile } from '@eslint/compat';
 
 const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
 
@@ -22,7 +23,7 @@ const svelteConfig = [
 
 const jsdocConfig = [
 	{
-		files: ['packages/**/*.js'],
+		files: ['libs/**/*.js'],
 		...jsdoc.configs['flat/recommended-typescript-flavor'],
 	},
 	{
@@ -45,10 +46,4 @@ const jsdocConfig = [
 	},
 ];
 
-export default [
-	...vnphanquang,
-	...svelteConfig,
-	...jsdocConfig,
-	includeIgnoreFile(gitignorePath),
-];
-
+export default [...vnphanquang, ...svelteConfig, ...jsdocConfig, includeIgnoreFile(gitignorePath)];

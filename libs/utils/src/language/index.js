@@ -10,6 +10,17 @@ export const DEFAULT_LANGUAGE = /** @satisfies {Language}*/ ('en');
 
 /**
  * unpack target language property of var
+ * @example
+ *
+ * ```js
+ * const translation = {
+ *  en: 'Hello',
+ *  vi: 'Xin chào',
+ * };
+ *
+ * assert(localizeLangVar('en', translation) === 'Hello');
+ * assert(localizeLangVar('vi', translation) === 'Xin chào');
+ * ```
  * @template T
  * @param {Language} lang
  * @param {LangVar<T>} [v]
@@ -30,6 +41,12 @@ export function localizeLangVar(lang, v) {
 
 /**
  * pack var as object with language properties
+ * @example
+ *
+ * ```js
+ * const translation = 'Hello';
+ * assert(delocalizeLangVar(translation) === { en: 'Hello', vi: 'Hello' });
+ * ```
  * @template T
  * @param {LangVar<T>} v
  * @returns {Record<Language, T>}

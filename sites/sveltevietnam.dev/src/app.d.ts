@@ -5,43 +5,41 @@ declare global {
 	}
 
 	namespace App {
+		declare type ColorScheme = import('$lib/constants').ColorScheme;
+		declare type Screen = import('$lib/constants').Screen;
+		declare type Status = import('$lib/constants').Status;
+		declare type Language = import('@internals/utils/language').Language;
+		declare type SharedSettings = {
+			colorScheme: ColorScheme;
+		};
+		declare type Route = {
+			path: string;
+			label: string;
+		};
+
+		interface Locals {
+			language: Language;
+			userId: string;
+			internalReferer?: URL;
+			sharedSettings: SharedSettings;
+		}
+
 		interface PageData {
+			language: Language;
+			sharedSettings: SharedSettings;
 			/**
 			 * per-page page metadata setup
-			 * {@see $routes/+layout.svelte} for defaults
+			 * {@see $routes/(site)/+layout.svelte} for defaults
 			 */
-			meta?: {
-				title?: string;
-				description?: string;
-				keywords?: string[];
-				canonical?: string;
-				structured?: string; // Structured Data LD+JSON
-				og?: {
-					title?: string;
-					site_name?: string;
-					description?: string;
-					type?: 'website' | 'article' | 'profile';
-					image?: string;
-					imageAlt?: string;
-					url?: string;
-				};
-				twitter?: {
-					title?: string;
-					description?: string;
-					card?: string;
-					image?: string;
-					imageAlt?: string;
-					site?: string;
-					creator?: string;
-				};
-			};
+			meta?: import('$lib/meta').PageMetadata;
 		}
 
 		// interface PageState {}
 		interface Platform {
 			env?: Record<string, never>;
-			context: import('@cloudflare/workers-types').ExecutionContext;
-			caches: import('@cloudflare/workers-types').CacheStorage & {
+			cf?: import('@cloudflare/workers-types').IncomingRequestCfProperties;
+			context?: import('@cloudflare/workers-types').ExecutionContext;
+			caches?: import('@cloudflare/workers-types').CacheStorage & {
 				default: import('@cloudflare/workers-types').Cache;
 			};
 		}
@@ -53,3 +51,4 @@ declare global {
 }
 
 export {};
+

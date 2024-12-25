@@ -2,9 +2,10 @@
 	import { version } from '$app/environment';
 	import { page } from '$app/state';
 	import ogImageHome from '$lib/assets/images/og-fallback.jpg?url';
+	import { SettingsContext } from '$lib/settings/context.svelte';
 	import '$lib/styles/app.css';
 
-	let { children } = $props();
+	let { children, data } = $props();
 
 	/** SEO setup */
 	const DEFAULT_KEYWORDS = ['svelte', 'vietnam', 'community', 'technology', 'open-source'];
@@ -52,6 +53,8 @@
 			structured,
 		};
 	});
+
+	SettingsContext.set(data.sharedSettings);
 </script>
 
 <svelte:head>
@@ -94,6 +97,10 @@
 		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 		{@html `<script type="application/ld+json">${meta.structured + '<'}/script>`}
 	{/if}
+
+	<!-- alternative localized links -->
+	<!-- FIXME:setup alternate-lang links -->
+
 </svelte:head>
 
 {@render children()}
