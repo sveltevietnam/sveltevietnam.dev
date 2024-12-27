@@ -1,0 +1,18 @@
+{
+  "home": {
+    "path": "/en",
+    "name": "Home"
+  },
+  "blog/:slug": {
+    "path": "/en/blog/:slug",
+    "name": ":title"
+  },
+  "blog": {
+    "path": "/en/blog",
+    "name": "Blog"
+  },
+  "design": {
+    "path": "/en/design",
+    "name": "Design"
+  }
+}

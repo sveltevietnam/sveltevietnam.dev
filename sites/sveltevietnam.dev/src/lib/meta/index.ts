@@ -1,11 +1,11 @@
-import type { Thing, WithContext } from 'schema-dts';
+import type { Thing } from 'schema-dts';
 
 export type PageMetadata = {
 	title?: string;
 	description?: string;
 	keywords?: string[];
 	canonical?: string;
-	structured?: string; // Structured Data LD+JSON
+	structured?: Thing[] | Thing; // Structured Data LD+JSON
 	og?: {
 		title?: string;
 		site_name?: string;
@@ -24,29 +24,4 @@ export type PageMetadata = {
 		site?: string;
 		creator?: string;
 	};
-	alternateLangs?: {
-		lang: string;
-		href: string;
-	}[];
 };
-
-export type PageCrumb = {
-	slug: string;
-	label: string;
-};
-
-export function withContext<T extends Thing>(data: T) {
-	return {
-		'@context': 'https://schema.org',
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		...(data as any)
-	} satisfies WithContext<T>;
-}
-
-export function toStringWithContext<T extends Thing>(data: T | T[]): string {
-	if (Array.isArray(data)) {
-		return JSON.stringify(data.map(withContext));
-	}
-	return JSON.stringify(withContext(data));
-}
-

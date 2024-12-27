@@ -3,7 +3,6 @@ import { MediaQuery } from 'svelte/reactivity';
 
 import { browser } from '$app/environment';
 import { PUBLIC_COOKIE_NAME_COLOR_SCHEME } from '$env/static/public';
-import type { ColorScheme } from '$lib/constants';
 
 export class SettingsContext {
 	static KEY = 'app:settings';
@@ -15,7 +14,8 @@ export class SettingsContext {
 
 	// $state
 	#hydrated = $state(false);
-	#userColorScheme = $state<ColorScheme>('system');
+	#userColorScheme = $state<App.ColorScheme>('system');
+	language = $state<App.Language>('en');
 
 	// $derived
 	readonly colorScheme = $derived.by(() => {
@@ -37,8 +37,13 @@ export class SettingsContext {
 			}
 		});
 
+		$effect(() => {
+			document.documentElement.setAttribute('lang', this.language);
+		});
+
 		this.#hydrated = browser;
 		this.#userColorScheme = sharedSettings.colorScheme;
+		this.language = sharedSettings.language;
 	}
 
 	setUserColorScheme(colorScheme: App.ColorScheme) {

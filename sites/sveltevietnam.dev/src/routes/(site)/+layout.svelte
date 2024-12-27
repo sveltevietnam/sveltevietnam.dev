@@ -1,11 +1,15 @@
 <script lang="ts">
 	import { version } from '$app/environment';
+	import { invalidate } from '$app/navigation';
 	import { page } from '$app/state';
 	import ogImageHome from '$lib/assets/images/og-fallback.jpg?url';
+	import { LOAD_DEPENDENCIES } from '$lib/constants';
+	import { toStringWithContext, buildStructuredBreadcrumbs } from '$lib/meta/structured';
+	import { RoutingContext } from '$lib/routing/context.svelte.js';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 	import '$lib/styles/app.css';
 
-	let { children, data } = $props();
+	let { children } = $props();
 
 	/** SEO setup */
 	const DEFAULT_KEYWORDS = ['svelte', 'vietnam', 'community', 'technology', 'open-source'];
@@ -18,8 +22,18 @@
 			'Inclusive community and go-to information hub for people of Svelte in Vietnam';
 		const keywords = meta?.keywords ? [...DEFAULT_KEYWORDS, ...meta.keywords] : DEFAULT_KEYWORDS;
 		const canonical = meta?.canonical ?? page.url.toString();
-		const structured = meta?.structured;
 		const rootRelativeOgImage = meta?.og?.image ?? ogImageHome;
+
+		// structured data
+		const things = !meta?.structured
+			? []
+			: Array.isArray(meta.structured)
+				? meta.structured
+				: [meta.structured];
+		if (page.data.routing.breadcrumbs.length > 1) {
+			things.push(buildStructuredBreadcrumbs(page.url.origin, page.data.routing.breadcrumbs));
+		}
+		const structured = things.length > 0 ? toStringWithContext(things) : undefined;
 
 		const og = {
 			title: meta?.og?.title ?? title,
@@ -54,7 +68,20 @@
 		};
 	});
 
-	SettingsContext.set(data.sharedSettings);
+	const settings = SettingsContext.set(page.data.sharedSettings);
+	const routing = RoutingContext.set(page.data.routing);
+
+	function reloadLanguage() {
+		invalidate(LOAD_DEPENDENCIES.LANGUAGE);
+	}
+
+	$effect(() => {
+		routing.update(page.data.routing);
+	});
+
+	$effect(() => {
+		settings.language = page.data.sharedSettings.language;
+	});
 </script>
 
 <svelte:head>
@@ -99,8 +126,34 @@
 	{/if}
 
 	<!-- alternative localized links -->
-	<!-- FIXME:setup alternate-lang links -->
-
+	{#each Object.entries(routing.paths) as [lang, route]}
+		<link rel="alternate" hreflang={lang} href="{page.url.origin}{route.path}" />
+	{/each}
+	<link
+		rel="alternate"
+		hreflang="x-default"
+		href="{page.url.origin}{routing.paths.vi.path}"
+	/>
 </svelte:head>
 
 {@render children()}
+
+<p>
+	<a href={routing.paths.en.path} onclick={reloadLanguage}>EN</a>
+	|
+	<a href={routing.paths.vi.path} onclick={reloadLanguage}>VI</a>
+</p>
+
+<nav>
+	<ul>
+		<li>
+			<a href={routing.path('design')}>{routing.name('design')}</a>
+		</li>
+		<li>
+			<a href={routing.path('blog')}>{routing.name('blog')}</a>
+		</li>
+		<li>
+			<a href={routing.path('blog/:slug', 'a-blog-about-something')}>A Blog About Something</a>
+		</li>
+	</ul>
+</nav>

@@ -1,7 +1,6 @@
 import { localizeLangVar } from '@internals/utils/language';
 
 import { SVELTE_VIETNAM_ORG } from '$data/structured';
-import { toStringWithContext } from '$lib/meta';
 
 import type { PageServerLoad } from './$types';
 
@@ -39,8 +38,8 @@ const meta = {
 export const load: PageServerLoad = ({ locals }) => {
 	return {
 		meta: {
-			structured: toStringWithContext(SVELTE_VIETNAM_ORG),
-			...localizeLangVar(locals.language, meta),
+			structured: SVELTE_VIETNAM_ORG,
+			...localizeLangVar(locals.sharedSettings.language, meta),
 		},
 	};
 };

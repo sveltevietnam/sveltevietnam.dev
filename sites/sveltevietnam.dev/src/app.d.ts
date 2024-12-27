@@ -11,21 +11,22 @@ declare global {
 		declare type Language = import('@internals/utils/language').Language;
 		declare type SharedSettings = {
 			colorScheme: ColorScheme;
-		};
-		declare type Route = {
-			path: string;
-			label: string;
+			language: Language;
 		};
 
 		interface Locals {
-			language: Language;
 			userId: string;
 			internalReferer?: URL;
 			sharedSettings: SharedSettings;
 		}
 
 		interface PageData {
-			language: Language;
+			routing: {
+				map: Record<App.RouteKey, App.Route>;
+				key: App.RouteKey;
+				breadcrumbs: App.Route[];
+				paths: Record<App.Language, App.Route>;
+			};
 			sharedSettings: SharedSettings;
 			/**
 			 * per-page page metadata setup
@@ -51,4 +52,3 @@ declare global {
 }
 
 export {};
-

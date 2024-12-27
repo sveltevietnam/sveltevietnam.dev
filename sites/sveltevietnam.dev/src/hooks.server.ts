@@ -10,14 +10,11 @@ import { COMMON_COOKIE_CONFIG, PUBLIC_COOKIE_CONFIG } from '$lib/constants';
 export const handle: Handle = async ({ event, resolve }) => {
 	const { locals, cookies, url, route, platform, request } = event;
 
+	console.log('hooks.server.ts - handle', route.id);
+
 	// Ensure that the user has a unique ID
 	locals.userId = cookies.get(COOKIE_NAME_USER_ID) || crypto.randomUUID();
 	cookies.set(COOKIE_NAME_USER_ID, locals.userId, COMMON_COOKIE_CONFIG);
-
-	// return as is if fetching api routes
-	if (route.id?.includes('(api)')) {
-		return resolve(event);
-	}
 
 	const referer = request.headers.get('Referer');
 	if (referer) {
@@ -58,25 +55,29 @@ export const handle: Handle = async ({ event, resolve }) => {
 		else redirect(302, localizeUrl(url, 'vi', LANGUAGES));
 	}
 
-	locals.language = languageFromUrl;
 	locals.sharedSettings = {
+		language: languageFromUrl,
 		colorScheme:
 			(url.searchParams.get('color-scheme') as App.ColorScheme) ||
 			(cookies.get(PUBLIC_COOKIE_NAME_COLOR_SCHEME) as App.ColorScheme) ||
 			'system',
 	} satisfies App.SharedSettings;
-
-	cookies.set(COOKIE_NAME_LANGUAGE, locals.language, COMMON_COOKIE_CONFIG);
+	cookies.set(COOKIE_NAME_LANGUAGE, locals.sharedSettings.language, COMMON_COOKIE_CONFIG);
 	cookies.set(
 		PUBLIC_COOKIE_NAME_COLOR_SCHEME,
 		locals.sharedSettings.colorScheme,
 		PUBLIC_COOKIE_CONFIG,
 	);
 
+	// return early if fetching api routes
+	if (route.id?.includes('(api)')) {
+		return resolve(event);
+	}
+
 	const response = await resolve(event, {
 		transformPageChunk: ({ html }) =>
 			html
-				.replace('%language%', locals.language)
+				.replace('%language%', locals.sharedSettings.language)
 				.replace('%color-scheme%', locals.sharedSettings.colorScheme),
 	});
 

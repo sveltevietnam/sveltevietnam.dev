@@ -1,5 +1,9 @@
 import { type Cookies } from '@sveltejs/kit';
 
+export const LOAD_DEPENDENCIES = {
+	LANGUAGE: 'app:language',
+} as const;
+
 export const STATUSES = ['info', 'success', 'warning', 'error'] as const;
 export type Status = (typeof STATUSES)[number];
 

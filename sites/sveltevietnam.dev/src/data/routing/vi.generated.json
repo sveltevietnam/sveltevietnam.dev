@@ -1,0 +1,18 @@
+{
+  "home": {
+    "path": "/vi",
+    "name": "Home"
+  },
+  "blog/:slug": {
+    "path": "/vi/blog/:slug",
+    "name": ":title"
+  },
+  "blog": {
+    "path": "/vi/blog",
+    "name": "Blog"
+  },
+  "design": {
+    "path": "/vi/thiet-ke",
+    "name": "Thiết kế"
+  }
+}
