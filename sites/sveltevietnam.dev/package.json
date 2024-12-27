@@ -15,26 +15,28 @@
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20241218.0",
+		"@cloudflare/workers-types": "^4.20241224.0",
 		"@internals/utils": "workspace:*",
 		"@svelte-put/preprocess-auto-slug": "^2.0.0",
 		"@svelte-put/preprocess-external-link": "^1.0.0",
-		"@sveltejs/adapter-cloudflare": "^4.9.0",
+		"@sveltejs/adapter-cloudflare": "^5.0.0",
 		"@sveltejs/enhanced-img": "^0.4.4",
-		"@sveltejs/kit": "^2.15.0",
+		"@sveltejs/kit": "^2.15.1",
 		"@sveltejs/vite-plugin-svelte": "^5.0.3",
 		"@tailwindcss/typography": "^0.5.15",
 		"@tailwindcss/vite": "4.0.0-beta.8",
 		"@total-typescript/ts-reset": "^0.6.1",
 		"@types/mustache": "^4.2.5",
+		"dedent": "^1.5.3",
 		"postcss-color-scheme": "^2.1.0",
 		"postcss-custom-media": "^11.0.5",
 		"postcss-custom-selectors": "^8.0.4",
 		"schema-dts": "^1.1.2",
-		"svelte": "^5.15.0",
+		"svelte": "^5.16.0",
 		"sveltekit-superforms": "^2.22.1",
 		"tailwindcss": "4.0.0-beta.8",
-		"vite": "^6.0.5"
+		"tiny-glob": "^0.2.9",
+		"vite": "^6.0.6"
 	},
 	"dependencies": {
 		"@floating-ui/dom": "^1.6.12",
