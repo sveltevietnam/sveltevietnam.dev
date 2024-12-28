@@ -1,3 +1,4 @@
+import { sveltekitI18N } from '@internals/i18n/vite';
 import { enhancedImages } from '@sveltejs/enhanced-img';
 import { sveltekit } from '@sveltejs/kit/vite';
 import tailwindcss from '@tailwindcss/vite';
@@ -19,10 +20,5 @@ export default defineConfig({
 			],
 		},
 	},
-	plugins: [
-		enhancedImages(),
-		tailwindcss(),
-		sveltekit(),
-		sveltekitRouting(),
-	],
+	plugins: [enhancedImages(), tailwindcss(), sveltekit(), sveltekitRouting(), sveltekitI18N()],
 });

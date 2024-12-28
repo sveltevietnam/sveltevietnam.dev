@@ -1,5 +1,5 @@
-import en from '$data/routing/en.generated.json';
-import vi from '$data/routing/vi.generated.json';
+import en from '$data/routing/generated/en.json';
+import vi from '$data/routing/generated/vi.json';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 
 import type { LayoutServerLoad } from './$types';

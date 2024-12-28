@@ -1,12 +1,13 @@
 /**
  * @template {URL | string} U
+ * @template {string} L
  * @template [R=U extends string ? string : URL]
  * @param {U} url
- * @param {string} lang
- * @param {ReadonlyArray<string>} langs
+ * @param {ReadonlyArray<L>} langs
+ * @param {L} lang
  * @returns {R}
  */
-export function localizeUrl(url, lang, langs) {
+export function localizeUrl(url, langs, lang) {
 	/** @type {URL} */
 	let rUrl;
 	if (typeof url === 'string') {

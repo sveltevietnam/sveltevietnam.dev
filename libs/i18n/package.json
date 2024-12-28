@@ -1,7 +1,7 @@
 {
-	"name": "@internals/utils",
-	"version": "1.0.0-next.2",
-	"description": "utilities for sveltevietnam.dev projects",
+	"name": "@internals/i18n",
+	"version": "1.0.0-next.0",
+	"description": "i18n automation for sveltevietnam.dev projects",
 	"private": true,
 	"module": "src/index.js",
 	"types": "types/index.d.ts",
@@ -11,13 +11,21 @@
 			"types": "./types/index.d.ts",
 			"import": "./src/index.js"
 		},
-		"./url": {
+		"./utils": {
 			"types": "./types/index.d.ts",
-			"import": "./src/url/index.js"
+			"import": "./src/utils/index.js"
 		},
-		"./language": {
+		"./vite": {
 			"types": "./types/index.d.ts",
-			"import": "./src/language/index.js"
+			"import": "./src/vite/index.js"
+		},
+		"./runtime": {
+			"types": "./types/index.d.ts",
+			"import": "./src/runtime/index.js"
+		},
+		"./T.svelte": {
+			"types": "./src/runtime/T.svelte.d.ts",
+			"svelte": "./src/runtime/T.svelte"
 		}
 	},
 	"files": [
@@ -33,6 +41,17 @@
 		"lint:es": "eslint .",
 		"lint:style": "stylelint '**/*.{svelte,css}'",
 		"format": "prettier --write ."
+	},
+	"dependencies": {
+		"dedent": "^1.5.3",
+		"recast": "^0.23.9",
+		"tiny-glob": "^0.2.9",
+		"typescript": "^5.7.2",
+		"valibot": "1.0.0-beta.9"
+	},
+	"devDependencies": {
+		"svelte": "^5.16.0",
+		"vite": "^6.0.6"
 	},
 	"volta": {
 		"extends": "../../package.json"

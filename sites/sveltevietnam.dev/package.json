@@ -16,7 +16,7 @@
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20241224.0",
-		"@internals/utils": "workspace:*",
+		"@internals/i18n": "workspace:*",
 		"@svelte-put/preprocess-auto-slug": "^2.0.0",
 		"@svelte-put/preprocess-external-link": "^1.0.0",
 		"@sveltejs/adapter-cloudflare": "^5.0.0",
@@ -31,6 +31,7 @@
 		"postcss-color-scheme": "^2.1.0",
 		"postcss-custom-media": "^11.0.5",
 		"postcss-custom-selectors": "^8.0.4",
+		"recast": "^0.23.9",
 		"schema-dts": "^1.1.2",
 		"svelte": "^5.16.0",
 		"sveltekit-superforms": "^2.22.1",

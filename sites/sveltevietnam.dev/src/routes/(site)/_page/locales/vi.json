@@ -1,0 +1,11 @@
+{
+	"module": "home",
+	"messages": {
+		"four_steps_to_svelte": "Bốn bước đến Svelte",
+		"one": "Bước một",
+		"one_heading": "Khám phá Svelte bằng thực hành",
+		"one_description": "<strong>Svelte tutorial*</strong> là tài liệu hướng dẫn chính thức, giúp bạn ‘học bằng hành’ — tiếp cận những khái niệm về Svelte và SvelteKit từ cơ bản đến nâng cao thông qua từng bài tập nhỏ.",
+		"one_link": "Xem trang Svelte Tutorial",
+		"one_footnote": "* đây là tài liệu dành cho Svelte 5 và hiện tại chỉ hỗ trợ tiếng Anh"
+	}
+}

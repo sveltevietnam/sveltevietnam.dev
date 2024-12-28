@@ -1,8 +1,8 @@
-import { LANGUAGES } from '@internals/utils/language';
-import { delocalizeUrl, getLangFromUrl } from '@internals/utils/url';
+import { LANGUAGES } from '@internals/i18n';
+import { delocalizeUrl, getLangFromUrl } from '@internals/i18n/utils';
 import type { Reroute } from '@sveltejs/kit';
 
-import config from '$data/routing/reroute-config.generated.json';
+import config from '$data/routing/generated/reroute-config.json';
 
 const viToEn = config.viToEn as Record<string, string>;
 const mismatchedPathSet = new Set(config.mismatchedPaths);

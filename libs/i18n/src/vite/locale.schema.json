@@ -1,0 +1,37 @@
+{
+  "type": "object",
+  "properties": {
+    "module": {
+      "type": "string"
+    },
+    "messages": {
+      "type": "object",
+			 "patternProperties": {
+				"^[a-zA-Z0-9_]+$": {
+					"anyOf": [
+						{
+							"type": "string"
+						},
+						{
+							"type": "object",
+							"properties": {
+								"type": {
+									"enum": ["text", "function", "snippet"]"
+								}
+								"content": {
+									"type": "string"
+								}
+								"required": ["type", "content"]
+							}
+						}
+					]
+				}
+			}
+    }
+  },
+  "required": [
+    "module",
+    "messages"
+  ]
+}
+

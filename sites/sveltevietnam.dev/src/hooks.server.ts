@@ -1,5 +1,5 @@
-import { LANGUAGES } from '@internals/utils/language';
-import { localizeUrl, getLangFromUrl } from '@internals/utils/url';
+import { LANGUAGES } from '@internals/i18n';
+import { localizeUrl, getLangFromUrl } from '@internals/i18n/utils';
 import { redirect, type Handle } from '@sveltejs/kit';
 
 import { building } from '$app/environment';
@@ -33,26 +33,26 @@ export const handle: Handle = async ({ event, resolve }) => {
 		if (locals.internalReferer) {
 			languageFromUrl = getLangFromUrl(locals.internalReferer, LANGUAGES);
 			if (languageFromUrl) {
-				redirect(302, localizeUrl(url, languageFromUrl, LANGUAGES));
+				redirect(302, localizeUrl(url,LANGUAGES, languageFromUrl));
 			}
 		}
 
 		// if user has cookie lang, redirect accordingly
 		const cookieLang = cookies.get(COOKIE_NAME_LANGUAGE);
 		if (cookieLang && cookieLang !== 'vi') {
-			redirect(302, localizeUrl(url, cookieLang, LANGUAGES));
+			redirect(302, localizeUrl(url, LANGUAGES, cookieLang));
 		}
 
 		// if user comes from a non-VN IP, redirect to EN
 		// REF: https://developers.cloudflare.com/workers/runtime-apis/request/#incomingrequestcfproperties
 		const countryCode = platform?.cf?.country;
 		if (countryCode && countryCode.toUpperCase() !== 'VN') {
-			redirect(302, localizeUrl(url, 'en', LANGUAGES));
+			redirect(302, localizeUrl(url, LANGUAGES, 'en'));
 		}
 
 		// pass through during building (kit - prerendering)
-		if (building && url.origin === 'http://sveltekit-prerender') languageFromUrl = 'vi';
-		else redirect(302, localizeUrl(url, 'vi', LANGUAGES));
+		if (building && url.origin === 'https://www.sveltevietnam.dev') languageFromUrl = 'vi';
+		else redirect(302, localizeUrl(url, LANGUAGES, 'vi'));
 	}
 
 	locals.sharedSettings = {

@@ -8,7 +8,7 @@ declare global {
 		declare type ColorScheme = import('$lib/constants').ColorScheme;
 		declare type Screen = import('$lib/constants').Screen;
 		declare type Status = import('$lib/constants').Status;
-		declare type Language = import('@internals/utils/language').Language;
+		declare type Language = import('@internals/i18n').Language;
 		declare type SharedSettings = {
 			colorScheme: ColorScheme;
 			language: Language;
@@ -52,3 +52,4 @@ declare global {
 }
 
 export {};
+

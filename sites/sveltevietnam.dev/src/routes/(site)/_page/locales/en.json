@@ -1,0 +1,11 @@
+{
+	"module": "home",
+	"messages": {
+		"four_steps_to_svelte": "Four Steps to Svelte",
+		"one": "Step one",
+		"one_heading": "Discover Svelte Hands on",
+		"one_description": "<strong>Svelte tutorial*</strong> is an official guide that helps you ‘learn by doing’ — get hands-on with Svelte and SvelteKit concepts from basic to advanced through small exercises.",
+		"one_link": "View Svelte Tutorial page",
+		"one_footnote": "* this is a guide for Svelte 5 and currently only supports English"
+	}
+}

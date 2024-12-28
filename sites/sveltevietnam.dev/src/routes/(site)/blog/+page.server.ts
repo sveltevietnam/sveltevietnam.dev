@@ -1,4 +1,4 @@
-import { localizeLangVar } from '@internals/utils/language';
+import { unpackLangVar } from '@internals/i18n/utils';
 
 import { SVELTE_VIETNAM_BLOG } from '$data/structured';
 
@@ -23,7 +23,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 	return {
 		meta: {
 			structured: SVELTE_VIETNAM_BLOG,
-			...localizeLangVar(locals.sharedSettings.language, meta),
+			...unpackLangVar(meta, locals.sharedSettings.language),
 		},
 	};
 };
