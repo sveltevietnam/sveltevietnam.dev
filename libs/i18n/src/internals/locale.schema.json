@@ -1,9 +1,6 @@
 {
   "type": "object",
   "properties": {
-    "module": {
-      "type": "string"
-    },
     "messages": {
       "type": "object",
 			 "patternProperties": {
@@ -30,7 +27,6 @@
     }
   },
   "required": [
-    "module",
     "messages"
   ]
 }

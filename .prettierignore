@@ -3,4 +3,5 @@ CHANGELOG.md
 *.md.svelte
 *.svg
 pnpm-lock.yaml
+locales/*.js
 

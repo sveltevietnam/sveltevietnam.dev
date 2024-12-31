@@ -6,20 +6,40 @@ import * as utils from './utils.js';
 
 export const newline = () => factory.createIdentifier('\n');
 
-// const NO_SIDE_EFFECT_MARKER = '@__NO_SIDE_EFFECTS__';
-
 /**
  * @param {string} content
+ * @param {import('./private.d.ts').MessageParameter[]} params
  * @param {boolean} [snippet] - whether processing for snippet (true) or function (false)
- * @returns {{ node: ts.TemplateLiteral | ts.StringLiteral | ts.PropertyAccessExpression | ts.Identifier, params: string[] }}
+ * @returns {ts.TemplateLiteral | ts.StringLiteral | ts.PropertyAccessExpression | ts.Identifier}
  */
-function parseStrWithParams(content, snippet = false) {
-	/** @type {Set<string>} */
-	const params = new Set();
-	/** @type {ReturnType<typeof parseStrWithParams>['node']} */
+function chunkifyContentWithParams(content, params, snippet = false) {
+	/** @type {ReturnType<typeof chunkifyContentWithParams>} */
 	let node = factory.createStringLiteral('');
 
-	const chunks = utils.splitStrWithParameters(content);
+	/**
+	 * Split a string with dynamic parameters into an array.
+	 * For example:
+	 *	 - input: 'some text {{param}}'
+	 *	 - output: [{type: 'literal', content: 'some text '}, {type: 'identifier', content: 'param'}]
+	 */
+	/** @type {{type: 'identifier' | 'literal', content: string}[]} */
+	const chunks = [];
+	if (params.length === 0) {
+		chunks.push({ type: 'literal', content });
+	} else {
+		let cursor = 0;
+		for (let i = 0; i < content.length; i++) {
+			const { start, end, name } = params[i];
+			const literal = content.slice(cursor, start);
+			if (literal) chunks.push({ type: 'literal', content: literal });
+			chunks.push({ type: 'identifier', content: name });
+			cursor = end;
+		}
+
+		if (cursor < content.length) {
+			chunks.push({ type: 'literal', content: content.slice(cursor) });
+		}
+	}
 
 	/**
 	 * @param {string} param
@@ -40,7 +60,6 @@ function parseStrWithParams(content, snippet = false) {
 			node = factory.createStringLiteral(content);
 		} else {
 			node = referenceParam(content);
-			params.add(content);
 		}
 	} else if (chunks.length > 1) {
 		/** @type {ts.TemplateHead} */
@@ -59,7 +78,6 @@ function parseStrWithParams(content, snippet = false) {
 				continue;
 			}
 
-			params.add(content);
 			const next = chunks[i + 1];
 
 			// e.g. ^ [...] {{param1}} $
@@ -97,7 +115,7 @@ function parseStrWithParams(content, snippet = false) {
 		node = factory.createTemplateExpression(head, spans);
 	}
 
-	return { node, params: Array.from(params) };
+	return node;
 }
 
 /**
@@ -195,10 +213,11 @@ export function importSvelteSnippetUtil() {
  * use {@link https://ts-ast-viewer.com | AST Viewer}
  * @param {string} key
  * @param {string} content
+ * @param {import('./private.d.ts').MessageParameter[]} params
  * @returns {ts.Node[]}
  */
-export function exportMessageFunction(key, content) {
-	const { node: renderedContent, params } = parseStrWithParams(content);
+export function exportMessageFunction(key, content, params) {
+	const renderedContent = chunkifyContentWithParams(content, params);
 
 	const expression = factory.createParenthesizedExpression(
 		factory.createArrowFunction(
@@ -214,7 +233,7 @@ export function exportMessageFunction(key, content) {
 									factory.createBindingElement(
 										undefined,
 										undefined,
-										factory.createIdentifier(param),
+										factory.createIdentifier(param.name),
 										undefined,
 									),
 								),
@@ -264,9 +283,10 @@ export function exportMessageFunction(key, content) {
  * use {@link https://ts-ast-viewer.com | AST Viewer}
  * @param {string} key
  * @param {string} content
+ * @param {import('./private.d.ts').MessageParameter[]} params
  * @returns {ts.Node[]}
  */
-export function exportMessageSnippet(key, content) {
+export function exportMessageSnippet(key, content, params) {
 	// if `content` is not an HTML element itself
 	// e.g. `<element>...</element`
 	// then wrap `content` in a `span` element
@@ -274,7 +294,7 @@ export function exportMessageSnippet(key, content) {
 		content = `<span>${content}</span>`;
 	}
 
-	const { node: renderedContent, params } = parseStrWithParams(content, true);
+	const renderedContent = chunkifyContentWithParams(content, params, true);
 
 	const expression = factory.createParenthesizedExpression(
 		factory.createCallExpression(factory.createIdentifier('createRawSnippet'), undefined, [
@@ -352,69 +372,67 @@ export function exportMessageSnippet(key, content) {
  */
 export function makeLoaderModule(langs, defaultLang) {
 	const otherLangs = langs.filter((lang) => lang !== defaultLang);
-	const node =
-		factory.createFunctionDeclaration(
+	const node = factory.createFunctionDeclaration(
+		[
+			factory.createToken(ts.SyntaxKind.ExportKeyword),
+			factory.createToken(ts.SyntaxKind.AsyncKeyword),
+		],
+		undefined,
+		factory.createIdentifier('load'),
+		undefined,
+		[
+			factory.createParameterDeclaration(
+				undefined,
+				undefined,
+				factory.createIdentifier('lang'),
+				undefined,
+				undefined,
+				undefined,
+			),
+		],
+		undefined,
+		factory.createBlock(
 			[
-				factory.createToken(ts.SyntaxKind.ExportKeyword),
-				factory.createToken(ts.SyntaxKind.AsyncKeyword),
-			],
-			undefined,
-			factory.createIdentifier('load'),
-			undefined,
-			[
-				factory.createParameterDeclaration(
-					undefined,
-					undefined,
-					factory.createIdentifier('lang'),
-					undefined,
-					undefined,
-					undefined,
-				),
-			],
-			undefined,
-			factory.createBlock(
-				[
-					...otherLangs.map((lang) =>
-						factory.createIfStatement(
-							factory.createBinaryExpression(
-								factory.createIdentifier('lang'),
-								factory.createToken(ts.SyntaxKind.EqualsEqualsEqualsToken),
-								factory.createStringLiteral(lang),
-							),
-							factory.createReturnStatement(
-								factory.createAwaitExpression(
-									factory.createCallExpression(
-										/** @type {any} */(factory.createToken(ts.SyntaxKind.ImportKeyword)),
-										undefined,
-										[factory.createStringLiteral(`./${lang}.js`)],
-									),
+				...otherLangs.map((lang) =>
+					factory.createIfStatement(
+						factory.createBinaryExpression(
+							factory.createIdentifier('lang'),
+							factory.createToken(ts.SyntaxKind.EqualsEqualsEqualsToken),
+							factory.createStringLiteral(lang),
+						),
+						factory.createReturnStatement(
+							factory.createAwaitExpression(
+								factory.createCallExpression(
+									/** @type {any} */ (factory.createToken(ts.SyntaxKind.ImportKeyword)),
+									undefined,
+									[factory.createStringLiteral(`./${lang}.js`)],
 								),
 							),
+						),
+						undefined,
+					),
+				),
+				factory.createReturnStatement(
+					factory.createAwaitExpression(
+						factory.createCallExpression(
+							/** @type {any} */ (factory.createToken(ts.SyntaxKind.ImportKeyword)),
 							undefined,
+							[factory.createStringLiteral(`./${defaultLang}.js`)],
 						),
 					),
-					factory.createReturnStatement(
-						factory.createAwaitExpression(
-							factory.createCallExpression(
-								/** @type {any} */(factory.createToken(ts.SyntaxKind.ImportKeyword)),
-								undefined,
-								[factory.createStringLiteral(`./${defaultLang}.js`)],
-							),
-						),
-					),
-				],
-				true,
-			),
-		);
+				),
+			],
+			true,
+		),
+	);
 
 	const jsdoc = factory.createJSDocComment(dedent`
-		@param {${langs.map(l => `"${l}"`).join('|')}} lang
+		@param {${langs.map((l) => `"${l}"`).join('|')}} lang
 		@returns {Promise<typeof import('./${defaultLang}.js')>}
 	`);
 
 	return print([jsdoc, node]);
 }
-
 
 /**
  * @param {import('typescript').Node[]} nodes

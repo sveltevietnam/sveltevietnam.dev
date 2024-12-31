@@ -17,7 +17,7 @@
 		},
 		"./vite": {
 			"types": "./types/index.d.ts",
-			"import": "./src/vite/index.js"
+			"import": "./src/vite.js"
 		},
 		"./runtime": {
 			"types": "./types/index.d.ts",
