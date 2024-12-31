@@ -76,8 +76,6 @@ export async function rebuildLocales(dirMap, filepaths, defaultLang) {
 		});
 	}
 
-	console.log('before', dirMap)
-
 	for (const [dirpath, locales] of updatedDirPath.entries()) {
 		const outDirPath = path.join(dirpath, 'generated');
 		outputs.dirpaths.push(outDirPath);
@@ -86,11 +84,11 @@ export async function rebuildLocales(dirMap, filepaths, defaultLang) {
 		const existingLangs = new Set(Object.keys(dirMap.get(dirpath) || {}));
 
 		const allLangs = new Set([...updatedLangs, ...existingLangs]);
-		console.log(updatedLangs, existingLangs)
 		if (updatedLangs.difference(existingLangs).size) {
+			const updatedDefaultLang = allLangs.has(defaultLang) ? defaultLang : Array.from(allLangs)[0];
 			outputs.modules.push({
 				filepath: path.join(outDirPath, 'index.js'),
-				code: codegen.makeLoaderModule(Array.from(allLangs), defaultLang),
+				code: codegen.makeLoaderModule(Array.from(allLangs), updatedDefaultLang),
 			});
 		}
 
@@ -102,9 +100,59 @@ export async function rebuildLocales(dirMap, filepaths, defaultLang) {
 		}
 	}
 
-	console.log('after', dirMap)
+	await writeOutputs(outputs);
+}
+
+/**
+ * @param {import('./private.d.ts').LocaleDirectoryMap} dirMap
+ * @param {string[]} filepaths
+ * @param {string} defaultLang
+ */
+export async function removeLocales(dirMap, filepaths, defaultLang) {
+	/** @type {import('./private.d.ts').BuildOutput}  */
+	const outputs = {
+		dirpaths: [],
+		modules: [],
+	};
+	/** @type {string[]} */
+	const removals = [];
+
+	/** @type {Map<string, string[]>}*/
+	const removedDirMap = new Map();
+
+	for (const filepath of filepaths) {
+		const dirpath = path.dirname(filepath);
+		const lang = path.basename(filepath, '.json');
+
+		removals.push(path.join(dirpath, 'generated', `${lang}.js`));
+		let dir = removedDirMap.get(dirpath);
+		if (!dir) {
+			dir = [];
+			removedDirMap.set(dirpath, dir);
+		}
+		dir.push(lang);
+	}
+
+	for (const [dirpath, locales] of dirMap.entries()) {
+		if (!removedDirMap.has(dirpath)) continue;
+		for (const lang of removedDirMap.get(dirpath) ?? []) {
+			delete locales[lang];
+		}
+		if (Object.keys(locales).length === 0) {
+			dirMap.delete(dirpath);
+			removals.push(path.join(dirpath, 'generated', 'index.js'));
+		} else {
+			const allLangs = Object.keys(locales);
+			const updatedDefaultLang = allLangs.includes(defaultLang) ? defaultLang : allLangs[0];
+			outputs.modules.push({
+				filepath: path.join(dirpath, 'generated', 'index.js'),
+				code: codegen.makeLoaderModule(allLangs, updatedDefaultLang),
+			});
+		}
+	}
 
 	await writeOutputs(outputs);
+	await Promise.all(removals.map((filepath) => fs.rm(filepath)));
 }
 
 /**

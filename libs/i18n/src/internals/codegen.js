@@ -371,7 +371,7 @@ export function exportMessageSnippet(key, content, params) {
  * @returns {string}
  */
 export function makeLoaderModule(langs, defaultLang) {
-	const otherLangs = langs.filter((lang) => lang !== defaultLang);
+	const otherLangs = langs.filter((lang) => lang !== defaultLang).sort();
 	const node = factory.createFunctionDeclaration(
 		[
 			factory.createToken(ts.SyntaxKind.ExportKeyword),
