@@ -37,6 +37,80 @@ export async function buildAllLocales(dirMap, langs, defaultLang) {
 		outputs.dirpaths.push(outDirPath);
 	}
 
+	await writeOutputs(outputs);
+}
+
+/**
+ * @param {import('./private.d.ts').LocaleDirectoryMap} dirMap
+ * @param {string[]} filepaths
+ * @param {string} defaultLang
+ */
+export async function rebuildLocales(dirMap, filepaths, defaultLang) {
+	/** @type {import('./private.d.ts').LocaleDirectoryMap} */
+	const updatedDirPath = new Map();
+
+	/** @type {import('./private.d.ts').BuildOutput}  */
+	const outputs = {
+		dirpaths: [],
+		modules: [],
+	};
+
+	for (const filepath of filepaths) {
+		const dirpath = path.dirname(filepath);
+		const lang = path.basename(filepath, '.json');
+
+		let dir = updatedDirPath.get(dirpath);
+		if (!dir) {
+			dir = {};
+			updatedDirPath.set(dirpath, dir);
+		}
+		dir[lang] = filepath;
+
+		// parse and transform
+		const locale = await parseLocale(filepath);
+		const code = transformLocale(locale, lang);
+
+		outputs.modules.push({
+			code,
+			filepath: path.join(dirpath, 'generated', `${lang}.js`),
+		});
+	}
+
+	console.log('before', dirMap)
+
+	for (const [dirpath, locales] of updatedDirPath.entries()) {
+		const outDirPath = path.join(dirpath, 'generated');
+		outputs.dirpaths.push(outDirPath);
+
+		const updatedLangs = new Set(Object.keys(locales));
+		const existingLangs = new Set(Object.keys(dirMap.get(dirpath) || {}));
+
+		const allLangs = new Set([...updatedLangs, ...existingLangs]);
+		console.log(updatedLangs, existingLangs)
+		if (updatedLangs.difference(existingLangs).size) {
+			outputs.modules.push({
+				filepath: path.join(outDirPath, 'index.js'),
+				code: codegen.makeLoaderModule(Array.from(allLangs), defaultLang),
+			});
+		}
+
+		const existingLocales = dirMap.get(dirpath);
+		if (!existingLocales) {
+			dirMap.set(dirpath, locales);
+		} else {
+			dirMap.set(dirpath, { ...existingLocales, ...locales });
+		}
+	}
+
+	console.log('after', dirMap)
+
+	await writeOutputs(outputs);
+}
+
+/**
+ * @param {import('./private.d.ts').BuildOutput} outputs
+ */
+async function writeOutputs(outputs) {
 	await Promise.all(outputs.dirpaths.map((dirpath) => fs.mkdir(dirpath, { recursive: true })));
 	await Promise.all(
 		outputs.modules.map(({ filepath, code }) => fs.writeFile(filepath, code, 'utf-8')),
