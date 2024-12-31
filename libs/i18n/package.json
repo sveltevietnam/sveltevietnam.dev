@@ -6,6 +6,7 @@
 	"module": "src/index.js",
 	"types": "types/index.d.ts",
 	"type": "module",
+	"bin": "./src/cli.js",
 	"exports": {
 		".": {
 			"types": "./types/index.d.ts",
@@ -43,8 +44,10 @@
 		"format": "prettier --write ."
 	},
 	"dependencies": {
+		"commander": "^13.0.0",
 		"dedent": "^1.5.3",
 		"lodash.debounce": "^4.0.8",
+		"picocolors": "^1.1.1",
 		"recast": "^0.23.9",
 		"tiny-glob": "^0.2.9",
 		"typescript": "^5.7.2",

@@ -17,11 +17,11 @@ pre-commit:
       stage_fixed: true
       exclude:
         - '*.md.svelte'
-    1_stylelint:
+    3_stylelint:
       run: pnpm stylelint {staged_files}
       glob: '*.{svelte,css}'
       stage_fixed: true
-    2_prettier:
+    4_prettier:
       run: pnpm prettier --write {staged_files}
       glob: '*.{js,ts,svelte,css,json,md,yaml}'
       stage_fixed: true

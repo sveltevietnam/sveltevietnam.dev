@@ -95,12 +95,18 @@ importers:
 
   libs/i18n:
     dependencies:
+      commander:
+        specifier: ^13.0.0
+        version: 13.0.0
       dedent:
         specifier: ^1.5.3
         version: 1.5.3
       lodash.debounce:
         specifier: ^4.0.8
         version: 4.0.8
+      picocolors:
+        specifier: ^1.1.1
+        version: 1.1.1
       recast:
         specifier: ^0.23.9
         version: 0.23.9
@@ -1734,6 +1740,10 @@ packages:
 
   colord@2.9.3:
     resolution: {integrity: sha512-jeC1axXpnb0/2nn/Y1LPuLdgXBLH7aDcHu4KEKfqw3CUhX7ZpfBSlPKyqXE6btIgEzfWtrX3/tyBCaCvXvMkOw==}
+
+  commander@13.0.0:
+    resolution: {integrity: sha512-oPYleIY8wmTVzkvQq10AEok6YcTC4sRUBl8F9gVuwchGVUCTbl/vhLTaQqutuuySYOsu8YTgV+OxKc/8Yvx+mQ==}
+    engines: {node: '>=18'}
 
   comment-parser@1.4.1:
     resolution: {integrity: sha512-buhp5kePrmda3vhc5B9t7pUQXAb2Tnd0qgpkIhPhkHXxJpiPJ11H0ZEU0oBpJ2QztSbzG/ZxMj/CHsYJqRHmyg==}
@@ -5482,6 +5492,8 @@ snapshots:
       color-string: 1.9.1
 
   colord@2.9.3: {}
+
+  commander@13.0.0: {}
 
   comment-parser@1.4.1: {}
 

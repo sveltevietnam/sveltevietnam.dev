@@ -9,6 +9,7 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"lint": "run-p lint:*",
+		"lint:i18n": "pnpm i18n lint",
 		"lint:svelte": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"lint:es": "eslint .",
 		"lint:style": "stylelint '**/*.{svelte,css}'",

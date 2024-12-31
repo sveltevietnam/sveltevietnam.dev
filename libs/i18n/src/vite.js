@@ -1,6 +1,7 @@
 import path from 'node:path';
 
 import debounce from 'lodash.debounce';
+import pico from 'picocolors';
 
 import { buildAllLocales, rebuildLocales, removeLocales } from './internals/build.js';
 import { collectLocaleDirMap } from './internals/collect.js';
@@ -33,7 +34,7 @@ export function i18n() {
 			const cwd = server.config.root;
 			const dirMap = await collectLocaleDirMap(cwd, pattern);
 
-			console.log('[sveltekit-i18n] Building all locales...');
+			console.log(pico.blue('[sveltekit-i18n] Building all locales...'));
 			await buildAllLocales(dirMap, config.langs, config.defaultLang);
 
 			/**
@@ -45,23 +46,18 @@ export function i18n() {
 				const ext = path.extname(filepath);
 				const lang = path.basename(filepath, ext);
 
-				return (
-					ext === '.json' &&
-					config.langs.includes(lang) &&
-					dirname === config.dirname
-				);
+				return ext === '.json' && config.langs.includes(lang) && dirname === config.dirname;
 			}
 
 			/** @type {Set<string>} */
 			let updatedFilepathSet = new Set();
-			const debounceRebuildLocales = debounce(
-				async () => {
-					console.log('[sveltekit-i18n] Detected changes in locale files. Rebuilding some...');
-					await rebuildLocales(dirMap, Array.from(updatedFilepathSet), config.defaultLang);
-					updatedFilepathSet.clear();
-				},
-				1000,
-			);
+			const debounceRebuildLocales = debounce(async () => {
+				console.log(
+					pico.yellow('[sveltekit-i18n] Detected changes in locale files. Rebuilding some...'),
+				);
+				await rebuildLocales(dirMap, Array.from(updatedFilepathSet), config.defaultLang);
+				updatedFilepathSet.clear();
+			}, 1000);
 			/** @param {string} filepath */
 			function onUpdate(filepath) {
 				const relpath = path.relative(cwd, filepath);
@@ -72,14 +68,13 @@ export function i18n() {
 
 			/** @type {Set<string>} */
 			const removedFilepathSet = new Set();
-			const debounceRemoveLocales = debounce(
-				async () => {
-					console.log('[sveltekit-i18n] Detected removal of locale files. Rebuilding some...');
-					await removeLocales(dirMap, Array.from(removedFilepathSet), config.defaultLang);
-					removedFilepathSet.clear();
-				},
-				1000,
-			);
+			const debounceRemoveLocales = debounce(async () => {
+				console.log(
+					pico.yellow('[sveltekit-i18n] Detected removal of locale files. Rebuilding some...'),
+				);
+				await removeLocales(dirMap, Array.from(removedFilepathSet), config.defaultLang);
+				removedFilepathSet.clear();
+			}, 1000);
 
 			/** @param {string} filepath */
 			function onUnlink(filepath) {
