@@ -17,7 +17,7 @@ export async function buildAllLocales(dirMap, langs, defaultLang) {
 		modules: [],
 	};
 
-	for (const [dirpath, locales] of dirMap.entries()) {
+	await Promise.all(dirMap.entries().map(async ([dirpath, locales]) => {
 		const outDirPath = path.join(dirpath, 'generated');
 
 		for (const [lang, filepath] of Object.entries(locales)) {
@@ -35,7 +35,8 @@ export async function buildAllLocales(dirMap, langs, defaultLang) {
 			code: codegen.makeLoaderModule(langs, defaultLang),
 		});
 		outputs.dirpaths.push(outDirPath);
-	}
+
+	}))
 
 	await writeOutputs(outputs);
 }
@@ -76,7 +77,7 @@ export async function rebuildLocales(dirMap, filepaths, defaultLang) {
 		});
 	}
 
-	for (const [dirpath, locales] of updatedDirPath.entries()) {
+	await Promise.all(updatedDirPath.entries().map(async ([dirpath, locales]) => {
 		const outDirPath = path.join(dirpath, 'generated');
 		outputs.dirpaths.push(outDirPath);
 
@@ -98,7 +99,7 @@ export async function rebuildLocales(dirMap, filepaths, defaultLang) {
 		} else {
 			dirMap.set(dirpath, { ...existingLocales, ...locales });
 		}
-	}
+	}));
 
 	await writeOutputs(outputs);
 }
@@ -133,8 +134,8 @@ export async function removeLocales(dirMap, filepaths, defaultLang) {
 		dir.push(lang);
 	}
 
-	for (const [dirpath, locales] of dirMap.entries()) {
-		if (!removedDirMap.has(dirpath)) continue;
+	await Promise.all(dirMap.entries().map(async ([dirpath, locales]) => {
+		if (!removedDirMap.has(dirpath)) return;
 		for (const lang of removedDirMap.get(dirpath) ?? []) {
 			delete locales[lang];
 		}
@@ -149,7 +150,7 @@ export async function removeLocales(dirMap, filepaths, defaultLang) {
 				code: codegen.makeLoaderModule(allLangs, updatedDefaultLang),
 			});
 		}
-	}
+	}));
 
 	await writeOutputs(outputs);
 	await Promise.all(removals.map((filepath) => fs.rm(filepath)));
