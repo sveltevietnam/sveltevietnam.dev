@@ -30,13 +30,35 @@ export async function lint(dirMap, langs, defaultLang, failFirst = false) {
 			}
 
 			/// 2 - check for message inconsistency
-			const baseLocale = await parseLocale(baseLocaleFilePath);
+			/** @type {import('./private.d.ts').Locale} */
+			let baseLocale;
+			try {
+				baseLocale = await parseLocale(baseLocaleFilePath);
+			} catch (e) {
+				if (!errors[dirpath]) errors[dirpath] = [];
+				errors[dirpath].push(
+					`failed to parse "${defaultLang}.json" - see error above and make sure your JSON is correctly formatted.`,
+				);
+				console.error(e);
+				return;
+			}
 			const baseMessageKeySet = new Set(Object.keys(baseLocale.messages));
 
 			for (const [lang, filepath] of Object.entries(locales).filter(
 				([lang]) => lang !== defaultLang,
 			)) {
-				const locale = await parseLocale(filepath);
+				/** @type {import('./private.d.ts').Locale} */
+				let locale;
+				try {
+					locale = await parseLocale(filepath);
+				} catch (e) {
+					if (!errors[dirpath]) errors[dirpath] = [];
+					errors[dirpath].push(
+						`failed to parse "${lang}.json" - see error above and make sure your JSON is correctly formatted.`,
+					);
+					console.error(e);
+					return;
+				}
 
 				/// 2.1 - check for missing messages
 				const messageKeySet = new Set(Object.keys(locale.messages));
@@ -55,16 +77,37 @@ export async function lint(dirMap, langs, defaultLang, failFirst = false) {
 				for (const key of baseMessageKeySet.values()) {
 					if (!locale.messages[key]) continue;
 
-					const baseParams = new Set(
-						parseMessageParams(baseLocale.messages[key]).map((p) => p.name),
-					);
-					const params = new Set(parseMessageParams(locale.messages[key]).map((p) => p.name));
+					/** @type {Set<string>} */
+					let baseParams;
+					try {
+						baseParams = new Set(parseMessageParams(baseLocale.messages[key]).map((p) => p.name));
+					} catch (e) {
+						if (!errors[dirpath]) errors[dirpath] = [];
+						errors[dirpath].push(
+							`failed to parse dynamic parameters of message "${key}" in "${defaultLang}.json" - see error above and make sure your param is correctly wrapped in double curly brackets, i.e {{ ... }}.`,
+						);
+						console.error(e);
+						return;
+					}
+
+					/** @type {Set<string>} */
+					let params;
+					try {
+						params = new Set(parseMessageParams(locale.messages[key]).map((p) => p.name));
+					} catch (e) {
+						if (!errors[dirpath]) errors[dirpath] = [];
+						errors[dirpath].push(
+							`failed to parse dynamic parameters of message "${key}" in "${defaultLang}.json" - see error above and make sure your param is correctly wrapped in double curly brackets, i.e {{ ... }}.`,
+						);
+						console.error(e);
+						return;
+					}
 
 					const inBaseButNotInLang = Array.from(baseParams.difference(params));
 					if (inBaseButNotInLang.length) {
 						if (!errors[dirpath]) errors[dirpath] = [];
 						errors[dirpath].push(
-							`message "${key}" in "${defaultLang}.json" has dynamic parameters "${inBaseButNotInLang.join(',')}" but missing in "${lang}.json"`,
+							`message "${key}" has dynamic parameter(s) ${inBaseButNotInLang.map((p) => `"${p}"`).join(', ')} in "${defaultLang}.json" but not in "${lang}.json"`,
 						);
 						if (failFirst) return;
 					}
@@ -73,7 +116,7 @@ export async function lint(dirMap, langs, defaultLang, failFirst = false) {
 					if (inLangButNotInBase.length) {
 						if (!errors[dirpath]) errors[dirpath] = [];
 						errors[dirpath].push(
-							`message "${key}" in "${lang}.json" has dynamic parameters "${inLangButNotInBase.join(',')}" but missing in "${defaultLang}.json"`,
+							`message "${key}" has dynamic parameter(s) ${inLangButNotInBase.map((p) => `"${p}"`).join(', ')} in "${lang}.json" but not in "${defaultLang}.json"`
 						);
 						if (failFirst) return;
 					}
