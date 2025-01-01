@@ -1,0 +1,66 @@
+{
+	"messages": {
+		"page_title": "Design | Svelte Vietnam",
+		"page_keywords": "typography, color, system, creativity, inspiration, logo",
+		"page_heading": "Design",
+		"page_description": "An overview of the typography, color scheme, and logo used in the Svelte Vietnam project",
+
+		"typography": "Typography",
+		"example": "Example",
+		"description": "Description",
+
+		"heading_page": "Page Heading",
+		"heading_page_description": "The main heading of the page, usually corresponds to H1",
+
+		"heading_large": "Large Heading",
+		"heading_large_description": "Headings for large sections of content on the page, usually corresponding to H1, H2",
+
+		"heading_medium": "Medium Heading",
+		"heading_medium_description": "Headings for secondary content sections on the page, usually corresponding to H2, H3",
+
+		"heading": "Heading",
+		"heading_description": "Headings for secondary content sections on the page, usually corresponding to H3, H4",
+
+		"title": "Title",
+		"title_description": "Title of a component, or an item in a list",
+
+		"page_subtitle": "Page Subtitle",
+		"page_subtitle_description": "Additional description for each page, used alongside the “Page Heading”",
+
+		"body_medium": "Medium Body",
+		"body_medium_description": "Prominent content, relatively requiring more attention than normal content.",
+
+		"body": "Body",
+		"body_description": "Default content for most text on the page",
+
+		"body_small": "Small Body",
+		"body_small_description": "Secondary content, relatively less important than other main content",
+
+		"body_smaller": "Smaller Body",
+		"body_smaller_description": "Secondary content that is supplementary, not essential to the interface features",
+
+		"sand_heading": "Sand Palette",
+		"sand_description": "The “Sand” color collection, inspired by the palette of the same name from <a class=\"c-link\" href=\"https://github.com/evilmartians/harmony\">Harmony (Evil Martians)</a>, used as the building block for most content foregrounds and backgrounds — surfaces, text, lines, ...",
+		"sand_footnote": "* P3 — color is in the P3 color space. The P3 gamut is larger than and includes the sRGB gamut. P3 may not be supported on older devices.",
+
+		"semantic_color_heading": "Semantic Colors",
+		"semantic_color_description": "Colors that have meaning depending on the position or context of use. These colors also change according to the display mode (light and dark).",
+
+		"basic_color_heading": "Basic Colors",
+		"basic_color_description": "Default colors for most content — surfaces, text, lines, ... The following example lists some common colors.",
+
+		"status_color_heading": "Status Colors",
+		"status_color_description": "Colors that indicate the current application status or provide additional context for the element.",
+
+		"logo_description": "A few words about the inspiration and theme of the logo used in the Svelte Vietnam project",
+		"logo_inspiration_heading": "Inspiration",
+		"logo_inspiration_description": "The Svelte Vietnam logo is created from two main components: the official Svelte logo and the image of a conical hat (“nón lá”) with a star - symbolizing the image of the Vietnamese community. The main color of the logo is chosen based on the “Svelte color”, creating uniformity with the iconic color of the international Svelte community.",
+		"inspire": "Inspire",
+		"community": "Community",
+		"vietnam": "Vietnam",
+		"logo_version_heading": "Versions",
+		"logo_version_original": "Original",
+		"logo_version_positive": "Positive",
+		"logo_version_negative": "Negative"
+	}
+}

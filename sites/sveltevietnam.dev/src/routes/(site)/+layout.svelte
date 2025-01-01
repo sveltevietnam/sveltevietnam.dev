@@ -12,7 +12,10 @@
 	let { children } = $props();
 
 	/** SEO setup */
-	const DEFAULT_KEYWORDS = ['svelte', 'vietnam', 'community', 'technology', 'open-source'];
+	const DEFAULT_KEYWORDS = {
+		en: 'svelte, vietnam, community, technology, open-source',
+		vi: 'svelte, việt nam, cộng đồng, công nghệ, mã nguồn mở',
+	};
 
 	let meta = $derived.by(() => {
 		const meta = page.data.meta;
@@ -20,7 +23,7 @@
 		const description =
 			meta?.description ??
 			'Inclusive community and go-to information hub for people of Svelte in Vietnam';
-		const keywords = meta?.keywords ? [...DEFAULT_KEYWORDS, ...meta.keywords] : DEFAULT_KEYWORDS;
+		const keywords = meta?.keywords ?? DEFAULT_KEYWORDS[page.data.sharedSettings.language];
 		const canonical = meta?.canonical ?? page.url.toString();
 		const rootRelativeOgImage = meta?.og?.image ?? ogImageHome;
 
@@ -89,7 +92,7 @@
 	<title>{meta.title}</title>
 	<meta name="version" content={version} />
 	<meta name="description" content={meta.description} />
-	<meta name="keywords" content={meta.keywords.join(', ')} />
+	<meta name="keywords" content={meta.keywords} />
 
 	<meta property="og:type" content={meta.og.type} />
 	<meta property="og:title" content={meta.og.title} />
@@ -129,14 +132,8 @@
 	{#each Object.entries(routing.paths) as [lang, route]}
 		<link rel="alternate" hreflang={lang} href="{page.url.origin}{route.path}" />
 	{/each}
-	<link
-		rel="alternate"
-		hreflang="x-default"
-		href="{page.url.origin}{routing.paths.vi.path}"
-	/>
+	<link rel="alternate" hreflang="x-default" href="{page.url.origin}{routing.paths.vi.path}" />
 </svelte:head>
-
-{@render children()}
 
 <p>
 	<a href={routing.paths.en.path} onclick={reloadLanguage}>EN</a>
@@ -144,16 +141,4 @@
 	<a href={routing.paths.vi.path} onclick={reloadLanguage}>VI</a>
 </p>
 
-<nav>
-	<ul>
-		<li>
-			<a href={routing.path('design')}>{routing.name('design')}</a>
-		</li>
-		<li>
-			<a href={routing.path('blog')}>{routing.name('blog')}</a>
-		</li>
-		<li>
-			<a href={routing.path('blog/:slug', 'a-blog-about-something')}>A Blog About Something</a>
-		</li>
-	</ul>
-</nav>
+{@render children()}

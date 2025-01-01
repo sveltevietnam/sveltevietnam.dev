@@ -4,11 +4,74 @@
 import { createMessageString, createMessageSnippet } from "@internals/i18n/runtime";
 import { createRawSnippet } from "svelte";
 
+export const page_title = createMessageString("Trang chủ | Svelte Việt Nam");
+export const page_description = createMessageString("Cộng đồng và trung tâm thông tin cho Svelte tại Việt Nam");
+export const page_heading = createMessageString("Svelte Việt Nam");
 export const four_steps_to_svelte = createMessageString("Bốn bước đến Svelte");
 export const one = createMessageString("Bước một");
 export const one_heading = createMessageString("Khám phá Svelte bằng thực hành");
-export const one_description = createMessageSnippet(/**@type {import('svelte').Snippet<[]>}*/ (createRawSnippet(() => ({
+export const one_tutorial = createMessageSnippet(/**@type {import('svelte').Snippet<[]>}*/ (createRawSnippet(() => ({
     render: () => "<span><strong>Svelte tutorial*</strong> là tài liệu hướng dẫn chính thức, giúp bạn ‘học bằng hành’ — tiếp cận những khái niệm về Svelte và SvelteKit từ cơ bản đến nâng cao thông qua từng bài tập nhỏ.</span>"
 }))));
-export const one_link = createMessageString("Xem trang Svelte Tutorial");
-export const one_footnote = createMessageString("* đây là tài liệu dành cho Svelte 5 và hiện tại chỉ hỗ trợ tiếng Anh");
+export const one_tutorial_link = createMessageString("Xem trang Svelte Tutorial");
+export const one_tutorial_footnote = createMessageString("* đây là tài liệu dành cho Svelte 5 và hiện tại chỉ hỗ trợ tiếng Anh");
+export const one_playground = createMessageSnippet(/**@type {import('svelte').Snippet<[]>}*/ (createRawSnippet(() => ({
+    render: () => "<span><strong>Svelte playground*</strong> (REPL) là trình tương tác chính thức, giúp bạn nhanh chóng thử nghiệm ý tưởng hoặc quan sát đầu ra của trình biên dịch (Svelte compiler).</span>"
+}))));
+export const one_playground_link = createMessageString("Xem trang Svelte Playground");
+export const one_lab = createMessageSnippet(/**@type {import('svelte').Snippet<[]>}*/ (createRawSnippet(() => ({
+    render: () => "<span><strong>SvelteLab</strong> là trình tương tác nâng cao được xây dựng bởi cộng đồng, mở rộng ý tưởng từ Svelte playground, hỗ trợ SvelteKit và nhiều tính năng cho dự án hoàn chỉnh.</span>"
+}))));
+export const one_lab_link = createMessageString("Xem trang SvelteLab");
+export const two = createMessageString("Bước hai");
+export const two_heading = createMessageString("Đọc qua tài liệu Svelte & SvelteKit");
+export const two_docs = createMessageSnippet(/**@type {import('svelte').Snippet<[]>}*/ (createRawSnippet(() => ({
+    render: () => "<span><strong>Svelte documentation</strong> là tài liệu chính thức, hệ thống hóa các tính năng của Svelte và SvelteKit một cách đầy đủ và dễ tìm kiếm, mang giá trị tham khảo cao trong công việc hằng ngày.</span>"
+}))));
+export const two_docs_link = createMessageString("Xem Svelte Documentation");
+export const three = createMessageString("Bước ba");
+export const three_heading = createMessageString("Tham gia cộng đồng Svelte Vietnam");
+export const three_description = createMessageString("Giao lưu, trao đổi thông tin, hỏi đáp, và hỗ trợ nhau");
+export const three_discord = createMessageString("Tham gia thảo luận tại Discord");
+export const three_bluesky = createMessageString("Cập nhật tin tức qua Bluesky");
+export const three_github = createMessageString("Đóng góp vào dự án tại Github");
+export const three_note = createMessageSnippet(/**@type {import('svelte').Snippet<[]>}*/ (createRawSnippet(() => ({
+    render: () => "<span>Ngoài ra, bạn hãy theo dõi <a class=\"c-link\" href=\"/vi/su-kien\">sự kiện của Svelte Việt Nam</a> và các <a class=\"c-link\" href=\"/vi/blog\">bài viết tại Blog của Svelte Việt Nam Blog</a>.</span>"
+}))));
+export const four = createMessageString("Bước bốn");
+export const four_heading = createMessageString("Theo dõi các kênh thông tin Svelte quốc tế");
+export const four_svelte = createMessageSnippet(/**@type {import('svelte').Snippet<[]>}*/ (createRawSnippet(() => ({
+    render: () => "<span><strong>Svelte</strong> là dự án mã nguồn mở. Theo dõi và đóng góp vào sự phát triển của Svelte qua các kênh sau.</span>"
+}))));
+export const four_github_svelte = createMessageString("Github repository của Svelte");
+export const four_github_sveltekit = createMessageString("Github repository của SvelteKit");
+export const four_github_svelte_dev = createMessageString("Github repository của svelte.dev");
+export const four_society = createMessageSnippet(/**@type {import('svelte').Snippet<[]>}*/ (createRawSnippet(() => ({
+    render: () => "<span><strong>Svelte society</strong> là mạng lưới quốc tế liên kết những người quan tâm đến Svelte. Svelte Society phát triển và duy trì nhiều tài nguyên quan trọng.</span>"
+}))));
+export const four_society_discord = createMessageString("Tham gia thảo luận tại Discord");
+export const four_society_bluesky = createMessageString("Cập nhật tin tức qua Bluesky");
+export const four_society_website = createMessageString("Xem trang Svelte Society");
+export const four_summit = createMessageSnippet(/**@type {import('svelte').Snippet<[]>}*/ (createRawSnippet(() => ({
+    render: () => "<span><strong>Svelte Summit</strong> là sự kiện quốc tế về Svelte, hội tụ bảo trì viên và diễn giả từ khắp nơi trên thế giới.</span>"
+}))));
+export const four_summit_youtube = createMessageString("Xem sự kiện tại Youtube");
+export const four_summit_website = createMessageString("Xem trang Svelte Summit");
+export const four_hack = createMessageSnippet(/**@type {import('svelte').Snippet<[]>}*/ (createRawSnippet(() => ({
+    render: () => "<span><strong>SvelteHack</strong> là sự kiện hackathon thường diễn ra sau các dấu mốc quan trọng trong hệ sinh thái Svelte.</span>"
+}))));
+export const four_hack_link = createMessageString("Xem trang SvelteHack");
+export const events = createMessageString("Sự kiện");
+export const events_description = createMessageString("Gặp gỡ, cùng nhau chia sẻ kinh nghiệm, sản phẩm, và mọi thứ liên quan đến Svelte và open source");
+export const events_tba = createMessageString("Chưa có sự kiện mới nào");
+export const events_tba_subscribe = createMessageString("Đăng ký cập nhật sự kiện mới nhất!");
+export const blog = createMessageString("Bài viết");
+export const blog_description = createMessageSnippet(/**@type {import('svelte').Snippet<[]>}*/ (createRawSnippet(() => ({
+    render: () => "<span>Đọc và viết bài tại <a class=\"c-link\" href=\"/vi/blog\">Blog của Svelte Việt Nam</a>.</span>"
+}))));
+export const sponsor = createMessageString("Tài trợ");
+export const sponsor_description = createMessageString("Giúp cộng đồng Svelte Việt Nam phát triển bền vững bằng cách trở thành nhà tài trợ");
+export const sponsor_list = createMessageSnippet(/**@type {import('svelte').Snippet<[]>}*/ (createRawSnippet(() => ({
+    render: () => "<span>Các nhà tài trợ được liệt kê tại <a class=\"c-link\" href=\"https://opencollective.com/sveltevietnam\">Open Collective của Svelte Việt Nam</a>.</span>"
+}))));
+export const sponsor_read_more = createMessageString("Tìm hiểu thêm!");

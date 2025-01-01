@@ -3,15 +3,9 @@
 
 	let { data } = $props();
 
-	let t = $derived(data.t);
+	let locales = $derived(data.locales.page as import('./_page/locales/generated').Locale);
 </script>
 
 <main>
-	<h1><T message={t.sveltevietnam} /></h1>
-	<section>
-		<h2><T message={t.page.one_heading} /></h2>
-		<p>
-			<T message={t.page.one_description} />
-		</p>
-	</section>
+	<h1><T message={locales.page_heading} /></h1>
 </main>

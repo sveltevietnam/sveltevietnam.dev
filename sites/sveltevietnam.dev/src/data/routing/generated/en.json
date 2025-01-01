@@ -11,8 +11,32 @@
     "path": "/en/blog",
     "name": "Blog"
   },
+  "code-of-conduct": {
+    "path": "/en/code-of-conduct",
+    "name": "Code of Conduct"
+  },
   "design": {
     "path": "/en/design",
     "name": "Design"
+  },
+  "events": {
+    "path": "/en/events",
+    "name": "Events"
+  },
+  "jobs": {
+    "path": "/en/jobs",
+    "name": "Jobs"
+  },
+  "roadmap": {
+    "path": "/en/roadmap",
+    "name": "Roadmap"
+  },
+  "settings": {
+    "path": "/en/settings",
+    "name": "Settings"
+  },
+  "sponsor": {
+    "path": "/en/sponsor",
+    "name": "Sponsor"
   }
 }

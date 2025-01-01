@@ -1,0 +1,17 @@
+{
+	"messages": {
+		"page_title": "Code of Conduct | Svelte Vietnam",
+		"page_keywords": "code, conduct, rules",
+		"page_heading": "Code of Conduct",
+		"page_description": "Code of Conduct for members in the Svelte Vietnam community",
+
+		"message": "All members (individuals and organizations) participating in the Svelte Vietnam community must follow the “Code of Conduct” from <a class=\"c-link\" href=\"https://github.com/sveltejs/community/blob/main/CODE_OF_CONDUCT.md\">sveltejs/community</a> and <a class=\"c-link\" href=\"https://sveltesociety.dev/about\">Svelte Society</a>.<br />For reports, feedback, and questions, please reach out through the following channels. Thank you!",
+		"contact_discord": "Contact moderator via Discord",
+		"contact_email": "Email to",
+
+		"excerpt_heading": "Excerpt",
+		"excerpt_description": "Shown below is an excerpt from the “Code of Conduct” of Svelte Society",
+		"excerpt_content": "Svelte Society is dedicated to providing <strong>a harassment-free community for everyone</strong>, regardless of sex, gender identity or expression, sexual orientation, disability, physical appearance, age, race, nationality, or religious beliefs. <strong>We do not tolerate harassment of community members in any form</strong>. Participants violating these rules may be sanctioned or expelled from the community at the discretion of Svelte Society organizers.<br/>All attendees, speakers, sponsors, instructors, and volunteers at our events are required to agree with the following code of conduct. Leadership will enforce this code at all times. We expect cooperation from all participants to help ensure a safe environment for everybody.",
+		"excerpt_citation": "— Svelte Society, TL;DR - Code of Conduct"
+	}
+}

@@ -1,8 +1,20 @@
 {
   "viToEn": {
-    "/thiet-ke": "/design"
+    "/quy-tac-ung-xu": "/code-of-conduct",
+    "/thiet-ke": "/design",
+    "/su-kien": "/events",
+    "/viec-lam": "/jobs",
+    "/lo-trinh": "/roadmap",
+    "/cai-dat": "/settings",
+    "/tai-tro": "/sponsor"
   },
   "mismatchedPaths": [
-    "/vi/design"
+    "/vi/code-of-conduct",
+    "/vi/design",
+    "/vi/events",
+    "/vi/jobs",
+    "/vi/roadmap",
+    "/vi/settings",
+    "/vi/sponsor"
   ]
 }

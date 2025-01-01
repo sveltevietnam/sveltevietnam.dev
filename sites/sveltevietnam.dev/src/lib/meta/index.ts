@@ -3,7 +3,7 @@ import type { Thing } from 'schema-dts';
 export type PageMetadata = {
 	title?: string;
 	description?: string;
-	keywords?: string[];
+	keywords?: string;
 	canonical?: string;
 	structured?: Thing[] | Thing; // Structured Data LD+JSON
 	og?: {

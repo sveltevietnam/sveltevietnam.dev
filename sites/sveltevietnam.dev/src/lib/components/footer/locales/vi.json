@@ -1,0 +1,12 @@
+{
+	"messages": {
+		"sveltevietnam": "Svelte Việt Nam",
+		"about": "Về chúng tôi",
+		"about_description": "Svelte Việt Nam là kênh thông tin tổng hợp và cộng đồng dành cho bất cứ ai quan tâm đến sự phát triển của Svelte tại Việt Nam.",
+		"contact": "Liên hệ",
+		"discord": "Svelte Việt Nam Discord",
+		"version": "Phiên bản",
+		"powered_by": "Trên nền tảng",
+		"edit_page": "Sửa trang này tại Github"
+	}
+}

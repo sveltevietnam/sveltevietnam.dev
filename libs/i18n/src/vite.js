@@ -36,6 +36,7 @@ export function i18n() {
 
 			console.log(pico.blue('[sveltekit-i18n] Building all locales...'));
 			await buildAllLocales(dirMap, config.langs, config.defaultLang);
+			console.log(pico.blue('[sveltekit-i18n] Built successfully!'));
 
 			/**
 			 * @param {string} filepath

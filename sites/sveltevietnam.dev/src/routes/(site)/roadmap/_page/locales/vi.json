@@ -1,0 +1,60 @@
+{
+	"messages": {
+		"page_title": "Lộ trình | Svelte Việt Nam",
+		"page_keywords": "cột mốc, lột trình, kế hoạch, phát triển",
+		"page_heading": "Lộ trình",
+		"page_description": "Kế hoạch phát triển dự án Svelte Việt Nam",
+
+		"milestone": "Cột mốc",
+		"current": "hiện tại",
+		"objective": "Mục tiêu",
+		"task": "Công việc",
+		"progress": "Tiến độ",
+		"highlight": "Dấu ấn",
+
+		"progress_planned": "Trong kế hoạch",
+		"progress_inprogress": "Đang tiến hành",
+		"progress_completed": "Hoàn thành",
+		"progress_delayed": "Tạm hoãn",
+
+		"dong_objective": "tối giản hóa thiết kế trang sveltevietnam.dev; thử nghiệm Svelte 5; thiết lập hệ thống người dùng hoàn chỉnh và trình biên soạn markdown tối giản nhằm hướng tới một trải nghiệm liền mạch cho quy trình đăng tuyển và viết blog.",
+		"dong_task_job_posting": "Cho phép nhà tuyển dụng đăng tuyển / tạo liên kết trực tiếp trên nền tảng sveltevietnam.dev",
+		"dong_task_post_submit_in_app": "Cho phép người dùng viết blog trực tiếp trên nền tảng sveltevietnam.dev (thay vì thông qua Github issue và PR)",
+		"dong_task_md_editor": "Xây dựng trình xoạn thảo markdown tối giản",
+		"dong_github_oauth": "Thiết lập đăng nhập nhanh bằng GitHub OAuth",
+		"dong_svelte_5": "Tái xây dựng hoàn toàn sveltevietnam.dev bằng Svelte 5",
+		"dong_inter_4": "Nâng cấp Font chữ Inter lên phiên bản 4",
+		"dong_tailwing_4": "Giản lược thiết lập styling, thử nghiệm Tailwind 4.0",
+		"dong_refactor": "Giản lược và đồng nhất thiết kế toàn trang web sveltevietnam.dev",
+
+		"tu_objective": "chuẩn bị cho phiên bản chính thức đầu tiên của sveltevietnam.dev (v1.0.0-next), tập trung phát triển trang blog, trang sự kiện, các tính năng và nội dung cần thiết để cộng đồng có thể bắt đầu tham gia và đóng góp một cách chủ động hơn.",
+		"tu_highlight_open_collective": "Gởi yêu cầu thành lập <a class=\"c-link\" href=\"https://opencollective.com/sveltevietnam\">Open Collective</a> cho Svelte Việt Nam, bắt đầu nhận tài trợ tài chính",
+		"tu_highlight_first_offline_meetup": "Tổ chức buổi <a class=\"c-link\" href=\"/vi/su-kien/2024-04-gap-mat-xuan-giap-thin-2024-ho-chi-minh\">gặp mặt trực tiếp đầu tiên tại Tp. Hồ Chí Minh</a>",
+		"tu_highlight_first_online_meetup": "Tổ chức buổi <a class=\"c-link\" href=\"/vi/su-kien/202312-gap-nhau-truc-tuyen-cuoi-nam\">gặp mặt cộng đồng trực tuyến đầu tiên</a>",
+		"tu_highlight_first_ui": "Thiết lập hạ tầng nền tảng cơ bản và giao diện sơ khởi cho trang web sveltevietnam.dev",
+		"tu_task_survey": "Sơ thảo nội dung và thiết kế cho “Khảo sát Cộng đồng Svelte Việt Nam”",
+		"tu_task_page_jobs": "Ra mắt trang <a class=\"c-link\" href=\"/vi/viec-lam\">Việc làm</a> với thiết kế sơ khởi",
+		"tu_task_page_design": "Giới thiệu nhóm trang <a class=\"c-link\" href=\"/vi/thiet-ke\">Thiết kế</a> ghi lại các chi tiết thiết kế của Svelte Việt Nam",
+		"tu_task_progresive_enhancement": "Hỗ trợ cho người dùng không truy cập được Javascript (cải tiến tăng  dần), đặc biệt đối với các tính năng thiết yếu như điều hướng đa ngôn  ngữ, thay đổi chế độ giao diện, menu trên di động, và màn hình chờ",
+		"tu_task_page_coc": "Ra mắt trang <a class=\"c-link\" href=\"/vi/quy-tac-ung-xu\">Quy tắc ứng xử</a> với thiết kế sơ khởi",
+		"tu_task_og": "Thiết lập hình bìa Open Graph riêng cho mỗi trang đã hoàn thiện",
+		"tu_task_blog_post": "Thiết lập quy trình đăng bài hoặc liên kết bài viết thông qua Github issue và hướng dẫn code trực tiếp bài viết",
+		"tu_task_references": "Hoàn thiện văn bản “<a class=\"c-link\" href=\"https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/TECHNICAL_REFERNCES.md\">Technical Reference</a>” và “<a class=\"c-link\" href=\"https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/CONTRIBUTING.md\">Contributing Guidelines</a>”",
+		"tu_task_page_blog": "Ra mắt trang <a class=\"c-link\" href=\"/vi/blog\">Blog</a> với thiết kế sơ khởi",
+		"tu_task_page_events": "Ra mắt trang <a class=\"c-link\" href=\"/vi/su-kien\">Sự kiện</a> với thiết kế sơ khởi",
+		"tu_task_mailer": "Thiết kế hạ tầng và khởi tạo service mailer để quản lý hệ thống người dùng đăng kí nhận thông báo qua email",
+
+		"au_lac_objective": "khởi tạo dự án, xây dựng hạ tầng, thiết lập một quy trình phát triển cơ bản",
+		"au_lac_highlight_roadmap": "Xây dựng một lộ trình phát triển Svelte Việt Nam",
+		"au_lac_highlight_initiation": "Xây dựng cấu trúc thông tin (Information Architecture) và nhận diện thương hiệu (Brand Identity) cho Svelte Việt Nam",
+
+		"au_lac_task_page_roadmap": "Ra mắt trang <a class=\"c-link\" href=\"/vi/lo-trinh\">Lộ trình</a>",
+		"au_lac_task_metadata": "Thiết lập metadata và SEO cơ bản, bao gồm sitemap.xml, Google Search Console, Google Analytics",
+		"au_lac_task_discord": "Thiết lập websocket service và bot cho Discord server, định hướng phát  triển dần để nâng cao trải nghiệm thành viên tại cả Discord và trang web  sveltevietnam.dev",
+		"au_lac_task_page_home": "Ra mắt <a class=\"c-link\" href=\"/vi\">Trang chủ</a> với thiết kế sơ khởi",
+		"au_lac_task_page_branding_repo": "Khởi tạo <a class=\"c-link\" href=\"https://github.com/sveltevietnam/branding\">branding repository</a> để lưu trữ các phiên bản logo và văn bản “Branding Guidelines” (bàn về việc sử dụng logo và các hình ảnh của Svelte Việt Nam)",
+		"au_lac_task_logo": "Thiết kế và tích hợp <a class=\"c-link\" href=\"/vi/thiet-ke#logo\">logo chính thức của Svelte Việt Nam</a>",
+		"au_lac_task_project_reference": "Công bố văn bản “<a class=\"c-link\" href=\"https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/PROJECT_REFERENCES.md\">Project Reference</a>” giới thiệu tổng quan về dự án Svelte Việt Nam",
+		"au_lac_task_github": "Khởi tạo Github <a class=\"c-link\" href=\"https://github.com/sveltevietnam\">organization</a>, <a class=\"c-link\" href=\"https://github.com/orgs/sveltevietnam/projects/1\">project</a>, và <a class=\"c-link\" href=\"https://github.com/sveltevietnam/sveltevietnam.dev\">sveltevietnam.dev repository</a>"
+	}
+}

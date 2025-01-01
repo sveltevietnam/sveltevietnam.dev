@@ -1,0 +1,12 @@
+{
+	"messages": {
+		"sveltevietnam": "Svelte Vietnam",
+		"about": "About Us",
+		"about_description": "Svelte Vietnam is a a go-to and one-stop information center, and an inclusive community for anyone interested in the adoption of Svelte in Vietnam.",
+		"contact": "Contact",
+		"discord": "Svelte Vietnam Discord",
+		"version": "Version",
+		"powered_by": "Powered by",
+		"edit_page": "Edit this page on Github"
+	}
+}

@@ -1,0 +1,32 @@
+{
+	"messages": {
+		"page_title": "Công việc | Svelte Việt Nam",
+		"page_keywords": "công việc, việc làm, tuyển dụng, dự án",
+		"page_heading": "Công việc",
+		"page_description": "Công việc dành cho lập trình viên Svelte tại Việt Nam — kết nối doanh nghiệp và cộng đồng",
+		"page_subtile": "Kết nối doanh nghiệp và cộng đồng",
+
+		"posting_heading": "Đăng tuyển",
+		"posting_tba": "Chưa có công việc nào.",
+		"posting_tba_create": "Tạo bài đăng tuyển ngay!",
+
+		"recruiter_heading": "Nhà tuyển dụng",
+		"recruiter_description": "Quy trình đăng tuyển tại Svelte Việt Nam là hoàn toàn miễn phí. Các bài đăng tuyển được phê duyệt bởi ban quản trị sẽ hiển thị tại trang web này.",
+		"recruiter_create": "Tạo bài đăng tuyển",
+		"recruiter_email": "Liên hệ ban quản trị qua email",
+		"recruiter_sponsor": "Hãy cân nhắc tài trợ để đóng góp duy trì và phát triển cộng đồng Svelte Việt Nam!",
+		"recruiter_sponsor_link": "Tại sao Svelte Việt Nam cần tài trợ?",
+		"recruiter_sponsor_cta": "Trở thành nhà tài trợ",
+
+		"candidate_heading": "Ứng viên",
+		"candidate_description": "Đăng ký nhận thông báo khi có cập nhật đăng tuyển hoặc thông tin về việc làm liên quan đến Svelte",
+		"candidate_verify": "Xác thực",
+		"candidate_cta": "Đăng ký",
+		"candidate_discord": "Tham gia thảo luận tại <a class=\"c-link\" href=\"https://discord.sveltevietnam.dev/\">Discord chính thức của Svelte Việt Nam</a>.",
+
+		"scraping_heading": "Từ kênh tuyển dụng",
+		"scraping_description": "Tính năng đang được phát triển để tự động tổng hợp việc làm từ các kênh tuyển dụng phổ biến tại Việt Nam.",
+		"scraping_tba": "Chưa có công việc nào.",
+		"scraping_tba_subscribe": "Đăng ký cập nhật công việc mới nhất!"
+	}
+}

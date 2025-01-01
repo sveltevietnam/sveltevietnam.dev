@@ -1,0 +1,60 @@
+{
+	"messages": {
+		"page_title": "Roadmap | Svete Vietnam",
+		"page_keywords": "milestone, roadmap, plan, development",
+		"page_heading": "Roadmap",
+		"page_description": "What's next for the Svelte Vietnam project",
+
+		"milestone": "Milestone",
+		"current": "current",
+		"objective": "Objective",
+		"task": "Tasks",
+		"progress": "Progress",
+		"highlight": "Highlights",
+
+		"progress_planned": "Planned",
+		"progress_inprogress": "In progress",
+		"progress_completed": "Completed",
+		"progress_delayed": "Delayed",
+
+		"dong_objective": "reduce complexity of the sveltevietnam.dev codebase and design, experiment with Svelte 5, set up a user system and a minimal custom markdown editor to streamline the job posting and blog writing processes.",
+		"dong_task_job_posting": "Allow recruiters to create job listings directly on sveltevietnam.dev",
+		"dong_task_post_submit_in_app": "Allow users to write blog posts directly on sveltevietnam.dev (instead of through Github issue and PR)",
+		"dong_task_md_editor": "Build a minimal markdown editor",
+		"dong_github_oauth": "Set up quick login via GitHub OAuth",
+		"dong_svelte_5": "Rebuild sveltevietnam.dev entirely with Svelte 5",
+		"dong_inter_4": "Upgrade the Inter font to version 4",
+		"dong_tailwing_4": "Simplify the styling setup, experiment with Tailwind 4.0",
+		"dong_refactor": "Simplify and unify the design of the entire sveltevietnam.dev website",
+
+		"tu_objective": "prepare for the first official (pre)release of sveltevietnam.dev (v1.0.0-next), focus on developing the blog page, the events page, and the necessary features and content for the community to start actively participating and contributing.",
+		"tu_highlight_open_collective": "Send request to create the <a class=\"c-link\" href=\"https://opencollective.com/sveltevietnam\">Svelte Vietnam Open Collective</a>, started accepting financial donations",
+		"tu_highlight_first_offline_meetup": "Organize <a class=\"c-link\" href=\"/en/events/2024-04-spring-2024-ho-chi-minh-meetup\">the first offline community meetup in Ho Chi Minh city</a>",
+		"tu_highlight_first_online_meetup": "Organize <a class=\"c-link\" href=\"/en/events/202312-year-end-online-meetup\">the first online community meetup</a>",
+		"tu_highlight_first_ui": "Establish basic infrastructure and initial design for the sveltevietnam.dev website",
+		"tu_task_survey": "Draft content and design for the “Svelte Vietnam Community Survey”",
+		"tu_task_page_jobs": "Introduce the <a class=\"c-link\" href=\"en/jobs\">Jobs</a> page with basic design",
+		"tu_task_page_design": "Introduce the <a class=\"c-link\" href=\"en/design\">Design</a> page to document the design elements of the Svelte Vietnam project",
+		"tu_task_progresive_enhancement": "Support users without JavaScript access (progressive enhancement), especially for essential features like multilingual navigation, theme switcher, mobile menu, and splash screen",
+		"tu_task_page_coc": "Introduce the <a class=\"c-link\" href=\"/en/code-of-conduct\">Code of Conduct</a> page with basic design",
+		"tu_task_og": "Set up custom Open Graph images for each completed page",
+		"tu_task_blog_post": "Set up the process for posting or linking blog posts through Github issue and direct code guide for posting",
+		"tu_task_references": "Introduce the “<a class=\"c-link\" href=\"https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/TECHNICAL_REFERNCES.md\">Technical Reference</a>” and “<a class=\"c-link\" href=\"https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/CONTRIBUTING.md\">Contributing Guidelines</a>” documents",
+		"tu_task_page_blog": "Introduce the <a class=\"c-link\" href=\"/en/blog\">Blog</a> page with basic design",
+		"tu_task_page_events": "Introduce the <a class=\"c-link\" href=\"/en/events\">Events</a> page with basic design",
+		"tu_task_mailer": "Design infrastructure and initialize mailer service to manage user registration for email notifications",
+
+		"au_lac_objective": "initiate the project, build the infrastructure, set up a basic development process",
+		"au_lac_highlight_roadmap": "Build a roadmap for the development of Svelte Vietnam",
+		"au_lac_highlight_initiation": "Establish an initial Information Architecture and Brand Identity for Svelte Vietnam",
+
+		"au_lac_task_page_roadmap": "Introduce the <a class=\"c-link\" href=\"/en/roadmap\">Roadmap</a> page",
+		"au_lac_task_metadata": "Set up basic metadata and SEO, including sitemap.xml, Google Search Console, Google Analytics",
+		"au_lac_task_discord": "Develop websocket service and bot for Discord server, making ways to gradually add new features to enrich experience for users on both Discord and the sveltevietnam.dev site",
+		"au_lac_task_page_home": "Introduce the <a class=\"c-link\" href=\"/en\">Home page</a> page with basic design",
+		"au_lac_task_page_branding_repo": "Initiate the <a class=\"c-link\" href=\"https://github.com/sveltevietnam/branding\">branding repository</a> to store public assets (including logo with version history) and the “Branding Guidelines” document (discussing about usage of Svelte Vietnam's public assets)",
+		"au_lac_task_logo": "Design and implement <a class=\"c-link\" href=\"/en/design#logo\">the official logo of Svelte Vietnam</a>",
+		"au_lac_task_project_reference": "Publish the “<a class=\"c-link\" href=\"https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/PROJECT_REFERENCES.md\">Project Reference</a>” document, providing an overview of the Svelte Vietnam project",
+		"au_lac_task_github": "Setup the Svelte Vietnam Github <a class=\"c-link\" href=\"https://github.com/sveltevietnam\">organization</a>, <a class=\"c-link\" href=\"https://github.com/orgs/sveltevietnam/projects/1\">project</a>, and <a class=\"c-link\" href=\"https://github.com/sveltevietnam/sveltevietnam.dev\">sveltevietnam.dev repository</a>"
+	}
+}

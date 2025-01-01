@@ -1,0 +1,32 @@
+{
+	"messages": {
+		"page_title": "Jobs | Svelte Vietnam",
+		"page_keywords": "job, work, employment, posting, recruitment, partner, project",
+		"page_heading": "Jobs",
+		"page_description": "Job board for Svelte developers in Vietnam — connecting businesses and community",
+		"page_subtile": "Connecting businesses and community",
+
+		"posting_heading": "Postings",
+		"posting_tba": "No available job posting",
+		"posting_tba_create": "Create a job posting now!",
+
+		"recruiter_heading": "Recruiter",
+		"recruiter_description": "The job posting process at Svelte Vietnam is completely free. Job postings approved by the administrators will be displayed on this website.",
+		"recruiter_create": "Create a job posting",
+		"recruiter_email": "Contact administrators at",
+		"recruiter_sponsor": "Please consider sponsoring to contribute to the maintenance and development of the Svelte Vietnam community!",
+		"recruiter_sponsor_link": "Why does Svelte Vietnam need sponsorship?",
+		"recruiter_sponsor_cta": "Become a sponsor",
+
+		"candidate_heading": "candidate",
+		"candidate_description": "Register to receive notifications when there are updates to job postings or information related to Svelte",
+		"candidate_verify": "Verify",
+		"candidate_cta": "Register",
+		"candidate_discord": "Join the conversation in <a class=\"c-link\" href=\"https://discord.sveltevietnam.dev/\">the official Svelte Vietnam Discord</a>.",
+
+		"scraping_heading": "From recruitment sites",
+		"scraping_description": "We are developing a service to automatically aggregate job postings from popular recruitment channels in Vietnam.",
+		"scraping_tba": "No job posting found yet",
+		"scraping_tba_subscribe": "Subscribe to get the latest job updates!"
+	}
+}

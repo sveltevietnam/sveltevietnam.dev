@@ -11,8 +11,32 @@
     "path": "/vi/blog",
     "name": "Blog"
   },
+  "code-of-conduct": {
+    "path": "/vi/quy-tac-ung-xu",
+    "name": "Quy tắc ứng xử"
+  },
   "design": {
     "path": "/vi/thiet-ke",
     "name": "Thiết kế"
+  },
+  "events": {
+    "path": "/vi/su-kien",
+    "name": "Sự kiện"
+  },
+  "jobs": {
+    "path": "/vi/viec-lam",
+    "name": "Việc làm"
+  },
+  "roadmap": {
+    "path": "/vi/lo-trinh",
+    "name": "Lộ trình"
+  },
+  "settings": {
+    "path": "/vi/cai-dat",
+    "name": "Cài đặt"
+  },
+  "sponsor": {
+    "path": "/vi/tai-tro",
+    "name": "Tài trợ"
   }
 }

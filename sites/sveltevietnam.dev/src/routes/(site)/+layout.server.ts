@@ -1,6 +1,8 @@
 import en from '$data/routing/generated/en.json';
 import vi from '$data/routing/generated/vi.json';
+import { SVELTE_VIETNAM_ORG } from '$data/structured';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
+import { getOgImagePath } from '$routes/loaders';
 
 import type { LayoutServerLoad } from './$types';
 
@@ -32,6 +34,12 @@ export const load: LayoutServerLoad = async ({ locals, route, depends }) => {
 			paths: {
 				vi: vi[routingKey],
 				en: en[routingKey],
+			},
+		},
+		meta: {
+			structured: SVELTE_VIETNAM_ORG,
+			og: {
+				image: await getOgImagePath(route.id, locals.sharedSettings.language),
 			},
 		},
 	};

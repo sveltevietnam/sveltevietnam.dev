@@ -1,0 +1,66 @@
+{
+	"messages": {
+		"page_title": "Thiết kế | Svelte Việt Nam",
+		"page_keywords": "thiết kế, ý tưởng, chữ viết, màu sắc, hệ thống, sáng tạo, cảm hứng, logo",
+		"page_heading": "Thiết kế",
+		"page_description": "Giản lược về hệ thống chữ viết, màu sắc, và logo sử dụng trong dự án Svelte Việt Nam",
+
+		"typography": "Chữ viết",
+		"example": "Ví dụ",
+		"description": "Mô tả",
+
+		"heading_page": "Chủ đề trang",
+		"heading_page_description": "Chủ đề của trang, thường tương ứng với H1",
+
+		"heading_large": "Mục đề lớn",
+		"heading_large_description": "Mục đề cho các phần nội dung lớn trên trang, thường tương ứng với H1, H2",
+
+		"heading_medium": "Mục đề vừa",
+		"heading_medium_description": "Mục đề cho các phần nội dung thứ cấp trên trang, thường tương ứng với H2, H3",
+
+		"heading": "Mục đề",
+		"heading_description": "Mục đề cho các phần nội dung thứ cấp trên trang, thường tương ứng với H3, H4",
+
+		"title": "Tiêu đề",
+		"title_description": "Tiêu đề một thành phần, hoặc phần tử trong một danh sách",
+
+		"page_subtitle": "Phụ đề trang",
+		"page_subtitle_description": "Bổ sung mô tả cho mỗi trang, dùng bên cạnh “Chủ đề trang”",
+
+		"body_medium": "Nội dung vừa",
+		"body_medium_description": "Nội dung nổi bật, tương đối cần sự chú ý hơn so với nội dung bình thường.",
+
+		"body": "Nội dung",
+		"body_description": "Nôi dung mặc định cho hầu hết văn bản trên trang",
+
+		"body_small": "Nội dung nhỏ",
+		"body_small_description": "Nội dung thứ cấp, tương đối không quan trọng bằng những nội dung chính khác",
+
+		"body_smaller": "Nội dung nhỏ hơn",
+		"body_smaller_description": "Nội dung thứ cấp mang tính bổ sung, không thiết yếu đối đối với các tính năng giao diện",
+
+		"sand_heading": "Bảng màu cát",
+		"sand_description": "Bảng màu “cát”, lấy ý tưởng từ bảng màu cùng tên trong hệ thống màu <a class=\"c-link\" href=\"https://github.com/evilmartians/harmony\">Harmony (Evil Martians)</a>, được sử dụng làm nền mặc định cho phần lớn nội dung — bề mặt, văn bản, đường kẻ, ...",
+		"sand_footnote": "* P3 — màu thuộc không gian màu P3. Độ phủ màu P3 rộng hơn sRGB. Các thiết bị cũ có thể không hỗ trợ P3.",
+
+		"semantic_color_heading": "Màu ngữ nghĩa",
+		"semantic_color_description": "Các màu có ý nghĩa tùy thuộc vào vị trí hoặc ngữ cảnh sử dụng. Những màu này cũng thay đổi tương ứng theo chế độ hiển thị (sáng và tối).",
+
+		"basic_color_heading": "Màu cơ bản",
+		"basic_color_description": "Các màu mặc định cho phần lớn nội dung — bề mặt, văn bản, đường kẻ, ... Ví dụ sau đây liệt kê một số màu thường gặp.",
+
+		"status_color_heading": "Màu trạng thái",
+		"status_color_description": "Các màu thể hiện trạng thái ứng dụng hoặc cung cấp ngữ cảnh bổ sung cho phần tử.",
+
+		"logo_description": "Đôi lời về cảm hứng sáng tác và chủ đề của logo sử dụng trong dự án Svelte Việt Nam",
+		"logo_inspiration_heading": "Cảm hứng",
+		"logo_inspiration_description": "Logo Svelte Việt Nam được tạo nên từ hai thành phần chính: Logo chính thức của Svelte và hình ảnh chiếc nón lá mang ngôi sao - tượng trưng  cho hình ảnh cộng đồng người Việt Nam. Màu sắc chính của logo  được chọn dựa trên màu sắc chính của Svelte, tạo nên tính thống nhất với màu sắc biểu tượng của cộng đồng Svelte trên thế giới.",
+		"inspire": "Truyền cảm hứng",
+		"community": "Cộng đồng",
+		"vietnam": "Việt Nam",
+		"logo_version_heading": "Các phiên bản logo",
+		"logo_version_original": "Nguyên bản",
+		"logo_version_positive": "Dương bản",
+		"logo_version_negative": "Âm bản"
+	}
+}
