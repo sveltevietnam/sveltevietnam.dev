@@ -378,7 +378,7 @@ export function makeLoaderModule(langs, defaultLang) {
 			factory.createToken(ts.SyntaxKind.AsyncKeyword),
 		],
 		undefined,
-		factory.createIdentifier('load'),
+		factory.createIdentifier('loadLocale'),
 		undefined,
 		[
 			factory.createParameterDeclaration(
@@ -426,12 +426,16 @@ export function makeLoaderModule(langs, defaultLang) {
 		),
 	);
 
-	const jsdoc = factory.createJSDocComment(dedent`
+	const loadFuncDoc = factory.createJSDocComment(dedent`
 		@param {${langs.map((l) => `"${l}"`).join('|')}} lang
 		@returns {Promise<typeof import('./${defaultLang}.js')>}
 	`);
 
-	return print([jsdoc, node]);
+	const localeTypeDoc = factory.createJSDocComment(dedent`
+		@typedef {typeof import('./${defaultLang}.js')} Locale
+	`);
+
+	return print([loadFuncDoc, node, newline(), localeTypeDoc]);
 }
 
 /**
