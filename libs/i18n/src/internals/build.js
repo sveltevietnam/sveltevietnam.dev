@@ -21,7 +21,16 @@ export async function buildAllLocales(dirMap, langs, defaultLang) {
 		const outDirPath = path.join(dirpath, 'generated');
 
 		for (const [lang, filepath] of Object.entries(locales)) {
-			const locale = await parseLocale(filepath);
+			/** @type {import('./private.d.ts').Locale} */
+			let locale;
+			try {
+				locale = await parseLocale(filepath);
+			} catch (e) {
+				console.error(`Error parsing locale file: ${filepath}`);
+				console.error(e);
+				return;
+			}
+
 			const code = transformLocale(locale, lang);
 
 			outputs.modules.push({
@@ -68,7 +77,16 @@ export async function rebuildLocales(dirMap, filepaths, defaultLang) {
 		dir[lang] = filepath;
 
 		// parse and transform
-		const locale = await parseLocale(filepath);
+		/** @type {import('./private.d.ts').Locale} */
+		let locale;
+		try {
+			locale = await parseLocale(filepath);
+		} catch (e) {
+			console.error(`Error parsing locale file: ${filepath}`);
+			console.error(e);
+			return;
+		}
+
 		const code = transformLocale(locale, lang);
 
 		outputs.modules.push({
