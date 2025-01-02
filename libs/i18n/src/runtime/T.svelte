@@ -9,10 +9,10 @@
 	const params = rest as unknown as Record<P, string>;
 </script>
 
-{#if message.$t === 'string'}
-	{message as unknown as string}
+{#if message.$t === 'snippet'}
+	{@render message(params)}
 {:else if message.$t === 'function'}
 	{message(params)}
 {:else}
-	{@render message(params)}
+	{message as unknown as string}
 {/if}
