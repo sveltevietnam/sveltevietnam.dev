@@ -1,5 +1,5 @@
 <script lang="ts">
-	let { t }: { t: import('./locales/generated').Locale } = $props();
+	let { locale }: { locale: import('./locales/generated').Locale } = $props();
 
-	console.log(t);
+	console.log(locale);
 </script>

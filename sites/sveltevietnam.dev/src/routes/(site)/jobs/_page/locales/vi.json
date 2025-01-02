@@ -20,6 +20,7 @@
 
 		"candidate_heading": "Ứng viên",
 		"candidate_description": "Đăng ký nhận thông báo khi có cập nhật đăng tuyển hoặc thông tin về việc làm liên quan đến Svelte",
+		"candidate_name": "Tên",
 		"candidate_verify": "Xác thực",
 		"candidate_cta": "Đăng ký",
 		"candidate_discord": "Tham gia thảo luận tại <a class=\"c-link\" href=\"https://discord.sveltevietnam.dev/\">Discord chính thức của Svelte Việt Nam</a>.",

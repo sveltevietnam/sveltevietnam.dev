@@ -1,0 +1,9 @@
+{
+	"messages": {
+		"heading": "Bản tin Svelte Việt Nam",
+		"description": "Đăng ký nhận thông báo để không bỏ lỡ bài viết mới từ Blog của Svelte Việt Nam",
+		"name": "Tên",
+		"verify": "Xác thực",
+		"cta": "Đăng ký"
+	}
+}

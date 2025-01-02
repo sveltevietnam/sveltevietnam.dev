@@ -11,12 +11,13 @@
 
 		"participate_heading": "Tham gia",
 		"participate_description": "Đăng kí nhận thông tin cập nhật về sự kiện của cộng đồng Svelte Việt Nam",
+		"participate_name": "Tên",
 		"participate_verify": "Xác thực",
 		"participate_cta": "Đăng ký",
-		"particiate_discord": "Tham gia thảo luận tại <a class=\"c-link\" href=\"https://discord.sveltevietnam.dev/\">Discord chính thức của Svelte Việt Nam</a>.",
+		"particiate_discord": "Thảo luận về sự kiện tại <a class=\"c-link\" href=\"https://discord.sveltevietnam.dev/\">Discord chính thức của Svelte Việt Nam</a>.",
 
 		"share_heading": "Chia sẻ",
-		"share_description": "Quảng bá sản phẩm, lan tỏa ý tưởng, chia sẻ dự án và kinh nghiệm của bạn trong các sự kiện sắp đến.<br />Liên hệ với ban quản trị thông qua email bên dưới để đăng ký trở thành diễn giả hoặc đóng góp ý tưởng cho các hoạt động, buổi gặp mặt, đàm thoại tại sự kiện.",
+		"share_description": "Quảng bá sản phẩm, lan tỏa ý tưởng, chia sẻ dự án và kinh nghiệm của bạn trong các sự kiện sắp đến.<br /></br />Liên hệ với ban quản trị thông qua email bên dưới để đăng ký trở thành diễn giả hoặc đóng góp ý tưởng cho các hoạt động, buổi gặp mặt, đàm thoại tại sự kiện.",
 
 		"sponsor_heading": "Tài trợ",
 		"sponsor_description": "Tài trợ cho sự kiện bằng cách đóng góp tài chính hoặc hỗ trợ công tác tổ chức tại các buổi gặp mặt, cuộc thi, hoạt động của cộng đồng Svelte Việt Nam.",

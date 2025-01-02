@@ -4,6 +4,16 @@
 		"page_keywords": "blog, writing, sharing, involvement, contribution",
 		"page_heading": "Blog",
 		"page_description": "Write about experience and knowledge about Svelte, its ecosystem and community",
-		"page_tagline": "Learn to share. Sharing is learning"
+		"page_tagline": "Learn to share. Sharing is learning",
+
+		"view_more": "View more",
+		"latest": "Latest",
+
+		"write_heading": "Share your blog post!",
+		"write_description": "The Svelte Vietnam Blog is a place for members to share knowledge, ideas, and experiences with the Svelte community in Vietnam and internationally.<br/><br/>Svelte Vietnam welcomes everyone to post or link to their articles on this blog. This is the most practical and direct way that members can contribute to the Svelte Vietnam community.",
+		"write_cta": "Write a post or link to your post",
+		"write_discuss": "Join the conversation in <a class=\"c-link\" href=\"https://discord.sveltevietnam.dev/\">the official Svelte Vietnam Discord</a>.",
+
+		"resource": "Resources and news channels about Svelte and SvelteKit are continuously updated on the homepage sveltevietnam.dev"
 	}
 }

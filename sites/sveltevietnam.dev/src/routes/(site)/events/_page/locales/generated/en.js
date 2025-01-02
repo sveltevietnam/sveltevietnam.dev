@@ -13,6 +13,7 @@ export const upcoming_tba = createMessageString("No event is planned yet.");
 export const upcoming_tba_subscribe = createMessageString("Notify me about the next event");
 export const participate_heading = createMessageString("Participate");
 export const participate_description = createMessageString("Register to receive updates about the events of the Svelte Vietnam community");
+export const participate_name = createMessageString("T\u00EAn");
 export const participate_verify = createMessageString("Verify");
 export const participate_cta = createMessageString("Register");
 export const particiate_discord = createMessageSnippet(/**@type {import('svelte').Snippet<[]>}*/ (createRawSnippet(() => ({
@@ -20,7 +21,7 @@ export const particiate_discord = createMessageSnippet(/**@type {import('svelte'
 }))));
 export const share_heading = createMessageString("Share");
 export const share_description = createMessageSnippet(/**@type {import('svelte').Snippet<[]>}*/ (createRawSnippet(() => ({
-    render: () => "<span>Promote your products, spread ideas, share projects and experiences in upcoming events.<br />Contact the administrators via the email below to register as a speaker or contribute ideas for activities, meetings, and discussions at the event.</span>"
+    render: () => "<span>Promote your products, spread ideas, share projects and experiences in upcoming events.<br /><br />Contact the administrators via the email below to register as a speaker or contribute ideas for activities, meetings, and discussions at the event.</span>"
 }))));
 export const sponsor_heading = createMessageString("Sponsor");
 export const sponsor_description = createMessageString("Sponsor and/or help organizing events, competition, and activities that nurture a healthy Svelte and open source community in Vietnam.");

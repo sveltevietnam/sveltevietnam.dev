@@ -11,6 +11,14 @@
     "path": "/en/blog",
     "name": "Blog"
   },
+  "blog/categories": {
+    "path": "/en/blog/categories",
+    "name": "Categories"
+  },
+  "blog/series": {
+    "path": "/en/blog/series",
+    "name": "Series"
+  },
   "code-of-conduct": {
     "path": "/en/code-of-conduct",
     "name": "Code of Conduct"

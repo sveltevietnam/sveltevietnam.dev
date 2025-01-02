@@ -1,5 +1,6 @@
 import { loadLocale as loadFooterLocale } from '$lib/components/footer/locales/generated';
 import { loadLocale as loadHeaderLocale } from '$lib/components/header/locales/generated';
+import { loadLocale as loadPaginationLocale } from '$lib/components/pagination/locales/generated';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { getPageLocaleModule } from '$routes/loaders';
 
@@ -8,15 +9,17 @@ import type { LayoutLoad } from './$types';
 export const load: LayoutLoad = async ({ data, depends, route }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	const pageLocales = await getPageLocaleModule(route.id, data.sharedSettings.language);
-	const [footer, header] = await Promise.all([
+	const [footer, header, pagination] = await Promise.all([
 		loadFooterLocale(data.sharedSettings.language),
 		loadHeaderLocale(data.sharedSettings.language),
+		loadPaginationLocale(data.sharedSettings.language),
 	]);
 	return {
 		...data,
 		locales: {
 			footer,
 			header,
+			pagination,
 			page: pageLocales,
 		},
 		meta: {

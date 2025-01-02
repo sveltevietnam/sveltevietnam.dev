@@ -21,6 +21,7 @@ export const recruiter_sponsor_link = createMessageString("Tại sao Svelte Vi�
 export const recruiter_sponsor_cta = createMessageString("Trở thành nhà tài trợ");
 export const candidate_heading = createMessageString("Ứng viên");
 export const candidate_description = createMessageString("Đăng ký nhận thông báo khi có cập nhật đăng tuyển hoặc thông tin về việc làm liên quan đến Svelte");
+export const candidate_name = createMessageString("Tên");
 export const candidate_verify = createMessageString("Xác thực");
 export const candidate_cta = createMessageString("Đăng ký");
 export const candidate_discord = createMessageSnippet(/**@type {import('svelte').Snippet<[]>}*/ (createRawSnippet(() => ({

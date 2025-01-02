@@ -1,0 +1,26 @@
+{
+	"messages": {
+		"lang_original": "Original language",
+		"lang_original_description": "You are reading the blog post in its original language.",
+		"lang_manual_translation": "Manual translation",
+		"lang_manual_translation_description": "You are reading a manual translation of the blog post.",
+		"lang_unsupported": "The blog post is displayed in its original language as translation has not been provided yet. If possible, please join our <a class=\"c-link\" href=\"https://github.com/sveltevietnam\">Github</a> and <a class=\"c-link\" href=\"https://discord.sveltevietnam.dev\">Discord</a> to help with translation. Thank you!",
+
+		"read_minutes": "min read",
+		"word": "words",
+		"url_copy_notice": "Copied link to blog post to clipboard",
+		"view_more": "View more",
+
+		"toc_heading": "Table of contents",
+		"share_heading": "Share",
+		"latest_heading": "Latest posts",
+		"series_heading": "Related posts",
+
+		"edit_intro": "Found a typo or need to correct something?",
+		"edit_cta": "Edit this page on Github",
+
+		"qr_heading": "QR Code",
+		"qr_description": "Share and scan this code for quick access the blog post!",
+		"qr_download": "Download"
+	}
+}

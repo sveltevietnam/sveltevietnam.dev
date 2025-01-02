@@ -21,6 +21,7 @@ export const recruiter_sponsor_link = createMessageString("Why does Svelte Vietn
 export const recruiter_sponsor_cta = createMessageString("Become a sponsor");
 export const candidate_heading = createMessageString("candidate");
 export const candidate_description = createMessageString("Register to receive notifications when there are updates to job postings or information related to Svelte");
+export const candidate_name = createMessageString("Name");
 export const candidate_verify = createMessageString("Verify");
 export const candidate_cta = createMessageString("Register");
 export const candidate_discord = createMessageSnippet(/**@type {import('svelte').Snippet<[]>}*/ (createRawSnippet(() => ({

@@ -4,6 +4,16 @@
 		"page_keywords": "blog, viết, chia sẻ, tham gia, đóng góp",
 		"page_heading": "Blog",
 		"page_description": "Viết về kinh nghiệm và kiến thức về hệ sinh thái và cộng đồng Svelte",
-		"page_tagline": "Học để chia sẻ. Sẻ chia là học"
+		"page_tagline": "Học để chia sẻ. Sẻ chia là học",
+
+		"view_more": "Xem thêm",
+		"latest": "Mới nhất",
+
+		"write_heading": "Chia sẻ bài viết của bạn!",
+		"write_description": "Blog của Svelte Việt Nam là nơi dành cho các thành viên chia sẻ kiến thức, ý tưởng, cảm nhận về các trải nghiệm của mình với cộng đồng Svelte trong nước và quốc tế.<br/><br/>Svelte Việt Nam hoan nghênh tất cả mọi người đăng bài hoặc liên kết bài viết của mình tại blog này. Đây là cách thiết thực và trực tiếp nhất mà thành viên có thể đóng góp vào sự phát triển chung của cả cộng đồng.",
+		"write_cta": "Viết bài hoặc liên kết đến bài viết của bạn",
+		"write_discuss": "Thảo luận về bài viết tại <a class=\"c-link\" href=\"https://discord.sveltevietnam.dev/\">Discord chính thức của Svelte Việt Nam</a>.",
+
+		"resource": "Một số tài nguyên và kênh thông tin về Svelte và SvelteKit được cập nhật liên tục tại trang chủ sveltevietnam.dev"
 	}
 }

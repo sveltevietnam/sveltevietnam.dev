@@ -11,12 +11,13 @@
 
 		"participate_heading": "Participate",
 		"participate_description": "Register to receive updates about the events of the Svelte Vietnam community",
+		"participate_name": "Tên",
 		"participate_verify": "Verify",
 		"participate_cta": "Register",
 		"particiate_discord": "Join the conversation in <a class=\"c-link\" href=\"https://discord.sveltevietnam.dev/\">the official Svelte Vietnam Discord</a>.",
 
 		"share_heading": "Share",
-		"share_description": "Promote your products, spread ideas, share projects and experiences in upcoming events.<br />Contact the administrators via the email below to register as a speaker or contribute ideas for activities, meetings, and discussions at the event.",
+		"share_description": "Promote your products, spread ideas, share projects and experiences in upcoming events.<br /><br />Contact the administrators via the email below to register as a speaker or contribute ideas for activities, meetings, and discussions at the event.",
 
 		"sponsor_heading": "Sponsor",
 		"sponsor_description": "Sponsor and/or help organizing events, competition, and activities that nurture a healthy Svelte and open source community in Vietnam.",

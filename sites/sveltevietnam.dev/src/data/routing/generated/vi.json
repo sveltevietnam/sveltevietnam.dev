@@ -11,6 +11,14 @@
     "path": "/vi/blog",
     "name": "Blog"
   },
+  "blog/categories": {
+    "path": "/vi/blog/chu-de",
+    "name": "Chủ đề"
+  },
+  "blog/series": {
+    "path": "/vi/blog/chuoi-bai-viet",
+    "name": "Chuỗi bài viết"
+  },
   "code-of-conduct": {
     "path": "/vi/quy-tac-ung-xu",
     "name": "Quy tắc ứng xử"

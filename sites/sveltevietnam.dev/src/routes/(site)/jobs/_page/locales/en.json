@@ -20,6 +20,7 @@
 
 		"candidate_heading": "candidate",
 		"candidate_description": "Register to receive notifications when there are updates to job postings or information related to Svelte",
+		"candidate_name": "Name",
 		"candidate_verify": "Verify",
 		"candidate_cta": "Register",
 		"candidate_discord": "Join the conversation in <a class=\"c-link\" href=\"https://discord.sveltevietnam.dev/\">the official Svelte Vietnam Discord</a>.",
