@@ -148,9 +148,6 @@ importers:
       '@cloudflare/workers-types':
         specifier: ^4.20241224.0
         version: 4.20241224.0
-      '@internals/i18n':
-        specifier: workspace:*
-        version: link:../../libs/i18n
       '@svelte-put/preprocess-auto-slug':
         specifier: ^2.0.0
         version: 2.0.0(svelte@5.16.0)
@@ -169,6 +166,9 @@ importers:
       '@sveltejs/vite-plugin-svelte':
         specifier: ^5.0.3
         version: 5.0.3(svelte@5.16.0)(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(lightningcss@1.28.2))
+      '@sveltevietnam/i18n':
+        specifier: workspace:*
+        version: link:../../libs/i18n
       '@tailwindcss/typography':
         specifier: ^0.5.15
         version: 0.5.15(tailwindcss@4.0.0-beta.8)

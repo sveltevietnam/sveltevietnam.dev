@@ -1,5 +1,5 @@
-import { LANGUAGES } from '@internals/i18n';
-import { localizeUrl, getLangFromUrl } from '@internals/i18n/utils';
+import { LANGUAGES } from '@sveltevietnam/i18n';
+import { localizeUrl, getLangFromUrl } from '@sveltevietnam/i18n/utils';
 import { redirect, type Handle } from '@sveltejs/kit';
 
 import { building } from '$app/environment';

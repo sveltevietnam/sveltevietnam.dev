@@ -1,5 +1,5 @@
 {
-	"name": "@internals/i18n",
+	"name": "@sveltevietnam/i18n",
 	"version": "1.0.0-next.0",
 	"description": "i18n automation for sveltevietnam.dev projects",
 	"private": true,

@@ -1,4 +1,4 @@
-import type { Message } from '@internals/i18n/runtime';
+import type { Message } from '@sveltevietnam/i18n/runtime';
 
 type GenericLocaleModule = Record<string, Message<string>>;
 

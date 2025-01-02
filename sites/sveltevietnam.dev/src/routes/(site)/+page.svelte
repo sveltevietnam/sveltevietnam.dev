@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { T } from '@internals/i18n';
+	import { T } from '@sveltevietnam/i18n';
 
 	let { data } = $props();
 

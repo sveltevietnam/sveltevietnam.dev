@@ -152,7 +152,7 @@ export function importRuntimeFactoryFunctions(string, func, snippet) {
 					),
 				),
 			),
-			factory.createStringLiteral('@internals/i18n/runtime'),
+			factory.createStringLiteral('@sveltevietnam/i18n/runtime'),
 			undefined,
 		),
 	];

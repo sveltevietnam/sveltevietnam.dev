@@ -8,8 +8,8 @@ const ts = dedent;
 
 /**
  *	@typedef RoutingInput
- *	@property {string | Record<import('@internals/i18n').Language, string>} pathSegment
- *	@property {string | Record<import('@internals/i18n').Language, string>} name
+ *	@property {string | Record<import('@sveltevietnam/i18n').Language, string>} pathSegment
+ *	@property {string | Record<import('@sveltevietnam/i18n').Language, string>} name
  */
 
 /**

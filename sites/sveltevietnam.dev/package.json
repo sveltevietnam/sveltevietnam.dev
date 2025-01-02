@@ -17,7 +17,7 @@
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20241224.0",
-		"@internals/i18n": "workspace:*",
+		"@sveltevietnam/i18n": "workspace:*",
 		"@svelte-put/preprocess-auto-slug": "^2.0.0",
 		"@svelte-put/preprocess-external-link": "^1.0.0",
 		"@sveltejs/adapter-cloudflare": "^5.0.0",
