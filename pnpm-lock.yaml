@@ -93,7 +93,7 @@ importers:
         specifier: ^3.99.0
         version: 3.99.0(@cloudflare/workers-types@4.20241224.0)
 
-  libs/i18n:
+  packages/i18n:
     dependencies:
       commander:
         specifier: ^13.0.0
@@ -168,7 +168,7 @@ importers:
         version: 5.0.3(svelte@5.16.0)(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(lightningcss@1.28.2))
       '@sveltevietnam/i18n':
         specifier: workspace:*
-        version: link:../../libs/i18n
+        version: link:../../packages/i18n
       '@tailwindcss/typography':
         specifier: ^0.5.15
         version: 0.5.15(tailwindcss@4.0.0-beta.8)

@@ -29,9 +29,36 @@
 			"svelte": "./src/runtime/T.svelte"
 		}
 	},
+	"publishconfig": {
+		"access": "public",
+		"provenance": true
+	},
 	"files": [
 		"src",
 		"types"
+	],
+	"license": "mit",
+	"author": {
+		"email": "developers@sveltevietnam.dev",
+		"name": "Svelte Vietnam",
+		"url": "https://github.com/sveltevietnam"
+	},
+	"homepage": "https://www.sveltevietnam.dev",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sveltevietnam/sveltevietnam.dev.git",
+		"directory": "packages/i18n"
+	},
+	"bugs": {
+		"url": "https://github.com/sveltevietnam/sveltevietnam.dev/issues"
+	},
+	"keywords": [
+		"locale",
+		"language",
+		"internationalization",
+		"i18n",
+		"svelte",
+		"sveltekit"
 	],
 	"scripts": {
 		"test": "vitest --ui --coverage",

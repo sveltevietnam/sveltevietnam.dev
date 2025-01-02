@@ -1,7 +1,7 @@
 # Development Setup
 
 > [!NOTE]
-> Last updated on 2024-12-24
+> Last updated on 2025-01-02
 
 This document discusses necessary steps to get sveltevietnam.dev running on local development environment. Read [TECHNICAL REFERENCES] for an overview of the project's technical stack.
 
@@ -27,7 +27,7 @@ pnpm setup
 
 This is a monorepo managed with [pnpm] workspace and [turborepo]. The internal projects are scoped as following:
 
-- `/libs/*`: each project is a collection of code reusable across monorepo.
+- `/packages/*`: each project is a collection of code reusable across monorepo, and potentially publishable.
 - `/services/*`: each project represent a service running in isolation (bot, backend domains, ...).
 - `/sites/*`: each project represents an isolated domain.
 - `/workers/*`: each project maintains a separate [Cloudflare worker][cloudflare.worker].
