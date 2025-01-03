@@ -1,6 +1,6 @@
+import type { Reroute } from '@sveltejs/kit';
 import { LANGUAGES } from '@sveltevietnam/i18n';
 import { delocalizeUrl, getLangFromUrl } from '@sveltevietnam/i18n/utils';
-import type { Reroute } from '@sveltejs/kit';
 
 import config from '$data/routing/generated/reroute-config.json';
 

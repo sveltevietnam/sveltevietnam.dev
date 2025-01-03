@@ -1,6 +1,6 @@
+import { redirect, type Handle } from '@sveltejs/kit';
 import { LANGUAGES } from '@sveltevietnam/i18n';
 import { localizeUrl, getLangFromUrl } from '@sveltevietnam/i18n/utils';
-import { redirect, type Handle } from '@sveltejs/kit';
 
 import { building } from '$app/environment';
 import { COOKIE_NAME_USER_ID, COOKIE_NAME_LANGUAGE } from '$env/static/private';
@@ -9,8 +9,6 @@ import { COMMON_COOKIE_CONFIG, PUBLIC_COOKIE_CONFIG } from '$lib/constants';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const { locals, cookies, url, route, platform, request } = event;
-
-	console.log('hooks.server.ts - handle', route.id);
 
 	// Ensure that the user has a unique ID
 	locals.userId = cookies.get(COOKIE_NAME_USER_ID) || crypto.randomUUID();
@@ -33,7 +31,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		if (locals.internalReferer) {
 			languageFromUrl = getLangFromUrl(locals.internalReferer, LANGUAGES);
 			if (languageFromUrl) {
-				redirect(302, localizeUrl(url,LANGUAGES, languageFromUrl));
+				redirect(302, localizeUrl(url, LANGUAGES, languageFromUrl));
 			}
 		}
 

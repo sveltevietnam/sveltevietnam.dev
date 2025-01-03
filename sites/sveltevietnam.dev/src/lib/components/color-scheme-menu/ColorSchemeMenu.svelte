@@ -45,7 +45,7 @@
 		>
 		<i class="i i-[caret-down] h-5 w-5 transition-transform peer-checked:-rotate-180"></i>
 	</label>
-	<div class="_menu bg-surface absolute right-0 top-full mt-1 grid w-max" use:inert={!open}>
+	<div class="_menu bg-surface absolute right-0 top-full mt-1.5 grid w-max" use:inert={!open}>
 		<div class="overflow-hidden">
 			<ul class="border-outline divide-outline divide-y border">
 				{#each Object.entries(colorSchemes) as [key, { icon, label }]}
