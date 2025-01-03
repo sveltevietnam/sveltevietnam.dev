@@ -1,0 +1,19 @@
+@utility hl-info {
+	color: var(--color-info-on-surface);
+	background-color: var(--color-info-surface);
+}
+
+@utility hl-success {
+	color: var(--color-success-on-surface);
+	background-color: var(--color-success-surface);
+}
+
+@utility hl-warning {
+	color: var(--color-warning-on-surface);
+	background-color: var(--color-warning-surface);
+}
+
+@utility hl-error {
+	color: var(--color-error-on-surface);
+	background-color: var(--color-error-surface);
+}

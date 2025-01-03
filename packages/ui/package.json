@@ -1,0 +1,47 @@
+{
+	"name": "@sveltevietnam/ui",
+	"version": "1.0.0-next.0",
+	"description": "ui components",
+	"private": true,
+	"type": "module",
+	"exports": {
+		"./css/base": "./css/base.css",
+		"./css/typography": "./css/typography.css",
+		"./css/medias": "./css/medias.css"
+	},
+	"publishconfig": {
+		"access": "public",
+		"provenance": true
+	},
+	"files": [
+		"src"
+	],
+	"license": "mit",
+	"author": {
+		"email": "developers@sveltevietnam.dev",
+		"name": "Svelte Vietnam",
+		"url": "https://github.com/sveltevietnam"
+	},
+	"homepage": "https://www.sveltevietnam.dev",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sveltevietnam/sveltevietnam.dev.git",
+		"directory": "packages/ui"
+	},
+	"bugs": {
+		"url": "https://github.com/sveltevietnam/sveltevietnam.dev/issues"
+	},
+	"keywords": [
+		"css",
+		"postcss",
+		"tailwind"
+	],
+	"peerdependencies": {
+		"tailwindcss": ">=3.4.14 || >=4.0.0-beta.8"
+	},
+	"dependencies": {
+		"@tailwindcss/typography": "^0.5.15",
+		"phosphor-icons-tailwindcss": "^1.1.3"
+	}
+}
+

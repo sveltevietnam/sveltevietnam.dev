@@ -1,0 +1,73 @@
+@import './variants.css';
+@import './palette.css';
+
+/** mapped strictly to ./palette.css */
+@theme {
+	/* default foreground */
+	--color-on-surface: var(--palette-on-surface);
+	--color-on-surface-subtle: var(--palette-on-surface-subtle);
+
+	/* default background */
+	--color-surface: var(--palette-surface);
+	--color-surface-variant: var(--palette-surface-variant);
+
+	/* elements */
+	--color-placeholder: var(--palette-placeholder);
+	--color-link: var(--palette-link);
+
+	/* outline */
+	--color-outline: var(--palette-outline);
+	--color-outline-subtle: var(--palette-outline-subtle);
+	--color-outline-focus: var(--palette-outline-focus);
+
+	/* primary */
+	--color-primary: var(--palette-primary);
+	--color-primary-on-surface: var(--palette-primary-on-surface);
+	--color-primary-surface: var(--palette-primary-surface);
+
+	/* secondary */
+	--color-secondary: var(--palette-secondary);
+	--color-secondary-on-surface: var(--palette-secondary-on-surface);
+	--color-secondary-surface: var(--palette-secondary-surface);
+
+	/* tertiary */
+	--color-tertiary: var(--palette-tertiary);
+	--color-tertiary-on-surface: var(--palette-tertiary-on-surface);
+	--color-tertiary-surface: var(--palette-tertiary-surface);
+
+	/* status */
+	--color-info-on-surface: var(--palette-info-on-surface);
+	--color-info-on-surface-subtle: var(--palette-info-on-surface-subtle);
+	--color-info-surface: var(--palette-info-surface);
+	--color-info-surface-variant: var(--palette-info-surface-variant);
+
+	--color-success-on-surface: var(--palette-success-on-surface);
+	--color-success-on-surface-subtle: var(--palette-success-on-surface-subtle);
+	--color-success-surface: var(--palette-success-surface);
+	--color-success-surface-variant: var(--palette-success-surface-variant);
+
+	--color-warning-on-surface: var(--palette-warning-on-surface);
+	--color-warning-on-surface-subtle: var(--palette-warning-on-surface-subtle);
+	--color-warning-surface: var(--palette-warning-surface);
+	--color-warning-surface-variant: var(--palette-warning-surface-variant);
+
+	--color-error-on-surface: var(--palette-error-on-surface);
+	--color-error-on-surface-subtle: var(--palette-error-on-surface-subtle);
+	--color-error-surface: var(--palette-error-surface);
+	--color-error-surface-variant: var(--palette-error-surface-variant);
+
+	/* additional colors */
+	--color-svelte: #ef4623;
+}
+
+:root {
+	color-scheme: light;
+
+	@apply palette-light;
+
+	@media dark {
+		color-scheme: dark;
+
+		@apply palette-dark;
+	}
+}

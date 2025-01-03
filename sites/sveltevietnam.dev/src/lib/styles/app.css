@@ -1,1 +1,22 @@
 @import 'tailwindcss';
+@import '@sveltevietnam/ui/css/base';
+
+@theme {
+	/** spacing */
+	--spacing-header: var(--header-height);
+}
+
+@layer base {
+	:root {
+		--header-height: 56px;
+
+		@media (--desktop) {
+			--header-height: 102px;
+		}
+	}
+
+	*[id] {
+		scroll-margin: calc(1.5 * var(--spacing-header));
+	}
+}
+

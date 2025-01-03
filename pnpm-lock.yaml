@@ -130,6 +130,15 @@ importers:
         specifier: ^6.0.6
         version: 6.0.6(@types/node@22.10.2)(jiti@2.4.2)(lightningcss@1.28.2)
 
+  packages/ui:
+    dependencies:
+      '@tailwindcss/typography':
+        specifier: ^0.5.15
+        version: 0.5.15(tailwindcss@4.0.0-beta.8)
+      phosphor-icons-tailwindcss:
+        specifier: ^1.1.3
+        version: 1.2.1
+
   sites/sveltevietnam.dev:
     dependencies:
       '@floating-ui/dom':
@@ -169,6 +178,9 @@ importers:
       '@sveltevietnam/i18n':
         specifier: workspace:*
         version: link:../../packages/i18n
+      '@sveltevietnam/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       '@tailwindcss/typography':
         specifier: ^0.5.15
         version: 0.5.15(tailwindcss@4.0.0-beta.8)
@@ -1109,6 +1121,9 @@ packages:
   '@nodelib/fs.walk@1.2.8':
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
+
+  '@phosphor-icons/core@2.1.1':
+    resolution: {integrity: sha512-v4ARvrip4qBCImOE5rmPUylOEK4iiED9ZyKjcvzuezqMaiRASCHKcRIuvvxL/twvLpkfnEODCOJp5dM4eZilxQ==}
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -3020,6 +3035,12 @@ packages:
     resolution: {integrity: sha512-vE7JKRyES09KiunauX7nd2Q9/L7lhok4smP9RZTDeD4MVs72Dp2qNFVz39Nz5a0FVEW0BJR6C0DYrq6unoziZA==}
     engines: {node: '>= 14.16'}
 
+  phosphor-icons-tailwindcss@1.2.1:
+    resolution: {integrity: sha512-vpD6MPK1RfFE/msRV5Q452ZzeSiO015mi+Inqx5SiknfCAw8H5HKprqeX/ZMGYP9JgHE7xwByQ0d9Pi+fydNIw==}
+    engines: {node: '>=22.0.0', pnpm: '>=9.0.0'}
+    peerDependencies:
+      tailwindcss: '>=3.4.14 || >=4.0.0-beta.8'
+
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
@@ -4814,6 +4835,8 @@ snapshots:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.18.0
+
+  '@phosphor-icons/core@2.1.1': {}
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
@@ -6864,6 +6887,11 @@ snapshots:
   pathe@1.1.2: {}
 
   pathval@2.0.0: {}
+
+  phosphor-icons-tailwindcss@1.2.1:
+    dependencies:
+      '@phosphor-icons/core': 2.1.1
+      import-meta-resolve: 4.1.0
 
   picocolors@1.1.1: {}
 

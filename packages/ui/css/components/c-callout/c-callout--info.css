@@ -1,0 +1,8 @@
+@utility c-callout--info {
+	@layer components.mod1 {
+		--callout-color-text: var(--color-info-on-surface);
+		--callout-color-icon: var(--color-info-on-surface);
+		--callout-color-bg: var(--color-info-surface);
+		--callout-color-border: var(--color-info-on-surface-subtle);
+	}
+}
