@@ -6,3 +6,6 @@ import { createMessageString } from "@sveltevietnam/i18n/runtime";
 export const sveltevietnam = createMessageString("Svelte Vietnam");
 export const search = createMessageString("Search");
 export const go_to_homepage = createMessageString("Go to homepage");
+export const open = createMessageString("open");
+export const close = createMessageString("close");
+export const mobile_menu = createMessageString("mobile menu");

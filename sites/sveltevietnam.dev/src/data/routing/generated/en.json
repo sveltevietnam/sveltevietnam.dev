@@ -39,6 +39,10 @@
     "path": "/en/roadmap",
     "name": "Roadmap"
   },
+  "search": {
+    "path": "/en/search",
+    "name": "Search"
+  },
   "settings": {
     "path": "/en/settings",
     "name": "Settings"

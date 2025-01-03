@@ -1,6 +1,9 @@
-import { i18n } from '@sveltevietnam/i18n/vite';
+import path from 'path';
+
+import { inlineSvg } from '@svelte-put/inline-svg/vite';
 import { enhancedImages } from '@sveltejs/enhanced-img';
 import { sveltekit } from '@sveltejs/kit/vite';
+import { i18n } from '@sveltevietnam/i18n/vite';
 import tailwindcss from '@tailwindcss/vite';
 import postcssColorScheme from 'postcss-color-scheme';
 import postcssCustomMedia from 'postcss-custom-media';
@@ -20,5 +23,26 @@ export default defineConfig({
 			],
 		},
 	},
-	plugins: [enhancedImages(), tailwindcss(), sveltekit(), sveltekitRouting(), i18n()],
+	plugins: [
+		inlineSvg(
+			[
+				{
+					directories: [path.resolve(__dirname, 'src/lib/assets/images/svg')],
+					attributes: {
+						height: '24',
+						width: '24',
+					},
+				},
+			],
+			{
+				inlineSrcAttributeName: 'inline-src',
+				typedef: true,
+			},
+		),
+		enhancedImages(),
+		tailwindcss(),
+		sveltekit(),
+		sveltekitRouting(),
+		i18n(),
+	],
 });

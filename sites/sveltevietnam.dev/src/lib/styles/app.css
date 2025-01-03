@@ -8,10 +8,10 @@
 
 @layer base {
 	:root {
-		--header-height: 56px;
+		--header-height: 3.6875rem; /* 59px */
 
 		@media (--desktop) {
-			--header-height: 100px;
+			--header-height: 6.25rem; /* 100px */
 		}
 	}
 

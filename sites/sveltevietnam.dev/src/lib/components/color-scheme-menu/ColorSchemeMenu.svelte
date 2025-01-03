@@ -1,15 +1,20 @@
 <script lang="ts">
 	import { clickoutside } from '@svelte-put/clickoutside';
 	import { T } from '@sveltevietnam/i18n';
+	import type { HTMLAttributes } from 'svelte/elements';
 
 	import { inert } from '$lib/actions/inert';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
-	let { locale }: { locale: import('./locales/generated').Locale } = $props();
+	let {
+		locale,
+		class: cls,
+		...rest
+	}: { locale: import('./locales/generated').Locale } & HTMLAttributes<HTMLElement> = $props();
 
 	const settings = SettingsContext.get();
 
-	const colorSchemes = {
+	const colorSchemes = $derived({
 		light: {
 			icon: 'i-[sun]',
 			label: locale.light,
@@ -22,25 +27,31 @@
 			icon: 'i-[desktop]',
 			label: locale.system,
 		},
-	};
+	});
 
 	let open = $state(false);
 </script>
 
 <div
-	class="_container relative w-fit"
+	class={['_container relative w-fit', cls]}
 	use:clickoutside={{ enabled: open }}
 	onclickoutside={() => (open = false)}
+	{...rest}
 >
 	<label
-		class="_toggler-label c-link-lazy flex cursor-pointer items-center gap-2 p-1 transition-colors"
+		class="_toggler-label c-link-lazy flex cursor-pointer items-center gap-2 p-2 transition-colors"
 	>
-		<input class="_toggler peer sr-only" type="checkbox" name="color-scheme-menu" bind:checked={open} />
+		<input
+			class="_toggler peer sr-only"
+			type="checkbox"
+			name="color-scheme-menu"
+			bind:checked={open}
+		/>
 		<i class="i i-[palette] h-6 w-6"></i>
 		<span class="sr-only peer-checked:hidden"><T message={locale.open} /></span>
 		<span class="sr-only hidden peer-checked:block"><T message={locale.close} /></span>
 		<span class="sr-only"><T message={locale.toggle} /> </span>
-		<span class="desktop:sr-only"
+		<span class="tablet:sr-only"
 			><T message={colorSchemes[settings.colorScheme.user].label} /></span
 		>
 		<i class="i i-[caret-down] h-5 w-5 transition-transform peer-checked:-rotate-180"></i>

@@ -2,6 +2,9 @@
 	"messages": {
 		"sveltevietnam": "Svelte Việt Nam",
 		"search": "Tìm kiếm",
-		"go_to_homepage": "Về trang chủ"
+		"go_to_homepage": "Về trang chủ",
+		"open": "mở",
+		"close": "đóng",
+		"mobile_menu": "bảng điều khiển"
 	}
 }

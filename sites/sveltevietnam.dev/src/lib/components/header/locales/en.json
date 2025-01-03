@@ -2,6 +2,9 @@
 	"messages": {
 		"sveltevietnam": "Svelte Vietnam",
 		"search": "Search",
-		"go_to_homepage": "Go to homepage"
+		"go_to_homepage": "Go to homepage",
+		"open": "open",
+		"close": "close",
+		"mobile_menu": "mobile menu"
 	}
 }

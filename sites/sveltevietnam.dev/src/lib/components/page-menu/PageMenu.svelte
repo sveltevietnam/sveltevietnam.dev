@@ -1,11 +1,14 @@
 <script lang="ts">
 	import { clickoutside } from '@svelte-put/clickoutside';
 	import { T } from '@sveltevietnam/i18n';
+	import type { HTMLAttributes } from 'svelte/elements';
 
 	import { inert } from '$lib/actions/inert';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 
-	let { locale }: { locale: import('./locales/generated').Locale } = $props();
+	let { locale, flat = false, class: cls, onnavigate = () => {}, ...rest }: { locale:
+		import('./locales/generated').Locale; flat?: boolean, onnavigate?: () => void } &
+	HTMLAttributes<HTMLElement> = $props();
 
 	const routing = RoutingContext.get();
 
@@ -37,38 +40,51 @@
 			key: 'settings' as const,
 		},
 	];
+
+	function onClickPageLink() {
+		open = false;
+		onnavigate();
+	}
 </script>
 
 <nav
-	class="relative w-fit"
+	class={['relative', !flat && 'w-fit', cls]}
 	aria-label={locale.nav_label}
 	data-sveltekit-noscroll
 	data-sveltekit-preload-data="hover"
 	use:clickoutside={{ enabled: open }}
 	onclickoutside={() => (open = false)}
+	{...rest}
 >
-	<label class="c-link-lazy flex cursor-pointer items-center gap-2 p-1 transition-colors">
-		<input class="peer sr-only" type="checkbox" name="page-menu" bind:checked={open} />
-		<i class="i i-[compass] h-6 w-6"></i>
-		<span class="sr-only peer-checked:hidden"><T message={locale.open} /></span>
-		<span class="sr-only hidden peer-checked:block"><T message={locale.close} /></span>
-		<span class="sr-only"><T message={locale.toggle} /></span>
-		<i class="i i-[caret-down] h-5 w-5 transition-transform peer-checked:-rotate-180"></i>
-	</label>
-	<div class="_menu bg-surface absolute right-0 top-full mt-1.5 grid w-max" use:inert={!open}>
+	{#if !flat}
+		<label class="c-link-lazy flex cursor-pointer items-center gap-2 p-2 transition-colors">
+			<input class="peer sr-only" type="checkbox" name="page-menu" bind:checked={open} />
+			<i class="i i-[compass] h-6 w-6"></i>
+			<span class="sr-only peer-checked:hidden"><T message={locale.open} /></span>
+			<span class="sr-only hidden peer-checked:block"><T message={locale.close} /></span>
+			<span class="sr-only"><T message={locale.toggle} /></span>
+			<i class="i i-[caret-down] h-5 w-5 transition-transform peer-checked:-rotate-180"></i>
+		</label>
+	{/if}
+	<div
+		class={['_menu bg-surface absolute right-0 top-full mt-1.5 w-max', flat ? 'contents' : 'grid']}
+		use:inert={!flat && !open}
+	>
 		<div class="overflow-hidden">
-			<ul class="border-outline divide-outline divide-y border">
+			<ul class={[!flat && 'border-outline divide-outline divide-y border']}>
 				{#each links as { key, icon }}
 					{@const path = routing.path(key)}
 					{@const name = routing.name(key)}
 					{@const current = routing.is(key)}
-					<li>
+					<li class={[flat && 'border-b']}>
 						<a
-							class="current:text-primary-on-surface current:font-bold hover:bg-primary-surface flex items-center gap-4
-							px-4 py-2"
+							class={[
+								'current:text-primary-on-surface current:font-bold hover:bg-primary-surface flex items-center gap-4',
+								flat ? 'py-4' : 'px-4 py-2',
+							]}
 							href={path}
 							data-current={current}
-							onclick={() => (open = false)}
+							onclick={onClickPageLink}
 						>
 							<i class="i {icon} h-6 w-6"></i>
 							{name}

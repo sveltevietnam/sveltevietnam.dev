@@ -7,6 +7,7 @@
     "/su-kien": "/events",
     "/viec-lam": "/jobs",
     "/lo-trinh": "/roadmap",
+    "/tim-kiem": "/search",
     "/cai-dat": "/settings",
     "/tai-tro": "/sponsor"
   },
@@ -18,6 +19,7 @@
     "/vi/events",
     "/vi/jobs",
     "/vi/roadmap",
+    "/vi/search",
     "/vi/settings",
     "/vi/sponsor"
   ]

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { clickoutside } from '@svelte-put/clickoutside';
 	import { T } from '@sveltevietnam/i18n';
+	import type { HTMLAttributes } from 'svelte/elements';
 
 	import { invalidate } from '$app/navigation';
 	import { inert } from '$lib/actions/inert';
@@ -11,7 +12,7 @@
 	import flagGb from './images/flag-gb.svg?url';
 	import flagVn from './images/flag-vn.svg?url';
 
-	let { locale }: { locale: import('./locales/generated').Locale } = $props();
+	let { locale, class: cls, ...rest }: { locale: import('./locales/generated').Locale } & HTMLAttributes<HTMLElement> = $props();
 
 	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();
@@ -26,20 +27,21 @@
 </script>
 
 <nav
-	class="relative w-fit"
+	class={['relative w-fit', cls]}
 	aria-label={locale.nav_label}
 	data-sveltekit-noscroll
 	data-sveltekit-preload-data="hover"
 	use:clickoutside={{ enabled: open }}
 	onclickoutside={() => (open = false)}
+	{...rest}
 >
-	<label class="c-link-lazy flex cursor-pointer items-center gap-2 p-1 transition-colors">
+	<label class="c-link-lazy flex cursor-pointer items-center gap-2 p-2 transition-colors">
 		<input class="peer sr-only" type="checkbox" name="language-menu" bind:checked={open} />
 		<i class="i i-[translate] h-6 w-6"></i>
 		<span class="sr-only peer-checked:hidden"><T message={locale.open} /></span>
 		<span class="sr-only hidden peer-checked:block"><T message={locale.close} /></span>
 		<span class="sr-only"><T message={locale.toggle} /></span>
-		<span class="desktop:sr-only"><T message={currentLangLabel} /></span>
+		<span class="tablet:sr-only"><T message={currentLangLabel} /></span>
 		<i class="i i-[caret-down] h-5 w-5 transition-transform peer-checked:-rotate-180"></i>
 	</label>
 	<div class="_menu bg-surface absolute right-0 top-full mt-1.5 grid w-max" use:inert={!open}>

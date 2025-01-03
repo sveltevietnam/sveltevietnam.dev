@@ -6,3 +6,6 @@ import { createMessageString } from "@sveltevietnam/i18n/runtime";
 export const sveltevietnam = createMessageString("Svelte Việt Nam");
 export const search = createMessageString("Tìm kiếm");
 export const go_to_homepage = createMessageString("Về trang chủ");
+export const open = createMessageString("mở");
+export const close = createMessageString("đóng");
+export const mobile_menu = createMessageString("bảng điều khiển");

@@ -39,6 +39,10 @@
     "path": "/vi/lo-trinh",
     "name": "Lộ trình"
   },
+  "search": {
+    "path": "/vi/tim-kiem",
+    "name": "Tìm kiếm"
+  },
   "settings": {
     "path": "/vi/cai-dat",
     "name": "Cài đặt"
