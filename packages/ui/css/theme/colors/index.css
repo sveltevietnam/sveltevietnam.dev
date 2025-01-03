@@ -63,6 +63,7 @@
 :root {
 	color-scheme: light;
 
+	@apply palette-sand;
 	@apply palette-light;
 
 	@media dark {
