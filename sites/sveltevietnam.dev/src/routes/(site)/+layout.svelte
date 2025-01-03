@@ -1,15 +1,15 @@
 <script lang="ts">
 	import { version } from '$app/environment';
-	import { invalidate } from '$app/navigation';
 	import { page } from '$app/state';
 	import ogImageHome from '$lib/assets/images/og-fallback.jpg?url';
-	import { LOAD_DEPENDENCIES } from '$lib/constants';
+	// import { Footer } from '$lib/components/footer';
+	import { Header } from '$lib/components/header';
 	import { toStringWithContext, buildStructuredBreadcrumbs } from '$lib/meta/structured';
 	import { RoutingContext } from '$lib/routing/context.svelte.js';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 	import '$lib/styles/app.css';
 
-	let { children } = $props();
+	let { children, data } = $props();
 
 	/** SEO setup */
 	const DEFAULT_KEYWORDS = {
@@ -74,10 +74,6 @@
 	const settings = SettingsContext.set(page.data.sharedSettings);
 	const routing = RoutingContext.set(page.data.routing);
 
-	function reloadLanguage() {
-		invalidate(LOAD_DEPENDENCIES.LANGUAGE);
-	}
-
 	$effect(() => {
 		routing.update(page.data.routing);
 	});
@@ -135,10 +131,6 @@
 	<link rel="alternate" hreflang="x-default" href="{page.url.origin}{routing.paths.vi.path}" />
 </svelte:head>
 
-<p>
-	<a href={routing.paths.en.path} onclick={reloadLanguage}>EN</a>
-	|
-	<a href={routing.paths.vi.path} onclick={reloadLanguage}>VI</a>
-</p>
-
+<Header locale={data.locales.header} localeLanguageMenu={data.locales.languageMenu} />
 {@render children()}
+<!-- <Footer locale={data.locales.footer} /> -->

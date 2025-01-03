@@ -4,8 +4,6 @@
 import { createMessageString } from "@sveltevietnam/i18n/runtime";
 
 export const sveltevietnam = createMessageString("Svelte Việt Nam");
-export const vietnamese = createMessageString("Tiếng Việt");
-export const english = createMessageString("Tiếng Anh");
 export const color_light = createMessageString("Chế độ sáng");
 export const color_dark = createMessageString("Chế độ tối");
 export const color_system = createMessageString("Mặc định");

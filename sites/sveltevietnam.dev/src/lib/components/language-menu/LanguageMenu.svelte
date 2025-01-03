@@ -1,0 +1,91 @@
+<script lang="ts">
+	import { clickoutside } from '@svelte-put/clickoutside';
+	import { T } from '@sveltevietnam/i18n';
+
+	import { invalidate } from '$app/navigation';
+	import { LOAD_DEPENDENCIES } from '$lib/constants';
+	import { RoutingContext } from '$lib/routing/context.svelte';
+	import { SettingsContext } from '$lib/settings/context.svelte';
+
+	import flagGb from './images/flag-gb.svg?url';
+	import flagVn from './images/flag-vn.svg?url';
+
+	let { locale }: { locale: import('./locales/generated').Locale } = $props();
+
+	console.log(locale);
+
+	const routing = RoutingContext.get();
+	const settings = SettingsContext.get();
+
+	let currentLangLabel = $derived(settings.language === 'vi' ? locale.vietnamese : locale.english);
+	let open = $state(false);
+
+	function reloadLanguage() {
+		open = false;
+		invalidate(LOAD_DEPENDENCIES.LANGUAGE);
+	}
+</script>
+
+<nav
+	class="relative w-fit"
+	aria-label={locale.nav_label}
+	data-sveltekit-noscroll
+	data-sveltekit-preload-data="hover"
+	use:clickoutside={{ enabled: open }}
+	onclickoutside={() => (open = false)}
+>
+	<label class="c-link-lazy flex cursor-pointer items-center gap-2 p-1 transition-colors">
+		<input class="peer sr-only" type="checkbox" name="language-menu" bind:checked={open} />
+		<i class="i i-[translate] h-6 w-6"></i>
+		<span class="sr-only"><T message={locale.toggle} /></span>
+		<span class="desktop:sr-only"><T message={currentLangLabel} /></span>
+		<i class="i i-[caret-down] h-5 w-5 transition-transform peer-checked:-rotate-180"></i>
+	</label>
+	<div class="_menu absolute right-0 top-full mt-1 grid w-max">
+		<div class="overflow-hidden">
+			<ul class="border-outline divide-outline divide-y border">
+				<li>
+					<a
+						class="current:text-primary-on-surface current:font-bold hover:bg-primary-surface flex items-center gap-4
+						px-4 py-2"
+						href={routing.paths.vi.path}
+						data-current={settings.language === 'vi'}
+						onclick={reloadLanguage}
+					>
+						<img class="h-6 w-9" src={flagVn} alt={locale.vietnamese} width="36" height="24" />
+						<span><T message={locale.vietnamese} /></span>
+					</a>
+				</li>
+				<li>
+					<a
+						class="current:text-primary-on-surface current:font-bold hover:bg-primary-surface flex items-center gap-4
+						px-4 py-2"
+						data-current={settings.language === 'en'}
+						href={routing.paths.en.path}
+						onclick={reloadLanguage}
+					>
+						<img class="h-6 w-9" src={flagGb} alt={locale.english} width="36" height="24" />
+						<span><T message={locale.english} /></span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<style lang="postcss">
+	label {
+		&:has(input:checked) {
+			color: var(--color-link);
+		}
+	}
+
+	._menu {
+		grid-template-rows: 0fr;
+		transition: grid-template-rows 150ms var(--default-transition-timing-function);
+
+		nav:has(input:checked) & {
+			grid-template-rows: 1fr;
+		}
+	}
+</style>
