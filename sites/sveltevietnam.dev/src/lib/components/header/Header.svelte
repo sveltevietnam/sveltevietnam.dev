@@ -3,6 +3,7 @@
 
 	import { ColorSchemeMenu } from '$lib/components/color-scheme-menu';
 	import { LanguageMenu } from '$lib/components/language-menu';
+	import { PageMenu } from '$lib/components/page-menu';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 
 	const routing = RoutingContext.get();
@@ -11,10 +12,12 @@
 		locale,
 		localeLanguageMenu,
 		localeColorSchemeMenu,
+		localePageMenu,
 	}: {
 		locale: import('./locales/generated').Locale;
 		localeLanguageMenu: import('$lib/components/language-menu/locales/generated').Locale;
 		localeColorSchemeMenu: import('$lib/components/color-scheme-menu/locales/generated').Locale;
+		localePageMenu: import('$lib/components/page-menu/locales/generated').Locale;
 	} = $props();
 </script>
 
@@ -28,6 +31,7 @@
 	>
 		<i class="i i-sveltevietnam w-15 h-15"></i>
 		<span class="c-text-title-sm max-w-25 uppercase">{locale.sveltevietnam}</span>
+		<span class="sr-only">(<T message={locale.go_to_homepage} />)</span>
 	</a>
 	<div class="bg-surface flex w-fit items-center gap-5 border-x border-b px-6 py-5">
 		<form>
@@ -37,7 +41,8 @@
 				<input class="w-full" name="search" placeholder="{locale.search}..." />
 			</label>
 		</form>
-		<LanguageMenu locale={localeLanguageMenu} />
 		<ColorSchemeMenu locale={localeColorSchemeMenu} />
+		<LanguageMenu locale={localeLanguageMenu} />
+		<PageMenu locale={localePageMenu} />
 	</div>
 </div>

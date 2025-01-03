@@ -135,6 +135,7 @@
 	locale={data.locales.header}
 	localeLanguageMenu={data.locales.languageMenu}
 	localeColorSchemeMenu={data.locales.colorSchemeMenu}
+	localePageMenu={data.locales.pageMenu}
 />
 {@render children()}
 <!-- <Footer locale={data.locales.footer} /> -->

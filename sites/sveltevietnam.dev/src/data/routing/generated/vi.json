@@ -1,7 +1,7 @@
 {
   "home": {
     "path": "/vi",
-    "name": "Home"
+    "name": "Trang chủ"
   },
   "blog/:slug": {
     "path": "/vi/blog/:slug",

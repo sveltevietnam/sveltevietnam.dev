@@ -3,5 +3,8 @@
 		"vi": "vi",
 		"en": "en"
 	},
-	"name": "Home"
+	"name": {
+		"vi": "Trang chủ",
+		"en": "Home"
+	}
 }

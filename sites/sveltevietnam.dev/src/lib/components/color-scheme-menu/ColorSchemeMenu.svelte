@@ -35,7 +35,7 @@
 	<label
 		class="_toggler-label c-link-lazy flex cursor-pointer items-center gap-2 p-1 transition-colors"
 	>
-		<input class="_toggler peer sr-only" type="checkbox" name="language-menu" bind:checked={open} />
+		<input class="_toggler peer sr-only" type="checkbox" name="color-scheme-menu" bind:checked={open} />
 		<i class="i i-[palette] h-6 w-6"></i>
 		<span class="sr-only peer-checked:hidden"><T message={locale.open} /></span>
 		<span class="sr-only hidden peer-checked:block"><T message={locale.close} /></span>
