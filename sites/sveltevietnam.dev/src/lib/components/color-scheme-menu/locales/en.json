@@ -1,0 +1,10 @@
+{
+	"messages": {
+		"light": "Light mode",
+		"dark": "Dark mode",
+		"system": "System default",
+		"open": "open",
+		"close": "close",
+		"toggle": "color scheme menu. Current color scheme is"
+	}
+}

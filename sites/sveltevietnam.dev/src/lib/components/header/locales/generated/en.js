@@ -4,8 +4,5 @@
 import { createMessageString } from "@sveltevietnam/i18n/runtime";
 
 export const sveltevietnam = createMessageString("Svelte Vietnam");
-export const color_light = createMessageString("Light mode");
-export const color_dark = createMessageString("Dark mode");
-export const color_system = createMessageString("System default");
 export const search = createMessageString("Search");
 export const go_to_homepage = createMessageString("Go to homepage");

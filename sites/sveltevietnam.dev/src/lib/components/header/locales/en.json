@@ -1,9 +1,6 @@
 {
 	"messages": {
 		"sveltevietnam": "Svelte Vietnam",
-		"color_light": "Light mode",
-		"color_dark": "Dark mode",
-		"color_system": "System default",
 		"search": "Search",
 		"go_to_homepage": "Go to homepage"
 	}

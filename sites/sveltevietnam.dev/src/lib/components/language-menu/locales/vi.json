@@ -1,8 +1,11 @@
 {
 	"messages": {
-		"nav_label": "Chuyển đổi ngôn ngữ trang",
+		"nav_label": "chuyển đổi ngôn ngữ trang",
+		"switch_to": "chuyển sang",
 		"vietnamese": "Tiếng Việt",
 		"english": "Tiếng Anh",
-		"toggle": "Mở/đóng bảng chọn ngôn ngữ. Ngôn ngữ hiện tại là"
+		"open": "mở",
+		"close": "đóng",
+		"toggle": "bảng chọn ngôn ngữ. Ngôn ngữ hiện tại là"
 	}
 }

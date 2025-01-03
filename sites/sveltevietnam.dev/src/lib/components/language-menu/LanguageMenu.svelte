@@ -3,6 +3,7 @@
 	import { T } from '@sveltevietnam/i18n';
 
 	import { invalidate } from '$app/navigation';
+	import { inert } from '$lib/actions/inert';
 	import { LOAD_DEPENDENCIES } from '$lib/constants';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
@@ -11,8 +12,6 @@
 	import flagVn from './images/flag-vn.svg?url';
 
 	let { locale }: { locale: import('./locales/generated').Locale } = $props();
-
-	console.log(locale);
 
 	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();
@@ -37,11 +36,13 @@
 	<label class="c-link-lazy flex cursor-pointer items-center gap-2 p-1 transition-colors">
 		<input class="peer sr-only" type="checkbox" name="language-menu" bind:checked={open} />
 		<i class="i i-[translate] h-6 w-6"></i>
+		<span class="sr-only peer-checked:hidden"><T message={locale.open} /></span>
+		<span class="sr-only hidden peer-checked:block"><T message={locale.close} /></span>
 		<span class="sr-only"><T message={locale.toggle} /></span>
 		<span class="desktop:sr-only"><T message={currentLangLabel} /></span>
 		<i class="i i-[caret-down] h-5 w-5 transition-transform peer-checked:-rotate-180"></i>
 	</label>
-	<div class="_menu absolute right-0 top-full mt-1 grid w-max">
+	<div class="_menu bg-surface absolute right-0 top-full mt-1 grid w-max" use:inert={!open}>
 		<div class="overflow-hidden">
 			<ul class="border-outline divide-outline divide-y border">
 				<li>
@@ -52,7 +53,9 @@
 						data-current={settings.language === 'vi'}
 						onclick={reloadLanguage}
 					>
-						<img class="h-6 w-9" src={flagVn} alt={locale.vietnamese} width="36" height="24" />
+						<!-- no need to announce this flag image -->
+						<img class="h-6 w-9" src={flagVn} alt="" width="36" height="24" />
+						<span class="sr-only"><T message={locale.switch_to} /></span>
 						<span><T message={locale.vietnamese} /></span>
 					</a>
 				</li>
@@ -64,7 +67,9 @@
 						href={routing.paths.en.path}
 						onclick={reloadLanguage}
 					>
-						<img class="h-6 w-9" src={flagGb} alt={locale.english} width="36" height="24" />
+						<!-- no need to announce this flag image -->
+						<img class="h-6 w-9" src={flagGb} alt="" width="36" height="24" />
+						<span class="sr-only"><T message={locale.switch_to} /></span>
 						<span><T message={locale.english} /></span>
 					</a>
 				</li>

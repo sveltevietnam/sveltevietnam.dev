@@ -1,3 +1,4 @@
+import { loadLocale as loadColorSchemeMenuLocale } from '$lib/components/color-scheme-menu/locales/generated';
 import { loadLocale as loadFooterLocale } from '$lib/components/footer/locales/generated';
 import { loadLocale as loadHeaderLocale } from '$lib/components/header/locales/generated';
 import { loadLocale as loadLanguageMenuLocale } from '$lib/components/language-menu/locales/generated';
@@ -10,9 +11,10 @@ import type { LayoutLoad } from './$types';
 export const load: LayoutLoad = async ({ data, depends, route }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	const pageLocales = await getPageLocaleModule(route.id, data.sharedSettings.language);
-	const [header, languageMenu, pagination, footer] = await Promise.all([
+	const [header, languageMenu, colorSchemeMenu, pagination, footer] = await Promise.all([
 		loadHeaderLocale(data.sharedSettings.language),
 		loadLanguageMenuLocale(data.sharedSettings.language),
+		loadColorSchemeMenuLocale(data.sharedSettings.language),
 		loadPaginationLocale(data.sharedSettings.language),
 		loadFooterLocale(data.sharedSettings.language),
 	]);
@@ -21,6 +23,7 @@ export const load: LayoutLoad = async ({ data, depends, route }) => {
 		locales: {
 			header,
 			languageMenu,
+			colorSchemeMenu,
 			pagination,
 			footer,
 			page: pageLocales,

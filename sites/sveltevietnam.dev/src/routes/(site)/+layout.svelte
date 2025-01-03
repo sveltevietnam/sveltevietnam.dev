@@ -131,6 +131,10 @@
 	<link rel="alternate" hreflang="x-default" href="{page.url.origin}{routing.paths.vi.path}" />
 </svelte:head>
 
-<Header locale={data.locales.header} localeLanguageMenu={data.locales.languageMenu} />
+<Header
+	locale={data.locales.header}
+	localeLanguageMenu={data.locales.languageMenu}
+	localeColorSchemeMenu={data.locales.colorSchemeMenu}
+/>
 {@render children()}
 <!-- <Footer locale={data.locales.footer} /> -->

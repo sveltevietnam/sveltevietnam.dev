@@ -1,9 +1,6 @@
 {
 	"messages": {
 		"sveltevietnam": "Svelte Việt Nam",
-		"color_light": "Chế độ sáng",
-		"color_dark": "Chế độ tối",
-		"color_system": "Mặc định",
 		"search": "Tìm kiếm",
 		"go_to_homepage": "Về trang chủ"
 	}

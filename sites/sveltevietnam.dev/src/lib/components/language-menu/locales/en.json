@@ -1,8 +1,11 @@
 {
 	"messages": {
-		"nav_label": "Switch site language",
+		"nav_label": "switch site language",
+		"switch_to": "switch to",
 		"vietnamese": "Vietnamese",
 		"english": "English",
-		"toggle": "Toggle language menu. Current language is"
+		"open": "open",
+		"close": "close",
+		"toggle": "language menu. Current language is"
 	}
 }

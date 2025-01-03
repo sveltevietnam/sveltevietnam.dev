@@ -1,0 +1,10 @@
+{
+	"messages": {
+		"light": "Chế độ sáng",
+		"dark": "Chế độ tối",
+		"system": "Mặc định",
+		"open": "mở",
+		"close": "đóng",
+		"toggle": "bảng chọn chế độ màu. Chế độ màu hiện tại là"
+	}
+}

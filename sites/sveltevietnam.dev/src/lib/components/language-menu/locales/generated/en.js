@@ -3,7 +3,10 @@
 
 import { createMessageString } from "@sveltevietnam/i18n/runtime";
 
-export const nav_label = createMessageString("Switch site language");
+export const nav_label = createMessageString("switch site language");
+export const switch_to = createMessageString("switch to");
 export const vietnamese = createMessageString("Vietnamese");
 export const english = createMessageString("English");
-export const toggle = createMessageString("Toggle language menu. Current language is");
+export const open = createMessageString("open");
+export const close = createMessageString("close");
+export const toggle = createMessageString("language menu. Current language is");
