@@ -1,31 +1,14 @@
 @import '../medias.css';
 
+@theme {
+	--breakpoint-tablet: 48rem; /* 768px */
+	--breakpoint-desktop: 64rem; /* 1024px */
+	--breakpoint-widescreen: 80rem; /* 1280px */
+}
+
 @variant mobile {
 	@media (--mobile) {
 		@slot;
 	}
 }
 
-@variant tablet {
-	@media (--tablet) {
-		@slot;
-	}
-}
-
-@variant desktop {
-	@media (--desktop) {
-		@slot;
-	}
-}
-
-@variant widescreen {
-	@media (--widescreen) {
-		@slot;
-	}
-}
-
-@variant upto-widescreen {
-	@media (--upto-widescreen) {
-		@slot;
-	}
-}

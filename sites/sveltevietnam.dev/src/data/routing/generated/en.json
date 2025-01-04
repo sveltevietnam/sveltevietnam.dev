@@ -39,6 +39,10 @@
     "path": "/en/roadmap",
     "name": "Roadmap"
   },
+  "rss.xml": {
+    "path": "/en/rss.xml",
+    "name": "RSS"
+  },
   "search": {
     "path": "/en/search",
     "name": "Search"
@@ -46,6 +50,10 @@
   "settings": {
     "path": "/en/settings",
     "name": "Settings"
+  },
+  "sitemap.xml": {
+    "path": "/en/sitemap.xml",
+    "name": "Sitemap"
   },
   "sponsor": {
     "path": "/en/sponsor",

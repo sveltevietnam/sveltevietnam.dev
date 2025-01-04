@@ -2,7 +2,7 @@
 	import { version } from '$app/environment';
 	import { page } from '$app/state';
 	import ogImageHome from '$lib/assets/images/og-fallback.jpg?url';
-	// import { Footer } from '$lib/components/footer';
+	import { Footer } from '$lib/components/footer';
 	import { Header } from '$lib/components/header';
 	import { toStringWithContext, buildStructuredBreadcrumbs } from '$lib/meta/structured';
 	import { RoutingContext } from '$lib/routing/context.svelte.js';
@@ -138,4 +138,9 @@
 	localePageMenu={data.locales.pageMenu}
 />
 {@render children()}
-<!-- <Footer locale={data.locales.footer} /> -->
+<Footer
+	{version}
+	locale={data.locales.footer}
+	localeGreenWebBadge={data.locales.greenWebBadge}
+	localeNotByAiBadge={data.locales.notByAiBadge}
+/>

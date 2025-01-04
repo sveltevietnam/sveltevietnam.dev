@@ -6,6 +6,7 @@ import { createMessageString } from "@sveltevietnam/i18n/runtime";
 export const sveltevietnam = createMessageString("Svelte Vietnam");
 export const about = createMessageString("About Us");
 export const about_description = createMessageString("Svelte Vietnam is a a go-to and one-stop information center, and an inclusive community for anyone interested in the adoption of Svelte in Vietnam.");
+export const navigation = createMessageString("Navigation");
 export const contact = createMessageString("Contact");
 export const discord = createMessageString("Svelte Vietnam Discord");
 export const version = createMessageString("Version");

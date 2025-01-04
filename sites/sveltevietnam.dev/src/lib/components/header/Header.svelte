@@ -104,7 +104,7 @@
 						<ColorSchemeMenu class="border border-current" locale={localeColorSchemeMenu} />
 						<LanguageMenu class="border border-current" locale={localeLanguageMenu} />
 					</div>
-					<SocialLinks />
+					<SocialLinks class="justify-center" />
 				</div>
 			</div>
 		</div>

@@ -6,6 +6,7 @@ import { createMessageString } from "@sveltevietnam/i18n/runtime";
 export const sveltevietnam = createMessageString("Svelte Việt Nam");
 export const about = createMessageString("Về chúng tôi");
 export const about_description = createMessageString("Svelte Việt Nam là kênh thông tin tổng hợp và cộng đồng dành cho bất cứ ai quan tâm đến sự phát triển của Svelte tại Việt Nam.");
+export const navigation = createMessageString("Điều hướng");
 export const contact = createMessageString("Liên hệ");
 export const discord = createMessageString("Svelte Việt Nam Discord");
 export const version = createMessageString("Phiên bản");

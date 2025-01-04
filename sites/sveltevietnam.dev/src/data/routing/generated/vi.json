@@ -39,6 +39,10 @@
     "path": "/vi/lo-trinh",
     "name": "Lộ trình"
   },
+  "rss.xml": {
+    "path": "/vi/rss.xml",
+    "name": "RSS"
+  },
   "search": {
     "path": "/vi/tim-kiem",
     "name": "Tìm kiếm"
@@ -46,6 +50,10 @@
   "settings": {
     "path": "/vi/cai-dat",
     "name": "Cài đặt"
+  },
+  "sitemap.xml": {
+    "path": "/vi/sitemap.xml",
+    "name": "Sitemap"
   },
   "sponsor": {
     "path": "/vi/tai-tro",

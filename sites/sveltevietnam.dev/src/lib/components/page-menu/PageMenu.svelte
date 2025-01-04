@@ -83,7 +83,7 @@
 								flat ? 'py-4' : 'px-4 py-2',
 							]}
 							href={path}
-							data-current={current}
+							aria-current={current}
 							onclick={onClickPageLink}
 						>
 							<i class="i {icon} h-6 w-6"></i>

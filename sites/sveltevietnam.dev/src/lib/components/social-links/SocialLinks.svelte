@@ -8,7 +8,7 @@
 	const commonLinkClasses = 'c-link-icon p-2 flex border rounded-full border-current';
 </script>
 
-<ul class={['flex flex-wrap items-center justify-center gap-2', cls]} {...rest}>
+<ul class={['flex flex-wrap items-center gap-2', cls]} {...rest}>
 	<li>
 		<a class={commonLinkClasses} href={SOCIAL_LINKS.DISCORD} data-external>
 			<svg class="h-6 w-6" inline-src="simpleicons/discord"></svg>
