@@ -30,9 +30,23 @@
 			isMobileMenuOpen = false;
 		}
 	});
+
+	const MAX_SCROLL_Y = 400;
+	let lastScrollY = $state(0);
+	let shouldHideHeader = $state(false);
+	function onScroll() {
+		if (window.scrollY > lastScrollY && window.scrollY > MAX_SCROLL_Y) {
+			shouldHideHeader = true;
+		} else {
+			shouldHideHeader = false;
+		}
+		lastScrollY = window.scrollY;
+	}
 </script>
 
-<header class="z-header fixed w-full">
+<svelte:window onscroll={onScroll} />
+
+<header class={['z-header fixed w-full transition-transform', shouldHideHeader && '-translate-y-full']}>
 	<!-- non-mobile header -->
 	<div class="max-w-pad mobile:hidden flex items-start justify-between">
 		<a
@@ -46,7 +60,10 @@
 			<span class="c-text-title-sm max-w-25 uppercase">{locale.sveltevietnam}</span>
 			<span class="sr-only">(<T message={locale.go_to_homepage} />)</span>
 		</a>
-		<div class="flex w-fit items-center gap-5 border-x border-b px-6 py-5">
+		<div class="relative flex w-fit items-center gap-5 border-x border-b px-6 py-5">
+			<div class="-z-1 absolute inset-0 bg-surface" style:opacity={Math.min(lastScrollY * 2 / MAX_SCROLL_Y, 1)}>
+				<!-- backdrop -->
+			</div>
 			<form>
 				<label class="c-text-input desktop:w-48 widescreen:w-60 w-40">
 					<span class="sr-only"><T message={locale.search} /></span>
