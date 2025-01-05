@@ -46,7 +46,7 @@
 			<span class="c-text-title-sm max-w-25 uppercase">{locale.sveltevietnam}</span>
 			<span class="sr-only">(<T message={locale.go_to_homepage} />)</span>
 		</a>
-		<div class="bg-surface flex w-fit items-center gap-5 border-x border-b px-6 py-5">
+		<div class="flex w-fit items-center gap-5 border-x border-b px-6 py-5">
 			<form>
 				<label class="c-text-input desktop:w-48 widescreen:w-60 w-40">
 					<span class="sr-only"><T message={locale.search} /></span>

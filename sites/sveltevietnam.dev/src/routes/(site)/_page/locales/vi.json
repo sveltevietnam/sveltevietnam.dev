@@ -1,61 +1,6 @@
 {
 	"messages": {
 		"page_title": "Trang chủ | Svelte Việt Nam",
-		"page_description": "Cộng đồng và trung tâm thông tin cho Svelte tại Việt Nam",
-
-		"page_heading": "Svelte Việt Nam",
-		"four_steps_to_svelte": "Bốn bước đến Svelte",
-
-		"one": "Bước một",
-		"one_heading": "Khám phá Svelte bằng thực hành",
-		"one_tutorial": "<strong>Svelte tutorial*</strong> là tài liệu hướng dẫn chính thức, giúp bạn ‘học bằng hành’ — tiếp cận những khái niệm về Svelte và SvelteKit từ cơ bản đến nâng cao thông qua từng bài tập nhỏ.",
-		"one_tutorial_link": "Xem trang Svelte Tutorial",
-		"one_tutorial_footnote": "* đây là tài liệu dành cho Svelte 5 và hiện tại chỉ hỗ trợ tiếng Anh",
-		"one_playground": "<strong>Svelte playground*</strong> (REPL) là trình tương tác chính thức, giúp bạn nhanh chóng thử nghiệm ý tưởng hoặc quan sát đầu ra của trình biên dịch (Svelte compiler).",
-		"one_playground_link": "Xem trang Svelte Playground",
-		"one_lab": "<strong>SvelteLab</strong> là trình tương tác nâng cao được xây dựng bởi cộng đồng, mở rộng ý tưởng từ Svelte playground, hỗ trợ SvelteKit và nhiều tính năng cho dự án hoàn chỉnh.",
-		"one_lab_link": "Xem trang SvelteLab",
-
-		"two": "Bước hai",
-		"two_heading": "Đọc qua tài liệu Svelte & SvelteKit",
-		"two_docs": "<strong>Svelte documentation</strong> là tài liệu chính thức, hệ thống hóa các tính năng của Svelte và SvelteKit một cách đầy đủ và dễ tìm kiếm, mang giá trị tham khảo cao trong công việc hằng ngày.",
-		"two_docs_link": "Xem Svelte Documentation",
-
-		"three": "Bước ba",
-		"three_heading": "Tham gia cộng đồng Svelte Vietnam",
-		"three_description": "Giao lưu, trao đổi thông tin, hỏi đáp, và hỗ trợ nhau",
-		"three_discord": "Tham gia thảo luận tại Discord",
-		"three_bluesky": "Cập nhật tin tức qua Bluesky",
-		"three_github": "Đóng góp vào dự án tại Github",
-		"three_note": "Ngoài ra, bạn hãy theo dõi <a class=\"c-link\" href=\"/vi/su-kien\">sự kiện của Svelte Việt Nam</a> và các <a class=\"c-link\" href=\"/vi/blog\">bài viết tại Blog của Svelte Việt Nam Blog</a>.",
-
-		"four": "Bước bốn",
-		"four_heading": "Theo dõi các kênh thông tin Svelte quốc tế",
-		"four_svelte": "<strong>Svelte</strong> là dự án mã nguồn mở. Theo dõi và đóng góp vào sự phát triển của Svelte qua các kênh sau.",
-		"four_github_svelte": "Github repository của Svelte",
-		"four_github_sveltekit": "Github repository của SvelteKit",
-		"four_github_svelte_dev": "Github repository của svelte.dev",
-		"four_society": "<strong>Svelte society</strong> là mạng lưới quốc tế liên kết những người quan tâm đến Svelte. Svelte Society phát triển và duy trì nhiều tài nguyên quan trọng.",
-		"four_society_discord": "Tham gia thảo luận tại Discord",
-		"four_society_bluesky": "Cập nhật tin tức qua Bluesky",
-		"four_society_website": "Xem trang Svelte Society",
-		"four_summit": "<strong>Svelte Summit</strong> là sự kiện quốc tế về Svelte, hội tụ bảo trì viên và diễn giả từ khắp nơi trên thế giới.",
-		"four_summit_youtube": "Xem sự kiện tại Youtube",
-		"four_summit_website": "Xem trang Svelte Summit",
-		"four_hack": "<strong>SvelteHack</strong> là sự kiện hackathon thường diễn ra sau các dấu mốc quan trọng trong hệ sinh thái Svelte.",
-		"four_hack_link": "Xem trang SvelteHack",
-
-		"events": "Sự kiện",
-		"events_description": "Gặp gỡ, cùng nhau chia sẻ kinh nghiệm, sản phẩm, và mọi thứ liên quan đến Svelte và open source",
-		"events_tba": "Chưa có sự kiện mới nào",
-		"events_tba_subscribe": "Đăng ký cập nhật sự kiện mới nhất!",
-
-		"blog": "Bài viết",
-		"blog_description": "Đọc và viết bài tại <a class=\"c-link\" href=\"/vi/blog\">Blog của Svelte Việt Nam</a>.",
-
-		"sponsor": "Tài trợ",
-		"sponsor_description": "Giúp cộng đồng Svelte Việt Nam phát triển bền vững bằng cách trở thành nhà tài trợ",
-		"sponsor_list": "Các nhà tài trợ được liệt kê tại <a class=\"c-link\" href=\"https://opencollective.com/sveltevietnam\">Open Collective của Svelte Việt Nam</a>.",
-		"sponsor_read_more": "Tìm hiểu thêm!"
+		"page_description": "Cộng đồng và trung tâm thông tin cho Svelte tại Việt Nam"
 	}
 }

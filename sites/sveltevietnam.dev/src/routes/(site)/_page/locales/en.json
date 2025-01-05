@@ -1,62 +1,6 @@
 {
 	"messages": {
 		"page_title": "Home | Svelte Vietnam",
-		"page_description": "Community and go-to information hub for people of Svelte in Vietnam",
-
-		"page_heading": "Svelte Vietnam",
-		"four_steps_to_svelte": "Four Steps to Svelte",
-
-		"one": "Step one",
-		"one_heading": "Discover Svelte Hands on",
-
-		"one_tutorial": "<strong>Svelte tutorial*</strong> is an official guide that helps you ‘learn by doing’ — get hands-on with Svelte and SvelteKit concepts from basic to advanced through small exercises.",
-		"one_tutorial_link": "View Svelte Tutorial page",
-		"one_tutorial_footnote": "* this is a guide for Svelte 5 and currently only supports English",
-		"one_playground": "<strong>Svelte playground*</strong> (REPL) is an official interactive editor that helps you quickly test ideas or observe the output from the Svelte compiler.",
-		"one_playground_link": "See Svelte Playground",
-		"one_lab": "<strong>SvelteLab</strong> is an advanced interactive editor built by the community, extending ideas from Svelte playground, supporting SvelteKit and many features for a complete project.",
-		"one_lab_link": "See SvelteLab",
-
-		"two": "Step two",
-		"two_heading": "Read the Svelte & SvelteKit documentation",
-		"two_docs": "<strong>Svelte documentation</strong> is the official catalogue for features and public interfaces of Svelte and SvelteKit, organized in a comprehensive and searchable manner - the first-stop reference in your daily work with Svelte.",
-		"two_docs_link": "See Svelte Documentation",
-
-		"three": "Step three",
-		"three_heading": "Join the Svelte Vietnam community",
-		"three_description": "Start having conversations, help or seek help from other members",
-		"three_discord": "Join community forum on Discord",
-		"three_bluesky": "Get updates via Bluesky",
-		"three_github": "Contribute to the project on Github",
-		"three_note": "You can also follow news about <a class=\"c-link\" href=\"/en/events\">events from Svelte Vietnam</a> or <a class=\"c-link\" href=\"/en/events\">articles from the Svelte Vietnam Blog</a>.",
-
-		"four": "Step four",
-		"four_heading": "Get news from the international Svelte community",
-		"four_svelte": "<strong>Svelte</strong> is an open-source project. Follow and contribute to the development of Svelte through the following channels.",
-		"four_github_svelte": "Github repository of Svelte",
-		"four_github_sveltekit": "Github repository of SvelteKit",
-		"four_github_svelte_dev": "Github repository of svelte.dev",
-		"four_society": "<strong>Svelte society</strong> is a volunteer global network connecting Svelte enthusiasts. Svelte Society oversees many important resources for the community.",
-		"four_society_discord": "Join community forum on Discord",
-		"four_society_bluesky": "Get updates via Bluesky",
-		"four_society_website": "See the Svelte Society website",
-		"four_summit": "<strong>Svelte Summit</strong> is an international conference event about Svelte, gathering maintainers and speakers from all around the world.",
-		"four_summit_youtube": "Watch events on Youtube",
-		"four_summit_website": "See the Svelte Summit website",
-		"four_hack": "<strong>SvelteHack</strong> is a hackathon event that usually takes place after important milestones in the Svelte ecosystem.",
-		"four_hack_link": "See the SvelteHack website",
-
-		"events": "Events",
-		"events_description": "Meet the community. Share your ideas, products, and all thing Svelte and open source",
-		"events_tba": "No event is planned yet",
-		"events_tba_subscribe": "Notify me about the next event!",
-
-		"blog": "Recent Posts",
-		"blog_description": "Read and write about your Svelte expreience at the <a class=\"c-link\" href=\"/en/blog\">Svelte Vietnam Blog</a>.",
-
-		"sponsor": "Sponsor",
-		"sponsor_description": "Help sustain the community and support its growth by becoming a sponsor",
-		"sponsor_list": "Sponsors are listed at the <a class=\"c-link\" href=\"https://opencollective.com/sveltevietnam\">Svelte Vietnam Collective</a>.",
-		"sponsor_read_more": "Read more!"
+		"page_description": "Community and go-to information hub for people of Svelte in Vietnam"
 	}
 }

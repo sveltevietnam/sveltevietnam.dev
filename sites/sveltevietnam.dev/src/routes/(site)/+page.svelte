@@ -1,13 +1,18 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n';
+	import SectionBlog from './_page/sections/blog/SectionBlog.svelte';
+	import SectionEvents from './_page/sections/events/SectionEvents.svelte';
+	import SectionIntro from './_page/sections/intro/SectionIntro.svelte';
+	import SectionResources from './_page/sections/resources/SectionResources.svelte';
+	import SectionSponsor from './_page/sections/sponsor/SectionSponsor.svelte';
 
 	let { data } = $props();
-
-	let locales = $derived(data.locales.page as import('./_page/locales/generated').Locale);
 </script>
 
-<!-- <main> -->
-<!-- 	<h1><T message={locales.page_heading} /></h1> -->
-<!-- 	<div class="i i-sveltevietnam w-10 h-10"></div> -->
-<!-- 	<div class="i i-[info--duotone] w-10 h-10 text-primary"></div> -->
-<!-- </main> -->
+<main class="pt-header">
+	<!-- intro section -->
+	<SectionIntro locale={data.locales.sectionIntro} />
+	<SectionResources locale={data.locales.sectionResources} />
+	<SectionEvents locale={data.locales.sectionEvents} />
+	<SectionBlog locale={data.locales.sectionBlog} />
+	<SectionSponsor locale={data.locales.sectionSponsor} />
+</main>
