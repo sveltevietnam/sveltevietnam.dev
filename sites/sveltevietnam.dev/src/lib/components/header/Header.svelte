@@ -42,6 +42,8 @@
 		}
 		lastScrollY = window.scrollY;
 	}
+
+	let toolbarOpacity = $derived(Math.min(lastScrollY * 2 / MAX_SCROLL_Y, 1));
 </script>
 
 <svelte:window onscroll={onScroll} />
@@ -61,7 +63,7 @@
 			<span class="sr-only">(<T message={locale.go_to_homepage} />)</span>
 		</a>
 		<div class="relative flex w-fit items-center gap-5 border-x border-b px-6 py-5">
-			<div class="-z-1 absolute inset-0 bg-surface" style:opacity={Math.min(lastScrollY * 2 / MAX_SCROLL_Y, 1)}>
+			<div class="-z-1 absolute inset-0 bg-surface" style:opacity={toolbarOpacity}>
 				<!-- backdrop -->
 			</div>
 			<form>
