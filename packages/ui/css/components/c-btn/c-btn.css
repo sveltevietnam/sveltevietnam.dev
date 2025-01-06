@@ -100,7 +100,7 @@
 			grid-template-columns: auto auto;
 			column-gap: calc(var(--spacing) * 3);
 			align-items: center;
-			justify-content: center;
+			justify-content: space-between;
 
 			padding-inline: calc(var(--spacing) * 2.5) calc(var(--spacing) * 3);
 		}

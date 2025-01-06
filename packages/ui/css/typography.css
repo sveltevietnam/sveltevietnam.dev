@@ -34,6 +34,23 @@
 	}
 
 	.prose {
+		--tw-prose-body: var(--color-on-surface);
+		--tw-prose-headings: inherit;
+		--tw-prose-lead: inherit;
+		--tw-prose-links: var(--color-link);
+		--tw-prose-bold: inherit;
+		--tw-prose-counters: inherit;
+		--tw-prose-bullets: inherit;
+		--tw-prose-hr: var(--color-outline);
+		--tw-prose-quotes: inherit;
+		--tw-prose-quote-borders: var(--color-outline);
+		--tw-prose-captions: var(--color-on-surface-subtle);
+		--tw-prose-code: inherit;
+		--tw-prose-pre-code: var(--color-pre-fg);
+		--tw-prose-pre-bg: var(--color-pre-bg);
+		--tw-prose-th-borders: var(--color-outline);
+		--tw-prose-td-borders: var(--color-outline);
+
 		& figcaption:not([class~='not-prose'], [class~='not-prose'] *) {
 			text-align: center;
 		}

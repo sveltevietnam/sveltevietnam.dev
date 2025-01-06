@@ -65,6 +65,8 @@
 	--color-error-on-surface-subtle: oklch(31.55% 0.127 22.31deg);
 	--color-error-surface: oklch(76.61% 0.138 22.4deg);
 	--color-error-surface-variant: oklch(92.95% 0.036 22.08deg);
+
+	--color-svelte: #EF4623;
 }
 
 :root {
