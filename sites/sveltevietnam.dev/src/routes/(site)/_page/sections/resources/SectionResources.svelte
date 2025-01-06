@@ -25,11 +25,22 @@
 </script>
 
 {#snippet step(message: Message<never>)}
-	<div class="from-primary to-secondary p-0.25 w-fit bg-gradient-to-br">
-		<p class="c-text-body-xs bg-surface px-3 py-1.5 uppercase leading-tight tracking-widest">
+	<div class="isolate">
+		<p
+			class="_border-gradient bg-surface c-text-body-xs relative w-fit px-3 py-1.5 uppercase leading-tight tracking-widest"
+		>
 			<T {message} />
 		</p>
 	</div>
+	<!-- <p -->
+	<!-- 	class="c-text-body-xs relative isolate w-fit overflow-hidden px-3.5 py-2 uppercase leading-tight tracking-widest" -->
+	<!-- > -->
+	<!-- 	<span -->
+	<!-- 		class="inset-0.25 from-primary to-secondary p-0.25 absolute z-0 -->
+	<!-- 		block bg-gradient-to-br" -->
+	<!-- 	></span> -->
+	<!-- 	<span class="z-1 relative bg-surface"><T {message} /></span> -->
+	<!-- </p> -->
 {/snippet}
 
 {#snippet resource({
@@ -253,3 +264,47 @@
 		</section>
 	</section>
 </section>
+
+<style>
+	@property --border-gradient-angle {
+		inherits: false;
+		initial-value: 0deg;
+		syntax: '<angle>';
+	}
+
+	._border-gradient {
+		--border-gradient-angle: 0deg;
+
+		&::after,
+		&::before {
+			content: '';
+
+			position: absolute;
+			z-index: -1;
+			inset: calc(-0.25 * var(--spacing));
+
+			background: conic-gradient(
+				from var(--border-gradient-angle),
+				var(--color-primary) 0%,
+				var(--color-secondary) 50%,
+				var(--color-primary) 100%
+			);
+
+			animation: 2s spin linear infinite;
+		}
+
+		&::before {
+			filter: blur(0.1rem);
+		}
+	}
+
+	@keyframes spin {
+		from {
+			--border-gradient-angle: 0deg;
+		}
+
+		to {
+			--border-gradient-angle: 360deg;
+		}
+	}
+</style>
