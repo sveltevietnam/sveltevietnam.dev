@@ -232,6 +232,9 @@ importers:
       vite:
         specifier: ^6.0.6
         version: 6.0.6(@types/node@22.10.2)(jiti@2.4.2)(lightningcss@1.28.2)
+      vite-imagetools:
+        specifier: ^7.0.5
+        version: 7.0.5(rollup@4.29.1)
 
 packages:
 

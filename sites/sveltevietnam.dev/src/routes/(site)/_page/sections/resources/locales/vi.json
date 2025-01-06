@@ -1,6 +1,7 @@
 {
 	"messages": {
 		"heading": "Bốn bước đến Svelte",
+		"bluesky": "Cập nhật tin tức qua Bluesky",
 
 		"one": "Bước một",
 		"one_heading": "Khám phá Svelte bằng thực hành",
@@ -19,11 +20,10 @@
 
 		"three": "Bước ba",
 		"three_heading": "Tham gia cộng đồng Svelte Vietnam",
-		"three_description": "Giao lưu, trao đổi thông tin, hỏi đáp, và hỗ trợ nhau",
+		"three_description": "<strong>Svelte Việt Nam</strong> là một dự án mã nguồn mở và là cộng đồng cho bất cứ ai quan tâm đến Svelte tại Việt Nam, với mong muốn tạo ra kênh thông tin bổ ích và môi trường lành mạnh để thành viên chia sẻ kinh nghiệm, giúp đỡ lẫn nhau trong hành trình phát triển phần mềm và tiếp cận mã nguồn mở.",
 		"three_discord": "Tham gia thảo luận tại Discord",
-		"three_bluesky": "Cập nhật tin tức qua Bluesky",
 		"three_github": "Đóng góp vào dự án tại Github",
-		"three_note": "Ngoài ra, bạn hãy theo dõi <a class=\"c-link\" href=\"/vi/su-kien\">sự kiện của Svelte Việt Nam</a> và các <a class=\"c-link\" href=\"/vi/blog\">bài viết tại Blog của Svelte Việt Nam Blog</a>.",
+		"three_note": "Ngoài ra, bạn có thể theo dõi <a class=\"c-link\" href=\"/vi/su-kien\">sự kiện của Svelte Việt Nam</a> và các <a class=\"c-link\" href=\"/vi/blog\">bài viết tại Blog của Svelte Việt Nam Blog</a>.",
 
 		"four": "Bước bốn",
 		"four_heading": "Theo dõi các kênh thông tin Svelte quốc tế",
@@ -33,12 +33,15 @@
 		"four_github_svelte_dev": "Github repository của svelte.dev",
 		"four_society": "<strong>Svelte society</strong> là mạng lưới quốc tế liên kết những người quan tâm đến Svelte. Svelte Society phát triển và duy trì nhiều tài nguyên quan trọng.",
 		"four_society_discord": "Tham gia thảo luận tại Discord",
-		"four_society_bluesky": "Cập nhật tin tức qua Bluesky",
 		"four_society_website": "Xem trang Svelte Society",
 		"four_summit": "<strong>Svelte Summit</strong> là sự kiện quốc tế về Svelte, hội tụ bảo trì viên và diễn giả từ khắp nơi trên thế giới.",
 		"four_summit_youtube": "Xem sự kiện tại Youtube",
 		"four_summit_website": "Xem trang Svelte Summit",
 		"four_hack": "<strong>SvelteHack</strong> là sự kiện hackathon thường diễn ra sau các dấu mốc quan trọng trong hệ sinh thái Svelte.",
-		"four_hack_link": "Xem trang SvelteHack"
+		"four_hack_link": "Xem trang SvelteHack",
+		"four_others": "Ngoài ra, bạn còn có thể:",
+		"four_newsletter": "đăng ký nhận cập nhật tin tức về Svelte hàng tháng qua “<a class=\"c-link\" href=\"https://svelte.substack.com/\">The (Unofficial) Svelte JS Newsletter</a>”,",
+		"four_madebysvelte": "xem hoặc chia sẻ các dự án, sản phẩm về Svelte với cộng đồng quốc tế qua trang “<a class=\"c-link\" href=\"https://madewithsvelte.com/\">Made by Svelte</a>”,",
+		"four_jobs": "theo dõi tin tức tức việc làm quốc tế qua kênh <a class=\"c-link\" href=\"https://discord.com/channels/457912077277855764/640884695890133012\">#job-postings</a> từ Discord chính thức của Svelte, hoặc qua trang “<a class=\"c-link\" href=\"https://sveltejobs.com/\">Svelte Jobs</a>”."
 	}
 }

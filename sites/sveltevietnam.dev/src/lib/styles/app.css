@@ -1,22 +1,33 @@
 @import 'tailwindcss';
 @import '@sveltevietnam/ui/css/base';
+@import '@sveltevietnam/ui/css/typography';
 
 @theme {
 	/** spacing */
 	--spacing-header: var(--header-height);
+	--spacing-section: calc(var(--spacing) * 10);
 }
 
 @layer base {
 	:root {
 		--header-height: 3.6875rem; /* 59px */
 
+		@media (--tablet) {
+			--spacing-section: calc(var(--spacing) * 15);
+		}
+
 		@media (--desktop) {
 			--header-height: 6.25rem; /* 100px */
+			--spacing-section: calc(var(--spacing) * 20);
 		}
 	}
 
 	*[id] {
 		scroll-margin: calc(1.5 * var(--spacing-header));
+	}
+
+	img {
+		object-fit: cover;
 	}
 }
 

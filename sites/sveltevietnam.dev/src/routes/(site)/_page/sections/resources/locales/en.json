@@ -1,16 +1,17 @@
 {
 	"messages": {
 		"heading": "Four Steps to Svelte",
+		"bluesky": "Get updates via Bluesky",
 
 		"one": "Step one",
 		"one_heading": "Discover Svelte Hands on",
 
 		"one_tutorial": "<strong>Svelte tutorial*</strong> is an official guide that helps you ‘learn by doing’ — get hands-on with Svelte and SvelteKit concepts from basic to advanced through small exercises.",
-		"one_tutorial_link": "View Svelte Tutorial page",
+		"one_tutorial_link": "See Svelte Tutorial page",
 		"one_tutorial_footnote": "* this is a guide for Svelte 5 and currently only supports English",
 		"one_playground": "<strong>Svelte playground*</strong> (REPL) is an official interactive editor that helps you quickly test ideas or observe the output from the Svelte compiler.",
 		"one_playground_link": "See Svelte Playground",
-		"one_lab": "<strong>SvelteLab</strong> is an advanced interactive editor built by the community, extending ideas from Svelte playground, supporting SvelteKit and many features for a complete project.",
+		"one_lab": "<strong>SvelteLab</strong> is an advanced interactive editor built by the community, extending ideas from Svelte playground, supporting SvelteKit and many features for a complete fullstack project.",
 		"one_lab_link": "See SvelteLab",
 
 		"two": "Step two",
@@ -20,11 +21,10 @@
 
 		"three": "Step three",
 		"three_heading": "Join the Svelte Vietnam community",
-		"three_description": "Start having conversations, help or seek help from other members",
+		"three_description": "<strong>Svelte Vietnam</strong> is an open-source project and inclusive community for anyone using or learning about Svelte in Vietnam. Svelte Vietnam is aspired to be a useful information channel and to promote a healthy environment for members to share their experiences and help each other on their journey towards software development and open-source.",
 		"three_discord": "Join community forum on Discord",
-		"three_bluesky": "Get updates via Bluesky",
 		"three_github": "Contribute to the project on Github",
-		"three_note": "You can also follow news about <a class=\"c-link\" href=\"/en/events\">events from Svelte Vietnam</a> or <a class=\"c-link\" href=\"/en/events\">articles from the Svelte Vietnam Blog</a>.",
+		"three_note": "You can also follow news about <a class=\"c-link\" href=\"/en/events\">events from Svelte Vietnam</a> or <a class=\"c-link\" href=\"/en/blog\">articles from the Svelte Vietnam Blog</a>.",
 
 		"four": "Step four",
 		"four_heading": "Get news from the international Svelte community",
@@ -34,12 +34,15 @@
 		"four_github_svelte_dev": "Github repository of svelte.dev",
 		"four_society": "<strong>Svelte society</strong> is a volunteer global network connecting Svelte enthusiasts. Svelte Society oversees many important resources for the community.",
 		"four_society_discord": "Join community forum on Discord",
-		"four_society_bluesky": "Get updates via Bluesky",
 		"four_society_website": "See the Svelte Society website",
 		"four_summit": "<strong>Svelte Summit</strong> is an international conference event about Svelte, gathering maintainers and speakers from all around the world.",
 		"four_summit_youtube": "Watch events on Youtube",
 		"four_summit_website": "See the Svelte Summit website",
 		"four_hack": "<strong>SvelteHack</strong> is a hackathon event that usually takes place after important milestones in the Svelte ecosystem.",
-		"four_hack_link": "See the SvelteHack website"
+		"four_hack_link": "See the SvelteHack website",
+		"four_others": "You can also:",
+		"four_newsletter": "subscribe to the monthly news update about Svelte via “<a class=\"c-link\" href=\"https://svelte.substack.com/\">The (Unofficial) Svelte JS Newsletter</a>”,",
+		"four_madebysvelte": "browse or share libraries and products via “<a class=\"c-link\" href=\"https://madewithsvelte.com/\">Made by Svelte</a>”,",
+		"four_jobs": "follow news about jobs via the <a class=\"c-link\" href=\"https://discord.com/channels/457912077277855764/640884695890133012\">#job-postings</a> channel in the official Svelte Discord, or via “<a class=\"c-link\" href=\"https://sveltejobs.com/\">Svelte Jobs</a>”."
 	}
 }
