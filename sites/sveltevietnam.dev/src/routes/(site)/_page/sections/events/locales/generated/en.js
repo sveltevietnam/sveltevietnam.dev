@@ -4,6 +4,6 @@
 import { createMessageString } from "@sveltevietnam/i18n/runtime";
 
 export const heading = createMessageString("Events");
-export const description = createMessageString("Meet the community. Share your ideas, products, and all thing Svelte and open source");
+export const description = createMessageString("Meet the Svelte Vietnam community. Share your ideas, products, and all thing Svelte and open source");
 export const tba = createMessageString("No event is planned yet");
 export const tba_subscribe = createMessageString("Notify me about the next event!");

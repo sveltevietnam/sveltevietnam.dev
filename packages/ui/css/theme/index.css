@@ -17,6 +17,9 @@
 	--z-index-overlay: 150;
 	--z-index-notification: 300;
 
+	/** border width */
+	--border-width-onehalf: 1.5px;
+
 	/* border radius */
 	--radius-inherit: inherit;
 	--radius-full: calc(infinity * 1px);
@@ -26,4 +29,23 @@
 
 	/* spacing */
 	--spacing: 0.25rem;
+
+	/** background iamges */
+	--background-image-gradient-primary: linear-gradient(
+		to bottom,
+		transparent,
+		var(--color-primary-surface) 10%,
+		var(--color-primary-surface) 90%,
+		transparent
+	);
+
+	/** shadows */
+	--shadow-brutal-sm: 2px 2px currentcolor;
+	--shadow-brutal: 4px 4px currentcolor;
+	--shadow-brutal-lg: 8px 8px currentcolor;
+
+	--drop-shadow-brutal-sm: 2px 2px currentcolor;
+	--drop-shadow-brutal: 4px 4px currentcolor;
+	--drop-shadow-brutal-lg: 8px 8px currentcolor;
 }
+

@@ -6,6 +6,7 @@
 	/** spacing */
 	--spacing-header: var(--header-height);
 	--spacing-section: calc(var(--spacing) * 10);
+	--spacing-section-more: calc(var(--spacing) * 20);
 }
 
 @layer base {
@@ -14,11 +15,13 @@
 
 		@media (--tablet) {
 			--spacing-section: calc(var(--spacing) * 15);
+			--spacing-section-more: calc(var(--spacing) * 28);
 		}
 
 		@media (--desktop) {
 			--header-height: 6.25rem; /* 100px */
 			--spacing-section: calc(var(--spacing) * 20);
+			--spacing-section-more: calc(var(--spacing) * 32);
 		}
 	}
 

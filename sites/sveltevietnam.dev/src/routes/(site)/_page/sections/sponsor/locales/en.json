@@ -2,7 +2,7 @@
 	"messages": {
 		"heading": "Sponsor",
 		"description": "Help sustain the community and support its growth by becoming a sponsor",
-		"list": "Sponsors are listed at the <a class=\"c-link\" href=\"https://opencollective.com/sveltevietnam\">Svelte Vietnam Collective</a>.",
+		"list": "Sponsors are listed at the<br /><a class=\"c-link\" href=\"https://opencollective.com/sveltevietnam\">Svelte Vietnam Collective</a>.",
 		"read_more": "Read more!"
 	}
 }
