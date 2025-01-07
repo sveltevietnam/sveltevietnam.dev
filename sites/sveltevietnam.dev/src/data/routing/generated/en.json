@@ -3,14 +3,6 @@
     "path": "/en",
     "name": "Home"
   },
-  "blog/:slug": {
-    "path": "/en/blog/:slug",
-    "name": ":title"
-  },
-  "blog": {
-    "path": "/en/blog",
-    "name": "Blog"
-  },
   "blog/categories/:category": {
     "path": "/en/blog/categories/:category",
     "name": ":category"
@@ -30,6 +22,14 @@
   "blog/series": {
     "path": "/en/blog/series",
     "name": "Series"
+  },
+  "blog/:slug": {
+    "path": "/en/blog/:slug",
+    "name": ":title"
+  },
+  "blog": {
+    "path": "/en/blog",
+    "name": "Blog"
   },
   "code-of-conduct": {
     "path": "/en/code-of-conduct",

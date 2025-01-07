@@ -9,14 +9,14 @@
 
 	export type BlogPostListItemProps = HTMLAttributes<HTMLElement> & {
 		post: {
-			href: string;
+			slug: string;
 			title: string;
 			description: string;
 			enhancedImgSrc?: Picture;
 			author: string;
 			publishedAt: Date;
-			series?: { name: string; href: string }[];
-			categories?: { name: string; href: string }[];
+			series?: { name: string; slug: string }[];
+			categories?: { name: string; slug: string }[];
 		};
 		aspect?: ScreenScopedVar<'square' | 'video'>;
 		orientation?: ScreenScopedVar<'portrait' | 'landscape'>;
@@ -26,11 +26,13 @@
 
 <script lang="ts">
 	import fallback16x9 from '$lib/assets/images/fallbacks/16x9.jpg?enhanced&w=1540;1088;686&imagetools';
+	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	let { post, aspect, orientation, titleFont, ...rest }: BlogPostListItemProps = $props();
 
 	const settings = SettingsContext.get();
+	const routing = RoutingContext.get();
 
 	let dateFormatter = $derived(
 		new Intl.DateTimeFormat(settings.language, {
@@ -51,14 +53,14 @@
 	]}
 	{...rest}
 >
-	<a class="c-link-image shrink-0" href={post.href}>
+	<a class="c-link-image shrink-0" href={routing.path('blog/:slug', post.slug)}>
 		<span class="sr-only">Read post</span>
 		<enhanced:img
 			class={[
 				'aspect-video max-w-full',
 				aspect?.tablet === 'square' && [
 					'tablet:aspect-square',
-					orientation?.tablet === 'landscape'  && 'tablet:max-w-52',
+					orientation?.tablet === 'landscape' && 'tablet:max-w-52',
 				],
 				aspect?.widescreen === 'square' && [
 					'widescreen:aspect-square',
@@ -80,20 +82,25 @@
 			{#if post.series?.length}
 				<p class="c-text-body-sm text-secondary-on-surface">
 					—
-					{#each post.series as { name, href }, i}
-						<a class="c-link-lazy hover:text-link" {href}>{name}</a>{i < post.series.length - 1
-							? ', '
-							: ''}
+					{#each post.series as { name, slug }, i}
+						<a
+							class="c-link-lazy hover:text-link"
+							href={routing.path('blog/series/:series', slug)}
+						>
+							{name}
+						</a>{i < post.series.length - 1 ? ', ' : ''}
 					{/each}
 				</p>
 			{/if}
-			<p class={[
-				'font-bold text-xl',
-				titleFont?.tablet === 'big' && 'tablet:text-2xl',
-				titleFont?.widescreen === 'big' && 'widescreen:text-2xl',
-				titleFont?.widescreen === 'normal' && 'widescreen:text-xl',
-			]}>
-				<a class="c-link-preserved" href={post.href}>
+			<p
+				class={[
+					'text-xl font-bold',
+					titleFont?.tablet === 'big' && 'tablet:text-2xl',
+					titleFont?.widescreen === 'big' && 'widescreen:text-2xl',
+					titleFont?.widescreen === 'normal' && 'widescreen:text-xl',
+				]}
+			>
+				<a class="c-link-preserved" href={routing.path('blog/:slug', post.slug)}>
 					{post.title}
 					<i class="i i-[cursor-click]"></i>
 				</a>
@@ -107,12 +114,12 @@
 		<p>{post.description}</p>
 		{#if post.categories?.length}
 			<ul class="flex flex-wrap gap-2">
-				{#each post.categories as { name, href }}
+				{#each post.categories as { name, slug }}
 					<li>
 						<a
 							class="c-link-lazy c-text-body-sm text-on-surface-subtle hover:text-link
 							hover:border-link border-outline rounded-full border px-3 py-1 leading-tight"
-							{href}
+							href={routing.path('blog/categories/:category', slug)}
 						>
 							{name}
 						</a>
@@ -122,4 +129,3 @@
 		{/if}
 	</div>
 </article>
-
