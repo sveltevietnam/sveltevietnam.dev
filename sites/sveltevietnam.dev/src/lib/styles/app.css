@@ -7,6 +7,7 @@
 	--spacing-header: var(--header-height);
 	--spacing-section: calc(var(--spacing) * 10);
 	--spacing-section-more: calc(var(--spacing) * 20);
+	--spacing-intro-pad-top: calc(var(--spacing) * 20);
 }
 
 @layer base {
@@ -16,12 +17,14 @@
 		@media (--tablet) {
 			--spacing-section: calc(var(--spacing) * 15);
 			--spacing-section-more: calc(var(--spacing) * 28);
+			--spacing-intro-pad-top: calc(var(--spacing) * 32);
 		}
 
 		@media (--desktop) {
 			--header-height: 6.25rem; /* 100px */
 			--spacing-section: calc(var(--spacing) * 20);
 			--spacing-section-more: calc(var(--spacing) * 32);
+			--spacing-intro-pad-top: calc(var(--spacing) * 36);
 		}
 	}
 
@@ -31,6 +34,23 @@
 
 	img {
 		object-fit: cover;
+	}
+}
+
+@utility turnstile {
+	overflow: hidden;
+	max-width: 100%;
+	border-color: currentcolor;
+	border-width: 1px;
+
+	&[turnstile-size='compact'] {
+		width: 130px;
+		height: 120px;
+	}
+
+	&:not([turnstile-size='compact']) {
+		width: 300px;
+		height: 65px;
 	}
 }
 

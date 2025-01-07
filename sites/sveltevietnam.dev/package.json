@@ -18,6 +18,7 @@
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20241224.0",
 		"@svelte-put/clickoutside": "^4.0.0",
+		"@svelte-put/cloudflare-turnstile": "^1.1.1",
 		"@svelte-put/inline-svg": "^4.0.0",
 		"@svelte-put/preprocess-auto-slug": "^2.0.0",
 		"@svelte-put/preprocess-external-link": "^1.0.0",

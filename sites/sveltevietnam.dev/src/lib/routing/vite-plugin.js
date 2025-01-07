@@ -84,7 +84,8 @@ export function sveltekitRouting() {
 					let delocalizedEnPath = '';
 
 					if (key !== 'home') {
-						for (const segment of segments) {
+						for (let i = 0; i < segments.length; i++) {
+							const segment = segments.slice(0, i + 1).join('/');
 							const route = routes.get(segment);
 							if (!route) throw new Error(`No routing.json is defined for ${segment}`);
 

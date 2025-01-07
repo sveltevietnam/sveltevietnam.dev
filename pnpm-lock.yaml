@@ -160,6 +160,9 @@ importers:
       '@svelte-put/clickoutside':
         specifier: ^4.0.0
         version: 4.0.0(svelte@5.16.0)
+      '@svelte-put/cloudflare-turnstile':
+        specifier: ^1.1.1
+        version: 1.1.1(svelte@5.16.0)
       '@svelte-put/inline-svg':
         specifier: ^4.0.0
         version: 4.0.0(svelte@5.16.0)(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(lightningcss@1.28.2))
@@ -1267,6 +1270,11 @@ packages:
 
   '@svelte-put/clickoutside@4.0.0':
     resolution: {integrity: sha512-36lLICc+RB6t/Kw0L6fZKU/y/yAAx3P+SsI2BtYM1GUBaYytSFHBWMw1c3TQEWj7Y8SgY6H3JsfEd2flbNWhqA==}
+    peerDependencies:
+      svelte: ^5.1.0
+
+  '@svelte-put/cloudflare-turnstile@1.1.1':
+    resolution: {integrity: sha512-tH8OKOigNmduLQstvvIyMrgOckp3apkKUn+W0FH0kAoCk68WJm5qbAYsXjAGT1Bx1k1AKzFuwRul51XKWedscA==}
     peerDependencies:
       svelte: ^5.1.0
 
@@ -5045,6 +5053,10 @@ snapshots:
     optional: true
 
   '@svelte-put/clickoutside@4.0.0(svelte@5.16.0)':
+    dependencies:
+      svelte: 5.16.0
+
+  '@svelte-put/cloudflare-turnstile@1.1.1(svelte@5.16.0)':
     dependencies:
       svelte: 5.16.0
 

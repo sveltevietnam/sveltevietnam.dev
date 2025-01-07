@@ -11,9 +11,17 @@
     "path": "/en/blog",
     "name": "Blog"
   },
+  "blog/categories/:category": {
+    "path": "/en/blog/categories/:category",
+    "name": ":category"
+  },
   "blog/categories": {
     "path": "/en/blog/categories",
     "name": "Categories"
+  },
+  "blog/latest": {
+    "path": "/en/blog/latest",
+    "name": "Latest"
   },
   "blog/series": {
     "path": "/en/blog/series",

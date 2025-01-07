@@ -4,7 +4,7 @@ import type { LayoutLoad } from './$types';
 
 export const load: LayoutLoad = async ({ parent }) => {
 	const data = await parent();
-	const blogNewsletterLocale = loadBlogNewsletterLoacle(data.sharedSettings.language);
+	const blogNewsletterLocale = await loadBlogNewsletterLoacle(data.sharedSettings.language);
 	return {
 		...data,
 		locales: {

@@ -1,6 +1,8 @@
 {
   "viToEn": {
+    "/blog/chu-de/:category": "/blog/categories/:category",
     "/blog/chu-de": "/blog/categories",
+    "/blog/moi-nhat": "/blog/latest",
     "/blog/chuoi-bai-viet": "/blog/series",
     "/quy-tac-ung-xu": "/code-of-conduct",
     "/thiet-ke": "/design",
@@ -12,7 +14,9 @@
     "/tai-tro": "/sponsor"
   },
   "mismatchedPaths": [
+    "/vi/blog/categories/:category",
     "/vi/blog/categories",
+    "/vi/blog/latest",
     "/vi/blog/series",
     "/vi/code-of-conduct",
     "/vi/design",

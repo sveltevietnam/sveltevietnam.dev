@@ -11,9 +11,17 @@
     "path": "/vi/blog",
     "name": "Blog"
   },
+  "blog/categories/:category": {
+    "path": "/vi/blog/chu-de/:category",
+    "name": ":category"
+  },
   "blog/categories": {
     "path": "/vi/blog/chu-de",
     "name": "Chủ đề"
+  },
+  "blog/latest": {
+    "path": "/vi/blog/moi-nhat",
+    "name": "Mới nhất"
   },
   "blog/series": {
     "path": "/vi/blog/chuoi-bai-viet",
