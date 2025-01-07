@@ -23,6 +23,10 @@
     "path": "/vi/blog/moi-nhat",
     "name": "Mới nhất"
   },
+  "blog/series/:series": {
+    "path": "/vi/blog/chuoi-bai-viet/:series",
+    "name": ":series"
+  },
   "blog/series": {
     "path": "/vi/blog/chuoi-bai-viet",
     "name": "Chuỗi bài viết"

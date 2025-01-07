@@ -40,12 +40,12 @@
 	);
 
 	/** shadows */
-	--shadow-brutal-sm: 2px 2px currentcolor;
-	--shadow-brutal: 4px 4px currentcolor;
-	--shadow-brutal-lg: 8px 8px currentcolor;
+	--shadow-brutal-sm: 2px 2px var(--tw-shadow-color, currentcolor);
+	--shadow-brutal: 4px 4px var(--tw-shadow-color, currentcolor);
+	--shadow-brutal-lg: 8px 8px var(--tw-shadow-color, currentcolor);
 
-	--drop-shadow-brutal-sm: 2px 2px currentcolor;
-	--drop-shadow-brutal: 4px 4px currentcolor;
-	--drop-shadow-brutal-lg: 8px 8px currentcolor;
+	--drop-shadow-brutal-sm: 2px 2px var(--tw-shadow-color, currentcolor);
+	--drop-shadow-brutal: 4px 4px var(--tw-shadow-color, currentcolor);
+	--drop-shadow-brutal-lg: 8px 8px var(--tw-shadow-color, currentcolor);
 }
 

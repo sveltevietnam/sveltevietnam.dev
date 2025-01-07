@@ -23,6 +23,10 @@
     "path": "/en/blog/latest",
     "name": "Latest"
   },
+  "blog/series/:series": {
+    "path": "/en/blog/series/:series",
+    "name": ":series"
+  },
   "blog/series": {
     "path": "/en/blog/series",
     "name": "Series"

@@ -3,6 +3,7 @@
 	import type { Message } from '@sveltevietnam/i18n/runtime';
 
 	import { BlogNewsletter } from '$lib/components/blog-newsletter';
+	import { BlogPostListItem } from '$lib/components/blog-post-list-item';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { GradientBackground } from '$lib/components/gradient-background';
 	import { RoutingContext } from '$lib/routing/context.svelte';
@@ -14,6 +15,31 @@
 	let locales = $derived(data.locales.page as import('./_page/locales/generated').Locale);
 
 	const commonArrowLinkClasses = 'group-hover:translate-x-1 transition-transform';
+
+	const post = {
+		href: routing.path('blog/:slug', 'blog-post-slug')!,
+		title: 'Blog post title goes here, it can be short, but it can also be quite long',
+		description:
+			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy  text ever since the 1500s...",
+		author: 'Author Name',
+		publishedAt: new Date(),
+		series: [
+			{
+				name: 'Styling Svelte Vietnam',
+				href: routing.path('blog/series/:series', 'styling-svelte-vietnam')!,
+			},
+			{
+				name: 'Behind the Screen',
+				href: routing.path('blog/series/:series', 'behind-the-screen')!,
+			},
+		],
+		categories: [
+			{ name: 'Insider', href: routing.path('blog/categories/:category', 'insider')! },
+			{ name: 'Technical', href: routing.path('blog/categories/:category', 'insider')! },
+			{ name: 'Ecosystem', href: routing.path('blog/categories/:category', 'ecosystem')! },
+			{ name: 'Svelte & Kit', href: routing.path('blog/categories/:category', 'svelte-and-kit')! },
+		],
+	};
 </script>
 
 {#snippet listingHeader({
@@ -75,14 +101,36 @@
 			category: locales.latest.toString(),
 			href: routing.path('blog/latest')!,
 		})}
+		<ul class="widescreen:grid-cols-2 grid grid-cols-1 gap-6 widescreen:gap-0">
+			<li
+				class="widescreen:pb-0 widescreen:border-b-0 widescreen:pr-4 widescreen:border-r widescreen:row-span-2 border-b
+				pb-6"
+			>
+				<BlogPostListItem {post} />
+			</li>
+			<li class="widescreen:pb-4 widescreen:pl-4 widescreen:col-start-2 widescreen:row-start-1 border-b pb-6">
+				<BlogPostListItem
+					{post}
+					orientation={{ tablet: 'landscape' }}
+					aspect={{ tablet: 'square' }}
+				/>
+			</li>
+			<li class="widescreen:pl-4 widescreen:pt-4 widescreen:col-start-2 widescreen:row-start-2">
+				<BlogPostListItem
+					{post}
+					orientation={{ tablet: 'landscape' }}
+					aspect={{ tablet: 'square' }}
+				/>
+			</li>
+		</ul>
 	</section>
 
 	<!-- write -->
 	<GradientBackground pattern="jigsaw">
-		<section class="max-w-pad py-section-more">
+		<section class="max-w-pad pt-section pb-section-more">
 			<div
-				class="tablet:gap-8 tablet:p-8 desktop:gap-10 desktop:p-10 shadow-brutal-lg mx-auto flex max-w-[100ch]
-			items-stretch gap-4 border-2 border-current p-4 bg-surface"
+				class="tablet:gap-8 tablet:p-8 desktop:gap-10 desktop:p-10 shadow-brutal-lg bg-surface mx-auto flex
+			max-w-[100ch] items-stretch gap-4 border-2 border-current p-4"
 			>
 				<div class="text-primary flex flex-col gap-4">
 					<svg
@@ -103,7 +151,7 @@
 					<div class="bg-primary h-10 w-10"></div>
 				</div>
 				<div class="flex-1 space-y-6">
-					<div class="tablet:justify-between flex flex-1 items-end gap-6">
+					<div class="tablet:justify-between tablet:items-end mobile:flex-col flex flex-1 gap-6">
 						<h2 class="c-text-heading-md"><T message={locales.write_heading} /></h2>
 						<div class="flex items-end gap-4">
 							{#each ['h-8', 'h-14', 'h-6', 'h-7'] as cls}
@@ -121,7 +169,7 @@
 						</div>
 					</div>
 					<p><T message={locales.write_description} /></p>
-					<a class="c-btn c-btn--pop w-fit" href="#placeholder">
+					<a class="c-btn c-btn--pop w-fit text-left" href="#placeholder">
 						<i class="i i-[pencil-simple] h-6 w-6"></i>
 						<span><T message={locales.write_cta} /></span>
 					</a>
@@ -143,6 +191,39 @@
 			href: routing.path('blog/categories/:category', 'technical')!,
 			description: locales.category_technical,
 		})}
+		<ul class="widescreen:grid-cols-[60fr_41fr_39fr] grid grid-cols-1 gap-6 widescreen:gap-0">
+			<li
+				class="widescreen:pb-0 widescreen:border-b-0 widescreen:pr-4 widescreen:border-r widescreen:row-span-2 border-b
+				pb-6"
+			>
+				<BlogPostListItem {post} aspect={{ widescreen: 'square' }} titleFont={{ widescreen: 'big' }} />
+			</li>
+			<li
+				class="widescreen:pb-4 widescreen:px-4 widescreen:col-start-2 widescreen:row-start-1 widescreen:border-r border-b pb-6"
+			>
+				<BlogPostListItem
+					{post}
+					orientation={{ tablet: 'landscape', widescreen: 'portrait' }}
+					aspect={{ tablet: 'square', widescreen: 'video' }}
+				/>
+			</li>
+			<li class="pb-6 widescreen:pb-4 border-b widescreen:pl-4 widescreen:col-start-3 widescreen:row-start-1">
+				<BlogPostListItem
+					{post}
+					orientation={{ tablet: 'landscape', widescreen: 'portrait' }}
+					aspect={{ tablet: 'square', widescreen: 'video' }}
+				/>
+			</li>
+			<li
+				class="widescreen:pl-4 widescreen:pt-4 widescreen:col-start-2 widescreen:row-start-2 widescreen:col-span-2"
+			>
+				<BlogPostListItem
+					{post}
+					orientation={{ tablet: 'landscape' }}
+					aspect={{ tablet: 'square' }}
+				/>
+			</li>
+		</ul>
 	</section>
 
 	<!-- resources -->
@@ -153,7 +234,8 @@
 			>
 				<p class="p-4 pl-6 leading-relaxed"><T message={locales.resource} /></p>
 				<a
-					class="tablet:self-stretch desktop:p-4 bg-secondary group grid place-items-center p-8 text-white"
+					class="tablet:self-stretch desktop:p-4 bg-secondary mobile:shadow-brutal shadow-on-surface group grid
+					place-items-center p-8 text-white"
 					href={routing.path('home')}
 				>
 					<span class="sr-only"><T message={locales.view_resources} /></span>
@@ -170,6 +252,19 @@
 			href: routing.path('blog/categories/:category', 'insider')!,
 			description: locales.category_insider,
 		})}
+		<ul class="grid grid-cols-1 desktop:grid-cols-[1fr_auto_1fr_auto_1fr] gap-6 desktop:gap-4">
+			<li class="contents">
+				<BlogPostListItem {post} />
+			</li>
+			<li class="contents">
+				<div class="desktop:w-0.25 w-full h-0.25 bg-outline desktop:h-full"></div>
+				<BlogPostListItem {post} />
+			</li>
+			<li class="contents">
+				<div class="desktop:w-0.25 w-full h-0.25 bg-outline desktop:h-full"></div>
+				<BlogPostListItem {post} />
+			</li>
+		</ul>
 	</section>
 
 	<!-- newsletter  -->

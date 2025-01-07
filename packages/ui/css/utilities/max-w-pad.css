@@ -8,13 +8,17 @@
 		--pad-padding-x: max(var(--pad-min-padding-x), calc((100vw - var(--pad-max-width)) / 2));
 
 		@media (--tablet) {
-			--pad-min-padding-x: 40px;
-			--pad-max-width: 1024px;
+			--pad-min-padding-x: 32px;
 		}
 
 		@media (--desktop) {
-			--pad-max-width: 1440px;
+			--pad-min-padding-x: 80px;
+			--pad-max-width: 1024px;
+		}
+
+		@media (--widescreen) {
 			--pad-min-padding-x: 160px;
+			--pad-max-width: 1440px;
 		}
 	}
 }

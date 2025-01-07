@@ -16,7 +16,7 @@
 
 		transition-timing-function: var(--easing);
 		transition-duration: var(--duration);
-		transition-property: color;
+		transition-property: color, border-color;
 
 		&:hover,
 		&:--current {

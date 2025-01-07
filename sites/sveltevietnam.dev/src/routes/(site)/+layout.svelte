@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { version } from '$app/environment';
 	import { page } from '$app/state';
-	import ogImageHome from '$lib/assets/images/og-fallback.jpg?url';
+	import ogImageHome from '$lib/assets/images/fallbacks/og.jpg?url';
 	import { Footer } from '$lib/components/footer';
 	import { Header } from '$lib/components/header';
 	import { toStringWithContext, buildStructuredBreadcrumbs } from '$lib/meta/structured';
