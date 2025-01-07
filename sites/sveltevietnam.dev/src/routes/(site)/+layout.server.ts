@@ -12,14 +12,16 @@ export const load: LayoutServerLoad = async ({ locals, route, depends }) => {
 	const routingMap = locals.sharedSettings.language === 'vi' ? vi : en;
 	const routingKey = (route.id
 		// remove layout group (...)
-		.replace(/\/\(.*\)/g, '')
+		.replace(/\/\([^)]*\)/g, '')
 		// replace [[param=...]] with :param
 		.replace(/\[+(.*)[\]=]/g, (_, p1) => ':' + p1)
 		.slice(1) || 'home') as App.RouteKey;
 
 	const breadcrumbs: App.Route[] = [routingMap.home];
-	for (const key of routingKey.split('/')) {
-		const route = routingMap[key as App.RouteKey];
+	const segments = routingKey.split('/');
+	for (let i = 0; i < segments.length; i++) {
+		const key = segments.slice(0, i + 1).join('/') as App.RouteKey;
+		const route = routingMap[key];
 		if (route) {
 			breadcrumbs.push(route);
 		}

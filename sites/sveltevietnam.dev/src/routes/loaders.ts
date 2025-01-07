@@ -1,6 +1,6 @@
 import type { Message } from '@sveltevietnam/i18n/runtime';
 
-type GenericLocaleModule = Record<string, Message<string>>;
+type GenericLocaleModule = Record<string, Message<never>>;
 
 const localeModules = import.meta.glob<(lang: string) => GenericLocaleModule>(
 	'./**/_page/locales/generated/index.js',

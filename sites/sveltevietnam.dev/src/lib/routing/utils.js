@@ -7,7 +7,7 @@ export function getKeyFromRoute(id) {
 	return /** @type {App.RouteKey} */ (
 		id
 			// remove layout group (...)
-			.replace(/\/\(.*\)/g, '')
+			.replace(/\/\([^)]*\)/g, '')
 			// replace [[param=...]] with :param
 			.replace(/\[+(.*)[\]=]/g, (_, p1) => ':' + p1)
 			.slice(1) || 'home'
