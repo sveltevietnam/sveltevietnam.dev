@@ -2,12 +2,12 @@ import { SVELTE_VIETNAM_BLOG } from '$data/structured';
 
 import type { PageLoad } from './$types';
 
-export const load: PageLoad = async ({ parent }) => {
-	const data = await parent();
+export const load: PageLoad = async ({ parent, data }) => {
+	const parentLoadData = await parent();
 	return {
 		...data,
 		meta: {
-			...data.meta,
+			...parentLoadData.meta,
 			structured: SVELTE_VIETNAM_BLOG,
 		},
 	};

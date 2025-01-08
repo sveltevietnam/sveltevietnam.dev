@@ -5,20 +5,20 @@ import { loadLocale as loadSectionIntroLocale } from './_page/sections/intro/loc
 import { loadLocale as loadSectionResourcesLocale } from './_page/sections/resources/locales/generated';
 import { loadLocale as loadSectionSponsorLocale } from './_page/sections/sponsor/locales/generated';
 
-export const load: PageLoad = async ({ parent }) => {
-	const data = await parent();
+export const load: PageLoad = async ({ parent, data }) => {
+	const parentLoadData = await parent();
 	const [sectionIntro, sectionResources, sectionEvents, sectionBlog, sectionSponsor] =
 		await Promise.all([
-			loadSectionIntroLocale(data.sharedSettings.language),
-			loadSectionResourcesLocale(data.sharedSettings.language),
-			loadSectionEventsLocale(data.sharedSettings.language),
-			loadSectionBlogLocale(data.sharedSettings.language),
-			loadSectionSponsorLocale(data.sharedSettings.language),
+			loadSectionIntroLocale(parentLoadData.sharedSettings.language),
+			loadSectionResourcesLocale(parentLoadData.sharedSettings.language),
+			loadSectionEventsLocale(parentLoadData.sharedSettings.language),
+			loadSectionBlogLocale(parentLoadData.sharedSettings.language),
+			loadSectionSponsorLocale(parentLoadData.sharedSettings.language),
 		]);
 	return {
 		...data,
 		locales: {
-			...data.locales,
+			...parentLoadData.locales,
 			sectionIntro,
 			sectionResources,
 			sectionEvents,

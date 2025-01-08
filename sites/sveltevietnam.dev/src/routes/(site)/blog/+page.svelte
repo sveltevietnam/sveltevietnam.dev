@@ -4,6 +4,7 @@
 
 	import { POST } from '$data/mocks';
 	import { BlogNewsletter } from '$lib/components/blog-newsletter';
+	import { BlogPostLatestList } from '$lib/components/blog-post-latest-list';
 	import { BlogPostListItem } from '$lib/components/blog-post-list-item';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { GradientBackground } from '$lib/components/gradient-background';
@@ -77,28 +78,7 @@
 			category: locales.latest.toString(),
 			href: routing.path('blog/latest')!,
 		})}
-		<ul class="widescreen:grid-cols-2 grid grid-cols-1 gap-6 widescreen:gap-0">
-			<li
-				class="widescreen:pb-0 widescreen:border-b-0 widescreen:pr-4 widescreen:border-r widescreen:row-span-2 border-b
-				pb-6"
-			>
-				<BlogPostListItem post={POST} />
-			</li>
-			<li class="widescreen:pb-4 widescreen:pl-4 widescreen:col-start-2 widescreen:row-start-1 border-b pb-6">
-				<BlogPostListItem
-					post={POST}
-					orientation={{ tablet: 'landscape' }}
-					aspect={{ tablet: 'square' }}
-				/>
-			</li>
-			<li class="widescreen:pl-4 widescreen:pt-4 widescreen:col-start-2 widescreen:row-start-2">
-				<BlogPostListItem
-					post={POST}
-					orientation={{ tablet: 'landscape' }}
-					aspect={{ tablet: 'square' }}
-				/>
-			</li>
-		</ul>
+		<BlogPostLatestList posts={data.posts.latest}></BlogPostLatestList>
 	</section>
 
 	<!-- write -->
@@ -167,25 +147,31 @@
 			href: routing.path('blog/categories/:category', 'technical')!,
 			description: locales.category_technical,
 		})}
-		<ul class="widescreen:grid-cols-[60fr_41fr_39fr] grid grid-cols-1 gap-6 widescreen:gap-0">
+		<ul class="widescreen:grid-cols-[60fr_41fr_39fr] widescreen:gap-0 grid grid-cols-1 gap-6">
 			<li
 				class="widescreen:pb-0 widescreen:border-b-0 widescreen:pr-4 widescreen:border-r widescreen:row-span-2 border-b
 				pb-6"
 			>
-				<BlogPostListItem post={POST} aspect={{ widescreen: 'square' }} titleFont={{ widescreen: 'big' }} />
+				<BlogPostListItem
+					post={data.posts.technical[0]}
+					aspect={{ widescreen: 'square' }}
+					titleFont={{ widescreen: 'big' }}
+				/>
 			</li>
 			<li
 				class="widescreen:pb-4 widescreen:px-4 widescreen:col-start-2 widescreen:row-start-1 widescreen:border-r border-b pb-6"
 			>
 				<BlogPostListItem
-					post={POST}
+					post={data.posts.technical[1]}
 					orientation={{ tablet: 'landscape', widescreen: 'portrait' }}
 					aspect={{ tablet: 'square', widescreen: 'video' }}
 				/>
 			</li>
-			<li class="pb-6 widescreen:pb-4 border-b widescreen:pl-4 widescreen:col-start-3 widescreen:row-start-1">
+			<li
+				class="widescreen:pb-4 widescreen:pl-4 widescreen:col-start-3 widescreen:row-start-1 border-b pb-6"
+			>
 				<BlogPostListItem
-					post={POST}
+					post={data.posts.technical[2]}
 					orientation={{ tablet: 'landscape', widescreen: 'portrait' }}
 					aspect={{ tablet: 'square', widescreen: 'video' }}
 				/>
@@ -194,7 +180,7 @@
 				class="widescreen:pl-4 widescreen:pt-4 widescreen:col-start-2 widescreen:row-start-2 widescreen:col-span-2"
 			>
 				<BlogPostListItem
-					post={POST}
+					post={data.posts.technical[3]}
 					orientation={{ tablet: 'landscape' }}
 					aspect={{ tablet: 'square' }}
 				/>
@@ -228,17 +214,17 @@
 			href: routing.path('blog/categories/:category', 'insider')!,
 			description: locales.category_insider,
 		})}
-		<ul class="grid grid-cols-1 desktop:grid-cols-[1fr_auto_1fr_auto_1fr] gap-6 desktop:gap-4">
+		<ul class="desktop:grid-cols-[1fr_1px_1fr_1px_1fr] desktop:gap-4 grid grid-cols-1 gap-6">
 			<li class="contents">
-				<BlogPostListItem post={POST} />
+				<BlogPostListItem post={data.posts.insider[0]} />
 			</li>
 			<li class="contents">
-				<div class="desktop:w-0.25 w-full h-0.25 bg-outline desktop:h-full"></div>
-				<BlogPostListItem post={POST} />
+				<div class="desktop:w-px h-px bg-outline desktop:h-full w-full"></div>
+				<BlogPostListItem post={data.posts.insider[1]} />
 			</li>
 			<li class="contents">
-				<div class="desktop:w-0.25 w-full h-0.25 bg-outline desktop:h-full"></div>
-				<BlogPostListItem post={POST} />
+				<div class="desktop:w-px h-px bg-outline desktop:h-full w-full"></div>
+				<BlogPostListItem post={data.posts.insider[2]} />
 			</li>
 		</ul>
 	</section>

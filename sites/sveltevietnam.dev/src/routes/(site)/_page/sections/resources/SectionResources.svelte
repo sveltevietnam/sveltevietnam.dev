@@ -252,7 +252,7 @@
 			},
 		})}
 
-		<div class="h-0.25 bg-outline w-full"></div>
+		<div class="h-px bg-outline w-full"></div>
 
 		<section class="prose max-w-[80ch] leading-relaxed">
 			<p><T message={locale.four_others} /></p>

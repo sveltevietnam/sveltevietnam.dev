@@ -15,7 +15,7 @@
 				titleFont={{ tablet: 'big' }}
 			/>
 		</div>
-		<div class="w-full h-0.25 bg-outline col-span-full"></div>
+		<div class="w-full h-px bg-outline col-span-full"></div>
 	</li>
 	{#each posts.slice(1) as post, i}
 	<li class="contents">
@@ -25,7 +25,7 @@
 			aspect={{ tablet: 'square', widescreen: 'video' }}
 		/>
 		{#if i < 8}
-			<div class="widescreen:hidden w-full h-0.25 bg-outline col-span-full"></div>
+			<div class="widescreen:hidden w-full h-px bg-outline col-span-full"></div>
 		{/if}
 	</li>
 	{/each}
