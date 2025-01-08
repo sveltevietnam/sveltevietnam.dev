@@ -37,7 +37,7 @@
 		"prettier-plugin-tailwindcss": "^0.6.9",
 		"publint": "^0.3.0",
 		"stylelint": "^16.12.0",
-		"stylelint-config-clean-order": "^6.1.0",
+		"stylelint-config-clean-order": "^7.0.0",
 		"stylelint-config-html": "^1.1.0",
 		"stylelint-config-standard": "^36.0.1",
 		"svelte-check": "^4.1.1",
@@ -46,7 +46,7 @@
 		"typescript": "^5.7.2",
 		"typescript-eslint": "^8.19.1",
 		"vitest": "^2.1.8",
-		"wrangler": "^3.99.0"
+		"wrangler": "^3.100.0"
 	},
 	"packageManager": "pnpm@9.12.0",
 	"engines": {
