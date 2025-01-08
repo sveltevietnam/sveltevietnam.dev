@@ -4,14 +4,14 @@
 	let {
 		url,
 		current,
-		total,
+		max,
 		locale,
 		class: cls,
 		...rest
 	}: {
 		url: URL;
 		current: number;
-		total: number;
+		max: number;
 		locale: import('./locales/generated').Locale;
 	} & HTMLAttributes<HTMLElement> = $props();
 </script>
@@ -22,16 +22,16 @@
 		<label class="sr-only"><T message={locale.number} /></label>
 		<input
 			class="appearance-none border border-current px-2 py-1"
-			style:width="{1.75 + 1.5 * total.toString().length}ch"
+			style:width="{1.75 + 1.5 * max.toString().length}ch"
 			type="number"
-			max={total}
+			{max}
 			min="1"
 			step="1"
 			name="page"
 			id="page"
 			value={current}
 		/>
-		<p><T message={locale.of} /> <strong>{total}</strong></p>
+		<p><T message={locale.of} /> <strong>{max}</strong></p>
 	</form>
 	<form class="flex items-center gap-2" method="GET" action={url.toString()}>
 		<label
@@ -63,7 +63,7 @@
 				type="submit"
 				value={current + 1}
 				name="page"
-				disabled={current >= total}
+				disabled={current >= max}
 			/>
 		</label>
 	</form>

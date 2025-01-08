@@ -3,11 +3,11 @@ import { loadLocale as loadBlogNewsletterLoacle } from '$lib/components/blog-new
 import type { LayoutLoad } from './$types';
 
 export const load: LayoutLoad = async ({ parent }) => {
-	const data = await parent();
-	const blogNewsletterLocale = await loadBlogNewsletterLoacle(data.sharedSettings.language);
+	const parentLoadData = await parent();
+	const blogNewsletterLocale = await loadBlogNewsletterLoacle(parentLoadData.sharedSettings.language);
 	return {
 		locales: {
-			...data.locales,
+			...parentLoadData.locales,
 			blogNewsletter: blogNewsletterLocale,
 		},
 	};

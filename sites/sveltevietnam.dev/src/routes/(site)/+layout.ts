@@ -7,6 +7,7 @@ import { loadLocale as loadNotByAiBadgeLocale } from '$lib/components/not-by-ai-
 import { loadLocale as loadPageMenuLocale } from '$lib/components/page-menu/locales/generated';
 import { loadLocale as loadPaginationLocale } from '$lib/components/pagination/locales/generated';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
+import type { PageMetadata } from '$lib/meta';
 import { getPageLocaleModule } from '$routes/loaders';
 
 import type { LayoutLoad } from './$types';
@@ -48,12 +49,9 @@ export const load: LayoutLoad = async ({ data, depends, route }) => {
 		},
 		meta: {
 			...data.meta,
-			title: pageLocales?.page_title?.toString(),
-			keywords: pageLocales?.page_keywords?.toString(),
-			description: pageLocales?.page_description?.toString(),
-			og: {
-				...data.meta.og,
-			},
+			title: (data.meta as PageMetadata)?.title ?? pageLocales?.page_title?.toString(),
+			keywords: (data.meta as PageMetadata)?.keywords ?? pageLocales?.page_keywords?.toString(),
+			description: (data.meta as PageMetadata)?.description ?? pageLocales?.page_description?.toString(),
 		},
 	};
 };

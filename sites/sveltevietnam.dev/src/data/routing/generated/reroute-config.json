@@ -1,5 +1,6 @@
 {
   "staticViToEn": {
+    "/blog/tac-gia": "/blog/authors",
     "/blog/chu-de": "/blog/categories",
     "/blog/moi-nhat": "/blog/latest",
     "/blog/chuoi-bai-viet": "/blog/series",
@@ -13,10 +14,12 @@
     "/tai-tro": "/sponsor"
   },
   "dynamicViToEn": {
+    "/blog/tac-gia/:author": "/blog/authors/:author",
     "/blog/chu-de/:category": "/blog/categories/:category",
     "/blog/chuoi-bai-viet/:series": "/blog/series/:series"
   },
   "mismatchedPaths": [
+    "/vi/blog/authors",
     "/vi/blog/categories",
     "/vi/blog/latest",
     "/vi/blog/series",

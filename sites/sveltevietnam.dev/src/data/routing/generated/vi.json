@@ -3,6 +3,22 @@
     "path": "/vi",
     "name": "Trang chủ"
   },
+  "blog/:slug": {
+    "path": "/vi/blog/:slug",
+    "name": ":title"
+  },
+  "blog": {
+    "path": "/vi/blog",
+    "name": "Blog"
+  },
+  "blog/authors/:id": {
+    "path": "/vi/blog/tac-gia/:author",
+    "name": ":author"
+  },
+  "blog/authors": {
+    "path": "/vi/blog/tac-gia",
+    "name": "Tác giả"
+  },
   "blog/categories/:category": {
     "path": "/vi/blog/chu-de/:category",
     "name": ":category"
@@ -22,14 +38,6 @@
   "blog/series": {
     "path": "/vi/blog/chuoi-bai-viet",
     "name": "Chuỗi bài viết"
-  },
-  "blog/:slug": {
-    "path": "/vi/blog/:slug",
-    "name": ":title"
-  },
-  "blog": {
-    "path": "/vi/blog",
-    "name": "Blog"
   },
   "code-of-conduct": {
     "path": "/vi/quy-tac-ung-xu",

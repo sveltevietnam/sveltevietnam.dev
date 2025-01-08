@@ -1,13 +1,32 @@
-import { POST } from '$data/mocks';
+import { loadBlogCategory } from '$data/blog/categories';
+import { loadBlogPostsByCategory, loadBlogPosts } from '$data/blog/posts';
+import { LOAD_DEPENDENCIES } from '$lib/constants';
 
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = () => {
+export const load: PageServerLoad = async ({ locals, depends }) => {
+	depends(LOAD_DEPENDENCIES.LANGUAGE);
+
+	const [catSvelteAndKit, catInsider] = await Promise.all([
+		loadBlogCategory('svelte-and-kit', locals.sharedSettings.language),
+		loadBlogCategory('insider', locals.sharedSettings.language),
+	]);
+
+	const { posts: latest } = await loadBlogPosts(locals.sharedSettings.language, 1, 4);
+	const [svelteAndKit, insider] = await Promise.all([
+		loadBlogPostsByCategory('svelte-and-kit', locals.sharedSettings.language, 1, 3, latest.map((post) => post.id)),
+		loadBlogPostsByCategory('insider', locals.sharedSettings.language, 1, 3, latest.map((post) => post.id)),
+	]);
+
 	return {
+		categories: {
+			svelteAndKit: catSvelteAndKit,
+			insider: catInsider,
+		},
 		posts: {
-			latest: new Array(3).fill(POST),
-			technical: new Array(4).fill(POST),
-			insider: new Array(3).fill(POST),
+			latest,
+			svelteAndKit: svelteAndKit.posts,
+			insider: insider.posts,
 		},
 	};
 };

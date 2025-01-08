@@ -12,11 +12,11 @@
 			slug: string;
 			title: string;
 			description: string;
-			enhancedImgSrc?: Picture;
-			author: string;
+			authors: { name: string; id: string }[];
 			publishedAt: Date;
 			series?: { name: string; slug: string }[];
 			categories?: { name: string; slug: string }[];
+			thumbnail?: Picture | string;
 		};
 		aspect?: ScreenScopedVar<'square' | 'video'>;
 		orientation?: ScreenScopedVar<'portrait' | 'landscape'>;
@@ -29,7 +29,14 @@
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
-	let { post, aspect, orientation, titleFont, class: cls, ...rest }: BlogPostListItemProps = $props();
+	let {
+		post,
+		aspect,
+		orientation,
+		titleFont,
+		class: cls,
+		...rest
+	}: BlogPostListItemProps = $props();
 
 	const settings = SettingsContext.get();
 	const routing = RoutingContext.get();
@@ -41,7 +48,7 @@
 		}),
 	);
 
-	const img = $derived(post.enhancedImgSrc ?? fallback16x9);
+	const img = $derived(post.thumbnail ?? fallback16x9);
 </script>
 
 <article
@@ -95,14 +102,20 @@
 					titleFont?.widescreen === 'normal' && 'widescreen:text-xl',
 				]}
 			>
-				<a class="c-link-preserved" href={routing.path('blog/:slug', post.slug)}>
+				<a class="c-link-preserved relative" href={routing.path('blog/:slug', post.slug)}>
 					{post.title}
-					<i class="i i-[cursor-click]"></i>
+					<i class="mobile:hidden i i-[cursor-click] text-[0.75em] absolute bottom-0 right-0 translate-x-full"></i>
 				</a>
 			</p>
 		</div>
 		<div class="c-text-body-sm flex items-center gap-2">
-			<p class="">{post.author}</p>
+			<p class="">
+				{#each post.authors as { name, id }, i}
+					<a class="c-link-lazy font-medium" href={routing.path('blog/authors/:id', id)}>
+						{name}
+					</a>{i < post.authors.length - 1 ? ', ' : ''}
+				{/each}
+			</p>
 			<p class="text-on-surface-subtle">•</p>
 			<p class="capitalize">{dateFormatter.format(post.publishedAt)}</p>
 		</div>

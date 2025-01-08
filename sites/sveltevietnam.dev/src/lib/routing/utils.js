@@ -37,3 +37,32 @@ export function build(str, ...params) {
 export function buildRegex(str) {
 	return new RegExp(str.replace(/:(\w+)/g, '([^/]+)'), 'g');
 }
+
+/**
+ * loop through a list of routes
+ * and apply param to dynamic segments
+ * @template {App.Route | App.Route[]} T
+ * @param {T} routes - The list of routes to loop through.
+ * @param {App.Route[]} params - The parameters to apply to the dynamic segments.
+ * @returns {T} The updated list of routes.
+ */
+export function buildRoutes(routes, ...params) {
+	/** @type {App.Route[]} */
+	const result = [];
+	let i = 0;
+	for (const route of Array.isArray(routes) ? /** @type {App.Route[]} */(routes) : [/** @type {App.Route} */(routes)]) {
+		if (!route.name.includes(':')) {
+			result.push(route);
+		} else {
+			result.push({
+				path: build(route.path, ...params.slice(i).map(p => p.path)),
+				name: build(route.name, ...params.slice(i).map(p => p.name)),
+			});
+			i++;
+		}
+	}
+	if (Array.isArray(routes)) {
+		return /** @type {T} */(result);
+	}
+	return /** @type {T} */(result[0]);
+}

@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 
-	import { BlogPostLatestList } from '$lib/components/blog-post-latest-list';
+	import { BlogPostShowcase } from '$lib/components/blog-post-showcase';
 
 	let {
 		locale,
 		posts,
 	}: {
 		locale: import('./locales/generated').Locale;
-		posts: import('svelte').ComponentProps<typeof BlogPostLatestList>['posts'];
+		posts: import('svelte').ComponentProps<typeof BlogPostShowcase>['posts'];
 	} = $props();
 </script>
 
@@ -17,5 +17,5 @@
 		<h2 class="c-text-heading-lg"><T message={locale.heading} /></h2>
 		<p class="mx-auto max-w-[70ch]"><T message={locale.description} /></p>
 	</div>
-	<BlogPostLatestList {posts} />
+	<BlogPostShowcase {posts} />
 </section>

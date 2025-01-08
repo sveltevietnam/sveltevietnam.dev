@@ -1,35 +1,47 @@
 <script lang="ts">
 	import type { HTMLAttributes } from 'svelte/elements';
 
-	import { BlogPostListItem, type BlogPostListItemProps } from '$lib/components/blog-post-list-item';
+	import {
+		BlogPostListItem,
+		type BlogPostListItemProps,
+	} from '$lib/components/blog-post-list-item';
+	import { BlogPostShowcase } from '$lib/components/blog-post-showcase';
 
-	let { posts, class: cls, ...rest }: { posts: BlogPostListItemProps['post'][] } & HTMLAttributes<HTMLUListElement> = $props();
+	let {
+		posts,
+		class: cls,
+		...rest
+	}: { posts: BlogPostListItemProps['post'][] } & HTMLAttributes<HTMLUListElement> = $props();
 </script>
 
-<ul class={['grid grid-cols-1 widescreen:grid-cols-3 gap-8 widescreen:gap-10', cls]} {...rest}>
-	<li class="contents">
-		<div class="_first col-span-full">
-			<BlogPostListItem
-				post={posts[0]}
-				orientation={{ tablet: 'portrait', widescreen: 'landscape' }}
-				titleFont={{ tablet: 'big' }}
-			/>
-		</div>
-		<div class="w-full h-px bg-outline col-span-full"></div>
-	</li>
-	{#each posts.slice(1) as post, i}
-	<li class="contents">
-		<BlogPostListItem
-			{post}
-			orientation={{ tablet: 'landscape', widescreen: 'portrait' }}
-			aspect={{ tablet: 'square', widescreen: 'video' }}
-		/>
-		{#if i < 8}
-			<div class="widescreen:hidden w-full h-px bg-outline col-span-full"></div>
-		{/if}
-	</li>
-	{/each}
-</ul>
+{#if posts.length > 1 && posts.length < 4}
+	<BlogPostShowcase {posts} class={cls} {...rest}></BlogPostShowcase>
+{:else}
+	<ul class={['widescreen:grid-cols-3 widescreen:gap-10 grid grid-cols-1 gap-8', cls]} {...rest}>
+		<li class="contents">
+			<div class="_first col-span-full">
+				<BlogPostListItem
+					post={posts[0]}
+					orientation={{ tablet: 'portrait', widescreen: 'landscape' }}
+					titleFont={{ tablet: 'big' }}
+				/>
+			</div>
+			<div class="bg-outline col-span-full h-px w-full"></div>
+		</li>
+		{#each posts.slice(1) as post, i}
+			<li class="contents">
+				<BlogPostListItem
+					{post}
+					orientation={{ tablet: 'landscape', widescreen: 'portrait' }}
+					aspect={{ tablet: 'square', widescreen: 'video' }}
+				/>
+				{#if i < 8}
+					<div class="widescreen:hidden bg-outline col-span-full h-px w-full"></div>
+				{/if}
+			</li>
+		{/each}
+	</ul>
+{/if}
 
 <style lang="postcss">
 	@import '@sveltevietnam/ui/css/medias';

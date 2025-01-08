@@ -1,11 +1,8 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
-	import type { Message } from '@sveltevietnam/i18n/runtime';
 
-	import { POST } from '$data/mocks';
 	import { BlogNewsletter } from '$lib/components/blog-newsletter';
-	import { BlogPostLatestList } from '$lib/components/blog-post-latest-list';
-	import { BlogPostListItem } from '$lib/components/blog-post-list-item';
+	import { BlogPostShowcase } from '$lib/components/blog-post-showcase';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { GradientBackground } from '$lib/components/gradient-background';
 	import { RoutingContext } from '$lib/routing/context.svelte';
@@ -26,7 +23,7 @@
 }: {
 	category: string;
 	href: string;
-	description?: Message<never>;
+	description?: string;
 })}
 	<div class="space-y-4 border-t-4 border-current pt-2">
 		<div class="flex items-center justify-between">
@@ -37,7 +34,7 @@
 			</a>
 		</div>
 		{#if description}
-			<p class="max-w-[70ch]"><T message={description} /></p>
+			<p class="max-w-[70ch]">{description}</p>
 		{/if}
 	</div>
 {/snippet}
@@ -78,7 +75,7 @@
 			category: locales.latest.toString(),
 			href: routing.path('blog/latest')!,
 		})}
-		<BlogPostLatestList posts={data.posts.latest}></BlogPostLatestList>
+		<BlogPostShowcase posts={data.posts.latest}></BlogPostShowcase>
 	</section>
 
 	<!-- write -->
@@ -140,53 +137,17 @@
 		</section>
 	</GradientBackground>
 
-	<!-- technical -->
-	<section class="max-w-pad py-section tablet:space-y-8 space-y-6" id="technical">
-		{@render listingHeader({
-			category: 'Technical',
-			href: routing.path('blog/categories/:category', 'technical')!,
-			description: locales.category_technical,
-		})}
-		<ul class="widescreen:grid-cols-[60fr_41fr_39fr] widescreen:gap-0 grid grid-cols-1 gap-6">
-			<li
-				class="widescreen:pb-0 widescreen:border-b-0 widescreen:pr-4 widescreen:border-r widescreen:row-span-2 border-b
-				pb-6"
-			>
-				<BlogPostListItem
-					post={data.posts.technical[0]}
-					aspect={{ widescreen: 'square' }}
-					titleFont={{ widescreen: 'big' }}
-				/>
-			</li>
-			<li
-				class="widescreen:pb-4 widescreen:px-4 widescreen:col-start-2 widescreen:row-start-1 widescreen:border-r border-b pb-6"
-			>
-				<BlogPostListItem
-					post={data.posts.technical[1]}
-					orientation={{ tablet: 'landscape', widescreen: 'portrait' }}
-					aspect={{ tablet: 'square', widescreen: 'video' }}
-				/>
-			</li>
-			<li
-				class="widescreen:pb-4 widescreen:pl-4 widescreen:col-start-3 widescreen:row-start-1 border-b pb-6"
-			>
-				<BlogPostListItem
-					post={data.posts.technical[2]}
-					orientation={{ tablet: 'landscape', widescreen: 'portrait' }}
-					aspect={{ tablet: 'square', widescreen: 'video' }}
-				/>
-			</li>
-			<li
-				class="widescreen:pl-4 widescreen:pt-4 widescreen:col-start-2 widescreen:row-start-2 widescreen:col-span-2"
-			>
-				<BlogPostListItem
-					post={data.posts.technical[3]}
-					orientation={{ tablet: 'landscape' }}
-					aspect={{ tablet: 'square' }}
-				/>
-			</li>
-		</ul>
-	</section>
+	{#if data.categories.svelteAndKit}
+		<!-- svelte-and-kit -->
+		<section class="max-w-pad py-section tablet:space-y-8 space-y-6" id="svelteAndKit">
+			{@render listingHeader({
+				category: data.categories.svelteAndKit.name,
+				href: routing.path('blog/categories/:category', data.categories.svelteAndKit.slug)!,
+				description: data.categories.svelteAndKit.description,
+			})}
+			<BlogPostShowcase posts={data.posts.svelteAndKit}></BlogPostShowcase>
+		</section>
+	{/if}
 
 	<!-- resources -->
 	<GradientBackground pattern="circuit" color="secondary">
@@ -207,27 +168,17 @@
 		</section>
 	</GradientBackground>
 
-	<!-- insider -->
-	<section class="max-w-pad py-section tablet:space-y-8 space-y-6" id="insider">
-		{@render listingHeader({
-			category: 'Insider',
-			href: routing.path('blog/categories/:category', 'insider')!,
-			description: locales.category_insider,
-		})}
-		<ul class="desktop:grid-cols-[1fr_1px_1fr_1px_1fr] desktop:gap-4 grid grid-cols-1 gap-6">
-			<li class="contents">
-				<BlogPostListItem post={data.posts.insider[0]} />
-			</li>
-			<li class="contents">
-				<div class="desktop:w-px h-px bg-outline desktop:h-full w-full"></div>
-				<BlogPostListItem post={data.posts.insider[1]} />
-			</li>
-			<li class="contents">
-				<div class="desktop:w-px h-px bg-outline desktop:h-full w-full"></div>
-				<BlogPostListItem post={data.posts.insider[2]} />
-			</li>
-		</ul>
-	</section>
+	{#if data.categories.insider}
+		<!-- insider -->
+		<section class="max-w-pad py-section tablet:space-y-8 space-y-6" id="insider">
+			{@render listingHeader({
+				category: data.categories.insider.name,
+				href: routing.path('blog/categories/:category', data.categories.insider.slug)!,
+				description: data.categories.insider.description,
+			})}
+			<BlogPostShowcase posts={data.posts.insider} flat></BlogPostShowcase>
+		</section>
+	{/if}
 
 	<!-- newsletter  -->
 	<GradientBackground>
