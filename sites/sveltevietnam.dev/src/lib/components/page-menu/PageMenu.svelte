@@ -3,14 +3,15 @@
 	import { T } from '@sveltevietnam/i18n';
 	import type { HTMLAttributes } from 'svelte/elements';
 
-	import { inert } from '$lib/actions/inert';
 	import { RoutingContext } from '$lib/routing/context.svelte';
+	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	let { locale, flat = false, class: cls, onnavigate = () => {}, ...rest }: { locale:
 		import('./locales/generated').Locale; flat?: boolean, onnavigate?: () => void } &
 	HTMLAttributes<HTMLElement> = $props();
 
 	const routing = RoutingContext.get();
+	const settings = SettingsContext.get();
 
 	let open = $state(false);
 
@@ -49,7 +50,7 @@
 
 <nav
 	class={['relative', !flat && 'w-fit', cls]}
-	aria-label={locale.nav_label}
+	aria-label={locale.aria}
 	data-sveltekit-noscroll
 	data-sveltekit-preload-data="hover"
 	use:clickoutside={{ enabled: open }}
@@ -68,7 +69,7 @@
 	{/if}
 	<div
 		class={['_menu bg-surface absolute right-0 top-full mt-1.5 w-max', flat ? 'contents' : 'grid']}
-		use:inert={!flat && !open}
+		inert={settings.hydrated && !flat && !open}
 	>
 		<div class="overflow-hidden">
 			<ul class={[!flat && 'border-outline divide-outline divide-y border']}>

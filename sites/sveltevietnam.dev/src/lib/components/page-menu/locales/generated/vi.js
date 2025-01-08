@@ -3,7 +3,7 @@
 
 import { createMessageString } from "@sveltevietnam/i18n/runtime";
 
-export const nav_label = createMessageString("trang");
+export const aria = createMessageString("trang");
 export const open = createMessageString("mở");
 export const close = createMessageString("đóng");
 export const toggle = createMessageString("bảng chọn trang");

@@ -3,5 +3,9 @@
 
 import { createMessageString } from "@sveltevietnam/i18n/runtime";
 
+export const aria = createMessageString("pagination");
+export const number = createMessageString("page number");
 export const page = createMessageString("Page");
 export const of = createMessageString("of");
+export const previous = createMessageString("to previous page");
+export const next = createMessageString("to next page");

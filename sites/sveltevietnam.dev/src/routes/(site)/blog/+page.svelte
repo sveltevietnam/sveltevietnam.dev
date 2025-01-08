@@ -72,7 +72,7 @@
 	</section>
 
 	<!-- latest -->
-	<section class="max-w-pad py-section tablet:space-y-8 space-y-6">
+	<section class="max-w-pad py-section tablet:space-y-8 space-y-6" id="latest">
 		{@render listingHeader({
 			category: locales.latest.toString(),
 			href: routing.path('blog/latest')!,
@@ -103,7 +103,7 @@
 
 	<!-- write -->
 	<GradientBackground pattern="jigsaw">
-		<section class="max-w-pad pt-section pb-section-more">
+		<section class="max-w-pad pt-section pb-section-more" id="write">
 			<div
 				class="tablet:gap-8 tablet:p-8 desktop:gap-10 desktop:p-10 shadow-brutal-lg bg-surface mx-auto flex
 			max-w-[100ch] items-stretch gap-4 border-2 border-current p-4"
@@ -161,7 +161,7 @@
 	</GradientBackground>
 
 	<!-- technical -->
-	<section class="max-w-pad py-section tablet:space-y-8 space-y-6">
+	<section class="max-w-pad py-section tablet:space-y-8 space-y-6" id="technical">
 		{@render listingHeader({
 			category: 'Technical',
 			href: routing.path('blog/categories/:category', 'technical')!,
@@ -222,7 +222,7 @@
 	</GradientBackground>
 
 	<!-- insider -->
-	<section class="max-w-pad py-section tablet:space-y-8 space-y-6">
+	<section class="max-w-pad py-section tablet:space-y-8 space-y-6" id="insider">
 		{@render listingHeader({
 			category: 'Insider',
 			href: routing.path('blog/categories/:category', 'insider')!,
@@ -245,7 +245,7 @@
 
 	<!-- newsletter  -->
 	<GradientBackground>
-		<section class="max-w-pad py-section-more" id="newsletter">
+		<section class="max-w-pad pt-section pb-section-more" id="newsletter">
 			<BlogNewsletter locale={data.locales.blogNewsletter} />
 		</section>
 	</GradientBackground>

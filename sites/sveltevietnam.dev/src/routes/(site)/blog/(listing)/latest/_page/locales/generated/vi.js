@@ -6,4 +6,4 @@ import { createMessageString } from "@sveltevietnam/i18n/runtime";
 export const page_title = createMessageString("Mới nhất | Blog | Svelte Việt Nam");
 export const page_keywords = createMessageString("blog, viết, danh sách");
 export const page_heading = createMessageString("Bài viết mới nhất");
-export const page_description = createMessageString("Tra cứu bài viết mới nhất từ Blog Svelte Việt Nam");
+export const page_description = createMessageString("Tìm nhanh bài viết mới nhất từ Blog Svelte Việt Nam");

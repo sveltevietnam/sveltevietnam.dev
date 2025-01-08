@@ -3,7 +3,7 @@
 
 import { createMessageString } from "@sveltevietnam/i18n/runtime";
 
-export const nav_label = createMessageString("chuyển đổi ngôn ngữ trang");
+export const aria = createMessageString("chuyển đổi ngôn ngữ trang");
 export const switch_to = createMessageString("chuyển sang");
 export const vietnamese = createMessageString("Tiếng Việt");
 export const english = createMessageString("Tiếng Anh");

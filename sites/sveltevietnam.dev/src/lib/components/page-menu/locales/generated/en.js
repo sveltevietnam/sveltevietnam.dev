@@ -3,7 +3,7 @@
 
 import { createMessageString } from "@sveltevietnam/i18n/runtime";
 
-export const nav_label = createMessageString("pages");
+export const aria = createMessageString("pages");
 export const open = createMessageString("open");
 export const close = createMessageString("close");
 export const toggle = createMessageString("page menu");

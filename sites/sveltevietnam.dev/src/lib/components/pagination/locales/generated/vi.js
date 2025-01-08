@@ -3,5 +3,9 @@
 
 import { createMessageString } from "@sveltevietnam/i18n/runtime";
 
+export const aria = createMessageString("chuyển trang");
+export const number = createMessageString("số trang");
 export const page = createMessageString("Trang");
 export const of = createMessageString("trên");
+export const previous = createMessageString("về trang trước");
+export const next = createMessageString("đến trang tiếp theo");

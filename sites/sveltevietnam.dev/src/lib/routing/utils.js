@@ -24,3 +24,16 @@ export function getKeyFromRoute(id) {
 export function build(str, ...params) {
 	return str.replace(/:(\w+)/g, (_, name) => params.shift() ?? name);
 }
+
+/**
+ * Parses a string template with placeholders (:param)
+ * into a regular expression to match against a built path.
+ *
+ * For example, the template '/blog/categories/:category' will be parsed into
+ * the regular expression /\/blog\/categories\/([^/]+)/g.
+ * @param {string} str - The string template to parse.
+ * @returns {RegExp} The built regular expression.
+ */
+export function buildRegex(str) {
+	return new RegExp(str.replace(/:(\w+)/g, '([^/]+)'), 'g');
+}

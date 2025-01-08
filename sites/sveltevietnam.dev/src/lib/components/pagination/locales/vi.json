@@ -1,6 +1,10 @@
 {
 	"messages": {
+		"aria": "chuyển trang",
+		"number": "số trang",
 		"page": "Trang",
-		"of": "trên"
+		"of": "trên",
+		"previous": "về trang trước",
+		"next": "đến trang tiếp theo"
 	}
 }

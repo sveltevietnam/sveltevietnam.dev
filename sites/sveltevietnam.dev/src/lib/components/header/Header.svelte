@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 
-	import { inert } from '$lib/actions/inert';
 	import { ColorSchemeMenu } from '$lib/components/color-scheme-menu';
 	import { LanguageMenu } from '$lib/components/language-menu';
 	import { PageMenu } from '$lib/components/page-menu';
@@ -109,7 +108,7 @@
 		<!-- mobile menu -->
 		<div
 			class="_mobile-menu bg-surface absolute inset-x-0 top-full grid"
-			use:inert={!isMobileMenuOpen}
+			inert={settings.hydrated && !isMobileMenuOpen}
 		>
 			<div class="overflow-hidden">
 				<div class="_mobile-menu-content max-w-pad space-y-10">

@@ -1,6 +1,10 @@
 {
 	"messages": {
+		"aria": "pagination",
+		"number": "page number",
 		"page": "Page",
-		"of": "of"
+		"of": "of",
+		"previous": "to previous page",
+		"next": "to next page"
 	}
 }

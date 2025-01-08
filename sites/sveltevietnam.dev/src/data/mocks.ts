@@ -15,7 +15,7 @@ export const CATEGORIES = [
 		name: 'Svelte & Kit',
 		slug: 'svelte-and-kit',
 	},
-] as const;
+];
 
 export const POST = {
 	slug: 'blog-post-slug',
@@ -35,5 +35,5 @@ export const POST = {
 		},
 	],
 	categories: CATEGORIES,
-}
+};
 

@@ -1,1 +1,1 @@
-export { default as BlogPostListItem } from './BlogPostListItem.svelte';
+export { default as BlogPostListItem, type BlogPostListItemProps } from './BlogPostListItem.svelte';

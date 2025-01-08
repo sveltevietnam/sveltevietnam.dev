@@ -3,7 +3,7 @@
 
 import { createMessageString } from "@sveltevietnam/i18n/runtime";
 
-export const nav_label = createMessageString("switch site language");
+export const aria = createMessageString("switch site language");
 export const switch_to = createMessageString("switch to");
 export const vietnamese = createMessageString("Vietnamese");
 export const english = createMessageString("English");

@@ -1,4 +1,4 @@
-<script module lang="ts">
+<script lang="ts" module>
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { Picture } from 'vite-imagetools';
 
@@ -29,7 +29,7 @@
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
-	let { post, aspect, orientation, titleFont, ...rest }: BlogPostListItemProps = $props();
+	let { post, aspect, orientation, titleFont, class: cls, ...rest }: BlogPostListItemProps = $props();
 
 	const settings = SettingsContext.get();
 	const routing = RoutingContext.get();
@@ -50,6 +50,7 @@
 		orientation?.tablet === 'landscape' && 'tablet:flex-row',
 		orientation?.widescreen === 'landscape' && 'widescreen:flex-row',
 		orientation?.widescreen === 'portrait' && 'widescreen:flex-col',
+		cls,
 	]}
 	{...rest}
 >
@@ -58,18 +59,12 @@
 		<enhanced:img
 			class={[
 				'aspect-video max-w-full',
-				aspect?.tablet === 'square' && [
-					'tablet:aspect-square',
-					orientation?.tablet === 'landscape' && 'tablet:max-w-52',
-				],
-				aspect?.widescreen === 'square' && [
-					'widescreen:aspect-square',
-					orientation?.widescreen === 'portrait' && 'widescreen:max-w-full',
-				],
-				aspect?.widescreen === 'video' && [
-					'widescreen:aspect-video',
-					orientation?.widescreen === 'portrait' && 'widescreen:max-w-full',
-				],
+				aspect?.tablet === 'square' && 'tablet:aspect-square',
+				aspect?.widescreen === 'square' && 'widescreen:aspect-square',
+				aspect?.widescreen === 'video' && 'widescreen:aspect-video',
+				orientation?.tablet === 'landscape' && 'tablet:max-w-52',
+				orientation?.widescreen === 'portrait' && 'widescreen:max-w-full',
+				orientation?.widescreen === 'landscape' && 'widescreen:max-w-52',
 			]}
 			src={img}
 			alt=""
@@ -84,7 +79,7 @@
 					—
 					{#each post.series as { name, slug }, i}
 						<a
-							class="c-link-lazy hover:text-link"
+							class="c-link-preserved hover:text-link"
 							href={routing.path('blog/series/:series', slug)}
 						>
 							{name}

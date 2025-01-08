@@ -1,4 +1,4 @@
-<script module>
+<script module lang="ts">
 	const PATTERN_SETTINGS = {
 		jigsaw: {
 			urls: {

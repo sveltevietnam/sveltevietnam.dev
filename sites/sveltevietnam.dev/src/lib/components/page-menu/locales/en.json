@@ -1,6 +1,6 @@
 {
 	"messages": {
-		"nav_label": "pages",
+		"aria": "pages",
 		"open": "open",
 		"close": "close",
 		"toggle": "page menu"

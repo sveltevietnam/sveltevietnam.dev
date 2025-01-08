@@ -1,10 +1,17 @@
 <script lang="ts">
 	import type { HTMLAttributes } from 'svelte/elements';
 
+	import { SettingsContext } from '$lib/settings/context.svelte';
+
 	let { crumbs, ...rest }: { crumbs: App.Route[] } & HTMLAttributes<HTMLElement> = $props();
+
+	const settings = SettingsContext.get();
 </script>
 
-<nav aria-label="breadcrumbs" {...rest}>
+<nav
+	aria-label={settings.language === 'vi' ? 'phân cấp trang' : 'breadcrumbs'}
+	{...rest}
+>
 	<ul class="flex items-center gap-2">
 		{#each crumbs as { name, path }, i}
 			{@const current = i === crumbs.length - 1}

@@ -3,7 +3,6 @@
 	import { T } from '@sveltevietnam/i18n';
 	import type { HTMLAttributes } from 'svelte/elements';
 
-	import { inert } from '$lib/actions/inert';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	let {
@@ -56,7 +55,10 @@
 		>
 		<i class="i i-[caret-down] h-5 w-5 transition-transform peer-checked:-rotate-180"></i>
 	</label>
-	<div class="_menu bg-surface absolute right-0 top-full mt-1.5 grid w-max" use:inert={!open}>
+	<div
+		class="_menu bg-surface absolute right-0 top-full mt-1.5 grid w-max"
+		inert={settings.hydrated && !open}
+	>
 		<div class="overflow-hidden">
 			<ul class="border-outline divide-outline divide-y border">
 				{#each Object.entries(colorSchemes) as [key, { icon, label }]}

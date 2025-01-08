@@ -1,9 +1,7 @@
 {
-  "viToEn": {
-    "/blog/chu-de/:category": "/blog/categories/:category",
+  "staticViToEn": {
     "/blog/chu-de": "/blog/categories",
     "/blog/moi-nhat": "/blog/latest",
-    "/blog/chuoi-bai-viet/:series": "/blog/series/:series",
     "/blog/chuoi-bai-viet": "/blog/series",
     "/quy-tac-ung-xu": "/code-of-conduct",
     "/thiet-ke": "/design",
@@ -14,11 +12,13 @@
     "/cai-dat": "/settings",
     "/tai-tro": "/sponsor"
   },
+  "dynamicViToEn": {
+    "/blog/chu-de/:category": "/blog/categories/:category",
+    "/blog/chuoi-bai-viet/:series": "/blog/series/:series"
+  },
   "mismatchedPaths": [
-    "/vi/blog/categories/:category",
     "/vi/blog/categories",
     "/vi/blog/latest",
-    "/vi/blog/series/:series",
     "/vi/blog/series",
     "/vi/code-of-conduct",
     "/vi/design",

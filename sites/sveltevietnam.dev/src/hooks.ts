@@ -3,8 +3,10 @@ import { LANGUAGES } from '@sveltevietnam/i18n';
 import { delocalizeUrl, getLangFromUrl } from '@sveltevietnam/i18n/utils';
 
 import config from '$data/routing/generated/reroute-config.json';
+import { build, buildRegex } from '$lib/routing/utils';
 
-const viToEn = config.viToEn as Record<string, string>;
+const staticViToEn = config.staticViToEn as Record<string, string>;
+const dynamicViToEn = Object.entries(config.dynamicViToEn).map(([vi, en]) => [buildRegex(vi), en] as [RegExp, string]);
 const mismatchedPathSet = new Set(config.mismatchedPaths);
 
 export const reroute: Reroute = ({ url }) => {
@@ -33,10 +35,21 @@ export const reroute: Reroute = ({ url }) => {
 	/**
 	 * if lang is vi reroute to matching en svelte-kit route id
 	 */
-	if (lang === 'vi' && pathname in viToEn) {
-		return viToEn[pathname] + suffix;
+	if (lang === 'vi' && pathname in staticViToEn) {
+		return staticViToEn[pathname] + suffix;
+	}
+	for (const [regex, en] of dynamicViToEn) {
+		const params = [...pathname.matchAll(regex)].map(([, p]) => p);
+		if (params.length) {
+			return build(en, ...params)	+ suffix;
+		}
+
+		// NOTE: currently ignoring the case where lang is vi but
+		// dynamic path is en because it'd add extra compute time
+		// and might not be necessary at the moment
 	}
 
 	/** pass through */
 	return pathname + suffix;
 };
+

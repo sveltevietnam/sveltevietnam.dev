@@ -4,7 +4,6 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	import { invalidate } from '$app/navigation';
-	import { inert } from '$lib/actions/inert';
 	import { LOAD_DEPENDENCIES } from '$lib/constants';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
@@ -28,7 +27,7 @@
 
 <nav
 	class={['relative w-fit', cls]}
-	aria-label={locale.nav_label}
+	aria-label={locale.aria}
 	data-sveltekit-noscroll
 	data-sveltekit-preload-data="hover"
 	use:clickoutside={{ enabled: open }}
@@ -44,7 +43,10 @@
 		<span class="tablet:sr-only"><T message={currentLangLabel} /></span>
 		<i class="i i-[caret-down] h-5 w-5 transition-transform peer-checked:-rotate-180"></i>
 	</label>
-	<div class="_menu bg-surface absolute right-0 top-full mt-1.5 grid w-max" use:inert={!open}>
+	<div
+		class="_menu bg-surface absolute right-0 top-full mt-1.5 grid w-max"
+		inert={settings.hydrated && !open}
+	>
 		<div class="overflow-hidden">
 			<ul class="border-outline divide-outline divide-y border">
 				<li>

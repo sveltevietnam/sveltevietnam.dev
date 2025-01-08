@@ -20,7 +20,8 @@ const ts = dedent;
 
 /**
  * @typedef RerouteConfig
- * @property {Record<string, string>} viToEn
+ * @property {Record<string, string>} staticViToEn
+ * @property {Record<string, string>} dynamicViToEn
  * @property {string[]} mismatchedPaths
  */
 
@@ -74,7 +75,8 @@ export function sveltekitRouting() {
 				const enMap = {};
 				/** @type {RerouteConfig}*/
 				const rerouteConfig = {
-					viToEn: {},
+					staticViToEn: {},
+					dynamicViToEn: {},
 					mismatchedPaths: [],
 				};
 
@@ -107,8 +109,12 @@ export function sveltekitRouting() {
 					};
 
 					if (delocalizedViPath !== delocalizedEnPath) {
-						rerouteConfig.viToEn[delocalizedViPath] = delocalizedEnPath;
-						rerouteConfig.mismatchedPaths.push('/vi' + delocalizedEnPath);
+						if (delocalizedViPath.includes(':')) {
+							rerouteConfig.dynamicViToEn[delocalizedViPath] = delocalizedEnPath;
+						} else {
+							rerouteConfig.staticViToEn[delocalizedViPath] = delocalizedEnPath;
+							rerouteConfig.mismatchedPaths.push('/vi' + delocalizedEnPath);
+						}
 					}
 				}
 
