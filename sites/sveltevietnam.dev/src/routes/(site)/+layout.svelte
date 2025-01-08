@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { version } from '$app/environment';
-	import { page } from '$app/state';
+	import { navigating, page } from '$app/state';
 	import ogImageHome from '$lib/assets/images/fallbacks/og.jpg?url';
 	import { Footer } from '$lib/components/footer';
 	import { Header } from '$lib/components/header';
+	import { PageLoadIndicator } from '$lib/components/page-load-indicator';
 	import { toStringWithContext, buildStructuredBreadcrumbs } from '$lib/meta/structured';
 	import { RoutingContext } from '$lib/routing/context.svelte.js';
 	import { SettingsContext } from '$lib/settings/context.svelte';
@@ -130,6 +131,10 @@
 	{/each}
 	<link rel="alternate" hreflang="x-default" href="{page.url.origin}{routing.paths.vi.path}" />
 </svelte:head>
+
+{#await navigating.complete}
+	<PageLoadIndicator />
+{/await}
 
 <Header
 	locale={data.locales.header}
