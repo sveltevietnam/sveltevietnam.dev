@@ -4,7 +4,7 @@
 	import { BlogNewsletter } from '$lib/components/blog-newsletter';
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
 	import { GradientBackground } from '$lib/components/gradient-background';
-	import Pagination from '$lib/components/pagination/Pagination.svelte';
+	import { Pagination } from '$lib/components/pagination';
 
 	let { data } = $props();
 

@@ -1,0 +1,8 @@
+{
+	"messages": {
+		"events": "Events {{name}} contributed to",
+		"view_events": "View events",
+		"posts_by": "Blog Posts by {{name}}",
+		"view_blog": "View blog"
+	}
+}

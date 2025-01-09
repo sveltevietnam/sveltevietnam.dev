@@ -26,7 +26,7 @@
 	let secondaryPages = $derived(['settings', 'code-of-conduct', 'sitemap.xml', 'rss.xml'] as const);
 </script>
 
-<footer>
+<footer class="mt-auto">
 	<div class="max-w-pad _upper pb-10 pt-14 border-y">
 		<p class="_name c-text-heading tablet:block tablet:text-right w-37.5 hidden uppercase tablet:justify-self-end">
 			<T message={locale.sveltevietnam} />

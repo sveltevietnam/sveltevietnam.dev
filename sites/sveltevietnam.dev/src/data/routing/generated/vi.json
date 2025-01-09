@@ -11,14 +11,6 @@
     "path": "/vi/blog",
     "name": "Blog"
   },
-  "blog/authors/:id": {
-    "path": "/vi/blog/tac-gia/:author",
-    "name": ":author"
-  },
-  "blog/authors": {
-    "path": "/vi/blog/tac-gia",
-    "name": "Tác giả"
-  },
   "blog/categories/:category": {
     "path": "/vi/blog/chu-de/:category",
     "name": ":category"
@@ -54,6 +46,14 @@
   "jobs": {
     "path": "/vi/viec-lam",
     "name": "Việc làm"
+  },
+  "people/:id": {
+    "path": "/vi/con-nguoi/:people",
+    "name": ":people"
+  },
+  "people": {
+    "path": "/vi/con-nguoi",
+    "name": "Con người"
   },
   "roadmap": {
     "path": "/vi/lo-trinh",

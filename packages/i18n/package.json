@@ -61,8 +61,6 @@
 		"sveltekit"
 	],
 	"scripts": {
-		"test": "vitest --ui --coverage",
-		"test:ci": "vitest run --coverage",
 		"dts": "dts-buddy && publint",
 		"lint": "run-p lint:*",
 		"lint:svelte": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",

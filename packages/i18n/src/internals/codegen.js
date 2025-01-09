@@ -28,7 +28,7 @@ function chunkifyContentWithParams(content, params, snippet = false) {
 		chunks.push({ type: 'literal', content });
 	} else {
 		let cursor = 0;
-		for (let i = 0; i < content.length; i++) {
+		for (let i = 0; i < params.length; i++) {
 			const { start, end, name } = params[i];
 			const literal = content.slice(cursor, start);
 			if (literal) chunks.push({ type: 'literal', content: literal });
@@ -253,7 +253,7 @@ export function exportMessageFunction(key, content, params) {
 	ts.addSyntheticLeadingComment(
 		expression,
 		ts.SyntaxKind.MultiLineCommentTrivia,
-		`*@type {(${params.length ? `params: Record<${params.map((p) => `"${p}"`).join('|')}, string>` : ''}) => string}`,
+		`*@type {(${params.length ? `params: Record<${params.map((p) => `"${p.name}"`).join('|')}, string>` : ''}) => string}`,
 		false,
 	);
 
@@ -339,7 +339,7 @@ export function exportMessageSnippet(key, content, params) {
 	ts.addSyntheticLeadingComment(
 		expression,
 		ts.SyntaxKind.MultiLineCommentTrivia,
-		`*@type {import('svelte').Snippet<[${params.length ? `params: Record<${params.map((p) => `"${p}"`).join('|')}, string>` : ''}]>}`,
+		`*@type {import('svelte').Snippet<[${params.length ? `params: Record<${params.map((p) => `"${p.name}"`).join('|')}, string>` : ''}]>}`,
 		false,
 	);
 

@@ -5,6 +5,7 @@
 	import { BlogPostShowcase } from '$lib/components/blog-post-showcase';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { GradientBackground } from '$lib/components/gradient-background';
+	import { TextArrowLink } from '$lib/components/text-arrow-link';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 
 	let { data } = $props();
@@ -28,10 +29,9 @@
 	<div class="space-y-4 border-t-4 border-current pt-2">
 		<div class="flex items-center justify-between">
 			<h2 class="c-text-title uppercase">{category}</h2>
-			<a class="c-link-lazy group" {href}>
+			<TextArrowLink href={href}>
 				<T message={locales.view_more} />
-				<i class="i i-[arrow-right] h-5 w-5 {commonArrowLinkClasses}"></i>
-			</a>
+			</TextArrowLink>
 		</div>
 		{#if description}
 			<p class="max-w-[70ch]">{description}</p>

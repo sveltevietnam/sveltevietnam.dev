@@ -1,6 +1,5 @@
 {
   "staticViToEn": {
-    "/blog/tac-gia": "/blog/authors",
     "/blog/chu-de": "/blog/categories",
     "/blog/moi-nhat": "/blog/latest",
     "/blog/chuoi-bai-viet": "/blog/series",
@@ -8,18 +7,18 @@
     "/thiet-ke": "/design",
     "/su-kien": "/events",
     "/viec-lam": "/jobs",
+    "/con-nguoi": "/people",
     "/lo-trinh": "/roadmap",
     "/tim-kiem": "/search",
     "/cai-dat": "/settings",
     "/tai-tro": "/sponsor"
   },
   "dynamicViToEn": {
-    "/blog/tac-gia/:author": "/blog/authors/:author",
     "/blog/chu-de/:category": "/blog/categories/:category",
-    "/blog/chuoi-bai-viet/:series": "/blog/series/:series"
+    "/blog/chuoi-bai-viet/:series": "/blog/series/:series",
+    "/con-nguoi/:people": "/people/:people"
   },
   "mismatchedPaths": [
-    "/vi/blog/authors",
     "/vi/blog/categories",
     "/vi/blog/latest",
     "/vi/blog/series",
@@ -27,6 +26,7 @@
     "/vi/design",
     "/vi/events",
     "/vi/jobs",
+    "/vi/people",
     "/vi/roadmap",
     "/vi/search",
     "/vi/settings",

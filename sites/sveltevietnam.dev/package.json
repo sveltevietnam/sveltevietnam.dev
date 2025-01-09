@@ -17,6 +17,7 @@
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20241230.0",
+		"@svelte-put/avatar": "^4.0.0",
 		"@svelte-put/clickoutside": "^4.0.0",
 		"@svelte-put/cloudflare-turnstile": "^1.1.1",
 		"@svelte-put/inline-svg": "^4.0.0",

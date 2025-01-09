@@ -86,7 +86,7 @@
 					—
 					{#each post.series as { name, slug }, i}
 						<a
-							class="c-link-preserved hover:text-link"
+							class="c-link-lazy hover:text-link"
 							href={routing.path('blog/series/:series', slug)}
 						>
 							{name}
@@ -111,7 +111,7 @@
 		<div class="c-text-body-sm flex items-center gap-2">
 			<p class="">
 				{#each post.authors as { name, id }, i}
-					<a class="c-link-lazy font-medium" href={routing.path('blog/authors/:id', id)}>
+					<a class="c-link-lazy font-medium" href={routing.path('people/:id', id)}>
 						{name}
 					</a>{i < post.authors.length - 1 ? ', ' : ''}
 				{/each}
