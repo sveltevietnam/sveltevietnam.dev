@@ -40,6 +40,8 @@ export const load: PageServerLoad = async ({ parent, url, locals, depends, param
 			...parentLoadData.routing,
 			breadcrumbs: buildRoutes(parentLoadData.routing.breadcrumbs, routeParam),
 			paths: {
+				// NOTE: for person, slug is same for both languages (person's id)
+				// so we are skipping fetching other language's metadata
 				en: buildRoutes(parentLoadData.routing.paths.en, routeParam),
 				vi: buildRoutes(parentLoadData.routing.paths.vi, routeParam),
 			},

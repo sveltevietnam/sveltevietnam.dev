@@ -69,7 +69,7 @@ const thumbnailModules = import.meta.glob<Picture>('./*/images/thumbnail.jpg', {
 	query: '?enhanced&w=2240,1540;1088;686',
 });
 
-export async function loadBlogMetadata(
+export async function loadBlogPostMetadata(
 	id: string,
 	lang: App.Language,
 ): Promise<BlogPostMetadata | null> {
@@ -113,7 +113,7 @@ async function extendBlogPostMetadata(metadata: BlogPostMetadata, lang: App.Lang
 }
 
 export async function loadBlogPost(id: string, lang: App.Language) {
-	const metadata = await loadBlogMetadata(id, lang);
+	const metadata = await loadBlogPostMetadata(id, lang);
 	if (!metadata) return null;
 	return extendBlogPostMetadata(metadata, lang);
 }
@@ -127,6 +127,16 @@ export async function loadBlogPosts(lang: App.Language, page: number, per: numbe
 	};
 }
 
+export async function loadBlogPostBySlug(slug: string, lang: App.Language) {
+	const metadatas = (await Promise.all(ids.map((id) => loadBlogPostMetadata(id, lang)))).filter(
+		Boolean,
+	);
+
+	const matched = metadatas.find((metadata) => metadata.slug === slug);
+	if (!matched) return null;
+	return extendBlogPostMetadata(matched, lang);
+}
+
 export async function loadBlogPostsByCategory(
 	categoryId: string,
 	lang: App.Language,
@@ -134,7 +144,7 @@ export async function loadBlogPostsByCategory(
 	per: number,
 	excludedIds: string[] = [],
 ) {
-	const metadatas = (await Promise.all(ids.map((id) => loadBlogMetadata(id, lang)))).filter(
+	const metadatas = (await Promise.all(ids.map((id) => loadBlogPostMetadata(id, lang)))).filter(
 		Boolean,
 	);
 	const matched = metadatas.filter(
@@ -156,7 +166,7 @@ export async function loadBlogPostsBySeries(
 	page: number,
 	per: number,
 ) {
-	const metadatas = (await Promise.all(ids.map((id) => loadBlogMetadata(id, lang)))).filter(
+	const metadatas = (await Promise.all(ids.map((id) => loadBlogPostMetadata(id, lang)))).filter(
 		Boolean,
 	);
 	const matched = metadatas.filter((metadata) => metadata.series?.includes(seriesId));
@@ -176,7 +186,7 @@ export async function loadBlogPostsByAuthor(
 	page: number,
 	per: number,
 ) {
-	const metadatas = (await Promise.all(ids.map((id) => loadBlogMetadata(id, lang)))).filter(
+	const metadatas = (await Promise.all(ids.map((id) => loadBlogPostMetadata(id, lang)))).filter(
 		Boolean,
 	);
 	const matched = metadatas.filter((metadata) => metadata.authors?.includes(authorId));

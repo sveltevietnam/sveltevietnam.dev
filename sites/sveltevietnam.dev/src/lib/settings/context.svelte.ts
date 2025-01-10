@@ -15,6 +15,7 @@ export class SettingsContext {
 	// $state
 	#hydrated = $state(false);
 	#userColorScheme = $state<App.ColorScheme>('system');
+	scrolllock = $state(false);
 	language = $state<App.Language>('en');
 
 	// $derived
@@ -48,6 +49,10 @@ export class SettingsContext {
 
 	setUserColorScheme(colorScheme: App.ColorScheme) {
 		this.#userColorScheme = colorScheme;
+	}
+
+	toggleScrollLock(force?: boolean) {
+		this.scrolllock = force ?? !this.scrolllock;
 	}
 
 	static set(sharedSettings: App.SharedSettings) {

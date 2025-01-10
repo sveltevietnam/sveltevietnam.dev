@@ -1,10 +1,14 @@
 <script lang="ts">
+	import { lockscroll } from '@svelte-put/lockscroll'
+
 	import { version } from '$app/environment';
 	import { navigating, page } from '$app/state';
 	import ogImageHome from '$lib/assets/images/fallbacks/og.jpg?url';
 	import { Footer } from '$lib/components/footer';
 	import { Header } from '$lib/components/header';
 	import { PageLoadIndicator } from '$lib/components/page-load-indicator';
+	import DialogPortal from '$lib/dialogs/DialogPortal.svelte';
+	import { DialogContext } from '$lib/dialogs/context.svelte';
 	import { toStringWithContext, buildStructuredBreadcrumbs } from '$lib/meta/structured';
 	import { RoutingContext } from '$lib/routing/context.svelte.js';
 	import { SettingsContext } from '$lib/settings/context.svelte';
@@ -72,6 +76,7 @@
 		};
 	});
 
+	const dialog = DialogContext.set();
 	const settings = SettingsContext.set(page.data.sharedSettings);
 	const routing = RoutingContext.set(page.data.routing);
 
@@ -83,6 +88,8 @@
 		settings.language = page.data.sharedSettings.language;
 	});
 </script>
+
+<svelte:document use:lockscroll={settings.scrolllock} />
 
 <svelte:head>
 	<!-- SEO meta tags -->
@@ -149,3 +156,5 @@
 	localeGreenWebBadge={data.locales.greenWebBadge}
 	localeNotByAiBadge={data.locales.notByAiBadge}
 />
+
+<DialogPortal stack={dialog} />

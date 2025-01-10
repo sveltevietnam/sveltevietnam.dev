@@ -11,9 +11,10 @@ export const lang_manual_translation_description = createMessageString("Bài vi�
 export const lang_unsupported = createMessageSnippet(/**@type {import('svelte').Snippet<[]>}*/ (createRawSnippet(() => ({
     render: () => "<span>Bài viết đang hiện thị với ngôn ngữ gốc vì chưa được dịch sang ngôn ngữ bạn đã chọn. Nếu có thể, hãy tham gia <a class=\"c-link\" href=\"https://github.com/sveltevietnam\">Github</a> và <a class=\"c-link\" href=\"https://discord.sveltevietnam.dev\">Discord</a> để hỗ trợ dịch bài bạn nhé. Xin cảm ơn!</span>"
 }))));
+export const explain = createMessageString("Giải thích");
 export const read_minutes = createMessageString("phút đọc");
 export const word = createMessageString("từ");
-export const url_copy_notice = createMessageString("Đã sao chép đường dẫn bài viết");
+export const copy = createMessageString("Sao chép liên kết bài viết");
 export const view_more = createMessageString("Xem thêm");
 export const toc_heading = createMessageString("Mục lục");
 export const share_heading = createMessageString("Chia sẻ");
@@ -21,6 +22,7 @@ export const latest_heading = createMessageString("Bài viết mới");
 export const series_heading = createMessageString("Cùng chuỗi bài viết");
 export const edit_intro = createMessageString("Bạn tìm thấy lỗi chính tả hay cần đính chính nội dung?");
 export const edit_cta = createMessageString("Sửa trang này tại Github");
-export const qr_heading = createMessageString("Mã QR");
+export const qr_title = createMessageString("Mã QR");
 export const qr_description = createMessageString("Chia sẻ và quét mã này để dễ dàng truy cập vào bài viết nhé!");
 export const qr_download = createMessageString("Tải về");
+export const qr_close = createMessageString("Đóng");

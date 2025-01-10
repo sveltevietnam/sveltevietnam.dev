@@ -15,6 +15,7 @@
 		--easing: var(--ease-in);
 		--active-color: var(--color-link);
 
+		cursor: pointer;
 		transition-timing-function: var(--easing);
 		transition-duration: var(--duration);
 		transition-property: color, border-color, background-color;

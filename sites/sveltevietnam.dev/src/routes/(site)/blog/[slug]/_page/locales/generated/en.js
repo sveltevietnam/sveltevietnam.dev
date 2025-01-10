@@ -11,9 +11,10 @@ export const lang_manual_translation_description = createMessageString("You are 
 export const lang_unsupported = createMessageSnippet(/**@type {import('svelte').Snippet<[]>}*/ (createRawSnippet(() => ({
     render: () => "<span>The blog post is displayed in its original language as translation has not been provided yet. If possible, please join our <a class=\"c-link\" href=\"https://github.com/sveltevietnam\">Github</a> and <a class=\"c-link\" href=\"https://discord.sveltevietnam.dev\">Discord</a> to help with translation. Thank you!</span>"
 }))));
+export const explain = createMessageString("Explain");
 export const read_minutes = createMessageString("min read");
 export const word = createMessageString("words");
-export const url_copy_notice = createMessageString("Copied link to blog post to clipboard");
+export const copy = createMessageString("Copy blog post link to clipboard");
 export const view_more = createMessageString("View more");
 export const toc_heading = createMessageString("Table of contents");
 export const share_heading = createMessageString("Share");
@@ -21,6 +22,7 @@ export const latest_heading = createMessageString("Latest posts");
 export const series_heading = createMessageString("Related posts");
 export const edit_intro = createMessageString("Found a typo or need to correct something?");
 export const edit_cta = createMessageString("Edit this page on Github");
-export const qr_heading = createMessageString("QR Code");
+export const qr_title = createMessageString("QR Code");
 export const qr_description = createMessageString("Share and scan this code for quick access the blog post!");
 export const qr_download = createMessageString("Download");
+export const qr_close = createMessageString("Close");

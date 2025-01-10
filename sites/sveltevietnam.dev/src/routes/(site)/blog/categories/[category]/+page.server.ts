@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
 
-import { loadBlogCategoryBySlug } from '$data/blog/categories';
+import { loadBlogCategory, loadBlogCategoryBySlug } from '$data/blog/categories';
 import { loadBlogPostsByCategory } from '$data/blog/posts';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { buildRoutes } from '$lib/routing/utils';
@@ -11,20 +11,18 @@ import type { PageServerLoad } from './$types';
 export const load: PageServerLoad = async ({ parent, url, locals, depends, params }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 
-	const category = await loadBlogCategoryBySlug(params.category, locals.sharedSettings.language);
+	const lang = locals.sharedSettings.language;
+	const category = await loadBlogCategoryBySlug(params.category, lang);
 	if (!category) {
 		// TODO: assign a unique code to this error
 		error(404, { message: 'Category not found', code: 'SV000' });
 	}
 
+	const otherLang = lang === 'en' ? 'vi' : 'en';
 	const pagination = getPaginationFromUrl(url);
-	const [{ posts, total }, parentLoadData] = await Promise.all([
-		loadBlogPostsByCategory(
-			category.id,
-			locals.sharedSettings.language,
-			pagination.current,
-			pagination.per,
-		),
+	const [{ posts, total }, otherLangCategory, { routing }] = await Promise.all([
+		loadBlogPostsByCategory(category.id, lang, pagination.current, pagination.per),
+		loadBlogCategory(category.id, otherLang),
 		parent(),
 	]);
 
@@ -32,16 +30,22 @@ export const load: PageServerLoad = async ({ parent, url, locals, depends, param
 		name: category.name,
 		path: category.slug,
 	};
+	const otherLangRouteParam = otherLangCategory
+		? {
+				name: otherLangCategory.name,
+				path: otherLangCategory.slug,
+			}
+		: routeParam;
 
 	return {
 		category,
 		posts,
 		routing: {
-			...parentLoadData.routing,
-			breadcrumbs: buildRoutes(parentLoadData.routing.breadcrumbs, routeParam),
+			...routing,
+			breadcrumbs: buildRoutes(routing.breadcrumbs, routeParam),
 			paths: {
-				en: buildRoutes(parentLoadData.routing.paths.en, routeParam),
-				vi: buildRoutes(parentLoadData.routing.paths.vi, routeParam),
+				[lang]: buildRoutes(routing.paths[lang], routeParam),
+				[otherLang]: buildRoutes(routing.paths[otherLang], otherLangRouteParam),
 			},
 		},
 		pagination: {

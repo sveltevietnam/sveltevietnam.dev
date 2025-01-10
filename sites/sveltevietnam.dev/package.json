@@ -17,12 +17,19 @@
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20241230.0",
+		"@floating-ui/dom": "^1.6.13",
+		"@svelte-put/async-stack": "^1.0.0",
 		"@svelte-put/avatar": "^4.0.0",
 		"@svelte-put/clickoutside": "^4.0.0",
 		"@svelte-put/cloudflare-turnstile": "^1.1.1",
+		"@svelte-put/copy": "^4.0.0",
 		"@svelte-put/inline-svg": "^4.0.0",
+		"@svelte-put/lockscroll": "^2.0.0",
+		"@svelte-put/popover": "^1.0.0",
 		"@svelte-put/preprocess-auto-slug": "^2.0.0",
 		"@svelte-put/preprocess-external-link": "^1.0.0",
+		"@svelte-put/qr": "^2.1.0",
+		"@svelte-put/toc": "^6.0.0",
 		"@sveltejs/adapter-cloudflare": "^5.0.0",
 		"@sveltejs/enhanced-img": "^0.4.4",
 		"@sveltejs/kit": "^2.15.2",
@@ -47,7 +54,6 @@
 		"vite-imagetools": "^7.0.5"
 	},
 	"dependencies": {
-		"@floating-ui/dom": "^1.6.13",
 		"gsap": "^3.12.5",
 		"mustache": "^4.2.0",
 		"valibot": "1.0.0-beta.11"

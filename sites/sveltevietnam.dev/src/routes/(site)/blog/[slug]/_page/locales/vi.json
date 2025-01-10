@@ -5,10 +5,11 @@
 		"lang_manual_translation": "Bản dịch tay",
 		"lang_manual_translation_description": "Bài viết đã được dịch tay sang ngôn ngữ hiện tại.",
 		"lang_unsupported": "Bài viết đang hiện thị với ngôn ngữ gốc vì chưa được dịch sang ngôn ngữ bạn đã chọn. Nếu có thể, hãy tham gia <a class=\"c-link\" href=\"https://github.com/sveltevietnam\">Github</a> và <a class=\"c-link\" href=\"https://discord.sveltevietnam.dev\">Discord</a> để hỗ trợ dịch bài bạn nhé. Xin cảm ơn!",
+		"explain": "Giải thích",
 
 		"read_minutes": "phút đọc",
 		"word": "từ",
-		"url_copy_notice": "Đã sao chép đường dẫn bài viết",
+		"copy": "Sao chép liên kết bài viết",
 		"view_more": "Xem thêm",
 
 		"toc_heading": "Mục lục",
@@ -19,8 +20,9 @@
 		"edit_intro": "Bạn tìm thấy lỗi chính tả hay cần đính chính nội dung?",
 		"edit_cta": "Sửa trang này tại Github",
 
-		"qr_heading": "Mã QR",
+		"qr_title": "Mã QR",
 		"qr_description": "Chia sẻ và quét mã này để dễ dàng truy cập vào bài viết nhé!",
-		"qr_download": "Tải về"
+		"qr_download": "Tải về",
+		"qr_close": "Đóng"
 	}
 }
