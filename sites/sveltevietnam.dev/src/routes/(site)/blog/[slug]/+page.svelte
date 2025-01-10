@@ -316,7 +316,7 @@
 </main>
 
 <style lang="postcss">
-	@import '@sveltevietnam/ui/css/medias';
+	@import '@sveltevietnam/css/medias';
 
 	._container {
 		grid-template-areas:

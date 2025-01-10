@@ -1,13 +1,13 @@
 {
-	"name": "@sveltevietnam/ui",
+	"name": "@sveltevietnam/css",
 	"version": "1.0.0-next.0",
-	"description": "ui components",
+	"description": "css utilities",
 	"private": true,
 	"type": "module",
 	"exports": {
-		"./css/base": "./css/base.css",
-		"./css/typography": "./css/typography.css",
-		"./css/medias": "./css/medias.css"
+		"./base": "./src/base.css",
+		"./typography": "./src/typography.css",
+		"./medias": "./src/medias.css"
 	},
 	"publishconfig": {
 		"access": "public",

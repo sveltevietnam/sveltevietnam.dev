@@ -44,7 +44,7 @@
 {/if}
 
 <style lang="postcss">
-	@import '@sveltevietnam/ui/css/medias';
+	@import '@sveltevietnam/css/medias';
 
 	._first {
 		:global {

@@ -93,6 +93,15 @@ importers:
         specifier: ^3.100.0
         version: 3.100.0(@cloudflare/workers-types@4.20241230.0)
 
+  packages/css:
+    dependencies:
+      '@tailwindcss/typography':
+        specifier: ^0.5.16
+        version: 0.5.16(tailwindcss@4.0.0-beta.8)
+      phosphor-icons-tailwindcss:
+        specifier: ^1.2.1
+        version: 1.2.1
+
   packages/i18n:
     dependencies:
       commander:
@@ -129,15 +138,6 @@ importers:
       vite:
         specifier: ^6.0.7
         version: 6.0.7(@types/node@22.10.5)(jiti@2.4.2)(lightningcss@1.28.2)
-
-  packages/ui:
-    dependencies:
-      '@tailwindcss/typography':
-        specifier: ^0.5.16
-        version: 0.5.16(tailwindcss@4.0.0-beta.8)
-      phosphor-icons-tailwindcss:
-        specifier: ^1.2.1
-        version: 1.2.1
 
   sites/sveltevietnam.dev:
     dependencies:
@@ -205,12 +205,12 @@ importers:
       '@sveltejs/vite-plugin-svelte':
         specifier: ^5.0.3
         version: 5.0.3(svelte@5.16.6)(vite@6.0.7(@types/node@22.10.5)(jiti@2.4.2)(lightningcss@1.28.2))
+      '@sveltevietnam/css':
+        specifier: workspace:*
+        version: link:../../packages/css
       '@sveltevietnam/i18n':
         specifier: workspace:*
         version: link:../../packages/i18n
-      '@sveltevietnam/ui':
-        specifier: workspace:*
-        version: link:../../packages/ui
       '@tailwindcss/typography':
         specifier: ^0.5.16
         version: 0.5.16(tailwindcss@4.0.0-beta.8)

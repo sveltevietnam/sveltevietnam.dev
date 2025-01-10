@@ -1,6 +1,6 @@
 @import 'tailwindcss';
-@import '@sveltevietnam/ui/css/base';
-@import '@sveltevietnam/ui/css/typography';
+@import '@sveltevietnam/css/base';
+@import '@sveltevietnam/css/typography';
 
 @theme {
 	/** spacing */

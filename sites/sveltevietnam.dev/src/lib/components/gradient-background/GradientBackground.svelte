@@ -60,7 +60,7 @@
 </div>
 
 <style lang="postcss">
-	@import '@sveltevietnam/ui/css/medias';
+	@import '@sveltevietnam/css/medias';
 
 	@layer svelte {
 		._container {

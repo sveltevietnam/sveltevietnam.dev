@@ -122,7 +122,7 @@
 </footer>
 
 <style lang="postcss">
-	@import '@sveltevietnam/ui/css/medias';
+	@import '@sveltevietnam/css/medias';
 
 	._upper {
 		display: grid;
