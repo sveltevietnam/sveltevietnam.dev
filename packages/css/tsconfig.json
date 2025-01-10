@@ -1,17 +1,6 @@
 {
-	"$schema": "https://json.schemastore.org/tsconfig",
-	"compilerOptions": {
-		"allowJs": true,
-		"checkJs": true,
-		"noEmit": true,
-		"strict": true,
-		"target": "esnext",
-		"module": "esnext",
-		"moduleResolution": "bundler",
-		"allowSyntheticDefaultImports": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true
-	},
+	"extends": "../tsconfig.json"
 	"include": ["src/**/*"],
 	"exclude": ["node_modules"]
 }
+
