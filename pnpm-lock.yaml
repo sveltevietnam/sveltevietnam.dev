@@ -101,6 +101,19 @@ importers:
       phosphor-icons-tailwindcss:
         specifier: ^1.2.1
         version: 1.2.1
+      postcss-color-scheme:
+        specifier: ^2.1.0
+        version: 2.1.0(postcss@8.4.49)
+      postcss-custom-media:
+        specifier: ^11.0.5
+        version: 11.0.5(postcss@8.4.49)
+      postcss-custom-selectors:
+        specifier: ^8.0.4
+        version: 8.0.4(postcss@8.4.49)
+    devDependencies:
+      vite:
+        specifier: ^6.0.7
+        version: 6.0.7(@types/node@22.10.5)(jiti@2.4.2)(lightningcss@1.28.2)
 
   packages/i18n:
     dependencies:
@@ -226,15 +239,6 @@ importers:
       dedent:
         specifier: ^1.5.3
         version: 1.5.3
-      postcss-color-scheme:
-        specifier: ^2.1.0
-        version: 2.1.0(postcss@8.4.49)
-      postcss-custom-media:
-        specifier: ^11.0.5
-        version: 11.0.5(postcss@8.4.49)
-      postcss-custom-selectors:
-        specifier: ^8.0.4
-        version: 8.0.4(postcss@8.4.49)
       recast:
         specifier: ^0.23.9
         version: 0.23.9

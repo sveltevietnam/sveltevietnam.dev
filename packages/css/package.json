@@ -7,7 +7,11 @@
 	"exports": {
 		"./base": "./src/base.css",
 		"./typography": "./src/typography.css",
-		"./medias": "./src/medias.css"
+		"./medias": "./src/medias.css",
+		"./vite": {
+			"import": "./src/vite.js",
+			"types": "./types/vite.d.ts"
+		}
 	},
 	"publishconfig": {
 		"access": "public",
@@ -41,6 +45,12 @@
 	},
 	"dependencies": {
 		"@tailwindcss/typography": "^0.5.16",
-		"phosphor-icons-tailwindcss": "^1.2.1"
+		"phosphor-icons-tailwindcss": "^1.2.1",
+		"postcss-color-scheme": "^2.1.0",
+		"postcss-custom-media": "^11.0.5",
+		"postcss-custom-selectors": "^8.0.4"
+	},
+	"devDependencies": {
+		"vite": "^6.0.7"
 	}
 }

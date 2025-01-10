@@ -28,7 +28,7 @@ export function i18n() {
 	const pattern = `**/${config.dirname}/{${config.langs.join(',')}}.json`;
 
 	return {
-		name: 'sveltekit-i18n',
+		name: 'sveltevietnam-i18n',
 		enforce: 'post',
 		async configureServer(server) {
 			const cwd = server.config.root;
