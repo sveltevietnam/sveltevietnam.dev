@@ -34,9 +34,9 @@ export function i18n() {
 			const cwd = server.config.root;
 			const dirMap = await collectLocaleDirMap(cwd, pattern);
 
-			console.log(pico.blue('[sveltekit-i18n] Building all locales...'));
+			console.log(pico.blue('[sveltevietnam-i18n] Building all locales...'));
 			await buildAllLocales(dirMap, config.langs, config.defaultLang);
-			console.log(pico.blue('[sveltekit-i18n] Built successfully!'));
+			console.log(pico.blue('[sveltevietnam-i18n] Built successfully!'));
 
 			/**
 			 * @param {string} filepath
@@ -54,7 +54,7 @@ export function i18n() {
 			let updatedFilepathSet = new Set();
 			const debounceRebuildLocales = debounce(async () => {
 				console.log(
-					pico.yellow('[sveltekit-i18n] Detected changes in locale files. Rebuilding some...'),
+					pico.yellow('[sveltevietnam-i18n] Detected changes in locale files. Rebuilding some...'),
 				);
 				await rebuildLocales(dirMap, Array.from(updatedFilepathSet), config.defaultLang);
 				updatedFilepathSet.clear();
@@ -71,7 +71,7 @@ export function i18n() {
 			const removedFilepathSet = new Set();
 			const debounceRemoveLocales = debounce(async () => {
 				console.log(
-					pico.yellow('[sveltekit-i18n] Detected removal of locale files. Rebuilding some...'),
+					pico.yellow('[sveltevietnam-i18n] Detected removal of locale files. Rebuilding some...'),
 				);
 				await removeLocales(dirMap, Array.from(removedFilepathSet), config.defaultLang);
 				removedFilepathSet.clear();
