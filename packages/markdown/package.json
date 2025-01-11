@@ -1,0 +1,84 @@
+{
+	"name": "@sveltevietnam/markdown",
+	"version": "1.0.0-next.0",
+	"description": "preprocess markdown in svelte",
+	"private": true,
+	"main": "src/index.js",
+	"module": "src/index.js",
+	"types": "types/index.d.ts",
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./types/index.d.ts",
+			"import": "./src/index.js"
+		},
+		"./CodeBlock.svelte": {
+			"types": "./src/components/code-block/CodeBlock.svelte.d.ts",
+			"svelte": "./src/components/code-block/CodeBlock.svelte"
+		},
+		"./CodeBlockGroup.svelte": {
+			"types": "./src/components/code-block-group/CodeBlockGroup.svelte.d.ts",
+			"svelte": "./src/components/code-block-group/CodeBlockGroup.svelte"
+		}
+	},
+	"publishconfig": {
+		"access": "public",
+		"provenance": true
+	},
+	"files": [
+		"src",
+		"types"
+	],
+	"license": "mit",
+	"author": {
+		"email": "developers@sveltevietnam.dev",
+		"name": "Svelte Vietnam",
+		"url": "https://github.com/sveltevietnam"
+	},
+	"homepage": "https://www.sveltevietnam.dev",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sveltevietnam/sveltevietnam.dev.git",
+		"directory": "packages/markdown"
+	},
+	"bugs": {
+		"url": "https://github.com/sveltevietnam/sveltevietnam.dev/issues"
+	},
+	"scripts": {
+		"dts": "dts-buddy && publint",
+		"lint": "run-p lint:*",
+		"lint:svelte": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"lint:es": "eslint .",
+		"lint:style": "stylelint '**/*.{svelte,css}'",
+		"format": "prettier --write ."
+	},
+	"keywords": [
+		"svelte",
+		"preprocess",
+		"markdown"
+	],
+	"devDependencies": {
+		"@types/hast": "^3.0.4",
+		"vite": "^6.0.7"
+	},
+	"peerDependencies": {
+		"svelte": "^5.16.6"
+	},
+	"dependencies": {
+		"@shikijs/rehype": "^1.24.0",
+		"@svelte-put/copy": "^4.0.0",
+		"hast-util-to-html": "^9.0.3",
+		"hast-util-to-string": "^3.0.1",
+		"hastscript": "^9.0.0",
+		"magic-string": "^0.30.14",
+		"rehype-stringify": "^10.0.1",
+		"remark-gfm": "^4.0.0",
+		"remark-parse": "^11.0.0",
+		"remark-rehype": "^11.1.1",
+		"shiki": "^1.24.0",
+		"svelte-parse-markup": "^0.1.5",
+		"unified": "^11.0.5",
+		"unist-util-visit": "^5.0.0",
+		"zimmerframe": "^1.1.2"
+	}
+}
