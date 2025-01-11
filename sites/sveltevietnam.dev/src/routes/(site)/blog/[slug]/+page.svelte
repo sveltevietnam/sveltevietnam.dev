@@ -5,11 +5,15 @@
 	import { page } from '$app/state';
 	import fallback16x9 from '$lib/assets/images/fallbacks/16x9.jpg?enhanced&w=2240,1540;1088;686&imagetools';
 	import { Avatar } from '$lib/components/avatar';
+	import { BlogNewsletter } from '$lib/components/blog-newsletter';
 	import { BlogPostListItem } from '$lib/components/blog-post-list-item';
+	import { BlogPostShowcase } from '$lib/components/blog-post-showcase';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { CopyIconBtn } from '$lib/components/copy-icon-btn';
+	import { GradientBackground } from '$lib/components/gradient-background';
 	import { HintedText } from '$lib/components/hinted-text';
 	import { NotByAiBadge } from '$lib/components/not-by-ai-badge';
+	import { TextArrowLink } from '$lib/components/text-arrow-link';
 	import { DialogContext } from '$lib/dialogs/context.svelte.js';
 	import { QrCodeDialog } from '$lib/dialogs/qr-code-dialog/index.js';
 	import { RoutingContext } from '$lib/routing/context.svelte';
@@ -148,21 +152,21 @@
 			{#if toc.items.size}
 				<section class="tablet:sticky top-header space-y-6">
 					<h2 class="c-text-heading border-b"><T message={locales.toc_heading} /></h2>
-						<ul class="space-y-1">
-							{#each toc.items.values() as tocItem (tocItem.id)}
-								{@const level = tocItem.element.tagName.slice(1)}
-								<li>
-									<!-- svelte-ignore a11y_missing_attribute -->
-									<a
-										use:toc.actions.link={tocItem}
-										class="c-link-lazy current:text-link block py-1 capitalize"
-										style:padding-left="calc(({level} - 2) * 1ch)"
-									>
-										<!-- textContent injected by toc -->
-									</a>
-								</li>
-							{/each}
-						</ul>
+					<ul class="space-y-1">
+						{#each toc.items.values() as tocItem (tocItem.id)}
+							{@const level = tocItem.element.tagName.slice(1)}
+							<li>
+								<!-- svelte-ignore a11y_missing_attribute -->
+								<a
+									use:toc.actions.link={tocItem}
+									class="c-link-lazy current:text-link block py-1 capitalize"
+									style:padding-left="calc(({level} - 2) * 1ch)"
+								>
+									<!-- textContent injected by toc -->
+								</a>
+							</li>
+						{/each}
+					</ul>
 				</section>
 			{/if}
 		</div>
@@ -176,7 +180,7 @@
 
 		<!-- sharing -->
 		<div class="_sharing">
-			<section class={["space-y-6", !settings.hydrated && 'sticky top-header']}>
+			<section class={['space-y-6', !settings.hydrated && 'top-header sticky']}>
 				<h2 class="c-text-heading border-b"><T message={locales.share_heading} /></h2>
 				<ul class="flex flex-wrap gap-4">
 					{#if settings.hydrated}
@@ -207,8 +211,8 @@
 					<li>
 						<a
 							class="c-link-icon flex rounded-full border border-current p-2"
-							href="https://www.linkedin.com/shareArticle?mini=true&url={encodedUrl}&title={data.post
-							.title}"
+							href="https://www.linkedin.com/shareArticle?mini=true&url={encodedUrl}&title={data
+								.post.title}"
 							data-external
 						>
 							<span class="sr-only">Linkedin</span>
@@ -233,9 +237,31 @@
 		<!-- latest blog post -->
 		<section class="_latest space-y-6">
 			<h2 class="c-text-heading border-b"><T message={locales.latest_heading} /></h2>
-			<BlogPostListItem post={data.latestPost} />
+			<BlogPostListItem post={data.posts.latest} />
 		</section>
 	</div>
+
+	<!-- newsletter -->
+	<GradientBackground pattern="jigsaw">
+		<section class="max-w-pad pt-section pb-section-more" id="newsletter">
+			<BlogNewsletter locale={data.locales.blogNewsletter} />
+		</section>
+	</GradientBackground>
+
+	<!-- blog posts in same series -->
+	{#if data.posts.inSeries?.length}
+		<section class="py-section max-w-pad space-y-8" id="posts">
+			<div class="space-y-4 border-t-4 border-current pt-2">
+				<div class="flex flex-wrap items-baseline justify-between gap-4">
+					<h2 class="c-text-title uppercase"><T message={locales.series_heading} /></h2>
+					<TextArrowLink href={routing.path('blog')}>
+						<T message={locales.view_more} />
+					</TextArrowLink>
+				</div>
+			</div>
+			<BlogPostShowcase posts={data.posts.inSeries} flat />
+		</section>
+	{/if}
 </main>
 
 <style lang="postcss">

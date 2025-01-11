@@ -1,6 +1,12 @@
 import { error } from '@sveltejs/kit';
 
-import { loadBlogPostBySlug, loadBlogPostMetadata, ids, loadBlogPost } from '$data/blog/posts';
+import {
+	loadBlogPostBySlug,
+	loadBlogPostMetadata,
+	ids,
+	loadBlogPost,
+	search,
+} from '$data/blog/posts';
 import { loadPersonAvatar } from '$data/people';
 import { SVELTE_VIETNAM_BLOG } from '$data/structured';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
@@ -20,8 +26,18 @@ export const load: PageServerLoad = async ({ parent, params, locals, depends }) 
 
 	const latestPostId = ids[0] === post.id ? ids[1] : ids[0];
 	const otherLang = lang === 'en' ? 'vi' : 'en';
-	const [latestPost, otherLangMetadata, { routing }] = await Promise.all([
+	const [latestPost, inSeries, otherLangMetadata, { routing }] = await Promise.all([
 		loadBlogPost(latestPostId, lang),
+		post.series.length
+			? search({
+					lang,
+					where: {
+						seriesId: post.series[0].id,
+					},
+					excludedIds: [post.id],
+					pagination: { per: 3, page: 1 },
+				})
+			: null,
 		loadBlogPostMetadata(post.id, otherLang),
 		parent(),
 		...post.authors.map(async (author) => {
@@ -45,15 +61,15 @@ export const load: PageServerLoad = async ({ parent, params, locals, depends }) 
 	return {
 		lang,
 		post,
-		latestPost,
+		posts: {
+			latest: latestPost,
+			inSeries: inSeries?.posts.filter((p) => p.id !== post.id).slice(0, 3),
+		},
 		routing: {
 			...routing,
 			breadcrumbs: buildRoutes(routing.breadcrumbs, routeParam),
 			paths: {
-				[lang]: buildRoutes(
-					routing.paths[lang],
-					routeParam,
-				),
+				[lang]: buildRoutes(routing.paths[lang], routeParam),
 				[otherLang]: buildRoutes(routing.paths[otherLang], otherLangRouteParam),
 			},
 		},

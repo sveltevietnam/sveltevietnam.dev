@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
 
-import { loadBlogPostsByAuthor } from '$data/blog/posts';
+import { search } from '$data/blog/posts';
 import { loadPerson } from '$data/people';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { buildRoutes } from '$lib/routing/utils';
@@ -11,7 +11,8 @@ import type { PageServerLoad } from './$types';
 export const load: PageServerLoad = async ({ parent, url, locals, depends, params }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 
-	const author = await loadPerson(params.id, locals.sharedSettings.language, true);
+	const lang = locals.sharedSettings.language;
+	const author = await loadPerson(params.id, lang, true);
 	if (!author) {
 		// TODO: assign a unique code to this error
 		error(404, { message: 'Author not found', code: 'SV000' });
@@ -19,12 +20,16 @@ export const load: PageServerLoad = async ({ parent, url, locals, depends, param
 
 	const pagination = getPaginationFromUrl(url);
 	const [{ posts, total }, parentLoadData] = await Promise.all([
-		loadBlogPostsByAuthor(
-			author.id,
-			locals.sharedSettings.language,
-			pagination.current,
-			pagination.per,
-		),
+		search({
+			lang,
+			pagination: {
+				per: pagination.per,
+				page: pagination.current,
+			},
+			where: {
+				authorId: author.id,
+			},
+		}),
 		parent(),
 	]);
 

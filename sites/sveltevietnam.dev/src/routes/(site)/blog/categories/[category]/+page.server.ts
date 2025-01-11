@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit';
 
 import { loadBlogCategory, loadBlogCategoryBySlug } from '$data/blog/categories';
-import { loadBlogPostsByCategory } from '$data/blog/posts';
+import { search } from '$data/blog/posts';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { buildRoutes } from '$lib/routing/utils';
 import { getPaginationFromUrl } from '$lib/utils/url';
@@ -21,7 +21,16 @@ export const load: PageServerLoad = async ({ parent, url, locals, depends, param
 	const otherLang = lang === 'en' ? 'vi' : 'en';
 	const pagination = getPaginationFromUrl(url);
 	const [{ posts, total }, otherLangCategory, { routing }] = await Promise.all([
-		loadBlogPostsByCategory(category.id, lang, pagination.current, pagination.per),
+		search({
+			lang,
+			where: {
+				categoryId: category.id,
+			},
+			pagination: {
+				page: pagination.current,
+				per: pagination.per,
+			},
+		}),
 		loadBlogCategory(category.id, otherLang),
 		parent(),
 	]);
