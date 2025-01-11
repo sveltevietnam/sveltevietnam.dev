@@ -176,6 +176,12 @@
 			{#if data.content}
 				<data.content />
 			{/if}
+		<p class="c-text-body-sm border-t pt-2 mt-6">
+			<T message={locales.edit_intro} />
+			<a class="c-link" href={data.contentEditUrl} data-external>
+				<T message={locales.edit_cta} />
+			</a>
+		</p>
 		</section>
 
 		<!-- sharing -->
@@ -235,10 +241,12 @@
 		</div>
 
 		<!-- latest blog post -->
-		<section class="_latest space-y-6">
-			<h2 class="c-text-heading border-b"><T message={locales.latest_heading} /></h2>
-			<BlogPostListItem post={data.posts.latest} />
-		</section>
+		{#if data.posts.latest}
+			<section class="_latest space-y-6">
+				<h2 class="c-text-heading border-b"><T message={locales.latest_heading} /></h2>
+				<BlogPostListItem post={data.posts.latest} />
+			</section>
+		{/if}
 	</div>
 
 	<!-- newsletter -->

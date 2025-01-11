@@ -59,6 +59,7 @@ export const load: PageServerLoad = async ({ parent, params, locals, depends }) 
 		: routeParam;
 
 	return {
+		contentEditUrl: `https://github.com/sveltevietnam/sveltevietnam.dev/edit/v1/sites/sveltevietnam.dev/src/data/blog/posts/${post.id}/content/${lang}.md.svelte`,
 		lang,
 		post,
 		posts: {

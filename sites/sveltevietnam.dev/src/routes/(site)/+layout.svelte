@@ -1,11 +1,12 @@
 <script lang="ts">
-	import { lockscroll } from '@svelte-put/lockscroll'
+	import { lockscroll } from '@svelte-put/lockscroll';
 
 	import { version } from '$app/environment';
 	import { navigating, page } from '$app/state';
 	import ogImageHome from '$lib/assets/images/fallbacks/og.jpg?url';
 	import { Footer } from '$lib/components/footer';
 	import { Header } from '$lib/components/header';
+	import { PageEditLink } from '$lib/components/page-edit-link';
 	import { PageLoadIndicator } from '$lib/components/page-load-indicator';
 	import DialogPortal from '$lib/dialogs/DialogPortal.svelte';
 	import { DialogContext } from '$lib/dialogs/context.svelte';
@@ -150,7 +151,15 @@
 	localePageMenu={data.locales.pageMenu}
 />
 {@render children()}
+{#if page.data.editUrl}
+	<PageEditLink
+		class="mt-auto"
+		href={page.data.editUrl}
+		locale={data.locales.edit}
+	/>
+{/if}
 <Footer
+	class={[!page.data.editUrl && 'mt-auto']}
 	{version}
 	locale={data.locales.footer}
 	localeGreenWebBadge={data.locales.greenWebBadge}

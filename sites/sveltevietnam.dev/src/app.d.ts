@@ -21,6 +21,7 @@ declare global {
 		}
 
 		interface PageData {
+			editUrl?: string;
 			routing: {
 				map: Record<App.RouteKey, App.Route>;
 				key: App.RouteKey;

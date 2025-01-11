@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import type { HTMLAttributes } from 'svelte/elements';
 
 	import { EMAILS } from '$data/emails';
 	import { SOCIAL_LINKS } from '$data/links';
@@ -13,7 +14,8 @@
 		locale,
 		localeGreenWebBadge,
 		localeNotByAiBadge,
-	}: {
+		...rest
+	}: HTMLAttributes<HTMLElement> & {
 		version: string;
 		locale: import('./locales/generated').Locale;
 		localeGreenWebBadge: import('$lib/components/green-web-badge/locales/generated').Locale;
@@ -26,7 +28,7 @@
 	let secondaryPages = $derived(['settings', 'code-of-conduct', 'sitemap.xml', 'rss.xml'] as const);
 </script>
 
-<footer class="mt-auto">
+<footer {...rest}>
 	<div class="max-w-pad _upper pb-10 pt-14 border-y">
 		<p class="_name c-text-heading tablet:block tablet:text-right w-37.5 hidden uppercase tablet:justify-self-end">
 			<T message={locale.sveltevietnam} />

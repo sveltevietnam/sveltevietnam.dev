@@ -4,6 +4,7 @@ import { loadLocale as loadGreenWebBadgeLocale } from '$lib/components/green-web
 import { loadLocale as loadHeaderLocale } from '$lib/components/header/locales/generated';
 import { loadLocale as loadLanguageMenuLocale } from '$lib/components/language-menu/locales/generated';
 import { loadLocale as loadNotByAiBadgeLocale } from '$lib/components/not-by-ai-badge/locales/generated';
+import { loadLocale as loadPageEditLinkLocale } from '$lib/components/page-edit-link/locales/generated';
 import { loadLocale as loadPageMenuLocale } from '$lib/components/page-menu/locales/generated';
 import { loadLocale as loadPaginationLocale } from '$lib/components/pagination/locales/generated';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
@@ -24,6 +25,7 @@ export const load: LayoutLoad = async ({ data, depends, route }) => {
 		footer,
 		greenWebBadge,
 		notByAiBadge,
+		edit,
 	] = await Promise.all([
 		loadHeaderLocale(data.sharedSettings.language),
 		loadLanguageMenuLocale(data.sharedSettings.language),
@@ -33,6 +35,7 @@ export const load: LayoutLoad = async ({ data, depends, route }) => {
 		loadFooterLocale(data.sharedSettings.language),
 		loadGreenWebBadgeLocale(data.sharedSettings.language),
 		loadNotByAiBadgeLocale(data.sharedSettings.language),
+		loadPageEditLinkLocale(data.sharedSettings.language),
 	]);
 	return {
 		...data,
@@ -45,13 +48,15 @@ export const load: LayoutLoad = async ({ data, depends, route }) => {
 			footer,
 			greenWebBadge,
 			notByAiBadge,
+			edit,
 			page: pageLocales,
 		},
 		meta: {
 			...data.meta,
 			title: (data.meta as PageMetadata)?.title ?? pageLocales?.page_title?.toString(),
 			keywords: (data.meta as PageMetadata)?.keywords ?? pageLocales?.page_keywords?.toString(),
-			description: (data.meta as PageMetadata)?.description ?? pageLocales?.page_description?.toString(),
+			description:
+				(data.meta as PageMetadata)?.description ?? pageLocales?.page_description?.toString(),
 		},
 	};
 };
