@@ -1,4 +1,5 @@
 import type { Picture } from 'vite-imagetools';
+import type { Component } from 'svelte';
 
 import { loadBlogCategory, type BlogCategoryId } from '$data/blog/categories';
 import { loadBlogSeries, type BlogSeriesId } from '$data/blog/series';
@@ -68,6 +69,9 @@ const thumbnailModules = import.meta.glob<Picture>('./*/images/thumbnail.jpg', {
 	import: 'default',
 	query: '?enhanced&w=2240,1540;1088;686',
 });
+const contentModules = import.meta.glob<Component>('./*/content/*.md.svelte', {
+	import: 'default',
+});
 
 export async function loadBlogPostMetadata(
 	id: string,
@@ -92,6 +96,12 @@ export async function loadBlogThumbnail(id: string): Promise<Picture | undefined
 	const path = `./${id}/images/thumbnail.jpg`;
 	if (!thumbnailModules[path]) return undefined;
 	return thumbnailModules[path]();
+}
+
+export async function loadBlogPostContent(id: string, lang: App.Language): Promise<Component | null>  {
+	const path = `./${id}/content/${lang}.md.svelte`;
+	if (!contentModules[path]) return null;
+	return contentModules[path]();
 }
 
 async function extendBlogPostMetadata(metadata: BlogPostMetadata, lang: App.Language) {

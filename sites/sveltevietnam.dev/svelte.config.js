@@ -6,6 +6,7 @@ import autoSlug from '@svelte-put/preprocess-auto-slug';
 import externalLink from '@svelte-put/preprocess-external-link';
 import adapter from '@sveltejs/adapter-cloudflare';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import { markdown } from '@sveltevietnam/markdown';
 
 import pkg from './package.json' with { type: 'json' };
 
@@ -16,6 +17,7 @@ const commitHash = child_process.execSync('git rev-parse --short HEAD').toString
 export default {
 	extensions: ['.md.svelte', '.svelte'],
 	preprocess: [
+		markdown(),
 		externalLink(['www.sveltevietnam.dev', 'sveltevietnam.dev']),
 		autoSlug((defaultOptions) => ({
 			tags: ['h2', 'h3', 'h4', 'h5', 'h6'],

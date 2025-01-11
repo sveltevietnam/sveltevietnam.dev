@@ -43,6 +43,7 @@ export const load: PageServerLoad = async ({ parent, params, locals, depends }) 
 		: routeParam;
 
 	return {
+		lang,
 		post,
 		latestPost,
 		routing: {
