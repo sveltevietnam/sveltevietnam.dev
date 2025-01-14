@@ -3,7 +3,7 @@
 	import type { Snippet } from 'svelte';
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 
-	import { compute } from '$lib/tooltip/compute.svelte.js';
+	import { compute } from '$lib/tooltip/compute.svelte';
 
 	let {
 		children,

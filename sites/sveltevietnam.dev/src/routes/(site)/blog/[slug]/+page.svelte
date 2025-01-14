@@ -14,8 +14,8 @@
 	import { HintedText } from '$lib/components/hinted-text';
 	import { NotByAiBadge } from '$lib/components/not-by-ai-badge';
 	import { TextArrowLink } from '$lib/components/text-arrow-link';
-	import { DialogContext } from '$lib/dialogs/context.svelte.js';
-	import { QrCodeDialog } from '$lib/dialogs/qr-code-dialog/index.js';
+	import { DialogContext } from '$lib/dialogs/context.svelte';
+	import { QrCodeDialog } from '$lib/dialogs/qr-code-dialog';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 

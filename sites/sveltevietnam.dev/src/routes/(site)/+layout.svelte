@@ -12,7 +12,7 @@
 	import { DialogContext } from '$lib/dialogs/context.svelte';
 	import { buildStructuredBreadcrumbs } from '$lib/meta/structured/breadcrumbs';
 	import { toStringWithContext } from '$lib/meta/structured/utils';
-	import { RoutingContext } from '$lib/routing/context.svelte.js';
+	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 	import '$lib/styles/app.css';
 

@@ -9,7 +9,7 @@
 	import { Pagination } from '$lib/components/pagination';
 	import { PersonLinks } from '$lib/components/person-links';
 	import { TextArrowLink } from '$lib/components/text-arrow-link';
-	import { RoutingContext } from '$lib/routing/context.svelte.js';
+	import { RoutingContext } from '$lib/routing/context.svelte';
 
 	let { data } = $props();
 
