@@ -10,25 +10,31 @@
 	let {
 		posts,
 		class: cls,
+		flat = false,
 		...rest
-	}: { posts: BlogPostListItemProps['post'][] } & HTMLAttributes<HTMLUListElement> = $props();
+	}: HTMLAttributes<HTMLUListElement> & {
+		posts: BlogPostListItemProps['post'][];
+		flat: boolean;
+	} = $props();
 </script>
 
 {#if posts.length > 1 && posts.length < 4}
 	<BlogPostShowcase {posts} class={cls} {...rest}></BlogPostShowcase>
 {:else}
 	<ul class={['widescreen:grid-cols-3 widescreen:gap-10 grid grid-cols-1 gap-8', cls]} {...rest}>
-		<li class="contents">
-			<div class="_first col-span-full">
-				<BlogPostListItem
-					post={posts[0]}
-					orientation={{ tablet: 'portrait', widescreen: 'landscape' }}
-					titleFont={{ tablet: 'big' }}
-				/>
-			</div>
-			<div class="bg-outline col-span-full h-px w-full"></div>
-		</li>
-		{#each posts.slice(1) as post, i}
+		{#if !flat}
+			<li class="contents">
+				<div class="_first col-span-full">
+					<BlogPostListItem
+						post={posts[0]}
+						orientation={{ tablet: 'portrait', widescreen: 'landscape' }}
+						titleFont={{ tablet: 'big' }}
+					/>
+				</div>
+				<div class="bg-outline col-span-full h-px w-full"></div>
+			</li>
+		{/if}
+		{#each flat ? posts : posts.slice(1) as post, i}
 			<li class="contents">
 				<BlogPostListItem
 					{post}

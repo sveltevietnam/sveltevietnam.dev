@@ -5,10 +5,9 @@ import {
 	loadBlogPostMetadata,
 	ids,
 	loadBlogPost,
-	search,
+	searchPostsInSameSeries,
 } from '$data/blog/posts';
 import { loadPersonAvatar } from '$data/people';
-import { SVELTE_VIETNAM_BLOG } from '$data/structured';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { buildRoutes } from '$lib/routing/utils';
 
@@ -26,18 +25,13 @@ export const load: PageServerLoad = async ({ parent, params, locals, depends }) 
 
 	const latestPostId = ids[0] === post.id ? ids[1] : ids[0];
 	const otherLang = lang === 'en' ? 'vi' : 'en';
-	const [latestPost, inSeries, otherLangMetadata, { routing }] = await Promise.all([
+	const [latest, inSeries, otherLangMetadata, { routing }] = await Promise.all([
 		loadBlogPost(latestPostId, lang),
-		post.series.length
-			? search({
-					lang,
-					where: {
-						seriesId: post.series[0].id,
-					},
-					excludedIds: [post.id],
-					pagination: { per: 3, page: 1 },
-				})
-			: null,
+		searchPostsInSameSeries(
+			lang,
+			post.id,
+			post.series.map((s) => s.id),
+		),
 		loadBlogPostMetadata(post.id, otherLang),
 		parent(),
 		...post.authors.map(async (author) => {
@@ -63,8 +57,8 @@ export const load: PageServerLoad = async ({ parent, params, locals, depends }) 
 		lang,
 		post,
 		posts: {
-			latest: latestPost,
-			inSeries: inSeries?.posts.filter((p) => p.id !== post.id).slice(0, 3),
+			latest,
+			inSeries,
 		},
 		routing: {
 			...routing,
@@ -75,7 +69,6 @@ export const load: PageServerLoad = async ({ parent, params, locals, depends }) 
 			},
 		},
 		meta: {
-			structured: SVELTE_VIETNAM_BLOG,
 			title: `${post.title}`,
 			description: post.description,
 		},

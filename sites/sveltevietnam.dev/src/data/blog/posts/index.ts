@@ -1,9 +1,9 @@
 import type { Component } from 'svelte';
 import type { Picture } from 'vite-imagetools';
 
-import { loadBlogCategory, type BlogCategoryId } from '$data/blog/categories';
-import { loadBlogSeries, type BlogSeriesId } from '$data/blog/series';
-import { loadPerson, type PersonId } from '$data/people';
+import { loadBlogCategory, type BlogCategory, type BlogCategoryId } from '$data/blog/categories';
+import { loadBlogSeries, type BlogSeries, type BlogSeriesId } from '$data/blog/series';
+import { loadPerson, type Person, type PersonId } from '$data/people';
 
 import ids from './ids';
 
@@ -107,7 +107,10 @@ export async function loadBlogPostContent(
 	return contentModules[path]();
 }
 
-async function extendBlogPostMetadata(metadata: BlogPostMetadata, lang: App.Language) {
+async function extendBlogPostMetadata(
+	metadata: BlogPostMetadata,
+	lang: App.Language,
+): Promise<ExtendedBlogPostMetadata> {
 	const id = metadata.id;
 	const [authors, categories, series, thumbnail] = await Promise.all([
 		Promise.all((metadata.authors ?? []).map((id) => loadPerson(id, lang))),
@@ -161,7 +164,17 @@ type BlogPostSearchOptions = {
 	pagination?: { per: number; page: number };
 };
 
-export async function search(options: BlogPostSearchOptions) {
+type ExtendedBlogPostMetadata = Omit<BlogPostMetadata, 'authors' | 'categories' | 'series'> & {
+	authors: Person[];
+	categories: BlogCategory[];
+	series: BlogSeries[];
+	thumbnail?: Picture;
+};
+
+export async function search(options: BlogPostSearchOptions): Promise<{
+	posts: ExtendedBlogPostMetadata[];
+	total: number;
+}> {
 	const { lang, where, excludedIds, pagination } = options;
 
 	const metadatas = (await Promise.all(ids.map((id) => loadBlogPostMetadata(id, lang)))).filter(
@@ -210,4 +223,76 @@ export async function search(options: BlogPostSearchOptions) {
 		posts,
 		total: matched.length,
 	};
+}
+
+const MAX_IN_SERIES_COUNT = 3;
+/**
+ * Search for at most 3 posts in the same series with the following algorithm:
+ * - 1 is the latest post in the same series, if any,
+ * - 2 is the post that comes right after the target post that is not 1, if any.
+ * In case none is found, switch to 3, if any.
+ * - 3 is the post that comes right before the target post, if any. If same as 2, take the next one, if any.
+ *
+ * If multiple series, return an array of at most 3 posts for each series
+ */
+export async function searchPostsInSameSeries(lang: App.Language, postId: string, seriesIds: string[]): Promise<ExtendedBlogPostMetadata[]> {
+	const posts = (await Promise.all(ids.map((id) => loadBlogPostMetadata(id, lang)))).filter(
+		Boolean,
+	);
+
+	if (!seriesIds) return [];
+
+	let remainingPosts = [...posts];
+	let indexOfPost = remainingPosts.findIndex((p) => p.id === postId);
+	if (indexOfPost === -1) return [];
+
+	const postsInSameSeries: BlogPostMetadata[] = [];
+	let matchedPosts: BlogPostMetadata[] = [];
+	for (const series of seriesIds) {
+		let left = indexOfPost - 1;
+		let right = indexOfPost + 1;
+
+		const leftBound = remainingPosts.findIndex((p) =>
+			p.series?.some((s) => s === series),
+		);
+		if (leftBound !== -1) {
+			const latestPostInSeries = remainingPosts[leftBound];
+			if (latestPostInSeries.id !== postId) {
+				matchedPosts.push(latestPostInSeries);
+			}
+		}
+
+		while (left > leftBound || right < remainingPosts.length) {
+			if (left > leftBound) {
+				const leftPost = remainingPosts[left];
+				if (leftPost?.series?.some((s) => s === series)) {
+					matchedPosts.push(leftPost);
+					if (matchedPosts.length >= MAX_IN_SERIES_COUNT) break;
+				}
+				left--;
+			}
+
+			if (right < remainingPosts.length) {
+				const rightPost = remainingPosts[right];
+
+				if (rightPost?.series?.some((s) => s === series)) {
+					matchedPosts.push(rightPost);
+					if (matchedPosts.length >= MAX_IN_SERIES_COUNT) break;
+				}
+
+				right++;
+			}
+		}
+
+		if (matchedPosts.length) {
+			postsInSameSeries.push(...matchedPosts);
+			remainingPosts = remainingPosts.filter(
+				(p) => !matchedPosts.some((_p) => _p.id === p.id),
+			);
+			indexOfPost = remainingPosts.findIndex((p) => p.id === postId);
+			matchedPosts = [];
+		}
+	}
+
+	return await Promise.all(postsInSameSeries.map((metadata) => extendBlogPostMetadata(metadata, lang)));
 }

@@ -6,8 +6,8 @@
 	import fallback16x9 from '$lib/assets/images/fallbacks/16x9.jpg?enhanced&w=2240,1540;1088;686&imagetools';
 	import { Avatar } from '$lib/components/avatar';
 	import { BlogNewsletter } from '$lib/components/blog-newsletter';
+	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
 	import { BlogPostListItem } from '$lib/components/blog-post-list-item';
-	import { BlogPostShowcase } from '$lib/components/blog-post-showcase';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { CopyIconBtn } from '$lib/components/copy-icon-btn';
 	import { GradientBackground } from '$lib/components/gradient-background';
@@ -176,12 +176,12 @@
 			{#if data.content}
 				<data.content />
 			{/if}
-		<p class="c-text-body-sm border-t pt-2 mt-6">
-			<T message={locales.edit_intro} />
-			<a class="c-link" href={data.contentEditUrl} data-external>
-				<T message={locales.edit_cta} />
-			</a>
-		</p>
+			<p class="c-text-body-sm mt-6 border-t pt-2">
+				<T message={locales.edit_intro} />
+				<a class="c-link" href={data.contentEditUrl} data-external>
+					<T message={locales.edit_cta} />
+				</a>
+			</p>
 		</section>
 
 		<!-- sharing -->
@@ -267,7 +267,7 @@
 					</TextArrowLink>
 				</div>
 			</div>
-			<BlogPostShowcase posts={data.posts.inSeries} flat />
+			<BlogPostCommonList posts={data.posts.inSeries} flat />
 		</section>
 	{/if}
 </main>
