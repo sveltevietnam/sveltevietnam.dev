@@ -1,16 +1,13 @@
-<script lang="ts" module>
-	const modules = import.meta.glob<string>('./images/*.svg', {
-		import: 'default',
-		query: '?url',
-		eager: true,
-	});
-</script>
-
 <script lang="ts">
 	let { lang }: { lang: string } = $props();
-
-	let url = $derived(modules[lang] || modules['file-code']);
+	import './icons.css';
 </script>
 
-<i style:--url={url}></i>
+<i class="i i-{lang}"></i>
 
+<style>
+	i {
+		width: 1rem; /* 16px */
+		height: 1rem; /* 16px */
+	}
+</style>

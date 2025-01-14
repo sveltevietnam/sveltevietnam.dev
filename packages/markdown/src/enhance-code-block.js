@@ -1,3 +1,4 @@
+import MagicString from 'magic-string';
 import { parse } from 'svelte-parse-markup';
 import { walk } from 'zimmerframe';
 
@@ -38,12 +39,13 @@ const DEFAULT_CONFIG =
 	});
 
 /**
- * @param {import('magic-string').default} s
  * @param {string} content
  * @param {EnhanceCodeBlockConfig} [config]
- * @returns {void}
+ * @returns {MagicString}
  */
-export function enhanceCodeBlock(s, content, config = {}) {
+export function enhanceCodeBlock(content, config = {}) {
+	const s = new MagicString(content);
+
 	const { components, enhancedElement } = {
 		...DEFAULT_CONFIG,
 		...config,
@@ -147,5 +149,6 @@ export function enhanceCodeBlock(s, content, config = {}) {
 			s.append(`<script>${importStatement}</script>`);
 		}
 	}
-}
 
+	return s;
+}

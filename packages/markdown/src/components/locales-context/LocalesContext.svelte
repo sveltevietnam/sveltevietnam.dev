@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import { getContext, setContext, Snippet } from 'svelte';
+	import { getContext, setContext, type Snippet } from 'svelte';
 
 	import type { LocalesContextValue } from './LocalesContext.svelte.d.ts';
 

@@ -1,0 +1,25 @@
+@layer utilities.icons.modifier {
+	.i-javascript, .i-js {
+		--icon-url: url('./images/javascript.svg');
+	}
+
+	.i-typescript, .i-ts {
+		--icon-url: url('./images/typescript.svg');
+	}
+
+	.i-css {
+		--icon-url: url('./images/css.svg');
+	}
+
+	.i-html {
+		--icon-url: url('./images/html.svg');
+	}
+
+	.i-markdown {
+		--icon-url: url('./images/markdown.svg');
+	}
+
+	.i-svelte {
+		--icon-url: url('./images/svelte.svg');
+	}
+}

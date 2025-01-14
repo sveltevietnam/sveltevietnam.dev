@@ -3,8 +3,6 @@
 
 	import { getLocalesContext } from '../locales-context/LocalesContext.svelte';
 
-	import caretDown from './images/caret-down.svg?url';
-
 	let {
 		id,
 		collapsed = $bindable(),
@@ -23,24 +21,19 @@
 	<span class="sr-only">
 		{collapsed ? locales.expand : locales.collapse}
 	</span>
-	<i style:--url={caretDown}></i>
+	<i class="i i-[caret-down]"></i>
 </label>
 
 <style lang="postcss">
-	i {
-		width: 1.25rem; /* 20px */
-		height: 1.25rem; /* 20px */
-	}
-
 	label {
-		transform: rotate(180deg);
+		transform: rotate(-180deg);
 		display: none;
 		transition: transform 150ms ease-out;
 
 		:global {
 			/* show if codeblock is collapsible and not in fullscreen mode */
 			.codeblock.collapsible:not(:has(.codeblock-fullscreen:checked)) & {
-				display: block;
+				display: flex;
 			}
 
 			.codeblock:has(.codeblock-collapsed:checked) & {

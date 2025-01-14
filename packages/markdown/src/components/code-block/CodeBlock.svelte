@@ -4,7 +4,7 @@
 	import BtnCollapse from '../btn-collapse/BtnCollapse.svelte';
 	import BtnCopyCode, { copyCode } from '../btn-copy-code/BtnCopyCode.svelte';
 	import BtnFullscreen from '../btn-fullscreen/BtnFullscreen.svelte';
-	import { getGroupContext } from '../code-block-group/CodeBlockGroup.svelte.js';
+	import { getGroupContext } from '../code-block-group/CodeBlockGroup.svelte';
 	import FileIcon from '../file-icon/FileIcon.svelte';
 
 	import type { CodeBlockProps } from './CodeBlock.svelte.d.ts';
@@ -138,23 +138,6 @@
 	@custom-selector :--c-first-of-unselected-group
 		:global(.codeblock-group:not(:--group-selected) .codeblock:first-of-type);
 
-	:global(:where(.codeblock i)) {
-		display: inline-block;
-
-		width: 1rem;
-		height: 1rem;
-		margin-right: 0.25rem; /* 4px */
-
-		vertical-align: bottom;
-
-		background-color: currentcolor;
-
-		mask-image: var(--url);
-		mask-position: center;
-		mask-repeat: no-repeat;
-		mask-size: 100%;
-	}
-
 	.codeblock {
 		--color-header-fg: hsl(0deg 0% 50%);
 
@@ -165,7 +148,7 @@
 		grid-template-columns: 1fr;
 		grid-template-rows: auto 1fr;
 
-		margin-block: 24px;
+		margin-block: 1.5rem;
 		border-width: 1px;
 		border-radius: 0.375rem;
 
@@ -189,7 +172,7 @@
 	}
 
 	.codeblock-header {
-		padding: 12px 16px;
+		padding: 0.75rem 1rem;
 		line-height: normal;
 		background-color: var(--color-pre-bg);
 
@@ -209,6 +192,10 @@
 
 		font-size: var(--text-xs);
 		white-space: nowrap;
+
+		& span {
+			margin-left: 0.5rem;
+		}
 	}
 
 	.codeblock-group-label {
@@ -220,7 +207,7 @@
 		grid-column: auto;
 		grid-row: 1;
 
-		padding: 12px 16px;
+		padding: 0.75rem 1rem;
 		border-top-width: 1px;
 		border-left-width: 1px;
 
@@ -291,11 +278,11 @@
 	.codeblock-btns {
 		position: absolute;
 		z-index: 2;
-		top: 8px;
-		right: 8px;
+		top: 0.25rem;
+		right: 0.5rem;
 
 		display: flex;
-		gap: 4px;
+		gap: 0.25rem;
 		align-items: center;
 
 		width: fit-content;
@@ -309,19 +296,30 @@
 		}
 
 		:--g-fullscreen & {
-			right: 12px;
+			right: 0.75rem;
 		}
 	}
 
 	:global(.codeblock-btn) {
 		cursor: pointer;
-		padding: 4px;
+
+		display: flex;
+
+		padding: 0.5rem;
+
 		color: var(--color-header-fg);
+
 		transition: color 150ms ease-out;
 
 		&:hover {
 			color: currentcolor;
 		}
+
+		& i {
+			width: 1.25rem; /* 20px */
+			height: 1.25rem; /* 20px */
+		}
+
 	}
 
 	.codeblock-pre-container {

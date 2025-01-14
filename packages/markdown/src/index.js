@@ -1,6 +1,5 @@
 import rehypeShikiFromHighlighter from '@shikijs/rehype/core';
 import { toHtml } from 'hast-util-to-html';
-import MagicString from 'magic-string';
 import rehypeStringify from 'rehype-stringify';
 import remarkGfm from 'remark-gfm';
 import remarkParse from 'remark-parse';
@@ -27,7 +26,7 @@ import { highlighter, transformer } from './shiki.js';
  * @returns {import('svelte/compiler').PreprocessorGroup}
  */
 export function markdown(config) {
-	const { files } = /** @satisfies {MarkdownConfig} */({
+	const { files } = /** @satisfies {MarkdownConfig} */ ({
 		files: (filename) => filename?.endsWith('.md.svelte') ?? false,
 		...config,
 	});
@@ -35,7 +34,6 @@ export function markdown(config) {
 		name: 'preprocess-markdown',
 		markup({ content, filename }) {
 			if (!files(filename)) return;
-			const s = new MagicString(content);
 			const html = unified()
 				.use(remarkParse)
 				.use(remarkGfm)
@@ -78,9 +76,7 @@ export function markdown(config) {
 				.processSync(content);
 
 			const newContent = html.toString();
-			s.update(0, content.length, newContent);
-
-			enhanceCodeBlock(s, newContent);
+			const s = enhanceCodeBlock(newContent);
 
 			return {
 				code: s.toString(),

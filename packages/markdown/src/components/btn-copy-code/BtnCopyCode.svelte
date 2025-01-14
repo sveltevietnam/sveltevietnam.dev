@@ -23,9 +23,6 @@
 
 	import { getLocalesContext } from '../locales-context/LocalesContext.svelte';
 
-	import clipboard from './images/clipboard.svg?url';
-	import clipboardText from './images/clipboard.svg?url';
-
 	let {
 		trigger = $bindable(),
 		...rest
@@ -63,16 +60,14 @@
 >
 	<span class="sr-only">{locales.copy}</span>
 	{#key copied}
-		<i style:--url={copied ? clipboardText : clipboard} in:fade={{ duration: 150 }}></i>
+		<i
+			class={['i', copied ? 'i-[clipboard-text]' : 'i-[clipboard]']}
+			in:fade={{ duration: 150 }}
+		></i>
 	{/key}
 </button>
 
 <style>
-	i {
-		width: 1.25rem; /* 20px */
-		height: 1.25rem; /* 20px */
-	}
-
 	button {
 		&:disabled {
 			/* allow clicking even if already copied */

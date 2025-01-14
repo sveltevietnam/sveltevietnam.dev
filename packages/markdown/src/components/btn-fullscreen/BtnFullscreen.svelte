@@ -1,12 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { HTMLLabelAttributes } from 'svelte/elements';
+	import type { HTMLLabelAttributes } from 'svelte/elements';
 
 	import { getGroupContext } from '../code-block-group/CodeBlockGroup.svelte';
 	import { getLocalesContext } from '../locales-context/LocalesContext.svelte';
-
-	import cornersIn from './images/corners-in.svg?url';
-	import cornersOut from './images/corners-out.svg?url';
 
 	let {
 		id,
@@ -63,8 +60,8 @@
 	{#if !group}
 		<input class="codeblock-fullscreen sr-only" type="checkbox" {id} bind:checked={fullscreen} />
 	{/if}
-	<i class="maximize" style:--url={cornersOut}></i>
-	<i class="minimize" style:--url={cornersIn}></i>
+	<i class="maximize i i-[corners-out]"></i>
+	<i class="minimize i i[-corners-in]"></i>
 </label>
 
 <style lang="postcss">
