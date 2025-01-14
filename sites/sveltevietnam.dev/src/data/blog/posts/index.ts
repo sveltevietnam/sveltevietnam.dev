@@ -16,6 +16,7 @@ export type BlogPostMetadata = {
 	description: string;
 	authors: PersonId[];
 	publishedAt: Date;
+	updatedAt?: Date;
 	series?: BlogSeriesId[];
 	categories?: BlogCategoryId[];
 	/**
@@ -47,6 +48,13 @@ export type BlogPostMetadata = {
 	 * comma-separated list of keywords for SEO
 	 */
 	keywords?: string;
+};
+
+export type ExtendedBlogPostMetadata = Omit<BlogPostMetadata, 'authors' | 'categories' | 'series'> & {
+	authors: Person[];
+	categories: BlogCategory[];
+	series: BlogSeries[];
+	thumbnail?: Picture;
 };
 
 export function defineBlogPostMetadata(
@@ -162,13 +170,6 @@ type BlogPostSearchOptions = {
 	};
 	excludedIds?: string[];
 	pagination?: { per: number; page: number };
-};
-
-type ExtendedBlogPostMetadata = Omit<BlogPostMetadata, 'authors' | 'categories' | 'series'> & {
-	authors: Person[];
-	categories: BlogCategory[];
-	series: BlogSeries[];
-	thumbnail?: Picture;
 };
 
 export async function search(options: BlogPostSearchOptions): Promise<{

@@ -1,6 +1,4 @@
-import en from '$data/routing/generated/en.json';
-import vi from '$data/routing/generated/vi.json';
-import { SVELTE_VIETNAM_ORG } from '$data/structured';
+import { loadRoutingMap } from '$data/routing';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { getOgImagePath } from '$routes/loaders';
 
@@ -9,7 +7,8 @@ import type { LayoutServerLoad } from './$types';
 export const load: LayoutServerLoad = async ({ locals, route, depends }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 
-	const routingMap = locals.sharedSettings.language === 'vi' ? vi : en;
+	const routingMap = loadRoutingMap();
+	const lang = locals.sharedSettings.language;
 	const routingKey = (route.id
 		// remove layout group (...)
 		.replace(/\/\([^)]*\)/g, '')
@@ -17,13 +16,15 @@ export const load: LayoutServerLoad = async ({ locals, route, depends }) => {
 		.replace(/\[+(.*)[\]=]/g, (_, p1) => ':' + p1)
 		.slice(1) || 'home') as App.RouteKey;
 
-	const breadcrumbs: App.Route[] = [routingMap.home];
-	const segments = routingKey.split('/');
-	for (let i = 0; i < segments.length; i++) {
-		const key = segments.slice(0, i + 1).join('/') as App.RouteKey;
-		const route = routingMap[key];
-		if (route) {
-			breadcrumbs.push(route);
+	const breadcrumbs: App.Route[] = [routingMap[lang].home];
+	if (routingKey !== 'home') {
+		const segments = routingKey.split('/');
+		for (let i = 0; i < segments.length; i++) {
+			const key = segments.slice(0, i + 1).join('/') as App.RouteKey;
+			const route = routingMap[lang][key];
+			if (route) {
+				breadcrumbs.push(route);
+			}
 		}
 	}
 
@@ -33,18 +34,17 @@ export const load: LayoutServerLoad = async ({ locals, route, depends }) => {
 		),
 		sharedSettings: locals.sharedSettings,
 		routing: {
-			map: routingMap,
+			map: routingMap[lang],
 			key: routingKey,
 			breadcrumbs,
 			paths: {
-				vi: vi[routingKey],
-				en: en[routingKey],
+				vi: routingMap.vi[routingKey],
+				en: routingMap.en[routingKey],
 			},
 		},
 		meta: {
-			structured: SVELTE_VIETNAM_ORG,
 			og: {
-				image: await getOgImagePath(route.id, locals.sharedSettings.language),
+				image: await getOgImagePath(route.id, lang),
 			},
 		},
 	};

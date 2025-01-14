@@ -1,10 +1,10 @@
-import type { Thing, WithContext, BreadcrumbList } from 'schema-dts';
+import type { Thing, WithContext } from 'schema-dts';
 
 export function withContext<T extends Thing>(data: T) {
 	return {
 		'@context': 'https://schema.org',
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		...(data as any)
+		...(data as any),
 	} satisfies WithContext<T>;
 }
 
@@ -15,16 +15,10 @@ export function toStringWithContext<T extends Thing>(data: T | T[]): string {
 	return JSON.stringify(withContext(data));
 }
 
-export function buildStructuredBreadcrumbs(origin: string, routes: App.Route[]): BreadcrumbList {
+export function buildStructuredTextWithLang(lang: App.Language, value: string) {
 	return {
-		'@type': 'BreadcrumbList',
-		itemListElement: routes.map((route, index) => ({
-			'@type': 'ListItem',
-			position: index + 1,
-			item: {
-				'@id': `${origin}${route.path}`,
-				name: route.name,
-			},
-		})),
-	}
-}
+		'@language': lang,
+		'@value': value,
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	} as any;
+};

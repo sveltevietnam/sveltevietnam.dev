@@ -3,6 +3,7 @@ import { error } from '@sveltejs/kit';
 import { search } from '$data/blog/posts';
 import { loadPerson } from '$data/people';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
+import { buildStructuredPerson } from '$lib/meta/structured/people';
 import { buildRoutes } from '$lib/routing/utils';
 import { getPaginationFromUrl } from '$lib/utils/url';
 
@@ -38,24 +39,27 @@ export const load: PageServerLoad = async ({ parent, url, locals, depends, param
 		path: author.id,
 	};
 
+	const paths = {
+		// NOTE: for person, slug is same for both languages (person's id)
+		// so we are skipping fetching other language's metadata
+		en: buildRoutes(parentLoadData.routing.paths.en, routeParam),
+		vi: buildRoutes(parentLoadData.routing.paths.vi, routeParam),
+	};
+
 	return {
 		author,
 		posts,
 		routing: {
 			...parentLoadData.routing,
 			breadcrumbs: buildRoutes(parentLoadData.routing.breadcrumbs, routeParam),
-			paths: {
-				// NOTE: for person, slug is same for both languages (person's id)
-				// so we are skipping fetching other language's metadata
-				en: buildRoutes(parentLoadData.routing.paths.en, routeParam),
-				vi: buildRoutes(parentLoadData.routing.paths.vi, routeParam),
-			},
+			paths,
 		},
 		pagination: {
 			...pagination,
 			max: Math.ceil(total / pagination.per),
 		},
 		meta: {
+			structured: buildStructuredPerson(lang, url.origin, author),
 			title: `${author.name} | Svelte Vietnam`,
 			description: author.description,
 		},

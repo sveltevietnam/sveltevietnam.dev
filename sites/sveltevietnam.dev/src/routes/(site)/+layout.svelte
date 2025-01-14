@@ -10,7 +10,8 @@
 	import { PageLoadIndicator } from '$lib/components/page-load-indicator';
 	import DialogPortal from '$lib/dialogs/DialogPortal.svelte';
 	import { DialogContext } from '$lib/dialogs/context.svelte';
-	import { toStringWithContext, buildStructuredBreadcrumbs } from '$lib/meta/structured';
+	import { buildStructuredBreadcrumbs } from '$lib/meta/structured/breadcrumbs';
+	import { toStringWithContext } from '$lib/meta/structured/utils';
 	import { RoutingContext } from '$lib/routing/context.svelte.js';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 	import '$lib/styles/app.css';
@@ -24,12 +25,13 @@
 	};
 
 	let meta = $derived.by(() => {
+		const lang = page.data.sharedSettings.language;
 		const meta = page.data.meta;
 		const title = meta?.title ?? 'Svelte Vietnam';
 		const description =
 			meta?.description ??
 			'Inclusive community and go-to information hub for people of Svelte in Vietnam';
-		const keywords = meta?.keywords ?? DEFAULT_KEYWORDS[page.data.sharedSettings.language];
+		const keywords = meta?.keywords ?? DEFAULT_KEYWORDS[lang];
 		const canonical = meta?.canonical ?? page.url.toString();
 		const rootRelativeOgImage = meta?.og?.image ?? ogImageHome;
 
@@ -40,7 +42,7 @@
 				? meta.structured
 				: [meta.structured];
 		if (page.data.routing.breadcrumbs.length > 1) {
-			things.push(buildStructuredBreadcrumbs(page.url.origin, page.data.routing.breadcrumbs));
+			things.push(buildStructuredBreadcrumbs(lang, page.url.origin, page.data.routing.breadcrumbs));
 		}
 		const structured = things.length > 0 ? toStringWithContext(things) : undefined;
 
@@ -152,11 +154,7 @@
 />
 {@render children()}
 {#if page.data.editUrl}
-	<PageEditLink
-		class="mt-auto"
-		href={page.data.editUrl}
-		locale={data.locales.edit}
-	/>
+	<PageEditLink class="mt-auto" href={page.data.editUrl} locale={data.locales.edit} />
 {/if}
 <Footer
 	class={[!page.data.editUrl && 'mt-auto']}

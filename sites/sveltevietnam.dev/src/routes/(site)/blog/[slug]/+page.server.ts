@@ -9,11 +9,12 @@ import {
 } from '$data/blog/posts';
 import { loadPersonAvatar } from '$data/people';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
+import { buildStructuredBlogPost } from '$lib/meta/structured/blog';
 import { buildRoutes } from '$lib/routing/utils';
 
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ parent, params, locals, depends }) => {
+export const load: PageServerLoad = async ({ url, parent, params, locals, depends }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 
 	const lang = locals.sharedSettings.language;
@@ -69,6 +70,7 @@ export const load: PageServerLoad = async ({ parent, params, locals, depends }) 
 			},
 		},
 		meta: {
+			structured: buildStructuredBlogPost(lang, url.origin, post),
 			title: `${post.title}`,
 			description: post.description,
 		},

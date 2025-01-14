@@ -3,6 +3,7 @@ import { error } from '@sveltejs/kit';
 import { search } from '$data/blog/posts';
 import { loadBlogSeries, loadBlogSeriesBySlug } from '$data/blog/series';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
+import { buildStructuredBlogSeries } from '$lib/meta/structured/blog';
 import { buildRoutes } from '$lib/routing/utils';
 import { getPaginationFromUrl } from '$lib/utils/url';
 
@@ -62,6 +63,7 @@ export const load: PageServerLoad = async ({ parent, url, locals, depends, param
 			max: Math.ceil(total / pagination.per),
 		},
 		meta: {
+			structured: buildStructuredBlogSeries(lang, url.origin, series),
 			title: `${series.name} | Svelte Vietnam`,
 			description: series.description,
 		},

@@ -1,6 +1,7 @@
 import { loadBlogCategory } from '$data/blog/categories';
 import { search, loadBlogPosts } from '$data/blog/posts';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
+import { buildStructuredBlog } from '$lib/meta/structured/blog';
 
 import type { PageServerLoad } from './$types';
 
@@ -34,6 +35,9 @@ export const load: PageServerLoad = async ({ locals, depends }) => {
 			latest,
 			svelteAndKit: svelteAndKit.posts,
 			insider: insider.posts,
+		},
+		meta: {
+			structured: buildStructuredBlog(lang),
 		},
 	};
 };

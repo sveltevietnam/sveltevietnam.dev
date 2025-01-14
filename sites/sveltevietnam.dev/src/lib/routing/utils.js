@@ -66,3 +66,4 @@ export function buildRoutes(routes, ...params) {
 	}
 	return /** @type {T} */(result[0]);
 }
+

@@ -7,6 +7,7 @@ import { buildRoutes } from '$lib/routing/utils';
 import { getPaginationFromUrl } from '$lib/utils/url';
 
 import type { PageServerLoad } from './$types';
+import { buildStructuredBlogCategoryPage } from '$lib/meta/structured/blog';
 
 export const load: PageServerLoad = async ({ parent, url, locals, depends, params }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
@@ -62,6 +63,7 @@ export const load: PageServerLoad = async ({ parent, url, locals, depends, param
 			max: Math.ceil(total / pagination.per),
 		},
 		meta: {
+			structured: buildStructuredBlogCategoryPage(lang, url.origin, category),
 			title: `${category.name} | Svelte Vietnam`,
 			description: category.description,
 		},
