@@ -172,9 +172,13 @@
 		</div>
 
 		<!-- content -->
-		<section class="_content prose max-w-full" use:toc.actions.root>
+		<section class="_content prose max-w-full">
 			{#if data.content}
-				<data.content />
+				{#key data.content}
+					<div use:toc.actions.root>
+						<data.content  />
+					</div>
+				{/key}
 			{/if}
 			<p class="c-text-body-sm mt-6 border-t pt-2">
 				<T message={locales.edit_intro} />
