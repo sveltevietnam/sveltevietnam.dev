@@ -21,7 +21,7 @@ export const load: PageServerLoad = async ({ url, parent, params, locals, depend
 	const post = await loadBlogPostBySlug(params.slug, lang);
 	if (!post) {
 		// TODO: assign a unique code to this error
-		error(404, { message: 'Category not found', code: 'SV000' });
+		error(404, { message: 'Post not found', code: 'SV000' });
 	}
 
 	const latestPostId = ids[0] === post.id ? ids[1] : ids[0];
