@@ -4,7 +4,11 @@ declare module 'svelte/elements' {
 		'inline-src'?:
 			| `./${string}`
 			| `../${string}`
+			| 'au-lac'
+			| 'dong'
 			| 'simpleicons'
+			| 'tu_chu'
+			| 'tu_nom'
 			| 'simpleicons/bluesky'
 			| 'simpleicons/cloudflare-workers'
 			| 'simpleicons/discord'

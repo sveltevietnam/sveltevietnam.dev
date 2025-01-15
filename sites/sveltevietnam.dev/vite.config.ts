@@ -16,10 +16,6 @@ export default defineConfig({
 			[
 				{
 					directories: [path.resolve(__dirname, 'src/lib/assets/images/svg')],
-					attributes: {
-						height: '24',
-						width: '24',
-					},
 				},
 			],
 			{
