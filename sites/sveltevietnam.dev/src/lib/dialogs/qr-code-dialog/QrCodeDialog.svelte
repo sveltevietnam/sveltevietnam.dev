@@ -4,13 +4,12 @@
 	import { qr, type SvgQRParameter } from '@svelte-put/qr/svg';
 	import { T } from '@sveltevietnam/i18n';
 	import type { MessageString } from '@sveltevietnam/i18n/runtime';
-	import { onDestroy, onMount } from 'svelte';
+	import { onMount } from 'svelte';
 	import type { HTMLDialogAttributes } from 'svelte/elements';
 
+	import { light, dark } from '$data/logos';
 	import { enhancedialog } from '$lib/dialogs/enhanced-dialog';
 	import { SettingsContext } from '$lib/settings/context.svelte';
-
-	import { light, dark } from './logos';
 
 	let {
 		item,
