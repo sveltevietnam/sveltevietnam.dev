@@ -2,6 +2,7 @@ import dedent from 'dedent';
 import recast from 'recast';
 import ts, { factory } from 'typescript';
 
+import { parseMessageParams } from './parse.js';
 import * as utils from './utils.js';
 
 export const newline = () => factory.createIdentifier('\n');
@@ -292,6 +293,7 @@ export function exportMessageSnippet(key, content, params) {
 	// then wrap `content` in a `span` element
 	if (!utils.isHtml(content)) {
 		content = `<span>${content}</span>`;
+		params = parseMessageParams(content);
 	}
 
 	const renderedContent = chunkifyContentWithParams(content, params, true);
