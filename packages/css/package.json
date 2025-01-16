@@ -5,6 +5,7 @@
 	"private": true,
 	"type": "module",
 	"exports": {
+		"./layers": "./src/layers.css",
 		"./base": "./src/base.css",
 		"./typography": "./src/typography.css",
 		"./medias": "./src/medias.css",

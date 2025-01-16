@@ -1,9 +1,4 @@
 /* stylelint-disable no-invalid-position-at-import-rule */
-@layer base;
-@layer svelte;
-@layer utilities.icons, utilities.components;
-@layer utilities.components.base, utilities.components.mod1, utilities.components.mod2;
-
 @plugin 'phosphor-icons-tailwindcss' {
 	prefix: i;
 	/* stylelint-disable-next-line property-no-unknown, order/properties-order  */
@@ -24,12 +19,10 @@
 
 @layer base {
 	html {
+		border-color: var(--color-outline);
 		font-family: var(--font-inter);
 		color: var(--color-on-surface);
-
 		background-color: var(--color-surface);
-		border-color: currentcolor;
-		border-color: var(--color-outline);
 	}
 
 	* {
@@ -45,12 +38,12 @@
 	input {
 		padding-block: 0;
 		padding-inline: 0;
+		border-color: transparent;
+		border-radius: 0;
 
 		color: inherit;
 
 		background-color: transparent;
-		border-color: transparent;
-		border-radius: 0;
 	}
 
 	svg[inline-src^='simpleicon/'] {
