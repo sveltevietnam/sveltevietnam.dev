@@ -16,7 +16,7 @@
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20241230.0",
+		"@cloudflare/workers-types": "^4.20250109.0",
 		"@floating-ui/dom": "^1.6.13",
 		"@svelte-put/async-stack": "^1.0.0",
 		"@svelte-put/avatar": "^4.0.0",
@@ -30,12 +30,12 @@
 		"@svelte-put/preprocess-external-link": "^1.0.0",
 		"@svelte-put/qr": "^2.1.0",
 		"@svelte-put/toc": "^6.0.0",
-		"@sveltejs/adapter-cloudflare": "^5.0.0",
+		"@sveltejs/adapter-cloudflare": "^5.0.1",
 		"@sveltejs/enhanced-img": "^0.4.4",
-		"@sveltejs/kit": "^2.15.2",
+		"@sveltejs/kit": "^2.15.3",
 		"@sveltejs/vite-plugin-svelte": "^5.0.3",
-		"@sveltevietnam/i18n": "workspace:*",
 		"@sveltevietnam/css": "workspace:*",
+		"@sveltevietnam/i18n": "workspace:*",
 		"@sveltevietnam/markdown": "workspace:*",
 		"@tailwindcss/typography": "^0.5.16",
 		"@tailwindcss/vite": "4.0.0-beta.8",
@@ -44,7 +44,7 @@
 		"dedent": "^1.5.3",
 		"recast": "^0.23.9",
 		"schema-dts": "^1.1.2",
-		"svelte": "^5.16.6",
+		"svelte": "^5.18.0",
 		"sveltekit-superforms": "^2.22.1",
 		"tailwindcss": "4.0.0-beta.8",
 		"tiny-glob": "^0.2.9",
@@ -52,8 +52,8 @@
 		"vite-imagetools": "^7.0.5"
 	},
 	"dependencies": {
-		"gsap": "^3.12.5",
+		"gsap": "^3.12.7",
 		"mustache": "^4.2.0",
-		"valibot": "1.0.0-beta.11"
+		"valibot": "1.0.0-beta.12"
 	}
 }
