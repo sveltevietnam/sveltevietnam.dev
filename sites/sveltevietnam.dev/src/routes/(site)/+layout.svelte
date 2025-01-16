@@ -17,6 +17,7 @@
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 	import '$lib/styles/app.css';
+	import { onMount } from 'svelte';
 
 	let { children, data } = $props();
 
@@ -92,6 +93,10 @@
 
 	$effect(() => {
 		settings.language = page.data.sharedSettings.language;
+	});
+
+	onMount(async () => {
+		(await import('$lib/easter/ascii-pho')).default();
 	});
 </script>
 
