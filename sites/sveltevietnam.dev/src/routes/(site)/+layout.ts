@@ -10,6 +10,8 @@ import { loadLocale as loadPaginationLocale } from '$lib/components/pagination/l
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 import type { PageMetadata } from '$lib/meta';
 import { loadLocale as loadDiscordNewMessageLocale } from '$lib/notifications/components/discord-new-message/locales/generated';
+import { loadLocale as loadDelayedHydrationLocale } from '$lib/notifications/static/delayed-hydration/locales/generated';
+import { loadLocale as loadNewSiteVerionLocale } from '$lib/notifications/static/new-site-version/locales/generated';
 import { getPageLocaleModule } from '$routes/loaders';
 
 import type { LayoutLoad } from './$types';
@@ -32,6 +34,8 @@ export const load: LayoutLoad = async ({ parent, depends, route }) => {
 		notByAiBadge,
 		edit,
 		discordNewMessage,
+		newSiteVersion,
+		delayedHydration,
 	] = await Promise.all([
 		getPageLocaleModule(route.id, lang),
 		loadHeaderLocale(lang),
@@ -44,6 +48,8 @@ export const load: LayoutLoad = async ({ parent, depends, route }) => {
 		loadNotByAiBadgeLocale(lang),
 		loadPageEditLinkLocale(lang),
 		loadDiscordNewMessageLocale(lang),
+		loadNewSiteVerionLocale(lang),
+		loadDelayedHydrationLocale(lang),
 	]);
 	return {
 		locales: {
@@ -56,17 +62,19 @@ export const load: LayoutLoad = async ({ parent, depends, route }) => {
 			greenWebBadge,
 			notByAiBadge,
 			edit,
-			discordNewMessage,
+			notifications: {
+				discordNewMessage,
+				newSiteVersion,
+				delayedHydration,
+			},
 			page,
 		},
 		meta: {
 			...parentLoadData.meta,
 			title: (parentLoadData.meta as PageMetadata)?.title ?? page?.page_title?.toString(),
-			keywords:
-				(parentLoadData.meta as PageMetadata)?.keywords ?? page?.page_keywords?.toString(),
+			keywords: (parentLoadData.meta as PageMetadata)?.keywords ?? page?.page_keywords?.toString(),
 			description:
-				(parentLoadData.meta as PageMetadata)?.description ??
-				page?.page_description?.toString(),
+				(parentLoadData.meta as PageMetadata)?.description ?? page?.page_description?.toString(),
 		},
 	};
 };

@@ -22,6 +22,8 @@
       message: 'This demo notification will automatically dismiss after a a few seconds. You may try hovering over it to pause the timer!',
     });
   }
+
+  const notiLocales = $derived(page.data.locales.notifications);
 </script>
 
 <div class="c-callout c-callout--info">
@@ -56,8 +58,8 @@ When there is a successful deployment to the server, the web page will display t
 
 <div class="div not-prose">
 
-<BaseNotification class="demo-noti" status="info" title="New Site Version" item={item}>
-  <p>A new version of the site is available. Please reload the page at your convenience for the best experience.</p>
+<BaseNotification class="demo-noti" status="info" title={notiLocales.newSiteVersion.title} item={item}>
+  <p>{notiLocales.newSiteVersion.description}</p>
 </BaseNotification>
 
 </div>
@@ -70,7 +72,7 @@ Staying long enough on the page, you will see this message:
 
 <div class="not-prose">
 
-<DiscordNewMessage name="A Nguyen" locale={page.data.locales.discordNewMessage} />
+<DiscordNewMessage name="A Nguyen" locale={page.data.locales.notifications.discordNewMessage} />
 
 </div>
 
@@ -82,8 +84,8 @@ When you open the web page in devices or places that are limited in network conn
 
 <div class="div not-prose">
 
-<BaseNotification class="demo-noti" status="info" title="Interrupt Detected!" item={item}>
-  <p>Interrupt has been detected due to unstable network. We are sorry for this inconvenience!</p>
+<BaseNotification class="demo-noti" status="info" title={notiLocales.delayedHydration.title} item={item}>
+  <p>{notiLocales.delayedHydration.description}</p>
 </BaseNotification>
 
 </div>

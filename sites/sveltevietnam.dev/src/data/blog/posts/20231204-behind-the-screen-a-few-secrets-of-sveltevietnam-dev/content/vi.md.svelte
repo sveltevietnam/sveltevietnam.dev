@@ -22,6 +22,8 @@
       message: 'Thông báo này sẽ tự động ẩn đi sau vài giây. Bản có thể thử rê chuột vào để tạm dừng đồng hồ hẹn giờ của thông báo.',
     });
   }
+
+  const notiLocales = $derived(page.data.locales.notifications);
 </script>
 
 <div class="c-callout c-callout--info">
@@ -64,8 +66,8 @@ Khi có một phiên bản mới được triển khai thành công đến máy 
 
 <div class="not-prose">
 
-<BaseNotification class="demo-noti" status="info" title="Phiên bản mới" item={item}>
-  <p>Trang web đang được cập nhật với phiên bản mới. Tải lại trang để có trải nghiệm tốt nhất bạn nhé!</p>
+<BaseNotification class="demo-noti" status="info" title={notiLocales.newSiteVersion.title} item={item}>
+  <p>{notiLocales.newSiteVersion.description}</p>
 </BaseNotification>
 
 </div>
@@ -78,7 +80,7 @@ Nếu bạn ở trên trang web đủ lâu, bạn sẽ bắt gặp thông báo t
 
 <div class="not-prose">
 
-<DiscordNewMessage name="Nguyễn Văn A" locale={page.data.locales.discordNewMessage} />
+<DiscordNewMessage name="Nguyễn Văn A" locale={notiLocales.discordNewMessage} />
 
 </div>
 
@@ -90,8 +92,8 @@ Khi bạn mở trang web trên các thiết bị hoặc với môi trường gi�
 
 <div class="not-prose">
 
-<BaseNotification class="demo-noti" status="info" title="Gián đoạn" item={item}>
-  <p>Phát hiện gián đoạn do kết nối không ổn định. Xin lỗi bạn vì sự bất tiện này!</p>
+<BaseNotification class="demo-noti" status="info" title={notiLocales.delayedHydration.title} item={item}>
+  <p>{notiLocales.delayedHydration.description}</p>
 </BaseNotification>
 
 </div>
