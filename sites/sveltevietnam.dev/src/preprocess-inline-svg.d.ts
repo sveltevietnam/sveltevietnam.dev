@@ -7,6 +7,7 @@ declare module 'svelte/elements' {
 			| 'au-lac'
 			| 'dong'
 			| 'simpleicons'
+			| 'sveltevietnam'
 			| 'tu_chu'
 			| 'tu_nom'
 			| 'simpleicons/bluesky'

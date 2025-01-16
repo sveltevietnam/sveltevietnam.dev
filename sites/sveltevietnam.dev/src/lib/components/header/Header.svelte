@@ -50,17 +50,21 @@
 <header class={['z-header fixed w-full transition-transform', shouldHideHeader && '-translate-y-full']}>
 	<!-- non-mobile header -->
 	<div class="max-w-pad mobile:hidden flex items-start justify-between">
-		<a
+		<svelte:element this={routing.is('home') ? 'div' : 'a'}
 			class="
 			bg-on-surface text-surface flex w-fit -translate-y-2 items-center gap-2 px-4 pb-4
 			pt-6 transition-transform duration-500 hover:translate-y-0 hover:duration-100
 			"
-			href={routing.path('home')}
+			{...routing.is('home') ? {} : { href: routing.path('home') }}
 		>
-			<i class="i i-sveltevietnam w-15 h-15"></i>
+			{#if routing.is('home')}
+				<svg class="w-15 h-15" inline-src="sveltevietnam" id="header-logo"></svg>
+			{:else}
+				<i class="i i-sveltevietnam w-15 h-15"></i>
+			{/if}
 			<span class="c-text-title-sm max-w-25 uppercase">{locale.sveltevietnam}</span>
 			<span class="sr-only">(<T message={locale.go_to_homepage} />)</span>
-		</a>
+		</svelte:element>
 		<div class="relative flex w-fit items-center gap-5 border-x border-b px-6 py-5">
 			<div class="-z-1 absolute inset-0 bg-surface" style:opacity={toolbarBackdropOpacity}>
 				<!-- backdrop -->
