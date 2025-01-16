@@ -1,15 +1,27 @@
 <script>
-  // import BaseNotification from '$lib/notifications/BaseNotification.svelte';
-  // import DiscordNotification from '$lib/notifications/DiscordNotification.svelte';
-  // import fallbackAvatar from '$lib/assets/images/fallback/default.jpg?w=60&imagetools';
+  import { StackItem } from '@svelte-put/async-stack';
 
-  import notificationHoverImage from '../images/notification-hover-en.gif';
+  import { page } from '$app/state';
+  import BaseNotification from '$lib/notifications/components/BaseNotification.svelte';
+  import { DiscordNewMessage } from '$lib/notifications/components/discord-new-message';
+	import { NotificationContext } from '$lib/notifications/context.svelte';
+
   import devToolsSlow3gImage from '../images/devtools-slow-3g.jpg?format=webp&imagetools';
   import disableJavascriptImage from '../images/disable-javascript.png?format=webp&imagetools';
   import notFoundPageImage from '../images/not-found-page.png?format=webp&imagetools';
   import blueScreenOfDeathImage from '../images/blue-screen-of-death.png?format=webp&imagetools';
   import asciiPhoImage from '../images/ascii-pho.jpg?format=webp&imagetools';
   import emailImage from '../images/email-en.jpg?format=webp&imagetools';
+
+	const item = new StackItem({ timeout: 0 });
+	const { toaster } = NotificationContext.get();
+
+  function pushDemoToast() {
+    toaster.warning({
+      title: 'Experiment with Notification',
+      message: 'This demo notification will automatically dismiss after a a few seconds. You may try hovering over it to pause the timer!',
+    });
+  }
 </script>
 
 <div class="c-callout c-callout--info">
@@ -24,19 +36,19 @@ Perhaps you have encountered a system notification while visiting *sveltevietnam
 
 <div class="div not-prose">
 
-<!-- <BaseNotification intent="info"> -->
-<!--   <p>A system notification, appearing and automatically dismissed after a moment at the top right corner of the page</p> -->
-<!-- </BaseNotification> -->
+<BaseNotification class="demo-noti" status="info" title="Notification Title" item={item}>
+  <p>A system notification, appearing and automatically dismissed after a moment at the top right corner of the page</p>
+</BaseNotification>
 
 </div>
 
-There is nothing so surprising about this: push notification is a common part of web applications. Push notification of *sveltevietnam.dev* has four variants, corresponding to four popular status or intent: `info`, `success`, `warning`, and `error`. You can see example for each variant at the [Design | Colors](/en/design/colors#status) page.
+There is nothing so surprising about this: push notification is a common part of web applications. Push notification of *sveltevietnam.dev* has four variants, corresponding to four popular status or intent: `info`, `success`, `warning`, and `error`. You can see example for each variant at the [Design](/en/design) page.
 
-By default, each notification has an internal timer: it will automatically be dismissed upon timeout. However, if you hover over the notification (or touch and hold on touch devices), its timer will pause so that you have time to read or interact, for example copying content or choosing the appropriate action. You can test this right now by clicking on the link copy icon button in the [Share](#share) section of this blog post.
+By default, each notification has an internal timer: it will automatically be dismissed upon timeout. However, if you hover over the notification (or touch and hold on touch devices), its timer will pause so that you have time to read or interact, for example copying content or choosing the appropriate action. You can test this right now by clicking the following button:
 
-<img src={notificationHoverImage} alt="trigger notification with share button, then hover over it to see timer pauses" width="2155" height="1343" class="max-w-full border" />
+<button class="c-btn c-btn--pop px-6 mx-auto block" onclick={pushDemoToast}>Push notification</button>
 
-The notification service is set up with the [@svelte-put/noti](https://svelte-put.vnphanquang.com/docs/noti) library (which I wrote). Please feel free to take a look if you happen to be looking for a solution to push notification. Now, let's go through a few specific interesting notifications used at *sveltevietnam.dev*.
+The notification service is set up with the [@svelte-put/async-stack](https://svelte-put.vnphanquang.com/docs/async-stack) library (which I wrote). Please feel free to take a look if you happen to be looking for a solution to push notification. Now, let's go through a few specific interesting notifications used at *sveltevietnam.dev*.
 
 ### Notification about New Version
 
@@ -44,9 +56,9 @@ When there is a successful deployment to the server, the web page will display t
 
 <div class="div not-prose">
 
-<!-- <BaseNotification intent="info"> -->
-<!--   <p>A new version of the site was released. Please reload the page at your convenience for the best experience.</p> -->
-<!-- </BaseNotification> -->
+<BaseNotification class="demo-noti" status="info" title="New Site Version" item={item}>
+  <p>A new version of the site is available. Please reload the page at your convenience for the best experience.</p>
+</BaseNotification>
 
 </div>
 
@@ -58,7 +70,7 @@ Staying long enough on the page, you will see this message:
 
 <div class="not-prose">
 
-<!-- <DiscordNotification name="Nguyễn Văn A" avatarURL={fallbackAvatar} /> -->
+<DiscordNewMessage name="A Nguyen" locale={page.data.locales.discordNewMessage} />
 
 </div>
 
@@ -70,9 +82,9 @@ When you open the web page in devices or places that are limited in network conn
 
 <div class="div not-prose">
 
-<!-- <BaseNotification intent="info"> -->
-<!--   <p>Interrupt has been detected due to unstable network. We are sorry for this inconvenience!</p> -->
-<!-- </BaseNotification> -->
+<BaseNotification class="demo-noti" status="info" title="Interrupt Detected!" item={item}>
+  <p>Interrupt has been detected due to unstable network. We are sorry for this inconvenience!</p>
+</BaseNotification>
 
 </div>
 
@@ -80,11 +92,11 @@ To simulate this scenario, you can select the "Slow 3G" option from devtool conf
 
 <img src={devToolsSlow3gImage} alt="screenshot at the Network tab, selection at slow 3G" width="400" height="432" class="mx-auto max-w-full h-auto" />
 
-So, how does one detect slow network? *sveltevietnam.dev* inspects the difference between two timestamps: `SplashScreen` and "[hydration](https://en.wikipedia.org/wiki/Hydration_(web_development))". Hydration is quite a popular technique nowadays in the frontend world; it uses Javascript to turn a static page dynamic, providing necessary environment for its associated framework to execute DOM update based on user interactions and system changes. `SplashScreen`, on the other hand, is a welcome screen with fairly simple and swift animation, appearing right at the beginning when user opens the application. Besides creating an inviting and captivating scene, `SplashScreen` is also a subtle distraction during which the system should be fetching necessary resources and completing environment setup.
+So, how does one detect slow network? *sveltevietnam.dev* inspects the difference between two timestamps: `SplashScreen` and "[hydration](https://en.wikipedia.org/wiki/Hydration_(web_development))". Hydration is quite a popular technique nowadays in the frontend world; it uses Javascript to turn a static page dynamic, providing necessary environment for its associated framework to execute DOM update based on user interactions and system changes. `SplashScreen`, on the other hand, is a welcome screen with fairly simple and swift animation, appearing right at the beginning when user opens the application.
 
 These two timestamps are critical for our problem at hand. After `SplashScreen`, user expects the web page to be usable immediately. When network is stable, this goes as expected: during the time `SplashScreen` is running, resources have been fetched, and hydration should have finished. When network is unstable, however, resource fetching is delayed, and in turn hydration. We can conclude, therefore, that if hydration completes a few seconds after `SplashScreen`, we know that something is not right, most likely due to slow network. When this happens, there will be a flash at a few components, so it makes sense, at the very least, to notify user and give them a polite apology (even though the fault is not entirely of our application).
 
-`SplashScreen` is a fun and lengthy topic. We will discuss more in a future post!
+`SplashScreen` is a fun and lengthy topic. We discuss this more in "[Progressive Splash Screen](/en/blog/20231220-behind-the-screen-progressive-splashscreen)".
 
 ## No Javascript? No Cry
 
@@ -148,7 +160,7 @@ This is [chim Lạc](https://vi.wikipedia.org/wiki/Chim_L%E1%BA%A1c), a popular 
 
 Next, at the "Tự" milestone, you see some rather old characters:
 
-<div class="div flex w-full gap-4 tb:gap-10 opacity-20 my-6 tb:my-10">
+<div class="div flex w-full gap-4 tablet:gap-10 opacity-20 my-6 tablet:my-10">
 
 <svg inline-src="tu_chu" class="h-auto" />
 <svg inline-src="tu_nom" class="h-auto" />
@@ -161,7 +173,7 @@ This is "Chữ Nôm" written in [chữ Nôm](https://vi.wikipedia.org/wiki/Ch%E1
 
 Finally, we see an ancient coin at the "Đồng" milestone:
 
-<svg inline-src="dong" class="w-full opacity-20 my-6 tb:my-10" />
+<svg inline-src="dong" class="w-full opacity-20 my-6 tablet:my-10" />
 
 This is the "Thiên Phúc trấn bảo" coin, made in the early Lê dynasty as one of the first coin of Vietnam. In this milestone, continuing the role of Svelte Vietnam administrator, I plan to focus on development of the [Jobs](/en/jobs) page with the hope of finding a solution to collect job listings from popular recruitment channels into a single place, making job searching easier for community members. Besides, I also want to create a sustainable co-development between business and community. Instead of paying for recruitment platforms, companies can [sponsor](/en/sponsor) us to post jobs directly on the [Jobs](/en/jobs) page. The sponsorship money will be used to organize community events. Businesses invest in community, community provides quality human resources for businesses. Both sides benefit and grow from this mutualistic relationship.
 
@@ -174,7 +186,7 @@ This co-development model has existed in developed countries but is still rare i
 
 ## Blue Screen
 
-At the moment, we do not yet have a design for the [404 page](https://www.sveltevietnam.dev/giberrish). However if you happen upon this page, you will see a rather interesting message:
+At the moment, we do not yet have a design for the [404 page](/en/giberrish). However if you happen upon this page, you will see a rather interesting message:
 
 <img src={notFoundPageImage} class="max-w-full border" width="1024" height="576" alt="404 page showing a interesting message" />
 

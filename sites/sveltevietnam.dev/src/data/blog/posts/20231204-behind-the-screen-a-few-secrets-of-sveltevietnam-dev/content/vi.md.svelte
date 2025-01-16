@@ -1,15 +1,27 @@
 <script>
-  // import BaseNotification from '$lib/notifications/BaseNotification.svelte';
-  // import DiscordNotification from '$lib/notifications/DiscordNotification.svelte';
-  // import fallbackAvatar from '$lib/assets/images/fallback/default.jpg?w=60&imagetools';
+  import { StackItem } from '@svelte-put/async-stack';
 
-  import notificationHoverImage from '../images/notification-hover-vi.gif';
+  import { page } from '$app/state';
+  import BaseNotification from '$lib/notifications/components/BaseNotification.svelte';
+  import { DiscordNewMessage } from '$lib/notifications/components/discord-new-message';
+	import { NotificationContext } from '$lib/notifications/context.svelte';
+
   import devToolsSlow3gImage from '../images/devtools-slow-3g.jpg?format=webp&imagetools';
   import disableJavascriptImage from '../images/disable-javascript.png?format=webp&imagetools';
   import notFoundPageImage from '../images/not-found-page.png?format=webp&imagetools';
   import blueScreenOfDeathImage from '../images/blue-screen-of-death.png?format=webp&imagetools';
   import asciiPhoImage from '../images/ascii-pho.jpg?format=webp&imagetools';
   import emailImage from '../images/email-vi.jpg?format=webp&imagetools';
+
+	const item = new StackItem({ timeout: 0 });
+	const { toaster } = NotificationContext.get();
+
+  function pushDemoToast() {
+    toaster.warning({
+      title: 'Thử nghiệm',
+      message: 'Thông báo này sẽ tự động ẩn đi sau vài giây. Bản có thể thử rê chuột vào để tạm dừng đồng hồ hẹn giờ của thông báo.',
+    });
+  }
 </script>
 
 <div class="c-callout c-callout--info">
@@ -18,25 +30,33 @@ Bài viết này bổ trợ cho [video cùng tên](https://youtu.be/BaoljjKpLIU)
 
 </div>
 
+<style>
+  :global {
+    .demo-noti .progress {
+      width: 65%;
+    }
+  }
+</style>
+
 ## Thông báo đẩy
 
 Có thể bạn đã từng bắt gặp thông báo hệ thống khi ghé thăm trang *sveltevietnam.dev*, trông như thế này:
 
 <div class="not-prose">
 
-<!-- <BaseNotification intent="info"> -->
-<!--   <p>Một thông báo từ hệ thống, xuất hiện và tự động ẩn đi sau một khoảng thời gian tại góc phải, trên của trang</p> -->
-<!-- </BaseNotification> -->
+<BaseNotification class="demo-noti" status="info" title="Tiêu đề thông báo" item={item}>
+  <p>Một thông báo từ hệ thống, xuất hiện và tự động ẩn đi sau một khoảng thời gian tại góc phải, trên của trang</p>
+</BaseNotification>
 
 </div>
 
-Cũng không có gì đáng ngạc nhiên: thông báo đẩy (tiếng anh hay gọi là toast hay push notification) là một thành phần thường gặp trong các ứng dụng web. Thông báo hệ thống của *sveltevietnam.dev* có bốn biến thể tương ứng với bốn trạng thái hay mục đích thông dụng: thông tin, thành công, cảnh báo, và thất bại hay lỗi. Bạn có thể tham khảo thêm ví dụ cho từng biến thể tại trang [Thiết kế | Màu sắc](/vi/thiet-ke/mau-sac#status).
+Cũng không có gì đáng ngạc nhiên: thông báo đẩy (tiếng anh hay gọi là toast hay push notification) là một thành phần thường gặp trong các ứng dụng web. Thông báo hệ thống của *sveltevietnam.dev* có bốn biến thể tương ứng với bốn trạng thái hay mục đích thông dụng: thông tin, thành công, cảnh báo, và thất bại hay lỗi. Bạn có thể tham khảo thêm ví dụ cho từng biến thể tại trang [Thiết kế](/vi/thiet-ke).
 
-Theo mặc định, mỗi thông báo có một đồng hồ hẹn giờ bên trong: thông báo sẽ tự động biến mất khi hết giờ hẹn trong vài giây. Tuy nhiên, khi bạn rê chuột vào thông báo (hay chạm và giữ tay trên các thiết bị chạm), đồng hồ sẽ tạm dừng để bạn có thời gian đọc hoặc tương tác, ví dụ như sao chép nội dung hoặc lựa chọn hành động phù hợp. Bạn có thể thử nghiệm bằng cách nhấn vào nút sao chép đường dẫn trong phần "[Chia sẻ](#share)" của bài viết này.
+Theo mặc định, mỗi thông báo có một đồng hồ hẹn giờ bên trong: thông báo sẽ tự động biến mất khi hết giờ hẹn trong vài giây. Tuy nhiên, khi bạn rê chuột vào thông báo (hay chạm và giữ tay trên các thiết bị chạm), đồng hồ sẽ tạm dừng để bạn có thời gian đọc hoặc tương tác, ví dụ như sao chép nội dung hoặc lựa chọn hành động phù hợp. Bạn có thể thử nghiệm bằng cách nhấn vào nút dưới đây:
 
-<img src={notificationHoverImage} alt="nhấn nút sao chép đường dẫn, thông báo hiển thị, khi rê chuột vào thì đồng hồ tạm dừng" width="2155" height="1343" class="max-w-full border" />
+<button class="c-btn c-btn--pop px-6 mx-auto block" onclick={pushDemoToast}>Phát thông báo</button>
 
-Hệ thống thông báo được thiết lập nhờ vào thư viện [@svelte-put/noti](https://svelte-put.vnphanquang.com/docs/noti) (do mình viết ra). Bạn có thể tham khảo qua nếu có nhu cầu sử dụng. Bây giờ, ta cùng đi qua một số thông báo cụ thể và thú vị được sử dụng tại *sveltevietnam.dev*.
+Hệ thống thông báo được thiết lập nhờ vào thư viện [@svelte-put/async-stack](https://svelte-put.vnphanquang.com/docs/async-stack) (do mình viết ra). Bạn có thể tham khảo qua nếu có nhu cầu sử dụng. Bây giờ, ta cùng đi qua một số thông báo cụ thể và thú vị được sử dụng tại *sveltevietnam.dev*.
 
 ### Thông báo phiên bản mới
 
@@ -44,9 +64,9 @@ Khi có một phiên bản mới được triển khai thành công đến máy 
 
 <div class="not-prose">
 
-<!-- <BaseNotification intent="info"> -->
-<!--   <p>Trang web đang được cập nhật với phiên bản mới. Tải lại trang để có trải nghiệm tốt nhất bạn nhé!</p> -->
-<!-- </BaseNotification> -->
+<BaseNotification class="demo-noti" status="info" title="Phiên bản mới" item={item}>
+  <p>Trang web đang được cập nhật với phiên bản mới. Tải lại trang để có trải nghiệm tốt nhất bạn nhé!</p>
+</BaseNotification>
 
 </div>
 
@@ -58,7 +78,7 @@ Nếu bạn ở trên trang web đủ lâu, bạn sẽ bắt gặp thông báo t
 
 <div class="not-prose">
 
-<!-- <DiscordNotification name="Nguyễn Văn A" avatarURL={fallbackAvatar} /> -->
+<DiscordNewMessage name="Nguyễn Văn A" locale={page.data.locales.discordNewMessage} />
 
 </div>
 
@@ -70,9 +90,9 @@ Khi bạn mở trang web trên các thiết bị hoặc với môi trường gi�
 
 <div class="not-prose">
 
-<!-- <BaseNotification intent="info"> -->
-<!--   <p>Phát hiện gián đoạn do kết nối không ổn định. Xin lỗi bạn vì sự bất tiện này!</p> -->
-<!-- </BaseNotification> -->
+<BaseNotification class="demo-noti" status="info" title="Gián đoạn" item={item}>
+  <p>Phát hiện gián đoạn do kết nối không ổn định. Xin lỗi bạn vì sự bất tiện này!</p>
+</BaseNotification>
 
 </div>
 
@@ -80,11 +100,11 @@ Khi bạn mở trang web trên các thiết bị hoặc với môi trường gi�
 
 <img src={devToolsSlow3gImage} alt="chụp màn hình tại cửa sổ Network, tùy chỉnh slow 3G" width="400" height="432" class="mx-auto max-w-full h-auto" />
 
-Vậy làm sao để phát hiện được đường truyền đang chậm? *sveltevietnam.dev* sử dụng một thủ thuật dựa vào độ chênh lệch của hai mốc thời gian: `SplashScreen` và "[hydration](https://en.wikipedia.org/wiki/Hydration_(web_development))". Hydration là một phương pháp phổ biến trong các framework front-end ngày nay, nó sử dụng Javascript để biến một trang web tĩnh thành động, cung cấp môi trường phù hợp với framework để thực hiện các kỹ thuật giúp cập nhật DOM theo tương tác của người dùng và biến đổi của hệ thống. Còn `SplashScreen` là màn hình chờ với hiệu ứng chuyển động tương đối đơn giản và nhanh chóng, hiển thị đầu tiên ngay khi người dùng vừa truy cập vào ứng dụng. Ngoài việc mang lại hình ảnh thú vị thu hút người dùng, `SplashScreen` là giải pháp tốt để đánh lạc hướng một cách nhẹ nhàng trong khi hệ thống đang tải tài nguyên cần thiết và thiết lập môi trường hoàn chỉnh.
+Vậy làm sao để phát hiện được đường truyền đang chậm? *sveltevietnam.dev* sử dụng một thủ thuật dựa vào độ chênh lệch của hai mốc thời gian: `SplashScreen` và "[hydration](https://en.wikipedia.org/wiki/Hydration_(web_development))". Hydration là một phương pháp phổ biến trong các framework front-end ngày nay, nó sử dụng Javascript để biến một trang web tĩnh thành động, cung cấp môi trường phù hợp với framework để thực hiện các kỹ thuật giúp cập nhật DOM theo tương tác của người dùng và biến đổi của hệ thống. Còn `SplashScreen` là màn hình chờ với hiệu ứng chuyển động tương đối đơn giản và nhanh chóng, hiển thị đầu tiên ngay khi người dùng vừa truy cập vào ứng dụng.
 
 Hai mốc thời gian này là thiết yếu đối với chúng ta. Sau khi `SplashScreen` hoàn thành, người dùng kỳ vọng có thể sử dụng trang web được ngay. Khi tốc độ mạng nhanh, điều này diễn ra đúng như mong đợi: trong khi `SplashScreen` đang hoạt động, tài nguyên đã được tải, và hydration đã hoàn thành. Nhưng khi mạng chậm, việc tải tài nguyên sẽ bị trì hoãn, kéo theo hydration bị trễ. Vì vậy, nếu hydration diễn ra một vài giây sau `SplashScreen`, ta ghi nhận rằng đường truyền đang không ổn định. Lúc này sẽ xảy ra hiện tượng chớp nháy ở một sổ thành phần, cho nên việc tối thiểu ta nên làm là thông báo cho người dùng kèm theo lời xin lỗi lịch sự (dù thực ra nó không hoàn toàn là lỗi của ứng dụng).
 
-`SplashScreen` là một chủ đề thú vị và dài dòng. Ta sẽ bàn thêm trong một bài viết sau!
+`SplashScreen` là một chủ đề thú vị và dài dòng được giới thiệu chi tiết hơn tại bài viết "[Màn hình chờ với nâng cao tăng dần](/vi/blog/20231220-behind-the-screen-man-hinh-cho-voi-nang-cao-tang-dan)".
 
 ## Không Javascript? Không lo
 
@@ -148,7 +168,7 @@ Chắc bạn đã nhận ra rằng đây chính là con [chim Lạc](https://vi.
 
 Tiếp đến, tại cột mốc "Tự" sẽ là các văn tự cổ:
 
-<div class="flex w-full gap-4 tb:gap-10 opacity-20 my-6 tb:my-10">
+<div class="flex flex-wrap w-full gap-4 tablet:gap-10 opacity-20 my-6 tablet:my-10">
 
 <svg inline-src="tu_chu" class="h-auto" />
 <svg inline-src="tu_nom" class="h-auto" />
@@ -161,7 +181,7 @@ Tiếp đến, tại cột mốc "Tự" sẽ là các văn tự cổ:
 
 Cuối cùng, ta thấy một đồng tiền ở cột mốc "Đồng":
 
-<svg inline-src="dong" class="w-full opacity-20 my-6 tb:my-10" />
+<svg inline-src="dong" class="w-full opacity-20 my-6 tablet:my-10" />
 
 Đây là đồng "Thiên Phúc trấn bảo" được đúc vào thời Tiền Lê và là một trong những đồng tiền đầu tiên của Việt Nam. Tại cột mốc này, mình - với vai trò ban quản trị Svelte Việt Nam - dự định tập trung phát triển trang [Việc làm](/vi/viec-lam) với hy vọng tìm ra giải pháp tổng hợp công việc liên quan từ các kênh tuyển dụng phổ biến vào một nơi tập trung để ứng viên có thể tìm kiếm môt cách nhanh chóng. Ngoài ra, mình cũng muốn tạo ra một xu hướng đồng phát triển bền vững giữa doanh nghiệp và cộng đồng. Thay vì chi trả cho các nền tảng tuyển dụng, doanh nghiệp có thể [tài trợ](/vi/tai-tro) cho chúng ta để được đăng tuyển trực tiếp tại trang [Việc làm](/vi/viec-lam). Số tiền tài trợ này sẽ được dùng để tổ chức các sự kiện cho cộng đồng. Doanh nghiệp đầu tư vào cộng đồng, cộng đồng củng cố và cung cấp nhân lực cho doanh nghiệp. Đây là một chu trình tương hỗ, giúp cả hai bên cùng phát triển.
 
@@ -173,7 +193,7 @@ Mô hình trên đã có ở các nước phát triển nhưng còn ít tại Vi
 
 ## Màn hình xanh
 
-Hiện tại, chúng ta chưa có thiết kế cụ thể cho [trang 404](https://www.sveltevietnam.dev/giberrish). Tuy nhiên, nếu gặp phải trang này, bạn sẽ thấy một lời nhắn khá thú vị:
+Hiện tại, chúng ta chưa có thiết kế cụ thể cho [trang 404](/vi/giberrish). Tuy nhiên, nếu gặp phải trang này, bạn sẽ thấy một lời nhắn khá thú vị:
 
 <img src={notFoundPageImage} class="max-w-full border" width="1024" height="576" alt="trang 404 với lời nhắn thú vị" />
 

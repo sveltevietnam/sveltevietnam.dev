@@ -2,7 +2,7 @@ import { defineBlogPostMetadata } from '..';
 
 export const en = defineBlogPostMetadata({
 	slug: '20231204-behind-the-screen-a-few-secrets-of-sveltevietnam-dev',
-	title: 'A Few Secrets of sveltevietnam.dev Splash Screen',
+	title: 'A Few Secrets of sveltevietnam.dev',
 	description: 'They are not that secret, just quite unnoticeable, but these small details really help enhance the user experience',
 	publishedAt: new Date('2023-12-04'),
 	authors: ['vnphanquang'],
