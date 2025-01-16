@@ -12,6 +12,8 @@
 	import { DialogContext } from '$lib/dialogs/context.svelte';
 	import { buildStructuredBreadcrumbs } from '$lib/meta/structured/breadcrumbs';
 	import { toStringWithContext } from '$lib/meta/structured/utils';
+	import NotificationPortal from '$lib/notifications/components/NotificationPortal.svelte';
+	import { NotificationContext } from '$lib/notifications/context.svelte';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 	import '$lib/styles/app.css';
@@ -82,6 +84,7 @@
 	const dialog = DialogContext.set();
 	const settings = SettingsContext.set(page.data.sharedSettings);
 	const routing = RoutingContext.set(page.data.routing);
+	const noti = NotificationContext.set();
 
 	$effect(() => {
 		routing.update(page.data.routing);
@@ -165,3 +168,4 @@
 />
 
 <DialogPortal stack={dialog} />
+<NotificationPortal stack={noti.stack} />

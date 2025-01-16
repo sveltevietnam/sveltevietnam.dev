@@ -11,7 +11,7 @@
 		...rest
 	}: Omit<HTMLImgAttributes, 'src'> & {
 		name: string;
-		src?: Picture;
+		src?: Picture | string;
 		border?: 'circle' | 'ellipse';
 	} = $props();
 </script>

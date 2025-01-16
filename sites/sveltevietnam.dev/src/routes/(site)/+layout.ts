@@ -9,6 +9,7 @@ import { loadLocale as loadPageMenuLocale } from '$lib/components/page-menu/loca
 import { loadLocale as loadPaginationLocale } from '$lib/components/pagination/locales/generated';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 import type { PageMetadata } from '$lib/meta';
+import { loadLocale as loadDiscordNewMessageLocale } from '$lib/notifications/components/discord-new-message/locales/generated';
 import { getPageLocaleModule } from '$routes/loaders';
 
 import type { LayoutLoad } from './$types';
@@ -26,6 +27,7 @@ export const load: LayoutLoad = async ({ data, depends, route }) => {
 		greenWebBadge,
 		notByAiBadge,
 		edit,
+		discordNewMessage,
 	] = await Promise.all([
 		loadHeaderLocale(data.sharedSettings.language),
 		loadLanguageMenuLocale(data.sharedSettings.language),
@@ -36,6 +38,7 @@ export const load: LayoutLoad = async ({ data, depends, route }) => {
 		loadGreenWebBadgeLocale(data.sharedSettings.language),
 		loadNotByAiBadgeLocale(data.sharedSettings.language),
 		loadPageEditLinkLocale(data.sharedSettings.language),
+		loadDiscordNewMessageLocale(data.sharedSettings.language),
 	]);
 	return {
 		...data,
@@ -49,6 +52,7 @@ export const load: LayoutLoad = async ({ data, depends, route }) => {
 			greenWebBadge,
 			notByAiBadge,
 			edit,
+			discordNewMessage,
 			page: pageLocales,
 		},
 		meta: {
