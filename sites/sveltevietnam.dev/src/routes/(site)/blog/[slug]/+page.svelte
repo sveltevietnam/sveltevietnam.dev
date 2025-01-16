@@ -75,7 +75,12 @@
 		</h1>
 		<p class="mt-6">{data.post.description}</p>
 		<div class="tablet:mt-10 desktop:mt-15 relative mt-8">
-			<NotByAiBadge class="bg-surface absolute -left-4 -top-4" locale={data.locales.notByAiBadge} />
+			<NotByAiBadge
+				class="absolute -left-4 -top-4"
+				locale={data.locales.notByAiBadge}
+				--color-fg="var(--color-surface)"
+				--color-bg="var(--color-on-surface)"
+			/>
 			<enhanced:img class="h-auto w-full" src={thumbnail} alt="" />
 		</div>
 		<div class="mt-6 space-y-4">
