@@ -14,10 +14,14 @@ import { getPageLocaleModule } from '$routes/loaders';
 
 import type { LayoutLoad } from './$types';
 
-export const load: LayoutLoad = async ({ data, depends, route }) => {
+export const load: LayoutLoad = async ({ parent, depends, route }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
-	const pageLocales = await getPageLocaleModule(route.id, data.sharedSettings.language);
+
+	const parentLoadData = await parent();
+	const lang = parentLoadData.sharedSettings.language;
+
 	const [
+		page,
 		header,
 		languageMenu,
 		colorSchemeMenu,
@@ -29,19 +33,19 @@ export const load: LayoutLoad = async ({ data, depends, route }) => {
 		edit,
 		discordNewMessage,
 	] = await Promise.all([
-		loadHeaderLocale(data.sharedSettings.language),
-		loadLanguageMenuLocale(data.sharedSettings.language),
-		loadColorSchemeMenuLocale(data.sharedSettings.language),
-		loadPageMenuLocale(data.sharedSettings.language),
-		loadPaginationLocale(data.sharedSettings.language),
-		loadFooterLocale(data.sharedSettings.language),
-		loadGreenWebBadgeLocale(data.sharedSettings.language),
-		loadNotByAiBadgeLocale(data.sharedSettings.language),
-		loadPageEditLinkLocale(data.sharedSettings.language),
-		loadDiscordNewMessageLocale(data.sharedSettings.language),
+		getPageLocaleModule(route.id, lang),
+		loadHeaderLocale(lang),
+		loadLanguageMenuLocale(lang),
+		loadColorSchemeMenuLocale(lang),
+		loadPageMenuLocale(lang),
+		loadPaginationLocale(lang),
+		loadFooterLocale(lang),
+		loadGreenWebBadgeLocale(lang),
+		loadNotByAiBadgeLocale(lang),
+		loadPageEditLinkLocale(lang),
+		loadDiscordNewMessageLocale(lang),
 	]);
 	return {
-		...data,
 		locales: {
 			header,
 			languageMenu,
@@ -53,14 +57,16 @@ export const load: LayoutLoad = async ({ data, depends, route }) => {
 			notByAiBadge,
 			edit,
 			discordNewMessage,
-			page: pageLocales,
+			page,
 		},
 		meta: {
-			...data.meta,
-			title: (data.meta as PageMetadata)?.title ?? pageLocales?.page_title?.toString(),
-			keywords: (data.meta as PageMetadata)?.keywords ?? pageLocales?.page_keywords?.toString(),
+			...parentLoadData.meta,
+			title: (parentLoadData.meta as PageMetadata)?.title ?? page?.page_title?.toString(),
+			keywords:
+				(parentLoadData.meta as PageMetadata)?.keywords ?? page?.page_keywords?.toString(),
 			description:
-				(data.meta as PageMetadata)?.description ?? pageLocales?.page_description?.toString(),
+				(parentLoadData.meta as PageMetadata)?.description ??
+				page?.page_description?.toString(),
 		},
 	};
 };

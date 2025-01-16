@@ -9,7 +9,7 @@ export const load: LayoutServerLoad = async ({ locals, route, depends }) => {
 
 	const routingMap = loadRoutingMap();
 	const lang = locals.sharedSettings.language;
-	const routingKey = (route.id
+	const routingKey = ((route.id ?? '')
 		// remove layout group (...)
 		.replace(/\/\([^)]*\)/g, '')
 		// replace [[param=...]] with :param
@@ -29,9 +29,11 @@ export const load: LayoutServerLoad = async ({ locals, route, depends }) => {
 	}
 
 	return {
-		editUrl: encodeURI(
-			`https://github.com/sveltevietnam/sveltevietnam.dev/edit/v1/sites/sveltevietnam.dev/src/routes${route.id}/+page.svelte`,
-		),
+		editUrl: route.id
+			? encodeURI(
+					`https://github.com/sveltevietnam/sveltevietnam.dev/edit/v1/sites/sveltevietnam.dev/src/routes${route.id}/+page.svelte`,
+				)
+			: undefined,
 		sharedSettings: locals.sharedSettings,
 		routing: {
 			map: routingMap[lang],
@@ -44,7 +46,7 @@ export const load: LayoutServerLoad = async ({ locals, route, depends }) => {
 		},
 		meta: {
 			og: {
-				image: await getOgImagePath(route.id, lang),
+				image: route.id ? await getOgImagePath(route.id, lang) : undefined,
 			},
 		},
 	};
