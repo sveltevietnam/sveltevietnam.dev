@@ -1,7 +1,9 @@
 <script>
   import { StackItem } from '@svelte-put/async-stack';
 
-  import { page } from '$app/state';
+  import * as delayedHydration from '$lib/notifications/static/delayed-hydration/locales/generated/en';
+  import * as newSiteVersion from '$lib/notifications/static/new-site-version/locales/generated/en';
+  import * as discordNewMessage from '$lib/notifications/components/discord-new-message/locales/generated/en';
   import BaseNotification from '$lib/notifications/components/BaseNotification.svelte';
   import { DiscordNewMessage } from '$lib/notifications/components/discord-new-message';
 	import { NotificationContext } from '$lib/notifications/context.svelte';
@@ -23,7 +25,11 @@
     });
   }
 
-  const notiLocales = $derived(page.data.locales.notifications);
+  const notiLocales = {
+    delayedHydration,
+    newSiteVersion,
+    discordNewMessage,
+  };
 </script>
 
 <div class="c-callout c-callout--info">
@@ -72,7 +78,7 @@ Staying long enough on the page, you will see this message:
 
 <div class="not-prose">
 
-<DiscordNewMessage name="A Nguyen" locale={page.data.locales.notifications.discordNewMessage} />
+<DiscordNewMessage name="A Nguyen" locale={notiLocales.discordNewMessage} />
 
 </div>
 

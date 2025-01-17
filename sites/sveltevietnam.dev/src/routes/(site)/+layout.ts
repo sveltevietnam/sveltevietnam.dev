@@ -9,20 +9,16 @@ import { loadLocale as loadPageMenuLocale } from '$lib/components/page-menu/loca
 import { loadLocale as loadPaginationLocale } from '$lib/components/pagination/locales/generated';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 import type { PageMetadata } from '$lib/meta';
-import { loadLocale as loadDiscordNewMessageLocale } from '$lib/notifications/components/discord-new-message/locales/generated';
-import { loadLocale as loadDelayedHydrationLocale } from '$lib/notifications/static/delayed-hydration/locales/generated';
-import { loadLocale as loadNewSiteVerionLocale } from '$lib/notifications/static/new-site-version/locales/generated';
 import { getPageLocaleModule } from '$routes/loaders';
 
 import type { LayoutLoad } from './$types';
 
-export const load: LayoutLoad = async ({ parent, depends, route }) => {
+export const load: LayoutLoad = async ({ data, parent, depends, route }) => {
+	const { lang, ...serverData } = data;
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 
-	const parentLoadData = await parent();
-	const lang = parentLoadData.sharedSettings.language;
-
 	const [
+		parentLoadData,
 		page,
 		header,
 		languageMenu,
@@ -33,10 +29,8 @@ export const load: LayoutLoad = async ({ parent, depends, route }) => {
 		greenWebBadge,
 		notByAiBadge,
 		edit,
-		discordNewMessage,
-		newSiteVersion,
-		delayedHydration,
 	] = await Promise.all([
+		parent(),
 		getPageLocaleModule(route.id, lang),
 		loadHeaderLocale(lang),
 		loadLanguageMenuLocale(lang),
@@ -47,11 +41,9 @@ export const load: LayoutLoad = async ({ parent, depends, route }) => {
 		loadGreenWebBadgeLocale(lang),
 		loadNotByAiBadgeLocale(lang),
 		loadPageEditLinkLocale(lang),
-		loadDiscordNewMessageLocale(lang),
-		loadNewSiteVerionLocale(lang),
-		loadDelayedHydrationLocale(lang),
 	]);
 	return {
+		...serverData,
 		locales: {
 			header,
 			languageMenu,
@@ -62,11 +54,6 @@ export const load: LayoutLoad = async ({ parent, depends, route }) => {
 			greenWebBadge,
 			notByAiBadge,
 			edit,
-			notifications: {
-				discordNewMessage,
-				newSiteVersion,
-				delayedHydration,
-			},
 			page,
 		},
 		meta: {

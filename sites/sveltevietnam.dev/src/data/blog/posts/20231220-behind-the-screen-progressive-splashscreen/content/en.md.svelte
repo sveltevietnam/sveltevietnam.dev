@@ -1,19 +1,27 @@
 <script>
-  import BaseNotification from '$lib/notifications/BaseNotification.svelte';
-  import { SplashPlayground } from '$lib/components/SplashPlayground';
+  import { StackItem } from '@svelte-put/async-stack';
 
-  import hydrationImage from './images/hydration-en.png?format=webp&imagetools';
-  import blockingRenderImage from './images/blocking-render.png?format=webp&imagetools';
-  import splashScreenImage from './images/splash-screen.png?format=webp&imagetools';
-  import vanillaImage from './images/vanilla.png?format=webp&imagetools';
-  import repetitionImage from './images/repetition-en.png?format=webp&imagetools';
-  import hydrationDuringSplashImage from './images/hydration-during-splash.png?format=webp&imagetools';
-  import hydrationAfterSplashImage from './images/hydration-after-splash.png?format=webp&imagetools';
+  import * as delayedHydration from '$lib/notifications/static/delayed-hydration/locales/generated/en';
+  import BaseNotification from '$lib/notifications/components/BaseNotification.svelte';
+  import { SplashScreenPlayground } from '$lib/components/splash-screen-playground';
+  import * as splashScreenPlaygroundLocale from '$lib/components/splash-screen-playground/locales/generated/en';
+
+  import hydrationImage from '../images/hydration-en.png?format=webp&imagetools';
+  import blockingRenderImage from '../images/blocking-render.png?format=webp&imagetools';
+  import splashScreenImage from '../images/splash-screen.png?format=webp&imagetools';
+  import vanillaImage from '../images/vanilla.png?format=webp&imagetools';
+  import repetitionImage from '../images/repetition-en.png?format=webp&imagetools';
+  import hydrationDuringSplashImage from '../images/hydration-during-splash.png?format=webp&imagetools';
+  import hydrationAfterSplashImage from '../images/hydration-after-splash.png?format=webp&imagetools';
+
+	const item = new StackItem({ timeout: 0 });
 </script>
 
-:::div c-callout c-callout--info
+<div class="c-callout c-callout--info">
+
 This post is part of the "Behind the Screen" series, where I share my experience and lessons learned while building *sveltevietnam.dev*. You can find the previous post at "[A Few Secrets of sveltevietnam.dev](/en/blog/20231204-behind-the-screen-a-few-secrets-of-sveltevietnam-dev)".
-:::
+
+</div>
 
 In the previous post, I mentioned briefly about the splash screen of sveltevietnam.dev. This is the first UI that users see when they visit the site; it plays a short introductory animation series to capture users' attention and welcome them in. You can reload the page (ctrl/cmd + R) at any point to trigger said splash screen. If you don't use Javascript, close the browser tab and open a new one.
 
@@ -38,9 +46,11 @@ For pages with many transitions and animations, especially those that require Ja
   <figcaption>Illustration 2: the "display-blocking" solution</figcaption>
 </figure>
 
-:::div c-callout c-callout--info
+<div class="c-callout c-callout--info">
+
 For (2), you might find it strange that there are users who don't use Javascript. I mentioned [this in the previous post](/en/blog/20231204-behind-the-screen-a-few-secrets-of-sveltevietnam-dev#no-javascript-no-cry). It happens more often than we think, and any user can fall into that situation. You can check [this diagram](https://www.kryogenix.org/code/browser/everyonehasjs.html) for more details.
-:::
+
+</div>
 
 As such, although simple, this display-blocking solution does not provide the best user experience. To overcome both of the consequences above, we need to server-side-render the web page, then send HTML and CSS directly to the browser for an initial render, and let hydration take place naturally afterwards. But then we are back to square one: how to hide the glitch right after hydration has completed? The second solution is to display a splash screen.
 
@@ -55,11 +65,13 @@ Of course, this solution does not come without its own problems, which we will d
 
 Since the publication of this post, I have received several comments about the fact that a splash screen or loading indicator might actually hurt user experience by making things "appear" to be slower than they actually are. Generally, I agree with this point of view, and also want to expand further that you should always spend efforts to make your site actually faster, especially if it is time-critical and its content should be shown as soon as possible to users.
 
-:::div c-callout c-callout--success c-callout--icon-bulb
+<div class="c-callout c-callout--success c-callout--icon-bulb">
+
 At *sveltevietnam.dev*, our splash screen's primary mission is to create an engaging and welcoming scene, and an excuse for us to be expressive with our creative ideas. That is the reason it is designed to be quick and nonrepetitive, as you will soon see. For us, the "site-loading coverup property" comes as a convenient by-product.
 
-Does *sveltevietnam.dev* feels slow to you as a visitor? Let us know via [Reddit](https://www.reddit.com/r/sveltejs/comments/18qxcf8/splash_screen_in_svelte_sveltekit_a_blog_post/?utm_source=share&utm_medium=web2x&context=3), [Twitter](https://twitter.com/sveltevietnam), or [Discord](https://discord.sveltevietnam.dev). In case you do not wish to see our splash screen anymore, feel free to turn it off completely via the [settings page](/en/settings) (or click on the settings icon on the top right of the site).
-:::
+Does *sveltevietnam.dev* feels slow to you as a visitor? Let us know via [Reddit](https://www.reddit.com/r/sveltejs/comments/18qxcf8/splash_screen_in_svelte_sveltekit_a_blog_post/?utm_source=share&utm_medium=web2x&context=3) or [Discord](https://discord.sveltevietnam.dev). In case you do not wish to see our splash screen anymore, feel free to turn it off completely via the [settings page](/en/settings).
+
+</div>
 
 In any case, you should discuss with your team and consider carefully if your application and audience will benefit from a splash screen. Worry not as the techniques introduced in this blog post is applicable to other use cases as well, not just splash screen!
 
@@ -73,16 +85,19 @@ From what we have discussed, a splash screen needs to satisfy the following basi
 
 In other words, splash screen needs to be in HTML and CSS without any JS dependency. More importantly, it must live outside the framework context, otherwise splash screen animations will be janky and repeat upon hydration.
 
-:::div c-callout c-callout--info
+<div class="c-callout c-callout--info">
+
 During hydration, DOM elements might be rerendered or remounted, causing CSS animation to restart. There have been discussions about this (issue [#4308](https://github.com/sveltejs/svelte/issues/4308), [#8194](https://github.com/sveltejs/svelte/issues/8194), [#8209](https://github.com/sveltejs/svelte/issues/8209), [#7775](https://github.com/sveltejs/kit/issues/7775)), but currently there is no definitive solution from the framework. Nevetherless, no matter which framework we use, it is a good idea to keep splash screen independent from the hydration process to ensure its stability.
-:::
+
+**Update - January 2025:** the aforementioned issues seem to have been fixed in late Svelte 4 / early Svelte 5. Regardless, the solution presented here is still completely valid.
+
+</div>
 
 Using vanilla? Doesn't it sound bizarre in today's world that is flooded with frontend frameworks? Perhaps you have been discouraged from using vanilla and told to use only what the framework provides. I assure you that using vanilla is perfectly normal, even necessary in typical situations like one presented here. Remember that frameworks come and go, but vanilla (HTML, CSS, JS) will always be there.
 
 In the context of Svelte and SvelteKit, there are many ways to apply HTML outside the "hydration zone". The simplest way is to add code directly to `app.html`:
 
-```html
-/// title=src/app.html
+```html title=src/app.html
 <!doctype html>
 <html>
   <head>...</head>
@@ -101,10 +116,9 @@ In the context of Svelte and SvelteKit, there are many ways to apply HTML outsid
 </html>
 ```
 
-If you don't already know, `app.html` is the starting template that SvelteKit uses to render page content into before sending off to clients. Hydration takes place at `%sveltekit.body%`. See the ["Project files" section in SvelteKit docs](https://kit.svelte.dev/docs/project-structure#project-files) for more details. Our `div#splash` is outside of `%sveltekit.body%` so it is not affected by hydration. Next, for CSS, we declare a separate file...
+If you don't already know, `app.html` is the starting template that SvelteKit uses to render page content into before sending off to clients. Hydration takes place at `%sveltekit.body%`. See the ["Project files" section in SvelteKit docs](https://svelte.dev/docs/kit/project-structure#Project-files) for more details. Our `div#splash` is outside of `%sveltekit.body%` so it is not affected by hydration. Next, for CSS, we declare a separate file...
 
-```css
-/// title=splash.css
+```css title=splash.css
 #splash {
   /* applicable styles for animation and such */
 }
@@ -112,16 +126,17 @@ If you don't already know, `app.html` is the starting template that SvelteKit us
 
 ...and import this directly in an appropriate `+layout` or `+page`. For example, to apply to all pages, import in the root `+layout`:
 
-```svelte
-/// title=src/routes/+layout.svelte
+```svelte title=src/routes/+layout.svelte
 <script>
   import 'path/to/splash.css';
 </script>
 ```
 
-:::div c-callout c-callout--info
+<div class="c-callout c-callout--info">
+
 It is possible to declare `splash.css` directly in `app.html`. However, by doing so, we treat `splash.css` as a static asset and cannot use CSS preprocessors like Sass or PostCSS. Hydration is not relevant when it comes to CSS, so we can still import from `*.svelte` files in Svelte and SvelteKit context, which is quite convenient!
-:::
+
+</div>
 
 <figure>
   <img src={vanillaImage} class="mx-auto max-w-full rounded" width="680" height="328" alt="integrating vanilla HTML and CSS into SvelteKit" />
@@ -151,8 +166,7 @@ However, in case when CSR is turned off or Javascript is not available, each nav
 
 First of all, we add an attribute to the `div#splash` element:
 
-```html
-/// title=src/app.html
+```html title=src/app.html
 <!doctype html>
 <html>
   <head>...</head>
@@ -172,9 +186,7 @@ First of all, we add an attribute to the `div#splash` element:
 
 `%splash-skip%` will be replaced with `true` or `false`, depending on whether (1) or (2) applies, by `hooks.server`:
 
-```javascript
-/// title=src/hooks.server.js
-
+```javascript title=src/hooks.server.js
 /** @type {import('sveltejs/kit').Handle} */
 export const handle = async ({ event, resolve }) => {
   const { url, request, locals } = event;
@@ -204,8 +216,7 @@ You can inspect to see if the code works by disabling Javascript on the page. If
 
 To turn on Javascript again, follow the same steps but replace the command with "Enable Javascript". Now, the rest is to edit `splash.css` accordingly to hide the splash screen if `data-splash-skip` is `true`:
 
-```css
-/// title=splash.css
+```css title=splash.css
 #splash {
   /* :::diff + */
   &[data-splash-skip="true"] {
@@ -217,7 +228,7 @@ To turn on Javascript again, follow the same steps but replace the command with 
 
 ## Slow Network
 
-In happy cases, hydration completes while the splash screen is still running, and the system is ready to welcome users. After hydration finishes, users can immediately start interacting with the site.
+In happy cases, hydration completes while the splash screen is still running, and the system is ready to welcome users. After hydration, users can immediately start interacting with the site.
 
 <figure>
   <img src={hydrationDuringSplashImage} class="mx-auto max-w-full rounded" width="800" height="173" alt="illustration: hydration completes before splash screen ends" />
@@ -233,16 +244,17 @@ But, on slow network, hydration is delayed and takes place after the splash scre
 
 Unfortunately, in situation such as this, we cannot avoid the glitch problem, as discussed in previous sections. However, we can notify users so that they understand why it happens. This approach is based on a basic principle of user experience design: always communicate and provide information about visible system changes. This is the notification used by *sveltevietnam.dev*:
 
-:::div not-prose
-<BaseNotification intent="info">
-  <p>Interrupt has been detected due to unstable network. We are sorry for this inconvenience!</p>
+<div class="not-prose">
+
+<BaseNotification status="info" title={delayedHydration.title} item={item}>
+  <p>{delayedHydration.description}</p>
 </BaseNotification>
-:::
+
+</div>
 
 To achieve this, we need to detect whether hydration completes after splash screen has ended. First, we save the timestamp when the splash screen ends:
 
-```html
-/// title=src/app.html
+```html title=src/app.html
 <html>
   <body>
     <div id="splash">...</splash>
@@ -270,14 +282,17 @@ To achieve this, we need to detect whether hydration completes after splash scre
 </html>
 ```
 
-:::div c-callout c-callout--warning
+<div class="c-callout c-callout--warning">
+
 Be aware: you need to listen to the correct `animationend` event because splash screen may include multiple animations on different HTML elements. When an animation ends, its element will emit an `animationend` event and [bubble](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#event_bubbling) it up. In the example above, the last animation is on the `div#splash` element itself.
-:::
 
-Here, you see that we are, again, using vanilla JS. Let me re-emphasize: this is perfectly normal. We need to use vanilla because if the code above lives in a framework component, it will not take effect until hydration has completed - meaning that our code would become useless. We also don't set [defer](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#defer), [async](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#async), or turn the script into a [module](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#module) because we want it to run as soon as possible to not miss the `animationend` event. Next, we get the timestamp when hydration has completed and compare it with the splash screen timestamp:
+</div>
 
-```svelte
-/// title=src/routes/+layout.svelte
+Here, you see that we are, again, using vanilla JS. Let me re-emphasize: this is perfectly normal. We need to use vanilla because if the code above lives in a framework component, it will not take effect until hydration has completed - meaning that our code would become useless. We also don't set [defer](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#defer), [async](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#async), or turn the script into a [module](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#module) because we want it to run as soon as possible to not miss the `animationend` event.
+
+Lastly, we get the timestamp when hydration has completed and compare it with the splash screen timestamp:
+
+```svelte title=src/routes/+layout.svelte
 <script>
   import { browser } from '$app/environment';
 
@@ -300,11 +315,13 @@ Here, you see that we are, again, using vanilla JS. Let me re-emphasize: this is
 </script>
 ```
 
-The above code can be placed almost anywhere: as long as it lives within the hydration zone, it will only run after hydration has completed. Also, we can use [MutationObserver](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) to track changes from the `data-splashed-at` attribute instead of `setInterval`, but I think that is unnecessarily complicated and overkilled.
+The above code can be placed just about anywhere: as long as it lives within the hydration zone, it will only run after hydration has completed. Also, we can use [MutationObserver](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) to track changes from the `data-splashed-at` attribute instead of `setInterval`, but I think that is unnecessarily complicated and overkilled.
 
-:::div c-callout c-callout--warning
+<div class="c-callout c-callout--warning">
+
 Note that depending on how much resource your site needs to fetch and how long your splash screen animation is, you might need to adjust the timestamp comparison condition. At *sveltevietnam.dev*, for example, we only trigger notification if hydration completes ***2 seconds after*** splash screen has ended. It is a good idea to play around, add or remove some seconds to see what works best for your site.
-:::
+
+</div>
 
 To simulate slow network, you can select "slow 3G" from the network settings within the browser devtool.
 
@@ -312,7 +329,7 @@ To simulate slow network, you can select "slow 3G" from the network settings wit
 
 There is rarely an opportunity such as with splash screen to express your creativity. It is a fantastic chance for a fruitful collaboration between designers and developers to create together something unique, fun for both users and the team. If you have visited *sveltevietnam.dev* (or reload the page) enough times, you might have noticed that we actually have two variants for the splash screen animation sequence. One is short and more frequent version (3/4 chance), while the other is longer and only shows up from time to time (1/4 chance). You can experiment with both in the playground below (Javascript required). Select the desired variant and press "play".
 
-<SplashPlayground />
+<SplashScreenPlayground locale={splashScreenPlaygroundLocale} />
 
 ## Closing
 

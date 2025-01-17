@@ -1,19 +1,27 @@
 <script>
-  import BaseNotification from '$lib/notifications/BaseNotification.svelte';
-  import { SplashPlayground } from '$lib/components/SplashPlayground';
+  import { StackItem } from '@svelte-put/async-stack';
 
-  import hydrationImage from './images/hydration-vi.png?format=webp&imagetools';
-  import blockingRenderImage from './images/blocking-render.png?format=webp&imagetools';
-  import splashScreenImage from './images/splash-screen.png?format=webp&imagetools';
-  import vanillaImage from './images/vanilla.png?format=webp&imagetools';
-  import repetitionImage from './images/repetition-vi.png?format=webp&imagetools';
-  import hydrationDuringSplashImage from './images/hydration-during-splash.png?format=webp&imagetools';
-  import hydrationAfterSplashImage from './images/hydration-after-splash.png?format=webp&imagetools';
+  import * as delayedHydration from '$lib/notifications/static/delayed-hydration/locales/generated/vi';
+  import BaseNotification from '$lib/notifications/components/BaseNotification.svelte';
+  import { SplashScreenPlayground } from '$lib/components/splash-screen-playground';
+  import * as splashScreenPlaygroundLocale from '$lib/components/splash-screen-playground/locales/generated/vi';
+
+  import hydrationImage from '../images/hydration-vi.png?format=webp&imagetools';
+  import blockingRenderImage from '../images/blocking-render.png?format=webp&imagetools';
+  import splashScreenImage from '../images/splash-screen.png?format=webp&imagetools';
+  import vanillaImage from '../images/vanilla.png?format=webp&imagetools';
+  import repetitionImage from '../images/repetition-vi.png?format=webp&imagetools';
+  import hydrationDuringSplashImage from '../images/hydration-during-splash.png?format=webp&imagetools';
+  import hydrationAfterSplashImage from '../images/hydration-after-splash.png?format=webp&imagetools';
+
+	const item = new StackItem({ timeout: 0 });
 </script>
 
-:::div c-callout c-callout--info
+<div class="c-callout c-callout--info">
+
 Bài viết này nằm trong chuỗi bài viết "Behind the Screen", nơi mình chia sẻ những kinh nghiệm và bài học trong quá trình xây dựng *sveltevietnam.dev*. Bạn có thể tìm đọc phần trước tại "[Một vài bí mật về sveltevietnam.dev](/vi/blog/20231204-behind-the-screen-mot-vai-bi-mat-ve-sveltevietnam-dev)".
-:::
+
+</div>
 
 Trong phần trước, mình có đề cập sơ lược về màn hình chờ (splash screen). Màn hình này hiển thị ngay lúc đầu khi trang vừa được tải và thực hiện một số hiệu ứng chuyển động giúp thu hút sự chú ý của người dùng và chào đón họ vào trang. Để kích hoạt màn hình chờ, bạn có thể tải lại trang (ctrl/cmd + R). Nếu bạn không dùng Javascript, hãy tắt hẳn tab trình duyệt và mới trang mới.
 
@@ -38,9 +46,11 @@ Thoạt nhìn màn hình chờ trông có vẻ chỉ phục vụ mục đích ho
   <figcaption>Minh họa 2: giải pháp chặn hiển thị</figcaption>
 </figure>
 
-:::div c-callout c-callout--info
+<div class="c-callout c-callout--info">
+
 Ở ý (2), có thể bạn thấy lạ rằng vì sao lại có người dùng không sử dụng Javascript. Mình có đề cập đến [điều này trong bài viết trước](/vi/blog/20231204-behind-the-screen-mot-vai-bi-mat-ve-sveltevietnam-dev#kh%C3%B4ng-javascript-kh%C3%B4ng-lo). Việc này xảy ra nhiều hơn ta thường nghĩ, và bất cứ người dùng nào cũng có thể rơi vào tình huống đó. Bạn hãy xem [sơ đồ này](https://www.kryogenix.org/code/browser/everyonehasjs.html) để hiểu thêm.
-:::
+
+</div>
 
 Như vậy, giải pháp chặn hiển thị nội dung tuy đơn giản nhưng không mang lại trải nghiệm tốt nhất. Để giải quyết cả hai hệ quả trên, ta cần phải biểu hiện nội dung từ phía máy chủ (server-side-rendering), và gởi trực tiếp HTML, CSS cho trình duyệt hiển thị ban đầu, sau đó để hydration diễn ra một cách tự nhiên. Thế nhưng khi đấy ta lại quay trở về vạch xuất phát với vấn đề ban đầu: làm sao che đi việc chớp nháy do hiệu ứng trên trang khi hydration vừa hoàn thành? Giải pháp thứ hai chính là hiển thị màn hình chờ.
 
@@ -55,11 +65,13 @@ Như vậy, giải pháp chặn hiển thị nội dung tuy đơn giản nhưng 
 
 Từ khi bài viết này được đăng, mình có nhận được một vài phản hồi rằng màn hình chờ, hay nói chung là những giao diện chờ (loading indicator), có thể tạo nên "cảm giác" trang web chậm hơn thực tế, làm ảnh hướng đến trải nghiệm người dùng. Nhìn chung, mình đồng ý với quan điểm này, và muốn mở rộng thêm rằng ta lúc nào cũng nên cố gắng cải thiện và tối ưu hóa để trang thực sự nhanh hơn, đặc biệt là nếu trang web mang tính cấp bách, nội dung cần được hiển thị sớm nhất có thể.
 
-:::div c-callout c-callout--success c-callout--icon-bulb
+<div class="c-callout c-callout--success c-callout--icon-bulb">
+
 Với *sveltevietnam.dev*, màn hình chờ có nhiệm vụ chính là tạo nên một hoạt cảnh ấn tượng lôi cuốn người dùng, và cũng là cái cớ để chúng mình thể hiện sức sáng tạo. Đó là lý do nó được thiết kế để chạy trong thời gian ngắn và không lặp lại, như bạn sẽ thấy ở phần sau. Tính chất "che đi qua trình tải trang" là sản phẩm phụ may mắn đi kèm với màn hình chờ này.
 
-Bạn có thấy trang *sveltevietnam.dev* chậm? Hãy phản hồi cho tụi mình biết qua [Discord](https://discord.sveltevietnam.dev). Trường hợp bạn không muốn thấy màn hình chờ nữa, hãy [vào trang cài đặt](/vi/cai-dat) (hoặc nhấn vào icon tương ứng ở góc trên bên phải) và tắt màn hình chờ nhé!
-:::
+Bạn có thấy trang *sveltevietnam.dev* chậm? Hãy phản hồi cho tụi mình biết qua [Discord](https://discord.sveltevietnam.dev). Trường hợp bạn không muốn thấy màn hình chờ nữa, hãy [vào trang cài đặt](/vi/cai-dat) và tắt màn hình chờ nhé!
+
+</div>
 
 Tùy vào trường hợp, bạn nên thảo luận với team và cân nhắc cẩn thận, xem xét giá trị thực tế mà màn hình chờ mang lại cho ứng dụng và người dùng. Nhưng đừng quá lo lắng, dù gì đi nữa, các kỹ thuật được giới thiệu trong bài viết này cũng có thể áp dụng cho các vấn đề khác, không chỉ riêng màn hình chờ!
 
@@ -73,16 +85,19 @@ Theo những ràng buộc mình đã trình bày ở phần trước, màn hình
 
 Nói cách khác, màn hình chờ cần được thiết lập bằng HTML và CSS thuần túy và không phụ thuộc vào Javascript. Đặc biệt là, nó phải nằm ngoài phạm vi ảnh hưởng của framework, vì nếu không thì các hiệu ứng hoạt ảnh trong màn hình chờ sẽ bị giật và lặp lại khi hydration hoàn thành.
 
-:::div c-callout c-callout--info
+<div class="c-callout c-callout--info">
+
 Khi hydration xảy ra, các phần tử DOM có thể bị thay thế (rerender, remount), khiến cho hiệu ứng CSS bị khởi động lại. Đã có nhiều thảo luận về vấn đề này (issue [#4308](https://github.com/sveltejs/svelte/issues/4308), [#8194](https://github.com/sveltejs/svelte/issues/8194), [#8209](https://github.com/sveltejs/svelte/issues/8209), [#7775](https://github.com/sveltejs/kit/issues/7775)), nhưng hiện tại chưa có giải pháp dứt khoát để khắc phục từ phía framework. Dù có dùng framework nào đi nữa, ta nên tách biệt màn hình chờ khỏi quá trình hydration, để bảo đảm tính độc lập và ổn định.
-:::
+
+**Cập nhật - Tháng 1, 2025:** vấn đề nêu trong các issue trên có vẻ đã được vá trong phiên bản Svelte 5. Tuy nhiên, giải pháp được giới thiệu trong bài viết này vẫn giữ nguyên giá trị.
+
+</div>
 
 Sử dụng vanilla? Nghe thật lạ lùng trong thời buổi ngày nay với 1001 framework frontend đúng không nào? Có thể bạn đã từng được khuyên rằng không nên sử dụng vanilla, chỉ nên dùng những gì framework cung cấp. Mình xin bảo đảm với bạn rằng: dùng vanilla là hoàn toàn bình thường, thậm chí là cần thiết trong các tình huống tiêu biểu như trong bài viết này. Hãy nhớ rằng, framework sẽ thay đổi, nhưng các nền tảng vanilla (HTML, CSS, JS) vẫn sẽ ở đấy.
 
 Trong Svelte và SvelteKit, có nhiều cách để áp dụng một đoạn mã HTML vanilla ngoài phạm vi hydration. Cách đơn giản nhất ta sẽ sử dụng là thêm mã trực tiếp vào `app.html`:
 
-```html
-/// title=src/app.html
+```html title=src/app.html
 <!doctype html>
 <html>
   <head>...</head>
@@ -101,10 +116,9 @@ Trong Svelte và SvelteKit, có nhiều cách để áp dụng một đoạn mã
 </html>
 ```
 
-Nếu bạn chưa biết, `app.html` là tệp mẫu SvelteKit dùng để biểu hiện nội dung trang, trước khi gởi về cho trình duyệt. Hydration sẽ diễn ra tại `%sveltekit.body%`. Xem thêm [phần "Project files" trong tài liệu của SvelteKit](https://kit.svelte.dev/docs/project-structure#project-files) để biết thêm chi tiết. `div#splash` của chúng ta nằm ngoài `%sveltekit.body%` nên sẽ không bị ảnh hưởng bởi hydration. Tiếp theo, đối với CSS, ta sẽ khai báo một tệp riêng...
+Nếu bạn chưa biết, `app.html` là tệp mẫu SvelteKit dùng để biểu hiện nội dung trang, trước khi gởi về cho trình duyệt. Hydration sẽ diễn ra tại `%sveltekit.body%`. Xem thêm [phần "Project files" trong tài liệu của SvelteKit](https://svelte.dev/docs/kit/project-structure#Project-files) để biết thêm chi tiết. `div#splash` của chúng ta nằm ngoài `%sveltekit.body%` nên sẽ không bị ảnh hưởng bởi hydration. Tiếp theo, đối với CSS, ta sẽ khai báo một tệp riêng...
 
-```css
-/// title=splash.css
+```css title=splash.css
 #splash {
   /* style và hiệu ứng phù hợp */
 }
@@ -112,16 +126,17 @@ Nếu bạn chưa biết, `app.html` là tệp mẫu SvelteKit dùng để biể
 
 ...và nhập tệp này trực tiếp vào `+layout` hoặc `+page` phù hợp. Ví dụ, để áp dụng lên tất cả các trang, hãy nhập vào tệp `+layout` gốc:
 
-```svelte
-/// title=src/routes/+layout.svelte
+```svelte title=src/routes/+layout.svelte
 <script>
   import 'path/to/splash.css';
 </script>
 ```
 
-:::div c-callout c-callout--info
+<div class="c-callout c-callout--info">
+
 Chú ý rằng ta có thể trực tiếp khai báo tệp `splash.css` tại `app.html`. Tuy nhiên, khi làm vậy tệp `splash.css` được xem như là một tài nguyên tĩnh (static asset) và ta sẽ không thể sử dụng CSS preprocessor như Sass hay PostCSS. CSS không bị ảnh hưởng bởi hydration, vì vậy ta vẫn có thể tải từ các tệp `*.svelte` trong ngữ cảnh Svelte và SvelteKit, khá là tiện lợi!
-:::
+
+</div>
 
 <figure>
   <img src={vanillaImage} class="mx-auto max-w-full rounded" width="680" height="328" alt="minh họa tích hợp vanilla splash.css và app.html với SvelteKit" />
@@ -151,8 +166,7 @@ Tuy nhiên, trong trường hợp bạn không dùng CSR hoặc người dùng k
 
 Trước tiên, ta thêm một thuộc tính vào phần tử `div#splash`:
 
-```html
-/// title=src/app.html
+```html title=src/app.html
 <!doctype html>
 <html>
   <head>...</head>
@@ -172,9 +186,7 @@ Trước tiên, ta thêm một thuộc tính vào phần tử `div#splash`:
 
 `%splash-skip%` sẽ được thay thế bằng `true` hay `false` tùy vào tình huống (1) hay (2), từ phía server bằng tệp `hooks.server`:
 
-```javascript
-/// title=src/hooks.server.js
-
+```javascript title=src/hooks.server.js
 /** @type {import('sveltejs/kit').Handle} */
 export const handle = async ({ event, resolve }) => {
   const { url, request, locals } = event;
@@ -204,8 +216,7 @@ Bạn có thể kiểm tra đoạn mã đã hoạt động đúng chưa bằng c
 
 Để bật lại Javascript, thực hiện các thao tác tương tự nhưng thay câu lệnh bằng "Enable Javascript". Phần còn lại, ta chỉ cần chỉnh sửa `splash.css` tương ứng để ẩn đi màn hình chờ nếu `data-splash-skip` là `true`:
 
-```css
-/// title=splash.css
+```css title=splash.css
 #splash {
   /* :::diff + */
   &[data-splash-skip="true"] {
@@ -233,16 +244,17 @@ Nhưng khi mạng chậm, hydration bị trì hoãn và diễn ra sau khi màn h
 
 Ngoài ra, trong tình huống này, ta không thể tránh được việc trang web bị chớp nháy một tí, như đã bàn ở các phần trước. Tuy nhiên, ta có thể thông báo cho người dùng để họ hiểu được vì sao điều này xảy ra. Cách xử lý này dựa vào nguyên tắc cơ bản của thiết kế trải nghiệm người dùng: luôn giao tiếp và cung cấp thông tin về những thay đổi của hệ thống. Đây là thông báo từ *sveltevietnam.dev* cho tình huống này:
 
-:::div not-prose
-<BaseNotification intent="info">
-  <p>Phát hiện gián đoạn do kết nối không ổn định. Xin lỗi bạn vì sự bất tiện này!</p>
+<div class="not-prose">
+
+<BaseNotification status="info" title={delayedHydration.title} item={item}>
+  <p>{delayedHydration.description}</p>
 </BaseNotification>
-:::
+
+</div>
 
 Để làm được điều đó, ta cần phát hiện được khi nào hydration hoàn thành sau màn hình chờ. Trước hết, ta lưu lại mốc thời gian khi màn hình chờ vừa kết thúc:
 
-```html
-/// title=src/app.html
+```html title=src/app.html
 <html>
   <body>
     <div id="splash">...</splash>
@@ -270,14 +282,17 @@ Ngoài ra, trong tình huống này, ta không thể tránh được việc tran
 </html>
 ```
 
-:::div c-callout c-callout--warning
+<div class="c-callout c-callout--warning">
+
 Lưu ý: bạn cần bắt đúng sự kiện `animationend` vì màn hình chờ có thể có nhiều hiệu ứng trên nhiều phần tử HTML. Khi hiệu ứng kết thúc ở phần từ nào, phần tử đó sẽ phát ra sự kiện `animationend` và [bubble](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#event_bubbling) lên trên. Trong ví dụ trên, hiệu ứng cuối cùng nằm tại chính phần tử `div#splash`.
-:::
 
-Ở đây, bạn lại thấy ta đã dùng vanilla JS cho đoạn mã trên. Và minh xin nhắc lại một lần nữa: điều này là hoàn toàn bình thường. Ta cần dùng vanilla vì nếu đoạn code trên nằm trong các thành phần của framework, nó sẽ không có hiệu lực cho đến khi hydration đã hoàn thành - nghĩa là đoạn mã trở nên vô dụng. Ta cũng không thiết lập các thuộc tính [defer](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#defer), [async](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#async), hay biến đoạn mã thành [module](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#module) vì ta muốn nó chạy sớm nhất có thể, để bắt được chính xác hơn thời điểm hiệu ứng đã kết thúc (sự kiện `animationend`). Tiếp theo, ta lấy mốc thời gian khi hydration vừa hoàn thành và so sánh với mốc thời gian màn hình chờ đã có:
+</div>
 
-```svelte
-/// title=src/routes/+layout.svelte
+Ở đây, bạn lại thấy ta đã dùng vanilla JS cho đoạn mã trên. Và minh xin nhắc lại một lần nữa: điều này là hoàn toàn bình thường. Ta cần dùng vanilla vì nếu đoạn code trên nằm trong các thành phần của framework, nó sẽ không có hiệu lực cho đến khi hydration đã hoàn thành - nghĩa là đoạn mã trở nên vô dụng. Ta cũng không thiết lập các thuộc tính [defer](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#defer), [async](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#async), hay biến đoạn mã thành [module](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#module) vì ta muốn nó chạy sớm nhất có thể, để bắt được chính xác hơn thời điểm hiệu ứng đã kết thúc (sự kiện `animationend`).
+
+Cuối cùng, ta lấy mốc thời gian khi hydration vừa hoàn thành và so sánh với mốc thời gian màn hình chờ đã có:
+
+```svelte title=src/routes/+layout.svelte
 <script>
   import { browser } from '$app/environment';
 
@@ -302,9 +317,11 @@ Lưu ý: bạn cần bắt đúng sự kiện `animationend` vì màn hình ch�
 
 Bạn có thể đặt đoạn code trên ở nơi tùy ý - dù ở đâu đi nữa, miễn là thuộc trong phạm vi hydration, thì nó sẽ chỉ chạy khi hydration đã hoàn thành. Ngoài ra, về lý thuyết, ta có thể dùng [MutationObserver](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) để theo dõi thay đổi của thuộc tính `data-splashed-at` thay vì `setInterval`, tuy nhiên làm như vậy đoạn code sẽ trở nên dài dòng và không cần thiết.
 
-:::div c-callout c-callout--warning
+<div class="c-callout c-callout--warning">
+
 Chú ý rằng bạn có thể sẽ phải điều chỉnh điều kiện so sánh hai mốc thời gian tùy thuộc vào số lượng tài nguyên mà trang cần tải, và độ dài của hiệu ứng trên màn hình chờ. Ví dụ, *sveltevietnam.dev* chỉ hiển thị thông báo khi hydration hoàn thành ***2 giây*** sau khi splash screen đã kết thúc. Bạn hãy thử thêm bớt một vài giây để tìm giá trị phù hợp nhất cho trang của mình nhé.
-:::
+
+</div>
 
 Để giả lập tình huống đường truyên không ổn định, bạn có thể chọn "slow 3G" tại tùy chỉnh network tướng ứng trong devtool của trình duyệt.
 
@@ -312,7 +329,7 @@ Chú ý rằng bạn có thể sẽ phải điều chỉnh điều kiện so sá
 
 Ít khi trong công việc ta có cơ hội thể hiện sự sáng tạo và phá cách như với màn hình chờ. Hãy thêm thắt hay làm gì đó thú vị cho cả người dùng và chính bạn. Nếu bạn đã ghé thăm *sveltevietnam.dev* nhiều lần (hoặc tải lại trang đủ lần), có thể bạn đã nhận ra rằng màn hình chờ ở đây có hai biến thể cho chuỗi hoạt ảnh, một biến thể ngắn thường gặp hơn (xác suất 75%), và một biến thể dài hơn (xác suất 25%). Bạn có thể trải nghiệm tại playground bên dưới (tính năng này cần Javascript). Hãy chọn biến thể bạn muốn và nhấn "chạy".
 
-<SplashPlayground />
+<SplashScreenPlayground locale={splashScreenPlaygroundLocale} />
 
 ## Kết
 

@@ -1,7 +1,9 @@
 <script>
   import { StackItem } from '@svelte-put/async-stack';
 
-  import { page } from '$app/state';
+  import * as delayedHydration from '$lib/notifications/static/delayed-hydration/locales/generated/vi';
+  import * as newSiteVersion from '$lib/notifications/static/new-site-version/locales/generated/vi';
+  import * as discordNewMessage from '$lib/notifications/components/discord-new-message/locales/generated/vi';
   import BaseNotification from '$lib/notifications/components/BaseNotification.svelte';
   import { DiscordNewMessage } from '$lib/notifications/components/discord-new-message';
 	import { NotificationContext } from '$lib/notifications/context.svelte';
@@ -23,7 +25,11 @@
     });
   }
 
-  const notiLocales = $derived(page.data.locales.notifications);
+  const notiLocales = {
+    delayedHydration,
+    newSiteVersion,
+    discordNewMessage,
+  };
 </script>
 
 <div class="c-callout c-callout--info">
