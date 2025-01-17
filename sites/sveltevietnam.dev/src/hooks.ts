@@ -21,35 +21,26 @@ export const reroute: Reroute = ({ url }) => {
 	 */
 	if (mismatchedPathSet.has(url.pathname)) return 'mismatch-vi-lang-but-en-path';
 
-	let pathname = delocalizeUrl(url.pathname, LANGUAGES);
-
-	// FIXME: workaround for https://github.com/sveltejs/kit/issues/11625
-	let suffix = '';
-	const segments = pathname.split('/');
-	const lastSegment = segments.at(-1);
-	if (lastSegment && /\.\w+$/.test(lastSegment)) {
-		suffix = '/' + lastSegment;
-		pathname = segments.slice(0, -1).join('/');
-	}
+	const pathname = delocalizeUrl(url.pathname, LANGUAGES);
 
 	/**
 	 * if lang is vi reroute to matching en svelte-kit route id
 	 */
 	if (lang === 'vi' && pathname in staticViToEn) {
-		return staticViToEn[pathname] + suffix;
+		return staticViToEn[pathname];
 	}
 	for (const [regex, en] of dynamicViToEn) {
 		const params = [...pathname.matchAll(regex)].map(([, p]) => p);
 		if (params.length) {
-			return build(en, ...params)	+ suffix;
+			return build(en, ...params);
 		}
 
-		// NOTE: currently ignoring the case where lang is vi but
+		// NOTE: ignoring the case where lang is vi but
 		// dynamic path is en because it'd add extra compute time
 		// and might not be necessary at the moment
 	}
 
 	/** pass through */
-	return pathname + suffix;
+	return pathname;
 };
 
