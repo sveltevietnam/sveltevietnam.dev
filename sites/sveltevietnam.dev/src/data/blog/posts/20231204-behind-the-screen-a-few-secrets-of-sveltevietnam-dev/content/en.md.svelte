@@ -4,6 +4,7 @@
   import * as delayedHydration from '$lib/notifications/static/delayed-hydration/locales/generated/en';
   import * as newSiteVersion from '$lib/notifications/static/new-site-version/locales/generated/en';
   import * as discordNewMessage from '$lib/notifications/components/discord-new-message/locales/generated/en';
+  import * as sample from '$lib/notifications/static/sample/locales/generated/en';
   import BaseNotification from '$lib/notifications/components/BaseNotification.svelte';
   import { DiscordNewMessage } from '$lib/notifications/components/discord-new-message';
 	import { NotificationContext } from '$lib/notifications/context.svelte';
@@ -19,10 +20,7 @@
 	const { toaster } = NotificationContext.get();
 
   function pushDemoToast() {
-    toaster.warning({
-      title: 'Experiment with Notification',
-      message: 'This demo notification will automatically dismiss after a a few seconds. You may try hovering over it to pause the timer!',
-    });
+    toaster.warning(sample);
   }
 
   const notiLocales = {
@@ -65,7 +63,7 @@ When there is a successful deployment to the server, the web page will display t
 <div class="div not-prose">
 
 <BaseNotification class="demo-noti" status="info" title={notiLocales.newSiteVersion.title} item={item}>
-  <p>{notiLocales.newSiteVersion.description}</p>
+  <p>{notiLocales.newSiteVersion.message}</p>
 </BaseNotification>
 
 </div>
@@ -91,7 +89,7 @@ When you open the web page in devices or places that are limited in network conn
 <div class="div not-prose">
 
 <BaseNotification class="demo-noti" status="info" title={notiLocales.delayedHydration.title} item={item}>
-  <p>{notiLocales.delayedHydration.description}</p>
+  <p>{notiLocales.delayedHydration.message}</p>
 </BaseNotification>
 
 </div>

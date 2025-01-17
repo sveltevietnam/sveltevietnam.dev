@@ -1,6 +1,6 @@
 {
 	"messages": {
 		"title": "New Site Version",
-		"description": "A new version of the site is available. Please reload the page at your convenience for the best experience."
+		"message": "A new version of the site is available. Please reload the page at your convenience for the best experience."
 	}
 }

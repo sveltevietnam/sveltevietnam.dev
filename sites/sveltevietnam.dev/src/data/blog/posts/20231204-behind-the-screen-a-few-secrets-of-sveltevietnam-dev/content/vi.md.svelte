@@ -4,6 +4,7 @@
   import * as delayedHydration from '$lib/notifications/static/delayed-hydration/locales/generated/vi';
   import * as newSiteVersion from '$lib/notifications/static/new-site-version/locales/generated/vi';
   import * as discordNewMessage from '$lib/notifications/components/discord-new-message/locales/generated/vi';
+  import * as sample from '$lib/notifications/static/sample/locales/generated/vi';
   import BaseNotification from '$lib/notifications/components/BaseNotification.svelte';
   import { DiscordNewMessage } from '$lib/notifications/components/discord-new-message';
 	import { NotificationContext } from '$lib/notifications/context.svelte';
@@ -19,10 +20,7 @@
 	const { toaster } = NotificationContext.get();
 
   function pushDemoToast() {
-    toaster.warning({
-      title: 'Thử nghiệm',
-      message: 'Thông báo này sẽ tự động ẩn đi sau vài giây. Bản có thể thử rê chuột vào để tạm dừng đồng hồ hẹn giờ của thông báo.',
-    });
+    toaster.warning(sample);
   }
 
   const notiLocales = {
@@ -62,7 +60,9 @@ Cũng không có gì đáng ngạc nhiên: thông báo đẩy (tiếng anh hay g
 
 Theo mặc định, mỗi thông báo có một đồng hồ hẹn giờ bên trong: thông báo sẽ tự động biến mất khi hết giờ hẹn trong vài giây. Tuy nhiên, khi bạn rê chuột vào thông báo (hay chạm và giữ tay trên các thiết bị chạm), đồng hồ sẽ tạm dừng để bạn có thời gian đọc hoặc tương tác, ví dụ như sao chép nội dung hoặc lựa chọn hành động phù hợp. Bạn có thể thử nghiệm bằng cách nhấn vào nút dưới đây:
 
-<button class="c-btn c-btn--pop px-6 mx-auto block" onclick={pushDemoToast}>Phát thông báo</button>
+<div class="p-4 border">
+  <button class="c-btn c-btn--pop px-6 mx-auto block" onclick={pushDemoToast}>Phát thông báo</button>
+</div>
 
 Hệ thống thông báo được thiết lập nhờ vào thư viện [@svelte-put/async-stack](https://svelte-put.vnphanquang.com/docs/async-stack) (do mình viết ra). Bạn có thể tham khảo qua nếu có nhu cầu sử dụng. Bây giờ, ta cùng đi qua một số thông báo cụ thể và thú vị được sử dụng tại *sveltevietnam.dev*.
 
@@ -73,7 +73,7 @@ Khi có một phiên bản mới được triển khai thành công đến máy 
 <div class="not-prose">
 
 <BaseNotification class="demo-noti" status="info" title={notiLocales.newSiteVersion.title} item={item}>
-  <p>{notiLocales.newSiteVersion.description}</p>
+  <p>{notiLocales.newSiteVersion.message}</p>
 </BaseNotification>
 
 </div>
@@ -99,7 +99,7 @@ Khi bạn mở trang web trên các thiết bị hoặc với môi trường gi�
 <div class="not-prose">
 
 <BaseNotification class="demo-noti" status="info" title={notiLocales.delayedHydration.title} item={item}>
-  <p>{notiLocales.delayedHydration.description}</p>
+  <p>{notiLocales.delayedHydration.message}</p>
 </BaseNotification>
 
 </div>
