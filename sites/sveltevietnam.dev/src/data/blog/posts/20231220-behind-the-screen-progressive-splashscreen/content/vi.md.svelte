@@ -247,7 +247,7 @@ Ngoài ra, trong tình huống này, ta không thể tránh được việc tran
 <div class="not-prose">
 
 <BaseNotification status="info" title={delayedHydration.title} item={item}>
-  <p>{delayedHydration.description}</p>
+  <p>{delayedHydration.message}</p>
 </BaseNotification>
 
 </div>

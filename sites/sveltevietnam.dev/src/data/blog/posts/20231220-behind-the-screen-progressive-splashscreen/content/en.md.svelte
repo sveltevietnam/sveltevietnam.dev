@@ -247,7 +247,7 @@ Unfortunately, in situation such as this, we cannot avoid the glitch problem, as
 <div class="not-prose">
 
 <BaseNotification status="info" title={delayedHydration.title} item={item}>
-  <p>{delayedHydration.description}</p>
+  <p>{delayedHydration.message}</p>
 </BaseNotification>
 
 </div>
