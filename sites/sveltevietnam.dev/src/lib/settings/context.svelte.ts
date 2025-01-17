@@ -17,6 +17,8 @@ export class SettingsContext {
 	#userColorScheme = $state<App.ColorScheme>('system');
 	scrolllock = $state(false);
 	language = $state<App.Language>('en');
+	splashed = $state(false);
+	splash = $state<App.SharedSettings['splash']>('random');
 
 	// $derived
 	readonly colorScheme = $derived.by(() => {
@@ -45,6 +47,7 @@ export class SettingsContext {
 		this.#hydrated = browser;
 		this.#userColorScheme = sharedSettings.colorScheme;
 		this.language = sharedSettings.language;
+		this.splash = sharedSettings.splash;
 	}
 
 	setUserColorScheme(colorScheme: App.ColorScheme) {

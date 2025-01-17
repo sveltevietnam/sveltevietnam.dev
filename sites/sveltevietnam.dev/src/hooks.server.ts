@@ -4,7 +4,7 @@ import { localizeUrl, getLangFromUrl } from '@sveltevietnam/i18n/utils';
 
 import { building } from '$app/environment';
 import { COOKIE_NAME_USER_ID, COOKIE_NAME_LANGUAGE } from '$env/static/private';
-import { PUBLIC_COOKIE_NAME_COLOR_SCHEME } from '$env/static/public';
+import { PUBLIC_COOKIE_NAME_COLOR_SCHEME, PUBLIC_COOKIE_NAME_SPLASH } from '$env/static/public';
 import { COMMON_COOKIE_CONFIG, PUBLIC_COOKIE_CONFIG } from '$lib/constants';
 
 export const handle: Handle = async ({ event, resolve }) => {
@@ -59,8 +59,10 @@ export const handle: Handle = async ({ event, resolve }) => {
 			(url.searchParams.get('color-scheme') as App.ColorScheme) ||
 			(cookies.get(PUBLIC_COOKIE_NAME_COLOR_SCHEME) as App.ColorScheme) ||
 			'system',
+		splash: (cookies.get(PUBLIC_COOKIE_NAME_SPLASH) as App.SharedSettings['splash']) || 'random',
 	} satisfies App.SharedSettings;
 	cookies.set(COOKIE_NAME_LANGUAGE, locals.sharedSettings.language, COMMON_COOKIE_CONFIG);
+	cookies.set(PUBLIC_COOKIE_NAME_SPLASH, locals.sharedSettings.splash, COMMON_COOKIE_CONFIG);
 	cookies.set(
 		PUBLIC_COOKIE_NAME_COLOR_SCHEME,
 		locals.sharedSettings.colorScheme,

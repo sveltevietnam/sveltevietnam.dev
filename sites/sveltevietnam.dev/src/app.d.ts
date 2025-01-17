@@ -12,6 +12,7 @@ declare global {
 		declare type SharedSettings = {
 			colorScheme: ColorScheme;
 			language: Language;
+			splash: 'short' | 'long' | 'random' | 'disabled';
 		};
 
 		interface Locals {
