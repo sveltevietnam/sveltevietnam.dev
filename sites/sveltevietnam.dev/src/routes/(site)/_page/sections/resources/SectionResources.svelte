@@ -20,7 +20,7 @@
 	const sectionClasses = [
 		'relative bg-surface p-4 flex flex-col gap-8 max-w-256 mx-auto',
 		'tablet:p-10 tablet:gap-15',
-		'before:absolute before:-z-1 before:-inset-0.5 before:bg-gradient-to-b before:from-current before:via-svelte before:to-transparent',
+		'before:absolute before:-z-1 before:-inset-0.5 before:bg-gradient-to-b before:from-on-surface before:via-svelte before:to-transparent',
 	];
 </script>
 
