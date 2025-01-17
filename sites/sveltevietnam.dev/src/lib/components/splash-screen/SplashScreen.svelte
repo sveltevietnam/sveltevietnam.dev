@@ -49,7 +49,7 @@
 		<svg class="_logo w-26 h-26 -mr-2" inline-src="sveltevietnam"></svg>
 	</div>
 	<div class="_title pl-2.5">
-		<p class="c-text-heading-md uppercase">Svelte<br />Việt Nam</p>
+		<svg class="h-19.5 w-auto" inline-src="./name.svg"></svg>
 	</div>
 	{#if root}
 		<script src={splashScriptSrc}></script>
