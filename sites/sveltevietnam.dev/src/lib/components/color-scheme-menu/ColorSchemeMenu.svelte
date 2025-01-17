@@ -8,8 +8,12 @@
 	let {
 		locale,
 		class: cls,
+		alwaysShowLabel = false,
 		...rest
-	}: { locale: import('./locales/generated').Locale } & HTMLAttributes<HTMLElement> = $props();
+	}: HTMLAttributes<HTMLElement> & {
+		locale: import('./locales/generated').Locale
+		alwaysShowLabel?: boolean
+	} = $props();
 
 	const settings = SettingsContext.get();
 
@@ -50,7 +54,7 @@
 		<span class="sr-only peer-checked:hidden"><T message={locale.open} /></span>
 		<span class="sr-only hidden peer-checked:block"><T message={locale.close} /></span>
 		<span class="sr-only"><T message={locale.toggle} /> </span>
-		<span class="tablet:sr-only"
+		<span class={[alwaysShowLabel && 'tablet:sr-only']}
 			><T message={colorSchemes[settings.colorScheme.user].label} /></span
 		>
 		<i class="i i-[caret-down] h-5 w-5 transition-transform peer-checked:-rotate-180"></i>

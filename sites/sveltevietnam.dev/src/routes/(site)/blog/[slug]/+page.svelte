@@ -155,7 +155,7 @@
 		<!-- table of contents -->
 		<div class="_toc">
 			{#if toc.items.size}
-				<section class="tablet:sticky top-header space-y-6">
+				<section class="tablet:sticky top-header space-y-6" id="toc">
 					<h2 class="c-text-heading border-b"><T message={locales.toc_heading} /></h2>
 					<ul class="space-y-1">
 						{#each toc.items.values() as tocItem (tocItem.id)}
@@ -195,7 +195,7 @@
 
 		<!-- sharing -->
 		<div class="_sharing">
-			<section class={['space-y-6', !settings.hydrated && 'top-header sticky']}>
+			<section class={['space-y-6', !settings.hydrated && 'top-header sticky']} id="share">
 				<h2 class="c-text-heading border-b"><T message={locales.share_heading} /></h2>
 				<ul class="flex flex-wrap gap-4">
 					{#if settings.hydrated}
