@@ -264,11 +264,9 @@ Bằng cách bỏ đi những abstraction nặng nề, mã nguồn của *svelte
 
 ## Ảnh hưởng của CSS component toàn cục
 
-<div class="text-right text-xs italic">
-
+<p class="text-right text-xs italic">
 Phần này được thêm vào bài viết vào tháng 4, năm 2024
-
-</div>
+</p>
 
 Khi sử dụng CSS component, ta thường khai báo toàn cục (global). Ví dụ với TailwindCSS, khai báo `c-btn` trong `@layer components` sẽ thêm CSS của `c-btn` vào đầu ra của nó. Đầu ra này thường là một tệp duy nhất, và ứng dụng sẽ phải tải nó ngay từ ban đầu cho dù người dùng có đang ở trang nào đi nữa, hay trang đó có sử dụng `c-btn` hay không. Điều này có nghĩa là nếu số lượng CSS component toàn cục quá lớn, thời gian tải trang sẽ tăng lên và ảnh hưởng đến trải nghiệm người dùng.
 

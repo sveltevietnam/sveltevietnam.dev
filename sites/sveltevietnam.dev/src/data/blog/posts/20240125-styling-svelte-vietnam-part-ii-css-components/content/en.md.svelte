@@ -267,11 +267,9 @@ By removing unnecessary abstraction layers, the source code of *sveltevietnam.de
 
 ## Impact of Global CSS Component
 
-<div class="text-right text-xs italic">
-
+<p class="text-right text-xs italic">
 This section is added in April, 2024
-
-</div>
+</p>
 
 CSS components are often declared within a global stylesheet. In TailwindCSS, for example, declaring `c-btn` to `@layer components` adds the CSS of `c-btn` to the build output, which is a single file that the browser has to load in the beginning regardless of the page user is visiting, or whether the page actually uses `c-btn`. This means as the total number of global CSS components increases, the page takes more time to load.
 
