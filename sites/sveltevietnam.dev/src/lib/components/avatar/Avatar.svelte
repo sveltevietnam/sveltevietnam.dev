@@ -23,7 +23,7 @@
 {/if}
 
 <style lang="postcss">
-	@layer svelte {
+	@layer components {
 		:global {
 			.avatar {
 				&[data-border='circle'] {

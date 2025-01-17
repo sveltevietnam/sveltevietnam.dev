@@ -62,7 +62,7 @@
 <style lang="postcss">
 	@import '@sveltevietnam/css/medias';
 
-	@layer svelte {
+	@layer components {
 		._container {
 			--color: var(--color);
 			--pattern-url-dark: var(--pattern-url-dark);
