@@ -1,0 +1,40 @@
+// https://github.com/vnphanquang/svelte-put/blob/9cedde8c33ecce7b1a4058425bf29b6f7a292b91/packages/clickoutside/src/clickoutside.js
+
+export function clickoutside(node, param = { enabled: true }) {
+	let { enabled, eventType, nodeForEvent, options, capture } = resolveConfig(param);
+
+	/**
+	 * @param {Event} event
+	 */
+	function handle(event) {
+		if (!event.target) return;
+		if (node && !node.contains(/** @type {Node} */ (event.target)) && !event.defaultPrevented) {
+			node.dispatchEvent(new CustomEvent('clickoutside', { detail: event }));
+		}
+	}
+
+	if (param.enabled !== false) {
+		nodeForEvent.addEventListener(eventType, handle, options);
+	}
+
+	return {
+		update(update) {
+			nodeForEvent.removeEventListener(eventType, handle, capture);
+			({ enabled, eventType, nodeForEvent, options, capture } = resolveConfig(update));
+			if (enabled) nodeForEvent.addEventListener(eventType, handle, options);
+		},
+		destroy() {
+			nodeForEvent.removeEventListener(eventType, handle, capture);
+		},
+	};
+}
+
+export function resolveConfig(param = {}) {
+	return {
+		enabled: param.enabled ?? true,
+		nodeForEvent: param.limit?.parent ?? document,
+		eventType: param.event ?? 'click',
+		options: param.options,
+		capture: typeof param.options === 'object' ? param.options?.capture : param.options,
+	};
+}
