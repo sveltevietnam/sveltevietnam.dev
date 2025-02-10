@@ -42,16 +42,16 @@
 		"tailwind"
 	],
 	"peerdependencies": {
-		"tailwindcss": ">=3.4.14 || >=4.0.0-beta.9"
+		"tailwindcss": ">=3.4.14 || >=4.0.0"
 	},
 	"dependencies": {
 		"@tailwindcss/typography": "^0.5.16",
-		"phosphor-icons-tailwindcss": "^1.2.1",
+		"phosphor-icons-tailwindcss": "^1.2.2",
 		"postcss-color-scheme": "^2.1.0",
 		"postcss-custom-media": "^11.0.5",
 		"postcss-custom-selectors": "^8.0.4"
 	},
 	"devDependencies": {
-		"vite": "^6.0.7"
+		"vite": "^6.1.0"
 	}
 }
