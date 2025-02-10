@@ -5,7 +5,7 @@
 	let { locale, ...rest }: { locale: import('./locales/generated').Locale } & HTMLAnchorAttributes = $props();
 </script>
 
-<a href="https://notbyai.fyi/" {...rest}>
+<a href="https://www.thegreenwebfoundation.org/green-web-check/?url=sveltevietnam.dev" {...rest}>
 	<span class="sr-only"><T message={locale.description} /></span>
 	<svg
 		class="green-web-badge"
