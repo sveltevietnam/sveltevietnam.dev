@@ -7,6 +7,7 @@
 	--font-lora: 'Lora', 'serif';
 
 	/** font size */
+	--text-2xs: 0.625rem; /* 10px */
 	--text-xs: 0.75rem; /* 12px */
 
 	/* z-index */
@@ -27,10 +28,7 @@
 	/* miscellaneous */
 	--leading-unset: unset;
 
-	/* spacing */
-	--spacing: 0.25rem;
-
-	/** background iamges */
+	/** background images */
 	--background-image-gradient-primary: linear-gradient(
 		to bottom,
 		transparent,
