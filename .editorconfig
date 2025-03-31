@@ -15,3 +15,6 @@ max_line_length = 100
 indent_size = 2
 indent_style = space
 
+[**.yaml]
+indent_size = 2
+indent_style = space
