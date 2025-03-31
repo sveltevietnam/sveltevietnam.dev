@@ -61,12 +61,13 @@
 		"sveltekit"
 	],
 	"scripts": {
+		"prepublishOnly": "dts-buddy && publint",
 		"dts": "dts-buddy && publint",
 		"lint": "run-p lint:*",
 		"lint:svelte": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"lint:es": "eslint .",
 		"lint:style": "stylelint '**/*.{svelte,css}'",
-		"format": "prettier --write ."
+		"format": "prettier --write --ignore-path=../../.prettierignore ."
 	},
 	"dependencies": {
 		"commander": "^13.1.0",
