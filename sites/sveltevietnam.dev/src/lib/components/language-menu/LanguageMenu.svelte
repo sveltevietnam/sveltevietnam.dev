@@ -8,10 +8,14 @@
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
-	import flagGb from './images/flag-gb.svg?url';
-	import flagVn from './images/flag-vn.svg?url';
+	import flagGb from './images/flag-gb.svg';
+	import flagVn from './images/flag-vn.svg';
 
-	let { locale, class: cls, ...rest }: { locale: import('./locales/generated').Locale } & HTMLAttributes<HTMLElement> = $props();
+	let {
+		locale,
+		class: cls,
+		...rest
+	}: { locale: import('./locales/generated').Locale } & HTMLAttributes<HTMLElement> = $props();
 
 	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();

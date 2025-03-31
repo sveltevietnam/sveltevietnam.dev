@@ -1,6 +1,6 @@
 @import './variants.css';
 
-@theme {
+@theme static {
 	--color-sand-50: oklch(98.83% 0.01 75deg);
 	--color-sand-100: oklch(96.48% 0.012 75deg);
 	--color-sand-200: oklch(91.8% 0.012 75deg);
@@ -14,118 +14,95 @@
 	--color-sand-950: oklch(19.34% 0.012 75deg);
 
 	/* default foreground */
-	--color-on-surface: var(--color-sand-950);
-	--color-on-surface-subtle: var(--color-sand-700);
+	--color-on-surface: light-dark(var(--color-sand-950), var(--color-sand-50));
+	--color-on-surface-subtle: light-dark(var(--color-sand-700), var(--color-sand-300));
 
 	/* default background */
-	--color-surface: var(--color-sand-50);
-	--color-surface-variant: var(--color-sand-200);
+	--color-surface: light-dark(var(--color-sand-50), var(--color-sand-950));
+	--color-surface-variant: light-dark(var(--color-sand-200), var(--color-sand-800));
 
 	/* elements */
 	--color-placeholder: var(--color-sand-500);
-	--color-link: oklch(53.09% 0.167 40deg);
+	--color-link: light-dark(oklch(53.09% 0.167 40deg), oklch(85.32% 0.083 40.04deg));
 
 	/* outline */
-	--color-outline: var(--color-sand-400);
-	--color-outline-subtle: var(--color-sand-300);
-	--color-outline-focus: oklch(61.97% 0.113 220.2deg);
+	--color-outline: light-dark(var(--color-sand-400), var(--color-sand-700));
+	--color-outline-subtle: light-dark(var(--color-sand-300), var(--color-sand-600));
+	--color-outline-focus: light-dark(oklch(61.97% 0.113 220.2deg), oklch(74.76% 0.137 220.51deg));
 
 	/* primary */
-	--color-primary: oklch(70.28% 0.195 40.05deg);
-	--color-primary-on-surface: oklch(32.71% 0.094 44.44deg);
-	--color-primary-surface: oklch(96.07% 0.021 43.86deg);
+	--color-primary: light-dark(oklch(70.28% 0.195 40.05deg), oklch(68.91% 0.207 39.93deg));
+	--color-primary-on-surface: light-dark(oklch(32.71% 0.094 44.44deg), oklch(92.5% 0.04 39.3deg));
+	--color-primary-surface: light-dark(oklch(96.07% 0.021 43.86deg), oklch(20.41% 0.025 40.45deg));
 
 	/* secondary */
-	--color-secondary: oklch(71.74% 0.17 120deg);
-	--color-secondary-on-surface: oklch(37.02% 0.088 120deg);
-	--color-secondary-surface: oklch(97.79% 0.066 120deg);
+	--color-secondary: light-dark(oklch(71.74% 0.17 120deg), oklch(66.59% 0.158 120.14deg));
+	--color-secondary-on-surface: light-dark(
+		oklch(37.02% 0.088 120deg),
+		oklch(95.91% 0.133 119.92deg)
+	);
+	--color-secondary-surface: light-dark(oklch(97.79% 0.066 120deg), oklch(24.06% 0.057 120.14deg));
 
 	/* tertiary */
-	--color-tertiary: oklch(71.24% 0.153 280deg);
-	--color-tertiary-on-surface: oklch(23.96% 0.145 280deg);
-	--color-tertiary-surface: oklch(93.56% 0.031 280deg);
+	--color-tertiary: light-dark(oklch(71.24% 0.153 280deg), oklch(71.24% 0.153 280.13deg));
+	--color-tertiary-on-surface: light-dark(
+		oklch(23.96% 0.145 280deg),
+		oklch(92.48% 0.037 280.62deg)
+	);
+	--color-tertiary-surface: light-dark(oklch(93.56% 0.031 280deg), oklch(20.07% 0.121 280.53deg));
 
 	/* status */
-	--color-info-on-surface: oklch(33.75% 0.059 212.23deg);
-	--color-info-on-surface-subtle: oklch(77.86% 0.136 211.97deg);
-	--color-info-surface: oklch(96.44% 0.029 212.58deg);
-	--color-info-surface-variant: oklch(94.06% 0.05 212.06deg);
+	--color-info-on-surface: light-dark(oklch(33.75% 0.059 212.23deg), oklch(92.31% 0.065 211.77deg));
+	--color-info-on-surface-subtle: light-dark(
+		oklch(77.86% 0.136 211.97deg),
+		oklch(57.21% 0.1 211.93deg)
+	);
+	--color-info-surface: light-dark(oklch(96.44% 0.029 212.58deg), oklch(24.3% 0.043 213.15deg));
+	--color-info-surface-variant: light-dark(
+		oklch(94.06% 0.05 212.06deg),
+		oklch(35.14% 0.061 211.53deg)
+	);
 
-	--color-success-on-surface: oklch(33.34% 0.1 136.54deg);
-	--color-success-on-surface-subtle: oklch(76.98% 0.232 136.66deg);
-	--color-success-surface: oklch(96.01% 0.081 135.88deg);
-	--color-success-surface-variant: oklch(94.02% 0.127 135.84deg);
+	--color-success-on-surface: light-dark(oklch(33.34% 0.1 136.54deg), oklch(96.94% 0.06 136.26deg));
+	--color-success-on-surface-subtle: light-dark(
+		oklch(76.98% 0.232 136.66deg),
+		oklch(60.07% 0.181 136.64deg)
+	);
+	--color-success-surface: light-dark(oklch(96.01% 0.081 135.88deg), oklch(23.96% 0.071 135.55deg));
+	--color-success-surface-variant: light-dark(
+		oklch(94.02% 0.127 135.84deg),
+		oklch(35.09% 0.104 136.02deg)
+	);
 
-	--color-warning-on-surface: oklch(33.99% 0.07 99.07deg);
-	--color-warning-on-surface-subtle: oklch(79.05% 0.16 98.83deg);
-	--color-warning-surface: oklch(96.5% 0.07 98.77deg);
-	--color-warning-surface-variant: oklch(94.9% 0.103 99.12deg);
+	--color-warning-on-surface: light-dark(oklch(33.99% 0.07 99.07deg), oklch(92.82% 0.101 92.34deg));
+	--color-warning-on-surface-subtle: light-dark(
+		oklch(79.05% 0.16 98.83deg),
+		oklch(64.99% 0.133 91.35deg)
+	);
+	--color-warning-surface: light-dark(oklch(96.5% 0.07 98.77deg), oklch(24.42% 0.05 91.36deg));
+	--color-warning-surface-variant: light-dark(
+		oklch(94.9% 0.103 99.12deg),
+		oklch(35.2% 0.072 91.1deg)
+	);
 
-	--color-error-on-surface: oklch(96.01% 0.02 21.36deg);
-	--color-error-on-surface-subtle: oklch(31.55% 0.127 22.31deg);
-	--color-error-surface: oklch(76.61% 0.138 22.4deg);
-	--color-error-surface-variant: oklch(92.95% 0.036 22.08deg);
+	--color-error-on-surface: light-dark(oklch(96.01% 0.02 21.36deg), oklch(93.35% 0.033 24.58deg));
+	--color-error-on-surface-subtle: light-dark(
+		oklch(31.55% 0.127 22.31deg),
+		oklch(67.12% 0.216 22.39deg)
+	);
+	--color-error-surface: light-dark(oklch(76.61% 0.138 22.4deg), oklch(24.41% 0.098 22.23deg));
+	--color-error-surface-variant: light-dark(
+		oklch(92.95% 0.036 22.08deg),
+		oklch(35.3% 0.142 22.09deg)
+	);
 
-	--color-svelte: #EF4623;
+	--color-svelte: #ef4623;
 }
 
 :root {
 	color-scheme: light;
 
 	@media dark {
-		/* default foreground */
-		--color-on-surface: var(--color-sand-50);
-		--color-on-surface-subtle: var(--color-sand-300);
-
-		/* default background */
-		--color-surface: var(--color-sand-950);
-		--color-surface-variant: var(--color-sand-800);
-
-		/* elements */
-		--color-placeholder: var(--color-sand-500);
-		--color-link: oklch(85.32% 0.083 40.04deg);
-
-		/* outline */
-		--color-outline: var(--color-sand-700);
-		--color-outline-subtle: var(--color-sand-600);
-		--color-outline-focus: oklch(74.76% 0.137 220.51deg);
-
-		/* primary */
-		--color-primary: oklch(68.91% 0.207 39.93deg);
-		--color-primary-on-surface: oklch(92.5% 0.04 39.3deg);
-		--color-primary-surface: oklch(20.41% 0.025 40.45deg);
-
-		/* secondary */
-		--color-secondary: oklch(66.59% 0.158 120.14deg);
-		--color-secondary-on-surface: oklch(95.91% 0.133 119.92deg);
-		--color-secondary-surface: oklch(24.06% 0.057 120.14deg);
-
-		/* tertiary */
-		--color-tertiary: oklch(71.24% 0.153 280.13deg);
-		--color-tertiary-on-surface: oklch(92.48% 0.037 280.62deg);
-		--color-tertiary-surface: oklch(20.07% 0.121 280.53deg);
-
-		/* status */
-		--color-info-on-surface: oklch(92.31% 0.065 211.77deg);
-		--color-info-on-surface-subtle: oklch(57.21% 0.1 211.93deg);
-		--color-info-surface: oklch(24.3% 0.043 213.15deg);
-		--color-info-surface-variant: oklch(35.14% 0.061 211.53deg);
-
-		--color-success-on-surface: oklch(96.94% 0.06 136.26deg);
-		--color-success-on-surface-subtle: oklch(60.07% 0.181 136.64deg);
-		--color-success-surface: oklch(23.96% 0.071 135.55deg);
-		--color-success-surface-variant: oklch(35.09% 0.104 136.02deg);
-
-		--color-warning-on-surface: oklch(92.82% 0.101 92.34deg);
-		--color-warning-on-surface-subtle: oklch(64.99% 0.133 91.35deg);
-		--color-warning-surface: oklch(24.42% 0.05 91.36deg);
-		--color-warning-surface-variant: oklch(35.2% 0.072 91.1deg);
-
-		--color-error-on-surface: oklch(93.35% 0.033 24.58deg);
-		--color-error-on-surface-subtle: oklch(67.12% 0.216 22.39deg);
-		--color-error-surface: oklch(24.41% 0.098 22.23deg);
-		--color-error-surface-variant: oklch(35.3% 0.142 22.09deg);
-
 		color-scheme: dark;
 	}
 }

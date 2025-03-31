@@ -51,14 +51,9 @@
 
 		:global {
 			.green-web-badge {
-				--color-green-web-gradient-start: #06ff06;
-				--color-green-web-gradient-midway: #dffcdd;
+				--color-green-web-gradient-start: light-dark(#06ff06, #008400);
+				--color-green-web-gradient-midway: light-dark(#dffcdd, #233a21);
 				--color-green-web-gradient-end: var(--color-surface);
-
-				@media dark {
-					--color-green-web-gradient-start: #008400;
-					--color-green-web-gradient-midway: #233a21;
-				}
 			}
 		}
 	}

@@ -27,10 +27,10 @@
 <script lang="ts">
 	import type { HTMLAttributes } from 'svelte/elements';
 
-	import circuitDark from '$lib/assets/images/patterns/circuit-dark.avif?url';
-	import circuitLight from '$lib/assets/images/patterns/circuit-light.avif?url';
-	import jigsawDark from '$lib/assets/images/patterns/jigsaw-dark.avif?url';
-	import jigsawLight from '$lib/assets/images/patterns/jigsaw-light.avif?url';
+	import circuitDark from '$lib/assets/images/patterns/circuit-dark.avif?no-inline';
+	import circuitLight from '$lib/assets/images/patterns/circuit-light.avif?no-inline';
+	import jigsawDark from '$lib/assets/images/patterns/jigsaw-dark.avif?no-inline';
+	import jigsawLight from '$lib/assets/images/patterns/jigsaw-light.avif?no-inline';
 
 	let {
 		children,
@@ -54,7 +54,7 @@
 	style:--color={`var(--color-${color}-surface)`}
 	{...rest}
 >
-	<div class="relative z-1">
+	<div class="z-1 relative">
 		{@render children?.()}
 	</div>
 </div>
@@ -64,11 +64,11 @@
 
 	@layer components {
 		._container {
-			--color: var(--color);
-			--pattern-url-dark: var(--pattern-url-dark);
-			--pattern-url-light: var(--pattern-url-light);
-			--pattern-opacity: var(--pattern-opacity);
-			--pattern-size: var(--pattern-size);
+			/* --color: var(--color); */
+			/* --pattern-url-dark: var(--pattern-url-dark); */
+			/* --pattern-url-light: var(--pattern-url-light); */
+			/* --pattern-opacity: var(--pattern-opacity); */
+			/* --pattern-size: var(--pattern-size); */
 
 			position: relative;
 			background-image: linear-gradient(
@@ -79,7 +79,8 @@
 				var(--color-surface)
 			);
 
-			&::before, &::after {
+			&::before,
+			&::after {
 				content: '';
 				position: absolute;
 				z-index: 0;

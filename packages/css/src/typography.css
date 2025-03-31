@@ -2,13 +2,8 @@
 
 @layer typography {
 	:root {
-		--color-pre-fg: hsl(0deg 0% 0%);
-		--color-pre-bg: hsl(224deg 19% 98%);
-
-		@media dark {
-			--color-pre-fg: hsl(0deg 0% 83%);
-			--color-pre-bg: hsl(0deg 0% 12%);
-		}
+		--color-pre-fg: light-dark(hsl(0deg 0% 0%), hsl(0deg 0% 83%));
+		--color-pre-bg: light-dark(hsl(224deg 19% 98%), hsl(0deg 0% 12%));
 	}
 
 	/*
@@ -74,6 +69,7 @@
 
 		& a:not([class~='not-prose'], [class~='not-prose'] *) {
 			&:not(.heading-anchor, [data-footnote-ref]) {
+				/* stylelint-disable-next-line at-rule-no-deprecated */
 				@apply c-link;
 
 				text-decoration: none;
@@ -160,10 +156,13 @@
 			& .line {
 				--padding-inline-start: 1ch;
 				--padding-inline-end: 3ch;
-				--color-bg-info: hsl(199.4deg 100% 93.3%);
-				--color-bg-warning: hsl(52.8deg 100% 88.6%);
-				--color-bg-success: hsl(134.4deg 100% 95.1%);
-				--color-bg-error: hsl(5.5deg 100% 95.7%);
+				--color-bg-info: light-dark(hsl(199.4deg 100% 93.3%), hsl(215deg 39% 18%));
+				--color-bg-warning: light-dark(hsl(52.8deg 100% 88.6%), hsl(43deg 100% 50% / 15%));
+				--color-bg-success: light-dark(
+					hsl(134.4deg 100% 95.1%),
+					hsl(123.04deg 36.07% 42.94% / 15%)
+				);
+				--color-bg-error: light-dark(hsl(5.5deg 100% 95.7%), hsl(3.12deg 74.76% 59.61% / 10%));
 
 				display: inline-block;
 				width: 100%;
@@ -235,13 +234,6 @@
 					&[data-line-highlighted='error'] {
 						background-color: var(--color-bg-error) !important;
 					}
-				}
-
-				@media dark {
-					--color-bg-info: hsl(215deg 39% 18%);
-					--color-bg-warning: hsl(43deg 100% 50% / 15%);
-					--color-bg-success: hsl(123.04deg 36.07% 42.94% / 15%);
-					--color-bg-error: hsl(3.12deg 74.76% 59.61% / 10%);
 				}
 			}
 
