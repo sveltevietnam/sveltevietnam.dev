@@ -74,14 +74,14 @@
 		"dedent": "^1.5.3",
 		"lodash.debounce": "^4.0.8",
 		"picocolors": "^1.1.1",
-		"recast": "^0.23.9",
+		"recast": "^0.23.11",
 		"tiny-glob": "^0.2.9",
-		"typescript": "^5.7.3",
-		"valibot": "1.0.0-rc.0"
+		"typescript": "^5.8.2",
+		"valibot": "1.0.0"
 	},
 	"devDependencies": {
 		"@types/lodash.debounce": "^4.0.9",
-		"svelte": "^5.19.9",
-		"vite": "^6.1.0"
+		"svelte": "^5.25.3",
+		"vite": "^6.2.4"
 	}
 }
