@@ -31,6 +31,7 @@ export default {
 					'theme',
 					'utility',
 					'variant',
+					'custom-variant',
 				],
 			},
 		],
@@ -50,4 +51,3 @@ export default {
 	},
 	ignoreFiles: ['**/app.html', '**/*.md.svelte'],
 };
-

@@ -1,10 +1,10 @@
-@variant light {
+@custom-variant light {
 	@media light {
 		@slot;
 	}
 }
 
-@variant dark {
+@custom-variant dark {
 	@media dark {
 		@slot;
 	}

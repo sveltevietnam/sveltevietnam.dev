@@ -6,9 +6,8 @@
 	--breakpoint-widescreen: 80rem; /* 1280px */
 }
 
-@variant mobile {
+@custom-variant mobile {
 	@media (--mobile) {
 		@slot;
 	}
 }
-
