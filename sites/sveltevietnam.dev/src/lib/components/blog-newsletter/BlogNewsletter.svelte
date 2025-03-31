@@ -80,6 +80,7 @@
 					class="turnstile"
 					use:turnstile
 					turnstile-sitekey={PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY}
+					turnstile-size="flexible"
 				>
 					<!-- injected by @svelte-put/cloudflare-turnstile -->
 				</div>

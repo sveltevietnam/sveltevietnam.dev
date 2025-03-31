@@ -32,6 +32,7 @@ export default {
 					'utility',
 					'variant',
 					'custom-variant',
+					'source',
 				],
 			},
 		],
