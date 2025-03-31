@@ -1,9 +1,10 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 
 import { toString } from 'hast-util-to-string';
 import { h } from 'hastscript';
 import { createHighlighterCore } from 'shiki/core';
+import { createOnigurumaEngine } from 'shiki/engine/oniguruma';
 
 export const highlighter = await createHighlighterCore({
 	themes: [import('shiki/themes/dark-plus.mjs'), import('shiki/themes/light-plus.mjs')],
@@ -16,16 +17,18 @@ export const highlighter = await createHighlighterCore({
 		import('shiki/langs/shellscript.mjs'),
 		import('shiki/langs/markdown.mjs'),
 	],
-	loadWasm: import('shiki/wasm'),
+	engine: createOnigurumaEngine(import('shiki/wasm')),
 });
 
-const ATTRIBUTES_FOR_SHIKI_TRANSFORMER = /** @type {string[]} */(/** @satisfies {(keyof CodeBlockMetadata)[]} */([
-	'__raw',
-	'__filename',
-	'__src',
-	'__enhanced',
-	'__skipMetaBlock',
-]));
+const ATTRIBUTES_FOR_SHIKI_TRANSFORMER = /** @type {string[]} */ (
+	/** @satisfies {(keyof CodeBlockMetadata)[]} */ ([
+		'__raw',
+		'__filename',
+		'__src',
+		'__enhanced',
+		'__skipMetaBlock',
+	])
+);
 /**
  * @typedef CodeBlockMetadata
  * @property {string} [__raw] - raw code block content
@@ -169,7 +172,7 @@ export function transformer() {
 			let container = hast;
 			const meta = /** @type {CodeBlockMetadata} */ (this.options.meta);
 			if (meta?.__enhanced !== 'false') {
-				container = /** @type {typeof container} */(h('enhanced-code-block', [hast]));
+				container = /** @type {typeof container} */ (h('enhanced-code-block', [hast]));
 			}
 
 			if (meta) {
@@ -187,4 +190,3 @@ export function transformer() {
 		},
 	};
 }
-
