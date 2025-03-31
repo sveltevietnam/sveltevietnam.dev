@@ -66,7 +66,7 @@
 				<T message={description} />
 			</p>
 			<div class="mobile:order-3 flex flex-col gap-6 {linksClasses}">
-				{#each links as { message, href }}
+				{#each links as { message, href } (href)}
 					<a class="c-btn c-btn--pop" {href}>
 						<span><T {message} /></span>
 						<i class="i i-[arrow-square-out] h-6 w-6"></i>
@@ -252,7 +252,7 @@
 			},
 		})}
 
-		<div class="h-px bg-outline w-full"></div>
+		<div class="bg-outline h-px w-full"></div>
 
 		<section class="prose max-w-[80ch] leading-relaxed">
 			<p><T message={locale.four_others} /></p>

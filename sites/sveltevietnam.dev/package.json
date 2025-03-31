@@ -11,7 +11,7 @@
 		"lint": "run-p lint:*",
 		"lint:i18n": "pnpm i18n lint",
 		"lint:svelte": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"lint:es": "eslint .",
+		"lint:es": "svelte-kit sync && eslint .",
 		"lint:style": "stylelint '**/*.{svelte,css}'",
 		"format": "prettier --write --ignore-path=../../.prettierignore ."
 	},

@@ -38,8 +38,12 @@
 	data-scrollable-indicator={scrollIndicator}
 	{...rest}
 >
-	<ol class="flex items-center gap-2 overflow-auto scrollbar-hidden" bind:this={ol} onscroll={checkScrollable}>
-		{#each crumbs as { name, path }, i}
+	<ol
+		class="scrollbar-hidden flex items-center gap-2 overflow-auto"
+		bind:this={ol}
+		onscroll={checkScrollable}
+	>
+		{#each crumbs as { name, path }, i (name)}
 			{@const current = i === crumbs.length - 1}
 			<li class="contents">
 				<a class={[!current && 'c-link-lazy']} aria-current={current} href={path}>

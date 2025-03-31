@@ -11,8 +11,8 @@
 		alwaysShowLabel = false,
 		...rest
 	}: HTMLAttributes<HTMLElement> & {
-		locale: import('./locales/generated').Locale
-		alwaysShowLabel?: boolean
+		locale: import('./locales/generated').Locale;
+		alwaysShowLabel?: boolean;
 	} = $props();
 
 	const settings = SettingsContext.get();
@@ -65,7 +65,7 @@
 	>
 		<div class="overflow-hidden">
 			<ul class="border-outline divide-outline divide-y border">
-				{#each Object.entries(colorSchemes) as [key, { icon, label }]}
+				{#each Object.entries(colorSchemes) as [key, { icon, label }] (key)}
 					<li>
 						<form
 							method="GET"

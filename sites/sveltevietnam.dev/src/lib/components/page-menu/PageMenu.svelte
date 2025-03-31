@@ -6,9 +6,17 @@
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
-	let { locale, flat = false, class: cls, onnavigate = () => {}, ...rest }: { locale:
-		import('./locales/generated').Locale; flat?: boolean, onnavigate?: () => void } &
-	HTMLAttributes<HTMLElement> = $props();
+	let {
+		locale,
+		flat = false,
+		class: cls,
+		onnavigate = () => {},
+		...rest
+	}: {
+		locale: import('./locales/generated').Locale;
+		flat?: boolean;
+		onnavigate?: () => void;
+	} & HTMLAttributes<HTMLElement> = $props();
 
 	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();
@@ -73,7 +81,7 @@
 	>
 		<div class="overflow-hidden">
 			<ul class={[!flat && 'border-outline divide-outline divide-y border']}>
-				{#each links as { key, icon }}
+				{#each links as { key, icon } (key)}
 					{@const path = routing.path(key)}
 					{@const name = routing.name(key)}
 					{@const current = routing.is(key)}

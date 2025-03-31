@@ -1,7 +1,11 @@
 <script lang="ts">
-	import type { HTMLAttributes } from "svelte/elements";
+	import type { HTMLAttributes } from 'svelte/elements';
 
-	let { links, class: cls, ...rest }: HTMLAttributes<HTMLElement> & {
+	let {
+		links,
+		class: cls,
+		...rest
+	}: HTMLAttributes<HTMLElement> & {
 		links?: Record<string, string>;
 	} = $props();
 
@@ -10,13 +14,9 @@
 
 {#if rLinks.length}
 	<ul class={['flex flex-wrap items-center gap-4', cls]} {...rest}>
-		{#each rLinks as [name, href]}
+		{#each rLinks as [name, href] (name)}
 			<li>
-				<a
-					class="c-link-icon flex rounded-full border border-current p-2"
-					{href}
-					data-external
-				>
+				<a class="c-link-icon flex rounded-full border border-current p-2" {href} data-external>
 					{#if name === 'bluesky'}
 						<svg class="h-6 w-6" inline-src="simpleicons/bluesky"></svg>
 					{:else if name === 'github'}

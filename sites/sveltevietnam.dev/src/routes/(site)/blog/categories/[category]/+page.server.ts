@@ -3,11 +3,11 @@ import { error } from '@sveltejs/kit';
 import { loadBlogCategory, loadBlogCategoryBySlug } from '$data/blog/categories';
 import { search } from '$data/blog/posts';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
+import { buildStructuredBlogCategoryPage } from '$lib/meta/structured/blog';
 import { buildRoutes } from '$lib/routing/utils';
 import { getPaginationFromUrl } from '$lib/utils/url';
 
 import type { PageServerLoad } from './$types';
-import { buildStructuredBlogCategoryPage } from '$lib/meta/structured/blog';
 
 export const load: PageServerLoad = async ({ parent, url, locals, depends, params }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);

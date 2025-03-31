@@ -29,7 +29,7 @@
 	<div class="space-y-4 border-t-4 border-current pt-2">
 		<div class="flex items-center justify-between">
 			<h2 class="c-text-title uppercase">{category}</h2>
-			<TextArrowLink href={href}>
+			<TextArrowLink {href}>
 				<T message={locales.view_more} />
 			</TextArrowLink>
 		</div>
@@ -107,7 +107,7 @@
 					<div class="tablet:justify-between tablet:items-end mobile:flex-col flex flex-1 gap-6">
 						<h2 class="c-text-heading-md"><T message={locales.write_heading} /></h2>
 						<div class="flex items-end gap-4">
-							{#each ['h-8', 'h-14', 'h-6', 'h-7'] as cls}
+							{#each ['h-8', 'h-14', 'h-6', 'h-7'] as cls (cls)}
 								<svg
 									class={['text-surface-variant w-auto', cls]}
 									width="40"

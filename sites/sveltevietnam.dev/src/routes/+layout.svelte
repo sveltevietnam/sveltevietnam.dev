@@ -119,7 +119,7 @@
 	{/if}
 
 	<!-- alternative localized links -->
-	{#each Object.entries(routing.paths) as [lang, route]}
+	{#each Object.entries(routing.paths) as [lang, route] (lang)}
 		<link rel="alternate" hreflang={lang} href="{page.url.origin}{route.path}" />
 	{/each}
 	<link rel="alternate" hreflang="x-default" href="{page.url.origin}{routing.paths.vi.path}" />

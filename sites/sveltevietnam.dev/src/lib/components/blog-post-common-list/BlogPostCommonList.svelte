@@ -14,7 +14,7 @@
 		...rest
 	}: HTMLAttributes<HTMLUListElement> & {
 		posts: BlogPostListItemProps['post'][];
-		flat: boolean;
+		flat?: boolean;
 	} = $props();
 </script>
 
@@ -34,7 +34,7 @@
 				<div class="bg-outline col-span-full h-px w-full"></div>
 			</li>
 		{/if}
-		{#each flat ? posts : posts.slice(1) as post, i}
+		{#each flat ? posts : posts.slice(1) as post, i (post.slug)}
 			<li class="contents">
 				<BlogPostListItem
 					{post}

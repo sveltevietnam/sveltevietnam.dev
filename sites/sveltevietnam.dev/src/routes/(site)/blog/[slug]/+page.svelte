@@ -85,7 +85,7 @@
 		</div>
 		<div class="mt-6 space-y-4">
 			<ul class="tablet:justify-end relative flex items-center gap-2">
-				{#each data.post.categories as { name, slug }}
+				{#each data.post.categories as { name, slug } (slug)}
 					<li class="">
 						<a
 							class="c-link-lazy c-text-body-sm text-on-surface-subtle hover:text-link
@@ -98,7 +98,7 @@
 				{/each}
 			</ul>
 			<ul class="flex flex-wrap items-start gap-6">
-				{#each data.post.authors as { name, id, avatar, description }}
+				{#each data.post.authors as { name, id, avatar, description } (id)}
 					{@const href = routing.path('people/:id', id)}
 					<li class="flex items-center gap-3">
 						<a {href}>
@@ -181,7 +181,7 @@
 			{#if data.content}
 				{#key data.content}
 					<div use:toc.actions.root>
-						<data.content  />
+						<data.content />
 					</div>
 				{/key}
 			{/if}

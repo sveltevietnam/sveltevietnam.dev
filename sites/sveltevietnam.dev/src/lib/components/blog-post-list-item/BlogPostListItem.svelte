@@ -84,11 +84,8 @@
 			{#if post.series?.length}
 				<p class="c-text-body-sm text-secondary-on-surface">
 					—
-					{#each post.series as { name, slug }, i}
-						<a
-							class="c-link-lazy hover:text-link"
-							href={routing.path('blog/series/:series', slug)}
-						>
+					{#each post.series as { name, slug }, i (slug)}
+						<a class="c-link-lazy hover:text-link" href={routing.path('blog/series/:series', slug)}>
 							{name}
 						</a>{i < post.series.length - 1 ? ', ' : ''}
 					{/each}
@@ -104,13 +101,15 @@
 			>
 				<a class="c-link-preserved relative" href={routing.path('blog/:slug', post.slug)}>
 					{post.title}
-					<i class="mobile:hidden i i-[cursor-click] text-[0.75em] absolute bottom-0 right-0 translate-x-full"></i>
+					<i
+						class="mobile:hidden i i-[cursor-click] absolute bottom-0 right-0 translate-x-full text-[0.75em]"
+					></i>
 				</a>
 			</p>
 		</div>
 		<div class="c-text-body-sm flex items-center gap-2">
 			<p class="">
-				{#each post.authors as { name, id }, i}
+				{#each post.authors as { name, id }, i (id)}
 					<a class="c-link-lazy font-medium" href={routing.path('people/:id', id)}>
 						{name}
 					</a>{i < post.authors.length - 1 ? ', ' : ''}
@@ -122,7 +121,7 @@
 		<p>{post.description}</p>
 		{#if post.categories?.length}
 			<ul class="flex flex-wrap gap-2">
-				{#each post.categories as { name, slug }}
+				{#each post.categories as { name, slug } (slug)}
 					<li>
 						<a
 							class="c-link-lazy c-text-body-sm text-on-surface-subtle hover:text-link

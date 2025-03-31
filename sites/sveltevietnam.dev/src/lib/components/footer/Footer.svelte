@@ -24,13 +24,23 @@
 
 	const routing = RoutingContext.get();
 
-	let primaryPages = $derived(['home', 'blog', 'events', 'jobs', 'sponsor', 'roadmap', 'design'] as const);
+	let primaryPages = $derived([
+		'home',
+		'blog',
+		'events',
+		'jobs',
+		'sponsor',
+		'roadmap',
+		'design',
+	] as const);
 	let secondaryPages = $derived(['settings', 'code-of-conduct', 'sitemap.xml', 'rss.xml'] as const);
 </script>
 
 <footer {...rest}>
-	<div class="max-w-pad _upper pb-10 pt-14 border-y">
-		<p class="_name c-text-heading tablet:block tablet:text-right w-37.5 hidden uppercase tablet:justify-self-end">
+	<div class="max-w-pad _upper border-y pb-10 pt-14">
+		<p
+			class="_name c-text-heading tablet:block tablet:text-right w-37.5 tablet:justify-self-end hidden uppercase"
+		>
 			<T message={locale.sveltevietnam} />
 		</p>
 
@@ -42,7 +52,7 @@
 		<section class="_pages tablet:space-y-6 space-y-4">
 			<p class="c-text-title"><T message={locale.navigation} /></p>
 			<ul class="-mx-1 grid w-fit grid-cols-2 gap-x-4 gap-y-2">
-				{#each primaryPages as page}
+				{#each primaryPages as page (page)}
 					{@const path = routing.path(page)}
 					{@const name = routing.name(page)}
 					{@const current = routing.is(page)}
@@ -89,37 +99,38 @@
 		</section>
 	</div>
 
-	<div class="_lower max-w-pad py-4 c-text-body-xs">
-		<ul class="_pages-secondary flex items-center -mx-1 tablet:justify-self-end">
-			{#each secondaryPages as page}
+	<div class="_lower max-w-pad c-text-body-xs py-4">
+		<ul class="_pages-secondary tablet:justify-self-end -mx-1 flex items-center">
+			{#each secondaryPages as page (page)}
 				{@const path = routing.path(page)}
 				{@const name = routing.name(page)}
 				{@const current = routing.is(page)}
-				<li class="not-first:border-l border-current not-first:pl-2 not-last:pr-2">
+				<li class="not-first:border-l not-first:pl-2 not-last:pr-2 border-current">
 					<a class="c-link-lazy px-1 py-1" href={path} aria-current={current}>{name}</a>
 				</li>
 			{/each}
 		</ul>
-		<div class="_license-and-techs flex items-center gap-1 tablet:max-widescreen:contents">
-			<p class="_license">{new Date().getFullYear()} © <T message={locale.sveltevietnam}/></p>
+		<div class="_license-and-techs tablet:max-widescreen:contents flex items-center gap-1">
+			<p class="_license">{new Date().getFullYear()} © <T message={locale.sveltevietnam} /></p>
 			<p class="tablet:max-widescreen:hidden">|</p>
-			<p class="_techs flex items-center gap-1 tablet:justify-self-end">
-				<T message={locale.powered_by}/>
+			<p class="_techs tablet:justify-self-end flex items-center gap-1">
+				<T message={locale.powered_by} />
 				<a class="c-link-lazy" href="https://www.cloudflare.com">
 					<span class="sr-only">Cloudflare</span>
-					<svg class="w-5 h-5" inline-src="simpleicons/cloudflare-workers" width="20" height="20"></svg>
+					<svg class="h-5 w-5" inline-src="simpleicons/cloudflare-workers" width="20" height="20"
+					></svg>
 				</a>
 				<a class="c-link-lazy" href="https://svelte.dev">
 					<span class="sr-only">Svelte and SvelteKit</span>
-					<svg class="w-5 h-5" inline-src="simpleicons/svelte" width="20" height="20"></svg>
+					<svg class="h-5 w-5" inline-src="simpleicons/svelte" width="20" height="20"></svg>
 				</a>
 				<a class="c-link-lazy" href="https://tailwindcss.com">
 					<span class="sr-only">TailwindCSS</span>
-					<svg class="w-5 h-5" inline-src="simpleicons/tailwindcss" width="20" height="20"></svg>
+					<svg class="h-5 w-5" inline-src="simpleicons/tailwindcss" width="20" height="20"></svg>
 				</a>
 			</p>
 		</div>
-		<p class="_version"><T message={locale.version}/> {version}</p>
+		<p class="_version"><T message={locale.version} /> {version}</p>
 	</div>
 </footer>
 
@@ -215,8 +226,7 @@
 		}
 
 		@media (--widescreen) {
-			grid-template-areas:
-				'version license-and-techs pages';
+			grid-template-areas: 'version license-and-techs pages';
 			grid-template-columns: 1fr auto 1fr;
 			grid-template-rows: 1fr;
 		}

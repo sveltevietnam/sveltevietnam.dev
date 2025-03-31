@@ -1,25 +1,10 @@
 import { fileURLToPath } from 'node:url';
+import { defineConfig as defineEslintConfig, globalIgnores } from 'eslint/config';
 
-import { includeIgnoreFile } from '@eslint/compat';
-import vnphanquang from '@vnphanquang/eslint-config';
+import { defineConfig as defineVnphanquangConfig } from '@vnphanquang/eslint-config';
 import jsdoc from 'eslint-plugin-jsdoc';
-import svelte from 'eslint-plugin-svelte';
-import tseslint from 'typescript-eslint';
 
 const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
-
-const svelteConfig = [
-	...svelte.configs['flat/recommended'],
-	...svelte.configs['flat/prettier'],
-	{
-		files: ['**/*.svelte'],
-		languageOptions: {
-			parserOptions: {
-				parser: tseslint.parser,
-			},
-		},
-	},
-];
 
 const jsdocConfig = [
 	{
@@ -46,4 +31,24 @@ const jsdocConfig = [
 	},
 ];
 
-export default [...vnphanquang, ...svelteConfig, ...jsdocConfig, includeIgnoreFile(gitignorePath)];
+/**
+ * @param {import('@sveltejs/kit').Config} [svelteConfig]
+ * @returns {import('eslint').Linter.Config}
+ */
+export function defineConfig(svelteConfig) {
+	return defineEslintConfig([
+		globalIgnores(['**/*.md.svelte']),
+		{
+			languageOptions: {
+				globals: {
+					App: 'readonly',
+				},
+			},
+		},
+		...jsdocConfig,
+		...defineVnphanquangConfig({
+			gitignorePath,
+			...(svelteConfig ? { svelte: { config: svelteConfig } } : {}),
+		}),
+	]);
+}
