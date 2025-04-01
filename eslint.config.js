@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'node:url';
-import { defineConfig as defineEslintConfig, globalIgnores } from 'eslint/config';
 
 import { defineConfig as defineVnphanquangConfig } from '@vnphanquang/eslint-config';
+import { defineConfig as defineEslintConfig, globalIgnores } from 'eslint/config';
 import jsdoc from 'eslint-plugin-jsdoc';
 
 const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
@@ -38,13 +38,6 @@ const jsdocConfig = [
 export function defineConfig(svelteConfig) {
 	return defineEslintConfig([
 		globalIgnores(['**/*.md.svelte']),
-		{
-			languageOptions: {
-				globals: {
-					App: 'readonly',
-				},
-			},
-		},
 		...jsdocConfig,
 		...defineVnphanquangConfig({
 			gitignorePath,
@@ -52,3 +45,5 @@ export function defineConfig(svelteConfig) {
 		}),
 	]);
 }
+
+export default defineConfig();

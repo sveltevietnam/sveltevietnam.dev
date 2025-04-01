@@ -44,7 +44,7 @@
 		"dedent": "^1.5.3",
 		"recast": "^0.23.11",
 		"schema-dts": "^1.1.5",
-		"svelte": "^5.25.3",
+		"svelte": "^5.25.5",
 		"sveltekit-superforms": "^2.24.0",
 		"tailwindcss": "4.0.17",
 		"tiny-glob": "^0.2.9",

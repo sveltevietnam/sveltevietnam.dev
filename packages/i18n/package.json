@@ -81,7 +81,7 @@
 	},
 	"devDependencies": {
 		"@types/lodash.debounce": "^4.0.9",
-		"svelte": "^5.25.3",
+		"svelte": "^5.25.5",
 		"vite": "^6.2.4"
 	}
 }
