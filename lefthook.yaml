@@ -2,44 +2,35 @@ assert_lefthook_installed: true
 min_version: 1.11.3
 pre-commit:
   follow: true
-  parallel: true
+  piped: true
   skip:
     - merge
     - rebase
   jobs:
-    - name: sveltevietnam.dev
-      root: sites/sveltevietnam.dev
-      glob: '*.svelte'
-      exclude:
-        - '*.md.svelte'
-      group:
-        piped: true
-        jobs:
-          - name: eslint
-            run: pnpm eslint --fix {staged_files}
-            stage_fixed: true
-          - name: svelte-check
-            run: pnpm svelte-check
-            stage_fixed: true
-          - name: prettier
-            run: pnpm prettier --write {staged_files}
-            stage_fixed: true
-
     - name: eslint
-      run: pnpm eslint --fix {staged_files}
-      glob: '*.{js,ts}'
-      stage_fixed: true
-
+      group:
+        parallel: true
+        jobs:
+          - name: sveltevietnam.dev
+            root: sites/sveltevietnam.dev
+            stage_fixed: true
+            glob: '*.svelte'
+            exclude:
+              - '*.md.svelte'
+            run: pnpm eslint --fix {staged_files}
+          - name: others
+            stage_fixed: true
+            glob: '*.{js.ts}'
+            run: pnpm eslint --fix {staged_files}
     - name: stylelint
-      run: pnpm stylelint {staged_files}
-      glob: '*.{svelte,css}'
+      run: pnpm stylelint --fix {staged_files}
       stage_fixed: true
+      glob: '*.{svelte,css}'
       exclude:
         - '*.md.svelte'
-
     - name: prettier
       run: pnpm prettier --write {staged_files}
-      glob: '*.{js,ts,css,json,md,yaml}'
       stage_fixed: true
+      glob: '*.{js,ts,css,json,md,yaml}'
       exclude:
         - pnpm-lock.yaml
