@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { T } from "@sveltevietnam/i18n";
+	import { T } from '@sveltevietnam/i18n';
 
-	let { data } = $props();
-
-	let locales = $derived(data.locales.page as import('./_page/locales/generated').Locale);
+	import * as m from '$data/locales/generated/messages';
 </script>
 
-<h1><T message={locales.page_heading} /></h1>
+<h1><T message={m['pages.coc.heading']} /></h1>
+<p><T message={m['pages.coc.desc']} /></p>

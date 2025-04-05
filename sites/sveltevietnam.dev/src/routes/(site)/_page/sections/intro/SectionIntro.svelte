@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 
-	let { locale }: { locale: import('./locales/generated').Locale } = $props();
+	import * as m from '$data/locales/generated/messages';
 </script>
 
 <section class="max-w-pad -mt-header tablet:py-50 desktop:py-70 relative py-40">
@@ -11,7 +11,7 @@
 				class="z-1 h-26 tablet:h-50 desktop:h-75 relative mx-auto w-auto"
 				inline-src="./images/title"
 			></svg>
-			<span class="sr-only"><T message={locale.heading} /></span>
+			<span class="sr-only"><T message={m['pages.home.intro.heading']} /></span>
 
 			<!-- absolute ornaments -->
 			<svg
@@ -31,7 +31,7 @@
 			<p
 				class="font-lora tablet:text-2xl desktop:text-3xl text-center text-lg font-medium leading-tight"
 			>
-				{locale.subtitle}
+				<T message={m['pages.home.intro.subtitle']} />
 			</p>
 			<svg class="h-15 tablet:h-20 desktop:h-25 w-auto shrink-0" inline-src="./images/disk"></svg>
 		</div>

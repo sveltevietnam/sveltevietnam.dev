@@ -3,15 +3,14 @@
 	import { T } from '@sveltevietnam/i18n';
 	import type { HTMLAttributes } from 'svelte/elements';
 
+	import * as m from '$data/locales/generated/messages';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	let {
-		locale,
 		class: cls,
 		alwaysShowLabel = false,
 		...rest
 	}: HTMLAttributes<HTMLElement> & {
-		locale: import('./locales/generated').Locale;
 		alwaysShowLabel?: boolean;
 	} = $props();
 
@@ -20,15 +19,15 @@
 	const colorSchemes = $derived({
 		light: {
 			icon: 'i-[sun]',
-			label: locale.light,
+			label: m['components.color_scheme_menu.light'],
 		},
 		dark: {
 			icon: 'i-[moon]',
-			label: locale.dark,
+			label: m['components.color_scheme_menu.dark'],
 		},
 		system: {
 			icon: 'i-[desktop]',
-			label: locale.system,
+			label: m['components.color_scheme_menu.system'],
 		},
 	});
 
@@ -51,9 +50,9 @@
 			bind:checked={open}
 		/>
 		<i class="i i-[palette] h-6 w-6"></i>
-		<span class="sr-only peer-checked:hidden"><T message={locale.open} /></span>
-		<span class="sr-only hidden peer-checked:block"><T message={locale.close} /></span>
-		<span class="sr-only"><T message={locale.toggle} /> </span>
+		<span class="sr-only peer-checked:hidden"><T message={m.open} /></span>
+		<span class="sr-only hidden peer-checked:block"><T message={m.close} /></span>
+		<span class="sr-only"><T message={m['components.color_scheme_menu.toggle']} /> </span>
 		<span class={[alwaysShowLabel && 'tablet:sr-only']}
 			><T message={colorSchemes[settings.colorScheme.user].label} /></span
 		>

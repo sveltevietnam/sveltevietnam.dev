@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
@@ -12,8 +13,8 @@
 		...rest
 	}: {
 		breadcrumbs: App.Route[];
-		heading?: string;
-		description?: string;
+		heading?: Snippet<[]> | string;
+		description?: Snippet<[]> | string;
 	} & HTMLAttributes<HTMLElement> = $props();
 </script>
 
@@ -32,11 +33,21 @@
 			<div class="space-y-4">
 				{#if heading}
 					<h1 class="c-text-heading-page text-primary-on-surface">
-						{heading}
+						{#if typeof heading === 'function'}
+							{@render heading()}
+						{:else}
+							{heading}
+						{/if}
 					</h1>
 				{/if}
 				{#if description}
-					<p class="c-text-subtitle-page max-w-[70ch]">{description}</p>
+					<p class="c-text-subtitle-page max-w-[70ch]">
+						{#if typeof description === 'function'}
+							{@render description()}
+						{:else}
+							{description}
+						{/if}
+					</p>
 				{/if}
 			</div>
 		{/if}

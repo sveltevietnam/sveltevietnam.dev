@@ -1,7 +1,5 @@
 <script>
-  import * as sample from '$lib/notifications/static/sample/locales/generated/vi';
   import { ColorSchemeMenu } from '$lib/components/color-scheme-menu';
-  import * as colorSchemeMenuLocale from '$lib/components/color-scheme-menu/locales/generated/vi';
 </script>
 
 [Svelte action] (phân biệt với [SvelteKit form action](https://kit.svelte.dev/docs/form-actions)) là một kĩ thuật giúp dễ dàng thiết lập và đóng gói để tái sử dụng các thao tác xử lý logic và tương tác với DOM:
@@ -27,7 +25,7 @@ Có lẽ một trong những ứng dụng phổ biến nhất của Svelte actio
 </p>
 
 <div class="p-2 border not-prose relative z-popup float-right inline-block ml-4 mt-4">
-  <ColorSchemeMenu locale={colorSchemeMenuLocale} />
+  <ColorSchemeMenu />
 </div>
 
 </div>

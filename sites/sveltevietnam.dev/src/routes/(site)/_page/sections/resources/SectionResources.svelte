@@ -4,6 +4,7 @@
 	import type { Picture } from 'vite-imagetools';
 
 	import { SOCIAL_LINKS } from '$data/links';
+	import * as m from '$data/locales/generated/messages';
 
 	import imgPuzzle from './images/puzzle.png?enhanced';
 	import screenshotDocs from './images/screenshot-svelte-docs.jpg?enhanced';
@@ -15,8 +16,6 @@
 	import screenshotSummit from './images/screenshot-svelte-summit.jpg?enhanced';
 	import screenshotTutorial from './images/screenshot-svelte-tutorial.jpg?enhanced';
 
-	let { locale }: { locale: import('./locales/generated').Locale } = $props();
-
 	const sectionClasses = [
 		'relative bg-surface p-4 flex flex-col gap-8 max-w-256 mx-auto',
 		'tablet:p-10 tablet:gap-15',
@@ -24,7 +23,7 @@
 	];
 </script>
 
-{#snippet step(message: Message<never>)}
+{#snippet step(message: (lang: string) => Message<never>)}
 	<div class="isolate">
 		<p
 			class="_border-gradient bg-surface c-text-body-xs relative w-fit px-3 py-1.5 uppercase leading-tight tracking-widest"
@@ -50,11 +49,11 @@
 	image,
 	footnote,
 }: {
-	description: Message<never>;
-	links: { message: Message<never>; href: string }[];
+	description: (lang: string) => Message<never>;
+	links: { message: (lang: string) => Message<never>; href: string }[];
 	linksClasses?: string;
-	image: Picture | { message: Message<never>; href: string; src: Picture };
-	footnote?: Message<never>;
+	image: Picture | { message: (lang: string) => Message<never>; href: string; src: Picture };
+	footnote?: (lang: string) => Message<never>;
 })}
 	<div
 		class="tablet:gap-8 desktop:gap-10 mobile:flex-col odd:tablet:flex-row-reverse group flex gap-6"
@@ -98,13 +97,13 @@
 {/snippet}
 
 <section class="max-w-pad pb-section space-y-30">
-	<h2 class="c-text-heading-lg text-center"><T message={locale.heading} /></h2>
+	<h2 class="c-text-heading-lg text-center"><T message={m['pages.home.resources.heading']} /></h2>
 
 	<section class={[...sectionClasses, 'tablet:max-desktop:pb-32']}>
 		<div class="relative flex items-center justify-between gap-4">
 			<div class="space-y-4">
-				{@render step(locale.one)}
-				<h3 class="c-text-heading-md"><T message={locale.one_heading} /></h3>
+				{@render step(m['pages.home.resources.one.step'])}
+				<h3 class="c-text-heading-md"><T message={m['pages.home.resources.one.heading']} /></h3>
 			</div>
 			<svg
 				class="mobile:absolute mobile:-top-2 mobile:-right-2 w-25 h-auto shrink-0"
@@ -113,34 +112,46 @@
 		</div>
 
 		{@render resource({
-			description: locale.one_tutorial,
-			links: [{ message: locale.one_tutorial_link, href: 'https://svelte.dev/tutorial' }],
+			description: m['pages.home.resources.one.tutorial.desc'],
+			links: [
+				{
+					message: m['pages.home.resources.one.tutorial.link'],
+					href: 'https://svelte.dev/tutorial',
+				},
+			],
 			linksClasses: 'w-fit',
 			image: {
-				message: locale.one_tutorial_link,
+				message: m['pages.home.resources.one.tutorial.link'],
 				href: 'https://svelte.dev/tutorial',
 				src: screenshotTutorial,
 			},
-			footnote: locale.one_tutorial_footnote,
+			footnote: m['pages.home.resources.one.tutorial.footnote'],
 		})}
 
 		{@render resource({
-			description: locale.one_playground,
-			links: [{ message: locale.one_playground_link, href: 'https://svelte.dev/playground' }],
+			description: m['pages.home.resources.one.playground.desc'],
+			links: [
+				{
+					message: m['pages.home.resources.one.playground.link'],
+					href: 'https://svelte.dev/playground',
+				},
+			],
 			linksClasses: 'w-fit',
 			image: {
-				message: locale.one_playground_link,
+				message: m['pages.home.resources.one.playground.link'],
 				href: 'https://svelte.dev/playground',
 				src: screenshotPlayground,
 			},
 		})}
 
 		{@render resource({
-			description: locale.one_lab,
-			links: [{ message: locale.one_lab_link, href: 'https://www.sveltelab.dev/' }],
+			description: m['pages.home.resources.one.lab.desc'],
+			links: [
+				{ message: m['pages.home.resources.one.lab.link'], href: 'https://www.sveltelab.dev/' },
+			],
 			linksClasses: 'ml-auto w-fit',
 			image: {
-				message: locale.one_lab_link,
+				message: m['pages.home.resources.one.lab.link'],
 				href: 'https://www.sveltelab.dev/',
 				src: screenshotLab,
 			},
@@ -156,17 +167,21 @@
 		<div class="mobile:flex-col relative flex items-center justify-between gap-4">
 			<svg class="h-18 mobile:self-start w-auto shrink-0" inline-src="./images/book"></svg>
 			<div class="mobile:-mt-10 flex flex-col items-end gap-4">
-				{@render step(locale.two)}
-				<h3 class="c-text-heading-md text-right"><T message={locale.two_heading} /></h3>
+				{@render step(m['pages.home.resources.two.step'])}
+				<h3 class="c-text-heading-md text-right">
+					<T message={m['pages.home.resources.two.heading']} />
+				</h3>
 			</div>
 		</div>
 
 		{@render resource({
-			description: locale.two_docs,
-			links: [{ message: locale.two_docs_link, href: 'https://svelte.dev/docs' }],
+			description: m['pages.home.resources.two.docs.desc'],
+			links: [
+				{ message: m['pages.home.resources.two.docs.link'], href: 'https://svelte.dev/docs' },
+			],
 			linksClasses: 'w-fit',
 			image: {
-				message: locale.two_docs_link,
+				message: m['pages.home.resources.two.docs.link'],
 				href: 'https://svelte.dev/docs',
 				src: screenshotDocs,
 			},
@@ -175,78 +190,111 @@
 
 	<section class={sectionClasses}>
 		<div class="space-y-4">
-			{@render step(locale.three)}
-			<h3 class="c-text-heading-md text-right"><T message={locale.three_heading} /></h3>
+			{@render step(m['pages.home.resources.three.step'])}
+			<h3 class="c-text-heading-md text-right">
+				<T message={m['pages.home.resources.three.heading']} />
+			</h3>
 		</div>
 
 		{@render resource({
-			description: locale.three_description,
+			description: m['pages.home.resources.three.desc'],
 			links: [
-				{ message: locale.three_discord, href: SOCIAL_LINKS.DISCORD },
-				{ message: locale.bluesky, href: SOCIAL_LINKS.BLUESKY },
-				{ message: locale.three_github, href: SOCIAL_LINKS.GITHUB },
+				{ message: m['pages.home.resources.three.discord'], href: SOCIAL_LINKS.DISCORD },
+				{ message: m['pages.home.resources.bluesky'], href: SOCIAL_LINKS.BLUESKY },
+				{ message: m['pages.home.resources.three.github'], href: SOCIAL_LINKS.GITHUB },
 			],
 			image: imgPuzzle,
 		})}
-		<p class="-mt-4"><T message={locale.three_note} /></p>
+		<p class="-mt-4"><T message={m['pages.home.resources.three.note']} /></p>
 	</section>
 
 	<section class={sectionClasses}>
 		<div class="flex items-start justify-between gap-4">
 			<svg class="h-20 w-20 shrink-0" inline-src="./images/svelte-society-logo"></svg>
 			<div class="flex flex-col items-end gap-4">
-				{@render step(locale.four)}
-				<h3 class="c-text-heading-md text-right"><T message={locale.four_heading} /></h3>
+				{@render step(m['pages.home.resources.four.step'])}
+				<h3 class="c-text-heading-md text-right">
+					<T message={m['pages.home.resources.four.heading']} />
+				</h3>
 			</div>
 		</div>
 
 		{@render resource({
-			description: locale.four_svelte,
+			description: m['pages.home.resources.four.svelte.desc'],
 			links: [
-				{ message: locale.four_github_svelte, href: 'https://github.com/sveltejs/svelte' },
-				{ message: locale.four_github_sveltekit, href: 'https://github.com/sveltejs/kit' },
-				{ message: locale.four_github_svelte_dev, href: 'https://github.com/sveltejs/svelte.dev' },
-				{ message: locale.bluesky, href: 'https://bsky.app/profile/svelte.dev' },
+				{
+					message: m['pages.home.resources.four.svelte.github.svelte'],
+					href: 'https://github.com/sveltejs/svelte',
+				},
+				{
+					message: m['pages.home.resources.four.svelte.github.sveltekit'],
+					href: 'https://github.com/sveltejs/kit',
+				},
+				{
+					message: m['pages.home.resources.four.svelte.github.svelte_dev'],
+					href: 'https://github.com/sveltejs/svelte.dev',
+				},
+				{ message: m['pages.home.resources.bluesky'], href: 'https://bsky.app/profile/svelte.dev' },
 			],
 			image: {
-				message: locale.four_github_svelte,
+				message: m['pages.home.resources.four.svelte.github.svelte'],
 				href: 'https://github.com/sveltejs',
 				src: screenshotGithub,
 			},
 		})}
 
 		{@render resource({
-			description: locale.four_society,
+			description: m['pages.home.resources.four.society.desc'],
 			links: [
-				{ message: locale.four_society_discord, href: 'https://svelte.dev/chat' },
-				{ message: locale.bluesky, href: 'https://bsky.app/profile/sveltesociety.dev' },
-				{ message: locale.four_society_website, href: 'https://www.sveltesociety.dev/' },
+				{
+					message: m['pages.home.resources.four.society.discord'],
+					href: 'https://svelte.dev/chat',
+				},
+				{
+					message: m['pages.home.resources.bluesky'],
+					href: 'https://bsky.app/profile/sveltesociety.dev',
+				},
+				{
+					message: m['pages.home.resources.four.society.website'],
+					href: 'https://www.sveltesociety.dev/',
+				},
 			],
 			image: {
-				message: locale.four_society_website,
+				message: m['pages.home.resources.four.society.website'],
 				href: 'https://www.sveltesociety.dev/',
 				src: screenshotSociety,
 			},
 		})}
 
 		{@render resource({
-			description: locale.four_summit,
+			description: m['pages.home.resources.four.summit.desc'],
 			links: [
-				{ message: locale.four_summit_youtube, href: 'https://www.youtube.com/@SvelteSociety' },
-				{ message: locale.four_summit_website, href: 'https://www.sveltesummit.com/' },
+				{
+					message: m['pages.home.resources.four.summit.youtube'],
+					href: 'https://www.youtube.com/@SvelteSociety',
+				},
+				{
+					message: m['pages.home.resources.four.summit.website'],
+					href: 'https://www.sveltesummit.com/',
+				},
 			],
 			image: {
-				message: locale.four_summit_website,
+				message: m['pages.home.resources.four.summit.website'],
 				href: 'https://www.sveltesummit.com/',
 				src: screenshotSummit,
 			},
 		})}
 
 		{@render resource({
-			description: locale.four_hack,
-			links: [{ message: locale.four_hack_link, href: 'https://hack.sveltesociety.dev' }],
+			description: m['pages.home.resources.four.hack.desc'],
+			links: [
+				{
+					message: m['pages.home.resources.four.hack.link'],
+					href: 'https://hack.sveltesociety.dev',
+				},
+			],
 			image: {
-				message: locale.four_hack_link,
+				message: m['pages.home.resources.four.hack.link'],
 				href: 'https://hack.sveltesociety.dev',
 				src: screenshotHack,
 			},
@@ -255,11 +303,11 @@
 		<div class="bg-outline h-px w-full"></div>
 
 		<section class="prose max-w-[80ch] leading-relaxed">
-			<p><T message={locale.four_others} /></p>
+			<p><T message={m['pages.home.resources.four.others']} /></p>
 			<ul class="">
-				<li><T message={locale.four_newsletter} /></li>
-				<li><T message={locale.four_madebysvelte} /></li>
-				<li><T message={locale.four_jobs} /></li>
+				<li><T message={m['pages.home.resources.four.newsletter']} /></li>
+				<li><T message={m['pages.home.resources.four.madebysvelte']} /></li>
+				<li><T message={m['pages.home.resources.four.jobs']} /></li>
 			</ul>
 		</section>
 	</section>

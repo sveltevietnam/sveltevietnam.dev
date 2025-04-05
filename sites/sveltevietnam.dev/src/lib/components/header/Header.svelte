@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 
+	import * as m from '$data/locales/generated/messages';
 	import { ColorSchemeMenu } from '$lib/components/color-scheme-menu';
 	import { LanguageMenu } from '$lib/components/language-menu';
 	import { PageMenu } from '$lib/components/page-menu';
@@ -10,18 +11,6 @@
 
 	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();
-
-	let {
-		locale,
-		localeLanguageMenu,
-		localeColorSchemeMenu,
-		localePageMenu,
-	}: {
-		locale: import('./locales/generated').Locale;
-		localeLanguageMenu: import('$lib/components/language-menu/locales/generated').Locale;
-		localeColorSchemeMenu: import('$lib/components/color-scheme-menu/locales/generated').Locale;
-		localePageMenu: import('$lib/components/page-menu/locales/generated').Locale;
-	} = $props();
 
 	let isMobileMenuOpen = $state(false);
 	$effect(() => {
@@ -42,15 +31,20 @@
 		lastScrollY = window.scrollY;
 	}
 
-	let toolbarBackdropOpacity = $derived(!settings.hydrated ? 1 : Math.min(lastScrollY * 2 / MAX_SCROLL_Y, 1));
+	let toolbarBackdropOpacity = $derived(
+		!settings.hydrated ? 1 : Math.min((lastScrollY * 2) / MAX_SCROLL_Y, 1),
+	);
 </script>
 
 <svelte:window onscroll={onScroll} />
 
-<header class={['z-header fixed w-full transition-transform', shouldHideHeader && '-translate-y-full']}>
+<header
+	class={['z-header fixed w-full transition-transform', shouldHideHeader && '-translate-y-full']}
+>
 	<!-- non-mobile header -->
 	<div class="max-w-pad mobile:hidden flex items-start justify-between">
-		<svelte:element this={routing.is('home') ? 'div' : 'a'}
+		<svelte:element
+			this={routing.is('home') ? 'div' : 'a'}
 			class="
 			bg-on-surface text-surface flex w-fit -translate-y-2 items-center gap-2 px-4 pb-4
 			pt-6 transition-transform duration-500 hover:translate-y-0 hover:duration-100
@@ -62,23 +56,25 @@
 			{:else}
 				<i class="i i-sveltevietnam w-15 h-15"></i>
 			{/if}
-			<span class="c-text-title-sm max-w-25 uppercase">{locale.sveltevietnam}</span>
-			<span class="sr-only">(<T message={locale.go_to_homepage} />)</span>
+			<span class="c-text-title-sm max-w-25 uppercase">
+				<T message={m['svelte_vietnam.name']} />
+			</span>
+			<span class="sr-only">(<T message={m['components.header.go_to_home_page']} />)</span>
 		</svelte:element>
 		<div class="relative flex w-fit items-center gap-5 border-x border-b px-6 py-5">
-			<div class="-z-1 absolute inset-0 bg-surface" style:opacity={toolbarBackdropOpacity}>
+			<div class="-z-1 bg-surface absolute inset-0" style:opacity={toolbarBackdropOpacity}>
 				<!-- backdrop -->
 			</div>
 			<form>
 				<label class="c-text-input desktop:w-48 widescreen:w-60 w-40">
-					<span class="sr-only"><T message={locale.search} /></span>
+					<span class="sr-only"><T message={m['forms.search']} /></span>
 					<i class="i i-[magnifying-glass] h-6 w-6"></i>
-					<input class="w-full" name="search" placeholder="{locale.search}..." />
+					<input class="w-full" name="search" placeholder="{m['forms.search'](settings.language)}..." />
 				</label>
 			</form>
-			<ColorSchemeMenu locale={localeColorSchemeMenu} />
-			<LanguageMenu locale={localeLanguageMenu} />
-			<PageMenu locale={localePageMenu} />
+			<ColorSchemeMenu />
+			<LanguageMenu />
+			<PageMenu />
 		</div>
 	</div>
 
@@ -86,16 +82,16 @@
 	<div class="max-w-pad tablet:hidden bg-surface flex items-center gap-2 border-b py-2">
 		<a class="mr-auto flex items-center gap-2" href={routing.path('home')}>
 			<i class="i i-sveltevietnam h-10 w-10"></i>
-			<span class="font-lora max-w-18 text-sm font-medium uppercase leading-tight"
-				>{locale.sveltevietnam}</span
-			>
-			<span class="sr-only">(<T message={locale.go_to_homepage} />)</span>
+			<span class="font-lora max-w-18 text-sm font-medium uppercase leading-tight">
+				<T message={m['svelte_vietnam.name']} />
+			</span>
+			<span class="sr-only">(<T message={m['components.header.go_to_home_page']} />)</span>
 		</a>
 		<a class="p-2" href={routing.path('search')}>
 			<i class="i i-[magnifying-glass] h-6 w-6"></i>
 			<span class="sr-only">{routing.name('search')}</span>
 		</a>
-		<label class="cursor-pointer p-2 flex c-link-lazy">
+		<label class="c-link-lazy flex cursor-pointer p-2">
 			<input
 				class="_mobile-menu-toggler peer sr-only"
 				type="checkbox"
@@ -103,10 +99,10 @@
 				bind:checked={isMobileMenuOpen}
 			/>
 			<i class="i i-[list] h-6 w-6 peer-checked:hidden"></i>
-			<i class="i i-[x] h-6 w-6 hidden peer-checked:block"></i>
-			<span class="sr-only peer-checked:hidden"><T message={locale.open} /></span>
-			<span class="sr-only hidden peer-checked:block"><T message={locale.close} /></span>
-			<span class="sr-only"><T message={locale.mobile_menu} /></span>
+			<i class="i i-[x] hidden h-6 w-6 peer-checked:block"></i>
+			<span class="sr-only peer-checked:hidden"><T message={m.open} /></span>
+			<span class="sr-only hidden peer-checked:block"><T message={m.close} /></span>
+			<span class="sr-only"><T message={m['components.header.mobile_menu']} /></span>
 		</label>
 
 		<!-- mobile menu -->
@@ -117,14 +113,13 @@
 			<div class="overflow-hidden">
 				<div class="_mobile-menu-content max-w-pad space-y-10">
 					<PageMenu
-						class="mx-auto max-w-80"
+						class="mx-auto max-w-100"
 						flat
-						locale={localePageMenu}
 						onnavigate={() => (isMobileMenuOpen = false)}
 					/>
 					<div class="flex flex-wrap items-center justify-center gap-4">
-						<ColorSchemeMenu class="border border-current" locale={localeColorSchemeMenu} />
-						<LanguageMenu class="border border-current" locale={localeLanguageMenu} />
+						<ColorSchemeMenu class="border border-current" />
+						<LanguageMenu class="border border-current" />
 					</div>
 					<SocialLinks class="justify-center" />
 				</div>

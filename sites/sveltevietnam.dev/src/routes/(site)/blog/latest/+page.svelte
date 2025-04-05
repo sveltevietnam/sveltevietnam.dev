@@ -1,5 +1,8 @@
 <script lang="ts">
+	import { T } from '@sveltevietnam/i18n';
+
 	import { page } from '$app/state';
+	import * as m from '$data/locales/generated/messages';
 	import { BlogListingIntro } from '$lib/components/blog-listing-intro';
 	import { BlogNewsletter } from '$lib/components/blog-newsletter';
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
@@ -16,27 +19,26 @@
 </script>
 
 <main>
-	<BlogListingIntro
-		breadcrumbs={data.routing.breadcrumbs}
-		heading={data.locales?.page?.page_heading?.toString()}
-		description={data.locales?.page?.page_description.toString()}
-	></BlogListingIntro>
+	<BlogListingIntro breadcrumbs={data.routing.breadcrumbs}>
+		{#snippet heading()}
+			<T message={m['pages.blog_latest.heading']} />
+		{/snippet}
+
+		{#snippet description()}
+			<T message={m['pages.blog_latest.desc']} />
+		{/snippet}
+	</BlogListingIntro>
 
 	<section class="py-section max-w-pad desktop:space-y-10 space-y-8">
 		<BlogPostCommonList posts={data.posts} id="listing" />
 		{#if data.pagination.max > 1}
-			<Pagination
-				class="ml-auto"
-				locale={data.locales.pagination}
-				url={paginationUrl}
-				{...data.pagination}
-			></Pagination>
+			<Pagination class="ml-auto" url={paginationUrl} {...data.pagination} />
 		{/if}
 	</section>
 
 	<GradientBackground pattern="jigsaw">
 		<section class="max-w-pad pt-section pb-section-more" id="newsletter">
-			<BlogNewsletter locale={data.locales.blogNewsletter} />
+			<BlogNewsletter />
 		</section>
 	</GradientBackground>
 </main>

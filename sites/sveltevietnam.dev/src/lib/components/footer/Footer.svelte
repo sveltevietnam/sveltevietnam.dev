@@ -4,6 +4,7 @@
 
 	import { EMAILS } from '$data/emails';
 	import { SOCIAL_LINKS } from '$data/links';
+	import * as m from '$data/locales/generated/messages';
 	import { GreenWebBadge } from '$lib/components/green-web-badge';
 	import { NotByAiBadge } from '$lib/components/not-by-ai-badge';
 	import { SocialLinks } from '$lib/components/social-links';
@@ -11,15 +12,9 @@
 
 	let {
 		version,
-		locale,
-		localeGreenWebBadge,
-		localeNotByAiBadge,
 		...rest
 	}: HTMLAttributes<HTMLElement> & {
 		version: string;
-		locale: import('./locales/generated').Locale;
-		localeGreenWebBadge: import('$lib/components/green-web-badge/locales/generated').Locale;
-		localeNotByAiBadge: import('$lib/components/not-by-ai-badge/locales/generated').Locale;
 	} = $props();
 
 	const routing = RoutingContext.get();
@@ -41,16 +36,16 @@
 		<p
 			class="_name c-text-heading tablet:block tablet:text-right w-37.5 tablet:justify-self-end hidden uppercase"
 		>
-			<T message={locale.sveltevietnam} />
+			<T message={m['svelte_vietnam.name']} />
 		</p>
 
 		<section class="_about tablet:space-y-6 tablet:max-w-70 space-y-4">
-			<p class="c-text-title"><T message={locale.about} /></p>
-			<p class="leading-relaxed"><T message={locale.about_description} /></p>
+			<p class="c-text-title"><T message={m['components.footer.about.title']} /></p>
+			<p class="leading-relaxed"><T message={m['components.footer.about.desc']} /></p>
 		</section>
 
 		<section class="_pages tablet:space-y-6 space-y-4">
-			<p class="c-text-title"><T message={locale.navigation} /></p>
+			<p class="c-text-title"><T message={m['components.footer.navigation']} /></p>
 			<ul class="-mx-1 grid w-fit grid-cols-2 gap-x-4 gap-y-2">
 				{#each primaryPages as page (page)}
 					{@const path = routing.path(page)}
@@ -64,7 +59,7 @@
 		</section>
 
 		<section class="_contacts">
-			<p class="c-text-title"><T message={locale.contact} /></p>
+			<p class="c-text-title"><T message={m['components.footer.contact']} /></p>
 			<ul
 				class="mobile:-mt-1 widescreen:-mt-1 tablet:max-widescreen:flex tablet:max-widescreen:gap-4
 				tablet:max-widescreen:items-center"
@@ -76,7 +71,7 @@
 						data-external
 					>
 						<i class="i i-[discord-logo] h-6 w-6"></i>
-						<T message={locale.sveltevietnam} />
+						<T message={m['svelte_vietnam.discord']} />
 						Discord
 					</a>
 				</li>
@@ -94,8 +89,8 @@
 		</section>
 
 		<section class="_badges tablet:justify-end flex flex-wrap items-end gap-4">
-			<NotByAiBadge locale={localeNotByAiBadge} />
-			<GreenWebBadge locale={localeGreenWebBadge} />
+			<NotByAiBadge />
+			<GreenWebBadge />
 		</section>
 	</div>
 
@@ -111,10 +106,10 @@
 			{/each}
 		</ul>
 		<div class="_license-and-techs tablet:max-widescreen:contents flex items-center gap-1">
-			<p class="_license">{new Date().getFullYear()} © <T message={locale.sveltevietnam} /></p>
+			<p class="_license">{new Date().getFullYear()} © <T message={m['svelte_vietnam.name']} /></p>
 			<p class="tablet:max-widescreen:hidden">|</p>
 			<p class="_techs tablet:justify-self-end flex items-center gap-1">
-				<T message={locale.powered_by} />
+				<T message={m['components.footer.powered_by']} />
 				<a class="c-link-lazy" href="https://www.cloudflare.com">
 					<span class="sr-only">Cloudflare</span>
 					<svg class="h-5 w-5" inline-src="simpleicons/cloudflare-workers" width="20" height="20"
@@ -130,7 +125,7 @@
 				</a>
 			</p>
 		</div>
-		<p class="_version"><T message={locale.version} /> {version}</p>
+		<p class="_version"><T message={m.version} /> {version}</p>
 	</div>
 </footer>
 
@@ -162,7 +157,7 @@
 		@media (--widescreen) {
 			grid-template-areas:
 				'about pages contacts name'
-				'socials pages badges badges';
+				'socials socials badges badges';
 			grid-template-columns: repeat(3, auto) 1fr;
 			grid-template-rows: repeat(2, auto);
 			row-gap: calc(var(--spacing) * 2);

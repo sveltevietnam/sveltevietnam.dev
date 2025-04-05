@@ -1,6 +1,5 @@
 import { loadRoutingMap } from '$data/routing';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
-import { getOgImagePath } from '$routes/loaders';
 
 import type { LayoutServerLoad } from './$types';
 
@@ -42,11 +41,6 @@ export const load: LayoutServerLoad = async ({ locals, route, depends }) => {
 			paths: {
 				vi: routingMap.vi[routingKey],
 				en: routingMap.en[routingKey],
-			},
-		},
-		meta: {
-			og: {
-				image: route.id ? await getOgImagePath(route.id, lang) : undefined,
 			},
 		},
 	};

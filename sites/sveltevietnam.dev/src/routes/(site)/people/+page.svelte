@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 
+	import * as m from '$data/locales/generated/messages';
 	import { Avatar } from '$lib/components/avatar';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { IntroSeparator } from '$lib/components/intro-separator';
@@ -11,9 +12,6 @@
 	let { data } = $props();
 
 	const routing = RoutingContext.get();
-	let locales = $derived(
-		data.locales.page as unknown as import('./_page/locales/generated').Locale,
-	);
 </script>
 
 <main>
@@ -26,9 +24,9 @@
 			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 			<div class="space-y-4">
 				<h1 class="c-text-heading-lg text-primary-on-surface font-bold">
-					<T message={locales.page_heading}></T>
+					<T message={m['pages.people.heading']}></T>
 				</h1>
-				<p class="c-text-subtitle-page max-w-[70ch]"><T message={locales.page_description}></T></p>
+				<p class="c-text-subtitle-page max-w-[70ch]"><T message={m['pages.people.desc']}></T></p>
 			</div>
 		</div>
 		<IntroSeparator />
@@ -44,7 +42,7 @@
 				>
 					<a {href}>
 						<span class="tablet:hidden sr-only">
-							<T message={locales.view_more} />
+							<T message={m.view_more} />
 						</span>
 						<Avatar class="w-30 h-30" src={avatar} {name} />
 					</a>
@@ -54,7 +52,7 @@
 						<PersonLinks {links} />
 					</div>
 					<TextArrowLink class="mobile:hidden self-end" {href}>
-						<T message={locales.view_more} />
+						<T message={m.view_more} />
 					</TextArrowLink>
 				</li>
 			{/each}

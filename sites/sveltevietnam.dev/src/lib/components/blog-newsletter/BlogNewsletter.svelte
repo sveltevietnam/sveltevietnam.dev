@@ -3,13 +3,13 @@
 	import { T } from '@sveltevietnam/i18n';
 	import type { HTMLAttributes } from 'svelte/elements';
 
+	import * as m from '$data/locales/generated/messages';
 	import { PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
 
 	let {
-		locale,
 		class: cls,
 		...rest
-	}: { locale: import('./locales/generated').Locale } & HTMLAttributes<HTMLElement> = $props();
+	}: HTMLAttributes<HTMLElement> = $props();
 </script>
 
 <div
@@ -22,8 +22,8 @@
 	{...rest}
 >
 	<div class="space-y-6">
-		<p class="c-text-heading-md"><T message={locale.heading} /></p>
-		<p><T message={locale.description} /></p>
+		<p class="c-text-heading-md"><T message={m['components.blog_newsletter.heading']} /></p>
+		<p><T message={m['components.blog_newsletter.desc']} /></p>
 		<svg
 			class="text-surface-variant h-22.5 desktop:h-31.25 w-auto max-w-full"
 			width="295"
@@ -54,7 +54,7 @@
 		<div class="space-y-4">
 			<div class="space-y-1">
 				<label class="c-text-body-sm block" for="name">
-					<T message={locale.name} />:
+					<T message={m['forms.name']} />:
 				</label>
 				<input
 					class="c-text-input w-full"
@@ -75,7 +75,7 @@
 				/>
 			</div>
 			<div class="space-y-1">
-				<p class="c-text-body-sm"><T message={locale.verify} />:</p>
+				<p class="c-text-body-sm"><T message={m['forms.turnstile.desc']} />:</p>
 				<div
 					class="turnstile"
 					use:turnstile
@@ -87,7 +87,7 @@
 			</div>
 		</div>
 		<button class="c-btn c-btn--pop px-4" type="submit">
-			<span><T message={locale.cta} /></span>
+			<span><T message={m['forms.register']} /></span>
 		</button>
 	</form>
 </div>

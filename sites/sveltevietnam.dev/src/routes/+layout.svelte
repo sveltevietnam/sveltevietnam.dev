@@ -1,6 +1,9 @@
 <script>
+	import { setContext } from 'svelte';
+
 	import { version } from '$app/environment';
 	import { page } from '$app/state';
+	import * as m from '$data/locales/generated/messages';
 	import ogImageHome from '$lib/assets/images/fallbacks/og.jpg?url';
 	import { buildStructuredBreadcrumbs } from '$lib/meta/structured/breadcrumbs';
 	import { toStringWithContext } from '$lib/meta/structured/utils';
@@ -10,19 +13,12 @@
 	let { children } = $props();
 
 	/** SEO setup */
-	const DEFAULT_KEYWORDS = {
-		en: 'svelte, vietnam, community, technology, open-source',
-		vi: 'svelte, việt nam, cộng đồng, công nghệ, mã nguồn mở',
-	};
-
 	let meta = $derived.by(() => {
 		const lang = page.data.sharedSettings.language;
 		const meta = page.data.meta;
-		const title = meta?.title ?? 'Svelte Vietnam';
-		const description =
-			meta?.description ??
-			'Inclusive community and go-to information hub for people of Svelte in Vietnam';
-		const keywords = meta?.keywords ?? DEFAULT_KEYWORDS[lang];
+		const title = meta?.title ?? m['svelte_vietnam.name'](lang);
+		const description = meta?.description ?? m['pages.home.desc'](lang);
+		const keywords = meta?.keywords ?? m['pages.home.keywords'](lang);
 		const canonical = meta?.canonical ?? page.url.toString();
 		const rootRelativeOgImage = meta?.og?.image ?? ogImageHome;
 
@@ -71,6 +67,7 @@
 	});
 
 	const routing = RoutingContext.set(page.data.routing);
+	setContext('t:lang', () => page.data.sharedSettings.language);
 
 	$effect(() => {
 		routing.update(page.data.routing);

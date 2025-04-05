@@ -73,6 +73,11 @@ export const load: PageServerLoad = async ({ url, parent, params, locals, depend
 			structured: buildStructuredBlogPost(lang, url.origin, post),
 			title: `${post.title}`,
 			description: post.description,
+			keywords: post.keywords,
+			// TODO: load the og image for each post
+			// og: {
+			// 	image: post
+			// }
 		},
 	};
 };

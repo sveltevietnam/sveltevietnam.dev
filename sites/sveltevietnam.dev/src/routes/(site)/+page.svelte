@@ -15,10 +15,9 @@
 </script>
 
 <main class="pt-header">
-	<!-- intro section -->
-	<SectionIntro locale={data.locales.sectionIntro} />
-	<SectionResources locale={data.locales.sectionResources} />
-	<SectionEvents locale={data.locales.sectionEvents} />
-	<SectionBlog locale={data.locales.sectionBlog} posts={data.posts} />
-	<SectionSponsor locale={data.locales.sectionSponsor} />
+	<SectionIntro />
+	<SectionResources />
+	<SectionEvents />
+	<SectionBlog posts={data.posts} />
+	<SectionSponsor />
 </main>

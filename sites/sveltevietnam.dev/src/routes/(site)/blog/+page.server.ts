@@ -1,9 +1,11 @@
 import { loadBlogCategory } from '$data/blog/categories';
 import { search, loadBlogPosts } from '$data/blog/posts';
+import * as m from '$data/locales/generated/messages';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { buildStructuredBlog } from '$lib/meta/structured/blog';
 
 import type { PageServerLoad } from './$types';
+import ogImage from './_page/og.jpg?url';
 
 export const load: PageServerLoad = async ({ locals, depends }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
@@ -37,6 +39,10 @@ export const load: PageServerLoad = async ({ locals, depends }) => {
 			insider: insider.posts,
 		},
 		meta: {
+			title: m['pages.blog.title'](lang),
+			description: m['pages.blog.desc'](lang),
+			keywords: m['pages.blog.keywords'](lang),
+			og: { image: ogImage },
 			structured: buildStructuredBlog(lang),
 		},
 	};

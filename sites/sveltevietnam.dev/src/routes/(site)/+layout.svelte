@@ -36,23 +36,12 @@
 	<PageLoadIndicator />
 {/await}
 
-<Header
-	locale={data.locales.header}
-	localeLanguageMenu={data.locales.languageMenu}
-	localeColorSchemeMenu={data.locales.colorSchemeMenu}
-	localePageMenu={data.locales.pageMenu}
-/>
+<Header />
 {@render children()}
 {#if page.data.editUrl}
-	<PageEditLink class="mt-auto" href={page.data.editUrl} locale={data.locales.edit} />
+	<PageEditLink class="mt-auto" href={page.data.editUrl} />
 {/if}
-<Footer
-	class={[!page.data.editUrl && 'mt-auto']}
-	{version}
-	locale={data.locales.footer}
-	localeGreenWebBadge={data.locales.greenWebBadge}
-	localeNotByAiBadge={data.locales.notByAiBadge}
-/>
+<Footer class={[!page.data.editUrl && 'mt-auto']} {version} />
 
 <DialogPortal stack={dialog} />
 <NotificationPortal stack={noti.stack} />

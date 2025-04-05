@@ -2,11 +2,13 @@
 	import { T } from '@sveltevietnam/i18n';
 	import type { HTMLAnchorAttributes } from 'svelte/elements';
 
-	let { locale, ...rest }: { locale: import('./locales/generated').Locale } & HTMLAnchorAttributes = $props();
+	import * as m from '$data/locales/generated/messages';
+
+	let attrs: HTMLAnchorAttributes = $props();
 </script>
 
-<a href="https://notbyai.fyi/" {...rest}>
-	<span class="sr-only"><T message={locale.description} /></span>
+<a href="https://notbyai.fyi/" {...attrs}>
+	<span class="sr-only"><T message={m['components.not_by_ai_badge']} /></span>
 	<svg width="131" height="42" viewBox="0 0 131 42" fill="none" xmlns="http://www.w3.org/2000/svg">
 		<path
 			d="M0.5 0.5H116C124.008 0.5 130.5 6.99187 130.5 15V41.5H15C6.99187 41.5 0.5 35.0081 0.5 27V0.5Z"

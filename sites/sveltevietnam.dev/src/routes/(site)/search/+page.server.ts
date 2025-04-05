@@ -11,9 +11,9 @@ export const load: PageServerLoad = async ({ locals, depends }) => {
 	return {
 		series: (await Promise.all(ids.map((id) => loadBlogSeries(id, lang)))).filter(Boolean),
 		meta: {
-			title: m['pages.blog_latest.title'](lang),
-			description: m['pages.blog_latest.desc'](lang),
-			keywords: m['pages.blog_latest.keywords'](lang),
+			title: m['pages.search.title'](lang),
+			description: m['pages.search.desc'](lang),
+			// TODO: add OG images
 		},
 	};
 };

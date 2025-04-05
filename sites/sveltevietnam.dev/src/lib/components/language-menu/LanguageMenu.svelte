@@ -4,6 +4,7 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	import { invalidate } from '$app/navigation';
+	import * as m from '$data/locales/generated/messages';
 	import { LOAD_DEPENDENCIES } from '$lib/constants';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
@@ -11,16 +12,16 @@
 	import flagGb from './images/flag-gb.svg';
 	import flagVn from './images/flag-vn.svg';
 
-	let {
-		locale,
-		class: cls,
-		...rest
-	}: { locale: import('./locales/generated').Locale } & HTMLAttributes<HTMLElement> = $props();
+	let { class: cls, ...rest }: HTMLAttributes<HTMLElement> = $props();
 
 	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();
 
-	let currentLangLabel = $derived(settings.language === 'vi' ? locale.vietnamese : locale.english);
+	let currentLangLabel = $derived(
+		settings.language === 'vi'
+			? m['components.language_menu.vietnamese']
+			: m['components.language_menu.english'],
+	);
 	let open = $state(false);
 
 	function reloadLanguage() {
@@ -31,7 +32,7 @@
 
 <nav
 	class={['relative w-fit', cls]}
-	aria-label={locale.aria}
+	aria-label={m['components.language_menu.aria'](settings.language).aria}
 	data-sveltekit-noscroll
 	data-sveltekit-preload-data="hover"
 	use:clickoutside={{ enabled: open }}
@@ -41,9 +42,9 @@
 	<label class="c-link-lazy flex cursor-pointer items-center gap-2 p-2 transition-colors">
 		<input class="peer sr-only" type="checkbox" name="language-menu" bind:checked={open} />
 		<i class="i i-[translate] h-6 w-6"></i>
-		<span class="sr-only peer-checked:hidden"><T message={locale.open} /></span>
-		<span class="sr-only hidden peer-checked:block"><T message={locale.close} /></span>
-		<span class="sr-only"><T message={locale.toggle} /></span>
+		<span class="sr-only peer-checked:hidden"><T message={m.open} /></span>
+		<span class="sr-only hidden peer-checked:block"><T message={m.close} /></span>
+		<span class="sr-only"><T message={m['components.language_menu.toggle']} /></span>
 		<span class="tablet:sr-only"><T message={currentLangLabel} /></span>
 		<i class="i i-[caret-down] h-5 w-5 transition-transform peer-checked:-rotate-180"></i>
 	</label>
@@ -63,8 +64,8 @@
 					>
 						<!-- no need to announce this flag image -->
 						<img class="h-6 w-9" src={flagVn} alt="" width="36" height="24" />
-						<span class="sr-only"><T message={locale.switch_to} /></span>
-						<span><T message={locale.vietnamese} /></span>
+						<span class="sr-only"><T message={m['components.language_menu.switch_to']} /></span>
+						<span><T message={m['components.language_menu.vietnamese']} /></span>
 					</a>
 				</li>
 				<li>
@@ -77,8 +78,8 @@
 					>
 						<!-- no need to announce this flag image -->
 						<img class="h-6 w-9" src={flagGb} alt="" width="36" height="24" />
-						<span class="sr-only"><T message={locale.switch_to} /></span>
-						<span><T message={locale.english} /></span>
+						<span class="sr-only"><T message={m['components.language_menu.switch_to']} /></span>
+						<span><T message={m['components.language_menu.english']} /></span>
 					</a>
 				</li>
 			</ul>

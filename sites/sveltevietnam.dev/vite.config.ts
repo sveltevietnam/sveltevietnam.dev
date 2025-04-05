@@ -7,11 +7,13 @@ import { css } from '@sveltevietnam/css/vite';
 import { i18n } from '@sveltevietnam/i18n/vite';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
+import { qrcode } from 'vite-plugin-qrcode';
 
 import { sveltekitRouting } from './src/lib/routing/vite-plugin.js';
 
 export default defineConfig({
 	plugins: [
+		qrcode(),
 		inlineSvg(
 			[
 				{
@@ -28,6 +30,6 @@ export default defineConfig({
 		tailwindcss(),
 		sveltekit(),
 		sveltekitRouting(),
-		i18n(),
+		i18n({ input: 'src/data/locales' }),
 	],
 });

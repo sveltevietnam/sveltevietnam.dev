@@ -3,6 +3,7 @@
 	import { T } from '@sveltevietnam/i18n';
 
 	import { page } from '$app/state';
+	import * as m from '$data/locales/generated/messages';
 	import fallback16x9 from '$lib/assets/images/fallbacks/16x9.jpg?enhanced&w=2240,1540;1088;686&imagetools';
 	import { Avatar } from '$lib/components/avatar';
 	import { BlogNewsletter } from '$lib/components/blog-newsletter';
@@ -24,8 +25,6 @@
 	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();
 	const dialog = DialogContext.get();
-
-	let locales = $derived(data.locales.page as import('./_page/locales/generated').Locale);
 
 	let dateFormatter = $derived(
 		new Intl.DateTimeFormat(settings.language, {
@@ -51,15 +50,7 @@
 	function openQrDialog() {
 		dialog.push('custom', {
 			component: QrCodeDialog,
-			props: {
-				data: url,
-				locales: {
-					title: locales.qr_title,
-					description: locales.qr_description,
-					download: locales.qr_download,
-					close: locales.qr_close,
-				},
-			},
+			props: { data: url },
 		});
 	}
 </script>
@@ -77,7 +68,6 @@
 		<div class="tablet:mt-10 desktop:mt-15 relative mt-8">
 			<NotByAiBadge
 				class="absolute -left-4 -top-4"
-				locale={data.locales.notByAiBadge}
 				--color-fg="var(--color-surface)"
 				--color-bg="var(--color-on-surface)"
 			/>
@@ -116,17 +106,20 @@
 				<div class="space-y-2">
 					<p>
 						{#if data.post.translation === 'manual'}
-							<T message={locales.lang_manual_translation} />
+							<T message={m['pages.blog_slug.lang.manual.title']} />
 						{:else}
-							<T message={locales.lang_original} />
+							<T message={m['pages.blog_slug.lang.original.title']} />
 						{/if}
 						<HintedText class="ml-1 cursor-help">
 							<i class="i i-[info] h-5 w-5"></i>
+							<span class="sr-only">
+								<T message={m['pages.blog_slug.lang.explain']} />
+							</span>
 							{#snippet hint()}
 								{#if data.post.translation === 'manual'}
-									<T message={locales.lang_manual_translation_description} />
+									<T message={m['pages.blog_slug.lang.manual.desc']} />
 								{:else}
-									<T message={locales.lang_original_description} />
+									<T message={m['pages.blog_slug.lang.original.desc']} />
 								{/if}
 							{/snippet}
 						</HintedText>
@@ -134,12 +127,12 @@
 					<p>
 						<span>
 							{data.post.readMinutes}
-							<T message={locales.read_minutes} />
+							<T message={m['pages.blog_slug.stats.read_minutes']} />
 						</span>,
 						<span>
 							~
 							{data.post.numWords}
-							<T message={locales.word} />
+							<T message={m['pages.blog_slug.stats.word']} />
 						</span>
 					</p>
 				</div>
@@ -156,7 +149,7 @@
 		<div class="_toc">
 			{#if toc.items.size}
 				<section class="tablet:sticky top-header space-y-6" id="toc">
-					<h2 class="c-text-heading border-b"><T message={locales.toc_heading} /></h2>
+					<h2 class="c-text-heading border-b"><T message={m['pages.blog_slug.headings.toc']} /></h2>
 					<ul class="space-y-1">
 						{#each toc.items.values() as tocItem (tocItem.id)}
 							{@const level = tocItem.element.tagName.slice(1)}
@@ -186,9 +179,9 @@
 				{/key}
 			{/if}
 			<p class="c-text-body-sm mt-6 border-t pt-2">
-				<T message={locales.edit_intro} />
+				<T message={m['pages.blog_slug.edit.intro']} />
 				<a class="c-link" href={data.contentEditUrl} data-external>
-					<T message={locales.edit_cta} />
+					<T message={m['pages.blog_slug.edit.cta']} />
 				</a>
 			</p>
 		</section>
@@ -196,11 +189,11 @@
 		<!-- sharing -->
 		<div class="_sharing">
 			<section class={['space-y-6', !settings.hydrated && 'top-header sticky']} id="share">
-				<h2 class="c-text-heading border-b"><T message={locales.share_heading} /></h2>
+				<h2 class="c-text-heading border-b"><T message={m['pages.blog_slug.headings.share']} /></h2>
 				<ul class="flex flex-wrap gap-4">
 					{#if settings.hydrated}
 						<li>
-							<CopyIconBtn text={url} aria={locales.copy.toString()} />
+							<CopyIconBtn text={url} aria={m['pages.blog_slug.actions.copy'](settings.language)} />
 						</li>
 					{/if}
 					<li>
@@ -252,7 +245,7 @@
 		<!-- latest blog post -->
 		{#if data.posts.latest}
 			<section class="_latest space-y-6">
-				<h2 class="c-text-heading border-b"><T message={locales.latest_heading} /></h2>
+				<h2 class="c-text-heading border-b"><T message={m['pages.blog_slug.headings.latest']} /></h2>
 				<BlogPostListItem post={data.posts.latest} />
 			</section>
 		{/if}
@@ -261,7 +254,7 @@
 	<!-- newsletter -->
 	<GradientBackground pattern="jigsaw">
 		<section class="max-w-pad pt-section pb-section-more" id="newsletter">
-			<BlogNewsletter locale={data.locales.blogNewsletter} />
+			<BlogNewsletter />
 		</section>
 	</GradientBackground>
 
@@ -270,9 +263,9 @@
 		<section class="py-section max-w-pad space-y-8" id="posts">
 			<div class="space-y-4 border-t-4 border-current pt-2">
 				<div class="flex flex-wrap items-baseline justify-between gap-4">
-					<h2 class="c-text-title uppercase"><T message={locales.series_heading} /></h2>
+					<h2 class="c-text-title uppercase"><T message={m['pages.blog_slug.headings.series']} /></h2>
 					<TextArrowLink href={routing.path('blog')}>
-						<T message={locales.view_more} />
+						<T message={m.view_more} />
 					</TextArrowLink>
 				</div>
 			</div>

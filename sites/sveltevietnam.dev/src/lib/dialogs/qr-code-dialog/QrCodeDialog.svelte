@@ -3,10 +3,10 @@
 	import { createQrPngDataUrl } from '@svelte-put/qr';
 	import { qr, type SvgQRParameter } from '@svelte-put/qr/svg';
 	import { T } from '@sveltevietnam/i18n';
-	import type { MessageString } from '@sveltevietnam/i18n/runtime';
 	import { onMount } from 'svelte';
 	import type { HTMLDialogAttributes } from 'svelte/elements';
 
+	import * as m from '$data/locales/generated/messages';
 	import { light, dark } from '$data/logos';
 	import { enhancedialog } from '$lib/dialogs/enhanced-dialog';
 	import { SettingsContext } from '$lib/settings/context.svelte';
@@ -15,18 +15,11 @@
 		item,
 		data,
 		filename = 'qr.png',
-		locales,
 		class: cls,
 		...rest
 	}: HTMLDialogAttributes &
 		StackItemProps & {
 			data: string;
-			locales: {
-				title: MessageString;
-				description: MessageString;
-				download: MessageString;
-				close: MessageString;
-			};
 			filename?: string;
 		} = $props();
 
@@ -64,7 +57,7 @@
 
 <dialog
 	class={[
-		'backdrop:bg-surface bg-surface tablet:p-8 border-2 space-y-6 p-6 shadow-lg backdrop:opacity-80',
+		'backdrop:bg-surface bg-surface tablet:p-8 space-y-6 border-2 p-6 shadow-lg backdrop:opacity-80',
 		cls,
 	]}
 	use:enhancedialog
@@ -75,11 +68,11 @@
 >
 	<!-- svelte-ignore a11y_autofocus -->
 	<button class="c-link-lazy absolute right-4 top-4 p-2" onclick={() => dialog?.close()} autofocus>
-		<span class="sr-only"><T message={locales.close} /></span>
+		<span class="sr-only"><T message={m.close} /></span>
 		<i class="i i-[x] h-6 w-6"></i>
 	</button>
-	<p class="c-text-title border-b"><T message={locales.title} /></p>
-	<p><T message={locales.description} /></p>
+	<p class="c-text-title border-b"><T message={m['dialogs.qr.title']} /></p>
+	<p><T message={m['dialogs.qr.desc']} /></p>
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
 		use:qr={config}
@@ -88,7 +81,7 @@
 		class="mx-auto h-80 w-80 max-w-full"
 	/>
 	{#if href}
-		<a class="c-btn mx-auto block" {href} download={filename}><T message={locales.download} /></a>
+		<a class="c-btn mx-auto block" {href} download={filename}><T message={m.download} /></a>
 	{/if}
 </dialog>
 

@@ -25,18 +25,13 @@
 	<section class="py-section max-w-pad desktop:space-y-10 space-y-8">
 		<BlogPostCommonList posts={data.posts} id="listing" />
 		{#if data.pagination.max > 1}
-			<Pagination
-				class="ml-auto"
-				locale={data.locales.pagination}
-				url={paginationUrl}
-				{...data.pagination}
-			></Pagination>
+			<Pagination class="ml-auto" url={paginationUrl} {...data.pagination} />
 		{/if}
 	</section>
 
 	<GradientBackground pattern="jigsaw">
 		<section class="max-w-pad pt-section pb-section-more" id="newsletter">
-			<BlogNewsletter locale={data.locales.blogNewsletter} />
+			<BlogNewsletter />
 		</section>
 	</GradientBackground>
 </main>

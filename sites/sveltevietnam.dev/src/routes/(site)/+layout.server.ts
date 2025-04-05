@@ -4,6 +4,7 @@ import { COMMON_COOKIE_CONFIG } from '$lib/constants';
 import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = ({ locals, cookies }) => {
+	const lang = locals.sharedSettings.language;
 	let splash: 'disabled' | 'short' | 'long' = 'disabled';
 	/**
 	 * take a timestamp for the last fresh visit, that is:
@@ -28,5 +29,5 @@ export const load: LayoutServerLoad = ({ locals, cookies }) => {
 		});
 	}
 
-	return { splash, lang: locals.sharedSettings.language };
+	return { splash, lang };
 };

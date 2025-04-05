@@ -1,7 +1,5 @@
 <script>
-  import * as sample from '$lib/notifications/static/sample/locales/generated/en';
   import { ColorSchemeMenu } from '$lib/components/color-scheme-menu';
-  import * as colorSchemeMenuLocale from '$lib/components/color-scheme-menu/locales/generated/en';
 </script>
 
 [Svelte action] (different from [SvelteKit form action](https://kit.svelte.dev/docs/form-actions)) is a technique introduced first-party by Svelte that helps implement and package reusable logic and interaction with the DOM:
@@ -27,7 +25,7 @@ Perhaps one of the most common applications of Svelte action that I use is handl
 </p>
 
 <div class="p-2 border not-prose relative z-popup float-right inline-block ml-4 mt-4">
-  <ColorSchemeMenu locale={colorSchemeMenuLocale} />
+  <ColorSchemeMenu />
 </div>
 
 </div>

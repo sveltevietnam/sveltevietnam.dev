@@ -3,17 +3,16 @@
 	import { T } from '@sveltevietnam/i18n';
 	import type { HTMLAttributes } from 'svelte/elements';
 
+	import * as m from '$data/locales/generated/messages';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	let {
-		locale,
 		flat = false,
 		class: cls,
 		onnavigate = () => {},
 		...rest
 	}: {
-		locale: import('./locales/generated').Locale;
 		flat?: boolean;
 		onnavigate?: () => void;
 	} & HTMLAttributes<HTMLElement> = $props();
@@ -58,7 +57,7 @@
 
 <nav
 	class={['relative', !flat && 'w-fit', cls]}
-	aria-label={locale.aria}
+	aria-label={m['components.page_menu.aria'](settings.language)}
 	data-sveltekit-noscroll
 	data-sveltekit-preload-data="hover"
 	use:clickoutside={{ enabled: open }}
@@ -69,9 +68,9 @@
 		<label class="c-link-lazy flex cursor-pointer items-center gap-2 p-2 transition-colors">
 			<input class="peer sr-only" type="checkbox" name="page-menu" bind:checked={open} />
 			<i class="i i-[compass] h-6 w-6"></i>
-			<span class="sr-only peer-checked:hidden"><T message={locale.open} /></span>
-			<span class="sr-only hidden peer-checked:block"><T message={locale.close} /></span>
-			<span class="sr-only"><T message={locale.toggle} /></span>
+			<span class="sr-only peer-checked:hidden"><T message={m.open} /></span>
+			<span class="sr-only hidden peer-checked:block"><T message={m.close} /></span>
+			<span class="sr-only"><T message={m['components.page_menu.toggle']} /></span>
 			<i class="i i-[caret-down] h-5 w-5 transition-transform peer-checked:-rotate-180"></i>
 		</label>
 	{/if}

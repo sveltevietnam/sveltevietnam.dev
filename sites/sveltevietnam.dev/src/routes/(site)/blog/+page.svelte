@@ -1,18 +1,19 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 
+	import * as m from '$data/locales/generated/messages';
 	import { BlogNewsletter } from '$lib/components/blog-newsletter';
 	import { BlogPostShowcase } from '$lib/components/blog-post-showcase';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { GradientBackground } from '$lib/components/gradient-background';
 	import { TextArrowLink } from '$lib/components/text-arrow-link';
 	import { RoutingContext } from '$lib/routing/context.svelte';
+	import { SettingsContext } from '$lib/settings/context.svelte.js';
 
 	let { data } = $props();
 
+	const settings = SettingsContext.get();
 	const routing = RoutingContext.get();
-
-	let locales = $derived(data.locales.page as import('./_page/locales/generated').Locale);
 
 	const commonArrowLinkClasses = 'group-hover:translate-x-1 transition-transform';
 </script>
@@ -30,7 +31,7 @@
 		<div class="flex items-center justify-between">
 			<h2 class="c-text-title uppercase">{category}</h2>
 			<TextArrowLink {href}>
-				<T message={locales.view_more} />
+				<T message={m.view_more} />
 			</TextArrowLink>
 		</div>
 		{#if description}
@@ -48,9 +49,9 @@
 			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 			<div class="space-y-4 text-center">
 				<h1 class="c-text-heading-page text-primary-on-surface">
-					<T message={locales.page_heading} />
+					<T message={m['pages.blog.heading']} />
 				</h1>
-				<p class="c-text-subtitle-page"><T message={locales.page_tagline} /></p>
+				<p class="c-text-subtitle-page"><T message={m['pages.blog.tagline']} /></p>
 			</div>
 		</div>
 		<div class="flex items-center gap-3">
@@ -72,7 +73,7 @@
 	<!-- latest -->
 	<section class="max-w-pad py-section tablet:space-y-8 space-y-6" id="latest">
 		{@render listingHeader({
-			category: locales.latest.toString(),
+			category: m['latest'](settings.language),
 			href: routing.path('blog/latest')!,
 		})}
 		<BlogPostShowcase posts={data.posts.latest}></BlogPostShowcase>
@@ -105,7 +106,7 @@
 				</div>
 				<div class="flex-1 space-y-6">
 					<div class="tablet:justify-between tablet:items-end mobile:flex-col flex flex-1 gap-6">
-						<h2 class="c-text-heading-md"><T message={locales.write_heading} /></h2>
+						<h2 class="c-text-heading-md"><T message={m['pages.blog.write.heading']} /></h2>
 						<div class="flex items-end gap-4">
 							{#each ['h-8', 'h-14', 'h-6', 'h-7'] as cls (cls)}
 								<svg
@@ -121,12 +122,12 @@
 							{/each}
 						</div>
 					</div>
-					<p><T message={locales.write_description} /></p>
+					<p><T message={m['pages.blog.write.desc']} /></p>
 					<a class="c-btn c-btn--pop w-fit text-left" href="#placeholder">
 						<i class="i i-[pencil-simple] h-6 w-6"></i>
-						<span><T message={locales.write_cta} /></span>
+						<span><T message={m['pages.blog.write.cta']} /></span>
 					</a>
-					<p><T message={locales.write_discuss} /></p>
+					<p><T message={m['pages.blog.write.discuss']} /></p>
 					<div class="tablet:gap-8 desktop:gap-10 flex items-end gap-4">
 						<div class="bg-surface-variant h-6 flex-1"></div>
 						<div class="bg-surface-variant h-8 w-8"></div>
@@ -155,13 +156,13 @@
 			<div
 				class="shadow-brutal bg-surface flex items-start justify-between border-2 border-current"
 			>
-				<p class="p-4 pl-6 leading-relaxed"><T message={locales.resource} /></p>
+				<p class="p-4 pl-6 leading-relaxed"><T message={m['pages.blog.resources.desc']} /></p>
 				<a
 					class="tablet:self-stretch desktop:p-4 bg-secondary mobile:shadow-brutal shadow-on-surface group grid
 					place-items-center p-8 text-white"
 					href={routing.path('home')}
 				>
-					<span class="sr-only"><T message={locales.view_resources} /></span>
+					<span class="sr-only"><T message={m['pages.blog.resources.view']} /></span>
 					<i class="i i-[arrow-right] h-6 w-6 {commonArrowLinkClasses}"></i>
 				</a>
 			</div>
@@ -183,7 +184,7 @@
 	<!-- newsletter  -->
 	<GradientBackground>
 		<section class="max-w-pad pt-section pb-section-more" id="newsletter">
-			<BlogNewsletter locale={data.locales.blogNewsletter} />
+			<BlogNewsletter />
 		</section>
 	</GradientBackground>
 </main>

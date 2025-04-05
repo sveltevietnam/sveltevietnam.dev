@@ -1,13 +1,11 @@
 <script>
   import { StackItem } from '@svelte-put/async-stack';
 
-  import * as delayedHydration from '$lib/notifications/static/delayed-hydration/locales/generated/vi';
-  import * as newSiteVersion from '$lib/notifications/static/new-site-version/locales/generated/vi';
-  import * as discordNewMessage from '$lib/notifications/components/discord-new-message/locales/generated/vi';
-  import * as sample from '$lib/notifications/static/sample/locales/generated/vi';
+  import * as m from '$data/locales/generated/messages';
   import BaseNotification from '$lib/notifications/components/BaseNotification.svelte';
   import { DiscordNewMessage } from '$lib/notifications/components/discord-new-message';
 	import { NotificationContext } from '$lib/notifications/context.svelte';
+	import { SettingsContext } from '$lib/settings/context.svelte';
 
   import devToolsSlow3gImage from '../images/devtools-slow-3g.jpg?format=webp&imagetools';
   import disableJavascriptImage from '../images/disable-javascript.png?format=webp&imagetools';
@@ -18,16 +16,25 @@
 
 	const item = new StackItem({ timeout: 0 });
 	const { toaster } = NotificationContext.get();
+  const settings = SettingsContext.get();
 
   function pushDemoToast() {
-    toaster.warning(sample);
+    toaster.warning({
+      title: m['notifications.sample.title'](settings.language),
+      message: m['notifications.sample.title'](settings.language),
+    });
   }
 
-  const notiLocales = {
-    delayedHydration,
-    newSiteVersion,
-    discordNewMessage,
-  };
+  const notiLocales = $derived({
+    delayedHydration: {
+      title: m['notifications.new_site_version.title'](settings.language),
+      message: m['notifications.new_site_version.message'](settings.language)
+    },
+    newSiteVersion: {
+      title: m['notifications.new_site_version.title'](settings.language),
+      message: m['notifications.new_site_version.message'](settings.language)
+    },
+  });
 </script>
 
 <div class="c-callout c-callout--info">
@@ -86,7 +93,7 @@ Nếu bạn ở trên trang web đủ lâu, bạn sẽ bắt gặp thông báo t
 
 <div class="not-prose">
 
-<DiscordNewMessage name="Nguyễn Văn A" locale={notiLocales.discordNewMessage} />
+<DiscordNewMessage name="Nguyễn Văn A" />
 
 </div>
 

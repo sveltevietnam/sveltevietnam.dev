@@ -2,6 +2,7 @@
 	import { T } from '@sveltevietnam/i18n';
 
 	import { page } from '$app/state';
+	import * as m from '$data/locales/generated/messages';
 	import { Avatar } from '$lib/components/avatar';
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
@@ -20,9 +21,6 @@
 		url.hash = 'posts';
 		return url;
 	});
-	let locales = $derived(
-		data.locales.page as unknown as import('./_page/locales/generated').Locale,
-	);
 </script>
 
 <main>
@@ -54,9 +52,11 @@
 	<section class="py-section max-w-pad desktop:space-y-15 tablet:space-y-10 space-y-8">
 		<div class="space-y-4 border-t-4 border-current pt-2">
 			<div class="flex flex-wrap items-baseline justify-between gap-4">
-				<h2 class="c-text-title"><T message={locales.events} name={data.author.name} /></h2>
+				<h2 class="c-text-title">
+					<T message={m['pages.people_slug.events']} name={data.author.name} />
+				</h2>
 				<TextArrowLink href={routing.path('events')}>
-					<T message={locales.view_events} />
+					<T message={m['pages.people_slug.view_events']} />
 				</TextArrowLink>
 			</div>
 		</div>
@@ -69,21 +69,16 @@
 			<div class="space-y-4 border-t-4 border-current pt-2">
 				<div class="flex flex-wrap items-baseline justify-between gap-4">
 					<h2 class="c-text-title">
-						<T message={locales.posts_by} name={data.author.name} />
+						<T message={m['pages.people_slug.posts_by']} name={data.author.name} />
 					</h2>
 					<TextArrowLink href={routing.path('blog')}>
-						<T message={locales.view_blog} />
+						<T message={m['pages.people_slug.view_blog']} />
 					</TextArrowLink>
 				</div>
 			</div>
 			<BlogPostCommonList posts={data.posts} />
 			{#if data.pagination.max > 1}
-				<Pagination
-					class="ml-auto"
-					locale={data.locales.pagination}
-					url={paginationUrl}
-					{...data.pagination}
-				></Pagination>
+				<Pagination class="ml-auto" url={paginationUrl} {...data.pagination}></Pagination>
 			{/if}
 		</section>
 	{/if}

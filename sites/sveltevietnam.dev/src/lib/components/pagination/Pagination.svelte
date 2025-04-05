@@ -1,25 +1,33 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 	import type { HTMLAttributes } from 'svelte/elements';
+
+	import * as m from '$data/locales/generated/messages';
+	import { SettingsContext } from '$lib/settings/context.svelte';
+
 	let {
 		url,
 		current,
 		max,
-		locale,
 		class: cls,
 		...rest
 	}: {
 		url: URL;
 		current: number;
 		max: number;
-		locale: import('./locales/generated').Locale;
 	} & HTMLAttributes<HTMLElement> = $props();
+
+	const settings = SettingsContext.get();
 </script>
 
-<nav class={['flex w-fit items-center gap-4', cls]} aria-label={locale.aria} {...rest}>
+<nav
+	class={['flex w-fit items-center gap-4', cls]}
+	aria-label={m['components.pagination.aria'](settings.language)}
+	{...rest}
+>
 	<form class="flex items-center gap-2" method="GET" action={url.toString()}>
-		<p><T message={locale.page} /></p>
-		<label class="sr-only"><T message={locale.number} /></label>
+		<p><T message={m['components.pagination.page']} /></p>
+		<label class="sr-only"><T message={m['components.pagination.number']} /></label>
 		<input
 			class="appearance-none border border-current px-2 py-1"
 			style:width="{1.75 + 1.5 * max.toString().length}ch"
@@ -31,7 +39,7 @@
 			id="page"
 			value={current}
 		/>
-		<p><T message={locale.of} /> <strong>{max}</strong></p>
+		<p><T message={m['components.pagination.of']} /> <strong>{max}</strong></p>
 	</form>
 	<form class="flex items-center gap-2" method="GET" action={url.toString()}>
 		<label
@@ -40,7 +48,7 @@
 				'has-disabled:cursor-not-allowed has-disabled:text-placeholder',
 			]}
 		>
-			<span class="sr-only"><T message={locale.previous} /></span>
+			<span class="sr-only"><T message={m['components.pagination.previous']} /></span>
 			<i class="i i-[caret-left] h-5 w-5"></i>
 			<input
 				class="sr-only"
@@ -56,7 +64,7 @@
 				'has-disabled:cursor-not-allowed has-disabled:text-placeholder',
 			]}
 		>
-			<span class="sr-only"><T message={locale.next} /></span>
+			<span class="sr-only"><T message={m['components.pagination.next']} /></span>
 			<i class="i i-[caret-right] h-5 w-5"></i>
 			<input
 				class="sr-only"
