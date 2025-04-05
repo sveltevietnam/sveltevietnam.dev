@@ -1,6 +1,0 @@
-{
-	"messages": {
-		"title": "Diễn đàn cộng đồng",
-		"description": "<strong>{{name}}</strong> vừa nhắn tin tại <a class=\"c-link\" href=\"https://discord.sveltevietnam.dev/\" target=\"_blank\" rel=\"noopener noreferrer\">Discord của Svelte Việt Nam</a>."
-	}
-}

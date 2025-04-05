@@ -1,9 +1,0 @@
-{
-	"messages": {
-		"heading": "The Svelte Vietnam Blog Newsletter",
-		"description": "Subscribe to receive notification for new blog post from Svelte Vietnam",
-		"name": "Name",
-		"verify": "Verify <em class=\"c-text-body-xs\">(requires Javascript)</em>",
-		"cta": "Register"
-	}
-}

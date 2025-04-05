@@ -1,0 +1,634 @@
+---
+messages:
+  vietnam: Việt Nam
+  version: Phiên bản
+  latest: Mới nhất
+  current: Hiện tại
+  open: Mở
+  close: Đóng
+  download: Tải về
+  view_more: Xem thêm
+  svelte_vietnam:
+    name: Svelte Việt Nam
+    discord: Svelte Việt Nam Discord
+  forms:
+    name: Tên
+    turnstile:
+      desc: Xác thực <em class="c-text-body-xs">(cần Javascript)</em>
+    register: Đăng ký
+    search: Tìm kiếm
+  pages:
+    home:
+      title: Trang chủ | Svelte Việt Nam
+      keywords: svelte, việt nam, cộng đồng, công nghệ, mã nguồn mở
+      desc: Kênh thông tin tổng hợp và cộng đồng dành cho bất cứ ai quan tâm đến sự
+        phát triển của Svelte tại Việt Nam.
+      intro:
+        heading: Svelte Việt Nam
+        subtitle: Vì một cộng đồng thân thiện và sáng tạo
+      resources:
+        heading: Bốn bước đến Svelte
+        bluesky: Cập nhật tin tức qua Bluesky
+        one:
+          step: Bước một
+          heading: Khám phá Svelte bằng thực hành
+          tutorial:
+            desc: <strong>Svelte tutorial*</strong> là tài liệu hướng dẫn chính thức,
+              giúp bạn ‘học bằng hành’ — tiếp cận những khái niệm về Svelte và SvelteKit
+              từ cơ bản đến nâng cao thông qua từng bài tập nhỏ.
+            link: Xem trang Svelte Tutorial
+            footnote: '* đây là tài liệu dành cho Svelte 5 và hiện tại chỉ hỗ trợ
+              tiếng Anh'
+          playground:
+            desc: <strong>Svelte playground*</strong> (REPL) là trình tương tác chính
+              thức, giúp bạn nhanh chóng thử nghiệm ý tưởng hoặc quan sát đầu ra của
+              trình biên dịch (Svelte compiler).
+            link: Xem trang Svelte Playground
+          lab:
+            desc: <strong>SvelteLab</strong> là trình tương tác nâng cao được xây
+              dựng bởi cộng đồng, mở rộng ý tưởng từ Svelte playground, hỗ trợ SvelteKit
+              và nhiều tính năng cho dự án hoàn chỉnh.
+            link: Xem trang SvelteLab
+        two:
+          step: Bước hai
+          heading: Đọc qua tài liệu Svelte & SvelteKit
+          docs:
+            desc: <strong>Svelte documentation</strong> là tài liệu chính thức, hệ
+              thống hóa các tính năng của Svelte và SvelteKit một cách đầy đủ và dễ
+              tìm kiếm, mang giá trị tham khảo cao trong công việc hằng ngày.
+            link: Xem Svelte Documentation
+        three:
+          step: Bước ba
+          heading: Tham gia cộng đồng Svelte Vietnam
+          desc: <strong>Svelte Việt Nam</strong> là một dự án mã nguồn mở và
+            là cộng đồng cho bất cứ ai quan tâm đến Svelte tại Việt Nam, với mong
+            muốn tạo ra kênh thông tin bổ ích và môi trường lành mạnh để thành viên
+            chia sẻ kinh nghiệm, giúp đỡ lẫn nhau trong hành trình phát triển phần
+            mềm và tiếp cận mã nguồn mở.
+          discord: Tham gia thảo luận tại Discord
+          github: Đóng góp vào dự án tại Github
+          note: Ngoài ra, bạn có thể theo dõi <a class="c-link" href="/vi/su-kien">sự
+            kiện của Svelte Việt Nam</a> và các <a class="c-link" href="/vi/blog">bài
+            viết tại Blog của Svelte Việt Nam Blog</a>.
+        four:
+          step: Bước bốn
+          heading: Theo dõi các kênh thông tin Svelte quốc tế
+          svelte:
+            desc: <strong>Svelte</strong> là dự án mã nguồn mở. Theo dõi và đóng góp
+              vào sự phát triển của Svelte qua các kênh sau.
+            github:
+              svelte: Github repository của Svelte
+              sveltekit: Github repository của SvelteKit
+              svelte_dev: Github repository của svelte.dev
+          society:
+            desc: <strong>Svelte society</strong> là mạng lưới quốc tế liên kết những
+              người quan tâm đến Svelte. Svelte Society phát triển và duy trì nhiều
+              tài nguyên quan trọng.
+            discord: Tham gia thảo luận tại Discord
+            website: Xem trang Svelte Society
+          summit:
+            desc: <strong>Svelte Summit</strong> là sự kiện quốc tế về Svelte, hội
+              tụ bảo trì viên và diễn giả từ khắp nơi trên thế giới.
+            youtube: Xem sự kiện tại Youtube
+            website: Xem trang Svelte Summit
+          hack:
+            desc: <strong>SvelteHack</strong> là sự kiện hackathon thường diễn ra
+              sau các dấu mốc quan trọng trong hệ sinh thái Svelte.
+            link: Xem trang SvelteHack
+          others: 'Ngoài ra, bạn còn có thể:'
+          newsletter: đăng ký nhận cập nhật tin tức về Svelte hàng tháng qua “<a class="c-link"
+            href="https://svelte.substack.com/">The (Unofficial) Svelte JS Newsletter</a>”,
+          madebysvelte: xem hoặc chia sẻ các dự án, sản phẩm về Svelte với cộng đồng
+            quốc tế qua trang “<a class="c-link" href="https://madewithsvelte.com/">Made
+            by Svelte</a>”,
+          jobs:
+            theo dõi tin tức tức việc làm quốc tế qua kênh <a class="c-link" href="https://discord.com/channels/457912077277855764/640884695890133012">#job-postings</a>
+            từ Discord chính thức của Svelte, hoặc qua trang “<a class="c-link" href="https://sveltejobs.com/">Svelte
+            Jobs</a>”.
+      events:
+        heading: Sự kiện
+        desc: Gặp gỡ cộng đồng Svelte Việt Nam, cùng nhau chia sẻ kinh nghiệm, sản
+          phẩm, và mọi thứ liên quan đến Svelte và open source
+        tba:
+          desc: Chưa có sự kiện mới nào
+          subscribe: Đăng ký cập nhật sự kiện mới nhất!
+      blog:
+        heading: Bài viết
+        desc: Đọc và viết bài tại <a class="c-link" href="/vi/blog">Blog của Svelte
+          Việt Nam</a>.
+      sponsor:
+        heading: Tài trợ
+        desc: Giúp cộng đồng Svelte Việt Nam phát triển bền vững bằng cách trở thành
+          nhà tài trợ
+        list:
+          Các nhà tài trợ được liệt kê tại<br/><a class="c-link" href="https://opencollective.com/sveltevietnam">Open
+          Collective của Svelte Việt Nam</a>.
+        read_more: Tìm hiểu thêm!
+    coc:
+      title: Quy tắc ứng xử | Svelte Việt Nam
+      keywords: quy tắc, nội quy, điều lệ
+      heading: Quy tắc ứng xử
+      desc: Quy tắc ứng xử dành cho thành viên trong cộng đồng Svelte Việt Nam
+      message: Mọi thành viên (cá nhân hoặc tổ chức) tham gia cộng đồng Svelte Vietnam
+        cần tuân theo các quy tắc ứng xử đã được đề ra trong văn bản “Code of Conduct”
+        của <a class="c-link" href="https://github.com/sveltejs/community/blob/main/CODE_OF_CONDUCT.md">sveltejs/community</a>
+        và <a class="c-link" href="https://sveltesociety.dev/about">Svelte Society</a>.<br
+        /><br />Vui lòng gởi khiếu nại, góp ý, và thắc mắc thông qua các kênh dưới
+        đây. Xin cảm ơn!
+      contact:
+        discord: Liên hệ với ban quản trị qua Discord
+        email: Gửi email đến
+      excerpt:
+        heading: Tóm tắt
+        desc:
+          Dưới đây là bản dịch phần tóm tắt của văn bản <a class="c-link" href="https://sveltesociety.dev/about">Code
+          of Conduct từ Svelte Society</a>. Để tránh dài dòng và sai sót trong quá
+          trình dịch thuật, các văn bản đã nêu sẽ không được dịch toàn bộ. Hãy tham
+          khảo bản gốc để biết thêm chi tiết.
+        content: Svelte Society nỗ lực để xây dựng một cộng đồng <strong>không quấy
+          rối bất cứ ai</strong>, bất kể giới tính, bản dạng và thể hiện giới, xu
+          hướng tình dục, khuyết tật, ngoại hình, tuổi tác, chủng tộc, quốc tịch,
+          hoặc tôn giáo, tính ngưỡng. <strong>Chúng tôi không khoan dung cho các hành
+          vi quấy rối đến thành viên dưới mọi hình thức</strong>. Cá nhân hoặc tổ
+          chức vi phạm các quy tắc này có thể bị xử phạt hoặc loại khỏi cộng đồng
+          dựa theo quyết định từ ban quản trị của Svelte Society.<br /><br />Người
+          tham gia, diễn giả, nhà tài trợ, người hướng dẫn, và tình nguyện viên tại
+          các sự kiện của chúng tôi phải đồng ý với những quy tắc ứng xử. Ban quản
+          trị sẽ luôn thực thi những quy tắc này. Chúng tôi mong đợi sự hợp tác từ
+          tất cả mọi người để bảo đảm một môi trường an toàn.
+        citation: — Trích “TL;DR - Code of Conduct”, Svelte Society
+    blog:
+      title: Blog | Svelte Việt Nam
+      keywords: blog, viết, chia sẻ, tham gia, đóng góp
+      heading: Svelte Việt Nam Blog
+      desc: Nơi chia sẻ về công nghệ và con người trong hệ sinh thái Svelte. Viết
+        về trải nghiệm của bạn với Svelte hoặc cập nhật tin tức từ cộng đồng Svelte
+        Việt Nam
+      tagline: Học để chia sẻ. Sẻ chia là học
+      category:
+        technical: Các bài viết xoay quanh vấn đề kỹ thuật trong hệ sinh thái Svelte
+          và SvelteKit
+        insider: Chia sẻ từ quản trị viên về các quyết định kỹ thuật và bài học từ
+          quá trình xây dựng cộng đồng Svelte Việt Nam và trang web sveltevietnam.dev
+      write:
+        heading: Chia sẻ bài viết của bạn!
+        desc: Blog của Svelte Việt Nam là nơi dành cho các thành viên chia sẻ kiến
+          thức, ý tưởng, cảm nhận về các trải nghiệm của mình với cộng đồng Svelte
+          trong nước và quốc tế.<br/><br/>Svelte Việt Nam hoan nghênh tất cả mọi người
+          đăng bài hoặc liên kết bài viết của mình tại blog này. Đây là cách thiết
+          thực và trực tiếp nhất mà thành viên có thể đóng góp vào sự phát triển chung
+          của cả cộng đồng.
+        cta: Viết bài hoặc liên kết đến bài viết của bạn
+        discuss:
+          Thảo luận về bài viết tại <a class="c-link" href="https://discord.sveltevietnam.dev/">Discord
+          chính thức của Svelte Việt Nam</a>.
+      resources:
+        desc: Một số tài nguyên và kênh thông tin về Svelte và SvelteKit được cập
+          nhật liên tục tại trang chủ sveltevietnam.dev
+        view: Xem danh sách tài nguyên
+    blog_slug:
+      lang:
+        explain: giải thích
+        original:
+          title: Ngôn ngữ gốc
+          desc: Bài viết đang được hiển thị bằng ngôn ngữ gốc.
+        manual:
+          title: Bản dịch tay
+          desc: Bài viết đã được dịch tay sang ngôn ngữ hiện tại.
+        unsupported: Bài viết đang hiện thị với ngôn ngữ gốc vì chưa được dịch sang
+          ngôn ngữ bạn đã chọn. Nếu có thể, hãy tham gia <a class="c-link" href="https://github.com/sveltevietnam">Github</a>
+          và <a class="c-link" href="https://discord.sveltevietnam.dev">Discord</a>
+          để hỗ trợ dịch bài bạn nhé. Xin cảm ơn!
+      stats:
+        read_minutes: phút đọc
+        word: từ
+      actions:
+        copy: Sao chép liên kết bài viết
+      headings:
+        toc: Mục lục
+        share: Chia sẻ
+        latest: Bài viết mới
+        series: Cùng chuỗi bài viết
+      edit:
+        intro: Bạn tìm thấy lỗi chính tả hay cần đính chính nội dung?
+        cta: Sửa trang này tại Github
+    blog_categories:
+      title: Chủ đề | Blog | Svelte Việt Nam
+      keywords: blog, viết, chủ đề, phân loại
+      heading: Các chủ đề bài viết
+      desc: Xem danh sách đầy đủ các chủ đề bài viết tại Blog Svelte Việt Nam
+    blog_latest:
+      title: Mới nhất | Blog | Svelte Việt Nam
+      keywords: blog, viết, danh sách
+      heading: Mới nhất
+      desc: Tìm nhanh bài viết mới nhất từ Blog Svelte Việt Nam
+    blog_series:
+      title: Chuỗi bài viết | Blog | Svelte Việt Nam
+      keywords: blog, viết, chuỗi bài viết, phân loại
+      heading: Các chuỗi bài viết
+      desc: Xem danh sách đầy đủ các chuỗi bài viết tại Blog Svelte Việt Nam
+    design:
+      title: Thiết kế | Svelte Việt Nam
+      keywords: thiết kế, ý tưởng, chữ viết, màu sắc, hệ thống, sáng tạo, cảm hứng,
+        logo
+      heading: Thiết kế
+      desc: Giản lược về hệ thống chữ viết, màu sắc, và logo sử dụng trong dự án Svelte
+        Việt Nam
+      typography:
+        heading: Chữ viết
+        headers:
+          example: Ví dụ
+          desc: Mô tả
+        rows:
+          heading_page:
+            title: Chủ đề trang
+            desc: Chủ đề của trang, thường tương ứng với H1
+          heading_large:
+            title: Mục đề lớn
+            desc: Mục đề cho các phần nội dung lớn trên trang, thường tương ứng với
+              H1, H2
+          heading_medium:
+            title: Mục đề vừa
+            desc: Mục đề cho các phần nội dung thứ cấp trên trang, thường tương ứng
+              với H2, H3
+          heading:
+            title: Mục đề
+            desc: Mục đề cho các phần nội dung thứ cấp trên trang, thường tương ứng
+              với H3, H4
+          title:
+            title: Tiêu đề
+            desc: Tiêu đề một thành phần, hoặc phần tử trong một danh sách
+          page_subtitle:
+            title: Phụ đề trang
+            desc: Bổ sung mô tả cho mỗi trang, dùng bên cạnh “Chủ đề trang”
+          body_medium:
+            title: Nội dung vừa
+            desc: Nội dung nổi bật, tương đối cần sự chú ý hơn so với nội dung bình
+              thường.
+          body:
+            title: Nội dung
+            desc: Nôi dung mặc định cho hầu hết văn bản trên trang
+          body_small:
+            title: Nội dung nhỏ
+            desc: Nội dung thứ cấp, tương đối không quan trọng bằng những nội dung
+              chính khác
+          body_smaller:
+            title: Nội dung nhỏ hơn
+            desc: Nội dung thứ cấp mang tính bổ sung, không thiết yếu đối đối với
+              các tính năng giao diện
+      sand:
+        heading: Bảng màu cát
+        desc: Bảng màu “cát”, lấy ý tưởng từ bảng màu cùng tên trong hệ thống màu
+          <a class="c-link" href="https://github.com/evilmartians/harmony">Harmony
+          (Evil Martians)</a>, được sử dụng làm nền mặc định cho phần lớn nội dung
+          — bề mặt, văn bản, đường kẻ, ...
+        footnote: '* P3 — màu thuộc không gian màu P3. Độ phủ màu P3 rộng hơn sRGB.
+          Các thiết bị cũ có thể không hỗ trợ P3.'
+      colors:
+        semantic:
+          heading: Màu ngữ nghĩa
+          desc: Các màu có ý nghĩa tùy thuộc vào vị trí hoặc ngữ cảnh sử dụng. Những
+            màu này cũng thay đổi tương ứng theo chế độ hiển thị (sáng và tối).
+        basic:
+          heading: Màu cơ bản
+          desc: Các màu mặc định cho phần lớn nội dung — bề mặt, văn bản, đường kẻ,
+            ... Ví dụ sau đây liệt kê một số màu thường gặp.
+        status:
+          heading: Màu trạng thái
+          desc: Các màu thể hiện trạng thái ứng dụng hoặc cung cấp ngữ cảnh bổ sung
+            cho phần tử.
+      logo:
+        desc: Đôi lời về cảm hứng sáng tác và chủ đề của logo sử dụng trong dự án
+          Svelte Việt Nam
+        inspiration:
+          heading: Cảm hứng
+          desc: 'Logo Svelte Việt Nam được tạo nên từ hai thành phần chính: Logo chính
+            thức của Svelte và hình ảnh chiếc nón lá mang ngôi sao - tượng trưng  cho
+            hình ảnh cộng đồng người Việt Nam. Màu sắc chính của logo  được chọn dựa
+            trên màu sắc chính của Svelte, tạo nên tính thống nhất với màu sắc biểu
+            tượng của cộng đồng Svelte trên thế giới.'
+        inspire: Truyền cảm hứng
+        community: Cộng đồng
+        version:
+          heading: Các phiên bản logo
+          original: Nguyên bản
+          positive: Dương bản
+          negative: Âm bản
+    events:
+      title: Sự kiện | Svelte Việt Nam
+      keywords: sự kiện, gặp mặt, chia sẻ
+      heading: Sự kiện
+      desc: Gặp gỡ cộng đồng tại Việt Nam — chia sẻ về Svelte và open source
+      upcoming:
+        heading: Sự kiện sắp tới
+        tba:
+          desc: Chưa có sự kiện mới nào.
+          subscribe: Đăng ký nhận thông báo khi có sự kiện mới!
+      participate:
+        heading: Tham gia
+        desc: Đăng kí nhận thông tin cập nhật về sự kiện của cộng đồng Svelte Việt
+          Nam
+        discord:
+          Thảo luận về sự kiện tại <a class="c-link" href="https://discord.sveltevietnam.dev/">Discord
+          chính thức của Svelte Việt Nam</a>.
+      share:
+        heading: Chia sẻ
+        desc: Quảng bá sản phẩm, lan tỏa ý tưởng, chia sẻ dự án và kinh nghiệm của
+          bạn trong các sự kiện sắp đến.<br /></br />Liên hệ với ban quản trị thông
+          qua email bên dưới để đăng ký trở thành diễn giả hoặc đóng góp ý tưởng cho
+          các hoạt động, buổi gặp mặt, đàm thoại tại sự kiện.
+      sponsor:
+        heading: Tài trợ
+        desc: Tài trợ cho sự kiện bằng cách đóng góp tài chính hoặc hỗ trợ công tác
+          tổ chức tại các buổi gặp mặt, cuộc thi, hoạt động của cộng đồng Svelte Việt
+          Nam.
+        why: Tại sao Svelte Việt Nam cần tài trợ?
+        cta: Trở thành nhà tài trợ
+      past:
+        heading: Sự kiện đã diễn ra
+    jobs:
+      title: Công việc | Svelte Việt Nam
+      keywords: công việc, việc làm, tuyển dụng, dự án
+      heading: Công việc
+      desc: Công việc dành cho lập trình viên Svelte tại Việt Nam — kết nối doanh
+        nghiệp và cộng đồng
+      tagline: Kết nối doanh nghiệp và cộng đồng
+      posting:
+        heading: Đăng tuyển
+        tba:
+          desc: Chưa có công việc nào.
+          create: Tạo bài đăng tuyển ngay!
+      recruiter:
+        heading: Nhà tuyển dụng
+        desc: Quy trình đăng tuyển tại Svelte Việt Nam là hoàn toàn miễn phí. Các
+          bài đăng tuyển được phê duyệt bởi ban quản trị sẽ hiển thị tại trang web
+          này.
+        create: Tạo bài đăng tuyển
+        email: Liên hệ ban quản trị qua email
+        sponsor:
+          desc: Hãy cân nhắc tài trợ để đóng góp duy trì và phát triển cộng đồng Svelte
+            Việt Nam!
+          link: Tại sao Svelte Việt Nam cần tài trợ?
+          cta: Trở thành nhà tài trợ
+      candidate:
+        heading: Ứng viên
+        desc: Đăng ký nhận thông báo khi có cập nhật đăng tuyển hoặc thông tin về
+          việc làm liên quan đến Svelte
+        discord:
+          Tham gia thảo luận tại <a class="c-link" href="https://discord.sveltevietnam.dev/">Discord
+          chính thức của Svelte Việt Nam</a>.
+      scraping:
+        heading: Từ kênh tuyển dụng
+        desc: Tính năng đang được phát triển để tự động tổng hợp việc làm từ các kênh
+          tuyển dụng phổ biến tại Việt Nam.
+        tba:
+          desc: Chưa có công việc nào.
+          subscribe: Đăng ký cập nhật công việc mới nhất!
+    people:
+      title: Con người | Svelte Vietnam
+      heading: Con người tại Svelte Việt Nam
+      desc: Danh sách các thành viên đã đóng góp nội dung cho trang web sveltevietnam.dev
+        hoặc là diễn giả tại các sự kiện của cộng đồng Svelte Việt Nam
+    people_slug:
+      events: '{{name}} đã đóng góp vào các sự kiện'
+      view_events: Xem trang sự kiện
+      posts_by: Bài viết của {{name}}
+      view_blog: Xem blog
+    roadmap:
+      title: Lộ trình | Svelte Việt Nam
+      keywords: cột mốc, lột trình, kế hoạch, phát triển
+      heading: Lộ trình
+      desc: Kế hoạch phát triển dự án Svelte Việt Nam
+      common:
+        milestone: Cột mốc
+        objective: Mục tiêu
+        task: Công việc
+        progress: Tiến độ
+        highlight: Dấu ấn
+      progress:
+        planned: Trong kế hoạch
+        inprogress: Đang tiến hành
+        completed: Hoàn thành
+        delayed: Tạm hoãn
+      dong:
+        objective: tối giản hóa thiết kế trang sveltevietnam.dev; thử nghiệm Svelte
+          5; thiết lập hệ thống người dùng hoàn chỉnh và trình biên soạn markdown
+          tối giản nhằm hướng tới một trải nghiệm liền mạch cho quy trình đăng tuyển
+          và viết blog.
+        tasks:
+          job_posting: Cho phép nhà tuyển dụng đăng tuyển / tạo liên kết trực tiếp
+            trên nền tảng sveltevietnam.dev
+          post_submitInApp: Cho phép người dùng viết blog trực tiếp trên nền tảng
+            sveltevietnam.dev (thay vì thông qua Github issue và PR)
+          task_md_editor: Xây dựng trình xoạn thảo markdown tối giản
+          github_oauth: Thiết lập đăng nhập nhanh bằng GitHub OAuth
+          svelte_5: Tái xây dựng hoàn toàn sveltevietnam.dev bằng Svelte 5
+          inter_4: Nâng cấp Font chữ Inter lên phiên bản 4
+          tailwind_4: Giản lược thiết lập styling, thử nghiệm Tailwind 4.0
+          refactor: Giản lược và đồng nhất thiết kế toàn trang web sveltevietnam.dev
+      tu:
+        objective: chuẩn bị cho phiên bản chính thức đầu tiên của sveltevietnam.dev
+          (v1.0.0-next), tập trung phát triển trang blog, trang sự kiện, các tính
+          năng và nội dung cần thiết để cộng đồng có thể bắt đầu tham gia và đóng
+          góp một cách chủ động hơn.
+        highlights:
+          open_collective:
+            Gởi yêu cầu thành lập <a class="c-link" href="https://opencollective.com/sveltevietnam">Open
+            Collective</a> cho Svelte Việt Nam, bắt đầu nhận tài trợ tài chính
+          first_offline_meetup:
+            Tổ chức buổi <a class="c-link" href="/vi/su-kien/2024-04-gap-mat-xuan-giap-thin-2024-ho-chi-minh">gặp
+            mặt trực tiếp đầu tiên tại Tp. Hồ Chí Minh</a>
+          first_online_meetup:
+            Tổ chức buổi <a class="c-link" href="/vi/su-kien/202312-gap-nhau-truc-tuyen-cuoi-nam">gặp
+            mặt cộng đồng trực tuyến đầu tiên</a>
+          first_ui: Thiết lập hạ tầng nền tảng cơ bản và giao diện sơ khởi cho trang
+            web sveltevietnam.dev
+        tasks:
+          survey: Sơ thảo nội dung và thiết kế cho “Khảo sát Cộng đồng Svelte Việt
+            Nam”
+          page_jobs: Ra mắt trang <a class="c-link" href="/vi/viec-lam">Việc làm</a>
+            với thiết kế sơ khởi
+          page_design: Giới thiệu nhóm trang <a class="c-link" href="/vi/thiet-ke">Thiết
+            kế</a> ghi lại các chi tiết thiết kế của Svelte Việt Nam
+          progressive_enhancement: Hỗ trợ cho người dùng không truy cập được Javascript
+            (cải tiến tăng  dần), đặc biệt đối với các tính năng thiết yếu như điều
+            hướng đa ngôn  ngữ, thay đổi chế độ giao diện, menu trên di động, và màn
+            hình chờ
+          page_coc: Ra mắt trang <a class="c-link" href="/vi/quy-tac-ung-xu">Quy tắc
+            ứng xử</a> với thiết kế sơ khởi
+          og: Thiết lập hình bìa Open Graph riêng cho mỗi trang đã hoàn thiện
+          blog_post: Thiết lập quy trình đăng bài hoặc liên kết bài viết thông qua
+            Github issue và hướng dẫn code trực tiếp bài viết
+          references:
+            Hoàn thiện văn bản “<a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/TECHNICAL_REFERNCES.md">Technical
+            Reference</a>” và “<a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/CONTRIBUTING.md">Contributing
+            Guidelines</a>”
+          page_blog: Ra mắt trang <a class="c-link" href="/vi/blog">Blog</a> với thiết
+            kế sơ khởi
+          page_events: Ra mắt trang <a class="c-link" href="/vi/su-kien">Sự kiện</a>
+            với thiết kế sơ khởi
+          mailer: Thiết kế hạ tầng và khởi tạo service mailer để quản lý hệ thống
+            người dùng đăng kí nhận thông báo qua email
+      auLac:
+        objective: khởi tạo dự án, xây dựng hạ tầng, thiết lập một quy trình phát
+          triển cơ bản
+        highlights:
+          roadmap: Xây dựng một lộ trình phát triển Svelte Việt Nam
+          initiation: Xây dựng cấu trúc thông tin (Information Architecture) và nhận
+            diện thương hiệu (Brand Identity) cho Svelte Việt Nam
+        tasks:
+          page_roadmap: Ra mắt trang <a class="c-link" href="/vi/lo-trinh">Lộ trình</a>
+          metadata: Thiết lập metadata và SEO cơ bản, bao gồm sitemap.xml, Google
+            Search Console, Google Analytics
+          discord: Thiết lập websocket service và bot cho Discord server, định hướng
+            phát  triển dần để nâng cao trải nghiệm thành viên tại cả Discord và trang
+            web  sveltevietnam.dev
+          page_home: Ra mắt <a class="c-link" href="/vi">Trang chủ</a> với thiết kế
+            sơ khởi
+          page_branding_repo:
+            Khởi tạo <a class="c-link" href="https://github.com/sveltevietnam/branding">branding
+            repository</a> để lưu trữ các phiên bản logo và văn bản “Branding Guidelines”
+            (bàn về việc sử dụng logo và các hình ảnh của Svelte Việt Nam)
+          logo: Thiết kế và tích hợp <a class="c-link" href="/vi/thiet-ke#logo">logo
+            chính thức của Svelte Việt Nam</a>
+          project_reference:
+            Công bố văn bản “<a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/PROJECT_REFERENCES.md">Project
+            Reference</a>” giới thiệu tổng quan về dự án Svelte Việt Nam
+          github:
+            Khởi tạo Github <a class="c-link" href="https://github.com/sveltevietnam">organization</a>,
+            <a class="c-link" href="https://github.com/orgs/sveltevietnam/projects/1">project</a>,
+            và <a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev">sveltevietnam.dev
+            repository</a>
+    search:
+      title: Tìm kiếm | Svelte Vietnam
+      heading: Tìm kiếm
+      desc: Truy cập nhanh nội dung tại sveltevietnam.dev bằng cách tìm kiếm từ khóa
+    settings:
+      title: Cài đặt | Svelte Vietnam
+      heading: Cài đặt
+      desc: Tùy chỉnh trải nghiệm của riêng bạn tại sveltevietnam.dev
+    sponsor:
+      title: Tài trợ | Svelte Việt Nam
+      keywords: tài trợ, đóng góp, tài chính
+      heading: Tài trợ
+      desc: Duy trì và phát triển cộng đồng Svelte Việt Nam
+      tagline: Duy trì sáng tạo
+      highlight:
+        desc:
+          'Svelte Việt Nam chọn <a class="c-link" href="https://opencollective.com/sveltevietnam">Open
+          Collective</a> để nhận đóng góp tài chính từ nhà tài trợ (cá nhân hoặc tổ
+          chức). Đây là nền tảng có tính minh bạch cao: mọi đóng góp (tiền vào) và
+          chi tiêu (tiền ra) đều là công khai.'
+        cta: Tài trợ qua Open Collective
+        contact: Nếu bạn có đề xuất hoặc thắc mắc, xin liên hệ
+      participate:
+        heading: Tham gia cộng đồng Svelte Việt Nam
+        desc: Nếu bạn không có điều kiện để hỗ trợ tài chính hoặc muốn đóng góp trực
+          tiếp hơn cho cộng đồng Svelte Việt Nam, hãy xem qua các kênh dưới  đây.
+          Xin cảm ơn!
+        discord: Thảo luận tại Discord chính thức của Svelte Việt Nam
+        events: Giúp tổ chức hoặc cung cấp địa điểm cho các sự kiện
+        blog: Chia sẻ sản phẩm, ý tưởng, kinh nghiệm qua Blog
+        github: Đóng góp vào các dự án mã nguồn mở tại Github
+      why:
+        heading: Tại sao Svelte Việt Nam cần tài trợ?
+        desc: 'Svelte Việt Nam không phải là một doanh nghiệp và không có dự định
+          kinh tế hóa các dự án hay sản phẩm. Tuy nhiên, Svelte Việt Nam cần có kinh
+          phí để xây dựng một cộng đồng lành mạnh và khuyến khích thành viên gắn kết,
+          cùng phát triển thông qua các sự kiện và diễn đàn. Để hiểu rõ hơn định hướng
+          phát triển của Svelte Việt Nam, hãy đọc qua bài viết “<a class="c-link"
+          href="https://www.sveltevietnam.dev/vi/blog/20231012-svelte-viet-nam-tu-vuon-nha-vuon-ra-the-gioi">Svelte
+          Việt Nam: từ vườn nhà vươn ra thế giới</a>”.'
+        reasons:
+          opening: 'Cụ thể, Svelte Việt Nam sẽ sử dụng kinh phí từ quỹ tài trợ để:'
+          one: Duy trì một hạ tầng ổn định (Cloudflare). Hiện tại Svelte Việt Nam
+            được xây dựng dựa vào các nỗ lực cá nhân và tài chính tự nguyện. Có kinh
+            phí có nghĩa là thành viên sẽ không phải tự chi trả cho khoản này.
+          two: Sáng tạo các hoạt động và sự kiện để thành viên có thể gặp gỡ, kết
+            nối, khuyến khích tư duy cộng đồng, chia sẻ, đồng phát triển.
+          closing: Như đã đề cập ở <a class="c-link" href="#how">phần trên</a>, danh
+            sách nhà tài trợ, cũng như các khoản thu, chi đều được lưu trữ một cách
+            công khai tại <a class="c-link" href="https://opencollective.com/sveltevietnam">Open
+            Collective của Svelte Việt Nam</a>.
+      benefit:
+        heading: Tôi được gì khi tài trợ cho Svelte Việt nam?
+        desc:
+          Nhà tài trợ sẽ được liệt kệ tại trang <a class="c-link" href="https://opencollective.com/sveltevietnam">Open
+          Collective của Svelte Việt Nam</a>, cũng như trong các trang dự án và sự
+          kiện tương ứng. Trong tương lai  gần khi trang “Việc làm” đã được hoàn thiện,
+          nhà tài trợ sẽ được ưu tiên  trong quy trình đăng tuyển dụng. Ngoài ra,
+          Svelte Việt Nam cũng dành  nhiều cơ hội riêng cho nhà tài trợ để quản bá
+          thương hiệu, tổ chức, sản  phẩm của họ trong các sự kiện của cộng đồng.
+  components:
+    color_scheme_menu:
+      light: Chế độ sáng
+      dark: Chế độ tối
+      system: Mặc định
+      toggle: bảng chọn chế độ màu. Chế độ màu hiện tại là
+    footer:
+      about:
+        title: Về chúng tôi
+        desc: Svelte Việt Nam là kênh thông tin tổng hợp và cộng đồng dành cho bất
+          cứ ai quan tâm đến sự phát triển của Svelte tại Việt Nam.
+      navigation: Điều hướng
+      contact: Liên hệ
+      powered_by: Trên nền tảng
+    blog_newsletter:
+      heading: Bản tin Svelte Việt Nam
+      desc: Đăng ký nhận thông báo để không bỏ lỡ bài viết mới từ Blog của Svelte
+        Việt Nam
+    green_web_badge: sveltevietnam.dev được lưu trữ bởi Cloudflare đạt tiêu chuẩn
+      hosting xanh từ tổ chức Green Web Foundation
+    header:
+      go_to_home_page: Về trang chủ
+      mobile_menu: bảng điều khiển
+    language_menu:
+      aria: chuyển đổi ngôn ngữ trang
+      switch_to: chuyển sang
+      vietnamese: Tiếng Việt
+      english: Tiếng Anh
+      toggle: bảng chọn ngôn ngữ. Ngôn ngữ hiện tại là
+    not_by_ai_badge: trang này được viết bởi con người, không phải bởi trí tuệ nhân
+      tạo (AI)
+    page_edit_link:
+      link: Sửa trang này tại Github
+      desc: sveltevietnam.dev là một dự án mã nguồn mở và hoan nghênh sự đóng góp
+        của bạn. Xin cảm ơn!
+    page_menu:
+      aria: trang
+      toggle: bảng chọn trang
+    pagination:
+      aria: chuyển trang
+      number: số trang
+      page: Trang
+      of: trên
+      previous: về trang trước
+      next: đến trang tiếp theo
+    splash_screen_playground:
+      choose: Chọn biến thể
+      play: Chạy
+      pause: Dừng
+      short: Ngắn
+      long: Dài
+  notifications:
+    sample:
+      title: Thông báo mẫu
+      message: Thông báo này sẽ tự động ẩn đi sau vài giây. Bản có thể thử rê chuột
+        vào để tạm dừng đồng hồ hẹn giờ của thông báo.
+    delayed_hydration:
+      title: Gián đoạn
+      message: Phát hiện gián đoạn do kết nối không ổn định. Xin lỗi bạn vì sự bất
+        tiện này!
+    discord_new_message:
+      title: Diễn đàn cộng đồng
+      message:
+        <strong>{{name}}</strong> vừa nhắn tin tại <a class="c-link" href="https://discord.sveltevietnam.dev/"
+        target="_blank" rel="noopener noreferrer">Discord của Svelte Việt Nam</a>.
+    new_site_version:
+      title: Phiên bản mới
+      message: Trang web đang được cập nhật với phiên bản mới. Tải lại trang để có
+        trải nghiệm tốt nhất bạn nhé!
+  dialogs:
+    qr:
+      title: Mã QR
+      desc: Chia sẻ và quét mã này để dễ dàng truy cập vào bài viết nhé!

@@ -1,6 +1,0 @@
-{
-	"messages": {
-		"title": "Sample Notification",
-		"message": "This notification will automatically dismiss after a a few seconds. You may try hovering over it to pause the timer!"
-	}
-}

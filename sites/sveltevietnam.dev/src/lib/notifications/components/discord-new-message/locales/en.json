@@ -1,6 +1,0 @@
-{
-	"messages": {
-		"title": "Community Forum",
-		"description": "<strong>{{name}}</strong> just sent a message in the <a class=\"c-link\" href=\"https://discord.sveltevietnam.dev/\" target=\"_blank\" rel=\"noopener noreferrer\">Svelte Vietnam Discord</a>."
-	}
-}
