@@ -14,7 +14,7 @@ messages:
   forms:
     name: Name
     turnstile:
-      desc: Verify em class="c-text-body-xs">(requires Javascript)</em>
+      desc: Verify <em class="c-text-body-xs">(requires Javascript)</em>
     register: Register
     search: Search
   pages:
