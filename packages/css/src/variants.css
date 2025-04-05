@@ -1,0 +1,39 @@
+/*
+ * mirroring "./selectors.css"
+ * use this in CSS or markup
+ */
+@custom-variant disabled {
+	&:is(:disabled, [disabled]:not([disabled='false'])) {
+		@slot;
+	}
+}
+
+@custom-variant delayed {
+	&:is([data-delayed]:not([data-delayed='false'])) {
+		@slot;
+	}
+}
+
+@custom-variant timeout {
+	&:is([data-timeout]:not([data-timeout='false'])) {
+		@slot;
+	}
+}
+
+@custom-variant current {
+	&:is([aria-current]:not([aria-current='false']), [data-current]:not([data-current='false'])) {
+		@slot;
+	}
+}
+
+@custom-variant checked {
+	&:is(:checked, [data-checked]:not([data-checked='false'])) {
+		@slot;
+	}
+}
+
+@custom-variant user-invalid {
+	&:is(:user-invalid, [aria-invalid='true'], :has(:user-invalid), :has([aria-invalid='true'])) {
+		@slot;
+	}
+}

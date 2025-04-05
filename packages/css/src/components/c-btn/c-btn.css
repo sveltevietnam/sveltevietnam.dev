@@ -1,6 +1,3 @@
-@import '../../selectors.css';
-@import '../../icons/index.css';
-
 /*
 	Default button component
 
@@ -20,37 +17,38 @@
 		position: relative;
 
 		padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
-
 		border: 1px solid currentcolor;
 
 		transition-timing-function: var(--easing);
 		transition-duration: var(--duration);
 		transition-property: transform, opacity, background-color, color, border-color;
 
-		&:--disabled,
-		&:has(input:--disabled) {
+		&:is(:disabled, [disabled]:not([disabled='false'])),
+		&:has(input:disabled) {
 			cursor: not-allowed;
 			opacity: 0.5;
 		}
 
-		&:hover {
+		@variant hover {
 			--duration: 120ms;
 			--easing: var(--ease-out);
 		}
 
-		&:active {
+		@variant active {
 			--duration: 40ms;
 		}
 
-		&:focus-visible:not(:--disabled),
-		&:is(label):has(input:focus-visible) {
-			border-color: var(--color-outline-focus);
-			outline: 1.5px solid var(--color-outline-focus);
-			outline-offset: 1px;
+		@variant not-disabled {
+			&:focus-visible,
+			&:is(label):has(input:focus-visible) {
+				border-color: var(--color-outline-focus);
+				outline: 1.5px solid var(--color-outline-focus);
+				outline-offset: 1px;
+			}
 		}
 
-		&:--delayed,
-		&:--timeout {
+		&:is([data-delayed]:not([data-delayed='false'])),
+		&:is([data-timeout]:not([data-timeout='false'])) {
 			cursor: wait;
 
 			&::after {
@@ -79,12 +77,12 @@
 			}
 		}
 
-		&:--delayed {
-			@apply ia-spinner;
+		&:is([data-delayed]:not([data-delayed='false'])) {
+			--icon-url: url('../../assets/images/animated-spinner.svg?no-inline');
 		}
 
-		&:--timeout {
-			@apply ia-3dots;
+		&:is([data-timeout]:not([data-timeout='false'])) {
+			--icon-url: url('../../assets/images/animated-three-dots.svg?no-inline');
 		}
 
 		/*
@@ -105,7 +103,7 @@
 			padding-inline: calc(var(--spacing) * 2.5) calc(var(--spacing) * 3);
 		}
 
-		&:not(:has(:is(img, svg))) {
+		&:not(:has(:is(img, svg, .i))) {
 			text-align: center;
 		}
 
@@ -113,12 +111,14 @@
 			color: var(--color-surface);
 			background-color: var(--color-on-surface);
 
-			&:hover:not(:--disabled, :has(input:--disabled)) {
-				background-color: oklch(from var(--color-on-surface) calc(l - 0.08) c h);
-			}
+			&:not(:is(:disabled, [disabled]:not([disabled='false'])), :has(input:disabled)) {
+				@variant hover {
+					background-color: oklch(from var(--color-on-surface) calc(l - 0.08) c h);
+				}
 
-			&:active:not(:--disabled, :has(input:--disabled)) {
-				background-color: oklch(from var(--color-on-surface) calc(l - 0.04) c h);
+				@variant active {
+					background-color: oklch(from var(--color-on-surface) calc(l - 0.04) c h);
+				}
 			}
 		}
 	}

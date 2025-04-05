@@ -1,3 +1,8 @@
+/*
+ * use this instead @variant in style tag to avoid dependency on Tailwind,
+ * for usage in markup or CSS, see "./variants.css"
+ */
+
 @custom-selector :--disabled :disabled, [disabled]:not([disabled='false']);
 @custom-selector :--delayed [data-delayed]:not([data-delayed='false']);
 @custom-selector :--timeout [data-timeout]:not([data-timeout='false']);

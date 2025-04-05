@@ -1,5 +1,3 @@
-@import '../../selectors.css';
-
 /*
 	A special button with thick shadow. Often used to draw
 	attention when standing alone
@@ -44,29 +42,33 @@
 			transition-property: transform;
 		}
 
-		&:focus-visible:not(:--disabled),
-		&:is(label):has(input:focus-visible) {
-			outline: none;
+		@variant not-disabled {
+			&:focus-visible,
+			&:is(label):has(input:focus-visible) {
+				outline: none;
 
-			&::before {
-				background-color: var(--color-outline-focus);
+				&::before {
+					background-color: var(--color-outline-focus);
+				}
 			}
 		}
 
-		&:hover:not(:--disabled, :has(input:--disabled)) {
-			--y: -2px;
+		&:not(:is(:disabled, [disabled]:not([disabled='false'])), :has(input:disabled)) {
+			@variant hover {
+				--y: -2px;
 
-			&::before {
-				--shadow-y: calc(var(--shadow-initial-y) - var(--y));
+				&::before {
+					--shadow-y: calc(var(--shadow-initial-y) - var(--y));
+				}
+			}
+
+			@variant active {
+				--y: -1px;
 			}
 		}
 
-		&:active:not(:--disabled, :has(input:--disabled)) {
-			--y: -1px;
-		}
-
-		&:--disabled,
-		&:has(input:--disabled) {
+		&:is(:disabled, [disabled]:not([disabled='false'])),
+		&:has(input:disabled) {
 			opacity: unset;
 			background-color: var(--color-surface-variant);
 			background-color: color-mix(in oklch, var(--color-surface), var(--color-on-surface) 20%);

@@ -8,8 +8,8 @@
 }
 
 /* ad-hoc custom media and selectors */
+@import './variants.css';
 @import './medias.css';
-@import './selectors.css';
 
 /* tailwind customization */
 @import './theme/index.css';
@@ -50,15 +50,9 @@
 		fill: currentcolor;
 	}
 
-	button:focus-visible:not(:--disabled),
-	label:has(input:focus-visible) {
+	button:focus-visible:not(:disabled),
+	label:has(input:focus-visible):not(:disabled) {
 		outline: 1.5px solid var(--color-outline-focus);
 		outline-offset: 1px;
-	}
-}
-
-@custom-variant current {
-	&:--current {
-		@slot;
 	}
 }

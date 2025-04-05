@@ -1,5 +1,3 @@
-@import '../selectors.css';
-
 /*
 	Links that inherit color from parent, only change to "colors.link" on hover,
 	often used in title of item cards
@@ -28,7 +26,7 @@
 		transition-duration: calc(0.75 * var(--duration)), var(--duration);
 		transition-property: color, background-size;
 
-		&:--current,
+		&:is([aria-current]:not([aria-current='false']), [data-current]:not([data-current='false'])),
 		&:hover {
 			--duration: 200ms;
 			--easing: var(--ease-out);
@@ -37,9 +35,11 @@
 			background-size: 100% var(--underline-height, 1px);
 		}
 
-		&:focus-visible:not(:--disabled) {
-			outline: 1.5px solid var(--color-outline-focus);
-			outline-offset: 1px;
+		@variant not-disabled {
+			&:focus-visible {
+				outline: 1.5px solid var(--color-outline-focus);
+				outline-offset: 1px;
+			}
 		}
 	}
 }

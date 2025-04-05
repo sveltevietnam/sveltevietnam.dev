@@ -1,5 +1,3 @@
-@import '../selectors.css';
-
 /*
 	Links that inherit color from parent and on hover change to "colors.link",
 	also have no underline effect. Often seen in breadcrumbs and footer links. For example:
@@ -20,16 +18,18 @@
 		transition-property: color, border-color;
 
 		&:hover,
-		&:--current {
+		&:is([aria-current]:not([aria-current='false']), [data-current]:not([data-current='false'])) {
 			--duration: 120ms;
 			--easing: var(--ease-out);
 
 			color: var(--active-color);
 		}
 
-		&:focus-visible:not(:--disabled) {
-			outline: 1.5px solid var(--color-outline-focus);
-			outline-offset: 1px;
+		@variant not-disabled {
+			@variant focus-visible {
+				outline: 1.5px solid var(--color-outline-focus);
+				outline-offset: 1px;
+			}
 		}
 	}
 }
