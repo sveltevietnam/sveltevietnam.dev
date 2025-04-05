@@ -60,11 +60,11 @@ messages:
         three:
           step: Bước ba
           heading: Tham gia cộng đồng Svelte Vietnam
-          desc: <strong>Svelte Việt Nam</strong> là một dự án mã nguồn mở và
-            là cộng đồng cho bất cứ ai quan tâm đến Svelte tại Việt Nam, với mong
-            muốn tạo ra kênh thông tin bổ ích và môi trường lành mạnh để thành viên
-            chia sẻ kinh nghiệm, giúp đỡ lẫn nhau trong hành trình phát triển phần
-            mềm và tiếp cận mã nguồn mở.
+          desc: <strong>Svelte Việt Nam</strong> là một dự án mã nguồn mở và là cộng
+            đồng cho bất cứ ai quan tâm đến Svelte tại Việt Nam, với mong muốn tạo
+            ra kênh thông tin bổ ích và môi trường lành mạnh để thành viên chia sẻ
+            kinh nghiệm, giúp đỡ lẫn nhau trong hành trình phát triển phần mềm và
+            tiếp cận mã nguồn mở.
           discord: Tham gia thảo luận tại Discord
           github: Đóng góp vào dự án tại Github
           note: Ngoài ra, bạn có thể theo dõi <a class="c-link" href="/vi/su-kien">sự
@@ -347,11 +347,11 @@ messages:
       past:
         heading: Sự kiện đã diễn ra
     jobs:
-      title: Công việc | Svelte Việt Nam
-      keywords: công việc, việc làm, tuyển dụng, dự án
-      heading: Công việc
-      desc: Công việc dành cho lập trình viên Svelte tại Việt Nam — kết nối doanh
-        nghiệp và cộng đồng
+      title: Việc làm | Svelte Việt Nam
+      keywords: công việc, việc làm, tuyển dụng, dự án, svelte, Việt Nam
+      heading: Việc làm
+      desc: Việc làm dành cho lập trình viên Svelte tại Việt Nam — kết nối doanh nghiệp
+        và cộng đồng
       tagline: Kết nối doanh nghiệp và cộng đồng
       posting:
         heading: Đăng tuyển

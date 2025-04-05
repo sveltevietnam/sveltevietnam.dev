@@ -4,13 +4,19 @@
 	import { version } from '$app/environment';
 	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
-	import ogImageHome from '$lib/assets/images/fallbacks/og.jpg?url';
+	import ogImageEn from '$lib/assets/images/fallbacks/og.en.jpg?url';
+	import ogImageVi from '$lib/assets/images/fallbacks/og.vi.jpg?url';
 	import { buildStructuredBreadcrumbs } from '$lib/meta/structured/breadcrumbs';
 	import { toStringWithContext } from '$lib/meta/structured/utils';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import '$lib/styles/app.css';
 
 	let { children } = $props();
+
+	const ogImage = {
+		en: ogImageEn,
+		vi: ogImageVi,
+	};
 
 	/** SEO setup */
 	let meta = $derived.by(() => {
@@ -20,7 +26,7 @@
 		const description = meta?.description ?? m['pages.home.desc'](lang);
 		const keywords = meta?.keywords ?? m['pages.home.keywords'](lang);
 		const canonical = meta?.canonical ?? page.url.toString();
-		const rootRelativeOgImage = meta?.og?.image ?? ogImageHome;
+		const rootRelativeOgImage = meta?.og?.image ?? ogImage[lang];
 
 		// structured data
 		const things = !meta?.structured

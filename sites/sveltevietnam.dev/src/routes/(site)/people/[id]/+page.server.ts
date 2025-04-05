@@ -7,14 +7,22 @@ import { buildStructuredPerson } from '$lib/meta/structured/people';
 import { buildRoutes } from '$lib/routing/utils';
 import { getPaginationFromUrl } from '$lib/utils/url';
 
+import ogImageEn from '../_page/og-people.en.jpg?url';
+import ogImageVi from '../_page/og-people.vi.jpg?url';
+
 import type { PageServerLoad } from './$types';
+
+const ogImage = {
+	vi: ogImageVi,
+	en: ogImageEn,
+};
 
 export const load: PageServerLoad = async ({ parent, url, locals, depends, params }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 
 	const lang = locals.sharedSettings.language;
-	const author = await loadPerson(params.id, lang, true);
-	if (!author) {
+	const person = await loadPerson(params.id, lang, true);
+	if (!person) {
 		// TODO: assign a unique code to this error
 		error(404, { message: 'Author not found', code: 'SV000' });
 	}
@@ -28,15 +36,15 @@ export const load: PageServerLoad = async ({ parent, url, locals, depends, param
 				page: pagination.current,
 			},
 			where: {
-				authorId: author.id,
+				authorId: person.id,
 			},
 		}),
 		parent(),
 	]);
 
 	const routeParam = {
-		name: author.name,
-		path: author.id,
+		name: person.name,
+		path: person.id,
 	};
 
 	const paths = {
@@ -47,7 +55,7 @@ export const load: PageServerLoad = async ({ parent, url, locals, depends, param
 	};
 
 	return {
-		author,
+		person,
 		posts,
 		routing: {
 			...parentLoadData.routing,
@@ -59,9 +67,12 @@ export const load: PageServerLoad = async ({ parent, url, locals, depends, param
 			max: Math.ceil(total / pagination.per),
 		},
 		meta: {
-			structured: buildStructuredPerson(lang, url.origin, author),
-			title: `${author.name} | Svelte Vietnam`,
-			description: author.description,
+			structured: buildStructuredPerson(lang, url.origin, person),
+			title: `${person.name} | Svelte Vietnam`,
+			description: person.description,
+			og: {
+				image: person.ogImage ?? ogImage[lang],
+			},
 		},
 	};
 };

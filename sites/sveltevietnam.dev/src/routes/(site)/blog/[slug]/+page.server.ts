@@ -6,11 +6,20 @@ import {
 	ids,
 	loadBlogPost,
 	searchPostsInSameSeries,
+	loadBlogPostOgImage,
 } from '$data/blog/posts';
 import { loadPersonAvatar } from '$data/people';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { buildStructuredBlogPost } from '$lib/meta/structured/blog';
 import { buildRoutes } from '$lib/routing/utils';
+
+import ogImageEn from '../_page/og-blog.en.jpg?url';
+import ogImageVi from '../_page/og-blog.vi.jpg?url';
+
+const ogImageFallback = {
+	vi: ogImageVi,
+	en: ogImageEn,
+};
 
 import type { PageServerLoad } from './$types';
 
@@ -26,7 +35,7 @@ export const load: PageServerLoad = async ({ url, parent, params, locals, depend
 
 	const latestPostId = ids[0] === post.id ? ids[1] : ids[0];
 	const otherLang = lang === 'en' ? 'vi' : 'en';
-	const [latest, inSeries, otherLangMetadata, { routing }] = await Promise.all([
+	const [latest, inSeries, otherLangMetadata, ogImage, { routing }] = await Promise.all([
 		loadBlogPost(latestPostId, lang),
 		searchPostsInSameSeries(
 			lang,
@@ -34,6 +43,7 @@ export const load: PageServerLoad = async ({ url, parent, params, locals, depend
 			post.series.map((s) => s.id),
 		),
 		loadBlogPostMetadata(post.id, otherLang),
+		loadBlogPostOgImage(post.id),
 		parent(),
 		...post.authors.map(async (author) => {
 			const avatar = await loadPersonAvatar(author.id);
@@ -74,10 +84,9 @@ export const load: PageServerLoad = async ({ url, parent, params, locals, depend
 			title: `${post.title}`,
 			description: post.description,
 			keywords: post.keywords,
-			// TODO: load the og image for each post
-			// og: {
-			// 	image: post
-			// }
+			og: {
+				image: ogImage ?? ogImageFallback[lang],
+			},
 		},
 	};
 };

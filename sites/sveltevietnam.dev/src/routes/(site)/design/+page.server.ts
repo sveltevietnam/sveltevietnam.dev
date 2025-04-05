@@ -3,12 +3,12 @@ import * as m from '$data/locales/generated/messages';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 
 import type { PageServerLoad } from './$types';
-import ogViImage from './_page/og.en.jpg?url';
-import ogEnImage from './_page/og.vi.jpg?url';
+import ogImageEn from './_page/og-design.en.jpg?url';
+import ogImageVi from './_page/og-design.vi.jpg?url';
 
 const ogImage = {
-	vi: ogViImage,
-	en: ogEnImage,
+	vi: ogImageVi,
+	en: ogImageEn,
 };
 
 export const load: PageServerLoad = async ({ locals, depends }) => {

@@ -3,6 +3,13 @@ import { loadPerson, ids } from '$data/people';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 
 import type { PageServerLoad } from './$types';
+import ogImageEn from './_page/og-people.en.jpg?url';
+import ogImageVi from './_page/og-people.vi.jpg?url';
+
+const ogImage = {
+	vi: ogImageVi,
+	en: ogImageEn,
+};
 
 export const load: PageServerLoad = async ({ locals, depends }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
@@ -15,7 +22,9 @@ export const load: PageServerLoad = async ({ locals, depends }) => {
 		meta: {
 			title: m['pages.people.title'](lang),
 			description: m['pages.people.desc'](lang),
-			// TODO: add OG images
+			og: {
+				image: ogImage[lang],
+			},
 		},
 	};
 };

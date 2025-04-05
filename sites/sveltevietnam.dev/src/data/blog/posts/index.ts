@@ -50,7 +50,10 @@ export type BlogPostMetadata = {
 	keywords?: string;
 };
 
-export type ExtendedBlogPostMetadata = Omit<BlogPostMetadata, 'authors' | 'categories' | 'series'> & {
+export type ExtendedBlogPostMetadata = Omit<
+	BlogPostMetadata,
+	'authors' | 'categories' | 'series'
+> & {
 	authors: Person[];
 	categories: BlogCategory[];
 	series: BlogSeries[];
@@ -77,6 +80,10 @@ const thumbnailModules = import.meta.glob<Picture>('./*/images/thumbnail.jpg', {
 	import: 'default',
 	query: '?enhanced&w=2240,1540;1088;686',
 });
+const ogImageModules = import.meta.glob<string>('./*/images/thumbnail.jpg', {
+	import: 'default',
+	query: '?h=800',
+});
 const contentModules = import.meta.glob<Component>('./*/content/*.md.svelte', {
 	import: 'default',
 });
@@ -100,10 +107,16 @@ export async function loadBlogPostMetadata(
 	};
 }
 
-export async function loadBlogThumbnail(id: string): Promise<Picture | undefined> {
+export async function loadBlogPostThumbnail(id: string): Promise<Picture | undefined> {
 	const path = `./${id}/images/thumbnail.jpg`;
 	if (!thumbnailModules[path]) return undefined;
 	return thumbnailModules[path]();
+}
+
+export async function loadBlogPostOgImage(id: string): Promise<string | undefined> {
+	const path = `./${id}/images/thumbnail.jpg`;
+	if (!ogImageModules[path]) return undefined;
+	return ogImageModules[path]();
 }
 
 export async function loadBlogPostContent(
@@ -124,7 +137,7 @@ async function extendBlogPostMetadata(
 		Promise.all((metadata.authors ?? []).map((id) => loadPerson(id, lang))),
 		Promise.all((metadata.categories ?? []).map((id) => loadBlogCategory(id, lang))),
 		Promise.all((metadata.series ?? []).map((id) => loadBlogSeries(id, lang))),
-		metadata.thumbnail ?? loadBlogThumbnail(id),
+		metadata.thumbnail ?? loadBlogPostThumbnail(id),
 	]);
 
 	return {
@@ -236,7 +249,11 @@ const MAX_IN_SERIES_COUNT = 3;
  *
  * If multiple series, return an array of at most 3 posts for each series
  */
-export async function searchPostsInSameSeries(lang: App.Language, postId: string, seriesIds: string[]): Promise<ExtendedBlogPostMetadata[]> {
+export async function searchPostsInSameSeries(
+	lang: App.Language,
+	postId: string,
+	seriesIds: string[],
+): Promise<ExtendedBlogPostMetadata[]> {
 	const posts = (await Promise.all(ids.map((id) => loadBlogPostMetadata(id, lang)))).filter(
 		Boolean,
 	);
@@ -253,9 +270,7 @@ export async function searchPostsInSameSeries(lang: App.Language, postId: string
 		let left = indexOfPost - 1;
 		let right = indexOfPost + 1;
 
-		const leftBound = remainingPosts.findIndex((p) =>
-			p.series?.some((s) => s === series),
-		);
+		const leftBound = remainingPosts.findIndex((p) => p.series?.some((s) => s === series));
 		if (leftBound !== -1) {
 			const latestPostInSeries = remainingPosts[leftBound];
 			if (latestPostInSeries.id !== postId) {
@@ -287,13 +302,13 @@ export async function searchPostsInSameSeries(lang: App.Language, postId: string
 
 		if (matchedPosts.length) {
 			postsInSameSeries.push(...matchedPosts);
-			remainingPosts = remainingPosts.filter(
-				(p) => !matchedPosts.some((_p) => _p.id === p.id),
-			);
+			remainingPosts = remainingPosts.filter((p) => !matchedPosts.some((_p) => _p.id === p.id));
 			indexOfPost = remainingPosts.findIndex((p) => p.id === postId);
 			matchedPosts = [];
 		}
 	}
 
-	return await Promise.all(postsInSameSeries.map((metadata) => extendBlogPostMetadata(metadata, lang)));
+	return await Promise.all(
+		postsInSameSeries.map((metadata) => extendBlogPostMetadata(metadata, lang)),
+	);
 }

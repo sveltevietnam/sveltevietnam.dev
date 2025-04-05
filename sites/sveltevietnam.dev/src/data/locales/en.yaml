@@ -340,7 +340,8 @@ messages:
         heading: Past events
     jobs:
       title: Jobs | Svelte Vietnam
-      keywords: job, work, employment, posting, recruitment, partner, project
+      keywords: job, work, employment, posting, recruitment, partner, project, collaboration,
+        svelte, Vietnam
       heading: Jobs
       desc: Job board for Svelte developers in Vietnam — connecting businesses and
         community

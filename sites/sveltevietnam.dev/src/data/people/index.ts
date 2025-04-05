@@ -8,6 +8,7 @@ export type Person = {
 	id: string;
 	name: string;
 	description: string;
+	ogImage?: string;
 	links?: {
 		website?: string;
 		bluesky?: string;
@@ -32,8 +33,8 @@ type PersonModule =
 			links?: Person['links'];
 	  }
 	| {
-			en: MinimalPerson ;
-			vi: MinimalPerson ;
+			en: MinimalPerson;
+			vi: MinimalPerson;
 			links?: Person['links'];
 	  };
 
@@ -46,9 +47,13 @@ const avatarModules = import.meta.glob<Picture>('./*/avatar.jpg', {
 type PersonOptionalModules = {
 	links: boolean;
 	avatar: boolean;
-}
+};
 
-export async function loadPerson(id: string, lang: App.Language, optionalModules?: PersonOptionalModules | true): Promise<Person | null> {
+export async function loadPerson(
+	id: string,
+	lang: App.Language,
+	optionalModules?: PersonOptionalModules | true,
+): Promise<Person | null> {
 	const path = `./${id}/index.ts`;
 	if (!modules[path]) return null;
 	const module = await modules[path]();
@@ -60,8 +65,9 @@ export async function loadPerson(id: string, lang: App.Language, optionalModules
 	}
 	return {
 		...person,
-		links: (optionalModules === true || optionalModules?.links ) ? module.links : undefined,
-		avatar: (optionalModules === true || optionalModules?.avatar) ? await loadPersonAvatar(id) : undefined,
+		links: optionalModules === true || optionalModules?.links ? module.links : undefined,
+		avatar:
+			optionalModules === true || optionalModules?.avatar ? await loadPersonAvatar(id) : undefined,
 		id: id,
 	};
 }

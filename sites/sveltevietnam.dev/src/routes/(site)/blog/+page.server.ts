@@ -5,7 +5,13 @@ import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { buildStructuredBlog } from '$lib/meta/structured/blog';
 
 import type { PageServerLoad } from './$types';
-import ogImage from './_page/og.jpg?url';
+import ogImageEn from './_page/og-blog.en.jpg?url';
+import ogImageVi from './_page/og-blog.vi.jpg?url';
+
+const ogImage = {
+	vi: ogImageVi,
+	en: ogImageEn,
+};
 
 export const load: PageServerLoad = async ({ locals, depends }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
@@ -42,7 +48,9 @@ export const load: PageServerLoad = async ({ locals, depends }) => {
 			title: m['pages.blog.title'](lang),
 			description: m['pages.blog.desc'](lang),
 			keywords: m['pages.blog.keywords'](lang),
-			og: { image: ogImage },
+			og: {
+				image: ogImage[lang],
+			},
 			structured: buildStructuredBlog(lang),
 		},
 	};
