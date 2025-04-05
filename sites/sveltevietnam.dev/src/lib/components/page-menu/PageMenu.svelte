@@ -87,7 +87,7 @@
 					<li class={[flat && 'border-b']}>
 						<a
 							class={[
-								'current:text-primary-on-surface current:font-bold hover:bg-primary-surface flex items-center gap-4',
+								'current:text-primary current:font-bold hover:bg-primary-surface flex items-center gap-4',
 								flat ? 'py-4' : 'px-4 py-2',
 							]}
 							href={path}

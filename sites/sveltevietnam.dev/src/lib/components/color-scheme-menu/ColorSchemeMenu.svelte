@@ -65,6 +65,7 @@
 		<div class="overflow-hidden">
 			<ul class="border-outline divide-outline divide-y border">
 				{#each Object.entries(colorSchemes) as [key, { icon, label }] (key)}
+					{@const current = settings.colorScheme.user === key}
 					<li>
 						<form
 							method="GET"
@@ -75,13 +76,16 @@
 							}}
 						>
 							<label
-								class="current:text-primary-on-surface current:font-bold hover:bg-primary-surface flex cursor-pointer items-center
+								class="current:text-primary current:font-bold hover:bg-primary-surface flex cursor-pointer items-center
 								gap-4 px-4 py-2 -outline-offset-1"
-								data-current={settings.colorScheme.user === key}
+								data-current={current}
 							>
 								<input class="sr-only" type="submit" name="color-scheme" value={key} />
 								<i class="i {icon} h-6 w-6"></i>
 								<span><T message={label} /></span>
+								{#if current}
+									<span class="sr-only">current</span>
+								{/if}
 							</label>
 						</form>
 					</li>

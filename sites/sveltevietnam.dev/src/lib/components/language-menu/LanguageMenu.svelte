@@ -56,7 +56,7 @@
 			<ul class="border-outline divide-outline divide-y border">
 				<li>
 					<a
-						class="current:text-primary-on-surface current:font-bold hover:bg-primary-surface flex items-center gap-4
+						class="current:text-primary current:font-bold hover:bg-primary-surface flex items-center gap-4
 						px-4 py-2"
 						href={routing.paths.vi.path}
 						data-current={settings.language === 'vi'}
@@ -70,7 +70,7 @@
 				</li>
 				<li>
 					<a
-						class="current:text-primary-on-surface current:font-bold hover:bg-primary-surface flex items-center gap-4
+						class="current:text-primary current:font-bold hover:bg-primary-surface flex items-center gap-4
 						px-4 py-2"
 						data-current={settings.language === 'en'}
 						href={routing.paths.en.path}
