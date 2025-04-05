@@ -78,12 +78,12 @@
 		"picocolors": "^1.1.1",
 		"recast": "^0.23.11",
 		"tiny-glob": "^0.2.9",
-		"typescript": "^5.8.2",
+		"typescript": "^5.8.3",
 		"yaml": "^2.7.1"
 	},
 	"devDependencies": {
 		"@types/lodash.debounce": "^4.0.9",
 		"svelte": "^5.25.6",
-		"vite": "^6.2.4"
+		"vite": "^6.2.5"
 	}
 }
