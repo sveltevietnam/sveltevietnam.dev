@@ -26,7 +26,8 @@
 		},
 		"./T.svelte": {
 			"types": "./src/runtime/T.svelte.d.ts",
-			"svelte": "./src/runtime/T.svelte"
+			"svelte": "./src/runtime/T.svelte",
+			"import": "./src/runtime/T.svelte"
 		}
 	},
 	"publishconfig": {
@@ -70,6 +71,7 @@
 		"format": "prettier --write --ignore-path=../../.prettierignore ."
 	},
 	"dependencies": {
+		"@clack/prompts": "^0.10.0",
 		"commander": "^13.1.0",
 		"dedent": "^1.5.3",
 		"lodash.debounce": "^4.0.8",
@@ -77,7 +79,7 @@
 		"recast": "^0.23.11",
 		"tiny-glob": "^0.2.9",
 		"typescript": "^5.8.2",
-		"valibot": "1.0.0"
+		"yaml": "^2.7.1"
 	},
 	"devDependencies": {
 		"@types/lodash.debounce": "^4.0.9",

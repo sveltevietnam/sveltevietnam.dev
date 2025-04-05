@@ -1,19 +1,38 @@
-import fs from 'node:fs/promises';
+import { parse } from 'yaml';
 
-import * as v from 'valibot';
-
-export const LocaleSchema = v.object({
-	messages: v.record(v.string(), v.string()),
-});
+import { flattenRecursiveRecord } from './utils.js';
 
 /**
  * parse locale files
- * @param {string} filepath - list of locale file paths
- * @returns {Promise<import('./private.d.ts').Locale>}
+ * @param {string} yaml - the input YAML string
+ * @returns {Promise<import('./private.d.ts').LocaleSource>}
  */
-export async function parseLocale(filepath) {
-	const file = await fs.readFile(filepath, 'utf-8');
-	return v.parse(LocaleSchema, JSON.parse(file));
+export async function parseLocaleYaml(yaml) {
+	return parse(yaml.normalize());
+}
+
+/**
+ * @param {Record<string, string>} yamls - lang to yaml string map
+ * @returns {Promise<Record<string, Record<string, string>>>} - language to flat message map
+ */
+export async function flatParseMessages(yamls) {
+	/** @type {Record<string, Record<string, string>>} */
+	const localizedMessages = {};
+
+	Object.entries(yamls).map(async ([lang, yaml]) => {
+		const source = await parseLocaleYaml(yaml);
+		const messages = flattenRecursiveRecord(source.messages);
+
+		for (const [key, value] of Object.entries(messages)) {
+			if (!localizedMessages[key]) {
+				localizedMessages[key] = { [lang]: value };
+			} else {
+				localizedMessages[key][lang] = value;
+			}
+		}
+	});
+
+	return localizedMessages;
 }
 
 /**

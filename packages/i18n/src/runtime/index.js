@@ -49,3 +49,17 @@ export function createMessageSnippet(snippet) {
 		})
 	);
 }
+
+/**
+ * @template {import('./types.public.js').Message<P>} M
+ * @template {string} P
+ * @param {Record<string, M>} messages
+ * @returns {(lang: string) => M}
+ */
+export function createMessageProxy(messages) {
+	/**
+	 * @param {string} lang
+	 * @returns {M}
+	 */
+	return (lang) => messages[lang];
+}

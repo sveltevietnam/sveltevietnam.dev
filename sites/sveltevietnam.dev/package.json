@@ -1,15 +1,16 @@
 {
 	"name": "sveltevietnam.dev",
-	"version": "1.0.0-next.44",
+	"version": "1.0.0-next",
 	"description": "Svelte Vietnam official website",
 	"private": true,
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev --port 5005",
+		"build:i18n": "pnpm i18n build src/data/locales -o src/data/locales/generated/messages.js",
 		"build": "vite build",
 		"preview": "vite preview",
 		"lint": "run-p lint:*",
-		"lint:i18n": "pnpm i18n lint",
+		"lint:i18n": "pnpm i18n lint src/data/locales",
 		"lint:svelte": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"lint:es": "svelte-kit sync && eslint .",
 		"lint:style": "stylelint '**/*.{svelte,css}'",
@@ -49,7 +50,8 @@
 		"tailwindcss": "4.1.1",
 		"tiny-glob": "^0.2.9",
 		"vite": "^6.2.4",
-		"vite-imagetools": "^7.0.5"
+		"vite-imagetools": "^7.0.5",
+		"vite-plugin-qrcode": "^0.2.4"
 	},
 	"dependencies": {
 		"gsap": "^3.12.7",

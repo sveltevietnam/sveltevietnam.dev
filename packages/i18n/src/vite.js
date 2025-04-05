@@ -1,94 +1,88 @@
-import path from 'node:path';
+import fs from 'node:fs/promises';
+import path from 'node:path/posix';
 
-import debounce from 'lodash.debounce';
 import pico from 'picocolors';
 
-import { buildAllLocales, rebuildLocales, removeLocales } from './internals/build.js';
-import { collectLocaleDirMap } from './internals/collect.js';
-import { LANGUAGES } from './language.js';
+import { collectYamls } from './internals/collect.js';
+import { lint } from './internals/lint.js';
+import { transform } from './internals/transform.js';
+import { printLintIssues } from './internals/utils.js';
 
 /**
  * @typedef Config
- * @property {string} dirname - directory basename where the locales are
- * @property {ReadonlyArray<string>} langs - list of languages
- * @property {string} defaultLang - default language
+ * @property {string} input - directory path for the input locale files
+ * @property {string} [output] - file path for the output message JS module
  */
 
 /**
+ * @param {string} cwd
+ * @param {Config} config
+ * @returns {Promise<Record<string, Record<string, string>>>} message map
+ */
+async function process(cwd, config) {
+	const { input, output = path.join(input, 'generated/messages.js') } = config;
+
+	// 1. collect
+	console.info(pico.blue(`[sveltevietnam-i18n] Collecting locale files at "${input}"...`));
+	const yamls = await collectYamls(cwd, input);
+
+	// 2. parse & lint
+	const { messages, issuesByKey } = await lint(yamls, false);
+	const issueEntries = Object.entries(issuesByKey);
+	if (issueEntries.length) {
+		console.error(pico.redBright(`[sveltevietnam-i18n] ${issueEntries.length} issue(s) found`));
+		printLintIssues(issueEntries);
+		console.error(
+			pico.redBright('[sveltevietnam-i18n] Skipping build for now... Please fix the issues first.'),
+		);
+		return messages;
+	}
+
+	// 3. build
+	const module = transform(messages);
+
+	const outPath = path.join(cwd, output);
+	await fs.mkdir(path.dirname(outPath), { recursive: true });
+	await fs.writeFile(outPath, module);
+	console.info(
+		pico.green(
+			`[sveltevietnam-i18n] Successfully built ${pico.bold(Object.keys(messages).length)} messages to "${output}"`,
+		),
+	);
+
+	return messages;
+}
+
+/**
+ * @param {Config} config
  * @returns {import('vite').Plugin}
  */
-export function i18n() {
-	/** @type {Config} */
-	const config = {
-		dirname: 'locales',
-		langs: LANGUAGES,
-		defaultLang: 'vi',
-	};
-
-	const pattern = `**/${config.dirname}/{${config.langs.join(',')}}.json`;
-
+export function i18n(config) {
 	return {
 		name: 'sveltevietnam-i18n',
 		enforce: 'post',
 		async configureServer(server) {
 			const cwd = server.config.root;
-			const dirMap = await collectLocaleDirMap(cwd, pattern);
+			const inputDir = path.join(cwd, config.input);
 
-			console.log(pico.blue('[sveltevietnam-i18n] Building all locales...'));
-			await buildAllLocales(dirMap, config.langs, config.defaultLang);
-			console.log(pico.blue('[sveltevietnam-i18n] Built successfully!'));
-
-			/**
-			 * @param {string} filepath
-			 * @returns {boolean}
-			 */
-			function isLocaleFilepath(filepath) {
-				const dirname = path.basename(path.dirname(filepath));
-				const ext = path.extname(filepath);
-				const lang = path.basename(filepath, ext);
-
-				return ext === '.json' && config.langs.includes(lang) && dirname === config.dirname;
-			}
-
-			/** @type {Set<string>} */
-			let updatedFilepathSet = new Set();
-			const debounceRebuildLocales = debounce(async () => {
-				console.log(
-					pico.yellow('[sveltevietnam-i18n] Detected changes in locale files. Rebuilding some...'),
-				);
-				await rebuildLocales(dirMap, Array.from(updatedFilepathSet), config.defaultLang);
-				updatedFilepathSet.clear();
-			}, 1000);
 			/** @param {string} filepath */
 			function onUpdate(filepath) {
-				const relpath = path.relative(cwd, filepath);
-				if (!isLocaleFilepath(relpath)) return;
-				updatedFilepathSet.add(relpath);
-				debounceRebuildLocales();
+				if (path.dirname(filepath) === inputDir && path.extname(filepath) === '.yaml') {
+					console.info(
+						pico.blue(
+							`[sveltevietnam-i18n] detecting changes at "${path.relative(cwd, filepath)}", rebuilding...`,
+						),
+					);
+					process(cwd, config);
+				}
 			}
 
-			/** @type {Set<string>} */
-			const removedFilepathSet = new Set();
-			const debounceRemoveLocales = debounce(async () => {
-				console.log(
-					pico.yellow('[sveltevietnam-i18n] Detected removal of locale files. Rebuilding some...'),
-				);
-				await removeLocales(dirMap, Array.from(removedFilepathSet), config.defaultLang);
-				removedFilepathSet.clear();
-			}, 1000);
+			await process(cwd, config);
 
-			/** @param {string} filepath */
-			function onUnlink(filepath) {
-				const relpath = path.relative(cwd, filepath);
-				if (!isLocaleFilepath(relpath)) return;
-				removedFilepathSet.add(relpath);
-				debounceRemoveLocales();
-			}
-
-			server.watcher.add(pattern);
+			server.watcher.add(path.join(inputDir, '*.yaml'));
 			server.watcher.on('add', onUpdate);
 			server.watcher.on('change', onUpdate);
-			server.watcher.on('unlink', onUnlink);
+			server.watcher.on('unlink', onUpdate);
 		},
 	};
 }

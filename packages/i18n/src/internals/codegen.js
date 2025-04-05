@@ -1,11 +1,11 @@
-import dedent from 'dedent';
-import recast from 'recast';
 import ts, { factory } from 'typescript';
 
 import { parseMessageParams } from './parse.js';
 import * as utils from './utils.js';
 
 export const newline = () => factory.createIdentifier('\n');
+
+// TODO: add @__NO_SIDE_EFFECTS__
 
 /**
  * @param {string} content
@@ -120,15 +120,19 @@ function chunkifyContentWithParams(content, params, snippet = false) {
 }
 
 /**
+ * @param {boolean} proxy - whether to import `createMessageProxy`
  * @param {boolean} string - whether to import `createMessageString`
  * @param {boolean} func - whether to import `createMessageFunction`
  * @param {boolean} snippet - whether to import `createMessageSnippet`
  * @returns {ts.Node[]}
  */
-export function importRuntimeFactoryFunctions(string, func, snippet) {
+export function importRuntimeFactoryFunctions(proxy, string, func, snippet) {
 	/** @type {string[]} */
 	const identifiers = [];
 
+	if (proxy) {
+		identifiers.push('createMessageProxy');
+	}
 	if (string) {
 		identifiers.push('createMessageString');
 	}
@@ -165,9 +169,9 @@ export function importRuntimeFactoryFunctions(string, func, snippet) {
  * @param {string} content
  * @returns {ts.Node[]}
  */
-export function exportMessageString(key, content) {
+export function defineMessageString(key, content) {
 	const node = factory.createVariableStatement(
-		[factory.createToken(ts.SyntaxKind.ExportKeyword)],
+		[],
 		factory.createVariableDeclarationList(
 			[
 				factory.createVariableDeclaration(
@@ -217,7 +221,7 @@ export function importSvelteSnippetUtil() {
  * @param {import('./private.d.ts').MessageParameter[]} params
  * @returns {ts.Node[]}
  */
-export function exportMessageFunction(key, content, params) {
+export function defineMessageFunction(key, content, params) {
 	const renderedContent = chunkifyContentWithParams(content, params);
 
 	const expression = factory.createParenthesizedExpression(
@@ -259,7 +263,7 @@ export function exportMessageFunction(key, content, params) {
 	);
 
 	const node = factory.createVariableStatement(
-		[factory.createToken(ts.SyntaxKind.ExportKeyword)],
+		[],
 		factory.createVariableDeclarationList(
 			[
 				factory.createVariableDeclaration(
@@ -287,7 +291,7 @@ export function exportMessageFunction(key, content, params) {
  * @param {import('./private.d.ts').MessageParameter[]} params
  * @returns {ts.Node[]}
  */
-export function exportMessageSnippet(key, content, params) {
+export function defineMessageSnippet(key, content, params) {
 	// if `content` is not an HTML element itself
 	// e.g. `<element>...</element`
 	// then wrap `content` in a `span` element
@@ -346,7 +350,7 @@ export function exportMessageSnippet(key, content, params) {
 	);
 
 	const node = factory.createVariableStatement(
-		[factory.createToken(ts.SyntaxKind.ExportKeyword)],
+		[],
 		factory.createVariableDeclarationList(
 			[
 				factory.createVariableDeclaration(
@@ -368,84 +372,10 @@ export function exportMessageSnippet(key, content, params) {
 }
 
 /**
- * @param {ReadonlyArray<string>} langs
- * @param {string} defaultLang
- * @returns {string}
- */
-export function makeLoaderModule(langs, defaultLang) {
-	const otherLangs = langs.filter((lang) => lang !== defaultLang).sort();
-	const node = factory.createFunctionDeclaration(
-		[
-			factory.createToken(ts.SyntaxKind.ExportKeyword),
-			factory.createToken(ts.SyntaxKind.AsyncKeyword),
-		],
-		undefined,
-		factory.createIdentifier('loadLocale'),
-		undefined,
-		[
-			factory.createParameterDeclaration(
-				undefined,
-				undefined,
-				factory.createIdentifier('lang'),
-				undefined,
-				undefined,
-				undefined,
-			),
-		],
-		undefined,
-		factory.createBlock(
-			[
-				...otherLangs.map((lang) =>
-					factory.createIfStatement(
-						factory.createBinaryExpression(
-							factory.createIdentifier('lang'),
-							factory.createToken(ts.SyntaxKind.EqualsEqualsEqualsToken),
-							factory.createStringLiteral(lang),
-						),
-						factory.createReturnStatement(
-							factory.createAwaitExpression(
-								factory.createCallExpression(
-									/** @type {any} */ (factory.createToken(ts.SyntaxKind.ImportKeyword)),
-									undefined,
-									[factory.createStringLiteral(`./${lang}.js`)],
-								),
-							),
-						),
-						undefined,
-					),
-				),
-				factory.createReturnStatement(
-					factory.createAwaitExpression(
-						factory.createCallExpression(
-							/** @type {any} */ (factory.createToken(ts.SyntaxKind.ImportKeyword)),
-							undefined,
-							[factory.createStringLiteral(`./${defaultLang}.js`)],
-						),
-					),
-				),
-			],
-			true,
-		),
-	);
-
-	const loadFuncDoc = factory.createJSDocComment(dedent`
-		@param {${langs.map((l) => `"${l}"`).join('|')}} lang
-		@returns {Promise<typeof import('./${defaultLang}.js')>}
-	`);
-
-	const localeTypeDoc = factory.createJSDocComment(dedent`
-		@typedef {typeof import('./${defaultLang}.js')} Locale
-	`);
-
-	return print([loadFuncDoc, node, newline(), localeTypeDoc]);
-}
-
-/**
  * @param {import('typescript').Node[]} nodes
- * @param {string} [lang]
  * @returns {string}
  */
-export function print(nodes, lang = 'en') {
+export function print(nodes) {
 	const doc = factory.createJSDocComment(
 		'DO NOT EDIT! This file is generated by vite-plugin-sveltevietnam-i18n',
 		undefined,
@@ -466,36 +396,59 @@ export function print(nodes, lang = 'en') {
 		resultFile,
 	);
 
-	// workaround for https://github.com/microsoft/TypeScript/issues/36174
-	if (lang !== 'en') {
-		const ast = recast.parse(code);
-		recast.types.visit(ast, {
-			visitLiteral(path) {
-				const node = path.node;
-				if (typeof node.value === 'string') {
-					path.replace(recast.types.builders.stringLiteral(node.value));
-				}
-				this.traverse(path);
-			},
-			visitTemplateElement(path) {
-				const node = path.node;
-				if (typeof node.value.raw === 'string') {
-					path.replace(
-						recast.types.builders.templateElement(
-							{
-								cooked: node.value.cooked,
-								raw: node.value.cooked ?? node.value.raw,
-							},
-							node.tail,
-						),
-					);
-				}
-				this.traverse(path);
-			},
-		});
-
-		code = recast.print(ast).code;
-	}
-
 	return code;
+}
+
+/**
+ * @param {Record<string, string>} def
+ * @returns {ts.Node}
+ */
+export function exportIdentifierAsLiterals(def) {
+	return factory.createExportDeclaration(
+		undefined,
+		false,
+		factory.createNamedExports(
+			Object.entries(def).map(([identifier, literal]) =>
+				factory.createExportSpecifier(
+					false,
+					factory.createIdentifier(identifier),
+					factory.createStringLiteral(literal),
+				),
+			),
+		),
+		undefined,
+		undefined,
+	);
+}
+
+/**
+ * @param {string} varName - message variable name
+ * @param {string[]} langs - languages
+ * @returns {ts.Node}
+ */
+export function defineMessageProxy(varName, langs) {
+	return factory.createVariableStatement(
+		[],
+		factory.createVariableDeclarationList(
+			[
+				factory.createVariableDeclaration(
+					factory.createIdentifier(varName),
+					undefined,
+					undefined,
+					factory.createCallExpression(factory.createIdentifier('createMessageProxy'), undefined, [
+						factory.createObjectLiteralExpression(
+							langs.map((lang) =>
+								factory.createPropertyAssignment(
+									factory.createIdentifier(lang),
+									factory.createIdentifier(`${lang}${varName}`),
+								),
+							),
+							true,
+						),
+					]),
+				),
+			],
+			ts.NodeFlags.Const,
+		),
+	);
 }

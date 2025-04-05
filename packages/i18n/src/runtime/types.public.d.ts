@@ -24,8 +24,7 @@ export type MessageSnippet<
 	$p: Record<P, string>;
 };
 
-export type Message<P extends string> =
+export type Message<P extends string = never> =
 	| MessageString<P>
 	| MessageFunction<P>
 	| MessageSnippet<P>;
-

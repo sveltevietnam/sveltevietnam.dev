@@ -4,14 +4,10 @@ export interface MessageParameter {
 	end: number;
 }
 
-export type Locale = import('valibot').InferInput<typeof import('./parse.js').LocaleSchema>;
+export type RecursiveRecord<T> = {
+	[key: string]: T | RecursiveRecord<T>;
+};
 
-export type LocaleDirectoryMap = Map<string, Record<string, string>>;
-
-export interface BuildOutput {
-	dirpaths: string[];
-	modules: {
-		filepath: string;
-		code: string;
-	}[];
-}
+export type LocaleSource = {
+	messages: RecursiveRecord<string>;
+};
