@@ -44,6 +44,10 @@
 			key: 'sponsor' as const,
 		},
 		{
+			icon: 'i-[users-three]',
+			key: 'people' as const,
+		},
+		{
 			icon: 'i-[gear]',
 			key: 'settings' as const,
 		},

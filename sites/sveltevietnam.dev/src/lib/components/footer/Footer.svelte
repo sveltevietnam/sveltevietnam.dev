@@ -25,6 +25,7 @@
 		'events',
 		'jobs',
 		'sponsor',
+		"people",
 		'roadmap',
 		'design',
 	] as const);
