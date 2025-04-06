@@ -21,7 +21,10 @@ export const load: PageServerLoad = async ({ parent, url, locals, depends, param
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 
 	const lang = locals.sharedSettings.language;
-	const person = await loadPerson(params.id, lang, true);
+	const person = await loadPerson(params.id, lang, {
+		links: true,
+		popImage: true,
+	});
 	if (!person) {
 		// TODO: assign a unique code to this error
 		error(404, { message: 'Author not found', code: 'SV000' });

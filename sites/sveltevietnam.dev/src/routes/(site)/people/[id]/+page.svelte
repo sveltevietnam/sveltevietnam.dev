@@ -3,7 +3,6 @@
 
 	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
-	import { Avatar } from '$lib/components/avatar';
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { IntroSeparator } from '$lib/components/intro-separator';
@@ -25,17 +24,15 @@
 
 <main>
 	<!-- intro -->
-	<section
-		class="space-y-section pt-intro-pad-top from-32% from-primary-surface to-surface bg-gradient-to-b"
-	>
-		<div class="max-w-pad space-y-20">
-			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
-			<div class="mobile:flex-col tablet:gap-8 desktop:gap-10 tablet:items-center flex gap-6">
-				<Avatar
-					class="w-25 h-25 tablet:w-40 tablet:h-40"
-					src={data.person.avatar}
-					name={data.person.name}
-				></Avatar>
+	<section class="group overflow-hidden">
+		<div class="max-w-pad tablet:gap-10 tablet:flex-row flex flex-col">
+			<div
+				class={[
+					'z-1 tablet:space-y-8 pt-intro-pad-top relative flex-1 space-y-6',
+					!data.person.popImage && 'pb-section',
+				]}
+			>
+				<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 				<div class="space-y-4">
 					<h1 class="c-text-heading-lg text-primary-on-surface font-bold">
 						{data.person.name}
@@ -44,8 +41,22 @@
 					<PersonLinks links={data.person.links} />
 				</div>
 			</div>
+			{#if data.person.popImage}
+				<div
+					class="tablet:pt-intro-pad-top tablet:px-6 desktop:px-10 can-hover:grayscale duration-400
+					self-end transition-[filter] group-hover:filter-none group-hover:duration-75"
+				>
+					<enhanced:img
+						class="tablet:w-70 desktop:w-80 can-hover:translate-y-6 can-hover:scale-90
+						duration-400 relative h-auto w-60 transition-transform
+						group-hover:translate-y-0 group-hover:scale-100 group-hover:duration-75"
+						src={data.person.popImage}
+						alt=""
+					/>
+				</div>
+			{/if}
 		</div>
-		<IntroSeparator />
+		<IntroSeparator variant="full" class="z-2 relative" />
 	</section>
 
 	<!-- {#if data.events.length} -->

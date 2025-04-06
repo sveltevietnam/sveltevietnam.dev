@@ -2,7 +2,7 @@
 	import { T } from '@sveltevietnam/i18n';
 
 	import * as m from '$data/locales/generated/messages';
-	import { Avatar } from '$lib/components/avatar';
+	import type { Person } from '$data/people';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { PersonLinks } from '$lib/components/person-links';
@@ -14,12 +14,69 @@
 	const routing = RoutingContext.get();
 </script>
 
+{#snippet PersonListItem(person: Person)}
+	{@const href = routing.path('people/:id', person.id)}
+	{@const image = person.popImage || person.avatar}
+	<div class="@container w-full">
+		<article
+			class="shadow-brutal hover:shadow-brutal-lg bg-surface @2xl:flex-row @2xl:gap-10 group/person
+			@2xl:items-center duration-400 flex flex-col gap-6 border-2 border-current
+			transition-shadow hover:duration-75"
+		>
+			{#if image}
+				<a
+					class={[
+						person.popImage &&
+							'bg-tertiary-surface dark:bg-secondary-surface can-hover:opacity-80 duration-400 flex items-end justify-center self-stretch overflow-hidden px-6 pt-4 transition-opacity group-hover/person:opacity-100 group-hover/person:duration-75',
+						!person.popImage && 'self-stretch',
+					]}
+					{href}
+				>
+					<span class="sr-only">
+						<T message={m.view_more} />
+					</span>
+					<div
+						class={[
+							person.popImage &&
+								'can-hover:translate-y-2 can-hover:scale-95 duration-400 relative transition-transform group-hover/person:translate-y-0 group-hover/person:scale-100 group-hover/person:duration-75',
+						]}
+					>
+						<enhanced:img
+							class={[
+								'can-hover:grayscale duration-400 transition-[filter] group-hover/person:filter-none group-hover/person:duration-75',
+								person.popImage && 'h-45 w-45 object-top',
+								!person.popImage && 'h-52 w-52',
+							]}
+							src={image}
+							alt=""
+						/>
+					</div>
+				</a>
+			{/if}
+			<div
+				class={[
+					'@2xl:space-y-4 flex-1 space-y-3',
+					!person.popImage ? 'p-6' : '@max-2xl:px-6 @xl:py-6',
+				]}
+			>
+				<a {href} class="c-link-preserved block w-fit"><p class="c-text-title">{person.name}</p></a>
+				<p>{person.description}</p>
+				<PersonLinks links={person.links} />
+			</div>
+			<TextArrowLink
+				class="text-surface bg-on-surface translate-px hover:bg-primary-on-surface relative self-end
+				px-4 py-2 transition-colors"
+				{href}
+			>
+				<T message={m.view_more} />
+			</TextArrowLink>
+		</article>
+	</div>
+{/snippet}
+
 <main>
 	<!-- intro -->
-	<section
-		class="space-y-section pt-intro-pad-top from-32% from-primary-surface to-surface
-		bg-gradient-to-b"
-	>
+	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div class="max-w-pad space-y-10">
 			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 			<div class="space-y-4">
@@ -34,26 +91,12 @@
 
 	<!-- listing -->
 	<section class="max-w-pad py-section-more">
-		<ul class="divide-outline divide-y">
-			{#each data.people as { id, name, description, links, avatar } (id)}
-				{@const href = routing.path('people/:id', id)}
+		<ul class="divide-outline max-w-200 divide-y">
+			{#each data.people as person (person.id)}
 				<li
-					class="tablet:items-center tablet:gap-10 max-w-200 not-last:mb-10 not-last:pb-10 flex items-start gap-6"
+					class="tablet:items-center tablet:gap-10 not-last:mb-10 not-last:pb-10 flex items-start gap-6"
 				>
-					<a {href}>
-						<span class="tablet:hidden sr-only">
-							<T message={m.view_more} />
-						</span>
-						<Avatar class="w-30 h-30" src={avatar} {name} />
-					</a>
-					<div class="flex-1 space-y-2">
-						<p class="c-text-title font-bold">{name}</p>
-						<p>{description}</p>
-						<PersonLinks {links} />
-					</div>
-					<TextArrowLink class="mobile:hidden self-end" {href}>
-						<T message={m.view_more} />
-					</TextArrowLink>
+					{@render PersonListItem(person)}
 				</li>
 			{/each}
 		</ul>

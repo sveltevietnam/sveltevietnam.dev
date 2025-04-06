@@ -37,3 +37,9 @@
 		@slot;
 	}
 }
+
+@custom-variant can-hover {
+	@media (hover: hover) {
+		@slot;
+	}
+}

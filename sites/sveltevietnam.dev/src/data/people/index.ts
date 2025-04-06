@@ -15,6 +15,7 @@ export type Person = {
 		github?: string;
 	};
 	avatar?: Picture;
+	popImage?: Picture;
 };
 
 export type MinimalPerson = Omit<Person, 'links' | 'id' | 'avatar'>;
@@ -41,18 +42,23 @@ type PersonModule =
 const modules = import.meta.glob<PersonModule>('./*/index.ts');
 const avatarModules = import.meta.glob<Picture>('./*/avatar.jpg', {
 	import: 'default',
-	query: '?enhanced&w=320;200;96',
+	query: '?enhanced&w=400;100',
+});
+const popImageModules = import.meta.glob<Picture>('./*/pop-image.png', {
+	import: 'default',
+	query: '?enhanced&w=640;320',
 });
 
 type PersonOptionalModules = {
 	links: boolean;
 	avatar: boolean;
+	popImage: boolean;
 };
 
 export async function loadPerson(
 	id: string,
 	lang: App.Language,
-	optionalModules?: PersonOptionalModules | true,
+	optionalModules?: Partial<PersonOptionalModules> | true,
 ): Promise<Person | null> {
 	const path = `./${id}/index.ts`;
 	if (!modules[path]) return null;
@@ -63,11 +69,17 @@ export async function loadPerson(
 	} else {
 		person = module.default;
 	}
+
+	const [avatar, popImage] = await Promise.all([
+		optionalModules === true || optionalModules?.avatar ? loadPersonAvatar(id) : undefined,
+		optionalModules === true || optionalModules?.popImage ? loadPersonPopImage(id) : undefined,
+	]);
+
 	return {
 		...person,
 		links: optionalModules === true || optionalModules?.links ? module.links : undefined,
-		avatar:
-			optionalModules === true || optionalModules?.avatar ? await loadPersonAvatar(id) : undefined,
+		avatar,
+		popImage,
 		id: id,
 	};
 }
@@ -76,4 +88,10 @@ export async function loadPersonAvatar(id: string): Promise<Picture | undefined>
 	const path = `./${id}/avatar.jpg`;
 	if (!avatarModules[path]) return undefined;
 	return avatarModules[path]();
+}
+
+export async function loadPersonPopImage(id: string): Promise<Picture | undefined> {
+	const path = `./${id}/pop-image.png`;
+	if (!popImageModules[path]) return undefined;
+	return popImageModules[path]();
 }

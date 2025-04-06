@@ -1,7 +1,7 @@
 import { definePerson, definePersonLinks } from '..';
 
-import ogImageEn from './og-vnphanquang.en.jpg?url';
-import ogImageVi from './og-vnphanquang.vi.jpg?url';
+import ogImageEn from './og.en.jpg?url';
+import ogImageVi from './og.vi.jpg?url';
 
 export const en = definePerson({
 	name: 'Quang Phan',
