@@ -18,8 +18,14 @@
 		transition-duration: var(--duration);
 		transition-property: color, border-color, background-color;
 
-		&:hover,
-		&:--current {
+		@variant hover {
+			--duration: 120ms;
+			--easing: var(--ease-out);
+
+			color: var(--active-color);
+		}
+
+		@variant current {
 			--duration: 120ms;
 			--easing: var(--ease-out);
 
