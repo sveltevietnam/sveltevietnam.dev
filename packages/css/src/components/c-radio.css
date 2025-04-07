@@ -10,7 +10,7 @@
 		height: 1.5rem;
 		padding: 0;
 		border-color: var(--radio-color-fg);
-		border-width: 1px;
+		border-width: 1.5px;
 		border-radius: 50%;
 
 		appearance: none;

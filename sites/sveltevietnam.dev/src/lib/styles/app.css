@@ -51,7 +51,7 @@
 	overflow: hidden;
 	max-width: 100%;
 	border-color: currentcolor;
-	border-width: 1px;
+	border-width: 1.5px;
 
 	&[turnstile-size='flexible'] {
 		width: 100%;
