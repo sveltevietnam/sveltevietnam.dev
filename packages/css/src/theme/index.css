@@ -36,6 +36,11 @@
 		var(--color-primary-surface) 90%,
 		transparent
 	);
+	--background-image-gradient-primary-intro: linear-gradient(
+		to bottom,
+		var(--color-primary-surface) 32%,
+		var(--color-surface) 100%
+	);
 
 	/** shadows */
 	--shadow-brutal-sm: 2px 2px var(--tw-shadow-color, currentcolor);
@@ -46,4 +51,3 @@
 	--drop-shadow-brutal: 4px 4px var(--tw-shadow-color, currentcolor);
 	--drop-shadow-brutal-lg: 8px 8px var(--tw-shadow-color, currentcolor);
 }
-

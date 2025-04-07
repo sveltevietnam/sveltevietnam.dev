@@ -58,7 +58,7 @@
 <main>
 	<!-- intro -->
 	<section
-		class="pt-intro-pad-top max-w-pad from-32% from-primary-surface to-surface bg-gradient-to-b"
+		class="pt-intro-pad-top max-w-pad bg-gradient-primary-intro"
 	>
 		<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 		<h1 class="c-text-heading-lg tablet:mt-10 desktop:mt-15 mt-8">
@@ -92,7 +92,7 @@
 					{@const href = routing.path('people/:id', id)}
 					<li class="flex items-center gap-3">
 						<a {href}>
-							<Avatar class="h-12 w-12" src={avatar} {name} border="ellipse" />
+							<Avatar class="h-12 w-12 object-top" src={avatar} {name} border="ellipse" />
 						</a>
 						<div class="space-y-1">
 							<p class="font-bold"><a class="c-link-lazy" {href}>{name}</a></p>

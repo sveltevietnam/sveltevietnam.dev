@@ -43,7 +43,7 @@
 <main>
 	<!-- intro -->
 	<section
-		class="space-y-section pt-intro-pad-top from-32% from-primary-surface to-surface bg-gradient-to-b"
+		class="space-y-section pt-intro-pad-top bg-gradient-primary-intro"
 	>
 		<div class="max-w-pad space-y-10">
 			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
