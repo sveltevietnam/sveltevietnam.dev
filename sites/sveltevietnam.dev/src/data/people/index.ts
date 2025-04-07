@@ -1,45 +1,17 @@
 import type { Picture } from 'vite-imagetools';
 
-export { default as ids } from './ids';
+import type * as t from './types';
+export type * from './types';
 
-export type PersonId = (typeof import('./ids').default)[number];
-
-export type Person = {
-	id: string;
-	name: string;
-	description: string;
-	ogImage?: string;
-	links?: {
-		website?: string;
-		bluesky?: string;
-		github?: string;
-	};
-	avatar?: Picture;
-	popImage?: Picture;
-};
-
-export type MinimalPerson = Omit<Person, 'links' | 'id' | 'avatar'>;
-
-export function definePerson(person: MinimalPerson): MinimalPerson {
+export function definePerson(person: t.MinimalPerson): t.MinimalPerson {
 	return person;
 }
 
-export function definePersonLinks(links: Person['links']): Person['links'] {
+export function definePersonLinks(links: t.Person['links']): t.Person['links'] {
 	return links;
 }
 
-type PersonModule =
-	| {
-			default: MinimalPerson;
-			links?: Person['links'];
-	  }
-	| {
-			en: MinimalPerson;
-			vi: MinimalPerson;
-			links?: Person['links'];
-	  };
-
-const modules = import.meta.glob<PersonModule>('./*/index.ts');
+const modules = import.meta.glob<t.PersonModule>('./*/index.ts');
 const avatarModules = import.meta.glob<Picture>('./*/avatar.jpg', {
 	import: 'default',
 	query: '?enhanced&w=400;100',
@@ -48,22 +20,17 @@ const popImageModules = import.meta.glob<Picture>('./*/pop-image.png', {
 	import: 'default',
 	query: '?enhanced&w=640;320',
 });
-
-type PersonOptionalModules = {
-	links: boolean;
-	avatar: boolean;
-	popImage: boolean;
-};
+export const ids = Object.keys(modules).map((path) => path.split('/')[1]);
 
 export async function loadPerson(
 	id: string,
 	lang: App.Language,
-	optionalModules?: Partial<PersonOptionalModules> | true,
-): Promise<Person | null> {
+	optionalModules?: Partial<t.PersonOptionalModules> | true,
+): Promise<t.Person | null> {
 	const path = `./${id}/index.ts`;
 	if (!modules[path]) return null;
 	const module = await modules[path]();
-	let person: MinimalPerson;
+	let person: t.MinimalPerson;
 	if ('en' in module) {
 		person = module[lang];
 	} else {

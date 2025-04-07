@@ -1,39 +1,23 @@
-import ids from './ids';
+import type * as t from './types';
+export type * from './types';
 
-export { default as ids } from './ids';
-
-export type BlogCategoryId = (typeof import('./ids').default)[number];
-
-export type BlogCategory = {
-	id: string;
-	name: string;
-	slug: string;
-	description: string;
-};
-
-export function defineBlogCategory(category: Omit<BlogCategory, 'id'>): Omit<BlogCategory, 'id'> {
+export function defineBlogCategory(
+	category: Omit<t.BlogCategory, 'id'>,
+): Omit<t.BlogCategory, 'id'> {
 	return category;
 }
 
-type BlogCategoryModule =
-	| {
-			default: Omit<BlogCategory, 'id'>;
-	  }
-	| {
-			en: Omit<BlogCategory, 'id'>;
-			vi: Omit<BlogCategory, 'id'>;
-	  };
-
-const modules = import.meta.glob<BlogCategoryModule>('./*/index.ts');
+const modules = import.meta.glob<t.BlogCategoryModule>('./*/index.ts');
+const ids = Object.keys(modules).map((path) => path.split('/')[1]);
 
 export async function loadBlogCategory(
 	id: string,
 	lang: App.Language,
-): Promise<BlogCategory | null> {
+): Promise<t.BlogCategory | null> {
 	const path = `./${id}/index.ts`;
 	if (!modules[path]) return null;
 	const module = await modules[path]();
-	let category: Omit<BlogCategory, 'id'> ;
+	let category: Omit<t.BlogCategory, 'id'>;
 	if ('en' in module) {
 		category = module[lang];
 	} else {
@@ -48,7 +32,7 @@ export async function loadBlogCategory(
 export async function loadBlogCategoryBySlug(
 	slug: string,
 	lang: App.Language,
-): Promise<BlogCategory | null> {
+): Promise<t.BlogCategory | null> {
 	const categories = await Promise.all(ids.map((id) => loadBlogCategory(id, lang)));
 	return categories.find((category) => category?.slug === slug) ?? null;
 }
