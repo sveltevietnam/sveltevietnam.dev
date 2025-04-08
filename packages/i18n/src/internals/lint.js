@@ -1,17 +1,15 @@
-import { flatParseMessages, parseMessageParams } from './parse.js';
+import { parseMessageParams } from './parse.js';
 
 /** @typedef {{ message: string; e?: unknown }} Issue */
-/** @typedef {{ messages: Record<string, Record<string, string>>; issuesByKey: Record<string, Issue[]> }} LintOutput */
+/** @typedef {{ issuesByKey: Record<string, Issue[]> }} LintOutput */
 
 /**
- * @param {Record<string, string>} yamls - lang to yaml string map
+ * @param {Record<string, Record<string, string>>} messages - parsed message flatmap
+ * @param {string[]} langs - list of langs to lint against
  * @param {boolean} failFirst - whether to stop on the first error
  * @returns {Promise<LintOutput>} list of lint error message per locale directory
  */
-export async function lint(yamls, failFirst = false) {
-	const messages = await flatParseMessages(yamls);
-
-	const langs = Object.keys(yamls);
+export async function lint(messages, langs, failFirst = false) {
 	/** @type {Record<string, Issue[]>} */
 	const issuesByKey = {};
 
@@ -29,7 +27,7 @@ export async function lint(yamls, failFirst = false) {
 		/// 1 - check for missing per-lang messages
 		if (Object.keys(valueByLang).length !== langs.length) {
 			addIssue(key, `missing message in "${langs.filter((l) => !valueByLang[l]).join(',')}"`);
-			if (failFirst) return { messages, issuesByKey };
+			if (failFirst) return { issuesByKey };
 		}
 
 		/// 2 - check for inconsistent message parameters across lang
@@ -44,7 +42,7 @@ export async function lint(yamls, failFirst = false) {
 					`failed to parse dynamic parameters in "${lang}", make sure your param is correctly wrapped in double curly brackets, i.e {{ ... }}.`,
 					e,
 				);
-				if (failFirst) return { messages, issuesByKey };
+				if (failFirst) return { issuesByKey };
 			}
 		}
 
@@ -61,9 +59,9 @@ export async function lint(yamls, failFirst = false) {
 					)
 					.join('; ')}`,
 			);
-			if (failFirst) return { messages, issuesByKey };
+			if (failFirst) return { issuesByKey };
 		}
 	}
 
-	return { messages, issuesByKey };
+	return { issuesByKey };
 }

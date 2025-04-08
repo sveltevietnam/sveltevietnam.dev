@@ -11,3 +11,10 @@ export type RecursiveRecord<T> = {
 export type LocaleSource = {
 	messages: RecursiveRecord<string>;
 };
+
+export type FlatMessageMap = Record<string, Record<string, string>>;
+
+export type FlatParseMessageOutput = {
+	messages: FlatMessageMap;
+	langs: string[];
+};

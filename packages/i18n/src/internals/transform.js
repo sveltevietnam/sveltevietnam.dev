@@ -4,7 +4,7 @@ import * as utils from './utils.js';
 
 /**
  * @param {Record<string, Record<string, string>>} messages
- * @returns {string}
+ * @returns {{ module: string }}
  */
 export function transform(messages) {
 	/** @type {import('typescript').Node[]} */
@@ -68,5 +68,5 @@ export function transform(messages) {
 		codegen.exportIdentifierAsLiterals(exports),
 	]);
 
-	return content;
+	return { module: content };
 }

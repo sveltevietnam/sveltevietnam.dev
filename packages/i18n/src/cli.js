@@ -10,9 +10,10 @@ import glob from 'tiny-glob';
 
 import pkg from '../package.json' with { type: 'json' };
 
-import { build } from './internals/build.js';
 import { collectYamls } from './internals/collect.js';
 import { lint } from './internals/lint.js';
+import { flatParseMessages } from './internals/parse.js';
+import { transform } from './internals/transform.js';
 import { printLintIssues } from './internals/utils.js';
 
 program.name('i18n').description(pkg.description).version(pkg.version);
@@ -20,7 +21,7 @@ program.name('i18n').description(pkg.description).version(pkg.version);
 program
 	.command('lint')
 	.description('lint locale files for potential issues')
-	.argument('<pattern>', 'glob pattern of directories containing all locale files (in yaml)')
+	.argument('<pattern>', 'glob pattern of directories containing locale files (in yaml)')
 	.option('-f, --fail-first', 'whether to quit immediately on the first error', false)
 	.action(
 		/**
@@ -33,29 +34,35 @@ program
 				p.intro(pico.bgCyan(pico.black(' i18n lint ')));
 				const spinner = p.spinner();
 
-				// globing
+				// 1. Glob
 				spinner.start('Finding locale directories...');
 				const dirs = await glob(pattern, { cwd });
 				spinner.stop(`Found ${pico.green(pico.bold(dirs.length))} locale directories`);
 				p.note(dirs.map((d) => path.relative(cwd, d)).join('\n'), 'Locale directories:');
 
-				// collect
+				// 2. Collect
 				spinner.start('Collecting locale files...');
 				const localeFileGroups = await Promise.all(dirs.map((dir) => collectYamls(cwd, dir)));
 				spinner.stop('Collected locale files...');
 
-				// parse & lint
-				spinner.start('Parsing and linting messages');
-				// const { issuesByKey } = await lint(yamls, options['fail-first']);
-				const issueGroups = await Promise.all(
-					localeFileGroups.map(async (yamls) => lint(yamls, options['fail-first'])),
+				// 3. Parse
+				spinner.start('Parsing messages...');
+				const messageGroups = await Promise.all(
+					localeFileGroups.map((yamls) => flatParseMessages(yamls)),
 				);
-				const numMessages = issueGroups.reduce((numMessages, group) => {
+				const numMessages = messageGroups.reduce((numMessages, group) => {
 					return numMessages + Object.keys(group.messages).length;
 				}, 0);
-				spinner.stop(`Parsed and linted ${pico.green(pico.bold(numMessages))} messages`);
+				spinner.stop(`Parsed ${pico.green(pico.bold(numMessages))} messages...`);
 
-				// reporting
+				// 4. Lint
+				spinner.start('Linting messages');
+				const issueGroups = await Promise.all(
+					messageGroups.map(({ messages, langs }) => lint(messages, langs, options['fail-first'])),
+				);
+				spinner.stop(`Linted messages`);
+
+				// 5. Report
 				let hasIssue = false;
 				for (let i = 0; i < issueGroups.length; i++) {
 					const issueEntries = Object.entries(issueGroups[i].issuesByKey);
@@ -84,7 +91,7 @@ program
 program
 	.command('build')
 	.description('attempt to build a JS module from locale files')
-	.argument('<pattern>', 'glob pattern for directories containing all locale files (in yaml)')
+	.argument('<pattern>', 'glob pattern for directories containing locale files (in yaml)')
 	.action(
 		/**
 		 * @param {string} pattern
@@ -96,28 +103,37 @@ program
 				p.intro(pico.bgCyan(pico.black(' i18n build ')));
 				const spinner = p.spinner();
 
-				// globing
+				// 1. Glob
 				spinner.start('Finding locale directories...');
 				const dirs = await glob(pattern, { cwd });
 				spinner.stop(`Found ${pico.green(pico.bold(dirs.length))} locale directories`);
 				p.note(dirs.map((d) => path.relative(cwd, d)).join('\n'), 'Locale directories:');
 
-				// collect
+				// 2. Collect
 				spinner.start('Collecting locale files...');
 				const localeFileGroups = await Promise.all(dirs.map((dir) => collectYamls(cwd, dir)));
 				spinner.stop('Collected locale files...');
 
-				// parse & transform
-				spinner.start('Parsing and transforming messages...');
-				const outputs = await Promise.all(localeFileGroups.map(async (yamls) => build(yamls)));
-				const numMessages = outputs.reduce((numMessages, output) => {
-					return numMessages + Object.keys(output.messages).length;
+				// 3. Parse
+				spinner.start('Parsing messages...');
+				const messageGroups = await Promise.all(
+					localeFileGroups.map((yamls) => flatParseMessages(yamls)),
+				);
+				const numMessages = messageGroups.reduce((numMessages, group) => {
+					return numMessages + Object.keys(group.messages).length;
 				}, 0);
-				spinner.stop(`Parsed and transformed ${pico.green(pico.bold(numMessages))} messages`);
+				spinner.stop(`Parsed ${pico.green(pico.bold(numMessages))} messages...`);
+
+				// 4. Transform
+				spinner.start('Transforming messages...');
+				const modules = await Promise.all(
+					messageGroups.map(async (group) => transform(group.messages)),
+				);
+				spinner.stop(`Transformed messages`);
 
 				// writing to filesystem
 				const outputPaths = await Promise.all(
-					outputs.map(async (output, index) => {
+					modules.map(async (output, index) => {
 						const outPath = path.join(process.cwd(), dirs[index], 'generated/messages.js');
 						await fs.mkdir(path.dirname(outPath), { recursive: true });
 						await fs.writeFile(outPath, output.module);

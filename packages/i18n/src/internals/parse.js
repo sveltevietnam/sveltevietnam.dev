@@ -15,7 +15,7 @@ export async function parseLocaleYaml(yaml) {
 
 /**
  * @param {Record<string, string>} yamls - lang to yaml string map
- * @returns {Promise<Record<string, Record<string, string>>>} - language to flat message map
+ * @returns {Promise<import('./private.d.ts').FlatParseMessageOutput>} - language to flat message map
  */
 export async function flatParseMessages(yamls) {
 	/** @type {Record<string, Record<string, string>>} */
@@ -38,7 +38,10 @@ export async function flatParseMessages(yamls) {
 		}),
 	);
 
-	return localizedMessages;
+	return {
+		messages: localizedMessages,
+		langs: Object.keys(yamls),
+	};
 }
 
 /**
