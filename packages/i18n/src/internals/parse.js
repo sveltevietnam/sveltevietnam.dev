@@ -19,18 +19,20 @@ export async function flatParseMessages(yamls) {
 	/** @type {Record<string, Record<string, string>>} */
 	const localizedMessages = {};
 
-	Object.entries(yamls).map(async ([lang, yaml]) => {
-		const source = await parseLocaleYaml(yaml);
-		const messages = flattenRecursiveRecord(source.messages);
+	await Promise.all(
+		Object.entries(yamls).map(async ([lang, yaml]) => {
+			const source = await parseLocaleYaml(yaml);
+			const messages = flattenRecursiveRecord(source.messages);
 
-		for (const [key, value] of Object.entries(messages)) {
-			if (!localizedMessages[key]) {
-				localizedMessages[key] = { [lang]: value };
-			} else {
-				localizedMessages[key][lang] = value;
+			for (const [key, value] of Object.entries(messages)) {
+				if (!localizedMessages[key]) {
+					localizedMessages[key] = { [lang]: value };
+				} else {
+					localizedMessages[key][lang] = value;
+				}
 			}
-		}
-	});
+		}),
+	);
 
 	return localizedMessages;
 }
