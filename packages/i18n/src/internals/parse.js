@@ -2,6 +2,8 @@ import { parse } from 'yaml';
 
 import { flattenRecursiveRecord } from './utils.js';
 
+// TODO: implement source map from YAML
+
 /**
  * parse locale files
  * @param {string} yaml - the input YAML string
@@ -22,7 +24,9 @@ export async function flatParseMessages(yamls) {
 	await Promise.all(
 		Object.entries(yamls).map(async ([lang, yaml]) => {
 			const source = await parseLocaleYaml(yaml);
-			const messages = flattenRecursiveRecord(source.messages);
+			const messages = flattenRecursiveRecord(source.messages, {
+				fallback: '',
+			});
 
 			for (const [key, value] of Object.entries(messages)) {
 				if (!localizedMessages[key]) {

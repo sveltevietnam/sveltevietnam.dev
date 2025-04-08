@@ -21,19 +21,43 @@ export function isHtml(str) {
 
 /**
  * @template T
- * @template {(v: unknown) => v is T} Predicate
- * @param {import('./private.d.ts').RecursiveRecord<T>} record
- * @param {Predicate} [predicate]
+ * @typedef FlattenRecursiveRecordOptions
+ * @property {(v: unknown) => v is T} predicate - the predicate to use to check if the value is a primitive
+ * @property {T} fallback - the fallback value to use when the value is null. Set to 'error' to throw an error when the value is null
+ */
+
+/**
+ * @template T
+ * @param {import('./private.d.ts').RecursiveRecord<T>} record - the input object to flatten
+ * @param {Partial<FlattenRecursiveRecordOptions<T>>} [options]
  * @returns {Record<string, T>}
  */
-export function flattenRecursiveRecord(
-	record,
-	predicate = /** @type {Predicate} */ ((v) => typeof v !== 'object'),
-) {
+export function flattenRecursiveRecord(record, options = {}) {
+	const { predicate, fallback } = {
+		predicate: /** @type {FlattenRecursiveRecordOptions<T>['predicate']} */ (
+			(v) => typeof v !== 'object'
+		),
+		...options,
+	};
+	if (!record) {
+		throw new Error(`Invalid input, expected a non-null object, got "${record}"`);
+	}
+
 	/** @type {Record<string, T>} */
 	const flat = {};
 
 	for (const [key, value] of Object.entries(record)) {
+		if (!value) {
+			if ('fallback' in options) {
+				flat[key] = /** @type {T} */ (fallback);
+				continue;
+			} else {
+				throw new Error(
+					`Invalid input for key "${key}", expected a non-null object, got "${value}"`,
+				);
+			}
+		}
+
 		if (predicate(value)) {
 			flat[key] = value;
 		} else {
@@ -55,9 +79,9 @@ export function printLintIssues(issueEntries) {
 	if (issueEntries.length) {
 		for (let i = 0; i < issueEntries.length; i++) {
 			const [key, issues] = issueEntries[i];
-			console.error(pico.red(`"${key}":`));
+			console.error(pico.red(`  "${key}":`));
 			for (const { message, e } of issues) {
-				console.error(pico.red(`   - ${message + (e ? ` (${e})` : '')}`));
+				console.error(pico.red(`     - ${message + (e ? ` (${e})` : '')}`));
 			}
 		}
 	}
