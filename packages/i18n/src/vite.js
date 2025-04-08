@@ -2,55 +2,78 @@ import fs from 'node:fs/promises';
 import path from 'node:path/posix';
 
 import pico from 'picocolors';
+import glob from 'tiny-glob';
 
 import { collectYamls } from './internals/collect.js';
 import { lint } from './internals/lint.js';
+import { flatParseMessages } from './internals/parse.js';
 import { transform } from './internals/transform.js';
 import { printLintIssues } from './internals/utils.js';
 
 /**
  * @typedef Config
- * @property {string} input - directory path for the input locale files
- * @property {string} [output] - file path for the output message JS module
+ * @property {string} input - glob pattern for the directories containing locale files
  */
 
 /**
  * @param {string} cwd
- * @param {Config} config
- * @returns {Promise<Record<string, Record<string, string>>>} message map
+ * @param {string[]} dirs
+ * @param {boolean} [rebuild=false]
+ * @returns {Promise<void>}
  */
-async function process(cwd, config) {
-	const { input, output = path.join(input, 'generated/messages.js') } = config;
+async function process(cwd, dirs, rebuild = false) {
+	// 2. Collect
+	const localeFileGroups = await Promise.all(dirs.map((dir) => collectYamls(cwd, dir)));
 
-	// 1. collect
-	console.info(pico.blue(`[sveltevietnam-i18n] Collecting locale files at "${input}"...`));
-	const yamls = await collectYamls(cwd, input);
+	// 3. Parse
+	const messageGroups = await Promise.all(
+		localeFileGroups.map((yamls) => flatParseMessages(yamls)),
+	);
+	const numMessages = messageGroups.reduce((numMessages, group) => {
+		return numMessages + Object.keys(group.messages).length;
+	}, 0);
 
-	// 2. parse & lint
-	const { messages, issuesByKey } = await lint(yamls, false);
-	const issueEntries = Object.entries(issuesByKey);
-	if (issueEntries.length) {
-		console.error(pico.redBright(`[sveltevietnam-i18n] ${issueEntries.length} issue(s) found`));
-		printLintIssues(issueEntries);
+	// 4. Lint
+	const issueGroups = await Promise.all(
+		messageGroups.map(({ messages, langs }) => lint(messages, langs, false)),
+	);
+	let hasIssue = false;
+	for (let i = 0; i < issueGroups.length; i++) {
+		const issueEntries = Object.entries(issueGroups[i].issuesByKey);
+		if (issueEntries.length) {
+			hasIssue = true;
+			console.error(
+				pico.redBright(
+					`[sveltevietnam-i18n] ${issueEntries.length} issue(s) found in "${path.relative(cwd, dirs[i])}" for the following message(s):`,
+				),
+			);
+			printLintIssues(issueEntries);
+		}
+	}
+	if (hasIssue) {
 		console.error(
 			pico.redBright('[sveltevietnam-i18n] Skipping build for now... Please fix the issues first.'),
 		);
-		return messages;
+		return;
 	}
 
-	// 3. build
-	const module = transform(messages);
+	// 4. Transform
+	const outputs = await Promise.all(messageGroups.map(async (group) => transform(group.messages)));
 
-	const outPath = path.join(cwd, output);
-	await fs.mkdir(path.dirname(outPath), { recursive: true });
-	await fs.writeFile(outPath, module);
+	// 5. Write
+	await Promise.all(
+		outputs.map(async (output, index) => {
+			const outPath = path.join(cwd, dirs[index], 'generated/messages.js');
+			await fs.mkdir(path.dirname(outPath), { recursive: true });
+			await fs.writeFile(outPath, output.module);
+			return outPath;
+		}),
+	);
 	console.info(
 		pico.green(
-			`[sveltevietnam-i18n] Successfully built ${pico.bold(Object.keys(messages).length)} messages to "${output}"`,
+			`[sveltevietnam-i18n] successfully ${rebuild ? 'rebuilt' : 'built'} ${pico.bold(numMessages)} messages`,
 		),
 	);
-
-	return messages;
 }
 
 /**
@@ -63,23 +86,26 @@ export function i18n(config) {
 		enforce: 'post',
 		async configureServer(server) {
 			const cwd = server.config.root;
-			const inputDir = path.join(cwd, config.input);
+			const dirs = await glob(config.input, { cwd });
 
 			/** @param {string} filepath */
 			function onUpdate(filepath) {
-				if (path.dirname(filepath) === inputDir && path.extname(filepath) === '.yaml') {
-					console.info(
-						pico.blue(
-							`[sveltevietnam-i18n] detecting changes at "${path.relative(cwd, filepath)}", rebuilding...`,
-						),
-					);
-					process(cwd, config);
-				}
+				if (path.extname(filepath) !== '.yaml') return;
+
+				const dir = path.relative(cwd, path.dirname(filepath));
+				if (!dirs.includes(dir)) return;
+
+				console.info(
+					pico.blue(
+						`[sveltevietnam-i18n] detected changes at "${path.relative(cwd, filepath)}", rebuilding...`,
+					),
+				);
+				process(cwd, [dir], true);
 			}
 
-			await process(cwd, config);
+			await process(cwd, dirs);
 
-			server.watcher.add(path.join(inputDir, '*.yaml'));
+			server.watcher.add(path.join(config.input, '*.yaml'));
 			server.watcher.on('add', onUpdate);
 			server.watcher.on('change', onUpdate);
 			server.watcher.on('unlink', onUpdate);

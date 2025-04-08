@@ -126,15 +126,15 @@ program
 
 				// 4. Transform
 				spinner.start('Transforming messages...');
-				const modules = await Promise.all(
+				const outputs = await Promise.all(
 					messageGroups.map(async (group) => transform(group.messages)),
 				);
 				spinner.stop(`Transformed messages`);
 
-				// writing to filesystem
+				// 5. Write
 				const outputPaths = await Promise.all(
-					modules.map(async (output, index) => {
-						const outPath = path.join(process.cwd(), dirs[index], 'generated/messages.js');
+					outputs.map(async (output, index) => {
+						const outPath = path.join(cwd, dirs[index], 'generated/messages.js');
 						await fs.mkdir(path.dirname(outPath), { recursive: true });
 						await fs.writeFile(outPath, output.module);
 						return outPath;
