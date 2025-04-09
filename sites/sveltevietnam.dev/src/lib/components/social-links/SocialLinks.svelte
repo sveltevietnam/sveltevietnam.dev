@@ -5,7 +5,7 @@
 
 	let { class: cls, ...rest }: HTMLAttributes<HTMLElement> = $props();
 
-	const commonLinkClasses = 'c-link-icon p-2 flex border rounded-full border-current';
+	const commonLinkClasses = 'c-link-icon p-2 flex border-onehalf rounded-full border-current';
 </script>
 
 <ul class={['flex flex-wrap items-center gap-3 widescreen:gap-2', cls]} {...rest}>

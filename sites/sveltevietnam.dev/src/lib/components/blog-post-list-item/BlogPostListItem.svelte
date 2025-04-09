@@ -1,6 +1,12 @@
 <script lang="ts" module>
+	import { T } from '@sveltevietnam/i18n';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { Picture } from 'vite-imagetools';
+
+	import * as m from '$data/locales/generated/messages';
+	import fallback16x9 from '$lib/assets/images/fallbacks/16x9.jpg?enhanced&w=1540;1088;686&imagetools';
+	import { RoutingContext } from '$lib/routing/context.svelte';
+	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	type ScreenScopedVar<T extends string> = {
 		tablet?: T;
@@ -25,10 +31,6 @@
 </script>
 
 <script lang="ts">
-	import fallback16x9 from '$lib/assets/images/fallbacks/16x9.jpg?enhanced&w=1540;1088;686&imagetools';
-	import { RoutingContext } from '$lib/routing/context.svelte';
-	import { SettingsContext } from '$lib/settings/context.svelte';
-
 	let {
 		post,
 		aspect,
@@ -62,7 +64,7 @@
 	{...rest}
 >
 	<a class="c-link-image shrink-0" href={routing.path('blog/:slug', post.slug)}>
-		<span class="sr-only">Read post</span>
+		<span class="sr-only"><T message={m.view_more} /></span>
 		<enhanced:img
 			class={[
 				'aspect-video max-w-full',
@@ -102,7 +104,7 @@
 				<a class="c-link-preserved relative" href={routing.path('blog/:slug', post.slug)}>
 					{post.title}
 					<i
-						class="mobile:hidden i i-[cursor-click] absolute bottom-0 right-0 translate-x-full text-[0.75em]"
+						class="not-can-hover:hidden i i-[cursor-click] absolute bottom-0 right-0 translate-x-full text-[0.75em]"
 					></i>
 				</a>
 			</p>

@@ -23,8 +23,7 @@ export function buildStructuredBlog(lang: App.Language): Blog {
 	const locale = locales[lang];
 	return {
 		'@type': 'Blog',
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		'@id': `${(org as any)['@id']}/blog`,
+		'@id': `${org['@id']}/blog`,
 		name: 'Svelte Việt Nam Blog',
 		description: buildStructuredTextWithLang(lang, locale.description),
 		publisher: org,

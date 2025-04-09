@@ -16,7 +16,7 @@
 	<TBA class="text-center mx-auto w-fit">
 		<p class="c-text-title-sm"><T message={m['pages.home.events.tba.desc']} /></p>
 		<p>
-			<a class="c-link" href="{routing.path('events')}#mail">
+			<a class="c-link" href="{routing.path('events')}#participate">
 				<T message={m['pages.home.events.tba.subscribe']} />
 			</a>
 		</p>

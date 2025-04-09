@@ -45,6 +45,8 @@ export type BlogPostMetadata = {
 	keywords?: string;
 };
 
+export type MinimalBlogPostMetadata = Omit<BlogPostMetadata, 'id'>;
+
 export type ExtendedBlogPostMetadata = Omit<
 	BlogPostMetadata,
 	'authors' | 'categories' | 'series'

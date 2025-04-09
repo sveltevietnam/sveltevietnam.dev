@@ -9,8 +9,8 @@ import type * as t from './types';
 export type * from './types';
 
 export function defineBlogPostMetadata(
-	metadata: Omit<t.BlogPostMetadata, 'id'>,
-): Omit<t.BlogPostMetadata, 'id'> {
+	metadata: t.MinimalBlogPostMetadata,
+): t.MinimalBlogPostMetadata {
 	return metadata;
 }
 
@@ -38,7 +38,7 @@ export async function loadBlogPostMetadata(
 	const path = `./${id}/metadata.ts`;
 	if (!metadataModules[path]) return null;
 	const module = await metadataModules[path]();
-	let metadata: Omit<t.BlogPostMetadata, 'id'>;
+	let metadata: t.MinimalBlogPostMetadata;
 	if ('en' in module) {
 		metadata = module[lang];
 	} else {
@@ -92,13 +92,23 @@ async function extendBlogPostMetadata(
 	};
 }
 
-export async function loadBlogPost(id: string, lang: App.Language) {
+export async function loadBlogPost(
+	id: string,
+	lang: App.Language,
+): Promise<t.ExtendedBlogPostMetadata | null> {
 	const metadata = await loadBlogPostMetadata(id, lang);
 	if (!metadata) return null;
 	return extendBlogPostMetadata(metadata, lang);
 }
 
-export async function loadBlogPosts(lang: App.Language, page: number, per: number) {
+export async function loadBlogPosts(
+	lang: App.Language,
+	page: number,
+	per: number,
+): Promise<{
+	posts: t.ExtendedBlogPostMetadata[];
+	total: number;
+}> {
 	return {
 		posts: (
 			await Promise.all(ids.slice(per * (page - 1), per * page).map((id) => loadBlogPost(id, lang)))
@@ -107,7 +117,10 @@ export async function loadBlogPosts(lang: App.Language, page: number, per: numbe
 	};
 }
 
-export async function loadBlogPostBySlug(slug: string, lang: App.Language) {
+export async function loadBlogPostBySlug(
+	slug: string,
+	lang: App.Language,
+): Promise<t.ExtendedBlogPostMetadata | null> {
 	const metadatas = (await Promise.all(ids.map((id) => loadBlogPostMetadata(id, lang)))).filter(
 		Boolean,
 	);

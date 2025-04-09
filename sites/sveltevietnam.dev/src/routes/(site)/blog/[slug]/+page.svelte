@@ -57,9 +57,7 @@
 
 <main>
 	<!-- intro -->
-	<section
-		class="pt-intro-pad-top max-w-pad bg-gradient-primary-intro"
-	>
+	<section class="pt-intro-pad-top max-w-pad bg-gradient-primary-intro">
 		<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 		<h1 class="c-text-heading-lg tablet:mt-10 desktop:mt-15 mt-8">
 			{data.post.title}
@@ -198,7 +196,7 @@
 					{/if}
 					<li>
 						<a
-							class="c-link-icon flex rounded-full border border-current p-2"
+							class="c-link-icon border-onehalf flex rounded-full border-current p-2"
 							href="https://bsky.app/intent/compose?text={encodedUrl}"
 							data-external
 						>
@@ -208,7 +206,7 @@
 					</li>
 					<li>
 						<a
-							class="c-link-icon flex rounded-full border border-current p-2"
+							class="c-link-icon border-onehalf flex rounded-full border-current p-2"
 							href="https://www.facebook.com/sharer/sharer.php?u={encodedUrl}"
 							data-external
 						>
@@ -218,7 +216,7 @@
 					</li>
 					<li>
 						<a
-							class="c-link-icon flex rounded-full border border-current p-2"
+							class="c-link-icon border-onehalf flex rounded-full border-current p-2"
 							href="https://www.linkedin.com/shareArticle?mini=true&url={encodedUrl}&title={data
 								.post.title}"
 							data-external
@@ -230,7 +228,7 @@
 					<li>
 						{#if settings.hydrated}
 							<button
-								class="c-link-icon flex rounded-full border border-current p-2"
+								class="c-link-icon flex rounded-full border-onehalf border-current p-2"
 								onclick={openQrDialog}
 							>
 								<span class="sr-only">QR Code</span>
@@ -245,7 +243,9 @@
 		<!-- latest blog post -->
 		{#if data.posts.latest}
 			<section class="_latest space-y-6">
-				<h2 class="c-text-heading border-b"><T message={m['pages.blog_slug.headings.latest']} /></h2>
+				<h2 class="c-text-heading border-b">
+					<T message={m['pages.blog_slug.headings.latest']} />
+				</h2>
 				<BlogPostListItem post={data.posts.latest} />
 			</section>
 		{/if}
@@ -263,7 +263,9 @@
 		<section class="py-section max-w-pad space-y-8" id="posts">
 			<div class="space-y-4 border-t-4 border-current pt-2">
 				<div class="flex flex-wrap items-baseline justify-between gap-4">
-					<h2 class="c-text-title uppercase"><T message={m['pages.blog_slug.headings.series']} /></h2>
+					<h2 class="c-text-title uppercase">
+						<T message={m['pages.blog_slug.headings.series']} />
+					</h2>
 					<TextArrowLink href={routing.path('blog')}>
 						<T message={m.view_more} />
 					</TextArrowLink>

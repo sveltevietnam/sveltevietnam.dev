@@ -1,4 +1,4 @@
-import { loadBlogSeries, ids } from '$data/blog/series';
+import { loadEvents } from '$data/events';
 import * as m from '$data/locales/generated/messages';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 
@@ -15,8 +15,10 @@ export const load: PageServerLoad = async ({ locals, depends }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	const lang = locals.sharedSettings.language;
 
+	const { events } = await loadEvents(lang, 1, 10);
+
 	return {
-		series: (await Promise.all(ids.map((id) => loadBlogSeries(id, lang)))).filter(Boolean),
+		events,
 		meta: {
 			title: m['pages.events.title'](lang),
 			description: m['pages.events.desc'](lang),

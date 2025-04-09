@@ -8,6 +8,7 @@ messages:
   close: Đóng
   download: Tải về
   view_more: Xem thêm
+  and: và
   svelte_vietnam:
     name: Svelte Việt Nam
     discord: Svelte Việt Nam Discord
@@ -319,6 +320,7 @@ messages:
       keywords: sự kiện, gặp mặt, chia sẻ
       heading: Sự kiện
       desc: Gặp gỡ cộng đồng tại Việt Nam — chia sẻ về Svelte và open source
+      view_upcoming: Xem sự kiện sắp tới
       upcoming:
         heading: Sự kiện sắp tới
         tba:
@@ -565,6 +567,11 @@ messages:
       dark: Chế độ tối
       system: Mặc định
       toggle: bảng chọn chế độ màu. Chế độ màu hiện tại là
+    event_list_item:
+      copy: Sao chép đường dẫn đến trang sự kiện
+      location: Địa điểm
+      live: Trực tuyến tại
+      time: Thời gian
     footer:
       about:
         title: Về chúng tôi

@@ -8,6 +8,7 @@ messages:
   close: Close
   download: Download
   view_more: View more
+  and: and
   svelte_vietnam:
     name: Svelte Vietnam
     discord: Svelte Vietnam Discord
@@ -313,6 +314,7 @@ messages:
       heading: Events
       desc: Meet the community in Vietnam — discuss about the Svelte and open source
         ecosystem
+      view_upcoming: View upcoming events
       upcoming:
         heading: Upcoming events
         tba:
@@ -555,6 +557,11 @@ messages:
       dark: Dark mode
       system: System default
       toggle: color scheme menu. Current color scheme is
+    event_list_item:
+      copy: Copy link to event page
+      location: Location
+      live: Live via
+      time: Time
     footer:
       about:
         title: About Us

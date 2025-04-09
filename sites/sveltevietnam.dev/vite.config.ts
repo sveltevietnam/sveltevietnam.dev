@@ -30,6 +30,6 @@ export default defineConfig({
 		tailwindcss(),
 		sveltekit(),
 		sveltekitRouting(),
-		i18n({ input: 'src/data/locales' }),
+		i18n({ input: 'src/**/locales' }),
 	],
 });

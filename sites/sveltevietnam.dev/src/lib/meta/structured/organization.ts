@@ -5,6 +5,7 @@ import { SOCIAL_LINKS } from '$data/links';
 
 import { buildStructuredTextWithLang } from './utils';
 
+// TODO: extract to locale YAML files
 const locales = {
 	vi: {
 		description:
@@ -17,7 +18,7 @@ const locales = {
 	},
 };
 
-export function buildStructuredOrganization(lang: App.Language): Organization {
+export function buildStructuredOrganization(lang: App.Language): Organization & { '@id': string } {
 	const locale = locales[lang];
 	return {
 		'@type': 'Organization',

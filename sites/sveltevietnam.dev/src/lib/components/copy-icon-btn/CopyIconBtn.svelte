@@ -30,8 +30,9 @@
 	}
 </script>
 
+<!-- TODO: Add tooltip on hover? -->
 <button
-	class={['c-link-icon flex rounded-full border border-current p-2', cls]}
+	class={['c-link-icon flex rounded-full border-onehalf border-current p-2', cls]}
 	use:copy={{ text }}
 	oncopied={onCopied}
 	onmouseleave={onMouseLeaveCopyButton}

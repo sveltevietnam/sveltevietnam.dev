@@ -71,7 +71,7 @@
 		"format": "prettier --write --ignore-path=../../.prettierignore ."
 	},
 	"dependencies": {
-		"@clack/prompts": "^0.10.0",
+		"@clack/prompts": "^0.10.1",
 		"commander": "^13.1.0",
 		"dedent": "^1.5.3",
 		"lodash.debounce": "^4.0.8",
@@ -83,7 +83,7 @@
 	},
 	"devDependencies": {
 		"@types/lodash.debounce": "^4.0.9",
-		"svelte": "^5.25.6",
+		"svelte": "^5.25.9",
 		"vite": "^6.2.5"
 	}
 }
