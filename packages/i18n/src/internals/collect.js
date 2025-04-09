@@ -9,7 +9,8 @@ import glob from 'tiny-glob';
  * @returns {Promise<Record<string, string>>} where key is the language, value is the YAML string read from filesystem
  */
 export async function collectYamls(cwd, dir) {
-	const filepaths = await glob(path.join(dir, '*.yaml'), { cwd });
+	const pattern = path.join(dir.trim(), '*.yaml').trim();
+	const filepaths = await glob(pattern, { cwd });
 	if (filepaths.length === 0) {
 		throw new Error(`No locale files found in ${dir}`);
 	}
