@@ -5,7 +5,6 @@
 	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
 	import fallback16x9 from '$lib/assets/images/fallbacks/16x9.jpg?enhanced&w=2240,1540;1088;686&imagetools';
-	import { Avatar } from '$lib/components/avatar';
 	import { BlogNewsletter } from '$lib/components/blog-newsletter';
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
 	import { BlogPostListItem } from '$lib/components/blog-post-list-item';
@@ -14,6 +13,7 @@
 	import { GradientBackground } from '$lib/components/gradient-background';
 	import { HintedText } from '$lib/components/hinted-text';
 	import { NotByAiBadge } from '$lib/components/not-by-ai-badge';
+	import { Person } from '$lib/components/person';
 	import { TextArrowLink } from '$lib/components/text-arrow-link';
 	import { DialogContext } from '$lib/dialogs/context.svelte';
 	import { QrCodeDialog } from '$lib/dialogs/qr-code-dialog';
@@ -88,14 +88,8 @@
 			<ul class="flex flex-wrap items-start gap-6">
 				{#each data.post.authors as { name, id, avatar, description } (id)}
 					{@const href = routing.path('people/:id', id)}
-					<li class="flex items-center gap-3">
-						<a {href}>
-							<Avatar class="h-12 w-12 object-top" src={avatar} {name} border="ellipse" />
-						</a>
-						<div class="space-y-1">
-							<p class="font-bold"><a class="c-link-lazy" {href}>{name}</a></p>
-							<p class="text-on-surface-subtle">{description}</p>
-						</div>
+					<li>
+						<Person {name} {avatar} {href} {description} />
 					</li>
 				{/each}
 			</ul>

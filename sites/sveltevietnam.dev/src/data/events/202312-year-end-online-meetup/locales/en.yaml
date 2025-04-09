@@ -1,5 +1,45 @@
+---
 messages:
   slug: 202312-year-end-online-meetup
   title: Online Meetup Year-end 2023
-  desc: This is the first-ever online meetup of the Svelte Vietnam community, and also the last of 2023.
+  desc: This is the first-ever online meetup of the Svelte Vietnam community, and
+    also the last of 2023.
   keywords: event, community, meetup, 2023, year-end, first
+  recap:
+    heading: Recap
+    desc: This was the first event of the Svelte Vietnam community and the last of
+      2023 as we came closer to the end of yet another year full of API changes and
+      AI news. The event lasted for about two hours, with a combination of pre-record
+      videos and live discussions. We took inspiration from past events of <a class="c-link"
+      href="https://www.sveltesummit.com/" rel="noreferrer" target="_blank">Svelte
+      Summit</a>, <a class="c-link" href="https://viteconf.org/" rel="noreferrer"
+      target="_blank">Vite Conf</a>, and other events in the web platform ecosystem,
+      and hopefully would establish a precedent for many more events to come.
+    shoutout: 'Shout out to community members who took time to join the meetup: Tymon,
+      Bắc, Tuấn, and those in or outside the community who watched the livestream
+      at Youtube.<br />A big thank to <a class="c-link" href="https://maiduchuy.com/" rel="noreferrer"
+      target="_blank">Huy Mai</a> for giving us permission to use his music for the
+      event.'
+  links:
+    youtube: Re-watch the livestream on Youtube
+    discord: Join community chat at Discord
+  timeline:
+    heading: Timeline
+    live: Live via
+    introduction: Meet and Greet
+    discussions:
+      pretext: Live Discussion
+      one: Feedback from Community
+      two: Open Discussion
+    videos:
+      pretext: Video Stream
+      one:
+        title: A Svelte Vietnam
+        desc: Some statistics about the Svelte Vietnam project, and a few words from admin
+      two: A Few Secrets of sveltevietnam.dev
+    closing: Closing Remarks
+  images:
+    heading: Images
+    event_cover_image: Event cover image
+    video_thumbnail: Video thumbnail
+    moment: 'Livestream moment. Members: Tymon, Bắc, Tuấn (not visible), and Quang'

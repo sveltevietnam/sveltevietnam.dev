@@ -9,6 +9,7 @@ messages:
   download: Download
   view_more: View more
   and: and
+  minutes: minutes
   svelte_vietnam:
     name: Svelte Vietnam
     discord: Svelte Vietnam Discord

@@ -1,6 +1,8 @@
 import type { Component } from 'svelte';
 import type { Picture } from 'vite-imagetools';
 
+import { formatTime } from '$lib/utils/datetime';
+
 import type * as t from './types';
 export type * from './types';
 
@@ -114,4 +116,16 @@ export async function loadEvents(
 		).filter(Boolean),
 		total: ids.length,
 	};
+}
+export function generateTimeSlot(
+	startDate: string | Date,
+	offsetMinutes: number,
+	durationMinutes: number,
+) {
+	startDate = new Date(startDate);
+	const ms = startDate.getTime() + offsetMinutes * 1_000 * 60;
+	const slotStartDate = new Date(ms);
+	const slotEndDate = new Date(ms + durationMinutes * 1_000 * 60);
+
+	return `${formatTime(slotStartDate)} - ${formatTime(slotEndDate)}`;
 }

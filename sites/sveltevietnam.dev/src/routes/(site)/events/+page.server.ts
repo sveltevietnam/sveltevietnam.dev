@@ -15,6 +15,7 @@ export const load: PageServerLoad = async ({ locals, depends }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	const lang = locals.sharedSettings.language;
 
+	// TODO: sort by event status 'upcoming' | 'ongoing' | 'past'
 	const { events } = await loadEvents(lang, 1, 10);
 
 	return {

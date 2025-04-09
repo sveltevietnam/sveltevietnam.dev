@@ -33,7 +33,7 @@
 	<!-- intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div
-			class="max-w-pad tablet:flex-row tablet:gap-6 tablet:items-center flex flex-col justify-between"
+			class="max-w-pad tablet:flex-row tablet:gap-6 tablet:items-start flex flex-col justify-between"
 		>
 			<div class="tablet:space-y-8 space-y-6">
 				<Breadcrumbs crumbs={data.routing.breadcrumbs} />
@@ -167,12 +167,12 @@
 		<h2 class="c-text-heading-lg border-b">
 			<T message={m['pages.events.past.heading']} />
 		</h2>
-		<ul class="space-y-6 tablet:space-y-10">
+		<ul class="tablet:space-y-10 space-y-6">
 			{#each data.events as event, i (event.id)}
 				<li>
 					<EventListItem {event} />
 					{#if i < data.events.length - 1}
-						<div class="w-full h-px bg-outline-subtle mt-6 tablet:mt-10"></div>
+						<div class="bg-outline-dim tablet:mt-10 mt-6 h-px w-full"></div>
 					{/if}
 				</li>
 			{/each}
