@@ -1,20 +1,10 @@
-import { definePerson, definePersonLinks } from '..';
+import { definePerson } from '..';
+import * as m from '../locales/generated/messages';
 
-import ogImageEn from './og.en.jpg?url';
-import ogImageVi from './og.vi.jpg?url';
-
-export const en = definePerson({
-	name: 'Nguyên Lê',
-	description: 'UI/UX designer — Member of Svelte Vietnam community',
-	ogImage: ogImageEn,
-});
-
-export const vi = definePerson({
-	name: 'Lê Nguyên',
-	description: 'Thiết kế viên UI/UX — Thành viên cộng đồng Svelte Việt Nam',
-	ogImage: ogImageVi,
-});
-
-export const links = definePersonLinks({
-	website: 'https://nguyenle.pages.dev',
-});
+export default definePerson((lang) => ({
+	name: m['trongnguyen24.name'](lang),
+	description: m['trongnguyen24.desc'](lang),
+	links: {
+		website: 'https://nguyenle.pages.dev',
+	},
+}));

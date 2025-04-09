@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 
-	import { en } from '$data/people/vnphanquang';
+	import vnphanquangDef from '$data/people/vnphanquang';
 	import vnphanquangAvatar from '$data/people/vnphanquang/avatar.jpg?enhanced&w=400;100&imagetools';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { DateTimeRangeText } from '$lib/components/date-time-range-text';
@@ -11,6 +11,7 @@
 	import { ListMessage } from '$lib/components/list-message';
 	import { Person } from '$lib/components/person';
 	import { RoutingContext } from '$lib/routing/context.svelte';
+	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import type { PageData } from '.././../../routes/(site)/events/[slug]/$types';
 
@@ -21,21 +22,24 @@
 	import * as m from './locales/generated/messages';
 	import { EVENT_LINKS } from './metadata';
 
-	let { data }: { data: PageData }  = $props();
+	let { data }: { data: PageData } = $props();
 
 	const routing = RoutingContext.get();
+	const settings = SettingsContext.get();
+
+	const vnphanquang = $derived(vnphanquangDef(settings.language));
 </script>
 
 <main>
 	<!-- Intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
-		<div class="space-y-6 tablet:space-y-8 max-w-pad">
+		<div class="tablet:space-y-8 max-w-pad space-y-6">
 			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 			<div class="space-y-6">
 				<h1 class="c-text-heading-page text-primary-on-surface">
 					{data.event.title}
 				</h1>
-				<p class="font-medium c-text-subtitle-page">
+				<p class="c-text-subtitle-page font-medium">
 					<DateTimeRangeText startDate={data.event.startDate} endDate={data.event.endDate} />
 				</p>
 			</div>
@@ -44,12 +48,12 @@
 	</section>
 
 	<!-- Recap -->
-	<section class="pb-section pt-section-more space-y-6 max-w-pad">
+	<section class="pb-section pt-section-more max-w-pad space-y-6">
 		<h2 class="c-text-heading-lg border-b">
 			<T message={m['recap.heading']} />
 		</h2>
-		<div class="flex items-start gap-10 flex-wrap">
-			<p class="leading-relaxed flex-5 min-w-[min(40ch,100%)]">
+		<div class="flex flex-wrap items-start gap-10">
+			<p class="flex-5 min-w-[min(40ch,100%)] leading-relaxed">
 				<T message={m['recap.desc']} />
 			</p>
 			<p class="c-callout c-callout--success c-callout--icon-trophy flex-4 min-w-[min(32ch,100%)]">
@@ -67,7 +71,7 @@
 	</section>
 
 	<!-- Timeline -->
-	<section class="py-section space-y-8 max-w-pad">
+	<section class="py-section max-w-pad space-y-8">
 		<h2 class="c-text-heading-lg border-b">
 			<T message={m['timeline.heading']} />
 		</h2>
@@ -91,22 +95,22 @@
 				</div>
 			{/if}
 
-				<!-- time -->
-				<div class="flex items-start gap-2">
-					<dt>
-						<i class="i i-[clock] h-6 w-6"></i>
-					</dt>
-					<dd>
-						<DateTimeRangeText
-							startDate={data.event.startDate}
-							endDate={data.event.endDate}
-							order="time-first"
-						/>
-					</dd>
-				</div>
+			<!-- time -->
+			<div class="flex items-start gap-2">
+				<dt>
+					<i class="i i-[clock] h-6 w-6"></i>
+				</dt>
+				<dd>
+					<DateTimeRangeText
+						startDate={data.event.startDate}
+						endDate={data.event.endDate}
+						order="time-first"
+					/>
+				</dd>
+			</div>
 		</dl>
 
-		<div class="border-t border-dashed w-full bg-outline-dim"></div>
+		<div class="bg-outline-dim w-full border-t border-dashed"></div>
 
 		<EventTimeline.List>
 			<EventTimeline.Item startDate={data.event.startDate} offsetMinutes={0} numMinutes={20}>
@@ -118,17 +122,18 @@
 			<EventTimeline.Item startDate={data.event.startDate} offsetMinutes={20} numMinutes={20}>
 				{#snippet heading()}
 					<a class="c-link" href={EVENT_LINKS.VIDEO1}>
-						<T message={m['timeline.videos.pretext']} />:
-						"<T message={m['timeline.videos.one.title']} />"
+						<T message={m['timeline.videos.pretext']} />: "<T
+							message={m['timeline.videos.one.title']}
+						/>"
 					</a>
 				{/snippet}
 				{#snippet content()}
 					<p><T message={m['timeline.videos.one.desc']} /></p>
-					<!-- FIXME: localize person data once -->
+					<!-- FIXME: use data from server ? -->
 					<Person
-						name={en.name}
+						name={vnphanquang.name}
 						avatar={vnphanquangAvatar}
-						description={en.description}
+						description={vnphanquang.description}
 						href={routing.path('people/:id', 'vnphanquang')}
 					/>
 				{/snippet}
@@ -151,16 +156,15 @@
 			<EventTimeline.Item startDate={data.event.startDate} offsetMinutes={90} numMinutes={20}>
 				{#snippet heading()}
 					<a class="c-link" href={EVENT_LINKS.VIDEO2}>
-						<T message={m['timeline.videos.pretext']} />:
-						"<T message={m['timeline.videos.two']} />"
+						<T message={m['timeline.videos.pretext']} />: "<T message={m['timeline.videos.two']} />"
 					</a>
 				{/snippet}
 				{#snippet content()}
-					<!-- FIXME: localize person data once -->
+					<!-- FIXME: use data from server ? -->
 					<Person
-						name={en.name}
+						name={vnphanquang.name}
 						avatar={vnphanquangAvatar}
-						description={en.description}
+						description={vnphanquang.description}
 						href={routing.path('people/:id', 'vnphanquang')}
 					/>
 				{/snippet}
@@ -175,17 +179,14 @@
 	</section>
 
 	<!-- Images -->
-	<section class="pt-section pb-section-more space-y-10 tablet:space-y-15 max-w-pad">
+	<section class="pt-section pb-section-more tablet:space-y-15 max-w-pad space-y-10">
 		<h2 class="c-text-heading-lg border-b">
 			<T message={m['images.heading']} />
 		</h2>
 
 		<EventGallery.Container>
 			{#snippet biggerImages()}
-				<EventGallery.Image
-					src={imgOg}
-					alt="laptop openning in dark gradient background"
-				>
+				<EventGallery.Image src={imgOg} alt="laptop openning in dark gradient background">
 					{#snippet caption()}
 						<T message={m['images.event_cover_image']} />
 					{/snippet}
@@ -202,19 +203,15 @@
 			{/snippet}
 
 			{#snippet smallerImages()}
-				<EventGallery.Image
-					src={imgVideo1Thumbnail}
-					alt=""
-				>
+				<EventGallery.Image src={imgVideo1Thumbnail} alt="">
 					{#snippet caption()}
-						<T message={m['images.video_thumbnail']} />: "<T message={m['timeline.videos.one.title']} />"
+						<T message={m['images.video_thumbnail']} />: "<T
+							message={m['timeline.videos.one.title']}
+						/>"
 					{/snippet}
 				</EventGallery.Image>
 
-				<EventGallery.Image
-					src={imgVideo2Thumbnail}
-					alt=""
-				>
+				<EventGallery.Image src={imgVideo2Thumbnail} alt="">
 					{#snippet caption()}
 						<T message={m['images.video_thumbnail']} />: "<T message={m['timeline.videos.two']} />"
 					{/snippet}

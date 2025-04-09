@@ -3,15 +3,13 @@ import type { Picture } from 'vite-imagetools';
 import type * as t from './types';
 export type * from './types';
 
-export function definePerson(person: t.MinimalPerson): t.MinimalPerson {
-	return person;
+export function definePerson(def: t.PersonDefinition): t.PersonDefinition {
+	return def;
 }
 
-export function definePersonLinks(links: t.Person['links']): t.Person['links'] {
-	return links;
-}
-
-const modules = import.meta.glob<t.PersonModule>('./*/index.ts');
+const modules = import.meta.glob<t.PersonDefinition>('./*/index.ts', {
+	import: 'default',
+});
 const avatarModules = import.meta.glob<Picture>('./*/avatar.jpg', {
 	import: 'default',
 	query: '?enhanced&w=400;100',
@@ -19,6 +17,10 @@ const avatarModules = import.meta.glob<Picture>('./*/avatar.jpg', {
 const popImageModules = import.meta.glob<Picture>('./*/pop-image.png', {
 	import: 'default',
 	query: '?enhanced&w=640;320',
+});
+const ogImageModules = import.meta.glob<string>('./*/og*.jpg', {
+	import: 'default',
+	query: '?url',
 });
 export const ids = Object.keys(modules).map((path) => path.split('/')[1]);
 
@@ -29,26 +31,33 @@ export async function loadPerson(
 ): Promise<t.Person | null> {
 	const path = `./${id}/index.ts`;
 	if (!modules[path]) return null;
-	const module = await modules[path]();
-	let person: t.MinimalPerson;
-	if ('en' in module) {
-		person = module[lang];
-	} else {
-		person = module.default;
-	}
+	const def = await modules[path]();
+	const person = def(lang);
 
-	const [avatar, popImage] = await Promise.all([
+	const [avatar, popImage, ogImage] = await Promise.all([
 		optionalModules === true || optionalModules?.avatar ? loadPersonAvatar(id) : undefined,
 		optionalModules === true || optionalModules?.popImage ? loadPersonPopImage(id) : undefined,
+		optionalModules === true || optionalModules?.ogImage ? loadPersonOgImage(id, lang) : undefined,
 	]);
 
 	return {
 		...person,
-		links: optionalModules === true || optionalModules?.links ? module.links : undefined,
 		avatar,
 		popImage,
+		ogImage,
 		id: id,
 	};
+}
+
+export async function loadPersonOgImage(
+	id: string,
+	lang: App.Language,
+): Promise<string | undefined> {
+	const path = `./${id}/og.${lang}.jpg`;
+	if (path in ogImageModules) return ogImageModules[path]();
+	const universalPath = `./${id}/og.jpg`;
+	if (universalPath in ogImageModules) return ogImageModules[universalPath]();
+	return undefined;
 }
 
 export async function loadPersonAvatar(id: string): Promise<Picture | undefined> {

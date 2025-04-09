@@ -17,7 +17,14 @@ export const load: PageServerLoad = async ({ locals, depends }) => {
 
 	return {
 		people: (
-			await Promise.all(ids.map((id) => loadPerson(id, locals.sharedSettings.language, true)))
+			await Promise.all(
+				ids.map((id) =>
+					loadPerson(id, locals.sharedSettings.language, {
+						popImage: true,
+						avatar: true,
+					}),
+				),
+			)
 		).filter(Boolean),
 		meta: {
 			title: m['pages.people.title'](lang),
