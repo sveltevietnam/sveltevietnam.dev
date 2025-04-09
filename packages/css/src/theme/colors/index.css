@@ -15,7 +15,8 @@
 
 	/* default foreground */
 	--color-on-surface: light-dark(var(--color-sand-950), var(--color-sand-50));
-	--color-on-surface-subtle: light-dark(var(--color-sand-700), var(--color-sand-300));
+	--color-on-surface-subtle: light-dark(var(--color-sand-800), var(--color-sand-200));
+	--color-on-surface-dim: light-dark(var(--color-sand-700), var(--color-sand-300));
 
 	/* default background */
 	--color-surface: light-dark(var(--color-sand-50), var(--color-sand-950));

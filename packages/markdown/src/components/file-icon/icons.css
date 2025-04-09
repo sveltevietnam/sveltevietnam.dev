@@ -1,9 +1,12 @@
+/* stylelint-disable-next-line layer-name-pattern */
 @layer utilities.icons.modifier {
-	.i-javascript, .i-js {
+	.i-javascript,
+	.i-js {
 		--icon-url: url('./images/javascript.svg');
 	}
 
-	.i-typescript, .i-ts {
+	.i-typescript,
+	.i-ts {
 		--icon-url: url('./images/typescript.svg');
 	}
 
@@ -23,7 +26,8 @@
 		--icon-url: url('./images/svelte.svg');
 	}
 
-	.i-bash, .i-sh {
+	.i-bash,
+	.i-sh {
 		--icon-url: url('./images/gnometerminal.svg');
 	}
 }

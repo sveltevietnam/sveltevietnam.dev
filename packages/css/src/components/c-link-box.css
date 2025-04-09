@@ -1,0 +1,82 @@
+@utility c-link-box {
+	@layer components {
+		--duration: 300ms;
+		--easing: var(--ease-in);
+		--active-color: var(--color-link);
+		--hover-translate-x: 0.75rem;
+		--padding-y: 1rem;
+
+		position: relative;
+		display: block;
+		padding: var(--padding-y) 0;
+
+		&::before {
+			content: '';
+
+			position: absolute;
+			z-index: -1;
+			inset: 0;
+			transform-origin: left;
+			transform: scaleX(0);
+
+			background-color: currentcolor;
+
+			transition: transform var(--duration) var(--easing);
+		}
+
+		& span {
+			display: inline-block;
+			transition-timing-function: inherit;
+			transition-duration: var(--duration);
+			transition-property: transform, filter;
+		}
+
+		&[external]:not([external='false']),
+		&[href^='http'] {
+			padding-right: 2rem;
+
+			&::after {
+				content: '';
+
+				/* stylelint-disable-next-line at-rule-no-deprecated */
+				@apply i-[arrow-square-out];
+
+				position: absolute;
+				top: var(--padding-y);
+				right: 0;
+
+				width: 1.5rem;
+				height: 1.5rem;
+
+				background-color: currentcolor;
+
+				transition-timing-function: inherit;
+				transition-duration: var(--duration);
+				transition-property: transform, filter;
+
+				mask-image: var(--icon-url);
+			}
+		}
+
+		@variant hover {
+			--duration: 120ms;
+			--easing: var(--ease-out);
+
+			background-size: 100% 100%;
+
+			&::before {
+				transform: scaleX(1);
+			}
+
+			&::after {
+				transform: translateX(calc(-1 * var(--hover-translate-x)));
+				filter: invert(1);
+			}
+
+			& span {
+				transform: translateX(var(--hover-translate-x));
+				filter: invert(1);
+			}
+		}
+	}
+}
