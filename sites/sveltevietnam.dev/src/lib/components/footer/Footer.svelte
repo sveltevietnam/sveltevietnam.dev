@@ -12,6 +12,7 @@
 
 	let {
 		version,
+		class: cls,
 		...rest
 	}: HTMLAttributes<HTMLElement> & {
 		version: string;
@@ -32,7 +33,7 @@
 	let secondaryPages = $derived(['settings', 'code-of-conduct', 'sitemap.xml', 'rss.xml'] as const);
 </script>
 
-<footer {...rest}>
+<footer class={['relative bg-gradient-to-t from-primary-surface to-surface', cls]} {...rest}>
 	<div class="max-w-pad _upper border-y pb-10 pt-14">
 		<p
 			class="_name c-text-heading tablet:block tablet:text-right w-37.5 tablet:justify-self-end hidden uppercase"

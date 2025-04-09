@@ -5,6 +5,7 @@
 
 /* links */
 @import './c-link.css';
+@import './c-link-box.css';
 @import './c-link-icon.css';
 @import './c-link-image.css';
 @import './c-link-lazy.css';
