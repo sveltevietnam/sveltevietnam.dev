@@ -19,6 +19,8 @@ export type EventMetadata = {
 		url: string;
 	}[];
 	thumbnail?: Picture;
+	/** list of ids linking members that contributed to this event  */
+	people?: string[];
 };
 
 export type MinimalEventMetadata = Omit<EventMetadata, 'id'>;

@@ -141,7 +141,7 @@ type BlogPostSearchOptions = {
 	pagination?: { per: number; page: number };
 };
 
-export async function search(options: BlogPostSearchOptions): Promise<{
+export async function searchBlogPosts(options: BlogPostSearchOptions): Promise<{
 	posts: t.ExtendedBlogPostMetadata[];
 	total: number;
 }> {

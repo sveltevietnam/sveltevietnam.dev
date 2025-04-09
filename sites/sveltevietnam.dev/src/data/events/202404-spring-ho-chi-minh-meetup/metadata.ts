@@ -15,6 +15,7 @@ export default defineEventMetadata((lang) => ({
 			address: m.address(lang),
 		},
 	],
+	people: ['trongnguyen24', 'vnphanquang'],
 }));
 
 export const structured = defineEventAdditionalStructuredData(() => ({

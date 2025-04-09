@@ -1,6 +1,7 @@
 import { error } from '@sveltejs/kit';
 
-import { search } from '$data/blog/posts';
+import { searchBlogPosts } from '$data/blog/posts';
+import { loadEventsByPersonId } from '$data/events';
 import { loadPerson } from '$data/people';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { buildStructuredPerson } from '$lib/meta/structured/people';
@@ -28,8 +29,9 @@ export const load: PageServerLoad = async ({ parent, url, locals, depends, param
 	}
 
 	const pagination = getPaginationFromUrl(url);
-	const [{ posts, total }, parentLoadData] = await Promise.all([
-		search({
+	const [{ events }, { posts, total }, parentLoadData] = await Promise.all([
+		loadEventsByPersonId(lang, person.id, 1, 4),
+		searchBlogPosts({
 			lang,
 			pagination: {
 				per: pagination.per,
@@ -56,6 +58,7 @@ export const load: PageServerLoad = async ({ parent, url, locals, depends, param
 
 	return {
 		person,
+		events,
 		posts,
 		routing: {
 			...parentLoadData.routing,

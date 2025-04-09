@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
 
-import { search } from '$data/blog/posts';
+import { searchBlogPosts } from '$data/blog/posts';
 import { loadBlogSeries, loadBlogSeriesBySlug } from '$data/blog/series';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { buildStructuredBlogSeries } from '$lib/meta/structured/blog';
@@ -22,7 +22,7 @@ export const load: PageServerLoad = async ({ parent, url, locals, depends, param
 	const otherLang = lang === 'en' ? 'vi' : 'en';
 	const pagination = getPaginationFromUrl(url);
 	const [{ posts, total }, otherLangSeries, { routing }] = await Promise.all([
-		search({
+		searchBlogPosts({
 			lang,
 			where: {
 				seriesId: series.id,

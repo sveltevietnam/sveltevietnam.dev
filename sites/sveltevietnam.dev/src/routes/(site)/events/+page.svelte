@@ -5,7 +5,7 @@
 	import { EMAILS } from '$data/emails';
 	import * as m from '$data/locales/generated/messages';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
-	import { EventListItem } from '$lib/components/event-list-item';
+	import { EventListing } from '$lib/components/event-listing';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { TBA } from '$lib/components/tba';
 	import { EmailRegistrationForm } from '$lib/forms/email-registration';
@@ -167,15 +167,6 @@
 		<h2 class="c-text-heading-lg border-b">
 			<T message={m['pages.events.past.heading']} />
 		</h2>
-		<ul class="tablet:space-y-10 space-y-6">
-			{#each data.events as event, i (event.id)}
-				<li>
-					<EventListItem {event} />
-					{#if i < data.events.length - 1}
-						<div class="bg-outline-dim tablet:mt-10 mt-6 h-px w-full"></div>
-					{/if}
-				</li>
-			{/each}
-		</ul>
+		<EventListing events={data.events} />
 	</section>
 </main>

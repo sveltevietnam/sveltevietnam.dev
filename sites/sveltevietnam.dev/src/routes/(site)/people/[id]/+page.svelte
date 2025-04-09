@@ -5,6 +5,7 @@
 	import * as m from '$data/locales/generated/messages';
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
+	import { EventListing } from '$lib/components/event-listing';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { Pagination } from '$lib/components/pagination';
 	import { PersonLinks } from '$lib/components/person-links';
@@ -59,20 +60,21 @@
 		<IntroSeparator variant="full" class="z-2 relative" />
 	</section>
 
-	<!-- {#if data.events.length} -->
-	<section class="py-section max-w-pad desktop:space-y-15 tablet:space-y-10 space-y-8">
-		<div class="space-y-4 border-t-4 border-current pt-2">
-			<div class="flex flex-wrap items-baseline justify-between gap-4">
-				<h2 class="c-text-title">
-					<T message={m['pages.people_slug.events']} name={data.person.name} />
-				</h2>
-				<TextArrowLink href={routing.path('events')}>
-					<T message={m['pages.people_slug.view_events']} />
-				</TextArrowLink>
+	{#if data.events.length}
+		<section class="py-section max-w-pad desktop:space-y-15 tablet:space-y-10 space-y-8">
+			<div class="space-y-4 border-t-4 border-current pt-2">
+				<div class="flex flex-wrap items-baseline justify-between gap-4">
+					<h2 class="c-text-title">
+						<T message={m['pages.people_slug.events']} name={data.person.name} />
+					</h2>
+					<TextArrowLink class="ml-auto" href={routing.path('events')}>
+						<T message={m['pages.people_slug.view_events']} />
+					</TextArrowLink>
+				</div>
 			</div>
-		</div>
-	</section>
-	<!-- {/if} -->
+			<EventListing events={data.events} />
+		</section>
+	{/if}
 
 	<!-- blog post listing -->
 	{#if data.posts.length}
@@ -82,7 +84,7 @@
 					<h2 class="c-text-title">
 						<T message={m['pages.people_slug.posts_by']} name={data.person.name} />
 					</h2>
-					<TextArrowLink href={routing.path('blog')}>
+					<TextArrowLink class="ml-auto" href={routing.path('blog')}>
 						<T message={m['pages.people_slug.view_blog']} />
 					</TextArrowLink>
 				</div>

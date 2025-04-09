@@ -14,7 +14,7 @@
 	import { DateTimeRangeText } from '../date-time-range-text';
 	import { ListMessage } from '../list-message';
 
-	export type EventListItemProps = HTMLAttributes<HTMLElement> & {
+	export type EventListingItemProps = HTMLAttributes<HTMLElement> & {
 		event: {
 			slug: string;
 			title: string;
@@ -35,7 +35,7 @@
 </script>
 
 <script lang="ts">
-	let { event }: EventListItemProps = $props();
+	let { event }: EventListingItemProps = $props();
 
 	const settings = SettingsContext.get();
 	const routing = RoutingContext.get();

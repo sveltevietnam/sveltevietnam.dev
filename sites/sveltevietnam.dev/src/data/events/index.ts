@@ -117,6 +117,26 @@ export async function loadEvents(
 		total: ids.length,
 	};
 }
+
+export async function loadEventsByPersonId(
+	lang: App.Language,
+	personId: string,
+	page: number,
+	per: number,
+): Promise<{
+	events: t.EventMetadata[];
+	total: number;
+}> {
+	const metadatas = (await Promise.all(ids.map((id) => loadEventMetadata(id, lang)))).filter(
+		Boolean,
+	);
+	const matched = metadatas.filter((metadata) => metadata.people?.includes(personId));
+	return {
+		events: matched.slice(per * (page - 1), per * page),
+		total: matched.length,
+	};
+}
+
 export function generateTimeSlot(
 	startDate: string | Date,
 	offsetMinutes: number,

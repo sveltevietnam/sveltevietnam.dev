@@ -27,6 +27,7 @@ export default defineEventMetadata((lang) => ({
 			url: EVENT_LINKS.DISCORD,
 		},
 	],
+	people: ['vnphanquang'],
 }));
 
 export const structured = defineEventAdditionalStructuredData(() => ({
