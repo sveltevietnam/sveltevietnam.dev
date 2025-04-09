@@ -45,7 +45,7 @@
 </script>
 
 <div class="@container">
-	<article class="@xl:grid-cols-auto-2 @3xl:grid-cols-auto-3 @xl:gap-x-10 grid grid-cols-1 gap-4">
+	<article class="@xl:grid-cols-auto-2 @3xl:grid-cols-[auto_auto_1fr] @xl:gap-x-10 grid grid-cols-1 gap-4">
 		<!-- date -->
 		<div
 			class={[
