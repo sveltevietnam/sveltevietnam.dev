@@ -120,7 +120,7 @@ function chunkifyContentWithParams(content, params, snippet = false) {
 }
 
 /**
- * @param {boolean} proxy - whether to import `createMessageProxy`
+ * @param {boolean} proxy - whether to import `createMessage`
  * @param {boolean} string - whether to import `createMessageString`
  * @param {boolean} func - whether to import `createMessageFunction`
  * @param {boolean} snippet - whether to import `createMessageSnippet`
@@ -131,7 +131,7 @@ export function importRuntimeFactoryFunctions(proxy, string, func, snippet) {
 	const identifiers = [];
 
 	if (proxy) {
-		identifiers.push('createMessageProxy');
+		identifiers.push('createMessage');
 	}
 	if (string) {
 		identifiers.push('createMessageString');
@@ -426,7 +426,7 @@ export function exportIdentifierAsLiterals(def) {
  * @param {string[]} langs - languages
  * @returns {ts.Node}
  */
-export function defineMessageProxy(varName, langs) {
+export function defineMessage(varName, langs) {
 	return factory.createVariableStatement(
 		[],
 		factory.createVariableDeclarationList(
@@ -435,7 +435,7 @@ export function defineMessageProxy(varName, langs) {
 					factory.createIdentifier(varName),
 					undefined,
 					undefined,
-					factory.createCallExpression(factory.createIdentifier('createMessageProxy'), undefined, [
+					factory.createCallExpression(factory.createIdentifier('createMessage'), undefined, [
 						factory.createObjectLiteralExpression(
 							langs.map((lang) =>
 								factory.createPropertyAssignment(

@@ -24,7 +24,23 @@ export type MessageSnippet<
 	$p: Record<P, string>;
 };
 
-export type Message<P extends string = never> =
+export type IntermediateMessage<P extends string> =
 	| MessageString<P>
 	| MessageFunction<P>
 	| MessageSnippet<P>;
+
+export interface Message<
+	Type extends MessageType = MessageType,
+	Params extends string = string,
+	Langs extends string = string,
+> {
+	/** for internal use by `T.svelte` component and `isMessage` helper */
+	$t: Type;
+	(
+		lang: Langs,
+	): Type extends 'snippet'
+		? MessageSnippet<Params>
+		: Type extends 'function'
+			? MessageFunction<Params>
+			: MessageString<Params>;
+}

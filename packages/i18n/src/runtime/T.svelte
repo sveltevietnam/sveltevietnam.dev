@@ -1,26 +1,29 @@
-<script lang="ts" generics="P extends string">
+<script
+	lang="ts"
+	generics="M extends import('./types.public.js').Message"
+>
 	import { getContext } from 'svelte';
 
 	let {
-		message: messageProxy,
+		message,
 		lang: langFromProp,
 		...rest
 	}: {
-		message: (lang: string) => import('./types.public.js').Message<P>;
+		message: M;
 		lang?: string;
-	} & Record<P, string> = $props();
+	} & Record<keyof ReturnType<M>['$p'], string> = $props();
 
 	let getLang = getContext<() => string>('t:lang');
 	let lang = $derived(langFromProp ?? getLang());
-	let message = $derived(messageProxy(lang));
+	let iMessage = $derived(message(lang));
 
-	const params = rest as unknown as Record<P, string>;
+	const params = rest as unknown as Record<keyof ReturnType<M>['$p'], string>;
 </script>
 
-{#if message.$t === 'snippet'}
-	{@render message(params)}
-{:else if message.$t === 'function'}
-	{message(params)}
+{#if iMessage.$t === 'snippet'}
+	{@render iMessage(params)}
+{:else if iMessage.$t === 'function'}
+	{iMessage(params)}
 {:else}
-	{message as unknown as string}
+	{iMessage as unknown as string}
 {/if}

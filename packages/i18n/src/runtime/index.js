@@ -51,15 +51,23 @@ export function createMessageSnippet(snippet) {
 }
 
 /**
- * @template {import('./types.public.js').Message<P>} M
- * @template {string} P
- * @param {Record<string, M>} messages
- * @returns {(lang: string) => M}
+ * @template {Record<string, import('./types.public.js').IntermediateMessage<string>>} M
+ * @param {M} messages
+ * @returns {import('./types.public.js').Message<M[keyof M]['$t'], keyof M[keyof M]['$p']>}
  */
-export function createMessageProxy(messages) {
-	/**
-	 * @param {string} lang
-	 * @returns {M}
-	 */
-	return (lang) => messages[lang];
+export function createMessage(messages) {
+	const resolver = /** @type {any} */ (
+		/** @param {string} lang */
+		(lang) => messages[lang]
+	);
+	resolver.$$i18n = true;
+	return resolver;
+}
+
+/**
+ * @param {unknown} m
+ * @returns {m is import('./types.public.js').Message}
+ */
+export function isMessage(m) {
+	return '$t' in /** @type {any} */ (m);
 }

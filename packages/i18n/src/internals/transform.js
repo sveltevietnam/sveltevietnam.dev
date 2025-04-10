@@ -50,7 +50,7 @@ export function transform(messages) {
 			}
 		}
 
-		definitions.push(codegen.defineMessageProxy(varName, Object.keys(langToMessage)));
+		definitions.push(codegen.defineMessage(varName, Object.keys(langToMessage)));
 	}
 
 	/// import runtime factory functions, depending
