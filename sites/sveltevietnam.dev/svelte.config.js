@@ -36,6 +36,10 @@ export default {
 		vitePreprocess(),
 	],
 	kit: {
+		env: {
+			publicPrefix: 'VITE_PUBLIC_',
+			privatePrefix: 'VITE_PRIVATE_',
+		},
 		prerender: {
 			origin: 'https://www.sveltevietnam.dev',
 			crawl: true,

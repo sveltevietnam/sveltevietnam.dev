@@ -3,16 +3,22 @@ import { LANGUAGES } from '@sveltevietnam/i18n';
 import { localizeUrl, getLangFromUrl } from '@sveltevietnam/i18n/utils';
 
 import { building } from '$app/environment';
-import { COOKIE_NAME_USER_ID, COOKIE_NAME_LANGUAGE } from '$env/static/private';
-import { PUBLIC_COOKIE_NAME_COLOR_SCHEME, PUBLIC_COOKIE_NAME_SPLASH } from '$env/static/public';
+import {
+	VITE_PRIVATE_COOKIE_NAME_USER_ID,
+	VITE_PRIVATE_COOKIE_NAME_LANGUAGE,
+} from '$env/static/private';
+import {
+	VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
+	VITE_PUBLIC_COOKIE_NAME_SPLASH,
+} from '$env/static/public';
 import { COMMON_COOKIE_CONFIG, PUBLIC_COOKIE_CONFIG } from '$lib/constants';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const { locals, cookies, url, route, platform, request } = event;
 
 	// Ensure that the user has a unique ID
-	locals.userId = cookies.get(COOKIE_NAME_USER_ID) || crypto.randomUUID();
-	cookies.set(COOKIE_NAME_USER_ID, locals.userId, COMMON_COOKIE_CONFIG);
+	locals.userId = cookies.get(VITE_PRIVATE_COOKIE_NAME_USER_ID) || crypto.randomUUID();
+	cookies.set(VITE_PRIVATE_COOKIE_NAME_USER_ID, locals.userId, COMMON_COOKIE_CONFIG);
 
 	const referer = request.headers.get('Referer');
 	if (referer) {
@@ -36,7 +42,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		}
 
 		// if user has cookie lang, redirect accordingly
-		const cookieLang = cookies.get(COOKIE_NAME_LANGUAGE);
+		const cookieLang = cookies.get(VITE_PRIVATE_COOKIE_NAME_LANGUAGE);
 		if (cookieLang && cookieLang !== 'vi') {
 			redirect(302, localizeUrl(url, LANGUAGES, cookieLang));
 		}
@@ -57,14 +63,19 @@ export const handle: Handle = async ({ event, resolve }) => {
 		language: languageFromUrl,
 		colorScheme:
 			(url.searchParams.get('color-scheme') as App.ColorScheme) ||
-			(cookies.get(PUBLIC_COOKIE_NAME_COLOR_SCHEME) as App.ColorScheme) ||
+			(cookies.get(VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME) as App.ColorScheme) ||
 			'system',
-		splash: (cookies.get(PUBLIC_COOKIE_NAME_SPLASH) as App.SharedSettings['splash']) || 'random',
+		splash:
+			(cookies.get(VITE_PUBLIC_COOKIE_NAME_SPLASH) as App.SharedSettings['splash']) || 'random',
 	} satisfies App.SharedSettings;
-	cookies.set(COOKIE_NAME_LANGUAGE, locals.sharedSettings.language, COMMON_COOKIE_CONFIG);
-	cookies.set(PUBLIC_COOKIE_NAME_SPLASH, locals.sharedSettings.splash, COMMON_COOKIE_CONFIG);
 	cookies.set(
-		PUBLIC_COOKIE_NAME_COLOR_SCHEME,
+		VITE_PRIVATE_COOKIE_NAME_LANGUAGE,
+		locals.sharedSettings.language,
+		COMMON_COOKIE_CONFIG,
+	);
+	cookies.set(VITE_PUBLIC_COOKIE_NAME_SPLASH, locals.sharedSettings.splash, COMMON_COOKIE_CONFIG);
+	cookies.set(
+		VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
 		locals.sharedSettings.colorScheme,
 		PUBLIC_COOKIE_CONFIG,
 	);

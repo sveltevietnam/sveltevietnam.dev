@@ -1,4 +1,4 @@
-import { COOKIE_NAME_LAST_FRESH_VISIT_AT } from '$env/static/private';
+import { VITE_PRIVATE_COOKIE_NAME_LAST_FRESH_VISIT_AT } from '$env/static/private';
 import { COMMON_COOKIE_CONFIG } from '$lib/constants';
 
 import type { LayoutServerLoad } from './$types';
@@ -14,7 +14,7 @@ export const load: LayoutServerLoad = ({ locals, cookies }) => {
 	 * conveniently, SvelteKit will reset the 'Referer' header on page refresh, so we don't have to
 	 * manually catch the unload event and do it ourselves.
 	 */
-	const lastFreshVisitAt = cookies.get(COOKIE_NAME_LAST_FRESH_VISIT_AT);
+	const lastFreshVisitAt = cookies.get(VITE_PRIVATE_COOKIE_NAME_LAST_FRESH_VISIT_AT);
 	if (!lastFreshVisitAt || !locals.internalReferer) {
 		if (locals.sharedSettings.splash !== 'disabled') {
 			if (locals.sharedSettings.splash === 'random') {
@@ -23,7 +23,7 @@ export const load: LayoutServerLoad = ({ locals, cookies }) => {
 				splash = locals.sharedSettings.splash;
 			}
 		}
-		cookies.set(COOKIE_NAME_LAST_FRESH_VISIT_AT, Date.now().toString(), {
+		cookies.set(VITE_PRIVATE_COOKIE_NAME_LAST_FRESH_VISIT_AT, Date.now().toString(), {
 			...COMMON_COOKIE_CONFIG,
 			maxAge: 150, // 2.5 minutes,
 		});

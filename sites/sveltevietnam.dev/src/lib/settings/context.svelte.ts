@@ -2,7 +2,7 @@ import { getContext, setContext } from 'svelte';
 import { MediaQuery } from 'svelte/reactivity';
 
 import { browser } from '$app/environment';
-import { PUBLIC_COOKIE_NAME_COLOR_SCHEME } from '$env/static/public';
+import { VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME } from '$env/static/public';
 
 export class SettingsContext {
 	static KEY = 'app:settings';
@@ -36,7 +36,7 @@ export class SettingsContext {
 		$effect(() => {
 			if (browser) {
 				document.documentElement.dataset.colorScheme = this.colorScheme.user;
-				document.cookie = `${PUBLIC_COOKIE_NAME_COLOR_SCHEME}=${this.colorScheme.user}; path=/; SameSite=Lax; Secure; Max-Age=604800`;
+				document.cookie = `${VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME}=${this.colorScheme.user}; path=/; SameSite=Lax; Secure; Max-Age=604800`;
 			}
 		});
 

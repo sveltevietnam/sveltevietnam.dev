@@ -4,7 +4,7 @@
 	import type { HTMLFormAttributes } from 'svelte/elements';
 
 	import * as m from '$data/locales/generated/messages';
-	import { PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
+	import { VITE_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	let {
@@ -44,7 +44,7 @@
 			<div
 				class="turnstile"
 				use:turnstile
-				turnstile-sitekey={PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY}
+				turnstile-sitekey={VITE_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY}
 				turnstile-size="flexible"
 				turnstile-response-field-name="turnstile"
 				turnstile-response-field
