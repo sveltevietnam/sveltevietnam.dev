@@ -46,6 +46,13 @@
 		"wrangler": "^4.9.1"
 	},
 	"packageManager": "pnpm@10.2.1",
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"esbuild",
+			"sharp",
+			"workerd"
+		]
+	},
 	"engines": {
 		"pnpm": ">=10.0.0",
 		"node": ">=22.0.0"
