@@ -5,32 +5,7 @@
 
 @source '../../../../../packages/markdown/src/**/*.{svelte,js}';
 
-@theme {
-	/** spacing */
-	--spacing-header: var(--header-height);
-	--spacing-section: calc(var(--spacing) * 10);
-	--spacing-section-more: calc(var(--spacing) * 20);
-	--spacing-intro-pad-top: calc(var(--spacing) * 20);
-}
-
 @layer base {
-	:root {
-		--header-height: 3.6875rem; /* 59px */
-
-		@media (--tablet) {
-			--spacing-section: calc(var(--spacing) * 15);
-			--spacing-section-more: calc(var(--spacing) * 28);
-			--spacing-intro-pad-top: calc(var(--spacing) * 32);
-		}
-
-		@media (--desktop) {
-			--header-height: 6.25rem; /* 100px */
-			--spacing-section: calc(var(--spacing) * 20);
-			--spacing-section-more: calc(var(--spacing) * 32);
-			--spacing-intro-pad-top: calc(var(--spacing) * 36);
-		}
-	}
-
 	body {
 		display: flex;
 		flex-direction: column;

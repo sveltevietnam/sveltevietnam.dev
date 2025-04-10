@@ -50,6 +50,36 @@
 	--drop-shadow-brutal-sm: 2px 2px var(--tw-shadow-color, currentcolor);
 	--drop-shadow-brutal: 4px 4px var(--tw-shadow-color, currentcolor);
 	--drop-shadow-brutal-lg: 8px 8px var(--tw-shadow-color, currentcolor);
+
+	/* static spacing */
+	--spacing-readable-tight: 60ch;
+	--spacing-readable: 72ch;
+	--spacing-readable-relaxed: 86ch;
+}
+
+/* reactive spacing */
+@theme {
+	--spacing-header: 3.6875rem; /* 59px */
+	--spacing-section: calc(var(--spacing) * 10);
+	--spacing-section-more: calc(var(--spacing) * 20);
+	--spacing-intro-pad-top: calc(var(--spacing) * 20);
+}
+
+@layer base {
+	:root {
+		@media (--tablet) {
+			--spacing-section: calc(var(--spacing) * 15);
+			--spacing-section-more: calc(var(--spacing) * 28);
+			--spacing-intro-pad-top: calc(var(--spacing) * 32);
+		}
+
+		@media (--desktop) {
+			--spacing-header: 6.25rem; /* 100px */
+			--spacing-section: calc(var(--spacing) * 20);
+			--spacing-section-more: calc(var(--spacing) * 32);
+			--spacing-intro-pad-top: calc(var(--spacing) * 36);
+		}
+	}
 }
 
 @utility grid-cols-auto-* {
