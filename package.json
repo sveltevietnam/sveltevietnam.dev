@@ -33,7 +33,7 @@
 		"prettier": "3.5.3",
 		"prettier-plugin-svelte": "^3.3.3",
 		"prettier-plugin-tailwindcss": "^0.6.11",
-		"publint": "^0.3.10",
+		"publint": "^0.3.11",
 		"stylelint": "^16.18.0",
 		"stylelint-config-clean-order": "^7.0.0",
 		"stylelint-config-html": "^1.1.0",
