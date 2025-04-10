@@ -91,7 +91,7 @@
 				{#if settings.hydrated}
 					<CopyIconBtn
 						text={page.url.origin + path}
-						aria={m['components.event_list_item.copy'](settings.language)}
+						aria={m['components.event_listing_item.copy'](settings.language)}
 					/>
 				{/if}
 			</div>
@@ -127,12 +127,12 @@
 					<div class="flex items-start gap-2">
 						<dt>
 							<i class="i i-[map-pin] h-5 w-5"></i>
-							<span class="sr-only"><T message={m['components.event_list_item.location']} /></span>
+							<span class="sr-only"><T message={m['location']} /></span>
 						</dt>
 						<dd>
 							<ListMessage items={event.location}>
 								{#snippet item(l)}
-									<a class="c-link-lazy" href={l.googleMapUrl}>{l.address}</a>
+									<a class="c-link-preserved" href={l.googleMapUrl}>{l.address}</a>
 								{/snippet}
 							</ListMessage>
 						</dd>
@@ -146,7 +146,7 @@
 							<i class="i i-[television] h-5 w-5"></i>
 						</dt>
 						<dd>
-							<span><T message={m['components.event_list_item.live']} /></span>
+							<span><T message={m['components.event_listing_item.live']} /></span>
 							<ListMessage items={event.livestream}>
 								{#snippet item(l)}
 									<a class="c-link" href={l.url}>
@@ -162,7 +162,7 @@
 				<div class="flex items-start gap-2">
 					<dt>
 						<i class="i i-[clock] h-5 w-5"></i>
-						<span class="sr-only"><T message={m['components.event_list_item.time']} /></span>
+						<span class="sr-only"><T message={m['time']} /></span>
 					</dt>
 					<dd>
 						<DateTimeRangeText

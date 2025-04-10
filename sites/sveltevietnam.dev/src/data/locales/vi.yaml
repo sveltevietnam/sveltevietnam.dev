@@ -10,6 +10,8 @@ messages:
   view_more: Xem thêm
   and: và
   minutes: phút
+  time: Thời gian
+  location: Địa điểm
   svelte_vietnam:
     name: Svelte Việt Nam
     discord: Svelte Việt Nam Discord
@@ -568,11 +570,9 @@ messages:
       dark: Chế độ tối
       system: Mặc định
       toggle: bảng chọn chế độ màu. Chế độ màu hiện tại là
-    event_list_item:
+    event_listing_item:
       copy: Sao chép đường dẫn đến trang sự kiện
-      location: Địa điểm
       live: Trực tuyến tại
-      time: Thời gian
     footer:
       about:
         title: Về chúng tôi

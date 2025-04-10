@@ -1,17 +1,16 @@
-import type { MessageString } from '@sveltevietnam/i18n/runtime';
 import type { SocialEvent } from 'schema-dts';
 import type { Picture } from 'vite-imagetools';
 
 export type EventMetadata = {
 	id: string;
-	slug: MessageString;
-	title: MessageString;
-	description: MessageString;
-	keywords: MessageString;
+	slug: string;
+	title: string;
+	description: string;
+	keywords: string;
 	startDate: Date;
 	endDate: Date;
 	location?: {
-		address: MessageString;
+		address: string;
 		googleMapUrl: string;
 	}[];
 	livestream?: {

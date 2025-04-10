@@ -18,7 +18,7 @@
 	const routing = RoutingContext.get();
 </script>
 
-{#snippet actionHeading(num: number, message: (lang: string) => Message)}
+{#snippet actionHeading(num: number, message: Message<'string', never>)}
 	<h2 class="c-text-heading-md flex items-center gap-4 border-b pb-1">
 		<span
 			class="font-lora desktop:text-2xl desktop:w-10 desktop:h-10 flex h-8 w-8
@@ -41,7 +41,7 @@
 					<h1 class="c-text-heading-page text-primary-on-surface">
 						<T message={m['pages.events.heading']} />
 					</h1>
-					<p class="c-text-subtitle-page max-w-[72ch]"><T message={m['pages.events.desc']} /></p>
+					<p class="c-text-subtitle-page max-w-readable"><T message={m['pages.events.desc']} /></p>
 				</div>
 				<a class="c-btn c-btn--pop block w-fit" href="#upcoming"
 					><T message={m['pages.events.view_upcoming']} /></a

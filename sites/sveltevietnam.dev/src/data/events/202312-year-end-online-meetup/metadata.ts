@@ -11,10 +11,10 @@ export const EVENT_LINKS = {
 };
 
 export default defineEventMetadata((lang) => ({
-	slug: m.slug(lang),
-	title: m.title(lang),
-	description: m.desc(lang),
-	keywords: m.keywords(lang),
+	slug: m.slug(lang).toString(),
+	title: m.title(lang).toString(),
+	description: m.desc(lang).toString(),
+	keywords: m.keywords(lang).toString(),
 	startDate: new Date('2023-12-16T02:00:00.000Z'),
 	endDate: new Date('2023-12-16T04:00:00.000Z'),
 	livestream: [

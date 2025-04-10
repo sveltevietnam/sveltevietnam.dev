@@ -43,7 +43,7 @@
 					>
 						<enhanced:img
 							class={[
-								'can-hover:grayscale duration-400 transition-[filter] group-hover/person:filter-none group-hover/person:duration-75',
+								'can-hover:grayscale duration-400 transition-[filter] group-hover/person:filter-none group-hover/person:duration-100',
 								person.popImage && 'h-45 w-45 object-top',
 								!person.popImage && 'h-52 w-52',
 							]}
@@ -83,7 +83,7 @@
 				<h1 class="c-text-heading-lg text-primary-on-surface font-bold">
 					<T message={m['pages.people.heading']}></T>
 				</h1>
-				<p class="c-text-subtitle-page max-w-[70ch]"><T message={m['pages.people.desc']}></T></p>
+				<p class="c-text-subtitle-page max-w-readable"><T message={m['pages.people.desc']}></T></p>
 			</div>
 		</div>
 		<IntroSeparator />

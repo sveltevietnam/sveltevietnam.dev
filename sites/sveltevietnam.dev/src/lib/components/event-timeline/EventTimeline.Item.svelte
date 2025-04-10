@@ -23,13 +23,13 @@
 	} = $props();
 </script>
 
-<li class={['relative py-4 px-6 tablet:px-8 odd:bg-surface-variant/50 even:bg-surface-variant/10 border-dashed border-b space-y-2', cls]} {...rest}>
+<li class={['relative py-6 px-6 tablet:px-8 odd:bg-surface-variant/50 even:bg-surface-variant/10 border-dashed border-b space-y-4', cls]} {...rest}>
 	<div class="bg-current rounded-full absolute _dot"></div>
 	<div class="flex items-baseline justify-between text-on-surface-subtle">
 		<p class="c-text-body-sm">{generateTimeSlot(startDate, offsetMinutes, numMinutes)}</p>
 		<p class="c-text-body-xs">{numMinutes} <T message={m['minutes']} /></p>
 	</div>
-	<div class="space-y-3">
+	<div class="space-y-4">
 		<h3 class="c-text-title-sm">
 			{#if typeof heading === 'string'}
 				{heading}

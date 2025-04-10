@@ -52,8 +52,8 @@
 		<h2 class="c-text-heading-lg border-b">
 			<T message={m['recap.heading']} />
 		</h2>
-		<div class="flex flex-wrap items-start gap-10">
-			<p class="flex-5 min-w-[min(40ch,100%)] leading-relaxed">
+		<div class="flex flex-wrap items-start gap-10 leading-relaxed">
+			<p class="flex-5 min-w-[min(40ch,100%)]">
 				<T message={m['recap.desc']} />
 			</p>
 			<p class="c-callout c-callout--success c-callout--icon-trophy flex-4 min-w-[min(32ch,100%)]">
@@ -128,8 +128,9 @@
 					</a>
 				{/snippet}
 				{#snippet content()}
-					<p><T message={m['timeline.videos.one.desc']} /></p>
-					<!-- FIXME: use data from server ? -->
+					<p class="leading-relaxed">
+						<T message={m['timeline.videos.one.desc']} />
+					</p>
 					<Person
 						name={vnphanquang.name}
 						avatar={vnphanquangAvatar}
@@ -160,7 +161,6 @@
 					</a>
 				{/snippet}
 				{#snippet content()}
-					<!-- FIXME: use data from server ? -->
 					<Person
 						name={vnphanquang.name}
 						avatar={vnphanquangAvatar}
@@ -186,16 +186,13 @@
 
 		<EventGallery.Container>
 			{#snippet biggerImages()}
-				<EventGallery.Image src={imgOg} alt="laptop openning in dark gradient background">
+				<EventGallery.Image src={imgOg} alt="">
 					{#snippet caption()}
 						<T message={m['images.event_cover_image']} />
 					{/snippet}
 				</EventGallery.Image>
 
-				<EventGallery.Image
-					src={imgLivestreamMoment}
-					alt="three community members having fun during livestream"
-				>
+				<EventGallery.Image src={imgLivestreamMoment} alt="">
 					{#snippet caption()}
 						<T message={m['images.moment']} />
 					{/snippet}

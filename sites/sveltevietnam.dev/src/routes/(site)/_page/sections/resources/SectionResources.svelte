@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
-	import type { Message } from '@sveltevietnam/i18n/runtime';
+	import type { Message, MessageType } from '@sveltevietnam/i18n/runtime';
 	import type { Picture } from 'vite-imagetools';
 
 	import { SOCIAL_LINKS } from '$data/links';
@@ -23,7 +23,7 @@
 	];
 </script>
 
-{#snippet step(message: (lang: string) => Message<never>)}
+{#snippet step(message: Message<'string', never>)}
 	<div class="isolate">
 		<p
 			class="_border-gradient bg-surface c-text-body-xs relative w-fit px-3 py-1.5 uppercase leading-tight tracking-widest"
@@ -49,11 +49,11 @@
 	image,
 	footnote,
 }: {
-	description: (lang: string) => Message<never>;
-	links: { message: (lang: string) => Message<never>; href: string }[];
+	description: Message<MessageType, never>;
+	links: { message: Message<MessageType, never>; href: string }[];
 	linksClasses?: string;
-	image: Picture | { message: (lang: string) => Message<never>; href: string; src: Picture };
-	footnote?: (lang: string) => Message<never>;
+	image: Picture | { message: Message<MessageType, never>; href: string; src: Picture };
+	footnote?: Message<MessageType, never>;
 })}
 	<div
 		class="tablet:gap-8 desktop:gap-10 mobile:flex-col odd:tablet:flex-row-reverse group flex gap-6"
@@ -302,9 +302,9 @@
 
 		<div class="bg-outline h-px w-full"></div>
 
-		<section class="prose max-w-[80ch] leading-relaxed">
+		<section class="prose leading-relaxed max-w-readable-relaxed">
 			<p><T message={m['pages.home.resources.four.others']} /></p>
-			<ul class="">
+			<ul>
 				<li><T message={m['pages.home.resources.four.newsletter']} /></li>
 				<li><T message={m['pages.home.resources.four.madebysvelte']} /></li>
 				<li><T message={m['pages.home.resources.four.jobs']} /></li>

@@ -35,16 +35,14 @@
 			</TextArrowLink>
 		</div>
 		{#if description}
-			<p class="max-w-[70ch]">{description}</p>
+			<p class="max-w-readable">{description}</p>
 		{/if}
 	</div>
 {/snippet}
 
 <main>
 	<!-- intro -->
-	<section
-		class="space-y-section pt-intro-pad-top bg-gradient-primary-intro"
-	>
+	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div class="max-w-pad space-y-10">
 			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 			<div class="space-y-4 text-center">
@@ -83,8 +81,8 @@
 	<GradientBackground pattern="jigsaw">
 		<section class="max-w-pad pt-section pb-section-more" id="write">
 			<div
-				class="tablet:gap-8 tablet:p-8 desktop:gap-10 desktop:p-10 shadow-brutal-lg bg-surface mx-auto flex
-			max-w-[100ch] items-stretch gap-4 border-2 border-current p-4"
+				class="tablet:gap-8 tablet:p-8 desktop:gap-10 desktop:p-10 shadow-brutal-lg bg-surface
+				max-w-readable-relaxed mx-auto flex items-stretch gap-4 border-2 border-current p-4"
 			>
 				<div class="text-primary flex flex-col gap-4">
 					<svg

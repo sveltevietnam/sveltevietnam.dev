@@ -11,7 +11,7 @@
 <section class="max-w-pad pt-section pb-section-more bg-gradient-primary space-y-10">
 	<div class="space-y-6 text-center">
 		<h2 class="c-text-heading-lg"><T message={m['pages.home.events.heading']} /></h2>
-		<p class="mx-auto max-w-[70ch]"><T message={m['pages.home.events.desc']} /></p>
+		<p class="mx-auto max-w-readable"><T message={m['pages.home.events.desc']} /></p>
 	</div>
 	<TBA class="text-center mx-auto w-fit">
 		<p class="c-text-title-sm"><T message={m['pages.home.events.tba.desc']} /></p>

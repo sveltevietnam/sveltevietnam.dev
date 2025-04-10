@@ -38,14 +38,14 @@
 					<h1 class="c-text-heading-lg text-primary-on-surface font-bold">
 						{data.person.name}
 					</h1>
-					<p class="c-text-subtitle-page max-w-[70ch]">{data.person.description}</p>
+					<p class="c-text-subtitle-page max-w-readable">{data.person.description}</p>
 					<PersonLinks links={data.person.links} />
 				</div>
 			</div>
 			{#if data.person.popImage}
 				<div
 					class="tablet:pt-intro-pad-top tablet:px-6 desktop:px-10 can-hover:grayscale duration-400
-					self-end transition-[filter] group-hover:filter-none group-hover:duration-75"
+					self-end transition-[filter] group-hover:filter-none group-hover:duration-100"
 				>
 					<enhanced:img
 						class="tablet:w-70 desktop:w-80 can-hover:translate-y-6 can-hover:scale-90

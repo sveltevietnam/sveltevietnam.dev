@@ -10,6 +10,8 @@ messages:
   view_more: View more
   and: and
   minutes: minutes
+  time: Time
+  location: Location
   svelte_vietnam:
     name: Svelte Vietnam
     discord: Svelte Vietnam Discord
@@ -558,11 +560,9 @@ messages:
       dark: Dark mode
       system: System default
       toggle: color scheme menu. Current color scheme is
-    event_list_item:
+    event_listing_item:
       copy: Copy link to event page
-      location: Location
       live: Live via
-      time: Time
     footer:
       about:
         title: About Us
