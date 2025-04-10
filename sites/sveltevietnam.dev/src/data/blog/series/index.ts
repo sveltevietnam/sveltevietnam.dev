@@ -6,7 +6,7 @@ export function defineBlogSeries(series: Omit<t.BlogSeries, 'id'>): Omit<t.BlogS
 }
 
 const modules = import.meta.glob<t.BlogSeriesModule>('./*/index.ts');
-const ids = Object.keys(modules).map((path) => path.split('/')[1]);
+export const ids = Object.keys(modules).map((path) => path.split('/')[1]);
 
 export async function loadBlogSeries(id: string, lang: App.Language): Promise<t.BlogSeries | null> {
 	const path = `./${id}/index.ts`;

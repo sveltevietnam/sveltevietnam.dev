@@ -8,7 +8,7 @@ export function defineBlogCategory(
 }
 
 const modules = import.meta.glob<t.BlogCategoryModule>('./*/index.ts');
-const ids = Object.keys(modules).map((path) => path.split('/')[1]);
+export const ids = Object.keys(modules).map((path) => path.split('/')[1]);
 
 export async function loadBlogCategory(
 	id: string,
