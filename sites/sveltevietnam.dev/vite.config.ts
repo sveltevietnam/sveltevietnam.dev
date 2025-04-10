@@ -28,8 +28,8 @@ export default defineConfig({
 		enhancedImages(),
 		css(),
 		tailwindcss(),
-		sveltekit(),
 		sveltekitRouting(),
 		i18n({ input: 'src/**/locales' }),
+		sveltekit(),
 	],
 });

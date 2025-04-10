@@ -3,6 +3,7 @@ import path from 'node:path/posix';
 
 import pico from 'picocolors';
 import glob from 'tiny-glob';
+import { createLogger } from 'vite';
 
 import { collectYamls } from './internals/collect.js';
 import { lint } from './internals/lint.js';
@@ -16,12 +17,13 @@ import { printLintIssues } from './internals/utils.js';
  */
 
 /**
+ * @param {import('vite').Logger} logger
  * @param {string} cwd
  * @param {string[]} dirs
  * @param {boolean} [rebuild=false]
  * @returns {Promise<void>}
  */
-async function process(cwd, dirs, rebuild = false) {
+async function build(logger, cwd, dirs, rebuild = false) {
 	// 2. Collect
 	const localeFileGroups = await Promise.all(dirs.map((dir) => collectYamls(cwd, dir)));
 
@@ -42,16 +44,16 @@ async function process(cwd, dirs, rebuild = false) {
 		const issueEntries = Object.entries(issueGroups[i].issuesByKey);
 		if (issueEntries.length) {
 			hasIssue = true;
-			console.error(
+			logger.error(
 				pico.redBright(
 					`[sveltevietnam-i18n] ${issueEntries.length} issue(s) found in "${path.relative(cwd, dirs[i])}" for the following message(s):`,
 				),
 			);
-			printLintIssues(issueEntries);
+			printLintIssues(issueEntries, logger);
 		}
 	}
 	if (hasIssue) {
-		console.error(
+		logger.error(
 			pico.redBright('[sveltevietnam-i18n] Skipping build for now... Please fix the issues first.'),
 		);
 		return;
@@ -69,7 +71,7 @@ async function process(cwd, dirs, rebuild = false) {
 			return outPath;
 		}),
 	);
-	console.info(
+	logger.info(
 		pico.green(
 			`[sveltevietnam-i18n] successfully ${rebuild ? 'rebuilt' : 'built'} ${pico.bold(numMessages)} messages`,
 		),
@@ -77,38 +79,52 @@ async function process(cwd, dirs, rebuild = false) {
 }
 
 /**
+ * @typedef PluginContext
+ * @property {string} cwd
+ * @property {string[]} dirs
+ */
+
+/**
  * @param {Config} config
  * @returns {import('vite').Plugin}
  */
 export function i18n(config) {
+	const logger = createLogger();
+	let cwd = process.cwd();
+	/** @type {string[]} */
+	let dirs = [];
+
 	return {
 		name: 'sveltevietnam-i18n',
-		enforce: 'post',
+		enforce: 'pre',
+		async options() {
+			cwd = process.cwd();
+			dirs = await glob(config.input, { cwd });
+		},
 		async configureServer(server) {
-			const cwd = server.config.root;
-			const dirs = await glob(config.input, { cwd });
-
 			/** @param {string} filepath */
-			function onUpdate(filepath) {
+			async function onUpdate(filepath) {
 				if (path.extname(filepath) !== '.yaml') return;
+				dirs = await glob(config.input, { cwd });
 
 				const dir = path.relative(cwd, path.dirname(filepath));
 				if (!dirs.includes(dir)) return;
 
-				console.info(
+				logger.info(
 					pico.blue(
 						`[sveltevietnam-i18n] detected changes at "${path.relative(cwd, filepath)}", rebuilding...`,
 					),
 				);
-				process(cwd, [dir], true);
+				build(logger, cwd, [dir], true);
 			}
-
-			await process(cwd, dirs);
 
 			server.watcher.add(path.join(config.input, '*.yaml'));
 			server.watcher.on('add', onUpdate);
 			server.watcher.on('change', onUpdate);
 			server.watcher.on('unlink', onUpdate);
+		},
+		async buildStart() {
+			await build(logger, cwd, dirs);
 		},
 	};
 }

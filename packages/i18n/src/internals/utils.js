@@ -73,15 +73,16 @@ export function flattenRecursiveRecord(record, options = {}) {
 
 /**
  * @param {[string, import('./lint.js').Issue[]][]} issueEntries - the list of lint issues per key, i.e [key, issues][]
+ * @param {import('vite').Logger | typeof console} logger
  * @returns {void}
  */
-export function printLintIssues(issueEntries) {
+export function printLintIssues(issueEntries, logger = console) {
 	if (issueEntries.length) {
 		for (let i = 0; i < issueEntries.length; i++) {
 			const [key, issues] = issueEntries[i];
-			console.error(pico.red(`  "${key}":`));
+			logger.error(pico.red(`  "${key}":`));
 			for (const { message, e } of issues) {
-				console.error(pico.red(`     - ${message + (e ? ` (${e})` : '')}`));
+				logger.error(pico.red(`     - ${message + (e ? ` (${e})` : '')}`));
 			}
 		}
 	}
