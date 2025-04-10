@@ -60,7 +60,7 @@ export function createMessage(messages) {
 		/** @param {string} lang */
 		(lang) => messages[lang]
 	);
-	resolver.$$i18n = true;
+	resolver.$t = messages[Object.keys(messages)[0]].$t;
 	return resolver;
 }
 
