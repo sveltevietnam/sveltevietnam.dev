@@ -28,7 +28,7 @@ const additionalStructuredDataModules =
 	);
 const thumbnailModules = import.meta.glob<Picture>('./*/images/thumbnail.jpg', {
 	import: 'default',
-	query: '?enhanced&w=1200;686',
+	query: '?enhanced&w=1200;700;400',
 });
 const ogImageModules = import.meta.glob<string>('./*/images/og.jpg', {
 	import: 'default',

@@ -5,7 +5,7 @@
 
 	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
-	import fallback3x2 from '$lib/assets/images/fallbacks/3x2.jpg?enhanced&w=1200;686&imagetools';
+	import fallback3x2 from '$lib/assets/images/fallbacks/3x2.jpg?enhanced&w=1200;700;400&imagetools';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 	import { formatLongMonth, formatLongWeekDay } from '$lib/utils/datetime';
@@ -45,7 +45,9 @@
 </script>
 
 <div class="@container">
-	<article class="@xl:grid-cols-auto-2 @3xl:grid-cols-[auto_auto_1fr] @xl:gap-x-10 grid grid-cols-1 gap-4">
+	<article
+		class="@xl:grid-cols-auto-2 @3xl:grid-cols-[auto_auto_1fr] @xl:gap-x-10 grid grid-cols-1 gap-4"
+	>
 		<!-- date -->
 		<div
 			class={[
@@ -54,7 +56,7 @@
 				'@3xl:items-start @3xl:col-start-1',
 			]}
 		>
-			<div class={['grid-rows-auto-2 grid-cols-auto-2 @xl:gap-y-2 grid w-fit @xl:w-full gap-x-2']}>
+			<div class={['grid-rows-auto-2 grid-cols-auto-2 @xl:gap-y-2 @xl:w-full grid w-fit gap-x-2']}>
 				<p
 					class={[
 						'@xl:row-span-1 row-span-2',
@@ -108,6 +110,7 @@
 					fetchpriority="low"
 					loading="lazy"
 					decoding="async"
+					sizes="(min-width: 52rem) 18.75rem, (min-width: 48rem) 37.5rem, 25rem"
 				></enhanced:img>
 			</a>
 		</div>
