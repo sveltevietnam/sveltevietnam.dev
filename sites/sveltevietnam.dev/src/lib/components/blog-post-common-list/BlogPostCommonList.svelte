@@ -27,7 +27,7 @@
 				<div class="_first col-span-full">
 					<BlogPostListItem
 						post={posts[0]}
-						orientation={{ tablet: 'portrait', widescreen: 'landscape' }}
+						orientation={{ desktop: 'landscape' }}
 						titleFont={{ tablet: 'big' }}
 					/>
 				</div>

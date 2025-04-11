@@ -1,25 +1,21 @@
 import type * as t from './types';
 export type * from './types';
 
-export function defineBlogSeries(series: Omit<t.BlogSeries, 'id'>): Omit<t.BlogSeries, 'id'> {
-	return series;
+export function defineBlogSeries(def: t.BlogSeriesDefinition): t.BlogSeriesDefinition {
+	return def;
 }
 
-const modules = import.meta.glob<t.BlogSeriesModule>('./*/index.ts');
+const modules = import.meta.glob<t.BlogSeriesDefinition>('./*/index.ts', {
+	import: 'default',
+});
 export const ids = Object.keys(modules).map((path) => path.split('/')[1]);
 
 export async function loadBlogSeries(id: string, lang: App.Language): Promise<t.BlogSeries | null> {
 	const path = `./${id}/index.ts`;
 	if (!modules[path]) return null;
-	const module = await modules[path]();
-	let series: Omit<t.BlogSeries, 'id'>;
-	if ('en' in module) {
-		series = module[lang];
-	} else {
-		series = module.default;
-	}
+	const def = await modules[path]();
 	return {
-		...series,
+		...def(lang),
 		id: id,
 	};
 }

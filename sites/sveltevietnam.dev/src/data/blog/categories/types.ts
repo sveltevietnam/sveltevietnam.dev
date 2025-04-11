@@ -5,11 +5,5 @@ export type BlogCategory = {
 	description: string;
 };
 
-export type BlogCategoryModule =
-	| {
-			default: Omit<BlogCategory, 'id'>;
-	  }
-	| {
-			en: Omit<BlogCategory, 'id'>;
-			vi: Omit<BlogCategory, 'id'>;
-	  };
+export type MinimalBlogCategory = Omit<BlogCategory, 'id'>;
+export type BlogCategoryDefinition = (lang: App.Language) => MinimalBlogCategory;

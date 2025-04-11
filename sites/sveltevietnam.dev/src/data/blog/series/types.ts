@@ -5,11 +5,5 @@ export type BlogSeries = {
 	slug: string;
 };
 
-export type BlogSeriesModule =
-	| {
-			default: Omit<BlogSeries, 'id'>;
-	  }
-	| {
-			en: Omit<BlogSeries, 'id'>;
-			vi: Omit<BlogSeries, 'id'>;
-	  };
+export type MinimalBlogSeries = Omit<BlogSeries, 'id'>;
+export type BlogSeriesDefinition = (lang: App.Language) => MinimalBlogSeries;

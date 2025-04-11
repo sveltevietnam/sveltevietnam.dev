@@ -1,31 +1,27 @@
 import { defineBlogPostMetadata } from '..';
+import * as m from '../../locales/generated/messages';
 
-export const en = defineBlogPostMetadata({
-	slug: '20231009-behind-the-screen-a-yes-code-blog-of-svelte-vietnam',
-	title: 'A Yes-Code Blog of Svelte Vietnam',
-	description:
-		'Look behind the curtain and discuss the rationale behind the technical design of the Svelte Vietnam Blog',
+export default defineBlogPostMetadata((lang) => ({
+	slug: m['posts.20231009_yes_code_blog.slug'](lang),
+	title: m['posts.20231009_yes_code_blog.title'](lang),
+	description: m['posts.20231009_yes_code_blog.desc'](lang),
+	keywords: 'blog',
 	publishedAt: new Date('2023-10-09'),
 	authors: ['vnphanquang'],
 	categories: ['insider'],
 	series: ['behind-the-screen'],
-	keywords: 'blog',
-	readMinutes: 11,
-	numWords: 1630,
-	translation: 'manual',
-});
-
-export const vi = defineBlogPostMetadata({
-	slug: '20231009-behind-the-screen-blog-chay-bang-com-va-code',
-	title: 'Blog chạy bằng cơm (và code)',
-	description:
-		'Sơ lược về những quyết định và thiết kế đằng sau hạ tầng của trang Blog Svelte Việt Nam',
-	publishedAt: new Date('2023-10-09'),
-	authors: ['vnphanquang'],
-	categories: ['insider'],
-	series: ['behind-the-screen'],
-	keywords: 'blog',
-	readMinutes: 11,
-	numWords: 2130,
-	translation: 'original',
-});
+	...(
+		{
+			en: {
+				readMinutes: 11,
+				numWords: 1630,
+				translation: 'manual',
+			},
+			vi: {
+				readMinutes: 11,
+				numWords: 2130,
+				translation: 'original',
+			},
+		} as const
+	)[lang],
+}));

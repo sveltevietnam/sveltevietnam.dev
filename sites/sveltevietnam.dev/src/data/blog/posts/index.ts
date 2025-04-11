@@ -9,12 +9,14 @@ import type * as t from './types';
 export type * from './types';
 
 export function defineBlogPostMetadata(
-	metadata: t.MinimalBlogPostMetadata,
-): t.MinimalBlogPostMetadata {
-	return metadata;
+	def: t.BlogPostMetadataDefinition,
+): t.BlogPostMetadataDefinition {
+	return def;
 }
 
-const metadataModules = import.meta.glob<t.BlogPostMetadataModule>('./*/metadata.ts');
+const metadataModules = import.meta.glob<t.BlogPostMetadataDefinition>('./*/metadata.ts', {
+	import: 'default',
+});
 const thumbnailModules = import.meta.glob<Picture>('./*/images/thumbnail.jpg', {
 	import: 'default',
 	query: '?enhanced&w=2240,1540;1088;686',
@@ -37,15 +39,9 @@ export async function loadBlogPostMetadata(
 ): Promise<t.BlogPostMetadata | null> {
 	const path = `./${id}/metadata.ts`;
 	if (!metadataModules[path]) return null;
-	const module = await metadataModules[path]();
-	let metadata: t.MinimalBlogPostMetadata;
-	if ('en' in module) {
-		metadata = module[lang];
-	} else {
-		metadata = module.default;
-	}
+	const def = await metadataModules[path]();
 	return {
-		...metadata,
+		...def(lang),
 		id,
 	};
 }

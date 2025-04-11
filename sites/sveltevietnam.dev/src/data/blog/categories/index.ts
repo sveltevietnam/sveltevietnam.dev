@@ -1,13 +1,13 @@
 import type * as t from './types';
 export type * from './types';
 
-export function defineBlogCategory(
-	category: Omit<t.BlogCategory, 'id'>,
-): Omit<t.BlogCategory, 'id'> {
-	return category;
+export function defineBlogCategory(def: t.BlogCategoryDefinition): t.BlogCategoryDefinition {
+	return def;
 }
 
-const modules = import.meta.glob<t.BlogCategoryModule>('./*/index.ts');
+const modules = import.meta.glob<t.BlogCategoryDefinition>('./*/index.ts', {
+	import: 'default',
+});
 export const ids = Object.keys(modules).map((path) => path.split('/')[1]);
 
 export async function loadBlogCategory(
@@ -16,15 +16,9 @@ export async function loadBlogCategory(
 ): Promise<t.BlogCategory | null> {
 	const path = `./${id}/index.ts`;
 	if (!modules[path]) return null;
-	const module = await modules[path]();
-	let category: Omit<t.BlogCategory, 'id'>;
-	if ('en' in module) {
-		category = module[lang];
-	} else {
-		category = module.default;
-	}
+	const def = await modules[path]();
 	return {
-		...category,
+		...def(lang),
 		id: id,
 	};
 }

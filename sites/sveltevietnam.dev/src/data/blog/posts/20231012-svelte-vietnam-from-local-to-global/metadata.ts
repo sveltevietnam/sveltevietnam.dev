@@ -1,27 +1,26 @@
 import { defineBlogPostMetadata } from '..';
+import * as m from '../../locales/generated/messages';
 
-export const en = defineBlogPostMetadata({
-	slug: '20231012-svelte-vietnam-from-local-to-global',
-	title: "Svelte Vietnam: from Local to Global",
-	description: "What is Svelte Vietnam? How does it come about? Why is it even necessary? Let's get to the bottom of these questions in this blog post.",
+export default defineBlogPostMetadata((lang) => ({
+	slug: m['posts.20231012_local_to_global.slug'](lang),
+	title: m['posts.20231012_local_to_global.title'](lang),
+	description: m['posts.20231012_local_to_global.desc'](lang),
+	keywords: m['posts.20231012_local_to_global.keywords'](lang),
 	publishedAt: new Date('2023-10-12'),
 	authors: ['vnphanquang'],
 	categories: ['community', 'insider'],
-	keywords: 'identity, community',
-	readMinutes: 10,
-	numWords: 1540,
-	translation: 'manual',
-});
-
-export const vi = defineBlogPostMetadata({
-	slug: '20231012-svelte-viet-nam-tu-vuon-nha-vuon-ra-the-gioi',
-	title: 'Svelte Việt Nam: từ vườn nhà vươn ra thế giới',
-	description: 'Svelte Việt Nam là gì, khởi đầu từ đâu, vì sao cần phải có? Hãy cùng tìm câu trả lời trong bài viết này.',
-	publishedAt: new Date('2023-10-12'),
-	authors: ['vnphanquang'],
-	categories: ['community', 'insider'],
-	keywords: 'danh tính, cộng đồng',
-	readMinutes: 10,
-	numWords: 1950,
-	translation: 'original',
-});
+	...(
+		{
+			en: {
+				readMinutes: 10,
+				numWords: 1540,
+				translation: 'manual',
+			},
+			vi: {
+				readMinutes: 10,
+				numWords: 1950,
+				translation: 'original',
+			},
+		} as const
+	)[lang],
+}));

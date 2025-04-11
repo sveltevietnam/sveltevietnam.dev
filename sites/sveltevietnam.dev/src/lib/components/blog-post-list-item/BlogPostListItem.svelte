@@ -10,6 +10,7 @@
 
 	type ScreenScopedVar<T extends string> = {
 		tablet?: T;
+		desktop?: T;
 		widescreen?: T;
 	};
 
@@ -57,6 +58,8 @@
 	class={[
 		'flex flex-col gap-6',
 		orientation?.tablet === 'landscape' && 'tablet:flex-row',
+		orientation?.desktop === 'landscape' && 'desktop:flex-row',
+		orientation?.desktop === 'portrait' && 'desktop:flex-col',
 		orientation?.widescreen === 'landscape' && 'widescreen:flex-row',
 		orientation?.widescreen === 'portrait' && 'widescreen:flex-col',
 		cls,
@@ -69,6 +72,8 @@
 			class={[
 				'aspect-video max-w-full',
 				aspect?.tablet === 'square' && 'tablet:aspect-square',
+				aspect?.desktop === 'square' && 'desktop:aspect-square',
+				aspect?.desktop === 'video' && 'desktop:aspect-video',
 				aspect?.widescreen === 'square' && 'widescreen:aspect-square',
 				aspect?.widescreen === 'video' && 'widescreen:aspect-video',
 				orientation?.tablet === 'landscape' && 'tablet:max-w-52',
@@ -97,6 +102,8 @@
 				class={[
 					'text-xl font-bold',
 					titleFont?.tablet === 'big' && 'tablet:text-2xl',
+					titleFont?.desktop === 'big' && 'desktop:text-2xl',
+					titleFont?.desktop === 'normal' && 'desktop:text-xl',
 					titleFont?.widescreen === 'big' && 'widescreen:text-2xl',
 					titleFont?.widescreen === 'normal' && 'widescreen:text-xl',
 				]}

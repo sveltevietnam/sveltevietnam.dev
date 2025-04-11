@@ -1,13 +1,8 @@
 import { defineBlogSeries } from '..';
+import * as m from '../../locales/generated/messages';
 
-export const en = defineBlogSeries({
-	name: 'Behind the Screen',
-	description: 'Sharing about technical decisions behind the codebase, infrastructure, and user interface of sveltevietnam.dev',
-	slug: 'behind-the-screen',
-});
-
-export const vi = defineBlogSeries({
-	name: 'Behind the Screen',
-	description: 'Chia sẻ về các quyết định kỹ thuật đằng sau codebase, hạ tầng và giao diện trang web sveltevietnam.dev',
-	slug: 'behind-the-screen',
-});
+export default defineBlogSeries((lang) => ({
+	name: m['series.behind_the_screen.name'](lang),
+	slug: m['series.behind_the_screen.slug'](lang),
+	description: m['series.behind_the_screen.desc'](lang),
+}));

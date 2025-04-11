@@ -57,11 +57,4 @@ export type ExtendedBlogPostMetadata = Omit<
 	thumbnail?: Picture;
 };
 
-export type BlogPostMetadataModule =
-	| {
-			default: Omit<BlogPostMetadata, 'id'>;
-	  }
-	| {
-			en: Omit<BlogPostMetadata, 'id'>;
-			vi: Omit<BlogPostMetadata, 'id'>;
-	  };
+export type BlogPostMetadataDefinition = (lang: App.Language) => MinimalBlogPostMetadata;
