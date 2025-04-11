@@ -19,7 +19,7 @@ const metadataModules = import.meta.glob<t.BlogPostMetadataDefinition>('./*/meta
 });
 const thumbnailModules = import.meta.glob<Picture>('./*/images/thumbnail.jpg', {
 	import: 'default',
-	query: '?enhanced&w=2240,1540;1088;686',
+	query: '?enhanced&w=2240;1540;1088;686',
 });
 const ogImageModules = import.meta.glob<string>('./*/images/thumbnail.jpg', {
 	import: 'default',

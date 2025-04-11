@@ -15,10 +15,10 @@
 
 	import type { PageData } from '.././../../routes/(site)/events/[slug]/$types';
 
-	import imgVideo2Thumbnail from './images/a-few-secrets-of-sveltevietnamdev.jpg?enhanced&w=1200,630&imagetools';
-	import imgLivestreamMoment from './images/livestream-moment.jpg?enhanced&w=1200,630&imagetools';
-	import imgOg from './images/og.jpg?enhanced&w=1200,630&imagetools';
-	import imgVideo1Thumbnail from './images/state-of-sveltevietnam-2023.jpg?enhanced&w=1200,630&imagetools';
+	import imgVideo2Thumbnail from './images/a-few-secrets-of-sveltevietnamdev.jpg?enhanced&w=1200;630&imagetools';
+	import imgLivestreamMoment from './images/livestream-moment.jpg?enhanced&w=1200;630&imagetools';
+	import imgOg from './images/og.jpg?enhanced&w=1200;630&imagetools';
+	import imgVideo1Thumbnail from './images/state-of-sveltevietnam-2023.jpg?enhanced&w=1200;630&imagetools';
 	import * as m from './locales/generated/messages';
 	import { EVENT_LINKS } from './metadata';
 

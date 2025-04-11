@@ -19,19 +19,19 @@
 	import type { PageData } from '.././../../routes/(site)/events/[slug]/$types';
 
 	import dsvLogoImage from './images/designveloper_logo.webp';
-	import imgEventTicket from './images/event/e-ticket.jpg?enhanced&w=1200,630&imagetools';
-	import imgEventEarlyMembers from './images/event/early-members.jpeg?enhanced&w=1200,630&imagetools';
-	import imgEventGroup from './images/event/group.jpg?enhanced&w=1200,630&imagetools';
-	import imgEventQuizWinners from './images/event/quiz-winners.jpg?enhanced&w=1200,630&imagetools';
-	import imgEventSettingsLeft from './images/event/settings-left.jpg?enhanced&w=1200,630&imagetools';
-	import imgEventSettingsRight from './images/event/settings-right.jpeg?enhanced&w=1200,630&imagetools';
-	import imgSharingTrongnguyen24Closing from './images/event/sharing-trongnguyen24-closing.jpg?enhanced&w=1200,630&imagetools';
-	import imgSharingTrongnguyen24Opening from './images/event/sharing-trongnguyen24-opening.jpg?enhanced&w=1200,630&imagetools';
-	import imgSharingVnphanquang from './images/event/sharing-vnphanquang.jpg?enhanced&w=1200,630&imagetools';
-	import imgStandee from './images/event/standee.jpg?enhanced&w=1200,630&imagetools';
-	import imgFooterBg from './images/footer-bg.jpg?enhanced&w=2048,1440,720&imagetools';
-	import imgHeaderBg from './images/header-bg.jpg?enhanced&w=2048,1440,720&imagetools';
-	import imgMiddleBg from './images/middle-bg.jpg?enhanced&w=2048,1440,720&imagetools';
+	import imgEventTicket from './images/event/e-ticket.jpg?enhanced&w=1200;630&imagetools';
+	import imgEventEarlyMembers from './images/event/early-members.jpeg?enhanced&w=1200;630&imagetools';
+	import imgEventGroup from './images/event/group.jpg?enhanced&w=1200;630&imagetools';
+	import imgEventQuizWinners from './images/event/quiz-winners.jpg?enhanced&w=1200;630&imagetools';
+	import imgEventSettingsLeft from './images/event/settings-left.jpg?enhanced&w=1200;630&imagetools';
+	import imgEventSettingsRight from './images/event/settings-right.jpeg?enhanced&w=1200;630&imagetools';
+	import imgSharingTrongnguyen24Closing from './images/event/sharing-trongnguyen24-closing.jpg?enhanced&w=1200;630&imagetools';
+	import imgSharingTrongnguyen24Opening from './images/event/sharing-trongnguyen24-opening.jpg?enhanced&w=1200;630&imagetools';
+	import imgSharingVnphanquang from './images/event/sharing-vnphanquang.jpg?enhanced&w=1200;630&imagetools';
+	import imgStandee from './images/event/standee.jpg?enhanced&w=1200;630&imagetools';
+	import imgFooterBg from './images/footer-bg.jpg?enhanced&w=2048;1440;720&imagetools';
+	import imgHeaderBg from './images/header-bg.jpg?enhanced&w=2048;1440;720&imagetools';
+	import imgMiddleBg from './images/middle-bg.jpg?enhanced&w=2048;1440;720&imagetools';
 	import * as m from './locales/generated/messages';
 
 	let { data }: { data: PageData } = $props();

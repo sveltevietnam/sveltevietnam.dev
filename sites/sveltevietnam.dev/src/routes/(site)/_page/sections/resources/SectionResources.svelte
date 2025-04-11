@@ -6,15 +6,15 @@
 	import { SOCIAL_LINKS } from '$data/links';
 	import * as m from '$data/locales/generated/messages';
 
-	import imgPuzzle from './images/puzzle.png?enhanced';
-	import screenshotDocs from './images/screenshot-svelte-docs.jpg?enhanced';
-	import screenshotGithub from './images/screenshot-svelte-github.jpg?enhanced';
-	import screenshotHack from './images/screenshot-svelte-hack.jpg?enhanced';
-	import screenshotLab from './images/screenshot-svelte-lab.jpg?enhanced';
-	import screenshotPlayground from './images/screenshot-svelte-playground.jpg?enhanced';
-	import screenshotSociety from './images/screenshot-svelte-society.jpg?enhanced';
-	import screenshotSummit from './images/screenshot-svelte-summit.jpg?enhanced';
-	import screenshotTutorial from './images/screenshot-svelte-tutorial.jpg?enhanced';
+	import svgPuzzle from './images/puzzle.svg';
+	import screenshotDocs from './images/screenshot-svelte-docs.jpg?enhanced&w=1368;900;600&imagetools';
+	import screenshotGithub from './images/screenshot-svelte-github.jpg?enhanced&w=1368;900;600&imagetools';
+	import screenshotHack from './images/screenshot-svelte-hack.jpg?enhanced&w=1368;900;600&imagetools';
+	import screenshotLab from './images/screenshot-svelte-lab.jpg?enhanced&w=1368;900;600&imagetools';
+	import screenshotPlayground from './images/screenshot-svelte-playground.jpg?enhanced&w=1368;900;600&imagetools';
+	import screenshotSociety from './images/screenshot-svelte-society.jpg?enhanced&w=1368;900;600&imagetools';
+	import screenshotSummit from './images/screenshot-svelte-summit.jpg?enhanced&w=1368;900;600&imagetools';
+	import screenshotTutorial from './images/screenshot-svelte-tutorial.jpg?enhanced&w=1368;900;600&imagetools';
 
 	const sectionClasses = [
 		'relative bg-surface p-4 flex flex-col gap-8 max-w-256 mx-auto',
@@ -52,7 +52,7 @@
 	description: Message<MessageType, never>;
 	links: { message: Message<MessageType, never>; href: string }[];
 	linksClasses?: string;
-	image: Picture | { message: Message<MessageType, never>; href: string; src: Picture };
+	image: Picture | { message: Message<MessageType, never>; href: string; src: Picture } | { src: string; width: number, height: number };
 	footnote?: Message<MessageType, never>;
 })}
 	<div
@@ -78,7 +78,11 @@
 				</p>
 			{/if}
 		</div>
-		{#if !('href' in image)}
+		{#if 'width' in image}
+			<div class="tablet:flex-1 mobile:order-2">
+				<img class="w-full h-auto" {...image} alt="" />
+			</div>
+		{:else if !('href' in image)}
 			<div class="tablet:flex-1 mobile:order-2">
 				<enhanced:img class="w-full" src={image} alt="" />
 			</div>
@@ -203,7 +207,7 @@
 				{ message: m['pages.home.resources.bluesky'], href: SOCIAL_LINKS.BLUESKY },
 				{ message: m['pages.home.resources.three.github'], href: SOCIAL_LINKS.GITHUB },
 			],
-			image: imgPuzzle,
+			image: { src: svgPuzzle, width: 291, height: 159 },
 		})}
 		<p class="-mt-4"><T message={m['pages.home.resources.three.note']} /></p>
 	</section>
@@ -302,7 +306,7 @@
 
 		<div class="bg-outline h-px w-full"></div>
 
-		<section class="prose leading-relaxed max-w-readable-relaxed">
+		<section class="prose max-w-readable-relaxed leading-relaxed">
 			<p><T message={m['pages.home.resources.four.others']} /></p>
 			<ul>
 				<li><T message={m['pages.home.resources.four.newsletter']} /></li>

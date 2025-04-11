@@ -4,7 +4,7 @@
 
 	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
-	import fallback16x9 from '$lib/assets/images/fallbacks/16x9.jpg?enhanced&w=2240,1540;1088;686&imagetools';
+	import fallback16x9 from '$lib/assets/images/fallbacks/16x9.jpg?enhanced&w=2240;1540;1088;686&imagetools';
 	import { BlogNewsletter } from '$lib/components/blog-newsletter';
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
 	import { BlogPostListItem } from '$lib/components/blog-post-list-item';

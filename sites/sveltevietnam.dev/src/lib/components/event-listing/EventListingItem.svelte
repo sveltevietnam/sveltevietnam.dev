@@ -5,7 +5,7 @@
 
 	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
-	import fallback3x2 from '$lib/assets/images/fallbacks/3x2.jpg?enhanced&w=1200,686&imagetools';
+	import fallback3x2 from '$lib/assets/images/fallbacks/3x2.jpg?enhanced&w=1200;686&imagetools';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 	import { formatLongMonth, formatLongWeekDay } from '$lib/utils/datetime';

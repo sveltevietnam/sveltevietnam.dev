@@ -1,7 +1,6 @@
 declare global {
 	declare module '*&imagetools' {
-		const src: string;
-		export default src;
+		export default import('vite-imagetools').Picture;
 	}
 
 	namespace App {
