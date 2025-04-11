@@ -107,6 +107,7 @@
 					alt=""
 					fetchpriority="low"
 					loading="lazy"
+					decoding="async"
 				></enhanced:img>
 			</a>
 		</div>

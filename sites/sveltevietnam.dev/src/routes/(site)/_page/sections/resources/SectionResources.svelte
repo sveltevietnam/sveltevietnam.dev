@@ -7,14 +7,14 @@
 	import * as m from '$data/locales/generated/messages';
 
 	import svgPuzzle from './images/puzzle.svg';
-	import screenshotDocs from './images/screenshot-svelte-docs.jpg?enhanced&w=1368;900;600&imagetools';
-	import screenshotGithub from './images/screenshot-svelte-github.jpg?enhanced&w=1368;900;600&imagetools';
-	import screenshotHack from './images/screenshot-svelte-hack.jpg?enhanced&w=1368;900;600&imagetools';
-	import screenshotLab from './images/screenshot-svelte-lab.jpg?enhanced&w=1368;900;600&imagetools';
-	import screenshotPlayground from './images/screenshot-svelte-playground.jpg?enhanced&w=1368;900;600&imagetools';
-	import screenshotSociety from './images/screenshot-svelte-society.jpg?enhanced&w=1368;900;600&imagetools';
-	import screenshotSummit from './images/screenshot-svelte-summit.jpg?enhanced&w=1368;900;600&imagetools';
-	import screenshotTutorial from './images/screenshot-svelte-tutorial.jpg?enhanced&w=1368;900;600&imagetools';
+	import screenshotDocs from './images/screenshot-svelte-docs.jpg?enhanced&w=1400;900;600;300&imagetools';
+	import screenshotGithub from './images/screenshot-svelte-github.jpg?enhanced&w=1400;900;600;300&imagetools';
+	import screenshotHack from './images/screenshot-svelte-hack.jpg?enhanced&w=1400;900;600;300&imagetools';
+	import screenshotLab from './images/screenshot-svelte-lab.jpg?enhanced&w=1400;900;600;300&imagetools';
+	import screenshotPlayground from './images/screenshot-svelte-playground.jpg?enhanced&w=1400;900;600;300&imagetools';
+	import screenshotSociety from './images/screenshot-svelte-society.jpg?enhanced&w=1400;900;600;300&imagetools';
+	import screenshotSummit from './images/screenshot-svelte-summit.jpg?enhanced&w=1400;900;600;300&imagetools';
+	import screenshotTutorial from './images/screenshot-svelte-tutorial.jpg?enhanced&w=1400;900;600;300&imagetools';
 
 	const sectionClasses = [
 		'relative bg-surface p-4 flex flex-col gap-8 max-w-256 mx-auto',
@@ -52,7 +52,7 @@
 	description: Message<MessageType, never>;
 	links: { message: Message<MessageType, never>; href: string }[];
 	linksClasses?: string;
-	image: Picture | { message: Message<MessageType, never>; href: string; src: Picture } | { src: string; width: number, height: number };
+	image: { message: Message<MessageType, never>; href: string; src: Picture } | { src: string; width: number, height: number };
 	footnote?: Message<MessageType, never>;
 })}
 	<div
@@ -80,11 +80,7 @@
 		</div>
 		{#if 'width' in image}
 			<div class="tablet:flex-1 mobile:order-2">
-				<img class="w-full h-auto" {...image} alt="" />
-			</div>
-		{:else if !('href' in image)}
-			<div class="tablet:flex-1 mobile:order-2">
-				<enhanced:img class="w-full" src={image} alt="" />
+				<img class="w-full h-auto" {...image} alt="" loading="lazy" fetchpriority="low" decoding="async" />
 			</div>
 		{:else}
 			<div
@@ -93,7 +89,14 @@
 			>
 				<a class="c-link-image block" href={image.href}>
 					<span class="sr-only"><T message={image.message} /></span>
-					<enhanced:img src={image.src} alt="" />
+					<enhanced:img
+						src={image.src}
+						alt=""
+						loading="lazy"
+						fetchpriority="low"
+						decoding="async"
+						sizes="(min-width: 48rem) 28.125rem, (min-width: 25rem) 43.75rem, 18.75rem"
+					/>
 				</a>
 			</div>
 		{/if}
@@ -107,7 +110,7 @@
 		<div class="relative flex items-center justify-between gap-4">
 			<div class="space-y-4">
 				{@render step(m['pages.home.resources.one.step'])}
-				<h3 class="c-text-heading-md"><T message={m['pages.home.resources.one.heading']} /></h3>
+				<h3 class="c-text-heading-md pr-30"><T message={m['pages.home.resources.one.heading']} /></h3>
 			</div>
 			<svg
 				class="mobile:absolute mobile:-top-2 mobile:-right-2 w-25 h-auto shrink-0"

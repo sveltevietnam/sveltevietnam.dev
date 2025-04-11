@@ -84,6 +84,7 @@
 			alt=""
 			fetchpriority="low"
 			loading="lazy"
+			decoding="async"
 		/>
 	</a>
 	<div class="space-y-4">
