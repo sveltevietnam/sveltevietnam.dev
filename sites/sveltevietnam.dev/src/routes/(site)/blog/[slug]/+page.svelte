@@ -105,7 +105,7 @@
 						<HintedText class="ml-1 cursor-help">
 							<i class="i i-[info] h-5 w-5"></i>
 							<span class="sr-only">
-								<T message={m['pages.blog_slug.lang.explain']} />
+								<T message={m['explain']} />
 							</span>
 							{#snippet hint()}
 								{#if data.post.translation === 'manual'}

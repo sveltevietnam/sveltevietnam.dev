@@ -19,9 +19,10 @@
 		<T message={m['components.page_edit_link.link']} />
 	</a>
 	<HintedText class="ml-1 cursor-help">
+		<span class="sr-only"><T message={m['explain']} /></span>
 		<i class="i i-[info] h-5 w-5"></i>
 		{#snippet hint()}
-			<T message={m['components.page_edit_link.desc']} />
+			<span><T message={m['components.page_edit_link.desc']} /></span>
 		{/snippet}
 	</HintedText>
 </p>

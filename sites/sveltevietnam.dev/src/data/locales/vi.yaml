@@ -8,6 +8,7 @@ messages:
   close: Đóng
   download: Tải về
   view_more: Xem thêm
+  explain: giải thích
   and: và
   or: hoặc
   minutes: phút
@@ -194,7 +195,6 @@ messages:
         view: Xem danh sách tài nguyên
     blog_slug:
       lang:
-        explain: giải thích
         original:
           title: Ngôn ngữ gốc
           desc: Bài viết đang được hiển thị bằng ngôn ngữ gốc.

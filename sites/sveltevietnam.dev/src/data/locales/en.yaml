@@ -8,6 +8,7 @@ messages:
   close: Close
   download: Download
   view_more: View more
+  explain: Explain
   and: and
   or: or
   minutes: minutes
@@ -188,7 +189,6 @@ messages:
         view: View list of resources
     blog_slug:
       lang:
-        explain: explain
         original:
           title: Original language
           desc: You are reading the blog post in its original language.
