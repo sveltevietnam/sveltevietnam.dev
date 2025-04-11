@@ -9,6 +9,7 @@ messages:
   download: Tải về
   view_more: Xem thêm
   and: và
+  or: hoặc
   minutes: phút
   time: Thời gian
   location: Địa điểm
@@ -116,6 +117,7 @@ messages:
         tba:
           desc: Chưa có sự kiện mới nào
           subscribe: Đăng ký cập nhật sự kiện mới nhất!
+          view_past: Xem lại sự kiện đã diễn ra
       blog:
         heading: Bài viết
         desc: Đọc và viết bài tại <a class="c-link" href="/vi/blog">Blog của Svelte

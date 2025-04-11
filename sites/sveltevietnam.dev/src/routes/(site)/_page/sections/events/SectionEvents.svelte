@@ -19,6 +19,12 @@
 			<a class="c-link" href="{routing.path('events')}#participate">
 				<T message={m['pages.home.events.tba.subscribe']} />
 			</a>
+			<br/>
+			<T message={m['or']} />
+			<br/>
+			<a class="c-link" href="{routing.path('events')}#past">
+				<T message={m['pages.home.events.tba.view_past']} />
+			</a>
 		</p>
 	</TBA>
 </section>

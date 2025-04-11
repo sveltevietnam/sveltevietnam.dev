@@ -56,7 +56,7 @@
 	<section class="pt-intro-pad-top relative">
 		<div class="absolute inset-0 z-0 overflow-hidden">
 			<enhanced:img
-				class="w-full max-w-full object-top"
+				class="w-full h-full object-top"
 				src={imgHeaderBg}
 				alt="0"
 				loading="eager"

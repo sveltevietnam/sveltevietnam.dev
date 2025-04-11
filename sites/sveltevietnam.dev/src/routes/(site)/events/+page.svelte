@@ -58,6 +58,8 @@
 		<IntroSeparator />
 	</section>
 
+	<!-- TODO: ongoing events -->
+
 	<!-- upcoming -->
 	<section class="max-w-pad space-y-section py-section" id="upcoming">
 		<h2 class="c-text-heading-lg border-b">

@@ -9,6 +9,7 @@ messages:
   download: Download
   view_more: View more
   and: and
+  or: or
   minutes: minutes
   time: Time
   location: Location
@@ -117,6 +118,7 @@ messages:
         tba:
           desc: No event is planned yet
           subscribe: Notify me about the next event!
+          view_past: View past events
       blog:
         heading: Recent Posts
         desc: Read and write about your Svelte expreience at the <a class="c-link"
