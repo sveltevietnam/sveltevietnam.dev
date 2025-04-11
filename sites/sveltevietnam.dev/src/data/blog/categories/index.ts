@@ -28,5 +28,5 @@ export async function loadBlogCategoryBySlug(
 	lang: App.Language,
 ): Promise<t.BlogCategory | null> {
 	const categories = await Promise.all(ids.map((id) => loadBlogCategory(id, lang)));
-	return categories.find((category) => category?.slug === slug) ?? null;
+	return categories.find((category) => category?.slug.toString() === slug) ?? null;
 }

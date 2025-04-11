@@ -121,7 +121,7 @@ export async function loadBlogPostBySlug(
 		Boolean,
 	);
 
-	const matched = metadatas.find((metadata) => metadata.slug === slug);
+	const matched = metadatas.find((metadata) => metadata.slug.toString() === slug);
 	if (!matched) return null;
 	return extendBlogPostMetadata(matched, lang);
 }

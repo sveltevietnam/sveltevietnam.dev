@@ -25,5 +25,5 @@ export async function loadBlogSeriesBySlug(
 	lang: App.Language,
 ): Promise<t.BlogSeries | null> {
 	const series = await Promise.all(ids.map((id) => loadBlogSeries(id, lang)));
-	return series.find((s) => s?.slug === slug) ?? null;
+	return series.find((s) => s?.slug.toString() === slug) ?? null;
 }
