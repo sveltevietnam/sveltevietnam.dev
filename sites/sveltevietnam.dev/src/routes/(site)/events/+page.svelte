@@ -98,7 +98,7 @@
 					<circle cx="31" cy="269.5" r="30.5" fill="currentcolor" />
 					<path
 						fill="currentcolor"
-						d="M145.4 256a150 150 0 1 0-42.4-84.8 30 30 0 1 1 17 51 150 150 0 0 0 25.4 33.9Z"
+						d="M145.4 256A150 150 0 10103 171.2a30 30 0 1117 51 150 150 0 0025.4 33.9Z"
 					/>
 				</svg>
 			</div>
@@ -124,7 +124,7 @@
 					fill="none"
 					viewBox="0 0 400 300"
 				>
-					<path fill="currentcolor" d="M300 0H0v300h300V180h-60v-60h60V0Z" />
+					<path fill="currentcolor" d="M300 0V120H240v60h60V300H0V0H300Z" />
 					<path fill="currentcolor" d="M340 120h60v60h-60z" />
 				</svg>
 			</div>

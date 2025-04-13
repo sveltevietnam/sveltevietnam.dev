@@ -4,12 +4,12 @@ declare module 'svelte/elements' {
 		'inline-src'?:
 			| `./${string}`
 			| `../${string}`
-			| 'au-lac'
-			| 'dong'
+			| 'chim-lac'
+			| 'dong-thai-binh-hung-bao'
 			| 'svelte'
 			| 'sveltevietnam'
-			| 'tu_chu'
-			| 'tu_nom';
+			| 'tu-chu'
+			| 'tu-nom';
 	}
 }
 export {};
