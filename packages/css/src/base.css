@@ -1,11 +1,4 @@
 /* stylelint-disable no-invalid-position-at-import-rule */
-@plugin 'phosphor-icons-tailwindcss' {
-	prefix: i;
-	/* stylelint-disable-next-line property-no-unknown, order/properties-order  */
-	layer: icons;
-	/* stylelint-disable-next-line property-no-unknown, order/properties-order  */
-	custom-property: --icon-url;
-}
 
 /* ad-hoc custom media and selectors */
 @import './variants.css';
@@ -44,10 +37,6 @@
 		color: inherit;
 
 		background-color: transparent;
-	}
-
-	svg[inline-src^='simpleicon/'] {
-		fill: currentcolor;
 	}
 
 	button:focus-visible:not(:disabled),

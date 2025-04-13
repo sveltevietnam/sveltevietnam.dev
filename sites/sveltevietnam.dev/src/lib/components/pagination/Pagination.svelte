@@ -49,7 +49,7 @@
 			]}
 		>
 			<span class="sr-only"><T message={m['components.pagination.previous']} /></span>
-			<i class="i i-[caret-left] h-5 w-5"></i>
+			<i class="i i-[ph--caret-left] h-5 w-5"></i>
 			<input
 				class="sr-only"
 				type="submit"
@@ -65,7 +65,7 @@
 			]}
 		>
 			<span class="sr-only"><T message={m['components.pagination.next']} /></span>
-			<i class="i i-[caret-right] h-5 w-5"></i>
+			<i class="i i-[ph--caret-right] h-5 w-5"></i>
 			<input
 				class="sr-only"
 				type="submit"

@@ -69,7 +69,7 @@
 	<!-- svelte-ignore a11y_autofocus -->
 	<button class="c-link-lazy absolute right-4 top-4 p-2" onclick={() => dialog?.close()} autofocus>
 		<span class="sr-only"><T message={m.close} /></span>
-		<i class="i i-[x] h-6 w-6"></i>
+		<i class="i i-[ph--x] h-6 w-6"></i>
 	</button>
 	<p class="c-text-title border-b"><T message={m['dialogs.qr.title']} /></p>
 	<p><T message={m['dialogs.qr.desc']} /></p>

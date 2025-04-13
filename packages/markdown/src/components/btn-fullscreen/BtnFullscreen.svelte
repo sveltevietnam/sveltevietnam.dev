@@ -60,7 +60,7 @@
 	{#if !group}
 		<input class="codeblock-fullscreen sr-only" type="checkbox" {id} bind:checked={fullscreen} />
 	{/if}
-	<i class="maximize i i-[corners-out]"></i>
+	<i class="maximize i i-[ph--corners-out]"></i>
 	<i class="minimize i i[-corners-in]"></i>
 </label>
 

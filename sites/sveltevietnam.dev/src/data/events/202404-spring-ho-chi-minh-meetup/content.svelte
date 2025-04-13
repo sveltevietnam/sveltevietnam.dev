@@ -136,7 +136,7 @@
 				{#if data.event.location}
 					<div class="flex items-start gap-2">
 						<dt>
-							<i class="i i-[map-pin] h-6 w-6"></i>
+							<i class="i i-[ph--map-pin] h-6 w-6"></i>
 						</dt>
 						<dd>
 							<ListMessage items={data.event.location}>
@@ -151,7 +151,7 @@
 				<!-- time -->
 				<div class="flex items-start gap-2">
 					<dt>
-						<i class="i i-[clock] h-6 w-6"></i>
+						<i class="i i-[ph--clock] h-6 w-6"></i>
 					</dt>
 					<dd>
 						<DateTimeRangeText

@@ -1,6 +1,6 @@
 @utility c-callout--warning {
 	@layer components.mod1 {
-		@apply i-[warning];
+		@apply i-[ph--warning];
 
 		--callout-color-text: var(--color-warning-on-surface);
 		--callout-color-icon: var(--color-warning-on-surface);

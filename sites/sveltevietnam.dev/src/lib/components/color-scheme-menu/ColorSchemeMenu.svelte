@@ -18,15 +18,15 @@
 
 	const colorSchemes = $derived({
 		light: {
-			icon: 'i-[sun]',
+			icon: 'i-[ph--sun]',
 			label: m['components.color_scheme_menu.light'],
 		},
 		dark: {
-			icon: 'i-[moon]',
+			icon: 'i-[ph--moon]',
 			label: m['components.color_scheme_menu.dark'],
 		},
 		system: {
-			icon: 'i-[desktop]',
+			icon: 'i-[ph--desktop]',
 			label: m['components.color_scheme_menu.system'],
 		},
 	});
@@ -49,14 +49,14 @@
 			name="color-scheme-menu"
 			bind:checked={open}
 		/>
-		<i class="i i-[palette] h-6 w-6"></i>
+		<i class="i i-[ph--palette] h-6 w-6"></i>
 		<span class="sr-only peer-checked:hidden"><T message={m.open} /></span>
 		<span class="sr-only hidden peer-checked:block"><T message={m.close} /></span>
 		<span class="sr-only"><T message={m['components.color_scheme_menu.toggle']} /> </span>
 		<span class={[alwaysShowLabel && 'tablet:sr-only']}
 			><T message={colorSchemes[settings.colorScheme.user].label} /></span
 		>
-		<i class="i i-[caret-down] h-5 w-5 transition-transform peer-checked:-rotate-180"></i>
+		<i class="i i-[ph--caret-down] h-5 w-5 transition-transform peer-checked:-rotate-180"></i>
 	</label>
 	<div
 		class="_menu bg-surface absolute right-0 top-full mt-1.5 grid w-max"

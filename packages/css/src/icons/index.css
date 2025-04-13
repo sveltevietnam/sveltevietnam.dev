@@ -1,10 +1,29 @@
+/* stylelint-disable no-invalid-position-at-import-rule */
+
+@plugin '@iconify/tailwind4' {
+	prefix: i;
+	/* stylelint-disable-next-line property-no-unknown, order/properties-order  */
+	override-only: true;
+}
+
 @import './animated/ia-3dots.css';
 @import './animated/ia-spinner.css';
-@import './i-svelte.css';
 @import './i-sveltevietnam.css';
 
-@layer base {
-	.i {
+@utility i {
+	@layer components {
+		display: inline-block;
+
+		width: 1em;
+		height: 1em;
+
+		color: inherit;
 		vertical-align: text-bottom;
+
+		background-color: currentcolor;
+
+		mask-image: var(--svg);
+		mask-repeat: no-repeat;
+		mask-size: 100% 100%;
 	}
 }

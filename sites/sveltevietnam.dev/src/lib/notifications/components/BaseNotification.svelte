@@ -10,10 +10,10 @@
 	}
 
 	const iconClassMap: Record<NonNullable<BaseNotificationProps['status']>, string> = {
-		info: 'i-[info]',
-		success: 'i-[check-circle]',
-		warning: 'i-[warning]',
-		error: 'i-[warning-circle]',
+		info: 'i-[ph--info]',
+		success: 'i-[ph--check-circle]',
+		warning: 'i-[ph--warning]',
+		error: 'i-[ph--warning-circle]',
 	};
 </script>
 
@@ -24,7 +24,7 @@
 		item?.resolve();
 	}
 
-	const iconClass = status ? iconClassMap[status] : 'i-[info]';
+	const iconClass = status ? iconClassMap[status] : 'i-[ph--info]';
 </script>
 
 <article
@@ -41,7 +41,7 @@
 		class="absolute right-0 top-0 flex -translate-y-1/2 translate-x-1/2 cursor-pointer rounded-full
 		border border-current bg-inherit p-1.5"
 	>
-		<i class="i i-[x] h-3.5 w-3.5"></i>
+		<i class="i i-[ph--x] h-3.5 w-3.5"></i>
 		<span class="sr-only">Dismiss</span>
 	</button>
 

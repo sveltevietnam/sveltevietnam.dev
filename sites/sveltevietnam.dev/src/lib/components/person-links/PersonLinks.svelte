@@ -18,11 +18,13 @@
 			<li>
 				<a class="c-link-icon flex rounded-full border border-current p-2" {href} data-external>
 					{#if name === 'bluesky'}
-						<svg class="h-6 w-6" inline-src="simpleicons/bluesky"></svg>
+						<i class="i i-[simple-icons--bluesky] h-6 w-6"></i>
 					{:else if name === 'github'}
-						<svg class="h-6 w-6" inline-src="simpleicons/github"></svg>
+						<i class="i i-[simple-icons--github] h-6 w-6"></i>
+					{:else if name === 'x'}
+						<i class="i i-[simple-icons--x] h-6 w-6"></i>
 					{:else}
-						<i class="i i-[globe] h-6 w-6"></i>
+						<i class="i i-[ph--globe] h-6 w-6"></i>
 					{/if}
 					<span class="sr-only">{name}</span>
 				</a>

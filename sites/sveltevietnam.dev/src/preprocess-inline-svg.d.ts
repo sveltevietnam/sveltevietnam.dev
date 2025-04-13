@@ -6,20 +6,10 @@ declare module 'svelte/elements' {
 			| `../${string}`
 			| 'au-lac'
 			| 'dong'
-			| 'simpleicons'
 			| 'svelte'
 			| 'sveltevietnam'
 			| 'tu_chu'
-			| 'tu_nom'
-			| 'simpleicons/bluesky'
-			| 'simpleicons/cloudflare-workers'
-			| 'simpleicons/discord'
-			| 'simpleicons/facebook'
-			| 'simpleicons/github'
-			| 'simpleicons/opencollective'
-			| 'simpleicons/svelte'
-			| 'simpleicons/tailwindcss'
-			| 'simpleicons/youtube';
+			| 'tu_nom';
 	}
 }
 export {};

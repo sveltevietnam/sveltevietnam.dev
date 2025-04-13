@@ -80,7 +80,7 @@
 			{#if data.event.livestream}
 				<div class="flex items-start gap-2">
 					<dt>
-						<i class="i i-[television] h-6 w-6"></i>
+						<i class="i i-[ph--television] h-6 w-6"></i>
 					</dt>
 					<dd>
 						<span><T message={m['timeline.live']} /></span>
@@ -98,7 +98,7 @@
 			<!-- time -->
 			<div class="flex items-start gap-2">
 				<dt>
-					<i class="i i-[clock] h-6 w-6"></i>
+					<i class="i i-[ph--clock] h-6 w-6"></i>
 				</dt>
 				<dd>
 					<DateTimeRangeText

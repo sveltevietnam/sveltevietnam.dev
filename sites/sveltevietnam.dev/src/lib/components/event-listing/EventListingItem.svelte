@@ -121,7 +121,7 @@
 				<a class="c-link-preserved relative" href={path}>
 					{event.title}
 					<i
-						class="not-can-hover:hidden i i-[cursor-click] absolute bottom-0 right-0 translate-x-full text-[0.75em]"
+						class="not-can-hover:hidden i i-[ph--cursor-click] absolute bottom-0 right-0 translate-x-full text-[0.75em]"
 					></i>
 				</a>
 			</p>
@@ -130,7 +130,7 @@
 				{#if event.location}
 					<div class="flex items-start gap-2">
 						<dt>
-							<i class="i i-[map-pin] h-5 w-5"></i>
+							<i class="i i-[ph--map-pin] h-5 w-5"></i>
 							<span class="sr-only"><T message={m['location']} /></span>
 						</dt>
 						<dd>
@@ -147,7 +147,7 @@
 				{#if event.livestream}
 					<div class="flex items-start gap-2">
 						<dt>
-							<i class="i i-[television] h-5 w-5"></i>
+							<i class="i i-[ph--television] h-5 w-5"></i>
 						</dt>
 						<dd>
 							<span><T message={m['components.event_listing_item.live']} /></span>
@@ -165,7 +165,7 @@
 				<!-- time -->
 				<div class="flex items-start gap-2">
 					<dt>
-						<i class="i i-[clock] h-5 w-5"></i>
+						<i class="i i-[ph--clock] h-5 w-5"></i>
 						<span class="sr-only"><T message={m['time']} /></span>
 					</dt>
 					<dd>

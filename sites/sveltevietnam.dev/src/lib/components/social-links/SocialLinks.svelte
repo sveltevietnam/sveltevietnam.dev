@@ -5,44 +5,44 @@
 
 	let { class: cls, ...rest }: HTMLAttributes<HTMLElement> = $props();
 
-	const commonLinkClasses = 'c-link-icon p-2 flex border-onehalf rounded-full border-current';
+	const commonLinkClasses = 'c-link-icon p-2.5 flex border-onehalf rounded-full border-current';
 </script>
 
 <ul class={['flex flex-wrap items-center gap-3 widescreen:gap-2', cls]} {...rest}>
 	<li>
 		<a class={commonLinkClasses} href={SOCIAL_LINKS.DISCORD} data-external>
-			<svg class="h-6 w-6" inline-src="simpleicons/discord"></svg>
 			<span class="sr-only">Discord</span>
+			<i class="i i-[simple-icons--discord] h-5 w-5"></i>
 		</a>
 	</li>
 	<li>
 		<a class={commonLinkClasses} href={SOCIAL_LINKS.BLUESKY} data-external>
-			<svg class="h-6 w-6" inline-src="simpleicons/bluesky"></svg>
 			<span class="sr-only">Bluesky</span>
+			<i class="i i-[simple-icons--bluesky] h-5 w-5"></i>
 		</a>
 	</li>
 	<li>
 		<a class={commonLinkClasses} href={SOCIAL_LINKS.GITHUB} data-external>
-			<svg class="h-6 w-6" inline-src="simpleicons/github"></svg>
 			<span class="sr-only">Github</span>
+			<i class="i i-[simple-icons--github] h-5 w-5"></i>
 		</a>
 	</li>
 	<li>
 		<a class={commonLinkClasses} href={SOCIAL_LINKS.OPEN_COLLECTIVE} data-external>
-			<svg class="h-6 w-6" inline-src="simpleicons/opencollective"></svg>
 			<span class="sr-only">Open Collective</span>
+			<i class="i i-[simple-icons--opencollective] h-5 w-5"></i>
 		</a>
 	</li>
 	<li>
 		<a class={commonLinkClasses} href={SOCIAL_LINKS.FACEBOOK} data-external>
-			<svg class="h-6 w-6" inline-src="simpleicons/facebook"></svg>
 			<span class="sr-only">Facebook</span>
+			<i class="i i-[simple-icons--facebook] h-5 w-5"></i>
 		</a>
 	</li>
 	<li>
 		<a class={commonLinkClasses} href={SOCIAL_LINKS.YOUTUBE} data-external>
-			<svg class="h-6 w-6" inline-src="simpleicons/youtube"></svg>
 			<span class="sr-only">Youtube</span>
+			<i class="i i-[simple-icons--youtube] h-5 w-5"></i>
 		</a>
 	</li>
 </ul>

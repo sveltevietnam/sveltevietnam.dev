@@ -1,6 +1,6 @@
 @utility c-callout--success {
 	@layer components.mod1 {
-		@apply i-[check-circle];
+		@apply i-[ph--check-circle];
 
 		--callout-color-text: var(--color-success-on-surface);
 		--callout-color-icon: var(--color-success-on-surface);
