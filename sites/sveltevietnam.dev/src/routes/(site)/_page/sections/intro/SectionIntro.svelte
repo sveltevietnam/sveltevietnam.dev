@@ -2,6 +2,8 @@
 	import { T } from '@sveltevietnam/i18n';
 
 	import * as m from '$data/locales/generated/messages';
+
+	import svgMesh from './images/mesh.svg?no-inline';
 </script>
 
 <section class="max-w-pad -mt-header tablet:py-50 desktop:py-70 relative py-40">
@@ -38,8 +40,7 @@
 	</div>
 
 	<div class="-z-px absolute inset-0 max-w-full overflow-hidden">
-		<svg class="-translate-1/2 absolute left-1/2 top-1/2 opacity-40" inline-src="./images/mesh"
-		></svg>
+		<img class="-translate-1/2 absolute left-1/2 top-1/2 opacity-40 max-w-none" src={svgMesh} alt="" width="1929" height="1647" />
 		<div
 			class="w-100 h-100 tablet:w-150 tablet:h-150 desktop:w-200 desktop:h-200 bg-radial from-surface absolute left-0 top-1/2
 			-translate-x-1/2 -translate-y-1/2 rounded-full to-transparent"
