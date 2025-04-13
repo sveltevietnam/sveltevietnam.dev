@@ -21,7 +21,7 @@ No need to go far, this very page you are reading on *sveltevietnam.dev* has qui
 <div>
 
 <p class="inline">
-Perhaps one of the most common applications of Svelte action that I use is handling click event <em>outside an element</em>. For example, if you use the dropdown menus for switching color schemes (<i class="i i-[palette] h-6 w-6"></i>) or languages (<i class="i i-[translate] h-6 w-6"></i>) at the top toolbar (or via the overlay menu <i class="i i-[list] h-6 w-6"></i> on mobile), you might have noticed that when you click outside the dropdown, it will close automatically.
+Perhaps one of the most common applications of Svelte action that I use is handling click event <em>outside an element</em>. For example, if you use the dropdown menus for switching color schemes (<i class="i i-[ph--palette] h-6 w-6"></i>) or languages (<i class="i i-[ph--translate] h-6 w-6"></i>) at the top toolbar (or via the overlay menu <i class="i i-[ph--list] h-6 w-6"></i> on mobile), you might have noticed that when you click outside the dropdown, it will close automatically.
 </p>
 
 <div class="p-2 border not-prose relative z-popup float-right inline-block ml-4 mt-4">

@@ -12,7 +12,7 @@
 		variant = 'short',
 		class: cls,
 		root = false,
-		ondone=() => {},
+		ondone = () => {},
 		...rest
 	}: HTMLAttributes<HTMLElement> & {
 		variant?: 'short' | 'long';
@@ -39,14 +39,14 @@
 	class={[
 		'splash-screen',
 		'bg-surface flex items-center justify-center',
-		root ? 'z-overlay fixed inset-0' : 'w-full h-100 tablet:h-125',
+		root ? 'z-overlay fixed inset-0' : 'h-100 tablet:h-125 w-full',
 		cls,
 	]}
 	{...root && { id: 'splash' }}
 	{...rest}
 >
 	<div class="_logo-wrapper">
-		<svg class="_logo w-26 h-26 -mr-2" inline-src="sveltevietnam"></svg>
+		<div class="_logo w-26 h-26 i i-sveltevietnam -mr-2 block"></div>
 	</div>
 	<div class="_title pl-2.5">
 		<svg class="h-19.5 w-auto" inline-src="./name.svg"></svg>
@@ -165,12 +165,13 @@
 		& ._logo {
 			transform: translateX(70%);
 
-			animation-name: splash-in-long-step-1-logo, splash-in-long-step-2-logo,
-				splash-in-long-step-3-logo;
+			animation-name:
+				splash-in-long-step-1-logo, splash-in-long-step-2-logo, splash-in-long-step-3-logo;
 			animation-duration: var(--step-1-duration), var(--step-2-duration), var(--step-3-duration);
 			animation-play-state: inherit;
-			animation-timing-function: var(--animation-timing-function-1),
-				var(--animation-timing-function-1), var(--animation-timing-function-2);
+			animation-timing-function:
+				var(--animation-timing-function-1), var(--animation-timing-function-1),
+				var(--animation-timing-function-2);
 			animation-fill-mode: forwards;
 			animation-delay: 0ms, var(--step-2-delay), var(--step-3-delay);
 		}
@@ -190,12 +191,14 @@
 
 				background-color: var(--color-surface);
 
-				animation-name: splash-in-long-step-1-title-overlay, splash-in-long-step-2-title-overlay,
+				animation-name:
+					splash-in-long-step-1-title-overlay, splash-in-long-step-2-title-overlay,
 					splash-in-long-step-3-title-overlay;
 				animation-duration: var(--step-1-duration), var(--step-2-duration), var(--step-3-duration);
 				animation-play-state: inherit;
-				animation-timing-function: var(--animation-timing-function-1),
-					var(--animation-timing-function-1), var(--animation-timing-function-2);
+				animation-timing-function:
+					var(--animation-timing-function-1), var(--animation-timing-function-1),
+					var(--animation-timing-function-2);
 				animation-fill-mode: forwards;
 				animation-delay: 0ms, var(--step-2-delay), var(--step-3-delay);
 			}

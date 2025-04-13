@@ -20,7 +20,7 @@
 	</a>
 	<HintedText class="ml-1 cursor-help">
 		<span class="sr-only"><T message={m['explain']} /></span>
-		<i class="i i-[info] h-5 w-5"></i>
+		<i class="i i-[ph--info] h-5 w-5"></i>
 		{#snippet hint()}
 			<span><T message={m['components.page_edit_link.desc']} /></span>
 		{/snippet}

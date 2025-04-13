@@ -21,7 +21,7 @@
 	<span class="sr-only">
 		{collapsed ? locales.expand : locales.collapse}
 	</span>
-	<i class="i i-[caret-down]"></i>
+	<i class="i i-[ph--caret-down]"></i>
 </label>
 
 <style lang="postcss">

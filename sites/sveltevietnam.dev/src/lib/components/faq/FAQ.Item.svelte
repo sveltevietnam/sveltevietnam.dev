@@ -26,7 +26,7 @@
 			</span>
 			<input type="checkbox" class="peer sr-only" />
 			<i
-				class="i i-[caret-down] block h-6 w-6 transition-transform
+				class="i i-[ph--caret-down] block h-6 w-6 transition-transform
 				duration-300 ease-out peer-checked:rotate-180 peer-checked:duration-100 peer-checked:ease-in"
 			></i>
 		</span>

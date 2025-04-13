@@ -26,14 +26,14 @@
 		'events',
 		'jobs',
 		'sponsor',
-		"people",
+		'people',
 		'roadmap',
 		'design',
 	] as const);
 	let secondaryPages = $derived(['settings', 'code-of-conduct', 'sitemap.xml', 'rss.xml'] as const);
 </script>
 
-<footer class={['relative bg-gradient-to-t from-primary-surface to-surface', cls]} {...rest}>
+<footer class={['from-primary-surface to-surface relative bg-gradient-to-t', cls]} {...rest}>
 	<div class="max-w-pad _upper border-y pb-10 pt-14">
 		<p
 			class="_name c-text-heading tablet:block tablet:text-right w-37.5 tablet:justify-self-end hidden uppercase"
@@ -72,14 +72,14 @@
 						href={SOCIAL_LINKS.DISCORD}
 						data-external
 					>
-						<i class="i i-[discord-logo] h-6 w-6"></i>
+						<i class="i i-[ph--discord-logo] h-6 w-6"></i>
 						<T message={m['svelte_vietnam.discord']} />
 						Discord
 					</a>
 				</li>
 				<li>
 					<a class="c-link-lazy flex items-center gap-2 py-1" href="mailto:{EMAILS.CONTACT}">
-						<i class="i i-[envelope-simple] h-6 w-6"></i>
+						<i class="i i-[ph--envelope-simple] h-6 w-6"></i>
 						{EMAILS.CONTACT}
 					</a>
 				</li>
@@ -110,20 +110,19 @@
 		<div class="_license-and-techs tablet:max-widescreen:contents flex items-center gap-1">
 			<p class="_license">{new Date().getFullYear()} © <T message={m['svelte_vietnam.name']} /></p>
 			<p class="tablet:max-widescreen:hidden">|</p>
-			<p class="_techs tablet:justify-self-end flex items-center gap-1">
+			<p class="_techs tablet:justify-self-end flex items-center gap-2">
 				<T message={m['components.footer.powered_by']} />
 				<a class="c-link-lazy" href="https://www.cloudflare.com">
 					<span class="sr-only">Cloudflare</span>
-					<svg class="h-5 w-5" inline-src="simpleicons/cloudflare-workers" width="20" height="20"
-					></svg>
+					<i class="i i-[simple-icons--cloudflareworkers] h-4 w-4"></i>
 				</a>
 				<a class="c-link-lazy" href="https://svelte.dev">
 					<span class="sr-only">Svelte and SvelteKit</span>
-					<svg class="h-5 w-5" inline-src="simpleicons/svelte" width="20" height="20"></svg>
+					<i class="i i-[simple-icons--svelte] h-4 w-4"></i>
 				</a>
 				<a class="c-link-lazy" href="https://tailwindcss.com">
 					<span class="sr-only">TailwindCSS</span>
-					<svg class="h-5 w-5" inline-src="simpleicons/tailwindcss" width="20" height="20"></svg>
+					<i class="i i-[simple-icons--tailwindcss] h-4 w-4"></i>
 				</a>
 			</p>
 		</div>

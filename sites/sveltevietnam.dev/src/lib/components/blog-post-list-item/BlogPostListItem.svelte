@@ -112,7 +112,7 @@
 				<a class="c-link-preserved relative" href={routing.path('blog/:slug', post.slug)}>
 					{post.title}
 					<i
-						class="not-can-hover:hidden i i-[cursor-click] absolute bottom-0 right-0 translate-x-full text-[0.75em]"
+						class="not-can-hover:hidden i i-[ph--cursor-click] absolute bottom-0 right-0 translate-x-full text-[0.75em]"
 					></i>
 				</a>
 			</p>

@@ -24,31 +24,31 @@
 
 	const links = [
 		{
-			icon: 'i-[house]',
+			icon: 'i-[ph--house]',
 			key: 'home' as const,
 		},
 		{
-			icon: 'i-[calendar-dots]',
+			icon: 'i-[ph--calendar-dots]',
 			key: 'events' as const,
 		},
 		{
-			icon: 'i-[book-open]',
+			icon: 'i-[ph--book-open]',
 			key: 'blog' as const,
 		},
 		{
-			icon: 'i-[read-cv-logo]',
+			icon: 'i-[ph--read-cv-logo]',
 			key: 'jobs' as const,
 		},
 		{
-			icon: 'i-[lightbulb]',
+			icon: 'i-[ph--lightbulb]',
 			key: 'sponsor' as const,
 		},
 		{
-			icon: 'i-[users-three]',
+			icon: 'i-[ph--users-three]',
 			key: 'people' as const,
 		},
 		{
-			icon: 'i-[gear]',
+			icon: 'i-[ph--gear]',
 			key: 'settings' as const,
 		},
 	];
@@ -71,11 +71,11 @@
 	{#if !flat}
 		<label class="c-link-lazy flex cursor-pointer items-center gap-2 p-2 transition-colors">
 			<input class="peer sr-only" type="checkbox" name="page-menu" bind:checked={open} />
-			<i class="i i-[compass] h-6 w-6"></i>
+			<i class="i i-[ph--compass] h-6 w-6"></i>
 			<span class="sr-only peer-checked:hidden"><T message={m.open} /></span>
 			<span class="sr-only hidden peer-checked:block"><T message={m.close} /></span>
 			<span class="sr-only"><T message={m['components.page_menu.toggle']} /></span>
-			<i class="i i-[caret-down] h-5 w-5 transition-transform peer-checked:-rotate-180"></i>
+			<i class="i i-[ph--caret-down] h-5 w-5 transition-transform peer-checked:-rotate-180"></i>
 		</label>
 	{/if}
 	<div

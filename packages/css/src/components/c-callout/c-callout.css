@@ -1,6 +1,8 @@
 @utility c-callout {
+	/* stylelint-disable-next-line layer-name-pattern */
 	@layer components.base {
-		@apply i-[info];
+		/* stylelint-disable-next-line at-rule-no-deprecated */
+		@apply i-[ph--info];
 
 		--callout-padding-x: calc(var(--spacing) * 6);
 		--callout-padding-y: calc(var(--spacing) * 5);
@@ -10,7 +12,7 @@
 		--callout-color-bg: var(--color-on-surface-variant);
 		--callout-color-border: var(--color-on-surface-subtle);
 		--callout-border-l-width: var(--spacing);
-		--callout-icon-url: var(--icon-url);
+		--callout-icon-url: var(--svg);
 		--callout-clip-path: path('M 0,26 A 26 26 0 0 0 26,0 H 2000 V 2000 H 0 Z');
 
 		position: relative;
@@ -30,9 +32,10 @@
 			z-index: -1;
 			inset: 0;
 
+			border-left: var(--callout-border-l-width) solid var(--callout-color-border);
+
 			background-color: var(--callout-color-bg);
 			clip-path: var(--callout-clip-path);
-			border-left: var(--callout-border-l-width) solid var(--callout-color-border);
 		}
 
 		&::after {

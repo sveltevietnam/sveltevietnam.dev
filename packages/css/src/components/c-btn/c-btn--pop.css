@@ -5,7 +5,7 @@
 	```html
 	<button class="c-btn c-btn--pop">
 		<!-- optionally with an icon on either side -->
-		<i class="i i-[info] h-6 w-6"></i>
+		<i class="i i-[ph--info] h-6 w-6"></i>
 		<span>Click me</span>
 	</button>
 	``

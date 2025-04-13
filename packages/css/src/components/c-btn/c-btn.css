@@ -66,7 +66,7 @@
 
 				background-color: currentcolor;
 
-				mask-image: var(--icon-url);
+				mask-image: var(--svg);
 				mask-position: center;
 				mask-repeat: no-repeat;
 				mask-size: 100%;
@@ -78,17 +78,17 @@
 		}
 
 		&:is([data-delayed]:not([data-delayed='false'])) {
-			--icon-url: url('../../assets/images/animated-spinner.svg?no-inline');
+			--svg: url('../../assets/images/animated-spinner.svg?no-inline');
 		}
 
 		&:is([data-timeout]:not([data-timeout='false'])) {
-			--icon-url: url('../../assets/images/animated-three-dots.svg?no-inline');
+			--svg: url('../../assets/images/animated-three-dots.svg?no-inline');
 		}
 
 		/*
 		```html
 		<button class="c-btn">
-			<i class="i i-[info] h-6 w-6"></i>
+			<i class="i i-[ph--info] h-6 w-6"></i>
 			<span>Click me</span>
 		</button>
 		```

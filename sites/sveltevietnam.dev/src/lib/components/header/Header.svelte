@@ -68,7 +68,7 @@
 			<form>
 				<label class="c-text-input desktop:w-48 widescreen:w-60 w-40">
 					<span class="sr-only"><T message={m['forms.search']} /></span>
-					<i class="i i-[magnifying-glass] h-6 w-6"></i>
+					<i class="i i-[ph--magnifying-glass] h-6 w-6"></i>
 					<input class="w-full" name="search" placeholder="{m['forms.search'](settings.language)}..." />
 				</label>
 			</form>
@@ -88,7 +88,7 @@
 			<span class="sr-only">(<T message={m['components.header.go_to_home_page']} />)</span>
 		</a>
 		<a class="p-2" href={routing.path('search')}>
-			<i class="i i-[magnifying-glass] h-6 w-6"></i>
+			<i class="i i-[ph--magnifying-glass] h-6 w-6"></i>
 			<span class="sr-only">{routing.name('search')}</span>
 		</a>
 		<label class="c-link-lazy flex cursor-pointer p-2">
@@ -98,8 +98,8 @@
 				name="mobile-menu"
 				bind:checked={isMobileMenuOpen}
 			/>
-			<i class="i i-[list] h-6 w-6 peer-checked:hidden"></i>
-			<i class="i i-[x] hidden h-6 w-6 peer-checked:block"></i>
+			<i class="i i-[ph--list] h-6 w-6 peer-checked:hidden"></i>
+			<i class="i i-[ph--x] hidden h-6 w-6 peer-checked:block"></i>
 			<span class="sr-only peer-checked:hidden"><T message={m.open} /></span>
 			<span class="sr-only hidden peer-checked:block"><T message={m.close} /></span>
 			<span class="sr-only"><T message={m['components.header.mobile_menu']} /></span>

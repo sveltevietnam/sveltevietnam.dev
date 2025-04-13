@@ -61,7 +61,7 @@
 	<span class="sr-only">{locales.copy}</span>
 	{#key copied}
 		<i
-			class={['i', copied ? 'i-[clipboard-text]' : 'i-[clipboard]']}
+			class={['i', copied ? 'i-[ph--clipboard-text]' : 'i-[ph--clipboard]']}
 			in:fade={{ duration: 150 }}
 		></i>
 	{/key}

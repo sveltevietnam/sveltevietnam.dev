@@ -1,6 +1,6 @@
 @utility c-callout--error {
 	@layer components.mod1 {
-		@apply i-[warning-octagon];
+		@apply i-[ph--warning-octagon];
 
 		--callout-color-text: var(--color-error-on-surface);
 		--callout-color-icon: var(--color-error-on-surface);

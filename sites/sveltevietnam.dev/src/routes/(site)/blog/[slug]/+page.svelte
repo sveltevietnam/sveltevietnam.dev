@@ -103,7 +103,7 @@
 							<T message={m['pages.blog_slug.lang.original.title']} />
 						{/if}
 						<HintedText class="ml-1 cursor-help">
-							<i class="i i-[info] h-5 w-5"></i>
+							<i class="i i-[ph--info] h-5 w-5"></i>
 							<span class="sr-only">
 								<T message={m['explain']} />
 							</span>
@@ -195,7 +195,7 @@
 							data-external
 						>
 							<span class="sr-only">Bluesky</span>
-							<i class="i i-[butterfly] h-6 w-6"></i>
+							<i class="i i-[ph--butterfly] h-6 w-6"></i>
 						</a>
 					</li>
 					<li>
@@ -205,7 +205,7 @@
 							data-external
 						>
 							<span class="sr-only">Facebook</span>
-							<i class="i i-[facebook-logo] h-6 w-6"></i>
+							<i class="i i-[ph--facebook-logo] h-6 w-6"></i>
 						</a>
 					</li>
 					<li>
@@ -216,7 +216,7 @@
 							data-external
 						>
 							<span class="sr-only">Linkedin</span>
-							<i class="i i-[linkedin-logo] h-6 w-6"></i>
+							<i class="i i-[ph--linkedin-logo] h-6 w-6"></i>
 						</a>
 					</li>
 					<li>
@@ -226,7 +226,7 @@
 								onclick={openQrDialog}
 							>
 								<span class="sr-only">QR Code</span>
-								<i class="i i-[qr-code] h-6 w-6"></i>
+								<i class="i i-[ph--qr-code] h-6 w-6"></i>
 							</button>
 						{/if}
 					</li>

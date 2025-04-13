@@ -6,7 +6,7 @@
 	let {
 		text,
 		aria,
-		iconClass = 'i-[link]',
+		iconClass = 'i-[ph--link]',
 		class: cls,
 		...rest
 	}: HTMLButtonAttributes & {
@@ -41,7 +41,7 @@
 >
 	<span class="sr-only">{aria}</span>
 	{#if copied}
-		<i class="i i-[clipboard-text] h-6 w-6" in:fly={{ duration: 200, y: 10 }}></i>
+		<i class="i i-[ph--clipboard-text] h-6 w-6" in:fly={{ duration: 200, y: 10 }}></i>
 	{:else}
 		<i class={['i h-6 w-6', iconClass]} in:fly={{ duration: 200, y: 10 }}></i>
 	{/if}

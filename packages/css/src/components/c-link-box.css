@@ -39,7 +39,7 @@
 				content: '';
 
 				/* stylelint-disable-next-line at-rule-no-deprecated */
-				@apply i-[arrow-square-out];
+				@apply i-[ph--arrow-square-out];
 
 				position: absolute;
 				top: var(--padding-y);
@@ -54,7 +54,7 @@
 				transition-duration: var(--duration);
 				transition-property: transform, filter;
 
-				mask-image: var(--icon-url);
+				mask-image: var(--svg);
 			}
 		}
 

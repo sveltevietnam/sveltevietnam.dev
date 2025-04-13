@@ -4,7 +4,7 @@
 
 	```html
 	<button class="c-btn c-btn--outlined">
-		<i class="i i-[info] h-6 w-6"></i>
+		<i class="i i-[ph--info] h-6 w-6"></i>
 		<span>Click me</span>
 	</button>
 	```

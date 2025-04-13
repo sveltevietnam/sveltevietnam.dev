@@ -48,13 +48,13 @@
 			<li class="contents">
 				<a class={[!current && 'c-link-lazy']} aria-current={current} href={path}>
 					{#if i === 0}
-						<i class="i i-[house-line] h-6 w-6"></i>
+						<i class="i i-[ph--house-line] h-6 w-6"></i>
 					{:else}
 						<span class="whitespace-nowrap">{name}</span>
 					{/if}
 				</a>
 				{#if !current}
-					<i class="i i-[caret-right] h-4 w-4 shrink-0"></i>
+					<i class="i i-[ph--caret-right] h-4 w-4 shrink-0"></i>
 				{/if}
 			</li>
 		{/each}

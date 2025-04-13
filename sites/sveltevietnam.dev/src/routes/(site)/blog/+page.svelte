@@ -122,7 +122,7 @@
 					</div>
 					<p><T message={m['pages.blog.write.desc']} /></p>
 					<a class="c-btn c-btn--pop w-fit text-left" href="#placeholder">
-						<i class="i i-[pencil-simple] h-6 w-6"></i>
+						<i class="i i-[ph--pencil-simple] h-6 w-6"></i>
 						<span><T message={m['pages.blog.write.cta']} /></span>
 					</a>
 					<p><T message={m['pages.blog.write.discuss']} /></p>
@@ -161,7 +161,7 @@
 					href={routing.path('home')}
 				>
 					<span class="sr-only"><T message={m['pages.blog.resources.view']} /></span>
-					<i class="i i-[arrow-right] h-6 w-6 {commonArrowLinkClasses}"></i>
+					<i class="i i-[ph--arrow-right] h-6 w-6 {commonArrowLinkClasses}"></i>
 				</a>
 			</div>
 		</section>

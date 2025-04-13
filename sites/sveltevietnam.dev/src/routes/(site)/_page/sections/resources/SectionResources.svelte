@@ -68,7 +68,7 @@
 				{#each links as { message, href } (href)}
 					<a class="c-btn c-btn--pop" {href}>
 						<span><T {message} /></span>
-						<i class="i i-[arrow-square-out] h-6 w-6"></i>
+						<i class="i i-[ph--arrow-square-out] h-6 w-6"></i>
 					</a>
 				{/each}
 			</div>

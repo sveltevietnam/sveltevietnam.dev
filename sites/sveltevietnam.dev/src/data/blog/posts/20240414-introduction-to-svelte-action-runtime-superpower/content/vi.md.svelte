@@ -21,7 +21,7 @@ Không cần đâu xa, chính trang *sveltevietnam.dev* mà bạn đang đọc �
 <div>
 
 <p class="inline">
-Có lẽ một trong những ứng dụng phổ biến nhất của Svelte action là xử lý sự kiện click bên ngoài một phần tử DOM. Ví dụ ngay trên trang này, khi bạn sử dụng bảng chọn chế độ màu (<i class="i i-[palette] h-6 w-6"></i>) hoặc ngôn ngữ (<i class="i i-[translate] h-6 w-6"></i>) tại thanh công cụ phía trên (hoặc thông qua bảng chọn <i class="i i-[list] h-6 w-6"></i> trên thiết bị di động), bạn có thể bấm ở bất cứ đâu trên trang để đóng bảng chọn khi nó đang mở.
+Có lẽ một trong những ứng dụng phổ biến nhất của Svelte action là xử lý sự kiện click bên ngoài một phần tử DOM. Ví dụ ngay trên trang này, khi bạn sử dụng bảng chọn chế độ màu (<i class="i i-[ph--palette] h-6 w-6"></i>) hoặc ngôn ngữ (<i class="i i-[ph--translate] h-6 w-6"></i>) tại thanh công cụ phía trên (hoặc thông qua bảng chọn <i class="i i-[ph--list] h-6 w-6"></i> trên thiết bị di động), bạn có thể bấm ở bất cứ đâu trên trang để đóng bảng chọn khi nó đang mở.
 </p>
 
 <div class="p-2 border not-prose relative z-popup float-right inline-block ml-4 mt-4">
