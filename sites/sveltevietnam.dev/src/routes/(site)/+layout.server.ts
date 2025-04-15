@@ -3,7 +3,8 @@ import { COMMON_COOKIE_CONFIG } from '$lib/constants';
 
 import type { LayoutServerLoad } from './$types';
 
-export const prerender = true;
+// FIXME: turn this on once we have properly supported prerendering for all eligible pages
+export const prerender = false;
 
 export const load: LayoutServerLoad = ({ locals, cookies }) => {
 	const lang = locals.sharedSettings.language;

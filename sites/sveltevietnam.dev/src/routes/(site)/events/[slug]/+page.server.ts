@@ -21,6 +21,9 @@ const ogImageFallback = {
 	en: ogImageEn,
 };
 
+// TODO: export `entries` to support prerendering, once routing strategy has matured
+// @see {@link https://svelte.dev/docs/kit/page-options#entries}
+
 export const load: PageServerLoad = async ({ parent, params, locals, depends }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 
