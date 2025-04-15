@@ -1,7 +1,7 @@
 @import './c-btn/index.css';
 @import './c-callout/index.css';
 @import './c-tooltip.css';
-@import './c-text-*.css';
+@import './c-text.css';
 
 /* links */
 @import './c-link.css';
