@@ -80,7 +80,7 @@ To bypass hook (not recommended, for admin only), run `git commit` with the `--n
 
 [.vscode/extensions.json]: ../.vscode/extensions.json
 [package.json]: ./package.json
-[TECHNICAL_REFERENCES]: ./TECHNICAL_REFERENCES.md
+[TECHNICAL REFERENCES]: ./TECHNICAL_REFERENCES.md
 
 <!-- TECHNOLOGIES -->
 
