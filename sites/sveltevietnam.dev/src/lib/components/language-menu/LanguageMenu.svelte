@@ -32,7 +32,7 @@
 
 <nav
 	class={['relative w-fit', cls]}
-	aria-label={m['components.language_menu.aria'](settings.language).aria}
+	aria-label={m['components.language_menu.aria'](settings.language)}
 	data-sveltekit-noscroll
 	data-sveltekit-preload-data="hover"
 	use:clickoutside={{ enabled: open }}
