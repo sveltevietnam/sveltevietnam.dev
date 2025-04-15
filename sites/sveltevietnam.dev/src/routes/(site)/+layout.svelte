@@ -1,8 +1,11 @@
 <script lang="ts">
 	import { lockscroll } from '@svelte-put/lockscroll';
+	import { LANGUAGES } from '@sveltevietnam/i18n';
+	import { localizeUrl } from '@sveltevietnam/i18n/utils';
 	import { onMount } from 'svelte';
 
 	import { version } from '$app/environment';
+	import { beforeNavigate, goto } from '$app/navigation';
 	import { navigating, page } from '$app/state';
 	import { Footer } from '$lib/components/footer';
 	import { Header } from '$lib/components/header';
@@ -27,6 +30,21 @@
 
 	onMount(async () => {
 		(await import('$lib/easter/ascii-pho')).default();
+	});
+
+	/**
+	 * If going from a localized url to a non-localized url,
+	 * reroute to keep the lang segment. For example:
+	 * navigate from `/en/blog` to `/events` will reroute to `/en/events`
+	 */
+	beforeNavigate(({ to, cancel, from }) => {
+		const fromLang = from?.params?.lang;
+		const toLang = to?.params?.lang;
+		if (to && fromLang && !toLang) {
+			cancel();
+			const localized = localizeUrl(to.url, LANGUAGES, fromLang);
+			goto(localized);
+		}
 	});
 </script>
 
