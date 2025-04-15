@@ -6,6 +6,7 @@ import {
 	loadEventMetadata,
 	loadEventOgImage,
 } from '$data/events';
+import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { buildStructuredEvent } from '$lib/meta/structured/events';
 import { buildRoutes } from '$lib/routing/utils';
@@ -20,7 +21,7 @@ const ogImageFallback = {
 	en: ogImageEn,
 };
 
-export const load: PageServerLoad = async ({ url, parent, params, locals, depends }) => {
+export const load: PageServerLoad = async ({ parent, params, locals, depends }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 
 	const lang = locals.sharedSettings.language;
@@ -35,7 +36,7 @@ export const load: PageServerLoad = async ({ url, parent, params, locals, depend
 	const [otherLangMetadata, ogImage, additionalStructuredData, { routing }] = await Promise.all([
 		loadEventMetadata(event.id, otherLang),
 		loadEventOgImage(event.id),
-		loadEventAdditionalStructuredData(event.id, lang, url.origin),
+		loadEventAdditionalStructuredData(event.id, lang, VITE_PUBLIC_ORIGIN),
 		parent(),
 	]);
 
@@ -64,7 +65,7 @@ export const load: PageServerLoad = async ({ url, parent, params, locals, depend
 			},
 		},
 		meta: {
-			structured: buildStructuredEvent(lang, url.origin, event, additionalStructuredData),
+			structured: buildStructuredEvent(lang, VITE_PUBLIC_ORIGIN, event, additionalStructuredData),
 			title: `${event.title}`,
 			description: event.description,
 			keywords: event.keywords,

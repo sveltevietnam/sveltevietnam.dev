@@ -3,6 +3,7 @@ import { error } from '@sveltejs/kit';
 import { searchBlogPosts } from '$data/blog/posts';
 import { loadEventsByPersonId } from '$data/events';
 import { loadPerson } from '$data/people';
+import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { buildStructuredPerson } from '$lib/meta/structured/people';
 import { buildRoutes } from '$lib/routing/utils';
@@ -70,7 +71,7 @@ export const load: PageServerLoad = async ({ parent, url, locals, depends, param
 			max: Math.ceil(total / pagination.per),
 		},
 		meta: {
-			structured: buildStructuredPerson(lang, url.origin, person),
+			structured: buildStructuredPerson(lang, VITE_PUBLIC_ORIGIN, person),
 			title: `${person.name} | Svelte Vietnam`,
 			description: person.description,
 			og: {

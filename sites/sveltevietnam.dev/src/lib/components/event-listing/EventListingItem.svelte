@@ -3,8 +3,8 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { Picture } from 'vite-imagetools';
 
-	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
+	import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 	import fallback3x2 from '$lib/assets/images/fallbacks/3x2.jpg?enhanced&w=1200;700;400&imagetools';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
@@ -92,7 +92,7 @@
 			<div>
 				{#if settings.hydrated}
 					<CopyIconBtn
-						text={page.url.origin + path}
+						text={VITE_PUBLIC_ORIGIN + path}
 						aria={m['components.event_listing_item.copy'](settings.language)}
 					/>
 				{/if}

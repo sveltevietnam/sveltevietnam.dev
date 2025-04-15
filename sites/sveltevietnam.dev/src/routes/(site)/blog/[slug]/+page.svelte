@@ -2,8 +2,8 @@
 	import { Toc } from '@svelte-put/toc';
 	import { T } from '@sveltevietnam/i18n';
 
-	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
+	import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 	import fallback16x9 from '$lib/assets/images/fallbacks/16x9.jpg?enhanced&w=2240;1540;1088;686&imagetools';
 	import { BlogNewsletter } from '$lib/components/blog-newsletter';
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
@@ -34,7 +34,7 @@
 	);
 
 	const thumbnail = $derived(data.post.thumbnail || fallback16x9);
-	const url = $derived(page.url.origin + data.routing.paths[settings.language].path);
+	const url = $derived(VITE_PUBLIC_ORIGIN + data.routing.paths[settings.language].path);
 	const encodedUrl = $derived(encodeURIComponent(url));
 
 	const toc = new Toc({
@@ -222,7 +222,7 @@
 					<li>
 						{#if settings.hydrated}
 							<button
-								class="c-link-icon flex rounded-full border-onehalf border-current p-2"
+								class="c-link-icon border-onehalf flex rounded-full border-current p-2"
 								onclick={openQrDialog}
 							>
 								<span class="sr-only">QR Code</span>

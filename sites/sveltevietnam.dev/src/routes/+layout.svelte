@@ -4,6 +4,7 @@
 	import { version } from '$app/environment';
 	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
+	import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 	import ogImageEn from '$lib/assets/images/fallbacks/og.en.jpg?url';
 	import ogImageVi from '$lib/assets/images/fallbacks/og.vi.jpg?url';
 	import { buildStructuredBreadcrumbs } from '$lib/meta/structured/breadcrumbs';
@@ -35,7 +36,7 @@
 				? meta.structured
 				: [meta.structured];
 		if (page.data.routing.breadcrumbs.length > 1) {
-			things.push(buildStructuredBreadcrumbs(lang, page.url.origin, page.data.routing.breadcrumbs));
+			things.push(buildStructuredBreadcrumbs(lang, VITE_PUBLIC_ORIGIN, page.data.routing.breadcrumbs));
 		}
 		const structured = things.length > 0 ? toStringWithContext(things) : undefined;
 
@@ -46,7 +47,7 @@
 			type: meta?.og?.type ?? 'website',
 			url: meta?.og?.url ?? canonical,
 			image: rootRelativeOgImage.startsWith('/')
-				? `${page.url.origin}${rootRelativeOgImage}`
+				? `${VITE_PUBLIC_ORIGIN}${rootRelativeOgImage}`
 				: rootRelativeOgImage,
 			imageAlt: meta?.og?.imageAlt ?? title,
 		};
@@ -123,9 +124,9 @@
 
 	<!-- alternative localized links -->
 	{#each Object.entries(routing.paths) as [lang, route] (lang)}
-		<link rel="alternate" hreflang={lang} href="{page.url.origin}{route.path}" />
+		<link rel="alternate" hreflang={lang} href="{VITE_PUBLIC_ORIGIN}{route.path}" />
 	{/each}
-	<link rel="alternate" hreflang="x-default" href="{page.url.origin}{routing.paths.vi.path}" />
+	<link rel="alternate" hreflang="x-default" href="{VITE_PUBLIC_ORIGIN}{routing.paths.vi.path}" />
 </svelte:head>
 
 {@render children()}

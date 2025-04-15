@@ -1,6 +1,7 @@
 import type { Thing, Blog, BlogPosting, CreativeWorkSeries, CollectionPage } from 'schema-dts';
 
 import { loadRoutingMap } from '$data/routing';
+import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 import { build } from '$lib/routing/utils';
 
 import { buildStructuredOrganization } from './organization';
@@ -64,7 +65,7 @@ export function buildStructuredBlogCategoryPage(
 	const { publisher, ...blog } = buildStructuredBlog(lang);
 	return {
 		'@type': 'CollectionPage',
-		'@id': `https://www.sveltevietnam.dev/blog/categories/${category.id}`,
+		'@id': `${VITE_PUBLIC_ORIGIN}/blog/categories/${category.id}`,
 		url: buildStructuredTextWithLang(lang, canonical),
 		...(!compact && {
 			name: buildStructuredTextWithLang(lang, category.name),

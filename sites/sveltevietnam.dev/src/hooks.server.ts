@@ -10,6 +10,7 @@ import {
 import {
 	VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
 	VITE_PUBLIC_COOKIE_NAME_SPLASH,
+	VITE_PUBLIC_ORIGIN,
 } from '$env/static/public';
 import { COMMON_COOKIE_CONFIG, PUBLIC_COOKIE_CONFIG } from '$lib/constants';
 
@@ -55,7 +56,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		}
 
 		// pass through during building (kit - prerendering)
-		if (building && url.origin === 'https://www.sveltevietnam.dev') languageFromUrl = 'vi';
+		if (building && url.origin === VITE_PUBLIC_ORIGIN) languageFromUrl = 'vi';
 		else redirect(302, localizeUrl(url, LANGUAGES, 'vi'));
 	}
 

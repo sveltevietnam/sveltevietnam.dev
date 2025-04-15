@@ -4,6 +4,7 @@ import { EMAILS } from '$data/emails';
 import { SOCIAL_LINKS } from '$data/links';
 
 import { buildStructuredTextWithLang } from './utils';
+import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 
 // TODO: extract to locale YAML files
 const locales = {
@@ -22,14 +23,14 @@ export function buildStructuredOrganization(lang: App.Language): Organization & 
 	const locale = locales[lang];
 	return {
 		'@type': 'Organization',
-		'@id': 'https://www.sveltevietnam.dev',
-		url: buildStructuredTextWithLang(lang, `https://www.sveltevietnam.dev/${lang}`),
+		'@id': VITE_PUBLIC_ORIGIN,
+		url: buildStructuredTextWithLang(lang, `${VITE_PUBLIC_ORIGIN}/${lang}`),
 		name: 'Svelte Việt Nam',
 		alternateName: 'Svelte Vietnam',
 		description: buildStructuredTextWithLang(lang, locale.description),
 		logo: {
 			'@type': 'ImageObject',
-			url: 'https://sveltevietnam.dev/logo/original.png',
+			url: `${VITE_PUBLIC_ORIGIN}/logo/original.png`,
 			width: '500',
 			height: '500',
 		},
