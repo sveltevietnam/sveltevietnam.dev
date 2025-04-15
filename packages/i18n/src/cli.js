@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import fs from 'node:fs/promises';
-import path from 'node:path/posix';
+import path from 'node:path';
 
 import * as p from '@clack/prompts';
 import { program } from 'commander';

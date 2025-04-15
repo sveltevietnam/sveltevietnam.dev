@@ -21,10 +21,13 @@ const ts = dedent;
  */
 async function build(cwd, options) {
 	const { indexKey, routingFilename, routesPath, mapsOutdir, typesOutpath } = options;
-	const pattern = path.join(routesPath, '**', routingFilename);
+	const pattern = path.posix.join(routesPath, '**', routingFilename);
 
 	console.log('[sveltekit-routing] building routing maps...');
-	const routingFilePaths = await glob(pattern, { cwd });
+	let routingFilePaths = await glob(pattern, { cwd });
+	if (process.platform === 'win32') {
+		routingFilePaths = routingFilePaths.map((p) => p.replaceAll(path.win32.sep, path.posix.sep));
+	}
 
 	/** @type {Map<string, RoutingInput>} */
 	const routes = new Map();
