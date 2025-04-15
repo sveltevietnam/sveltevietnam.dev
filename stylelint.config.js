@@ -50,5 +50,11 @@ export default {
 		'custom-property-pattern': null,
 		'import-notation': null,
 	},
+	'media-query-no-invalid': [
+		true,
+		{
+			ignoreFunctions: ['theme'],
+		},
+	],
 	ignoreFiles: ['**/app.html', '**/*.md.svelte'],
 };

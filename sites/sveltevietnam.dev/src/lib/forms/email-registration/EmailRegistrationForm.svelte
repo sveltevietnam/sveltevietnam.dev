@@ -42,7 +42,7 @@
 		<div class="space-y-1">
 			<p class="c-text-body-sm"><T message={m['forms.turnstile.desc']} />:</p>
 			<div
-				class="turnstile"
+				class="turnstile border-onehalf border-current"
 				use:turnstile
 				turnstile-sitekey={VITE_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY}
 				turnstile-size="flexible"

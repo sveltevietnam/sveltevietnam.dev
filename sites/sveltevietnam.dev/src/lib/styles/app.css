@@ -2,6 +2,7 @@
 @import 'tailwindcss';
 @import '@sveltevietnam/css/base';
 @import '@sveltevietnam/css/typography';
+@import '@svelte-put/cloudflare-turnstile/tailwind.css';
 
 @source '../../../../../packages/markdown/src/**/*.{svelte,js}';
 
@@ -22,27 +23,5 @@
 
 	img {
 		object-fit: cover;
-	}
-}
-
-@utility turnstile {
-	overflow: hidden;
-	max-width: 100%;
-	border-color: currentcolor;
-	border-width: 1.5px;
-
-	&[turnstile-size='flexible'] {
-		width: 100%;
-		height: 65px;
-	}
-
-	&[turnstile-size='compact'] {
-		width: 150px;
-		height: 140px;
-	}
-
-	&:not([turnstile-size='compact'], [turnstile-size='flexible']) {
-		width: 300px;
-		height: 65px;
 	}
 }

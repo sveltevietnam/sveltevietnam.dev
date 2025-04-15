@@ -113,10 +113,12 @@
 
 			&:not(:is(:disabled, [disabled]:not([disabled='false'])), :has(input:disabled)) {
 				@variant hover {
+					/* FIXME: make sure this work in both light/dark mode */
 					background-color: oklch(from var(--color-on-surface) calc(l - 0.08) c h);
 				}
 
 				@variant active {
+					/* FIXME: make sure this work in both light/dark mode */
 					background-color: oklch(from var(--color-on-surface) calc(l - 0.04) c h);
 				}
 			}

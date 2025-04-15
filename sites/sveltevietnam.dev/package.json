@@ -22,7 +22,7 @@
 		"@svelte-put/async-stack": "^1.0.0",
 		"@svelte-put/avatar": "^4.0.0",
 		"@svelte-put/clickoutside": "^4.0.0",
-		"@svelte-put/cloudflare-turnstile": "^1.1.2",
+		"@svelte-put/cloudflare-turnstile": "^1.2.0",
 		"@svelte-put/copy": "^4.0.0",
 		"@svelte-put/inline-svg": "^4.0.1",
 		"@svelte-put/lockscroll": "^2.0.0",
