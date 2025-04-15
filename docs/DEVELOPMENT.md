@@ -1,7 +1,7 @@
 # Development Setup
 
 > [!NOTE]
-> Last updated on 2025-01-02
+> Last updated on 2025-04-15
 
 This document discusses necessary steps to get sveltevietnam.dev running on local development environment. Read [TECHNICAL REFERENCES] for an overview of the project's technical stack.
 
@@ -38,6 +38,14 @@ See [package.json at root directory](../package.json) and in each package for av
 pnpm dev --filter=sveltevietnam.dev
 # or
 cd sites/sveltevietnam.dev && pnpm dev
+```
+
+## Environment Variables
+
+Make sure you have the correct environment variables set up. For each project in the workspace, if you see an `.env.example` file, copy it to `.env` and your local dev server should work.
+
+```bash
+cp sites/sveltevietnam.dev/.env.example sites/sveltevietnam.dev/.env
 ```
 
 ## Recommended VSCode Extensions
