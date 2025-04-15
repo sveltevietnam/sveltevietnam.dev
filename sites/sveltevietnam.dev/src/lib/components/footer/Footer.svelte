@@ -33,7 +33,10 @@
 	let secondaryPages = $derived(['settings', 'code-of-conduct', 'sitemap.xml', 'rss.xml'] as const);
 </script>
 
-<footer class={['from-primary-surface to-surface relative bg-gradient-to-t', cls]} {...rest}>
+<footer
+	class={['from-primary-surface to-surface relative bg-gradient-to-t', cls]} {...rest}
+	data-sveltekit-preload-data="hover"
+>
 	<div class="max-w-pad _upper border-y pb-10 pt-14">
 		<p
 			class="_name c-text-heading tablet:block tablet:text-right w-37.5 tablet:justify-self-end hidden uppercase"
