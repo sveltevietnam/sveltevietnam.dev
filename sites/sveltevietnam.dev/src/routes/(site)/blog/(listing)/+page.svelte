@@ -121,7 +121,8 @@
 						</div>
 					</div>
 					<p><T message={m['pages.blog.write.desc']} /></p>
-					<a class="c-btn c-btn--pop w-fit text-left" href="#placeholder">
+					<!-- FIXME link to /blog/write page once implemented -->
+					<a class="c-btn c-btn--pop w-fit text-left" href=".">
 						<i class="i i-[ph--pencil-simple] h-6 w-6"></i>
 						<span><T message={m['pages.blog.write.cta']} /></span>
 					</a>

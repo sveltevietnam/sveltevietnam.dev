@@ -6,3 +6,7 @@
 
 <h1><T message={m['pages.sponsor.heading']} /></h1>
 <p><T message={m['pages.sponsor.tagline']} /></p>
+
+<section id="why">
+	placeholder
+</section>

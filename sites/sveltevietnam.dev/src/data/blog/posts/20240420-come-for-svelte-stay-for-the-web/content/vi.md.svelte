@@ -7,7 +7,7 @@
 
 <div class="c-callout c-callout--info">
 
-Bài viết này bổ sung cho phiên chia sẻ **"Svelte, Javascript, và nền tảng Web"** tại sự kiện "[Gặp mặt Xuân Giáp Thìn 2024 - Hồ Chí Minh](/vi/su-kien/2024-04-gap-mat-xuan-giap-thin-2024-ho-chi-minh)".
+Bài viết này bổ sung cho phiên chia sẻ **"Svelte, Javascript, và nền tảng Web"** tại sự kiện "[Gặp mặt Xuân Giáp Thìn 2024 - Hồ Chí Minh](/vi/su-kien/202404-gap-mat-xuan-giap-thin-ho-chi-minh)".
 
 </div>
 

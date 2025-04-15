@@ -14,8 +14,8 @@ import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { buildStructuredBlogPost } from '$lib/meta/structured/blog';
 import { buildRoutes } from '$lib/routing/utils';
 
-import ogImageEn from '../_page/og-blog.en.jpg?url';
-import ogImageVi from '../_page/og-blog.vi.jpg?url';
+import ogImageEn from '../(listing)/_page/og-blog.en.jpg?url';
+import ogImageVi from '../(listing)/_page/og-blog.vi.jpg?url';
 
 const ogImageFallback = {
 	vi: ogImageVi,

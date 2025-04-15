@@ -199,7 +199,7 @@ This co-development model has existed in developed countries but is still rare i
 
 ## Blue Screen
 
-At the moment, we do not yet have a design for the [404 page](/en/giberrish). However if you happen upon this page, you will see a rather interesting message:
+At the moment, we do not yet have a design for the [404 page](/en/not-found). However if you happen upon this page, you will see a rather interesting message:
 
 <img src={notFoundPageImage} class="max-w-full border" width="1024" height="576" alt="404 page showing a interesting message" />
 

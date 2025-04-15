@@ -63,7 +63,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	locals.sharedSettings = {
 		language: languageFromUrl,
 		colorScheme:
-			(url.searchParams.get('color-scheme') as App.ColorScheme) ||
+			(!building && (url.searchParams.get('color-scheme') as App.ColorScheme)) ||
 			(cookies.get(VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME) as App.ColorScheme) ||
 			'system',
 		splash:

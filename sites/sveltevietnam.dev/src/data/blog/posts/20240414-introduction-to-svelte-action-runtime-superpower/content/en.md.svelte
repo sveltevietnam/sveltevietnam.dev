@@ -91,7 +91,7 @@ The function content of `action` will be executed when the component has been mo
 
 As discussed, action is only executed at runtime, meaning that during prerendering or server-side-rendering, any code within action will not take effect. For example, if you add a class to `node.classList` in action, this class will only be added after the webpage has been fully loaded in the browser.
 
-For this reason, to ensure [progressive enhancement], you should only use action when you really need to interact with the DOM - which is often the case when the task involves user interaction. For tasks not related to user interaction, you most likely do not need action or even Javascript at runtime; [Svelte preprocessor] might be a good solution for this case that you should consider. To learn more about Svelte preprocessor, read the article "[Writing a simple Svelte preprocessor](/blog/20231020-writing-a-simple-svelte-preprocessor)".
+For this reason, to ensure [progressive enhancement], you should only use action when you really need to interact with the DOM - which is often the case when the task involves user interaction. For tasks not related to user interaction, you most likely do not need action or even Javascript at runtime; [Svelte preprocessor] might be a good solution for this case that you should consider. To learn more about Svelte preprocessor, read the article "[Writing a simple Svelte preprocessor](/en/blog/20231020-lets-write-a-simple-svelte-preprocessor)".
 
 ### Configuration and Update
 

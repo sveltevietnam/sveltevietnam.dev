@@ -208,7 +208,7 @@ Mô hình trên đã có ở các nước phát triển nhưng còn ít tại Vi
 
 ## Màn hình xanh
 
-Hiện tại, chúng ta chưa có thiết kế cụ thể cho [trang 404](/vi/giberrish). Tuy nhiên, nếu gặp phải trang này, bạn sẽ thấy một lời nhắn khá thú vị:
+Hiện tại, chúng ta chưa có thiết kế cụ thể cho [trang 404](/vi/not-found). Tuy nhiên, nếu gặp phải trang này, bạn sẽ thấy một lời nhắn khá thú vị:
 
 <img src={notFoundPageImage} class="max-w-full border" width="1024" height="576" alt="trang 404 với lời nhắn thú vị" />
 

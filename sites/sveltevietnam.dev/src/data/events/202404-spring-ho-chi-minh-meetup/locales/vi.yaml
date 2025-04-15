@@ -1,6 +1,6 @@
 ---
 messages:
-  slug: 2024-04-gap-mat-xuan-giap-thin-ho-chi-minh
+  slug: 202404-gap-mat-xuan-giap-thin-ho-chi-minh
   title: Gặp mặt Xuân Giáp Thìn 2024 - Hồ Chí Minh
   desc: Sự kiện gặp mặt trực tiếp đầu tiên của cộng đồng Svelte Việt Nam tại thành
     phố Hồ Chí Minh, đồng tổ chức bởi Designveloper
@@ -16,7 +16,8 @@ messages:
       đầu tiên của cộng đồng Svelte Việt Nam. <br /><br /> Sự kiện lần này chào đón
       sự góp mặt của nhiều gương mặt mới từ cộng đồng, cũng như một số thành viên
       từ Designveloper.
-    shoutout: Xin gửi lời cảm ơn đến <strong>Thảo</strong> và <strong>Sơn</strong> từ Designveloper đã hỗ trợ tổ chức
+    shoutout:
+      Xin gửi lời cảm ơn đến <strong>Thảo</strong> và <strong>Sơn</strong> từ Designveloper đã hỗ trợ tổ chức
       sự kiện này. Cảm ơn mọi người đã tham gia thảo luận và các hoạt động trong sự
       kiện. Hẹn sớm gặp lại!
   timeline:

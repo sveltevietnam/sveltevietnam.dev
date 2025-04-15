@@ -3,6 +3,8 @@ import { COMMON_COOKIE_CONFIG } from '$lib/constants';
 
 import type { LayoutServerLoad } from './$types';
 
+export const prerender = true;
+
 export const load: LayoutServerLoad = ({ locals, cookies }) => {
 	const lang = locals.sharedSettings.language;
 	let splash: 'disabled' | 'short' | 'long' = 'disabled';

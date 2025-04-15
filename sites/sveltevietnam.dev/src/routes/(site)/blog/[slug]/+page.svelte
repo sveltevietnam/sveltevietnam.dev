@@ -138,9 +138,9 @@
 		data-hydrated={settings.hydrated}
 	>
 		<!-- table of contents -->
-		<div class="_toc">
+		<div class="_toc" id="toc">
 			{#if toc.items.size}
-				<section class="tablet:sticky top-header space-y-6" id="toc">
+				<section class="tablet:sticky top-header space-y-6">
 					<h2 class="c-text-heading border-b"><T message={m['pages.blog_slug.headings.toc']} /></h2>
 					<ul class="space-y-1">
 						{#each toc.items.values() as tocItem (tocItem.id)}

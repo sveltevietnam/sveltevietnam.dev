@@ -7,7 +7,7 @@
 		<h1 class="c-text-heading-page font-bold">{page.status}</h1>
 		<p>Oops, [{page.error?.code || 'SV000'}] {page.error?.message}</p>
 		<label class="mt-6 block" for="blue-screen-toggler">
-			<a class="c-link" href="/blue-screen-of-death">
+			<a class="c-link" href="/{page.data.sharedSettings.language}/blue-screen-of-death">
 				Would you like a blue screen?
 			</a>
 		</label>

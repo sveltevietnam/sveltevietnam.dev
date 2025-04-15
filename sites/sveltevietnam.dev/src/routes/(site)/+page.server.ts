@@ -4,19 +4,15 @@ import { buildStructuredOrganization } from '$lib/meta/structured/organization';
 
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ locals, depends, parent }) => {
-	const { meta } = await parent()
+export const prerender = false;
+
+export const load: PageServerLoad = async ({ locals, depends }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	const lang = locals.sharedSettings.language;
 	return {
-		posts: (
-			await Promise.all(
-				ids.slice(0, 3).map((id) => loadBlogPost(id, lang)),
-			)
-		).filter(Boolean),
+		posts: (await Promise.all(ids.slice(0, 3).map((id) => loadBlogPost(id, lang)))).filter(Boolean),
 		meta: {
-			...meta,
-			structured: buildStructuredOrganization(lang)
+			structured: buildStructuredOrganization(lang),
 		},
 	};
 };

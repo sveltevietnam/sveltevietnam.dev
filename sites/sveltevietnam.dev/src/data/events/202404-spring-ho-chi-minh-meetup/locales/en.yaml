@@ -1,6 +1,6 @@
 ---
 messages:
-  slug: 2024-04-spring-ho-chi-minh-meetup
+  slug: 202404-spring-ho-chi-minh-meetup
   title: Spring 2024 Ho Chi Minh Meetup
   desc: The first offline meetup for the Svelte Vietnam community in Hồ Chí Minh city,
     hosted by Designveloper
@@ -16,7 +16,8 @@ messages:
       as well as some members from Designveloper to the event and enjoyed our time
       getting to know each other and the stories that led us to Svelte and the Svelte
       Vietnam community.
-    shoutout: Special thanks to <strong>Thảo</strong> and <strong>Sơn</strong> from Designveloper for their support
+    shoutout:
+      Special thanks to <strong>Thảo</strong> and <strong>Sơn</strong> from Designveloper for their support
       in organizing this event. And as always, Thank you everyone for joining us,
       and we hope to see you again in the next event!
   timeline:

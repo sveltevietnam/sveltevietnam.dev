@@ -10,6 +10,8 @@ const ogImage = {
 	en: ogImageEn,
 };
 
+export const prerender = false;
+
 export const load: PageServerLoad = async ({ locals, depends }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 	const lang = locals.sharedSettings.language;

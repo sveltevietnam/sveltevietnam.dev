@@ -7,7 +7,7 @@
 
 <div class="c-callout c-callout--info">
 
-This is a complementary article for the talk **"Svelte, Javascript, and the Web"** given at the event "[Spring Meeting 2024 - Ho Chi Minh City](/en/events/2024-04-spring-2024-ho-chi-minh-meetup)".
+This is a complementary article for the talk **"Svelte, Javascript, and the Web"** given at the event "[Spring Meeting 2024 - Ho Chi Minh City](/en/events/202404-spring-ho-chi-minh-meetup)".
 
 </div>
 
