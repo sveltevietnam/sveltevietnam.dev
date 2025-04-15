@@ -52,16 +52,16 @@
 	description: Message<MessageType, never>;
 	links: { message: Message<MessageType, never>; href: string }[];
 	linksClasses?: string;
-	image: { message: Message<MessageType, never>; href: string; src: Picture } | { src: string; width: number, height: number };
+	image:
+		| { message: Message<MessageType, never>; href: string; src: Picture }
+		| { src: string; width: number; height: number };
 	footnote?: Message<MessageType, never>;
 })}
 	<div
 		class="tablet:gap-8 desktop:gap-10 mobile:flex-col odd:tablet:flex-row-reverse group flex gap-6"
 	>
 		<div class="tablet:space-y-6 mobile:contents flex-1">
-			<p
-				class="mobile:order-1 leading-relaxed first-letter:float-left first-letter:pr-1 first-letter:text-[4em]"
-			>
+			<p class="mobile:order-1 drop-cap leading-relaxed">
 				<T message={description} />
 			</p>
 			<div class="mobile:order-3 flex flex-col gap-6 {linksClasses}">
@@ -80,7 +80,14 @@
 		</div>
 		{#if 'width' in image}
 			<div class="tablet:flex-1 mobile:order-2">
-				<img class="w-full h-auto" {...image} alt="" loading="lazy" fetchpriority="low" decoding="async" />
+				<img
+					class="h-auto w-full"
+					{...image}
+					alt=""
+					loading="lazy"
+					fetchpriority="low"
+					decoding="async"
+				/>
 			</div>
 		{:else}
 			<div
@@ -110,7 +117,9 @@
 		<div class="relative flex items-center justify-between gap-4">
 			<div class="space-y-4">
 				{@render step(m['pages.home.resources.one.step'])}
-				<h3 class="c-text-heading-md pr-30"><T message={m['pages.home.resources.one.heading']} /></h3>
+				<h3 class="c-text-heading-md pr-30">
+					<T message={m['pages.home.resources.one.heading']} />
+				</h3>
 			</div>
 			<svg
 				class="mobile:absolute mobile:-top-2 mobile:-right-2 w-25 h-auto shrink-0"
@@ -165,7 +174,8 @@
 		})}
 
 		<svg
-			class="w-39.5 tablet:absolute desktop:left-10 desktop:bottom-10 bottom-2 left-2 h-auto"
+			class="w-39.5 tablet:absolute desktop:left-6 desktop:bottom-6 widescreen:left-10
+			widescreen:bottom-10 bottom-2 left-2 h-auto"
 			inline-src="./images/rect-washer"
 		></svg>
 	</section>
@@ -321,6 +331,23 @@
 </section>
 
 <style>
+	.drop-cap::first-letter {
+		margin-right: 0.5rem;
+
+		font-family: var(--font-lora);
+		line-height: 1;
+		color: var(--color-svelte);
+
+		initial-letter: 3 2;
+	}
+
+	@supports not (initial-letter: 1 1) {
+		.drop-cap::first-letter {
+			float: left;
+			font-size: 2.5lh;
+		}
+	}
+
 	@property --border-gradient-angle {
 		inherits: false;
 		initial-value: 0deg;
