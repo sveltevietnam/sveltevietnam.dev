@@ -84,6 +84,33 @@ The project uses [eslint] and [prettier] for code linting and formatting. Make s
 
 To bypass hook (not recommended, for admin only), run `git commit` with the `--no-verify` flag.
 
+## Handling Images
+
+### Raster Images
+
+Use [@sveltejs/enhanced-img](https://svelte.dev/docs/kit/images) to render raster images. Pay
+special care the following for the source image:
+
+- png vs jpg: prefer jpg, only use png for images with transparency,
+- image size: use the smallest image possible that can cover all screen sizes,
+- the image should be x2 of what is in the design,
+
+Lazy load image when possible (typically for images "[below the fold](https://support.google.com/adsense/answer/4510803?hl=en)"), that is:
+
+```html
+<img src="..." alt="..." loading="lazy" fetchpriority="low" decoding="async" />
+```
+
+### SVGs
+
+SVG downloaded from the web or exported from Figma can be optimized, sometimes to great extent, with
+the following tools:
+
+- [SVGOMG](https://svgomg.net/): for quick optimization
+- [SVG Path Editor](https://yqnn.github.io/svg-path-editor/): for more advanced path editing
+- [picosvg](https://github.com/googlefonts/picosvg): fore more advanced optimization, for example to
+  convert/simplify fill-rule strategy
+
 <!-- LOCAL -->
 
 [.vscode/extensions.json]: ../.vscode/extensions.json
