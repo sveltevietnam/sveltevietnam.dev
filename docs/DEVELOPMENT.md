@@ -23,6 +23,14 @@ See [package.json] for engine specification. At project root, run:
 pnpm setup
 ```
 
+## Environment Variables
+
+Make sure you have the correct environment variables set up. For each project in the workspace, if you see an `.env.example` file, copy it to `.env` and your local dev server should work.
+
+```bash
+cp sites/sveltevietnam.dev/.env.example sites/sveltevietnam.dev/.env
+```
+
 ## Monorepo
 
 This is a monorepo managed with [pnpm] workspace and [turborepo]. The internal projects are scoped as following:
@@ -38,14 +46,6 @@ See [package.json at root directory](../package.json) and in each package for av
 pnpm dev --filter=sveltevietnam.dev
 # or
 cd sites/sveltevietnam.dev && pnpm dev
-```
-
-## Environment Variables
-
-Make sure you have the correct environment variables set up. For each project in the workspace, if you see an `.env.example` file, copy it to `.env` and your local dev server should work.
-
-```bash
-cp sites/sveltevietnam.dev/.env.example sites/sveltevietnam.dev/.env
 ```
 
 ## Recommended VSCode Extensions
