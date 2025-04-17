@@ -3,13 +3,13 @@ import path from 'node:path/posix';
 
 import pico from 'picocolors';
 import glob from 'tiny-glob';
-import { createLogger } from 'vite';
 
 import { collectYamls } from './internals/collect.js';
 import { lint } from './internals/lint.js';
 import { flatParseMessages } from './internals/parse.js';
 import { transform } from './internals/transform.js';
 import { printLintIssues } from './internals/utils.js';
+import { createLogger } from './logger.js';
 
 /**
  * @typedef Config
@@ -17,7 +17,7 @@ import { printLintIssues } from './internals/utils.js';
  */
 
 /**
- * @param {import('vite').Logger} logger
+ * @param {import('./logger.js').CustomLogger} logger
  * @param {string} cwd
  * @param {string[]} dirs
  * @param {boolean} [rebuild=false]
@@ -42,20 +42,18 @@ async function build(logger, cwd, dirs, rebuild = false) {
 	let hasIssue = false;
 	for (let i = 0; i < issueGroups.length; i++) {
 		const issueEntries = Object.entries(issueGroups[i].issuesByKey);
-		if (issueEntries.length) {
-			hasIssue = true;
+		const numIssues = issueEntries.length;
+		hasIssue = numIssues > 0;
+		if (hasIssue) {
+			const filepath = path.relative(cwd, dirs[i]);
 			logger.error(
-				pico.redBright(
-					`[sveltevietnam-i18n] ${issueEntries.length} issue(s) found in "${path.relative(cwd, dirs[i])}" for the following message(s):`,
-				),
+				`${pico.bold(numIssues)} issue(s) found in ${pico.yellow(filepath)} for the following message(s):`,
 			);
-			printLintIssues(issueEntries, logger);
+			printLintIssues(issueEntries, logger.internal);
 		}
 	}
 	if (hasIssue) {
-		logger.error(
-			pico.redBright('[sveltevietnam-i18n] Skipping build for now... Please fix the issues first.'),
-		);
+		logger.error('Skipping build for now... Please fix the issues first.');
 		return;
 	}
 
@@ -71,10 +69,8 @@ async function build(logger, cwd, dirs, rebuild = false) {
 			return outPath;
 		}),
 	);
-	logger.info(
-		pico.green(
-			`[sveltevietnam-i18n] successfully ${rebuild ? 'rebuilt' : 'built'} ${pico.bold(numMessages)} messages`,
-		),
+	logger.success(
+		`successfully ${rebuild ? 'rebuilt' : 'built'} ${pico.bold(numMessages)} messages`,
 	);
 }
 
@@ -110,11 +106,9 @@ export function i18n(config) {
 				const dir = path.relative(cwd, path.dirname(filepath));
 				if (!dirs.includes(dir)) return;
 
-				logger.info(
-					pico.blue(
-						`[sveltevietnam-i18n] detected changes at "${path.relative(cwd, filepath)}", rebuilding...`,
-					),
-				);
+				const changepath = path.relative(cwd, filepath);
+				logger.info(`detected changes at ${pico.yellow(changepath)}, rebuilding...`);
+
 				build(logger, cwd, [dir], true);
 			}
 
