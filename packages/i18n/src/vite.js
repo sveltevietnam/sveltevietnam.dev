@@ -82,21 +82,16 @@ async function build(logger, cwd, dirs, rebuild = false) {
 
 /**
  * @param {Config} config
- * @returns {import('vite').Plugin}
+ * @returns {Promise<import('vite').Plugin>}
  */
-export function i18n(config) {
+export async function i18n(config) {
 	const logger = createLogger();
-	let cwd = process.cwd();
-	/** @type {string[]} */
-	let dirs = [];
+	const cwd = process.cwd();
+	let dirs = await glob(config.input, { cwd });
 
 	return {
 		name: 'sveltevietnam-i18n',
 		enforce: 'pre',
-		async options() {
-			cwd = process.cwd();
-			dirs = await glob(config.input, { cwd });
-		},
 		async configureServer(server) {
 			/** @param {string} filepath */
 			async function onUpdate(filepath) {

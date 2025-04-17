@@ -163,9 +163,6 @@ export function sveltekitRouting() {
 	return {
 		name: 'sveltekit-routing',
 		enforce: 'pre',
-		options() {
-			cwd = process.cwd();
-		},
 		// async configureServer(server) {
 		// 	// server.watcher.add(path.join(root, pattern));
 		// 	// server.watcher.on('add', build);
