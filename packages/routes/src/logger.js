@@ -1,3 +1,6 @@
+/// FIXME: candidate for extraction to a reusable package
+/// because this is also used in the i18n plugin
+
 import pico from 'picocolors';
 import { createLogger as createViteLoggger } from 'vite';
 
@@ -44,7 +47,7 @@ function createProxyLogMethod(status, method) {
 		const colorize = STATUS_TO_COLORIZE[status];
 		const symbol = STATUS_TO_SYMBOL[status];
 		const prefix = STATUS_TO_PREFIX[status];
-		message = `${prefix[0](prefix[1](' sveltevietnam/i18n '))} ${colorize(symbol)} ${message}`;
+		message = `${prefix[0](prefix[1](' sveltevietnam/routes '))} ${colorize(symbol)} ${message}`;
 		return method(message, options);
 	};
 }

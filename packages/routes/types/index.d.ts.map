@@ -1,0 +1,20 @@
+{
+	"version": 3,
+	"file": "index.d.ts",
+	"names": [
+		"routes",
+		"RoutesOptions",
+		"Route",
+		"RoutesVitePluginApi"
+	],
+	"sources": [
+		"../src/vite.js",
+		"../src/private.d.ts"
+	],
+	"sourcesContent": [
+		null,
+		null
+	],
+	"mappings": ";;;;;;iBAegBA,MAAMA;MCfVC,aAAaA;;;;;;;;;;;;;;;;;;;;;;;;;;;MAgCbC,KAAKA;;;;;;;;;;;;;;;;;;;MAmBLC,mBAAmBA",
+	"ignoreList": []
+}
