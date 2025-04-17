@@ -12,6 +12,27 @@ import { qrcode } from 'vite-plugin-qrcode';
 import { sveltekitRouting } from './src/lib/routing/vite-plugin.js';
 
 export default defineConfig({
+	optimizeDeps: {
+		/**
+		 * pre-bundle in advance to prevent
+		 * reloading on navigation during dev
+		 * @see {@link https://github.com/sveltejs/kit/issues/11793}
+		 */
+		include: [
+			'@floating-ui/dom',
+			'@svelte-put/lockscroll',
+			'@svelte-put/toc',
+			'@svelte-put/async-stack',
+			'@svelte-put/qr',
+			'@svelte-put/qr/svg',
+			'@svelte-put/popover',
+			'@svelte-put/copy',
+			'@svelte-put/clickoutside',
+			'@svelte-put/avatar',
+			'@svelte-put/cloudflare-turnstile',
+			'@svelte-put/inline-svg',
+		],
+	},
 	plugins: [
 		qrcode(),
 		inlineSvg(
