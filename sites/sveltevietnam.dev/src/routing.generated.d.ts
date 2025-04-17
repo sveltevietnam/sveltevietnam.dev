@@ -4,10 +4,10 @@ declare namespace App {
 	export type RouteKey =
 		| 'home'
 		| 'blog'
-		| 'blog/categories/:category'
+		| 'blog/categories/:slug'
 		| 'blog/categories'
 		| 'blog/latest'
-		| 'blog/series/:series'
+		| 'blog/series/:slug'
 		| 'blog/series'
 		| 'blog/:slug'
 		| 'code-of-conduct'

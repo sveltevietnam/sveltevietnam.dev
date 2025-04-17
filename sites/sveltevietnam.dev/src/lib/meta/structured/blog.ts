@@ -39,7 +39,7 @@ export function buildStructuredBlogSeries(
 ): CreativeWorkSeries {
 	const { publisher, ...blog } = buildStructuredBlog(lang);
 	const routingMap = loadRoutingMap();
-	const canonical = origin + build(routingMap[lang]['blog/series/:series'].path, series.slug);
+	const canonical = origin + build(routingMap[lang]['blog/series/:slug'].path, series.slug);
 	return {
 		'@type': 'CreativeWorkSeries',
 		'@id': `${blog['@id']}/series/${series.id}`,
@@ -60,8 +60,7 @@ export function buildStructuredBlogCategoryPage(
 	compact = false,
 ): CollectionPage {
 	const routingMap = loadRoutingMap();
-	const canonical =
-		origin + build(routingMap[lang]['blog/categories/:category'].path, category.slug);
+	const canonical = origin + build(routingMap[lang]['blog/categories/:slug'].path, category.slug);
 	const { publisher, ...blog } = buildStructuredBlog(lang);
 	return {
 		'@type': 'CollectionPage',

@@ -78,7 +78,7 @@
 						<a
 							class="c-link-lazy c-text-body-sm text-on-surface-subtle hover:text-link
 							hover:border-link border-outline rounded-full border px-3 py-1 leading-tight"
-							href={routing.path('blog/categories/:category', slug)}
+							href={routing.path('blog/categories/:slug', slug)}
 						>
 							{name}
 						</a>

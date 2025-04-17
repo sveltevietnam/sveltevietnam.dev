@@ -142,7 +142,7 @@
 		<section class="max-w-pad py-section tablet:space-y-8 space-y-6" id="svelteAndKit">
 			{@render listingHeader({
 				category: data.categories.svelteAndKit.name,
-				href: routing.path('blog/categories/:category', data.categories.svelteAndKit.slug)!,
+				href: routing.path('blog/categories/:slug', data.categories.svelteAndKit.slug)!,
 				description: data.categories.svelteAndKit.description,
 			})}
 			<BlogPostShowcase posts={data.posts.svelteAndKit}></BlogPostShowcase>
@@ -173,7 +173,7 @@
 		<section class="max-w-pad py-section tablet:space-y-8 space-y-6" id="insider">
 			{@render listingHeader({
 				category: data.categories.insider.name,
-				href: routing.path('blog/categories/:category', data.categories.insider.slug)!,
+				href: routing.path('blog/categories/:slug', data.categories.insider.slug)!,
 				description: data.categories.insider.description,
 			})}
 			<BlogPostShowcase posts={data.posts.insider} flat></BlogPostShowcase>

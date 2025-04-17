@@ -14,7 +14,7 @@ export const load: PageServerLoad = async ({ parent, url, locals, depends, param
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 
 	const lang = locals.sharedSettings.language;
-	const category = await loadBlogCategoryBySlug(params.category, lang);
+	const category = await loadBlogCategoryBySlug(params.slug, lang);
 	if (!category) {
 		// TODO: assign a unique code to this error
 		error(404, { message: 'Category not found', code: 'SV000' });

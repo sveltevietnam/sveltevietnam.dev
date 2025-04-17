@@ -93,7 +93,7 @@
 				<p class="c-text-body-sm text-secondary-on-surface">
 					—
 					{#each post.series as { name, slug }, i (slug)}
-						<a class="c-link-lazy hover:text-link" href={routing.path('blog/series/:series', slug)}>
+						<a class="c-link-lazy hover:text-link" href={routing.path('blog/series/:slug', slug)}>
 							{name}
 						</a>{i < post.series.length - 1 ? ', ' : ''}
 					{/each}
@@ -136,7 +136,7 @@
 						<a
 							class="c-link-lazy c-text-body-sm text-on-surface-subtle hover:text-link
 							hover:border-link border-outline rounded-full border px-3 py-1 leading-tight"
-							href={routing.path('blog/categories/:category', slug)}
+							href={routing.path('blog/categories/:slug', slug)}
 						>
 							{name}
 						</a>

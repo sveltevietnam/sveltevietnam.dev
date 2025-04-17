@@ -14,7 +14,7 @@ export const load: PageServerLoad = async ({ parent, url, locals, depends, param
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 
 	const lang = locals.sharedSettings.language;
-	const series = await loadBlogSeriesBySlug(params.series, lang);
+	const series = await loadBlogSeriesBySlug(params.slug, lang);
 	if (!series) {
 		// TODO: assign a unique code to this error
 		error(404, { message: 'Series not found', code: 'SV000' });
