@@ -45,7 +45,7 @@ export async function routes(options = {}) {
 			const routes = await collectRoutes(cwd, routesPath, logger);
 
 			// merge localization options
-			if (options.localization?.defs) {
+			if (options.localization) {
 				const defs = options.localization.defs;
 				for (const route of routes) {
 					route.segments = {
@@ -65,6 +65,13 @@ export async function routes(options = {}) {
 				}
 			}
 
+			// merge name options
+			if (options.names) {
+				for (const route of routes) {
+					route.name = options.names.defs[/** @type {RoutePath} */ (route.path)];
+				}
+			}
+
 			// create output directory in advance
 			const absOutDir = path.posix.join(cwd, outdir);
 			await fs.mkdir(absOutDir, { recursive: true });
@@ -77,13 +84,15 @@ export async function routes(options = {}) {
 			}
 
 			// transform
-			const { module, types, report } = transform(routes, options.localization?.param);
+			const { modules, report } = transform(routes, options.localization?.param);
 			logger.success(
-				`successfuly collected info of ${pico.bold(report.numDynamic)} dynamic and ${pico.bold(report.numStatic)} static routes to ${pico.yellow(outdir)}`,
+				`successfuly collected info of ${pico.bold(report.dynamicRoutes.length)} dynamic and ${pico.bold(report.staticRoutes.length)} static routes to ${pico.yellow(outdir)}`,
 			);
+
 			await Promise.all([
-				fs.writeFile(path.posix.join(absOutDir, 'index.js'), module),
-				fs.writeFile(path.posix.join(absOutDir, 'types.ts'), types),
+				fs.writeFile(path.posix.join(absOutDir, 'index.js'), modules.routes),
+				modules.names && fs.writeFile(path.posix.join(absOutDir, 'names.js'), modules.names),
+				modules.types && fs.writeFile(path.posix.join(absOutDir, 'types.ts'), modules.types),
 			]);
 		},
 	};

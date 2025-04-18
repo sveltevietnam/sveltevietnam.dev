@@ -1,29 +1,11 @@
 import ts, { factory } from 'typescript';
 
-export const newline = () => factory.createIdentifier('\n');
+import * as utils from './utils.js';
 
 // TODO: add @__NO_SIDE_EFFECTS__
 
 /**
- * @param {string[]} segments
- * @returns {string}
- */
-function buildRouteIdentifier(segments) {
-	let id =
-		'_' +
-		segments
-			.map((s) => s.normalize())
-			.join('_')
-			// remove any non-alphanumeric characters
-			.replace(/[^a-zA-Z0-9_]/g, '');
-	if (id === '') {
-		id = '_';
-	}
-	return id;
-}
-
-/**
- * @param {import('../private.d.ts').Route} route
+ * @param {import('../../private.d.ts').Route} route
  * @param {string} [langParamName]
  * @returns {[id: string, node: ts.Node]}
  */
@@ -40,14 +22,14 @@ export function defineStaticRoute(route, langParamName) {
 	const ifs = [];
 
 	if (Array.isArray(route.segments)) {
-		id = buildRouteIdentifier(route.segments);
+		id = utils.buildRouteIdentifier(route.segments);
 		path = '/' + route.segments.join('/');
 	} else {
 		const { default: defaultSegments, ...langToSegments } = route.segments;
 		path = '/' + defaultSegments.join('/');
 
 		// NOTE: assuming latin here (svelte kit routes)
-		id = buildRouteIdentifier(defaultSegments);
+		id = utils.buildRouteIdentifier(defaultSegments);
 
 		localized = Object.keys(langToSegments).length > 0;
 		if (localized) {
@@ -122,7 +104,7 @@ export function defineStaticRoute(route, langParamName) {
 }
 
 /**
- * @param {import('../private.d.ts').Param[]} params
+ * @param {import('../../private.d.ts').Param[]} params
  * @param {(v: string) => string} varRef
  * @returns {ts.VariableStatement[]}
  */
@@ -170,7 +152,7 @@ function buildVariableStatements(params, varRef) {
 
 /**
  * @param {string[]} segments
- * @param {import('../private.d.ts').Param[]} params
+ * @param {import('../../private.d.ts').Param[]} params
  * @param {(v: string) => string} varRef
  * @returns {ts.TemplateExpression}
  */
@@ -199,7 +181,7 @@ function buildTemplateExpression(segments, params, varRef) {
 }
 
 /**
- * @param {import('../private.d.ts').Route} route
+ * @param {import('../../private.d.ts').Route} route
  * @param {string} [langParamName]
  * @returns {[id: string, node: ts.Node]}
  */
@@ -222,14 +204,14 @@ export function defineDynamicRoute(route, langParamName) {
 
 	let localized = false;
 	if (Array.isArray(route.segments)) {
-		id = buildRouteIdentifier(route.segments);
+		id = utils.buildRouteIdentifier(route.segments);
 		defaultTemplateExpression = buildTemplateExpression(route.segments, route.params, varRef);
 	} else {
 		const { default: defaultSegments, ...langToSegments } = route.segments;
 		defaultTemplateExpression = buildTemplateExpression(defaultSegments, route.params, varRef);
 
 		// NOTE: assuming latin here (svelte kit routes)
-		id = buildRouteIdentifier(defaultSegments);
+		id = utils.buildRouteIdentifier(defaultSegments);
 
 		localized = Object.keys(langToSegments).length > 0;
 		if (localized) {
@@ -349,54 +331,4 @@ export function exportRoutePathTypeDef(dynamicPaths, staticPaths) {
 			]),
 		),
 	];
-}
-
-/**
- * @param {ts.Node[]} nodes
- * @returns {string}
- */
-export function print(nodes) {
-	const doc = factory.createJSDocComment(
-		'DO NOT EDIT! This file is generated with vite-plugin-sveltevietnam-routes',
-		undefined,
-	);
-
-	const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
-	const resultFile = ts.createSourceFile(
-		'temp.ts',
-		'',
-		ts.ScriptTarget.Latest,
-		false,
-		ts.ScriptKind.JS,
-	);
-
-	let code = printer.printList(
-		ts.ListFormat.MultiLine,
-		factory.createNodeArray([doc, newline(), ...nodes]),
-		resultFile,
-	);
-
-	return code;
-}
-
-/**
- * @param {[identifier: string, literal: string][]} def
- * @returns {ts.Node}
- */
-export function exportIdentifierAsLiterals(def) {
-	return factory.createExportDeclaration(
-		undefined,
-		false,
-		factory.createNamedExports(
-			def.map(([identifier, literal]) =>
-				factory.createExportSpecifier(
-					false,
-					factory.createIdentifier(identifier),
-					factory.createStringLiteral(literal),
-				),
-			),
-		),
-		undefined,
-		undefined,
-	);
 }
