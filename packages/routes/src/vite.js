@@ -43,11 +43,14 @@ export function routes(options = {}) {
 			}
 
 			// transform
-			const { module, report } = transform(routes);
+			const { module, types, report } = transform(routes);
 			logger.success(
 				`successfuly collected info of ${pico.bold(report.numDynamic)} dynamic and ${pico.bold(report.numStatic)} static routes to ${pico.yellow(outdir)}`,
 			);
-			await fs.writeFile(path.posix.join(absOutDir, 'index.js'), module);
+			await Promise.all([
+				fs.writeFile(path.posix.join(absOutDir, 'index.js'), module),
+				fs.writeFile(path.posix.join(absOutDir, 'types.ts'), types),
+			]);
 		},
 	};
 }

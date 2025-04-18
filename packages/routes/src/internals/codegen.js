@@ -128,6 +128,43 @@ export function defineDynamicRoute(route) {
 }
 
 /**
+ * @param {string} id
+ * @param {string[]} literals
+ * @returns {ts.Node}
+ */
+function exportUnionStringLiteralTypeDef(id, literals) {
+	return factory.createTypeAliasDeclaration(
+		[factory.createToken(ts.SyntaxKind.ExportKeyword)],
+		factory.createIdentifier(id),
+		undefined,
+		factory.createUnionTypeNode(
+			literals.map((l) => factory.createLiteralTypeNode(factory.createStringLiteral(l))),
+		),
+	);
+}
+
+/**
+ * @param {string[]} dynamicPaths
+ * @param {string[]} staticPaths
+ * @returns {ts.Node[]}
+ */
+export function exportRoutePathTypeDef(dynamicPaths, staticPaths) {
+	return [
+		exportUnionStringLiteralTypeDef('DynamicRoutePath', dynamicPaths),
+		exportUnionStringLiteralTypeDef('StaticRoutePath', staticPaths),
+		factory.createTypeAliasDeclaration(
+			[factory.createToken(ts.SyntaxKind.ExportKeyword)],
+			factory.createIdentifier('RoutePath'),
+			undefined,
+			factory.createUnionTypeNode([
+				factory.createTypeReferenceNode(factory.createIdentifier('DynamicRoutePath'), undefined),
+				factory.createTypeReferenceNode(factory.createIdentifier('StaticRoutePath'), undefined),
+			]),
+		),
+	];
+}
+
+/**
  * @param {import('typescript').Node[]} nodes
  * @returns {string}
  */
