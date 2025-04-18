@@ -61,27 +61,63 @@ export function defineDynamicRoute(route) {
 	}
 
 	const literal = route.segments.slice(0, route.params[0].position).join('/');
-	const head = factory.createTemplateHead(literal ? `/${literal}/` : '/');
+	const head = factory.createTemplateHead(literal ? `/${literal}` : '');
 
 	/** @type {import('typescript').TemplateSpan[]} */
 	const spans = [];
+	/** @type {import('typescript').VariableStatement[]} */
+	const vars = [];
 	for (let i = 0; i < route.params.length; i++) {
 		const param = route.params[i];
-		const accessExperession = factory.createPropertyAccessExpression(
-			factory.createIdentifier('params'),
-			factory.createIdentifier(param.name),
+		const varNameForParam = '_' + param.name;
+
+		// resolve each param to a variable
+		vars.push(
+			factory.createVariableStatement(
+				undefined,
+				factory.createVariableDeclarationList(
+					[
+						factory.createVariableDeclaration(
+							factory.createIdentifier(varNameForParam),
+							undefined,
+							undefined,
+							factory.createConditionalExpression(
+								factory.createPropertyAccessExpression(
+									factory.createIdentifier('params'),
+									factory.createIdentifier(param.name),
+								),
+								factory.createToken(ts.SyntaxKind.QuestionToken),
+								factory.createBinaryExpression(
+									factory.createStringLiteral('/'),
+									factory.createToken(ts.SyntaxKind.PlusToken),
+									factory.createPropertyAccessExpression(
+										factory.createIdentifier('params'),
+										factory.createIdentifier(param.name),
+									),
+								),
+								factory.createToken(ts.SyntaxKind.ColonToken),
+								factory.createStringLiteral(''),
+							),
+						),
+					],
+					ts.NodeFlags.Const,
+				),
+			),
 		);
+
+		// add to returned template literal
+		const identifier = factory.createIdentifier(varNameForParam);
 		const nextI = i + 1;
 		if (nextI < route.params.length) {
 			const literal = route.segments
 				.slice(param.position + 1, route.params[nextI].position)
 				.join('/');
-			const middle = factory.createTemplateMiddle(literal ? `/${literal}/` : '/');
-			spans.push(factory.createTemplateSpan(accessExperession, middle));
+			const middle = factory.createTemplateMiddle(literal ? `/${literal}` : '/');
+			spans.push(factory.createTemplateSpan(identifier, middle));
 		} else {
 			const literal = route.segments.slice(param.position + 1).join('/');
 			const tail = factory.createTemplateTail(literal ? `/${literal}` : '');
-			spans.push(factory.createTemplateSpan(accessExperession, tail));
+			spans.push(factory.createTemplateSpan(identifier, tail));
 		}
 	}
 
@@ -108,7 +144,7 @@ export function defineDynamicRoute(route) {
 					],
 					undefined,
 					factory.createBlock(
-						[factory.createReturnStatement(factory.createTemplateExpression(head, spans))],
+						[...vars, factory.createReturnStatement(factory.createTemplateExpression(head, spans))],
 						true,
 					),
 				),
@@ -117,11 +153,11 @@ export function defineDynamicRoute(route) {
 		ts.NodeFlags.Const,
 	);
 
-	const paramUnion = route.params.map((p) => `'${p.name}'`).join('|');
+	const fields = route.params.map((p) => `${p.name}${p.required ? '' : '?'}: string;`).join(' ');
 	ts.addSyntheticLeadingComment(
 		node,
 		ts.SyntaxKind.MultiLineCommentTrivia,
-		`*@type {(params: Record<${paramUnion}, string>) => string}`,
+		`*@param {{ ${fields} }} params @returns {string}`,
 	);
 
 	return [id, node];
