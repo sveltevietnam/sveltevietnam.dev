@@ -2,9 +2,11 @@
 	"version": 3,
 	"file": "index.d.ts",
 	"names": [
+		"defineConfig",
 		"routes",
 		"RoutesOptions",
 		"Route",
+		"Param",
 		"RoutesVitePluginApi"
 	],
 	"sources": [
@@ -15,6 +17,6 @@
 		null,
 		null
 	],
-	"mappings": ";;;;;;iBAegBA,MAAMA;MCfVC,aAAaA;;;;;;;;;;;;;;;;;;;;;;;;;;;MAgCbC,KAAKA;;;;;;;;;;;;;;;;;;;MAmBLC,mBAAmBA",
+	"mappings": ";;;;;;iBAiBgBA,YAAYA;;iBAUNC,MAAMA;MC3BhBC,aAAaA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MA+BbC,KAAKA;;;;;;;;;MASLC,KAAKA;;;;;;MAMLC,mBAAmBA",
 	"ignoreList": []
 }

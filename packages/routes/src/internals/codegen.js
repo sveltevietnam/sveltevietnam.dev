@@ -5,13 +5,14 @@ export const newline = () => factory.createIdentifier('\n');
 // TODO: add @__NO_SIDE_EFFECTS__
 
 /**
- * @param {import('../private.d.ts').Route} route
+ * @param {string[]} segments
  * @returns {string}
  */
-function buildRouteIdentifier(route) {
+function buildRouteIdentifier(segments) {
 	let id =
 		'_' +
-		route.segments
+		segments
+			.map((s) => s.normalize())
 			.join('_')
 			// remove any non-alphanumeric characters
 			.replace(/[^a-zA-Z0-9_]/g, '');
@@ -23,62 +24,121 @@ function buildRouteIdentifier(route) {
 
 /**
  * @param {import('../private.d.ts').Route} route
+ * @param {string} [langParamName]
  * @returns {[id: string, node: ts.Node]}
  */
-export function defineStaticRoute(route) {
-	const id = buildRouteIdentifier(route);
-	return [
-		id,
-		factory.createVariableDeclarationList(
-			[
-				factory.createVariableDeclaration(
-					factory.createIdentifier(id),
+export function defineStaticRoute(route, langParamName) {
+	/** @type {ts.ParameterDeclaration[]} */
+	const paramDeclaration = [];
+
+	let localized = false;
+	/** @type {string} */
+	let path;
+	/** @type {string} */
+	let id;
+	/** @type {ts.IfStatement[]} */
+	const ifs = [];
+
+	if (Array.isArray(route.segments)) {
+		id = buildRouteIdentifier(route.segments);
+		path = '/' + route.segments.join('/');
+	} else {
+		const { default: defaultSegments, ...langToSegments } = route.segments;
+		path = '/' + defaultSegments.join('/');
+
+		// NOTE: assuming latin here (svelte kit routes)
+		id = buildRouteIdentifier(defaultSegments);
+
+		localized = Object.keys(langToSegments).length > 0;
+		if (localized) {
+			if (!langParamName) {
+				throw new Error(
+					'Dynamic route with localization must provide a param name to resolve language',
+				);
+			}
+
+			paramDeclaration.push(
+				factory.createParameterDeclaration(
 					undefined,
 					undefined,
-					factory.createArrowFunction(
+					factory.createIdentifier(langParamName),
+					undefined,
+					undefined,
+					undefined,
+				),
+			);
+
+			for (const [lang, segs] of Object.entries(langToSegments)) {
+				ifs.push(
+					factory.createIfStatement(
+						factory.createBinaryExpression(
+							factory.createIdentifier(langParamName),
+							factory.createToken(ts.SyntaxKind.EqualsEqualsEqualsToken),
+							factory.createStringLiteral(lang),
+						),
+						factory.createBlock(
+							[factory.createReturnStatement(factory.createStringLiteral('/' + segs.join('/')))],
+							true,
+						),
 						undefined,
-						undefined,
-						[],
-						undefined,
-						factory.createToken(ts.SyntaxKind.EqualsGreaterThanToken),
-						factory.createStringLiteral(route.path),
+					),
+				);
+			}
+		}
+	}
+
+	const node = factory.createVariableDeclarationList(
+		[
+			factory.createVariableDeclaration(
+				factory.createIdentifier(id),
+				undefined,
+				undefined,
+				factory.createFunctionExpression(
+					undefined,
+					undefined,
+					undefined,
+					undefined,
+					paramDeclaration,
+					undefined,
+					factory.createBlock(
+						[...ifs, factory.createReturnStatement(factory.createStringLiteral(path))],
+						true,
 					),
 				),
-			],
-			ts.NodeFlags.Const,
-		),
-	];
+			),
+		],
+		ts.NodeFlags.Const,
+	);
+
+	if (localized) {
+		ts.addSyntheticLeadingComment(
+			node,
+			ts.SyntaxKind.MultiLineCommentTrivia,
+			`*@param {string} [${langParamName}] @returns {string}`,
+		);
+	}
+
+	return [id, node];
 }
 
 /**
- * @param {import('../private.d.ts').Route} route
- * @returns {[id: string, node: ts.Node]}
+ * @param {import('../private.d.ts').Param[]} params
+ * @param {(v: string) => string} varRef
+ * @returns {ts.VariableStatement[]}
  */
-export function defineDynamicRoute(route) {
-	const id = buildRouteIdentifier(route);
-	if (!route.params) {
-		throw new Error('Dynamic route must have params');
-	}
-
-	const literal = route.segments.slice(0, route.params[0].position).join('/');
-	const head = factory.createTemplateHead(literal ? `/${literal}` : '');
-
-	/** @type {import('typescript').TemplateSpan[]} */
-	const spans = [];
-	/** @type {import('typescript').VariableStatement[]} */
+function buildVariableStatements(params, varRef) {
+	/** @type {ts.VariableStatement[]} */
 	const vars = [];
-	for (let i = 0; i < route.params.length; i++) {
-		const param = route.params[i];
-		const varNameForParam = '_' + param.name;
+	for (let i = 0; i < params.length; i++) {
+		const param = params[i];
 
-		// resolve each param to a variable
 		vars.push(
 			factory.createVariableStatement(
 				undefined,
 				factory.createVariableDeclarationList(
 					[
 						factory.createVariableDeclaration(
-							factory.createIdentifier(varNameForParam),
+							factory.createIdentifier(varRef(param.name)),
 							undefined,
 							undefined,
 							factory.createConditionalExpression(
@@ -104,20 +164,99 @@ export function defineDynamicRoute(route) {
 				),
 			),
 		);
+	}
+	return vars;
+}
 
-		// add to returned template literal
-		const identifier = factory.createIdentifier(varNameForParam);
+/**
+ * @param {string[]} segments
+ * @param {import('../private.d.ts').Param[]} params
+ * @param {(v: string) => string} varRef
+ * @returns {ts.TemplateExpression}
+ */
+function buildTemplateExpression(segments, params, varRef) {
+	const literal = segments.slice(0, params[0].position).join('/');
+	const head = factory.createTemplateHead(literal ? `/${literal}` : '');
+
+	/** @type {ts.TemplateSpan[]} */
+	const spans = [];
+	for (let i = 0; i < params.length; i++) {
+		const param = params[i];
+
+		const identifier = factory.createIdentifier(varRef(param.name));
 		const nextI = i + 1;
-		if (nextI < route.params.length) {
-			const literal = route.segments
-				.slice(param.position + 1, route.params[nextI].position)
-				.join('/');
+		if (nextI < params.length) {
+			const literal = segments.slice(param.position + 1, params[nextI].position).join('/');
 			const middle = factory.createTemplateMiddle(literal ? `/${literal}` : '/');
 			spans.push(factory.createTemplateSpan(identifier, middle));
 		} else {
-			const literal = route.segments.slice(param.position + 1).join('/');
+			const literal = segments.slice(param.position + 1).join('/');
 			const tail = factory.createTemplateTail(literal ? `/${literal}` : '');
 			spans.push(factory.createTemplateSpan(identifier, tail));
+		}
+	}
+	return factory.createTemplateExpression(head, spans);
+}
+
+/**
+ * @param {import('../private.d.ts').Route} route
+ * @param {string} [langParamName]
+ * @returns {[id: string, node: ts.Node]}
+ */
+export function defineDynamicRoute(route, langParamName) {
+	if (!route.params) {
+		throw new Error('Dynamic route must have params');
+	}
+	/**
+	 * @param {string} name
+	 * @returns {string}
+	 */
+	const varRef = (name) => '_' + name;
+
+	/** @type {string} */
+	let id;
+	/** @type {ts.TemplateExpression} */
+	let defaultTemplateExpression;
+	/** @type {ts.IfStatement[]} */
+	const ifs = [];
+
+	let localized = false;
+	if (Array.isArray(route.segments)) {
+		id = buildRouteIdentifier(route.segments);
+		defaultTemplateExpression = buildTemplateExpression(route.segments, route.params, varRef);
+	} else {
+		const { default: defaultSegments, ...langToSegments } = route.segments;
+		defaultTemplateExpression = buildTemplateExpression(defaultSegments, route.params, varRef);
+
+		// NOTE: assuming latin here (svelte kit routes)
+		id = buildRouteIdentifier(defaultSegments);
+
+		localized = Object.keys(langToSegments).length > 0;
+		if (localized) {
+			if (!langParamName) {
+				throw new Error(
+					'Dynamic route with localization must provide a param name to resolve language',
+				);
+			}
+			for (const [lang, segs] of Object.entries(langToSegments)) {
+				ifs.push(
+					factory.createIfStatement(
+						factory.createBinaryExpression(
+							factory.createPropertyAccessExpression(
+								factory.createIdentifier('params'),
+								factory.createIdentifier(langParamName),
+							),
+							factory.createToken(ts.SyntaxKind.EqualsEqualsEqualsToken),
+							factory.createStringLiteral(lang),
+						),
+						factory.createBlock(
+							[factory.createReturnStatement(buildTemplateExpression(segs, route.params, varRef))],
+							true,
+						),
+						undefined,
+					),
+				);
+			}
 		}
 	}
 
@@ -144,7 +283,11 @@ export function defineDynamicRoute(route) {
 					],
 					undefined,
 					factory.createBlock(
-						[...vars, factory.createReturnStatement(factory.createTemplateExpression(head, spans))],
+						[
+							...buildVariableStatements(route.params, varRef),
+							...ifs,
+							factory.createReturnStatement(defaultTemplateExpression),
+						],
 						true,
 					),
 				),
@@ -153,7 +296,15 @@ export function defineDynamicRoute(route) {
 		ts.NodeFlags.Const,
 	);
 
-	const fields = route.params.map((p) => `${p.name}${p.required ? '' : '?'}: string;`).join(' ');
+	const params = [...route.params]; // shallow copy
+	if (localized && langParamName && !params.some((p) => p.name === langParamName)) {
+		params.push({
+			name: langParamName,
+			position: -1,
+			required: false,
+		});
+	}
+	const fields = params.map((p) => `${p.name}${p.required ? '' : '?'}: string;`).join(' ');
 	ts.addSyntheticLeadingComment(
 		node,
 		ts.SyntaxKind.MultiLineCommentTrivia,
@@ -201,7 +352,7 @@ export function exportRoutePathTypeDef(dynamicPaths, staticPaths) {
 }
 
 /**
- * @param {import('typescript').Node[]} nodes
+ * @param {ts.Node[]} nodes
  * @returns {string}
  */
 export function print(nodes) {

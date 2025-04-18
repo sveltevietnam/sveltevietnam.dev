@@ -3,10 +3,14 @@ declare module '@sveltevietnam/routes' {
 }
 
 declare module '@sveltevietnam/routes/vite' {
-	export function routes(
-		options?: Partial<RoutesOptions>,
-	): import('vite').Plugin<RoutesVitePluginApi>;
-	type RoutesOptions = {
+	export function defineConfig<RoutePath extends string = string, Language extends string = string>(
+		options: Partial<RoutesOptions<RoutePath, Language>>,
+	): Partial<RoutesOptions<RoutePath, Language>>;
+
+	export function routes<RoutePath extends string = string, Language extends string = string>(
+		options?: Partial<RoutesOptions<RoutePath, Language>>,
+	): Promise<import('vite').Plugin<RoutesVitePluginApi>>;
+	type RoutesOptions<RoutePath extends string, Language extends string = string> = {
 		/**
 		 * path to the routes directory,
 		 * i.e `kit.files.routes`
@@ -23,33 +27,35 @@ declare module '@sveltevietnam/routes/vite' {
 		 * when true will write debug YAML to outdir
 		 */
 		debug: boolean;
-		/**
-		 * path to the i18n.yaml config.
-		 * takes either a string as the path,
-		 * or a `true` to use the `i18n.yaml` file
-		 * relative to `routes`
-		 * @default `undefined`
-		 */
-		i18n?: string | true;
+		localization?: {
+			/**
+			 * the parameter on how to resolve the language at runtime
+			 * this can be a route param or an explicit param
+			 */
+			param: string;
+			default?: Language;
+			/**
+			 * mapping of localized routes
+			 */
+			defs?: Partial<Record<RoutePath, Partial<Record<Language, string>>>>;
+		};
 	};
 
 	type Route = {
 		path: string;
-		segments: string[];
-		params?: {
-			position: number;
-			name: string;
-			required: boolean;
-		}[];
-		i18n?: {
-			[key: string]: {
-				name: string;
-				segment?: string;
-			};
-			default: {
-				name: string;
-			};
-		};
+		segments:
+			| string[]
+			| {
+					[lang: string]: string[];
+					default: string[];
+			  };
+		params?: Param[];
+	};
+
+	type Param = {
+		position: number;
+		name: string;
+		required: boolean;
 	};
 
 	type RoutesVitePluginApi = {

@@ -2,9 +2,10 @@ import * as codegen from './codegen.js';
 
 /**
  * @param {import("../private.d.ts").Route[]} routes
+ * @param {string} [langParamName]
  * @returns {{ module: string; types: string; report: { numDynamic: number; numStatic: number } }}
  */
-export function transform(routes) {
+export function transform(routes, langParamName) {
 	/** @type {import('typescript').Node[]} */
 	const definitions = [];
 	/** @type {[identifier: string, literal: string][]}*/
@@ -21,10 +22,10 @@ export function transform(routes) {
 		let node;
 		if (route.params?.length) {
 			dynamicPaths.push(route.path);
-			[id, node] = codegen.defineDynamicRoute(route);
+			[id, node] = codegen.defineDynamicRoute(route, langParamName);
 		} else {
 			staticPaths.push(route.path);
-			[id, node] = codegen.defineStaticRoute(route);
+			[id, node] = codegen.defineStaticRoute(route, langParamName);
 		}
 		definitions.push(node);
 		exports.push([id, route.path]);

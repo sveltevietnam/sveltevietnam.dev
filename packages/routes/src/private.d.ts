@@ -1,4 +1,4 @@
-export type RoutesOptions = {
+export type RoutesOptions<RoutePath extends string, Language extends string = string> = {
 	/**
 	 * path to the routes directory,
 	 * i.e `kit.files.routes`
@@ -15,16 +15,34 @@ export type RoutesOptions = {
 	 * when true will write debug YAML to outdir
 	 */
 	debug: boolean;
+	localization?: {
+		/**
+		 * the parameter on how to resolve the language at runtime
+		 * this can be a route param or an explicit param
+		 */
+		param: string;
+		/**
+		 * mapping of localized routes
+		 */
+		defs?: Partial<Record<RoutePath, Partial<Record<Language, string>>>>;
+	};
 };
 
 export type Route = {
 	path: string;
-	segments: string[];
-	params?: {
-		position: number;
-		name: string;
-		required: boolean;
-	}[];
+	segments:
+		| string[]
+		| {
+				[lang: string]: string[];
+				default: string[];
+		  };
+	params?: Param[];
+};
+
+export type Param = {
+	position: number;
+	name: string;
+	required: boolean;
 };
 
 export type RoutesVitePluginApi = {
