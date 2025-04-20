@@ -1,6 +1,4 @@
 <script>
-	import { setContext } from 'svelte';
-
 	import { version } from '$app/environment';
 	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
@@ -9,26 +7,17 @@
 	import ogImageVi from '$lib/assets/images/fallbacks/og.vi.jpg?url';
 	import { buildStructuredBreadcrumbs } from '$lib/meta/structured/breadcrumbs';
 	import { toStringWithContext } from '$lib/meta/structured/utils';
-	import { RoutingContext } from '$lib/routing/context.svelte';
-	import '$lib/styles/app.css';
 
-	let { children } = $props();
+	let { children, data } = $props();
 
 	const ogImage = {
 		en: ogImageEn,
 		vi: ogImageVi,
 	};
 
-	setContext('t:lang', () => page.data.sharedSettings.language);
-
-	const routing = RoutingContext.set(page.data.routing);
-	$effect(() => {
-		routing.update(page.data.routing);
-	});
-
 	/** SEO setup */
 	let meta = $derived.by(() => {
-		const lang = page.data.sharedSettings.language;
+		const lang = data.settings.language;
 		const meta = page.data.meta;
 		const title = meta?.title ?? m['svelte_vietnam.name'](lang);
 		const description = meta?.description ?? m['pages.home.desc'](lang);
@@ -42,8 +31,10 @@
 			: Array.isArray(meta.structured)
 				? meta.structured
 				: [meta.structured];
-		if (page.data.routing.breadcrumbs.length > 1) {
-			things.push(buildStructuredBreadcrumbs(lang, VITE_PUBLIC_ORIGIN, page.data.routing.breadcrumbs));
+		if (page.data.routing && page.data.routing.breadcrumbs.length > 1) {
+			things.push(
+				buildStructuredBreadcrumbs(lang, VITE_PUBLIC_ORIGIN, page.data.routing.breadcrumbs),
+			);
 		}
 		const structured = things.length > 0 ? toStringWithContext(things) : undefined;
 
@@ -123,10 +114,16 @@
 	{/if}
 
 	<!-- alternative localized links -->
-	{#each Object.entries(routing.paths) as [lang, path] (lang)}
-		<link rel="alternate" hreflang={lang} href="{VITE_PUBLIC_ORIGIN}{path}" />
-	{/each}
-	<link rel="alternate" hreflang="x-default" href="{VITE_PUBLIC_ORIGIN}{routing.paths.vi}" />
+	{#if page.data.routing}
+		{#each Object.entries(page.data.routing.paths) as [lang, path] (lang)}
+			<link rel="alternate" hreflang={lang} href="{VITE_PUBLIC_ORIGIN}{path}" />
+		{/each}
+		<link
+			rel="alternate"
+			hreflang="x-default"
+			href="{VITE_PUBLIC_ORIGIN}{page.data.routing.paths.vi}"
+		/>
+	{/if}
 </svelte:head>
 
 {@render children()}

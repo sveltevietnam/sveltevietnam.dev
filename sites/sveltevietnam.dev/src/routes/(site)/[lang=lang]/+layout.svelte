@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { lockscroll } from '@svelte-put/lockscroll';
-	import { LANGUAGES } from '@sveltevietnam/i18n';
-	import { localizeUrl } from '@sveltevietnam/i18n/utils';
-	import { onMount } from 'svelte';
+	// import { LANGUAGES } from '@sveltevietnam/i18n';
+	// import { localizeUrl } from '@sveltevietnam/i18n/utils';
+	import { onMount, setContext } from 'svelte';
 
 	import { version } from '$app/environment';
-	import { beforeNavigate, goto } from '$app/navigation';
+	// import { beforeNavigate, goto } from '$app/navigation';
 	import { navigating, page } from '$app/state';
 	import { Footer } from '$lib/components/footer';
 	import { Header } from '$lib/components/header';
@@ -16,17 +16,28 @@
 	import { DialogContext } from '$lib/dialogs/context.svelte';
 	import NotificationPortal from '$lib/notifications/components/NotificationPortal.svelte';
 	import { NotificationContext } from '$lib/notifications/context.svelte';
+	import { RoutingContext } from '$lib/routing/context.svelte.js';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	let { children, data } = $props();
 
+	const routing = RoutingContext.set(page.data.routing);
+	$effect(() => {
+		routing.update(page.data.routing);
+	});
+
+	const settings = SettingsContext.set(data.settings);
+	$effect(() => {
+		// FIXME: find mechanism that can do this within context itself
+		settings.language = data.settings.language;
+	});
+
 	const dialog = DialogContext.set();
-	const settings = SettingsContext.set(page.data.sharedSettings);
 	const noti = NotificationContext.set();
 
-	$effect(() => {
-		settings.language = page.data.sharedSettings.language;
-	});
+	// for @sveltevietnam/i18n T.svelte component
+	// TODO: create some abstraction around this
+	setContext('t:lang', () => data.settings.language);
 
 	onMount(async () => {
 		(await import('$lib/easter/ascii-pho')).default();
@@ -37,15 +48,15 @@
 	 * reroute to keep the lang segment. For example:
 	 * navigate from `/en/blog` to `/events` will reroute to `/en/events`
 	 */
-	beforeNavigate(({ to, cancel, from }) => {
-		const fromLang = from?.params?.lang;
-		const toLang = to?.params?.lang;
-		if (to && fromLang && !toLang) {
-			cancel();
-			const localized = localizeUrl(to.url, LANGUAGES, fromLang);
-			goto(localized);
-		}
-	});
+	// beforeNavigate(({ to, cancel, from }) => {
+	// 	const fromLang = from?.params?.lang;
+	// 	const toLang = to?.params?.lang;
+	// 	if (to && fromLang && !toLang) {
+	// 		cancel();
+	// 		const localized = localizeUrl(to.url, LANGUAGES, fromLang);
+	// 		goto(localized);
+	// 	}
+	// });
 </script>
 
 <svelte:document use:lockscroll={settings.scrolllock} />

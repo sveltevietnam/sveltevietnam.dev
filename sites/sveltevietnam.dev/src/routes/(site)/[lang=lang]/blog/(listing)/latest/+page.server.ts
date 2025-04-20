@@ -2,7 +2,6 @@ import { loadBlogPosts } from '$data/blog/posts';
 import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
-import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { getPaginationFromUrl } from '$lib/utils/url';
 
 import type { PageServerLoad } from './$types';
@@ -14,9 +13,8 @@ const ogImage = {
 	en: ogImageEn,
 };
 
-export const load: PageServerLoad = async ({ url, locals, depends }) => {
-	depends(LOAD_DEPENDENCIES.LANGUAGE);
-	const lang = locals.sharedSettings.language;
+export const load: PageServerLoad = async ({ params, url }) => {
+	const { lang } = params;
 	const pagination = getPaginationFromUrl(url);
 	const { posts, total } = await loadBlogPosts(lang, pagination.current, pagination.per);
 	return {

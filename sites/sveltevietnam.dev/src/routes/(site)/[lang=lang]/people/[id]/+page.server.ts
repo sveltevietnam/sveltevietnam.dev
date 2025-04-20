@@ -6,7 +6,6 @@ import { loadPerson } from '$data/people';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
-import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { buildStructuredPerson } from '$lib/meta/structured/people';
 import { getPaginationFromUrl } from '$lib/utils/url';
 
@@ -22,10 +21,8 @@ const ogImage = {
 
 export const prerender = false;
 
-export const load: PageServerLoad = async ({ url, locals, depends, params }) => {
-	depends(LOAD_DEPENDENCIES.LANGUAGE);
-
-	const lang = locals.sharedSettings.language;
+export const load: PageServerLoad = async ({ url, params }) => {
+	const { lang } = params;
 	const person = await loadPerson(params.id, lang, true);
 	if (!person) {
 		// TODO: assign a unique code to this error

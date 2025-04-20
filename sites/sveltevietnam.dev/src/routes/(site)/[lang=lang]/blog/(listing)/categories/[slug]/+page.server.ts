@@ -5,16 +5,13 @@ import { searchBlogPosts } from '$data/blog/posts';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
-import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { buildStructuredBlogCategoryPage } from '$lib/meta/structured/blog';
 import { getPaginationFromUrl } from '$lib/utils/url';
 
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ parent, url, locals, depends, params }) => {
-	depends(LOAD_DEPENDENCIES.LANGUAGE);
-
-	const lang = locals.sharedSettings.language;
+export const load: PageServerLoad = async ({ url, params }) => {
+	const { lang } = params;
 	const category = await loadBlogCategoryBySlug(params.slug, lang);
 	if (!category) {
 		// TODO: assign a unique code to this error
@@ -35,7 +32,6 @@ export const load: PageServerLoad = async ({ parent, url, locals, depends, param
 			},
 		}),
 		loadBlogCategory(category.id, otherLang),
-		parent(),
 	]);
 
 	const breadcrumbs = b['/:lang/blog/categories/:slug']({

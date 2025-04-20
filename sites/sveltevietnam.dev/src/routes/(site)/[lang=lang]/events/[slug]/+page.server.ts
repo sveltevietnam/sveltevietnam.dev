@@ -9,7 +9,6 @@ import {
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
-import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { buildStructuredEvent } from '$lib/meta/structured/events';
 
 import ogImageEn from '../_page/og-events.en.jpg?url';
@@ -25,10 +24,8 @@ const ogImageFallback = {
 // TODO: export `entries` to support prerendering, once routing strategy has matured
 // @see {@link https://svelte.dev/docs/kit/page-options#entries}
 
-export const load: PageServerLoad = async ({ params, locals, depends }) => {
-	depends(LOAD_DEPENDENCIES.LANGUAGE);
-
-	const lang = locals.sharedSettings.language;
+export const load: PageServerLoad = async ({ params }) => {
+	const { lang } = params;
 	const otherLang = lang === 'en' ? 'vi' : 'en';
 
 	const event = await loadEventBySlug(params.slug, lang);

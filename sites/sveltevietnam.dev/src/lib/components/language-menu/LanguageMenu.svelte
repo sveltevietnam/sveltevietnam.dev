@@ -3,9 +3,7 @@
 	import { T } from '@sveltevietnam/i18n';
 	import type { HTMLAttributes } from 'svelte/elements';
 
-	import { invalidate } from '$app/navigation';
 	import * as m from '$data/locales/generated/messages';
-	import { LOAD_DEPENDENCIES } from '$lib/constants';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
@@ -23,11 +21,6 @@
 			: m['components.language_menu.english'],
 	);
 	let open = $state(false);
-
-	function reloadLanguage() {
-		open = false;
-		invalidate(LOAD_DEPENDENCIES.LANGUAGE);
-	}
 </script>
 
 <nav
@@ -60,7 +53,6 @@
 						px-4 py-2"
 						href={routing.paths.vi}
 						data-current={settings.language === 'vi'}
-						onclick={reloadLanguage}
 					>
 						<!-- no need to announce this flag image -->
 						<img class="h-6 w-9" src={flagVn} alt="" width="36" height="24" />
@@ -74,7 +66,6 @@
 						px-4 py-2"
 						data-current={settings.language === 'en'}
 						href={routing.paths.en}
-						onclick={reloadLanguage}
 					>
 						<!-- no need to announce this flag image -->
 						<img class="h-6 w-9" src={flagGb} alt="" width="36" height="24" />

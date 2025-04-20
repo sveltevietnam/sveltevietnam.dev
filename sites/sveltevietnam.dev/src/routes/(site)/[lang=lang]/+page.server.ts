@@ -1,16 +1,14 @@
 import { loadBlogPost, ids } from '$data/blog/posts';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
-import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { buildStructuredOrganization } from '$lib/meta/structured/organization';
 
 import type { PageServerLoad } from './$types';
 
 export const prerender = false;
 
-export const load: PageServerLoad = async ({ locals, depends }) => {
-	depends(LOAD_DEPENDENCIES.LANGUAGE);
-	const lang = locals.sharedSettings.language;
+export const load: PageServerLoad = async ({ params }) => {
+	const { lang } = params;
 	return {
 		routing: {
 			breadcrumbs: b['/:lang']({ lang }),

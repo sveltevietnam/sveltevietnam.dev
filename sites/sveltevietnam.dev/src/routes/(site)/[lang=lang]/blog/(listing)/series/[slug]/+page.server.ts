@@ -10,8 +10,8 @@ import { getPaginationFromUrl } from '$lib/utils/url';
 
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ url, locals, params }) => {
-	const lang = locals.sharedSettings.language;
+export const load: PageServerLoad = async ({ url, params }) => {
+	const { lang } = params;
 	const series = await loadBlogSeriesBySlug(params.slug, lang);
 	if (!series) {
 		// TODO: assign a unique code to this error

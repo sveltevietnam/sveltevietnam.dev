@@ -12,7 +12,6 @@ import { loadPersonAvatar } from '$data/people';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
-import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { buildStructuredBlogPost } from '$lib/meta/structured/blog';
 
 import ogImageEn from '../(listing)/_page/og-blog.en.jpg?url';
@@ -28,10 +27,8 @@ import type { PageServerLoad } from './$types';
 // TODO: export `entries` to support prerendering, once routing strategy has matured
 // @see {@link https://svelte.dev/docs/kit/page-options#entries}
 
-export const load: PageServerLoad = async ({ params, locals, depends }) => {
-	depends(LOAD_DEPENDENCIES.LANGUAGE);
-
-	const lang = locals.sharedSettings.language;
+export const load: PageServerLoad = async ({ params }) => {
+	const { lang } = params;
 	const post = await loadBlogPostBySlug(params.slug, lang);
 	if (!post) {
 		// TODO: assign a unique code to this error

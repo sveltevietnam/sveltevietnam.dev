@@ -7,7 +7,6 @@ import type { LayoutServerLoad } from './$types';
 export const prerender = false;
 
 export const load: LayoutServerLoad = ({ locals, cookies }) => {
-	const lang = locals.sharedSettings.language;
 	let splash: 'disabled' | 'short' | 'long' = 'disabled';
 	/**
 	 * take a timestamp for the last fresh visit, that is:
@@ -19,11 +18,11 @@ export const load: LayoutServerLoad = ({ locals, cookies }) => {
 	 */
 	const lastFreshVisitAt = cookies.get(VITE_PRIVATE_COOKIE_NAME_LAST_FRESH_VISIT_AT);
 	if (!lastFreshVisitAt || !locals.internalReferer) {
-		if (locals.sharedSettings.splash !== 'disabled') {
-			if (locals.sharedSettings.splash === 'random') {
+		if (locals.splash !== 'disabled') {
+			if (locals.splash === 'random') {
 				splash = Math.random() < 0.8 ? 'short' : 'long';
 			} else {
-				splash = locals.sharedSettings.splash;
+				splash = locals.splash;
 			}
 		}
 		cookies.set(VITE_PRIVATE_COOKIE_NAME_LAST_FRESH_VISIT_AT, Date.now().toString(), {
@@ -32,5 +31,5 @@ export const load: LayoutServerLoad = ({ locals, cookies }) => {
 		});
 	}
 
-	return { splash, lang };
+	return { splash };
 };

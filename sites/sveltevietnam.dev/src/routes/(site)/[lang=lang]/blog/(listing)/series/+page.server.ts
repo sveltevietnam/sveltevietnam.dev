@@ -2,7 +2,6 @@ import { loadBlogSeries, ids } from '$data/blog/series';
 import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
-import { LOAD_DEPENDENCIES } from '$lib/constants';
 
 import type { PageServerLoad } from './$types';
 import ogImageEn from './_page/og-blog-series.en.jpg?url';
@@ -13,10 +12,8 @@ const ogImage = {
 	en: ogImageEn,
 };
 
-export const load: PageServerLoad = async ({ locals, depends }) => {
-	depends(LOAD_DEPENDENCIES.LANGUAGE);
-	const lang = locals.sharedSettings.language;
-
+export const load: PageServerLoad = async ({ params }) => {
+	const { lang } = params;
 	return {
 		series: (await Promise.all(ids.map((id) => loadBlogSeries(id, lang)))).filter(Boolean),
 		routing: {
