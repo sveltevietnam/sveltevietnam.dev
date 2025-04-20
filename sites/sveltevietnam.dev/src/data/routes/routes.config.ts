@@ -45,9 +45,6 @@ export default defineConfig<AllRoutePath, App.Language>({
 			'/:lang/sponsor': {
 				vi: '/:lang/tai-tro',
 			},
-			'/blue-screen-of-death': {
-				vi: '/man-hinh-xanh',
-			},
 		},
 	},
 	names: {
@@ -109,10 +106,6 @@ export default defineConfig<AllRoutePath, App.Language>({
 			'/:lang/sponsor': {
 				vi: 'Tài trợ',
 				default: 'Sponsor',
-			},
-			'/blue-screen-of-death': {
-				vi: 'Màn hình xanh',
-				default: 'Blue Screen of Death',
 			},
 			'/:lang/sitemap.xml': {
 				vi: 'Sơ đồ trang',
