@@ -11,9 +11,7 @@ messages:
       slug: he-sinh-thai
       desc: Bàn về Svelte và SvelteKit trong ngữ cảnh hệ sinh thái web và phát triển
         phần mềm, cũng như cách áp dụng các công cụ, thư viện, và thiết kế hạ tầng
-        trong dự án sử dụng Svelte và SvelteKit development, and discussing how to
-        apply toolings, libraries, design pattern, and infrastructure decisions in
-        projects using Svelte and SvelteKit xây dựng cộng đồng
+        trong dự án sử dụng Svelte và SvelteKit
     insider:
       name: Insider
       slug: insider
