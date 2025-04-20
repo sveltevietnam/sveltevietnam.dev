@@ -59,7 +59,7 @@ export function defineStaticRoute(route, langParamName) {
 							factory.createStringLiteral(lang),
 						),
 						factory.createBlock(
-							[factory.createReturnStatement(factory.createStringLiteral('/' + segs.join('/')))],
+							[factory.createReturnStatement(factory.createStringLiteral(segs.join('/')))],
 							true,
 						),
 						undefined,
