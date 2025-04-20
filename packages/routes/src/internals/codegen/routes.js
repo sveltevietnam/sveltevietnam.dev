@@ -23,10 +23,12 @@ export function defineStaticRoute(route, langParamName) {
 
 	if (Array.isArray(route.segments)) {
 		id = utils.buildRouteIdentifier(route.segments);
-		path = '/' + route.segments.join('/');
+		path = route.segments.join('/');
+		if (path === '') path = '/';
 	} else {
 		const { default: defaultSegments, ...langToSegments } = route.segments;
-		path = '/' + defaultSegments.join('/');
+		path = defaultSegments.join('/');
+		if (path === '') path = '/';
 
 		// NOTE: assuming latin here (svelte kit routes)
 		id = utils.buildRouteIdentifier(defaultSegments);
@@ -34,9 +36,7 @@ export function defineStaticRoute(route, langParamName) {
 		localized = Object.keys(langToSegments).length > 0;
 		if (localized) {
 			if (!langParamName) {
-				throw new Error(
-					'Dynamic route with localization must provide a param name to resolve language',
-				);
+				throw new Error('Route with localization must provide a param name to resolve language');
 			}
 
 			paramDeclaration.push(
@@ -216,9 +216,7 @@ export function defineDynamicRoute(route, langParamName) {
 		localized = Object.keys(langToSegments).length > 0;
 		if (localized) {
 			if (!langParamName) {
-				throw new Error(
-					'Dynamic route with localization must provide a param name to resolve language',
-				);
+				throw new Error('Route with localization must provide a param name to resolve language');
 			}
 			for (const [lang, segs] of Object.entries(langToSegments)) {
 				ifs.push(
@@ -315,20 +313,55 @@ function exportUnionStringLiteralTypeDef(id, literals) {
 /**
  * @param {string[]} dynamicPaths
  * @param {string[]} staticPaths
+ * @param {string[]} excludedPaths
  * @returns {ts.Node[]}
  */
-export function exportRoutePathTypeDef(dynamicPaths, staticPaths) {
-	return [
-		exportUnionStringLiteralTypeDef('DynamicRoutePath', dynamicPaths),
-		exportUnionStringLiteralTypeDef('StaticRoutePath', staticPaths),
-		factory.createTypeAliasDeclaration(
-			[factory.createToken(ts.SyntaxKind.ExportKeyword)],
-			factory.createIdentifier('RoutePath'),
-			undefined,
-			factory.createUnionTypeNode([
-				factory.createTypeReferenceNode(factory.createIdentifier('DynamicRoutePath'), undefined),
-				factory.createTypeReferenceNode(factory.createIdentifier('StaticRoutePath'), undefined),
-			]),
-		),
-	];
+export function exportRoutePathTypeDef(dynamicPaths, staticPaths, excludedPaths) {
+	/** @type {ts.Node[]} */
+	const nodes = [];
+	/** @type {ts.TypeReferenceNode[]} */
+	const unions = [];
+
+	if (dynamicPaths.length) {
+		const id = 'DynamicRoutePath';
+		nodes.push(exportUnionStringLiteralTypeDef(id, dynamicPaths));
+		unions.push(factory.createTypeReferenceNode(factory.createIdentifier(id), undefined));
+	}
+
+	if (staticPaths.length) {
+		const id = 'StaticRoutePath';
+		nodes.push(exportUnionStringLiteralTypeDef(id, staticPaths));
+		unions.push(factory.createTypeReferenceNode(factory.createIdentifier(id), undefined));
+	}
+
+	if (excludedPaths.length) {
+		nodes.push(exportUnionStringLiteralTypeDef('ExcludedRoutePath', excludedPaths));
+	}
+
+	if (unions.length) {
+		nodes.push(
+			factory.createTypeAliasDeclaration(
+				[factory.createToken(ts.SyntaxKind.ExportKeyword)],
+				factory.createIdentifier('RoutePath'),
+				undefined,
+				factory.createUnionTypeNode(unions),
+			),
+		);
+	}
+
+	if (unions.length && excludedPaths.length) {
+		nodes.push(
+			factory.createTypeAliasDeclaration(
+				[factory.createToken(ts.SyntaxKind.ExportKeyword)],
+				factory.createIdentifier('AllRoutePath'),
+				undefined,
+				factory.createUnionTypeNode([
+					...unions,
+					factory.createTypeReferenceNode(factory.createIdentifier('ExcludedRoutePath'), undefined),
+				]),
+			),
+		);
+	}
+
+	return nodes;
 }

@@ -84,15 +84,21 @@ export async function routes(options = {}) {
 			}
 
 			// transform
-			const { modules, report } = transform(routes, options.localization?.param);
+			const { modules, report } = transform(routes, {
+				exclude: options.exclude,
+				breadcrumbs: options.names?.breadcrumbs,
+				localization: options.localization,
+			});
 			logger.success(
-				`successfuly collected info of ${pico.bold(report.dynamicRoutes.length)} dynamic and ${pico.bold(report.staticRoutes.length)} static routes to ${pico.yellow(outdir)}`,
+				`successfully collected info to ${pico.yellow(outdir)} for ${pico.bold(report.dynamicRoutes.length)} dynamic route(s) and ${pico.bold(report.staticRoutes.length)} static route(s) ${pico.yellow(report.excludedRoutes.length > 0 ? `(${report.excludedRoutes.length} were excluded from config` : '')})`,
 			);
 
 			await Promise.all([
 				fs.writeFile(path.posix.join(absOutDir, 'index.js'), modules.routes),
-				modules.names && fs.writeFile(path.posix.join(absOutDir, 'names.js'), modules.names),
 				modules.types && fs.writeFile(path.posix.join(absOutDir, 'types.ts'), modules.types),
+				modules.names && fs.writeFile(path.posix.join(absOutDir, 'names.js'), modules.names),
+				modules.breadcrumbs &&
+					fs.writeFile(path.posix.join(absOutDir, 'breadcrumbs.js'), modules.breadcrumbs),
 			]);
 		},
 	};

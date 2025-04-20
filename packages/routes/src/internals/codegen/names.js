@@ -34,9 +34,7 @@ export function defineStaticName(route, langParamName) {
 		localized = Object.keys(langToName).length > 0;
 		if (localized) {
 			if (!langParamName) {
-				throw new Error(
-					'Dynamic route with localization must provide a param name to resolve language',
-				);
+				throw new Error('Route with localization must provide a param name to resolve language');
 			}
 
 			paramDeclaration.push(

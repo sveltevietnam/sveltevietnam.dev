@@ -23,51 +23,55 @@ export async function collectRoutes(cwd, routesPath, logger) {
 
 	/** @type {import('../private.d.ts').Route[]} */
 	const routes = [];
-	for (const pagePath of kitPagePaths) {
+	for (let pagePath of kitPagePaths) {
+		if (pagePath === '.') pagePath = '';
+
 		/** @type {string[]} */
-		const segments = [];
+		const segments = [''];
 		/** @type {import('../private.d.ts').Route['params']} */
 		const params = [];
 
-		const chunks = pagePath.split(path.posix.sep);
-		for (let i = 0; i < chunks.length; i++) {
-			const chunk = chunks[i];
-			// ignore layout group
-			if (chunk.startsWith('(') && chunk.endsWith(')')) {
-				if (chunks.length === 1) {
-					// root path
-					segments.push('');
-				}
-				continue;
-			}
-
-			// parse param
-			if (chunk.startsWith('[') && chunk.endsWith(']')) {
-				const required = !chunk.startsWith('[[');
-				const matches = chunk.match(/\[+(?:\.\.\.)?([^\]=]*)=?[^\]]*\]+/);
-
-				if (!matches) {
-					logger.warn(
-						`Fail to parse "${pico.yellow(chunk)}" segment of ${pico.yellow(pagePath)} route`,
-					);
-					break;
+		if (pagePath !== '') {
+			const chunks = pagePath.split(path.posix.sep);
+			for (let i = 0; i < chunks.length; i++) {
+				const chunk = chunks[i];
+				// ignore layout group
+				if (chunk.startsWith('(') && chunk.endsWith(')')) {
+					if (chunks.length === 1) {
+						// root path
+						segments.push('');
+					}
+					continue;
 				}
 
-				const param = matches[1];
-				segments.push(`:${param}${required ? '' : '?'}`);
-				params.push({
-					position: segments.length - 1,
-					name: param,
-					required,
-				});
-				continue;
-			}
+				// parse param
+				if (chunk.startsWith('[') && chunk.endsWith(']')) {
+					const required = !chunk.startsWith('[[');
+					const matches = chunk.match(/\[+(?:\.\.\.)?([^\]=]*)=?[^\]]*\]+/);
 
-			segments.push(chunk);
+					if (!matches) {
+						logger.warn(
+							`Fail to parse "${pico.yellow(chunk)}" segment of ${pico.yellow(pagePath)} route`,
+						);
+						break;
+					}
+
+					const param = matches[1];
+					segments.push(`:${param}${required ? '' : '?'}`);
+					params.push({
+						position: segments.length - 1,
+						name: param,
+						required,
+					});
+					continue;
+				}
+				segments.push(chunk);
+			}
 		}
 
 		if (segments.length) {
-			const path = '/' + segments.join('/');
+			let path = segments.join('/');
+			if (path === '') path = '/';
 			routes.push({
 				path,
 				segments,
