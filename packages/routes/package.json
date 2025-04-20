@@ -12,6 +12,10 @@
 			"types": "./types/index.d.ts",
 			"import": "./src/index.js"
 		},
+		"./runtime": {
+			"types": "./types/index.d.ts",
+			"import": "./src/runtime/index.js"
+		},
 		"./vite": {
 			"types": "./types/index.d.ts",
 			"import": "./src/vite.js"

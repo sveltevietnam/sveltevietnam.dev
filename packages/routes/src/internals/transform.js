@@ -29,6 +29,12 @@ export function transform(routes, options) {
 			/** @type {[identifier: string, literal: string][]}*/
 			exports: [],
 		},
+		reroute: {
+			/** @type {import('../runtime/types.public.js').DynamicMapping[]} */
+			dynamicMappings: [],
+			/** @type {[localized: string, kit: string][]} */
+			staticMappings: [],
+		},
 		names: {
 			/** @type {import('typescript').Node[]} */
 			definitions: [],
@@ -66,10 +72,70 @@ export function transform(routes, options) {
 			report.dynamicRoutes.push(route);
 			modules.types.dynamicPaths.push(route.path);
 			[id, routeNode] = codegen.defineDynamicRoute(route, options.localization?.param);
+
+			// check if reroute mapping is necessary
+			const { default: defaultSegments, ...langToSegments } = Array.isArray(route.segments)
+				? { default: route.segments }
+				: route.segments;
+			if (Object.keys(langToSegments).length > 0) {
+				/** @type {import('../private.d.ts').Param | null} */
+				let langParam = null;
+				/** @type {number[]} */
+				const paramPositions = [];
+				for (const param of route.params) {
+					if (param.name === options.localization?.param) {
+						langParam = param;
+					} else {
+						paramPositions.push(param.position);
+					}
+				}
+				if (!paramPositions.length) {
+					// static mapping
+					modules.reroute.staticMappings.push(
+						...Object.entries(langToSegments).map(([lang, segments]) => {
+							const localized = [...segments];
+							const kit = [...defaultSegments];
+							if (langParam) {
+								localized[langParam.position] = lang;
+								kit[langParam.position] = lang;
+							}
+							return /** @type {[string, string]} */ ([localized.join('/'), kit.join('/')]);
+						}),
+					);
+				} else {
+					// dynamic mapping
+					modules.reroute.dynamicMappings.push(
+						...Object.entries(langToSegments).map(([lang, segments]) => {
+							const localized = [...segments];
+							const kit = [...defaultSegments];
+							if (langParam) {
+								localized[langParam.position] = lang;
+								kit[langParam.position] = lang;
+							}
+							return { localized, paramPositions, kit };
+						}),
+					);
+				}
+			}
 		} else {
 			report.staticRoutes.push(route);
 			modules.types.staticPaths.push(route.path);
 			[id, routeNode] = codegen.defineStaticRoute(route, options.localization?.param);
+
+			// check if reroute mapping is necessary
+			const { default: defaultSegments, ...langToSegments } = Array.isArray(route.segments)
+				? { default: route.segments }
+				: route.segments;
+			if (Object.keys(langToSegments).length > 0) {
+				// static mapping
+				modules.reroute.staticMappings.push(
+					...Object.entries(langToSegments).map(([, segments]) => {
+						const localized = [...segments];
+						const kit = [...defaultSegments];
+						return /** @type {[string, string]} */ ([localized.join('/'), kit.join('/')]);
+					}),
+				);
+			}
 		}
 
 		// routes.js
@@ -137,6 +203,18 @@ export function transform(routes, options) {
 						codegen.exportIdentifierAsLiterals(modules.breadcrumbs.exports),
 					])
 				: undefined,
+			reroute:
+				modules.reroute.dynamicMappings.length || modules.reroute.staticMappings.length
+					? codegen.print([
+							codegen.importRerouteRuntime(),
+							codegen.newline(),
+							codegen.defineRerouteStaticMappings(modules.reroute.staticMappings),
+							codegen.newline(),
+							codegen.defineRerouteDynamicMappings(modules.reroute.dynamicMappings),
+							codegen.newline(),
+							codegen.exportRerouteFactory(),
+						])
+					: undefined,
 		},
 	};
 }

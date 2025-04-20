@@ -20,7 +20,7 @@ export const load: PageServerLoad = async ({ url, params }) => {
 
 	const otherLang = lang === 'en' ? 'vi' : 'en';
 	const pagination = getPaginationFromUrl(url);
-	const [{ posts, total }] = await Promise.all([
+	const [{ posts, total }, otherLangMetadata] = await Promise.all([
 		searchBlogPosts({
 			lang,
 			where: {
@@ -42,7 +42,7 @@ export const load: PageServerLoad = async ({ url, params }) => {
 		[lang]: p['/:lang/blog/categories/:slug']({ lang, slug: category.slug }),
 		[otherLang]: p['/:lang/blog/categories/:slug']({
 			lang: otherLang,
-			slug: category?.slug ?? category.slug,
+			slug: otherLangMetadata?.slug ?? category.slug,
 		}),
 	} as Record<App.Language, string>;
 

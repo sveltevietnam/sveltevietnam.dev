@@ -116,6 +116,7 @@ export type TransformOutput = {
 		types?: string;
 		names?: string;
 		breadcrumbs?: string;
+		reroute?: string;
 	};
 };
 

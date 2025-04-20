@@ -58,7 +58,10 @@ export async function routes(options = {}) {
 						const def = defs[/** @type {RoutePath} */ (slicedPath)];
 						if (def) {
 							for (const [lang, localizedPath] of Object.entries(def)) {
-								route.segments[lang] = localizedPath.split('/');
+								route.segments[lang] = [
+									...localizedPath.split('/'),
+									...route.segments.default.slice(i + 1),
+								];
 							}
 							break;
 						}
@@ -100,6 +103,7 @@ export async function routes(options = {}) {
 				modules.names && fs.writeFile(path.posix.join(absOutDir, 'names.js'), modules.names),
 				modules.breadcrumbs &&
 					fs.writeFile(path.posix.join(absOutDir, 'breadcrumbs.js'), modules.breadcrumbs),
+				modules.reroute && fs.writeFile(path.posix.join(absOutDir, 'reroute.js'), modules.reroute),
 			]);
 		},
 	};
