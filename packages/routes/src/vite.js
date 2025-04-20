@@ -53,11 +53,12 @@ export async function routes(options = {}) {
 					};
 
 					for (let i = route.segments.default.length - 1; i >= 0; i--) {
-						const slicedPath = '/' + route.segments.default.slice(0, i + 1).join('/');
+						let slicedPath = route.segments.default.slice(0, i + 1).join('/');
+						if (slicedPath === '') slicedPath = '/';
 						const def = defs[/** @type {RoutePath} */ (slicedPath)];
 						if (def) {
 							for (const [lang, localizedPath] of Object.entries(def)) {
-								route.segments[lang] = localizedPath.split('/').filter(Boolean);
+								route.segments[lang] = localizedPath.split('/');
 							}
 							break;
 						}
