@@ -14,7 +14,7 @@
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
-	import type { PageData } from '../../../routes/[lang=lang]/events/[slug]/$types';
+	import type { PageData } from '../../../routes/(site)/[lang=lang]/events/[slug]/$types';
 
 	import imgVideo2Thumbnail from './images/a-few-secrets-of-sveltevietnamdev.jpg?enhanced&w=1200;630&imagetools';
 	import imgLivestreamMoment from './images/livestream-moment.jpg?enhanced&w=1200;630&imagetools';
