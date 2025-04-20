@@ -17,7 +17,7 @@
 
 	/** SEO setup */
 	let meta = $derived.by(() => {
-		const lang = data.settings.language;
+		const lang = data.language;
 		const meta = page.data.meta;
 		const title = meta?.title ?? m['svelte_vietnam.name'](lang);
 		const description = meta?.description ?? m['pages.home.desc'](lang);
