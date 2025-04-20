@@ -5,7 +5,7 @@ import type { AllRoutePath } from './generated/types';
 export default defineConfig<AllRoutePath, App.Language>({
 	outdir: 'src/data/routes/generated',
 	debug: true,
-	exclude: ['/', '/:lang/sitemap.xml', '/:lang/rss.xml'],
+	exclude: ['/'],
 	localization: {
 		param: 'lang',
 		defs: {
@@ -53,7 +53,7 @@ export default defineConfig<AllRoutePath, App.Language>({
 	names: {
 		breadcrumbs: {
 			root: '/:lang',
-			exclude: ['/blue-screen-of-death'],
+			exclude: ['/blue-screen-of-death', '/:lang/sitemap.xml', '/:lang/rss.xml'],
 		},
 		defs: {
 			'/': 'IHOME',
@@ -114,6 +114,11 @@ export default defineConfig<AllRoutePath, App.Language>({
 				vi: 'Màn hình xanh',
 				default: 'Blue Screen of Death',
 			},
+			'/:lang/sitemap.xml': {
+				vi: 'Sơ đồ trang',
+				default: 'Sitemap',
+			},
+			'/:lang/rss.xml': 'XSS',
 		},
 	},
 });

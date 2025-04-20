@@ -5,7 +5,7 @@ import { buildStructuredTextWithLang } from './utils';
 export function buildStructuredBreadcrumbs(
 	lang: App.Language,
 	origin: string,
-	routes: App.Route[],
+	routes: { path: string; name: string }[],
 ): BreadcrumbList {
 	return {
 		'@type': 'BreadcrumbList',

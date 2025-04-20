@@ -5,8 +5,11 @@
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
 	import { GradientBackground } from '$lib/components/gradient-background';
 	import { Pagination } from '$lib/components/pagination';
+	import { RoutingContext } from '$lib/routing/context.svelte.js';
 
 	let { data } = $props();
+
+	const routing = RoutingContext.get();
 
 	let paginationUrl = $derived.by(() => {
 		const url = new URL(page.url);
@@ -17,12 +20,12 @@
 
 <main>
 	<BlogListingIntro
-		breadcrumbs={data.routing.breadcrumbs}
+		breadcrumbs={routing.breadcrumbs}
 		heading={data.series.name}
 		description={data.series.description}
 	/>
 
-	<section class="py-section max-w-pad space-y-8 desktop:space-y-10">
+	<section class="py-section max-w-pad desktop:space-y-10 space-y-8">
 		<BlogPostCommonList posts={data.posts} id="listing" />
 		{#if data.pagination.max > 1}
 			<Pagination class="ml-auto" url={paginationUrl} {...data.pagination} />

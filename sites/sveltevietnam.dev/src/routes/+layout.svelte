@@ -19,6 +19,13 @@
 		vi: ogImageVi,
 	};
 
+	setContext('t:lang', () => page.data.sharedSettings.language);
+
+	const routing = RoutingContext.set(page.data.routing);
+	$effect(() => {
+		routing.update(page.data.routing);
+	});
+
 	/** SEO setup */
 	let meta = $derived.by(() => {
 		const lang = page.data.sharedSettings.language;
@@ -72,13 +79,6 @@
 			structured,
 		};
 	});
-
-	const routing = RoutingContext.set(page.data.routing);
-	setContext('t:lang', () => page.data.sharedSettings.language);
-
-	$effect(() => {
-		routing.update(page.data.routing);
-	});
 </script>
 
 <svelte:head>
@@ -123,10 +123,10 @@
 	{/if}
 
 	<!-- alternative localized links -->
-	{#each Object.entries(routing.paths) as [lang, route] (lang)}
-		<link rel="alternate" hreflang={lang} href="{VITE_PUBLIC_ORIGIN}{route.path}" />
+	{#each Object.entries(routing.paths) as [lang, path] (lang)}
+		<link rel="alternate" hreflang={lang} href="{VITE_PUBLIC_ORIGIN}{path}" />
 	{/each}
-	<link rel="alternate" hreflang="x-default" href="{VITE_PUBLIC_ORIGIN}{routing.paths.vi.path}" />
+	<link rel="alternate" hreflang="x-default" href="{VITE_PUBLIC_ORIGIN}{routing.paths.vi}" />
 </svelte:head>
 
 {@render children()}

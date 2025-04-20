@@ -1,8 +1,7 @@
 import type { SocialEvent } from 'schema-dts';
 
 import type { EventMetadata } from '$data/events';
-import { loadRoutingMap } from '$data/routing';
-import { build } from '$lib/routing/utils';
+import * as p from '$data/routes/generated';
 
 import { buildStructuredOrganization } from './organization';
 import { buildStructuredTextWithLang } from './utils';
@@ -13,8 +12,7 @@ export function buildStructuredEvent(
 	event: EventMetadata,
 	additionals?: Partial<SocialEvent> | null,
 ): SocialEvent {
-	const routingMap = loadRoutingMap();
-	const canonical = origin + build(routingMap[lang]['events/:slug'].path, event.slug);
+	const canonical = origin + p['/:lang/events/:slug']({ lang, slug: event.slug });
 	const org = buildStructuredOrganization(lang);
 	const id = `${org['@id']}/events/${event.id}`;
 	return {
@@ -25,8 +23,8 @@ export function buildStructuredEvent(
 		name: buildStructuredTextWithLang(lang, event.title),
 		description: buildStructuredTextWithLang(lang, event.description),
 		keywords: buildStructuredTextWithLang(lang, event.keywords),
-		startDate: event.startDate,
-		endDate: event.endDate,
+		startDate: event.startDate.toISOString(),
+		endDate: event.endDate.toISOString(),
 		inLanguage: lang,
 		organizer: org,
 		...(event.thumbnail && {

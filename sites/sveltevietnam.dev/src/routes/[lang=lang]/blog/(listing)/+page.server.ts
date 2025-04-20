@@ -1,6 +1,8 @@
 import { loadBlogCategory } from '$data/blog/categories';
 import { searchBlogPosts, loadBlogPosts } from '$data/blog/posts';
 import * as m from '$data/locales/generated/messages';
+import * as p from '$data/routes/generated';
+import * as b from '$data/routes/generated/breadcrumbs';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { buildStructuredBlog } from '$lib/meta/structured/blog';
 
@@ -43,6 +45,13 @@ export const load: PageServerLoad = async ({ locals, depends }) => {
 			latest,
 			svelteAndKit: svelteAndKit.posts,
 			insider: insider.posts,
+		},
+		routing: {
+			breadcrumbs: b['/:lang/blog']({ lang }),
+			paths: {
+				vi: p['/:lang/blog']({ lang: 'vi' }),
+				en: p['/:lang/blog']({ lang: 'en' }),
+			},
 		},
 		meta: {
 			title: m['pages.blog.title'](lang),

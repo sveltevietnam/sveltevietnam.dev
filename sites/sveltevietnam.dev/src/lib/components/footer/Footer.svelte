@@ -5,10 +5,13 @@
 	import { EMAILS } from '$data/emails';
 	import { SOCIAL_LINKS } from '$data/links';
 	import * as m from '$data/locales/generated/messages';
+	import * as p from '$data/routes/generated';
+	import * as n from '$data/routes/generated/names';
 	import { GreenWebBadge } from '$lib/components/green-web-badge';
 	import { NotByAiBadge } from '$lib/components/not-by-ai-badge';
 	import { SocialLinks } from '$lib/components/social-links';
 	import { RoutingContext } from '$lib/routing/context.svelte';
+	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	let {
 		version,
@@ -19,22 +22,65 @@
 	} = $props();
 
 	const routing = RoutingContext.get();
+	const settings = SettingsContext.get();
 
 	let primaryPages = $derived([
-		'home',
-		'blog',
-		'events',
-		'jobs',
-		'sponsor',
-		'people',
-		'roadmap',
-		'design',
+		{
+			path: p['/:lang']({ lang: settings.language }),
+			name: n['/:lang'](settings.language),
+		},
+		{
+			path: p['/:lang/blog']({ lang: settings.language }),
+			name: n['/:lang/blog'](),
+		},
+		{
+			path: p['/:lang/events']({ lang: settings.language }),
+			name: n['/:lang/events'](settings.language),
+		},
+		{
+			path: p['/:lang/jobs']({ lang: settings.language }),
+			name: n['/:lang/jobs'](settings.language),
+		},
+		{
+			path: p['/:lang/sponsor']({ lang: settings.language }),
+			name: n['/:lang/sponsor'](settings.language),
+		},
+		{
+			path: p['/:lang/people']({ lang: settings.language }),
+			name: n['/:lang/people'](settings.language),
+		},
+		{
+			path: p['/:lang/roadmap']({ lang: settings.language }),
+			name: n['/:lang/roadmap'](settings.language),
+		},
+		{
+			path: p['/:lang/design']({ lang: settings.language }),
+			name: n['/:lang/design'](settings.language),
+		},
 	] as const);
-	let secondaryPages = $derived(['settings', 'code-of-conduct', 'sitemap.xml', 'rss.xml'] as const);
+	let secondaryPages = $derived([
+		{
+			path: p['/:lang/settings']({ lang: settings.language }),
+			name: n['/:lang/settings'](settings.language),
+		},
+		{
+			path: p['/:lang/code-of-conduct']({ lang: settings.language }),
+			name: n['/:lang/code-of-conduct'](settings.language),
+		},
+		{
+			path: p['/:lang/sitemap.xml']({ lang: settings.language }),
+			name: n['/:lang/sitemap.xml'](settings.language),
+		},
+		{
+			path: p['/:lang/rss.xml']({ lang: settings.language }),
+			name: n['/:lang/rss.xml'](),
+		},
+	] as const);
 </script>
 
 <footer
-	class={['from-primary-surface to-surface relative bg-gradient-to-t', cls]} {...rest}
+	class={['from-primary-surface to-surface relative bg-gradient-to-t', cls]}
+	{...rest}
 	data-sveltekit-preload-data="hover"
 >
 	<div class="max-w-pad _upper border-y pb-10 pt-14">
@@ -52,10 +98,8 @@
 		<section class="_pages tablet:space-y-6 space-y-4">
 			<p class="c-text-title"><T message={m['components.footer.navigation']} /></p>
 			<ul class="-mx-1 grid w-fit grid-cols-2 gap-x-4 gap-y-2">
-				{#each primaryPages as page (page)}
-					{@const path = routing.path(page)}
-					{@const name = routing.name(page)}
-					{@const current = routing.is(page)}
+				{#each primaryPages as { path, name } (path)}
+					{@const current = routing.is(path)}
 					<li>
 						<a class="c-link-lazy px-1 py-1" href={path} aria-current={current}>{name}</a>
 					</li>
@@ -101,10 +145,8 @@
 
 	<div class="_lower max-w-pad c-text-body-xs py-4">
 		<ul class="_pages-secondary tablet:justify-self-end -mx-1 flex items-center">
-			{#each secondaryPages as page (page)}
-				{@const path = routing.path(page)}
-				{@const name = routing.name(page)}
-				{@const current = routing.is(page)}
+			{#each secondaryPages as { path, name } (path)}
+				{@const current = routing.is(path)}
 				<li class="not-first:border-l not-first:pl-2 not-last:pr-2 border-current">
 					<a class="c-link-lazy px-1 py-1" href={path} aria-current={current}>{name}</a>
 				</li>

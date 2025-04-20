@@ -8,8 +8,11 @@
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
 	import { GradientBackground } from '$lib/components/gradient-background';
 	import { Pagination } from '$lib/components/pagination';
+	import { RoutingContext } from '$lib/routing/context.svelte.js';
 
 	let { data } = $props();
+
+	const routing = RoutingContext.get();
 
 	let paginationUrl = $derived.by(() => {
 		const url = new URL(page.url);
@@ -19,7 +22,7 @@
 </script>
 
 <main>
-	<BlogListingIntro breadcrumbs={data.routing.breadcrumbs}>
+	<BlogListingIntro breadcrumbs={routing.breadcrumbs}>
 		{#snippet heading()}
 			<T message={m['pages.blog_latest.heading']} />
 		{/snippet}

@@ -23,15 +23,16 @@ declare global {
 		interface PageData {
 			editUrl?: string;
 			routing: {
-				map: Record<App.RouteKey, App.Route>;
-				key: App.RouteKey;
-				breadcrumbs: App.Route[];
-				paths: Record<App.Language, App.Route>;
+				breadcrumbs: {
+					path: string;
+					name: string;
+				}[];
+				paths: Record<App.Language, string>;
 			};
 			sharedSettings: SharedSettings;
 			/**
 			 * per-page page metadata setup
-			 * {@see $routes/(site)/+layout.svelte} for defaults
+			 * {@see $routes/[lang]/+layout.svelte} for defaults
 			 */
 			meta?: import('$lib/meta').PageMetadata;
 		}
@@ -53,4 +54,3 @@ declare global {
 }
 
 export {};
-

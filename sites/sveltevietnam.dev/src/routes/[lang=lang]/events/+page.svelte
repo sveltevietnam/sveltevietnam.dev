@@ -4,18 +4,21 @@
 
 	import { EMAILS } from '$data/emails';
 	import * as m from '$data/locales/generated/messages';
+	import * as p from '$data/routes/generated';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { EventListing } from '$lib/components/event-listing';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { TBA } from '$lib/components/tba';
 	import { EmailRegistrationForm } from '$lib/forms/email-registration';
 	import { RoutingContext } from '$lib/routing/context.svelte';
+	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import imgIntro from './_page/images/eco-friendly.svg?url';
 
 	let { data } = $props();
 
 	const routing = RoutingContext.get();
+	const settings = SettingsContext.get();
 </script>
 
 {#snippet actionHeading(num: number, message: Message<'string', never>)}
@@ -36,7 +39,7 @@
 			class="max-w-pad tablet:flex-row tablet:gap-6 tablet:items-start flex flex-col justify-between"
 		>
 			<div class="tablet:space-y-8 space-y-6">
-				<Breadcrumbs crumbs={data.routing.breadcrumbs} />
+				<Breadcrumbs crumbs={routing.breadcrumbs} />
 				<div class="space-y-4">
 					<h1 class="c-text-heading-page text-primary-on-surface">
 						<T message={m['pages.events.heading']} />
@@ -139,10 +142,16 @@
 				{@render actionHeading(3, m['pages.events.sponsor.heading'])}
 				<p class="leading-relaxed"><T message={m['pages.events.sponsor.desc']} /></p>
 				<div class="space-y-2">
-					<a class="c-link c-text-body-xs block w-fit" href="{routing.path('sponsor')}#why">
+					<a
+						class="c-link c-text-body-xs block w-fit"
+						href="{p['/:lang/sponsor']({ lang: settings.language })}#why"
+					>
 						<T message={m['pages.events.sponsor.why']} />
 					</a>
-					<a class="c-btn c-btn--pop block w-fit" href={routing.path('sponsor')}>
+					<a
+						class="c-btn c-btn--pop block w-fit"
+						href={p['/:lang/sponsor']({ lang: settings.language })}
+					>
 						<T message={m['pages.events.sponsor.cta']} />
 					</a>
 				</div>

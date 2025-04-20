@@ -1,4 +1,6 @@
 import * as m from '$data/locales/generated/messages';
+import * as p from '$data/routes/generated';
+import * as b from '$data/routes/generated/breadcrumbs';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 
 import type { PageServerLoad } from './$types';
@@ -15,6 +17,13 @@ export const load: PageServerLoad = async ({ locals, depends }) => {
 	const lang = locals.sharedSettings.language;
 
 	return {
+		routing: {
+			breadcrumbs: b['/:lang/roadmap']({ lang }),
+			paths: {
+				vi: p['/:lang/roadmap']({ lang: 'vi' }),
+				en: p['/:lang/roadmap']({ lang: 'en' }),
+			},
+		},
 		meta: {
 			title: m['pages.roadmap.title'](lang),
 			description: m['pages.roadmap.desc'](lang),

@@ -1,5 +1,7 @@
 import { loadBlogSeries, ids } from '$data/blog/series';
 import * as m from '$data/locales/generated/messages';
+import * as p from '$data/routes/generated';
+import * as b from '$data/routes/generated/breadcrumbs';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 
 import type { PageServerLoad } from './$types';
@@ -17,6 +19,13 @@ export const load: PageServerLoad = async ({ locals, depends }) => {
 
 	return {
 		series: (await Promise.all(ids.map((id) => loadBlogSeries(id, lang)))).filter(Boolean),
+		routing: {
+			breadcrumbs: b['/:lang/blog/series']({ lang }),
+			paths: {
+				vi: p['/:lang/blog/series']({ lang: 'vi' }),
+				en: p['/:lang/blog/series']({ lang: 'en' }),
+			},
+		},
 		meta: {
 			title: m['pages.blog_latest.title'](lang),
 			description: m['pages.blog_latest.desc'](lang),

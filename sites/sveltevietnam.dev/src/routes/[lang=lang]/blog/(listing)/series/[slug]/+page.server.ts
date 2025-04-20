@@ -1,18 +1,16 @@
 import { error } from '@sveltejs/kit';
 
 import { searchBlogPosts } from '$data/blog/posts';
-import { loadBlogSeries, loadBlogSeriesBySlug } from '$data/blog/series';
+import { loadBlogSeriesBySlug, loadBlogSeries } from '$data/blog/series';
+import * as p from '$data/routes/generated';
+import * as b from '$data/routes/generated/breadcrumbs';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
-import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { buildStructuredBlogSeries } from '$lib/meta/structured/blog';
-import { buildRoutes } from '$lib/routing/utils';
 import { getPaginationFromUrl } from '$lib/utils/url';
 
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ parent, url, locals, depends, params }) => {
-	depends(LOAD_DEPENDENCIES.LANGUAGE);
-
+export const load: PageServerLoad = async ({ url, locals, params }) => {
 	const lang = locals.sharedSettings.language;
 	const series = await loadBlogSeriesBySlug(params.slug, lang);
 	if (!series) {
@@ -22,7 +20,7 @@ export const load: PageServerLoad = async ({ parent, url, locals, depends, param
 
 	const otherLang = lang === 'en' ? 'vi' : 'en';
 	const pagination = getPaginationFromUrl(url);
-	const [{ posts, total }, otherLangSeries, { routing }] = await Promise.all([
+	const [{ posts, total }, otherLangMetadata] = await Promise.all([
 		searchBlogPosts({
 			lang,
 			where: {
@@ -34,31 +32,24 @@ export const load: PageServerLoad = async ({ parent, url, locals, depends, param
 			},
 		}),
 		loadBlogSeries(series.id, otherLang),
-		parent(),
 	]);
 
-	const routeParam = {
-		name: series.name,
-		path: series.slug,
-	};
-	const otherLangRouteParam = otherLangSeries
-		? {
-				name: otherLangSeries.name,
-				path: otherLangSeries.slug,
-			}
-		: routeParam;
+	const breadcrumbs = b['/:lang/blog/series/:slug']({
+		lang,
+		slug: [series.slug, series.name],
+	});
+	const paths = {
+		[lang]: p['/:lang/blog/series/:slug']({ lang, slug: series.slug }),
+		[otherLang]: p['/:lang/blog/series/:slug']({
+			lang: otherLang,
+			slug: otherLangMetadata?.slug ?? series.slug,
+		}),
+	} as Record<App.Language, string>;
 
 	return {
 		series,
 		posts,
-		routing: {
-			...routing,
-			breadcrumbs: buildRoutes(routing.breadcrumbs, routeParam),
-			paths: {
-				[lang]: buildRoutes(routing.paths[lang], routeParam),
-				[otherLang]: buildRoutes(routing.paths[otherLang], otherLangRouteParam),
-			},
-		},
+		routing: { breadcrumbs, paths },
 		pagination: {
 			...pagination,
 			max: Math.ceil(total / pagination.per),

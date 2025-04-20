@@ -9,7 +9,7 @@
 		scrollIndicator = 'blur',
 		...rest
 	}: HTMLAttributes<HTMLElement> & {
-		crumbs: App.Route[];
+		crumbs: { path: string; name: string }[];
 		scrollIndicator?: 'blur' | 'ellipsis';
 	} = $props();
 

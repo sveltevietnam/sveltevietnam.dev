@@ -2,6 +2,7 @@
 	import { T } from '@sveltevietnam/i18n';
 
 	import * as m from '$data/locales/generated/messages';
+	import * as p from '$data/routes/generated';
 	import { BlogNewsletter } from '$lib/components/blog-newsletter';
 	import { BlogPostShowcase } from '$lib/components/blog-post-showcase';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
@@ -44,7 +45,7 @@
 	<!-- intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div class="max-w-pad space-y-10">
-			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
+			<Breadcrumbs crumbs={routing.breadcrumbs} />
 			<div class="space-y-4 text-center">
 				<h1 class="c-text-heading-page text-primary-on-surface">
 					<T message={m['pages.blog.heading']} />
@@ -72,7 +73,7 @@
 	<section class="max-w-pad py-section tablet:space-y-8 space-y-6" id="latest">
 		{@render listingHeader({
 			category: m['latest'](settings.language),
-			href: routing.path('blog/latest')!,
+			href: p['/:lang/blog/latest']({ lang: settings.language }),
 		})}
 		<BlogPostShowcase posts={data.posts.latest}></BlogPostShowcase>
 	</section>
@@ -142,7 +143,10 @@
 		<section class="max-w-pad py-section tablet:space-y-8 space-y-6" id="svelteAndKit">
 			{@render listingHeader({
 				category: data.categories.svelteAndKit.name,
-				href: routing.path('blog/categories/:slug', data.categories.svelteAndKit.slug)!,
+				href: p['/:lang/blog/categories/:slug']({
+					lang: settings.language,
+					slug: data.categories.svelteAndKit.slug,
+				}),
 				description: data.categories.svelteAndKit.description,
 			})}
 			<BlogPostShowcase posts={data.posts.svelteAndKit}></BlogPostShowcase>
@@ -159,7 +163,7 @@
 				<a
 					class="tablet:self-stretch desktop:p-4 bg-secondary mobile:shadow-brutal shadow-on-surface group grid
 					place-items-center p-8 text-white"
-					href={routing.path('home')}
+					href="{p['/:lang']({ lang: settings.language })}#resources"
 				>
 					<span class="sr-only"><T message={m['pages.blog.resources.view']} /></span>
 					<i class="i i-[ph--arrow-right] h-6 w-6 {commonArrowLinkClasses}"></i>
@@ -173,7 +177,10 @@
 		<section class="max-w-pad py-section tablet:space-y-8 space-y-6" id="insider">
 			{@render listingHeader({
 				category: data.categories.insider.name,
-				href: routing.path('blog/categories/:slug', data.categories.insider.slug)!,
+				href: p['/:lang/blog/categories/:slug']({
+					lang: settings.language,
+					slug: data.categories.insider.slug,
+				}),
 				description: data.categories.insider.description,
 			})}
 			<BlogPostShowcase posts={data.posts.insider} flat></BlogPostShowcase>

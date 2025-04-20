@@ -9,10 +9,11 @@ import {
 	loadBlogPostOgImage,
 } from '$data/blog/posts';
 import { loadPersonAvatar } from '$data/people';
+import * as p from '$data/routes/generated';
+import * as b from '$data/routes/generated/breadcrumbs';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { buildStructuredBlogPost } from '$lib/meta/structured/blog';
-import { buildRoutes } from '$lib/routing/utils';
 
 import ogImageEn from '../(listing)/_page/og-blog.en.jpg?url';
 import ogImageVi from '../(listing)/_page/og-blog.vi.jpg?url';
@@ -27,7 +28,7 @@ import type { PageServerLoad } from './$types';
 // TODO: export `entries` to support prerendering, once routing strategy has matured
 // @see {@link https://svelte.dev/docs/kit/page-options#entries}
 
-export const load: PageServerLoad = async ({ parent, params, locals, depends }) => {
+export const load: PageServerLoad = async ({ params, locals, depends }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 
 	const lang = locals.sharedSettings.language;
@@ -39,7 +40,7 @@ export const load: PageServerLoad = async ({ parent, params, locals, depends }) 
 
 	const latestPostId = ids[0] === post.id ? ids[1] : ids[0];
 	const otherLang = lang === 'en' ? 'vi' : 'en';
-	const [latest, inSeries, otherLangMetadata, ogImage, { routing }] = await Promise.all([
+	const [latest, inSeries, otherLangMetadata, ogImage] = await Promise.all([
 		loadBlogPost(latestPostId, lang),
 		searchPostsInSameSeries(
 			lang,
@@ -48,24 +49,23 @@ export const load: PageServerLoad = async ({ parent, params, locals, depends }) 
 		),
 		loadBlogPostMetadata(post.id, otherLang),
 		loadBlogPostOgImage(post.id),
-		parent(),
 		...post.authors.map(async (author) => {
 			const avatar = await loadPersonAvatar(author.id);
 			author.avatar = avatar;
 		}),
 	]);
 
-	const routeParam = {
-		name: post.title,
-		path: post.slug,
-	};
-
-	const otherLangRouteParam = otherLangMetadata
-		? {
-				name: otherLangMetadata.title,
-				path: otherLangMetadata.slug,
-			}
-		: routeParam;
+	const breadcrumbs = b['/:lang/blog/:slug']({
+		lang,
+		slug: [post.slug, post.title],
+	});
+	const paths = {
+		[lang]: p['/:lang/blog/:slug']({ lang, slug: post.slug }),
+		[otherLang]: p['/:lang/blog/:slug']({
+			lang: otherLang,
+			slug: otherLangMetadata?.slug ?? post.slug,
+		}),
+	} as Record<App.Language, string>;
 
 	return {
 		contentEditUrl: `https://github.com/sveltevietnam/sveltevietnam.dev/edit/v1/sites/sveltevietnam.dev/src/data/blog/posts/${post.id}/content/${lang}.md.svelte`,
@@ -75,14 +75,7 @@ export const load: PageServerLoad = async ({ parent, params, locals, depends }) 
 			latest,
 			inSeries,
 		},
-		routing: {
-			...routing,
-			breadcrumbs: buildRoutes(routing.breadcrumbs, routeParam),
-			paths: {
-				[lang]: buildRoutes(routing.paths[lang], routeParam),
-				[otherLang]: buildRoutes(routing.paths[otherLang], otherLangRouteParam),
-			},
-		},
+		routing: { breadcrumbs, paths },
 		meta: {
 			structured: buildStructuredBlogPost(lang, VITE_PUBLIC_ORIGIN, post),
 			title: `${post.title}`,

@@ -5,8 +5,11 @@
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
 	import { GradientBackground } from '$lib/components/gradient-background';
 	import { Pagination } from '$lib/components/pagination';
+	import { RoutingContext } from '$lib/routing/context.svelte.js';
 
 	let { data } = $props();
+
+	const routing = RoutingContext.get();
 
 	let paginationUrl = $derived.by(() => {
 		const url = new URL(page.url);
@@ -17,7 +20,7 @@
 
 <main>
 	<BlogListingIntro
-		breadcrumbs={data.routing.breadcrumbs}
+		breadcrumbs={routing.breadcrumbs}
 		heading={data.category.name}
 		description={data.category.description}
 	></BlogListingIntro>

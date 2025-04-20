@@ -1,8 +1,7 @@
 import type { Thing, Blog, BlogPosting, CreativeWorkSeries, CollectionPage } from 'schema-dts';
 
-import { loadRoutingMap } from '$data/routing';
+import * as p from '$data/routes/generated';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
-import { build } from '$lib/routing/utils';
 
 import { buildStructuredOrganization } from './organization';
 import { buildStructuredPerson } from './people';
@@ -38,8 +37,7 @@ export function buildStructuredBlogSeries(
 	compact = false,
 ): CreativeWorkSeries {
 	const { publisher, ...blog } = buildStructuredBlog(lang);
-	const routingMap = loadRoutingMap();
-	const canonical = origin + build(routingMap[lang]['blog/series/:slug'].path, series.slug);
+	const canonical = origin + p['/:lang/blog/series/:slug']({ lang, slug: series.slug });
 	return {
 		'@type': 'CreativeWorkSeries',
 		'@id': `${blog['@id']}/series/${series.id}`,
@@ -59,8 +57,7 @@ export function buildStructuredBlogCategoryPage(
 	category: import('$data/blog/categories').BlogCategory,
 	compact = false,
 ): CollectionPage {
-	const routingMap = loadRoutingMap();
-	const canonical = origin + build(routingMap[lang]['blog/categories/:slug'].path, category.slug);
+	const canonical = origin + p['/:lang/blog/categories/:slug']({ lang, slug: category.slug });
 	const { publisher, ...blog } = buildStructuredBlog(lang);
 	return {
 		'@type': 'CollectionPage',
@@ -93,8 +90,7 @@ export function buildStructuredBlogPost(
 	origin: string,
 	post: import('$data/blog/posts').ExtendedBlogPostMetadata,
 ): BlogPosting {
-	const routingMap = loadRoutingMap();
-	const canonical = origin + build(routingMap[lang]['blog/:slug'].path, post.slug);
+	const canonical = origin + p['/:lang/blog/:slug']({ lang, slug: post.slug });
 	const { publisher, ...blog } = buildStructuredBlog(lang);
 	const id = `${blog['@id']}/${post.id}`;
 

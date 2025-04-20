@@ -4,9 +4,9 @@
 	import type { Picture } from 'vite-imagetools';
 
 	import * as m from '$data/locales/generated/messages';
+	import * as p from '$data/routes/generated';
 	import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 	import fallback3x2 from '$lib/assets/images/fallbacks/3x2.jpg?enhanced&w=1200;700;400&imagetools';
-	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 	import { formatLongMonth, formatLongWeekDay } from '$lib/utils/datetime';
 
@@ -38,10 +38,9 @@
 	let { event }: EventListingItemProps = $props();
 
 	const settings = SettingsContext.get();
-	const routing = RoutingContext.get();
 
 	const img = $derived(event.thumbnail ?? fallback3x2);
-	const path = $derived(routing.path('events/:slug', event.slug));
+	const path = $derived(p['/:lang/events/:slug']({ lang: settings.language, slug: event.slug }));
 </script>
 
 <div class="@container">

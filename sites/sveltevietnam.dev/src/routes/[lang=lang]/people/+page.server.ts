@@ -1,5 +1,7 @@
 import * as m from '$data/locales/generated/messages';
 import { loadPerson, ids } from '$data/people';
+import * as p from '$data/routes/generated';
+import * as b from '$data/routes/generated/breadcrumbs';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 
 import type { PageServerLoad } from './$types';
@@ -16,6 +18,13 @@ export const load: PageServerLoad = async ({ locals, depends }) => {
 	const lang = locals.sharedSettings.language;
 
 	return {
+		routing: {
+			breadcrumbs: b['/:lang/people']({ lang }),
+			paths: {
+				vi: p['/:lang/people']({ lang: 'vi' }),
+				en: p['/:lang/people']({ lang: 'en' }),
+			},
+		},
 		people: (
 			await Promise.all(
 				ids.map((id) =>

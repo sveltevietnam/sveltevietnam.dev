@@ -110,7 +110,7 @@
 	</div>
 {/snippet}
 
-<section class="max-w-pad pb-section space-y-30">
+<section class="max-w-pad pb-section space-y-30" id="resources">
 	<h2 class="c-text-heading-lg text-center"><T message={m['pages.home.resources.heading']} /></h2>
 
 	<section class={[...sectionClasses, 'tablet:max-desktop:pb-32']}>

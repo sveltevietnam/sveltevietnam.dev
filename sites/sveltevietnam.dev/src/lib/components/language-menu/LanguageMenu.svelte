@@ -58,7 +58,7 @@
 					<a
 						class="current:text-primary current:font-bold hover:bg-primary-surface flex items-center gap-4
 						px-4 py-2"
-						href={routing.paths.vi.path}
+						href={routing.paths.vi}
 						data-current={settings.language === 'vi'}
 						onclick={reloadLanguage}
 					>
@@ -73,7 +73,7 @@
 						class="current:text-primary current:font-bold hover:bg-primary-surface flex items-center gap-4
 						px-4 py-2"
 						data-current={settings.language === 'en'}
-						href={routing.paths.en.path}
+						href={routing.paths.en}
 						onclick={reloadLanguage}
 					>
 						<!-- no need to announce this flag image -->

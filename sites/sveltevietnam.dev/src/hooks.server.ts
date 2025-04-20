@@ -33,7 +33,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	if (!languageFromUrl) {
 		// if user comes from an internal link with lang, redirect to the same lang
 		// this is for progressive enhancement when JS is unavailable,
-		// otherwise the beforeNavigate hook in (site)/+layout.svelte will
+		// otherwise the beforeNavigate hook in [lang]/+layout.svelte will
 		// handle the redirection with kit client-side router
 		if (locals.internalReferer) {
 			languageFromUrl = getLangFromUrl(locals.internalReferer, LANGUAGES);

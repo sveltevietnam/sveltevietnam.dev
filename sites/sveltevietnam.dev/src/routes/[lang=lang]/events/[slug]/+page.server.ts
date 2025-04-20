@@ -6,10 +6,11 @@ import {
 	loadEventMetadata,
 	loadEventOgImage,
 } from '$data/events';
+import * as p from '$data/routes/generated';
+import * as b from '$data/routes/generated/breadcrumbs';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { buildStructuredEvent } from '$lib/meta/structured/events';
-import { buildRoutes } from '$lib/routing/utils';
 
 import ogImageEn from '../_page/og-events.en.jpg?url';
 import ogImageVi from '../_page/og-events.vi.jpg?url';
@@ -24,7 +25,7 @@ const ogImageFallback = {
 // TODO: export `entries` to support prerendering, once routing strategy has matured
 // @see {@link https://svelte.dev/docs/kit/page-options#entries}
 
-export const load: PageServerLoad = async ({ parent, params, locals, depends }) => {
+export const load: PageServerLoad = async ({ params, locals, depends }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 
 	const lang = locals.sharedSettings.language;
@@ -36,37 +37,29 @@ export const load: PageServerLoad = async ({ parent, params, locals, depends }) 
 		error(404, { message: 'Event not found', code: 'SV000' });
 	}
 
-	const [otherLangMetadata, ogImage, additionalStructuredData, { routing }] = await Promise.all([
+	const [otherLangMetadata, ogImage, additionalStructuredData] = await Promise.all([
 		loadEventMetadata(event.id, otherLang),
 		loadEventOgImage(event.id),
 		loadEventAdditionalStructuredData(event.id, lang, VITE_PUBLIC_ORIGIN),
-		parent(),
 	]);
 
-	const routeParam = {
-		name: event.title,
-		path: event.slug,
-	};
-
-	const otherLangRouteParam = otherLangMetadata
-		? {
-				name: otherLangMetadata.title,
-				path: otherLangMetadata.slug,
-			}
-		: routeParam;
+	const breadcrumbs = b['/:lang/events/:slug']({
+		lang,
+		slug: [event.slug, event.title],
+	});
+	const paths = {
+		[lang]: p['/:lang/events/:slug']({ lang, slug: event.slug }),
+		[otherLang]: p['/:lang/events/:slug']({
+			lang: otherLang,
+			slug: otherLangMetadata?.slug ?? event.slug,
+		}),
+	} as Record<App.Language, string>;
 
 	return {
 		event,
 		editUrl: `https://github.com/sveltevietnam/sveltevietnam.dev/edit/v1/sites/sveltevietnam.dev/src/data/events/${event.id}/content.svelte`,
 		lang,
-		routing: {
-			...routing,
-			breadcrumbs: buildRoutes(routing.breadcrumbs, routeParam),
-			paths: {
-				[lang]: buildRoutes(routing.paths[lang], routeParam),
-				[otherLang]: buildRoutes(routing.paths[otherLang], otherLangRouteParam),
-			},
-		},
+		routing: { breadcrumbs, paths },
 		meta: {
 			structured: buildStructuredEvent(lang, VITE_PUBLIC_ORIGIN, event, additionalStructuredData),
 			title: `${event.title}`,

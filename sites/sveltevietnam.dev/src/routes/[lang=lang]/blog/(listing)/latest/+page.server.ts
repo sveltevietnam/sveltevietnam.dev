@@ -1,5 +1,7 @@
 import { loadBlogPosts } from '$data/blog/posts';
 import * as m from '$data/locales/generated/messages';
+import * as p from '$data/routes/generated';
+import * as b from '$data/routes/generated/breadcrumbs';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { getPaginationFromUrl } from '$lib/utils/url';
 
@@ -22,6 +24,13 @@ export const load: PageServerLoad = async ({ url, locals, depends }) => {
 		pagination: {
 			...pagination,
 			max: Math.ceil(total / pagination.per),
+		},
+		routing: {
+			breadcrumbs: b['/:lang/blog/latest']({ lang }),
+			paths: {
+				vi: p['/:lang/blog/latest']({ lang: 'vi' }),
+				en: p['/:lang/blog/latest']({ lang: 'en' }),
+			},
 		},
 		meta: {
 			title: m['pages.blog_latest.title'](lang),

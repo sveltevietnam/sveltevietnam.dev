@@ -3,6 +3,7 @@
 	import { T } from '@sveltevietnam/i18n';
 
 	import * as m from '$data/locales/generated/messages';
+	import * as p from '$data/routes/generated';
 	import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 	import fallback16x9 from '$lib/assets/images/fallbacks/16x9.jpg?enhanced&w=2240;1540;1088;686&imagetools';
 	import { BlogNewsletter } from '$lib/components/blog-newsletter';
@@ -34,7 +35,7 @@
 	);
 
 	const thumbnail = $derived(data.post.thumbnail || fallback16x9);
-	const url = $derived(VITE_PUBLIC_ORIGIN + data.routing.paths[settings.language].path);
+	const url = $derived(VITE_PUBLIC_ORIGIN + routing.paths[settings.language]);
 	const encodedUrl = $derived(encodeURIComponent(url));
 
 	const toc = new Toc({
@@ -58,7 +59,7 @@
 <main>
 	<!-- intro -->
 	<section class="pt-intro-pad-top max-w-pad bg-gradient-primary-intro">
-		<Breadcrumbs crumbs={data.routing.breadcrumbs} />
+		<Breadcrumbs crumbs={routing.breadcrumbs} />
 		<h1 class="c-text-heading-lg tablet:mt-10 desktop:mt-15 mt-8">
 			{data.post.title}
 		</h1>
@@ -78,7 +79,7 @@
 						<a
 							class="c-link-lazy c-text-body-sm text-on-surface-subtle hover:text-link
 							hover:border-link border-outline rounded-full border px-3 py-1 leading-tight"
-							href={routing.path('blog/categories/:slug', slug)}
+							href={p['/:lang/blog/categories/:slug']({ lang: settings.language, slug })}
 						>
 							{name}
 						</a>
@@ -87,7 +88,7 @@
 			</ul>
 			<ul class="flex flex-wrap items-start gap-6">
 				{#each data.post.authors as { name, id, avatar, description } (id)}
-					{@const href = routing.path('people/:id', id)}
+					{@const href = p['/:lang/people/:id']({ lang: settings.language, id })}
 					<li>
 						<Person {name} {avatar} {href} {description} />
 					</li>
@@ -260,7 +261,7 @@
 					<h2 class="c-text-title uppercase">
 						<T message={m['pages.blog_slug.headings.series']} />
 					</h2>
-					<TextArrowLink href={routing.path('blog')}>
+					<TextArrowLink href={p['/:lang/blog']({ lang: settings.language })}>
 						<T message={m.view_more} />
 					</TextArrowLink>
 				</div>

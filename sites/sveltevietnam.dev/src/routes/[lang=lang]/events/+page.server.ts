@@ -1,5 +1,7 @@
 import { loadEvents } from '$data/events';
 import * as m from '$data/locales/generated/messages';
+import * as p from '$data/routes/generated';
+import * as b from '$data/routes/generated/breadcrumbs';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 
 import type { PageServerLoad } from './$types';
@@ -22,6 +24,13 @@ export const load: PageServerLoad = async ({ locals, depends }) => {
 
 	return {
 		events,
+		routing: {
+			breadcrumbs: b['/:lang/events']({ lang }),
+			paths: {
+				vi: p['/:lang/events']({ lang: 'vi' }),
+				en: p['/:lang/events']({ lang: 'en' }),
+			},
+		},
 		meta: {
 			title: m['pages.events.title'](lang),
 			description: m['pages.events.desc'](lang),

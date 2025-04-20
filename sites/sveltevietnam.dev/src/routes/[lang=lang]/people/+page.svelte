@@ -3,19 +3,25 @@
 
 	import * as m from '$data/locales/generated/messages';
 	import type { Person } from '$data/people';
+	import * as p from '$data/routes/generated';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { PersonLinks } from '$lib/components/person-links';
 	import { TextArrowLink } from '$lib/components/text-arrow-link';
 	import { RoutingContext } from '$lib/routing/context.svelte';
+	import { SettingsContext } from '$lib/settings/context.svelte.js';
 
 	let { data } = $props();
 
 	const routing = RoutingContext.get();
+	const settings = SettingsContext.get();
 </script>
 
 {#snippet PersonListItem(person: Person)}
-	{@const href = routing.path('people/:id', person.id)}
+	{@const href = p['/:lang/people/:id']({
+		lang: settings.language,
+		id: person.id,
+	})}
 	{@const image = person.popImage || person.avatar}
 	<div class="@container w-full">
 		<article
@@ -78,7 +84,7 @@
 	<!-- intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div class="max-w-pad space-y-10">
-			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
+			<Breadcrumbs crumbs={routing.breadcrumbs} />
 			<div class="space-y-4">
 				<h1 class="c-text-heading-lg text-primary-on-surface font-bold">
 					<T message={m['pages.people.heading']}></T>

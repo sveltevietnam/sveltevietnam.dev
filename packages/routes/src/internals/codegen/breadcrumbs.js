@@ -191,8 +191,7 @@ export function defineBreadcrumbs(routes, route, langParamName, options) {
 	if (paramNames.size) {
 		const paramTypings = [...paramNames]
 			.map(
-				(name) =>
-					`${name}: ${name === langParamName ? 'string' : '[param: string, anme: string]'};`,
+				(name) => `${name}: ${name === langParamName ? 'string' : '[path: string, name: string]'};`,
 			)
 			.join(' ');
 		ts.addSyntheticLeadingComment(

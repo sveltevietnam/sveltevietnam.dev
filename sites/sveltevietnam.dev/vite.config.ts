@@ -12,8 +12,6 @@ import { qrcode } from 'vite-plugin-qrcode';
 
 import routesConfig from './src/data/routes/routes.config';
 
-// import { sveltekitRouting } from './src/lib/routing/vite-plugin.js';
-
 export default defineConfig({
 	optimizeDeps: {
 		/**
@@ -52,7 +50,6 @@ export default defineConfig({
 		enhancedImages(),
 		css(),
 		tailwindcss(),
-		// sveltekitRouting(),
 		i18n({ input: 'src/**/locales' }),
 		routes(routesConfig),
 		sveltekit(),

@@ -2,6 +2,8 @@
 	import { T } from '@sveltevietnam/i18n';
 
 	import * as m from '$data/locales/generated/messages';
+	import * as p from '$data/routes/generated';
+	import * as n from '$data/routes/generated/names';
 	import { ColorSchemeMenu } from '$lib/components/color-scheme-menu';
 	import { LanguageMenu } from '$lib/components/language-menu';
 	import { PageMenu } from '$lib/components/page-menu';
@@ -34,6 +36,14 @@
 	let toolbarBackdropOpacity = $derived(
 		!settings.hydrated ? 1 : Math.min((lastScrollY * 2) / MAX_SCROLL_Y, 1),
 	);
+
+	const links = $derived({
+		home: p['/:lang']({ lang: settings.language }),
+		search: {
+			path: p['/:lang/search']({ lang: settings.language }),
+			name: n['/:lang/search'](settings.language),
+		},
+	});
 </script>
 
 <svelte:window onscroll={onScroll} />
@@ -44,14 +54,14 @@
 	<!-- non-mobile header -->
 	<div class="max-w-pad mobile:hidden flex items-start justify-between">
 		<svelte:element
-			this={routing.is('home') ? 'div' : 'a'}
+			this={routing.is(links.home) ? 'div' : 'a'}
 			class="
 			bg-on-surface text-surface flex w-fit -translate-y-2 items-center gap-2 px-4 pb-4
 			pt-6 transition-transform duration-500 hover:translate-y-0 hover:duration-100
 			"
-			{...routing.is('home') ? {} : { href: routing.path('home') }}
+			{...routing.is(links.home) ? {} : { href: links.home }}
 		>
-			{#if routing.is('home')}
+			{#if routing.is(links.home)}
 				<svg class="w-15 h-15" inline-src="sveltevietnam" id="header-logo"></svg>
 			{:else}
 				<i class="i i-sveltevietnam w-15 h-15"></i>
@@ -69,7 +79,11 @@
 				<label class="c-text-input desktop:w-48 widescreen:w-60 w-40">
 					<span class="sr-only"><T message={m['forms.search']} /></span>
 					<i class="i i-[ph--magnifying-glass] h-6 w-6"></i>
-					<input class="w-full" name="search" placeholder="{m['forms.search'](settings.language)}..." />
+					<input
+						class="w-full"
+						name="search"
+						placeholder="{m['forms.search'](settings.language)}..."
+					/>
 				</label>
 			</form>
 			<ColorSchemeMenu />
@@ -80,16 +94,16 @@
 
 	<!-- mobile header -->
 	<div class="max-w-pad tablet:hidden bg-surface flex items-center gap-2 border-b py-2">
-		<a class="mr-auto flex items-center gap-2" href={routing.path('home')}>
+		<a class="mr-auto flex items-center gap-2" href={links.home}>
 			<i class="i i-sveltevietnam h-10 w-10"></i>
 			<span class="font-lora max-w-18 text-sm font-medium uppercase leading-tight">
 				<T message={m['svelte_vietnam.name']} />
 			</span>
 			<span class="sr-only">(<T message={m['components.header.go_to_home_page']} />)</span>
 		</a>
-		<a class="p-2" href={routing.path('search')}>
+		<a class="p-2" href={links.search.path}>
 			<i class="i i-[ph--magnifying-glass] h-6 w-6"></i>
-			<span class="sr-only">{routing.name('search')}</span>
+			<span class="sr-only">{links.search.name}</span>
 		</a>
 		<label class="c-link-lazy flex cursor-pointer p-2">
 			<input
@@ -112,11 +126,7 @@
 		>
 			<div class="overflow-hidden">
 				<div class="_mobile-menu-content max-w-pad space-y-10">
-					<PageMenu
-						class="mx-auto max-w-100"
-						flat
-						onnavigate={() => (isMobileMenuOpen = false)}
-					/>
+					<PageMenu class="max-w-100 mx-auto" flat onnavigate={() => (isMobileMenuOpen = false)} />
 					<div class="flex flex-wrap items-center justify-center gap-4">
 						<ColorSchemeMenu class="border border-current" />
 						<LanguageMenu class="border border-current" />

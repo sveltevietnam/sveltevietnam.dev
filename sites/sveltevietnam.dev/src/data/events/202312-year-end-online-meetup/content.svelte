@@ -3,6 +3,7 @@
 
 	import vnphanquangDef from '$data/people/vnphanquang';
 	import vnphanquangAvatar from '$data/people/vnphanquang/avatar.jpg?enhanced&w=400;100&imagetools';
+	import * as p from '$data/routes/generated';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { DateTimeRangeText } from '$lib/components/date-time-range-text';
 	import { EventGallery } from '$lib/components/event-gallery';
@@ -13,7 +14,7 @@
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
-	import type { PageData } from '.././../../routes/(site)/events/[slug]/$types';
+	import type { PageData } from '../../../routes/[lang=lang]/events/[slug]/$types';
 
 	import imgVideo2Thumbnail from './images/a-few-secrets-of-sveltevietnamdev.jpg?enhanced&w=1200;630&imagetools';
 	import imgLivestreamMoment from './images/livestream-moment.jpg?enhanced&w=1200;630&imagetools';
@@ -34,7 +35,7 @@
 	<!-- Intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div class="tablet:space-y-8 max-w-pad space-y-6">
-			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
+			<Breadcrumbs crumbs={routing.breadcrumbs} />
 			<div class="space-y-6">
 				<h1 class="c-text-heading-page text-primary-on-surface">
 					{data.event.title}
@@ -135,7 +136,10 @@
 						name={vnphanquang.name}
 						avatar={vnphanquangAvatar}
 						description={vnphanquang.description}
-						href={routing.path('people/:id', 'vnphanquang')}
+						href={p['/:lang/people/:id']({
+							lang: settings.language,
+							id: 'vnphanquang',
+						})}
 					/>
 				{/snippet}
 			</EventTimeline.Item>
@@ -165,7 +169,10 @@
 						name={vnphanquang.name}
 						avatar={vnphanquangAvatar}
 						description={vnphanquang.description}
-						href={routing.path('people/:id', 'vnphanquang')}
+						href={p['/:lang/people/:id']({
+							lang: settings.language,
+							id: 'vnphanquang',
+						})}
 					/>
 				{/snippet}
 			</EventTimeline.Item>

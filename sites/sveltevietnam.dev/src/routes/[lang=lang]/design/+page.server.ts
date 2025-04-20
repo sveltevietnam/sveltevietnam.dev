@@ -1,4 +1,6 @@
 import * as m from '$data/locales/generated/messages';
+import * as p from '$data/routes/generated';
+import * as b from '$data/routes/generated/breadcrumbs';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 
 import type { PageServerLoad } from './$types';
@@ -15,6 +17,13 @@ export const load: PageServerLoad = async ({ locals, depends }) => {
 	const lang = locals.sharedSettings.language;
 
 	return {
+		routing: {
+			breadcrumbs: b['/:lang/design']({ lang }),
+			paths: {
+				vi: p['/:lang/design']({ lang: 'vi' }),
+				en: p['/:lang/design']({ lang: 'en' }),
+			},
+		},
 		meta: {
 			title: m['pages.design.title'](lang),
 			description: m['pages.design.desc'](lang),

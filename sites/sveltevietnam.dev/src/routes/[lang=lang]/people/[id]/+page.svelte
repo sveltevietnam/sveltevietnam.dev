@@ -3,6 +3,7 @@
 
 	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
+	import * as p from '$data/routes/generated';
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { EventListing } from '$lib/components/event-listing';
@@ -11,16 +12,23 @@
 	import { PersonLinks } from '$lib/components/person-links';
 	import { TextArrowLink } from '$lib/components/text-arrow-link';
 	import { RoutingContext } from '$lib/routing/context.svelte';
+	import { SettingsContext } from '$lib/settings/context.svelte.js';
 
 	let { data } = $props();
 
 	const routing = RoutingContext.get();
+	const settings = SettingsContext.get();
 
 	let paginationUrl = $derived.by(() => {
 		const url = new URL(page.url);
 		url.hash = 'posts';
 		return url;
 	});
+
+	const links = $derived({
+		events: p['/:lang/events']({ lang: settings.language }),
+		blog: p['/:lang/blog']({ lang: settings.language }),
+	})
 </script>
 
 <main>
@@ -33,7 +41,7 @@
 					!data.person.popImage && 'pb-section',
 				]}
 			>
-				<Breadcrumbs crumbs={data.routing.breadcrumbs} />
+				<Breadcrumbs crumbs={routing.breadcrumbs} />
 				<div class="space-y-4">
 					<h1 class="c-text-heading-lg text-primary-on-surface font-bold">
 						{data.person.name}
@@ -67,7 +75,7 @@
 					<h2 class="c-text-title">
 						<T message={m['pages.people_slug.events']} name={data.person.name} />
 					</h2>
-					<TextArrowLink class="ml-auto" href={routing.path('events')}>
+					<TextArrowLink class="ml-auto" href={links.events}>
 						<T message={m['pages.people_slug.view_events']} />
 					</TextArrowLink>
 				</div>
@@ -84,7 +92,7 @@
 					<h2 class="c-text-title">
 						<T message={m['pages.people_slug.posts_by']} name={data.person.name} />
 					</h2>
-					<TextArrowLink class="ml-auto" href={routing.path('blog')}>
+					<TextArrowLink class="ml-auto" href={links.blog}>
 						<T message={m['pages.people_slug.view_blog']} />
 					</TextArrowLink>
 				</div>

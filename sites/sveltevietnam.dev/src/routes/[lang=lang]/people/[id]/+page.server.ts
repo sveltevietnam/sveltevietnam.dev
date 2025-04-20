@@ -3,10 +3,11 @@ import { error } from '@sveltejs/kit';
 import { searchBlogPosts } from '$data/blog/posts';
 import { loadEventsByPersonId } from '$data/events';
 import { loadPerson } from '$data/people';
+import * as p from '$data/routes/generated';
+import * as b from '$data/routes/generated/breadcrumbs';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 import { LOAD_DEPENDENCIES } from '$lib/constants';
 import { buildStructuredPerson } from '$lib/meta/structured/people';
-import { buildRoutes } from '$lib/routing/utils';
 import { getPaginationFromUrl } from '$lib/utils/url';
 
 import ogImageEn from '../_page/og-people.en.jpg?url';
@@ -21,7 +22,7 @@ const ogImage = {
 
 export const prerender = false;
 
-export const load: PageServerLoad = async ({ parent, url, locals, depends, params }) => {
+export const load: PageServerLoad = async ({ url, locals, depends, params }) => {
 	depends(LOAD_DEPENDENCIES.LANGUAGE);
 
 	const lang = locals.sharedSettings.language;
@@ -32,7 +33,7 @@ export const load: PageServerLoad = async ({ parent, url, locals, depends, param
 	}
 
 	const pagination = getPaginationFromUrl(url);
-	const [{ events }, { posts, total }, parentLoadData] = await Promise.all([
+	const [{ events }, { posts, total }] = await Promise.all([
 		loadEventsByPersonId(lang, person.id, 1, 4),
 		searchBlogPosts({
 			lang,
@@ -44,30 +45,22 @@ export const load: PageServerLoad = async ({ parent, url, locals, depends, param
 				authorId: person.id,
 			},
 		}),
-		parent(),
 	]);
 
-	const routeParam = {
-		name: person.name,
-		path: person.id,
-	};
-
+	const breadcrumbs = b['/:lang/people/:id']({
+		lang,
+		id: [person.id, person.name],
+	});
 	const paths = {
-		// NOTE: for person, slug is same for both languages (person's id)
-		// so we are skipping fetching other language's metadata
-		en: buildRoutes(parentLoadData.routing.paths.en, routeParam),
-		vi: buildRoutes(parentLoadData.routing.paths.vi, routeParam),
-	};
+		vi: p['/:lang/people/:id']({ lang, id: person.id }),
+		en: p['/:lang/people/:id']({ lang, id: person.id }),
+	} as Record<App.Language, string>;
 
 	return {
 		person,
 		events,
 		posts,
-		routing: {
-			...parentLoadData.routing,
-			breadcrumbs: buildRoutes(parentLoadData.routing.breadcrumbs, routeParam),
-			paths,
-		},
+		routing: { breadcrumbs, paths },
 		pagination: {
 			...pagination,
 			max: Math.ceil(total / pagination.per),

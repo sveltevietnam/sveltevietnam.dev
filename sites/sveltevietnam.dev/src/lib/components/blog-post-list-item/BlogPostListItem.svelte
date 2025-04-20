@@ -4,8 +4,8 @@
 	import type { Picture } from 'vite-imagetools';
 
 	import * as m from '$data/locales/generated/messages';
+	import * as p from '$data/routes/generated';
 	import fallback16x9 from '$lib/assets/images/fallbacks/16x9.jpg?enhanced&w=1540;1088;686&imagetools';
-	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	type ScreenScopedVar<T extends string> = {
@@ -42,7 +42,6 @@
 	}: BlogPostListItemProps = $props();
 
 	const settings = SettingsContext.get();
-	const routing = RoutingContext.get();
 
 	let dateFormatter = $derived(
 		new Intl.DateTimeFormat(settings.language, {
@@ -52,6 +51,7 @@
 	);
 
 	const img = $derived(post.thumbnail ?? fallback16x9);
+	const href = $derived(p['/:lang/blog/:slug']({ lang: settings.language, slug: post.slug }));
 </script>
 
 <article
@@ -66,7 +66,7 @@
 	]}
 	{...rest}
 >
-	<a class="c-link-image shrink-0" href={routing.path('blog/:slug', post.slug)}>
+	<a class="c-link-image shrink-0" {href}>
 		<span class="sr-only"><T message={m.view_more} /></span>
 		<enhanced:img
 			class={[
@@ -93,7 +93,10 @@
 				<p class="c-text-body-sm text-secondary-on-surface">
 					—
 					{#each post.series as { name, slug }, i (slug)}
-						<a class="c-link-lazy hover:text-link" href={routing.path('blog/series/:slug', slug)}>
+						<a
+							class="c-link-lazy hover:text-link"
+							href={p['/:lang/blog/series/:slug']({ lang: settings.language, slug })}
+						>
 							{name}
 						</a>{i < post.series.length - 1 ? ', ' : ''}
 					{/each}
@@ -109,7 +112,7 @@
 					titleFont?.widescreen === 'normal' && 'widescreen:text-xl',
 				]}
 			>
-				<a class="c-link-preserved relative" href={routing.path('blog/:slug', post.slug)}>
+				<a class="c-link-preserved relative" {href}>
 					{post.title}
 					<i
 						class="not-can-hover:hidden i i-[ph--cursor-click] absolute bottom-0 right-0 translate-x-full text-[0.75em]"
@@ -120,7 +123,10 @@
 		<div class="c-text-body-sm flex items-center gap-2">
 			<p class="">
 				{#each post.authors as { name, id }, i (id)}
-					<a class="c-link-lazy font-medium" href={routing.path('people/:id', id)}>
+					<a
+						class="c-link-lazy font-medium"
+						href={p['/:lang/people/:id']({ lang: settings.language, id })}
+					>
 						{name}
 					</a>{i < post.authors.length - 1 ? ', ' : ''}
 				{/each}
@@ -136,7 +142,7 @@
 						<a
 							class="c-link-lazy c-text-body-sm text-on-surface-subtle hover:text-link
 							hover:border-link border-outline rounded-full border px-3 py-1 leading-tight"
-							href={routing.path('blog/categories/:slug', slug)}
+							href={p['/:lang/blog/categories/:slug']({ lang: settings.language, slug })}
 						>
 							{name}
 						</a>
