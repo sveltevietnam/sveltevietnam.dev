@@ -16,7 +16,9 @@
 	</p>
 	<p>As with anything, try turning it off and on again.</p>
 	<div class="flex items-center gap-6">
-		<QR class="h-32 w-32" data={SOCIAL_LINKS.DISCORD} logo={dark} shape="circle" width="128" height="128" />
+		<a class="contents" href={SOCIAL_LINKS.DISCORD} target="_blank" rel="noopener">
+			<QR class="h-32 w-32" data={SOCIAL_LINKS.DISCORD} logo={dark} shape="circle" width="128" height="128" />
+		</a>
 		<div class="space-y-2 text-base">
 			<p>While you are at it, join our discord for fun, yeah?</p>
 			<p class="text-xs">(We won't be able to fix YOUR error anyway)</p>
