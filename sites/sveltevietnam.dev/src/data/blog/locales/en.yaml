@@ -5,7 +5,7 @@ messages:
       name: Community
       slug: community
       desc: Sharing about events from Svelte Vietnam, open source contribution, and
-        community-building and friend-making activites
+        community-building activites
     ecosystem:
       name: Ecosystem
       slug: ecosystem

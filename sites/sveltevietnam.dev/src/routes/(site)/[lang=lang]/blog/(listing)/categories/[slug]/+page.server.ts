@@ -12,7 +12,7 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ url, params }) => {
 	const { lang } = params;
-	const category = await loadBlogCategoryBySlug(params.slug, lang);
+	const category = await loadBlogCategoryBySlug(params.slug, lang, { ogImage: true });
 	if (!category) {
 		// TODO: assign a unique code to this error
 		error(404, { message: 'Category not found', code: 'SV000' });
@@ -55,6 +55,9 @@ export const load: PageServerLoad = async ({ url, params }) => {
 			max: Math.ceil(total / pagination.per),
 		},
 		meta: {
+			og: {
+				image: category.ogImage,
+			},
 			structured: buildStructuredBlogCategoryPage(lang, VITE_PUBLIC_ORIGIN, category),
 			title: `${category.name} | Svelte Vietnam`,
 			description: category.description,

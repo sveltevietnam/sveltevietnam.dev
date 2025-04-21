@@ -15,8 +15,12 @@ const ogImage = {
 export const load: PageServerLoad = async ({ params }) => {
 	const { lang } = params;
 
+	const categories = (
+		await Promise.all(ids.map((id) => loadBlogCategory(id, lang, { thumbnail: true })))
+	).filter(Boolean);
+
 	return {
-		categories: (await Promise.all(ids.map((id) => loadBlogCategory(id, lang)))).filter(Boolean),
+		categories,
 		routing: {
 			breadcrumbs: b['/:lang/blog/categories']({ lang }),
 			paths: {
