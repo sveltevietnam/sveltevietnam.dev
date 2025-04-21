@@ -7,6 +7,7 @@ import {
 	loadBlogPost,
 	searchPostsInSameSeries,
 	loadBlogPostOgImage,
+	generateKitEntries,
 } from '$data/blog/posts';
 import { loadPersonAvatar } from '$data/people';
 import * as p from '$data/routes/generated';
@@ -17,15 +18,16 @@ import { buildStructuredBlogPost } from '$lib/meta/structured/blog';
 import ogImageEn from '../(listing)/_page/og-blog.en.jpg?url';
 import ogImageVi from '../(listing)/_page/og-blog.vi.jpg?url';
 
+import type { EntryGenerator, PageServerLoad } from './$types';
+
 const ogImageFallback = {
 	vi: ogImageVi,
 	en: ogImageEn,
 };
 
-import type { PageServerLoad } from './$types';
-
-// TODO: export `entries` to support prerendering, once routing strategy has matured
-// @see {@link https://svelte.dev/docs/kit/page-options#entries}
+export const entries: EntryGenerator = () => {
+	return generateKitEntries();
+};
 
 export const load: PageServerLoad = async ({ params }) => {
 	const { lang } = params;

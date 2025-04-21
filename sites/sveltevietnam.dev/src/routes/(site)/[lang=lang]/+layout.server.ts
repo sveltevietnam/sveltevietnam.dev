@@ -3,9 +3,6 @@ import { COMMON_COOKIE_CONFIG } from '$lib/constants';
 
 import type { LayoutServerLoad } from './$types';
 
-// FIXME: turn this on once we have properly supported prerendering for all eligible pages
-export const prerender = false;
-
 export const load: LayoutServerLoad = ({ locals, cookies, params }) => {
 	let splash: 'disabled' | 'short' | 'long' = 'disabled';
 	/**

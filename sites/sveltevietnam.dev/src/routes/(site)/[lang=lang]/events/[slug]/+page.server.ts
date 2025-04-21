@@ -1,6 +1,7 @@
 import { error } from '@sveltejs/kit';
 
 import {
+	generateKitEntries,
 	loadEventAdditionalStructuredData,
 	loadEventBySlug,
 	loadEventMetadata,
@@ -14,15 +15,16 @@ import { buildStructuredEvent } from '$lib/meta/structured/events';
 import ogImageEn from '../_page/og-events.en.jpg?url';
 import ogImageVi from '../_page/og-events.vi.jpg?url';
 
-import type { PageServerLoad } from './$types';
+import type { PageServerLoad, EntryGenerator } from './$types';
 
 const ogImageFallback = {
 	vi: ogImageVi,
 	en: ogImageEn,
 };
 
-// TODO: export `entries` to support prerendering, once routing strategy has matured
-// @see {@link https://svelte.dev/docs/kit/page-options#entries}
+export const entries: EntryGenerator = () => {
+	return generateKitEntries();
+};
 
 export const load: PageServerLoad = async ({ params }) => {
 	const { lang } = params;

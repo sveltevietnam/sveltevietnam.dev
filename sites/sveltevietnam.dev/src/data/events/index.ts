@@ -41,6 +41,24 @@ export const ids = Object.keys(metadataModules)
 	.map((path) => path.split('/')[1])
 	.sort((a, b) => (a > b ? -1 : 1));
 
+export async function generateKitEntries(): Promise<{ lang: App.Language; slug: string }[]> {
+	return (
+		await Promise.all(
+			ids.map(async (id) => {
+				const path = `./${id}/metadata.ts`;
+				if (!metadataModules[path]) return null;
+				const def = await metadataModules[path]();
+				return [
+					{ lang: 'en', slug: def('en').slug.toString() },
+					{ lang: 'vi', slug: def('vi').slug.toString() },
+				];
+			}),
+		)
+	)
+		.flat()
+		.filter(Boolean);
+}
+
 export async function loadEventMetadata(
 	id: string,
 	lang: App.Language,
