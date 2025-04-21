@@ -46,6 +46,7 @@
 					loading="lazy"
 					decoding="async"
 					alt=""
+					sizes="(min-width: 38rem) 37.5rem, (min-width: 25rem) 75rem, 36.5rem"
 				/>
 			</a>
 			<div class={[backdropClasses, 'peer-hover:rotate-4 translate-2 bg-sand-500']}></div>
