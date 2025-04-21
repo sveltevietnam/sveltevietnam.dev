@@ -8,30 +8,28 @@ declare global {
 		declare type Screen = import('$lib/constants').Screen;
 		declare type Status = import('$lib/constants').Status;
 		declare type Language = import('@sveltevietnam/i18n').Language;
-		declare type SharedSettings = {
-			colorScheme: ColorScheme;
-			language: Language;
-			splash: 'short' | 'long' | 'random' | 'disabled';
-		};
+		declare type SplashOption = import('$lib/constants').SplashOption;
 
 		interface Locals {
 			userId: string;
 			internalReferer?: URL;
-			sharedSettings: SharedSettings;
+			language: Language;
+			colorScheme: ColorScheme;
+			splash: SplashOptions;
 		}
 
 		interface PageData {
 			editUrl?: string;
-			routing: {
-				map: Record<App.RouteKey, App.Route>;
-				key: App.RouteKey;
-				breadcrumbs: App.Route[];
-				paths: Record<App.Language, App.Route>;
+			routing: null | {
+				breadcrumbs: {
+					path: string;
+					name: string;
+				}[];
+				paths: Record<App.Language, string>;
 			};
-			sharedSettings: SharedSettings;
 			/**
 			 * per-page page metadata setup
-			 * {@see $routes/(site)/+layout.svelte} for defaults
+			 * {@see $routes/[lang]/+layout.svelte} for defaults
 			 */
 			meta?: import('$lib/meta').PageMetadata;
 		}
@@ -53,4 +51,3 @@ declare global {
 }
 
 export {};
-

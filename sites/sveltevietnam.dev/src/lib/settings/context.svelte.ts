@@ -18,7 +18,7 @@ export class SettingsContext {
 	scrolllock = $state(false);
 	language = $state<App.Language>('en');
 	splashed = $state(false);
-	splash = $state<App.SharedSettings['splash']>('random');
+	splash = $state<App.SplashOption>('random');
 
 	// $derived
 	readonly colorScheme = $derived.by(() => {
@@ -32,7 +32,11 @@ export class SettingsContext {
 		this.#desktopQuery.current ? 'desktop' : this.#tabletQuery.current ? 'tablet' : 'mobile',
 	);
 
-	constructor(sharedSettings: App.SharedSettings) {
+	constructor(settings: {
+		language: App.Language;
+		colorScheme: App.ColorScheme;
+		splash: App.SplashOption;
+	}) {
 		$effect(() => {
 			if (browser) {
 				document.documentElement.dataset.colorScheme = this.colorScheme.user;
@@ -45,9 +49,9 @@ export class SettingsContext {
 		});
 
 		this.#hydrated = browser;
-		this.#userColorScheme = sharedSettings.colorScheme;
-		this.language = sharedSettings.language;
-		this.splash = sharedSettings.splash;
+		this.#userColorScheme = settings.colorScheme;
+		this.language = settings.language;
+		this.splash = settings.splash;
 	}
 
 	setUserColorScheme(colorScheme: App.ColorScheme) {
@@ -58,8 +62,12 @@ export class SettingsContext {
 		this.scrolllock = force ?? !this.scrolllock;
 	}
 
-	static set(sharedSettings: App.SharedSettings) {
-		return setContext(SettingsContext.KEY, new SettingsContext(sharedSettings));
+	static set(settings: {
+		language: App.Language;
+		colorScheme: App.ColorScheme;
+		splash: App.SplashOption;
+	}) {
+		return setContext(SettingsContext.KEY, new SettingsContext(settings));
 	}
 
 	static get() {

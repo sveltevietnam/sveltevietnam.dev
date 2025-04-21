@@ -1,5 +1,5 @@
 import pico from 'picocolors';
-import { createLogger as createViteLoggger } from 'vite';
+import { createLogger as createViteLogger } from 'vite';
 
 /**
  * @typedef {'success' | 'info' | 'warn' | 'error'} Status
@@ -28,10 +28,10 @@ const STATUS_TO_COLORIZE = /** @satisfies {Record<Status, typeof pico.red>} */ (
 });
 
 const STATUS_TO_PREFIX = /** @satisfies {Record<Status, [typeof pico.bgRed, typeof pico.red]>} */ ({
-	info: [pico.bgCyan, pico.whiteBright],
-	success: [pico.bgGreen, pico.whiteBright],
-	warn: [pico.bgYellow, pico.whiteBright],
-	error: [pico.bgRed, pico.whiteBright],
+	info: [pico.bgCyanBright, pico.black],
+	success: [pico.bgGreenBright, pico.black],
+	warn: [pico.bgYellowBright, pico.black],
+	error: [pico.bgRedBright, pico.black],
 });
 
 /**
@@ -53,7 +53,7 @@ function createProxyLogMethod(status, method) {
  * @returns {CustomLogger}
  */
 export function createLogger() {
-	const logger = createViteLoggger('info', {
+	const logger = createViteLogger('info', {
 		allowClearScreen: true,
 	});
 

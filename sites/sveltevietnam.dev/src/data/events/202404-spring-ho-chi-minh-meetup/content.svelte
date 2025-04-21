@@ -5,6 +5,7 @@
 	import trongnguyen24Avatar from '$data/people/trongnguyen24/avatar.jpg?enhanced&w=400;100&imagetools';
 	import vnphanquang from '$data/people/vnphanquang';
 	import vnphanquangAvatar from '$data/people/vnphanquang/avatar.jpg?enhanced&w=400;100&imagetools';
+	import * as p from '$data/routes/generated';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { DateTimeRangeText } from '$lib/components/date-time-range-text';
 	import { EventGallery } from '$lib/components/event-gallery';
@@ -16,7 +17,7 @@
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
-	import type { PageData } from '.././../../routes/(site)/events/[slug]/$types';
+	import type { PageData } from '../../../routes/(site)/[lang=lang]/events/[slug]/$types';
 
 	import dsvLogoImage from './images/designveloper_logo.webp';
 	import imgEventTicket from './images/event/e-ticket.jpg?enhanced&w=1200;630&imagetools';
@@ -56,7 +57,7 @@
 	<section class="pt-intro-pad-top relative">
 		<div class="absolute inset-0 z-0 overflow-hidden">
 			<enhanced:img
-				class="w-full h-full object-top"
+				class="h-full w-full object-top"
 				src={imgHeaderBg}
 				alt="0"
 				loading="eager"
@@ -67,7 +68,7 @@
 			></div>
 		</div>
 		<div class="tablet:space-y-10 max-w-pad z-1 relative space-y-8">
-			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
+			<Breadcrumbs crumbs={routing.breadcrumbs} />
 			<div class="space-y-10">
 				<h1 class="c-text-heading-page text-primary-on-surface">
 					{data.event.title}
@@ -191,7 +192,10 @@
 							name={people.vnphanquang.name}
 							avatar={people.vnphanquang.avatar}
 							description={people.vnphanquang.description}
-							href={routing.path('people/:id', 'vnphanquang')}
+							href={p['/:lang/people/:id']({
+								lang: settings.language,
+								id: 'vnphanquang',
+							})}
 						/>
 					{/snippet}
 				</EventTimeline.Item>
@@ -210,7 +214,10 @@
 							name={people.trongnguyen24.name}
 							avatar={people.trongnguyen24.avatar}
 							description={people.trongnguyen24.description}
-							href={routing.path('people/:id', 'trongnguyen24')}
+							href={p['/:lang/people/:id']({
+								lang: settings.language,
+								id: 'trongnguyen24',
+							})}
 						/>
 					{/snippet}
 				</EventTimeline.Item>
@@ -227,7 +234,10 @@
 							name={people.vnphanquang.name}
 							avatar={people.vnphanquang.avatar}
 							description={people.vnphanquang.description}
-							href={routing.path('people/:id', 'vnphanquang')}
+							href={p['/:lang/people/:id']({
+								lang: settings.language,
+								id: 'vnphanquang',
+							})}
 						/>
 					{/snippet}
 				</EventTimeline.Item>
@@ -367,7 +377,7 @@
 	</section>
 </main>
 
-<div class="h-200 desktop:h-160 absolute bottom-0 left-0 right-0 -z-px">
+<div class="h-200 desktop:h-160 -z-px absolute bottom-0 left-0 right-0">
 	<enhanced:img
 		class="h-full w-full object-cover object-top"
 		src={imgFooterBg}

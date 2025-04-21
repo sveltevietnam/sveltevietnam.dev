@@ -4,6 +4,8 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	import * as m from '$data/locales/generated/messages';
+	import * as p from '$data/routes/generated';
+	import * as n from '$data/routes/generated/names';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
@@ -25,31 +27,38 @@
 	const links = [
 		{
 			icon: 'i-[ph--house]',
-			key: 'home' as const,
+			path: p['/:lang']({ lang: settings.language }),
+			name: n['/:lang'](settings.language),
 		},
 		{
 			icon: 'i-[ph--calendar-dots]',
-			key: 'events' as const,
+			path: p['/:lang/events']({ lang: settings.language }),
+			name: n['/:lang/events'](settings.language),
 		},
 		{
 			icon: 'i-[ph--book-open]',
-			key: 'blog' as const,
+			path: p['/:lang/blog']({ lang: settings.language }),
+			name: n['/:lang/blog'](),
 		},
 		{
 			icon: 'i-[ph--read-cv-logo]',
-			key: 'jobs' as const,
+			path: p['/:lang/jobs']({ lang: settings.language }),
+			name: n['/:lang/jobs'](settings.language),
 		},
 		{
 			icon: 'i-[ph--lightbulb]',
-			key: 'sponsor' as const,
+			path: p['/:lang/sponsor']({ lang: settings.language }),
+			name: n['/:lang/sponsor'](settings.language),
 		},
 		{
 			icon: 'i-[ph--users-three]',
-			key: 'people' as const,
+			path: p['/:lang/people']({ lang: settings.language }),
+			name: n['/:lang/people'](settings.language),
 		},
 		{
 			icon: 'i-[ph--gear]',
-			key: 'settings' as const,
+			path: p['/:lang/settings']({ lang: settings.language }),
+			name: n['/:lang/settings'](settings.language),
 		},
 	];
 
@@ -84,10 +93,8 @@
 	>
 		<div class="overflow-hidden">
 			<ul class={[!flat && 'border-outline divide-outline divide-y border']}>
-				{#each links as { key, icon } (key)}
-					{@const path = routing.path(key)}
-					{@const name = routing.name(key)}
-					{@const current = routing.is(key)}
+				{#each links as { path, name, icon } (path)}
+					{@const current = routing.is(path)}
 					<li class={[flat && 'border-b']}>
 						<a
 							class={[

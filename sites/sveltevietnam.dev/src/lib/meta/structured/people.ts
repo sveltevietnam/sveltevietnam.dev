@@ -1,8 +1,7 @@
 import type { Person } from 'schema-dts';
 
-import { loadRoutingMap } from '$data/routing';
+import * as p from '$data/routes/generated';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
-import { build } from '$lib/routing/utils';
 
 import { buildStructuredTextWithLang } from './utils';
 
@@ -11,8 +10,7 @@ export function buildStructuredPerson(
 	origin: string,
 	person: import('$data/people').Person,
 ): Person {
-	const routingMap = loadRoutingMap();
-	const canonical = origin + build(routingMap[lang]['people/:id'].path, person.id);
+	const canonical = origin + p['/:lang/people/:id']({ lang, id: person.id });
 	const id = `${VITE_PUBLIC_ORIGIN}/people/${person.id}`;
 	return {
 		'@type': 'Person',

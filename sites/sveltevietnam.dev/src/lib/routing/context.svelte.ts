@@ -1,43 +1,36 @@
 import { getContext, setContext } from 'svelte';
 
-import { build } from './utils';
+import * as p from '$data/routes/generated';
+import * as b from '$data/routes/generated/breadcrumbs';
 
 export class RoutingContext {
 	static KEY = 'app:routing';
 
-	#map = $state<Record<App.RouteKey, App.Route>>();
-	#key = $state<App.RouteKey>();
-	paths = $state<Record<App.Language, App.Route>>({
-		en: { path: '/en', name: 'Home' },
-		vi: { path: '/vi', name: 'Trang Chủ' },
+	breadcrumbs = $state<NonNullable<App.PageData['routing']>['breadcrumbs']>(
+		b['/:lang']({ lang: 'en' }),
+	);
+	paths = $state<NonNullable<App.PageData['routing']>['paths']>({
+		en: p['/:lang']({ lang: 'en' }),
+		vi: p['/:lang']({ lang: 'vi' }),
 	});
 
 	constructor(data: App.PageData['routing']) {
-		this.#map = data.map;
-		this.#key = data.key;
+		if (!data) return;
 		this.paths = data.paths;
+		this.breadcrumbs = data.breadcrumbs;
 	}
 
-	path(key: App.RouteKey, ...params: string[]) {
-		const path = this.#map?.[key].path;
-		if (!path) return undefined;
-		return build(path, ...params);
+	is(path: string) {
+		return this.paths.en === path || this.paths.vi === path;
 	}
 
-	name(key: App.RouteKey, ...params: string[]) {
-		const name = this.#map?.[key].name;
-		if (!name) return undefined;
-		return build(name, ...params);
-	}
-
-	is(key: App.RouteKey) {
-		return this.#key === key;
-	}
-
+	// FIXME: implement some mechanism to automatically
+	// update context with page changes without
+	// having to call this manually
 	update(data: App.PageData['routing']) {
-		this.#map = data.map;
-		this.#key = data.key;
+		if (!data) return;
 		this.paths = data.paths;
+		this.breadcrumbs = data.breadcrumbs;
 	}
 
 	static set(data: App.PageData['routing']) {

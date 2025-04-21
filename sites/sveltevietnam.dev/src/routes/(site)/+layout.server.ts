@@ -1,36 +1,12 @@
-import { VITE_PRIVATE_COOKIE_NAME_LAST_FRESH_VISIT_AT } from '$env/static/private';
-import { COMMON_COOKIE_CONFIG } from '$lib/constants';
-
 import type { LayoutServerLoad } from './$types';
 
-// FIXME: turn this on once we have properly supported prerendering for all eligible pages
-export const prerender = false;
-
-export const load: LayoutServerLoad = ({ locals, cookies }) => {
-	const lang = locals.sharedSettings.language;
-	let splash: 'disabled' | 'short' | 'long' = 'disabled';
-	/**
-	 * take a timestamp for the last fresh visit, that is:
-	 *   - a visit without an "internal referer" (i.e not navigated from within the site), or
-	 *   - after a set amount of time (see maxAge of cookies).
-	 *
-	 * conveniently, SvelteKit will reset the 'Referer' header on page refresh, so we don't have to
-	 * manually catch the unload event and do it ourselves.
-	 */
-	const lastFreshVisitAt = cookies.get(VITE_PRIVATE_COOKIE_NAME_LAST_FRESH_VISIT_AT);
-	if (!lastFreshVisitAt || !locals.internalReferer) {
-		if (locals.sharedSettings.splash !== 'disabled') {
-			if (locals.sharedSettings.splash === 'random') {
-				splash = Math.random() < 0.8 ? 'short' : 'long';
-			} else {
-				splash = locals.sharedSettings.splash;
-			}
-		}
-		cookies.set(VITE_PRIVATE_COOKIE_NAME_LAST_FRESH_VISIT_AT, Date.now().toString(), {
-			...COMMON_COOKIE_CONFIG,
-			maxAge: 150, // 2.5 minutes,
-		});
-	}
-
-	return { splash, lang };
+export const load: LayoutServerLoad = async ({ locals, route, params }) => {
+	return {
+		editUrl: route.id
+			? encodeURI(
+					`https://github.com/sveltevietnam/sveltevietnam.dev/edit/v1/sites/sveltevietnam.dev/src/routes${route.id}/+page.svelte`,
+				)
+			: undefined,
+		language: params.lang || locals.language,
+	};
 };

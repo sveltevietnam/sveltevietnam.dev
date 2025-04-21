@@ -1,0 +1,73 @@
+{
+	"name": "@sveltevietnam/routes",
+	"version": "1.0.0-next",
+	"description": "routing automation for sveltevietnam.dev projects",
+	"private": true,
+	"module": "src/index.js",
+	"types": "types/index.d.ts",
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./types/index.d.ts",
+			"import": "./src/index.js"
+		},
+		"./runtime": {
+			"types": "./types/index.d.ts",
+			"import": "./src/runtime/index.js"
+		},
+		"./vite": {
+			"types": "./types/index.d.ts",
+			"import": "./src/vite.js"
+		}
+	},
+	"publishconfig": {
+		"access": "public",
+		"provenance": true
+	},
+	"files": [
+		"src",
+		"types"
+	],
+	"license": "mit",
+	"author": {
+		"email": "developers@sveltevietnam.dev",
+		"name": "Svelte Vietnam",
+		"url": "https://github.com/sveltevietnam"
+	},
+	"homepage": "https://www.sveltevietnam.dev",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sveltevietnam/sveltevietnam.dev.git",
+		"directory": "packages/routes"
+	},
+	"bugs": {
+		"url": "https://github.com/sveltevietnam/sveltevietnam.dev/issues"
+	},
+	"keywords": [
+		"routes",
+		"path",
+		"type-safe",
+		"svelte",
+		"sveltekit"
+	],
+	"scripts": {
+		"prepublishOnly": "dts-buddy && publint",
+		"dts": "dts-buddy && publint",
+		"lint": "run-p lint:*",
+		"lint:svelte": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"lint:es": "eslint .",
+		"lint:style": "stylelint '**/*.{svelte,css}'",
+		"format": "prettier --write --ignore-path=../../.prettierignore ."
+	},
+	"dependencies": {
+		"dedent": "^1.5.3",
+		"picocolors": "^1.1.1",
+		"tiny-glob": "^0.2.9",
+		"typescript": "^5.8.3",
+		"yaml": "^2.7.1"
+	},
+	"devDependencies": {
+		"svelte": "^5.25.10",
+		"vite": "^6.2.6"
+	}
+}

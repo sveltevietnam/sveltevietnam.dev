@@ -12,7 +12,7 @@
 		class: cls,
 		...rest
 	}: {
-		breadcrumbs: App.Route[];
+		breadcrumbs: { path: string, name: string }[];
 		heading?: Snippet<[]> | string;
 		description?: Snippet<[]> | string;
 	} & HTMLAttributes<HTMLElement> = $props();
