@@ -2,9 +2,9 @@ import type { Organization } from 'schema-dts';
 
 import { EMAILS } from '$data/emails';
 import { SOCIAL_LINKS } from '$data/links';
+import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 
 import { buildStructuredTextWithLang } from './utils';
-import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 
 // TODO: extract to locale YAML files
 const locales = {

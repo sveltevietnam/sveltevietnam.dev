@@ -37,7 +37,7 @@ const jsdocConfig = [
  */
 export function defineConfig(svelteConfig) {
 	return defineEslintConfig([
-		globalIgnores(['**/*.md.svelte']),
+		globalIgnores(['**/*.md.svelte', '**/generated/*.js']),
 		...jsdocConfig,
 		...defineVnphanquangConfig({
 			gitignorePath,
