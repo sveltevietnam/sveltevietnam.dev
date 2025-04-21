@@ -14,8 +14,12 @@ const ogImage = {
 
 export const load: PageServerLoad = async ({ params }) => {
 	const { lang } = params;
+	const series = (
+		await Promise.all(ids.map((id) => loadBlogSeries(id, lang, { thumbnail: true })))
+	).filter(Boolean);
+
 	return {
-		series: (await Promise.all(ids.map((id) => loadBlogSeries(id, lang)))).filter(Boolean),
+		series,
 		routing: {
 			breadcrumbs: b['/:lang/blog/series']({ lang }),
 			paths: {
@@ -24,9 +28,9 @@ export const load: PageServerLoad = async ({ params }) => {
 			},
 		},
 		meta: {
-			title: m['pages.blog_latest.title'](lang),
-			description: m['pages.blog_latest.desc'](lang),
-			keywords: m['pages.blog_latest.keywords'](lang),
+			title: m['pages.blog_series.title'](lang),
+			description: m['pages.blog_series.desc'](lang),
+			keywords: m['pages.blog_series.keywords'](lang),
 			og: {
 				image: ogImage[lang],
 			},

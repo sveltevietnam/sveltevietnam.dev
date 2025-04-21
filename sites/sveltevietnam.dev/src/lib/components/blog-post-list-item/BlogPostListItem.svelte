@@ -115,7 +115,7 @@
 				<a class="c-link-preserved relative" {href}>
 					{post.title}
 					<i
-						class="not-can-hover:hidden i i-[ph--cursor-click] absolute bottom-0 right-0 translate-x-full text-[0.75em]"
+						class="not-can-hover:hidden i i-[ph--cursor-click] text-[0.75em]"
 					></i>
 				</a>
 			</p>

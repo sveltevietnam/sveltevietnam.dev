@@ -5,7 +5,7 @@ messages:
       name: Cộng đồng
       slug: cong-dong
       desc: Chia sẻ về sự kiện của Svelte Việt Nam, dự án mã nguồn mở, và các hoạt
-        động
+        động xây dựng cộng đồng
     ecosystem:
       name: Hệ sinh thái
       slug: he-sinh-thai

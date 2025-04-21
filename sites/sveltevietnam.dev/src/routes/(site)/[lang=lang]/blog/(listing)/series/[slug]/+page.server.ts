@@ -12,7 +12,7 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ url, params }) => {
 	const { lang } = params;
-	const series = await loadBlogSeriesBySlug(params.slug, lang);
+	const series = await loadBlogSeriesBySlug(params.slug, lang, { ogImage: true });
 	if (!series) {
 		// TODO: assign a unique code to this error
 		error(404, { message: 'Series not found', code: 'SV000' });
@@ -55,6 +55,9 @@ export const load: PageServerLoad = async ({ url, params }) => {
 			max: Math.ceil(total / pagination.per),
 		},
 		meta: {
+			og: {
+				image: series.ogImage,
+			},
 			structured: buildStructuredBlogSeries(lang, VITE_PUBLIC_ORIGIN, series),
 			title: `${series.name} | Svelte Vietnam`,
 			description: series.description,
