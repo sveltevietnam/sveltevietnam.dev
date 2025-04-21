@@ -6,7 +6,6 @@
 	"module": "src/index.js",
 	"types": "types/index.d.ts",
 	"type": "module",
-	"bin": "./src/cli.js",
 	"exports": {
 		".": {
 			"types": "./types/index.d.ts",
@@ -61,8 +60,6 @@
 		"format": "prettier --write --ignore-path=../../.prettierignore ."
 	},
 	"dependencies": {
-		"@clack/prompts": "^0.10.1",
-		"commander": "^13.1.0",
 		"dedent": "^1.5.3",
 		"picocolors": "^1.1.1",
 		"tiny-glob": "^0.2.9",

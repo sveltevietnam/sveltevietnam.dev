@@ -206,12 +206,6 @@ importers:
 
   packages/routes:
     dependencies:
-      '@clack/prompts':
-        specifier: ^0.10.1
-        version: 0.10.1
-      commander:
-        specifier: ^13.1.0
-        version: 13.1.0
       dedent:
         specifier: ^1.5.3
         version: 1.5.3
