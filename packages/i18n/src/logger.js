@@ -1,5 +1,5 @@
 import pico from 'picocolors';
-import { createLogger as createViteLoggger } from 'vite';
+import { createLogger as createViteLogger } from 'vite';
 
 /**
  * @typedef {'success' | 'info' | 'warn' | 'error'} Status
@@ -53,7 +53,7 @@ function createProxyLogMethod(status, method) {
  * @returns {CustomLogger}
  */
 export function createLogger() {
-	const logger = createViteLoggger('info', {
+	const logger = createViteLogger('info', {
 		allowClearScreen: true,
 	});
 
