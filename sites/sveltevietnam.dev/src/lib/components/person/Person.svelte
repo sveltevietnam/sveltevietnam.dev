@@ -15,17 +15,17 @@
 	let { name, href, avatar, description }: PersonProps = $props();
 </script>
 
-{#snippet avatarSnip()}
-		<Avatar class="h-12 w-12 object-top" src={avatar} {name} border="ellipse" />
+{#snippet avatarSnip(cls: string = '')}
+		<Avatar class="h-12 w-12 object-top {cls}" src={avatar} {name} border="ellipse" />
 {/snippet}
 
 <article class="flex items-center gap-3">
 	{#if href}
-		<a {href}>
+		<a {href} class="shrink-0">
 			{@render avatarSnip()}
 		</a>
 	{:else}
-		{@render avatarSnip()}
+		{@render avatarSnip('shrink-0')}
 	{/if}
 	<div>
 		<p class="font-bold">

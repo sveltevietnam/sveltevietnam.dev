@@ -16,7 +16,7 @@
 
 <li class="group/faq border-b">
 	<label class="c-link-lazy block py-4">
-		<span class="flex items-start justify-between">
+		<span class="flex items-start justify-between gap-1">
 			<span class="c-text-body-md font-medium">
 				{#if isMessage(question)}
 					<T message={question} />
@@ -26,7 +26,7 @@
 			</span>
 			<input type="checkbox" class="peer sr-only" />
 			<i
-				class="i i-[ph--caret-down] block h-6 w-6 transition-transform
+				class="i i-[ph--caret-down] block h-6 w-6 transition-transform shrink-0
 				duration-300 ease-out peer-checked:rotate-180 peer-checked:duration-100 peer-checked:ease-in"
 			></i>
 		</span>
