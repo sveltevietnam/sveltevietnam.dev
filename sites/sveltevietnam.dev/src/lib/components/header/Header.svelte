@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import type { ChangeEventHandler } from 'svelte/elements';
 
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
@@ -20,6 +21,9 @@
 			isMobileMenuOpen = false;
 		}
 	});
+	const onMobileMenuOpenChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+		settings.toggleScrollLock(e.currentTarget?.checked);
+	};
 
 	const MAX_SCROLL_Y = 400;
 	let lastScrollY = $state(0);
@@ -111,6 +115,7 @@
 				type="checkbox"
 				name="mobile-menu"
 				bind:checked={isMobileMenuOpen}
+				onchange={onMobileMenuOpenChange}
 			/>
 			<i class="i i-[ph--list] h-6 w-6 peer-checked:hidden"></i>
 			<i class="i i-[ph--x] hidden h-6 w-6 peer-checked:block"></i>
@@ -120,18 +125,23 @@
 		</label>
 
 		<!-- mobile menu -->
+		<div class="_mobile-menu-backdrop bg-surface absolute inset-x-0 top-full grid"></div>
 		<div
 			class="_mobile-menu bg-surface absolute inset-x-0 top-full grid"
 			inert={settings.hydrated && !isMobileMenuOpen}
 		>
 			<div class="overflow-hidden">
-				<div class="_mobile-menu-content max-w-pad space-y-10">
-					<PageMenu class="max-w-100 mx-auto" flat onnavigate={() => (isMobileMenuOpen = false)} />
-					<div class="flex flex-wrap items-center justify-center gap-4">
+				<div class="_mobile-menu-content max-w-pad overflow-auto border-b py-8">
+					<div class="z-1 relative flex flex-wrap items-center justify-center gap-4">
 						<ColorSchemeMenu class="border border-current" />
 						<LanguageMenu class="border border-current" />
 					</div>
-					<SocialLinks class="justify-center" />
+					<PageMenu
+						class="max-w-100 relative z-0 mx-auto mb-8 mt-4"
+						flat
+						onnavigate={() => (isMobileMenuOpen = false)}
+					/>
+					<SocialLinks class="relative z-0 justify-center" />
 				</div>
 			</div>
 		</div>
@@ -149,6 +159,15 @@
 	}
 
 	._mobile-menu-content {
-		height: calc(100dvh - var(--header-height));
+		max-height: calc(100dvh - var(--spacing-header));
+	}
+
+	._mobile-menu-backdrop {
+		display: none;
+		height: calc(100dvh - var(--spacing-header));
+
+		header:has(._mobile-menu-toggler:checked) & {
+			display: block;
+		}
 	}
 </style>
