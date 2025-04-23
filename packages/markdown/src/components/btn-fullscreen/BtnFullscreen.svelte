@@ -61,7 +61,7 @@
 		<input class="codeblock-fullscreen sr-only" type="checkbox" {id} bind:checked={fullscreen} />
 	{/if}
 	<i class="maximize i i-[ph--corners-out]"></i>
-	<i class="minimize i i[-corners-in]"></i>
+	<i class="minimize i i-[ph--corners-in]"></i>
 </label>
 
 <style lang="postcss">
