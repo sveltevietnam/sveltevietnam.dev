@@ -20,7 +20,7 @@ For technical discussion or assistance, reach out to our maintainers at the [#si
 See [package.json] for engine specification. At project root, run:
 
 ```bash
-pnpm setup
+pnpm boot
 ```
 
 ## Environment Variables

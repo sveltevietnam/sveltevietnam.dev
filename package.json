@@ -8,7 +8,7 @@
 		"url": "https://www.sveltevietnam.dev"
 	},
 	"scripts": {
-		"setup": "pnpm install && lefthook install",
+		"boot": "pnpm install && lefthook install",
 		"turbo": "turbo",
 		"build": "turbo run build",
 		"dev": "turbo run dev",
