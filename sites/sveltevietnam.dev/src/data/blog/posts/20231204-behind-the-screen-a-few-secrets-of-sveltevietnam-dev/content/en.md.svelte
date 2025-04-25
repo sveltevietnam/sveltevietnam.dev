@@ -1,11 +1,11 @@
 <script>
   import { StackItem } from '@svelte-put/async-stack';
+	import { T } from '@sveltevietnam/i18n';
 
   import * as m from '$data/locales/generated/messages';
   import BaseNotification from '$lib/notifications/components/BaseNotification.svelte';
   import { DiscordNewMessage } from '$lib/notifications/components/discord-new-message';
 	import { NotificationContext } from '$lib/notifications/context.svelte';
-	import { SettingsContext } from '$lib/settings/context.svelte';
 
   import devToolsSlow3gImage from '../images/devtools-slow-3g.jpg?format=webp&imagetools';
   import disableJavascriptImage from '../images/disable-javascript.png?format=webp&imagetools';
@@ -16,25 +16,24 @@
 
 	const item = new StackItem({ timeout: 0 });
 	const { toaster } = NotificationContext.get();
-  const settings = SettingsContext.get();
 
   function pushDemoToast() {
     toaster.warning({
-      title: m['notifications.sample.title'](settings.language),
-      message: m['notifications.sample.title'](settings.language),
+      title: m['notifications.sample.title'],
+      message: m['notifications.sample.title'],
     });
   }
 
-  const notiLocales = $derived({
+  const notiLocales = {
     delayedHydration: {
-      title: m['notifications.new_site_version.title'](settings.language),
-      message: m['notifications.new_site_version.message'](settings.language)
+      title: m['notifications.new_site_version.title'],
+      message: m['notifications.new_site_version.message'],
     },
     newSiteVersion: {
-      title: m['notifications.new_site_version.title'](settings.language),
-      message: m['notifications.new_site_version.message'](settings.language)
+      title: m['notifications.new_site_version.title'],
+      message: m['notifications.new_site_version.message'],
     },
-  });
+  };
 </script>
 
 <div class="c-callout c-callout--info">
@@ -70,7 +69,7 @@ When there is a successful deployment to the server, the web page will display t
 <div class="div not-prose">
 
 <BaseNotification class="demo-noti" status="info" title={notiLocales.newSiteVersion.title} item={item}>
-  <p>{notiLocales.newSiteVersion.message}</p>
+  <p><T message={notiLocales.newSiteVersion.message} /></p>
 </BaseNotification>
 
 </div>
@@ -96,7 +95,7 @@ When you open the web page in devices or places that are limited in network conn
 <div class="div not-prose">
 
 <BaseNotification class="demo-noti" status="info" title={notiLocales.delayedHydration.title} item={item}>
-  <p>{notiLocales.delayedHydration.message}</p>
+  <p><T message={notiLocales.delayedHydration.message} /></p>
 </BaseNotification>
 
 </div>

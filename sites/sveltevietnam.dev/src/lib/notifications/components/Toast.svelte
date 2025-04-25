@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import { T } from '@sveltevietnam/i18n';
-	import { isMessage, type Message, type MessageType } from '@sveltevietnam/i18n/runtime';
+	import { type Message, type MessageType } from '@sveltevietnam/i18n/runtime';
 
 	import type { BaseNotificationProps } from './BaseNotification.svelte';
 
@@ -16,9 +16,11 @@
 </script>
 
 <BaseNotification {...rest}>
-	{#if isMessage(message)}
-		<T {message} />
-	{:else}
-		<p>{message}</p>
-	{/if}
+	<p>
+		{#if typeof message === 'string'}
+			{message}
+		{:else}
+			<T {message} />
+		{/if}
+	</p>
 </BaseNotification>

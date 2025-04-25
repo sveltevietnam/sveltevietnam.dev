@@ -1,10 +1,10 @@
 <script>
   import { StackItem } from '@svelte-put/async-stack';
+	import { T } from '@sveltevietnam/i18n';
 
   import * as m from '$data/locales/generated/messages';
   import BaseNotification from '$lib/notifications/components/BaseNotification.svelte';
   import { SplashScreenPlayground } from '$lib/components/splash-screen-playground';
-	import { SettingsContext } from '$lib/settings/context.svelte';
 
   import hydrationImage from '../images/hydration-vi.png?format=webp&imagetools';
   import blockingRenderImage from '../images/blocking-render.png?format=webp&imagetools';
@@ -14,12 +14,11 @@
   import hydrationDuringSplashImage from '../images/hydration-during-splash.png?format=webp&imagetools';
   import hydrationAfterSplashImage from '../images/hydration-after-splash.png?format=webp&imagetools';
 
-  const settings = SettingsContext.get();
 	const item = new StackItem({ timeout: 0 });
-  const delayedHydration = $derived({
-    title: m['notifications.new_site_version.title'](settings.language),
-    message: m['notifications.new_site_version.message'](settings.language)
-  });
+  const delayedHydration = {
+    title: m['notifications.new_site_version.title'],
+    message: m['notifications.new_site_version.message'],
+  };
 </script>
 
 <div class="c-callout c-callout--info">
@@ -252,7 +251,7 @@ Ngoài ra, trong tình huống này, ta không thể tránh được việc tran
 <div class="not-prose">
 
 <BaseNotification status="info" title={delayedHydration.title} item={item}>
-  <p>{delayedHydration.message}</p>
+  <p><T message={delayedHydration.message} /></p>
 </BaseNotification>
 
 </div>

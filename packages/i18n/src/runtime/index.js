@@ -69,5 +69,6 @@ export function createMessage(messages) {
  * @returns {m is import('./types.public.js').Message}
  */
 export function isMessage(m) {
+	if (typeof m === 'string') return false;
 	return '$t' in /** @type {any} */ (m);
 }
