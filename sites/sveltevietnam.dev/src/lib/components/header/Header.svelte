@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
-	import type { ChangeEventHandler } from 'svelte/elements';
 
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
@@ -21,9 +20,9 @@
 			isMobileMenuOpen = false;
 		}
 	});
-	const onMobileMenuOpenChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-		settings.toggleScrollLock(e.currentTarget?.checked);
-	};
+	$effect(() => {
+		settings.toggleScrollLock(isMobileMenuOpen);
+	});
 
 	const MAX_SCROLL_Y = 400;
 	let lastScrollY = $state(0);
@@ -115,7 +114,6 @@
 				type="checkbox"
 				name="mobile-menu"
 				bind:checked={isMobileMenuOpen}
-				onchange={onMobileMenuOpenChange}
 			/>
 			<i class="i i-[ph--list] h-6 w-6 peer-checked:hidden"></i>
 			<i class="i i-[ph--x] hidden h-6 w-6 peer-checked:block"></i>
