@@ -1,8 +1,11 @@
 <script lang="ts" module>
+	import { T } from '@sveltevietnam/i18n';
+	import { isMessage, type Message, type MessageType } from '@sveltevietnam/i18n/runtime';
+
 	import type { BaseNotificationProps } from './BaseNotification.svelte';
 
 	export interface ToastProps extends BaseNotificationProps {
-		message: string;
+		message: string | Message<MessageType, never>;
 	}
 </script>
 
@@ -13,6 +16,9 @@
 </script>
 
 <BaseNotification {...rest}>
-	<p>{message}</p>
+	{#if isMessage(message)}
+		<T {message} />
+	{:else}
+		<p>{message}</p>
+	{/if}
 </BaseNotification>
-

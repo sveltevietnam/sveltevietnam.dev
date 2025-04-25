@@ -1,10 +1,14 @@
 <script lang="ts" module>
 	import type { StackItemProps } from '@svelte-put/async-stack';
+	import { T } from '@sveltevietnam/i18n';
+	import { type Message, type MessageType, isMessage } from '@sveltevietnam/i18n/runtime';
 	import type { Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 
-	export interface BaseNotificationProps extends Omit<HTMLAttributes<HTMLElement>, 'title'>, StackItemProps {
-		title?: string | null | Snippet;
+	export interface BaseNotificationProps
+		extends Omit<HTMLAttributes<HTMLElement>, 'title'>,
+			StackItemProps {
+		title?: string | null | Snippet | Message<MessageType, never>;
 		icon?: string | Snippet;
 		status?: 'info' | 'success' | 'warning' | 'error';
 	}
@@ -18,7 +22,15 @@
 </script>
 
 <script lang="ts">
-	let { item, title, icon, status, class: cls, children, ...rest }: BaseNotificationProps = $props();
+	let {
+		item,
+		title,
+		icon,
+		status,
+		class: cls,
+		children,
+		...rest
+	}: BaseNotificationProps = $props();
 
 	function dismiss() {
 		item?.resolve();
@@ -54,10 +66,14 @@
 
 		<div class="w-full leading-normal">
 			{#if title !== null}
-				{#if typeof title === 'function'}
+				{#if isMessage(title)}
+					<p class={['mb-2 border-b pb-1 font-bold', status && 'border-current']}>
+						<T message={title} />
+					</p>
+				{:else if typeof title === 'function'}
 					{@render title()}
 				{:else}
-					<p class="mb-2 border-b {status ? 'border-current' : ''} pb-1 font-bold">
+					<p class={['mb-2 border-b pb-1 font-bold', status && 'border-current']}>
 						{title ?? (status ? status[0].toUpperCase() + status.slice(1) : '')}
 					</p>
 				{/if}
@@ -138,4 +154,3 @@
 		}
 	}
 </style>
-

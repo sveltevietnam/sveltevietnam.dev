@@ -6,7 +6,6 @@
 	import BaseNotification, {
 		type BaseNotificationProps,
 	} from '$lib/notifications/components/BaseNotification.svelte';
-	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	let {
 		name,
@@ -16,13 +15,11 @@
 		avatarURL?: string;
 		name: string;
 	} = $props();
-
-	const settings = SettingsContext.get();
 </script>
 
 <BaseNotification
 	{...rest}
-	title={m['notifications.discord_new_message.title'](settings.language)}
+	title={m['notifications.discord_new_message.title']}
 	status="info"
 >
 	{#snippet icon()}

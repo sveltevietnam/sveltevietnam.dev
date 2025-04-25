@@ -1,11 +1,18 @@
 import { stack as createStack } from '@svelte-put/async-stack';
+import type { Message, MessageType } from '@sveltevietnam/i18n/runtime';
 import { getContext, setContext } from 'svelte';
 
 import { STATUSES } from '$lib/constants';
 
 import Toast from './components/Toast.svelte';
 
-type PushToast = ({ message, title }: { message: string; title?: string | null }) => void;
+type PushToast = ({
+	message,
+	title,
+}: {
+	message: string | Message<MessageType, never>;
+	title?: string | Message<MessageType, never> | null;
+}) => void;
 
 export function createNotificationStack() {
 	const stack = createStack({ timeout: 4_000 }).addVariant('toast', Toast).build();
@@ -44,4 +51,3 @@ export class NotificationContext {
 		return getContext<NotificationContextValue>(NotificationContext.KEY);
 	}
 }
-
