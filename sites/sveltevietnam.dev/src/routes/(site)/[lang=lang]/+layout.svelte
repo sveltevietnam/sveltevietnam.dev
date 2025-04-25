@@ -2,7 +2,7 @@
 	import { lockscroll } from '@svelte-put/lockscroll';
 	import { onMount, setContext } from 'svelte';
 
-	import { version } from '$app/environment';
+	import { dev, version } from '$app/environment';
 	import { navigating, page } from '$app/state';
 	import { Footer } from '$lib/components/footer';
 	import { Header } from '$lib/components/header';
@@ -12,6 +12,7 @@
 	import DialogPortal from '$lib/dialogs/DialogPortal.svelte';
 	import { DialogContext } from '$lib/dialogs/context.svelte';
 	import NotificationPortal from '$lib/notifications/components/NotificationPortal.svelte';
+	import { V1SiteConstruction } from '$lib/notifications/components/v1-site-construction';
 	import { NotificationContext } from '$lib/notifications/context.svelte';
 	import { RoutingContext } from '$lib/routing/context.svelte.js';
 	import { SettingsContext } from '$lib/settings/context.svelte';
@@ -37,6 +38,17 @@
 	setContext('t:lang', () => data.settings.language);
 
 	onMount(async () => {
+		const key = 'show-v1-site-construction-noti';
+		if (!dev && localStorage.getItem(key) !== 'false') {
+			const pushed = noti.stack.push('custom', {
+				component: V1SiteConstruction,
+			});
+			const notAgain = await pushed.resolution;
+			if (notAgain) {
+				localStorage.setItem(key, 'false');
+			}
+		}
+
 		(await import('$lib/easter/ascii-pho')).default();
 	});
 </script>

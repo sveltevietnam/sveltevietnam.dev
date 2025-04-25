@@ -5,9 +5,9 @@
 	import type { Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 
-	export interface BaseNotificationProps
+	export interface BaseNotificationProps<T = never>
 		extends Omit<HTMLAttributes<HTMLElement>, 'title'>,
-			StackItemProps {
+			StackItemProps<T> {
 		title?: string | null | Snippet | Message<MessageType, never>;
 		icon?: string | Snippet;
 		status?: 'info' | 'success' | 'warning' | 'error';
@@ -21,7 +21,7 @@
 	};
 </script>
 
-<script lang="ts">
+<script lang="ts" generics="T">
 	let {
 		item,
 		title,
@@ -30,7 +30,7 @@
 		class: cls,
 		children,
 		...rest
-	}: BaseNotificationProps = $props();
+	}: BaseNotificationProps<T> = $props();
 
 	function dismiss() {
 		item?.resolve();

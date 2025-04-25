@@ -82,6 +82,7 @@
 	class={['from-primary-surface to-surface relative bg-gradient-to-t', cls]}
 	{...rest}
 	data-sveltekit-preload-data="hover"
+	id="footer"
 >
 	<div class="max-w-pad _upper border-y pb-10 pt-14">
 		<p
