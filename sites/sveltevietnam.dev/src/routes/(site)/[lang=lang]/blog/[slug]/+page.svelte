@@ -280,7 +280,7 @@
 			'content'
 			'sharing'
 			'latest';
-		grid-template-columns: 1fr;
+		grid-template-columns: minmax(auto, calc(100dvw - var(--pad-min-padding-x) * 2));
 		grid-template-rows: repeat(4, auto);
 
 		@media (--tablet) {
