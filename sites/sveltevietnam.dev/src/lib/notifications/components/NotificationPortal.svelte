@@ -86,11 +86,11 @@
 		return `calc(${contentPx}px + ${remGap}rem)`;
 	});
 
-	function onMouseEnter() {
+	function onPointerEnter() {
 		expanded = true;
 		stack.pause(); // pause all items;
 	}
-	function onMouseLeave() {
+	function onPointerLeave() {
 		expanded = false;
 		stack.resume(); // resume all items;
 	}
@@ -99,8 +99,8 @@
 <ol
 	class="z-notification tablet:top-10 tablet:right-10 fixed right-4 top-4 grid content-start items-start"
 	style:height={olHeight}
-	onmouseenter={onMouseEnter}
-	onmouseleave={onMouseLeave}
+	onpointerenter={onPointerEnter}
+	onpointerleave={onPointerLeave}
 	data-expanded={expanded}
 >
 	{#each stack.items as notification, index (notification.config.id)}
