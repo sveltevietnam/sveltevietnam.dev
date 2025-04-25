@@ -42,6 +42,7 @@
 		if (!dev && localStorage.getItem(key) !== 'false') {
 			const pushed = noti.stack.push('custom', {
 				component: V1SiteConstruction,
+				timeout: 10_000,
 			});
 			const notAgain = await pushed.resolution;
 			if (notAgain) {
