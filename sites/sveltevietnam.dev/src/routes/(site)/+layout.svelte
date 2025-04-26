@@ -45,7 +45,7 @@
 			type: meta?.og?.type ?? 'website',
 			url: meta?.og?.url ?? canonical,
 			image: rootRelativeOgImage.startsWith('/')
-				? `${VITE_PUBLIC_ORIGIN}${rootRelativeOgImage}`
+				? `${page.url.origin}${rootRelativeOgImage}`
 				: rootRelativeOgImage,
 			imageAlt: meta?.og?.imageAlt ?? title,
 		};
