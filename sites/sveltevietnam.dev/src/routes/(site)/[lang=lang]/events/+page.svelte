@@ -55,7 +55,10 @@
 				src={imgIntro}
 				width="320"
 				height="320"
-				alt=""
+				alt="a human holding hand with an anthropomorphized planet earth"
+				fetchpriority="high"
+				loading="eager"
+				decoding="sync"
 			/>
 		</div>
 		<IntroSeparator />
