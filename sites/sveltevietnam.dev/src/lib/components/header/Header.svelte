@@ -14,6 +14,9 @@
 	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();
 
+	let isColorSchemeMenuOpen = $state(false);
+	let isPageMenuOpen = $state(false);
+	let isLanguageMenuOpen = $state(false);
 	let isMobileMenuOpen = $state(false);
 	$effect(() => {
 		if (settings.screen === 'desktop') {
@@ -30,6 +33,9 @@
 	function onScroll() {
 		if (window.scrollY > lastScrollY && window.scrollY > MAX_SCROLL_Y) {
 			shouldHideHeader = true;
+			isColorSchemeMenuOpen = false;
+			isPageMenuOpen = false;
+			isLanguageMenuOpen = false;
 		} else {
 			shouldHideHeader = false;
 		}
@@ -89,9 +95,9 @@
 					/>
 				</label>
 			</form>
-			<ColorSchemeMenu />
-			<LanguageMenu />
-			<PageMenu />
+			<ColorSchemeMenu bind:open={isColorSchemeMenuOpen} />
+			<LanguageMenu bind:open={isLanguageMenuOpen} />
+			<PageMenu bind:open={isPageMenuOpen} />
 		</div>
 	</div>
 

@@ -9,9 +9,11 @@
 	let {
 		class: cls,
 		alwaysShowLabel = false,
+		open = $bindable(false),
 		...rest
 	}: HTMLAttributes<HTMLElement> & {
 		alwaysShowLabel?: boolean;
+		open?: boolean;
 	} = $props();
 
 	const settings = SettingsContext.get();
@@ -30,8 +32,6 @@
 			label: m['components.color_scheme_menu.system'],
 		},
 	});
-
-	let open = $state(false);
 </script>
 
 <div

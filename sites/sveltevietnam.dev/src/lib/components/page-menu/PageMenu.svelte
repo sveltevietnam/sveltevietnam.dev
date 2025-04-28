@@ -13,16 +13,16 @@
 		flat = false,
 		class: cls,
 		onnavigate = () => {},
+		open = $bindable(false),
 		...rest
 	}: {
 		flat?: boolean;
 		onnavigate?: () => void;
+		open?: boolean;
 	} & HTMLAttributes<HTMLElement> = $props();
 
 	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();
-
-	let open = $state(false);
 
 	const links = [
 		{

@@ -10,7 +10,9 @@
 	import flagGb from './images/flag-gb.svg';
 	import flagVn from './images/flag-vn.svg';
 
-	let { class: cls, ...rest }: HTMLAttributes<HTMLElement> = $props();
+	let { open = $bindable(false), class: cls, ...rest }: HTMLAttributes<HTMLElement> & {
+		open?: boolean;
+	} = $props();
 
 	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();
@@ -20,7 +22,6 @@
 			? m['components.language_menu.vietnamese']
 			: m['components.language_menu.english'],
 	);
-	let open = $state(false);
 </script>
 
 <nav
