@@ -29,6 +29,7 @@ export const load: PageServerLoad = async ({ url, params }) => {
 		error(404, { message: 'Author not found', code: 'SV000' });
 	}
 
+	const otherLang = lang === 'en' ? 'vi' : 'en';
 	const pagination = getPaginationFromUrl(url);
 	const [{ events }, { posts, total }] = await Promise.all([
 		loadEventsByPersonId(lang, person.id, 1, 4),
@@ -49,8 +50,8 @@ export const load: PageServerLoad = async ({ url, params }) => {
 		id: [person.id, person.name],
 	});
 	const paths = {
-		vi: p['/:lang/people/:id']({ lang, id: person.id }),
-		en: p['/:lang/people/:id']({ lang, id: person.id }),
+		[lang]: p['/:lang/people/:id']({ lang, id: person.id }),
+		[otherLang]: p['/:lang/people/:id']({ lang: otherLang, id: person.id }),
 	} as Record<App.Language, string>;
 
 	return {
