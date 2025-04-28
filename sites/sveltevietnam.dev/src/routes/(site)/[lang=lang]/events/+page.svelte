@@ -120,7 +120,10 @@
 				<p class="leading-relaxed">
 					<T message={m['pages.events.share.desc']} />
 					<br /><br />
-					Email <a class="c-link" href="mailto:{EMAILS.EVENTS}">{EMAILS.EVENTS}</a>
+					Email
+					<a class="c-link" href="mailto:{EMAILS.EVENTS}" rel="noreferrer" target="_blank">
+						{EMAILS.EVENTS}
+					</a>
 				</p>
 			</div>
 			<div class="flex flex-1 justify-center">
