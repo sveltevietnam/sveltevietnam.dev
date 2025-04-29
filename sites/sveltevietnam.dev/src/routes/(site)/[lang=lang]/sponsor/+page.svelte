@@ -40,6 +40,7 @@
 				height="320"
 				alt="a human watering the earth"
 				fetchpriority="high"
+				loading="eager"
 			/>
 		</div>
 		<IntroSeparator />
@@ -51,7 +52,7 @@
 			class="border-onehalf bg-surface shadow-brutal-lg tablet:p-8 desktop:p-10 desktop:pt-6 tablet:pt-4 relative space-y-6 p-6 pt-4"
 		>
 			<h1 class="c-text-heading-lg border-b">Open Collective</h1>
-			<p class="leading-relaxed">
+			<p class="max-w-readable leading-relaxed">
 				<T message={m['pages.sponsor.highlight.desc']} />
 			</p>
 			<a
@@ -120,12 +121,12 @@
 	<!-- Why -->
 	<section class="max-w-pad bg-gradient-primary py-section space-y-6" id="why">
 		<h1 class="c-text-heading-lg border-b"><T message={m['pages.sponsor.why.heading']} /></h1>
-		<p class="leading-relaxed">
+		<p class="max-w-readable leading-relaxed">
 			<T message={m['pages.sponsor.why.desc']} />
 			<br /><br />
 			<T message={m['pages.sponsor.why.reasons.opening']} />
 		</p>
-		<ul class="pl-6s list-disc">
+		<ul class="pl-6s max-w-readable list-disc">
 			<li>
 				<T message={m['pages.sponsor.why.reasons.one']} />
 			</li>
@@ -133,7 +134,7 @@
 				<T message={m['pages.sponsor.why.reasons.two']} />
 			</li>
 		</ul>
-		<p class="leading-relaxed">
+		<p class="max-w-readable leading-relaxed">
 			<T message={m['pages.sponsor.why.reasons.closing']} />
 		</p>
 	</section>
@@ -141,7 +142,7 @@
 	<!-- Benefits -->
 	<section class="py-section max-w-pad space-y-6">
 		<h1 class="c-text-heading-lg border-b"><T message={m['pages.sponsor.benefit.heading']} /></h1>
-		<p class="leading-relaxed">
+		<p class="max-w-readable leading-relaxed">
 			<T message={m['pages.sponsor.benefit.desc']} />
 		</p>
 	</section>
