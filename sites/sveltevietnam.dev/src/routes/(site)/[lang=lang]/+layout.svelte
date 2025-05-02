@@ -63,7 +63,7 @@
 <Header />
 {@render children()}
 {#if page.data.editUrl}
-	<PageEditLink class="mt-auto" href={page.data.editUrl} />
+	<PageEditLink class="mt-auto" href={page.data.editUrl} id="edit-this-page" />
 {/if}
 <Footer class={[!page.data.editUrl && 'mt-auto']} {version} />
 
