@@ -35,7 +35,7 @@
 		class="group-has-checked/faq:grid-rows-[1fr] group-has-checked/faq:duration-100 group-has-checked:ease-in grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out"
 	>
 		<div class="overflow-hidden">
-			<p class="tb:mx-6 mx-2 px-2 pb-4">
+			<p class="tablet:mx-6 mx-2 px-2 pb-4">
 				{#if isMessage(answer)}
 					<T message={answer} />
 				{:else}
