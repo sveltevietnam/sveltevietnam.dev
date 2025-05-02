@@ -49,7 +49,7 @@
 	<!-- How -->
 	<section class="py-section max-w-pad" id="how">
 		<div
-			class="border-onehalf bg-surface shadow-brutal-lg tablet:p-8 desktop:p-10 desktop:pt-6 tablet:pt-4 relative w-fit space-y-6 p-6 pt-4"
+			class="border-onehalf bg-surface shadow-brutal-lg tablet:p-8 desktop:p-10 desktop:pt-6 tablet:pt-4 relative w-fit space-y-6 border-current p-6 pt-4"
 		>
 			<h1 class="c-text-heading-lg border-b">Open Collective</h1>
 			<p class="max-w-readable-relaxed leading-relaxed">
@@ -80,30 +80,33 @@
 		<p class="max-w-readable-relaxed leading-relaxed">
 			<T message={m['pages.sponsor.participate.desc']} />
 		</p>
-		<ul class="max-w-readable-relaxed flex flex-col gap-6">
+		<ul class="max-w-readable-relaxed space-y-6">
 			<li>
 				<a
 					class="c-btn c-btn--pop flex justify-between"
 					href={SOCIAL_LINKS.DISCORD}
 					target="_blank"
 					rel="noopener noreferrer external"
-					><T message={m['pages.sponsor.participate.discord']} />
-					<i class="i i-[ph--arrow-square-out] h-6 w-6"></i></a
 				>
+					<T message={m['pages.sponsor.participate.discord']} />
+					<i class="i i-[ph--arrow-square-out] h-6 w-6"></i>
+				</a>
 			</li>
 			<li>
 				<a
 					class="c-btn c-btn--pop flex justify-between text-left"
 					href={p['/:lang/events']({ lang: settings.language })}
-					><T message={m['pages.sponsor.participate.events']} /></a
 				>
+					<T message={m['pages.sponsor.participate.events']} />
+				</a>
 			</li>
 			<li>
 				<a
 					class="c-btn c-btn--pop flex justify-between text-left"
 					href={p['/:lang/blog']({ lang: settings.language })}
-					><T message={m['pages.sponsor.participate.blog']} /></a
-				>
+					>
+					<T message={m['pages.sponsor.participate.blog']} />
+				</a>
 			</li>
 			<li>
 				<a
@@ -111,9 +114,10 @@
 					href={SOCIAL_LINKS.GITHUB}
 					target="_blank"
 					rel="noopener noreferrer external"
-					><T message={m['pages.sponsor.participate.github']} />
-					<i class="i i-[ph--arrow-square-out] h-6 w-6"></i></a
-				>
+					>
+					<T message={m['pages.sponsor.participate.github']} />
+					<i class="i i-[ph--arrow-square-out] h-6 w-6"></i>
+				</a>
 			</li>
 		</ul>
 	</section>
@@ -126,7 +130,7 @@
 			<br /><br />
 			<T message={m['pages.sponsor.why.reasons.opening']} />
 		</p>
-		<ul class="pl-6 max-w-readable-relaxed list-disc leading-relaxed">
+		<ul class="max-w-readable-relaxed list-disc pl-6 leading-relaxed">
 			<li>
 				<T message={m['pages.sponsor.why.reasons.one']} />
 			</li>
