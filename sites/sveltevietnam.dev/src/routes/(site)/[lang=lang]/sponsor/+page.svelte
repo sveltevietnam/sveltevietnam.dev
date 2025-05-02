@@ -126,7 +126,7 @@
 			<br /><br />
 			<T message={m['pages.sponsor.why.reasons.opening']} />
 		</p>
-		<ul class="pl-6s max-w-readable-relaxed list-disc leading-relaxed">
+		<ul class="pl-6 max-w-readable-relaxed list-disc leading-relaxed">
 			<li>
 				<T message={m['pages.sponsor.why.reasons.one']} />
 			</li>
