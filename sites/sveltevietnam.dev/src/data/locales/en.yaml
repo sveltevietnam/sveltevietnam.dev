@@ -515,8 +515,9 @@ messages:
         desc:
           'Svelte Vietnam chooses <a class="c-link" href="https://opencollective.com/sveltevietnam">Open
           Collective</a> to receive financial contributions from sponsors (individuals
-          or organizations). It provides the necessary platform and toolbox for money
-          management with high transparency: all donation and spending are made public.'
+          or organizations). Open collective provides the necessary platform and toolbox
+          for money management with high transparency: all donation and spending are
+          made public.'
         cta: Sponsor via Open Collective
         contact: If you have any proposal or question, please contact
       participate:
@@ -534,8 +535,8 @@ messages:
           any project or product. However, money is needed if we want to build a healthy
           community at scale, one that can encourage members to connect, share, and
           grow via forums and events. To better understand what Svelte Vietnam is
-          and trying to be, read the blog post “<a class="c-link" href="https://www.sveltevietnam.dev/en/blog/20231012-svelte-vietnam-from-local-to-global">
-          Svelte Vietnam: from Local to Global</a>”.'
+          and trying to be, read the blog post <a class="c-link" href="/en/blog/20231012-svelte-vietnam-from-local-to-global">“Svelte
+          Vietnam: from Local to Global”</a>.'
         reasons:
           opening: 'Specifically, Svelte Vietnam will use its fund for:'
           one: <strong>Maintain</strong> a stable and secure infrastructure (Cloudflare).
