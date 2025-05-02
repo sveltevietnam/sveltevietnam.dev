@@ -543,9 +543,8 @@ messages:
           kinh tế hóa các dự án hay sản phẩm. Tuy nhiên, Svelte Việt Nam cần có kinh
           phí để xây dựng một cộng đồng lành mạnh và khuyến khích thành viên gắn kết,
           cùng phát triển thông qua các sự kiện và diễn đàn. Để hiểu rõ hơn định hướng
-          phát triển của Svelte Việt Nam, hãy đọc qua bài viết “<a class="c-link"
-          href="https://www.sveltevietnam.dev/vi/blog/20231012-svelte-viet-nam-tu-vuon-nha-vuon-ra-the-gioi">Svelte
-          Việt Nam: từ vườn nhà vươn ra thế giới</a>”.'
+          phát triển của Svelte Việt Nam, hãy đọc qua bài viết <a class="c-link" href="/vi/blog/20231012-svelte-viet-nam-tu-vuon-nha-vuon-ra-the-gioi">“Svelte
+          Việt Nam: từ vườn nhà vươn ra thế giới”</a>.'
         reasons:
           opening: 'Cụ thể, Svelte Việt Nam sẽ sử dụng kinh phí từ quỹ tài trợ để:'
           one: Duy trì một hạ tầng ổn định (Cloudflare). Hiện tại Svelte Việt Nam
