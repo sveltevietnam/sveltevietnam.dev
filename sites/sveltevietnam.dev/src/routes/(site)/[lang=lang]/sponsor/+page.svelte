@@ -28,7 +28,7 @@
 					<h1 class="c-text-heading-page text-primary-on-surface">
 						<T message={m['pages.sponsor.heading']} />
 					</h1>
-					<p class="c-text-subtitle-page max-w-readable">
+					<p class="c-text-subtitle-page max-w-readable-relaxed">
 						<T message={m['pages.sponsor.desc']} />
 					</p>
 				</div>
@@ -49,10 +49,10 @@
 	<!-- How -->
 	<section class="py-section max-w-pad" id="how">
 		<div
-			class="border-onehalf bg-surface shadow-brutal-lg tablet:p-8 desktop:p-10 desktop:pt-6 tablet:pt-4 relative space-y-6 p-6 pt-4"
+			class="border-onehalf bg-surface shadow-brutal-lg tablet:p-8 desktop:p-10 desktop:pt-6 tablet:pt-4 relative w-fit space-y-6 p-6 pt-4"
 		>
 			<h1 class="c-text-heading-lg border-b">Open Collective</h1>
-			<p class="max-w-readable leading-relaxed">
+			<p class="max-w-readable-relaxed leading-relaxed">
 				<T message={m['pages.sponsor.highlight.desc']} />
 			</p>
 			<a
@@ -77,10 +77,10 @@
 		<h1 class="c-text-heading-lg border-b">
 			<T message={m['pages.sponsor.participate.heading']} />
 		</h1>
-		<p class="max-w-readable leading-relaxed">
+		<p class="max-w-readable-relaxed leading-relaxed">
 			<T message={m['pages.sponsor.participate.desc']} />
 		</p>
-		<ul class="max-w-readable flex flex-col gap-6">
+		<ul class="max-w-readable-relaxed flex flex-col gap-6">
 			<li>
 				<a
 					class="c-btn c-btn--pop flex justify-between"
@@ -121,12 +121,12 @@
 	<!-- Why -->
 	<section class="max-w-pad bg-gradient-primary py-section space-y-6" id="why">
 		<h1 class="c-text-heading-lg border-b"><T message={m['pages.sponsor.why.heading']} /></h1>
-		<p class="max-w-readable leading-relaxed">
+		<p class="max-w-readable-relaxed leading-relaxed">
 			<T message={m['pages.sponsor.why.desc']} />
 			<br /><br />
 			<T message={m['pages.sponsor.why.reasons.opening']} />
 		</p>
-		<ul class="pl-6s max-w-readable list-disc">
+		<ul class="pl-6s max-w-readable-relaxed list-disc leading-relaxed">
 			<li>
 				<T message={m['pages.sponsor.why.reasons.one']} />
 			</li>
@@ -134,7 +134,7 @@
 				<T message={m['pages.sponsor.why.reasons.two']} />
 			</li>
 		</ul>
-		<p class="max-w-readable leading-relaxed">
+		<p class="max-w-readable-relaxed leading-relaxed">
 			<T message={m['pages.sponsor.why.reasons.closing']} />
 		</p>
 	</section>
@@ -142,7 +142,7 @@
 	<!-- Benefits -->
 	<section class="py-section max-w-pad space-y-6">
 		<h1 class="c-text-heading-lg border-b"><T message={m['pages.sponsor.benefit.heading']} /></h1>
-		<p class="max-w-readable leading-relaxed">
+		<p class="max-w-readable-relaxed leading-relaxed">
 			<T message={m['pages.sponsor.benefit.desc']} />
 		</p>
 	</section>
