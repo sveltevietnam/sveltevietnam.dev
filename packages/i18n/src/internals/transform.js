@@ -16,6 +16,9 @@ export function transform(messages) {
 	/** @type {Record<string, string> } */
 	const exports = {};
 
+	/** @type {Map<string, number>} */
+	const varMap = new Map();
+
 	/// Transform each message definition into string, function, or snippet
 	/// depending on whether it contains HTML and/or dynamic parameters
 	for (let [key, langToMessage] of Object.entries(messages)) {
@@ -23,7 +26,13 @@ export function transform(messages) {
 		// just adding _ until there is a reliable upstream list
 		// of all reserved keywords
 		// @see https://github.com/microsoft/TypeScript/issues/2536
-		const varName = '_' + key.replace(/\./g, '_');
+		let varName = '_' + key.replace(/\./g, '_');
+		let collision = varMap.get(varName);
+		if (collision) {
+			varName = `${varName}_${collision}`;
+		}
+		varMap.set(varName, (collision ?? 0) + 1);
+
 		exports[varName] = key;
 
 		for (const [lang, content] of Object.entries(langToMessage)) {
