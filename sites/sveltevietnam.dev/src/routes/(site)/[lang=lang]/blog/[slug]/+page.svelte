@@ -163,7 +163,7 @@
 		</div>
 
 		<!-- content -->
-		<section class="_content prose max-w-full">
+		<section class="_content prose max-w-readable-relaxed">
 			{#if data.content}
 				{#key data.content}
 					<div use:toc.actions.root>
