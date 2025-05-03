@@ -7,9 +7,10 @@
 	import { BlogPostShowcase } from '$lib/components/blog-post-showcase';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { GradientBackground } from '$lib/components/gradient-background';
+	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { TextArrowLink } from '$lib/components/text-arrow-link';
 	import { RoutingContext } from '$lib/routing/context.svelte';
-	import { SettingsContext } from '$lib/settings/context.svelte.js';
+	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	let { data } = $props();
 
@@ -53,20 +54,7 @@
 				<p class="c-text-subtitle-page"><T message={m['pages.blog.tagline']} /></p>
 			</div>
 		</div>
-		<div class="flex items-center gap-3">
-			<div class="bg-primary h-10 w-10"></div>
-			<div class="bg-primary h-10 flex-1"></div>
-			<svg
-				class="h-10 w-14"
-				width="56"
-				height="40"
-				viewBox="0 0 56 40"
-				fill="none"
-				xmlns="http://www.w3.org/2000/svg"
-			>
-				<path d="M56 20 0 40V0L56 20Z" fill="var(--color-primary)" />
-			</svg>
-		</div>
+		<IntroSeparator variant="pen" />
 	</section>
 
 	<!-- latest -->
@@ -122,8 +110,10 @@
 						</div>
 					</div>
 					<p><T message={m['pages.blog.write.desc']} /></p>
-					<!-- FIXME link to /blog/write page once implemented -->
-					<a class="c-btn c-btn--pop w-fit text-left" href=".">
+					<a
+						class="c-btn c-btn--pop w-fit text-left"
+						href={p['/:lang/blog/write']({ lang: settings.language })}
+					>
 						<i class="i i-[ph--pencil-simple] h-6 w-6"></i>
 						<span><T message={m['pages.blog.write.cta']} /></span>
 					</a>

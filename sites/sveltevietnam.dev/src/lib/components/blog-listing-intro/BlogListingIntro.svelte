@@ -3,6 +3,7 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
+	import { IntroSeparator } from '$lib/components/intro-separator';
 
 	let {
 		children,
@@ -12,7 +13,7 @@
 		class: cls,
 		...rest
 	}: {
-		breadcrumbs: { path: string, name: string }[];
+		breadcrumbs: { path: string; name: string }[];
 		heading?: Snippet<[]> | string;
 		description?: Snippet<[]> | string;
 	} & HTMLAttributes<HTMLElement> = $props();
@@ -46,18 +47,5 @@
 			</div>
 		{/if}
 	</div>
-	<div class="flex items-center gap-3">
-		<div class="bg-primary h-10 w-10"></div>
-		<div class="bg-primary h-10 flex-1"></div>
-		<svg
-			class="h-10 w-14"
-			width="56"
-			height="40"
-			viewBox="0 0 56 40"
-			fill="none"
-			xmlns="http://www.w3.org/2000/svg"
-		>
-			<path d="M56 20L0 40L2.82652e-06 0L56 20Z" fill="var(--color-primary)" />
-		</svg>
-	</div>
+	<IntroSeparator variant="pen" />
 </section>
