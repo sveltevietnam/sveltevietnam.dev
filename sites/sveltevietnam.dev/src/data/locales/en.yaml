@@ -187,6 +187,12 @@ messages:
         desc: Resources and news channels about Svelte and SvelteKit are continuously
           updated on the homepage sveltevietnam.dev
         view: View list of resources
+    blog_write:
+      title: Write | Blog | Svelte Vietnam
+      keywords: blog, write, contribution, sharing, tutorial
+      heading: Writing Guide
+      desc: Guide to write your first blog post on the Svelte Vietnam Blogpage.s
+      toc: Table of contents
     blog_slug:
       lang:
         original:
@@ -212,7 +218,7 @@ messages:
         series: In this series
       edit:
         intro: Found a typo or need to correct something?
-        cta: Edit this page on Github
+        cta: Edit this blog post content on Github
     blog_categories:
       title: Categories | Blog | Svete Vietnam
       keywords: blog, write, categories, classification

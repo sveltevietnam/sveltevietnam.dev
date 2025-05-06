@@ -9,6 +9,9 @@ export default defineConfig<AllRoutePath, App.Language>({
 	localization: {
 		param: 'lang',
 		defs: {
+			'/:lang/blog/write': {
+				vi: '/:lang/blog/viet',
+			},
 			'/:lang/blog/categories': {
 				vi: '/:lang/blog/chu-de',
 			},
@@ -59,6 +62,10 @@ export default defineConfig<AllRoutePath, App.Language>({
 				default: 'Home',
 			},
 			'/:lang/blog': 'Blog',
+			'/:lang/blog/write': {
+				vi: 'Hướng dẫn viết bài',
+				default: 'Writing Guide',
+			},
 			'/:lang/blog/categories': {
 				vi: 'Chủ đề',
 				default: 'Categories',

@@ -193,6 +193,12 @@ messages:
         desc: Một số tài nguyên và kênh thông tin về Svelte và SvelteKit được cập
           nhật liên tục tại trang chủ sveltevietnam.dev
         view: Xem danh sách tài nguyên
+    blog_write:
+      title: Viết bài | Blog | Svelte Việt Nam
+      keywords: viết, bài viết, blog, chia sẻ, đóng góp, tham gia, hướng dẫn
+      heading: Viết bài
+      desc: Hướng dẫn viết bài và đóng góp nội dung cho Blog Svelte Việt Nam
+      toc: Mục lục
     blog_slug:
       lang:
         original:
@@ -217,7 +223,7 @@ messages:
         series: Cùng chuỗi bài viết
       edit:
         intro: Bạn tìm thấy lỗi chính tả hay cần đính chính nội dung?
-        cta: Sửa trang này tại Github
+        cta: Sửa bài viết này tại Github
     blog_categories:
       title: Chủ đề | Blog | Svelte Việt Nam
       keywords: blog, viết, chủ đề, phân loại
