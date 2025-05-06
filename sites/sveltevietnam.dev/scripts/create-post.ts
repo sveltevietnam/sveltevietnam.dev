@@ -121,7 +121,7 @@ const post = await p.group(
 	},
 );
 
-/// create post artifacts
+/// create artifacts
 const spinner = p.spinner();
 spinner.start('Creating blog post artifacts...');
 
@@ -253,7 +253,7 @@ child_process.execSync(
 	},
 );
 
-spinner.stop('Created blog post artifacts created!');
+spinner.stop('Created blog post artifacts!');
 p.note(
 	dedent`
 Added at ${pico.green(path.relative(cwd, dirpath))}:
@@ -278,5 +278,5 @@ p.note(
 	'Next steps...',
 );
 
-p.outro(pico.green(`All set. Have fun!`));
+p.outro(pico.green(`All set. Happy writing!`));
 process.exit(0);
