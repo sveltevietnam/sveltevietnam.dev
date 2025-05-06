@@ -57,7 +57,7 @@
 		"lint:svelte": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"lint:es": "eslint .",
 		"lint:style": "stylelint '**/*.{svelte,css}'",
-		"format": "prettier --write --ignore-path=../../.prettierignore ."
+		"format": "prettier --write --ignore-path=../../.prettierignore --config=../../prettier.config.js ."
 	},
 	"dependencies": {
 		"dedent": "^1.5.3",
