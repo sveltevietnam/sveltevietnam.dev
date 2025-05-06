@@ -4,6 +4,7 @@
 	import * as m from '$data/locales/generated/messages';
 	import type { Person } from '$data/people';
 	import * as p from '$data/routes/generated';
+	import fallback1x1 from '$lib/assets/images/fallbacks/1x1.jpg?enhanced&w=w=640;320&imagetools';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { PersonLinks } from '$lib/components/person-links';
@@ -22,7 +23,7 @@
 		lang: settings.language,
 		id: person.id,
 	})}
-	{@const image = person.popImage || person.avatar}
+	{@const image = person.popImage || person.avatar || fallback1x1}
 	<div class="@container w-full">
 		<article
 			class="shadow-brutal hover:shadow-brutal-lg bg-surface @2xl:flex-row @2xl:gap-10 group/person
