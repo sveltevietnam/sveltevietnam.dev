@@ -4,93 +4,108 @@ messages:
     community:
       name: Community
       slug: community
-      desc: Sharing about events from Svelte Vietnam, open source contribution, and
-        community-building activities
+      desc:
+        Sharing about events from Svelte Vietnam, open source contribution, and community-building
+        activities
     ecosystem:
       name: Ecosystem
       slug: ecosystem
-      desc: Putting Svelte and SvelteKit into the context of web ecosystem and software
-        development, and discussing how to apply toolings, libraries, design pattern,
-        and infrastructure decisions in projects using Svelte and SvelteKit
+      desc:
+        Putting Svelte and SvelteKit into the context of web ecosystem and software development, and
+        discussing how to apply toolings, libraries, design pattern, and infrastructure decisions in
+        projects using Svelte and SvelteKit
     insider:
       name: Insider
       slug: insider
-      desc: An insightful peek behind the curtain into the architecture, design decision,
-        and lesson learned from building the Svelte Vietnam community and the sveltevietnam.dev
-        website
+      desc:
+        An insightful peek behind the curtain into the architecture, design decision, and lesson
+        learned from building the Svelte Vietnam community and the sveltevietnam.dev website
     svelte_kit:
       name: Svelte & Kit
       slug: svelte-and-kit
-      desc: Development-focused articles about techniques, libraries, case studies,
-        ... for Svelte, SvelteKit
+      desc:
+        Development-focused articles about techniques, libraries, case studies, ... for Svelte,
+        SvelteKit
   series:
     behind_the_screen:
       name: Behind the Screen
       slug: behind-the-screen
-      desc: Sharing about technical decisions behind the codebase, infrastructure,
-        and user interface of sveltevietnam.dev
+      desc:
+        Sharing about technical decisions behind the codebase, infrastructure, and user interface of
+        sveltevietnam.dev
     styling_svelte_vietnam:
       name: Styling Svelte Vietnam
       slug: styling-svelte-vietnam
-      desc: A three-parted sub-series of "Behind the Screen" focusing on discussions
-        about the design and usage of CSS system for sveltevietnam.dev
+      desc:
+        A three-parted sub-series of "Behind the Screen" focusing on discussions about the design
+        and usage of CSS system for sveltevietnam.dev
   posts:
     20231009_yes_code_blog:
       slug: 20231009-behind-the-screen-a-yes-code-blog-of-svelte-vietnam
       title: A Yes-Code Blog of Svelte Vietnam
-      desc: Look behind the curtain and discuss the rationale behind the technical
-        design of the Svelte Vietnam Blog
+      desc:
+        Look behind the curtain and discuss the rationale behind the technical design of the Svelte
+        Vietnam Blog
     20231012_local_to_global:
       slug: 20231012-svelte-vietnam-from-local-to-global
       title: 'Svelte Vietnam: from Local to Global'
-      desc: What is Svelte Vietnam? How does it come about? Why is it even necessary?
-        Let's get to the bottom of these questions in this blog post.
+      desc:
+        What is Svelte Vietnam? How does it come about? Why is it even necessary? Let's get to the
+        bottom of these questions in this blog post.
       keywords: identity, community
     20231020_preprocessor:
       slug: 20231020-lets-write-a-simple-svelte-preprocessor
       title: Let's Write a Simple Svelte Preprocessor
-      desc: Introducing the Svelte preprocessor API via analysis of a practical, simple
-        use case and one possible minimal solution. If you haven't written a preprocessor
-        before, it's time!
+      desc:
+        Introducing the Svelte preprocessor API via analysis of a practical, simple use case and one
+        possible minimal solution. If you haven't written a preprocessor before, it's time!
     20231110_dark_mode:
       slug: 20231110-behind-the-screen-dark-mode-with-sveltekit-tailwindcss-and-postcss
       title: Productive Dark Mode with SvelteKit, PostCSS, and TailwindCSS
-      desc: How sveltevietnam.dev sets up a light-dark mode switch that enables good
-        user experience without trading off developer productivity
+      desc:
+        How sveltevietnam.dev sets up a light-dark mode switch that enables good user experience
+        without trading off developer productivity
     20231204_secrets:
       slug: 20231204-behind-the-screen-a-few-secrets-of-sveltevietnam-dev
       title: A Few Secrets of sveltevietnam.dev
-      desc: They are not that secret, just quite unnoticeable, but these small details
-        really help enhance the user experience
+      desc:
+        They are not that secret, just quite unnoticeable, but these small details really help
+        enhance the user experience
       keywords: progressive enhancement, secret, accessibility, user experience
     20231220_progressive_splashscreen:
       slug: 20231220-behind-the-screen-progressive-splashscreen
       title: Progressive Splash Screen
-      desc: Implement an progressively enhanced splash screen for sveltevietnam.dev
-        - an expression of creativity with unexpected benefits
+      desc:
+        Implement an progressively enhanced splash screen for sveltevietnam.dev - an expression of
+        creativity with unexpected benefits
     20240125_styling_svelte_vietnam_i:
       slug: 20240125-styling-svelte-vietnam-part-i-tailwindcss
       title: Part I - TailwindCSS
-      desc: Let's talk about TailwindCSS, its benefits and the criticism, along with
-        the practicality and flexibility it brings to the sveltevietnam.dev project
+      desc:
+        Let's talk about TailwindCSS, its benefits and the criticism, along with the practicality
+        and flexibility it brings to the sveltevietnam.dev project
     20240125_styling_svelte_vietnam_ii:
       slug: 20240125-styling-svelte-vietnam-part-ii-css-components
       title: Part II - CSS Components
-      desc: Introduce the "CSS component" approach in the age of Javascript, built
-        on dated but invaluable experience from the early decades of the web platform
+      desc:
+        Introduce the "CSS component" approach in the age of Javascript, built on dated but
+        invaluable experience from the early decades of the web platform
     20240125_styling_svelte_vietnam_iii:
       slug: 20240125-styling-svelte-vietnam-part-iii-code-discovery-portability
       title: Part III - Code Discovery & Portability
-      desc: Apply the "CSS Component" approach into Tailwind and the PostCSS ecosystem
-        for building minimal and flexible design systems
+      desc:
+        Apply the "CSS Component" approach into Tailwind and the PostCSS ecosystem for building
+        minimal and flexible design systems
     20240414_svelte_action:
       slug: 20240414-introduction-to-svelte-action-runtime-superpower
       title: 'Introduction to Svelte Action: Runtime Superpower'
-      desc: A tour of what Svelte action is capable of and how to write your own to
-        enhance applications and handle user interactions at runtime
+      desc:
+        A tour of what Svelte action is capable of and how to write your own to enhance applications
+        and handle user interactions at runtime
     20240420_come_and_stay:
       slug: 20240420-come-for-svelte-stay-for-the-web
       title: Come for Svelte, Stay for the Web
-      desc: Svelte is exceptionally good at staying out of your way, allowing you
-        to focus on building a better web. No one cares about frameworks anyway!
+      desc:
+        Svelte is exceptionally good at staying out of your way, allowing you to focus on building a
+        better web. No one cares about frameworks anyway!
       keywords: web, ecosystem, runtime, compile-time, action
