@@ -148,6 +148,8 @@
 			border: 1px solid var(--color-outline);
 			border-radius: var(--code-block-border-radius, 0);
 
+			font-family: var(--font-fira);
+
 			&:hover::before {
 				opacity: 0;
 			}
