@@ -5,6 +5,7 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
+		"boot:env": "shx cp .env.example .env",
 		"dev": "vite dev --port 5005",
 		"build:i18n": "pnpm i18n build 'src/**/locales'",
 		"build": "svelte-kit sync && vite build",

@@ -8,7 +8,10 @@
 		"url": "https://www.sveltevietnam.dev"
 	},
 	"scripts": {
-		"boot": "pnpm install && lefthook install",
+		"boot": "run-p boot:*",
+		"boot:i": "pnpm install",
+		"boot:lefthook": "lefthook install",
+		"boot:env": "turbo run boot:env --parallel",
 		"turbo": "turbo",
 		"build": "turbo run build",
 		"dev": "turbo run dev",
@@ -34,6 +37,7 @@
 		"prettier-plugin-svelte": "^3.3.3",
 		"prettier-plugin-tailwindcss": "^0.6.11",
 		"publint": "^0.3.11",
+		"shx": "^0.4.0",
 		"stylelint": "^16.18.0",
 		"stylelint-config-clean-order": "^7.0.0",
 		"stylelint-config-html": "^1.1.0",

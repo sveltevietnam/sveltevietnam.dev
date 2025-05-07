@@ -1,7 +1,7 @@
 # Development Setup
 
 > [!NOTE]
-> Last updated on 2025-04-15
+> Last updated on 2025-05-07
 
 This document discusses necessary steps to get sveltevietnam.dev running on local development environment. Read [TECHNICAL REFERENCES] for an overview of the project's technical stack.
 
@@ -11,11 +11,11 @@ For technical discussion or assistance, reach out to our maintainers at the [#si
 
 ## Prerequisites
 
-| Dependency | Installation                            | Description                     |
-| ---------- | --------------------------------------- | ------------------------------- |
-| [node]     | recommended via [volta]                 | JS runtime                      |
-| [pnpm]     | [follow guide on website][pnpm.install] | alternative to `npm` and `yarn` |
-| [lefthook] | [follow guide at repo][lefthook]        | git hooks manager               |
+| Dependency | Installation                                                                     | Description                     |
+| ---------- | -------------------------------------------------------------------------------- | ------------------------------- |
+| [node]     | recommended via [volta]                                                          | JS runtime                      |
+| [pnpm]     | [follow guide on website][pnpm.install]                                          | alternative to `npm` and `yarn` |
+| [lefthook] | [installation as OS binary][lefthook.install] is recommended, instead of via npm | git hooks manager               |
 
 See [package.json] for engine specification. At project root, run:
 
@@ -25,7 +25,10 @@ pnpm boot
 
 ## Environment Variables
 
-Make sure you have the correct environment variables set up. For each project in the workspace, if you see an `.env.example` file, copy it to `.env` and your local dev server should work.
+> [!NOTE]
+> The `pnpm boot` command introduced in the previous section will automatically copy `.env` files for you.
+
+Make sure you have the correct environment variables set up. For each project in the workspace, if you see an `.env.example` file, copy it to `.env` and your local dev server should work. For example:
 
 ```bash
 cp sites/sveltevietnam.dev/.env.example sites/sveltevietnam.dev/.env
@@ -120,6 +123,7 @@ the following tools:
 <!-- TECHNOLOGIES -->
 
 [lefthook]: https://github.com/evilmartians/lefthook
+[lefthook.install]: https://lefthook.dev/installation/
 [eslint]: https://eslint.org
 [prettier]: https://prettier.io
 [node]: https://nodejs.org/en/
