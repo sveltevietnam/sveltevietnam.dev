@@ -1,6 +1,7 @@
-import child_process from 'child_process';
-import fs from 'fs/promises';
-import path from 'path/posix';
+import child_process from 'node:child_process';
+import fs from 'node:fs/promises';
+import path from 'node:path/posix';
+import process from 'node:process';
 
 import * as p from '@clack/prompts';
 import dedent from 'dedent';
