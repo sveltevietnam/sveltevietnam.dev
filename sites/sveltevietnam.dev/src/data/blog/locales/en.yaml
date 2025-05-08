@@ -26,16 +26,3 @@ messages:
       desc:
         Development-focused articles about techniques, libraries, case studies, ... for Svelte,
         SvelteKit
-  series:
-    behind_the_screen:
-      name: Behind the Screen
-      slug: behind-the-screen
-      desc:
-        Sharing about technical decisions behind the codebase, infrastructure, and user interface of
-        sveltevietnam.dev
-    styling_svelte_vietnam:
-      name: Styling Svelte Vietnam
-      slug: styling-svelte-vietnam
-      desc:
-        A three-parted sub-series of "Behind the Screen" focusing on discussions about the design
-        and usage of CSS system for sveltevietnam.dev

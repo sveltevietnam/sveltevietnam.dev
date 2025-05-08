@@ -26,16 +26,3 @@ messages:
       desc:
         Bài viết xoay quanh các vấn đề kỹ thuật, thư viện, ví dụ thực tế, ... với Svelte và
         SvelteKit
-  series:
-    behind_the_screen:
-      name: Behind the Screen
-      slug: behind-the-screen
-      desc:
-        Chia sẻ về các quyết định kỹ thuật đằng sau codebase, hạ tầng và giao diện trang web
-        sveltevietnam.dev
-    styling_svelte_vietnam:
-      name: Styling cho Svelte Việt Nam
-      slug: styling-svelte-vietnam
-      desc:
-        Tập hợp ba bài viết trong chuỗi "Behind the Screen" với tập trung vào cách thiết kế hệ thống
-        CSS cho trang web sveltevietnam.dev
