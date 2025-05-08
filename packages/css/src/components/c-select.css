@@ -1,0 +1,38 @@
+@utility c-select {
+	@layer components {
+		position: relative;
+		display: block;
+		padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
+		border: 1.5px solid currentcolor;
+
+		&:focus-visible,
+		&:focus-within,
+		&:has(:is(input, textarea):focus-visible) {
+			border-color: var(--color-outline-focus);
+			outline: 1.5px solid var(--color-outline-focus);
+			outline-offset: 1px;
+
+			@variant user-invalid {
+				border-color: var(--color-error-surface-variant);
+				outline-color: var(--color-error-surface-variant);
+			}
+		}
+
+		@variant user-invalid {
+			border-color: var(--color-error-surface-variant);
+		}
+
+		&:is(:disabled, [disabled]:not([disabled='false'])) {
+			cursor: not-allowed;
+			background-color: var(--color-surface-variant);
+
+			& :is(input, textarea) {
+				cursor: not-allowed;
+			}
+
+			& * {
+				opacity: 0.5;
+			}
+		}
+	}
+}
