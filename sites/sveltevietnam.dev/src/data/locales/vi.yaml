@@ -595,6 +595,18 @@ messages:
           Ngoài ra, Svelte Việt Nam cũng dành  nhiều cơ hội riêng cho nhà tài trợ để quản bá thương
           hiệu, tổ chức, sản  phẩm của họ trong các sự kiện của cộng đồng.
   components:
+    callout_playground:
+      input: Tùy chỉnh
+      output: Kết quả
+      class: Lớp cần áp dụng
+      legends:
+        status: Trạng thái
+        icon: Icon <em class="text-xs">(không bắt buộc)</em>
+      sample:
+        Đây là giao diện mẫu cho “callout”, giúp bổ sung ngữ cảnh cho một số văn bản và tạo điểm
+        nhấn để lôi kéo sự chú ý của người dùng. Bạn có thể tham khảo thêm ví dụ và cách sử dụng
+        callout tại trang <a class="c-link" href="/vi/blog/viet#callout">"Blog Svelte Việt Nam -
+        Hướng dẫn viết bài"</a>.
     color_scheme_menu:
       light: Chế độ sáng
       dark: Chế độ tối

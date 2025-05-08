@@ -595,6 +595,17 @@ messages:
           sponsors will have priority for their job posting requests. Svelte Vietnam also provides
           opportunities during its events for sponsors to promote their brands and products.
   components:
+    callout_playground:
+      input: Config
+      output: Result
+      class: Class names to apply
+      legends:
+        status: Status
+        icon: Icon <em class="text-xs">(optional)</em>
+      sample:
+        This is a sample “callout” that enhances a text block with some contextual meaning and
+        better draws user attention. See more examples and how to use it via <a class="c-link"
+        href="/en/blog/write#callout">"Svelte Vietnam Blog - Writing Guidelines"</a>.
     color_scheme_menu:
       light: Light mode
       dark: Dark mode
