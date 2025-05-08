@@ -190,10 +190,10 @@ messages:
         desc:
           Blog của Svelte Việt Nam là nơi dành cho các thành viên chia sẻ kiến thức, ý tưởng, cảm
           nhận về các trải nghiệm của mình với cộng đồng Svelte trong nước và quốc
-          tế.<br/><br/>Svelte Việt Nam hoan nghênh tất cả mọi người đăng bài hoặc liên kết bài viết
-          của mình tại blog này. Đây là cách thiết thực và trực tiếp nhất mà thành viên có thể đóng
-          góp vào sự phát triển chung của cả cộng đồng.
-        cta: Viết bài hoặc liên kết đến bài viết của bạn
+          tế.<br/><br/>Svelte Việt Nam hoan nghênh tất cả mọi người viết bài tại blog này. Đây là
+          cách thiết thực và trực tiếp nhất mà thành viên có thể đóng góp vào sự phát triển chung
+          của cả cộng đồng.
+        cta: Xem hướng dẫn viết bài
         discuss:
           Thảo luận về bài viết tại <a class="c-link"
           href="https://discord.sveltevietnam.dev/">Discord chính thức của Svelte Việt Nam</a>.
@@ -206,7 +206,7 @@ messages:
       title: Viết bài | Blog | Svelte Việt Nam
       keywords: viết, bài viết, blog, chia sẻ, đóng góp, tham gia, hướng dẫn
       heading: Viết bài
-      desc: Hướng dẫn viết bài và đóng góp nội dung cho Blog Svelte Việt Nam
+      desc: Sơ lược quy trình và hướng dẫn viết bài cho Blog Svelte Việt Nam
       toc: Mục lục
     blog_slug:
       lang:

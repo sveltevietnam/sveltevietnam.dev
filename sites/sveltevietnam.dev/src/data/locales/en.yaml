@@ -187,9 +187,9 @@ messages:
         desc:
           The Svelte Vietnam Blog is a place for members to share knowledge, ideas, and experiences
           with the Svelte community in Vietnam and internationally.<br/><br/>Svelte Vietnam welcomes
-          everyone to post or link to their articles on this blog. This is the most practical and
-          direct way that members can contribute to the Svelte Vietnam community.
-        cta: Write a post or link to your post
+          everyone to contribute to this blog. This is the most practical and direct way that
+          members can contribute to the Svelte Vietnam community.
+        cta: See writing guide
         discuss:
           Join the conversation in <a class="c-link" href="https://discord.sveltevietnam.dev/">the
           official Svelte Vietnam Discord</a>.
