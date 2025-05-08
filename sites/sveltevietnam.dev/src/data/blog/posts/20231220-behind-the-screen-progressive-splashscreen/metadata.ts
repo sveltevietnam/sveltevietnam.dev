@@ -1,10 +1,6 @@
 import { defineBlogPostMetadata } from '..';
-import * as m from '../../locales/generated/messages';
 
 export default defineBlogPostMetadata((lang) => ({
-	slug: m['posts.20231220_progressive_splashscreen.slug'](lang),
-	title: m['posts.20231220_progressive_splashscreen.title'](lang),
-	description: m['posts.20231220_progressive_splashscreen.desc'](lang),
 	keywords: 'splashscreen, progressive enhancement, ux, animation',
 	publishedAt: new Date('2023-12-20'),
 	authors: ['vnphanquang'],
@@ -13,11 +9,19 @@ export default defineBlogPostMetadata((lang) => ({
 	...(
 		{
 			en: {
+				slug: '20231220-behind-the-screen-progressive-splashscreen',
+				title: 'Progressive Splash Screen',
+				description:
+					'Implement an progressively enhanced splash screen for sveltevietnam.dev - an expression of creativity with unexpected benefits',
 				readMinutes: 12,
 				numWords: 2300,
 				translation: 'manual',
 			},
 			vi: {
+				slug: '20231220-behind-the-screen-man-hinh-cho-voi-nang-cao-tang-dan',
+				title: 'Màn hình chờ với nâng cao tăng dần',
+				description:
+					'Thiết lập màn hình chờ cho sveltevietnam.dev, cải thiện trải nghiệm người dùng với nhiều lợi ích bất ngờ',
 				readMinutes: 12,
 				numWords: 2900,
 				translation: 'original',
