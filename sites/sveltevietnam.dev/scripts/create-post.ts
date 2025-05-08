@@ -7,7 +7,6 @@ import * as p from '@clack/prompts';
 import dedent from 'dedent';
 import { normalize } from 'normalize-diacritics';
 import pico from 'picocolors';
-import * as yaml from 'yaml';
 
 import { ids as categoryIds, loadBlogCategory } from '../src/data/blog/categories';
 import { ids as seriesIds, loadBlogSeries } from '../src/data/blog/series';
@@ -155,33 +154,6 @@ const slug = {
 			.replace(/^-/g, '')
 			.toLowerCase(),
 };
-const locale_id = slug.en.replace(/-/g, '_');
-
-const locales_dir_path = path.join(cwd, 'src/data/blog/locales');
-const locales_path = {
-	en: path.join(locales_dir_path, 'en.yaml'),
-	vi: path.join(locales_dir_path, 'vi.yaml'),
-};
-const [locales_en, locales_vi] = await Promise.all([
-	fs.readFile(locales_path.en, 'utf-8'),
-	fs.readFile(locales_path.vi, 'utf-8'),
-]);
-const locales = {
-	en: yaml.parse(locales_en),
-	vi: yaml.parse(locales_vi),
-};
-for (const lang of ['en', 'vi'] as const) {
-	locales[lang].messages.posts[locale_id] = {
-		slug: slug[lang],
-		title: post.title[lang].trim(),
-		desc: post.desc[lang].trim(),
-		keywords: post.keywords?.[lang]?.trim() || 'svelte, blog, sveltevietnam',
-	};
-}
-await Promise.all([
-	fs.writeFile(locales_path.en, yaml.stringify(locales.en), 'utf-8'),
-	fs.writeFile(locales_path.vi, yaml.stringify(locales.vi), 'utf-8'),
-]);
 
 const dirpath = path.join(cwd, 'src/data/blog/posts', `${year}${month}${day}-${slug.en}`);
 const content_dirpath = path.join(dirpath, 'content');
@@ -212,31 +184,40 @@ const translation = {
 	en: post.originalLang === 'en' ? 'original' : 'manual',
 	vi: post.originalLang === 'vi' ? 'original' : 'manual',
 };
+
+function escapeQuotes(str: string): string {
+	return str.replace(/'/g, '\\\'');
+}
+
 const metadata = dedent`
 import { defineBlogPostMetadata } from '..';
-import * as m from '../../locales/generated/messages';
 
 export default defineBlogPostMetadata((lang) => ({
-	slug: m['posts.${locale_id}.slug'](lang),
-	title: m['posts.${locale_id}.title'](lang),
-	description: m['posts.${locale_id}.desc'](lang),
-	keywords: m['posts.${locale_id}.keywords'](lang),
 	publishedAt: new Date('${year}-${month}-${day}'),
 	authors: [${post.authors.map((id) => `'${id}'`).join(', ')}],
 	categories: [${post.categories.map((id) => `'${id}'`).join(', ')}],
 	series: [${post.series.map((id) => `'${id}'`).join(', ')}],
-	// TODO: update these information once you finish writing
 	...(
 		{
 			en: {
+				slug: '${escapeQuotes(slug.en)}',
+				title: '${escapeQuotes(post.title.en.trim())}',
+				description: '${escapeQuotes(post.desc.en.trim())}',
+				keywords: '${escapeQuotes(post.keywords?.en?.trim()) || 'svelte, blog, sveltevietnam'}',
+				translation: '${translation.en}',
+				// TODO: update these information once you finish writing
 				readMinutes: 0,
 				numWords: 0,
-				translation: '${translation.en}',
 			},
 			vi: {
+				slug: '${escapeQuotes(slug.vi)}',
+				title: '${escapeQuotes(post.title.vi.trim())}',
+				description: '${escapeQuotes(post.desc.vi.trim())}',
+				keywords: '${escapeQuotes(post.keywords?.vi?.trim()) || 'svelte, blog, sveltevietnam'}',
+				translation: '${translation.vi}',
+				// TODO: update these information once you finish writing
 				readMinutes: 0,
 				numWords: 0,
-				translation: '${translation.vi}',
 			},
 		} as const
 	)[lang],
@@ -248,7 +229,7 @@ await Promise.all([
 	fs.writeFile(content_path.vi, content_placeholder, 'utf-8'),
 ]);
 child_process.execSync(
-	`pnpm prettier --write --config="../../prettier.config.js" ${metadata_path} ${locales_path.en} ${locales_path.vi}`,
+	`pnpm prettier --write --config="../../prettier.config.js" ${metadata_path}`,
 	{
 		cwd,
 	},
@@ -261,10 +242,6 @@ Added at ${pico.green(path.relative(cwd, dirpath))}:
 + Metadata: ${pico.green(path.relative(dirpath, metadata_path))}
 + Content (en): ${pico.green(path.relative(dirpath, content_path.en))}
 + Content (vi): ${pico.green(path.relative(dirpath, content_path.vi))}
-
-Updated:
-~ Locales (en): ${pico.yellow(path.relative(cwd, locales_path.en))}
-~ Locales (vi): ${pico.yellow(path.relative(cwd, locales_path.vi))}
 `,
 	'Artifacts',
 );
