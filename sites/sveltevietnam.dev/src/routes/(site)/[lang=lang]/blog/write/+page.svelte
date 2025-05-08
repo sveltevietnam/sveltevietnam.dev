@@ -3,18 +3,16 @@
 	import { T } from '@sveltevietnam/i18n';
 
 	import * as m from '$data/locales/generated/messages';
-	// import * as p from '$data/routes/generated';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { IntroSeparator } from '$lib/components/intro-separator';
+	import { TableOfContents } from '$lib/components/table-of-contents';
 	import { RoutingContext } from '$lib/routing/context.svelte';
-	// import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import imgIntro from './_page/images/plant.svg?url';
 
 	let { data } = $props();
 
 	const routing = RoutingContext.get();
-	// const settings = SettingsContext.get();
 
 	const toc = new Toc({
 		selector: ':where(h2, h3, h4, h5, h6)',
@@ -63,24 +61,10 @@
 		lg:justify-between lg:gap-20"
 	>
 		<!-- table of contents -->
-		<div class="lg:basis-80 lg:py-10" id="toc">
+		<div class="lg:basis-80 lg:py-10 2xl:basis-96" id="toc">
 			<section class="top-header space-y-6 lg:sticky">
 				<h2 class="c-text-heading lg:border-b"><T message={m['pages.blog_write.toc']} /></h2>
-				<ul class="space-y-1">
-					{#each toc.items.values() as tocItem (tocItem.id)}
-						{@const level = tocItem.element.tagName.slice(1)}
-						<li>
-							<!-- svelte-ignore a11y_missing_attribute -->
-							<a
-								use:toc.actions.link={tocItem}
-								class="c-link-lazy current:text-link block py-1 capitalize"
-								style:padding-left="calc(({level} - 2) * 1ch)"
-							>
-								<!-- textContent injected by toc -->
-							</a>
-						</li>
-					{/each}
-				</ul>
+				<TableOfContents {toc} />
 			</section>
 			<hr class="mt-10 lg:hidden" />
 		</div>
