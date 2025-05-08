@@ -16,13 +16,6 @@ tại têp `sites/sveltevietnam.dev/src/data/blog/posts/:id/metadata.ts`. Ví d�
 Khi bạn đã hoàn thành nội dung bài viết, hãy quay trở lại tệp `metadata.ts` tương ứng và cập nhật
 các trường dữ liệu cần thiết, ví dụ như `readMinutes` và `numWords`.
 
-#### Dữ liệu đa ngôn ngữ
-
-Đối với các trường dữ liệu đa ngôn ngữ (`m[...]`), bạn cần cập nhật tại hai tệp:
-
-- `sites/sveltevietnam.dev/src/data/blog/locales/vi.yaml` cho Tiếng Việt, và
-- `sites/sveltevietnam.dev/src/data/blog/locales/en.yaml` cho Tiếng Anh.
-
 #### Ảnh bìa bài viết
 
 Để thay đổi ảnh bìa bài viết, bạn chỉ cần thêm tệp `thumbnail.jpg` vào thư mục `.../images` như
