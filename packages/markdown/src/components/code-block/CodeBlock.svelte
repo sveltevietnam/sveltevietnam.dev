@@ -209,7 +209,7 @@
 
 		padding: 0.75rem 1rem;
 		border-top-width: 1px;
-		border-left-width: 1px;
+		border-right-width: 1px;
 
 		font-size: var(--text-sm);
 		line-height: normal;
@@ -225,16 +225,16 @@
 			color: currentcolor;
 		}
 
+		:--c-first-of-group & {
+			border-left-width: 1px;
+		}
+
 		:--g-not-fullscreen :--c-first-of-group & {
 			border-top-left-radius: var(--code-block-border-radius, 0);
 		}
 
-		:--c-last-of-non-files-group & {
-			border-right-width: 1px;
-
-			:--g-not-fullscreen & {
-				border-top-right-radius: var(--code-block-border-radius, 0);
-			}
+		:--g-not-fullscreen :--c-last-of-non-files-group & {
+			border-top-right-radius: var(--code-block-border-radius, 0);
 		}
 
 		:--c-first-of-unselected-group &,
