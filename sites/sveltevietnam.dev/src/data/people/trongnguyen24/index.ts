@@ -3,6 +3,7 @@ import { definePerson } from '..';
 export default definePerson((lang) => ({
 	links: {
 		website: 'https://nguyenle.pages.dev',
+		github: 'https://github.com/trongnguyen24',
 	},
 	...{
 		en: {
