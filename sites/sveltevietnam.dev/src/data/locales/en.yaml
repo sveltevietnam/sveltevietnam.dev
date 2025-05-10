@@ -202,7 +202,7 @@ messages:
       title: Write | Blog | Svelte Vietnam
       keywords: blog, write, contribution, sharing, tutorial
       heading: Writing Guide
-      desc: Guide to write your first blog post on the Svelte Vietnam Blogpage.s
+      desc: Guidelines and recommendations for authoring blog posts on the Svelte Vietnam Blog
       toc: Table of contents
     blog_slug:
       lang:
@@ -603,8 +603,8 @@ messages:
         status: Status
         icon: Icon <em class="text-xs">(optional)</em>
       sample:
-        This is a sample “callout” that enhances a text block with some contextual meaning and
-        better draws user attention. See more examples and how to use it via <a class="c-link"
+        This is a sample “callout” that enhances a text block with some contextual meaning and helps
+        draw user's attention. See more examples and how to use it via <a class="c-link"
         href="/en/blog/write#callout">"Svelte Vietnam Blog - Writing Guidelines"</a>.
     color_scheme_menu:
       light: Light mode

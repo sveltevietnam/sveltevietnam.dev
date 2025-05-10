@@ -12,6 +12,8 @@
   Dự án khuyến khích bạn cài đặt `lefthook` binary vào hệ điều hành thay vì thông qua `npm`.
 3. [pnpm](https://pnpm.io/installation): trình quản lý package thay thế cho `npm`.
 
+Và đương nhiên bạn cần cài đặt [git](https://git-scm.com/) và một trình trình soạn thảo mã nguồn (code editor) tùy thích.
+
 ### Bước 2: thiết lập môi trường phát triển
 
 1. Sao chép mã nguồn:
@@ -24,6 +26,10 @@
 
     ```bash title="SSH"
     git clone git@github.com:sveltevietnam/sveltevietnam.dev.git
+    ```
+
+    ```bash title="GitHub CLI"
+    gh repo clone sveltevietnam/sveltevietnam.dev
     ```
 
     </enhanced-code-block>
@@ -68,17 +74,24 @@ pnpm create:post
 
 Theo sau bước 3, bạn cần hoàn thiện nội dung bài viết tại hai tệp vừa được tạo ra:
 
-- `.../vi.md.svelte`: nội dung bài viết bằng tiếng Việt
-- `.../en.md.svelte`: nội dung bài viết bằng tiếng Anh
+- `.../content/vi.md.svelte`: nội dung bài viết bằng tiếng Việt,
+- `.../content/en.md.svelte`: nội dung bài viết bằng tiếng Anh.
 
 Bạn có thể tham khảo thêm một số ví dụ và cú pháp đặc biệt tại mục ["Cú pháp Markdown + Svelte trong bài viết"](#cu-phap),
 và cách chỉnh sửa dữ liệu bài viết tại mục ["Chỉnh sửa và bổ sung dữ liệu cho bài viết"](#chinh-sua-du-lieu-bai-viet).
+
+<div class="c-callout c-callout--info c-callout--icon-question">
+
+Nếu bạn chỉ có thể viết bài bằng một ngôn ngữ, hãy bỏ trống tệp tin còn lại. Ban quản trị
+và các thành viên cộng đồng có thể hỗ trợ bạn dịch bài.
+
+</div>
 
 ### Bước 5: tạo pull request
 
 Sau khi hoàn tất nội dung bài viết, bạn cần thực hiện các thao tác quản lý mã nguồn thông thường với `git` và Github
 như commit các thay đổi trên một nhánh mới, và tạo [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
-đến nhánh mặc định của dự án (nhánh hiển thị tại [Github repository](https://github.com/sveltevietnam/sveltevietnam.dev)).
+đến nhánh mặc định của dự án (nhánh hiển thị tại [sveltevietnam/sveltevietnam.dev repository](https://github.com/sveltevietnam/sveltevietnam.dev)).
 
 Bạn có thể sử dụng [Github CLI](https://cli.github.com/) để giản lược một vài thao tác.
 Ví dụ, sau khi [cài đặt Github CLI](https://github.com/cli/cli#installation) và login (`gh auth`), bạn có thể tạo pull request dễ dàng hơn bằng lệnh:

@@ -1,21 +1,52 @@
-## Technical Design
+<script>
+  import SectionSop from './sop/en.md.svelte';
+  import SectionSyntax from './syntax/en.md.svelte';
+  import SectionDataEdit from './data-edit/en.md.svelte';
+</script>
 
-The Svelte Vietnam Blog is static
+## Technical Design Overview
 
-## What is Lorem Ipsum?
+The Svelte Vietnam Blog is a static site: its data is part of the source code, and blog post
+contents are written in Markdown and Svelte syntax. The process of writing and publishing a blog
+post shares much similarities with a typical daily software development workflow and does not
+depend on any third party database or fancy editor ([WYSIWYG](https://en.wikipedia.org/wiki/WYSIWYG),
+Markdown editor, rich text, etc.). In a way, the Svelte Vietnam Blog uses Git as its
+[CMS](https://en.wikipedia.org/wiki/Content_management_system).
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+This design requires *writers* to have some basic experience with web development, but it also helps
+reduce significantly the infrastructure cost and human resources needed to maintain the blog.
 
-## Why do we use it?
+## For non-technical writers
 
-It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+If you are looking for ways to contribute to the Svelte Vietnam Blog but are not familiar with the
+technical aspects listed here, please feel free to reach out to administrators via the
+[official Svelte Vietnam Discord server](https://discord.sveltevietnam.dev), or send your blog post
+in any traditional text format (`txt`, `pdf`, `docx`, etc.) to blog@sveltevietnam.dev.
 
-## Where does it come from?
+<h2 id="directory-structure-of-a-post">Directory Structure of a Blog Post</h2>
 
-Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+Each blog post is a collection of files located under a
+`sites/sveltevietnam.dev/src/data/blog/posts/:id` directory:
 
-The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+```raw
+  sites/sveltevietnam.dev/src/data/blog/posts/:id
+    │
+    ├── metadata.ts       <-- main data definition
+    │
+    ├── content/
+    ┆   │
+    ┆   ├── en.md.svelte  <-- content in English
+    ┆   └── vi.md.svelte  <-- content in Vietnamese
+    │
+    ├── images/
+    ┆   │
+    ┆   └── thumbnail.jpg <-- thumbnail and social sharing image
+    ┆   └── ...           <-- any other images used in the post
+    ┆
+    ├── ...               <-- other data used in the post
+```
 
-## Where can I get some?
+<SectionSop />
+<SectionSyntax />
+<SectionDataEdit />
 
-There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.

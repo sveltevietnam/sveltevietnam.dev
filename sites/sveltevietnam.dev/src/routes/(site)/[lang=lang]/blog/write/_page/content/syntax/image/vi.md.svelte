@@ -1,5 +1,5 @@
 <script>
-  import ExampleImage from './example/content/content.md.svelte';
+  import ExampleImage from './example/content/vi.md.svelte';
 </script>
 
 ### Hình ảnh
@@ -7,7 +7,7 @@
 Hiện tại, dự án chưa thể hỗ trợ cú pháp Markdown cho hình ảnh trong bài viết.
 Thay vào đó, hãy sử dụng các thẻ HTML như ví dụ sau đây:
 
-```svelte title="./content/vi.md.svelte" src="./example/content/content.md.svelte"
+```svelte title="./content/vi.md.svelte" src="./example/content/vi.md.svelte"
 ```
 
 Kết quả hiện thị:

@@ -13,7 +13,7 @@ tại têp `sites/sveltevietnam.dev/src/data/blog/posts/:id/metadata.ts`. Ví d�
 ```ts title="20240420-come-for-svelte-stay-for-the-web" src="../../../../../../../../data/blog/posts/20240420-come-for-svelte-stay-for-the-web/metadata.ts"
 ```
 
-Khi bạn đã hoàn thành nội dung bài viết, hãy quay trở lại tệp `metadata.ts` tương ứng và cập nhật
+Khi bạn đã hoàn thành nội dung bài viết, hãy quay trở lại tệp `.../metadata.ts` tương ứng và cập nhật
 các trường dữ liệu cần thiết, ví dụ như `readMinutes` và `numWords`.
 
 #### Ảnh bìa bài viết

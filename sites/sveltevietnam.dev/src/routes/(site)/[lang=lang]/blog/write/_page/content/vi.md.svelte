@@ -31,7 +31,9 @@ Mỗi bài viết là tập hợp một số tệp tin tại thư mục `sites/s
     ├── images/
     ┆   │
     ┆   └── thumbnail.jpg <-- ảnh bìa bài viết
+    ┆   └── ...           <-- các hình ảnh khác được sử dụng trong bài viết
     ┆
+    ├── ...               <-- các dữ liệu khác của bài viết
 ```
 
 <SectionSop />

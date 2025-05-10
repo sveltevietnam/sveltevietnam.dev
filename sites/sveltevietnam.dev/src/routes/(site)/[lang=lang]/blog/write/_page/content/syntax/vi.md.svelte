@@ -21,6 +21,9 @@ Một số cú pháp đặc biệt được phát triển để giúp việc vi�
 Cách dễ nhất để tiếp cận các cú pháp đặc biệt này là tham khảo mã nguồn của các bài viết đã xuất bản
 tại [trang Blog của Svelte Việt Nam](/vi/blog).
 
+Một số cú pháp Markdown hoặc Svelte có thể sẽ không hoạt động như mong đợi.
+Trong trường hợp này, hãy liên hệ với ban quản trị để tìm giải pháp thay thế.
+
 </div>
 
 <SectionCodeBlock />
