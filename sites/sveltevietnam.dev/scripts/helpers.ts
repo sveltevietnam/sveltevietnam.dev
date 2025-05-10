@@ -3,7 +3,6 @@ import { cancel } from '@clack/prompts';
 export function validateTextField(text: string): string | undefined {
 	text = text.trim();
 	if (text.length === 0) return 'This field is required.';
-	if (text.length === 0) return 'This field is required.';
 }
 
 export function validateIdField(ids: string[], id: string): string | undefined {
