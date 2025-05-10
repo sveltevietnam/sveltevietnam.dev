@@ -12,23 +12,16 @@ import { ids as categoryIds, loadBlogCategory } from '../src/data/blog/categorie
 import { ids as seriesIds, loadBlogSeries } from '../src/data/blog/series';
 import { ids as authorIds, loadPerson } from '../src/data/people';
 
+import { validateTextField, onCancel, escapeQuotes } from './helpers';
+
 const cwd = process.cwd();
-
-function validateTextField(text: string): string | undefined {
-	if (text.trim().length === 0) return 'This field is required.';
-}
-
-function cancel() {
-	p.cancel('Operation cancelled.');
-	process.exit(0);
-}
 
 /// intro
 console.log('\n');
 p.intro(pico.bgCyan(pico.black(' Welcome to the Svelte Vietnam Blog ')));
 p.note(dedent`
 	First, let's gather some information about your post.
-	You will need to provide answers in both English and Vietnamese.
+	For some questions, you will need to provide answers in both English and Vietnamese.
 	${pico.yellow('Note: you can always change these information later.')}
 `);
 
@@ -67,7 +60,7 @@ const post = await p.group(
 						p.text({ message: 'Enter post title (Tiếng Việt):', validate: validateTextField }),
 				},
 				{
-					onCancel: cancel,
+					onCancel,
 				},
 			),
 		desc: () =>
@@ -82,7 +75,7 @@ const post = await p.group(
 						}),
 				},
 				{
-					onCancel: cancel,
+					onCancel,
 				},
 			),
 		keywords: () =>
@@ -92,7 +85,7 @@ const post = await p.group(
 					vi: () => p.text({ message: 'Enter comma-separated keywords (Tiếng Việt), if any:' }),
 				},
 				{
-					onCancel: cancel,
+					onCancel,
 				},
 			),
 		categories: () =>
@@ -117,7 +110,7 @@ const post = await p.group(
 			}),
 	},
 	{
-		onCancel: cancel,
+		onCancel,
 	},
 );
 
@@ -184,10 +177,6 @@ const translation = {
 	en: post.originalLang === 'en' ? 'original' : 'manual',
 	vi: post.originalLang === 'vi' ? 'original' : 'manual',
 };
-
-function escapeQuotes(str: string): string {
-	return str.replace(/'/g, "\\'");
-}
 
 const metadata = dedent`
 import { defineBlogPostMetadata } from '..';
