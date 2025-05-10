@@ -1,8 +1,18 @@
 import { defineBlogCategory } from '..';
-import * as m from '../../locales/generated/messages';
 
 export default defineBlogCategory((lang) => ({
-	name: m['categories.community.name'](lang),
-	slug: m['categories.community.slug'](lang),
-	description: m['categories.community.desc'](lang),
+	...{
+		en: {
+			name: 'Community',
+			slug: 'community',
+			description:
+				'Sharing about events from Svelte Vietnam, open source contribution, and community-building activities',
+		},
+		vi: {
+			name: 'Cộng đồng',
+			slug: 'cong-dong',
+			description:
+				'Chia sẻ về sự kiện của Svelte Việt Nam, dự án mã nguồn mở, và các hoạt động xây dựng cộng đồng',
+		},
+	}[lang],
 }));

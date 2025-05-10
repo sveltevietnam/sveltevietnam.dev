@@ -1,8 +1,17 @@
 import { defineBlogCategory } from '..';
-import * as m from '../../locales/generated/messages';
 
 export default defineBlogCategory((lang) => ({
-	name: m['categories.svelte_kit.name'](lang),
-	slug: m['categories.svelte_kit.slug'](lang),
-	description: m['categories.svelte_kit.desc'](lang),
+	name: 'Svelte & Kit',
+	...{
+		en: {
+			slug: 'svelte-and-kit',
+			description:
+				'Development-focused articles about techniques, libraries, case studies, ... for Svelte and SvelteKit',
+		},
+		vi: {
+			slug: 'svelte-va-kit',
+			description:
+				'Bài viết xoay quanh các vấn đề kỹ thuật, thư viện, ví dụ thực tế, ... với Svelte và SvelteKit',
+		},
+	}[lang],
 }));

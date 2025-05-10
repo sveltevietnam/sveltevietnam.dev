@@ -27,8 +27,7 @@ messages:
     home:
       title: Home | Svelte Vietnam
       keywords: svelte, vietnam, community, technology, open-source
-      desc: An inclusive community and go-to information hub for people of Svelte
-        in Vietnam
+      desc: An inclusive community and go-to information hub for people of Svelte in Vietnam
       intro:
         heading: Svelte Vietnam
         subtitle: Building an inclusive and innovative community
@@ -39,154 +38,172 @@ messages:
           step: Step one
           heading: Discover Svelte Hands on
           tutorial:
-            desc: <strong>Svelte tutorial*</strong> is an official guide that helps
-              you ‘learn by doing’ — get hands-on with Svelte and SvelteKit concepts
-              from basic to advanced through small exercises.
+            desc:
+              <strong>Svelte tutorial*</strong> is an official guide that helps you ‘learn by doing’
+              — get hands-on with Svelte and SvelteKit concepts from basic to advanced through small
+              exercises.
             link: See Svelte Tutorial page
-            footnote: '* this is a guide for Svelte 5 and currently only supports
-              English'
+            footnote: '* this is a guide for Svelte 5 and currently only supports English'
           playground:
-            desc: <strong>Svelte playground*</strong> (REPL) is an official interactive
-              editor that helps you quickly test ideas or observe the output from
-              the Svelte compiler.
+            desc:
+              <strong>Svelte playground*</strong> (REPL) is an official interactive editor that
+              helps you quickly test ideas or observe the output from the Svelte compiler.
             link: See Svelte Playground
           lab:
-            desc: <strong>SvelteLab</strong> is an advanced interactive editor built
-              by the community, extending ideas from Svelte playground, supporting
-              SvelteKit and many features for a complete fullstack project.
+            desc:
+              <strong>SvelteLab</strong> is an advanced interactive editor built by the community,
+              extending ideas from Svelte playground, supporting SvelteKit and many features for a
+              complete fullstack project.
             link: See SvelteLab
         two:
           step: Step two
           heading: Read the Svelte & SvelteKit documentation
           docs:
-            desc: <strong>Svelte documentation</strong> is the official catalogue
-              for features and public interfaces of Svelte and SvelteKit, organized
-              in a comprehensive and searchable manner - the first-stop reference
-              in your daily work with Svelte.
+            desc:
+              <strong>Svelte documentation</strong> is the official catalogue for features and
+              public interfaces of Svelte and SvelteKit, organized in a comprehensive and searchable
+              manner - the first-stop reference in your daily work with Svelte.
             link: See Svelte Documentation
         three:
           step: Step three
           heading: Join the Svelte Vietnam community
-          desc: <strong>Svelte Vietnam</strong> is an open-source project and inclusive
-            community for anyone using or learning about Svelte in Vietnam. Svelte
-            Vietnam is aspired to be a useful information channel and to promote a
-            healthy environment for members to share their experiences and help each
-            other on their journey towards software development and open-source.
+          desc:
+            <strong>Svelte Vietnam</strong> is an open-source project and inclusive community for
+            anyone using or learning about Svelte in Vietnam. Svelte Vietnam is aspired to be a
+            useful information channel and to promote a healthy environment for members to share
+            their experiences and help each other on their journey towards software development and
+            open-source.
           discord: Join community forum on Discord
           github: Contribute to the project on Github
-          note: You can also follow news about <a class="c-link" href="/en/events">events
-            from Svelte Vietnam</a> or <a class="c-link" href="/en/blog">articles
-            from the Svelte Vietnam Blog</a>.
+          note:
+            You can also follow news about <a class="c-link" href="/en/events">events from Svelte
+            Vietnam</a> or <a class="c-link" href="/en/blog">articles from the Svelte Vietnam
+            Blog</a>.
         four:
           step: Step four
           heading: Get news from the international Svelte community
           svelte:
-            desc: <strong>Svelte</strong> is an open-source project. Follow and contribute
-              to the development of Svelte through the following channels.
+            desc:
+              <strong>Svelte</strong> is an open-source project. Follow and contribute to the
+              development of Svelte through the following channels.
             github:
               svelte: Github repository of Svelte
               sveltekit: Github repository of SvelteKit
               svelte_dev: Github repository of svelte.dev
           society:
-            desc: <strong>Svelte society</strong> is a volunteer global network connecting
-              Svelte enthusiasts. Svelte Society oversees many important resources
-              for the community.
+            desc:
+              <strong>Svelte society</strong> is a volunteer global network connecting Svelte
+              enthusiasts. Svelte Society oversees many important resources for the community.
             discord: Join community forum on Discord
             website: See the Svelte Society website
           summit:
-            desc: <strong>Svelte Summit</strong> is an international conference event
-              about Svelte, gathering maintainers and speakers from all around the
-              world.
+            desc:
+              <strong>Svelte Summit</strong> is an international conference event about Svelte,
+              gathering maintainers and speakers from all around the world.
             youtube: Watch events on Youtube
             website: See the Svelte Summit website
           hack:
-            desc: <strong>SvelteHack</strong> is a hackathon event that usually takes
-              place after important milestones in the Svelte ecosystem.
+            desc:
+              <strong>SvelteHack</strong> is a hackathon event that usually takes place after
+              important milestones in the Svelte ecosystem.
             link: See the SvelteHack website
           others: 'You can also:'
-          newsletter: subscribe to the monthly news update about Svelte via “<a class="c-link"
+          newsletter:
+            subscribe to the monthly news update about Svelte via “<a class="c-link"
             href="https://svelte.substack.com/">The (Unofficial) Svelte JS Newsletter</a>”,
-          madebysvelte: browse or share libraries and products via “<a class="c-link"
+          madebysvelte:
+            browse or share libraries and products via “<a class="c-link"
             href="https://madewithsvelte.com/">Made by Svelte</a>”,
           jobs:
-            follow news about jobs via the <a class="c-link" href="https://discord.com/channels/457912077277855764/640884695890133012">#job-postings</a>
-            channel in the official Svelte Discord, or via “<a class="c-link" href="https://sveltejobs.com/">Svelte
-            Jobs</a>”.
+            follow news about jobs via the <a class="c-link"
+            href="https://discord.com/channels/457912077277855764/640884695890133012">#job-postings</a>
+            channel in the official Svelte Discord, or via “<a class="c-link"
+            href="https://sveltejobs.com/">Svelte Jobs</a>”.
       events:
         heading: Events
-        desc: Meet the Svelte Vietnam community. Share your ideas, products, and all
-          thing Svelte and open source
+        desc:
+          Meet the Svelte Vietnam community. Share your ideas, products, and all thing Svelte and
+          open source
         tba:
           desc: No event is planned yet
           subscribe: Notify me about the next event!
           view_past: View past events
       blog:
         heading: Recent Posts
-        desc: Read and write about your Svelte expreience at the <a class="c-link"
+        desc:
+          Read and write about your Svelte expreience at the <a class="c-link"
           href="/en/blog">Svelte Vietnam Blog</a>.
       sponsor:
         heading: Sponsor
         desc: Help sustain the community and support its growth by becoming a sponsor
         list:
-          Sponsors are listed at the<br /><a class="c-link" href="https://opencollective.com/sveltevietnam">Svelte
-          Vietnam Collective</a>.
+          Sponsors are listed at the<br /><a class="c-link"
+          href="https://opencollective.com/sveltevietnam">Svelte Vietnam Collective</a>.
         read_more: Read more!
     coc:
       title: Code of Conduct | Svelte Vietnam
       keywords: code, conduct, rules
       heading: Code of Conduct
       desc: Code of Conduct for members in the Svelte Vietnam community
-      message: All members (individuals and organizations) participating in the Svelte
-        Vietnam community must follow the “Code of Conduct” from <a class="c-link"
+      message:
+        All members (individuals and organizations) participating in the Svelte Vietnam community
+        must follow the “Code of Conduct” from <a class="c-link"
         href="https://github.com/sveltejs/community/blob/main/CODE_OF_CONDUCT.md">sveltejs/community</a>
-        and <a class="c-link" href="https://sveltesociety.dev/about">Svelte Society</a>.<br
-        /><br />For reports, feedback, and questions, please reach out through the
-        following channels. Thank you!
+        and <a class="c-link" href="https://sveltesociety.dev/about">Svelte Society</a>.<br /><br
+        />For reports, feedback, and questions, please reach out through the following channels.
+        Thank you!
       contact:
         discord: Contact moderator via Discord
         email: Email to
       excerpt:
         heading: Excerpt
         desc: Shown below is an excerpt from the “Code of Conduct” of Svelte Society
-        content: Svelte Society is dedicated to providing <strong>a harassment-free
-          community for everyone</strong>, regardless of sex, gender identity or expression,
-          sexual orientation, disability, physical appearance, age, race, nationality,
-          or religious beliefs. <strong>We do not tolerate harassment of community
-          members in any form</strong>. Participants violating these rules may be
-          sanctioned or expelled from the community at the discretion of Svelte Society
-          organizers.<br/><br />All attendees, speakers, sponsors, instructors, and
-          volunteers at our events are required to agree with the following code of
-          conduct. Leadership will enforce this code at all times. We expect cooperation
-          from all participants to help ensure a safe environment for everybody.
+        content:
+          Svelte Society is dedicated to providing <strong>a harassment-free community for
+          everyone</strong>, regardless of sex, gender identity or expression, sexual orientation,
+          disability, physical appearance, age, race, nationality, or religious beliefs. <strong>We
+          do not tolerate harassment of community members in any form</strong>. Participants
+          violating these rules may be sanctioned or expelled from the community at the discretion
+          of Svelte Society organizers.<br/><br />All attendees, speakers, sponsors, instructors,
+          and volunteers at our events are required to agree with the following code of conduct.
+          Leadership will enforce this code at all times. We expect cooperation from all
+          participants to help ensure a safe environment for everybody.
         citation: — Svelte Society, TL;DR - Code of Conduct
     blog:
       title: Blog | Svete Vietnam
       keywords: blog, writing, sharing, involvement, contribution
       heading: Svelte Vietnam Blog
-      desc: A community-driven blog about technical insights and human stories in
-        the Svelte ecosystem. Share your Svelte experience or catch up on the latest
-        news from Svelte Vietnam!
+      desc:
+        A community-driven blog about technical insights and human stories in the Svelte ecosystem.
+        Share your Svelte experience or catch up on the latest news from Svelte Vietnam!
       tagline: Learn to share. Sharing is learning
       category:
         technical: Development-focused articles about Svelte, SvelteKit, and its ecosystem
-        insider: An insightful peek behind the curtain into the architecture, design
-          decision, and lesson learned from building the Svelte Vietnam community
-          and the sveltevietnam.dev website
+        insider:
+          An insightful peek behind the curtain into the architecture, design decision, and lesson
+          learned from building the Svelte Vietnam community and the sveltevietnam.dev website
       write:
         heading: Share your blog post!
-        desc: The Svelte Vietnam Blog is a place for members to share knowledge, ideas,
-          and experiences with the Svelte community in Vietnam and internationally.<br/><br/>Svelte
-          Vietnam welcomes everyone to post or link to their articles on this blog.
-          This is the most practical and direct way that members can contribute to
-          the Svelte Vietnam community.
-        cta: Write a post or link to your post
+        desc:
+          The Svelte Vietnam Blog is a place for members to share knowledge, ideas, and experiences
+          with the Svelte community in Vietnam and internationally.<br/><br/>Svelte Vietnam welcomes
+          everyone to contribute to this blog. This is the most practical and direct way that
+          members can contribute to the Svelte Vietnam community.
+        cta: See writing guide
         discuss:
           Join the conversation in <a class="c-link" href="https://discord.sveltevietnam.dev/">the
           official Svelte Vietnam Discord</a>.
       resources:
-        desc: Resources and news channels about Svelte and SvelteKit are continuously
-          updated on the homepage sveltevietnam.dev
+        desc:
+          Resources and news channels about Svelte and SvelteKit are continuously updated on the
+          homepage sveltevietnam.dev
         view: View list of resources
+    blog_write:
+      title: Write | Blog | Svelte Vietnam
+      keywords: blog, write, contribution, sharing, tutorial
+      heading: Writing Guide
+      desc: Guidelines and recommendations for authoring blog posts on the Svelte Vietnam Blog
+      toc: Table of contents
     blog_slug:
       lang:
         original:
@@ -195,11 +212,11 @@ messages:
         manual:
           title: Manual translation
           desc: You are reading a manual translation of the blog post.
-        unsupported: The blog post is displayed in its original language as translation
-          has not been provided yet. If possible, please join our <a class="c-link"
+        unsupported:
+          The blog post is displayed in its original language as translation has not been provided
+          yet. If possible, please join our <a class="c-link"
           href="https://github.com/sveltevietnam">Github</a> and <a class="c-link"
-          href="https://discord.sveltevietnam.dev">Discord</a> to help with translation.
-          Thank you!
+          href="https://discord.sveltevietnam.dev">Discord</a> to help with translation. Thank you!
       stats:
         read_minutes: min read
         word: words
@@ -212,7 +229,7 @@ messages:
         series: In this series
       edit:
         intro: Found a typo or need to correct something?
-        cta: Edit this page on Github
+        cta: Edit this blog post content on Github
     blog_categories:
       title: Categories | Blog | Svete Vietnam
       keywords: blog, write, categories, classification
@@ -232,8 +249,7 @@ messages:
       title: Design | Svelte Vietnam
       keywords: typography, color, system, creativity, inspiration, logo
       heading: Design
-      desc: An overview of the typography, color scheme, and logo used in the Svelte
-        Vietnam project
+      desc: An overview of the typography, color scheme, and logo used in the Svelte Vietnam project
       typography:
         heading: Typography
         headers:
@@ -245,16 +261,16 @@ messages:
             desc: The main heading of the page, usually corresponds to H1
           heading_large:
             title: Large Heading
-            desc: Headings for large sections of content on the page, usually corresponding
-              to H1, H2
+            desc:
+              Headings for large sections of content on the page, usually corresponding to H1, H2
           heading_medium:
             title: Medium Heading
-            desc: Headings for secondary content sections on the page, usually corresponding
-              to H2, H3
+            desc:
+              Headings for secondary content sections on the page, usually corresponding to H2, H3
           heading:
             title: Heading
-            desc: Headings for secondary content sections on the page, usually corresponding
-              to H3, H4
+            desc:
+              Headings for secondary content sections on the page, usually corresponding to H3, H4
           title:
             title: Title
             desc: Title of a component, or an item in a list
@@ -263,8 +279,7 @@ messages:
             desc: Additional description for each page, used alongside the “Page Heading”
           body_medium:
             title: Medium Body
-            desc: Prominent content, relatively requiring more attention than normal
-              content.
+            desc: Prominent content, relatively requiring more attention than normal content.
           body:
             title: Body
             desc: Default content for most text on the page
@@ -273,39 +288,43 @@ messages:
             desc: Secondary content, relatively less important than other main content
           body_smaller:
             title: Smaller Body
-            desc: Secondary content that is supplementary, not essential to the interface
-              features
+            desc: Secondary content that is supplementary, not essential to the interface features
       sand:
         heading: Sand Palette
-        desc: The “Sand” color collection, inspired by the palette of the same name
-          from <a class="c-link" href="https://github.com/evilmartians/harmony">Harmony
-          (Evil Martians)</a>, used as the building block for most content foregrounds
-          and backgrounds — surfaces, text, lines, ...
-        footnote: '* P3 — color is in the P3 color space. The P3 gamut is larger than
-          and includes the sRGB gamut. P3 may not be supported on older devices.'
+        desc:
+          The “Sand” color collection, inspired by the palette of the same name from <a
+          class="c-link" href="https://github.com/evilmartians/harmony">Harmony (Evil Martians)</a>,
+          used as the building block for most content foregrounds and backgrounds — surfaces, text,
+          lines, ...
+        footnote:
+          '* P3 — color is in the P3 color space. The P3 gamut is larger than and includes the sRGB
+          gamut. P3 may not be supported on older devices.'
       colors:
         semantic:
           heading: Semantic Colors
-          desc: Colors that have meaning depending on the position or context of use.
-            These colors also change according to the display mode (light and dark).
+          desc:
+            Colors that have meaning depending on the position or context of use. These colors also
+            change according to the display mode (light and dark).
         basic:
           heading: Basic Colors
-          desc: Default colors for most content — surfaces, text, lines, ... The following
-            example lists some common colors.
+          desc:
+            Default colors for most content — surfaces, text, lines, ... The following example lists
+            some common colors.
         status:
           heading: Status Colors
-          desc: Colors that indicate the current application status or provide additional
-            context for the element.
+          desc:
+            Colors that indicate the current application status or provide additional context for
+            the element.
       logo:
-        desc: A few words about the inspiration and theme of the logo used in the
-          Svelte Vietnam project
+        desc:
+          A few words about the inspiration and theme of the logo used in the Svelte Vietnam project
         inspiration:
           heading: Inspiration
-          desc: 'The Svelte Vietnam logo is created from two main components: the
-            official Svelte logo and the image of a conical hat (“nón lá”) with a
-            star - symbolizing the image of the Vietnamese community. The main color
-            of the logo is chosen based on the “Svelte color”, creating uniformity
-            with the iconic color of the international Svelte community.'
+          desc:
+            'The Svelte Vietnam logo is created from two main components: the official Svelte logo
+            and the image of a conical hat (“nón lá”) with a star - symbolizing the image of the
+            Vietnamese community. The main color of the logo is chosen based on the “Svelte color”,
+            creating uniformity with the iconic color of the international Svelte community.'
         inspire: Inspire
         community: Community
         version:
@@ -317,8 +336,7 @@ messages:
       title: Events | Svete Vietnam
       keywords: event, meetup, sharing
       heading: Events
-      desc: Meet the community in Vietnam — discuss about the Svelte and open source
-        ecosystem
+      desc: Meet the community in Vietnam — discuss about the Svelte and open source ecosystem
       view_upcoming: View upcoming events
       upcoming:
         heading: Upcoming events
@@ -333,25 +351,26 @@ messages:
           official Svelte Vietnam Discord</a>.
       share:
         heading: Share
-        desc: Promote your products, spread ideas, share projects and experiences
-          in upcoming events.<br /><br />Contact the administrators via the email
-          below to register as a speaker or contribute ideas for activities, meetings,
-          and discussions at the event.
+        desc:
+          Promote your products, spread ideas, share projects and experiences in upcoming events.<br
+          /><br />Contact the administrators via the email below to register as a speaker or
+          contribute ideas for activities, meetings, and discussions at the event.
       sponsor:
         heading: Sponsor
-        desc: Sponsor and/or help organizing events, competition, and activities that
-          nurture a healthy Svelte and open source community in Vietnam.
+        desc:
+          Sponsor and/or help organizing events, competition, and activities that nurture a healthy
+          Svelte and open source community in Vietnam.
         why: Why does Svelte Vietnam need sponsorship?
         cta: Become a sponsor
       past:
         heading: Past events
     jobs:
       title: Jobs | Svelte Vietnam
-      keywords: job, work, employment, posting, recruitment, partner, project, collaboration,
-        svelte, Vietnam
+      keywords:
+        job, work, employment, posting, recruitment, partner, project, collaboration, svelte,
+        Vietnam
       heading: Jobs
-      desc: Job board for Svelte developers in Vietnam — connecting businesses and
-        community
+      desc: Job board for Svelte developers in Vietnam — connecting businesses and community
       tagline: Connecting businesses and community
       posting:
         heading: Postings
@@ -360,34 +379,39 @@ messages:
           create: Create a job posting now!
       recruiter:
         heading: Recruiter
-        desc: The job posting process at Svelte Vietnam is completely free. Job postings
-          approved by the administrators will be displayed on this website.
+        desc:
+          The job posting process at Svelte Vietnam is completely free. Job postings approved by the
+          administrators will be displayed on this website.
         create: Create a job posting
         email: Contact administrators at
         sponsor:
-          desc: Please consider sponsoring to contribute to the maintenance and development
-            of the Svelte Vietnam community!
+          desc:
+            Please consider sponsoring to contribute to the maintenance and development of the
+            Svelte Vietnam community!
           link: Why does Svelte Vietnam need sponsorship?
           cta: Become a sponsor
       candidate:
         heading: Candidate
-        desc: Register to receive notifications when there are updates to job postings
-          or information related to Svelte
+        desc:
+          Register to receive notifications when there are updates to job postings or information
+          related to Svelte
         discord:
           Join the conversation in <a class="c-link" href="https://discord.sveltevietnam.dev/">the
           official Svelte Vietnam Discord</a>.
       scraping:
         heading: From recruitment sites
-        desc: We are developing a service to automatically aggregate job postings
-          from popular recruitment channels in Vietnam.
+        desc:
+          We are developing a service to automatically aggregate job postings from popular
+          recruitment channels in Vietnam.
         tba:
           desc: No job posting found yet
           subscribe: Subscribe to get the latest job updates!
     people:
       title: People | Svelte Vietnam
       heading: People of Svelte Vietnam
-      desc: List of members that contributed to content of the sveltevietnam.dev website
-        or were speakers at Svelte Vietnam community events
+      desc:
+        List of members that contributed to content of the sveltevietnam.dev website or were
+        speakers at Svelte Vietnam community events
     people_slug:
       events: Events {{name}} contributed to
       view_events: View events
@@ -410,92 +434,102 @@ messages:
         completed: Completed
         delayed: Delayed
       dong:
-        objective: reduce complexity of the sveltevietnam.dev codebase and design,
-          experiment with Svelte 5, set up a user system and a minimal custom markdown
-          editor to streamline the job posting and blog writing processes.
+        objective:
+          reduce complexity of the sveltevietnam.dev codebase and design, experiment with Svelte 5,
+          set up a user system and a minimal custom markdown editor to streamline the job posting
+          and blog writing processes.
         tasks:
           job_posting: Allow recruiters to create job listings directly on sveltevietnam.dev
-          post_submitInApp: Allow users to write blog posts directly on sveltevietnam.dev
-            (instead of through Github issue and PR)
+          post_submitInApp:
+            Allow users to write blog posts directly on sveltevietnam.dev (instead of through Github
+            issue and PR)
           task_md_editor: Build a minimal markdown editor
           github_oauth: Set up quick login via GitHub OAuth
           svelte_5: Rebuild sveltevietnam.dev entirely with Svelte 5
           inter_4: Upgrade the Inter font to version 4
           tailwind_4: Simplify the styling setup, experiment with Tailwind 4.0
-          refactor: Simplify and unify the design of the entire sveltevietnam.dev
-            website
+          refactor: Simplify and unify the design of the entire sveltevietnam.dev website
       tu:
-        objective: prepare for the first official (pre)release of sveltevietnam.dev
-          (v1.0.0-next), focus on developing the blog page, the events page, and the
-          necessary features and content for the community to start actively participating
-          and contributing.
+        objective:
+          prepare for the first official (pre)release of sveltevietnam.dev (v1.0.0-next), focus on
+          developing the blog page, the events page, and the necessary features and content for the
+          community to start actively participating and contributing.
         highlights:
           open_collective:
-            Send request to create the <a class="c-link" href="https://opencollective.com/sveltevietnam">Svelte
-            Vietnam Open Collective</a>, started accepting financial donations
+            Send request to create the <a class="c-link"
+            href="https://opencollective.com/sveltevietnam">Svelte Vietnam Open Collective</a>,
+            started accepting financial donations
           first_offline_meetup:
             Organize <a class="c-link" href="/en/events/2024-04-spring-2024-ho-chi-minh-meetup">the
             first offline community meetup in Ho Chi Minh city</a>
           first_online_meetup:
-            Organize <a class="c-link" href="/en/events/202312-year-end-online-meetup">the
-            first online community meetup</a>
-          first_ui: Establish basic infrastructure and initial design for the sveltevietnam.dev
-            website
+            Organize <a class="c-link" href="/en/events/202312-year-end-online-meetup">the first
+            online community meetup</a>
+          first_ui:
+            Establish basic infrastructure and initial design for the sveltevietnam.dev website
         tasks:
           survey: Draft content and design for the “Svelte Vietnam Community Survey”
-          page_jobs: Introduce the <a class="c-link" href="en/jobs">Jobs</a> page
-            with basic design
-          page_design: Introduce the <a class="c-link" href="en/design">Design</a>
-            page to document the design elements of the Svelte Vietnam project
-          progressive_enhancement: Support users without JavaScript access (progressive
-            enhancement), especially for essential features like multilingual navigation,
-            theme switcher, mobile menu, and splash screen
-          page_coc: Introduce the <a class="c-link" href="/en/code-of-conduct">Code
-            of Conduct</a> page with basic design
+          page_jobs: Introduce the <a class="c-link" href="en/jobs">Jobs</a> page with basic design
+          page_design:
+            Introduce the <a class="c-link" href="en/design">Design</a> page to document the design
+            elements of the Svelte Vietnam project
+          progressive_enhancement:
+            Support users without JavaScript access (progressive enhancement), especially for
+            essential features like multilingual navigation, theme switcher, mobile menu, and splash
+            screen
+          page_coc:
+            Introduce the <a class="c-link" href="/en/code-of-conduct">Code of Conduct</a> page with
+            basic design
           og: Set up custom Open Graph images for each completed page
-          blog_post: Set up the process for posting or linking blog posts through
-            Github issue and direct code guide for posting
+          blog_post:
+            Set up the process for posting or linking blog posts through Github issue and direct
+            code guide for posting
           references:
-            Introduce the “<a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/TECHNICAL_REFERNCES.md">Technical
-            Reference</a>” and “<a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/CONTRIBUTING.md">Contributing
+            Introduce the “<a class="c-link"
+            href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/TECHNICAL_REFERNCES.md">Technical
+            Reference</a>” and “<a class="c-link"
+            href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/CONTRIBUTING.md">Contributing
             Guidelines</a>” documents
-          page_blog: Introduce the <a class="c-link" href="/en/blog">Blog</a> page
-            with basic design
-          page_events: Introduce the <a class="c-link" href="/en/events">Events</a>
-            page with basic design
-          mailer: Design infrastructure and initialize mailer service to manage user
-            registration for email notifications
+          page_blog: Introduce the <a class="c-link" href="/en/blog">Blog</a> page with basic design
+          page_events:
+            Introduce the <a class="c-link" href="/en/events">Events</a> page with basic design
+          mailer:
+            Design infrastructure and initialize mailer service to manage user registration for
+            email notifications
       auLac:
-        objective: initiate the project, build the infrastructure, set up a basic
-          development process
+        objective:
+          initiate the project, build the infrastructure, set up a basic development process
         highlights:
           roadmap: Build a roadmap for the development of Svelte Vietnam
-          initiation: Establish an initial Information Architecture and Brand Identity
-            for Svelte Vietnam
+          initiation:
+            Establish an initial Information Architecture and Brand Identity for Svelte Vietnam
         tasks:
-          page_roadmap: Introduce the <a class="c-link" href="/en/roadmap">Roadmap</a>
-            page
-          metadata: Set up basic metadata and SEO, including sitemap.xml, Google Search
-            Console, Google Analytics
-          discord: Develop websocket service and bot for Discord server, making ways
-            to gradually add new features to enrich experience for users on both Discord
-            and the sveltevietnam.dev site
-          page_home: Introduce the <a class="c-link" href="/en">Home page</a> page
-            with basic design
+          page_roadmap: Introduce the <a class="c-link" href="/en/roadmap">Roadmap</a> page
+          metadata:
+            Set up basic metadata and SEO, including sitemap.xml, Google Search Console, Google
+            Analytics
+          discord:
+            Develop websocket service and bot for Discord server, making ways to gradually add new
+            features to enrich experience for users on both Discord and the sveltevietnam.dev site
+          page_home: Introduce the <a class="c-link" href="/en">Home page</a> page with basic design
           page_branding_repo:
             Initiate the <a class="c-link" href="https://github.com/sveltevietnam/branding">branding
-            repository</a> to store public assets (including logo with version history)
-            and the “Branding Guidelines” document (discussing about usage of Svelte
-            Vietnam's public assets)
-          logo: Design and implement <a class="c-link" href="/en/design#logo">the
-            official logo of Svelte Vietnam</a>
+            repository</a> to store public assets (including logo with version history) and the
+            “Branding Guidelines” document (discussing about usage of Svelte Vietnam's public
+            assets)
+          logo:
+            Design and implement <a class="c-link" href="/en/design#logo">the official logo of
+            Svelte Vietnam</a>
           project_reference:
-            Publish the “<a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/PROJECT_REFERENCES.md">Project
+            Publish the “<a class="c-link"
+            href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/PROJECT_REFERENCES.md">Project
             Reference</a>” document, providing an overview of the Svelte Vietnam project
           github:
-            Setup the Svelte Vietnam Github <a class="c-link" href="https://github.com/sveltevietnam">organization</a>,
-            <a class="c-link" href="https://github.com/orgs/sveltevietnam/projects/1">project</a>,
-            and <a class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev">sveltevietnam.dev
+            Setup the Svelte Vietnam Github <a class="c-link"
+            href="https://github.com/sveltevietnam">organization</a>, <a class="c-link"
+            href="https://github.com/orgs/sveltevietnam/projects/1">project</a>, and <a
+            class="c-link"
+            href="https://github.com/sveltevietnam/sveltevietnam.dev">sveltevietnam.dev
             repository</a>
     search:
       title: Search | Svelte Vietnam
@@ -513,51 +547,65 @@ messages:
       tagline: Sustain creativity
       highlight:
         desc:
-          'Svelte Vietnam chooses <a class="c-link" href="https://opencollective.com/sveltevietnam">Open
-          Collective</a> to receive financial contributions from sponsors (individuals
-          or organizations). Open collective provides the necessary platform and toolbox
-          for money management with high transparency: all donation and spending are
-          made public.'
+          'Svelte Vietnam chooses <a class="c-link"
+          href="https://opencollective.com/sveltevietnam">Open Collective</a> to receive financial
+          contributions from sponsors (individuals or organizations). Open collective provides the
+          necessary platform and toolbox for money management with high transparency: all donation
+          and spending are made public.'
         cta: Sponsor via Open Collective
         contact: If you have any proposal or question, please contact
       participate:
         heading: Participating in the Svelte Vietnam community
-        desc: If you are unable to support financially or want to contribute more
-          directly to the Svelte Vietnam community, please consider the following
-          channels. Thank you!
+        desc:
+          If you are unable to support financially or want to contribute more directly to the Svelte
+          Vietnam community, please consider the following channels. Thank you!
         discord: Join the conversation in our official Discord
         events: Help organize or provide venues for community events
         blog: Share products, ideas, experiences through Blog
         github: Contribute to open-source projects on Github
       why:
         heading: Why does Svelte Vietnam need sponsorship?
-        desc: 'Svelte Vietnam is not a business, nor does it intend to commercialize
-          any project or product. However, money is needed if we want to build a healthy
-          community at scale, one that can encourage members to connect, share, and
-          grow via forums and events. To better understand what Svelte Vietnam is
-          and trying to be, read the blog post <a class="c-link" href="/en/blog/20231012-svelte-vietnam-from-local-to-global">“Svelte
-          Vietnam: from Local to Global”</a>.'
+        desc:
+          'Svelte Vietnam is not a business, nor does it intend to commercialize any project or
+          product. However, money is needed if we want to build a healthy community at scale, one
+          that can encourage members to connect, share, and grow via forums and events. To better
+          understand what Svelte Vietnam is and trying to be, read the blog post <a class="c-link"
+          href="/en/blog/20231012-svelte-vietnam-from-local-to-global">“Svelte Vietnam: from Local
+          to Global”</a>.'
         reasons:
           opening: 'Specifically, Svelte Vietnam will use its fund for:'
-          one: <strong>Maintain</strong> a stable and secure infrastructure (Cloudflare).
-            Currently Svelte Vietnam is built and paid for by individual and voluntary
-            effort. Having dedicated funding means these members will not have to
-            paid for infrastructure cost out of their own pockets.
-          two: <strong>Create</strong> high-quality content, events, and activities
-            to promote community growth and open source initiatives.
-          closing: As discussed in the <a class="c-link" href="#how">previous section</a>,
-            the list of sponsors, donations, and expenses are recorded publicly by
-            <a class="c-link" href="https://opencollective.com/sveltevietnam">the
-            Svelte Vietnam Open Collective</a>.
+          one:
+            <strong>Maintain</strong> a stable and secure infrastructure (Cloudflare). Currently
+            Svelte Vietnam is built and paid for by individual and voluntary effort. Having
+            dedicated funding means these members will not have to paid for infrastructure cost out
+            of their own pockets.
+          two:
+            <strong>Create</strong> high-quality content, events, and activities to promote
+            community growth and open source initiatives.
+          closing:
+            As discussed in the <a class="c-link" href="#how">previous section</a>, the list of
+            sponsors, donations, and expenses are recorded publicly by <a class="c-link"
+            href="https://opencollective.com/sveltevietnam">the Svelte Vietnam Open Collective</a>.
       benefit:
         heading: What do I get as a sponsor for Svelte Vietnam?
         desc:
-          Sponsors are listed at our <a class="c-link" href="https://opencollective.com/sveltevietnam">
-          Open Collective</a>, as well as associated event or project pages. In the
-          near future when the “Jobs” page is implemented, sponsors will have priority
-          for their job posting requests. Svelte Vietnam also provides opportunities
-          during its events for sponsors to promote their brands and products.
+          Sponsors are listed at our <a class="c-link"
+          href="https://opencollective.com/sveltevietnam"> Open Collective</a>, as well as
+          associated event or project pages. In the near future when the “Jobs” page is implemented,
+          sponsors will have priority for their job posting requests. Svelte Vietnam also provides
+          opportunities during its events for sponsors to promote their brands and products.
   components:
+    callout_playground:
+      input: Config
+      output: Result
+      class: Class names to apply
+      legends:
+        status: Status
+        icon: Icon <em class="text-xs">(optional)</em>
+      sample:
+        This is a sample “callout” that enhances a text block with some contextual meaning and helps
+        draw user's attention. See more examples and how to use it via <a class="c-link"
+        href="/en/blog/write#callout">"Svelte Vietnam Blog - Writing Guidelines"</a>.
     color_scheme_menu:
       light: Light mode
       dark: Dark mode
@@ -569,16 +617,18 @@ messages:
     footer:
       about:
         title: About Us
-        desc: Svelte Vietnam is a a go-to information center, and an inclusive community
-          for anyone interested in the adoption of Svelte in Vietnam.
+        desc:
+          Svelte Vietnam is a a go-to information center, and an inclusive community for anyone
+          interested in the adoption of Svelte in Vietnam.
       navigation: Navigation
       contact: Contact
       powered_by: Powered by
     blog_newsletter:
       heading: The Svelte Vietnam Blog Newsletter
       desc: Subscribe to receive notification for new blog post from Svelte Vietnam
-    green_web_badge: sveltevietnam.dev is hosted by Cloudflare and passes the green
-      hosting check by the Green Web Foundation
+    green_web_badge:
+      sveltevietnam.dev is hosted by Cloudflare and passes the green hosting check by the Green Web
+      Foundation
     header:
       go_to_home_page: Go to home page
       mobile_menu: mobile menu
@@ -591,8 +641,7 @@ messages:
     not_by_ai_badge: this page is written by human, not by AI
     page_edit_link:
       link: Edit this page on Github
-      desc: sveltevietnam.dev is an open source project and welcomes your contributions.
-        Thank you!
+      desc: sveltevietnam.dev is an open source project and welcomes your contributions. Thank you!
     page_menu:
       aria: pages
       toggle: page menu
@@ -612,28 +661,32 @@ messages:
   notifications:
     sample:
       title: Sample Notification
-      message: This notification will automatically dismiss after a a few seconds.
-        You may try hovering over it to pause the timer!
+      message:
+        This notification will automatically dismiss after a a few seconds. You may try hovering
+        over it to pause the timer!
     delayed_hydration:
       title: Interrupt Detected!
-      message: Interrupt has been detected due to unstable network. We are sorry for
-        this inconvenience!
+      message:
+        Interrupt has been detected due to unstable network. We are sorry for this inconvenience!
     discord_new_message:
       title: Community Forum
-      message: <strong>{{name}}</strong> just sent a message in the <a class="c-link"
+      message:
+        <strong>{{name}}</strong> just sent a message in the <a class="c-link"
         href="https://discord.sveltevietnam.dev/" target="_blank" rel="noopener noreferrer">Svelte
         Vietnam Discord</a>.
     new_site_version:
       title: New Site Version
-      message: A new version of the site is available. Please reload the page at your
-        convenience for the best experience.
+      message:
+        A new version of the site is available. Please reload the page at your convenience for the
+        best experience.
     v1_site_construction:
       title: V1 On The Horizon
-      message: Hello there, looks like you have stumbled upon our ongoing work towards
-        V1 for the <a class="c-link" href="https://www.sveltevietnam.dev" target="_blank">sveltevietnam.dev</a>
-        site. Some pages and features are still missing. But we appreciate any feedback
-        you may have. Please find our contact info at the <a class="c-link" href="#footer">footer</a>.
-        Thank you!
+      message:
+        Hello there, looks like you have stumbled upon our ongoing work towards V1 for the <a
+        class="c-link" href="https://www.sveltevietnam.dev" target="_blank">sveltevietnam.dev</a>
+        site. Some pages and features are still missing. But we appreciate any feedback you may
+        have. Please find our contact info at the <a class="c-link" href="#footer">footer</a>. Thank
+        you!
       not_again: Don't show again
   dialogs:
     qr:

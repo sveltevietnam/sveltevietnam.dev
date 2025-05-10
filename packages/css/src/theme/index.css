@@ -3,8 +3,9 @@
 
 @theme {
 	/** font family */
-	--font-inter: 'Inter', 'sans-serif';
-	--font-lora: 'Lora', 'serif';
+	--font-inter: 'Inter', var(--default-font-family);
+	--font-lora: 'Lora', var(--default-font-family);
+	--font-fira: 'Fira Code', var(--default-mono-font-family);
 
 	/** font size */
 	--text-2xs: 0.625rem; /* 10px */

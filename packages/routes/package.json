@@ -57,17 +57,17 @@
 		"lint:svelte": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"lint:es": "eslint .",
 		"lint:style": "stylelint '**/*.{svelte,css}'",
-		"format": "prettier --write --ignore-path=../../.prettierignore ."
+		"format": "prettier --write --ignore-path=../../.prettierignore --config=../../prettier.config.js ."
 	},
 	"dependencies": {
-		"dedent": "^1.5.3",
+		"dedent": "^1.6.0",
 		"picocolors": "^1.1.1",
 		"tiny-glob": "^0.2.9",
 		"typescript": "^5.8.3",
 		"yaml": "^2.7.1"
 	},
 	"devDependencies": {
-		"svelte": "^5.25.10",
-		"vite": "^6.2.6"
+		"svelte": "^5.28.2",
+		"vite": "^6.3.5"
 	}
 }

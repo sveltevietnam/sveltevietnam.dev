@@ -1,8 +1,16 @@
 import { defineBlogSeries } from '..';
-import * as m from '../../locales/generated/messages';
 
 export default defineBlogSeries((lang) => ({
-	name: m['series.behind_the_screen.name'](lang),
-	slug: m['series.behind_the_screen.slug'](lang),
-	description: m['series.behind_the_screen.desc'](lang),
+	name: 'Behind the Screen',
+	slug: 'behind-the-screen',
+	...{
+		en: {
+			description:
+				'Sharing about technical decisions behind the codebase, infrastructure, and user interface of sveltevietnam.dev',
+		},
+		vi: {
+			description:
+				'Chia sẻ về các quyết định kỹ thuật đằng sau codebase, hạ tầng và giao diện trang web sveltevietnam.dev',
+		},
+	}[lang],
 }));

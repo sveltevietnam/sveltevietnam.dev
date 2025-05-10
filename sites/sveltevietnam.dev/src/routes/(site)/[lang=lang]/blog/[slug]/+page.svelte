@@ -15,6 +15,7 @@
 	import { HintedText } from '$lib/components/hinted-text';
 	import { NotByAiBadge } from '$lib/components/not-by-ai-badge';
 	import { Person } from '$lib/components/person';
+	import { TableOfContents } from '$lib/components/table-of-contents';
 	import { TextArrowLink } from '$lib/components/text-arrow-link';
 	import { DialogContext } from '$lib/dialogs/context.svelte';
 	import { QrCodeDialog } from '$lib/dialogs/qr-code-dialog';
@@ -143,21 +144,7 @@
 			{#if toc.items.size}
 				<section class="tablet:sticky top-header space-y-6">
 					<h2 class="c-text-heading border-b"><T message={m['pages.blog_slug.headings.toc']} /></h2>
-					<ul class="space-y-1">
-						{#each toc.items.values() as tocItem (tocItem.id)}
-							{@const level = tocItem.element.tagName.slice(1)}
-							<li>
-								<!-- svelte-ignore a11y_missing_attribute -->
-								<a
-									use:toc.actions.link={tocItem}
-									class="c-link-lazy current:text-link block py-1 capitalize"
-									style:padding-left="calc(({level} - 2) * 1ch)"
-								>
-									<!-- textContent injected by toc -->
-								</a>
-							</li>
-						{/each}
-					</ul>
+					<TableOfContents {toc} />
 				</section>
 			{/if}
 		</div>
@@ -298,6 +285,10 @@
 
 		@media (--widescreen) {
 			grid-template-columns: 1fr 20rem;
+		}
+
+		@media (width >= 96rem) {
+			grid-template-columns: 1fr 24rem;
 		}
 	}
 

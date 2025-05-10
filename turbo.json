@@ -12,7 +12,7 @@
 		"build": {
 			"dependsOn": ["^build"],
 			"env": ["VITE_*"],
-      "outputs": ["dist/**", "build/**", ".svelte-kit/**"],
+			"outputs": ["dist/**", "build/**", ".svelte-kit/**"],
 			"inputs": [
 				"*.config.js",
 				"src/**/*.ts",
@@ -32,7 +32,9 @@
 			"dependsOn": ["^build", "^dts"],
 			"cache": false,
 			"persistent": true
+		},
+		"boot:env": {
+			"outputs": []
 		}
 	}
 }
-

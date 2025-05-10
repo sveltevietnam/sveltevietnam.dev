@@ -4,6 +4,7 @@
 	import * as m from '$data/locales/generated/messages';
 	import type { Person } from '$data/people';
 	import * as p from '$data/routes/generated';
+	import fallback1x1 from '$lib/assets/images/fallbacks/1x1.jpg?enhanced&w=w=640;320&imagetools';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { PersonLinks } from '$lib/components/person-links';
@@ -22,12 +23,12 @@
 		lang: settings.language,
 		id: person.id,
 	})}
-	{@const image = person.popImage || person.avatar}
+	{@const image = person.popImage || person.avatar || fallback1x1}
 	<div class="@container w-full">
 		<article
 			class="shadow-brutal hover:shadow-brutal-lg bg-surface @2xl:flex-row @2xl:gap-10 group/person
 			@2xl:items-center duration-400 flex flex-col gap-6 border-2 border-current
-			transition-shadow hover:duration-75"
+			transition-shadow hover:duration-75 relative"
 		>
 			{#if image}
 				<a
@@ -70,8 +71,7 @@
 				<PersonLinks links={person.links} />
 			</div>
 			<TextArrowLink
-				class="text-surface bg-on-surface translate-px hover:bg-primary-on-surface relative self-end
-				px-4 py-2 transition-colors"
+				class="text-surface bg-on-surface translate-px hover:bg-primary-on-surface @2xl:absolute @2xl:bottom-0 @2xl:right-0 relative self-end px-4 py-2 transition-colors"
 				{href}
 			>
 				<T message={m.view_more} />

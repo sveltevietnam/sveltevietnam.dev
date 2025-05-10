@@ -72,7 +72,7 @@
 
 		border-color: var(--color-outline);
 		border-style: solid;
-		border-top-right-radius: 4px;
+		border-top-right-radius: var(--code-block-border-radius, 0);
 
 		background-color: var(--color-bg);
 	}

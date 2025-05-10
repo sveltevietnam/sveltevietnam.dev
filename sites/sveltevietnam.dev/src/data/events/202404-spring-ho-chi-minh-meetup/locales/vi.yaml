@@ -2,23 +2,23 @@
 messages:
   slug: 202404-gap-mat-xuan-giap-thin-ho-chi-minh
   title: Gặp mặt Xuân Giáp Thìn 2024 - Hồ Chí Minh
-  desc: Sự kiện gặp mặt trực tiếp đầu tiên của cộng đồng Svelte Việt Nam tại thành
-    phố Hồ Chí Minh, đồng tổ chức bởi Designveloper
+  desc:
+    Sự kiện gặp mặt trực tiếp đầu tiên của cộng đồng Svelte Việt Nam tại thành phố Hồ Chí Minh, đồng
+    tổ chức bởi Designveloper
   keywords: sự kiện, cộng đồng, gặp mặt, Hồ Chí Minh
   address: Designveloper, tầng 6, 55 Phó Đức Chính, Quận 1, TP. Hồ Chí Minh
   hosted_by: Đồng tổ chức bởi
   recap:
     heading: Nhìn lại
     desc:
-      Svelte Việt Nam rất vui được đồng hành cùng <a class="c-link" href="https://www.designveloper.com/"
-      rel="noreferrer" target="_blank">Designveloper</a> trong sự kiện Gặp mặt Xuân
-      Giáp Thìn lần này tại thành phố Hồ Chí Minh. Đây là sự kiện gặp mặt trực tiếp
-      đầu tiên của cộng đồng Svelte Việt Nam. <br /><br /> Sự kiện lần này chào đón
-      sự góp mặt của nhiều gương mặt mới từ cộng đồng, cũng như một số thành viên
-      từ Designveloper.
+      Svelte Việt Nam rất vui được đồng hành cùng <a class="c-link"
+      href="https://www.designveloper.com/" rel="noreferrer" target="_blank">Designveloper</a> trong
+      sự kiện Gặp mặt Xuân Giáp Thìn lần này tại thành phố Hồ Chí Minh. Đây là sự kiện gặp mặt trực
+      tiếp đầu tiên của cộng đồng Svelte Việt Nam. <br /><br /> Sự kiện lần này chào đón sự góp mặt
+      của nhiều gương mặt mới từ cộng đồng, cũng như một số thành viên từ Designveloper.
     shoutout:
-      Xin gửi lời cảm ơn đến <strong>Thảo</strong> và <strong>Sơn</strong> từ Designveloper đã hỗ trợ tổ chức
-      sự kiện này. Cảm ơn mọi người đã tham gia thảo luận và các hoạt động trong sự
+      Xin gửi lời cảm ơn đến <strong>Thảo</strong> và <strong>Sơn</strong> từ Designveloper đã hỗ
+      trợ tổ chức sự kiện này. Cảm ơn mọi người đã tham gia thảo luận và các hoạt động trong sự
       kiện. Hẹn sớm gặp lại!
   timeline:
     heading: Chương trình
@@ -29,88 +29,96 @@ messages:
       pretext: Phiên chia sẻ
       one:
         title: Svelte, Javascript, và nền tảng Web
-        desc: Phải chăng bạn là một lập trình viên Svelte, lập trình viên Javascript,
-          lập trình viên frontend, hay lập trình viên web? Svelte có vị trí như thế
-          nào trong hệ sinh thái web hôm nay? Bạn có nên quan tâm? Cùng xem sao nhé!
+        desc:
+          Phải chăng bạn là một lập trình viên Svelte, lập trình viên Javascript, lập trình viên
+          frontend, hay lập trình viên web? Svelte có vị trí như thế nào trong hệ sinh thái web hôm
+          nay? Bạn có nên quan tâm? Cùng xem sao nhé!
       two:
         title: Web designer và Svelte, hành trình tìm sự sáng tạo và tự do
-        desc: 'Hành trình từ UI/UX đến Svelte: Đây không chỉ là một con đường khơi
-          dậy sáng tạo và khả năng ❝code lách❞ một cách nghệ thuật mà còn là cơ hội
-          để mở rộng khả năng thiết kế, có thể thực sự làm chủ và thể hiện ý tưởng
-          một cách tự do nhất.'
+        desc:
+          'Hành trình từ UI/UX đến Svelte: Đây không chỉ là một con đường khơi dậy sáng tạo và khả
+          năng ❝code lách❞ một cách nghệ thuật mà còn là cơ hội để mở rộng khả năng thiết kế, có thể
+          thực sự làm chủ và thể hiện ý tưởng một cách tự do nhất.'
     discussions:
       pretext: Thảo luận
       one:
         title: Mã nguồn mở - thử thách và cơ hội
-        desc: Bạn đã từng đóng góp vào thư viện, mã nguồn, hoặc issue tại Github,
-          hay tham gia hỏi / trả lời câu hỏi trên các diễn đàn như Discord, Reddit,
-          Stack Overflow chưa? Nếu có, bạn đã là một thành viên của cộng đồng mã nguồn
-          mở. Cùng lắng nghe trải nghiệm và chia sẻ của các thành viên về mã nguồn
-          mở trong phiên thảo luận này.
+        desc:
+          Bạn đã từng đóng góp vào thư viện, mã nguồn, hoặc issue tại Github, hay tham gia hỏi / trả
+          lời câu hỏi trên các diễn đàn như Discord, Reddit, Stack Overflow chưa? Nếu có, bạn đã là
+          một thành viên của cộng đồng mã nguồn mở. Cùng lắng nghe trải nghiệm và chia sẻ của các
+          thành viên về mã nguồn mở trong phiên thảo luận này.
       two: Thảo luận tự do
     qna:
       pretext: Hỏi đáp
       one:
         title: Svelte và hệ sinh thái của Svelte
-        desc: Svelte chưa được phổ biến rộng tại Việt Nam so với các công nghệ khác,
-          vì vậy chắc hẳn bạn có rất nhiều cầu hỏi cần được giải đáp. Trong phiên
-          thảo luận này, hãy nêu lên những thắc mắc và ý kiến của bạn nhé!
+        desc:
+          Svelte chưa được phổ biến rộng tại Việt Nam so với các công nghệ khác, vì vậy chắc hẳn bạn
+          có rất nhiều cầu hỏi cần được giải đáp. Trong phiên thảo luận này, hãy nêu lên những thắc
+          mắc và ý kiến của bạn nhé!
     break: Giải lao & Trò chơi
     closing: Lời kết
   faq:
     heading: Câu hỏi thường gặp
     why_need_ticket:
       q: Tại sao tôi cần phải đăng ký vé điện tử? Có cần trả phí hay không?
-      a: Sự kiện là hoàn toàn miễn phí. Tuy nhiên vì số lượng ghế ngồi có giới hạn,
-        bạn nên đăng ký để giúp cho ban tổ chức chuẩn bị một cách tốt nhất.
+      a:
+        Sự kiện là hoàn toàn miễn phí. Tuy nhiên vì số lượng ghế ngồi có giới hạn, bạn nên đăng ký
+        để giúp cho ban tổ chức chuẩn bị một cách tốt nhất.
     come_without_ticket:
       q: Tôi có thể đến nếu không đăng ký vé?
-      a: Ban tổ chức khuyến khích bạn nên đăng ký vé điện tử. Tuy nhiên bạn vẫn có
-        thể đến tham dự mà không cần đăng ký trước và sẽ được hỗ trợ tại cửa sự kiện.
+      a:
+        Ban tổ chức khuyến khích bạn nên đăng ký vé điện tử. Tuy nhiên bạn vẫn có thể đến tham dự mà
+        không cần đăng ký trước và sẽ được hỗ trợ tại cửa sự kiện.
     time_and_location:
       q: Sự kiện diễn ra khi nào và ở đâu?
-      a: Sự kiện sẽ diễn ra vào ngày 20 tháng 4, năm 2024, lúc 9 giờ sáng giờ Việt
-        Nam, tại văn phòng công ty <a class="c-link" href="https://www.designveloper.com/"
-        rel="noreferrer" target="_blank">Designveloper</a>, <a class="c-link" href="https://maps.app.goo.gl/ymGh3Djmwjnb7ohu5"
-        rel="noreferrer" target="_blank">địa chỉ tầng 6, 55 Phó Đức Chính, Quận 1,
-        TP. Hồ Chí Minh </a>. Tòa nhà có bãi đỗ xe. Hướng dẫn sẽ được cung cấp thêm
-        khi bạn đến nơi.<br/><br/>Bạn còn có thể tìm thấy thông tìn vừa rồi ở đầu
+      a:
+        Sự kiện sẽ diễn ra vào ngày 20 tháng 4, năm 2024, lúc 9 giờ sáng giờ Việt Nam, tại văn phòng
+        công ty <a class="c-link" href="https://www.designveloper.com/" rel="noreferrer"
+        target="_blank">Designveloper</a>, <a class="c-link"
+        href="https://maps.app.goo.gl/ymGh3Djmwjnb7ohu5" rel="noreferrer" target="_blank">địa chỉ
+        tầng 6, 55 Phó Đức Chính, Quận 1, TP. Hồ Chí Minh </a>. Tòa nhà có bãi đỗ xe. Hướng dẫn sẽ
+        được cung cấp thêm khi bạn đến nơi.<br/><br/>Bạn còn có thể tìm thấy thông tìn vừa rồi ở đầu
         trang này hoặc trong email sau khi đăng ký vé điện tử.
     what_to_bring:
       q: Tôi cần mang theo gì khi đến sự kiện
-      a: Bạn chỉ cần chuẩn bị mã QR để check-in tại cửa sự kiện. Mã QR được gởi kèm
-        email sau khi bạn đăng ký vé điện tử (nếu bạn không tìm thấy email, hãy kiểm
-        tra hộp thư spam nhé).
+      a:
+        Bạn chỉ cần chuẩn bị mã QR để check-in tại cửa sự kiện. Mã QR được gởi kèm email sau khi bạn
+        đăng ký vé điện tử (nếu bạn không tìm thấy email, hãy kiểm tra hộp thư spam nhé).
     help:
       q: Tôi có thể tìm hỗ trợ ở đâu? Nếu tôi muốn giúp cho sự kiện thì nên làm gì?
-      a: Bạn hãy tham gia <a class="c-link" href="https://discord.sveltevietnam.dev/"
-        rel="noreferrer" target="_blank">server Discord chính thức</a>. Tại đó bạn
-        có thể thảo luận và tìm trợ giúp từ quản trị viên hoặc các thành viên trong
-        cộng đồng.<br/>Tương tự, ban tổ chức có thể nhờ đến sự giúp đỡ của bạn trong
-        quá trình chuẩn bị và chạy sự kiện. Nếu bạn hứng thú hãy liên lạc qua Discord
-        nhé. Cảm ơn bạn!
+      a:
+        Bạn hãy tham gia <a class="c-link" href="https://discord.sveltevietnam.dev/"
+        rel="noreferrer" target="_blank">server Discord chính thức</a>. Tại đó bạn có thể thảo luận
+        và tìm trợ giúp từ quản trị viên hoặc các thành viên trong cộng đồng.<br/>Tương tự, ban tổ
+        chức có thể nhờ đến sự giúp đỡ của bạn trong quá trình chuẩn bị và chạy sự kiện. Nếu bạn
+        hứng thú hãy liên lạc qua Discord nhé. Cảm ơn bạn!
   images:
     heading: Hình ảnh
     captions:
-      standee: Standee sự kiện, thiết kế bởi <a class="c-link" href="/en/people/trongnguyen24">Lê
+      standee:
+        Standee sự kiện, thiết kế bởi <a class="c-link" href="/en/people/trongnguyen24">Lê
         Nguyên</a>
       group: Ảnh chụp thành viên khép lại sự kiện
       quiz_winners: Nhận thưởng thắng cuộc đố vui giữa giờ
       ticket: Vé điện tử sự kiện
       early_members: Các thành viên đến sớm nhất
       sharings:
-        vnphanquang: Phiên chia sẻ "Svelte, Javascript, và nền tảng Web" của <a class="c-link"
+        vnphanquang:
+          Phiên chia sẻ "Svelte, Javascript, và nền tảng Web" của <a class="c-link"
           href="/en/people/vnphanquang">Phan Quang</a>
         trongnguyen24:
-          opening: Mở đầu phiên chia sẻ "Web designer và Svelte, hành trình tìm sự
-            sáng tạo và tự do" của <a class="c-link" href="/en/people/trongnguyen24">Lê
-            Nguyên</a>
-          closing: Kết thúc phiên chia sẻ "Web designer và Svelte, hành trình tìm
-            sự sáng tạo và tự do" của <a class="c-link" href="/en/people/trongnguyen24">Lê
-            Nguyên</a>
+          opening:
+            Mở đầu phiên chia sẻ "Web designer và Svelte, hành trình tìm sự sáng tạo và tự do" của
+            <a class="c-link" href="/en/people/trongnguyen24">Lê Nguyên</a>
+          closing:
+            Kết thúc phiên chia sẻ "Web designer và Svelte, hành trình tìm sự sáng tạo và tự do" của
+            <a class="c-link" href="/en/people/trongnguyen24">Lê Nguyên</a>
       settings:
         left: Khung cảnh sự kiện, nhìn từ bên trái
         right: Khung cảnh sự kiện, nhìn từ bên phải
-  credits: Hình ảnh nền từ Unsplash bởi <a class="c-link" href="https://unsplash.com/@taanhuyn"
-    rel="noreferrer" target="_blank">Taan Huyn</a>,<br/> Âm nhạc sử dụng trong sự
-    kiện được sáng tác và cấp quyền sử dụng bởi Huy Mai.
+  credits:
+    Hình ảnh nền từ Unsplash bởi <a class="c-link" href="https://unsplash.com/@taanhuyn"
+    rel="noreferrer" target="_blank">Taan Huyn</a>,<br/> Âm nhạc sử dụng trong sự kiện được sáng tác
+    và cấp quyền sử dụng bởi Huy Mai.

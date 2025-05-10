@@ -1,10 +1,6 @@
 import { defineBlogPostMetadata } from '..';
-import * as m from '../../locales/generated/messages';
 
 export default defineBlogPostMetadata((lang) => ({
-	slug: m['posts.20240125_styling_svelte_vietnam_iii.slug'](lang),
-	title: m['posts.20240125_styling_svelte_vietnam_iii.title'](lang),
-	description: m['posts.20240125_styling_svelte_vietnam_iii.desc'](lang),
 	keywords: 'tailwindcss, styling, postcss, component, design system',
 	publishedAt: new Date('2024-01-25'),
 	authors: ['vnphanquang'],
@@ -13,11 +9,19 @@ export default defineBlogPostMetadata((lang) => ({
 	...(
 		{
 			en: {
+				slug: '20240125-styling-svelte-vietnam-part-iii-code-discovery-portability',
+				title: 'Part III - Code Discovery & Portability',
+				description:
+					'Apply the "CSS Component" approach into Tailwind and the PostCSS ecosystem for building minimal and flexible design systems',
 				readMinutes: 9,
 				numWords: 1800,
 				translation: 'manual',
 			},
 			vi: {
+				slug: '20240125-styling-cho-svelte-viet-nam-phan-iii-kham-pha-va-tai-su-dung-ma-nguon',
+				title: 'Phần III - khám phá và tái sử dụng mã nguồn',
+				description:
+					'Kết hợp Tailwind và hệ sinh thái PostCSS với ý tưởng CSS Component để xây dựng hệ thống thiết kế tối giản và linh hoạt',
 				readMinutes: 9,
 				numWords: 2300,
 				translation: 'original',

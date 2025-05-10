@@ -150,7 +150,7 @@
 
 		margin-block: 1.5rem;
 		border-width: 1px;
-		border-radius: 0.375rem;
+		border-radius: var(--code-block-border-radius, 0);
 
 		&.grouped {
 			display: contents !important;
@@ -209,7 +209,7 @@
 
 		padding: 0.75rem 1rem;
 		border-top-width: 1px;
-		border-left-width: 1px;
+		border-right-width: 1px;
 
 		font-size: var(--text-sm);
 		line-height: normal;
@@ -225,16 +225,16 @@
 			color: currentcolor;
 		}
 
-		:--g-not-fullscreen :--c-first-of-group & {
-			border-top-left-radius: 0.375rem;
+		:--c-first-of-group & {
+			border-left-width: 1px;
 		}
 
-		:--c-last-of-non-files-group & {
-			border-right-width: 1px;
+		:--g-not-fullscreen :--c-first-of-group & {
+			border-top-left-radius: var(--code-block-border-radius, 0);
+		}
 
-			:--g-not-fullscreen & {
-				border-top-right-radius: 0.375rem;
-			}
+		:--g-not-fullscreen :--c-last-of-non-files-group & {
+			border-top-right-radius: var(--code-block-border-radius, 0);
 		}
 
 		:--c-first-of-unselected-group &,
@@ -339,13 +339,13 @@
 	}
 
 	:--c-tabs-grouped :global(pre) {
-		border-top-right-radius: 0.375rem;
+		border-top-right-radius: var(--code-block-border-radius, 0);
 	}
 
 	:--c-oneliner-not-grouped-or-titled :global(pre) {
 		border-top-width: 0 !important;
-		border-top-left-radius: 0.375rem;
-		border-top-right-radius: 0.375rem;
+		border-top-left-radius: var(--code-block-border-radius, 0);
+		border-top-right-radius: var(--code-block-border-radius, 0);
 	}
 
 	.codeblock:global(:--fullscreen) :global(pre) {

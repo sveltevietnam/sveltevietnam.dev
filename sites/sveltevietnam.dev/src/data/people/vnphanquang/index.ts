@@ -1,12 +1,19 @@
 import { definePerson } from '..';
-import * as m from '../locales/generated/messages';
 
 export default definePerson((lang) => ({
-	name: m['vnphanquang.name'](lang),
-	description: m['vnphanquang.desc'](lang),
 	links: {
 		website: 'https://vnphanquang.com',
 		bluesky: 'https://bsky.app/profile/vnphanquang.com',
 		github: 'https://github.com/vnphanquang',
 	},
+	...{
+		en: {
+			name: 'Quang Phan',
+			description: 'Developer, admin of Svelte Vietnam',
+		},
+		vi: {
+			name: 'Phan Quang',
+			description: 'Lập trình viên, quản trị viên Svelte Việt Nam',
+		},
+	}[lang],
 }));

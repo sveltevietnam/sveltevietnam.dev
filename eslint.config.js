@@ -35,14 +35,14 @@ const jsdocConfig = [
  * @param {import('@sveltejs/kit').Config} [svelteConfig]
  * @returns {import('eslint').Linter.Config}
  */
-export function defineConfig(svelteConfig) {
+export async function defineConfig(svelteConfig) {
 	return defineEslintConfig([
 		globalIgnores(['**/*.md.svelte', '**/generated/*.js']),
 		...jsdocConfig,
-		...defineVnphanquangConfig({
+		...(await defineVnphanquangConfig({
 			gitignorePath,
 			...(svelteConfig ? { svelte: { config: svelteConfig } } : {}),
-		}),
+		})),
 	]);
 }
 
