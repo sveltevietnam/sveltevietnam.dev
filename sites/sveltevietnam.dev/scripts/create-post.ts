@@ -176,7 +176,7 @@ const content_placeholder = dedent`
 <div class="c-callout c-callout--success c-callout--icon-confetti">
 
 Check out the [GitHub Flavored Markdown Spec](https://github.github.com/gfm/) for typical markdown syntax,
-or [Svelte Vietnam Blog Writing Guide](https://sveltevietnam.dev/en/blog/write) for more custom syntax.
+or [Svelte Vietnam Blog Writing Guide](/en/blog/write) for more custom syntax.
 
 </div>
 `;
@@ -186,7 +186,7 @@ const translation = {
 };
 
 function escapeQuotes(str: string): string {
-	return str.replace(/'/g, '\\\'');
+	return str.replace(/'/g, "\\'");
 }
 
 const metadata = dedent`
@@ -203,7 +203,7 @@ export default defineBlogPostMetadata((lang) => ({
 				slug: '${escapeQuotes(slug.en)}',
 				title: '${escapeQuotes(post.title.en.trim())}',
 				description: '${escapeQuotes(post.desc.en.trim())}',
-				keywords: '${escapeQuotes(post.keywords?.en?.trim()) || 'svelte, blog, sveltevietnam'}',
+				keywords: '${escapeQuotes(post.keywords?.en?.trim().toLowerCase()) || 'svelte, blog, sveltevietnam'}',
 				translation: '${translation.en}',
 				// TODO: update these information once you finish writing
 				readMinutes: 0,
@@ -213,7 +213,7 @@ export default defineBlogPostMetadata((lang) => ({
 				slug: '${escapeQuotes(slug.vi)}',
 				title: '${escapeQuotes(post.title.vi.trim())}',
 				description: '${escapeQuotes(post.desc.vi.trim())}',
-				keywords: '${escapeQuotes(post.keywords?.vi?.trim()) || 'svelte, blog, sveltevietnam'}',
+				keywords: '${escapeQuotes(post.keywords?.vi?.trim().toLowerCase()) || 'svelte, blog, sveltevietnam'}',
 				translation: '${translation.vi}',
 				// TODO: update these information once you finish writing
 				readMinutes: 0,
