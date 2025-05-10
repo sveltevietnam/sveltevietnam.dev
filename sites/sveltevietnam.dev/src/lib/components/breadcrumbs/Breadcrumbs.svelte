@@ -1,7 +1,9 @@
 <script lang="ts">
+	import { T } from '@sveltevietnam/i18n';
 	import { onMount } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 
+	import * as m from '$data/locales/generated/messages';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	let {
@@ -31,7 +33,7 @@
 </script>
 
 <nav
-	aria-label={settings.language === 'vi' ? 'phân cấp trang' : 'breadcrumbs'}
+	aria-label={m['components.breadcrumbs.aria'](settings.language)}
 	data-scrollable={scrollable}
 	data-scrollable-left={scrollableLeft}
 	data-scrollable-right={scrollableRight}
@@ -49,6 +51,9 @@
 				<a class={[!current && 'c-link-lazy']} aria-current={current} href={path}>
 					{#if i === 0}
 						<i class="i i-[ph--house-line] h-6 w-6"></i>
+						<span class="sr-only">
+							<T message={m['components.breadcrumbs.home']} />
+						</span>
 					{:else}
 						<span class="whitespace-nowrap">{name}</span>
 					{/if}

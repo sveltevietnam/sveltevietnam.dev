@@ -595,6 +595,9 @@ messages:
           Ngoài ra, Svelte Việt Nam cũng dành  nhiều cơ hội riêng cho nhà tài trợ để quản bá thương
           hiệu, tổ chức, sản  phẩm của họ trong các sự kiện của cộng đồng.
   components:
+    breadcrumbs:
+      aria: phân cấp trang
+      home: Trang chủ
     callout_playground:
       input: Tùy chỉnh
       output: Kết quả

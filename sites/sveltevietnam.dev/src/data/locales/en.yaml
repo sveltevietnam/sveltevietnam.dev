@@ -595,6 +595,9 @@ messages:
           sponsors will have priority for their job posting requests. Svelte Vietnam also provides
           opportunities during its events for sponsors to promote their brands and products.
   components:
+    breadcrumbs:
+      aria: breadcrumbs
+      home: Home
     callout_playground:
       input: Config
       output: Result
