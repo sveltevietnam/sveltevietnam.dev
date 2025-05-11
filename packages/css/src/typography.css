@@ -128,6 +128,7 @@
 			border-radius: var(--code-block-border-radius, 0);
 
 			font-weight: 400;
+			word-break: break-all;
 
 			background-color: var(--color-surface-variant); /* fallback if color-mix is not support */
 			background-color: color-mix(in hsl, var(--color-surface-variant), transparent 95%);
