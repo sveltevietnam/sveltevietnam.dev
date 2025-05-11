@@ -36,7 +36,7 @@
 					</h1>
 				{/if}
 				{#if description}
-					<p class="c-text-subtitle-page max-w-readable">
+					<p class="c-text-subtitle-page max-w-readable leading-relaxed">
 						{#if typeof description === 'function'}
 							{@render description()}
 						{:else}

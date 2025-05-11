@@ -89,7 +89,7 @@
 				<h1 class="c-text-heading-lg text-primary-on-surface font-bold">
 					<T message={m['pages.people.heading']}></T>
 				</h1>
-				<p class="c-text-subtitle-page max-w-readable"><T message={m['pages.people.desc']}></T></p>
+				<p class="c-text-subtitle-page max-w-readable leading-relaxed"><T message={m['pages.people.desc']}></T></p>
 			</div>
 		</div>
 		<IntroSeparator />
