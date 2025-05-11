@@ -10,7 +10,7 @@ Thay vào đó, hãy sử dụng các thẻ HTML như ví dụ sau đây:
 ```svelte title="./content/vi.md.svelte" src="./example/content/vi.md.svelte"
 ```
 
-Kết quả hiện thị:
+Kết quả hiển thị:
 
 <ExampleImage />
 

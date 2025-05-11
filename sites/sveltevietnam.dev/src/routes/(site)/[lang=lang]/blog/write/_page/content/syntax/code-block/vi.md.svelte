@@ -24,7 +24,7 @@ Nội dung trên sẽ hiển thị như sau:
 ```md title=".../vi.md.svelte" src="./examples/codeblock-diff.md.svelte" skipMetaBlock
 ```
 
-...sẽ hiện thị:
+...sẽ hiển thị:
 
 <CodeBlockDiff />
 
@@ -36,7 +36,7 @@ thị `:::highlight` hoặc `:::focus`. Ví dụ, nội dung sau...
 ```md title=".../vi.md.svelte" src="./examples/codeblock-highlight-focus.md.svelte" skipMetaBlock
 ```
 
-...sẽ hiện thị:
+...sẽ hiển thị:
 
 <CodeBlockHighlightFocus />
 
@@ -48,7 +48,7 @@ và thuộc tính `group`. Ví dụ, nội dung sau...
 ```md title=".../vi.md.svelte" src="./examples/codeblock-group-tabs.md.svelte"
 ```
 
-...sẽ hiện thị nhóm dưới dạng tab:
+...sẽ hiển thị nhóm dưới dạng tab:
 
 <CodeBlockGroupTabs />
 
@@ -58,7 +58,7 @@ nội dung sau...
 ```md title=".../vi.md.svelte" src="./examples/codeblock-group-files.md.svelte"
 ```
 
-...sẽ hiện thị:
+...sẽ hiển thị:
 
 <CodeBlockGroupFiles />
 

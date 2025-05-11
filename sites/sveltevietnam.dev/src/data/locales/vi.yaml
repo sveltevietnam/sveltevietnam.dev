@@ -217,7 +217,7 @@ messages:
           title: Bản dịch tay
           desc: Bài viết đã được dịch tay sang ngôn ngữ hiện tại.
         unsupported:
-          Bài viết đang hiện thị với ngôn ngữ gốc vì chưa được dịch sang ngôn ngữ bạn đã chọn. Nếu
+          Bài viết đang hiển thị với ngôn ngữ gốc vì chưa được dịch sang ngôn ngữ bạn đã chọn. Nếu
           có thể, hãy tham gia <a class="c-link" href="https://github.com/sveltevietnam">Github</a>
           và <a class="c-link" href="https://discord.sveltevietnam.dev">Discord</a> để hỗ trợ dịch
           bài bạn nhé. Xin cảm ơn!

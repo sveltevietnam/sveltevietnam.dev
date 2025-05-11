@@ -48,7 +48,7 @@ Trong CSS trên, chế độ mặc định là sáng. Khi `@dark` có hiệu l�
 
 ## Khi nào là tối?
 
-Khi nào thì giao diện tối có hiệu lực? Đa số ứng dụng sẽ cho người dùng lựa chọn chế độ hiện thị giữa hai giao diện `light` (sáng) và `dark` (tối) trong cài đặt nào đấy. Tuy nhiên nếu người dùng vừa truy cập ứng dụng lần đầu tiên, thì là `light` hay `dark`?
+Khi nào thì giao diện tối có hiệu lực? Đa số ứng dụng sẽ cho người dùng lựa chọn chế độ hiển thị giữa hai giao diện `light` (sáng) và `dark` (tối) trong cài đặt nào đấy. Tuy nhiên nếu người dùng vừa truy cập ứng dụng lần đầu tiên, thì là `light` hay `dark`?
 
 Câu trả lời là ta sẽ phải dựa vào thiết lập của hệ điều hành thông qua tính năng CSS media [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme):
 

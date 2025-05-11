@@ -13,7 +13,7 @@ Nội dung cần được nhấn mạnh...
 
 </div>
 
-Để hiện thị giao diện trên trong bài viết, bạn có thể sử dụng cú pháp sau:
+Để hiển thị giao diện trên trong bài viết, bạn có thể sử dụng cú pháp sau:
 
 ```html title=".../vi.md.svelte"
 <div class="c-callout c-callout--success c-callout--icon-trophy">
