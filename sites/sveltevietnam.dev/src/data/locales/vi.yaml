@@ -17,12 +17,30 @@ messages:
   svelte_vietnam:
     name: Svelte Việt Nam
     discord: Svelte Việt Nam Discord
-  forms:
-    name: Tên
+  search: Tìm kiếm
+  subscribe: Đăng ký
+  inputs:
+    name:
+      label: Tên
+      errors:
+        nonempty: Vui lòng nhập tên của bạn
+    email:
+      errors:
+        nonempty: Vui lòng nhập địa chỉ email
+        invalid: Địa chỉ email không hợp lệ
     turnstile:
       desc: Xác thực <em class="c-text-body-xs">(cần Javascript)</em>
-    register: Đăng ký
-    search: Tìm kiếm
+      errors:
+        nonempty: Vui lòng xác thực
+        unknown: Có lỗi xảy ra trong quá trình xác thực
+  forms:
+    subscribe:
+      all: Nhận tất cả thông báo từ Svelte Việt Nam
+      success: Đăng ký thành công. Cảm ơn bạn!
+      errors:
+        domains: Vui lòng cung chọn 'blog', 'event', hoặc 'job'
+        unknown:
+          Có lỗi xảy ra trong quá trình đăng ký. Vui lòng thử lại sau. Xin lỗi vì sự bất tiện này.
   pages:
     home:
       title: Trang chủ | Svelte Việt Nam

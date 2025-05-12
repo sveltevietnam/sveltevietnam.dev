@@ -17,12 +17,29 @@ messages:
   svelte_vietnam:
     name: Svelte Vietnam
     discord: Svelte Vietnam Discord
-  forms:
-    name: Name
+  search: Search
+  subscribe: Subscribe
+  inputs:
+    name:
+      label: Name
+      errors:
+        nonempty: Name is required
+    email:
+      errors:
+        nonempty: Email is required
+        invalid: Email is badly formated
     turnstile:
       desc: Verify <em class="c-text-body-xs">(requires Javascript)</em>
-    register: Register
-    search: Search
+      errors:
+        nonempty: Turnstile is required
+        unknown: Something went wrong with Turnstile
+  forms:
+    subscribe:
+      all: Send me other news from Svelte Vietnam
+      success: You are subscribed. Thank you!
+      errors:
+        domains: Must select at least one of ['blog', 'event', 'job']
+        unknown: Unable to subscribe. Please try again later. We are sorry for the inconvenience.
   pages:
     home:
       title: Home | Svelte Vietnam

@@ -36,7 +36,9 @@ declare global {
 
 		// interface PageState {}
 		interface Platform {
-			env?: Record<string, never>;
+			env?: {
+				backend: import('@sveltevietnam/backend').default;
+			};
 			cf?: import('@cloudflare/workers-types').IncomingRequestCfProperties;
 			context?: import('@cloudflare/workers-types').ExecutionContext;
 			caches?: import('@cloudflare/workers-types').CacheStorage & {

@@ -86,12 +86,12 @@
 			</div>
 			<form>
 				<label class="c-text-input desktop:w-48 widescreen:w-60 w-40">
-					<span class="sr-only"><T message={m['forms.search']} /></span>
+					<span class="sr-only"><T message={m.search} /></span>
 					<i class="i i-[ph--magnifying-glass] h-6 w-6"></i>
 					<input
 						class="w-full"
 						name="search"
-						placeholder="{m['forms.search'](settings.language)}..."
+						placeholder="{m.search(settings.language)}..."
 					/>
 				</label>
 			</form>

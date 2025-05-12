@@ -1,6 +1,6 @@
-import child_process from 'child_process';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import child_process from 'node:child_process';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import autoSlug from '@svelte-put/preprocess-auto-slug';
 import externalLink from '@svelte-put/preprocess-external-link';
@@ -53,6 +53,10 @@ export default {
 			},
 		},
 		adapter: adapter({
+			config: path.join(__dirname, 'wrangler.json'),
+			platformProxy: {
+				configPath: path.join(__dirname, 'wrangler.json'),
+			},
 			routes: {
 				include: ['/*'],
 				exclude: [
