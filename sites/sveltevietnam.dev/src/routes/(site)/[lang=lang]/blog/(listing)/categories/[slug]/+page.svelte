@@ -34,7 +34,7 @@
 
 	<GradientBackground pattern="jigsaw">
 		<section class="max-w-pad pt-section pb-section-more" id="newsletter">
-			<BlogNewsletter />
+			<BlogNewsletter data={data.subscribeFormData} />
 		</section>
 	</GradientBackground>
 </main>

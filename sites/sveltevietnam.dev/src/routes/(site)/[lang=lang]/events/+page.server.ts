@@ -2,8 +2,9 @@ import { loadEvents } from '$data/events';
 import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
+import * as subscribe from '$lib/forms/subscribe/server';
 
-import type { PageServerLoad } from './$types';
+import type { Actions, PageServerLoad } from './$types';
 import ogImageEn from './_page/og-events.en.jpg?url';
 import ogImageVi from './_page/og-events.vi.jpg?url';
 
@@ -21,6 +22,7 @@ export const load: PageServerLoad = async ({ params }) => {
 	const { events } = await loadEvents(lang, 1, 10);
 
 	return {
+		subscribeFormData: await subscribe.load(lang, 'event'),
 		events,
 		routing: {
 			breadcrumbs: b['/:lang/events']({ lang }),
@@ -39,3 +41,5 @@ export const load: PageServerLoad = async ({ params }) => {
 		},
 	};
 };
+
+export const actions: Actions = { subscribe: subscribe.action };

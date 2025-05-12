@@ -22,7 +22,9 @@
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
-	let { data } = $props();
+	import { PageData } from './$types';
+
+	let { data }: { data: PageData } = $props();
 
 	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();
@@ -236,7 +238,7 @@
 	<!-- newsletter -->
 	<GradientBackground pattern="jigsaw">
 		<section class="max-w-pad pt-section pb-section-more" id="newsletter">
-			<BlogNewsletter />
+			<BlogNewsletter data={data.subscribeFormData} />
 		</section>
 	</GradientBackground>
 

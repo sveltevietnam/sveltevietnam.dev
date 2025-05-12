@@ -1,8 +1,9 @@
 import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
+import * as subscribe from '$lib/forms/subscribe/server';
 
-import type { PageServerLoad } from './$types';
+import type { Actions, PageServerLoad } from './$types';
 import ogImageEn from './_page/og-jobs.en.jpg?url';
 import ogImageVi from './_page/og-jobs.vi.jpg?url';
 
@@ -16,6 +17,7 @@ export const prerender = false;
 export const load: PageServerLoad = async ({ params }) => {
 	const { lang } = params;
 	return {
+		subscribeFormData: await subscribe.load(lang, 'job'),
 		routing: {
 			breadcrumbs: b['/:lang/jobs']({ lang }),
 			paths: {
@@ -33,3 +35,5 @@ export const load: PageServerLoad = async ({ params }) => {
 		},
 	};
 };
+
+export const actions: Actions = { subscribe: subscribe.action };

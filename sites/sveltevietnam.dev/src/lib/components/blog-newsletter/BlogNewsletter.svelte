@@ -3,12 +3,18 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	import * as m from '$data/locales/generated/messages';
-	import { EmailRegistrationForm } from '$lib/forms/email-registration';
+	import { SubscribeForm, type SubscribeFormProps } from '$lib/forms/subscribe';
+	import { SettingsContext } from '$lib/settings/context.svelte';
+
+	const settings = SettingsContext.get();
 
 	let {
 		class: cls,
+		data,
 		...rest
-	}: HTMLAttributes<HTMLElement> = $props();
+	}: HTMLAttributes<HTMLElement> & {
+		data: SubscribeFormProps['data'];
+	} = $props();
 </script>
 
 <div
@@ -49,5 +55,5 @@
 		</svg>
 	</div>
 
-	<EmailRegistrationForm />
+	<SubscribeForm {data} action="/{settings.language}/blog?/subscribe" />
 </div>
