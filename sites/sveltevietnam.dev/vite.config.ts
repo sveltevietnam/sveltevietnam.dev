@@ -54,4 +54,9 @@ export default defineConfig({
 		routes(routesConfig),
 		sveltekit(),
 	],
+	server: {
+		fs: {
+			strict: false,
+		},
+	},
 });
