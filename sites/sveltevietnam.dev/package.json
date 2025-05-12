@@ -7,6 +7,7 @@
 	"scripts": {
 		"boot:env": "shx cp .env.example .env",
 		"dev": "vite dev --port 5005",
+		"dev:wrangler": "wrangler pages dev .svelte-kit/cloudflare --port 5005",
 		"build:i18n": "pnpm i18n build 'src/**/locales'",
 		"build": "svelte-kit sync && vite build",
 		"preview": "vite preview",
@@ -39,6 +40,7 @@
 		"@sveltejs/enhanced-img": "^0.5.0",
 		"@sveltejs/kit": "^2.20.8",
 		"@sveltejs/vite-plugin-svelte": "^5.0.3",
+		"@sveltevietnam/backend": "workspace:*",
 		"@sveltevietnam/css": "workspace:*",
 		"@sveltevietnam/i18n": "workspace:*",
 		"@sveltevietnam/markdown": "workspace:*",

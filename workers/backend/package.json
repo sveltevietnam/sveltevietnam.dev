@@ -1,0 +1,46 @@
+{
+	"name": "@sveltevietnam/backend",
+	"version": "1.0.0-next",
+	"description": "Svelte Vietnam all purpose backend as a cloudflare worker",
+	"private": true,
+	"type": "module",
+	"module": "src/worker.ts",
+	"types": "./src/worker.ts",
+	"exports": {
+		".": {
+			"types": "./src/worker.ts",
+			"import": "./src/worker.ts"
+		},
+		"./data/subscribers/domains": {
+			"types": "./src/data/subscribers/domains.ts",
+			"import": "./src/data/subscribers/domains.ts"
+		}
+	},
+	"scripts": {
+		"boot:env": "shx cp .env.example .env",
+		"dev": "vite dev --port 5006",
+		"dev:wrangler": "wrangler dev --port 5006",
+		"build": "vite build",
+		"drizzle": "dotenvx run -- drizzle-kit",
+		"preview": "pnpm run build && vite preview",
+		"deploy": "pnpm run build && wrangler deploy",
+		"lint": "eslint .",
+		"format": "prettier --write --ignore-path=../../.prettierignore --config=../../prettier.config.js ."
+	},
+	"devDependencies": {
+		"@cloudflare/vite-plugin": "^1.1.1",
+		"@cloudflare/workers-types": "^4.20250507.0",
+		"@dotenvx/dotenvx": "^1.43.0",
+		"@libsql/client": "^0.15.5",
+		"@paralleldrive/cuid2": "^2.2.2",
+		"drizzle-kit": "^0.31.1",
+		"drizzle-orm": "^0.43.1",
+		"drizzle-valibot": "^0.4.1",
+		"hono": "^4.7.9",
+		"picocolors": "^1.1.1",
+		"tiny-glob": "^0.2.9",
+		"valibot": "1.1.0",
+		"vite": "^6.3.5",
+		"wrangler": "^4.14.1"
+	}
+}

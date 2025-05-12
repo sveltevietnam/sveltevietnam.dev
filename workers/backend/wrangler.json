@@ -1,0 +1,29 @@
+{
+	"name": "sveltevietnam-backend",
+	"compatibility_date": "2025-04-28",
+	"main": "./src/worker.ts",
+	"account_id": "b749b5068031c54e0dddf71d07ea1004",
+	"d1_databases": [
+		{
+			"binding": "d1",
+			"database_name": "sveltevietnam",
+			"database_id": "ada662cd-7b9b-459c-a58a-eba22c43a94d",
+			"migrations_dir": "./src/database/migrations"
+		}
+	],
+	"queues": {
+		"producers": [
+			{
+				"queue": "sveltevietnam",
+				"binding": "queue"
+			}
+		],
+		"consumers": [
+			{
+				"queue": "sveltevietnam",
+				"max_batch_size": 10,
+				"max_batch_timeout": 5
+			}
+		]
+	}
+}
