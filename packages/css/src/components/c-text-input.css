@@ -2,7 +2,9 @@
 	@layer components {
 		position: relative;
 
-		display: block;
+		display: flex;
+		gap: calc(var(--spacing) * 3);
+		align-items: baseline;
 
 		padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
 		border: 1.5px solid currentcolor;
@@ -11,6 +13,14 @@
 
 		&::placeholder {
 			color: var(--color-placeholder);
+		}
+
+		&:is(label) {
+			cursor: pointer;
+
+			& :is(input, textarea) {
+				flex: 1;
+			}
 		}
 
 		&:is(input, textarea),
