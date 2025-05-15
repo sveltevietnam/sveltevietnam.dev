@@ -11,16 +11,17 @@
 			"types": "./src/worker.ts",
 			"import": "./src/worker.ts"
 		},
-		"./data/subscribers/domains": {
-			"types": "./src/data/subscribers/domains.ts",
-			"import": "./src/data/subscribers/domains.ts"
+		"./data/subscribers/channels": {
+			"types": "./src/data/subscribers/channels.ts",
+			"import": "./src/data/subscribers/channels.ts"
 		}
 	},
 	"scripts": {
 		"boot:env": "shx cp .env.example .env",
 		"dev": "vite dev --port 5006",
-		"dev:wrangler": "wrangler dev --port 5006",
+		"dev:wrangler": "vite build --mode development && wrangler dev --port 5006 --local",
 		"build": "vite build",
+		"build:mjml": "mjml src/mjml/templates/**/*.mjml -o src/mjml/templates/output --config.minify=true --config.beautify=false",
 		"drizzle": "dotenvx run -- drizzle-kit",
 		"preview": "pnpm run build && vite preview",
 		"deploy": "pnpm run build && wrangler deploy",
@@ -28,19 +29,25 @@
 		"format": "prettier --write --ignore-path=../../.prettierignore --config=../../prettier.config.js ."
 	},
 	"devDependencies": {
-		"@cloudflare/vite-plugin": "^1.1.1",
-		"@cloudflare/workers-types": "^4.20250507.0",
-		"@dotenvx/dotenvx": "^1.43.0",
+		"@cloudflare/vite-plugin": "^1.2.0",
+		"@cloudflare/workers-types": "^4.20250514.0",
+		"@dotenvx/dotenvx": "^1.44.0",
 		"@libsql/client": "^0.15.5",
 		"@paralleldrive/cuid2": "^2.2.2",
+		"@sveltevietnam/i18n": "workspace:*",
+		"@tsndr/cloudflare-worker-jwt": "^3.1.5",
+		"@types/mjml": "^4.7.4",
+		"@types/mustache": "^4.2.6",
 		"drizzle-kit": "^0.31.1",
 		"drizzle-orm": "^0.43.1",
 		"drizzle-valibot": "^0.4.1",
 		"hono": "^4.7.9",
+		"mjml": "^4.15.3",
+		"mustache": "^4.2.0",
 		"picocolors": "^1.1.1",
 		"tiny-glob": "^0.2.9",
 		"valibot": "1.1.0",
 		"vite": "^6.3.5",
-		"wrangler": "^4.14.1"
+		"wrangler": "^4.14.4"
 	}
 }

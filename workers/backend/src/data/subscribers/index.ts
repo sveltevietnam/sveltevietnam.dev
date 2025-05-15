@@ -2,9 +2,10 @@ import { RpcTarget } from 'cloudflare:workers';
 import { eq } from 'drizzle-orm';
 import * as v from 'valibot';
 
+import { MailService } from '$/data/mails';
 import { ORM } from '$/database/orm';
 
-import { mergeMasks } from './domains';
+import { mergeMasks } from './channels';
 import {
 	SubscriberInsertSchema,
 	type SubscriberInsertInput,
@@ -19,10 +20,12 @@ import { subscribers } from './table';
 
 export class SubscriberService extends RpcTarget {
 	#orm: ORM;
+	#mails: MailService;
 
-	constructor(orm: ORM) {
+	constructor(orm: ORM, mailService: MailService) {
 		super();
 		this.#orm = orm;
+		this.#mails = mailService;
 	}
 
 	async getById(id: string): Promise<SubscriberSelectResult | null> {
@@ -51,7 +54,7 @@ export class SubscriberService extends RpcTarget {
 
 		const subscriber = await this.#orm.query.subscribers.findFirst({
 			where: (subscriber, { eq }) => eq(subscriber.email, parsed.output.email),
-			columns: { id: true, domains: true },
+			columns: { id: true, channels: true },
 		});
 
 		// insert
@@ -61,7 +64,14 @@ export class SubscriberService extends RpcTarget {
 				.values(parsed.output)
 				.returning({ id: subscribers.id });
 
-			// TODO: queue send-mail
+			await this.#mails.queue({
+				lang: input.language,
+				subscriberId: id,
+				templateId: 'welcome',
+				vars: {
+					name: input.name,
+				},
+			});
 
 			return { success: true, id };
 		}
@@ -70,34 +80,14 @@ export class SubscriberService extends RpcTarget {
 		await this.#orm
 			.update(subscribers)
 			.set({
-				domains: mergeMasks(subscriber.domains, parsed.output.domains),
+				channels: mergeMasks(subscriber.channels, parsed.output.channels),
 				name: parsed.output.name,
 				updatedAt: new Date(),
+				language: parsed.output.language,
 			})
 			.where(eq(subscribers.id, subscriber.id));
 
 		return { success: true, id: subscriber.id };
-	}
-
-	async createSubscription(input: SubscriberInsertInput): Promise<SubscriberInsertResult> {
-		// validate
-		const parsed = v.safeParse(SubscriberInsertSchema, input);
-		if (!parsed.success) {
-			return {
-				success: false,
-				errors: v.flatten(parsed.issues),
-			};
-		}
-
-		// persist data
-		const [{ id }] = await this.#orm
-			.insert(subscribers)
-			.values(parsed.output)
-			.returning({ id: subscribers.id });
-
-		// TODO: queue send-mail
-
-		return { success: true, id };
 	}
 
 	async update(input: SubscriberUpdateInput): Promise<SubscriberUpdateResult> {

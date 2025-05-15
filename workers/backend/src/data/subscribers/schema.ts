@@ -1,18 +1,18 @@
 import { createSelectSchema, createInsertSchema, createUpdateSchema } from 'drizzle-valibot';
 import * as v from 'valibot';
 
-import { SUBSCRIPTION_DOMAINS, domainsToMask, maskToDomains } from './domains';
+import { SUBSCRIPTION_CHANNELS, channelsToMask, maskToChannels } from './channels';
 import { subscribers } from './table';
 
 export const SubscriberSelectSchema = createSelectSchema(subscribers, {
-	domains: v.pipe(v.number(), v.transform(maskToDomains)),
+	channels: v.pipe(v.number(), v.transform(maskToChannels)),
 });
 export const SubscriberInsertSchema = createInsertSchema(subscribers, {
-	domains: v.pipe(v.array(v.picklist(SUBSCRIPTION_DOMAINS)), v.transform(domainsToMask)),
+	channels: v.pipe(v.array(v.picklist(SUBSCRIPTION_CHANNELS)), v.transform(channelsToMask)),
 });
 export const SubscriberUpdateSchema = createUpdateSchema(subscribers, {
 	id: v.string(),
-	domains: v.pipe(v.array(v.picklist(SUBSCRIPTION_DOMAINS)), v.transform(domainsToMask)),
+	channels: v.pipe(v.array(v.picklist(SUBSCRIPTION_CHANNELS)), v.transform(channelsToMask)),
 });
 
 export type SubscriberSelectResult = v.InferOutput<typeof SubscriberSelectSchema>;

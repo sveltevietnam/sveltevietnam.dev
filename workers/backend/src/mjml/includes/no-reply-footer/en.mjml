@@ -1,0 +1,16 @@
+<mj-section padding-top="0">
+	<mj-column>
+		<mj-divider />
+		<mj-include path="../socials.mjml" />
+		<mj-text mj-class="footer-text">
+			<a href="{{mailUrl}}">View on web and manage subscription</a>
+		</mj-text>
+		<mj-text mj-class="footer-text">
+			Please do not reply to this email as it is automatically generated and we cannot respond from
+			this email address. If you need support, please reach out via
+			<a href="{{discordUrl}}">Discord</a> or send an email to
+			<a href="mailto:contact@sveltevietnam.dev">contact@sveltevietnam.dev</a>. Thank you.
+		</mj-text>
+	</mj-column>
+</mj-section>
+

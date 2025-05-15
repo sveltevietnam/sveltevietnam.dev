@@ -1,0 +1,39 @@
+<mj-social icon-size="32px" mode="horizontal" inner-padding="8px">
+	<mj-social-element
+		name="{{socials.discord.label}}"
+		href="{{socials.discord.href}}"
+		src="{{socials.discord.img}}"
+		background-color="transparent"
+	></mj-social-element>
+	<mj-social-element
+		name="{{socials.bluesky.label}}"
+		href="{{socials.bluesky.href}}"
+		src="{{socials.bluesky.img}}"
+		background-color="transparent"
+	></mj-social-element>
+	<mj-social-element
+		name="{{socials.github.label}}"
+		href="{{socials.github.href}}"
+		src="{{socials.github.img}}"
+		background-color="transparent"
+	></mj-social-element>
+	<mj-social-element
+		name="{{socials.openCollective.label}}"
+		href="{{socials.openCollective.href}}"
+		src="{{socials.openCollective.img}}"
+		background-color="transparent"
+	></mj-social-element>
+	<mj-social-element
+		name="{{socials.facebook.label}}"
+		href="{{socials.facebook.href}}"
+		src="{{socials.facebook.img}}"
+		background-color="transparent"
+	></mj-social-element>
+	<mj-social-element
+		name="{{socials.youtube.label}}"
+		href="{{socials.youtube.href}}"
+		src="{{socials.youtube.img}}"
+		background-color="transparent"
+	></mj-social-element>
+</mj-social>
+
