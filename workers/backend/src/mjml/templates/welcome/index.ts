@@ -1,9 +1,13 @@
 import { defineTemplate } from '..';
+import { EMAILS } from '../constants';
 
+import en from './en.mjml';
 import vi from './vi.mjml';
-import en from './vi.mjml';
 
 export default defineTemplate((lang) => ({
+	from: {
+		email: EMAILS.NEWSLETTER,
+	},
 	...(
 		{
 			en: {

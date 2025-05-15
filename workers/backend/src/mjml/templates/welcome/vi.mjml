@@ -24,7 +24,7 @@
 			</mj-column>
 		</mj-section>
 
-		<mj-include path="../../includes/no-reply-footer/vi.mjml" />
+		<mj-include path="../../includes/newsletter-footer/vi.mjml" />
 	</mj-body>
 </mjml>
 
