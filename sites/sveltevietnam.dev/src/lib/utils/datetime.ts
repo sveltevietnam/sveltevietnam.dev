@@ -27,6 +27,17 @@ export function formatDate(date: Date | number | string): string {
 		.padStart(2, '0')}`;
 }
 
+export function formatFullDateAndTime(lang: App.Language, date: Date | number | string): string {
+	if (!isValidDate(date)) return date.toString();
+	date = new Date(date);
+	const formatter = Intl.DateTimeFormat(lang, {
+		timeStyle: 'long',
+		hour12: false,
+		dateStyle: 'full',
+	});
+	return formatter.format(date);
+}
+
 /**
  * format time to HH:MM
  */

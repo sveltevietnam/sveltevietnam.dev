@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import { turnstile } from '@svelte-put/cloudflare-turnstile';
-	import { SUBSCRIPTION_DOMAINS } from '@sveltevietnam/backend/data/subscribers/domains';
+	import { SUBSCRIPTION_CHANNELS } from '@sveltevietnam/backend/data/subscribers/channels';
 	import { T } from '@sveltevietnam/i18n';
 	import { onMount } from 'svelte';
 	import type { ChangeEventHandler, HTMLFormAttributes } from 'svelte/elements';
@@ -12,21 +12,21 @@
 	import { NotificationContext } from '$lib/notifications/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
-	import { type SubscribeInput } from './schema';
+	import { type SubscribeUpsertInput } from './schema';
 
-	export interface SubscribeFormProps extends HTMLFormAttributes {
-		data: SuperValidated<SubscribeInput>;
+	export interface SubscriberUpsertFormProps extends HTMLFormAttributes {
+		data: SuperValidated<SubscribeUpsertInput>;
 	}
 </script>
 
 <script lang="ts">
-	let { class: cls, data, action = '?/subscribe', ...rest }: SubscribeFormProps = $props();
+	let { class: cls, data, action = '?/subscribe', ...rest }: SubscriberUpsertFormProps = $props();
 
 	const noti = NotificationContext.get();
 	const settings = SettingsContext.get();
 
 	const { form, enhance, constraints, errors, delayed, timeout } = superForm<
-		SubscribeInput,
+		SubscribeUpsertInput,
 		string
 	>(data, {
 		resetForm: false,
@@ -36,13 +36,13 @@
 		onResult({ result }) {
 			if (result.type === 'success') {
 				noti.toaster.success({
-					message: m['forms.subscribe.success'],
+					message: m['forms.subscriber.upsert.success'],
 				});
 			} else if (result.type === 'error') {
 				const error = result.error as App.Error;
 				noti.toaster.error({
 					title: `${error.code} - ${error.message}`,
-					message: m['forms.subscribe.errors.unknown'],
+					message: m['forms.subscriber.upsert.errors.unknown'],
 				});
 			}
 		},
@@ -50,10 +50,10 @@
 
 	let all = $state(false);
 	const handleCheckAll: ChangeEventHandler<HTMLInputElement> = function (e) {
-		$form.domains = e.currentTarget.checked ? [...SUBSCRIPTION_DOMAINS] : data.data.domains;
+		$form.channels = e.currentTarget.checked ? [...SUBSCRIPTION_CHANNELS] : data.data.channels;
 	};
 	onMount(() => {
-		$form.domains = all ? [...SUBSCRIPTION_DOMAINS] : data.data.domains;
+		$form.channels = all ? [...SUBSCRIPTION_CHANNELS] : data.data.channels;
 	});
 </script>
 
@@ -69,7 +69,6 @@
 					class=" w-full"
 					type="text"
 					name="name"
-					id="name"
 					placeholder="Văn Vũ / Phương Phạm / ..."
 					bind:value={$form.name}
 					{...$constraints.name}
@@ -89,7 +88,6 @@
 				<input
 					type="email"
 					name="email"
-					id="email"
 					placeholder="email@example.com"
 					bind:value={$form.email}
 					{...$constraints.email}
@@ -121,22 +119,22 @@
 				<!-- injected by @svelte-put/cloudflare-turnstile -->
 			</div>
 		</div>
-		<select
+		<input
+			type="text"
+			name="language"
+			bind:value={$form.language}
 			hidden
-			multiple
-			name="domains"
-			id="domains"
-			bind:value={$form.domains}
-			{...$constraints.domains}
-		>
-			{#each SUBSCRIPTION_DOMAINS as domain (domain)}
-				<option value={domain}>{domain}</option>
+			{...$constraints.language}
+		/>
+		<select hidden multiple name="channels" bind:value={$form.channels} {...$constraints.channels}>
+			{#each SUBSCRIPTION_CHANNELS as channel (channel)}
+				<option value={channel}>{channel}</option>
 			{/each}
 		</select>
 		<label class="flex cursor-pointer items-center gap-3">
 			<input class="c-checkbox" type="checkbox" onchange={handleCheckAll} bind:checked={all} />
 			<span>
-				<T message={m['forms.subscribe.all']} />
+				<T message={m['forms.subscriber.upsert.all']} />
 			</span>
 		</label>
 	</div>

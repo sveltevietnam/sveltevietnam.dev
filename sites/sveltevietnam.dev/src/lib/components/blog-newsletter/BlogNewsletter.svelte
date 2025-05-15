@@ -3,7 +3,7 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	import * as m from '$data/locales/generated/messages';
-	import { SubscribeForm, type SubscribeFormProps } from '$lib/forms/subscribe';
+	import { SubscriberUpsertForm, type SubscriberUpdateFormProps } from '$lib/forms/subscriber';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	const settings = SettingsContext.get();
@@ -13,7 +13,7 @@
 		data,
 		...rest
 	}: HTMLAttributes<HTMLElement> & {
-		data: SubscribeFormProps['data'];
+		data: SubscriberUpdateFormProps['data'];
 	} = $props();
 </script>
 
@@ -55,5 +55,5 @@
 		</svg>
 	</div>
 
-	<SubscribeForm {data} action="/{settings.language}/blog?/subscribe" />
+	<SubscriberUpsertForm {data} action="/{settings.language}/blog?/subscribe" />
 </div>

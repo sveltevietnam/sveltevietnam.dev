@@ -1,9 +1,9 @@
-import * as subscribe from '$lib/forms/subscribe/server';
+import { upsert } from '$lib/forms/subscriber/server';
 
 import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = async ({ locals }) => {
 	return {
-		subscribeFormData: await subscribe.load(locals.language, 'blog'),
+		subscribeFormData: await upsert.load(locals.language, 'blog'),
 	};
 };

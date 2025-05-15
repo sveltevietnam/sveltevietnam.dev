@@ -3,7 +3,7 @@ import { searchBlogPosts, loadBlogPosts } from '$data/blog/posts';
 import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
-import * as subscribe from '$lib/forms/subscribe/server';
+import { upsert } from '$lib/forms/subscriber/server';
 import { buildStructuredBlog } from '$lib/meta/structured/blog';
 
 import type { Actions, PageServerLoad } from './$types';
@@ -63,4 +63,4 @@ export const load: PageServerLoad = async ({ params }) => {
 	};
 };
 
-export const actions: Actions = { subscribe: subscribe.action };
+export const actions: Actions = { subscribe: upsert.action };

@@ -9,7 +9,7 @@
 	import { EventListing } from '$lib/components/event-listing';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { TBA } from '$lib/components/tba';
-	import { SubscribeForm } from '$lib/forms/subscribe';
+	import { SubscriberUpsertForm } from '$lib/forms/subscriber';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
@@ -91,7 +91,7 @@
 			<div class="flex-1 space-y-6">
 				{@render actionHeading(1, m['pages.events.participate.heading'])}
 				<p class="leading-relaxed"><T message={m['pages.events.participate.desc']} /></p>
-				<SubscribeForm data={data.subscribeFormData} />
+				<SubscriberUpsertForm data={data.subscribeFormData} />
 				<p><T message={m['pages.events.participate.discord']} /></p>
 			</div>
 			<div class="flex flex-1 items-end justify-center gap-10">

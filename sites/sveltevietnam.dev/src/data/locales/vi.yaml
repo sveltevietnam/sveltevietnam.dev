@@ -19,6 +19,10 @@ messages:
     discord: Svelte Việt Nam Discord
   search: Tìm kiếm
   subscribe: Đăng ký
+  update: Cập nhật
+  languages:
+    vietnamese: Tiếng Việt
+    english: Tiếng Anh
   inputs:
     name:
       label: Tên
@@ -33,14 +37,41 @@ messages:
       errors:
         nonempty: Vui lòng xác thực
         unknown: Có lỗi xảy ra trong quá trình xác thực
-  forms:
-    subscribe:
-      all: Nhận tất cả thông báo từ Svelte Việt Nam
-      success: Đăng ký thành công. Cảm ơn bạn!
+    language:
+      label: Ngôn ngữ
       errors:
-        domains: Vui lòng cung chọn 'blog', 'event', hoặc 'job'
-        unknown:
-          Có lỗi xảy ra trong quá trình đăng ký. Vui lòng thử lại sau. Xin lỗi vì sự bất tiện này.
+        picklist: Vui lòng chọn ngôn ngữ 'vi' hoặc 'en'
+    id:
+      errors:
+        nonempty: Vui lòng nhập ID
+  forms:
+    subscriber:
+      upsert:
+        all: Nhận tất cả thông báo từ Svelte Việt Nam
+        success: Đăng ký thành công. Cảm ơn bạn!
+        errors:
+          channels: Vui lòng cung chọn 'blog', 'event', hoặc 'job'
+          unknown:
+            Có lỗi xảy ra trong quá trình đăng ký. Vui lòng thử lại sau. Xin lỗi vì sự bất tiện này.
+      update:
+        inputs:
+          personal:
+            heading: Thông tin cá nhân
+          language:
+            heading: Ngôn ngữ
+            desc: Chọn ngôn ngữ cho email gởi đến bạn
+          channels:
+            heading: Kênh thông báo
+            desc: Chọn các kênh thông báo bạn muốn nhận
+            blog: bài viết mới từ <a class="c-link" href="/vi/blog">Blog Svelte Việt Nam</a>
+            event: <a class="c-link" href="/vi/su-kien">sự kiện</a> từ cộng đồng Svelte Việt Nam
+            job:
+              thông tin đăng tuyển mới tại <a class="c-link" href="/vi/viec-lam">trang việc làm</a>
+        success: Cập nhật thành công. Cảm ơn bạn!
+        errors:
+          unknown:
+            Có lỗi xảy ra trong quá trình cập nhật. Vui lòng thử lại sau. Xin lỗi vì sự bất tiện
+            này.
   pages:
     home:
       title: Trang chủ | Svelte Việt Nam
@@ -612,6 +643,19 @@ messages:
           làm” đã được hoàn thiện, nhà tài trợ sẽ được ưu tiên  trong quy trình đăng tuyển dụng.
           Ngoài ra, Svelte Việt Nam cũng dành  nhiều cơ hội riêng cho nhà tài trợ để quản bá thương
           hiệu, tổ chức, sản  phẩm của họ trong các sự kiện của cộng đồng.
+    mail:
+      email:
+        heading: Về email này
+        subject: Tiêu đề
+        from: Từ
+        to: Đến
+        sent: Gửi
+      subscriber:
+        heading: Người đăng ký
+      expiration:
+        Trang này sẽ hết hiệu lực <strong>{{datetime}}</strong>. Quyền truy cập chỉ kéo dài trong
+        <strong>7 ngày</strong> kể từ khi email được gởi đi, để bảo vệ thông tin của bạn trong
+        trường hợp email bị đánh cắp.
   components:
     callout_playground:
       input: Tùy chỉnh
@@ -654,8 +698,6 @@ messages:
     language_menu:
       aria: chuyển đổi ngôn ngữ trang
       switch_to: chuyển sang
-      vietnamese: Tiếng Việt
-      english: Tiếng Anh
       toggle: bảng chọn ngôn ngữ. Ngôn ngữ hiện tại là
     not_by_ai_badge: trang này được viết bởi con người, không phải bởi trí tuệ nhân tạo (AI)
     page_edit_link:

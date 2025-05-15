@@ -57,6 +57,7 @@ export default defineConfig<AllRoutePath, App.Language>({
 		},
 		defs: {
 			'/': 'IHOME',
+			'/:lang/mails/:id': 'Mail',
 			'/:lang': {
 				vi: 'Trang chủ',
 				default: 'Home',

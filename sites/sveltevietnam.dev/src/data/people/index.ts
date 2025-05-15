@@ -45,7 +45,7 @@ export async function loadPerson(
 		avatar,
 		popImage,
 		ogImage,
-		id: id,
+		id,
 	};
 }
 
