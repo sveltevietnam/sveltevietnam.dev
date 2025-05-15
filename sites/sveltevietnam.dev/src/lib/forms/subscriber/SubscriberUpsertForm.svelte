@@ -48,6 +48,10 @@
 		},
 	});
 
+	$effect(() => {
+		$form.language = settings.language;
+	});
+
 	let all = $state(false);
 	const handleCheckAll: ChangeEventHandler<HTMLInputElement> = function (e) {
 		$form.channels = e.currentTarget.checked ? [...SUBSCRIPTION_CHANNELS] : data.data.channels;
