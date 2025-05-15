@@ -11,12 +11,12 @@
 		},
 		"deploy": {
 			"dependsOn": ["^build"],
-			"env": ["CLOUDFLARE_MODE"],
+			"env": ["CLOUDFLARE_*"],
 			"outputs": ["dist/**"]
 		},
 		"build": {
 			"dependsOn": ["^build"],
-			"env": ["VITE_*"],
+			"env": ["VITE_*", "CLOUDFLARE_*"],
 			"outputs": ["dist/**", "build/**", ".svelte-kit/**"],
 			"inputs": [
 				"*.config.js",
