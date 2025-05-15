@@ -24,7 +24,7 @@
 		"build:mjml": "mjml src/mjml/templates/**/*.mjml -o src/mjml/templates/output --config.minify=true --config.beautify=false",
 		"drizzle": "dotenvx run -- drizzle-kit",
 		"preview": "pnpm run build && vite preview",
-		"deploy": "pnpm run build && wrangler deploy",
+		"deploy": "wrangler deploy",
 		"lint": "eslint .",
 		"format": "prettier --write --ignore-path=../../.prettierignore --config=../../prettier.config.js ."
 	},

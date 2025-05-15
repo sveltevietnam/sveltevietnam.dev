@@ -102,11 +102,10 @@ export class MailService extends RpcTarget {
 
 		// create mail record
 		const mailId = createId();
-		const { VITE_SITE_URL: siteUrl } = import.meta.env;
+		const { SITE_URL: siteUrl, MODE: mode, AWS_REGION: awsRegion } = this.#env;
 		// Workaround for this
 		// https://github.com/cloudflare/workers-sdk/issues/9006
-		const secret =
-			import.meta.env.MODE !== 'development' ? await this.#env.secret_jwt.get() : 'secret';
+		const secret = mode !== 'development' ? await this.#env.secret_jwt.get() : 'secret';
 		const date = new Date();
 		const token = await jwt.sign(
 			{
@@ -127,7 +126,7 @@ export class MailService extends RpcTarget {
 			...vars,
 		} satisfies TemplateVarMap[T] & BaseTemplateVars);
 
-		if (import.meta.env.MODE === 'development') {
+		if (mode === 'development') {
 			// skip sending email in dev mode
 			console.log('Mail web url:', `${siteUrl}/${lang}/mails/${mailId}?token=${token}`);
 		} else {
@@ -135,10 +134,10 @@ export class MailService extends RpcTarget {
 			const aws = new AwsClient({
 				accessKeyId: await this.#env.secret_ses_access_key.get(),
 				secretAccessKey: await this.#env.secret_ses_access_secret.get(),
-				region: import.meta.env.VITE_AWS_REGION,
+				region: awsRegion,
 			});
 			const response = await aws.fetch(
-				`https://email.${import.meta.env.VITE_AWS_REGION}.amazonaws.com/v2/email/outbound-emails`,
+				`https://email.${awsRegion}.amazonaws.com/v2/email/outbound-emails`,
 				{
 					method: 'POST',
 					headers: {

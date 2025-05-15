@@ -32,8 +32,7 @@ export default class extends WorkerEntrypoint<Env> {
 	}
 
 	async verify(token: string): Promise<JwtVerificationResult> {
-		const secret =
-			import.meta.env.MODE !== 'development' ? await this.env.secret_jwt.get() : 'secret';
+		const secret = this.env.MODE !== 'development' ? await this.env.secret_jwt.get() : 'secret';
 		try {
 			const verifiedToken = await jwt.verify<JwtPayload>(token, secret, { throwError: true });
 			if (!verifiedToken || !verifiedToken.payload)
@@ -59,6 +58,7 @@ export default class extends WorkerEntrypoint<Env> {
 	override fetch(request: Request): Response | Promise<Response> {
 		return new Hono<{ Bindings: Env }>()
 			.get('/health', (c) => c.text('ok'))
+			.get('/env', (c) => c.text(c.env.MODE + ' ' + c.env.SITE_URL))
 			.fetch(request, this.env, this.ctx);
 	}
 

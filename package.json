@@ -15,6 +15,7 @@
 		"boot:dts": "turbo run dts --parallel --ui=stream",
 		"turbo": "turbo",
 		"build": "turbo run build",
+		"deploy": "turbo run deploy",
 		"dev": "turbo run dev",
 		"lint": "turbo run lint --parallel",
 		"format": "turbo run format --parallel",

@@ -9,6 +9,11 @@
 			"outputs": ["types/index.d.ts", "types/index.d.ts.map"],
 			"cache": true
 		},
+		"deploy": {
+			"dependsOn": ["^build"],
+			"env": ["CLOUDFLARE_MODE"],
+			"outputs": ["dist/**"]
+		},
 		"build": {
 			"dependsOn": ["^build"],
 			"env": ["VITE_*"],
