@@ -62,8 +62,6 @@
 		},
 		"production": {
 			"vars": {
-				"NODE_VERSION": "22",
-				"TURBO_TELEMETRY_DISABLED": "1",
 				"MODE": "production",
 				"SITE_URL": "https://backend.sveltevietnam.dev",
 				"AWS_REGION": "ap-northeast-1"
