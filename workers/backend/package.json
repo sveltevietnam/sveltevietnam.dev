@@ -30,9 +30,9 @@
 	},
 	"devDependencies": {
 		"@cloudflare/vite-plugin": "^1.2.0",
-		"@cloudflare/workers-types": "^4.20250514.0",
+		"@cloudflare/workers-types": "^4.20250515.0",
 		"@dotenvx/dotenvx": "^1.44.0",
-		"@libsql/client": "^0.15.5",
+		"@libsql/client": "^0.15.6",
 		"@paralleldrive/cuid2": "^2.2.2",
 		"@sveltevietnam/i18n": "workspace:*",
 		"@tsndr/cloudflare-worker-jwt": "^3.1.5",
