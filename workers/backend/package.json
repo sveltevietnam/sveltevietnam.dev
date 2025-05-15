@@ -29,6 +29,7 @@
 		"format": "prettier --write --ignore-path=../../.prettierignore --config=../../prettier.config.js ."
 	},
 	"devDependencies": {
+		"@aws-sdk/client-sesv2": "^3.810.0",
 		"@cloudflare/vite-plugin": "^1.2.0",
 		"@cloudflare/workers-types": "^4.20250515.0",
 		"@dotenvx/dotenvx": "^1.44.0",
@@ -38,6 +39,7 @@
 		"@tsndr/cloudflare-worker-jwt": "^3.1.5",
 		"@types/mjml": "^4.7.4",
 		"@types/mustache": "^4.2.6",
+		"aws4fetch": "^1.0.20",
 		"drizzle-kit": "^0.31.1",
 		"drizzle-orm": "^0.43.1",
 		"drizzle-valibot": "^0.4.1",

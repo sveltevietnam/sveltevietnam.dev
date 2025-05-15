@@ -7,6 +7,7 @@ declare global {
 	declare interface ImportMetaEnv {
 		readonly VITE_BACKEND_URL: string;
 		readonly VITE_SITE_URL: string;
+		readonly VITE_AWS_REGION: string;
 	}
 
 	namespace Queue {
@@ -21,7 +22,9 @@ declare global {
 		d1: import('@cloudflare/workers-types').D1Database;
 		queue: import('@cloudflare/workers-types').Queue<Queue.Message>;
 		kv_mails: import('@cloudflare/workers-types').KVNamespace;
-		jwt_secret: import('@cloudflare/workers-types').SecretsStoreSecret;
+		secret_jwt: import('@cloudflare/workers-types').SecretsStoreSecret;
+		secret_ses_access_key: import('@cloudflare/workers-types').SecretsStoreSecret;
+		secret_ses_access_secret: import('@cloudflare/workers-types').SecretsStoreSecret;
 	}
 }
 

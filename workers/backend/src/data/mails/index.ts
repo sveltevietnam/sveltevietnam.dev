@@ -1,6 +1,8 @@
+import type { SendEmailCommandInput } from '@aws-sdk/client-sesv2';
 import { createId } from '@paralleldrive/cuid2';
 import { Language } from '@sveltevietnam/i18n';
 import jwt from '@tsndr/cloudflare-worker-jwt';
+import { AwsClient } from 'aws4fetch';
 import { RpcTarget } from 'cloudflare:workers';
 import { eq } from 'drizzle-orm';
 import Mustache from 'mustache';
@@ -104,7 +106,7 @@ export class MailService extends RpcTarget {
 		// Workaround for this
 		// https://github.com/cloudflare/workers-sdk/issues/9006
 		const secret =
-			import.meta.env.MODE !== 'development' ? await this.#env.jwt_secret.get() : 'secret';
+			import.meta.env.MODE !== 'development' ? await this.#env.secret_jwt.get() : 'secret';
 		const date = new Date();
 		const token = await jwt.sign(
 			{
@@ -125,8 +127,56 @@ export class MailService extends RpcTarget {
 			...vars,
 		} satisfies TemplateVarMap[T] & BaseTemplateVars);
 
-		// TODO: send actual mail
-		console.log('Mail:', `${siteUrl}/${lang}/mails/${mailId}?token=${token}`);
+		if (import.meta.env.MODE === 'development') {
+			// skip sending email in dev mode
+			console.log('Mail web url:', `${siteUrl}/${lang}/mails/${mailId}?token=${token}`);
+		} else {
+			// send actual email with AWS SES
+			const aws = new AwsClient({
+				accessKeyId: await this.#env.secret_ses_access_key.get(),
+				secretAccessKey: await this.#env.secret_ses_access_secret.get(),
+				region: import.meta.env.VITE_AWS_REGION,
+			});
+			const response = await aws.fetch(
+				`https://email.${import.meta.env.VITE_AWS_REGION}.amazonaws.com/v2/email/outbound-emails`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						FromEmailAddress: `${template.from.name} <${template.from.email}>`,
+						ReplyToAddresses: [template.from.email],
+						FeedbackForwardingEmailAddress: template.from.email,
+						Destination: {
+							ToAddresses: [subscriber.email],
+						},
+						Content: {
+							Simple: {
+								Body: {
+									Html: {
+										Charset: 'UTF-8',
+										Data: html,
+									},
+								},
+								Subject: {
+									Charset: 'UTF-8',
+									Data: template.subject,
+								},
+							},
+						},
+					} satisfies SendEmailCommandInput),
+				},
+			);
+			if (!response.ok) {
+				const result = (await response.json()) as { message?: string };
+				let message = `Failed to send email - ${response.status}: ${response.statusText}`;
+				if ('message' in result) {
+					message += ` - ${result.message}`;
+				}
+				throw new Error(message, { cause: result });
+			}
+		}
 
 		// save html to kv
 		await this.#env.kv_mails.put(mailId, html, {

@@ -33,7 +33,7 @@ export default class extends WorkerEntrypoint<Env> {
 
 	async verify(token: string): Promise<JwtVerificationResult> {
 		const secret =
-			import.meta.env.MODE !== 'development' ? await this.env.jwt_secret.get() : 'secret';
+			import.meta.env.MODE !== 'development' ? await this.env.secret_jwt.get() : 'secret';
 		try {
 			const verifiedToken = await jwt.verify<JwtPayload>(token, secret, { throwError: true });
 			if (!verifiedToken || !verifiedToken.payload)
