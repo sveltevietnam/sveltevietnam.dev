@@ -22,7 +22,8 @@ const TTL = 60 * 60 * 24 * 7;
 export type WebMail = {
 	id: string;
 	subject: string;
-	email: string;
+	from: string;
+	to: string;
 	html: string;
 	sentAt: Date;
 };
@@ -49,7 +50,14 @@ export class MailService extends RpcTarget {
 		if (!html) return null; // expired or not found
 		const mail = await this.#orm.query.mails.findFirst({
 			where: eq(mails.id, id),
-			columns: { id: true, email: true, subject: true, sentAt: true, lastViewOnWebAt: true },
+			columns: {
+				id: true,
+				from: true,
+				to: true,
+				subject: true,
+				sentAt: true,
+				lastViewOnWebAt: true,
+			},
 		});
 		if (!mail) return null; // not found
 		await this.#orm.update(mails).set({ lastViewOnWebAt: new Date() }).where(eq(mails.id, id));
@@ -129,7 +137,8 @@ export class MailService extends RpcTarget {
 			id: mailId,
 			subscriberId,
 			subject: template.subject,
-			email: subscriber.email,
+			from: template.from.email,
+			to: subscriber.email,
 			templateId,
 			sentAt: date,
 		});

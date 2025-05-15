@@ -55,13 +55,16 @@
 					<dt class="font-semibold">
 						<T message={m['pages.mail.email.from']} />:
 					</dt>
-					<dd><T message={m['svelte_vietnam.name']} /></dd>
+					<dd>
+						{data.mail.from}
+						(<T message={m['svelte_vietnam.name']} />)
+					</dd>
 				</div>
 				<div class="border-b-onehalf col-span-2 grid grid-cols-subgrid border-dashed py-4">
 					<dt class="font-semibold">
 						<T message={m['pages.mail.email.to']} />:
 					</dt>
-					<dd>{data.mail.email}</dd>
+					<dd>{data.mail.to}</dd>
 				</div>
 				<div class="col-span-2 grid grid-cols-subgrid py-4">
 					<dt class="font-semibold">

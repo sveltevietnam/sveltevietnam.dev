@@ -13,8 +13,9 @@ export const mails = sqliteTable('mails', {
 	templateId: text('template_id', {
 		enum: ids,
 	}).notNull(),
+	from: text('from').notNull(),
 	subject: text('subject').notNull(),
-	email: text('email').notNull(),
+	to: text('to').notNull(),
 	subscriberId: text('subscriber_id').notNull(),
 
 	// timestamps

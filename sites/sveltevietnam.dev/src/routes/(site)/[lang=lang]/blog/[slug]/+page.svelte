@@ -22,7 +22,7 @@
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
-	import { PageData } from './$types';
+	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
 
