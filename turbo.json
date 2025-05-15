@@ -1,11 +1,11 @@
 {
 	"$schema": "https://turborepo.org/schema.json",
-	"ui": "tui",
+	"ui": "stream",
 	"tasks": {
 		"prepublishOnly": {},
 		"dts": {
 			"dependsOn": ["^dts"],
-			"inputs": ["src/**/*.js", "*.config.js", "src/**/*.ts"],
+			"inputs": ["*.config.js", "*.config.ts", "src/**/*.js", "src/**/*.ts"],
 			"outputs": ["types/index.d.ts", "types/index.d.ts.map"],
 			"cache": true
 		},
@@ -15,11 +15,13 @@
 			"outputs": ["dist/**", "build/**", ".svelte-kit/**"],
 			"inputs": [
 				"*.config.js",
+				"*.config.ts",
 				"src/**/*.ts",
 				"src/**/*.js",
 				"src/**/*.svelte",
 				"src/**/*.css",
-				"src/**/*.json"
+				"src/**/*.json",
+				"**/*.html"
 			]
 		},
 		"lint": {
