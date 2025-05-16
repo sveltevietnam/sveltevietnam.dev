@@ -7,11 +7,10 @@ import { RpcTarget } from 'cloudflare:workers';
 import { eq } from 'drizzle-orm';
 import Mustache from 'mustache';
 
-import logoUrl from '$/assets/images/logo.png';
 import { ORM } from '$/database/orm';
 import { TemplateVarMap, type TemplateId, loadTemplate, BaseTemplateVars } from '$/mjml/templates';
 
-import { socials } from '../links';
+import { socials, logoBase64Image } from '../links';
 
 import { mails } from './table';
 
@@ -118,7 +117,7 @@ export class MailService extends RpcTarget {
 		);
 		const html = Mustache.render(template.html, {
 			subject: template.subject,
-			logoUrl,
+			logoBase64Image,
 			siteUrl: `${siteUrl}/${lang}`,
 			mailUrl: `${siteUrl}/${lang}/mails/${mailId}?token=${token}`,
 			discordUrl: socials.discord.href,

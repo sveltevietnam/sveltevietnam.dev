@@ -2,37 +2,37 @@
 	<mj-social-element
 		name="{{socials.discord.label}}"
 		href="{{socials.discord.href}}"
-		src="{{socials.discord.img}}"
+		src="{{socials.discord.base64Image}}"
 		background-color="transparent"
 	></mj-social-element>
 	<mj-social-element
 		name="{{socials.bluesky.label}}"
 		href="{{socials.bluesky.href}}"
-		src="{{socials.bluesky.img}}"
+		src="{{socials.bluesky.base64Image}}"
 		background-color="transparent"
 	></mj-social-element>
 	<mj-social-element
 		name="{{socials.github.label}}"
 		href="{{socials.github.href}}"
-		src="{{socials.github.img}}"
+		src="{{socials.github.base64Image}}"
 		background-color="transparent"
 	></mj-social-element>
 	<mj-social-element
 		name="{{socials.openCollective.label}}"
 		href="{{socials.openCollective.href}}"
-		src="{{socials.openCollective.img}}"
+		src="{{socials.openCollective.base64Image}}"
 		background-color="transparent"
 	></mj-social-element>
 	<mj-social-element
 		name="{{socials.facebook.label}}"
 		href="{{socials.facebook.href}}"
-		src="{{socials.facebook.img}}"
+		src="{{socials.facebook.base64Image}}"
 		background-color="transparent"
 	></mj-social-element>
 	<mj-social-element
 		name="{{socials.youtube.label}}"
 		href="{{socials.youtube.href}}"
-		src="{{socials.youtube.img}}"
+		src="{{socials.youtube.base64Image}}"
 		background-color="transparent"
 	></mj-social-element>
 </mj-social>

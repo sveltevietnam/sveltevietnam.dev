@@ -2,7 +2,7 @@
 	<mj-column>
 		<mj-image
 			width="40px"
-			src="{{logoUrl}}"
+			src="{{logoBase64Image}}"
 			href="{{siteUrl}}"
 			alt="Svelte Vietnam"
 		/>

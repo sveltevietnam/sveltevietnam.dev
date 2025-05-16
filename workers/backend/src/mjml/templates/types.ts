@@ -5,7 +5,7 @@ import type { ids } from './ids';
 export interface BaseTemplateVars {
 	subject: string;
 	siteUrl: string;
-	logoUrl: string;
+	logoBase64Image: string;
 	discordUrl: string;
 	/** "View on web" link */
 	mailUrl: string;
@@ -14,7 +14,7 @@ export interface BaseTemplateVars {
 		string,
 		{
 			href: string;
-			img: string;
+			base64Image: string;
 			label: string;
 		}
 	>;
