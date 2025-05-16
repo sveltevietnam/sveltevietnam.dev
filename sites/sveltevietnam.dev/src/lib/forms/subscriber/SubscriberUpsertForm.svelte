@@ -30,6 +30,7 @@
 		string
 	>(data, {
 		resetForm: false,
+		invalidateAll: false,
 		multipleSubmits: 'prevent',
 		delayMs: 500,
 		timeoutMs: 2000,
