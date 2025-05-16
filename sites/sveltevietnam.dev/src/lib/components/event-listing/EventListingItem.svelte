@@ -5,7 +5,6 @@
 
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
-	import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 	import fallback3x2 from '$lib/assets/images/fallbacks/3x2.jpg?enhanced&w=1200;700;400&imagetools';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 	import { formatLongMonth, formatLongWeekDay } from '$lib/utils/datetime';
@@ -31,11 +30,12 @@
 			endDate: Date;
 			thumbnail?: Picture | string;
 		};
+		origin: string;
 	};
 </script>
 
 <script lang="ts">
-	let { event }: EventListingItemProps = $props();
+	let { event, origin }: EventListingItemProps = $props();
 
 	const settings = SettingsContext.get();
 
@@ -91,7 +91,7 @@
 			<div>
 				{#if settings.hydrated}
 					<CopyIconBtn
-						text={VITE_PUBLIC_ORIGIN + path}
+						text={origin + path}
 						aria={m['components.event_listing_item.copy'](settings.language)}
 					/>
 				{/if}

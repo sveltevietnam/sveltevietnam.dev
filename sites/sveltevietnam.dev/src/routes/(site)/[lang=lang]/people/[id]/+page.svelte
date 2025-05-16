@@ -80,7 +80,7 @@
 					</TextArrowLink>
 				</div>
 			</div>
-			<EventListing events={data.events} />
+			<EventListing events={data.events} origin={page.url.origin} />
 		</section>
 	{/if}
 

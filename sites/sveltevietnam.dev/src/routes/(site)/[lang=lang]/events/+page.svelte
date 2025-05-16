@@ -2,6 +2,7 @@
 	import { T } from '@sveltevietnam/i18n';
 	import type { Message } from '@sveltevietnam/i18n/runtime';
 
+	import { page } from '$app/state';
 	import { EMAILS } from '$data/emails';
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
@@ -184,6 +185,6 @@
 		<h2 class="c-text-heading-lg border-b">
 			<T message={m['pages.events.past.heading']} />
 		</h2>
-		<EventListing events={data.events} />
+		<EventListing events={data.events} origin={page.url.origin} />
 	</section>
 </main>
