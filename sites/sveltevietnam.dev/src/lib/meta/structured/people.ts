@@ -1,7 +1,6 @@
 import type { Person } from 'schema-dts';
 
 import * as p from '$data/routes/generated';
-import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 
 import { buildStructuredTextWithLang } from './utils';
 
@@ -11,7 +10,7 @@ export function buildStructuredPerson(
 	person: import('$data/people').Person,
 ): Person {
 	const canonical = origin + p['/:lang/people/:id']({ lang, id: person.id });
-	const id = `${VITE_PUBLIC_ORIGIN}/people/${person.id}`;
+	const id = `${origin}/people/${person.id}`;
 	return {
 		'@type': 'Person',
 		'@id': id,

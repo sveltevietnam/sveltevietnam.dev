@@ -1,7 +1,6 @@
 import type { Thing, Blog, BlogPosting, CreativeWorkSeries, CollectionPage } from 'schema-dts';
 
 import * as p from '$data/routes/generated';
-import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 
 import { buildStructuredOrganization } from './organization';
 import { buildStructuredPerson } from './people';
@@ -18,8 +17,8 @@ const locales = {
 	},
 };
 
-export function buildStructuredBlog(lang: App.Language): Blog {
-	const org = buildStructuredOrganization(lang);
+export function buildStructuredBlog(lang: App.Language, origin: string): Blog {
+	const org = buildStructuredOrganization(lang, origin);
 	const locale = locales[lang];
 	return {
 		'@type': 'Blog',
@@ -36,7 +35,7 @@ export function buildStructuredBlogSeries(
 	series: import('$data/blog/series').BlogSeries,
 	compact = false,
 ): CreativeWorkSeries {
-	const { publisher, ...blog } = buildStructuredBlog(lang);
+	const { publisher, ...blog } = buildStructuredBlog(lang, origin);
 	const canonical = origin + p['/:lang/blog/series/:slug']({ lang, slug: series.slug });
 	return {
 		'@type': 'CreativeWorkSeries',
@@ -61,7 +60,7 @@ export function buildStructuredBlogCategoryPage(
 	const { publisher, ...blog } = buildStructuredBlog(lang);
 	return {
 		'@type': 'CollectionPage',
-		'@id': `${VITE_PUBLIC_ORIGIN}/blog/categories/${category.id}`,
+		'@id': `${origin}/blog/categories/${category.id}`,
 		url: buildStructuredTextWithLang(lang, canonical),
 		...(!compact && {
 			name: buildStructuredTextWithLang(lang, category.name),

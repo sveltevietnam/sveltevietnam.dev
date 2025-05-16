@@ -13,7 +13,7 @@ export function buildStructuredEvent(
 	additionals?: Partial<SocialEvent> | null,
 ): SocialEvent {
 	const canonical = origin + p['/:lang/events/:slug']({ lang, slug: event.slug });
-	const org = buildStructuredOrganization(lang);
+	const org = buildStructuredOrganization(lang, origin);
 	const id = `${org['@id']}/events/${event.id}`;
 	return {
 		'@type': 'SocialEvent',

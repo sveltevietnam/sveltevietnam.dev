@@ -2,7 +2,6 @@ import type { Organization } from 'schema-dts';
 
 import { EMAILS } from '$data/emails';
 import { SOCIAL_LINKS } from '$data/links';
-import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 
 import { buildStructuredTextWithLang } from './utils';
 
@@ -19,18 +18,21 @@ const locales = {
 	},
 };
 
-export function buildStructuredOrganization(lang: App.Language): Organization & { '@id': string } {
+export function buildStructuredOrganization(
+	lang: App.Language,
+	origin: string,
+): Organization & { '@id': string } {
 	const locale = locales[lang];
 	return {
 		'@type': 'Organization',
-		'@id': VITE_PUBLIC_ORIGIN,
-		url: buildStructuredTextWithLang(lang, `${VITE_PUBLIC_ORIGIN}/${lang}`),
+		'@id': origin,
+		url: buildStructuredTextWithLang(lang, `${origin}/${lang}`),
 		name: 'Svelte Việt Nam',
 		alternateName: 'Svelte Vietnam',
 		description: buildStructuredTextWithLang(lang, locale.description),
 		logo: {
 			'@type': 'ImageObject',
-			url: `${VITE_PUBLIC_ORIGIN}/logo/original.png`,
+			url: `${origin}/logo/original.png`,
 			width: '500',
 			height: '500',
 		},
