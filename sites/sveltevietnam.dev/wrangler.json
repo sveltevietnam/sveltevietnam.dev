@@ -6,7 +6,7 @@
 	"services": [
 		{
 			"binding": "backend",
-			"service": "sveltevietnam-backend"
+			"service": "backend"
 		}
 	]
 }
