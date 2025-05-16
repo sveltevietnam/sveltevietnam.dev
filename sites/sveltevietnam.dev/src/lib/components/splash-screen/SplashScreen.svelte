@@ -4,7 +4,7 @@
 
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
-	import splashScriptSrc from './splash.js?url';
+	// import splashScriptSrc from './splash.js?url';
 
 	const settings = SettingsContext.get();
 
@@ -51,9 +51,10 @@
 	<div class="_title pl-2.5">
 		<svg class="h-19.5 w-auto" inline-src="./name.svg"></svg>
 	</div>
-	{#if root}
-		<script src={splashScriptSrc}></script>
-	{/if}
+	<!-- FIXME: find reliable way to get timestamp of splash screen completion  -->
+	<!-- {#if root} -->
+	<!-- 	<script src={splashScriptSrc}></script> -->
+	<!-- {/if} -->
 </div>
 
 <style lang="postcss">
