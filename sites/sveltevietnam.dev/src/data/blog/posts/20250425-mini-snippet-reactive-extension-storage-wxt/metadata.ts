@@ -14,7 +14,7 @@ export default defineBlogPostMetadata((lang) => ({
 					"Quick share for a use case of Svelte's reactivity in building web extensions with wxt.dev and the extension storage API",
 				keywords: 'identity, community',
 				readMinutes: 5,
-				numWords: 600,
+				numWords: 700,
 				translation: 'original',
 			},
 			vi: {
@@ -23,8 +23,8 @@ export default defineBlogPostMetadata((lang) => ({
 				description:
 					'Ứng dụng của tính reactivity trong Svelte khi xây dựng web extension bằng wxt.dev và extension storage api',
 				keywords: 'reactivity, wxt, web extension, storage, createSubscriber',
-				readMinutes: 0,
-				numWords: 0,
+				readMinutes: 5,
+				numWords: 800,
 				translation: 'manual',
 			},
 		} as const
