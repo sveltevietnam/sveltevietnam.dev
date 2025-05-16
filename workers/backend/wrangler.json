@@ -61,6 +61,13 @@
 			}
 		},
 		"production": {
+			"name": "backend",
+			"routes": [
+				{
+					"pattern": "backend.sveltevietnam.dev",
+					"custom_domain": true
+				}
+			],
 			"vars": {
 				"MODE": "production",
 				"SITE_URL": "https://backend.sveltevietnam.dev",

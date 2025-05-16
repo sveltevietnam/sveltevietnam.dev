@@ -19,6 +19,7 @@
 			"env": ["VITE_*", "CLOUDFLARE_*"],
 			"outputs": ["dist/**", "build/**", ".svelte-kit/**"],
 			"inputs": [
+				"wrangler.json",
 				"*.config.js",
 				"*.config.ts",
 				"src/**/*.ts",
