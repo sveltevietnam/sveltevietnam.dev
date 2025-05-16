@@ -6,7 +6,11 @@ import glob from 'tiny-glob/sync';
 
 import wrangler from './wrangler.json';
 
-const mode = process.env.VITE_MODE ?? 'development';
+const { CLOUDFLARE_ENV: mode = 'development', CLOUDFLARE_TOKEN: token } = process.env;
+
+if (mode !== 'development' && !token) {
+	throw new Error(pico.red('CLOUDFLARE_TOKEN is required in non-development mode.'));
+}
 
 const relativeDirpath = '.wrangler/state/v3/d1/miniflare-D1DatabaseObject';
 const dirpath = path.join(__dirname, relativeDirpath);
@@ -21,7 +25,7 @@ if (files.length === 0) {
 
 export default defineConfig({
 	schema: './src/database/schema.ts',
-	out: './src/database/migrations',
+	out: wrangler.env.production.d1_databases[0].migrations_dir,
 	dialect: 'sqlite',
 	...(mode === 'development'
 		? {
@@ -33,8 +37,8 @@ export default defineConfig({
 				driver: 'd1-http',
 				dbCredentials: {
 					accountId: wrangler.account_id,
-					databaseId: wrangler.d1_databases[0].database_id,
-					token: process.env.CLOUDFLARE_TOKEN!,
+					databaseId: wrangler.env.production.d1_databases[0].database_id,
+					token,
 				},
 			}),
 	verbose: true,
