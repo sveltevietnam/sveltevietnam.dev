@@ -6,6 +6,7 @@
 	"account_id": "b749b5068031c54e0dddf71d07ea1004",
 	"env": {
 		"development": {
+			"name": "backend",
 			"vars": {
 				"MODE": "development",
 				"SITE_URL": "http://localhost:5005",
