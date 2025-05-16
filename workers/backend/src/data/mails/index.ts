@@ -10,7 +10,7 @@ import Mustache from 'mustache';
 import { ORM } from '$/database/orm';
 import { TemplateVarMap, type TemplateId, loadTemplate, BaseTemplateVars } from '$/mjml/templates';
 
-import { socials, logoBase64Image } from '../links';
+import { createSocials, createLogoImageUrl } from '../links';
 
 import { mails } from './table';
 
@@ -101,7 +101,7 @@ export class MailService extends RpcTarget {
 
 		// create mail record
 		const mailId = createId();
-		const { SITE_URL: siteUrl, MODE: mode, AWS_REGION: awsRegion } = this.#env;
+		const { SITE_URL: siteUrl, MODE: mode, ORIGIN: origin, AWS_REGION: awsRegion } = this.#env;
 		// Workaround for this
 		// https://github.com/cloudflare/workers-sdk/issues/9006
 		const secret = mode !== 'development' ? await this.#env.secret_jwt.get() : 'secret';
@@ -115,9 +115,10 @@ export class MailService extends RpcTarget {
 			},
 			secret,
 		);
+		const socials = createSocials(origin);
 		const html = Mustache.render(template.html, {
 			subject: template.subject,
-			logoBase64Image,
+			logoUrl: createLogoImageUrl(origin),
 			siteUrl: `${siteUrl}/${lang}`,
 			mailUrl: `${siteUrl}/${lang}/mails/${mailId}?token=${token}`,
 			discordUrl: socials.discord.href,

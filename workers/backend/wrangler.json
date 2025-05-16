@@ -9,6 +9,7 @@
 			"name": "backend",
 			"vars": {
 				"MODE": "development",
+				"ORIGIN": "http://localhost:5006",
 				"SITE_URL": "http://localhost:5005",
 				"AWS_REGION": "ap-northeast-1"
 			},
@@ -72,6 +73,7 @@
 			],
 			"vars": {
 				"MODE": "production",
+				"ORIGIN": "https://backend.sveltevietnam.dev",
 				"SITE_URL": "https://v1.sveltevietnam.dev",
 				"AWS_REGION": "ap-northeast-1"
 			},

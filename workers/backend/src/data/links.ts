@@ -1,64 +1,59 @@
-import imgCalendarGoogle from '$/assets/images/calendars/google.png?inline';
-import imgCalendarMicrosoft from '$/assets/images/calendars/microsoft.png?inline';
-import imgCalendarYahoo from '$/assets/images/calendars/yahoo.png?inline';
-import imgLogo from '$/assets/images/logo.png?inline';
-import imgBluesky from '$/assets/images/socials/bluesky.png?inline';
-import imgDiscord from '$/assets/images/socials/discord.png?inline';
-import imgFacebook from '$/assets/images/socials/facebook.png?inline';
-import imgGithub from '$/assets/images/socials/github.png?inline';
-import imgOpenCollective from '$/assets/images/socials/open-collective.png?inline';
-import imgYoutube from '$/assets/images/socials/youtube.png?inline';
+import { BaseTemplateVars } from '$/mjml/templates';
 
-export const logoBase64Image = imgLogo;
+export function createLogoImageUrl(origin: string) {
+	return `${origin}/images/logo.png`;
+}
 
-export const socials = {
-	discord: {
-		base64Image: imgDiscord,
-		href: 'https://discord.gg/Rtv2xwhz7d',
-		label: 'Discord',
-	},
-	bluesky: {
-		base64Image: imgBluesky,
-		href: 'https://bsky.app/profile/sveltevietnam.dev',
-		label: 'Bluesky',
-	},
-	github: {
-		base64Image: imgGithub,
-		href: 'https://github.com/sveltevietnam',
-		label: 'GitHub',
-	},
-	openCollective: {
-		base64Image: imgOpenCollective,
-		href: 'https://opencollective.com/sveltevietnam',
-		label: 'Open Collective',
-	},
-	facebook: {
-		base64Image: imgFacebook,
-		href: 'https://facebook.com/sveltevietnam',
-		label: 'Facebook',
-	},
-	youtube: {
-		base64Image: imgYoutube,
-		href: 'https://www.youtube.com/@sveltevietnam',
-		label: 'YouTube',
-	},
-};
+export function createSocials(origin: string): BaseTemplateVars['socials'] {
+	return {
+		discord: {
+			imgUrl: origin + '/images/socials/discord.png',
+			href: 'https://discord.gg/Rtv2xwhz7d',
+			label: 'Discord',
+		},
+		bluesky: {
+			imgUrl: origin + '/images/socials/bluesky.png',
+			href: 'https://bsky.app/profile/sveltevietnam.dev',
+			label: 'Bluesky',
+		},
+		github: {
+			imgUrl: origin + '/images/socials/github.png',
+			href: 'https://github.com/sveltevietnam',
+			label: 'GitHub',
+		},
+		openCollective: {
+			imgUrl: origin + '/images/socials/open-collective.png',
+			href: 'https://opencollective.com/sveltevietnam',
+			label: 'Open Collective',
+		},
+		facebook: {
+			imgUrl: origin + '/images/socials/facebook.png',
+			href: 'https://facebook.com/sveltevietnam',
+			label: 'Facebook',
+		},
+		youtube: {
+			imgUrl: origin + '/images/socials/youtube.png',
+			href: 'https://www.youtube.com/@sveltevietnam',
+			label: 'YouTube',
+		},
+	};
+}
 
-type Calendar = 'google' | 'outlook' | 'yahoo';
-export function createCalendars(links: Record<Calendar, string>) {
+type Calendar = 'google' | 'microsoft' | 'yahoo';
+export function createCalendars(origin: string, links: Record<Calendar, string>) {
 	return {
 		google: {
-			base64Image: imgCalendarGoogle,
+			imgUrl: origin + '/images/calendars/google.png',
 			label: 'Google Calendar',
 			href: links.google,
 		},
-		outlook: {
-			base64Image: imgCalendarMicrosoft,
+		microsoft: {
+			imgUrl: origin + '/images/calendars/microsoft.png',
 			label: 'Outlook Calendar',
-			href: links.outlook,
+			href: links.microsoft,
 		},
 		yahoo: {
-			base64Image: imgCalendarYahoo,
+			imgUrl: origin + '/images/calendars/yahoo.png',
 			label: 'Yahoo Calendar',
 			href: links.yahoo,
 		},

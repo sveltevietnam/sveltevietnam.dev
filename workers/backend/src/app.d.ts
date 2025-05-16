@@ -15,6 +15,7 @@ declare global {
 	interface Env {
 		// environment variables
 		MODE: string;
+		ORIGIN: string;
 		SITE_URL: string;
 		AWS_REGION: string;
 
