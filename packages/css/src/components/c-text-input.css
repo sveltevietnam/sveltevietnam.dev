@@ -17,9 +17,11 @@
 
 		&:is(label) {
 			cursor: pointer;
+			padding: 0 calc(var(--spacing) * 3);
 
 			& :is(input, textarea) {
 				flex: 1;
+				padding-block: calc(var(--spacing) * 2);
 			}
 		}
 
