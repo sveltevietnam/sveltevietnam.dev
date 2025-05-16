@@ -107,7 +107,7 @@
 			<div class="c-text-body-sm flex items-baseline justify-between gap-6">
 				<p class=""><T message={m['inputs.turnstile.desc']} />:</p>
 				{#if $errors.turnstile?.[0]}
-					<p class="max-w-readable-tight text-right text-red-500">
+					<p class="max-w-readable-tight text-right text-red-500 text-sm">
 						{$errors.turnstile[0]}
 					</p>
 				{/if}
