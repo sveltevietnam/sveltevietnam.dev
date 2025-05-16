@@ -136,7 +136,7 @@ To achieve this, we need to go through quite a few steps
 
 <figure class="shrink-0">
   <img src={preprocessBlogImage} class="mx-auto max-w-full rounded" width="800" height="530" alt="illustration: a compilation process including MDSvex, ShikiJS, enhance-code-block, and vite to transform markdown into the final HTML" />
-  <figcaption>Minh họa 3: quá trình biến đổi mã nguồn markdown thành giao diện hoàn chỉnh trên trang blog</figcaption>
+  <figcaption>Illustration 3: the process of turning markdown source code into complete UI on the web page</figcaption>
 </figure>
 
 1. Use the Svelte preprocessor [MDSvex] to transform markdown into corresponding Svelte components.
