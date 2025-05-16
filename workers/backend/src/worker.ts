@@ -58,7 +58,6 @@ export default class extends WorkerEntrypoint<Env> {
 	override fetch(request: Request): Response | Promise<Response> {
 		return new Hono<{ Bindings: Env }>()
 			.get('/health', (c) => c.text('ok'))
-			.get('/env', (c) => c.text(c.env.MODE + ' ' + c.env.SITE_URL))
 			.fetch(request, this.env, this.ctx);
 	}
 
