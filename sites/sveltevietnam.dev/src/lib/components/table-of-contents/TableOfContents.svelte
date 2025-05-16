@@ -92,7 +92,7 @@
 			<!-- textContent injected by toc -->
 		</a>
 		{#if node.children.length > 0}
-			<ul class="ml-4 pl-4 border-l">
+			<ul class="ml-4 pl-4 border-l border-outline">
 				{#each node.children as child (child.item.id)}
 					{@render sNode(toc, child)}
 				{/each}

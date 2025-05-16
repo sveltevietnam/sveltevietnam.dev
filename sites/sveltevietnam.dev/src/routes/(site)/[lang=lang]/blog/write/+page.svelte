@@ -62,7 +62,9 @@
 	>
 		<!-- table of contents -->
 		<div class="lg:basis-80 lg:py-10 2xl:basis-96" id="toc">
-			<section class="top-header space-y-6 lg:sticky">
+			<section
+				class="top-header mobile:border-onehalf mobile:border-dashed mobile:border-tertiary mobile:-mx-3 mobile:p-3 space-y-6 lg:sticky"
+			>
 				<h2 class="c-text-heading lg:border-b"><T message={m['pages.blog_write.toc']} /></h2>
 				<TableOfContents {toc} />
 			</section>

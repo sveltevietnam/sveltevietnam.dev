@@ -144,8 +144,12 @@
 		<!-- table of contents -->
 		<div class="_toc" id="toc">
 			{#if toc.items.size}
-				<section class="tablet:sticky top-header space-y-6">
-					<h2 class="c-text-heading border-b"><T message={m['pages.blog_slug.headings.toc']} /></h2>
+				<section
+					class="tablet:sticky top-header mobile:border-onehalf mobile:border-dashed mobile:border-tertiary mobile:-mx-3 mobile:p-3 space-y-6"
+				>
+					<h2 class="c-text-heading border-outline border-b">
+						<T message={m['pages.blog_slug.headings.toc']} />
+					</h2>
 					<TableOfContents {toc} />
 				</section>
 			{/if}
