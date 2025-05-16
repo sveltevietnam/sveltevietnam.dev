@@ -6,9 +6,12 @@ import * as b from '$data/routes/generated/breadcrumbs';
 export class RoutingContext {
 	static KEY = 'app:routing';
 
-	breadcrumbs = $state<NonNullable<App.PageData['routing']>['breadcrumbs']>(
-		b['/:lang']({ lang: 'en' }),
-	);
+	breadcrumbs = $state<
+		{
+			path: string;
+			name: string;
+		}[]
+	>(b['/:lang']({ lang: 'en' }));
 	paths = $state<NonNullable<App.PageData['routing']>['paths']>({
 		en: p['/:lang']({ lang: 'en' }),
 		vi: p['/:lang']({ lang: 'vi' }),
@@ -17,7 +20,9 @@ export class RoutingContext {
 	constructor(data: App.PageData['routing']) {
 		if (!data) return;
 		this.paths = data.paths;
-		this.breadcrumbs = data.breadcrumbs;
+		if (data.breadcrumbs) {
+			this.breadcrumbs = data.breadcrumbs;
+		}
 	}
 
 	is(path: string) {
@@ -30,7 +35,9 @@ export class RoutingContext {
 	update(data: App.PageData['routing']) {
 		if (!data) return;
 		this.paths = data.paths;
-		this.breadcrumbs = data.breadcrumbs;
+		if (data.breadcrumbs) {
+			this.breadcrumbs = data.breadcrumbs;
+		}
 	}
 
 	static set(data: App.PageData['routing']) {

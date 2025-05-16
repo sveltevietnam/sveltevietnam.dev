@@ -1,0 +1,20 @@
+<mj-section>
+	<mj-column>
+		<mj-text align="center">
+			<p><strong>{{addToCalendarText}}<strong></p>
+			<p style="margin-top: 24px">
+				{{#links}}
+					<a href="{{href}}" target="_blank" style="text-decoration: none">
+						<img
+							src="{{img}}"
+							height="30px"
+							alt="{{label}}"
+							style="display: inline-block; width: auto; height: 30px; margin-left: 16px; margin-right: 16px;"
+						>
+					</a>
+				{{/links}}
+			</p>
+		</mj-text>
+	</mj-column>
+</mj-section>
+

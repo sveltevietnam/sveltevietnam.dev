@@ -31,9 +31,10 @@
 			: Array.isArray(meta.structured)
 				? meta.structured
 				: [meta.structured];
-		if (page.data.routing && page.data.routing.breadcrumbs.length > 1) {
+		const { breadcrumbs } = page.data.routing ?? {};
+		if (breadcrumbs && breadcrumbs?.length > 1) {
 			things.push(
-				buildStructuredBreadcrumbs(lang, VITE_PUBLIC_ORIGIN, page.data.routing.breadcrumbs),
+				buildStructuredBreadcrumbs(lang, VITE_PUBLIC_ORIGIN, breadcrumbs),
 			);
 		}
 		const structured = things.length > 0 ? toStringWithContext(things) : undefined;

@@ -1,0 +1,14 @@
+<mj-section padding-top="0">
+	<mj-column>
+		<mj-divider />
+		<mj-include path="../socials.mjml" />
+		<mj-text mj-class="footer-text">
+			<a href="{{mailUrl}}">View on web and manage subscription</a>
+		</mj-text>
+		<mj-text mj-class="footer-text">
+			You received this email because you have subscribed to the Svelte Vietnam newsletter. If you
+			have any feedback or enquiry, please reach out to our administrators via <a href="{{discordUrl}}">Discord</a> or simply reply to this email. Thank you!
+		</mj-text>
+	</mj-column>
+</mj-section>
+

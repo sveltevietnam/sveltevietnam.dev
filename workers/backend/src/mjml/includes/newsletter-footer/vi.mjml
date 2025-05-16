@@ -1,0 +1,15 @@
+<mj-section padding-top="0">
+	<mj-column>
+		<mj-divider />
+		<mj-include path="../socials.mjml" />
+		<mj-text mj-class="footer-text">
+			<a href="{{mailUrl}}">Xem trên web và quản lý đăng ký</a>
+		</mj-text>
+		<mj-text mj-class="footer-text">
+			Bạn nhận được email này vì bạn đã đăng ký bản tin Svelte Việt Nam. Nếu có đề xuất hoặc
+			thắc mắc, vui lòng liên hệ ban quản trị qua <a href="{{discordUrl}}">Discord</a> hoặc phản
+			hồi lại email này. Xin cảm ơn!
+		</mj-text>
+	</mj-column>
+</mj-section>
+

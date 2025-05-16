@@ -19,8 +19,8 @@
 
 	let currentLangLabel = $derived(
 		settings.language === 'vi'
-			? m['components.language_menu.vietnamese']
-			: m['components.language_menu.english'],
+			? m['languages.vietnamese']
+			: m['languages.english'],
 	);
 </script>
 
@@ -58,7 +58,7 @@
 						<!-- no need to announce this flag image -->
 						<img class="h-6 w-9" src={flagVn} alt="" width="36" height="24" />
 						<span class="sr-only"><T message={m['components.language_menu.switch_to']} /></span>
-						<span><T message={m['components.language_menu.vietnamese']} /></span>
+						<span><T message={m['languages.vietnamese']} /></span>
 					</a>
 				</li>
 				<li>
@@ -71,7 +71,7 @@
 						<!-- no need to announce this flag image -->
 						<img class="h-6 w-9" src={flagGb} alt="" width="36" height="24" />
 						<span class="sr-only"><T message={m['components.language_menu.switch_to']} /></span>
-						<span><T message={m['components.language_menu.english']} /></span>
+						<span><T message={m['languages.english']} /></span>
 					</a>
 				</li>
 			</ul>

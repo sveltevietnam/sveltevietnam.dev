@@ -9,7 +9,7 @@
 		--callout-icon-size: calc(var(--spacing) * 8);
 		--callout-color-text: var(--color-on-surface);
 		--callout-color-icon: var(--color-on-surface);
-		--callout-color-bg: var(--color-on-surface-variant);
+		--callout-color-bg: var(--color-surface-variant);
 		--callout-color-border: var(--color-on-surface-subtle);
 		--callout-border-l-width: var(--spacing);
 		--callout-icon-url: var(--svg);

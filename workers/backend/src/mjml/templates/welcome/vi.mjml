@@ -1,0 +1,30 @@
+<mjml>
+	<mj-head>
+		<mj-title>{{subject}}</mj-title>
+		<mj-include path="../../includes/common-head.mjml" />
+	</mj-head>
+	<mj-body background-color="#ffffff">
+		<mj-include path="../../includes/header.mjml" />
+
+		<mj-section padding-top="0">
+			<mj-column>
+				<mj-text padding-top="0">Xin chào {{name}},</mj-text>
+				<mj-text>
+					Cảm ơn bạn đã ghé thăm trang
+					<a href="{{siteUrl}}">sveltevietnam.dev</a>.
+					Chào mừng bạn đến với cộng đồng Svelte Việt Nam.
+				</mj-text>
+				<mj-text>
+					Hãy tham gia
+					<a href="{{discordURL}}">Discord Svelte Việt Nam</a>
+					để kết nối và nhận các thông báo thường xuyên hơn từ cộng đồng nhé.
+				</mj-text>
+				<mj-text>Hẹn gặp lại bạn!</mj-text>
+				<mj-text>Svelte Việt Nam</mj-text>
+			</mj-column>
+		</mj-section>
+
+		<mj-include path="../../includes/newsletter-footer/vi.mjml" />
+	</mj-body>
+</mjml>
+

@@ -17,12 +17,59 @@ messages:
   svelte_vietnam:
     name: Svelte Vietnam
     discord: Svelte Vietnam Discord
-  forms:
-    name: Name
+  search: Search
+  subscribe: Subscribe
+  update: Update
+  languages:
+    vietnamese: Vietnamese
+    english: English
+  inputs:
+    name:
+      label: Name
+      errors:
+        nonempty: Name is required
+    email:
+      errors:
+        nonempty: Email is required
+        invalid: Email is badly formated
     turnstile:
       desc: Verify <em class="c-text-body-xs">(requires Javascript)</em>
-    register: Register
-    search: Search
+      errors:
+        nonempty: Turnstile is required
+        unknown: Something went wrong with Turnstile
+    language:
+      label: Language
+      errors:
+        picklist: Must select one of ['vi', 'en']
+    id:
+      errors:
+        nonempty: ID is required
+  forms:
+    subscriber:
+      upsert:
+        all: Send me other news from Svelte Vietnam
+        success: You are subscribed. Thank you!
+        errors:
+          channels: Must select at least one of ['blog', 'event', 'job']
+          unknown: Unable to subscribe. Please try again later. We are sorry for the inconvenience.
+      update:
+        inputs:
+          personal:
+            heading: Personal Information
+          language:
+            heading: Language
+            desc: Select language you want to receive email in
+          channels:
+            heading: Channels
+            desc: Select the notification channels you want to receive
+            blog: new blog posts from the <a class="c-link" href="/en/blog">Svelte Vietnam Blog</a>
+            event: <a class="c-link" href="/en/events">events</a> from the Svelte Vietnam community
+            job: postings from the <a class="c-link" href="/en/jobs">Jobs page</a>
+        success: Your subscription has been updated. Thank you!
+        errors:
+          unknown:
+            Unable to update your subscription. Please try again later. We are sorry for the
+            inconvenience.
   pages:
     home:
       title: Home | Svelte Vietnam
@@ -594,6 +641,19 @@ messages:
           associated event or project pages. In the near future when the “Jobs” page is implemented,
           sponsors will have priority for their job posting requests. Svelte Vietnam also provides
           opportunities during its events for sponsors to promote their brands and products.
+    mail:
+      email:
+        heading: About this email
+        subject: Subject
+        from: From
+        to: To
+        sent: Sent
+      subscriber:
+        heading: Subscriber Information
+      expiration:
+        You will no longer be able to view this page after <strong>{{datetime}}</strong>. We will
+        automatically revoke access to web view <strong>7 days</strong> after the email is sent to
+        protect your information in the event your email is compromised.
   components:
     breadcrumbs:
       aria: breadcrumbs
@@ -638,8 +698,6 @@ messages:
     language_menu:
       aria: switch site language
       switch_to: switch to
-      vietnamese: Vietnamese
-      english: English
       toggle: language menu. Current language is
     not_by_ai_badge: this page is written by human, not by AI
     page_edit_link:

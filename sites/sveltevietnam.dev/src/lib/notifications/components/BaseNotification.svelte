@@ -65,7 +65,7 @@
 		{/if}
 
 		<div class="w-full leading-normal">
-			{#if title !== null}
+			{#if title !== null && title !== undefined}
 				{#if isMessage(title)}
 					<p class={['mb-2 border-b pb-1 font-bold', status && 'border-current']}>
 						<T message={title} />

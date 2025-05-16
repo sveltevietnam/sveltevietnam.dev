@@ -1,0 +1,128 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "backend",
+	"compatibility_date": "2025-04-28",
+	"main": "./src/worker.ts",
+	"account_id": "b749b5068031c54e0dddf71d07ea1004",
+	"env": {
+		"development": {
+			"vars": {
+				"MODE": "development",
+				"SITE_URL": "http://localhost:5005",
+				"AWS_REGION": "ap-northeast-1"
+			},
+			"secrets_store_secrets": [
+				{
+					"binding": "secret_jwt",
+					"store_id": "c3a8857d65d44b69aad72733c3cd44b4",
+					"secret_name": "jwt_secret"
+				},
+				{
+					"binding": "secret_ses_access_key",
+					"store_id": "c3a8857d65d44b69aad72733c3cd44b4",
+					"secret_name": "ses_access_key"
+				},
+				{
+					"binding": "secret_ses_access_secret",
+					"store_id": "c3a8857d65d44b69aad72733c3cd44b4",
+					"secret_name": "ses_access_secret"
+				}
+			],
+			"d1_databases": [
+				{
+					"binding": "d1",
+					"database_name": "sveltevietnam",
+					"database_id": "ada662cd-7b9b-459c-a58a-eba22c43a94d",
+					"migrations_dir": "./src/database/migrations"
+				}
+			],
+			"kv_namespaces": [
+				{
+					"binding": "kv_mails",
+					"id": "2e81d579efef4f38adb0985049b2f52b"
+				}
+			],
+			"queues": {
+				"producers": [
+					{
+						"queue": "sveltevietnam",
+						"binding": "queue"
+					}
+				],
+				"consumers": [
+					{
+						"queue": "sveltevietnam",
+						"max_batch_size": 10,
+						"max_batch_timeout": 5,
+						"retry_delay": 5,
+						"max_retries": 3,
+						"dead_letter_queue": "sveltevietnam-dlq"
+					}
+				]
+			}
+		},
+		"production": {
+			"name": "backend",
+			"routes": [
+				{
+					"pattern": "backend.sveltevietnam.dev",
+					"custom_domain": true
+				}
+			],
+			"vars": {
+				"MODE": "production",
+				"SITE_URL": "https://backend.sveltevietnam.dev",
+				"AWS_REGION": "ap-northeast-1"
+			},
+			"secrets_store_secrets": [
+				{
+					"binding": "secret_jwt",
+					"store_id": "c3a8857d65d44b69aad72733c3cd44b4",
+					"secret_name": "jwt_secret"
+				},
+				{
+					"binding": "secret_ses_access_key",
+					"store_id": "c3a8857d65d44b69aad72733c3cd44b4",
+					"secret_name": "ses_access_key"
+				},
+				{
+					"binding": "secret_ses_access_secret",
+					"store_id": "c3a8857d65d44b69aad72733c3cd44b4",
+					"secret_name": "ses_access_secret"
+				}
+			],
+			"d1_databases": [
+				{
+					"binding": "d1",
+					"database_name": "sveltevietnam",
+					"database_id": "ada662cd-7b9b-459c-a58a-eba22c43a94d",
+					"migrations_dir": "./src/database/migrations"
+				}
+			],
+			"kv_namespaces": [
+				{
+					"binding": "kv_mails",
+					"id": "2e81d579efef4f38adb0985049b2f52b"
+				}
+			],
+			"queues": {
+				"producers": [
+					{
+						"queue": "sveltevietnam",
+						"binding": "queue"
+					}
+				],
+				"consumers": [
+					{
+						"queue": "sveltevietnam",
+						"max_batch_size": 10,
+						"max_batch_timeout": 5,
+						"retry_delay": 5,
+						"max_retries": 3,
+						"dead_letter_queue": "sveltevietnam-dlq"
+					}
+				]
+			}
+		}
+	}
+}
