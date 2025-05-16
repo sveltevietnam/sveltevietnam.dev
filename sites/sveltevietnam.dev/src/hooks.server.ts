@@ -51,10 +51,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 		language = countryCode?.toUpperCase() === 'VN' ? 'vi' : 'en';
 	}
 
-	// pass through during building (kit - prerendering)
-	// if (building && url.origin === VITE_PUBLIC_ORIGIN) languageFromUrl = 'vi';
-	// 	else redirect(302, localizeUrl(url, LANGUAGES, 'vi'));
-
 	// setting locals
 	locals.language = language;
 	locals.colorScheme =

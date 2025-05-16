@@ -40,18 +40,6 @@ export default {
 			publicPrefix: 'VITE_PUBLIC_',
 			privatePrefix: 'VITE_PRIVATE_',
 		},
-		prerender: {
-			origin: 'https://www.sveltevietnam.dev',
-			crawl: true,
-			handleHttpError: ({ path, message }) => {
-				if (['/vi/not-found', '/en/not-found'].includes(path)) {
-					return;
-				}
-
-				// otherwise fail the build
-				throw new Error(message);
-			},
-		},
 		adapter: adapter({
 			config: path.join(__dirname, 'wrangler.json'),
 			platformProxy: {
@@ -59,29 +47,7 @@ export default {
 			},
 			routes: {
 				include: ['/*'],
-				exclude: [
-					'<build>',
-					'<files>',
-					// prerendered static routes
-					'/vi/tai-tro',
-					'/en/sponsor',
-					'/vi/quy-tac-ung-xu',
-					'/vi/con-nguoi',
-					'/en/code-of-conduct',
-					'/vi/cai-dat',
-					'/en/settings',
-					'/vi/lo-trinh',
-					'/en/roadmap',
-					'/vi/thiet-ke',
-					'/en/design',
-					'/blue-screen-of-death',
-
-					// prerendered dynamic routes
-					'/vi/su-kien/20*',
-					'/en/events/20*',
-					'/en/blog/20*',
-					'/vi/blog/20*',
-				],
+				exclude: ['<build>', '<files>'],
 			},
 		}),
 		version: {

@@ -6,8 +6,6 @@ import { update } from '$lib/forms/subscriber/server';
 
 import type { Actions, PageServerLoad } from './$types';
 
-export const prerender = false;
-
 export const load: PageServerLoad = async ({ platform, url, params, locals }) => {
 	const token = url.searchParams.get('token');
 	if (!token) {

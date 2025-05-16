@@ -19,8 +19,6 @@ const ogImage = {
 	en: ogImageEn,
 };
 
-export const prerender = false;
-
 export const load: PageServerLoad = async ({ url, params }) => {
 	const { lang } = params;
 	const person = await loadPerson(params.id, lang, true);
