@@ -3,7 +3,7 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	import * as m from '$data/locales/generated/messages';
-	import { SubscriberUpsertForm, type SubscriberUpdateFormProps } from '$lib/forms/subscriber';
+	import { SubscriberUpsertForm, type SubscriberUpsertFormProps } from '$lib/forms/subscriber';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	const settings = SettingsContext.get();
@@ -13,7 +13,7 @@
 		data,
 		...rest
 	}: HTMLAttributes<HTMLElement> & {
-		data: SubscriberUpdateFormProps['data'];
+		data: SubscriberUpsertFormProps['data'];
 	} = $props();
 </script>
 
