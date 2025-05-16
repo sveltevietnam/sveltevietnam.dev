@@ -6,6 +6,7 @@ declare module 'svelte/elements' {
 			| `../${string}`
 			| 'chim-lac'
 			| 'dong-thai-binh-hung-bao'
+			| 'splash-svelte-vietnam'
 			| 'svelte'
 			| 'sveltevietnam'
 			| 'tu-chu'

@@ -3,6 +3,7 @@
 @import '@sveltevietnam/css/base';
 @import '@sveltevietnam/css/typography';
 @import '@svelte-put/cloudflare-turnstile/tailwind.css';
+@import './splash.css';
 
 @source '../../../../../packages/markdown/src/**/*.{svelte,js}';
 

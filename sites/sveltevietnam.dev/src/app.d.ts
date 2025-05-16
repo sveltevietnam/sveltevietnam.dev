@@ -15,7 +15,7 @@ declare global {
 			internalReferer?: URL;
 			language: Language;
 			colorScheme: ColorScheme;
-			splash: SplashOptions;
+			splash: SplashOption;
 		}
 
 		interface PageData {

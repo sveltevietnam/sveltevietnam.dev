@@ -26,8 +26,8 @@
 
   const notiLocales = {
     delayedHydration: {
-      title: m['notifications.new_site_version.title'],
-      message: m['notifications.new_site_version.message'],
+      title: m['notifications.delayed_hydration.title'],
+      message: m['notifications.delayed_hydration.message'],
     },
     newSiteVersion: {
       title: m['notifications.new_site_version.title'],

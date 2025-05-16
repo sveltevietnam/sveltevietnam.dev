@@ -15,10 +15,10 @@
   import hydrationAfterSplashImage from '../images/hydration-after-splash.png?format=webp&imagetools';
 
 	const item = new StackItem({ timeout: 0 });
-  const delayedHydration = $derived({
-    title: m['notifications.new_site_version.title'],
-    message: m['notifications.new_site_version.message'],
-  });
+  const delayedHydration = {
+    title: m['notifications.delayed_hydration.title'],
+    message: m['notifications.delayed_hydration.message'],
+  };
 </script>
 
 <div class="c-callout c-callout--info">

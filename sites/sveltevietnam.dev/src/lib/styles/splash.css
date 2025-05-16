@@ -1,63 +1,4 @@
-<script lang="ts">
-	import { onMount } from 'svelte';
-	import type { HTMLAttributes } from 'svelte/elements';
-
-	import { SettingsContext } from '$lib/settings/context.svelte';
-
-	// import splashScriptSrc from './splash.js?url';
-
-	const settings = SettingsContext.get();
-
-	let {
-		variant = 'short',
-		class: cls,
-		root = false,
-		ondone = () => {},
-		...rest
-	}: HTMLAttributes<HTMLElement> & {
-		variant?: 'short' | 'long';
-		root?: boolean;
-		ondone?: () => void;
-	} = $props();
-
-	let splashEl: HTMLDivElement;
-	function onAnimationEnd(e: AnimationEvent) {
-		if (splashEl.isSameNode(e.target as Node)) {
-			ondone();
-		}
-	}
-
-	onMount(() => {
-		settings.splashed = true;
-	});
-</script>
-
-<div
-	bind:this={splashEl}
-	data-variant={variant}
-	onanimationend={onAnimationEnd}
-	class={[
-		'splash-screen',
-		'bg-surface flex items-center justify-center',
-		root ? 'z-overlay fixed inset-0' : 'h-100 tablet:h-125 w-full',
-		cls,
-	]}
-	{...root && { id: 'splash' }}
-	{...rest}
->
-	<div class="_logo-wrapper">
-		<div class="_logo w-26 h-26 i i-sveltevietnam -mr-2 block"></div>
-	</div>
-	<div class="_title pl-2.5">
-		<svg class="h-19.5 w-auto" inline-src="./name.svg"></svg>
-	</div>
-	<!-- FIXME: find reliable way to get timestamp of splash screen completion  -->
-	<!-- {#if root} -->
-	<!-- 	<script src={splashScriptSrc}></script> -->
-	<!-- {/if} -->
-</div>
-
-<style lang="postcss">
+@layer components {
 	.splash-screen {
 		--animation-in-duration: 800ms;
 		--animation-out-duration: 800ms;
@@ -76,6 +17,18 @@
 		&[data-play-state='paused'] {
 			animation-play-state: paused;
 		}
+
+		&:where(#splash) {
+			position: fixed;
+			z-index: var(--z-index-overlay);
+			inset: 0;
+
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			background-color: var(--color-surface);
+		}
 	}
 
 	._logo-wrapper {
@@ -86,6 +39,23 @@
 	._title {
 		position: relative;
 		animation-play-state: inherit;
+
+		&::before {
+			content: '';
+
+			display: block;
+
+			width: calc(44.5 * var(--spacing));
+			height: calc(19.5 * var(--spacing));
+
+			color: inherit;
+
+			background-color: currentcolor;
+
+			mask-image: url('$lib/assets/images/svg/splash-svelte-vietnam.svg');
+			mask-repeat: no-repeat;
+			mask-size: cover;
+		}
 	}
 
 	@keyframes splash-out {
@@ -96,6 +66,10 @@
 		to {
 			transform: translateY(-100%);
 		}
+	}
+	/* ========= disabled ========= */
+	.splash-screen[data-variant='disabled'] {
+		display: none;
 	}
 
 	/* ========= SHORT variant ========= */
@@ -262,4 +236,4 @@
 			transform: translateX(0);
 		}
 	}
-</style>
+}

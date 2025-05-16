@@ -6,6 +6,7 @@ import { building } from '$app/environment';
 import {
 	VITE_PRIVATE_COOKIE_NAME_USER_ID,
 	VITE_PRIVATE_COOKIE_NAME_LANGUAGE,
+	VITE_PRIVATE_COOKIE_NAME_LAST_FRESH_VISIT_AT,
 } from '$env/static/private';
 import {
 	VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
@@ -69,9 +70,36 @@ export const handle: Handle = async ({ event, resolve }) => {
 		return resolve(event);
 	}
 
+	/**
+	 * take a timestamp for the last fresh visit, that is:
+	 *   - a visit without an "internal referer" (i.e not navigated from within the site), or
+	 *   - after a set amount of time (see maxAge of cookies).
+	 *
+	 * conveniently, SvelteKit will reset the 'Referer' header on page refresh, so we don't have to
+	 * manually catch the unload event and do it ourselves.
+	 */
+	let splash: 'disabled' | 'short' | 'long' = 'disabled';
+	const lastFreshVisitAt = cookies.get(VITE_PRIVATE_COOKIE_NAME_LAST_FRESH_VISIT_AT);
+	if (!lastFreshVisitAt || !locals.internalReferer) {
+		if (locals.splash !== 'disabled') {
+			if (locals.splash === 'random') {
+				splash = Math.random() < 0.8 ? 'short' : 'long';
+			} else {
+				splash = locals.splash;
+			}
+		}
+		cookies.set(VITE_PRIVATE_COOKIE_NAME_LAST_FRESH_VISIT_AT, Date.now().toString(), {
+			...COMMON_COOKIE_CONFIG,
+			maxAge: 150, // 2.5 minutes,
+		});
+	}
+
 	const response = await resolve(event, {
 		transformPageChunk: ({ html }) =>
-			html.replace('%language%', locals.language).replace('%color-scheme%', locals.colorScheme),
+			html
+				.replace('%language%', locals.language)
+				.replace('%color-scheme%', locals.colorScheme)
+				.replace('%splash%', splash),
 	});
 
 	return response;

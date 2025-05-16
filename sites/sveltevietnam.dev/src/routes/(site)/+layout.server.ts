@@ -7,6 +7,10 @@ export const load: LayoutServerLoad = async ({ locals, route, params }) => {
 					`https://github.com/sveltevietnam/sveltevietnam.dev/edit/v1/sites/sveltevietnam.dev/src/routes${route.id}/+page.svelte`,
 				)
 			: undefined,
-		language: params.lang || locals.language,
+		settings: {
+			language: params.lang || locals.language,
+			colorScheme: locals.colorScheme,
+			splash: locals.splash,
+		},
 	};
 };

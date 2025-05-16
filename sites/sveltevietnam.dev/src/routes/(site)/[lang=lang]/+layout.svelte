@@ -8,7 +8,6 @@
 	import { Header } from '$lib/components/header';
 	import { PageEditLink } from '$lib/components/page-edit-link';
 	import { PageLoadIndicator } from '$lib/components/page-load-indicator';
-	import { SplashScreen } from '$lib/components/splash-screen';
 	import DialogPortal from '$lib/dialogs/DialogPortal.svelte';
 	import { DialogContext } from '$lib/dialogs/context.svelte';
 	import NotificationPortal from '$lib/notifications/components/NotificationPortal.svelte';
@@ -38,6 +37,8 @@
 	setContext('t:lang', () => data.settings.language);
 
 	onMount(async () => {
+		// TODO: check delayed hydration
+
 		const key = 'show-v1-site-construction-noti';
 		if (!dev && localStorage.getItem(key) !== 'false') {
 			const pushed = noti.stack.push('custom', {
@@ -70,6 +71,3 @@
 <DialogPortal stack={dialog} />
 <NotificationPortal stack={noti.stack} />
 
-{#if data.splash !== 'disabled'}
-	<SplashScreen variant={data.splash} root />
-{/if}

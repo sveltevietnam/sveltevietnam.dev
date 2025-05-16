@@ -65,6 +65,29 @@
 		%sveltekit.head%
 	</head>
 	<body>
+		<!-- splash screen -->
+		<div class="splash-screen" id="splash" data-variant="%splash%">
+			<div class="_logo-wrapper">
+				<div class="_logo w-26 h-26 i i-sveltevietnam -mr-2 block"></div>
+			</div>
+			<div class="_title pl-2.5"></div>
+			<script>
+				function stamp() {
+					document.documentElement.setAttribute('data-splashed-at', new Date().toISOString());
+				}
+
+				const splashEl = document.getElementById('splash');
+				if (!splashEl || splashEl.getAttribute('data-variant') === 'disabled') {
+					stamp();
+				} else {
+					splashEl.addEventListener('animationend', (e) => {
+						if (!splashEl.isSameNode(/** @type {Node} */ (e.target))) return;
+						stamp();
+					});
+				}
+			</script>
+		</div>
+
 		<!-- SvelteKit Hydrated Content -->
 		<div class="contents">%sveltekit.body%</div>
 	</body>
