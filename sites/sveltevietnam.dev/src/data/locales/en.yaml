@@ -389,6 +389,9 @@ messages:
             and the image of a conical hat (“nón lá”) with a star - symbolizing the image of the
             Vietnamese community. The main color of the logo is chosen based on the “Svelte color”,
             creating uniformity with the iconic color of the international Svelte community.'
+        alt:
+          rays: space with cosmic rays going in/from the middle
+          non_la: multiple nón lá in formation and under night light
         inspire: Inspire
         community: Community
         variants:

@@ -9,6 +9,7 @@
 	import { STATUSES } from '$lib/constants';
 	import BaseNotification from '$lib/notifications/components/BaseNotification.svelte';
 	import { RoutingContext } from '$lib/routing/context.svelte';
+	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import type { PageData } from './$types';
 	import { colors } from './_page/colors';
@@ -16,6 +17,8 @@
 	import imgRays from './_page/images/rays.jpg?format=avif';
 
 	let { data }: { data: PageData } = $props();
+
+	const settings = SettingsContext.get();
 
 	const MARK_CLASSES = {
 		info: 'text-info-on-surface bg-info-surface',
@@ -256,7 +259,7 @@
 						{#each STATUSES as value (value)}
 							<label
 								class="has-checked:text-on-surface text-on-surface-subtle _texture not-has-checked:bg-none! has-checked:border-b-surface has-checked:border-outline
-								has-checked:border-b-2 cursor-pointer border border-transparent px-4 tablet:px-6 pb-1.5 pt-2"
+								has-checked:border-b-2 tablet:px-6 cursor-pointer border border-transparent px-4 pb-1.5 pt-2"
 							>
 								<input class="sr-only" type="radio" name="status" {value} bind:group={status} />
 								<span class="capitalize">{value}</span>
@@ -322,18 +325,21 @@
 				<img
 					class="h-auto w-44"
 					src={imgRays}
-					alt="space with cosmic rays going in/from the middle"
+					alt={m['pages.design.logo.alt.rays'](settings.language)}
 					width="177"
 					height="264"
+					fetchpriority="low"
+					loading="lazy"
+					decoding="async"
 				/>
-				<div class="flex w-full tablet:w-fit flex-col gap-6 text-center">
-					<p class="border border-current px-2 py-4 tablet:p-6">
+				<div class="tablet:w-fit flex w-full flex-col gap-6 text-center">
+					<p class="tablet:p-6 border border-current px-2 py-4">
 						<T message={m['pages.design.logo.inspire']} />
 					</p>
-					<p class="border border-current px-2 py-4 tablet:p-6">
+					<p class="tablet:p-6 border border-current px-2 py-4">
 						<T message={m['pages.design.logo.community']} />
 					</p>
-					<p class="border border-current px-2 py-4 tablet:p-6"><T message={m['vietnam']} /></p>
+					<p class="tablet:p-6 border border-current px-2 py-4"><T message={m['vietnam']} /></p>
 				</div>
 				<div
 					class="mobile:grid-rows-subgrid tablet:grid-cols-1 mobile:col-span-2 grid grid-cols-2 justify-between gap-6"
@@ -342,9 +348,12 @@
 					<img
 						class="w-37 h-auto"
 						src={imgNonLa}
-						alt="multiple nón lá in formation and under the light"
+						alt={m['pages.design.logo.alt.non_la'](settings.language)}
 						width="148"
 						height="121"
+						fetchpriority="low"
+						loading="lazy"
+						decoding="async"
 					/>
 				</div>
 			</div>

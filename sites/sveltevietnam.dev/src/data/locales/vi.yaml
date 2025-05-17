@@ -391,6 +391,9 @@ messages:
             và hình ảnh chiếc nón lá mang ngôi sao - tượng trưng  cho hình ảnh cộng đồng người Việt
             Nam. Màu sắc chính của logo  được chọn dựa trên màu sắc chính của Svelte, tạo nên tính
             thống nhất với màu sắc biểu tượng của cộng đồng Svelte trên thế giới.'
+        alt:
+          rays: các tia sáng vũ trụ tỏa ra từ một điểm trung tâm ở giữa
+          non_la: nhiều nón lá tạo hình khối dưới ánh sáng đèn buổi tối
         inspire: Truyền cảm hứng
         community: Cộng đồng
         variants:
