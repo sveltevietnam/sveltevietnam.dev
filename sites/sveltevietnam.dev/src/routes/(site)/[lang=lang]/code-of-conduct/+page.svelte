@@ -13,19 +13,13 @@
 <main>
 	<!-- intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
-		<div
-			class="max-w-pad tablet:flex-row tablet:gap-6 tablet:items-start flex flex-col justify-between"
-		>
-			<div class="tablet:space-y-8 w-full space-y-6">
-				<Breadcrumbs crumbs={data.routing.breadcrumbs} />
-				<div class="w-full space-y-4">
-					<h1
-						class="c-text-heading-page text-primary-on-surface flex items-center justify-center uppercase"
-					>
-						<T message={m['pages.coc.heading']} />
-					</h1>
-				</div>
-			</div>
+		<div class="max-w-pad tablet:space-y-8 w-full space-y-6">
+			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
+			<h1
+				class="c-text-heading-page text-primary-on-surface flex items-center justify-center uppercase"
+			>
+				<T message={m['pages.coc.heading']} />
+			</h1>
 		</div>
 		<IntroSeparator variant="flag" />
 	</section>
