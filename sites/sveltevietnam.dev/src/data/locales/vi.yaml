@@ -364,8 +364,26 @@ messages:
         status:
           heading: Màu trạng thái
           desc: Các màu thể hiện trạng thái ứng dụng hoặc cung cấp ngữ cảnh bổ sung cho phần tử.
+          sample:
+            desc: Ví dụ sử dụng màu <span class="{{cls}}">trạng thái-thông báo</span> trong văn bản.
+            callout:
+              Đây là giao diện mẫu cho “callout”, giúp bổ sung ngữ cảnh cho một số văn bản và tạo
+              điểm nhấn để lôi kéo sự chú ý của người dùng. Bạn có thể tham khảo thêm ví dụ và cách
+              sử dụng callout tại trang <a class="c-link" href="/vi/blog/viet#callout">"Blog Svelte
+              Việt Nam - Hướng dẫn viết bài"</a>.
+            notification:
+              title: Tiêu đề thông báo
+              desc:
+                Đây là thông báo mẫu. Thực tế thông báo sẽ được hiển thị khi người dùng thực hiện
+                thao tác hoặc hệ thống có sự thay đổi.
       logo:
         desc: Đôi lời về cảm hứng sáng tác và chủ đề của logo sử dụng trong dự án Svelte Việt Nam
+        credit:
+          Logo Svelte Việt Nam và giao diện đầu tiên của trang <a class="c-link"
+          href="/">sveltevietnam.dev</a> được thiết kế bởi <a class="c-link font-bold"
+          href="https://www.linkedin.com/in/trong-tran-25bb5319a/" target="_blank" rel="noreferrer
+          noopener external">Trọng </a>. Sự đóng góp của Trọng mang ý nghĩa quan trọng trong việc
+          xây dựng thương hiệu Svelte Việt Nam và giao diện của trang hiện tại.
         inspiration:
           heading: Cảm hứng
           desc:
@@ -375,8 +393,8 @@ messages:
             thống nhất với màu sắc biểu tượng của cộng đồng Svelte trên thế giới.'
         inspire: Truyền cảm hứng
         community: Cộng đồng
-        version:
-          heading: Các phiên bản logo
+        variants:
+          heading: Các biến thể logo
           original: Nguyên bản
           positive: Dương bản
           negative: Âm bản

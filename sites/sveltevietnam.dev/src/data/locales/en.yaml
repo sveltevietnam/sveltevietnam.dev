@@ -362,9 +362,26 @@ messages:
           desc:
             Colors that indicate the current application status or provide additional context for
             the element.
+          sample:
+            desc: Example for using <mark class="{{cls}}">status</mark> color within some text.
+            callout:
+              This is a sample “callout” that enhances a text block with some contextual meaning and
+              helps draw user's attention. See more examples and how to use it via <a class="c-link"
+              href="/en/blog/write#callout">"Svelte Vietnam Blog - Writing Guidelines"</a>.
+            notification:
+              title: Notification Title
+              desc:
+                This is a sample notification. In practice, notification is fired upon some user
+                interaction when system status changes.
       logo:
         desc:
           A few words about the inspiration and theme of the logo used in the Svelte Vietnam project
+        credit:
+          The Svelte Vietnam logo and the very first user interface of <a class="c-link"
+          href="/">sveltevietnam.dev</a> is designed by <a class="c-link font-bold"
+          href="https://www.linkedin.com/in/trong-tran-25bb5319a/" target="_blank" rel="noreferrer
+          noopener external">Trọng Trần</a>. His contribution has significant importance on the
+          Svelte Vietnam brand identity and the website you see today.
         inspiration:
           heading: Inspiration
           desc:
@@ -374,7 +391,7 @@ messages:
             creating uniformity with the iconic color of the international Svelte community.'
         inspire: Inspire
         community: Community
-        version:
+        variants:
           heading: Versions
           original: Original
           positive: Positive
