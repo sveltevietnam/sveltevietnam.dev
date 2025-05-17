@@ -86,14 +86,14 @@
 		oklch(35.2% 0.072 91.1deg)
 	);
 
-	--color-error-on-surface: light-dark(oklch(96.01% 0.02 21.36deg), oklch(93.35% 0.033 24.58deg));
+	--color-error-on-surface: light-dark(oklch(31.5% 0.127 22.3deg), oklch(93.35% 0.033 24.58deg));
 	--color-error-on-surface-subtle: light-dark(
-		oklch(31.55% 0.127 22.31deg),
+		oklch(76.6% 0.139 22.4deg),
 		oklch(67.12% 0.216 22.39deg)
 	);
-	--color-error-surface: light-dark(oklch(76.61% 0.138 22.4deg), oklch(24.41% 0.098 22.23deg));
+	--color-error-surface: light-dark(oklch(96% 0.0196 21.4deg), oklch(24.41% 0.098 22.23deg));
 	--color-error-surface-variant: light-dark(
-		oklch(92.95% 0.036 22.08deg),
+		oklch(92.9% 0.036 22.1deg),
 		oklch(35.3% 0.142 22.09deg)
 	);
 
