@@ -87,7 +87,7 @@
 	<!-- mail as html -->
 	<section class="max-w-readable min-w-80 flex-1 space-y-6">
 		<h2 class="sr-only">Mail</h2>
-		<p class="c-callout c-callout--warning isolate">
+		<p class="c-callout c-callout--warning">
 			<T
 				message={m['pages.mail.expiration']}
 				datetime={formatFullDateAndTime(settings.language, data.expiresAt)}
