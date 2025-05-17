@@ -27,23 +27,39 @@
 		settings.toggleScrollLock(isMobileMenuOpen);
 	});
 
-	const MAX_SCROLL_Y = 400;
+	// on change scroll direction
+	// and has travelled for at least SCROLL_Y_THRESHOLD
+	// toggle the visibility of header
+	const MINIMUM_SCROLL_Y = 400;
+	const SCROLL_Y_DELTA_THRESHOLD = 100;
 	let lastScrollY = $state(0);
+	let lastDirection: 'up' | 'down' = 'down';
+	let lastScrollYAtDirectionChange = 0;
 	let shouldHideHeader = $state(false);
+
 	function onScroll() {
-		if (window.scrollY > lastScrollY && window.scrollY > MAX_SCROLL_Y) {
-			shouldHideHeader = true;
-			isColorSchemeMenuOpen = false;
-			isPageMenuOpen = false;
-			isLanguageMenuOpen = false;
-		} else {
+		const { scrollY } = window;
+		const direction = scrollY > lastScrollY ? 'down' : 'up';
+
+		if (scrollY < MINIMUM_SCROLL_Y) {
 			shouldHideHeader = false;
+		} else if (direction !== lastDirection) {
+			lastScrollYAtDirectionChange = scrollY;
+		} else if (Math.abs(scrollY - lastScrollYAtDirectionChange) > SCROLL_Y_DELTA_THRESHOLD) {
+			if (direction === 'up') {
+				shouldHideHeader = false;
+			} else {
+				shouldHideHeader = true;
+				isColorSchemeMenuOpen = isPageMenuOpen = isLanguageMenuOpen = false;
+			}
 		}
-		lastScrollY = window.scrollY;
+
+		lastScrollY = scrollY;
+		lastDirection = direction;
 	}
 
 	let toolbarBackdropOpacity = $derived(
-		!settings.hydrated ? 1 : Math.min((lastScrollY * 2) / MAX_SCROLL_Y, 1),
+		!settings.hydrated ? 1 : Math.min((lastScrollY * 2) / MINIMUM_SCROLL_Y, 1),
 	);
 
 	const links = $derived({
