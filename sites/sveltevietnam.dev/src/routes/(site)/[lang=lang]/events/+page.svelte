@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 	import type { Message } from '@sveltevietnam/i18n/runtime';
+	import { scroll, animate } from 'motion';
+	import { onMount } from 'svelte';
 
 	import { page } from '$app/state';
 	import { EMAILS } from '$data/emails';
@@ -20,6 +22,49 @@
 
 	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();
+
+	let elParticipate: SVGElement;
+	let elSmallCircle: SVGCircleElement;
+	let elBigCircle: SVGPathElement;
+
+	let elShare: SVGElement;
+	let elRect: SVGPathElement;
+
+	let elSponsor: SVGElement;
+	let box1: SVGPathElement;
+	let box2: SVGPathElement;
+	let box3: SVGPathElement;
+	let box4: SVGPathElement;
+	let box5: SVGPathElement;
+
+	onMount(() => {
+		// animating circles in the participate section
+		const smallCircleAnimation = animate(elSmallCircle, { x: [0, 159.5] });
+		scroll(smallCircleAnimation, {
+			target: elParticipate,
+			offset: ['1 0.9', '0.5 0.25'],
+		});
+		const bigCircleAnimation = animate(elBigCircle, { rotate: [0, -44.48] });
+		scroll(bigCircleAnimation, {
+			target: elParticipate,
+			offset: ['1 0.8', '0.5 0.25'],
+		});
+
+		// animating rectangles in the share section
+		const rectAnimation = animate(elRect, { x: [-100, 0] });
+		scroll(rectAnimation, {
+			target: elShare,
+			offset: ['1 0.9', '0.5 0.25'],
+		});
+
+		// animating rectangles in the sponsor section
+		const boxes = [box1, box2, box3, box4, box5];
+		const sponsorSequenceAnimation = animate(boxes.map(b => [b, { x: [-50, 0], opacity: [0, 1] }]));
+		scroll(sponsorSequenceAnimation, {
+			target: elSponsor,
+			offset: ['1 1', '1 0.5'],
+		});
+	});
 </script>
 
 {#snippet actionHeading(num: number, message: Message<'string', never>)}
@@ -101,11 +146,13 @@
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
 					viewBox="0 0 402 300"
+					bind:this={elParticipate}
 				>
-					<circle cx="31" cy="269.5" r="30.5" fill="currentcolor" />
+					<circle cx="31" cy="269.5" r="30.5" fill="currentcolor" bind:this={elSmallCircle} />
 					<path
 						fill="currentcolor"
 						d="M145.4 256A150 150 0 10103 171.2a30 30 0 1117 51 150 150 0 0025.4 33.9Z"
+						bind:this={elBigCircle}
 					/>
 				</svg>
 			</div>
@@ -133,9 +180,10 @@
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
 					viewBox="0 0 400 300"
+					bind:this={elShare}
 				>
 					<path fill="currentcolor" d="M300 0V120H240v60h60V300H0V0H300Z" />
-					<path fill="currentcolor" d="M340 120h60v60h-60z" />
+					<path fill="currentcolor" d="M340 120h60v60h-60z" bind:this={elRect} />
 				</svg>
 			</div>
 		</section>
@@ -169,12 +217,13 @@
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
 					viewBox="0 0 235 182"
+					bind:this={elSponsor}
 				>
-					<path fill="currentcolor" d="M174.5 61h60v60h-60z" />
-					<path fill="currentcolor" d="M60.5 0h60v60h-60z" />
-					<path fill="currentcolor" d="M30.5 61h60v60h-60z" />
-					<path fill="currentcolor" d="M144.5 122h60v60h-60z" />
-					<path fill="currentcolor" d="M.5 122h60v60H.5z" />
+					<path fill="currentcolor" d="M174.5 61h60v60h-60z" bind:this={box5} />
+					<path fill="currentcolor" d="M144.5 122h60v60h-60z" bind:this={box4} />
+					<path fill="currentcolor" d="M60.5 0h60v60h-60z" bind:this={box3} />
+					<path fill="currentcolor" d="M30.5 61h60v60h-60z" bind:this={box2} />
+					<path fill="currentcolor" d="M.5 122h60v60H.5z" bind:this={box1} />
 				</svg>
 			</div>
 		</section>
