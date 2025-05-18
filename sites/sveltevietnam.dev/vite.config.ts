@@ -33,6 +33,7 @@ export default defineConfig({
 			'@svelte-put/avatar',
 			'@svelte-put/cloudflare-turnstile',
 			'@svelte-put/inline-svg',
+			'sveltekit-superforms',
 		],
 	},
 	plugins: [
