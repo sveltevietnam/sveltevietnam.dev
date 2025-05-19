@@ -6,6 +6,7 @@
 	import { SOCIAL_LINKS } from '$data/links';
 	import * as m from '$data/locales/generated/messages';
 
+	import StepContainer from './components/StepContainer.svelte';
 	import svgPuzzle from './images/puzzle.svg';
 	import screenshotDocs from './images/screenshot-svelte-docs.jpg?enhanced&w=1400;900;600;300&imagetools';
 	import screenshotGithub from './images/screenshot-svelte-github.jpg?enhanced&w=1400;900;600;300&imagetools';
@@ -15,12 +16,6 @@
 	import screenshotSociety from './images/screenshot-svelte-society.jpg?enhanced&w=1400;900;600;300&imagetools';
 	import screenshotSummit from './images/screenshot-svelte-summit.jpg?enhanced&w=1400;900;600;300&imagetools';
 	import screenshotTutorial from './images/screenshot-svelte-tutorial.jpg?enhanced&w=1400;900;600;300&imagetools';
-
-	const sectionClasses = [
-		'relative bg-surface p-4 flex flex-col gap-8 max-w-256 mx-auto',
-		'tablet:p-10 tablet:gap-15',
-		'before:absolute before:-z-1 before:-inset-0.5 before:bg-gradient-to-b before:from-on-surface before:via-svelte before:to-transparent',
-	];
 </script>
 
 {#snippet step(message: Message<'string', never>)}
@@ -94,7 +89,12 @@
 				class="from-primary to-tertiary mobile:order-2 tablet:flex-1 h-fit
 				bg-gradient-to-r p-0.5 group-odd:bg-gradient-to-l"
 			>
-				<a class="c-link-image block" href={image.href} target="_blank" rel="noopener noreferrer external">
+				<a
+					class="c-link-image block"
+					href={image.href}
+					target="_blank"
+					rel="noopener noreferrer external"
+				>
 					<span class="sr-only"><T message={image.message} /></span>
 					<enhanced:img
 						src={image.src}
@@ -110,10 +110,10 @@
 	</div>
 {/snippet}
 
-<section class="max-w-pad pb-section space-y-30" id="resources">
+<section class="max-w-pad pb-section pt-section-more space-y-section-more" id="resources">
 	<h2 class="c-text-heading-lg text-center"><T message={m['pages.home.resources.heading']} /></h2>
 
-	<section class={[...sectionClasses, 'tablet:max-desktop:pb-32']}>
+	<StepContainer class="tablet:max-desktop:pb-32">
 		<div class="relative flex items-center justify-between gap-4">
 			<div class="space-y-4">
 				{@render step(m['pages.home.resources.one.step'])}
@@ -175,12 +175,12 @@
 
 		<svg
 			class="w-39.5 tablet:absolute desktop:left-6 desktop:bottom-6 widescreen:left-10
-			widescreen:bottom-10 bottom-2 left-2 h-auto"
+				widescreen:bottom-10 bottom-2 left-2 h-auto"
 			inline-src="./images/rect-washer"
 		></svg>
-	</section>
+	</StepContainer>
 
-	<section class={sectionClasses}>
+	<StepContainer>
 		<div class="mobile:flex-col relative flex items-center justify-between gap-4">
 			<svg class="h-18 mobile:self-start w-auto shrink-0" inline-src="./images/book"></svg>
 			<div class="mobile:-mt-10 flex flex-col items-end gap-4">
@@ -203,9 +203,9 @@
 				src: screenshotDocs,
 			},
 		})}
-	</section>
+	</StepContainer>
 
-	<section class={sectionClasses}>
+	<StepContainer>
 		<div class="space-y-4">
 			{@render step(m['pages.home.resources.three.step'])}
 			<h3 class="c-text-heading-md text-right">
@@ -223,9 +223,9 @@
 			image: { src: svgPuzzle, width: 291, height: 159 },
 		})}
 		<p class="-mt-4"><T message={m['pages.home.resources.three.note']} /></p>
-	</section>
+	</StepContainer>
 
-	<section class={sectionClasses}>
+	<StepContainer>
 		<div class="flex items-start justify-between gap-4">
 			<svg class="h-20 w-20 shrink-0" inline-src="./images/svelte-society-logo"></svg>
 			<div class="flex flex-col items-end gap-4">
@@ -251,7 +251,10 @@
 					message: m['pages.home.resources.four.svelte.github.svelte_dev'],
 					href: 'https://github.com/sveltejs/svelte.dev',
 				},
-				{ message: m['pages.home.resources.bluesky'], href: 'https://bsky.app/profile/svelte.dev' },
+				{
+					message: m['pages.home.resources.bluesky'],
+					href: 'https://bsky.app/profile/svelte.dev',
+				},
 			],
 			image: {
 				message: m['pages.home.resources.four.svelte.github.svelte'],
@@ -327,7 +330,7 @@
 				<li><T message={m['pages.home.resources.four.jobs']} /></li>
 			</ul>
 		</section>
-	</section>
+	</StepContainer>
 </section>
 
 <style>
