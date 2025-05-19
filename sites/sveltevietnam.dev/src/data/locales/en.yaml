@@ -157,15 +157,18 @@ messages:
           others: 'You can also:'
           newsletter:
             subscribe to the monthly news update about Svelte via “<a class="c-link"
-            href="https://svelte.substack.com/">The (Unofficial) Svelte JS Newsletter</a>”,
+            href="https://svelte.substack.com/" target="_blank" rel="noreferrer noopener
+            external">The (Unofficial) Svelte JS Newsletter</a>”,
           madebysvelte:
             browse or share libraries and products via “<a class="c-link"
-            href="https://madewithsvelte.com/">Made by Svelte</a>”,
+            href="https://madewithsvelte.com/" target="_blank" rel="noreferrer noopener
+            external">Made by Svelte</a>”,
           jobs:
             follow news about jobs via the <a class="c-link"
-            href="https://discord.com/channels/457912077277855764/640884695890133012">#job-postings</a>
-            channel in the official Svelte Discord, or via “<a class="c-link"
-            href="https://sveltejobs.com/">Svelte Jobs</a>”.
+            href="https://discord.com/channels/457912077277855764/640884695890133012"target="_blank"
+            rel="noreferrer noopener external">#job-postings</a> channel in the official Svelte
+            Discord, or via “<a class="c-link" href="https://sveltejobs.com/" target="_blank"
+            rel="noreferrer noopener external">Svelte Jobs</a>”.
       events:
         heading: Events
         desc:

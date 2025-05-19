@@ -66,7 +66,7 @@
 			</p>
 			<div class="mobile:order-3 flex flex-col gap-6 {linksClasses}">
 				{#each links as { message, href } (href)}
-					<a class="c-btn c-btn--pop" {href}>
+					<a class="c-btn c-btn--pop" {href} target="_blank" rel="noopener noreferrer external">
 						<span><T {message} /></span>
 						<i class="i i-[ph--arrow-square-out] h-6 w-6"></i>
 					</a>
@@ -94,7 +94,7 @@
 				class="from-primary to-tertiary mobile:order-2 tablet:flex-1 h-fit
 				bg-gradient-to-r p-0.5 group-odd:bg-gradient-to-l"
 			>
-				<a class="c-link-image block" href={image.href}>
+				<a class="c-link-image block" href={image.href} target="_blank" rel="noopener noreferrer external">
 					<span class="sr-only"><T message={image.message} /></span>
 					<enhanced:img
 						src={image.src}
