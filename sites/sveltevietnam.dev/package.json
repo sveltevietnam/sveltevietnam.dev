@@ -51,7 +51,6 @@
 		"@types/lodash.debounce": "^4.0.9",
 		"@types/mustache": "^4.2.6",
 		"dedent": "^1.6.0",
-		"motion": "^12.12.1",
 		"normalize-diacritics": "^5.0.0",
 		"picocolors": "^1.1.1",
 		"recast": "^0.23.11",
@@ -66,7 +65,7 @@
 		"vite-plugin-qrcode": "^0.2.4"
 	},
 	"dependencies": {
-		"gsap": "^3.13.0",
+		"animejs": "^4.0.2",
 		"lodash.debounce": "^4.0.8",
 		"mustache": "^4.2.0",
 		"valibot": "1.1.0"

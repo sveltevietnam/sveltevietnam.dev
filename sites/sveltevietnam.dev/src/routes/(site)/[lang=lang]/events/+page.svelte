@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 	import type { Message } from '@sveltevietnam/i18n/runtime';
-	import { scroll, animate } from 'motion';
-	import { onMount } from 'svelte';
+	import { onScroll, createTimeline, stagger } from 'animejs';
 
 	import { page } from '$app/state';
 	import { EMAILS } from '$data/emails';
@@ -23,47 +22,84 @@
 	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();
 
-	let elParticipate: SVGElement;
+	let elParticipate: HTMLElement;
 	let elSmallCircle: SVGCircleElement;
 	let elBigCircle: SVGPathElement;
 
-	let elShare: SVGElement;
+	let elShare: HTMLElement;
 	let elRect: SVGPathElement;
 
-	let elSponsor: SVGElement;
+	let elSponsor: HTMLElement;
 	let box1: SVGPathElement;
 	let box2: SVGPathElement;
 	let box3: SVGPathElement;
 	let box4: SVGPathElement;
 	let box5: SVGPathElement;
 
-	onMount(() => {
+	$effect(() => {
 		// animating circles in the participate section
-		const smallCircleAnimation = animate(elSmallCircle, { x: [0, 159.5] });
-		scroll(smallCircleAnimation, {
-			target: elParticipate,
-			offset: ['1 0.9', '0.5 0.25'],
-		});
-		const bigCircleAnimation = animate(elBigCircle, { rotate: [0, -44.48] });
-		scroll(bigCircleAnimation, {
-			target: elParticipate,
-			offset: ['1 0.8', '0.5 0.25'],
-		});
+		const participate = createTimeline({
+			autoplay: onScroll({
+				target: elParticipate,
+				enter: { target: '100%', container: '90%' },
+				leave: { target: '50%', container: '25%' },
+				sync: 0.75,
+				repeat: true,
+			}),
+		})
+			.add(elSmallCircle, {
+				x: '10rem',
+			})
+			.add(
+				elBigCircle,
+				{
+					rotate: '-44.7deg',
+				},
+				'<<+=50',
+			)
+			.init();
 
 		// animating rectangles in the share section
-		const rectAnimation = animate(elRect, { x: [-100, 0] });
-		scroll(rectAnimation, {
-			target: elShare,
-			offset: ['1 0.9', '0.5 0.25'],
-		});
+		const share = createTimeline({
+			autoplay: onScroll({
+				target: elShare,
+				enter: { target: '100%', container: '90%' },
+				leave: { target: '50%', container: '25%' },
+				sync: 0.75,
+				repeat: true,
+			}),
+		})
+			.add(elRect, {
+				x: ['-6.25rem', 0],
+			})
+			.init();
 
 		// animating rectangles in the sponsor section
 		const boxes = [box1, box2, box3, box4, box5];
-		const sponsorSequenceAnimation = animate(boxes.map(b => [b, { x: [-50, 0], opacity: [0, 1] }]));
-		scroll(sponsorSequenceAnimation, {
-			target: elSponsor,
-			offset: ['1 1', '1 0.5'],
-		});
+		const sponsor = createTimeline({
+			autoplay: onScroll({
+				target: elSponsor,
+				enter: { target: '100%', container: '90%' },
+				leave: { target: '50%', container: '25%' },
+				sync: 0.75,
+				repeat: true,
+			}),
+		})
+			.add(
+				boxes,
+				{
+					x: ['-3.125rem', 0],
+					opacity: [0, 1],
+				},
+				stagger(250, { start: '<<' }),
+			)
+			.init();
+
+		return () => {
+			participate.revert();
+			share.revert();
+			sponsor.revert();
+		};
 	});
 </script>
 
@@ -133,6 +169,7 @@
 		<section
 			class="tablet:items-center tablet:flex-row desktop:gap-20 flex flex-col items-center gap-10"
 			id="participate"
+			bind:this={elParticipate}
 		>
 			<div class="flex-1 space-y-6">
 				{@render actionHeading(1, m['pages.events.participate.heading'])}
@@ -146,10 +183,10 @@
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
 					viewBox="0 0 402 300"
-					bind:this={elParticipate}
 				>
 					<circle cx="31" cy="269.5" r="30.5" fill="currentcolor" bind:this={elSmallCircle} />
 					<path
+						class="relative origin-center"
 						fill="currentcolor"
 						d="M145.4 256A150 150 0 10103 171.2a30 30 0 1117 51 150 150 0 0025.4 33.9Z"
 						bind:this={elBigCircle}
@@ -162,6 +199,7 @@
 		<section
 			class="tablet:items-start tablet:flex-row-reverse desktop:gap-20 flex flex-col items-center gap-10"
 			id="share"
+			bind:this={elShare}
 		>
 			<div class="flex-1 space-y-6">
 				{@render actionHeading(2, m['pages.events.share.heading'])}
@@ -180,7 +218,6 @@
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
 					viewBox="0 0 400 300"
-					bind:this={elShare}
 				>
 					<path fill="currentcolor" d="M300 0V120H240v60h60V300H0V0H300Z" />
 					<path fill="currentcolor" d="M340 120h60v60h-60z" bind:this={elRect} />
@@ -192,6 +229,7 @@
 		<section
 			class="tablet:items-start tablet:flex-row desktop:gap-20 flex flex-col items-center gap-10"
 			id="sponsor"
+			bind:this={elSponsor}
 		>
 			<div class="flex-1 space-y-6">
 				{@render actionHeading(3, m['pages.events.sponsor.heading'])}
@@ -217,7 +255,6 @@
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
 					viewBox="0 0 235 182"
-					bind:this={elSponsor}
 				>
 					<path fill="currentcolor" d="M174.5 61h60v60h-60z" bind:this={box5} />
 					<path fill="currentcolor" d="M144.5 122h60v60h-60z" bind:this={box4} />
@@ -237,3 +274,9 @@
 		<EventListing events={data.events} origin={page.url.origin} />
 	</section>
 </main>
+
+<style lang="postcss">
+	path {
+		transform-box: fill-box;
+	}
+</style>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
-	import { animate, scroll } from 'motion';
+	import { onScroll, createTimeline, stagger } from 'animejs';
 
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
@@ -24,51 +24,41 @@
 	let elWrite: HTMLDivElement;
 
 	$effect(() => {
-		const cleanups: (() => void)[] = [];
-		const offset: [`${number} ${number}`, `${number} ${number}`] = [
-			'0.9 1',
-			settings.screen === 'desktop' ? '0.5 0.5' : '0 0.1',
-		];
+		if (settings.screen === 'mobile') return;
+		const timeline = createTimeline({
+			autoplay: onScroll({
+				target: elWrite,
+				enter: { target: '90%', container: '100%' },
+				leave:
+					settings.screen === 'desktop'
+						? { target: '50%', container: '50%' }
+						: { target: 'top', container: '10%' },
+				sync: 0.75,
+				repeat: true,
+			}),
+		})
+			.add(elPencilCurtain, {
+				scaleY: [1, 0],
+			})
+			.add(
+				Array.from(document.querySelectorAll('._tip')),
+				{
+					translateY: [10, 0],
+					opacity: [0, 1],
+				},
+				stagger(200, { start: '<<*=.2' }),
+			)
+			.add(
+				Array.from(document.querySelectorAll('._body')),
+				{
+					opacity: [0, 1],
+					scaleX: [0, 1],
+				},
+				stagger(200, { start: '<<*=.5' }),
+			)
+			.init();
 
-		if (settings.screen !== 'mobile') {
-			const tipAnimation = animate(
-				Array.from(document.querySelectorAll('._tip')).map((el) => [
-					el,
-					{ opacity: [0, 1], y: [10, 0] },
-				]),
-			);
-			cleanups.push(
-				scroll(tipAnimation, {
-					target: elWrite,
-					offset,
-				}),
-			);
-
-			const bodyAnimation = animate(
-				Array.from(document.querySelectorAll('._body')).map((el) => [
-					el,
-					{ opacity: [0, 1], scaleX: [0, 1] },
-				]),
-			);
-			cleanups.push(
-				scroll(bodyAnimation, {
-					target: elWrite,
-					offset,
-				}),
-			);
-
-			const pencilAnimation = animate(elPencilCurtain, { scaleY: [1, 0] });
-			cleanups.push(
-				scroll(pencilAnimation, {
-					target: elWrite,
-					offset,
-				}),
-			);
-		}
-
-		return () => {
-			cleanups.forEach((cleanup) => cleanup());
-		};
+		return timeline.revert;
 	});
 </script>
 
