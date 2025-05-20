@@ -122,7 +122,6 @@
 					>
 						<i class="i i-[ph--discord-logo] h-6 w-6"></i>
 						<T message={m['svelte_vietnam.discord']} />
-						Discord
 					</a>
 				</li>
 				<li>
