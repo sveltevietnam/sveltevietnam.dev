@@ -28,6 +28,7 @@
 	let scrollTimeline: Timeline | null = null;
 	onMount(() => {
 		introTimeline = createTimeline({
+			autoplay: false,
 			onComplete: () => {
 				scrollTimeline = createTimeline({
 					autoplay: onScroll({
@@ -39,11 +40,7 @@
 					}),
 				})
 					.add(elTitle, { opacity: 0, translateY: -200 }, 0)
-					.add(
-						elRectWasher,
-						{ opacity: 0, translateX: -80, translateY: -40 },
-						0
-					)
+					.add(elRectWasher, { opacity: 0, translateX: -80, translateY: -40 }, 0)
 					.add(elCone, { opacity: 0, translateX: 80, translateY: -40 }, 0)
 					.add(elPyramid, { opacity: 0, translateX: -20, rotate: 10 }, 0)
 					.add(elDisk, { opacity: 0, translateX: 20, rotate: -10 }, 0)
@@ -80,8 +77,7 @@
 				elDisk,
 				{ opacity: [0, 1], translateX: [20, 0], rotate: [-10, 0], ease: eases.outCubic },
 				'subtitle+=200',
-			)
-			.init();
+			);
 
 		return () => {
 			introTimeline?.revert();
@@ -89,10 +85,15 @@
 		};
 	});
 
-	// only do this when splashed screen after hydration
 	$effect(() => {
 		if (!introTimeline) return;
-		introTimeline.play();
+		if (!settings.splashed) {
+			introTimeline.init();
+		} else if (settings.splashed > settings.hydrated) {
+			introTimeline.play();
+		} else {
+			introTimeline.complete();
+		}
 	});
 </script>
 
