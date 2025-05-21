@@ -161,15 +161,18 @@ messages:
           others: 'Ngoài ra, bạn còn có thể:'
           newsletter:
             đăng ký nhận cập nhật tin tức về Svelte hàng tháng qua “<a class="c-link"
-            href="https://svelte.substack.com/">The (Unofficial) Svelte JS Newsletter</a>”,
+            href="https://svelte.substack.com/" target="_blank" rel="noreferrer noopener
+            external">The (Unofficial) Svelte JS Newsletter</a>”,
           madebysvelte:
             xem hoặc chia sẻ các dự án, sản phẩm về Svelte với cộng đồng quốc tế qua trang “<a
-            class="c-link" href="https://madewithsvelte.com/">Made by Svelte</a>”,
+            class="c-link" href="https://madewithsvelte.com/" target="_blank" rel="noreferrer
+            noopener external">Made by Svelte</a>”,
           jobs:
             theo dõi tin tức tức việc làm quốc tế qua kênh <a class="c-link"
-            href="https://discord.com/channels/457912077277855764/640884695890133012">#job-postings</a>
-            từ Discord chính thức của Svelte, hoặc qua trang “<a class="c-link"
-            href="https://sveltejobs.com/">Svelte Jobs</a>”.
+            href="https://discord.com/channels/457912077277855764/640884695890133012"
+            target="_blank" rel="noreferrer noopener external">#job-postings</a> từ Discord chính
+            thức của Svelte, hoặc qua trang “<a class="c-link" href="https://sveltejobs.com/"
+            target="_blank" rel="noreferrer noopener external">Svelte Jobs</a>”.
       events:
         heading: Sự kiện
         desc:

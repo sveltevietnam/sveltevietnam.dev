@@ -65,7 +65,7 @@
 		"vite-plugin-qrcode": "^0.2.4"
 	},
 	"dependencies": {
-		"gsap": "^3.13.0",
+		"animejs": "^4.0.2",
 		"lodash.debounce": "^4.0.8",
 		"mustache": "^4.2.0",
 		"valibot": "1.1.0"

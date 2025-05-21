@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import { onScroll, createTimeline, stagger } from 'animejs';
 
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
@@ -18,6 +19,47 @@
 	const routing = RoutingContext.get();
 
 	const commonArrowLinkClasses = 'group-hover:translate-x-1 transition-transform';
+
+	let elPencilCurtain: HTMLDivElement;
+	let elWrite: HTMLDivElement;
+
+	$effect(() => {
+		if (settings.screen === 'mobile') return;
+		const timeline = createTimeline({
+			autoplay: onScroll({
+				target: elWrite,
+				enter: { target: '90%', container: '100%' },
+				leave:
+					settings.screen === 'desktop'
+						? { target: '50%', container: '50%' }
+						: { target: 'top', container: '10%' },
+				sync: 0.75,
+				repeat: true,
+			}),
+		})
+			.add(elPencilCurtain, {
+				scaleY: [1, 0],
+			})
+			.add(
+				Array.from(document.querySelectorAll('._tip')),
+				{
+					translateY: [10, 0],
+					opacity: [0, 1],
+				},
+				stagger(200, { start: '<<*=.2' }),
+			)
+			.add(
+				Array.from(document.querySelectorAll('._body')),
+				{
+					opacity: [0, 1],
+					scaleX: [0, 1],
+				},
+				stagger(200, { start: '<<*=.5' }),
+			)
+			.init();
+
+		return () => timeline.revert();
+	});
 </script>
 
 {#snippet listingHeader({
@@ -72,8 +114,13 @@
 			<div
 				class="tablet:gap-8 tablet:p-8 desktop:gap-10 desktop:p-10 shadow-brutal-lg bg-surface
 				max-w-readable-relaxed mx-auto flex items-stretch gap-4 border-2 border-current p-4"
+				bind:this={elWrite}
 			>
-				<div class="text-primary flex flex-col gap-4">
+				<div class="text-primary relative flex flex-col gap-4">
+					<div
+						class="mobile:opacity-0 bg-surface absolute inset-0 origin-top"
+						bind:this={elPencilCurtain}
+					></div>
 					<svg
 						class="h-14 w-10"
 						width="40"
@@ -97,7 +144,7 @@
 						<div class="flex items-end gap-4">
 							{#each ['h-8', 'h-14', 'h-6', 'h-7'] as cls (cls)}
 								<svg
-									class={['text-surface-variant w-auto', cls]}
+									class={['_tip text-surface-variant w-auto', cls]}
 									width="40"
 									height="56"
 									viewBox="0 0 40 56"
@@ -119,9 +166,9 @@
 					</a>
 					<p><T message={m['pages.blog.write.discuss']} /></p>
 					<div class="tablet:gap-8 desktop:gap-10 flex items-end gap-4">
-						<div class="bg-surface-variant h-6 flex-1"></div>
-						<div class="bg-surface-variant h-8 w-8"></div>
-						<div class="bg-surface-variant h-10 flex-1"></div>
+						<div class="_body bg-surface-variant h-6 flex-1 origin-left"></div>
+						<div class="_body bg-surface-variant h-8 w-8 origin-left"></div>
+						<div class="_body bg-surface-variant h-10 flex-1 origin-left"></div>
 					</div>
 				</div>
 			</div>

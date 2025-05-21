@@ -1,11 +1,14 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 	import type { Message, MessageType } from '@sveltevietnam/i18n/runtime';
+	import { createTimeline, onScroll } from 'animejs';
 	import type { Picture } from 'vite-imagetools';
 
 	import { SOCIAL_LINKS } from '$data/links';
 	import * as m from '$data/locales/generated/messages';
+	import { SettingsContext } from '$lib/settings/context.svelte';
 
+	import StepContainer from './components/StepContainer.svelte';
 	import svgPuzzle from './images/puzzle.svg';
 	import screenshotDocs from './images/screenshot-svelte-docs.jpg?enhanced&w=1400;900;600;300&imagetools';
 	import screenshotGithub from './images/screenshot-svelte-github.jpg?enhanced&w=1400;900;600;300&imagetools';
@@ -16,11 +19,80 @@
 	import screenshotSummit from './images/screenshot-svelte-summit.jpg?enhanced&w=1400;900;600;300&imagetools';
 	import screenshotTutorial from './images/screenshot-svelte-tutorial.jpg?enhanced&w=1400;900;600;300&imagetools';
 
-	const sectionClasses = [
-		'relative bg-surface p-4 flex flex-col gap-8 max-w-256 mx-auto',
-		'tablet:p-10 tablet:gap-15',
-		'before:absolute before:-z-1 before:-inset-0.5 before:bg-gradient-to-b before:from-on-surface before:via-svelte before:to-transparent',
-	];
+	const settings = SettingsContext.get();
+
+	let elResources: HTMLElement;
+	let elCursor: SVGElement;
+
+	function createCursorTimeline() {
+		const clickPointElements = Array.from(elResources.getElementsByClassName('_click-point'));
+		const { x, y } = elCursor.getBoundingClientRect();
+		const clickPointCoors = [
+			{ x, y },
+			...clickPointElements.map((el, i) => {
+				const { top, left, height, right } = el.getBoundingClientRect();
+				if (i % 2 === 0) {
+					return { x: left, y: top + height / 2 };
+				}
+				return { x: right, y: top + height / 2 };
+			}),
+		];
+
+		const accumulatedDelta: { translateX: number; translateY: number }[] = [
+			{
+				translateX: 0,
+				translateY: 0,
+			},
+		];
+		for (let i = 1; i < clickPointCoors.length; i++) {
+			const { x: x1, y: y1 } = clickPointCoors[i - 1];
+			const { x: x2, y: y2 } = clickPointCoors[i];
+			const { translateX: accumulatedX, translateY: accumulatedY } = accumulatedDelta[i - 1];
+
+			accumulatedDelta.push({
+				translateX: accumulatedX + x2 - x1,
+				translateY: accumulatedY + y2 - y1,
+			});
+		}
+
+		const timeline = createTimeline({
+			autoplay: onScroll({
+				target: elResources,
+				enter: { target: '0%', container: '0%' },
+				leave: { target: '100%', container: '100%' },
+				sync: 0.75,
+				repeat: true,
+			}),
+		});
+		for (let i = 1; i < accumulatedDelta.length; i++) {
+			const { translateX, translateY } = accumulatedDelta[i];
+
+			// since timeline is scroll-linked (sync)
+			// duration here is relative to each other
+			// the three click points in between are set
+			// to be 2.2 times longer than the other ones
+			let duration = 1
+			if (i === 4 || i === 5 || i === 6) {
+				duration = 2.2
+			}
+
+			timeline.add(elCursor, {
+				opacity: i === accumulatedDelta.length - 1 ? 0 : 1,
+				translateX,
+				translateY,
+				rotateZ: i % 2 === 0 && i < accumulatedDelta.length - 1  ? '90deg' : '0deg',
+				duration,
+			});
+		}
+		return timeline;
+	}
+
+	$effect(() => {
+		// eslint-disable-next-line @typescript-eslint/no-unused-expressions
+		settings.screen;
+		const timeline = createCursorTimeline();
+		return () => timeline.revert();
+	});
 </script>
 
 {#snippet step(message: Message<'string', never>)}
@@ -50,10 +122,10 @@
 	footnote,
 }: {
 	description: Message<MessageType, never>;
-	links: { message: Message<MessageType, never>; href: string }[];
+	links: { message: Message<MessageType, never>; href: string; class?: string }[];
 	linksClasses?: string;
 	image:
-		| { message: Message<MessageType, never>; href: string; src: Picture }
+		| { message: Message<MessageType, never>; href: string; src: Picture; class?: string }
 		| { src: string; width: number; height: number };
 	footnote?: Message<MessageType, never>;
 })}
@@ -65,8 +137,13 @@
 				<T message={description} />
 			</p>
 			<div class="mobile:order-3 flex flex-col gap-6 {linksClasses}">
-				{#each links as { message, href } (href)}
-					<a class="c-btn c-btn--pop" {href}>
+				{#each links as { message, href, class: cls } (href)}
+					<a
+						class={['c-btn c-btn--pop', cls]}
+						{href}
+						target="_blank"
+						rel="noopener noreferrer external"
+					>
 						<span><T {message} /></span>
 						<i class="i i-[ph--arrow-square-out] h-6 w-6"></i>
 					</a>
@@ -94,7 +171,12 @@
 				class="from-primary to-tertiary mobile:order-2 tablet:flex-1 h-fit
 				bg-gradient-to-r p-0.5 group-odd:bg-gradient-to-l"
 			>
-				<a class="c-link-image block" href={image.href}>
+				<a
+					class={['c-link-image block', image.class]}
+					href={image.href}
+					target="_blank"
+					rel="noopener noreferrer external"
+				>
 					<span class="sr-only"><T message={image.message} /></span>
 					<enhanced:img
 						src={image.src}
@@ -110,10 +192,32 @@
 	</div>
 {/snippet}
 
-<section class="max-w-pad pb-section space-y-30" id="resources">
+<section
+	class="max-w-pad pb-section pt-section-more space-y-section-more relative"
+	id="resources"
+	bind:this={elResources}
+>
 	<h2 class="c-text-heading-lg text-center"><T message={m['pages.home.resources.heading']} /></h2>
+	<svg
+		class="_cursor z-popup transform-3d absolute left-1/2 top-0 m-auto block h-10 w-10
+		origin-top-left opacity-0 drop-shadow"
+		xmlns="http://www.w3.org/2000/svg"
+		width="40"
+		height="40"
+		fill="none"
+		bind:this={elCursor}
+	>
+		<path
+			fill="#FFA000"
+			d="M37.648 13.876 3.66 1.25A1.886 1.886 0 0 0 1.25 3.66l12.626 33.988a1.88 1.88 0 0 0 3.548-.093l4.659-14.925a.832.832 0 0 1 .547-.547l14.924-4.659a1.882 1.882 0 0 0 .094-3.548Z"
+		/>
+		<path
+			fill="#000"
+			d="M37.648 13.876 3.66 1.25A1.886 1.886 0 0 0 1.25 3.66l12.626 33.988a1.88 1.88 0 0 0 3.548-.093l4.659-14.925a.832.832 0 0 1 .547-.547l14.924-4.659a1.882 1.882 0 0 0 .094-3.548Zm-.466 2.355L22.257 20.89a2.086 2.086 0 0 0-1.367 1.367L16.23 37.182a.623.623 0 0 1-1.183.031L2.421 3.225c-.146-.64.274-.922.804-.804l33.988 12.627a.622.622 0 0 1-.03 1.183Z"
+		/>
+	</svg>
 
-	<section class={[...sectionClasses, 'tablet:max-desktop:pb-32']}>
+	<StepContainer class="tablet:max-desktop:pb-32">
 		<div class="relative flex items-center justify-between gap-4">
 			<div class="space-y-4">
 				{@render step(m['pages.home.resources.one.step'])}
@@ -133,6 +237,7 @@
 				{
 					message: m['pages.home.resources.one.tutorial.link'],
 					href: 'https://svelte.dev/tutorial',
+					class: '_click-point',
 				},
 			],
 			linksClasses: 'w-fit',
@@ -150,6 +255,7 @@
 				{
 					message: m['pages.home.resources.one.playground.link'],
 					href: 'https://svelte.dev/playground',
+					class: '_click-point',
 				},
 			],
 			linksClasses: 'w-fit',
@@ -163,7 +269,11 @@
 		{@render resource({
 			description: m['pages.home.resources.one.lab.desc'],
 			links: [
-				{ message: m['pages.home.resources.one.lab.link'], href: 'https://www.sveltelab.dev/' },
+				{
+					message: m['pages.home.resources.one.lab.link'],
+					href: 'https://www.sveltelab.dev/',
+					class: '_click-point',
+				},
 			],
 			linksClasses: 'ml-auto w-fit',
 			image: {
@@ -175,12 +285,12 @@
 
 		<svg
 			class="w-39.5 tablet:absolute desktop:left-6 desktop:bottom-6 widescreen:left-10
-			widescreen:bottom-10 bottom-2 left-2 h-auto"
+				widescreen:bottom-10 bottom-2 left-2 h-auto"
 			inline-src="./images/rect-washer"
 		></svg>
-	</section>
+	</StepContainer>
 
-	<section class={sectionClasses}>
+	<StepContainer>
 		<div class="mobile:flex-col relative flex items-center justify-between gap-4">
 			<svg class="h-18 mobile:self-start w-auto shrink-0" inline-src="./images/book"></svg>
 			<div class="mobile:-mt-10 flex flex-col items-end gap-4">
@@ -201,11 +311,12 @@
 				message: m['pages.home.resources.two.docs.link'],
 				href: 'https://svelte.dev/docs',
 				src: screenshotDocs,
+				class: '_click-point',
 			},
 		})}
-	</section>
+	</StepContainer>
 
-	<section class={sectionClasses}>
+	<StepContainer>
 		<div class="space-y-4">
 			{@render step(m['pages.home.resources.three.step'])}
 			<h3 class="c-text-heading-md text-right">
@@ -216,16 +327,20 @@
 		{@render resource({
 			description: m['pages.home.resources.three.desc'],
 			links: [
-				{ message: m['pages.home.resources.three.discord'], href: SOCIAL_LINKS.DISCORD },
+				{
+					message: m['pages.home.resources.three.discord'],
+					href: SOCIAL_LINKS.DISCORD,
+					class: '_click-point',
+				},
 				{ message: m['pages.home.resources.bluesky'], href: SOCIAL_LINKS.BLUESKY },
 				{ message: m['pages.home.resources.three.github'], href: SOCIAL_LINKS.GITHUB },
 			],
 			image: { src: svgPuzzle, width: 291, height: 159 },
 		})}
 		<p class="-mt-4"><T message={m['pages.home.resources.three.note']} /></p>
-	</section>
+	</StepContainer>
 
-	<section class={sectionClasses}>
+	<StepContainer>
 		<div class="flex items-start justify-between gap-4">
 			<svg class="h-20 w-20 shrink-0" inline-src="./images/svelte-society-logo"></svg>
 			<div class="flex flex-col items-end gap-4">
@@ -251,12 +366,16 @@
 					message: m['pages.home.resources.four.svelte.github.svelte_dev'],
 					href: 'https://github.com/sveltejs/svelte.dev',
 				},
-				{ message: m['pages.home.resources.bluesky'], href: 'https://bsky.app/profile/svelte.dev' },
+				{
+					message: m['pages.home.resources.bluesky'],
+					href: 'https://bsky.app/profile/svelte.dev',
+				},
 			],
 			image: {
 				message: m['pages.home.resources.four.svelte.github.svelte'],
 				href: 'https://github.com/sveltejs',
 				src: screenshotGithub,
+				class: '_click-point',
 			},
 		})}
 
@@ -280,6 +399,7 @@
 				message: m['pages.home.resources.four.society.website'],
 				href: 'https://www.sveltesociety.dev/',
 				src: screenshotSociety,
+				class: '_click-point',
 			},
 		})}
 
@@ -299,6 +419,7 @@
 				message: m['pages.home.resources.four.summit.website'],
 				href: 'https://www.sveltesummit.com/',
 				src: screenshotSummit,
+				class: '_click-point',
 			},
 		})}
 
@@ -314,6 +435,7 @@
 				message: m['pages.home.resources.four.hack.link'],
 				href: 'https://hack.sveltesociety.dev',
 				src: screenshotHack,
+				class: '_click-point',
 			},
 		})}
 
@@ -324,13 +446,17 @@
 			<ul>
 				<li><T message={m['pages.home.resources.four.newsletter']} /></li>
 				<li><T message={m['pages.home.resources.four.madebysvelte']} /></li>
-				<li><T message={m['pages.home.resources.four.jobs']} /></li>
+				<li class="_click-point"><T message={m['pages.home.resources.four.jobs']} /></li>
 			</ul>
 		</section>
-	</section>
+	</StepContainer>
 </section>
 
 <style>
+	._cursor {
+		will-change: transform, opacity;
+	}
+
 	.drop-cap::first-letter {
 		margin-right: 0.5rem;
 

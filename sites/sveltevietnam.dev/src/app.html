@@ -74,6 +74,7 @@
 			<script>
 				function stamp() {
 					document.documentElement.setAttribute('data-splashed-at', new Date().toISOString());
+					window.dispatchEvent(new CustomEvent('splash', { detail: new Date() }));
 				}
 
 				const splashEl = document.getElementById('splash');
