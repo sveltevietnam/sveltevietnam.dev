@@ -78,7 +78,7 @@ import Popup from './popup.svelte';
 
 ```svelte title="popup/popup.svelte"
 <!-- :::diff + -->
-<script>
+<script lang="ts">
   import { getContext } from 'svelte';
   import type { ReactiveStorage } from '@/reactive-storage.ts';
 
