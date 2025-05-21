@@ -4,6 +4,7 @@
 
 	import { dev, version } from '$app/environment';
 	import { navigating, page } from '$app/state';
+	import * as m from '$data/locales/generated/messages';
 	import { Footer } from '$lib/components/footer';
 	import { Header } from '$lib/components/header';
 	import { PageEditLink } from '$lib/components/page-edit-link';
@@ -37,7 +38,16 @@
 	setContext('t:lang', () => data.settings.language);
 
 	onMount(async () => {
-		// TODO: check delayed hydration
+		if (
+			settings.splashed &&
+			settings.hydrated &&
+			settings.hydrated.getTime() - settings.splashed.getTime() > 2000
+		) {
+			noti.toaster.info({
+				title: m['notifications.delayed_hydration.title'],
+				message: m['notifications.delayed_hydration.message'],
+			});
+		}
 
 		const key = 'show-v1-site-construction-noti';
 		if (!dev && localStorage.getItem(key) !== 'false') {
@@ -70,4 +80,3 @@
 
 <DialogPortal stack={dialog} />
 <NotificationPortal stack={noti.stack} />
-
