@@ -14,8 +14,7 @@
 
 	$effect(() => {
 		const inTransition = animate(elementForTransitionIn, {
-			opacity: [0, 1],
-			scale: [0.9, 1],
+			scale: [0.85, 1],
 			autoplay: onScroll({
 				target: section,
 				enter: { target: '0%', container: '100%' },

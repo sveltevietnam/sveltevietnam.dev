@@ -58,7 +58,7 @@
 			)
 			.init();
 
-		return timeline.revert;
+		return () => timeline.revert();
 	});
 </script>
 
