@@ -13,11 +13,11 @@ export class SettingsContext {
 	#preferredColorScheme = new MediaQuery('(prefers-color-scheme: dark)');
 
 	// $state
-	#hydrated = $state(false);
 	#userColorScheme = $state<App.ColorScheme>('system');
 	scrolllock = $state(false);
 	language = $state<App.Language>('en');
-	splashed = $state(false);
+	hydrated = $state<false | Date>(false);
+	splashed = $state<false | Date>(false);
 	splash = $state<App.SplashOption>('random');
 
 	// $derived
@@ -27,7 +27,6 @@ export class SettingsContext {
 		const resolved = user === 'system' ? system : user;
 		return { user, system, resolved };
 	});
-	readonly hydrated = $derived(this.#hydrated);
 	readonly screen = $derived<App.Screen>(
 		this.#desktopQuery.current ? 'desktop' : this.#tabletQuery.current ? 'tablet' : 'mobile',
 	);
@@ -48,7 +47,21 @@ export class SettingsContext {
 			document.documentElement.setAttribute('lang', this.language);
 		});
 
-		this.#hydrated = browser;
+		const splash = (date: Date) => {
+			this.splashed = date;
+		};
+		if (browser) {
+			if (document.documentElement.dataset.splashedAt) {
+				splash(new Date(document.documentElement.dataset.splashedAt));
+			} else {
+				window.addEventListener('splash', function listener(e) {
+					splash((e as CustomEvent<Date>).detail);
+					window.removeEventListener('splash', listener);
+				});
+			}
+		}
+
+		this.hydrated = browser ? new Date() : false;
 		this.#userColorScheme = settings.colorScheme;
 		this.language = settings.language;
 		this.splash = settings.splash;
