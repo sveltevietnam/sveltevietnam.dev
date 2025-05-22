@@ -4,8 +4,8 @@ import * as b from '$data/routes/generated/breadcrumbs';
 import { upsert } from '$lib/forms/subscriber/server';
 
 import type { Actions, PageServerLoad } from './$types';
-import ogImageEn from './_page/og-jobs.en.jpg?url';
-import ogImageVi from './_page/og-jobs.vi.jpg?url';
+import ogImageEn from './_page/images/og-jobs.en.jpg?url';
+import ogImageVi from './_page/images/og-jobs.vi.jpg?url';
 
 const ogImage = {
 	vi: ogImageVi,
