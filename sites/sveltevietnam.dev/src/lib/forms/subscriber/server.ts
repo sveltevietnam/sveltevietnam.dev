@@ -36,6 +36,7 @@ export const upsert = {
 		if (!form.valid) {
 			return fail(400, { form });
 		}
+		form.data.email = form.data.email.toLowerCase();
 
 		// check cloudflare turnstile captcha
 		const turnstile = await validateToken(form.data.turnstile, getClientAddress());
@@ -79,6 +80,7 @@ export const update = {
 		if (!form.valid) {
 			return fail(400, { form });
 		}
+		form.data.email = form.data.email.toLowerCase();
 
 		// check cloudflare turnstile captcha
 		const turnstile = await validateToken(form.data.turnstile, getClientAddress());
