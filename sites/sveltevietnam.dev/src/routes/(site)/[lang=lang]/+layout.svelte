@@ -14,7 +14,7 @@
 	import NotificationPortal from '$lib/notifications/components/NotificationPortal.svelte';
 	import { V1SiteConstruction } from '$lib/notifications/components/v1-site-construction';
 	import { NotificationContext } from '$lib/notifications/context.svelte';
-	import { RoutingContext } from '$lib/routing/context.svelte.js';
+	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	let { children, data } = $props();

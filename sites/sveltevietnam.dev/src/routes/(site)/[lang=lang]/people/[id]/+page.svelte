@@ -12,7 +12,7 @@
 	import { PersonLinks } from '$lib/components/person-links';
 	import { TextArrowLink } from '$lib/components/text-arrow-link';
 	import { RoutingContext } from '$lib/routing/context.svelte';
-	import { SettingsContext } from '$lib/settings/context.svelte.js';
+	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	let { data } = $props();
 

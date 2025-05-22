@@ -5,7 +5,7 @@
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
 	import { GradientBackground } from '$lib/components/gradient-background';
 	import { Pagination } from '$lib/components/pagination';
-	import { RoutingContext } from '$lib/routing/context.svelte.js';
+	import { RoutingContext } from '$lib/routing/context.svelte';
 
 	let { data } = $props();
 
