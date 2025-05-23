@@ -49,6 +49,15 @@ export async function loadPerson(
 	};
 }
 
+export async function loadAllPeople(
+	lang: App.Language,
+	optionalModules?: Partial<t.PersonOptionalModules> | true,
+): Promise<t.Person[]> {
+	return Promise.all(ids.map((id) => loadPerson(id, lang, optionalModules))).then((people) =>
+		people.filter(Boolean),
+	);
+}
+
 export async function loadPersonOgImage(
 	id: string,
 	lang: App.Language,

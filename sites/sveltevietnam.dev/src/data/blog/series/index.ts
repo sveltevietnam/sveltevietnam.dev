@@ -45,6 +45,12 @@ export async function loadBlogSeries(
 	};
 }
 
+export async function loadAllBlogSeries(lang: App.Language): Promise<t.BlogSeries[]> {
+	return Promise.all(ids.map((id) => loadBlogSeries(id, lang))).then((series) =>
+		series.filter(Boolean),
+	);
+}
+
 export async function loadBlogSeriesBySlug(
 	slug: string,
 	lang: App.Language,

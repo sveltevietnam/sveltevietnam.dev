@@ -115,6 +115,12 @@ export async function loadBlogPost(
 	return extendBlogPostMetadata(metadata, lang);
 }
 
+export async function loadAllBlogPosts(lang: App.Language): Promise<t.ExtendedBlogPostMetadata[]> {
+	return Promise.all(ids.map((id) => loadBlogPost(id, lang))).then((posts) =>
+		posts.filter(Boolean),
+	);
+}
+
 export async function loadBlogPosts(
 	lang: App.Language,
 	page: number,

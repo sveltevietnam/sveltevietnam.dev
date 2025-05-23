@@ -136,6 +136,12 @@ export async function loadEvents(
 	};
 }
 
+export async function loadAllEvents(lang: App.Language): Promise<t.EventMetadata[]> {
+	return Promise.all(ids.map((id) => loadEventMetadata(id, lang))).then((events) =>
+		events.filter(Boolean),
+	);
+}
+
 export async function loadEventsByPersonId(
 	lang: App.Language,
 	personId: string,
