@@ -8,11 +8,11 @@ export default definePerson((lang) => ({
 	...{
 		en: {
 			name: 'Nguyên Lê',
-			description: 'UI/UX designer — Member of Svelte Vietnam community',
+			description: 'UI/UX designer',
 		},
 		vi: {
 			name: 'Lê Nguyên',
-			description: 'Thiết kế viên UI/UX — Thành viên cộng đồng Svelte Việt Nam',
+			description: 'Thiết kế viên UI/UX',
 		},
 	}[lang],
 }));

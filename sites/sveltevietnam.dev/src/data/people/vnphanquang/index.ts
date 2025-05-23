@@ -9,11 +9,11 @@ export default definePerson((lang) => ({
 	...{
 		en: {
 			name: 'Quang Phan',
-			description: 'Developer, admin of Svelte Vietnam',
+			description: 'Developer, administrator',
 		},
 		vi: {
 			name: 'Phan Quang',
-			description: 'Lập trình viên, quản trị viên Svelte Việt Nam',
+			description: 'Lập trình viên, quản trị viên',
 		},
 	}[lang],
 }));
