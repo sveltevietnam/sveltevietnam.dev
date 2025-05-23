@@ -609,6 +609,27 @@ messages:
       title: Settings | Svelte Vietnam
       heading: Settings
       desc: Customize your experience at sveltevietnam.dev
+      color_scheme:
+        heading: Color Scheme
+        light: Light mode
+        dark: Dark mode
+        system: System default
+      language:
+        heading: Language
+      splash_screen:
+        heading: Splash Screen
+        desc:
+          Splash screen is the first scene upon your visit at sveltevietnam.dev. You may use the
+          playground below to test run a sample splash screen (Javascript must be enabled in
+          browser).
+        variants:
+          random: Random
+          short: Short
+          long: Long
+          disabled: Disabled
+      ctas:
+        default: Default
+        save: Save
     sponsor:
       title: Sponsor | Svelte Vietnam
       keywords: sponsor, contribute, finance
@@ -772,6 +793,9 @@ messages:
         have. Please find our contact info at the <a class="c-link" href="#footer">footer</a>. Thank
         you!
       not_again: Don't show again
+    settings:
+      default: Your settings have been reset to default.
+      saved: Your settings have been updated.
   dialogs:
     qr:
       title: QR Code

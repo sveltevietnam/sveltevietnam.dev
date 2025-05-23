@@ -9,6 +9,8 @@
 @import './animated/ia-3dots.css';
 @import './animated/ia-spinner.css';
 @import './i-sveltevietnam.css';
+@import './flags/i-flag-vn.css';
+@import './flags/i-flag-gb.css';
 
 @utility i {
 	@layer components {

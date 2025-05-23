@@ -7,9 +7,6 @@
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
-	import flagGb from './images/flag-gb.svg';
-	import flagVn from './images/flag-vn.svg';
-
 	let { open = $bindable(false), class: cls, ...rest }: HTMLAttributes<HTMLElement> & {
 		open?: boolean;
 	} = $props();
@@ -56,7 +53,7 @@
 						data-current={settings.language === 'vi'}
 					>
 						<!-- no need to announce this flag image -->
-						<img class="h-6 w-9" src={flagVn} alt="" width="36" height="24" />
+						<i class="i i-flag-vn h-6"></i>
 						<span class="sr-only"><T message={m['components.language_menu.switch_to']} /></span>
 						<span><T message={m['languages.vietnamese']} /></span>
 					</a>
@@ -69,7 +66,7 @@
 						href={routing.paths.en}
 					>
 						<!-- no need to announce this flag image -->
-						<img class="h-6 w-9" src={flagGb} alt="" width="36" height="24" />
+						<i class="i i-flag-gb h-6"></i>
 						<span class="sr-only"><T message={m['components.language_menu.switch_to']} /></span>
 						<span><T message={m['languages.english']} /></span>
 					</a>
