@@ -83,7 +83,7 @@
 			/>
 		</li>
 	</ul>
-{:else}
+{:else if posts.length === 3}
 	<ul class={['widescreen:grid-cols-2 widescreen:gap-0 grid grid-cols-1 gap-6', cls]} {...rest}>
 		{#if posts[0]}
 			<li
@@ -114,5 +114,50 @@
 			</li>
 		{/if}
 	</ul>
+{:else if posts.length === 2}
+	<ul class="grid grid-cols-1 gap-6 desktop:grid-cols-[1fr_1px_1fr]">
+		<li class="contents">
+			<BlogPostListItem post={posts[0]} />
+		</li>
+		<li class="contents">
+			<div class="desktop:w-px bg-outline desktop:h-full h-px w-full"></div>
+			<BlogPostListItem post={posts[1]} />
+		</li>
+	</ul>
+{:else}
+	<div class="_first">
+		<BlogPostListItem
+			post={posts[0]}
+			orientation={{ desktop: 'landscape' }}
+			titleFont={{ tablet: 'big' }}
+		/>
+	</div>
 {/if}
 
+<style lang="postcss">
+	@import '@sveltevietnam/css/medias';
+
+	._first {
+		:global {
+			& article {
+				@media (--widescreen) {
+					flex-direction: row-reverse;
+				}
+			}
+
+			& img {
+				@media (--desktop) {
+					max-width: calc(108 * var(--spacing));
+				}
+
+				@media (--widescreen) {
+					max-width: calc(120 * var(--spacing));
+				}
+
+				@media (width >= 90rem) {
+					max-width: calc(180 * var(--spacing));
+				}
+			}
+		}
+	}
+</style>
