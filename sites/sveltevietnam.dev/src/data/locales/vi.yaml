@@ -612,6 +612,27 @@ messages:
       title: Cài đặt | Svelte Vietnam
       heading: Cài đặt
       desc: Tùy chỉnh trải nghiệm của riêng bạn tại sveltevietnam.dev
+      color_scheme:
+        heading: Chế độ màu
+        light: Chế độ sáng
+        dark: Chế độ tối
+        system: Theo hệ thống
+      language:
+        heading: Ngôn ngữ
+      splash_screen:
+        heading: Màn hình chờ
+        desc:
+          Màn hình chờ là giao diện xuất hiện ban đầu khi bạn ghé thăm  sveltevietnam.dev. Bạn có
+          thể sử dụng giả lập dưới đây để chạy thử  màn hình chờ mẫu (trình duyệt cần bật
+          Javascript).
+        variants:
+          random: Ngẫu nhiên
+          short: Ngắn
+          long: Dài
+          disabled: Tắt
+      ctas:
+        default: Mặc định
+        save: Lưu
     sponsor:
       title: Tài trợ | Svelte Việt Nam
       keywords: tài trợ, đóng góp, tài chính
@@ -776,6 +797,9 @@ messages:
         Thông tin liên hệ được liệt kê tại <a class="c-link" href="#footer">mục cuối của trang
         web</a>. Xin cảm ơn!
       not_again: Không hiện lại
+    settings:
+      default: Cài đặt của bạn đã được đặt lại về mặc định.
+      saved: Cài đặt của bạn đã được lưu thành công.
   dialogs:
     qr:
       title: Mã QR
