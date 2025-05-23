@@ -38,7 +38,8 @@ What Nguyen may not say outright is how resourceful he is. He said that he doesn
   <img src={summarizer} class="mx-auto max-w-full" width="573" height="376" alt="screen capture: how chrome extension summerizer works" />
   <figcaption>Chrome extension: Summasizerrrr</figcaption>
 </figure>
-Nguyen’s story is a quiet spark in the big Svelte mosaic. It’s not about being perfect, or fast; it’s about showing up with care, making things for others, and learning your way through. We could all use a bit more of that spirit.
+<div class="c-callout c-callout--success c-callout--icon-trophy">Nguyen’s story is a quiet spark in the big Svelte mosaic. It’s not about being perfect, or fast; it’s about showing up with care, making things for others, and learning your way through.</div>
+ We could all use a bit more of that spirit.
 
 ## Resources Nguyen Recommends
 - [Google’s guide to modern web development](https://web.dev/)
