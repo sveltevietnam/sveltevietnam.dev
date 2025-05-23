@@ -66,6 +66,14 @@ pnpm create:post
 
 ### Step 4: Complete your Post Content
 
+<div class="c-callout c-callout--info">
+
+If you are using VSCode, open the project at the root directory instead of
+`sites/sveltevietnam.dev`, so that the editor settings under `.vscode`
+can be read.
+
+</div>
+
 Following step 3, you will need to finish you writing at two newly created files:
 
 - `.../content/en.md.svelte`: your writing in English,

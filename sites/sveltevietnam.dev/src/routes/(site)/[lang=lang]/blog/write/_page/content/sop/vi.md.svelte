@@ -72,6 +72,13 @@ pnpm create:post
 
 ### Bước 4: hoàn thiện bài viết
 
+<div class="c-callout c-callout--info">
+
+Nếu bạn dùng VSCode, hãy mở dự án tại thư mục gốc thay vì `sites/sveltevietnam.dev`,
+để VSCode có thể đọc được một số tùy chỉnh trong thư mục `.vscode`.
+
+</div>
+
 Theo sau bước 3, bạn cần hoàn thiện nội dung bài viết tại hai tệp vừa được tạo ra:
 
 - `.../content/vi.md.svelte`: nội dung bài viết bằng tiếng Việt,
