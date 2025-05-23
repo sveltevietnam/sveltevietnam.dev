@@ -30,11 +30,11 @@
 		"format": "prettier --write --ignore-path=../../.prettierignore --config=../../prettier.config.js ."
 	},
 	"devDependencies": {
-		"@aws-sdk/client-sesv2": "^3.810.0",
-		"@cloudflare/vite-plugin": "^1.2.2",
-		"@cloudflare/workers-types": "^4.20250515.0",
-		"@dotenvx/dotenvx": "^1.44.0",
-		"@libsql/client": "^0.15.6",
+		"@aws-sdk/client-sesv2": "^3.816.0",
+		"@cloudflare/vite-plugin": "^1.2.4",
+		"@cloudflare/workers-types": "^4.20250523.0",
+		"@dotenvx/dotenvx": "^1.44.1",
+		"@libsql/client": "^0.15.7",
 		"@paralleldrive/cuid2": "^2.2.2",
 		"@sveltevietnam/i18n": "workspace:*",
 		"@tsndr/cloudflare-worker-jwt": "^3.1.5",
@@ -43,14 +43,14 @@
 		"aws4fetch": "^1.0.20",
 		"drizzle-kit": "^0.31.1",
 		"drizzle-orm": "^0.43.1",
-		"drizzle-valibot": "^0.4.1",
-		"hono": "^4.7.9",
+		"drizzle-valibot": "^0.4.2",
+		"hono": "^4.7.10",
 		"mjml": "^4.15.3",
 		"mustache": "^4.2.0",
 		"picocolors": "^1.1.1",
 		"tiny-glob": "^0.2.9",
 		"valibot": "1.1.0",
 		"vite": "^6.3.5",
-		"wrangler": "^4.15.2"
+		"wrangler": "^4.16.1"
 	}
 }

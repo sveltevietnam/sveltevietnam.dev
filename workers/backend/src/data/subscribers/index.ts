@@ -100,6 +100,8 @@ export class SubscriberService extends RpcTarget {
 			};
 		}
 
+		// TODO: notify if email changes
+
 		// persist data
 		const { id, ...rest } = parsed.output;
 		await this.#orm
