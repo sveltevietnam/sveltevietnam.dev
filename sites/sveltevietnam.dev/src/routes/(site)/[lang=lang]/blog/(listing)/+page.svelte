@@ -175,9 +175,24 @@
 		</section>
 	</GradientBackground>
 
-	{#if data.categories.svelteAndKit}
+	{#if data.series.peopleOfSvelte && data.posts.peopleOfSvelte.length}
+		<!-- people-of-svelte -->
+		<section class="max-w-pad py-section tablet:space-y-8 space-y-6" id="people-of-svelte">
+			{@render listingHeader({
+				category: data.series.peopleOfSvelte.name,
+				href: p['/:lang/blog/series/:slug']({
+					lang: settings.language,
+					slug: data.series.peopleOfSvelte.slug,
+				}),
+				description: data.series.peopleOfSvelte.description,
+			})}
+			<BlogPostShowcase posts={data.posts.peopleOfSvelte}></BlogPostShowcase>
+		</section>
+	{/if}
+
+	{#if data.categories.svelteAndKit && data.posts.svelteAndKit.length}
 		<!-- svelte-and-kit -->
-		<section class="max-w-pad py-section tablet:space-y-8 space-y-6" id="svelteAndKit">
+		<section class="max-w-pad py-section tablet:space-y-8 space-y-6" id="svelte-and-kit">
 			{@render listingHeader({
 				category: data.categories.svelteAndKit.name,
 				href: p['/:lang/blog/categories/:slug']({
@@ -209,7 +224,7 @@
 		</section>
 	</GradientBackground>
 
-	{#if data.categories.insider}
+	{#if data.categories.insider && data.posts.insider.length}
 		<!-- insider -->
 		<section class="max-w-pad py-section tablet:space-y-8 space-y-6" id="insider">
 			{@render listingHeader({
