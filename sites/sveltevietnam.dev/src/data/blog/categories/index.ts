@@ -45,6 +45,12 @@ export async function loadBlogCategory(
 	};
 }
 
+export async function loadAllBlogCategories(lang: App.Language): Promise<t.BlogCategory[]> {
+	return Promise.all(ids.map((id) => loadBlogCategory(id, lang))).then((categories) =>
+		categories.filter(Boolean),
+	);
+}
+
 export async function loadBlogCategoryBySlug(
 	slug: string,
 	lang: App.Language,
