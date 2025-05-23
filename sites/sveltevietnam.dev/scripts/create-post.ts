@@ -148,7 +148,7 @@ const slug = {
 			.toLowerCase(),
 };
 
-const dirpath = path.join(cwd, 'src/data/blog/posts', `${year}${month}${day}-${slug.en}`);
+const dirpath = path.join(cwd, 'src/data/blog/posts', slug.en);
 const content_dirpath = path.join(dirpath, 'content');
 await fs.mkdir(content_dirpath, { recursive: true });
 const metadata_path = path.join(dirpath, 'metadata.ts');
