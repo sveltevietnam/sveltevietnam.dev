@@ -83,7 +83,9 @@
 				<div class="_logo-wrapper">
 					<div class="_logo w-26 h-26 i i-sveltevietnam -mr-2 block"></div>
 				</div>
-				<div class="_title pl-2.5"></div>
+				<div class="_title pl-2.5">
+					<svg class="w-44.5 h-19.5"  inline-src="splash-svelte-vietnam"></svg>
+				</div>
 			</div>
 		{/key}
 	</div>

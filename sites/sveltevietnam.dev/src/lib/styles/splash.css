@@ -39,23 +39,6 @@
 	._title {
 		position: relative;
 		animation-play-state: inherit;
-
-		&::before {
-			content: '';
-
-			display: block;
-
-			width: calc(44.5 * var(--spacing));
-			height: calc(19.5 * var(--spacing));
-
-			color: inherit;
-
-			background-color: currentcolor;
-
-			mask-image: url('$lib/assets/images/svg/splash-svelte-vietnam.svg');
-			mask-repeat: no-repeat;
-			mask-size: cover;
-		}
 	}
 
 	@keyframes splash-out {
