@@ -1,0 +1,13 @@
+@utility i-flag-vn {
+	@layer icons {
+		aspect-ratio: 3 / 2;
+		width: auto;
+		height: 1em;
+
+		background-color: transparent;
+		background-image: url('./vn.svg?inline');
+		background-size: 100% 100%;
+
+		mask-image: none;
+	}
+}
