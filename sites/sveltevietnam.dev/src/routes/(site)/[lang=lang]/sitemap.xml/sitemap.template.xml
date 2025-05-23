@@ -8,7 +8,7 @@
       {{#loc}}<loc>{{loc}}</loc>{{/loc}}
       {{^loc}}<loc>/</loc>{{/loc}}
       {{#lastmod}}<lastmod>{{lastmod}}</lastmod>{{/lastmod}}
-      {{#changereq}}<changefreq>{{changefreq}}</changefreq>{{/changereq}}
+      {{#changefreq}}<changefreq>{{changefreq}}</changefreq>{{/changefreq}}
       {{#priority}}<priority>{{priority}}</priority>{{/priority}}
       {{#alternates}}
         <xhtml:link
