@@ -79,7 +79,7 @@
 			</TextArrowLink>
 		</div>
 		{#if description}
-			<p class="max-w-readable">{description}</p>
+			<p class="max-w-readable-relaxed">{description}</p>
 		{/if}
 	</div>
 {/snippet}
