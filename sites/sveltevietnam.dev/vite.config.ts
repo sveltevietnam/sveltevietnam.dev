@@ -23,7 +23,6 @@ export default defineConfig({
 		 * @see {@link https://github.com/sveltejs/kit/issues/11793}
 		 */
 		include: [
-			'lodash.debounce',
 			'@floating-ui/dom',
 			'@svelte-put/lockscroll',
 			'@svelte-put/toc',
@@ -36,6 +35,8 @@ export default defineConfig({
 			'@svelte-put/avatar',
 			'@svelte-put/cloudflare-turnstile',
 			'@svelte-put/inline-svg',
+			'animejs',
+			'lodash.debounce',
 			'sveltekit-superforms',
 		],
 	},
