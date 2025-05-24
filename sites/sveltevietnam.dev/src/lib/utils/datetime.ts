@@ -15,6 +15,31 @@ export function isValidDate(str: Date | number | string) {
 	return !isNaN(new Date(str).getTime());
 }
 
+export function formatTimeDiff(date1: Date | number | string, date2 = new Date()) {
+	if (!isValidDate(date1) || !isValidDate(date2)) return 'invalid date(s)';
+	date1 = new Date(date1);
+	date2 = new Date(date2);
+	const diff = Math.abs(date1.getTime() - date2.getTime());
+
+	const seconds = Math.floor(diff / 1000);
+	if (seconds < 60) return `${seconds}sec`;
+
+	const minutes = Math.floor(seconds / 60);
+	if (minutes < 60) return `${minutes}min`;
+
+	const hours = Math.floor(minutes / 60);
+	if (hours < 24) return `${hours}hr`;
+
+	const days = Math.floor(hours / 24);
+	if (days < 30) return `${days}day`;
+
+	const months = Math.floor(days / 30);
+	if (months < 12) return `${months}mo`;
+
+	const years = Math.floor(months / 12);
+	return `${years}y`;
+}
+
 /**
  * format date to YYYY.MM.DD
  */

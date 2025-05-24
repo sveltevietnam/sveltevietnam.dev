@@ -283,6 +283,27 @@ messages:
       edit:
         intro: Found a typo or need to correct something?
         cta: Edit this blog post content on Github
+      comments:
+        heading: Comments
+        loading: Loading comments from Bluesky (needs javascript). Please hang tight...
+        empty:
+          There is no comments yet. Add yours now on <a class="c-link" href="{{url}}"
+          target="_blank" rel="noreferrer noopener external">Bluesky</a>!
+
+        see_all: See full discussion on
+        bluesky:
+          desc:
+            Give kudos, and join the conversation on <a class="c-link" href="{{url}}"
+            target="_blank" rel="noreferrer noopener external">Bluesky</a>!
+          stats:
+            like: likes
+            repost: reposts
+            reply: replies
+            loading: Loading statistics...
+          note:
+            'Note: comments are fetched directly from the <a class="c-link" rel="noopener noreferrer
+            external" href={{url}}>linked Bluesky post</a>. Embedded contents such as images are
+            omitted here.'
     blog_categories:
       title: Categories | Blog | Svete Vietnam
       keywords: blog, write, categories, classification
