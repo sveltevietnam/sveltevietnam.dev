@@ -1,9 +1,9 @@
 <script lang="ts" module>
-	import type { Picture } from "vite-imagetools";
+	import type { Picture } from 'vite-imagetools';
 
 	import { Avatar } from '$lib/components/avatar';
 
-	interface PersonProps	{
+	interface PersonProps {
 		name: string;
 		description?: string;
 		href?: string;
@@ -16,7 +16,14 @@
 </script>
 
 {#snippet avatarSnip(cls: string = '')}
-		<Avatar class="h-12 w-12 object-top {cls}" src={avatar} {name} border="ellipse" />
+	<Avatar
+		class="h-12 w-12 object-top {cls}"
+		src={avatar}
+		{name}
+		border="ellipse"
+		height="48"
+		width="48"
+	/>
 {/snippet}
 
 <article class="flex items-center gap-3">

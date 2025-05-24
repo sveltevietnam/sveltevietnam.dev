@@ -23,7 +23,7 @@
 	status="info"
 >
 	{#snippet icon()}
-		<Avatar class="h-6 w-6 shrink-0" src={avatarURL} alt="" {name} />
+		<Avatar class="h-6 w-6 shrink-0" src={avatarURL} alt="" {name} height="24" width="24" />
 	{/snippet}
 	<p><T message={m['notifications.discord_new_message.message']} {name} /></p>
 </BaseNotification>
