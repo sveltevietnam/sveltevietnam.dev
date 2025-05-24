@@ -1,4 +1,6 @@
 declare global {
+	declare const __BUILD_TIMESTAMP__: string;
+
 	declare module '*&imagetools' {
 		export default import('vite-imagetools').Picture;
 	}
