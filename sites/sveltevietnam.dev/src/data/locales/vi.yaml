@@ -72,6 +72,9 @@ messages:
           unknown:
             Có lỗi xảy ra trong quá trình cập nhật. Vui lòng thử lại sau. Xin lỗi vì sự bất tiện
             này.
+  rss:
+    desc: Nhận thông báo từ Svelte Việt Nam qua RSS
+    copyright: Bản quyền © {{year}} Svelte Việt Nam
   pages:
     home:
       title: Trang chủ | Svelte Việt Nam

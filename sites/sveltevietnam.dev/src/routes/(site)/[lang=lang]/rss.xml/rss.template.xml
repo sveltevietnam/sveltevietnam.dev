@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss
+  version="2.0"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:media="http://search.yahoo.com/mrss/"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+>
+  <channel>
+    <title>{{title}}</title>
+    <link>{{link}}</link>
+		<atom:link href="{{link}}/rss.xml" rel="self" type="application/rss+xml"/>
+		<language>{{lang}}</language>
+    <description>{{description}}</description>
+    <lastBuildDate>{{lastBuildDate}}</lastBuildDate>
+    <copyright>{{copyright}}</copyright>
+		<image>
+			<url>{{image.url}}</url>
+			<title>{{image.title}}</title>
+			<link>{{link}}</link>
+			<width>{{image.width}}</width>
+			<height>{{image.height}}</height>
+		</image>
+    {{#items}}
+			<item>
+				<title>{{title}}</title>
+				<description>{{description}}</description>
+				{{#creators}}<dc:creator>{{creators}}</dc:creator>{{/creators}}
+				<link>{{link}}</link>
+				<guid isPermaLink="false">{{guid}}</guid>
+				<pubDate>{{pubDate}}</pubDate>
+				{{#categories}}
+					<category domain="{{domain}}">{{name}}</category>
+				{{/categories}}
+				{{#image}}
+					<media:content
+						height="{{image.height}}"
+						width="{{image.width}}"
+						medium="image"
+						url="{{image.url}}"
+					/>
+					{{#image.credit}}
+						<media:credit>{{image.credit}}</media:credit>
+					{{/image.credit}}
+					{{#image.description}}
+						<media:description>
+							{{image.description}}
+						</media:description>
+					{{/image.description}}
+				{{/image}}
+			</item>
+    {{/items}}
+  </channel>
+</rss>
+
