@@ -17,7 +17,11 @@
 </script>
 
 {#if src}
-	<enhanced:img class={['avatar', cls]} data-border={border} {src} alt="" {...rest} />
+	{#if typeof src === 'string'}
+		<img class={['avatar', cls]} data-border={border} {src} alt="" {...rest} />
+	{:else}
+		<enhanced:img class={['avatar', cls]} data-border={border} {src} alt="" {...rest} />
+	{/if}
 {:else}
 	<img class={['avatar', cls]} data-border={border} src={uiAvatar(name)} alt="" {...rest} />
 {/if}
