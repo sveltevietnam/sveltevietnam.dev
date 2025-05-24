@@ -13,6 +13,9 @@ import { qrcode } from 'vite-plugin-qrcode';
 import routesConfig from './src/data/routes/routes.config';
 
 export default defineConfig({
+	define: {
+		__BUILD_TIMESTAMP__: JSON.stringify(Date.now()),
+	},
 	optimizeDeps: {
 		/**
 		 * pre-bundle in advance to prevent

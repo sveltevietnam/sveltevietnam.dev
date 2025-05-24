@@ -70,6 +70,9 @@ messages:
           unknown:
             Unable to update your subscription. Please try again later. We are sorry for the
             inconvenience.
+  rss:
+    desc: Subscribe to the RSS feed to get updates from Svelte Vietnam
+    copyright: Copyright © {{year}} Svelte Vietnam
   pages:
     home:
       title: Home | Svelte Vietnam
