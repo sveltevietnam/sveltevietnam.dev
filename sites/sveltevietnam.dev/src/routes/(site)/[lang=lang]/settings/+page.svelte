@@ -3,6 +3,7 @@
 	import { superForm } from 'sveltekit-superforms';
 
 	import { beforeNavigate } from '$app/navigation';
+	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { IntroSeparator } from '$lib/components/intro-separator';
@@ -65,15 +66,21 @@
 		disabled: m['pages.settings.splash_screen.variants.disabled'],
 	};
 
-	beforeNavigate(() => {
-		// Scenario 2: user changes language, causing redirection
-		// -> check and update color scheme accordingly & fire notification
-		if (settings.colorScheme.user !== $form.colorScheme) {
-			settings.setUserColorScheme($form.colorScheme);
+	beforeNavigate(({ from, to, type }) => {
+		if (
+			from?.url.pathname === page.url.pathname &&
+			to?.url.pathname !== page.url.pathname &&
+			type === 'goto'
+		) {
+			// Scenario 2: user changes language, causing redirection
+			// -> check and update color scheme accordingly & fire notification
+			if (settings.colorScheme.user !== $form.colorScheme) {
+				settings.setUserColorScheme($form.colorScheme);
+			}
+			noti.toaster.success({
+				message: m['notifications.settings.saved'],
+			});
 		}
-		noti.toaster.success({
-			message: m['notifications.settings.saved'],
-		});
 	});
 </script>
 
