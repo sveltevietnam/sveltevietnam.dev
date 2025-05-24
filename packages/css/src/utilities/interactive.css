@@ -1,0 +1,18 @@
+@utility interactive {
+	--duration: 250ms;
+	--easing: var(--ease-in);
+
+	transition-timing-function: var(--easing);
+	transition-duration: var(--duration);
+
+	@variant not-disabled {
+		@variant hover {
+			--duration: 100ms;
+			--easing: var(--ease-out);
+		}
+
+		@variant active {
+			--duration: 50ms;
+		}
+	}
+}

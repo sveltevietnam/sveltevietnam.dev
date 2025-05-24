@@ -289,6 +289,26 @@ messages:
       edit:
         intro: Bạn tìm thấy lỗi chính tả hay cần đính chính nội dung?
         cta: Sửa bài viết này tại Github
+      comments:
+        heading: Bình luận
+        loading: Đang tải bình luận từ Bluesky (cần javascript)...
+        empty:
+          Chưa có bình luận nào. Thêm bình luận của bạn tại <a class="c-link" href="{{url}}"
+          target="_blank" rel="noreferrer noopener external">Bluesky</a>!
+        see_all: Xem đầy đủ tại
+        bluesky:
+          desc:
+            Bình luận và chia sẻ bài viết này qua <a class="c-link" href="{{url}}" target="_blank"
+            rel="noreferrer noopener external">Bluesky</a>!
+          stats:
+            like: lượt thích
+            repost: lượt đăng lại
+            reply: lượt bình luận
+            loading: Đang tải...
+          note:
+            'Ghi chú: Bình luận được sao chép từ <a class="c-link" rel="noopener noreferrer
+            external" href={{url}}>bài đăng trên Bluesky</a>. Các nội dung tích hợp như hình ảnh
+            được lượt bỏ tại đây.'
     blog_categories:
       title: Chủ đề | Blog | Svelte Việt Nam
       keywords: blog, viết, chủ đề, phân loại

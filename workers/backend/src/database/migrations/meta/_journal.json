@@ -8,6 +8,13 @@
 			"when": 1747379334657,
 			"tag": "0000_init_with_subscribers_and_mails_tables",
 			"breakpoints": true
+		},
+		{
+			"idx": 1,
+			"version": "6",
+			"when": 1748106843849,
+			"tag": "0001_create_bluesky_posts_table",
+			"breakpoints": true
 		}
 	]
 }

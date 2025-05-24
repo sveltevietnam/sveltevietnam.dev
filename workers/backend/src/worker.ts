@@ -4,6 +4,7 @@ import { Hono } from 'hono';
 
 import { getOrm } from '$/database/orm';
 
+import { BlueskyPostService } from './data/bluesky-posts';
 import { MailService } from './data/mails';
 import { SubscriberService } from './data/subscribers';
 import {
@@ -15,12 +16,14 @@ import {
 export default class extends WorkerEntrypoint<Env> {
 	#subscribers: SubscriberService;
 	#mails: MailService;
+	#blueskyPosts: BlueskyPostService;
 
 	constructor(ctx: ExecutionContext, env: Env) {
 		super(ctx, env);
 		const orm = getOrm(env.d1);
 		this.#mails = new MailService(orm, env);
 		this.#subscribers = new SubscriberService(orm, this.#mails);
+		this.#blueskyPosts = new BlueskyPostService(orm);
 	}
 
 	subscribers() {
@@ -29,6 +32,10 @@ export default class extends WorkerEntrypoint<Env> {
 
 	mails() {
 		return this.#mails;
+	}
+
+	blueskyPosts() {
+		return this.#blueskyPosts;
 	}
 
 	async verify(token: string): Promise<JwtVerificationResult> {
