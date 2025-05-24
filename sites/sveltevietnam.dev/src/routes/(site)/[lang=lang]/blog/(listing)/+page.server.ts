@@ -3,6 +3,7 @@ import { searchBlogPosts, loadBlogPosts } from '$data/blog/posts';
 import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
+import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 import { upsert } from '$lib/forms/subscriber/server';
 import { buildStructuredBlog } from '$lib/meta/structured/blog';
 
@@ -58,7 +59,7 @@ export const load: PageServerLoad = async ({ params }) => {
 			og: {
 				image: ogImage[lang],
 			},
-			structured: buildStructuredBlog(lang),
+			structured: buildStructuredBlog(lang, VITE_PUBLIC_ORIGIN),
 		},
 	};
 };

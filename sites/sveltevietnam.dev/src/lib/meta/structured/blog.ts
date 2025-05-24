@@ -57,7 +57,7 @@ export function buildStructuredBlogCategoryPage(
 	compact = false,
 ): CollectionPage {
 	const canonical = origin + p['/:lang/blog/categories/:slug']({ lang, slug: category.slug });
-	const { publisher, ...blog } = buildStructuredBlog(lang);
+	const { publisher, ...blog } = buildStructuredBlog(lang, origin);
 	return {
 		'@type': 'CollectionPage',
 		'@id': `${origin}/blog/categories/${category.id}`,
@@ -90,7 +90,7 @@ export function buildStructuredBlogPost(
 	post: import('$data/blog/posts').ExtendedBlogPostMetadata,
 ): BlogPosting {
 	const canonical = origin + p['/:lang/blog/:slug']({ lang, slug: post.slug });
-	const { publisher, ...blog } = buildStructuredBlog(lang);
+	const { publisher, ...blog } = buildStructuredBlog(lang, origin);
 	const id = `${blog['@id']}/${post.id}`;
 
 	return {
