@@ -29,7 +29,7 @@ export const entries: EntryGenerator = () => {
 	return generateKitEntries();
 };
 
-export const load: PageServerLoad = async ({ params }) => {
+export const load: PageServerLoad = async ({ params, platform }) => {
 	const { lang } = params;
 	const post = await loadBlogPostBySlug(params.slug, lang);
 	if (!post) {
@@ -66,7 +66,26 @@ export const load: PageServerLoad = async ({ params }) => {
 		}),
 	} as Record<App.Language, string>;
 
+	let bluesky: { url: string; uri: string } | null = null;
+	try {
+		if (platform?.env?.backend) {
+			const blueskyPost = await platform.env.backend.blueskyPosts().getByPostId(post.id);
+			if (blueskyPost) {
+				const { blueskyAccountId, blueskyPostId } = blueskyPost;
+				bluesky = {
+					url: `https://bsky.app/profile/${blueskyAccountId}/post/${blueskyPostId}`,
+					uri: `at://${blueskyAccountId}/app.bsky.feed.post/${blueskyPostId}`,
+				};
+			}
+		}
+	} catch (e) {
+		// if in dev, make sure you start the backend worker **beforehand**
+		// i.e `cd workers/backend && pnpm dev:wrangler`
+		console.error(e);
+	}
+
 	return {
+		bluesky,
 		contentEditUrl: `https://github.com/sveltevietnam/sveltevietnam.dev/edit/v1/sites/sveltevietnam.dev/src/data/blog/posts/${post.id}/content/${lang}.md.svelte`,
 		lang,
 		post,
