@@ -1,5 +1,6 @@
 import { loadBlogCategory } from '$data/blog/categories';
 import { searchBlogPosts, loadBlogPosts } from '$data/blog/posts';
+import { loadBlogSeries } from '$data/blog/series';
 import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
@@ -18,14 +19,22 @@ const ogImage = {
 
 export const load: PageServerLoad = async ({ params }) => {
 	const { lang } = params;
-	const [catSvelteAndKit, catInsider] = await Promise.all([
+	const [seriesPeopleOfSvelte, catSvelteAndKit, catInsider] = await Promise.all([
+		loadBlogSeries('people-of-svelte', lang),
 		loadBlogCategory('svelte-and-kit', lang),
 		loadBlogCategory('insider', lang),
 	]);
 
 	const { posts: latest } = await loadBlogPosts(lang, 1, 4);
-	const [svelteAndKit, insider] = await Promise.all(
-		['svelte-and-kit', 'insider'].map((categoryId) =>
+	const [peopleOfSvelte, svelteAndKit, insider] = await Promise.all([
+		...['people-of-svelte'].map((seriesId) =>
+			searchBlogPosts({
+				lang,
+				where: { seriesId },
+				pagination: { per: 3, page: 1 },
+			}),
+		),
+		...['svelte-and-kit', 'insider'].map((categoryId) =>
 			searchBlogPosts({
 				lang,
 				where: { categoryId },
@@ -33,15 +42,19 @@ export const load: PageServerLoad = async ({ params }) => {
 				excludedIds: latest.map((post) => post.id),
 			}),
 		),
-	);
+	]);
 
 	return {
+		series: {
+			peopleOfSvelte: seriesPeopleOfSvelte,
+		},
 		categories: {
 			svelteAndKit: catSvelteAndKit,
 			insider: catInsider,
 		},
 		posts: {
 			latest,
+			peopleOfSvelte: peopleOfSvelte.posts,
 			svelteAndKit: svelteAndKit.posts,
 			insider: insider.posts,
 		},
