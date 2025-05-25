@@ -80,7 +80,8 @@
 				opacity: i === accumulatedDelta.length - 1 ? 0 : 1,
 				translateX,
 				translateY,
-				rotateZ: i % 2 === 0 && i < accumulatedDelta.length - 1  ? '90deg' : '0deg',
+				// rotateZ: i % 2 === 0 && i < accumulatedDelta.length - 1  ? '90deg' : '0deg',
+				scale: [1, 0.75, 1],
 				duration,
 			});
 		}
