@@ -98,7 +98,7 @@
 </script>
 
 <section
-	class="max-w-pad -mt-header relative flex min-h-svh flex-col items-center justify-center"
+	class="max-w-pad -mt-header relative flex min-h-svh flex-col items-center justify-center overflow-hidden"
 	bind:this={elSection}
 >
 	<div class="space-y-15 tablet:space-y-20 desktop:space-y-24">
