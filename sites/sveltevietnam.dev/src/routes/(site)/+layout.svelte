@@ -101,7 +101,6 @@
 	});
 
 	function handleUmamiLoad() {
-		console.log(window.umami.identify);
 		window.umami?.identify({
 			language: settings.language,
 			systemColorScheme: settings.colorScheme.system,
