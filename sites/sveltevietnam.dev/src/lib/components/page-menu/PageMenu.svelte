@@ -78,7 +78,11 @@
 	{...rest}
 >
 	{#if !flat}
-		<label class="c-link-lazy flex cursor-pointer items-center gap-2 p-2 transition-colors">
+		<label
+			class="c-link-lazy flex cursor-pointer items-center gap-2 p-2 transition-colors"
+			data-umami-event="toggle-page-menu"
+			data-umami-event-open={open}
+		>
 			<input class="peer sr-only" type="checkbox" name="page-menu" bind:checked={open} />
 			<i class="i i-[ph--compass] h-6 w-6"></i>
 			<span class="sr-only peer-checked:hidden"><T message={m.open} /></span>

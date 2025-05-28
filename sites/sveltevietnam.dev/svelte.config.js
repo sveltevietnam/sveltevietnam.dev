@@ -18,7 +18,13 @@ export default {
 	extensions: ['.md.svelte', '.svelte'],
 	preprocess: [
 		markdown(),
-		externalLink(['www.sveltevietnam.dev', 'sveltevietnam.dev']),
+		externalLink({
+			hosts: ['www.sveltevietnam.dev', 'sveltevietnam.dev'],
+			attributes: {
+				target: '_blank',
+				rel: 'noopener noreferrer external',
+			},
+		}),
 		autoSlug((defaultOptions) => ({
 			tags: ['h2', 'h3', 'h4', 'h5', 'h6'],
 			files: ({ filename }) => {

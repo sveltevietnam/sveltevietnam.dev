@@ -35,8 +35,7 @@
 					<a
 						class="c-btn c-btn--pop flex items-center justify-between"
 						href={SOCIAL_LINKS.DISCORD}
-						target="_blank"
-						rel="noreferrer noopener"
+						data-external
 					>
 						<span><T message={m['pages.coc.contact.discord']} /></span>
 						<i class="i i-[ph--arrow-square-out] h-6 w-6"></i>
@@ -46,8 +45,7 @@
 					<a
 						class="c-btn c-btn--pop flex items-center justify-between"
 						href="mailto:{EMAILS.COC}"
-						target="_blank"
-						rel="noreferrer noopener"
+						data-external
 					>
 						<span><T message={m['pages.coc.contact.email']} /> {EMAILS.COC}</span>
 						<i class="i i-[ph--arrow-square-out] h-6 w-6"></i>

@@ -42,6 +42,8 @@
 >
 	<label
 		class="_toggler-label c-link-lazy flex cursor-pointer items-center gap-2 p-2 transition-colors"
+		data-umami-event="toggle-color-scheme-menu"
+		data-umami-event-open={open}
 	>
 		<input
 			class="_toggler peer sr-only"

@@ -98,8 +98,7 @@
 						<a
 							class="c-link"
 							href="mailto:{EMAILS.JOBS}"
-							target="_blank"
-							rel="noreferrer noopener external"
+							data-external
 						>
 							{EMAILS.JOBS}
 						</a>

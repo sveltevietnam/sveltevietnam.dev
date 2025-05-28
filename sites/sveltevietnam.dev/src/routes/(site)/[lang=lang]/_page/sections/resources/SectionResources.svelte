@@ -142,8 +142,9 @@
 					<a
 						class={['c-btn c-btn--pop', cls]}
 						{href}
-						target="_blank"
-						rel="noopener noreferrer external"
+						data-external
+						data-umami-event="click-homepage-resource-link"
+						data-umami-event-url={href}
 					>
 						<span><T {message} /></span>
 						<i class="i i-[ph--arrow-square-out] h-6 w-6"></i>
@@ -175,8 +176,9 @@
 				<a
 					class={['c-link-image block', image.class]}
 					href={image.href}
-					target="_blank"
-					rel="noopener noreferrer external"
+					data-external
+					data-umami-event="click-homepage-resource-link"
+					data-umami-event-url={image.href}
 				>
 					<span class="sr-only"><T message={image.message} /></span>
 					<enhanced:img

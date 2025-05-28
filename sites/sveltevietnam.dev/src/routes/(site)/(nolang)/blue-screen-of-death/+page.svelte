@@ -16,7 +16,7 @@
 	</p>
 	<p>As with anything, try turning it off and on again.</p>
 	<div class="flex items-center gap-6">
-		<a class="contents" href={SOCIAL_LINKS.DISCORD} target="_blank" rel="noopener">
+		<a class="contents" href={SOCIAL_LINKS.DISCORD} data-external>
 			<QR class="h-32 w-32" data={SOCIAL_LINKS.DISCORD} logo={dark} shape="circle" width="128" height="128" />
 		</a>
 		<div class="space-y-2 text-base">
