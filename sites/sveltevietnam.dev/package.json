@@ -51,6 +51,7 @@
 		"@total-typescript/ts-reset": "^0.6.1",
 		"@types/lodash.debounce": "^4.0.9",
 		"@types/mustache": "^4.2.6",
+		"@types/umami-browser": "^2.13.0",
 		"dedent": "^1.6.0",
 		"normalize-diacritics": "^5.0.0",
 		"picocolors": "^1.1.1",

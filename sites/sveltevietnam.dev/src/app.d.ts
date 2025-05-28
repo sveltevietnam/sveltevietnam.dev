@@ -1,8 +1,14 @@
+/// <reference types="umami-browser" />
+
 declare global {
 	declare const __BUILD_TIMESTAMP__: string;
 
 	declare module '*&imagetools' {
 		export default import('vite-imagetools').Picture;
+	}
+
+	interface Window {
+		umami?: umami.umami;
 	}
 
 	namespace App {

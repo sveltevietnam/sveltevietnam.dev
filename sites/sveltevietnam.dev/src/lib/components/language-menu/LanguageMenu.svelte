@@ -30,7 +30,11 @@
 	onclickoutside={() => (open = false)}
 	{...rest}
 >
-	<label class="c-link-lazy flex cursor-pointer items-center gap-2 p-2 transition-colors">
+	<label
+		class="c-link-lazy flex cursor-pointer items-center gap-2 p-2 transition-colors"
+		data-umami-event="toggle-language-menu"
+		data-umami-event-open={open}
+	>
 		<input class="peer sr-only" type="checkbox" name="language-menu" bind:checked={open} />
 		<i class="i i-[ph--translate] h-6 w-6"></i>
 		<span class="sr-only peer-checked:hidden"><T message={m.open} /></span>

@@ -337,6 +337,9 @@ importers:
       '@types/mustache':
         specifier: ^4.2.6
         version: 4.2.6
+      '@types/umami-browser':
+        specifier: ^2.13.0
+        version: 2.13.0
       dedent:
         specifier: ^1.6.0
         version: 1.6.0
@@ -2202,6 +2205,9 @@ packages:
 
   '@types/node@22.15.21':
     resolution: {integrity: sha512-EV/37Td6c+MgKAbkcLG6vqZ2zEYHD7bvSrzqqs2RIhbA6w3x+Dqz8MZM3sP6kGTeLrdoOgKZe+Xja7tUB2DNkQ==}
+
+  '@types/umami-browser@2.13.0':
+    resolution: {integrity: sha512-kKIrJk1REFefrIOrSeJAy9dMEuvalcc4R7bz8Di1gXLJwBu+cEk0XBzYSy0Q0uWDJERsn8oHJv5uUTExQRqdKw==}
 
   '@types/unist@3.0.3':
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
@@ -7991,6 +7997,8 @@ snapshots:
   '@types/node@22.15.21':
     dependencies:
       undici-types: 6.21.0
+
+  '@types/umami-browser@2.13.0': {}
 
   '@types/unist@3.0.3': {}
 

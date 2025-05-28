@@ -15,7 +15,14 @@
 </script>
 
 <p class={['max-w-pad c-text-body-sm py-2 text-right', cls]} {...rest}>
-	<a class="c-link" {href} data-external>
+	<a
+		class="c-link"
+		{href}
+		data-external
+		data-umami-event="click-edit-page-link"
+		data-umami-event-url={href}
+		data-umami-event-type="page"
+	>
 		<T message={m['components.page_edit_link.link']} />
 	</a>
 	<HintedText class="ml-1 cursor-help">

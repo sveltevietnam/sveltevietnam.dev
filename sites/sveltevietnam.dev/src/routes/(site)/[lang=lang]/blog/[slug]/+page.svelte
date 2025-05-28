@@ -192,7 +192,14 @@
 			{/if}
 			<p class="c-text-body-sm mt-6 border-t pt-2">
 				<T message={m['pages.blog_slug.edit.intro']} />
-				<a class="c-link" href={data.contentEditUrl} data-external>
+				<a
+					class="c-link"
+					href={data.contentEditUrl}
+					data-external
+					data-umami-event="click-edit-page-link"
+					data-umami-event-url={data.contentEditUrl}
+					data-umami-event-type="post"
+				>
 					<T message={m['pages.blog_slug.edit.cta']} />
 				</a>
 			</p>
