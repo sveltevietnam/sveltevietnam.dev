@@ -40,7 +40,7 @@ Chú ý rằng, ta phát ra một [CustomEvent](https://developer.mozilla.org/en
 
 ```html title=my-page.html
 <script type="module">
-  import { clickoutside } from 'clickoutside.js';
+  import { clickoutside } from './clickoutside.js';
 
   // tham chiếu đến phần tử cần thiết
   const node = document.getElementById('my-element');
@@ -61,7 +61,7 @@ Khá đơn giản đúng ko nào. Vậy còn đối với framework yêu thích 
 
 ```svelte title=my-page.svelte
 <script>
-  import { clickoutside } from 'clickoutside.js';
+  import { clickoutside } from './clickoutside.js';
 
   const handleClickOutside = () => { /* ... */ };
 </script>

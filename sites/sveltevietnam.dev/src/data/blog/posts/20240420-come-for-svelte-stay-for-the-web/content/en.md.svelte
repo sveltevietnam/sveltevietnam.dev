@@ -40,7 +40,7 @@ Note that, we dispatch a [CustomEvent](https://developer.mozilla.org/en-US/docs/
 
 ```html title=my-page.html
 <script type="module">
-  import { clickoutside } from 'clickoutside.js';
+  import { clickoutside } from './clickoutside.js';
 
   // reference tot he element
   const node = document.getElementById('my-element');
@@ -61,7 +61,7 @@ Simple enough? Now how would you do it with your favorite framework? The followi
 
 ```svelte title=my-page.svelte
 <script>
-  import { clickoutside } from 'clickoutside.js';
+  import { clickoutside } from './clickoutside.js';
 
   const handleClickOutside = () => { /* ... */ };
 </script>
