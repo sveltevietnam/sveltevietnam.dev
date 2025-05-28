@@ -277,8 +277,7 @@
 		<a
 			class="c-link-lazy @sm:gap-6 @max-xs:col-span-2 @max-xs:justify-self-center flex flex-wrap items-center gap-4"
 			href={url}
-			target="_blank"
-			rel="noopener noreferrer external"
+			data-external
 		>
 			<dl class="contents">
 				{#each Object.entries(BLUESKY_STATS_CONFIG) as [key, { icon, message }] (key)}
@@ -307,7 +306,7 @@
 				<li>
 					<article class={['relative flex items-start gap-3', hasNext && 'pb-4']}>
 						<div class="z-1 bg-surface relative shrink-0 p-1">
-							<a target="_blank" href={profileUrl} rel="noopener noreferrer external">
+							<a href={profileUrl} data-external>
 								<Avatar
 									class="h-10 w-10 rounded-full"
 									name={thread.post.author.displayName || 'What'}
@@ -321,9 +320,8 @@
 							<p>
 								<a
 									class="c-link-preserved"
-									target="_blank"
 									href={profileUrl}
-									rel="noopener noreferrer external"
+									data-external
 								>
 									<span class="font-bold">
 										{thread.post.author.displayName}
@@ -381,12 +379,7 @@
 							{#if aggregated.hasMoreReplies}
 								<p class="border-outline border-t pt-1 text-right">
 									<T message={m['pages.blog_slug.comments.see_all']} />
-									<a
-										class="c-link"
-										href={data.bluesky.url}
-										target="_blank"
-										rel="noopener noreferrer external"
-									>
+									<a class="c-link" href={data.bluesky.url} data-external>
 										Bluesky
 									</a>
 								</p>
@@ -418,9 +411,10 @@
 									'@xs:row-span-2',
 								]}
 								href={data.bluesky.url}
-								rel="noopener noreferrer external"
-								target="_blank"
-							></a>
+								data-external
+							>
+								<span class="sr-only">Bluesky</span>
+							</a>
 							<p class="font-bold">
 								<T message={m['pages.blog_slug.comments.bluesky.desc']} url={data.bluesky.url} />
 							</p>

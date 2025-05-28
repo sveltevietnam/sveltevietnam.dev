@@ -207,7 +207,7 @@
 					<T message={m['pages.events.share.desc']} />
 					<br /><br />
 					Email
-					<a class="c-link" href="mailto:{EMAILS.EVENTS}" rel="noreferrer" target="_blank">
+					<a class="c-link" href="mailto:{EMAILS.EVENTS}" data-external>
 						{EMAILS.EVENTS}
 					</a>
 				</p>

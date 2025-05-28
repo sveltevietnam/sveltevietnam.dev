@@ -55,14 +55,10 @@
 			<p class="max-w-readable-relaxed leading-relaxed">
 				<T message={m['pages.sponsor.highlight.desc']} />
 			</p>
-			<a
-				class="c-btn c-btn--pop block w-fit"
-				href={SOCIAL_LINKS.OPEN_COLLECTIVE}
-				target="_blank"
-				rel="noopener noreferrer external"
-				><T message={m['pages.sponsor.highlight.cta']} />
-				<i class="i i-[ph--arrow-square-out] h-6 w-6"></i></a
-			>
+			<a class="c-btn c-btn--pop block w-fit" href={SOCIAL_LINKS.OPEN_COLLECTIVE} data-external>
+				<T message={m['pages.sponsor.highlight.cta']} />
+				<i class="i i-[ph--arrow-square-out] h-6 w-6"></i>
+			</a>
 			<p>
 				<T message={m['pages.sponsor.highlight.contact']} />
 				<a class="c-link" href="mailto:{EMAILS.SPONSOR}" rel="noopener noreferrer"
@@ -85,8 +81,7 @@
 				<a
 					class="c-btn c-btn--pop flex justify-between"
 					href={SOCIAL_LINKS.DISCORD}
-					target="_blank"
-					rel="noopener noreferrer external"
+					data-external
 				>
 					<T message={m['pages.sponsor.participate.discord']} />
 					<i class="i i-[ph--arrow-square-out] h-6 w-6"></i>
@@ -112,9 +107,8 @@
 				<a
 					class="c-btn c-btn--pop flex w-full items-center justify-between"
 					href={SOCIAL_LINKS.GITHUB}
-					target="_blank"
-					rel="noopener noreferrer external"
-					>
+					data-external
+				>
 					<T message={m['pages.sponsor.participate.github']} />
 					<i class="i i-[ph--arrow-square-out] h-6 w-6"></i>
 				</a>

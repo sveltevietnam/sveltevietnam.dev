@@ -128,8 +128,7 @@
 					<a
 						class="c-link-lazy flex items-center gap-2 py-1"
 						href="mailto:{EMAILS.CONTACT}"
-						rel="noreferrer"
-						target="_blank"
+						data-external
 					>
 						<i class="i i-[ph--envelope-simple] h-6 w-6"></i>
 						{EMAILS.CONTACT}
