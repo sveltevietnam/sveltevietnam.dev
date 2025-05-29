@@ -57,6 +57,8 @@ export const upsert = {
 				console.error(result.errors);
 				error(500, { code: 'SV001', message: 'Integration error' });
 			}
+
+			return { form, action: result.action };
 		} catch (e) {
 			// TODO: error logging
 			console.error(e);

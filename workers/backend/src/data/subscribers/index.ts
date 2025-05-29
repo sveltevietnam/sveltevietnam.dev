@@ -8,8 +8,8 @@ import { ORM } from '$/database/orm';
 import { mergeMasks } from './channels';
 import {
 	SubscriberInsertSchema,
-	type SubscriberInsertInput,
-	type SubscriberInsertResult,
+	type SubscriberUpsertInput,
+	type SubscriberUpsertResult,
 	SubscriberUpdateSchema,
 	type SubscriberUpdateInput,
 	type SubscriberUpdateResult,
@@ -42,7 +42,7 @@ export class SubscriberService extends RpcTarget {
 		return v.parse(SubscriberSelectSchema, result[0]);
 	}
 
-	async upsert(input: SubscriberInsertInput): Promise<SubscriberInsertResult> {
+	async upsert(input: SubscriberUpsertInput): Promise<SubscriberUpsertResult> {
 		// validate
 		const parsed = v.safeParse(SubscriberInsertSchema, input);
 		if (!parsed.success) {
@@ -73,7 +73,7 @@ export class SubscriberService extends RpcTarget {
 				},
 			});
 
-			return { success: true, id };
+			return { success: true, id, action: 'insert' };
 		}
 
 		// update
@@ -87,7 +87,7 @@ export class SubscriberService extends RpcTarget {
 			})
 			.where(eq(subscribers.id, subscriber.id));
 
-		return { success: true, id: subscriber.id };
+		return { success: true, id: subscriber.id, action: 'update' };
 	}
 
 	async update(input: SubscriberUpdateInput): Promise<SubscriberUpdateResult> {

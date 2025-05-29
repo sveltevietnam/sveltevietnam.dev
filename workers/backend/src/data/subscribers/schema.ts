@@ -17,9 +17,9 @@ export const SubscriberUpdateSchema = createUpdateSchema(subscribers, {
 
 export type SubscriberSelectResult = v.InferOutput<typeof SubscriberSelectSchema>;
 
-export type SubscriberInsertInput = v.InferInput<typeof SubscriberInsertSchema>;
-export type SubscriberInsertResult =
-	| { success: true; id: string }
+export type SubscriberUpsertInput = v.InferInput<typeof SubscriberInsertSchema>;
+export type SubscriberUpsertResult =
+	| { success: true; id: string; action: 'insert' | 'update' }
 	| { success: false; errors: v.FlatErrors<typeof SubscriberInsertSchema> };
 
 export type SubscriberUpdateInput = v.InferInput<typeof SubscriberUpdateSchema>;

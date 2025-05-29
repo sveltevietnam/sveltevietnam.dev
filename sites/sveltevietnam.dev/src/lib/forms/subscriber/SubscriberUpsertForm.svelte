@@ -25,6 +25,8 @@
 	const noti = NotificationContext.get();
 	const settings = SettingsContext.get();
 
+	let all = $state(false);
+
 	const { form, enhance, constraints, errors, delayed, timeout } = superForm<
 		SubscribeUpsertInput,
 		string
@@ -36,11 +38,24 @@
 		timeoutMs: 2000,
 		onResult({ result }) {
 			if (result.type === 'success') {
+				window.umami?.track('subscribe-newsletter', {
+					type: result.type,
+					action: (result.data as { action: 'insert' | 'update' }).action,
+					all: $state.snapshot(all).toString(),
+					defaultChannels: data.data.channels,
+				});
 				noti.toaster.success({
 					message: m['forms.subscriber.upsert.success'],
 				});
 			} else if (result.type === 'error') {
 				const error = result.error as App.Error;
+				window.umami?.track('subscribe-newsletter', {
+					type: result.type,
+					error: {
+						code: error.code,
+						message: error.message,
+					},
+				});
 				noti.toaster.error({
 					title: `${error.code} - ${error.message}`,
 					message: m['forms.subscriber.upsert.errors.unknown'],
@@ -53,7 +68,6 @@
 		$form.language = settings.language;
 	});
 
-	let all = $state(false);
 	const handleCheckAll: ChangeEventHandler<HTMLInputElement> = function (e) {
 		$form.channels = e.currentTarget.checked ? [...SUBSCRIPTION_CHANNELS] : data.data.channels;
 	};
