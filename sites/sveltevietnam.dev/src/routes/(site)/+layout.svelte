@@ -116,7 +116,7 @@
 			settings.hydrated.getTime() - settings.splashed.getTime() > 2000
 		) {
 			if (window.umami) {
-				window.umami.track('Delayed Hydration', {
+				window.umami.track('delayed-hydration', {
 					delta: settings.hydrated.getTime() - settings.splashed.getTime(),
 				});
 			}
