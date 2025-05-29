@@ -4,7 +4,7 @@ import path from 'node:path/posix';
 import pico from 'picocolors';
 import glob from 'tiny-glob';
 
-import { collectYamls } from './internals/collect.js';
+import { collectYamlGroupByDir } from './internals/collect.js';
 import { lint } from './internals/lint.js';
 import { flatParseMessages } from './internals/parse.js';
 import { transform } from './internals/transform.js';
@@ -25,11 +25,11 @@ import { createLogger } from './logger.js';
  */
 async function build(logger, cwd, dirs, rebuild = false) {
 	// 2. Collect
-	const localeFileGroups = await Promise.all(dirs.map((dir) => collectYamls(cwd, dir)));
+	const localeFileGroups = await collectYamlGroupByDir(cwd, dirs);
 
 	// 3. Parse
 	const messageGroups = await Promise.all(
-		localeFileGroups.map((yamls) => flatParseMessages(yamls)),
+		Object.values(localeFileGroups).map((yamls) => flatParseMessages(yamls)),
 	);
 	const numMessages = messageGroups.reduce((numMessages, group) => {
 		return numMessages + Object.keys(group.messages).length;
