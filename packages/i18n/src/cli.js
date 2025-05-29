@@ -10,7 +10,7 @@ import glob from 'tiny-glob';
 
 import pkg from '../package.json' with { type: 'json' };
 
-import { collectYamls } from './internals/collect.js';
+import { collectYamlGroupByDir } from './internals/collect.js';
 import { lint } from './internals/lint.js';
 import { flatParseMessages } from './internals/parse.js';
 import { transform } from './internals/transform.js';
@@ -35,20 +35,23 @@ program
 				const spinner = p.spinner();
 
 				// 1. Glob
-				spinner.start('Finding locale directories...');
 				const dirs = await glob(pattern, { cwd });
-				spinner.stop(`Found ${pico.green(pico.bold(dirs.length))} locale directories`);
-				p.note(dirs.map((d) => path.relative(cwd, d)).join('\n'), 'Locale directories:');
 
 				// 2. Collect
 				spinner.start('Collecting locale files...');
-				const localeFileGroups = await Promise.all(dirs.map((dir) => collectYamls(cwd, dir)));
+				const localeFileGroups = await collectYamlGroupByDir(cwd, dirs);
 				spinner.stop('Collected locale files...');
+				p.note(
+					Object.keys(localeFileGroups)
+						.map((d) => path.relative(cwd, d))
+						.join('\n'),
+					'Locale directories:',
+				);
 
 				// 3. Parse
 				spinner.start('Parsing messages...');
 				const messageGroups = await Promise.all(
-					localeFileGroups.map((yamls) => flatParseMessages(yamls)),
+					Object.values(localeFileGroups).map((yamls) => flatParseMessages(yamls)),
 				);
 				const numMessages = messageGroups.reduce((numMessages, group) => {
 					return numMessages + Object.keys(group.messages).length;
@@ -104,20 +107,23 @@ program
 				const spinner = p.spinner();
 
 				// 1. Glob
-				spinner.start('Finding locale directories...');
 				const dirs = await glob(pattern, { cwd });
-				spinner.stop(`Found ${pico.green(pico.bold(dirs.length))} locale directories`);
-				p.note(dirs.map((d) => path.relative(cwd, d)).join('\n'), 'Locale directories:');
 
 				// 2. Collect
 				spinner.start('Collecting locale files...');
-				const localeFileGroups = await Promise.all(dirs.map((dir) => collectYamls(cwd, dir)));
+				const localeFileGroups = await collectYamlGroupByDir(cwd, dirs);
 				spinner.stop('Collected locale files...');
+				p.note(
+					Object.keys(localeFileGroups)
+						.map((d) => path.relative(cwd, d))
+						.join('\n'),
+					'Locale directories:',
+				);
 
 				// 3. Parse
 				spinner.start('Parsing messages...');
 				const messageGroups = await Promise.all(
-					localeFileGroups.map((yamls) => flatParseMessages(yamls)),
+					Object.values(localeFileGroups).map((yamls) => flatParseMessages(yamls)),
 				);
 				const numMessages = messageGroups.reduce((numMessages, group) => {
 					return numMessages + Object.keys(group.messages).length;
