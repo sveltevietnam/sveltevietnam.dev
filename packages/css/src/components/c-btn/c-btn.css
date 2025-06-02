@@ -101,6 +101,10 @@
 			justify-content: space-between;
 
 			padding-inline: calc(var(--spacing) * 2.5) calc(var(--spacing) * 3);
+
+			&:has(> :last-child:nth-child(3)) {
+				grid-template-columns: auto 1fr auto;
+			}
 		}
 
 		&:not(:has(:is(img, svg, .i))) {
