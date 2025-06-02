@@ -130,8 +130,7 @@
 			font-weight: 400;
 			word-break: break-all;
 
-			background-color: var(--color-surface-variant); /* fallback if color-mix is not support */
-			background-color: color-mix(in hsl, var(--color-surface-variant), transparent 95%);
+			background-color: var(--color-surface-subtle);
 
 			&::after,
 			&::before {

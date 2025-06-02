@@ -51,7 +51,6 @@ export const GET: RequestHandler = async ({ params }) => {
 			[p['/:lang/code-of-conduct'], 0.3] as const,
 			[p['/:lang/settings'], 0.4] as const,
 			[p['/:lang/design'], 0.2] as const,
-			[p['/:lang/search'], 0.2] as const,
 		].flatMap(([path, priority]) => ({
 			loc: VITE_PUBLIC_ORIGIN + path({ lang }),
 			priority,

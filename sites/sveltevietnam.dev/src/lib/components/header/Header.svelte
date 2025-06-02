@@ -1,18 +1,25 @@
 <script lang="ts">
+	import type { StackItem } from '@svelte-put/async-stack';
+	import { shortcut, type ShortcutEventDetail } from '@svelte-put/shortcut';
 	import { T } from '@sveltevietnam/i18n';
+	import type { HTMLAttributes } from 'svelte/elements';
 
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
-	import * as n from '$data/routes/generated/names';
 	import { ColorSchemeMenu } from '$lib/components/color-scheme-menu';
 	import { LanguageMenu } from '$lib/components/language-menu';
 	import { PageMenu } from '$lib/components/page-menu';
 	import { SocialLinks } from '$lib/components/social-links';
+	import { SearchDialog } from '$lib/dialogs/components/search-dialog';
+	import { DialogContext } from '$lib/dialogs/context.svelte';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();
+	const dialog = DialogContext.get();
+
+	let { class: cls, ...rest }: HTMLAttributes<HTMLElement> = $props();
 
 	let isColorSchemeMenuOpen = $state(false);
 	let isPageMenuOpen = $state(false);
@@ -62,31 +69,50 @@
 		!settings.hydrated ? 1 : Math.min((lastScrollY * 2) / MINIMUM_SCROLL_Y, 1),
 	);
 
-	const links = $derived({
-		home: p['/:lang']({ lang: settings.language }),
-		search: {
-			path: p['/:lang/search']({ lang: settings.language }),
-			name: n['/:lang/search'](settings.language),
-		},
-	});
+	const linkToHome = $derived(p['/:lang']({ lang: settings.language }));
+
+	let pushed: StackItem | null = $state(null);
+	function handleSearch(e: MouseEvent | ShortcutEventDetail) {
+		if ('originalEvent' in e) {
+			e.originalEvent.preventDefault();
+		} else {
+			e.preventDefault();
+		}
+		if (!pushed) {
+			pushed = dialog.push('custom', { component: SearchDialog });
+			pushed.resolution.then(() => {
+				pushed = null;
+			});
+		}
+	}
 </script>
 
-<svelte:window onscroll={onScroll} />
+<svelte:window
+	onscroll={onScroll}
+	use:shortcut={{
+		trigger: { key: 'k', modifier: ['ctrl', 'meta'], callback: handleSearch },
+	}}
+/>
 
 <header
-	class={['z-header fixed w-full transition-transform', shouldHideHeader && '-translate-y-full']}
+	class={[
+		'z-header fixed w-full transition-transform',
+		shouldHideHeader && '-translate-y-full',
+		cls,
+	]}
+	{...rest}
 >
 	<!-- non-mobile header -->
 	<div class="max-w-pad mobile:hidden flex items-start justify-between">
 		<svelte:element
-			this={routing.is(links.home) ? 'div' : 'a'}
+			this={routing.is(linkToHome) ? 'div' : 'a'}
 			class="
 			bg-on-surface text-surface flex w-fit -translate-y-2 items-center gap-2 px-4 pb-4
 			pt-6 transition-transform duration-500 hover:translate-y-0 hover:duration-100
 			"
-			{...routing.is(links.home) ? {} : { href: links.home }}
+			{...routing.is(linkToHome) ? {} : { href: linkToHome }}
 		>
-			{#if routing.is(links.home)}
+			{#if routing.is(linkToHome)}
 				<svg class="w-15 h-15" inline-src="sveltevietnam" id="header-logo"></svg>
 			{:else}
 				<i class="i i-sveltevietnam w-15 h-15"></i>
@@ -100,17 +126,18 @@
 			<div class="-z-1 bg-surface absolute inset-0" style:opacity={toolbarBackdropOpacity}>
 				<!-- backdrop -->
 			</div>
-			<form>
-				<label class="c-text-input desktop:w-48 widescreen:w-60 w-40">
-					<span class="sr-only"><T message={m.search} /></span>
-					<i class="i i-[ph--magnifying-glass] h-6 w-6"></i>
-					<input
-						class="w-full"
-						name="search"
-						placeholder="{m.search(settings.language)}..."
-					/>
-				</label>
-			</form>
+			<button class="shrink-0 c-btn c-btn--outlined text-sm bg-transparent" onclick={handleSearch} type="button">
+				<i class="i i-[ph--magnifying-glass] h-5 w-5"></i>
+				<span><T message={m.search} /></span>
+				<span class="c-text-body-xs">
+					{#if settings.platform === 'mac'}
+						<kbd class="c-text-body-xs">⌘</kbd>
+					{:else}
+						<kbd class="c-text-body-xs">Ctrl</kbd>
+					{/if}
+					<kbd>K</kbd>
+				</span>
+			</button>
 			<ColorSchemeMenu bind:open={isColorSchemeMenuOpen} />
 			<LanguageMenu bind:open={isLanguageMenuOpen} />
 			<PageMenu bind:open={isPageMenuOpen} />
@@ -119,17 +146,19 @@
 
 	<!-- mobile header -->
 	<div class="max-w-pad tablet:hidden bg-surface flex items-center gap-2 border-b py-2">
-		<a class="mr-auto flex items-center gap-2" href={links.home}>
+		<a class="mr-auto flex items-center gap-2" href={linkToHome}>
 			<i class="i i-sveltevietnam h-10 w-10"></i>
 			<span class="font-lora max-w-18 text-sm font-medium uppercase leading-tight">
 				<T message={m['svelte_vietnam.name']} />
 			</span>
 			<span class="sr-only">(<T message={m['components.header.go_to_home_page']} />)</span>
 		</a>
-		<a class="p-2" href={links.search.path}>
+		<button class="p-2" onclick={handleSearch} type="button">
 			<i class="i i-[ph--magnifying-glass] h-6 w-6"></i>
-			<span class="sr-only">{links.search.name}</span>
-		</a>
+			<span class="sr-only">
+				<T message={m.search} />
+			</span>
+		</button>
 		<label class="c-link-lazy flex cursor-pointer p-2">
 			<input
 				class="_mobile-menu-toggler peer sr-only"

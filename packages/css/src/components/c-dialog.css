@@ -1,0 +1,53 @@
+@utility c-dialog {
+	@layer components {
+		inset: 0;
+
+		display: block; /* required for animation to work */
+
+		margin: auto;
+		padding: calc(var(--spacing) * 6);
+		border: 2px solid var(--color-outline);
+
+		background-color: var(--color-surface);
+		box-shadow: var(--shadow-brutal);
+
+		animation-name: fly-out-down;
+		animation-duration: 150ms;
+		animation-timing-function: var(--default-transition-timing-function);
+		animation-fill-mode: forwards;
+
+		&::backdrop {
+			opacity: 0.8;
+			background-color: var(--color-surface);
+		}
+
+		&[open] {
+			animation-name: fly-in-up;
+			animation-duration: 200ms;
+		}
+	}
+}
+
+@keyframes fly-in-up {
+	from {
+		transform: translateY(2rem);
+		opacity: 0;
+	}
+
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes fly-out-down {
+	from {
+		transform: translateY(0);
+		opacity: 1;
+	}
+
+	to {
+		transform: translateY(2rem);
+		opacity: 0;
+	}
+}

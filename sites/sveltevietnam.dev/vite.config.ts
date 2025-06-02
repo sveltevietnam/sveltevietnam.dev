@@ -11,6 +11,7 @@ import { defineConfig } from 'vite';
 import { qrcode } from 'vite-plugin-qrcode';
 
 import routesConfig from './src/data/routes/routes.config';
+import { pagefind } from './src/lib/pagefind/vite';
 
 export default defineConfig({
 	define: {
@@ -36,12 +37,15 @@ export default defineConfig({
 			'@svelte-put/avatar',
 			'@svelte-put/cloudflare-turnstile',
 			'@svelte-put/inline-svg',
+			'@svelte-put/shortcut',
 			'animejs',
 			'lodash.debounce',
+			'sanitize-html',
 			'sveltekit-superforms',
 		],
 	},
 	plugins: [
+		pagefind(),
 		qrcode(),
 		inlineSvg(
 			[

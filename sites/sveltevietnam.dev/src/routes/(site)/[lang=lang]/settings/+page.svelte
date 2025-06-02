@@ -10,6 +10,7 @@
 	import { SplashScreenPlayground } from '$lib/components/splash-screen-playground';
 	import { COLOR_SCHEMES, SPLASH_OPTIONS } from '$lib/constants';
 	import { NotificationContext } from '$lib/notifications/context.svelte';
+	import * as pagefind from '$lib/pagefind/attributes';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
@@ -100,7 +101,7 @@
 	</svg>
 {/snippet}
 
-<main>
+<main {...pagefind.page()}>
 	<!-- intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div
@@ -138,8 +139,8 @@
 		use:enhance
 	>
 		<!-- Color scheme -->
-		<section class="space-y-10">
-			<h2 class="c-text-heading border-b">
+		<section class="space-y-10" data-pagefind-body>
+			<h2 class="c-text-heading border-b" id="color-scheme">
 				<T message={m['pages.settings.color_scheme.heading']} />
 			</h2>
 			<div class="flex flex-wrap gap-10">
@@ -168,8 +169,8 @@
 		</section>
 
 		<!-- Language -->
-		<section class="space-y-10">
-			<h2 class="c-text-heading border-b">
+		<section class="space-y-10" data-pagefind-body>
+			<h2 class="c-text-heading border-b" id="language">
 				<T message={m['pages.settings.language.heading']} />
 			</h2>
 			<div class="flex flex-wrap gap-10">
@@ -187,7 +188,7 @@
 							{...$constraints.language}
 						/>
 						<i class="i {icon} h-6"></i>
-						<span>
+						<span data-pagefind-body>
 							<T message={m} />
 						</span>
 						{@render checkmark()}
@@ -197,8 +198,8 @@
 		</section>
 
 		<!-- Splash screen -->
-		<section class="space-y-10">
-			<h2 class="c-text-heading border-b">
+		<section class="space-y-10" data-pagefind-body>
+			<h2 class="c-text-heading border-b" id="splash-screen">
 				<T message={m['pages.settings.splash_screen.heading']} />
 			</h2>
 			<div class="flex flex-wrap gap-6">
@@ -216,14 +217,14 @@
 							bind:group={$form.splash}
 							{...$constraints.splash}
 						/>
-						<span>
+						<span data-pagefind-body>
 							<T message={mSplash[variant]} />
 						</span>
 						{@render checkmark()}
 					</label>
 				{/each}
 			</div>
-			<p>
+			<p data-pagefind-body>
 				<T message={m['pages.settings.splash_screen.desc']} />
 			</p>
 			<SplashScreenPlayground />

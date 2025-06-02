@@ -34,8 +34,8 @@
 <svelte:window onresize={onWindowResize} />
 
 <main
-	class="max-w-pad pt-intro-pad-top bg-gradient-primary-intro tablet:gap-20 widescreen:gap-32 pb-section-more flex
-	flex-wrap justify-between gap-10"
+	class="max-w-pad pt-intro-pad-top bg-gradient-primary-intro tablet:gap-20 widescreen:gap-32 pb-section-more flex flex-wrap justify-between gap-10"
+	data-pagefind-ignore
 >
 	<div class="flex-1 space-y-10">
 		<h1 class="sr-only">{data.mail.subject}</h1>

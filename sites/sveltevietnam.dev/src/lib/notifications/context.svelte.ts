@@ -41,7 +41,7 @@ export function createNotificationStack() {
 type NotificationContextValue = ReturnType<typeof createNotificationStack>;
 
 export class NotificationContext {
-	static KEY = 'app:notification';
+	static KEY = Symbol('app:notification');
 
 	static set(init: NotificationContextValue = createNotificationStack()) {
 		return setContext(NotificationContext.KEY, init);

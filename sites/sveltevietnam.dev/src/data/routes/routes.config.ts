@@ -39,9 +39,6 @@ export default defineConfig<AllRoutePath, App.Language>({
 			'/:lang/roadmap': {
 				vi: '/:lang/lo-trinh',
 			},
-			'/:lang/search': {
-				vi: '/:lang/tim-kiem',
-			},
 			'/:lang/settings': {
 				vi: '/:lang/cai-dat',
 			},
@@ -102,10 +99,6 @@ export default defineConfig<AllRoutePath, App.Language>({
 			'/:lang/roadmap': {
 				vi: 'Lộ trình',
 				default: 'Roadmap',
-			},
-			'/:lang/search': {
-				vi: 'Tìm kiếm',
-				default: 'Search',
 			},
 			'/:lang/settings': {
 				vi: 'Cài đặt',

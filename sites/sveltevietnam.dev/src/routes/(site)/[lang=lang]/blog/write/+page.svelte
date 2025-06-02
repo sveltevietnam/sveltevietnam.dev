@@ -6,6 +6,7 @@
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { TableOfContents } from '$lib/components/table-of-contents';
+	import * as pagefind from '$lib/pagefind/attributes';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 
 	import imgIntro from './_page/images/plant.svg?url';
@@ -25,7 +26,7 @@
 	});
 </script>
 
-<main>
+<main {...pagefind.page({ group: 'blog', importance: 'highlight' })}>
 	<!-- intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div

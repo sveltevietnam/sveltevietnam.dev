@@ -27,11 +27,11 @@
 		"@changesets/changelog-github": "^0.5.1",
 		"@changesets/cli": "^2.29.4",
 		"@types/eslint": "^9.6.1",
-		"@types/node": "^22.15.21",
+		"@types/node": "^22.15.26",
 		"@vitest/coverage-istanbul": "^3.1.4",
 		"@vitest/ui": "^3.1.4",
 		"@vnphanquang/eslint-config": "^4.1.0",
-		"dts-buddy": "^0.6.1",
+		"dts-buddy": "^0.6.2",
 		"eslint": "^9.27.0",
 		"eslint-plugin-jsdoc": "^50.6.17",
 		"npm-run-all": "^4.1.5",
@@ -40,7 +40,7 @@
 		"prettier-plugin-tailwindcss": "^0.6.11",
 		"publint": "^0.3.12",
 		"shx": "^0.4.0",
-		"stylelint": "^16.19.1",
+		"stylelint": "^16.20.0",
 		"stylelint-config-clean-order": "^7.0.0",
 		"stylelint-config-html": "^1.1.0",
 		"stylelint-config-standard": "^38.0.0",
@@ -49,7 +49,7 @@
 		"turbo": "^2.5.3",
 		"typescript": "^5.8.3",
 		"vitest": "^3.1.4",
-		"wrangler": "^4.16.1"
+		"wrangler": "^4.18.0"
 	},
 	"packageManager": "pnpm@10.11.0",
 	"pnpm": {

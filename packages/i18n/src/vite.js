@@ -111,8 +111,12 @@ export async function i18n(config) {
 			server.watcher.on('add', onUpdate);
 			server.watcher.on('change', onUpdate);
 			server.watcher.on('unlink', onUpdate);
+
+			await build(logger, cwd, dirs);
 		},
 		async buildStart() {
+			// skip build for 'client', assuming already done so in 'ssr'
+			if (this.environment.name !== 'ssr') return;
 			await build(logger, cwd, dirs);
 		},
 	};

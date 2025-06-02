@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount, setContext } from 'svelte';
 
-	import { version } from '$app/environment';
+	import { dev, version } from '$app/environment';
 	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
 	import {
@@ -12,13 +12,14 @@
 	} from '$env/static/public';
 	import ogImageEn from '$lib/assets/images/fallbacks/og.en.jpg?url';
 	import ogImageVi from '$lib/assets/images/fallbacks/og.vi.jpg?url';
-	import DialogPortal from '$lib/dialogs/DialogPortal.svelte';
+	import DialogPortal from '$lib/dialogs/components/DialogPortal.svelte';
 	import { DialogContext } from '$lib/dialogs/context.svelte';
 	import { buildStructuredBreadcrumbs } from '$lib/meta/structured/breadcrumbs';
 	import { toStringWithContext } from '$lib/meta/structured/utils';
 	import NotificationPortal from '$lib/notifications/components/NotificationPortal.svelte';
 	import { NotificationContext } from '$lib/notifications/context.svelte';
 	import { RoutingContext } from '$lib/routing/context.svelte';
+	import { SearchContext } from '$lib/search/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	let { children, data } = $props();
@@ -35,6 +36,7 @@
 	const dialog = DialogContext.set();
 	const noti = NotificationContext.set();
 	const settings = SettingsContext.set(data.settings);
+	SearchContext.set(page.url.origin);
 
 	// for @sveltevietnam/i18n T.svelte component
 	// TODO: create some abstraction around this
@@ -101,7 +103,7 @@
 	});
 
 	function handleUmamiLoad() {
-		console.log('umami loaded')
+		console.log('umami loaded');
 		window.umami?.identify({
 			language: settings.language,
 			systemColorScheme: settings.colorScheme.system,
@@ -112,6 +114,7 @@
 
 	onMount(() => {
 		if (
+			!dev &&
 			settings.splashed &&
 			settings.hydrated &&
 			settings.hydrated.getTime() - settings.splashed.getTime() > 2000

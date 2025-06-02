@@ -132,7 +132,7 @@ Nếu bạn chưa biết, `app.html` là tệp mẫu SvelteKit dùng để biể
 
 ```svelte title=src/routes/+layout.svelte
 <script>
-  import 'path/to/splash.css';
+  import './path/to/splash.css';
 </script>
 ```
 

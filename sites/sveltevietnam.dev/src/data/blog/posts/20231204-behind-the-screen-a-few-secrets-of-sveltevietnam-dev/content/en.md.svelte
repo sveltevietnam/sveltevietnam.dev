@@ -174,8 +174,8 @@ Next, at the "Tự" milestone, you see some rather old characters:
 
 <div class="div flex w-full gap-4 tablet:gap-10 opacity-20 my-6 tablet:my-10">
 
-<svg inline-src="tu-chu" class="h-auto" />
-<svg inline-src="tu-nom" class="h-auto" />
+<svg inline-src="tu-chu" class="flex-1 min-w-40 h-auto" />
+<svg inline-src="tu-nom" class="flex-1 min-w-40 h-auto" />
 
 </div>
 
@@ -185,7 +185,7 @@ This is "Chữ Nôm" written in [chữ Nôm](https://vi.wikipedia.org/wiki/Ch%E1
 
 Finally, we see an ancient coin at the "Đồng" milestone:
 
-<svg inline-src="dong-thai-binh-hung-bao" class="w-full opacity-20 my-6 tablet:my-10" />
+<svg inline-src="dong-thai-binh-hung-bao" class="w-full opacity-20 my-6 tablet:my-10 max-w-120 mx-auto" />
 
 This is the "Thiên Phúc trấn bảo" coin, made in the early Lê dynasty as one of the first coin of Vietnam. In this milestone, continuing the role of Svelte Vietnam administrator, I plan to focus on development of the [Jobs](/en/jobs) page with the hope of finding a solution to collect job listings from popular recruitment channels into a single place, making job searching easier for community members. Besides, I also want to create a sustainable co-development between business and community. Instead of paying for recruitment platforms, companies can [sponsor](/en/sponsor) us to post jobs directly on the [Jobs](/en/jobs) page. The sponsorship money will be used to organize community events. Businesses invest in community, community provides quality human resources for businesses. Both sides benefit and grow from this mutualistic relationship.
 

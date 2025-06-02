@@ -10,6 +10,7 @@
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { TBA } from '$lib/components/tba';
 	import { SubscriberUpsertForm } from '$lib/forms/subscriber';
+	import * as pagefind from '$lib/pagefind/attributes';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
@@ -22,7 +23,7 @@
 	const settings = SettingsContext.get();
 </script>
 
-<main>
+<main {...pagefind.page({ group: 'jobs' })}>
 	<!-- intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div
@@ -52,8 +53,8 @@
 	</section>
 
 	<!-- posting -->
-	<section class="max-w-pad py-section tablet:space-y-10 space-y-8" id="posting">
-		<h2 class="c-text-heading-lg border-b">
+	<section class="max-w-pad py-section tablet:space-y-10 space-y-8">
+		<h2 class="c-text-heading-lg border-b" id="posting">
 			<T message={m['pages.jobs.posting.heading']} />
 		</h2>
 		<TBA class="mx-auto w-fit">
@@ -79,10 +80,9 @@
 						? 'border-outline-focus shadow-outline-focus'
 						: 'border-current shadow-current',
 				]}
-				id="recruiters"
 			>
 				<div class="space-y-6">
-					<h2 class="c-text-heading border-b border-outline">
+					<h2 class="c-text-heading border-outline border-b" id="recruiters">
 						<T message={m['pages.jobs.recruiter.heading']} />
 					</h2>
 					<p class="leading-relaxed">
@@ -95,11 +95,7 @@
 					</a>
 					<p>
 						<T message={m['pages.jobs.recruiter.email']} />
-						<a
-							class="c-link"
-							href="mailto:{EMAILS.JOBS}"
-							data-external
-						>
+						<a class="c-link" href="mailto:{EMAILS.JOBS}" data-external>
 							{EMAILS.JOBS}
 						</a>
 					</p>
@@ -127,14 +123,13 @@
 			<!-- candidates -->
 			<section
 				class={[
-					'border-onehalf shadow-brutal tablet:p-8 desktop:p-10 bg-surface min-w-80 flex-1 p-6 space-y-6',
+					'border-onehalf shadow-brutal tablet:p-8 desktop:p-10 bg-surface min-w-80 flex-1 space-y-6 p-6',
 					page.url.hash === '#candidates'
 						? 'border-outline-focus shadow-outline-focus'
 						: 'border-current shadow-current',
 				]}
-				id="candidates"
 			>
-				<h2 class="c-text-heading border-b">
+				<h2 class="c-text-heading border-b" id="candidates">
 					<T message={m['pages.jobs.candidate.heading']} />
 				</h2>
 				<p class="leading-relaxed">
@@ -149,9 +144,9 @@
 	</GradientBackground>
 
 	<!-- scraping  -->
-	<section class="max-w-pad py-section tablet:space-y-10 space-y-8" id="scraping">
+	<section class="max-w-pad py-section tablet:space-y-10 space-y-8">
 		<div class="space-y-6">
-			<h2 class="c-text-heading-lg border-b">
+			<h2 class="c-text-heading-lg border-b" id="scraping">
 				<T message={m['pages.jobs.scraping.heading']} />
 			</h2>
 			<p><T message={m['pages.jobs.scraping.desc']} /></p>

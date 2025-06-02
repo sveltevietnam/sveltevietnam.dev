@@ -40,9 +40,9 @@
 	<PageLoadIndicator />
 {/await}
 
-<Header />
+<Header data-pagefind-ignore />
 {@render children()}
 {#if page.data.editUrl}
-	<PageEditLink class="mt-auto" href={page.data.editUrl} id="edit-this-page" />
+	<PageEditLink class="mt-auto" href={page.data.editUrl} id="edit-this-page" data-pagefind-ignore />
 {/if}
-<Footer class={[!page.data.editUrl && 'mt-auto']} {version} />
+<Footer class={[!page.data.editUrl && 'mt-auto']} {version} data-pagefind-ignore />
