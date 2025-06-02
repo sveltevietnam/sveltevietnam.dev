@@ -10,6 +10,7 @@
 	import { GradientBackground } from '$lib/components/gradient-background';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { TextArrowLink } from '$lib/components/text-arrow-link';
+	import * as pagefind from '$lib/pagefind/attributes';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
@@ -63,17 +64,19 @@
 </script>
 
 {#snippet listingHeader({
+	id,
 	category,
 	href,
 	description,
 }: {
+	id: string;
 	category: string;
 	href: string;
 	description?: string;
 })}
 	<div class="space-y-4 border-t-4 border-current pt-2">
 		<div class="flex items-center justify-between">
-			<h2 class="c-text-title uppercase">{category}</h2>
+			<h2 class="c-text-title uppercase" {id}>{category}</h2>
 			<TextArrowLink {href}>
 				<T message={m.view_more} />
 			</TextArrowLink>
@@ -84,7 +87,7 @@
 	</div>
 {/snippet}
 
-<main>
+<main {...pagefind.page({ group: 'blog', importance: 'listing' })}>
 	<!-- intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div class="max-w-pad space-y-10">
@@ -100,8 +103,9 @@
 	</section>
 
 	<!-- latest -->
-	<section class="max-w-pad py-section tablet:space-y-8 space-y-6" id="latest">
+	<section class="max-w-pad py-section tablet:space-y-8 space-y-6" data-pagefind-ignore>
 		{@render listingHeader({
+			id: 'latest',
 			category: m['latest'](settings.language),
 			href: p['/:lang/blog/latest']({ lang: settings.language }),
 		})}
@@ -110,7 +114,7 @@
 
 	<!-- write -->
 	<GradientBackground pattern="jigsaw">
-		<section class="max-w-pad pt-section pb-section-more" id="write">
+		<section class="max-w-pad pt-section pb-section-more">
 			<div
 				class="tablet:gap-8 tablet:p-8 desktop:gap-10 desktop:p-10 shadow-brutal-lg bg-surface
 				max-w-readable-relaxed mx-auto flex items-stretch gap-4 border-2 border-current p-4"
@@ -140,7 +144,7 @@
 				</div>
 				<div class="flex-1 space-y-6">
 					<div class="tablet:justify-between tablet:items-end mobile:flex-col flex flex-1 gap-6">
-						<h2 class="c-text-heading-md"><T message={m['pages.blog.write.heading']} /></h2>
+						<h2 class="c-text-heading-md" id="write"><T message={m['pages.blog.write.heading']} /></h2>
 						<div class="flex items-end gap-4">
 							{#each ['h-8', 'h-14', 'h-6', 'h-7'] as cls (cls)}
 								<svg
@@ -177,8 +181,12 @@
 
 	{#if data.series.peopleOfSvelte && data.posts.peopleOfSvelte.length}
 		<!-- people-of-svelte -->
-		<section class="max-w-pad py-section tablet:space-y-8 space-y-6" id="people-of-svelte">
+		<section
+			class="max-w-pad py-section tablet:space-y-8 space-y-6"
+			data-pagefind-ignore
+		>
 			{@render listingHeader({
+				id: 'people-of-svelte',
 				category: data.series.peopleOfSvelte.name,
 				href: p['/:lang/blog/series/:slug']({
 					lang: settings.language,
@@ -192,8 +200,12 @@
 
 	{#if data.categories.svelteAndKit && data.posts.svelteAndKit.length}
 		<!-- svelte-and-kit -->
-		<section class="max-w-pad py-section tablet:space-y-8 space-y-6" id="svelte-and-kit">
+		<section
+			class="max-w-pad py-section tablet:space-y-8 space-y-6"
+			data-pagefind-ignore
+		>
 			{@render listingHeader({
+				id: 'svelte-and-kit',
 				category: data.categories.svelteAndKit.name,
 				href: p['/:lang/blog/categories/:slug']({
 					lang: settings.language,
@@ -226,8 +238,12 @@
 
 	{#if data.categories.insider && data.posts.insider.length}
 		<!-- insider -->
-		<section class="max-w-pad py-section tablet:space-y-8 space-y-6" id="insider">
+		<section
+			class="max-w-pad py-section tablet:space-y-8 space-y-6"
+			data-pagefind-ignore
+		>
 			{@render listingHeader({
+				id: 'insider',
 				category: data.categories.insider.name,
 				href: p['/:lang/blog/categories/:slug']({
 					lang: settings.language,
@@ -241,7 +257,10 @@
 
 	<!-- newsletter  -->
 	<GradientBackground>
-		<section class="max-w-pad pt-section pb-section-more" id="newsletter">
+		<section class="max-w-pad pt-section pb-section-more" data-pagefind-ignore>
+			<h2 class="sr-only" id="newsletter">
+				<T message={m.newsletter} />
+			</h2>
 			<BlogNewsletter data={data.subscribeFormData} />
 		</section>
 	</GradientBackground>

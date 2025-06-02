@@ -53,7 +53,23 @@ export default {
 			},
 			routes: {
 				include: ['/*'],
-				exclude: ['<build>', '<files>'],
+				exclude: [
+					'<build>',
+					'/pagefind/*',
+					'/logo/*',
+					'/screenshots/*',
+					'/ads.txt',
+					'/ai.txt',
+					'/humans.txt',
+					'/browserconfig.xml',
+					'/apple-touch-icon-precomposed.png',
+					'/apple-touch-icon.png',
+					'/.well-known/security.txt',
+					// favicons
+					'/favicon.ico',
+					'/favicon.svg',
+					'/favicon/*',
+				],
 			},
 		}),
 		version: {

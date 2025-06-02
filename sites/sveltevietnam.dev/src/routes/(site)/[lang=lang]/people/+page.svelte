@@ -9,6 +9,7 @@
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { PersonLinks } from '$lib/components/person-links';
 	import { TextArrowLink } from '$lib/components/text-arrow-link';
+	import * as pagefind from '$lib/pagefind/attributes';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
@@ -27,8 +28,8 @@
 	<div class="@container w-full">
 		<article
 			class="shadow-brutal hover:shadow-brutal-lg bg-surface @2xl:flex-row @2xl:gap-10 group/person
-			@2xl:items-center duration-400 flex flex-col gap-6 border-2 border-current
-			transition-shadow hover:duration-75 relative"
+			@2xl:items-center duration-400 relative flex flex-col gap-6 border-2
+			border-current transition-shadow hover:duration-75"
 		>
 			{#if image}
 				<a
@@ -80,7 +81,7 @@
 	</div>
 {/snippet}
 
-<main>
+<main {...pagefind.page({ group: 'people', importance: 'listing' })}>
 	<!-- intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div class="max-w-pad space-y-10">
@@ -89,7 +90,9 @@
 				<h1 class="c-text-heading-lg text-primary-on-surface font-bold">
 					<T message={m['pages.people.heading']}></T>
 				</h1>
-				<p class="c-text-subtitle-page max-w-readable leading-relaxed"><T message={m['pages.people.desc']}></T></p>
+				<p class="c-text-subtitle-page max-w-readable leading-relaxed">
+					<T message={m['pages.people.desc']}></T>
+				</p>
 			</div>
 		</div>
 		<IntroSeparator />
@@ -97,6 +100,9 @@
 
 	<!-- listing -->
 	<section class="max-w-pad py-section-more">
+		<h2 class="sr-only" id="listing">
+			<T message={m.listing} />
+		</h2>
 		<ul class="divide-outline max-w-200 divide-y">
 			{#each data.people as person (person.id)}
 				<li

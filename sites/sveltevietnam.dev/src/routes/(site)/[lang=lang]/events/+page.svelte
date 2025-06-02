@@ -12,6 +12,7 @@
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { TBA } from '$lib/components/tba';
 	import { SubscriberUpsertForm } from '$lib/forms/subscriber';
+	import * as pagefind from '$lib/pagefind/attributes';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
@@ -103,8 +104,8 @@
 	});
 </script>
 
-{#snippet actionHeading(num: number, message: Message<'string', never>)}
-	<h2 class="c-text-heading-md flex items-center gap-4 border-b pb-1">
+{#snippet actionHeading(num: number, id: string, message: Message<'string', never>)}
+	<h2 class="c-text-heading-md flex items-center gap-4 border-b pb-1" {id}>
 		<span
 			class="font-lora desktop:text-2xl desktop:w-10 desktop:h-10 flex h-8 w-8
 			items-center justify-center rounded-full border border-current text-xl font-bold leading-normal"
@@ -114,7 +115,7 @@
 	</h2>
 {/snippet}
 
-<main>
+<main {...pagefind.page({ group: 'events' })}>
 	<!-- intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div
@@ -149,8 +150,8 @@
 	<!-- TODO: ongoing events -->
 
 	<!-- upcoming -->
-	<section class="max-w-pad space-y-section py-section" id="upcoming">
-		<h2 class="c-text-heading-lg border-b">
+	<section class="max-w-pad space-y-section py-section" data-pagefind-ignore>
+		<h2 class="c-text-heading-lg border-b" id="upcoming">
 			<T message={m['pages.events.upcoming.heading']} />
 		</h2>
 		<TBA class="mx-auto w-fit">
@@ -168,11 +169,10 @@
 		<!-- participate -->
 		<section
 			class="tablet:items-center tablet:flex-row desktop:gap-20 flex flex-col items-center gap-10"
-			id="participate"
 			bind:this={elParticipate}
 		>
 			<div class="flex-1 space-y-6">
-				{@render actionHeading(1, m['pages.events.participate.heading'])}
+				{@render actionHeading(1, 'participate', m['pages.events.participate.heading'])}
 				<p class="leading-relaxed"><T message={m['pages.events.participate.desc']} /></p>
 				<SubscriberUpsertForm data={data.subscribeFormData} />
 				<p><T message={m['pages.events.participate.discord']} /></p>
@@ -198,11 +198,10 @@
 		<!-- share -->
 		<section
 			class="tablet:items-start tablet:flex-row-reverse desktop:gap-20 flex flex-col items-center gap-10"
-			id="share"
 			bind:this={elShare}
 		>
 			<div class="flex-1 space-y-6">
-				{@render actionHeading(2, m['pages.events.share.heading'])}
+				{@render actionHeading(2, 'share', m['pages.events.share.heading'])}
 				<p class="leading-relaxed">
 					<T message={m['pages.events.share.desc']} />
 					<br /><br />
@@ -228,11 +227,10 @@
 		<!-- sponsor -->
 		<section
 			class="tablet:items-start tablet:flex-row desktop:gap-20 flex flex-col items-center gap-10"
-			id="sponsor"
 			bind:this={elSponsor}
 		>
 			<div class="flex-1 space-y-6">
-				{@render actionHeading(3, m['pages.events.sponsor.heading'])}
+				{@render actionHeading(3, 'sponsor', m['pages.events.sponsor.heading'])}
 				<p class="leading-relaxed"><T message={m['pages.events.sponsor.desc']} /></p>
 				<div class="space-y-2">
 					<a
@@ -267,8 +265,8 @@
 	</div>
 
 	<!-- past -->
-	<section class="max-w-pad tablet:space-y-15 py-section space-y-8" id="past">
-		<h2 class="c-text-heading-lg border-b">
+	<section class="max-w-pad tablet:space-y-15 py-section space-y-8" data-pagefind-ignore>
+		<h2 class="c-text-heading-lg border-b" id="past">
 			<T message={m['pages.events.past.heading']} />
 		</h2>
 		<EventListing events={data.events} origin={page.url.origin} />

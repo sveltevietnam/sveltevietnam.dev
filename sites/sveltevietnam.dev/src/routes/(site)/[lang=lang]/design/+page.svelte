@@ -8,13 +8,14 @@
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { STATUSES } from '$lib/constants';
 	import BaseNotification from '$lib/notifications/components/BaseNotification.svelte';
+	import * as pagefind from '$lib/pagefind/attributes';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import type { PageData } from './$types';
 	import { colors } from './_page/colors';
-	import imgNonLa from './_page/images/non-la.jpg?format=avif';
-	import imgRays from './_page/images/rays.jpg?format=avif';
+	import imgNonLa from './_page/images/non-la.jpg?format=avif&imagetools';
+	import imgRays from './_page/images/rays.jpg?format=avif&imagetools';
 
 	let { data }: { data: PageData } = $props();
 
@@ -40,7 +41,7 @@
 	const item = new StackItem({ id: 'sample', timeout: 0, variant: 'custom' } as any);
 </script>
 
-<main>
+<main {...pagefind.page()}>
 	<!-- intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div class="max-w-pad tablet:space-y-8 space-y-6">
@@ -59,7 +60,7 @@
 
 	<!-- typography  -->
 	<section class="max-w-pad py-section space-y-10">
-		<h2 class="c-text-heading-lg border-b">
+		<h2 class="c-text-heading-lg border-b" id="typography">
 			<T message={m['pages.design.typography.heading']} />
 		</h2>
 		<table class="border-outline w-full border-collapse border">
@@ -156,7 +157,7 @@
 
 	<!-- Sand color palette -->
 	<section class="max-w-pad py-section space-y-6">
-		<h2 class="c-text-heading-lg border-b">
+		<h2 class="c-text-heading-lg border-b" id="sand-palette">
 			<T message={m['pages.design.sand.heading']} />
 		</h2>
 		<p>
@@ -197,7 +198,7 @@
 	<!-- Semantic colors -->
 	<section class="max-w-pad space-y-10">
 		<div class="space-y-6">
-			<h2 class="c-text-heading-lg border-b">
+			<h2 class="c-text-heading-lg border-b" id="semantic-colors">
 				<T message={m['pages.design.colors.semantic.heading']} />
 			</h2>
 			<p><T message={m['pages.design.colors.semantic.desc']} /></p>
@@ -222,7 +223,7 @@
 
 		<!-- Basic colors -->
 		<section class="space-y-6">
-			<h3 class="c-text-heading-md border-b font-normal">
+			<h3 class="c-text-heading-md border-b font-normal" id="basic-colors">
 				<T message={m['pages.design.colors.basic.heading']} />
 			</h3>
 			<p><T message={m['pages.design.colors.basic.desc']} /></p>
@@ -247,9 +248,9 @@
 			</div>
 		</section>
 
-		<!-- Basic colors -->
+		<!-- Status colors -->
 		<section class="space-y-6">
-			<h3 class="c-text-heading-md border-b font-normal">
+			<h3 class="c-text-heading-md border-b font-normal" id="status-colors">
 				<T message={m['pages.design.colors.status.heading']} />
 			</h3>
 			<p><T message={m['pages.design.colors.status.desc']} /></p>
@@ -303,7 +304,7 @@
 	<!-- Logo -->
 	<section class="max-w-pad py-section space-y-10">
 		<div class="space-y-6">
-			<h2 class="c-text-heading-lg border-b">Logo</h2>
+			<h2 class="c-text-heading-lg border-b" id="logo">Logo</h2>
 			<p>
 				<T message={m['pages.design.logo.desc']} />
 			</p>
@@ -314,7 +315,7 @@
 
 		<!-- Inspiration -->
 		<section class="space-y-6">
-			<h3 class="c-text-heading-md border-b font-normal">
+			<h3 class="c-text-heading-md border-b font-normal" id="logo-inspiration">
 				<T message={m['pages.design.logo.inspiration.heading']} />
 			</h3>
 			<p>
@@ -361,7 +362,7 @@
 
 		<!-- Variants -->
 		<section class="space-y-8">
-			<h3 class="c-text-heading-md border-b font-normal">
+			<h3 class="c-text-heading-md border-b font-normal" id="logo-variants">
 				<T message={m['pages.design.logo.variants.heading']} />
 			</h3>
 			<ul class="mobile:justify-center flex flex-wrap gap-x-10 gap-y-6">

@@ -17,6 +17,7 @@ declare global {
 		declare type Status = import('$lib/constants').Status;
 		declare type Language = import('@sveltevietnam/i18n').Language;
 		declare type SplashOption = import('$lib/constants').SplashOption;
+		declare type PageFind = import('@pagefind').PageFind;
 
 		interface Locals {
 			userId: string;

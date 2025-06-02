@@ -184,8 +184,8 @@ Tiếp đến, tại cột mốc "Tự" sẽ là các văn tự cổ:
 
 <div class="flex flex-wrap w-full gap-4 tablet:gap-10 opacity-20 my-6 tablet:my-10">
 
-<svg inline-src="tu-chu" class="h-auto" />
-<svg inline-src="tu-nom" class="h-auto" />
+<svg inline-src="tu-chu" class="flex-1 min-w-40 h-auto" />
+<svg inline-src="tu-nom" class="flex-1 min-w-40 h-auto" />
 
 </div>
 
@@ -195,7 +195,7 @@ Tiếp đến, tại cột mốc "Tự" sẽ là các văn tự cổ:
 
 Cuối cùng, ta thấy một đồng tiền ở cột mốc "Đồng":
 
-<svg inline-src="dong-thai-binh-hung-bao" class="w-full opacity-20 my-6 tablet:my-10" />
+<svg inline-src="dong-thai-binh-hung-bao" class="w-full opacity-20 my-6 tablet:my-10 max-w-120 mx-auto" />
 
 Đây là đồng "Thiên Phúc trấn bảo" được đúc vào thời Tiền Lê và là một trong những đồng tiền đầu tiên của Việt Nam. Tại cột mốc này, mình - với vai trò ban quản trị Svelte Việt Nam - dự định tập trung phát triển trang [Việc làm](/vi/viec-lam) với hy vọng tìm ra giải pháp tổng hợp công việc liên quan từ các kênh tuyển dụng phổ biến vào một nơi tập trung để ứng viên có thể tìm kiếm môt cách nhanh chóng. Ngoài ra, mình cũng muốn tạo ra một xu hướng đồng phát triển bền vững giữa doanh nghiệp và cộng đồng. Thay vì chi trả cho các nền tảng tuyển dụng, doanh nghiệp có thể [tài trợ](/vi/tai-tro) cho chúng ta để được đăng tuyển trực tiếp tại trang [Việc làm](/vi/viec-lam). Số tiền tài trợ này sẽ được dùng để tổ chức các sự kiện cho cộng đồng. Doanh nghiệp đầu tư vào cộng đồng, cộng đồng củng cố và cung cấp nhân lực cho doanh nghiệp. Đây là một chu trình tương hỗ, giúp cả hai bên cùng phát triển.
 

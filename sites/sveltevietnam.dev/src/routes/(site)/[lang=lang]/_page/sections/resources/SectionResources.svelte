@@ -71,9 +71,9 @@
 			// duration here is relative to each other
 			// the three click points in between are set
 			// to be 2.2 times longer than the other ones
-			let duration = 1
+			let duration = 1;
 			if (i === 4 || i === 5 || i === 6) {
-				duration = 2.2
+				duration = 2.2;
 			}
 
 			timeline.add(elCursor, {
@@ -197,10 +197,11 @@
 
 <section
 	class="max-w-pad pb-section pt-section-more space-y-section-more relative"
-	id="resources"
 	bind:this={elResources}
 >
-	<h2 class="c-text-heading-lg text-center"><T message={m['pages.home.resources.heading']} /></h2>
+	<h2 class="c-text-heading-lg text-center" id="resources">
+		<T message={m['pages.home.resources.heading']} />
+	</h2>
 	<svg
 		class="_cursor z-popup transform-3d absolute left-1/2 top-0 m-auto block h-10 w-10
 		origin-top-left opacity-0 drop-shadow"
@@ -224,7 +225,7 @@
 		<div class="relative flex items-center justify-between gap-4">
 			<div class="space-y-4">
 				{@render step(m['pages.home.resources.one.step'])}
-				<h3 class="c-text-heading-md pr-30">
+				<h3 class="c-text-heading-md pr-30" id="step-1">
 					<T message={m['pages.home.resources.one.heading']} />
 				</h3>
 			</div>
@@ -298,7 +299,7 @@
 			<svg class="h-18 mobile:self-start w-auto shrink-0" inline-src="./images/book"></svg>
 			<div class="mobile:-mt-10 flex flex-col items-end gap-4">
 				{@render step(m['pages.home.resources.two.step'])}
-				<h3 class="c-text-heading-md text-right">
+				<h3 class="c-text-heading-md text-right" id="step-2">
 					<T message={m['pages.home.resources.two.heading']} />
 				</h3>
 			</div>
@@ -322,7 +323,7 @@
 	<StepContainer>
 		<div class="space-y-4">
 			{@render step(m['pages.home.resources.three.step'])}
-			<h3 class="c-text-heading-md text-right">
+			<h3 class="c-text-heading-md text-right" id="step-3">
 				<T message={m['pages.home.resources.three.heading']} />
 			</h3>
 		</div>
@@ -348,7 +349,7 @@
 			<svg class="h-20 w-20 shrink-0" inline-src="./images/svelte-society-logo"></svg>
 			<div class="flex flex-col items-end gap-4">
 				{@render step(m['pages.home.resources.four.step'])}
-				<h3 class="c-text-heading-md text-right">
+				<h3 class="c-text-heading-md text-right" id="step-4">
 					<T message={m['pages.home.resources.four.heading']} />
 				</h3>
 			</div>

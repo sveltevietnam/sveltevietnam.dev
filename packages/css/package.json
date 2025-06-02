@@ -53,15 +53,15 @@
 	},
 	"dependencies": {
 		"@iconify-json/ph": "^1.2.2",
-		"@iconify-json/simple-icons": "^1.2.35",
+		"@iconify-json/simple-icons": "^1.2.36",
 		"@iconify/tailwind4": "^1.0.6",
 		"@tailwindcss/typography": "^0.5.16",
 		"postcss-color-scheme": "^2.1.0",
-		"postcss-custom-media": "^11.0.5",
-		"postcss-custom-selectors": "^8.0.4"
+		"postcss-custom-media": "^11.0.6",
+		"postcss-custom-selectors": "^8.0.5"
 	},
 	"devDependencies": {
-		"tailwindcss": "4.1.7",
+		"tailwindcss": "4.1.8",
 		"vite": "^6.3.5"
 	}
 }

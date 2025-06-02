@@ -9,9 +9,12 @@
 	const settings = SettingsContext.get();
 </script>
 
-<section class="max-w-pad pt-section pb-section-more bg-gradient-primary space-y-10">
+<section
+	class="max-w-pad pt-section pb-section-more bg-gradient-primary space-y-10"
+	data-pagefind-ignore
+>
 	<div class="space-y-6 text-center">
-		<h2 class="c-text-heading-lg"><T message={m['pages.home.sponsor.heading']} /></h2>
+		<h2 class="c-text-heading-lg" id="sponsor"><T message={m['pages.home.sponsor.heading']} /></h2>
 		<p class="max-w-readable mx-auto"><T message={m['pages.home.sponsor.desc']} /></p>
 	</div>
 	<TBA class="mx-auto w-fit text-center">

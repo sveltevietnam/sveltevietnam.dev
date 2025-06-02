@@ -4,7 +4,7 @@ import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 
 export class RoutingContext {
-	static KEY = 'app:routing';
+	static KEY = Symbol('app:routing');
 
 	breadcrumbs = $state<
 		{

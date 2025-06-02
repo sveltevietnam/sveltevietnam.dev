@@ -1,10 +1,14 @@
 <script lang="ts">
+	import { T } from '@sveltevietnam/i18n';
+
 	import { page } from '$app/state';
+	import * as m from '$data/locales/generated/messages';
 	import { BlogListingIntro } from '$lib/components/blog-listing-intro';
 	import { BlogNewsletter } from '$lib/components/blog-newsletter';
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
 	import { GradientBackground } from '$lib/components/gradient-background';
 	import { Pagination } from '$lib/components/pagination';
+	import * as pagefind from '$lib/pagefind/attributes';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 
 	let { data } = $props();
@@ -18,22 +22,31 @@
 	});
 </script>
 
-<main>
+<main {...pagefind.page({ group: 'blog', importance: 'listing' })}>
 	<BlogListingIntro
 		breadcrumbs={routing.breadcrumbs}
 		heading={data.series.name}
 		description={data.series.description}
 	/>
 
-	<section class="py-section max-w-pad desktop:space-y-10 space-y-8">
-		<BlogPostCommonList posts={data.posts} id="listing" />
+	<section
+		class="py-section max-w-pad desktop:space-y-10 space-y-8"
+		data-pagefind-ignore
+	>
+		<h2 class="sr-only" id="listing">
+			<T message={m.newsletter} />
+		</h2>
+		<BlogPostCommonList posts={data.posts} />
 		{#if data.pagination.max > 1}
 			<Pagination class="ml-auto" url={paginationUrl} {...data.pagination} />
 		{/if}
 	</section>
 
 	<GradientBackground pattern="jigsaw">
-		<section class="max-w-pad pt-section pb-section-more" id="newsletter">
+		<section class="max-w-pad pt-section pb-section-more" data-pagefind-ignore>
+			<h2 class="sr-only" id="newsletter">
+				<T message={m.newsletter} />
+			</h2>
 			<BlogNewsletter data={data.subscribeFormData} />
 		</section>
 	</GradientBackground>

@@ -21,8 +21,9 @@
 	import { Person } from '$lib/components/person';
 	import { TableOfContents } from '$lib/components/table-of-contents';
 	import { TextArrowLink } from '$lib/components/text-arrow-link';
+	import { QrCodeDialog } from '$lib/dialogs/components/qr-code-dialog';
 	import { DialogContext } from '$lib/dialogs/context.svelte';
-	import { QrCodeDialog } from '$lib/dialogs/qr-code-dialog';
+	import * as pagefind from '$lib/pagefind/attributes';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 	import { formatTimeDiff } from '$lib/utils/datetime';
@@ -85,7 +86,7 @@
 	});
 </script>
 
-<main>
+<main {...pagefind.page({ group: 'blog', importance: 'detail' })}>
 	<!-- intro -->
 	<section class="pt-intro-pad-top max-w-pad bg-gradient-primary-intro">
 		<Breadcrumbs crumbs={routing.breadcrumbs} />
@@ -168,12 +169,12 @@
 		data-hydrated={settings.hydrated}
 	>
 		<!-- table of contents -->
-		<div class="_toc" id="toc">
+		<div class="_toc">
 			{#if toc.items.size}
 				<section
 					class="tablet:sticky top-header mobile:border-onehalf mobile:border-dashed mobile:border-tertiary mobile:-mx-3 mobile:p-3 space-y-6"
 				>
-					<h2 class="c-text-heading border-outline border-b">
+					<h2 class="c-text-heading border-outline border-b" id="toc">
 						<T message={m['pages.blog_slug.headings.toc']} />
 					</h2>
 					<TableOfContents {toc} />
@@ -207,8 +208,11 @@
 
 		<!-- sharing -->
 		<div class="_sharing">
-			<section class={['space-y-6', !settings.hydrated && 'top-header sticky']} id="share">
-				<h2 class="c-text-heading border-b"><T message={m['pages.blog_slug.headings.share']} /></h2>
+			<section
+				class={['space-y-6', !settings.hydrated && 'top-header sticky']}
+				data-pagefind-ignore
+			>
+				<h2 class="c-text-heading border-b" id="share"><T message={m['pages.blog_slug.headings.share']} /></h2>
 				<ul class="flex flex-wrap gap-4">
 					{#if settings.hydrated}
 						<li>
@@ -263,8 +267,8 @@
 
 		<!-- latest blog post -->
 		{#if data.posts.latest}
-			<section class="_latest space-y-6">
-				<h2 class="c-text-heading border-b">
+			<section class="_latest space-y-6" data-pagefind-ignore>
+				<h2 class="c-text-heading border-b" id="latest-post">
 					<T message={m['pages.blog_slug.headings.latest']} />
 				</h2>
 				<BlogPostListItem post={data.posts.latest} />
@@ -318,11 +322,7 @@
 						</div>
 						<div class="pt-1">
 							<p>
-								<a
-									class="c-link-preserved"
-									href={profileUrl}
-									data-external
-								>
+								<a class="c-link-preserved" href={profileUrl} data-external>
 									<span class="font-bold">
 										{thread.post.author.displayName}
 									</span>
@@ -364,8 +364,11 @@
 		{@const aggregated = blueskyPost ? bluesky.aggregatePostThread(blueskyPost) : null}
 
 		<!-- Bluesky comments -->
-		<section class="max-w-pad py-section mobile:overflow-auto space-y-10" id="comments">
-			<h2 class="c-text-heading border-outline border-b">
+		<section
+			class="max-w-pad py-section mobile:overflow-auto space-y-10"
+			data-pagefind-ignore
+		>
+			<h2 class="c-text-heading border-outline border-b" id="comments">
 				<T message={m['pages.blog_slug.comments.heading']} />
 			</h2>
 			<div
@@ -379,9 +382,7 @@
 							{#if aggregated.hasMoreReplies}
 								<p class="border-outline border-t pt-1 text-right">
 									<T message={m['pages.blog_slug.comments.see_all']} />
-									<a class="c-link" href={data.bluesky.url} data-external>
-										Bluesky
-									</a>
+									<a class="c-link" href={data.bluesky.url} data-external> Bluesky </a>
 								</p>
 							{/if}
 						{:else}
@@ -442,17 +443,20 @@
 
 	<!-- newsletter -->
 	<GradientBackground pattern="jigsaw">
-		<section class="max-w-pad pt-section pb-section-more" id="newsletter">
+		<section class="max-w-pad pt-section pb-section-more" data-pagefind-ignore>
+			<h2 class="sr-only" id="newsletter">
+				<T message={m.newsletter} />
+			</h2>
 			<BlogNewsletter data={data.subscribeFormData} />
 		</section>
 	</GradientBackground>
 
 	<!-- blog posts in same series -->
 	{#if data.posts.inSeries?.length}
-		<section class="py-section max-w-pad space-y-8" id="posts">
+		<section class="py-section max-w-pad space-y-8" data-pagefind-ignore>
 			<div class="space-y-4 border-t-4 border-current pt-2">
 				<div class="flex flex-wrap items-baseline justify-between gap-4">
-					<h2 class="c-text-title uppercase">
+					<h2 class="c-text-title uppercase" id="in-this-series">
 						<T message={m['pages.blog_slug.headings.series']} />
 					</h2>
 					<TextArrowLink href={p['/:lang/blog']({ lang: settings.language })}>

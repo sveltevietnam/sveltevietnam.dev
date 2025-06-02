@@ -20,6 +20,8 @@ messages:
   search: Tìm kiếm
   subscribe: Đăng ký
   update: Cập nhật
+  newsletter: Bản tin
+  listing: Danh sách
   languages:
     vietnamese: Tiếng Việt
     english: Tiếng Anh
@@ -121,7 +123,7 @@ messages:
             link: Xem Svelte Documentation
         three:
           step: Bước ba
-          heading: Tham gia cộng đồng Svelte Vietnam
+          heading: Tham gia cộng đồng Svelte Việt Nam
           desc:
             <strong>Svelte Việt Nam</strong> là một dự án mã nguồn mở và là cộng đồng cho bất cứ ai
             quan tâm đến Svelte tại Việt Nam, với mong muốn tạo ra kênh thông tin bổ ích và môi
@@ -208,7 +210,7 @@ messages:
       heading: Quy tắc ứng xử
       desc: Quy tắc ứng xử dành cho thành viên trong cộng đồng Svelte Việt Nam
       message:
-        Mọi thành viên (cá nhân hoặc tổ chức) tham gia cộng đồng Svelte Vietnam cần tuân theo các
+        Mọi thành viên (cá nhân hoặc tổ chức) tham gia cộng đồng Svelte Việt Nam cần tuân theo các
         quy tắc ứng xử đã được đề ra trong văn bản “Code of Conduct” của <a class="c-link"
         href="https://github.com/sveltejs/community/blob/main/CODE_OF_CONDUCT.md">sveltejs/community</a>
         và <a class="c-link" href="https://sveltesociety.dev/about">Svelte Society</a>.<br /><br
@@ -506,7 +508,7 @@ messages:
           desc: Chưa có công việc nào.
           subscribe: Đăng ký cập nhật công việc mới nhất!
     people:
-      title: Con người | Svelte Vietnam
+      title: Con người | Svelte Việt Nam
       heading: Con người tại Svelte Việt Nam
       desc:
         Danh sách các thành viên đã đóng góp nội dung cho trang web sveltevietnam.dev hoặc là diễn
@@ -634,12 +636,8 @@ messages:
             class="c-link"
             href="https://github.com/sveltevietnam/sveltevietnam.dev">sveltevietnam.dev
             repository</a>
-    search:
-      title: Tìm kiếm | Svelte Vietnam
-      heading: Tìm kiếm
-      desc: Truy cập nhanh nội dung tại sveltevietnam.dev bằng cách tìm kiếm từ khóa
     settings:
-      title: Cài đặt | Svelte Vietnam
+      title: Cài đặt | Svelte Việt Nam
       heading: Cài đặt
       desc: Tùy chỉnh trải nghiệm của riêng bạn tại sveltevietnam.dev
       color_scheme:
@@ -834,3 +832,16 @@ messages:
     qr:
       title: Mã QR
       desc: Chia sẻ và quét mã này để dễ dàng truy cập vào bài viết nhé!
+    search:
+      input:
+        placeholder: Nhập từ khóa...
+        clear: Xóa
+        exit: Thoát
+      results:
+        searching: Đang tìm kiếm...
+        none: Không tìm thấy kết quả nào phù hợp với từ khóa của bạn
+        found: Tìm thấy <strong>{{count}}</strong> trang liên quan
+        clip:
+          results: Hiển thị tất cả kết quả...
+          sub_results: Hiển thị tất cả kết quả trên trang này...
+      footer: Tìm kiếm bằng <a class="c-link" href="https://pagefind.app/">Pagefind</a>

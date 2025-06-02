@@ -7,6 +7,7 @@
 	import * as p from '$data/routes/generated';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { IntroSeparator } from '$lib/components/intro-separator';
+	import * as pagefind from '$lib/pagefind/attributes';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
@@ -16,7 +17,7 @@
 	const routing = RoutingContext.get();
 </script>
 
-<main>
+<main {...pagefind.page()}>
 	<!-- Intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div
@@ -47,11 +48,11 @@
 	</section>
 
 	<!-- How -->
-	<section class="py-section max-w-pad" id="how">
+	<section class="py-section max-w-pad">
 		<div
 			class="border-onehalf bg-surface shadow-brutal-lg tablet:p-8 desktop:p-10 desktop:pt-6 tablet:pt-4 relative w-fit space-y-6 border-current p-6 pt-4"
 		>
-			<h1 class="c-text-heading-lg border-b">Open Collective</h1>
+			<h2 class="c-text-heading-lg border-b" id="how">Open Collective</h2>
 			<p class="max-w-readable-relaxed leading-relaxed">
 				<T message={m['pages.sponsor.highlight.desc']} />
 			</p>
@@ -70,9 +71,9 @@
 
 	<!-- Participate -->
 	<section class="py-section max-w-pad space-y-6">
-		<h1 class="c-text-heading-lg border-b">
+		<h2 class="c-text-heading-lg border-b" id="participate">
 			<T message={m['pages.sponsor.participate.heading']} />
-		</h1>
+		</h2>
 		<p class="max-w-readable-relaxed leading-relaxed">
 			<T message={m['pages.sponsor.participate.desc']} />
 		</p>
@@ -117,8 +118,8 @@
 	</section>
 
 	<!-- Why -->
-	<section class="max-w-pad bg-gradient-primary py-section space-y-6" id="why">
-		<h1 class="c-text-heading-lg border-b"><T message={m['pages.sponsor.why.heading']} /></h1>
+	<section class="max-w-pad bg-gradient-primary py-section space-y-6">
+		<h2 class="c-text-heading-lg border-b" id="why"><T message={m['pages.sponsor.why.heading']} /></h2>
 		<p class="max-w-readable-relaxed leading-relaxed">
 			<T message={m['pages.sponsor.why.desc']} />
 			<br /><br />
@@ -139,7 +140,7 @@
 
 	<!-- Benefits -->
 	<section class="py-section max-w-pad space-y-6">
-		<h1 class="c-text-heading-lg border-b"><T message={m['pages.sponsor.benefit.heading']} /></h1>
+		<h2 class="c-text-heading-lg border-b" id="benefits"><T message={m['pages.sponsor.benefit.heading']} /></h2>
 		<p class="max-w-readable-relaxed leading-relaxed">
 			<T message={m['pages.sponsor.benefit.desc']} />
 		</p>

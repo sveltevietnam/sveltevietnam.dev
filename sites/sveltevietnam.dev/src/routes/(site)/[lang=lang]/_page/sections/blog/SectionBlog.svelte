@@ -11,10 +11,10 @@
 	} = $props();
 </script>
 
-<section class="max-w-pad py-section space-y-10">
+<section class="max-w-pad py-section space-y-10" data-pagefind-ignore>
 	<div class="space-y-6 text-center">
-		<h2 class="c-text-heading-lg"><T message={m['pages.home.blog.heading']} /></h2>
-		<p class="mx-auto max-w-readable"><T message={m['pages.home.blog.desc']} /></p>
+		<h2 class="c-text-heading-lg" id="blog"><T message={m['pages.home.blog.heading']} /></h2>
+		<p class="max-w-readable mx-auto"><T message={m['pages.home.blog.desc']} /></p>
 	</div>
 	<BlogPostShowcase {posts} />
 </section>

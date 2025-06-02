@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
+	import * as pagefind from '$lib/pagefind/attributes';
+
 	import SectionBlog from './_page/sections/blog/SectionBlog.svelte';
 	import SectionEvents from './_page/sections/events/SectionEvents.svelte';
 	import SectionIntro from './_page/sections/intro/SectionIntro.svelte';
@@ -14,7 +16,7 @@
 	});
 </script>
 
-<main class="pt-header">
+<main class="pt-header" {...pagefind.page()}>
 	<SectionIntro />
 	<SectionResources />
 	<SectionEvents />

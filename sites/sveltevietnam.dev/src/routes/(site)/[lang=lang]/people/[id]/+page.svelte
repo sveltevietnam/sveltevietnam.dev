@@ -11,6 +11,7 @@
 	import { Pagination } from '$lib/components/pagination';
 	import { PersonLinks } from '$lib/components/person-links';
 	import { TextArrowLink } from '$lib/components/text-arrow-link';
+	import * as pagefind from '$lib/pagefind/attributes';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
@@ -31,7 +32,7 @@
 	})
 </script>
 
-<main>
+<main {...pagefind.page({ group: 'people', importance: 'detail' })}>
 	<!-- intro -->
 	<section class="group overflow-hidden">
 		<div class="max-w-pad tablet:gap-10 tablet:flex-row flex flex-col">
@@ -68,11 +69,15 @@
 		<IntroSeparator variant="full" class="z-2 relative" />
 	</section>
 
+	<!-- contribute to these events -->
 	{#if data.events.length}
-		<section class="py-section max-w-pad desktop:space-y-15 tablet:space-y-10 space-y-8">
+		<section
+			class="py-section max-w-pad desktop:space-y-15 tablet:space-y-10 space-y-8"
+			data-pagefind-ignore
+		>
 			<div class="space-y-4 border-t-4 border-current pt-2">
 				<div class="flex flex-wrap items-baseline justify-between gap-4">
-					<h2 class="c-text-title">
+					<h2 class="c-text-title" id="events">
 						<T message={m['pages.people_slug.events']} name={data.person.name} />
 					</h2>
 					<TextArrowLink class="ml-auto" href={links.events}>
@@ -84,12 +89,15 @@
 		</section>
 	{/if}
 
-	<!-- blog post listing -->
+	<!-- appear as author to these posts -->
 	{#if data.posts.length}
-		<section class="py-section max-w-pad desktop:space-y-15 tablet:space-y-10 space-y-8" id="posts">
+		<section
+			class="py-section max-w-pad desktop:space-y-15 tablet:space-y-10 space-y-8"
+			data-pagefind-ignore
+		>
 			<div class="space-y-4 border-t-4 border-current pt-2">
 				<div class="flex flex-wrap items-baseline justify-between gap-4">
-					<h2 class="c-text-title">
+					<h2 class="c-text-title" id="posts">
 						<T message={m['pages.people_slug.posts_by']} name={data.person.name} />
 					</h2>
 					<TextArrowLink class="ml-auto" href={links.blog}>

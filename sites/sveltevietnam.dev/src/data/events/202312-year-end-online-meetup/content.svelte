@@ -50,7 +50,7 @@
 
 	<!-- Recap -->
 	<section class="pb-section pt-section-more max-w-pad space-y-6">
-		<h2 class="c-text-heading-lg border-b">
+		<h2 class="c-text-heading-lg border-b" id="recap">
 			<T message={m['recap.heading']} />
 		</h2>
 		<div class="flex flex-wrap items-start gap-10 leading-relaxed">
@@ -73,7 +73,7 @@
 
 	<!-- Timeline -->
 	<section class="py-section max-w-pad space-y-8">
-		<h2 class="c-text-heading-lg border-b">
+		<h2 class="c-text-heading-lg border-b" id="timeline">
 			<T message={m['timeline.heading']} />
 		</h2>
 		<dl class="space-y-2">
@@ -187,7 +187,7 @@
 
 	<!-- Images -->
 	<section class="pt-section pb-section-more tablet:space-y-15 max-w-pad space-y-10">
-		<h2 class="c-text-heading-lg border-b">
+		<h2 class="c-text-heading-lg border-b" id="images">
 			<T message={m['images.heading']} />
 		</h2>
 

@@ -6,11 +6,12 @@
 	import * as m from '$data/locales/generated/messages';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { IntroSeparator } from '$lib/components/intro-separator';
+	import * as pagefind from '$lib/pagefind/attributes';
 
 	let { data } = $props();
 </script>
 
-<main>
+<main {...pagefind.page()}>
 	<!-- intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div class="max-w-pad tablet:space-y-8 w-full space-y-6">
@@ -25,7 +26,7 @@
 	</section>
 
 	<section class="max-w-pad py-section">
-		<h2 class="sr-only"><T message={m['pages.coc.heading']} /></h2>
+		<h2 class="sr-only" id="description"><T message={m['pages.coc.heading']} /></h2>
 		<div
 			class="tablet:p-8 desktop:p-10 shadow-brutal-lg border-onehalf w-fit space-y-6 border-current p-6"
 		>
@@ -56,7 +57,7 @@
 	</section>
 
 	<section class="max-w-pad bg-primary-surface py-section space-y-6">
-		<h2 class="c-text-heading-lg border-b">
+		<h2 class="c-text-heading-lg border-b" id="excerpt">
 			<T message={m['pages.coc.excerpt.heading']} />
 		</h2>
 		<p class="max-w-readable-relaxed leading-relaxed">

@@ -5,7 +5,7 @@ import { browser } from '$app/environment';
 import { VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME } from '$env/static/public';
 
 export class SettingsContext {
-	static KEY = 'app:settings';
+	static KEY = Symbol('app:settings');
 
 	// reactive MediaQuery
 	#desktopQuery = new MediaQuery('(width >= 64rem)'); /* 1024px */
@@ -73,6 +73,25 @@ export class SettingsContext {
 
 	toggleScrollLock(force?: boolean) {
 		this.scrolllock = force ?? !this.scrolllock;
+	}
+
+	get platform() {
+		if (!browser) {
+			return 'server';
+		} else {
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			const platform = (
+				(window.navigator as any).userAgentData?.platform ?? window.navigator.platform
+			).toLowerCase();
+			if (platform.includes('mac')) {
+				return 'mac';
+			} else if (platform.includes('win')) {
+				return 'windows';
+			} else if (platform.includes('linux')) {
+				return 'linux';
+			}
+			return 'unknown';
+		}
 	}
 
 	static set(settings: {

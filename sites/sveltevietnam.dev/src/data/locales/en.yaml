@@ -20,6 +20,8 @@ messages:
   search: Search
   subscribe: Subscribe
   update: Update
+  newsletter: Newsletter
+  listing: Listing
   languages:
     vietnamese: Vietnamese
     english: English
@@ -632,10 +634,6 @@ messages:
             class="c-link"
             href="https://github.com/sveltevietnam/sveltevietnam.dev">sveltevietnam.dev
             repository</a>
-    search:
-      title: Search | Svelte Vietnam
-      heading: Search
-      desc: Quickly access content at sveltevietnam.dev by searching for keywords
     settings:
       title: Settings | Svelte Vietnam
       heading: Settings
@@ -831,3 +829,16 @@ messages:
     qr:
       title: QR Code
       desc: Share and scan this code for quick access the blog post!
+    search:
+      input:
+        placeholder: Type something...
+        clear: Clear
+        exit: Exit
+      results:
+        searching: Hang tight! We are looking around...
+        none: No results found
+        found: Found <strong>{{count}}</strong> relevant pages
+        clip:
+          results: Show all relevant pages...
+          sub_results: Show all results on this page...
+      footer: Static search powered by <a class="c-link" href="https://pagefind.app/">Pagefind</a>
