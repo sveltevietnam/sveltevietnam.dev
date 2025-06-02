@@ -21,6 +21,7 @@
 	/* default background */
 	--color-surface: light-dark(var(--color-sand-50), var(--color-sand-950));
 	--color-surface-variant: light-dark(var(--color-sand-200), var(--color-sand-800));
+	--color-surface-subtle: color-mix(in oklch, var(--color-surface) 95%, var(--color-on-surface) 5%);
 
 	/* elements */
 	--color-placeholder: var(--color-sand-500);
