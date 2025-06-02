@@ -132,7 +132,7 @@ If you don't already know, `app.html` is the starting template that SvelteKit us
 
 ```svelte title=src/routes/+layout.svelte
 <script>
-  import 'path/to/splash.css';
+  import './path/to/splash.css';
 </script>
 ```
 
