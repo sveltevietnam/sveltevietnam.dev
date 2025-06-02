@@ -58,7 +58,10 @@ async function startPreview(onSpawn: (child: child_process.ChildProcess) => void
 		});
 		onSpawn(child);
 		child.stdout.on('data', (data) => {
-			const output: string = data.toString();
+			const output: string = data
+				.toString()
+				// eslint-disable-next-line no-control-regex
+				.replace(/\u001b\[.*?m/g, '');
 			const match = output.match(/https?:\/\/localhost:\d+\//)?.[0];
 			if (match) {
 				resolve(match);
@@ -166,7 +169,7 @@ function pagefind_build(pluginConfig: PagefindViteConfig = {}): import('vite').P
 					}
 				});
 				if (verbose) {
-					logger.info('Starting preview server');
+					logger.info('Starting preview server...');
 				}
 				const url = await startPreview((child) => children.push(child));
 				if (verbose) {
@@ -187,6 +190,9 @@ function pagefind_build(pluginConfig: PagefindViteConfig = {}): import('vite').P
 								}
 
 								// fetch paths from sitemap.xml
+								if (verbose) {
+									logger.info(`Fetching sitemap for ${pico.yellow(lang)}...`);
+								}
 								const xml = await response.text();
 								const parser = new XMLParser({
 									htmlEntities: true,
@@ -197,6 +203,9 @@ function pagefind_build(pluginConfig: PagefindViteConfig = {}): import('vite').P
 								);
 
 								// fetch HTML files for each path
+								if (verbose) {
+									logger.info(`Fetching HTML files for ${pico.yellow(lang)}...`);
+								}
 								return await fetchHTMLs(url, paths);
 							}),
 						)
