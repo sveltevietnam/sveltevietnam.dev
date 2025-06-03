@@ -22,16 +22,16 @@ export function formatTimeDiff(date1: Date | number | string, date2 = new Date()
 	const diff = Math.abs(date1.getTime() - date2.getTime());
 
 	const seconds = Math.floor(diff / 1000);
-	if (seconds < 60) return `${seconds}sec`;
+	if (seconds < 60) return `${seconds}s`;
 
 	const minutes = Math.floor(seconds / 60);
-	if (minutes < 60) return `${minutes}min`;
+	if (minutes < 60) return `${minutes}m`;
 
 	const hours = Math.floor(minutes / 60);
-	if (hours < 24) return `${hours}hr`;
+	if (hours < 24) return `${hours}h`;
 
 	const days = Math.floor(hours / 24);
-	if (days < 30) return `${days}day`;
+	if (days < 30) return `${days}d`;
 
 	const months = Math.floor(days / 30);
 	if (months < 12) return `${months}mo`;
