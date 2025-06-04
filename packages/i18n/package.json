@@ -90,7 +90,7 @@
 		"yaml": "^2.8.0"
 	},
 	"devDependencies": {
-		"svelte": "^5.33.10",
+		"svelte": "^5.33.14",
 		"vite": "^6.3.5"
 	}
 }
