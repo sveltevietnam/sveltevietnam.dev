@@ -27,7 +27,7 @@ export class SearchContext {
 	results = $derived.by<Promise<SearchResult[]> | null>(() => {
 		if (!this.#pagefind || !this.query) return null;
 		const results = this.#pagefind
-			.debouncedSearch(this.query, {
+			.search(this.query, {
 				sort: {
 					weight: 'asc',
 				},
