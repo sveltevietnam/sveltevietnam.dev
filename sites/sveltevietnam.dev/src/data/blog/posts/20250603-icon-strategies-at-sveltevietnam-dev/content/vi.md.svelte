@@ -253,7 +253,7 @@ các ngữ cảnh khác. Ví dụ:
 
 </div>
 
-### Về cú pháp i-[...]
+### Về cú pháp [...]
 
 Có thể bạn đã nhận ra mình dùng cú pháp `i-[ph--cpu]` thay vì `i-ph--cpu`. Dấu ngoặc vuông thể
 hiện cú pháp [arbitrary value](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values)

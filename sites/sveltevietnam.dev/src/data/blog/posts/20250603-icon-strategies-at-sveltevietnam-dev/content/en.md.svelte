@@ -256,7 +256,7 @@ they can potentially be reused in other contexts. For example:
 
 </div>
 
-### About the i-[...] Syntax
+### About the [...] Syntax
 
 You may have noticed that I use the syntax `i-[ph--cpu]` instead of `i-ph--cpu`. The square brackets
 indicate the use of the [arbitrary value](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values)
