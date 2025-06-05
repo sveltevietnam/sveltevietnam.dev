@@ -98,7 +98,7 @@
 </script>
 
 <section
-	class="max-w-pad -mt-header relative flex min-h-svh flex-col items-center justify-center overflow-hidden"
+	class="max-w-pad -mt-header relative flex min-h-svh flex-col items-center justify-center overflow-hidden select-none"
 	bind:this={elSection}
 >
 	<div class="space-y-15 tablet:space-y-20 desktop:space-y-24">
@@ -131,7 +131,7 @@
 				bind:this={elPyramid}
 			></svg>
 			<p
-				class="font-lora tablet:text-2xl desktop:text-3xl text-center text-lg font-medium leading-tight"
+				class="font-lora tablet:text-2xl desktop:text-3xl text-center text-lg font-medium leading-tight select-text"
 				bind:this={elSubtitle}
 			>
 				<!-- <T message={m['pages.home.intro.subtitle']} /> -->
