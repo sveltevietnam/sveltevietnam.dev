@@ -15,6 +15,8 @@
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
+	const isPrideMonth = new Date().getMonth() === 5; // June is Pride Month
+
 	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();
 	const dialog = DialogContext.get();
@@ -113,9 +115,16 @@
 			{...routing.is(linkToHome) ? {} : { href: linkToHome }}
 		>
 			{#if routing.is(linkToHome)}
-				<svg class="w-15 h-15" inline-src="sveltevietnam" id="header-logo"></svg>
+				<svg
+					class={['w-15 h-15', isPrideMonth && 'pride']}
+					inline-src="sveltevietnam"
+					id="header-logo"
+				></svg>
+				{#if isPrideMonth}
+					<svg class="h-0 w-0" inline-src="sveltevietnam-pride-gradients"></svg>
+				{/if}
 			{:else}
-				<i class="i i-sveltevietnam w-15 h-15"></i>
+				<i class={['i i-sveltevietnam w-15 h-15', isPrideMonth && 'pride']}></i>
 			{/if}
 			<span class="c-text-title-sm max-w-25 uppercase">
 				<T message={m['svelte_vietnam.name']} />
@@ -126,7 +135,11 @@
 			<div class="-z-1 bg-surface absolute inset-0" style:opacity={toolbarBackdropOpacity}>
 				<!-- backdrop -->
 			</div>
-			<button class="shrink-0 c-btn c-btn--outlined text-sm bg-transparent" onclick={handleSearch} type="button">
+			<button
+				class="c-btn c-btn--outlined shrink-0 bg-transparent text-sm"
+				onclick={handleSearch}
+				type="button"
+			>
 				<i class="i i-[ph--magnifying-glass] h-5 w-5"></i>
 				<span><T message={m.search} /></span>
 				<span class="c-text-body-xs">
@@ -147,7 +160,7 @@
 	<!-- mobile header -->
 	<div class="max-w-pad tablet:hidden bg-surface flex items-center gap-2 border-b py-2">
 		<a class="mr-auto flex items-center gap-2" href={linkToHome}>
-			<i class="i i-sveltevietnam h-10 w-10"></i>
+			<i class={['i i-sveltevietnam h-10 w-10', isPrideMonth && 'pride']}></i>
 			<span class="font-lora max-w-18 text-sm font-medium uppercase leading-tight">
 				<T message={m['svelte_vietnam.name']} />
 			</span>
@@ -217,6 +230,43 @@
 
 		header:has(._mobile-menu-toggler:checked) & {
 			display: block;
+		}
+	}
+
+	.pride {
+		--color-pride-0: #e50000;
+		--color-pride-1: #e68d00;
+		--color-pride-2: #e6d600;
+		--color-pride-3: #008100;
+		--color-pride-4: #004cff;
+		--color-pride-5: #760188;
+
+		&:not(svg) {
+			background-image: linear-gradient(
+				to bottom,
+				var(--color-pride-0) 0%,
+				var(--color-pride-0) 16.6%,
+				var(--color-pride-1) 16.6%,
+				var(--color-pride-1) 33.2%,
+				var(--color-pride-2) 33.2%,
+				var(--color-pride-2) 49.8%,
+				var(--color-pride-3) 49.8%,
+				var(--color-pride-3) 66.4%,
+				var(--color-pride-4) 66.4%,
+				var(--color-pride-4) 83%,
+				var(--color-pride-5) 83%,
+				var(--color-pride-5) 100%
+			);
+		}
+
+		&:is(svg) {
+			& :global(.svelte) {
+				fill: url("#gradientSvelte");
+			}
+
+			& :global(.hat) {
+				fill: url("#gradientHat");
+			}
 		}
 	}
 </style>
