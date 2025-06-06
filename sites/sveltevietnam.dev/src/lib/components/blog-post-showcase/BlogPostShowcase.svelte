@@ -140,6 +140,8 @@
 	._first {
 		:global {
 			& article {
+				justify-content: space-between;
+
 				@media (--widescreen) {
 					flex-direction: row-reverse;
 				}
