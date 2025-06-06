@@ -328,6 +328,7 @@
 
 	.codeblock :global(pre) {
 		height: 100%;
+		max-height: 50rem; /* 800px */
 		margin-block: 0;
 		border-width: 1px 0 0 !important;
 		border-top-left-radius: 0;
