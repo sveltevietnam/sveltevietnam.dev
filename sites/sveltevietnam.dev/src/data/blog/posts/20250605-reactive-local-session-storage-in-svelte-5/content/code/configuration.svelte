@@ -1,6 +1,6 @@
-<fieldset class="not-prose overflow-auto border border-outline p-4">
+<fieldset class="not-prose overflow-auto border border-outline p-4 max-w-full min-w-0">
 	<legend>Configuration</legend>
-	<table class="border-collapse max-w-full c-text-body-sm w-full">
+	<table class="border-collapse c-text-body-sm w-full">
 		<thead>
 			<tr class="bg-surface-subtle">
 				<th class="w-20" scope="col">Key</th>
