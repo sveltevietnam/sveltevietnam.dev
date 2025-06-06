@@ -18,7 +18,7 @@ Copy the following code into your project...
 ```ts title="storage.ts" src="./code/storage.ts"
 ```
 
-`storage.num`, `storage.sr`, etc. are now reactive 🎉!
+`storage.num`, `storage.str`, etc. are now reactive 🎉!
 
 ## Prior Arts
 
@@ -31,7 +31,7 @@ and the [proposed solution by Joy of Code](https://www.youtube.com/watch?v=HnNgk
 
 The solution presented here is designed to address the following objectives:
 
-1. Provide reactivity via the simplest possible abstraction for [WebStorage] items,
+1. Provide reactivity via an abstraction as minimal as possible for [WebStorage] items,
 2. Automate `JSON.stringify` and `JSON.parse` when storing and retrieving data from [WebStorage],
    since `localStorage` and `sessionStorage` currently only support storing values as strings,
 3. Just works™. In concrete terms, that means minimal boilerplate and doesn't crash on server side.
