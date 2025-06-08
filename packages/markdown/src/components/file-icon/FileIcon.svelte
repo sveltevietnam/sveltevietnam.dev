@@ -1,7 +1,7 @@
 <script lang="ts">
 	let { lang }: { lang: string } = $props();
 
-	const langToIconClass = {
+	const langToIconClass: Record<string, string> = {
 		js: 'i-[simple-icons--javascript]',
 		javascript: 'i-[simple-icons--javascript]',
 		ts: 'i-[simple-icons--typescript]',
@@ -13,6 +13,7 @@
 		svelte: 'i-[simple-icons--svelte]',
 		bash: 'i-[simple-icons--gnometerminal]',
 		sh: 'i-[simple-icons--gnometerminal]',
+		yaml: 'i-[simple-icons--yaml]',
 	};
 	const iconClass = $derived(langToIconClass[lang] || 'i-[ph--code-block]');
 </script>

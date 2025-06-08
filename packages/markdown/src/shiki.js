@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 
 import { toString } from 'hast-util-to-string';
 import { h } from 'hastscript';
@@ -16,6 +16,7 @@ export const highlighter = await createHighlighterCore({
 		import('shiki/langs/svelte.mjs'),
 		import('shiki/langs/shellscript.mjs'),
 		import('shiki/langs/markdown.mjs'),
+		import('shiki/langs/yaml.mjs'),
 	],
 	engine: createOnigurumaEngine(import('shiki/wasm')),
 });
