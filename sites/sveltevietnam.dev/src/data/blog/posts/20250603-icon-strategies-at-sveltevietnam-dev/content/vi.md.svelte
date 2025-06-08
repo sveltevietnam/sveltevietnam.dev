@@ -333,8 +333,8 @@ nền tảng web nói chung. Giải pháp Iconify+Tailwind trình bày trong bà
 tính linh hoạt và không lệ thuộc vào một framework UI nào, vì vậy có thể tái sử dụng trong những
 dự án khác, ví nhụ như với Vue, Astro, ...
 
-Nếu bạn có góp ý hay phản hồi, có thể tìm thấy mình tại [vnphanquang trên
-Bluesky](https://bsky.app/profile/vnphanquang.com). Hoặc thông qua [Discord của Svelte Việt Nam](https://discord.sveltevietnam.dev).
+Nếu bạn có góp ý hay phản hồi, có thể tìm mình tại [vnphanquang trên
+Bluesky](https://bsky.app/profile/vnphanquang.com) hoặc thông qua [Discord của Svelte Việt Nam](https://discord.sveltevietnam.dev).
 
 Cảm ơn bạn đã đọc bài!
 
