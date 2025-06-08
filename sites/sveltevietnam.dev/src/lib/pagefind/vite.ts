@@ -102,7 +102,7 @@ function pagefind_dev(pluginConfig: PagefindViteConfig = {}): import('vite').Plu
 	const { logfile = 'pagefind.log' } = pluginConfig;
 	const logger = createLogger();
 	return {
-		name: 'vite-plugin-pagefind:dev',
+		name: 'sveltevietnam-pagefind:dev',
 		apply: 'serve',
 		async configResolved(config) {
 			const pagefindDir = path.join(config.publicDir, 'pagefind');
@@ -142,7 +142,7 @@ function pagefind_build(pluginConfig: PagefindViteConfig = {}): import('vite').P
 	const logger = createLogger();
 
 	return {
-		name: 'vite-plugin-pagefind:build',
+		name: 'sveltevietnam-pagefind:build',
 		apply: 'build',
 		async configResolved(config) {
 			rConfig = config;
