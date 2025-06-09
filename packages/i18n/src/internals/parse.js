@@ -9,7 +9,7 @@ import { flattenRecursiveRecord } from './utils.js';
  * @param {string} yaml - the input YAML string
  * @returns {Promise<import('./private.d.ts').LocaleSource>}
  */
-export async function parseLocaleYaml(yaml) {
+export function parseLocaleYaml(yaml) {
 	return parse(yaml.normalize());
 }
 

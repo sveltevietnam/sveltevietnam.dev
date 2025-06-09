@@ -7,9 +7,9 @@ import { parseMessageParams } from './parse.js';
  * @param {Record<string, Record<string, string>>} messages - parsed message flatmap
  * @param {string[]} langs - list of langs to lint against
  * @param {boolean} failFirst - whether to stop on the first error
- * @returns {Promise<LintOutput>} list of lint error message per locale directory
+ * @returns {LintOutput} list of lint error message per locale directory
  */
-export async function lint(messages, langs, failFirst = false) {
+export function lint(messages, langs, failFirst = false) {
 	/** @type {Record<string, Issue[]>} */
 	const issuesByKey = {};
 

@@ -11,7 +11,7 @@ export function transform(messages) {
 	const definitions = [];
 
 	/** @type {Parameters<typeof import('./codegen.js').importRuntimeFactoryFunctions>} */
-	let runtimeImportFlags = [true, false, false, false];
+	const runtimeImportFlags = [true, false, false, false];
 
 	/** @type {Record<string, string> } */
 	const exports = {};

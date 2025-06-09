@@ -66,7 +66,7 @@ function chunkifyContentWithParams(content, params, snippet = false) {
 		/** @type {ts.TemplateHead} */
 		let head = factory.createTemplateHead('');
 		/** @type {ts.TemplateSpan[]}*/
-		let spans = [];
+		const spans = [];
 
 		let i = 0;
 		while (i < chunks.length) {
@@ -390,7 +390,7 @@ export function print(nodes) {
 		ts.ScriptKind.JS,
 	);
 
-	let code = printer.printList(
+	const code = printer.printList(
 		ts.ListFormat.MultiLine,
 		factory.createNodeArray([doc, newline(), ...nodes]),
 		resultFile,
