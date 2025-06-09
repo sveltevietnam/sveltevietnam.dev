@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path/posix';
+import process from 'node:process';
 
 import pico from 'picocolors';
 import glob from 'tiny-glob';
@@ -28,24 +29,36 @@ async function build(logger, cwd, dirs, rebuild = false) {
 	const localeFileGroups = await collectYamlGroupByDir(cwd, dirs);
 
 	// 3. Parse
-	const messageGroups = await Promise.all(
-		Object.values(localeFileGroups).map((yamls) => flatParseMessages(yamls)),
+	/** @type {Record<string, import('./internals/private.d.ts').FlatParseMessageOutput>} */
+	const messageGroups = Object.fromEntries(
+		await Promise.all(
+			Object.entries(localeFileGroups).map(async ([dir, yamls]) => [
+				dir,
+				await flatParseMessages(yamls),
+			]),
+		),
 	);
-	const numMessages = messageGroups.reduce((numMessages, group) => {
+	const numMessages = Object.values(messageGroups).reduce((numMessages, group) => {
 		return numMessages + Object.keys(group.messages).length;
 	}, 0);
 
 	// 4. Lint
-	const issueGroups = await Promise.all(
-		messageGroups.map(({ messages, langs }) => lint(messages, langs, false)),
+	/** @type {Record<string, import('./internals/lint.js').LintOutput>} */
+	const issueGroups = Object.fromEntries(
+		await Promise.all(
+			Object.entries(messageGroups).map(([dir, { messages, langs }]) => [
+				dir,
+				lint(messages, langs, false),
+			]),
+		),
 	);
 	let hasIssue = false;
-	for (let i = 0; i < issueGroups.length; i++) {
-		const issueEntries = Object.entries(issueGroups[i].issuesByKey);
+	for (const [dir, lintOutput] of Object.entries(issueGroups)) {
+		const issueEntries = Object.entries(lintOutput.issuesByKey);
 		const numIssues = issueEntries.length;
 		hasIssue = numIssues > 0;
 		if (hasIssue) {
-			const filepath = path.relative(cwd, dirs[i]);
+			const filepath = path.relative(cwd, dir);
 			logger.error(
 				`${pico.bold(numIssues)} issue(s) found in ${pico.yellow(filepath)} for the following message(s):`,
 			);
@@ -58,12 +71,17 @@ async function build(logger, cwd, dirs, rebuild = false) {
 	}
 
 	// 4. Transform
-	const outputs = await Promise.all(messageGroups.map(async (group) => transform(group.messages)));
+	/** @type {Record<string, { module: string }>} */
+	const outputs = Object.fromEntries(
+		await Promise.all(
+			Object.entries(messageGroups).map(([dir, group]) => [dir, transform(group.messages)]),
+		),
+	);
 
 	// 5. Write
 	await Promise.all(
-		outputs.map(async (output, index) => {
-			const outPath = path.join(cwd, dirs[index], 'generated/messages.js');
+		Object.entries(outputs).map(async ([dir, output]) => {
+			const outPath = path.join(dir, 'generated/messages.js');
 			await fs.mkdir(path.dirname(outPath), { recursive: true });
 			await fs.writeFile(outPath, output.module);
 			return outPath;

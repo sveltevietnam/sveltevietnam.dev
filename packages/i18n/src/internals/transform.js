@@ -21,13 +21,13 @@ export function transform(messages) {
 
 	/// Transform each message definition into string, function, or snippet
 	/// depending on whether it contains HTML and/or dynamic parameters
-	for (let [key, langToMessage] of Object.entries(messages)) {
+	for (const [key, langToMessage] of Object.entries(messages)) {
 		// avoiding conflict with reserved keywords,
 		// just adding _ until there is a reliable upstream list
 		// of all reserved keywords
 		// @see https://github.com/microsoft/TypeScript/issues/2536
 		let varName = '_' + key.replace(/\./g, '_');
-		let collision = varMap.get(varName);
+		const collision = varMap.get(varName);
 		if (collision) {
 			varName = `${varName}_${collision}`;
 		}
@@ -38,7 +38,7 @@ export function transform(messages) {
 		for (const [lang, content] of Object.entries(langToMessage)) {
 			const params = parseMessageParams(content);
 
-			/** @type {import('../runtime').MessageType} */
+			/** @type {import('../runtime/types.public.d.ts').MessageType} */
 			let type = 'string';
 			if (utils.containsHtml(content)) type = 'snippet';
 			else if (params.length) type = 'function';
