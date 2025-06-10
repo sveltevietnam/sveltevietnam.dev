@@ -13,7 +13,7 @@ export default defineBlogPostMetadata((lang) => ({
 				description:
 					'Introducing a custom vite plugin to index Pagefind in server-side-rendered SvelteKit sites',
 				keywords: 'pagefind, ssr, search, static, prerendered',
-				translation: 'original',
+				translation: 'manual',
 				readMinutes: 8,
 				numWords: 1200,
 			},
@@ -23,7 +23,7 @@ export default defineBlogPostMetadata((lang) => ({
 				description:
 					'Index Pagefind cho các trang SvelteKit server-side-rendered thông qua vite plugin',
 				keywords: 'pagefind, ssr, tìm kiếm, tĩnh',
-				translation: 'manual',
+				translation: 'original',
 				readMinutes: 8,
 				numWords: 1300,
 			},

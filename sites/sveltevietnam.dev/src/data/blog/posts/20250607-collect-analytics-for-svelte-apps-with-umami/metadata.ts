@@ -13,7 +13,7 @@ export default defineBlogPostMetadata((lang) => ({
 				description:
 					'Integrate Umami with Svelte in just a few minutes — a modern & privacy-friendly alternative to Google Analytics',
 				keywords: 'analytics, umami, privacy, integration',
-				translation: 'original',
+				translation: 'manual',
 				readMinutes: 4,
 				numWords: 600,
 			},
@@ -23,7 +23,7 @@ export default defineBlogPostMetadata((lang) => ({
 				description:
 					'Sơ lược về tích hợp Umami vào Svelte trong vài phút — một giải pháp thay thế cho Google Analytics',
 				keywords: 'thu thập dữ liệu, umami, quyền riêng tư, tích hợp',
-				translation: 'manual',
+				translation: 'original',
 				readMinutes: 4,
 				numWords: 700,
 			},
