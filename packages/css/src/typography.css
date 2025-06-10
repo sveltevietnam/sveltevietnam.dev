@@ -38,6 +38,7 @@
 		--tw-prose-links: var(--color-link);
 		--tw-prose-bold: inherit;
 		--tw-prose-counters: inherit;
+		--tw-prose-kbd: inherit;
 		--tw-prose-bullets: inherit;
 		--tw-prose-hr: var(--color-outline);
 		--tw-prose-quotes: inherit;

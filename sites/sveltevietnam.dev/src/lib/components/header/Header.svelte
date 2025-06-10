@@ -144,9 +144,9 @@
 				<span><T message={m.search} /></span>
 				<span class="c-text-body-xs">
 					{#if settings.platform === 'mac'}
-						<kbd class="c-text-body-xs">⌘</kbd>
+						<kbd>⌘</kbd>
 					{:else}
-						<kbd class="c-text-body-xs">Ctrl</kbd>
+						<kbd>Ctrl</kbd>
 					{/if}
 					<kbd>K</kbd>
 				</span>
