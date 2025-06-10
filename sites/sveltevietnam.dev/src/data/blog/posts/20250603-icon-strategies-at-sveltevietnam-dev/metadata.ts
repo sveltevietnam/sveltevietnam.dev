@@ -3,7 +3,7 @@ import { defineBlogPostMetadata } from '..';
 export default defineBlogPostMetadata((lang) => ({
 	publishedAt: new Date('2025-06-03'),
 	authors: ['vnphanquang'],
-	categories: ['ecosystem'],
+	categories: ['ecosystem', 'insider'],
 	series: ['behind-the-screen'],
 	keywords: 'icon, svg, css, inline, static, dynamic, iconify, tailwind',
 	...(
