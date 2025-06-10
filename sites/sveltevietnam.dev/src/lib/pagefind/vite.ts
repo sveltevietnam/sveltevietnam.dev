@@ -130,9 +130,9 @@ function pagefind_dev(pluginConfig: PagefindViteConfig = {}): import('vite').Plu
  * 2. Update the dev public directory with the latest built index
  *
  * ## Assumptions
- * 1. Intermediate SvelteKit output directory is `./svelte-kit/output`,
- *		that is, the output before SvelteKit adapter is applied.
- *		This is also the directory where preview server serves the files from.
+ * 1. Intermediate SvelteKit output directory is `.svelte-kit/output`,
+ *		that is, the output before distribution is copied to the SvelteKit adapter target outdir.
+ *		`.svelte-kit/output` is also the directory where preview server serves the files from.
  * 2. Static files are copied during the 'client' environment build.
  * 3. build order is: 'client' environment, then 'ssr' environment.
  */

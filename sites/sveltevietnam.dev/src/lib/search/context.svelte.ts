@@ -22,7 +22,7 @@ type SearchClip = {
 export class SearchContext {
 	static KEY = Symbol('app:dialogs');
 
-	#pagefind = $state<App.PageFind | null>(null);
+	#pagefind = $state<import('@pagefind').default | null>(null);
 	query = $state<string>('');
 	results = $derived.by<Promise<SearchResult[]> | null>(() => {
 		if (!this.#pagefind || !this.query) return null;
@@ -61,10 +61,12 @@ export class SearchContext {
 
 	constructor(origin: string) {
 		if (browser) {
-			import(/* @vite-ignore */ `${origin}/pagefind/pagefind.js`).then((m: App.PageFind) => {
-				this.#pagefind = m;
-				this.#pagefind.init();
-			});
+			import(/* @vite-ignore */ `${origin}/pagefind/pagefind.js`).then(
+				(m: import('@pagefind').default) => {
+					this.#pagefind = m;
+					this.#pagefind.init();
+				},
+			);
 
 			// subscribe to lang on html
 			const observer = new MutationObserver(() => {

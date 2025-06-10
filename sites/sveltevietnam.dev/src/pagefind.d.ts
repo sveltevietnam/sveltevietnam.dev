@@ -300,4 +300,6 @@ declare module '@pagefind' {
 	 * The Pagefind API object that is returned when importing the pagefind module.
 	 */
 	export { debouncedSearch, destroy, filters, init, mergeIndex, options, preload, search };
+
+	export default PageFind;
 }
