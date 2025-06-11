@@ -44,4 +44,9 @@
 		outline: 1.5px solid var(--color-outline-focus);
 		outline-offset: 1px;
 	}
+
+	/* prevent white-on-white option on chrome (as of 2025.06.11) */
+	option {
+		background-color: var(--color-surface);
+	}
 }
