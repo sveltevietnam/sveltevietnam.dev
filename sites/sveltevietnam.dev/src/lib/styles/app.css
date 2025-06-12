@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
+
 @import '@sveltevietnam/css/layers';
 @import 'tailwindcss';
 @import '@sveltevietnam/css/base';
@@ -6,6 +9,12 @@
 @import './splash.css';
 
 @source '../../../../../packages/markdown/src/**/*.{svelte,js}';
+
+@theme {
+	--font-inter: 'Inter', sans-serif;
+	--font-lora: 'Lora', serif;
+	--font-fira: 'Fira Code', monospace;
+}
 
 @layer base {
 	body {

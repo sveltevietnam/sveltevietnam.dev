@@ -7,6 +7,7 @@ import { css } from '@sveltevietnam/css/vite';
 import { i18n } from '@sveltevietnam/i18n/vite';
 import { routes } from '@sveltevietnam/routes/vite';
 import tailwindcss from '@tailwindcss/vite';
+import { fontless } from 'fontless';
 import { defineConfig } from 'vite';
 import { qrcode } from 'vite-plugin-qrcode';
 
@@ -64,6 +65,7 @@ export default defineConfig({
 		i18n({ input: 'src/**/locales' }),
 		routes(routesConfig),
 		sveltekit(),
+		fontless(),
 	],
 	server: {
 		fs: {
