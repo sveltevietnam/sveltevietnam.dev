@@ -5,12 +5,12 @@
 Khi mình trò chuyện với anh Tuấn Nguyễn, mình nhận ra đây là người có tư duy chiến lược, hệ thống, và đã có hơn 15 năm kinh nghiệm lập trình. Điều khiến anh vẫn còn hào hứng với nghề không phải chỉ vì công nghệ mới, mà vì niềm vui trong việc giải quyết những vấn đề đa dạng và biến ý tưởng thành sản phẩm thực tế.
 
 Anh chia sẻ:
-<blockquote>
-<p> Hồi đầu anh lập trình không giỏi. Nhưng vì đam mê nên vẫn theo đuổi đến cùng. Gặp cái mới là anh không ngại tìm hiểu, học cho vững một mảng và mở rộng sang các công nghệ khác nữa. </p>
-</blockquote>
+
+> Hồi đầu anh lập trình không giỏi. Nhưng vì đam mê nên vẫn theo đuổi đến cùng. Gặp cái mới là anh không ngại tìm hiểu, học cho vững một mảng và mở rộng sang các công nghệ khác nữa.
 
 Khi được hỏi về một thành tựu gần đây khiến anh tự hào, câu trả lời khá giản dị:
-<blockquote><p>Anh tự hào vì đã không bỏ cuộc khi mọi thứ trở nên khó khăn.</p></blockquote>
+
+> Anh tự hào vì đã không bỏ cuộc khi mọi thứ trở nên khó khăn.
 
 Đối với các bạn muốn phát triển nhanh hơn, anh gợi ý dùng thang đo Bloom để định hướng. Đầu tiên phải biết mình đang ở đâu, có tinh thần học hỏi, lập kế hoạch phát triển rõ ràng.
 
@@ -18,8 +18,10 @@ Khi được hỏi về một thành tựu gần đây khiến anh tự hào, c�
   <img src={learning} class="mx-auto max-w-full" width="573" height="376" alt="bloom's taxonomy" />
   <figcaption>Thang đo Bloom: phân cấp mục tiêu học tập, phát triển</figcaption>
 </figure>
+
 Và quan trọng nhất là phải hiểu rõ giá trị cốt lõi của doanh nghiệp. Bởi vì cuối cùng thì:
-<blockquote><p>Code chỉ là công cụ để giải quyết vấn đề kinh doanh và mang lại giá trị.</p></blockquote>
+
+> Code chỉ là công cụ để giải quyết vấn đề kinh doanh và mang lại giá trị.
 
 ## Hỏi nhanh đáp gọn
 
@@ -58,7 +60,7 @@ A: Anh luôn xem xét tài nguyên sẵn có của công ty. Kiến trúc là th
 
 A: Với anh, đó là hiệu ứng "tuyết lăn" – một hành động tích cực nhỏ có thể tạo ra tác động lớn dần theo thời gian.
 
-<blockquote><p>Cùng nhau trải nghiệm và đóng góp, ban đầu có thể nhỏ lẻ, sẽ làm cộng đồng mạnh hơn. Cứ thế, ta cùng nhau phát triển.</p></blockquote>
+> Cùng nhau trải nghiệm và đóng góp, ban đầu có thể nhỏ lẻ, sẽ làm cộng đồng mạnh hơn. Cứ thế, ta cùng nhau phát triển.
 
 **Q: Anh muốn thấy thêm hoạt động gì từ cộng đồng Svelte Việt Nam?**
 

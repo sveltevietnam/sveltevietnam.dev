@@ -5,12 +5,12 @@
 When I first met Tuan Nguyen, I noticed I was speaking with a strategist, a systems thinker, and someone who’s been coding for over 15 years. What keeps him going isn't just the thrill of new tech, but the joy of solving diverse problems and turning ideas into working solutions.
 
 Tuan doesn't claim to be a “natural” programmer. In fact, he says:
-<blockquote>
-<p> I wasn't good at programming at first. But my passion kept me going. I don't hesitate to dig into new things, vertically expanding by deepening my knowledge beside horizontally scaling my skills with other technologies. </p>
-</blockquote>
+
+> I wasn't good at programming at first. But my passion kept me going. I don't hesitate to dig into new things, vertically expanding by deepening my knowledge beside horizontally scaling my skills with other technologies.
 
 When asked about a recent win, he keeps it simple:
-<blockquote><p>I'm proud I didn't give up when things got tough.</p></blockquote>
+
+> I'm proud I didn't give up when things got tough.
 
 For those who want to level up, he recommends Bloom's Taxonomy as a mental model for personal development.
 
@@ -18,14 +18,16 @@ For those who want to level up, he recommends Bloom's Taxonomy as a mental model
   <img src={learning} class="mx-auto max-w-full" width="573" height="376" alt="bloom's taxonomy" />
   <figcaption>Bloom's taxonomy: a framework for categorizing educational goals</figcaption>
 </figure>
+
 Knowing where you are, being curious, having a growth plan, and most importantly: understanding the core business values. Because at the end of the day:
-<blockquote><p>Code is just a tool to solve business problems and deliver value.</p></blockquote>
+
+> Code is just a tool to solve business problems and deliver value.
 
 ## Firechat with Tuan Nguyen
 
 **Q: How did you first discover Svelte or this community?**
 
-A: I first discovered Svelte in a video from Fireship on Youtube (a rite of passage for many devs). I was impressed by the theory of how Svelte works, why it is fast compared to other frameworks like React, Vue
+A: I first discovered Svelte in a video from Fireship on Youtube (a rite of passage for many devs). I was impressed by the theory of how Svelte works, why it is fast compared to other frameworks like React, Vue.
 
 **Q: Describe your Svelte journey in one emoji 😄. Why that one?**
 
@@ -43,7 +45,7 @@ A: `console.log`, nothing special, just simple and efficient
 
 **Q: What's your Svelte dev setup?**
 
-A: I prefer to use MacOS, vscode with SublimeText keymap, pnpm and Cloudflare ecosystem
+A: I prefer to use MacOS, vscode with SublimeText keymap, pnpm and Cloudflare ecosystem.
 
 **Q: Most difficult concept?**
 
@@ -57,7 +59,7 @@ A: I always consider our company's existing resources. Choosing the right archit
 
 A: For me, it's the snowball effect: how one small, positive action can ripple outward and create larger, lasting impact.
 
-<blockquote><p>Shared experiences and small acts of contribution make the community stronger. That's how we grow: together.</p></blockquote>
+> Shared experiences and small acts of contribution make the community stronger. That's how we grow: together.
 
 **Q: What do you like to see more from our community?**
 
