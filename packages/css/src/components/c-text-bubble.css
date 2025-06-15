@@ -1,0 +1,79 @@
+@utility c-text-bubble {
+	@layer components {
+		--padding-y: calc(var(--spacing) * 2);
+		--padding-x: calc(var(--spacing) * 4);
+		--border: 2px;
+		--arrow-width: calc(var(--spacing) * 10);
+		--arrow-height: calc(var(--spacing) * 8);
+		--arrow-x: calc(var(--spacing) * 6);
+		--arrow-y: calc(100% - var(--arrow-height));
+		--is-end: 0;
+		--arrow-x-sign: 1;
+
+		isolation: isolate;
+		position: relative;
+
+		width: fit-content;
+		max-width: 50%;
+		padding: var(--padding-y) var(--padding-x) calc(var(--padding-y) * 1.1 + var(--arrow-height));
+
+		filter: drop-shadow(var(--drop-shadow-brutal-sm));
+
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			clip-path: polygon(
+				0% 0%,
+				0% var(--arrow-y),
+				var(--arrow-x-start) var(--arrow-y),
+				var(--arrow-x-middle) var(--arrow-y-middle, 100%),
+				var(--arrow-x-end) var(--arrow-y),
+				100% var(--arrow-y),
+				100% 0%
+			);
+		}
+
+		&::before {
+			--arrow-x-start: calc(100% * var(--is-end) + var(--arrow-x-sign) * var(--arrow-x));
+			--arrow-x-middle: calc(
+				100% * var(--is-end) + var(--arrow-x-sign) * (var(--arrow-x) + var(--arrow-width) / 2)
+			);
+			--arrow-x-end: calc(
+				100% * var(--is-end) + var(--arrow-x-sign) * (var(--arrow-x) + var(--arrow-width))
+			);
+			--arrow-y-middle: calc(100% - var(--border) / 2);
+
+			z-index: -1;
+			inset: 0;
+			background-color: var(--color-surface);
+		}
+
+		&::after {
+			--arrow-x-start: calc(
+				100% * var(--is-end) + var(--arrow-x-sign) * (var(--arrow-x) + var(--border) / 2)
+			);
+			--arrow-x-middle: calc(
+				100% * var(--is-end) + var(--arrow-x-sign) *
+					(var(--arrow-x) + var(--arrow-width) / 2 + var(--border))
+			);
+			--arrow-x-end: calc(
+				100% * var(--is-end) + var(--arrow-x-sign) *
+					(var(--arrow-x) + var(--arrow-width) + var(--border) * 1.5)
+			);
+
+			z-index: -2;
+			inset: calc(-1 * var(--border));
+			background-color: var(--color-on-surface);
+		}
+	}
+}
+
+@utility c-text-bubble--right {
+	@layer components {
+		--is-end: 1;
+		--arrow-x-sign: -1;
+
+		margin-left: auto;
+	}
+}
