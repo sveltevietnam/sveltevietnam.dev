@@ -95,11 +95,13 @@
 		</h1>
 		<p class="mt-6">{data.post.description}</p>
 		<div class="tablet:mt-10 desktop:mt-15 relative mt-8">
-			<NotByAiBadge
-				class="absolute -left-4 -top-4"
-				--color-fg="var(--color-surface)"
-				--color-bg="var(--color-on-surface)"
-			/>
+			{#if !data.post.ai}
+				<NotByAiBadge
+					class="absolute -left-4 -top-4"
+					--color-fg="var(--color-surface)"
+					--color-bg="var(--color-on-surface)"
+				/>
+			{/if}
 			<enhanced:img class="h-auto w-full" src={thumbnail} alt="" />
 		</div>
 		<div class="mt-6 space-y-4">
