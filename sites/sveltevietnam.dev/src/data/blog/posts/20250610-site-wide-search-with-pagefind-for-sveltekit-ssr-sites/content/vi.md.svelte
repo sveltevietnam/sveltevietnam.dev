@@ -124,7 +124,7 @@ import pagefind from '/pagefind/pagefind.js';
 // Error:
 // Cannot import non-asset file /pagefind/pagefind.js which is inside /public.
 // JS/CSS files inside /public are copied as-is on build and can only be referenced
-// via <script src> or <link href> in html. If you want to get the URL of that file,
+// via script or link tags in html. If you want to get the URL of that file,
 // use /pagefind/pagefind.js?url instead
 ```
 
