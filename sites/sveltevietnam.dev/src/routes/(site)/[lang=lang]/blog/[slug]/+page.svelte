@@ -264,6 +264,9 @@
 						{/if}
 					</li>
 				</ul>
+				<p class="border-onehalf border-current shadow-brutal-sm p-4">
+					<T message={m['pages.blog_slug.write']} />
+				</p>
 			</section>
 		</div>
 

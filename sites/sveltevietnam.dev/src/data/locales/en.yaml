@@ -284,6 +284,9 @@ messages:
         word: words
       actions:
         copy: Copy blog post link to clipboard
+      write:
+        Looking to craft your own blog post? Start with the <a class="c-link"
+        href="/vi/blog/viet">"Writing Guide"</a>.
       headings:
         toc: Table of contents
         share: Share

@@ -290,6 +290,9 @@ messages:
         word: từ
       actions:
         copy: Sao chép liên kết bài viết
+      write:
+        Tham khảo <a class="c-link" href="/vi/blog/viet">"Hướng dẫn viết bài"</a>, khai bút, và bắt
+        đầu chia sẻ bạn nhé!
       headings:
         toc: Mục lục
         share: Chia sẻ
