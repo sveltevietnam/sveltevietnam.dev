@@ -1,6 +1,7 @@
 /// <reference types="umami-browser" />
 
 declare global {
+	declare type MaybePromise<T> = T | Promise<T>;
 	declare const __BUILD_TIMESTAMP__: string;
 
 	declare module '*&imagetools' {
