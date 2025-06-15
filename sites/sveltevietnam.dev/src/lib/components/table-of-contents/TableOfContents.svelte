@@ -66,6 +66,7 @@
 <script lang="ts">
 	let {
 		toc,
+		class: cls,
 		...rest
 	}: HTMLAttributes<HTMLUListElement> & {
 		toc: Toc;
@@ -101,8 +102,9 @@
 	</li>
 {/snippet}
 
-<ul {...rest}>
+<ul class={['tablet:max-h-[70vh] overflow-auto', cls]} {...rest}>
 	{#each nodes as node (node.item.id)}
 		{@render sNode(toc, node)}
 	{/each}
 </ul>
+
