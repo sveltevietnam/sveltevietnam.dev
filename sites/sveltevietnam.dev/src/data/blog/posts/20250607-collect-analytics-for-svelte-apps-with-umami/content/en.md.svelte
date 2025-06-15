@@ -25,7 +25,7 @@ Expand the code block below to see my Docker configuration:
 
 ## Integrating Umami into Svelte
 
-Just add the right `<script>` tag to your application, as per the instructions at [Umami > Collect Data](https://umami.is/docs/collect-data):
+Just add the right script tag to your application, as per the instructions at [Umami > Collect Data](https://umami.is/docs/collect-data):
 
 ```svelte title="+layout.svelte"
 <svelte:head>

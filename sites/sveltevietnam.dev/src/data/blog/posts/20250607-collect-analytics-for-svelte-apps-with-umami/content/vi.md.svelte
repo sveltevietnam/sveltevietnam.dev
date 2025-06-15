@@ -30,7 +30,7 @@ Bạn có thể mở rộng ô dưới đây để tham khảo cấu hình Docke
 
 ## Tích hợp Umami vào Svelte
 
-Bạn chỉ cần thêm thẻ `<script>` tương ứng vào ứng dụng của mình, theo hướng dẫn tại [Umami > Collect Data](https://umami.is/docs/collect-data):
+Bạn chỉ cần thêm thẻ script tương ứng vào ứng dụng của mình, theo hướng dẫn tại [Umami > Collect Data](https://umami.is/docs/collect-data):
 
 ```svelte title="+layout.svelte"
 <svelte:head>
