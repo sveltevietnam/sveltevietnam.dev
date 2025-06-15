@@ -1,12 +1,12 @@
 <script>
-	import { ChatContainer, ChatItem } from '$lib/components/chat';
-	import { loadParticipants } from '$lib/components/chat/utils';
-	import { SettingsContext } from '$lib/settings/context.svelte';
+  import { ChatContainer, ChatItem } from '$lib/components/chat';
+  import { loadParticipants } from '$lib/components/chat/utils';
+  import { SettingsContext } from '$lib/settings/context.svelte';
 
   import learning from '../images/effective-learning.jpg?format=avif';
 
-	const settings = SettingsContext.get();
-	const participants = loadParticipants(['liti-dev', 'anhtuank7c'], settings.language);
+  const settings = SettingsContext.get();
+  const participants = loadParticipants(['liti-dev', 'anhtuank7c'], settings.language);
 </script>
 
 Khi mình trò chuyện với anh Tuấn Nguyễn, mình nhận ra đây là người có tư duy chiến lược, hệ thống, và đã có hơn 15 năm kinh nghiệm lập trình. Điều khiến anh vẫn còn hào hứng với nghề không phải chỉ vì công nghệ mới, mà vì niềm vui trong việc giải quyết những vấn đề đa dạng và biến ý tưởng thành sản phẩm thực tế.
@@ -32,27 +32,27 @@ Và quan trọng nhất là phải hiểu rõ giá trị cốt lõi của doanh 
 
 ## Hỏi nhanh đáp gọn
 
-<ChatContainer class="mt-10 *:max-w-4/5" participants={participants}>
+<ChatContainer class="py-2 *:max-w-4/5 flex flex-col mobile:gap-2" participants={participants}>
 <ChatItem participant="liti-dev">
 
-Hỏi: Anh biết đến Svelte và cộng đồng này như thế nào?
+<span class="sr-only">Hỏi:</span> Anh biết đến Svelte và cộng đồng này như thế nào?
 
 </ChatItem>
 <ChatItem participant="anhtuank7c" align="right">
 
-Đáp: Tình cờ anh xem một video về Svelte trên kênh Fireship. Anh bị ấn tượng bởi lý thuyết
+<span class="sr-only">Đáp:</span> Tình cờ anh xem một video về Svelte trên kênh Fireship. Anh bị ấn tượng bởi lý thuyết
 đằng sau cách hoạt động của Svelte và lý do tại sao nó nhanh hơn so với React hay Vue.
 
 </ChatItem>
 
 <ChatItem participant="liti-dev">
 
-Hỏi: Nếu dùng một emoji để mô tả hành trình với Svelte thì đó là gì? Vì sao?
+<span class="sr-only">Hỏi:</span> Nếu dùng một emoji để mô tả hành trình với Svelte thì đó là gì? Vì sao?
 
 </ChatItem>
-<ChatItem class="space-y-4" participant="anhtuank7c" align="right">
+<ChatItem participant="anhtuank7c" align="right">
 
-Đáp: 🌟 – Ngôi sao sáng, vì nó mở mang tư duy của anh về phát triển web, về trình duyệt và
+<span class="sr-only">Đáp:</span> 🌟 – Ngôi sao sáng, vì nó mở mang tư duy của anh về phát triển web, về trình duyệt và
 những cơ hội mới. Nhờ Svelte, anh bắt đầu làm việc nhiều hơn với native Web APIs. Trước đây
 khi dùng React, những API này thường bị “đóng hộp” bên trong framework, kéo lập trình viên ra
 xa Web APIs. Rồi cứ phải chạy theo mấy thứ đặc trưng của React – đúng là điên thật.
@@ -67,71 +67,71 @@ mai, và mãi mãi.
 
 <ChatItem participant="liti-dev">
 
-Hỏi: Gần đây anh đang làm gì?
+<span class="sr-only">Hỏi:</span> Gần đây anh đang làm gì?
 
 </ChatItem>
 <ChatItem participant="anhtuank7c" align="right">
 
-Đáp: Anh đang quản lý đội nhóm, lâu lâu viết blog công nghệ, học thêm C và Python, phát triển
+<span class="sr-only">Đáp:</span> Anh đang quản lý đội nhóm, lâu lâu viết blog công nghệ, học thêm C và Python, phát triển
 các dự án web AI với SvelteKit và duy trì một dự án React Native.
 
 </ChatItem>
 
 <ChatItem participant="liti-dev">
 
-Hỏi: Anh debug Svelte apps như thế nào?
+<span class="sr-only">Hỏi:</span> Anh debug Svelte apps như thế nào?
 
 </ChatItem>
 <ChatItem participant="anhtuank7c" align="right">
 
-Đáp: `console.log` thôi, không gì đặc biệt cả – đơn giản mà hiệu quả.
+<span class="sr-only">Đáp:</span> `console.log` thôi, không gì đặc biệt cả – đơn giản mà hiệu quả.
 
 </ChatItem>
 
 <ChatItem participant="liti-dev">
 
-Hỏi: Dev setup của anh gồm những gì?
+<span class="sr-only">Hỏi:</span> Dev setup của anh gồm những gì?
 
 </ChatItem>
 <ChatItem participant="anhtuank7c" align="right">
 
-Đáp: MacOS, VSCode với SublimeText keymap, pnpm và hệ sinh thái Cloudflare.
+<span class="sr-only">Đáp:</span> MacOS, VSCode với SublimeText keymap, pnpm và hệ sinh thái Cloudflare.
 
 </ChatItem>
 
 <ChatItem participant="liti-dev">
 
-Hỏi: Khó khăn khi học Svelte?
+<span class="sr-only">Hỏi:</span> Khó khăn khi học Svelte?
 
 </ChatItem>
 <ChatItem participant="anhtuank7c" align="right">
 
-Đáp: Chắc là đoạn chuyển từ Svelte 4 sang Svelte 5, đặc biệt là <br />`@render`. Mất 2 ngày mới
+<span class="sr-only">Đáp:</span> Chắc là đoạn chuyển từ Svelte 4 sang Svelte 5, đặc biệt là <br />`@render`. Mất 2 ngày mới
 xong.
 
 </ChatItem>
 
 <ChatItem participant="liti-dev">
 
-Hỏi: Từ khi làm CTO, cách anh chọn tech stack có thay đổi không?
+<span class="sr-only">Hỏi:</span> Từ khi làm CTO, cách anh chọn tech stack có thay đổi không?
 
 </ChatItem>
 <ChatItem participant="anhtuank7c" align="right">
 
-Đáp: Anh luôn xem xét tài nguyên sẵn có của công ty. Kiến trúc là thứ cần quan tâm nhất, chứ
+<span class="sr-only">Đáp:</span> Anh luôn xem xét tài nguyên sẵn có của công ty. Kiến trúc là thứ cần quan tâm nhất, chứ
 không phải chọn công nghệ nào đang hot.
 
 </ChatItem>
 
 <ChatItem participant="liti-dev">
 
-Hỏi: Là người đang quản lý cộng đồng React Native với hơn 30,000 thành viên, anh có quan điểm
+<span class="sr-only">Hỏi:</span> Là người đang quản lý cộng đồng React Native với hơn 30,000 thành viên, anh có quan điểm
 gì về xây dựng cộng đồng?
 
 </ChatItem>
-<ChatItem class="space-y-4" participant="anhtuank7c" align="right">
+<ChatItem participant="anhtuank7c" align="right">
 
-Đáp: Với anh, đó là hiệu ứng "tuyết lăn" – một hành động tích cực nhỏ có thể tạo ra tác động
+<span class="sr-only">Đáp:</span> Với anh, đó là hiệu ứng "tuyết lăn" – một hành động tích cực nhỏ có thể tạo ra tác động
 lớn dần theo thời gian.
 
 > Cùng nhau trải nghiệm và đóng góp, ban đầu có thể nhỏ lẻ, sẽ làm cộng đồng mạnh hơn. Cứ
@@ -141,12 +141,12 @@ thế, ta cùng nhau phát triển.
 
 <ChatItem participant="liti-dev">
 
-Hỏi: Anh muốn thấy thêm hoạt động gì từ cộng đồng Svelte Việt Nam?
+<span class="sr-only">Hỏi:</span> Anh muốn thấy thêm hoạt động gì từ cộng đồng Svelte Việt Nam?
 
 </ChatItem>
 <ChatItem participant="anhtuank7c" align="right">
 
-Đáp: Anh rất muốn có gặp gỡ hàng tháng, một không gian cởi mở, chân thật, nơi mọi người chia
+<span class="sr-only">Đáp:</span> Anh rất muốn có gặp gỡ hàng tháng, một không gian cởi mở, chân thật, nơi mọi người chia
 sẻ điều mình học được. Biết đâu hành trình của người này lại truyền cảm hứng cho dự án tiếp
 theo của người khác.
 

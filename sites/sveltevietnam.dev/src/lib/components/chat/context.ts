@@ -8,8 +8,10 @@ export interface ChatParticipant {
 	href?: string;
 }
 export type ChatParticipantMap = Record<string, ChatParticipant | null>;
+export type ChatDisplay = 'bubble' | 'box';
 export interface ChatContext {
 	participants?: ChatParticipantMap;
+	display?: ChatDisplay;
 }
 
 const CHAT_CONTEXT_KEY = Symbol('chat');
