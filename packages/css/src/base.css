@@ -1,5 +1,3 @@
-/* stylelint-disable no-invalid-position-at-import-rule */
-
 /* ad-hoc custom media and selectors */
 @import './variants.css';
 @import './medias.css';
@@ -16,6 +14,16 @@
 		font-family: var(--font-inter);
 		color: var(--color-on-surface);
 		background-color: var(--color-surface);
+	}
+
+	body {
+		position: relative;
+
+		display: flex;
+		flex-direction: column;
+
+		min-height: 100vh;
+		min-height: 100dvh;
 	}
 
 	* {
@@ -43,6 +51,24 @@
 	label:has(input:focus-visible):not(:disabled) {
 		outline: 1.5px solid var(--color-outline-focus);
 		outline-offset: 1px;
+	}
+
+	*[id] {
+		scroll-margin: calc(1.5 * var(--spacing-header));
+	}
+
+	img {
+		object-fit: cover;
+	}
+
+	kbd {
+		padding: 0.1875rem 0.25rem;
+		border: 1px solid var(--color-outline);
+		border-bottom-width: 2px;
+
+		text-decoration: none;
+
+		background-color: var(--color-surface-subtle);
 	}
 
 	/* prevent white-on-white option on chrome (as of 2025.06.11) */

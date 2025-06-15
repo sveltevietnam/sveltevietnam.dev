@@ -5,33 +5,3 @@
 @import './splash.css';
 
 @source '../../../../../packages/markdown/src/**/*.{svelte,js}';
-
-@layer base {
-	body {
-		position: relative;
-
-		display: flex;
-		flex-direction: column;
-
-		min-height: 100vh;
-		min-height: 100dvh;
-	}
-
-	*[id] {
-		scroll-margin: calc(1.5 * var(--spacing-header));
-	}
-
-	img {
-		object-fit: cover;
-	}
-
-	kbd {
-		padding: 0.1875rem 0.25rem;
-		border: 1px solid var(--color-outline);
-		border-bottom-width: 2px;
-
-		text-decoration: none;
-
-		background-color: var(--color-surface-subtle);
-	}
-}
