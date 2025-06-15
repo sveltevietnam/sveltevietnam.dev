@@ -22,10 +22,10 @@ import { highlighter, transformer } from './shiki.js';
 
 /**
  * parse markdown in Svelte
- * @param {MarkdownConfig} config - configuration for process-markdown
+ * @param {MarkdownConfig} [config] - configuration for process-markdown
  * @returns {import('svelte/compiler').PreprocessorGroup}
  */
-export function markdown(config) {
+export function markdown(config = {}) {
 	const { files } = /** @satisfies {MarkdownConfig} */ ({
 		files: (filename) => filename?.endsWith('.md.svelte') ?? false,
 		...config,
