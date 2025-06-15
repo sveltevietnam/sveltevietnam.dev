@@ -50,3 +50,49 @@ Each blog post is a collection of files located under a
 <SectionSyntax />
 <SectionDataEdit />
 
+## Adding Comments
+
+At the moment, each blog post can be linked to a [Bluesky](https://bsky.app) post. When linked, a
+blog post will have a comment section that displays replies from Bluesky. To initiate this, you can
+either:
+
+1. create a Bluesky post that mentions your published blog post, and send said Bluesky post to the
+   administrators, or
+2. request the administrators to create a Bluesky post for your blog post, via the
+   [Svelte Vietnam account](https://bsky.app/profile/sveltevietnam.dev).
+
+Option (1) is helpful if you want to build your personal Bluesky account and grow your audience. After linking is
+established, the Svelte Vietnam account will *repost* your Bluesky post.
+
+## On Using AI
+
+Usage of [Generative AI](https://en.wikipedia.org/wiki/Generative_artificial_intelligence) in the
+writing process is not prohibited. AI can be helpful for various tasks such as:
+
+- assisting in translating blog posts to other languages,
+- generating *alt text* for visual content such as images, diagrams, etc.,
+- checking grammar, spelling, and syntax.
+
+However, it is encouraged that you prioritize authenticity, originality, and a personal touch in
+your writing. To meet these goals, if you use AI to actively generate content rather than assisting
+in secondary tasks such as those listed above, please make sure to:
+
+1. add the following configuration to your [blog post metadata](#updating-post-metadata):
+
+```ts title=".../metadata.ts"
+export default defineBlogPostMetadata({
+  ai: true,
+  // ...
+});
+```
+
+2. disclose the purpose and usage of AI in your blog post.
+
+## Feedback and Contributions
+
+If you have any feedback or suggestion, please feel free to
+[open an issue at Github](https://github.com/sveltevietnam/sveltevietnam.dev/issues),
+reach out to the administrators via the [official Svelte Vietnam Discord server](https://discord.sveltevietnam.dev),
+or send an email to blog@sveltevietnam.dev.
+
+Thank you, and happy writing!
