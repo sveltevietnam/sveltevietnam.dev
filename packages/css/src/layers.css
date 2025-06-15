@@ -1,3 +1,4 @@
+/* stylelint-disable layer-name-pattern */
 @layer theme, base, components, utilities, typography;
-@layer utilities.icons, utilities.components, utilities.components.base, utilities.components.mod1, utilities.components.mod2;
-
+@layer utilities.components, utilities.icons;
+@layer utilities.components.base, utilities.components.mod1, utilities.components.mod2;
