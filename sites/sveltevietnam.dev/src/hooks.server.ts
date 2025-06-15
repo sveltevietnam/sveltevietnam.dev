@@ -4,7 +4,6 @@ import { getLangFromUrl } from '@sveltevietnam/i18n/utils';
 
 import { building } from '$app/environment';
 import {
-	VITE_PRIVATE_COOKIE_NAME_USER_ID,
 	VITE_PRIVATE_COOKIE_NAME_LANGUAGE,
 	VITE_PRIVATE_COOKIE_NAME_LAST_FRESH_VISIT_AT,
 } from '$env/static/private';
@@ -16,10 +15,6 @@ import { COMMON_COOKIE_CONFIG, PUBLIC_COOKIE_CONFIG } from '$lib/constants';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const { locals, cookies, url, route, platform, request } = event;
-
-	// Ensure that the user has a unique ID
-	locals.userId = cookies.get(VITE_PRIVATE_COOKIE_NAME_USER_ID) || crypto.randomUUID();
-	cookies.set(VITE_PRIVATE_COOKIE_NAME_USER_ID, locals.userId, COMMON_COOKIE_CONFIG);
 
 	// setting internal referer
 	const referer = request.headers.get('Referer');
