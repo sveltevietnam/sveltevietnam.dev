@@ -1,5 +1,12 @@
 <script>
+	import { ChatContainer, ChatItem } from '$lib/components/chat';
+	import { loadParticipants } from '$lib/components/chat/utils';
+	import { SettingsContext } from '$lib/settings/context.svelte';
+
   import summarizer from '../images/summarizer.png?format=avif';
+
+	const settings = SettingsContext.get();
+	const participants = loadParticipants(['liti-dev', 'trongnguyen24'], settings.language);
 </script>
 
 When I first connected with Nguyen Le, I was struck by two things: his modesty and the flicker of passion behind every word he typed. There’s a deep sincerity in how he talks about design, web development, and the Svelte community. This is the kind of energy that reminds me that tech is, at its core, deeply human.
@@ -14,29 +21,80 @@ That “something” turned out to be Svelte. Thanks to a Fireship video (I’m 
 
 ## Firechat with Nguyen Le
 
-**Q: One fun fact about you?** <br />
+<ChatContainer class="mt-10 *:max-w-4/5" participants={participants}>
+<ChatItem participant="liti-dev">
+
+Q: One fun fact about you?
+
+</ChatItem>
+<ChatItem class="space-y-4" participant="trongnguyen24" align="right">
+
 A: I can build apps but I don’t consider myself a JS developer. I still look up even basic JS functions, using resources like MDN, W3C. Proof that Svelte is very intuitive and easy to use, right?
 
-**Q: Describe your Svelte journey in one emoji** <br />
+</ChatItem>
+
+<ChatItem participant="liti-dev">
+
+Q: Describe your Svelte journey in one emoji
+
+</ChatItem>
+<ChatItem class="space-y-4" participant="trongnguyen24" align="right">
+
 A: 🔥 Svelte really fired up my passion for web dev. It helps me turn my designs into functional apps
 
-**Q: If you could pair-program with anyone? Who?** <br />
+</ChatItem>
+
+<ChatItem participant="liti-dev">
+
+Q: If you could pair-program with anyone? Who?
+
+</ChatItem>
+<ChatItem class="space-y-4" participant="trongnguyen24" align="right">
+
 A: Hard to pick! I admire a lot of people in the field of UI/UX, programming, and 3D, but usually, I work alone. However, if I have to choose one, that would be [Adam Argyle](https://nerdy.dev/).
 
-**Q: Debugging approach?** <br />
+</ChatItem>
+
+<ChatItem participant="liti-dev">
+
+Q: Debugging approach?
+
+</ChatItem>
+<ChatItem class="space-y-4" participant="trongnguyen24" align="right">
+
 A: Tabs open: Svelte docs, Chrome DevTools, Gemini chat. Sometimes I even talk to Cline 😑.
 
-**Q: Most difficult concept?** <br />
+</ChatItem>
+
+<ChatItem participant="liti-dev">
+
+Q: Most difficult concept?
+
+</ChatItem>
+<ChatItem class="space-y-4" participant="trongnguyen24" align="right">
+
 A: Probably the new Runes concepts, because I'm used to the simple variable declarations of Svelte 4. Perhaps what I've done only involves the basics, so I haven't touched the really difficult parts yet.
 
-**Q: Recent favourite Svelte snippet?** <br />
+</ChatItem>
+
+<ChatItem participant="liti-dev">
+
+Q: Recent favourite Svelte snippet?
+
+</ChatItem>
+<ChatItem class="space-y-4" participant="trongnguyen24" align="right">
+
 A: I love using [#key](https://svelte.dev/docs/svelte/key) in Svelte for smooth page transitions. It's so easy and satisfying.
 
-```ts title="#key block"
+```svelte title="#key block"
 {#key data.pathname}
 	<PageTransition/>
 {/key}
 ```
+
+</ChatItem>
+
+</ChatContainer>
 
 What Nguyen may not say outright is how resourceful he is. He said that he doesn’t really know JavaScript. Yet this “non-JS developer” built a full Chrome extension called [Summarizerrrr](https://github.com/trongnguyen24/Summarizerrrr) that summarizes YouTube videos, Reddit threads, and more, an idea born from his desire to save time and scratch his own itch.
 <figure>

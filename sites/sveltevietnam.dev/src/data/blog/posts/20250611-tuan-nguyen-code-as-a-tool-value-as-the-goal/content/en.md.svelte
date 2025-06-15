@@ -1,5 +1,12 @@
 <script>
+	import { ChatContainer, ChatItem } from '$lib/components/chat';
+	import { loadParticipants } from '$lib/components/chat/utils';
+	import { SettingsContext } from '$lib/settings/context.svelte';
+
   import learning from '../images/effective-learning.jpg?format=avif';
+
+	const settings = SettingsContext.get();
+	const participants = loadParticipants(['liti-dev', 'anhtuank7c'], settings.language);
 </script>
 
 When I first met Tuan Nguyen, I noticed I was speaking with a strategist, a systems thinker, and someone who’s been coding for over 15 years. What keeps him going isn't just the thrill of new tech, but the joy of solving diverse problems and turning ideas into working solutions.
@@ -25,36 +32,113 @@ Knowing where you are, being curious, having a growth plan, and most importantly
 
 ## Firechat with Tuan Nguyen
 
-**Q: How did you first discover Svelte or this community?**<br />
+<ChatContainer class="mt-10 *:max-w-4/5" participants={participants}>
+<ChatItem participant="liti-dev">
+
+Q: How did you first discover Svelte or this community?
+
+</ChatItem>
+<ChatItem participant="anhtuank7c" align="right">
+
 A: I first discovered Svelte in a video from Fireship on Youtube (a rite of passage for many devs). I was impressed by the theory of how Svelte works, why it is fast compared to other frameworks like React, Vue.
 
-**Q: Describe your Svelte journey in one emoji 😄. Why that one?**<br />
+</ChatItem>
+
+<ChatItem participant="liti-dev">
+
+Q: Describe your Svelte journey in one emoji 😄. Why that one?
+
+</ChatItem>
+<ChatItem class="space-y-4" participant="anhtuank7c" align="right">
+
 A: 🌟- The glowing star, because it unlocked my mind in working with web development, the browser and the new opportunity. Svelte helped me work more closely with native Web APIs. With React, those APIs often get abstracted away inside a black box, pulling developers further from the web platform itself and we end up chasing React-specific quirks. It's crazy.
 
-<div class="c-callout c-callout--success c-callout--icon-trophy">Frameworks come and go, but Web API standards are here to stay.</div>
+<div class="c-callout c-callout--success c-callout--icon-trophy">
 
-**Q: What are you working on?**<br />
+Frameworks come and go, but Web API standards are here to stay.
+
+</div>
+</ChatItem>
+
+<ChatItem participant="liti-dev">
+
+Q: What are you working on?
+
+</ChatItem>
+<ChatItem participant="anhtuank7c" align="right">
+
 A: I'm managing a team, occasionally writing tech blogs, learning C and Python, developing AI Web projects with SvelteKit, and maintaining a React Native project.
 
-**Q: How do you debug Svelte apps?**<br />
+</ChatItem>
+
+<ChatItem participant="liti-dev">
+
+Q: How do you debug Svelte apps?
+
+</ChatItem>
+<ChatItem participant="anhtuank7c" align="right">
+
 A: `console.log`, nothing special, just simple and efficient
 
-**Q: What's your Svelte dev setup?**<br />
+</ChatItem>
+
+<ChatItem participant="liti-dev">
+
+Q: What's your Svelte dev setup?
+
+</ChatItem>
+<ChatItem participant="anhtuank7c" align="right">
+
 A: I prefer to use MacOS, vscode with SublimeText keymap, pnpm and Cloudflare ecosystem.
 
-**Q: Most difficult concept?**<br />
+</ChatItem>
+
+<ChatItem participant="liti-dev">
+
+Q: Most difficult concept?
+
+</ChatItem>
+<ChatItem participant="anhtuank7c" align="right">
+
 A: Probably `@render` when migrating Svelte 4 to Svelte 5. It took me 2 days to figure it out.
 
-**Q: Has your tech choice changed since becoming a CTO?**<br />
+</ChatItem>
+
+<ChatItem participant="liti-dev">
+
+Q: Has your tech choice changed since becoming a CTO?
+
+</ChatItem>
+<ChatItem participant="anhtuank7c" align="right">
+
 A: I always consider our company's existing resources. Choosing the right architecture is more important than choosing the trendiest tech stack.
 
-**Q: As someone who's managing a React Native community with over 30,000 members, what's your approach on building a community?**<br />
+</ChatItem>
+
+<ChatItem participant="liti-dev">
+
+Q: As someone who's managing a React Native community with over 30,000 members, what's your approach on building a community?
+
+</ChatItem>
+<ChatItem class="space-y-4" participant="anhtuank7c" align="right">
+
 A: For me, it's the snowball effect: how one small, positive action can ripple outward and create larger, lasting impact.
 
 > Shared experiences and small acts of contribution make the community stronger. That's how we grow: together.
 
-**Q: What do you like to see more from our community?**<br />
+</ChatItem>
+
+<ChatItem participant="liti-dev">
+
+Q: What do you like to see more from our community?
+
+</ChatItem>
+<ChatItem participant="anhtuank7c" align="right">
+
 A: I'd love to see monthly meetups, just honest, open spaces where people share what they've learned. Hearing someone’s journey might spark the idea for someone else's next project.
+
+</ChatItem>
+</ChatContainer>
 
 After this conversation, we’ve learned that what makes a developer stand out isn't flashy tools; it's adaptability and a deep commitment to solving real problems. Whether through clean architecture or community building, he's shaping more than just code - he's shaping culture. We're glad he's part of the Svelte mosaic.
 
