@@ -6,6 +6,7 @@ export default defineConfig(svelteConfig, [
 	{
 		languageOptions: {
 			globals: {
+				MaybePromise: 'readonly',
 				__BUILD_TIMESTAMP__: 'readonly',
 			},
 		},

@@ -63,7 +63,7 @@
 
 @layer typography {
 	.prose .c-callout:not([class~='not-prose'], [class~='not-prose'] *) {
-		margin-block: 32px;
+		margin-block: 2rem;
 
 		& ::marker {
 			color: inherit;

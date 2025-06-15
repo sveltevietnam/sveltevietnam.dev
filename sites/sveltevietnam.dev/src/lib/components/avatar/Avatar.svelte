@@ -4,13 +4,13 @@
 	import type { Picture } from 'vite-imagetools';
 
 	let {
-		name,
+		name = '',
 		src,
 		class: cls,
 		border = 'circle',
 		...rest
 	}: Omit<HTMLImgAttributes, 'src'> & {
-		name: string;
+		name?: string;
 		src?: Picture | string;
 		border?: 'circle' | 'ellipse';
 	} = $props();
