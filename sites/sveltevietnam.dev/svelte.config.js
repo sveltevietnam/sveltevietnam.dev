@@ -7,6 +7,7 @@ import externalLink from '@svelte-put/preprocess-external-link';
 import adapter from '@sveltejs/adapter-cloudflare';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { markdown } from '@sveltevietnam/markdown';
+import { normalizeSync } from 'normalize-diacritics';
 
 import pkg from './package.json' with { type: 'json' };
 
@@ -27,9 +28,8 @@ export default {
 		}),
 		autoSlug((defaultOptions) => ({
 			tags: ['h2', 'h3', 'h4', 'h5', 'h6'],
-			files: ({ filename }) => {
-				return filename?.endsWith('.md.svelte');
-			},
+			files: ({ filename }) => filename.endsWith('.md.svelte'),
+			slug: ({ generated }) => normalizeSync(generated),
 			anchor: {
 				content: '#',
 				position: 'prepend',
