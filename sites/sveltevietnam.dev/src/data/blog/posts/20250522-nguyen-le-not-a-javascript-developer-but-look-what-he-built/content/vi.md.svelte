@@ -1,12 +1,12 @@
 <script>
-	import { ChatContainer, ChatItem } from '$lib/components/chat';
-	import { loadParticipants } from '$lib/components/chat/utils';
-	import { SettingsContext } from '$lib/settings/context.svelte';
+  import { ChatContainer, ChatItem } from '$lib/components/chat';
+  import { loadParticipants } from '$lib/components/chat/utils';
+  import { SettingsContext } from '$lib/settings/context.svelte';
 
   import summarizer from '../images/summarizer.png?format=avif';
 
-	const settings = SettingsContext.get();
-	const participants = loadParticipants(['liti-dev', 'trongnguyen24'], settings.language);
+  const settings = SettingsContext.get();
+  const participants = loadParticipants(['liti-dev', 'trongnguyen24'], settings.language);
 </script>
 
 Lần đầu trò chuyện với Nguyên, mình ấn tượng bởi hai điều: sự khiêm tốn và nhiệt huyết ẩn sau từng câu chữ. Có một sự chân thành rõ nét trong cách anh nói về thiết kế, lập trình, và cộng đồng Svelte. Đó chính là kiểu năng lượng khiến mình nhớ rằng: **công nghệ, suy cho cùng, vẫn luôn mang đậm yếu tố con người**.
@@ -21,70 +21,70 @@ Và “công cụ nào đó”, hóa ra lại là Svelte. Nhờ một video từ
 
 ## Hỏi nhanh đáp gọn
 
-<ChatContainer class="mt-10 *:max-w-4/5" participants={participants}>
+<ChatContainer class="py-2 *:max-w-4/5 flex flex-col mobile:gap-2" participants={participants}>
 <ChatItem participant="liti-dev">
 
-Hỏi: Một điều thú vị về bản thân?
+<span class="sr-only">Hỏi:</span> Một điều thú vị về bản thân?
 
 </ChatItem>
-<ChatItem class="space-y-4" participant="trongnguyen24" align="right">
+<ChatItem participant="trongnguyen24" align="right">
 
-Đáp: Mình có thể mày mò đọc tài liệu để xây dựng một trang web hoặc ứng dụng, nhưng thú thật là mình không hẳn là một người biết JavaScript. Điều này cũng chứng tỏ rằng Svelte rất dễ sử dụng đúng không?
-
-</ChatItem>
-
-<ChatItem participant="liti-dev">
-
-Hỏi: Miêu tả hành trình với Svelte bằng một biểu tượng 🙂
-
-</ChatItem>
-<ChatItem class="space-y-4" participant="trongnguyen24" align="right">
-
-Đáp: 🔥Nhờ có Svelte, niềm đam mê làm web trong mình đã bùng cháy mạnh mẽ.
+<span class="sr-only">Đáp:</span> Mình có thể mày mò đọc tài liệu để xây dựng một trang web hoặc ứng dụng, nhưng thú thật là mình không hẳn là một người biết JavaScript. Điều này cũng chứng tỏ rằng Svelte rất dễ sử dụng đúng không?
 
 </ChatItem>
 
 <ChatItem participant="liti-dev">
 
-Hỏi: Nếu có thể, bạn sẽ chọn lập trình chung với ai?
+<span class="sr-only">Hỏi:</span> Miêu tả hành trình với Svelte bằng một biểu tượng 🙂
 
 </ChatItem>
-<ChatItem class="space-y-4" participant="trongnguyen24" align="right">
+<ChatItem participant="trongnguyen24" align="right">
 
-Đáp: Câu hỏi này khó quá! Mình ngưỡng mộ rất nhiều người trong lĩnh vực UI/UX, lập trình và 3D, nhưng thường thì mình làm việc một mình. Tuy nhiên, nếu phải chọn, mình sẽ chọn [Adam Argyle](https://nerdy.dev/).
-
-</ChatItem>
-
-<ChatItem participant="liti-dev">
-
-Hỏi: Phương pháp debug
-
-</ChatItem>
-<ChatItem class="space-y-4" participant="trongnguyen24" align="right">
-
-Đáp: Lúc nào cũng mở tab Svelte docs, hỏi và thảo luận với Gemini, Chrome devtools AI assistance, Cline 😑.
+<span class="sr-only">Đáp:</span> 🔥Nhờ có Svelte, niềm đam mê làm web trong mình đã bùng cháy mạnh mẽ.
 
 </ChatItem>
 
 <ChatItem participant="liti-dev">
 
-Hỏi: Khái niệm khó nhất của Svelte?
+<span class="sr-only">Hỏi:</span> Nếu có thể, bạn sẽ chọn lập trình chung với ai?
 
 </ChatItem>
-<ChatItem class="space-y-4" participant="trongnguyen24" align="right">
+<ChatItem participant="trongnguyen24" align="right">
 
-Đáp: Chắc là mấy khái niệm Runes, vì mình đã quen với khai báo biến đơn giản của Svelte 4. Chắc do mấy cái mình làm chỉ xoay quanh mấy cái cơ bản nên chưa đụng tới mấy chỗ khó nhằn.
+<span class="sr-only">Đáp:</span> Câu hỏi này khó quá! Mình ngưỡng mộ rất nhiều người trong lĩnh vực UI/UX, lập trình và 3D, nhưng thường thì mình làm việc một mình. Tuy nhiên, nếu phải chọn, mình sẽ chọn [Adam Argyle](https://nerdy.dev/).
 
 </ChatItem>
 
 <ChatItem participant="liti-dev">
 
-Hỏi: Đoạn code nào gần đây của Svelte mà bạn thích?
+<span class="sr-only">Hỏi:</span> Phương pháp debug
 
 </ChatItem>
-<ChatItem class="space-y-4" participant="trongnguyen24" align="right">
+<ChatItem participant="trongnguyen24" align="right">
 
-Đáp: Cái [#key](https://svelte.dev/docs/svelte/key) này làm hiệu ứng biến ra biến vô khi chuyển trang rất là dễ
+<span class="sr-only">Đáp:</span> Lúc nào cũng mở tab Svelte docs, hỏi và thảo luận với Gemini, Chrome devtools AI assistance, Cline 😑.
+
+</ChatItem>
+
+<ChatItem participant="liti-dev">
+
+<span class="sr-only">Hỏi:</span> Khái niệm khó nhất của Svelte?
+
+</ChatItem>
+<ChatItem participant="trongnguyen24" align="right">
+
+<span class="sr-only">Đáp:</span> Chắc là mấy khái niệm Runes, vì mình đã quen với khai báo biến đơn giản của Svelte 4. Chắc do mấy cái mình làm chỉ xoay quanh mấy cái cơ bản nên chưa đụng tới mấy chỗ khó nhằn.
+
+</ChatItem>
+
+<ChatItem participant="liti-dev">
+
+<span class="sr-only">Hỏi:</span> Đoạn code nào gần đây của Svelte mà bạn thích?
+
+</ChatItem>
+<ChatItem participant="trongnguyen24" align="right">
+
+<span class="sr-only">Đáp:</span> Cái [#key](https://svelte.dev/docs/svelte/key) này làm hiệu ứng biến ra biến vô khi chuyển trang rất là dễ
 
 ```svelte title="#key block"
 {#key data.pathname}
