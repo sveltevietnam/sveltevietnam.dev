@@ -15,7 +15,10 @@ export async function validateToken(token: string, ip?: string) {
 	const formData = new FormData();
 	formData.append('secret', VITE_PRIVATE_CLOUDFLARE_TURNSTILE_SECRET_KEY);
 	formData.append('response', token);
-	formData.append('idempotency_key', crypto.randomUUID());
+	formData.append(
+		'idempotency_key',
+		'crypto' in globalThis ? crypto.randomUUID() : Math.random().toString(36).substring(2),
+	);
 	if (ip) {
 		formData.append('remoteip', ip);
 	}
