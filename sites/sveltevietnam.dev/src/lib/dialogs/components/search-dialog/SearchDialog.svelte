@@ -3,6 +3,7 @@
 	import { shortcut } from '@svelte-put/shortcut';
 	import { T } from '@sveltevietnam/i18n';
 	import sanitize from 'sanitize-html';
+	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 
 	import * as m from '$data/locales/generated/messages';
@@ -29,9 +30,14 @@
 
 	const commonItemClasses =
 		'interactive border-b-outline hover:outline-outline-focus hover:outline';
-</script>
 
-<svelte:window />
+	onMount(() => {
+		window.dispatchEvent(new CustomEvent('searchopen', { detail: { query: search.query }}));
+		item.resolution.then(() => {
+			window.dispatchEvent(new CustomEvent('searchclose', { detail: { query: search.query }}));
+		});
+	});
+</script>
 
 <dialog
 	{...enhanceDialog(item, settings)}
@@ -73,18 +79,14 @@
 		</div>
 
 		<!-- results -->
-		<div
-			class="tablet:min-h-[20vh] flex flex-1 flex-col"
-		>
+		<div class="tablet:min-h-[20vh] flex flex-1 flex-col">
 			{#if search.results}
 				{#await search.results}
 					<p class="p-4"><T message={m['dialogs.search.results.searching']} /></p>
 				{:then results}
 					{#if results.length}
-						{@const maybeClippedResults = search.clip.results
-							? results.slice(0, 3)
-							: results}
-						<div class="overflow-auto p-4 tablet:max-h-[60vh] space-y-4">
+						{@const maybeClippedResults = search.clip.results ? results.slice(0, 3) : results}
+						<div class="tablet:max-h-[60vh] space-y-4 overflow-auto p-4">
 							<p>
 								<T message={m['dialogs.search.results.found']} count={results.length.toString()} />
 							</p>
@@ -142,7 +144,12 @@
 								{/each}
 							</ul>
 							{#if search.clip.results}
-								<label class={['block cursor-pointer p-2 text-center c-text-body-sm bg-surface border border-outline', commonItemClasses]}>
+								<label
+									class={[
+										'c-text-body-sm bg-surface border-outline block cursor-pointer border p-2 text-center',
+										commonItemClasses,
+									]}
+								>
 									<input
 										class="sr-only"
 										type="checkbox"
@@ -185,6 +192,7 @@
 		&::before {
 			pointer-events: none;
 			content: '';
+
 			position: absolute;
 			z-index: 1;
 			inset-block: 0;

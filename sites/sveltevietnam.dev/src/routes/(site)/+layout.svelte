@@ -103,13 +103,18 @@
 	});
 
 	function handleUmamiLoad() {
-		console.log('umami loaded');
 		window.umami?.identify({
 			language: settings.language,
 			systemColorScheme: settings.colorScheme.system,
 			userColorScheme: settings.colorScheme.user,
 			splash: settings.splash,
 		});
+	}
+
+	function trackSearch(event: CustomEvent<{ query: string }>) {
+		window.umami?.track(event.type, {
+			query: event.detail.query,
+		})
 	}
 
 	onMount(() => {
@@ -129,6 +134,15 @@
 				message: m['notifications.delayed_hydration.message'],
 			});
 		}
+
+		// Listen for search events
+		window.addEventListener('searchopen', trackSearch as EventListener);
+		window.addEventListener('searchclose', trackSearch as EventListener);
+
+		return () => {
+			window.removeEventListener('searchopen', trackSearch as EventListener);
+			window.removeEventListener('searchclose', trackSearch as EventListener);
+		};
 	});
 </script>
 
