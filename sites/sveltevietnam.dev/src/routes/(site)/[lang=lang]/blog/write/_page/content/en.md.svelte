@@ -61,7 +61,7 @@ either:
 2. request the administrators to create a Bluesky post for your blog post, via the
    [Svelte Vietnam account](https://bsky.app/profile/sveltevietnam.dev).
 
-Option (1) is helpful if you want to build your personal Bluesky account and grow your audience. After linking is
+Option (1) is helpful if you want to build your personal Bluesky account and grow your audience. After linkage is
 established, the Svelte Vietnam account will *repost* your Bluesky post.
 
 ## On Using AI

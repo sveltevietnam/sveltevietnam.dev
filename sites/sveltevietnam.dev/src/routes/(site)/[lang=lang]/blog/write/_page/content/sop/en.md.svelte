@@ -51,7 +51,7 @@ at http://localhost:5005/en/blog.
 
 ### Step 3: Initialize Post Data
 
-In your terminal, get to the `sites/sveltevietnm.dev` directory. If this is your first time
+In your terminal, get to the `sites/sveltevietnam.dev` directory. If this is your first time
 contributing content for sveltevietnam.dev, initialize your *author data* with the following command:
 
 ```bash
