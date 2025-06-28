@@ -102,7 +102,7 @@ messages:
             footnote: '* đây là tài liệu dành cho Svelte 5 và hiện tại chỉ hỗ trợ tiếng Anh'
           playground:
             desc:
-              <strong>Svelte playground*</strong> (REPL) là trình tương tác chính thức, giúp bạn
+              <strong>Svelte playground</strong> (REPL) là trình tương tác chính thức, giúp bạn
               nhanh chóng thử nghiệm ý tưởng hoặc quan sát đầu ra của trình biên dịch (Svelte
               compiler).
             link: Xem trang Svelte Playground

@@ -98,8 +98,8 @@ messages:
             footnote: '* this is a guide for Svelte 5 and currently only supports English'
           playground:
             desc:
-              <strong>Svelte playground*</strong> (REPL) is an official interactive editor that
-              helps you quickly test ideas or observe the output from the Svelte compiler.
+              <strong>Svelte playground</strong> (REPL) is an official interactive editor that helps
+              you quickly test ideas or observe the output from the Svelte compiler.
             link: See Svelte Playground
           lab:
             desc:
