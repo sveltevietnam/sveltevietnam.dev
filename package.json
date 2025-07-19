@@ -8,8 +8,7 @@
 		"url": "https://www.sveltevietnam.dev"
 	},
 	"scripts": {
-		"boot": "run-p boot:*",
-		"boot:i": "pnpm install",
+		"boot": "pnpm install && run-p boot:*",
 		"boot:lefthook": "lefthook install",
 		"boot:env": "turbo run boot:env --parallel --ui=stream",
 		"boot:dts": "turbo run dts --parallel --ui=stream",
