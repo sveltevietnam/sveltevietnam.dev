@@ -79,8 +79,8 @@ export class SettingsContext {
 		if (!browser) {
 			return 'server';
 		} else {
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			const platform = (
+			const platform = // eslint-disable-next-line @typescript-eslint/no-explicit-any
+			(
 				(window.navigator as any).userAgentData?.platform ?? window.navigator.platform
 			).toLowerCase();
 			if (platform.includes('mac')) {
