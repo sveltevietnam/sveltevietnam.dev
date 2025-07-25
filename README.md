@@ -25,13 +25,14 @@ Contribution and discussion are welcome.
 
 ## Contributing
 
-See [CONTRIBUTING] on how you can contribute to the Svelte Vietnam project.
+See [CONTRIBUTING] on how you can contribute to the Svelte Vietnam project, or jump right to [DEVELOPMENT] if you are keen on running the site on your local machine.
 
 <!-- LOCAL -->
 
 [license.badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [license]: ./LICENSE
 [CONTRIBUTING]: ./CONTRIBUTING.md
+[DEVELOPMENT]: ./docs/DEVELOPMENT.md
 
 <!-- SOCIALS -->
 
@@ -43,5 +44,3 @@ See [CONTRIBUTING] on how you can contribute to the Svelte Vietnam project.
 [socials.bluesky.badge]: https://img.shields.io/static/v1?label=&message=sveltevietnam&color=1DA1F2&logoColor=white&style=for-the-badge&logo=bluesky
 [socials.madewithsvelte]: https://madewithsvelte.com/p/svelte-vietnam/shield-link
 [socials.madewithsvelte.badge]: https://madewithsvelte.com/storage/repo-shields/4786-shield.svg
-
-
