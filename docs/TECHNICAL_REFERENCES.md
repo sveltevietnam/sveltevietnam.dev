@@ -1,7 +1,7 @@
 # Technical References
 
 > [!NOTE]
-> Last updated on 2024-12-24
+> Last updated on 2025-07-25
 
 This document outlines the key technical aspects of the `sveltevietnam.dev` project.
 
@@ -22,9 +22,9 @@ This section lists the current technical stack for the project. The stack is sub
 
 - [cloudflare]: domain hosting, infrastructor provider for both frontend, backend, and database ([D1][cloudflare.d1])
 - [pnpm]: package manager, alternative to [npm]
+- [turborepo]: manage dependencies between projects in the monorepo
 - [vite]: build tool & development server
 - [svelte-kit]: fullstack metaframework
-- [gsap]: https://gsap.com/
 
 ### Development Tooling & Workflow
 
@@ -40,13 +40,13 @@ This section lists the current technical stack for the project. The stack is sub
 - [svelte]: the frontend framework (think [react] or [vue])
 - [postcss]: CSS preprocessor (think Sass but more plugin-based & JS-friendly)
 - [tailwindcss]: utility-first CSS framework (think Bootstrap but more performant & customizable)
-- [gsap]: complex animation
+- [animejs]: complex animation
 
 Other transition, state management, routing solutions are provided first-party by [svelte] & [svelte-kit].
 
 ### Testing
 
-We use [Vitest] for unit testing
+We use [Vitest] and [Playwright] for testing.
 
 ## [Typescript] or Javascript?
 
@@ -81,4 +81,5 @@ Follow instructions from [DEVELOPMENT](./DEVELOPMENT.md) to get started.
 [vue]: https://vuejs.org/
 [jsdocs]: https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html
 [lefthook]: https://github.com/evilmartians/lefthook
-[gsap]: https://gsap.com/
+[animejs]: https://animejs.com/
+[turborepo]: https://turborepo.org/
