@@ -4,7 +4,7 @@
 
 ### Images
 
-The the time of this writing, the project does not support Markdown syntax for images in blog posts.
+At the time of this writing, the project does not support Markdown syntax for images in blog posts.
 Instead, please use HTML tags as shown in the following example...
 
 ```svelte title="./content/vi.md.svelte" src="./example/content/en.md.svelte"

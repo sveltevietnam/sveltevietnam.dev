@@ -72,3 +72,15 @@ its content are necessary.
 
 </div>
 
+#### Loading Source Code from External Files
+
+Code blocks may load their content from external files by specifying the `src` attribute,
+as shown in the following pattern:
+
+```md title=".../en.md.svelte" src="./examples/codeblock-external-src.en.md.svelte"
+```
+
+...where `path/to/source.ext` can be in one of the supported languages
+(see [source code](https://github.com/sveltevietnam/sveltevietnam.dev/blob/v1/packages/markdown/src/shiki.js)).
+This is particularly useful to reuse existing code snippets, e.g. to render the same code for a demo or setup,
+or to utilize editor tooling like language servers, linters, or formatters.

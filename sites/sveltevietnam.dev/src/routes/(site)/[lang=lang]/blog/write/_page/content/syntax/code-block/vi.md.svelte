@@ -68,3 +68,14 @@ Chú ý: các dòng trống xung quanh thẻ `enhanced-code-block` và các nộ
 
 </div>
 
+#### Tải mã nguồn từ tệp ngoài
+
+Bạn có thể sử dụng thuộc tính `src` để tải nội dụng từ một tệp riêng theo ví dụ sau:
+
+```md title=".../en.md.svelte" src="./examples/codeblock-external-src.vi.md.svelte"
+```
+
+Tệp `path/to/source.ext` sử dụng một trong các ngôn ngữ được hỗ trợ
+(xem [mã nguồn](https://github.com/sveltevietnam/sveltevietnam.dev/blob/v1/packages/markdown/src/shiki.js)).
+Hình thức này giúp bạn khỏi phải sao chép mã nguồn có sẵn vào bài viết, đồng thời có thể
+tận dụng các tính năng của trình soạn thảo như language server, linter, formater, v.v.
