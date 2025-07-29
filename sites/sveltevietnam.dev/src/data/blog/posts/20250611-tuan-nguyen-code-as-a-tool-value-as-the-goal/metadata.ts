@@ -14,7 +14,6 @@ export default defineBlogPostMetadata((lang) => ({
 					'Tuan Nguyen is a strategist, a systems thinker, and someone who’s built his career on execution.',
 				keywords: 'leadership, business',
 				translation: 'original',
-				// TODO: update these information once you finish writing
 				readMinutes: 2,
 				numWords: 595,
 			},
@@ -25,7 +24,6 @@ export default defineBlogPostMetadata((lang) => ({
 					'Tuấn Nguyễn là một người có tư duy chiến lược và đã có hơn 15 năm kinh nghiệm lập trình.',
 				keywords: 'lãnh đạo, doanh nghiệp',
 				translation: 'manual',
-				// TODO: update these information once you finish writing
 				readMinutes: 3,
 				numWords: 769,
 			},

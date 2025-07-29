@@ -10,7 +10,7 @@ import { createAttachmentKey } from 'svelte/attachments';
  */
 function onclick(event) {
 	const dialog = /** @type {HTMLDialogElement} */ (event.currentTarget);
-	let rect = /** @type {HTMLDialogElement} */ (event.target).getBoundingClientRect();
+	const rect = /** @type {HTMLDialogElement} */ (event.target).getBoundingClientRect();
 	if (!event.clientX || !event.clientY) return; // not a mouse event (probably triggered by keyboard)
 	if (
 		rect.left > event.clientX ||

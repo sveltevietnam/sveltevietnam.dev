@@ -25,7 +25,7 @@
 		"@clack/prompts": "^0.11.0",
 		"@cloudflare/workers-types": "^4.20250614.0",
 		"@floating-ui/dom": "^1.7.1",
-		"@svelte-put/async-stack": "^1.0.0",
+		"@svelte-put/async-stack": "^1.0.1",
 		"@svelte-put/avatar": "^4.0.0",
 		"@svelte-put/clickoutside": "^4.0.0",
 		"@svelte-put/cloudflare-turnstile": "^1.2.0",

@@ -1,4 +1,4 @@
-import { Stack, stack } from '@svelte-put/async-stack';
+import { type Stack, stack } from '@svelte-put/async-stack';
 import { getContext, setContext } from 'svelte';
 
 export class DialogContext {

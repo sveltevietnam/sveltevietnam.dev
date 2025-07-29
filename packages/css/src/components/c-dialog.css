@@ -1,3 +1,7 @@
+/*
+ * NOTE: designed to work in tandem with dialog solution at sveltevietnam.dev
+ * and assume to live within Tailwind context
+ */
 @utility c-dialog {
 	@layer components {
 		inset: 0;
