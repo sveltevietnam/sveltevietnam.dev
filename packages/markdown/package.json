@@ -60,6 +60,7 @@
 	},
 	"devDependencies": {
 		"@types/hast": "^3.0.4",
+		"@types/node": "^24.0.1",
 		"vite": "^6.3.5"
 	},
 	"peerDependencies": {

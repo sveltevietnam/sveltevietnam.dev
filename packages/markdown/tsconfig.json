@@ -3,7 +3,6 @@
 	"include": ["src/**/*"],
 	"exclude": ["node_modules"],
 	"compilerOptions": {
-    "types": ["vite/client"]
-  }
+		"types": ["vite/client", "node"]
+	}
 }
-
