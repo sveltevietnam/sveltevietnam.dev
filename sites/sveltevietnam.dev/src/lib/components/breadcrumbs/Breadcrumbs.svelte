@@ -41,16 +41,16 @@
 	{...rest}
 >
 	<ol
-		class="scrollbar-hidden flex items-center gap-2 overflow-auto"
+		class="scrollbar-hidden flex items-center gap-2 overflow-auto border border-transparent"
 		bind:this={ol}
 		onscroll={checkScrollable}
 	>
 		{#each crumbs as { name, path }, i (name)}
 			{@const current = i === crumbs.length - 1}
 			<li class="contents">
-				<a class={[!current && 'c-link-lazy']} aria-current={current} href={path}>
+				<a class={['-outline-offset-1', !current && 'c-link-lazy']} aria-current={current} href={path}>
 					{#if i === 0}
-						<i class="i i-[ph--house-line] h-6 w-6"></i>
+						<i class="i i-[ph--house-line] h-5 w-5"></i>
 						<span class="sr-only">
 							<T message={m['components.breadcrumbs.home']} />
 						</span>
