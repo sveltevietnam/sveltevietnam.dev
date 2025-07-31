@@ -4,13 +4,13 @@
 </script>
 
 I always try to avoid dialog / modal (from now on will be referred together as just dialog) in web
-projects due to their complexity, lack of shareable URLs, and especially difficulty in meeting
+projects due to their complexity, lack of shareable URLs, and notorious difficulty in meeting
 accessibility requirements if not careful. For example, a dialog containing a form to create a new
-resource (e.g., new user creation) can often be replaced with a dedicated page.
+resource (e.g. new user creation) can often be replaced with a dedicated page.
 
-With that being said, there are cases where a dialog still makes sense in terms of user experience,
-such as a *confirmation dialog* before an important action is performed. This post demonstrate this exact
-example and introduce one possible setup for dialog in Svelte.
+With that being said, there are cases where dialog still makes sense in terms of user experience.
+One typical example is *confirmation dialog* before an important action is performed.
+This post demonstrate this exact example and introduce one possible setup for dialog in Svelte.
 
 ## Comprehensive Example
 
