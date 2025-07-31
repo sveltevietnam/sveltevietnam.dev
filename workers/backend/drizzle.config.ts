@@ -12,15 +12,19 @@ if (mode !== 'development' && !token) {
 	throw new Error(pico.red('CLOUDFLARE_TOKEN is required in non-development mode.'));
 }
 
-const relativeDirpath = '.wrangler/state/v3/d1/miniflare-D1DatabaseObject';
-const dirpath = path.join(__dirname, relativeDirpath);
-const files = glob(path.join(dirpath, '*.sqlite'));
-if (files.length === 0) {
-	throw new Error(
-		pico.red(`No SQLite file found at ${pico.yellow(relativeDirpath)}. Maybe run dev once?`),
-	);
-} else if (files.length > 1) {
-	console.warn(pico.yellow(`Found multiple SQLite files at ${relativeDirpath}.`));
+let files: string[] = [];
+
+if (mode === 'development') {
+	const relativeDirpath = '.wrangler/state/v3/d1/miniflare-D1DatabaseObject';
+	const dirpath = path.join(__dirname, relativeDirpath);
+	files = glob(path.join(dirpath, '*.sqlite'));
+	if (files.length === 0) {
+		throw new Error(
+			pico.red(`No SQLite file found at ${pico.yellow(relativeDirpath)}. Maybe run dev once?`),
+		);
+	} else if (files.length > 1) {
+		console.warn(pico.yellow(`Found multiple SQLite files at ${relativeDirpath}.`));
+	}
 }
 
 export default defineConfig({
