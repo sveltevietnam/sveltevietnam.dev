@@ -317,6 +317,14 @@ messages:
             'Note: comments are fetched directly from the <a class="c-link" rel="noopener noreferrer
             external" href={{url}}>linked Bluesky post</a>. Embedded contents such as images are
             omitted here.'
+      quick_nav:
+        aria: Quick navigation
+        share: Share this post
+        toc: Table of contents
+        scroll: Scroll to start
+        latest: See latest post
+        series: See posts in this series
+        newsletter: Subscribe to newsletter
     blog_categories:
       title: Categories | Blog | Svete Vietnam
       keywords: blog, write, categories, classification

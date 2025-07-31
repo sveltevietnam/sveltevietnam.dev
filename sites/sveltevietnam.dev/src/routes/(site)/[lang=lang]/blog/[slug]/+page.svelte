@@ -2,6 +2,7 @@
 	import { type AppBskyFeedDefs } from '@atproto/api';
 	import { Toc } from '@svelte-put/toc';
 	import { T } from '@sveltevietnam/i18n';
+	import type { Message } from '@sveltevietnam/i18n/runtime';
 	import { onMount } from 'svelte';
 
 	import { page } from '$app/state';
@@ -84,7 +85,15 @@
 		const agent = bluesky.createAtpAgent(fetch);
 		blueskyPost = await bluesky.getPostThread(agent, data.bluesky.uri);
 	});
+
+	let containerEl: HTMLDivElement;
+	let showQuickNav = $state(false);
+	function onScroll() {
+		showQuickNav = window.scrollY > containerEl.offsetTop;
+	}
 </script>
+
+<svelte:window onscroll={onScroll} />
 
 <main {...pagefind.page({ group: 'blog', importance: 'detail' })}>
 	<!-- intro -->
@@ -166,8 +175,64 @@
 		</div>
 	</section>
 
+	<!-- quick navigation -->
+	<div class="z-overlay mobile:inset-x-0 tablet:left-1/2 tablet:-translate-x-1/2 bottom-0 fixed" data-pagefind-ignore>
+		<nav
+			class={[
+				"bg-on-surface text-surface tablet:border-surface tablet:border-onehalf mobile:justify-evenly _quick-nav flex items-center px-2",
+				showQuickNav ? 'translate-y-0' : 'translate-y-16',
+			]}
+			aria-label={m['pages.blog_slug.quick_nav.aria'](settings.language)}
+		>
+			{#snippet inlink(href: string, message: Message<'string', never>, iconClass: string)}
+				<a
+					class="c-link-lazy flex flex-col items-center justify-end gap-2 p-2"
+					{href}
+					style:--active-color="var(--color-primary)"
+				>
+					<i class={['i h-6 w-6', iconClass]}></i>
+					<span class="sr-only"> <T {message} /> </span>
+				</a>
+			{/snippet}
+			<ul class="contents">
+				<li>
+					{@render inlink('#share', m['pages.blog_slug.quick_nav.share'], 'i-[ph--share-fat]')}
+				</li>
+				<li class="pr-8">
+					{@render inlink('#toc', m['pages.blog_slug.quick_nav.toc'], 'i-[ph--list-magnifying-glass]')}
+				</li>
+				<li class="-translate-1/2 absolute left-1/2 top-0">
+					<a
+						class="c-link-lazy bg-on-surface relative flex flex-col items-center justify-end gap-2 rounded-full p-2"
+						href="#content"
+						style:--active-color="var(--color-primary)"
+					>
+						<span
+							class="bg-surface -z-1 absolute -left-1 -right-1 bottom-0 top-1/2 h-[calc(50%+0.25rem)] rounded-b-full"
+						></span>
+						<i class="i i-[ph--caret-up] h-6 w-6"></i>
+						<span class="sr-only">
+							<T message={m['pages.blog_slug.quick_nav.scroll']} />
+						</span>
+					</a>
+				</li>
+				<li class="pl-8">
+					{#if data.posts.inSeries?.length}
+						{@render inlink('#in-this-series', m['pages.blog_slug.quick_nav.series'], 'i-[ph--files]')}
+					{:else}
+						{@render inlink('#latest-post', m['pages.blog_slug.quick_nav.latest'], 'i-[ph--files]')}
+					{/if}
+				</li>
+				<li>
+					{@render inlink('#newsletter', m['pages.blog_slug.quick_nav.newsletter'], 'i-[ph--newspaper-clipping]')}
+				</li>
+			</ul>
+		</nav>
+	</div>
+
 	<div
 		class="_container tablet:gap-8 desktop:gap-10 max-w-pad tablet:pb-15 desktop:pb-20 widescreen:gap-20 grid gap-10 py-10"
+		bind:this={containerEl}
 		data-hydrated={settings.hydrated}
 	>
 		<!-- table of contents -->
@@ -185,7 +250,7 @@
 		</div>
 
 		<!-- content -->
-		<section class="_content prose max-w-readable-relaxed">
+		<section class="_content prose max-w-readable-relaxed" id="content">
 			{#if data.content}
 				{#key data.content}
 					<div use:toc.actions.root>
@@ -214,7 +279,9 @@
 				class={['space-y-6', !settings.hydrated && 'top-header sticky']}
 				data-pagefind-ignore
 			>
-				<h2 class="c-text-heading border-b" id="share"><T message={m['pages.blog_slug.headings.share']} /></h2>
+				<h2 class="c-text-heading border-b" id="share">
+					<T message={m['pages.blog_slug.headings.share']} />
+				</h2>
 				<ul class="flex flex-wrap gap-4">
 					{#if settings.hydrated}
 						<li>
@@ -264,7 +331,7 @@
 						{/if}
 					</li>
 				</ul>
-				<p class="border-onehalf border-current shadow-brutal-sm p-4">
+				<p class="border-onehalf shadow-brutal-sm border-current p-4">
 					<T message={m['pages.blog_slug.write']} />
 				</p>
 			</section>
@@ -369,10 +436,7 @@
 		{@const aggregated = blueskyPost ? bluesky.aggregatePostThread(blueskyPost) : null}
 
 		<!-- Bluesky comments -->
-		<section
-			class="max-w-pad py-section mobile:overflow-auto space-y-10"
-			data-pagefind-ignore
-		>
+		<section class="max-w-pad py-section mobile:overflow-auto space-y-10" data-pagefind-ignore>
 			<h2 class="c-text-heading border-outline border-b" id="comments">
 				<T message={m['pages.blog_slug.comments.heading']} />
 			</h2>
@@ -522,5 +586,20 @@
 
 	._latest {
 		grid-area: latest;
+	}
+
+	._quick-nav {
+		transition-timing-function: var(--default-transition-timing-function);
+		transition-duration: 250ms;
+		transition-property: clip-path, translate;
+
+		@media (--tablet) {
+			clip-path: circle(1.25rem at 50% 1.25px);
+
+			&:hover {
+				clip-path: circle(10rem at 50% 0);
+				transition-duration: 150ms;
+			}
+		}
 	}
 </style>

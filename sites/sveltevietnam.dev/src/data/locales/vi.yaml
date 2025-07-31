@@ -322,6 +322,14 @@ messages:
             'Ghi chú: Bình luận được sao chép từ <a class="c-link" rel="noopener noreferrer
             external" href={{url}}>bài đăng trên Bluesky</a>. Các nội dung tích hợp như hình ảnh
             được lượt bỏ tại đây.'
+      quick_nav:
+        aria: Điều hướng nhanh
+        share: Chia sẻ bài viết này
+        toc: Xem mục lục
+        scroll: Cuộn đến đầu bài
+        latest: Xem bài viết mới nhất
+        series: Xem bài viết cùng chuỗi
+        newsletter: Đăng ký bản tin
     blog_categories:
       title: Chủ đề | Blog | Svelte Việt Nam
       keywords: blog, viết, chủ đề, phân loại
