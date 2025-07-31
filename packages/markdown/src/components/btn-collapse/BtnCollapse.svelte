@@ -18,9 +18,7 @@
 
 <label {...rest}>
 	<input class="codeblock-collapsed sr-only" type="checkbox" bind:checked={collapsed} {id} />
-	<span class="sr-only">
-		{collapsed ? locales.expand : locales.collapse}
-	</span>
+	<span class="sr-only">{locales.collapse}</span>
 	<i class="i i-[ph--caret-down]"></i>
 </label>
 

@@ -52,12 +52,13 @@
 			bind:checked={open}
 		/>
 		<i class="i i-[ph--palette] h-6 w-6"></i>
-		<span class="sr-only peer-checked:hidden"><T message={m.open} /></span>
-		<span class="sr-only hidden peer-checked:block"><T message={m.close} /></span>
-		<span class="sr-only"><T message={m['components.color_scheme_menu.toggle']} /> </span>
-		<span class={[alwaysShowLabel && 'tablet:sr-only']}
-			><T message={colorSchemes[settings.colorScheme.user].label} /></span
-		>
+		<span class="sr-only">
+			<T message={m.open} />
+			<T message={m['components.color_scheme_menu.aria']} />
+		</span>
+		<span class={[alwaysShowLabel && 'tablet:sr-only']} aria-hidden="true">
+			<T message={colorSchemes[settings.colorScheme.user].label} />
+		</span>
 		<i class="i i-[ph--caret-down] h-5 w-5 transition-transform peer-checked:-rotate-180"></i>
 	</label>
 	<div

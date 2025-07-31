@@ -56,7 +56,7 @@
 
 <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 <label for={id} {...rest} onclick={onClick} onkeydown={onKeyDown}>
-	<span class="sr-only">{fullscreen ? locales.minimize : locales.maximize}</span>
+	<span class="sr-only">{locales.maximize}</span>
 	{#if !group}
 		<input class="codeblock-fullscreen sr-only" type="checkbox" {id} bind:checked={fullscreen} />
 	{/if}

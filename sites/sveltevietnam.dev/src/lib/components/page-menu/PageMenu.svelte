@@ -85,9 +85,10 @@
 		>
 			<input class="peer sr-only" type="checkbox" name="page-menu" bind:checked={open} />
 			<i class="i i-[ph--compass] h-6 w-6"></i>
-			<span class="sr-only peer-checked:hidden"><T message={m.open} /></span>
-			<span class="sr-only hidden peer-checked:block"><T message={m.close} /></span>
-			<span class="sr-only"><T message={m['components.page_menu.toggle']} /></span>
+			<span class="sr-only">
+				<T message={m.open} />
+				<T message={m.menu} />
+			</span>
 			<i class="i i-[ph--caret-down] h-5 w-5 transition-transform peer-checked:-rotate-180"></i>
 		</label>
 	{/if}

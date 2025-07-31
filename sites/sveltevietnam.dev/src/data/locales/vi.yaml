@@ -9,6 +9,7 @@ messages:
   download: Tải về
   view_more: Xem thêm
   explain: giải thích
+  menu: bảng chọn
   and: và
   or: hoặc
   minutes: phút
@@ -749,10 +750,10 @@ messages:
         callout tại trang <a class="c-link" href="/vi/blog/viet#callout">"Blog Svelte Việt Nam -
         Hướng dẫn viết bài"</a>.
     color_scheme_menu:
+      aria: Bảng chọn chế độ màu
       light: Chế độ sáng
       dark: Chế độ tối
       system: Mặc định
-      toggle: bảng chọn chế độ màu. Chế độ màu hiện tại là
     event_listing_item:
       copy: Sao chép đường dẫn đến trang sự kiện
       live: Trực tuyến tại
@@ -777,7 +778,6 @@ messages:
     language_menu:
       aria: chuyển đổi ngôn ngữ trang
       switch_to: chuyển sang
-      toggle: bảng chọn ngôn ngữ. Ngôn ngữ hiện tại là
     not_by_ai_badge: trang này được viết bởi con người, không phải bởi trí tuệ nhân tạo (AI)
     page_edit_link:
       link: Sửa trang này tại Github
@@ -785,7 +785,6 @@ messages:
         sveltevietnam.dev là một dự án mã nguồn mở và hoan nghênh sự đóng góp của bạn. Xin cảm ơn!
     page_menu:
       aria: trang
-      toggle: bảng chọn trang
     pagination:
       aria: chuyển trang
       number: số trang

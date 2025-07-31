@@ -13,12 +13,6 @@
 
 	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();
-
-	let currentLangLabel = $derived(
-		settings.language === 'vi'
-			? m['languages.vietnamese']
-			: m['languages.english'],
-	);
 </script>
 
 <nav
@@ -37,10 +31,10 @@
 	>
 		<input class="peer sr-only" type="checkbox" name="language-menu" bind:checked={open} />
 		<i class="i i-[ph--translate] h-6 w-6"></i>
-		<span class="sr-only peer-checked:hidden"><T message={m.open} /></span>
-		<span class="sr-only hidden peer-checked:block"><T message={m.close} /></span>
-		<span class="sr-only"><T message={m['components.language_menu.toggle']} /></span>
-		<span class="tablet:sr-only"><T message={currentLangLabel} /></span>
+		<span class="sr-only">
+			<T message={m.open} />
+			<T message={m.menu} />
+		</span>
 		<i class="i i-[ph--caret-down] h-5 w-5 transition-transform peer-checked:-rotate-180"></i>
 	</label>
 	<div

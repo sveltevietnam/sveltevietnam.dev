@@ -9,6 +9,7 @@ messages:
   download: Download
   view_more: View more
   explain: Explain
+  menu: menu
   and: and
   or: or
   minutes: minutes
@@ -746,10 +747,10 @@ messages:
         draw user's attention. See more examples and how to use it via <a class="c-link"
         href="/en/blog/write#callout">"Svelte Vietnam Blog - Writing Guidelines"</a>.
     color_scheme_menu:
+      aria: Color scheme menu
       light: Light mode
       dark: Dark mode
       system: System default
-      toggle: color scheme menu. Current color scheme is
     event_listing_item:
       copy: Copy link to event page
       live: Live via
@@ -774,14 +775,12 @@ messages:
     language_menu:
       aria: switch site language
       switch_to: switch to
-      toggle: language menu. Current language is
     not_by_ai_badge: this page is written by human, not by AI
     page_edit_link:
       link: Edit this page on Github
       desc: sveltevietnam.dev is an open source project and welcomes your contributions. Thank you!
     page_menu:
       aria: pages
-      toggle: page menu
     pagination:
       aria: pagination
       number: page number
