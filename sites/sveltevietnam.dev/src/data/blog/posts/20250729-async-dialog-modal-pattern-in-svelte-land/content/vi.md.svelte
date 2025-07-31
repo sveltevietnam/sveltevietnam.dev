@@ -158,12 +158,18 @@ một luồng dữ liệu khác như callback hay event listener.
 Giải pháp được thiết kế để hoạt động hiệu quả với [dialog](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog),
 tận dụng các tính năng sẵn có để đảm bảo trợ năng và giảm thiểu tối đa số lượng mã nguồn cần thiết.
 
-Theo đó, hàm `enhanceDialog` từ tệp `dialog.ts` bổ sung các tính năng:
+Theo đó, thư viện `@svelte-put/async-stack` cung cấp hàm `enhanceDialog` giúp bổ sung các tính năng cho `dialog`:
 
 1. tự động gọi [showModal](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal),
 2. đóng hộp thoại khi người dùng nhấn vào backdrop (clickoutside),
 3. hỗ trợ tự động kết quả trả về nếu tích hợp với `<form method="dialog">` như ví dụ, giúp giảm
    thiểu sự lệ thuộc vào Javascript trong các truờng hợp đơn giản.
+
+<div class="c-callout c-callout--info">
+
+Tại thời điểm viết bài, `enhanceDialog` là tính năng thử nghiệm và có thể thay đổi trong tương lai.
+
+</div>
 
 ## Mở rộng
 

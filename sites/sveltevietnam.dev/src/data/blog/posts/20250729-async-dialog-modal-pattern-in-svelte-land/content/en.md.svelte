@@ -169,13 +169,21 @@ This solution is also designed to work in tandem with [HTML
 dialog](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog), leveraging
 its built-in features to ensure accessibility and minimize the need for custom Javascript.
 
-As such, the `enhanceDialog` function from `dialog.ts` adds the following features:
+As such, `@svelte-put/async-stack` provides a `enhanceDialog` helper to adds the following features
+to `dialog`:
 
 1. automatically calls
    [showModal](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal),
 2. closes the dialog when the user clicks on the backdrop (clickoutside),
 3. supports automatic result return when integrated with `<form method="dialog>`,
    as in the example, reducing the dependency on Javascript for simple use cases.
+
+<div class="c-callout c-callout--info">
+
+At the time of this writing, `enhanceDialog` is an experimental feature and may change in the
+future.
+
+</div>
 
 ## Extension
 
@@ -194,7 +202,7 @@ observe said behavior.
 ## Closing
 
 Today, while HTML dialog is widely supported and more convenient than ever, I
-often find myself still needing more than just vanilla dialog. Currently, I am quite satisfied with
+often find myself still needing more than just a vanilla setup. Currently, I am quite satisfied with
 the solution presented here, and have used it in many projects. However, as discussed in the opening,
 I always try to avoid using dialogs as much as possible.
 
