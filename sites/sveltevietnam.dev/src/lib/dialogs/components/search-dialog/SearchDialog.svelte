@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { StackItemProps } from '@svelte-put/async-stack';
+	import { enhanceDialog } from '@svelte-put/async-stack/helpers';
 	import { shortcut } from '@svelte-put/shortcut';
 	import { T } from '@sveltevietnam/i18n';
 	import sanitize from 'sanitize-html';
@@ -7,7 +8,6 @@
 	import { fade } from 'svelte/transition';
 
 	import * as m from '$data/locales/generated/messages';
-	import { enhanceDialog } from '$lib/dialogs/enhanced-dialog';
 	import { SearchContext } from '$lib/search/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
@@ -40,13 +40,14 @@
 </script>
 
 <dialog
-	{...enhanceDialog(item, settings)}
+	{...enhanceDialog(item, { delayResolution: 'animationend' })}
 	class="c-dialog bg-surface-subtle mt-header mobile:m-0 mobile:w-full max-w-screen mobile:h-full
 	mobile:shadow-none tablet:max-h-[80vh] max-h-screen p-0"
 	bind:this={dialog}
 	use:shortcut={{
 		trigger: { key: 'k', modifier: ['ctrl', 'meta'], callback: closeDialog },
 	}}
+	{@attach settings.lockScrollWhenMounted}
 >
 	<form class="min-h-50 w-150 flex h-full max-w-full flex-col" method="dialog">
 		<!-- query -->

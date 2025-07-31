@@ -61,7 +61,7 @@
 		"postcss-custom-selectors": "^8.0.5"
 	},
 	"devDependencies": {
-		"tailwindcss": "4.1.10",
+		"tailwindcss": "4.1.11",
 		"vite": "^6.3.5"
 	}
 }

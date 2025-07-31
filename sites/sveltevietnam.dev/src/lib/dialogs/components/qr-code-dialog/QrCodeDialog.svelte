@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { StackItemProps } from '@svelte-put/async-stack';
+	import { enhanceDialog } from '@svelte-put/async-stack/helpers';
 	import { createQrPngDataUrl } from '@svelte-put/qr';
 	import { qr, type SvgQRParameter } from '@svelte-put/qr/svg';
 	import { T } from '@sveltevietnam/i18n';
@@ -7,7 +8,6 @@
 
 	import * as m from '$data/locales/generated/messages';
 	import { light, dark } from '$data/logos';
-	import { enhanceDialog } from '$lib/dialogs/enhanced-dialog';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	let {
@@ -36,7 +36,11 @@
 	});
 </script>
 
-<dialog {...enhanceDialog(item, settings)}>
+<dialog
+	class="c-dialog"
+	{...enhanceDialog(item, { delayResolution: 'animationend' })}
+	{@attach settings.lockScrollWhenMounted}
+>
 	<form class="space-y-6" method="dialog">
 		<!-- svelte-ignore a11y_autofocus -->
 		<button class="c-link-lazy absolute right-4 top-4 p-2" autofocus formmethod="dialog">

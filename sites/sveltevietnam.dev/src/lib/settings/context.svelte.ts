@@ -1,4 +1,5 @@
 import { getContext, setContext } from 'svelte';
+import type { Attachment } from 'svelte/attachments';
 import { MediaQuery } from 'svelte/reactivity';
 
 import { browser } from '$app/environment';
@@ -74,6 +75,14 @@ export class SettingsContext {
 	toggleScrollLock(force?: boolean) {
 		this.scrolllock = force ?? !this.scrolllock;
 	}
+
+	/** lock scroll when element is mounted, release when unmounted */
+	lockScrollWhenMounted: Attachment = () => {
+		this.toggleScrollLock(true);
+		return () => {
+			this.toggleScrollLock(false);
+		};
+	};
 
 	get platform() {
 		if (!browser) {
