@@ -60,7 +60,7 @@ kết quả:
 
   function handleDialogOutput(confirmed: boolean) {
     // (2) Nhận kết quả từ hộp thoại
-    confirmed = true;
+    if (confirmed) // proceed with the confirmed action
   }
 </script>
 

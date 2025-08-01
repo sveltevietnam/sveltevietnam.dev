@@ -61,7 +61,7 @@ trigger the dialog, and another context to receive the result:
 
   function handleDialogOutput(confirmed: boolean) {
     // (2) Receive the result
-    confirmed = true;
+    if (confirmed) // proceed with the confirmed action
   }
 </script>
 
