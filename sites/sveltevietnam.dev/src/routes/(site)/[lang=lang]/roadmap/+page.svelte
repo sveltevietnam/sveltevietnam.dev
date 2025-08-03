@@ -3,6 +3,7 @@
 
 	import * as m from '$data/locales/generated/messages';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
+	import * as pagefind from '$lib/pagefind/attributes';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 
 	import backgroundSvg from './_page/images/background.svg';
@@ -29,7 +30,7 @@
 	}
 </script>
 
-<main>
+<main {...pagefind.page({ group: 'general' })}>
 	<!-- Intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro relative">
 		<div
