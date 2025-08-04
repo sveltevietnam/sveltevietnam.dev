@@ -18,11 +18,12 @@
 
 <main {...pagefind.page({ group: 'general' })}>
 	<!-- Intro -->
-	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro relative">
+	<section class="pt-intro-pad-top bg-gradient-primary-intro desktop:pb-20 relative pb-10">
 		<div
-			class="max-w-pad tablet:flex-row tablet:gap-6 tablet:items-start flex flex-col justify-between"
+			class="max-w-pad max-tablet:flex-col tablet:items-start z-1 relative flex justify-between
+			gap-6"
 		>
-			<div class="tablet:space-y-8 relative z-30 space-y-6">
+			<div class="tablet:space-y-8 relative space-y-6">
 				<Breadcrumbs crumbs={routing.breadcrumbs} />
 				<div class="space-y-4">
 					<h1 class="c-text-heading-page text-primary-on-surface">
@@ -33,211 +34,237 @@
 					</p>
 				</div>
 			</div>
-			<div class="absolute bottom-0 left-0 right-0 top-40 z-0">
-				<!-- background svg -->
-			</div>
 			<img
-				class="desktop:w-80 max-tablet:self-end relative z-20"
+				class="w-70 tablet:w-100 desktop:w-128 max-tablet:self-end h-auto"
 				src={environmentProtectionSvg}
-				width="320"
-				height="320"
+				width="280"
+				height="280"
 				alt="a human climbing a ladder, looking at milestones"
 				fetchpriority="high"
 				loading="eager"
 			/>
 		</div>
+		<div class="absolute inset-0 z-0">
+			<div
+				class="_road bg-primary-on-surface desktop:h-118 tablet:h-81 tablet:bottom-2 h-82
+				desktop:bottom-8 absolute inset-x-0 bottom-9"
+			></div>
+			<div
+				class="desktop:w-25 bg-secondary desktop:left-16/100 desktop:top-68/100 tablet:top-80/100
+				tablet:left-10/100 2xl:left-25/100 2xl:top-65/100 top-73/100 left-7/100 absolute aspect-square
+				h-auto w-14 rounded-full"
+			>
+				<!-- large circle -->
+			</div>
+			<div
+				class="desktop:w-14 bg-secondary desktop:left-46/100 desktop:top-50/100 tablet:left-40/100
+				tablet:top-60/100 top-44/100 left-74/100 absolute aspect-square h-auto w-8 rounded-full"
+			>
+				<!-- small circle -->
+			</div>
+		</div>
 	</section>
 
-	<!-- Milestone: Đồng -->
-	<Milestone
-		id="dong"
-		name="Đồng"
-		objective={m['pages.roadmap.dong.objective']}
-		tasks={[
-			{
-				message: m['pages.roadmap.dong.tasks.job_posting'],
-				progress: 'planned',
-			},
-			{
-				message: m['pages.roadmap.dong.tasks.post_submitInApp'],
-				progress: 'planned',
-			},
-			{
-				message: m['pages.roadmap.dong.tasks.task_md_editor'],
-				progress: 'planned',
-			},
-			{
-				message: m['pages.roadmap.dong.tasks.github_oauth'],
-				progress: 'planned',
-			},
-			{
-				message: m['pages.roadmap.dong.tasks.svelte_5'],
-				progress: 'completed',
-			},
-			{
-				message: m['pages.roadmap.dong.tasks.inter_4'],
-				progress: 'completed',
-			},
-			{
-				message: m['pages.roadmap.dong.tasks.tailwind_4'],
-				progress: 'completed',
-			},
-			{
-				message: m['pages.roadmap.dong.tasks.refactor'],
-				progress: 'inprogress',
-			},
-		]}
-		current
-	>
-		<div class="opacity-4 max-w-pad -z-1 top-90 tablet:top-72 absolute inset-x-0">
-			<img
-				class="ml-auto"
-				alt="Đồng Thái Bình Hưng Bảo"
-				src={svgDong}
-				width="265"
-				height="265"
-				loading="lazy"
-				decoding="async"
-				fetchpriority="low"
-			/>
-		</div>
-	</Milestone>
-
-	<!-- Milestone: Tự -->
-	<Milestone
-		id="tu"
-		name="Tự"
-		objective={m['pages.roadmap.tu.objective']}
-		highlights={[
-			m['pages.roadmap.tu.highlights.open_collective'],
-			m['pages.roadmap.tu.highlights.first_offline_meetup'],
-			m['pages.roadmap.tu.highlights.first_online_meetup'],
-			m['pages.roadmap.tu.highlights.first_ui'],
-		]}
-		tasks={[
-			{
-				message: m['pages.roadmap.tu.tasks.survey'],
-				progress: 'delayed',
-			},
-			{
-				message: m['pages.roadmap.tu.tasks.page_jobs'],
-				progress: 'completed',
-			},
-			{
-				message: m['pages.roadmap.tu.tasks.page_design'],
-				progress: 'completed',
-			},
-			{
-				message: m['pages.roadmap.tu.tasks.progressive_enhancement'],
-				progress: 'completed',
-			},
-			{
-				message: m['pages.roadmap.tu.tasks.page_coc'],
-				progress: 'completed',
-			},
-			{
-				message: m['pages.roadmap.tu.tasks.og'],
-				progress: 'completed',
-			},
-			{
-				message: m['pages.roadmap.tu.tasks.references'],
-				progress: 'completed',
-			},
-			{
-				message: m['pages.roadmap.tu.tasks.page_blog'],
-				progress: 'completed',
-			},
-			{
-				message: m['pages.roadmap.tu.tasks.page_events'],
-				progress: 'completed',
-			},
-			{
-				message: m['pages.roadmap.tu.tasks.mailer'],
-				progress: 'completed',
-			},
-		]}
-	>
-		<div class="opacity-4 max-w-pad -z-1 top-94 tablet:top-80 absolute inset-x-0">
-			<div class="tablet:gap-10 mobile:flex-col flex gap-5 ml-auto max-w-256">
+	<div class="pb-section space-y-section">
+		<!-- Milestone: Đồng -->
+		<Milestone
+			id="dong"
+			name="Đồng"
+			objective={m['pages.roadmap.dong.objective']}
+			tasks={[
+				{
+					message: m['pages.roadmap.dong.tasks.job_posting'],
+					progress: 'planned',
+				},
+				{
+					message: m['pages.roadmap.dong.tasks.post_submitInApp'],
+					progress: 'planned',
+				},
+				{
+					message: m['pages.roadmap.dong.tasks.task_md_editor'],
+					progress: 'planned',
+				},
+				{
+					message: m['pages.roadmap.dong.tasks.github_oauth'],
+					progress: 'planned',
+				},
+				{
+					message: m['pages.roadmap.dong.tasks.svelte_5'],
+					progress: 'completed',
+				},
+				{
+					message: m['pages.roadmap.dong.tasks.inter_4'],
+					progress: 'completed',
+				},
+				{
+					message: m['pages.roadmap.dong.tasks.tailwind_4'],
+					progress: 'completed',
+				},
+				{
+					message: m['pages.roadmap.dong.tasks.refactor'],
+					progress: 'inprogress',
+				},
+			]}
+			current
+		>
+			<div class="opacity-4 max-w-pad -z-1 top-90 tablet:top-72 absolute inset-x-0">
 				<img
-					class="w-full flex-1"
-					alt="Chữ"
-					src={svgTuChu}
-					width="211"
-					height="138"
-					loading="lazy"
-					decoding="async"
-					fetchpriority="low"
-				/>
-				<img
-					class="w-full flex-1"
-					alt="Nôm"
-					src={svgTuNom}
-					width="211"
-					height="138"
+					class="ml-auto"
+					alt="Đồng Thái Bình Hưng Bảo"
+					src={svgDong}
+					width="265"
+					height="265"
 					loading="lazy"
 					decoding="async"
 					fetchpriority="low"
 				/>
 			</div>
-		</div>
-	</Milestone>
+		</Milestone>
 
-	<!-- Milestone: Âu Lạc -->
-	<Milestone
-		id="au-lac"
-		name="Âu Lạc"
-		objective={m['pages.roadmap.auLac.objective']}
-		highlights={[
-			m['pages.roadmap.auLac.highlights.roadmap'],
-			m['pages.roadmap.auLac.highlights.initiation'],
-		]}
-		tasks={[
-			{
-				message: m['pages.roadmap.auLac.tasks.page_roadmap'],
-				progress: 'completed',
-			},
-			{
-				message: m['pages.roadmap.auLac.tasks.metadata'],
-				progress: 'completed',
-			},
-			{
-				message: m['pages.roadmap.auLac.tasks.discord'],
-				progress: 'completed',
-			},
-			{
-				message: m['pages.roadmap.auLac.tasks.page_home'],
-				progress: 'completed',
-			},
-			{
-				message: m['pages.roadmap.auLac.tasks.page_branding_repo'],
-				progress: 'completed',
-			},
-			{
-				message: m['pages.roadmap.auLac.tasks.logo'],
-				progress: 'completed',
-			},
-			{
-				message: m['pages.roadmap.auLac.tasks.project_reference'],
-				progress: 'completed',
-			},
-			{
-				message: m['pages.roadmap.auLac.tasks.github'],
-				progress: 'completed',
-			},
-		]}
-	>
-		<div class="opacity-4 max-w-pad -z-1 absolute inset-x-0 top-60">
-			<img
-				class="max-w-256 ml-auto h-auto w-full"
-				alt="Chim Lạc"
-				src={svgChimLac}
-				width="375"
-				height="127"
-				loading="lazy"
-				decoding="async"
-				fetchpriority="low"
-			/>
-		</div>
-	</Milestone>
+		<!-- Milestone: Tự -->
+		<Milestone
+			id="tu"
+			name="Tự"
+			objective={m['pages.roadmap.tu.objective']}
+			highlights={[
+				m['pages.roadmap.tu.highlights.open_collective'],
+				m['pages.roadmap.tu.highlights.first_offline_meetup'],
+				m['pages.roadmap.tu.highlights.first_online_meetup'],
+				m['pages.roadmap.tu.highlights.first_ui'],
+			]}
+			tasks={[
+				{
+					message: m['pages.roadmap.tu.tasks.survey'],
+					progress: 'delayed',
+				},
+				{
+					message: m['pages.roadmap.tu.tasks.page_jobs'],
+					progress: 'completed',
+				},
+				{
+					message: m['pages.roadmap.tu.tasks.page_design'],
+					progress: 'completed',
+				},
+				{
+					message: m['pages.roadmap.tu.tasks.progressive_enhancement'],
+					progress: 'completed',
+				},
+				{
+					message: m['pages.roadmap.tu.tasks.page_coc'],
+					progress: 'completed',
+				},
+				{
+					message: m['pages.roadmap.tu.tasks.og'],
+					progress: 'completed',
+				},
+				{
+					message: m['pages.roadmap.tu.tasks.references'],
+					progress: 'completed',
+				},
+				{
+					message: m['pages.roadmap.tu.tasks.page_blog'],
+					progress: 'completed',
+				},
+				{
+					message: m['pages.roadmap.tu.tasks.page_events'],
+					progress: 'completed',
+				},
+				{
+					message: m['pages.roadmap.tu.tasks.mailer'],
+					progress: 'completed',
+				},
+			]}
+		>
+			<div class="opacity-4 max-w-pad -z-1 top-94 tablet:top-80 absolute inset-x-0">
+				<div class="tablet:gap-10 max-tablet:flex-col max-w-256 ml-auto flex gap-5">
+					<img
+						class="w-full flex-1"
+						alt="Chữ"
+						src={svgTuChu}
+						width="211"
+						height="138"
+						loading="lazy"
+						decoding="async"
+						fetchpriority="low"
+					/>
+					<img
+						class="w-full flex-1"
+						alt="Nôm"
+						src={svgTuNom}
+						width="211"
+						height="138"
+						loading="lazy"
+						decoding="async"
+						fetchpriority="low"
+					/>
+				</div>
+			</div>
+		</Milestone>
+
+		<!-- Milestone: Âu Lạc -->
+		<Milestone
+			id="au-lac"
+			name="Âu Lạc"
+			objective={m['pages.roadmap.auLac.objective']}
+			highlights={[
+				m['pages.roadmap.auLac.highlights.roadmap'],
+				m['pages.roadmap.auLac.highlights.initiation'],
+			]}
+			tasks={[
+				{
+					message: m['pages.roadmap.auLac.tasks.page_roadmap'],
+					progress: 'completed',
+				},
+				{
+					message: m['pages.roadmap.auLac.tasks.metadata'],
+					progress: 'completed',
+				},
+				{
+					message: m['pages.roadmap.auLac.tasks.discord'],
+					progress: 'completed',
+				},
+				{
+					message: m['pages.roadmap.auLac.tasks.page_home'],
+					progress: 'completed',
+				},
+				{
+					message: m['pages.roadmap.auLac.tasks.page_branding_repo'],
+					progress: 'completed',
+				},
+				{
+					message: m['pages.roadmap.auLac.tasks.logo'],
+					progress: 'completed',
+				},
+				{
+					message: m['pages.roadmap.auLac.tasks.project_reference'],
+					progress: 'completed',
+				},
+				{
+					message: m['pages.roadmap.auLac.tasks.github'],
+					progress: 'completed',
+				},
+			]}
+		>
+			<div class="opacity-4 max-w-pad -z-1 absolute inset-x-0 top-60">
+				<img
+					class="max-w-256 ml-auto h-auto w-full"
+					alt="Chim Lạc"
+					src={svgChimLac}
+					width="375"
+					height="127"
+					loading="lazy"
+					decoding="async"
+					fetchpriority="low"
+				/>
+			</div>
+		</Milestone>
+	</div>
 </main>
+
+<style lang="postcss">
+	@import '@sveltevietnam/css/medias';
+
+	._road {
+		clip-path: polygon(0% 100%, 0% 64.4%, 100% 0%, 100% 9.96%);
+	}
+</style>

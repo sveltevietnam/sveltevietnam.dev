@@ -35,7 +35,7 @@
 	}: MilestoneProps = $props();
 </script>
 
-<section class="max-w-pad py-section relative space-y-10">
+<section class="max-w-pad relative space-y-10">
 	<h2 class="c-text-heading-lg border-b" {id}>
 		<span class="tracking-tight">
 			<T message={m['pages.roadmap.common.milestone']} />:
