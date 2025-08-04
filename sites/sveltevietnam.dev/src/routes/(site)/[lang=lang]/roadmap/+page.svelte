@@ -6,28 +6,10 @@
 	import * as pagefind from '$lib/pagefind/attributes';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 
-	import backgroundSvg from './_page/images/background.svg';
-	import chimhacSvg from './_page/images/chim-hac.svg';
-	import chunomSvg from './_page/images/chu-nom.svg';
-	import dongSvg from './_page/images/dong.svg';
+	import { Milestone } from './_page/components/milestone';
 	import environmentProtectionSvg from './_page/images/environment-protection.svg';
 
 	const routing = RoutingContext.get();
-
-	function getProgressColorStyle(
-		progressMessage: (typeof m)['pages.roadmap.progress.completed'],
-	): string {
-		if (progressMessage === m['pages.roadmap.progress.completed']) {
-			return 'color: var(--color-success-on-surface)';
-		} else if (progressMessage === m['pages.roadmap.progress.delayed']) {
-			return 'color: var(--color-error-on-surface)';
-		} else if (progressMessage === m['pages.roadmap.progress.planned']) {
-			return 'color: var(--color-on-surface-subtle)';
-		} else if (progressMessage === m['pages.roadmap.progress.inprogress']) {
-			return 'color: var(--color-info-on-surface)';
-		}
-		return '';
-	}
 </script>
 
 <main {...pagefind.page({ group: 'general' })}>
@@ -48,12 +30,7 @@
 				</div>
 			</div>
 			<div class="absolute bottom-0 left-0 right-0 top-40 z-0">
-				<img
-					class="absolute object-cover"
-					src={backgroundSvg}
-					alt="roadmap with milestones"
-					loading="eager"
-				/>
+				<!-- background svg -->
 			</div>
 			<img
 				class="desktop:w-80 max-tablet:self-end relative z-20"
@@ -67,372 +44,145 @@
 		</div>
 	</section>
 
-	<!-- Current -->
-	<section class="max-w-pad py-section space-y-10">
-		<h2 class="c-text-heading-lg border-b" id="dong">
-			<T message={m['pages.roadmap.common.milestone']} />: Đồng
-			(<T message={m.current} />)
-		</h2>
-		<div class="relative bottom-0 left-0 right-0 top-40 z-0 opacity-10">
-			<img
-				class="absolute object-cover"
-				src={dongSvg}
-				alt="roadmap with milestones"
-				loading="eager"
-			/>
-		</div>
-		<div
-			class="border-onehalf bg-surface shadow-brutal-lg tablet:p-8 desktop:p-10 desktop:pt-6 tablet:pt-4 max-w-readable-relaxed relative w-fit space-y-6 border-current"
-		>
-			<p>
-				<strong><T message={m['pages.roadmap.common.objective']} /></strong>: <T
-					message={m['pages.roadmap.dong.objective']}
-				/>
-			</p>
-		</div>
-		<table class="border-outline w-full border-collapse border">
-			<thead>
-				<tr class="bg-surface-variant text-left *:border *:px-3 *:py-2">
-					<th scope="col"><T message={m['pages.roadmap.common.task']} /></th>
-					<th scope="col"><T message={m['pages.roadmap.common.progress']} /></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.dong.tasks.job_posting']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.planned'])}>
-						<i class="i i-[ph--clock] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.planned']} />
-					</td>
-				</tr>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.dong.tasks.post_submitInApp']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.planned'])}>
-						<i class="i i-[ph--clock] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.planned']} />
-					</td>
-				</tr>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.dong.tasks.task_md_editor']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.planned'])}>
-						<i class="i i-[ph--clock] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.planned']} />
-					</td>
-				</tr>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.dong.tasks.github_oauth']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.planned'])}>
-						<i class="i i-[ph--clock] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.planned']} />
-					</td>
-				</tr>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.dong.tasks.svelte_5']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.planned'])}>
-						<i class="i i-[ph--clock] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.planned']} />
-					</td>
-				</tr>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.dong.tasks.inter_4']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.planned'])}>
-						<i class="i i-[ph--clock] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.planned']} />
-					</td>
-				</tr>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.dong.tasks.tailwind_4']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.planned'])}>
-						<i class="i i-[ph--clock] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.planned']} />
-					</td>
-				</tr>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.dong.tasks.refactor']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.inprogress'])}>
-						<i class="i i-[ph--hourglass] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.inprogress']} />
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</section>
+	<!-- Milestone: Đồng -->
+	<Milestone
+		id="dong"
+		name="Đồng"
+		objective={m['pages.roadmap.dong.objective']}
+		tasks={[
+			{
+				message: m['pages.roadmap.dong.tasks.job_posting'],
+				progress: 'planned',
+			},
+			{
+				message: m['pages.roadmap.dong.tasks.post_submitInApp'],
+				progress: 'planned',
+			},
+			{
+				message: m['pages.roadmap.dong.tasks.task_md_editor'],
+				progress: 'planned',
+			},
+			{
+				message: m['pages.roadmap.dong.tasks.github_oauth'],
+				progress: 'planned',
+			},
+			{
+				message: m['pages.roadmap.dong.tasks.svelte_5'],
+				progress: 'completed',
+			},
+			{
+				message: m['pages.roadmap.dong.tasks.inter_4'],
+				progress: 'completed',
+			},
+			{
+				message: m['pages.roadmap.dong.tasks.tailwind_4'],
+				progress: 'completed',
+			},
+			{
+				message: m['pages.roadmap.dong.tasks.refactor'],
+				progress: 'inprogress',
+			},
+		]}
+		current
+	></Milestone>
 
-	<!-- Tu -->
-	<section class="max-w-pad py-section space-y-10">
-		<h2 class="c-text-heading-lg border-b" id="tu">
-			<T message={m['pages.roadmap.common.milestone']} />: Tự
-		</h2>
-		<div class="relative bottom-0 left-0 right-0 top-40 z-0 opacity-10">
-			<img
-				class="absolute object-cover"
-				src={chunomSvg}
-				alt="roadmap with milestones"
-				loading="eager"
-			/>
-		</div>
-		<div
-			class="border-onehalf bg-surface shadow-brutal-lg tablet:p-8 desktop:p-10 desktop:pt-6 tablet:pt-4 max-w-readable-relaxed relative w-fit space-y-6 border-current"
-		>
-			<p>
-				<strong><T message={m['pages.roadmap.common.objective']} /></strong>: <T
-					message={m['pages.roadmap.tu.objective']}
-				/>
-			</p>
-		</div>
-		<strong><T message={m['pages.roadmap.common.highlight']} /></strong>
-		<ul class="space-y-2 pt-4">
-			<li>
-				<i class="i i-[ph--confetti] h-6 w-6"></i>
-				<T message={m['pages.roadmap.tu.highlights.open_collective']} />
-			</li>
-			<li>
-				<i class="i i-[ph--confetti] h-6 w-6"></i>
-				<T message={m['pages.roadmap.tu.highlights.first_offline_meetup']} />
-			</li>
-			<li>
-				<i class="i i-[ph--confetti] h-6 w-6"></i>
-				<T message={m['pages.roadmap.tu.highlights.first_online_meetup']} />
-			</li>
-			<li>
-				<i class="i i-[ph--confetti] h-6 w-6"></i>
-				<T message={m['pages.roadmap.tu.highlights.first_ui']} />
-			</li>
-		</ul>
+	<!-- Milestone: Tự -->
+	<Milestone
+		id="tu"
+		name="Tự"
+		objective={m['pages.roadmap.tu.objective']}
+		highlights={[
+			m['pages.roadmap.tu.highlights.open_collective'],
+			m['pages.roadmap.tu.highlights.first_offline_meetup'],
+			m['pages.roadmap.tu.highlights.first_online_meetup'],
+			m['pages.roadmap.tu.highlights.first_ui'],
+		]}
+		tasks={[
+			{
+				message: m['pages.roadmap.tu.tasks.survey'],
+				progress: 'delayed',
+			},
+			{
+				message: m['pages.roadmap.tu.tasks.page_jobs'],
+				progress: 'completed',
+			},
+			{
+				message: m['pages.roadmap.tu.tasks.page_design'],
+				progress: 'completed',
+			},
+			{
+				message: m['pages.roadmap.tu.tasks.progressive_enhancement'],
+				progress: 'completed',
+			},
+			{
+				message: m['pages.roadmap.tu.tasks.page_coc'],
+				progress: 'completed',
+			},
+			{
+				message: m['pages.roadmap.tu.tasks.og'],
+				progress: 'completed',
+			},
+			{
+				message: m['pages.roadmap.tu.tasks.references'],
+				progress: 'completed',
+			},
+			{
+				message: m['pages.roadmap.tu.tasks.page_blog'],
+				progress: 'completed',
+			},
+			{
+				message: m['pages.roadmap.tu.tasks.page_events'],
+				progress: 'completed',
+			},
+			{
+				message: m['pages.roadmap.tu.tasks.mailer'],
+				progress: 'completed',
+			},
+		]}
+	></Milestone>
 
-		<table class="border-outline w-full table-auto border-collapse border">
-			<thead>
-				<tr class="bg-surface-variant text-left *:border *:px-3 *:py-2">
-					<th scope="col" class="w-[80%]"><T message={m['pages.roadmap.common.task']} /></th>
-					<th scope="col" class="w-[20%]"><T message={m['pages.roadmap.common.progress']} /></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.tu.tasks.survey']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.delayed'])}>
-						<i class="i i-[ph--x] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.delayed']} />
-					</td>
-				</tr>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.tu.tasks.page_jobs']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.completed'])}>
-						<i class="i i-[ph--check] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.completed']} />
-					</td>
-				</tr>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.tu.tasks.page_design']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.completed'])}>
-						<i class="i i-[ph--check] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.completed']} />
-					</td>
-				</tr>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.tu.tasks.progressive_enhancement']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.completed'])}>
-						<i class="i i-[ph--check] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.completed']} />
-					</td>
-				</tr>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.tu.tasks.page_coc']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.completed'])}>
-						<i class="i i-[ph--check] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.completed']} />
-					</td>
-				</tr>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.tu.tasks.og']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.completed'])}>
-						<i class="i i-[ph--check] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.completed']} />
-					</td>
-				</tr>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.tu.tasks.blog_post']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.completed'])}>
-						<i class="i i-[ph--check] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.completed']} />
-					</td>
-				</tr>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.tu.tasks.page_blog']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.completed'])}>
-						<i class="i i-[ph--check] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.completed']} />
-					</td>
-				</tr>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.tu.tasks.page_events']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.completed'])}>
-						<i class="i i-[ph--check] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.completed']} />
-					</td>
-				</tr>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.tu.tasks.mailer']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.completed'])}>
-						<i class="i i-[ph--check] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.completed']} />
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</section>
-
-	<!-- Au Lac -->
-	<section class="max-w-pad py-section space-y-10">
-		<h2 class="c-text-heading-lg border-b" id="auLac">
-			<T message={m['pages.roadmap.common.milestone']} />: Âu Lạc
-		</h2>
-		<div class="relative bottom-0 left-0 right-0 top-40 z-0 opacity-10">
-			<img
-				class="absolute object-cover"
-				src={chimhacSvg}
-				alt="roadmap with milestones"
-				loading="eager"
-			/>
-		</div>
-		<div
-			class="border-onehalf bg-surface shadow-brutal-lg tablet:p-8 desktop:p-10 desktop:pt-6 tablet:pt-4 max-w-readable-relaxed relative w-fit space-y-6 border-current"
-		>
-			<p>
-				<strong><T message={m['pages.roadmap.common.objective']} /></strong>: <T
-					message={m['pages.roadmap.auLac.objective']}
-				/>
-			</p>
-		</div>
-		<strong><T message={m['pages.roadmap.common.highlight']} /></strong>
-		<ul class="space-y-2 pt-4">
-			<li>
-				<i class="i i-[ph--confetti] h-6 w-6"></i>
-				<T message={m['pages.roadmap.auLac.highlights.roadmap']} />
-			</li>
-			<li>
-				<i class="i i-[ph--confetti] h-6 w-6"></i>
-				<T message={m['pages.roadmap.auLac.highlights.initiation']} />
-			</li>
-		</ul>
-
-		<table class="border-outline w-full border-collapse border">
-			<thead>
-				<tr class="bg-surface-variant text-left *:border *:px-3 *:py-2">
-					<th scope="col" class="w-[80%]"><T message={m['pages.roadmap.common.task']} /></th>
-					<th scope="col" class="w-[20%]"><T message={m['pages.roadmap.common.progress']} /></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.auLac.tasks.page_roadmap']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.completed'])}>
-						<i class="i i-[ph--check] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.completed']} />
-					</td>
-				</tr>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.auLac.tasks.metadata']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.completed'])}>
-						<i class="i i-[ph--check] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.completed']} />
-					</td>
-				</tr>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.auLac.tasks.discord']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.completed'])}>
-						<i class="i i-[ph--check] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.completed']} />
-					</td>
-				</tr>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.auLac.tasks.page_home']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.completed'])}>
-						<i class="i i-[ph--check] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.completed']} />
-					</td>
-				</tr>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.auLac.tasks.page_branding_repo']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.completed'])}>
-						<i class="i i-[ph--check] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.completed']} />
-					</td>
-				</tr>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.auLac.tasks.logo']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.completed'])}>
-						<i class="i i-[ph--check] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.completed']} />
-					</td>
-				</tr>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.auLac.tasks.project_reference']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.completed'])}>
-						<i class="i i-[ph--check] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.completed']} />
-					</td>
-				</tr>
-				<tr class="*:border *:px-3 *:py-2">
-					<td>
-						<T message={m['pages.roadmap.auLac.tasks.github']} />
-					</td>
-					<td style={getProgressColorStyle(m['pages.roadmap.progress.completed'])}>
-						<i class="i i-[ph--check] h-6 w-6"></i>
-						<T message={m['pages.roadmap.progress.completed']} />
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</section>
+	<!-- Milestone: Âu Lạc -->
+	<Milestone
+		id="au-lac"
+		name="Âu Lạc"
+		objective={m['pages.roadmap.auLac.objective']}
+		highlights={[
+			m['pages.roadmap.auLac.highlights.roadmap'],
+			m['pages.roadmap.auLac.highlights.initiation'],
+		]}
+		tasks={[
+			{
+				message: m['pages.roadmap.auLac.tasks.page_roadmap'],
+				progress: 'completed',
+			},
+			{
+				message: m['pages.roadmap.auLac.tasks.metadata'],
+				progress: 'completed',
+			},
+			{
+				message: m['pages.roadmap.auLac.tasks.discord'],
+				progress: 'completed',
+			},
+			{
+				message: m['pages.roadmap.auLac.tasks.page_home'],
+				progress: 'completed',
+			},
+			{
+				message: m['pages.roadmap.auLac.tasks.page_branding_repo'],
+				progress: 'completed',
+			},
+			{
+				message: m['pages.roadmap.auLac.tasks.logo'],
+				progress: 'completed',
+			},
+			{
+				message: m['pages.roadmap.auLac.tasks.project_reference'],
+				progress: 'completed',
+			},
+			{
+				message: m['pages.roadmap.auLac.tasks.github'],
+				progress: 'completed',
+			},
+		]}
+	></Milestone>
 </main>
