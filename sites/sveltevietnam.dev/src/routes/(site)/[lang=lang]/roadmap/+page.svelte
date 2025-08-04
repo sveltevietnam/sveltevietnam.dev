@@ -2,6 +2,10 @@
 	import { T } from '@sveltevietnam/i18n';
 
 	import * as m from '$data/locales/generated/messages';
+	import svgChimLac from '$lib/assets/images/svg/chim-lac.svg?no-inline';
+	import svgDong from '$lib/assets/images/svg/dong-thai-binh-hung-bao.svg?no-inline';
+	import svgTuChu from '$lib/assets/images/svg/tu-chu.svg?no-inline';
+	import svgTuNom from '$lib/assets/images/svg/tu-nom.svg?no-inline';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import * as pagefind from '$lib/pagefind/attributes';
 	import { RoutingContext } from '$lib/routing/context.svelte';
@@ -84,7 +88,20 @@
 			},
 		]}
 		current
-	></Milestone>
+	>
+		<div class="opacity-4 max-w-pad -z-1 top-90 tablet:top-72 absolute inset-x-0">
+			<img
+				class="ml-auto"
+				alt="Đồng Thái Bình Hưng Bảo"
+				src={svgDong}
+				width="265"
+				height="265"
+				loading="lazy"
+				decoding="async"
+				fetchpriority="low"
+			/>
+		</div>
+	</Milestone>
 
 	<!-- Milestone: Tự -->
 	<Milestone
@@ -139,7 +156,32 @@
 				progress: 'completed',
 			},
 		]}
-	></Milestone>
+	>
+		<div class="opacity-4 max-w-pad -z-1 top-94 tablet:top-80 absolute inset-x-0">
+			<div class="tablet:gap-10 mobile:flex-col flex gap-5 ml-auto max-w-256">
+				<img
+					class="w-full flex-1"
+					alt="Chữ"
+					src={svgTuChu}
+					width="211"
+					height="138"
+					loading="lazy"
+					decoding="async"
+					fetchpriority="low"
+				/>
+				<img
+					class="w-full flex-1"
+					alt="Nôm"
+					src={svgTuNom}
+					width="211"
+					height="138"
+					loading="lazy"
+					decoding="async"
+					fetchpriority="low"
+				/>
+			</div>
+		</div>
+	</Milestone>
 
 	<!-- Milestone: Âu Lạc -->
 	<Milestone
@@ -184,5 +226,18 @@
 				progress: 'completed',
 			},
 		]}
-	></Milestone>
+	>
+		<div class="opacity-4 max-w-pad -z-1 absolute inset-x-0 top-60">
+			<img
+				class="max-w-256 ml-auto h-auto w-full"
+				alt="Chim Lạc"
+				src={svgChimLac}
+				width="375"
+				height="127"
+				loading="lazy"
+				decoding="async"
+				fetchpriority="low"
+			/>
+		</div>
+	</Milestone>
 </main>
