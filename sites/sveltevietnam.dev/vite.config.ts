@@ -29,6 +29,7 @@ export default defineConfig({
 			'@svelte-put/lockscroll',
 			'@svelte-put/toc',
 			'@svelte-put/async-stack',
+			'@svelte-put/async-stack/helpers',
 			'@svelte-put/qr',
 			'@svelte-put/qr/svg',
 			'@svelte-put/popover',
