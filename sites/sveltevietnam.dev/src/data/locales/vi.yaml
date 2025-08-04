@@ -304,7 +304,7 @@ messages:
         cta: Sửa bài viết này tại Github
       comments:
         heading: Bình luận
-        loading: Đang tải bình luận từ Bluesky (cần javascript)...
+        loading: Đang tải bình luận từ Bluesky (cần Javascript)...
         empty:
           Chưa có bình luận nào. Thêm bình luận của bạn tại <a class="c-link" href="{{url}}"
           target="_blank" rel="noreferrer noopener external">Bluesky</a>!
