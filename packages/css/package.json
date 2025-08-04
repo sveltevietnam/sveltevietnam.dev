@@ -53,7 +53,7 @@
 	},
 	"dependencies": {
 		"@iconify-json/ph": "^1.2.2",
-		"@iconify-json/simple-icons": "^1.2.38",
+		"@iconify-json/simple-icons": "^1.2.46",
 		"@iconify/tailwind4": "^1.0.6",
 		"@tailwindcss/typography": "^0.5.16",
 		"postcss-color-scheme": "^2.1.0",
@@ -62,6 +62,6 @@
 	},
 	"devDependencies": {
 		"tailwindcss": "4.1.11",
-		"vite": "^6.3.5"
+		"vite": "^7.0.6"
 	}
 }
