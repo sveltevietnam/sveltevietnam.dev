@@ -548,18 +548,42 @@ messages:
         delayed: Tạm hoãn
       dong:
         objective:
-          tối giản hóa thiết kế trang sveltevietnam.dev; thử nghiệm Svelte 5; thiết lập hệ thống
-          người dùng hoàn chỉnh và trình biên soạn markdown tối giản nhằm hướng tới một trải nghiệm
-          liền mạch cho quy trình đăng tuyển và viết blog.
+          tối giản hóa thiết kế trang sveltevietnam.dev; thử nghiệm Svelte 5 và cập nhật các công
+          nghệ đương thời; cải thiện trải nghiệm đọc và viết bài tại Blog Svelte Việt Nam; thiết lập
+          quy trình đăng tuyển việc làm
+        highlights:
+          v1: Giới thiệu phiên bản chính thức version 1 của trang sveltevietnam.dev
+          people_of_svelte:
+            Khởi động dự án cộng đồng đầu tiên, <a class="c-link"
+            href="/vi/blog/chuoi-bai-viet/cong-dong-svelte">"Cộng đồng Svelte - một bức tranh đa
+            sắc"</a>, khởi xướng bởi <a class="c-link" href="/vi/con-nguoi/liti-dev">Thuyết</a>
         tasks:
+          publish_packages:
+            Thiết lập quy trình xuất bản lên npm hệ thống thiết kế Svelte Việt Nam và các thư viện
+            nội bộ hiện tại để tái sử dụng cho các dự án liên quan
           job_posting:
             Cho phép nhà tuyển dụng đăng tuyển / tạo liên kết trực tiếp trên nền tảng
             sveltevietnam.dev
-          post_submitInApp:
-            Cho phép người dùng viết blog trực tiếp trên nền tảng sveltevietnam.dev (thay vì thông
-            qua Github issue và PR)
-          task_md_editor: Xây dựng trình xoạn thảo markdown tối giản
-          github_oauth: Thiết lập đăng nhập nhanh bằng GitHub OAuth
+          a11y: Bảo đảm trợ năng (accessibility) tối thiểu cho thiết kế và nội dung trên trang
+          umami:
+            Thử nghiệm <a class="c-link" href="https://umami.is/" target="_blank" rel="noreferrer
+            noopener external">Umami</a> để cung cấp thống kê về lượt truy cập và người dùng trang
+            sveltevietnam.dev, bảo đảm quyền riêng tư và kiểm soát dữ liệu, thay thế Google
+            Analytics
+          backend:
+            Thống nhất các tác vụ ở máy chủ thành một worker duy nhất, thử nghiệm <a class="c-link"
+            href="https://developers.cloudflare.com/workers/vite-plugin/" rel="noreferrer noopener
+            external" target="_blank">vite-plugin-cloudflare</a> để cải thiện quy trình phát triển
+          people:
+            Ra mắt trang <a class="c-link" href="/vi/con-nguoi">Con người</a> để cải thiện việc tra
+            cứu và liên kết tài nguyên (bài viết / đóng góp sự kiện)
+          read_experience:
+            Cải thiện trải nghiệm đọc bài tại Blog với tính năng điều hướng nhanh và hiển thị bình
+            luận từ Bluesky
+          write_guidelines:
+            Cải thiện trải nghiệm viết bài cho Blog qua hướng dẫn và ví dụ tại trang <a
+            class="c-link" href="/vi/blog/viet">Hướng dẫn viết bài</a>
+          home_resources: Liệt kê tài nguyên phổ biến của hệ sinh thái Svelte tại trang chủ
           svelte_5: Tái xây dựng hoàn toàn sveltevietnam.dev bằng Svelte 5
           inter_4: Nâng cấp Font chữ Inter lên phiên bản 4
           tailwind_4: Giản lược thiết lập styling, thử nghiệm Tailwind 4.0
@@ -583,7 +607,7 @@ messages:
             href="/vi/su-kien/202312-gap-nhau-truc-tuyen-cuoi-nam">gặp mặt cộng đồng trực tuyến đầu
             tiên</a>
           first_ui:
-            Thiết lập hạ tầng nền tảng cơ bản và giao diện sơ khởi cho trang web sveltevietnam.dev
+            Thiết lập hạ tầng nền t���ng cơ bản và giao diện sơ khởi cho trang web sveltevietnam.dev
         tasks:
           survey: Sơ thảo nội dung và thiết kế cho “Khảo sát Cộng đồng Svelte Việt Nam”
           page_jobs:

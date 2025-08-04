@@ -2,6 +2,10 @@
   import { StackItem } from '@svelte-put/async-stack';
 	import { T } from '@sveltevietnam/i18n';
 
+  import svgTuChu from '$lib/assets/images/svg/tu-chu.svg?no-inline';
+  import svgTuNom from '$lib/assets/images/svg/tu-nom.svg?no-inline';
+  import svgDong from '$lib/assets/images/svg/dong-thai-binh-hung-bao.svg?no-inline';
+  import svgChimLac from '$lib/assets/images/svg/chim-lac.svg?no-inline';
   import * as m from '$data/locales/generated/messages';
   import BaseNotification from '$lib/notifications/components/BaseNotification.svelte';
   import { DiscordNewMessage } from '$lib/notifications/components/discord-new-message';
@@ -174,7 +178,16 @@ Bạn không nên chia sẻ các đường dẫn trong email trên cho bất c�
 
 Khi ghé thăm trang [Lộ trình](/vi/lo-trinh), bạn sẽ thấy một số hình ảnh chìm dưới nền. Đầu tiên là:
 
-<svg inline-src="chim-lac" class="w-full h-auto opacity-20" />
+<img
+  class="opacity-20 w-full h-auto"
+  alt="Chim Lạc"
+  src={svgChimLac}
+  width="375"
+  height="127"
+  loading="lazy"
+  decoding="async"
+  fetchpriority="low"
+/>
 
 Chắc bạn đã nhận ra rằng đây chính là con [chim Lạc](https://vi.wikipedia.org/wiki/Chim_L%E1%BA%A1c) nổi tiếng trong truyền thuyết Việt Nam từ thời kì Văn Lang, Âu Lạc - phù hợp với tên của cột mốc "Âu Lạc" là giai đoạn sơ khởi của dự án Svelte Việt Nam, với nhiều kế hoạch và ý tưởng đang chờ được thực hiện.
 
@@ -183,10 +196,26 @@ Chắc bạn đã nhận ra rằng đây chính là con [chim Lạc](https://vi.
 Tiếp đến, tại cột mốc "Tự" sẽ là các văn tự cổ:
 
 <div class="flex flex-wrap w-full gap-4 tablet:gap-10 opacity-20 my-6 tablet:my-10">
-
-<svg inline-src="tu-chu" class="flex-1 min-w-40 h-auto" />
-<svg inline-src="tu-nom" class="flex-1 min-w-40 h-auto" />
-
+<img
+  class="m-0! flex-1"
+  alt="Từ Chữ"
+  src={svgTuChu}
+  width="211"
+  height="138"
+  loading="lazy"
+  decoding="async"
+  fetchpriority="low"
+/>
+<img
+  class="m-0! flex-1"
+  alt="Từ Nôm"
+  src={svgTuNom}
+  width="211"
+  height="138"
+  loading="lazy"
+  decoding="async"
+  fetchpriority="low"
+/>
 </div>
 
 Đây chính là từ "Chữ Nôm" viết bằng [chữ Nôm](https://vi.wikipedia.org/wiki/Ch%E1%BB%AF_N%C3%B4m). Trong giai đoạn này, dự án Svelte Việt Nam tập trung phát triển về *nội dung*: trang [Blog](/vi/blog) để chia sẻ thông tin, trang [Sự kiện](/vi/su-kien) để chuẩn bị cho các sự kiện sắp tới, ... Bài viết bạn đang đọc cũng được soạn trong giai đoạn này.
@@ -195,7 +224,16 @@ Tiếp đến, tại cột mốc "Tự" sẽ là các văn tự cổ:
 
 Cuối cùng, ta thấy một đồng tiền ở cột mốc "Đồng":
 
-<svg inline-src="dong-thai-binh-hung-bao" class="w-full opacity-20 my-6 tablet:my-10 max-w-120 mx-auto" />
+<img
+  class="mx-auto opacity-20"
+  alt="Đồng Thái Bình Hưng Bảo"
+  src={svgDong}
+  width="265"
+  height="265"
+  loading="lazy"
+  decoding="async"
+  fetchpriority="low"
+/>
 
 Đây là đồng "Thiên Phúc trấn bảo" được đúc vào thời Tiền Lê và là một trong những đồng tiền đầu tiên của Việt Nam. Tại cột mốc này, mình - với vai trò ban quản trị Svelte Việt Nam - dự định tập trung phát triển trang [Việc làm](/vi/viec-lam) với hy vọng tìm ra giải pháp tổng hợp công việc liên quan từ các kênh tuyển dụng phổ biến vào một nơi tập trung để ứng viên có thể tìm kiếm môt cách nhanh chóng. Ngoài ra, mình cũng muốn tạo ra một xu hướng đồng phát triển bền vững giữa doanh nghiệp và cộng đồng. Thay vì chi trả cho các nền tảng tuyển dụng, doanh nghiệp có thể [tài trợ](/vi/tai-tro) cho chúng ta để được đăng tuyển trực tiếp tại trang [Việc làm](/vi/viec-lam). Số tiền tài trợ này sẽ được dùng để tổ chức các sự kiện cho cộng đồng. Doanh nghiệp đầu tư vào cộng đồng, cộng đồng củng cố và cung cấp nhân lực cho doanh nghiệp. Đây là một chu trình tương hỗ, giúp cả hai bên cùng phát triển.
 

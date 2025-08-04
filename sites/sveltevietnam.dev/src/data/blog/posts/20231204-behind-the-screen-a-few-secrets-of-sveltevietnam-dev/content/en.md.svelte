@@ -3,6 +3,10 @@
 	import { T } from '@sveltevietnam/i18n';
 
   import * as m from '$data/locales/generated/messages';
+  import svgTuChu from '$lib/assets/images/svg/tu-chu.svg?no-inline';
+  import svgTuNom from '$lib/assets/images/svg/tu-nom.svg?no-inline';
+  import svgDong from '$lib/assets/images/svg/dong-thai-binh-hung-bao.svg?no-inline';
+  import svgChimLac from '$lib/assets/images/svg/chim-lac.svg?no-inline';
   import BaseNotification from '$lib/notifications/components/BaseNotification.svelte';
   import { DiscordNewMessage } from '$lib/notifications/components/discord-new-message';
 	import { NotificationContext } from '$lib/notifications/context.svelte';
@@ -164,7 +168,16 @@ You should not share links in the above email with anyone as it might contain yo
 
 When visiting the [Roadmap](/en/roadmap) page, you should see a few images in the background. The first is:
 
-<svg inline-src="chim-lac" class="w-full h-auto opacity-20" />
+<img
+  class="opacity-20 w-full h-auto"
+  alt="Chim Lạc"
+  src={svgChimLac}
+  width="375"
+  height="127"
+  loading="lazy"
+  decoding="async"
+  fetchpriority="low"
+/>
 
 This is [chim Lạc](https://vi.wikipedia.org/wiki/Chim_L%E1%BA%A1c), a popular mythical bird in Vietnamese culture from the era of Văn Lang-Âu Lạc. It matches the name of the "Âu Lạc" milestone, a period of early development for the Svelte Vietnam project, with many plans and ideas waiting to be realized.
 
@@ -172,11 +185,27 @@ This is [chim Lạc](https://vi.wikipedia.org/wiki/Chim_L%E1%BA%A1c), a popular 
 
 Next, at the "Tự" milestone, you see some rather old characters:
 
-<div class="div flex w-full gap-4 tablet:gap-10 opacity-20 my-6 tablet:my-10">
-
-<svg inline-src="tu-chu" class="flex-1 min-w-40 h-auto" />
-<svg inline-src="tu-nom" class="flex-1 min-w-40 h-auto" />
-
+<div class="flex flex-wrap w-full gap-4 tablet:gap-10 opacity-20 my-6 tablet:my-10">
+<img
+  class="m-0! flex-1"
+  alt="The word Chữ"
+  src={svgTuChu}
+  width="211"
+  height="138"
+  loading="lazy"
+  decoding="async"
+  fetchpriority="low"
+/>
+<img
+  class="m-0! flex-1"
+  alt="The word Nôm"
+  src={svgTuNom}
+  width="211"
+  height="138"
+  loading="lazy"
+  decoding="async"
+  fetchpriority="low"
+/>
 </div>
 
 This is "Chữ Nôm" written in [chữ Nôm](https://vi.wikipedia.org/wiki/Ch%E1%BB%AF_N%C3%B4m), the logographic writing system of the Vietnamese language from the 13th to 20th century. During this milestone, the Svelte Vietnam project focuses on its *content* such as the [Blog](/en/blog) page to share information, or the [Events](/en/events) page to prepare for upcoming events. The blog post you are reading is also written during this milestone.
@@ -185,7 +214,16 @@ This is "Chữ Nôm" written in [chữ Nôm](https://vi.wikipedia.org/wiki/Ch%E1
 
 Finally, we see an ancient coin at the "Đồng" milestone:
 
-<svg inline-src="dong-thai-binh-hung-bao" class="w-full opacity-20 my-6 tablet:my-10 max-w-120 mx-auto" />
+<img
+  class="mx-auto opacity-20"
+  alt="Historic Vietnamese coin face"
+  src={svgDong}
+  width="265"
+  height="265"
+  loading="lazy"
+  decoding="async"
+  fetchpriority="low"
+/>
 
 This is the "Thiên Phúc trấn bảo" coin, made in the early Lê dynasty as one of the first coin of Vietnam. In this milestone, continuing the role of Svelte Vietnam administrator, I plan to focus on development of the [Jobs](/en/jobs) page with the hope of finding a solution to collect job listings from popular recruitment channels into a single place, making job searching easier for community members. Besides, I also want to create a sustainable co-development between business and community. Instead of paying for recruitment platforms, companies can [sponsor](/en/sponsor) us to post jobs directly on the [Jobs](/en/jobs) page. The sponsorship money will be used to organize community events. Businesses invest in community, community provides quality human resources for businesses. Both sides benefit and grow from this mutualistic relationship.
 
