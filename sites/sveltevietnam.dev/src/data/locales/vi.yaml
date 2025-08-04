@@ -850,15 +850,6 @@ messages:
       message:
         Trang web đang được cập nhật với phiên bản mới. Tải lại trang để có trải nghiệm tốt nhất bạn
         nhé!
-    v1_site_construction:
-      title: Phiên bản V1
-      message:
-        Xin chào, bạn đang xem phiên bản thử nghiệm V1 cho trang <a class="c-link"
-        href="https://www.sveltevietnam.dev" target="_blank">sveltevietnam.dev</a>. Một số trang và
-        tính năng vẫn đang trong quá trình hoàn thiện nên rất hoan nghênh ý kiến đóng góp từ bạn.
-        Thông tin liên hệ được liệt kê tại <a class="c-link" href="#footer">mục cuối của trang
-        web</a>. Xin cảm ơn!
-      not_again: Không hiện lại
     settings:
       default: Cài đặt của bạn đã được đặt lại về mặc định.
       saved: Cài đặt của bạn đã được lưu thành công.

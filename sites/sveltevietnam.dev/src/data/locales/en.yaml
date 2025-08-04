@@ -845,15 +845,6 @@ messages:
       message:
         A new version of the site is available. Please reload the page at your convenience for the
         best experience.
-    v1_site_construction:
-      title: V1 On The Horizon
-      message:
-        Hello there, looks like you have stumbled upon our ongoing work towards V1 for the <a
-        class="c-link" href="https://www.sveltevietnam.dev" target="_blank">sveltevietnam.dev</a>
-        site. Some pages and features are still missing. But we appreciate any feedback you may
-        have. Please find our contact info at the <a class="c-link" href="#footer">footer</a>. Thank
-        you!
-      not_again: Don't show again
     settings:
       default: Your settings have been reset to default.
       saved: Your settings have been updated.
