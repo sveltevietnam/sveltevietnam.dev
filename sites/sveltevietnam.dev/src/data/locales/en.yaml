@@ -550,16 +550,38 @@ messages:
         delayed: Delayed
       dong:
         objective:
-          reduce complexity of the sveltevietnam.dev codebase and design, experiment with Svelte 5,
-          set up a user system and a minimal custom markdown editor to streamline the job posting
-          and blog writing processes.
+          reduce complexity of the sveltevietnam.dev codebase and design; experiment with Svelte 5
+          and comtemporary technologies; improve the reading and writing experience at the Svelte
+          Vietnam Blog; set up a job posting process
+        highlights:
+          v1: Exit prelease stage and launch the official version 1 of the sveltevietnam.dev site
+          people_of_svelte:
+            Launch the first community outreach project, <a class="c-link"
+            href="/en/blog/series/people-of-svelte">"People of Svelte - a mosaic of diverse
+            voices"</a>, an initiative by <a class="c-link" href="/en/people/liti-dev">Thuyet</a>
         tasks:
+          publish_packages:
+            Establish a publication workflow to npm for the Svelte Vietnam design system and
+            packages that are currently internal, for resuability in other relevant projects
           job_posting: Allow recruiters to create job listings directly on sveltevietnam.dev
-          post_submitInApp:
-            Allow users to write blog posts directly on sveltevietnam.dev (instead of through Github
-            issue and PR)
-          task_md_editor: Build a minimal markdown editor
-          github_oauth: Set up quick login via GitHub OAuth
+          a11y: Ensure design and content meet a minimum accessibility baseline
+          umami:
+            Experiment with <a class="c-link" href="https://umami.is/" rel="noreferrer noopener
+            external" target="_blank">Umami</a> for site analytics as an open source alternative to
+            Google Analytics with focus on privacy and data ownership
+          backend:
+            Consolidate backend services into a single worker, experiment with <a class="c-link"
+            href="https://developers.cloudflare.com/workers/vite-plugin/" rel="noreferrer noopener
+            external" target="_blank">vite-plugin-cloudflare</a> for a better development experience
+          people:
+            Introduce the <a class="c-link" href="/en/people">People</a> page for better indexing of
+            blog posts and event content authors
+          read_experience:
+            Improve reading experience at Blog with quick navigation and comments via Bluesky
+          write_guidelines:
+            Improve wriring experience at Blog with instructions and examples at the <a
+            class="c-link" href="/en/blog/write">Writing Guidelines</a> page
+          home_resources: List popular resources in the Svelte ecosystem on the homepage
           svelte_5: Rebuild sveltevietnam.dev entirely with Svelte 5
           inter_4: Upgrade the Inter font to version 4
           tailwind_4: Simplify the styling setup, experiment with Tailwind 4.0

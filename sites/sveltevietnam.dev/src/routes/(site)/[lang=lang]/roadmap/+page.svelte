@@ -71,22 +71,46 @@
 			id="dong"
 			name="Đồng"
 			objective={m['pages.roadmap.dong.objective']}
+			highlights={[
+				m['pages.roadmap.dong.highlights.v1'],
+				m['pages.roadmap.dong.highlights.people_of_svelte'],
+			]}
 			tasks={[
+				{
+					message: m['pages.roadmap.dong.tasks.publish_packages'],
+					progress: 'planned',
+				},
 				{
 					message: m['pages.roadmap.dong.tasks.job_posting'],
 					progress: 'planned',
 				},
 				{
-					message: m['pages.roadmap.dong.tasks.post_submitInApp'],
-					progress: 'planned',
+					message: m['pages.roadmap.dong.tasks.a11y'],
+					progress: 'inprogress',
 				},
 				{
-					message: m['pages.roadmap.dong.tasks.task_md_editor'],
-					progress: 'planned',
+					message: m['pages.roadmap.dong.tasks.umami'],
+					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.dong.tasks.github_oauth'],
-					progress: 'planned',
+					message: m['pages.roadmap.dong.tasks.backend'],
+					progress: 'completed',
+				},
+				{
+					message: m['pages.roadmap.dong.tasks.people'],
+					progress: 'completed',
+				},
+				{
+					message: m['pages.roadmap.dong.tasks.read_experience'],
+					progress: 'completed',
+				},
+				{
+					message: m['pages.roadmap.dong.tasks.write_guidelines'],
+					progress: 'completed',
+				},
+				{
+					message: m['pages.roadmap.dong.tasks.home_resources'],
+					progress: 'completed',
 				},
 				{
 					message: m['pages.roadmap.dong.tasks.svelte_5'],
@@ -102,7 +126,7 @@
 				},
 				{
 					message: m['pages.roadmap.dong.tasks.refactor'],
-					progress: 'inprogress',
+					progress: 'completed',
 				},
 			]}
 			current
