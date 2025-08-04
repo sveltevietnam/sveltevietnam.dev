@@ -74,7 +74,7 @@
 			"vars": {
 				"MODE": "production",
 				"ORIGIN": "https://backend.sveltevietnam.dev",
-				"SITE_URL": "https://v1.sveltevietnam.dev",
+				"SITE_URL": "https://www.sveltevietnam.dev",
 				"AWS_REGION": "ap-northeast-1"
 			},
 			"secrets_store_secrets": [
