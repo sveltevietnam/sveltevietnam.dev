@@ -3,7 +3,6 @@
 	import { Toc } from '@svelte-put/toc';
 	import { T } from '@sveltevietnam/i18n';
 	import type { Message } from '@sveltevietnam/i18n/runtime';
-	import { onMount } from 'svelte';
 
 	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
@@ -80,10 +79,13 @@
 		},
 	};
 	let blueskyPost = $state<AppBskyFeedDefs.ThreadViewPost | null>(null);
-	onMount(async () => {
+	$effect(() => {
+		// TODO: candidate for experimenting with Asynchronous Svelte & Remote Function
 		if (!data.bluesky) return;
 		const agent = bluesky.createAtpAgent(fetch);
-		blueskyPost = await bluesky.getPostThread(agent, data.bluesky.uri);
+		bluesky.getPostThread(agent, data.bluesky.uri).then((post) => {
+			blueskyPost = post
+		});
 	});
 
 	let containerEl: HTMLDivElement;
