@@ -56,7 +56,8 @@
 						<T message={m['pages.mail.email.from']} />:
 					</dt>
 					<dd>
-						{data.mail.from}
+						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+						{@html '<!--email_off-->'}{data.mail.from}{@html '<!--/email_off-->'}
 						(<T message={m['svelte_vietnam.name']} />)
 					</dd>
 				</div>
@@ -64,7 +65,10 @@
 					<dt class="font-semibold">
 						<T message={m['pages.mail.email.to']} />:
 					</dt>
-					<dd>{data.mail.to}</dd>
+					<dd>
+						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+						{@html '<!--email_off-->'}{data.mail.to}{@html '<!--/email_off-->'}
+					</dd>
 				</div>
 				<div class="col-span-2 grid grid-cols-subgrid py-4">
 					<dt class="font-semibold">
