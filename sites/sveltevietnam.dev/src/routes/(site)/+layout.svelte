@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount, setContext } from 'svelte';
 
-	import { dev, version } from '$app/environment';
+	import { browser, dev, version } from '$app/environment';
 	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
 	import {
@@ -114,7 +114,7 @@
 	function trackSearch(event: CustomEvent<{ query: string }>) {
 		window.umami?.track(event.type, {
 			query: event.detail.query,
-		})
+		});
 	}
 
 	onMount(() => {
@@ -199,7 +199,7 @@
 		/>
 	{/if}
 
-	{#if VITE_PUBLIC_UMAMI !== '0' && VITE_PUBLIC_UMAMI !== 'false'}
+	{#if VITE_PUBLIC_UMAMI !== '0' && VITE_PUBLIC_UMAMI !== 'false' && !browser}
 		<script
 			defer
 			onload={handleUmamiLoad}
