@@ -26,6 +26,10 @@ export default class extends WorkerEntrypoint<Env> {
 		this.#blueskyPosts = new BlueskyPostService(orm);
 	}
 
+	get healthy() {
+		return true;
+	}
+
 	subscribers() {
 		return this.#subscribers;
 	}
