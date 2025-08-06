@@ -21,9 +21,9 @@
 		"create:post": "vite-node scripts/create-post.ts --script"
 	},
 	"devDependencies": {
-		"@atproto/api": "^0.16.0",
+		"@atproto/api": "^0.16.2",
 		"@clack/prompts": "^0.11.0",
-		"@cloudflare/workers-types": "^4.20250803.0",
+		"@cloudflare/workers-types": "^4.20250806.0",
 		"@floating-ui/dom": "^1.7.3",
 		"@svelte-put/async-stack": "^1.1.2",
 		"@svelte-put/avatar": "^4.0.0",
@@ -40,7 +40,7 @@
 		"@svelte-put/toc": "^6.0.2",
 		"@sveltejs/adapter-cloudflare": "^7.1.2",
 		"@sveltejs/enhanced-img": "^0.7.0",
-		"@sveltejs/kit": "^2.27.0",
+		"@sveltejs/kit": "^2.27.1",
 		"@sveltejs/vite-plugin-svelte": "^6.1.0",
 		"@sveltevietnam/backend": "workspace:*",
 		"@sveltevietnam/css": "workspace:*",
