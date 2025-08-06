@@ -30,9 +30,9 @@ export const entries: EntryGenerator = () => {
 	return generateKitEntries();
 };
 
-export const load: PageServerLoad = async ({ params }) => {
-	const { lang } = params;
-	const post = await loadBlogPostBySlug(params.slug, lang);
+export const load: PageServerLoad = async (event) => {
+	const { lang, slug } = event.params;
+	const post = await loadBlogPostBySlug(slug, lang);
 	if (!post) {
 		// TODO: assign a unique code to this error
 		error(404, { message: 'Post not found', code: 'SV000' });
@@ -68,7 +68,7 @@ export const load: PageServerLoad = async ({ params }) => {
 	} as Record<App.Language, string>;
 
 	let bluesky: null | { accountId: string; postId: string } = null;
-	const backend = getBackend(false);
+	const backend = getBackend(event, false);
 	if (backend) {
 		const linkage = await backend.blueskyPosts().getByPostId(post.id);
 		if (linkage) {

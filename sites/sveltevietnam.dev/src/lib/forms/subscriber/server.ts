@@ -49,7 +49,7 @@ export const upsert = {
 			return fail(400, { form });
 		}
 
-		const backend = getBackend();
+		const backend = getBackend(event);
 		try {
 			const result = await backend.subscribers().upsert(form.data);
 			if (!result.success) {
@@ -95,7 +95,7 @@ export const update = {
 			return fail(400, { form });
 		}
 
-		const backend = getBackend();
+		const backend = getBackend(event);
 		try {
 			const result = await backend.subscribers().update(form.data);
 			if (!result.success) {

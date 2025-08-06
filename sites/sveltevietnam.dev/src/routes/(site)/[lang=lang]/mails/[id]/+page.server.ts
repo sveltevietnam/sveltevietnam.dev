@@ -6,12 +6,13 @@ import { update } from '$lib/forms/subscriber/server';
 
 import type { Actions, PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ url, params, locals }) => {
+export const load: PageServerLoad = async (event) => {
+	const { url, params, locals } = event;
 	const token = url.searchParams.get('token');
 	if (!token) {
 		error(401, { code: 'SV002', message: 'Unauthorized access' });
 	}
-	const backend = getBackend();
+	const backend = getBackend(event);
 	const result = await backend.verify(token);
 	if (!result.success) {
 		error(401, {

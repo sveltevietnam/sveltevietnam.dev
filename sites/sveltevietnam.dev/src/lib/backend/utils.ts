@@ -1,14 +1,12 @@
-import { error } from '@sveltejs/kit';
-
-import { getRequestEvent } from '$app/server';
+import { error, type RequestEvent } from '@sveltejs/kit';
 
 type Backend = import('@sveltevietnam/backend').default;
 
 export function getBackend<
 	Throw extends boolean = true,
 	Returned = Throw extends true ? Backend : Backend | undefined,
->(throwOnDisconnected: Throw = true as Throw): Returned {
-	const { platform } = getRequestEvent();
+>(event: RequestEvent, throwOnDisconnected: Throw = true as Throw): Returned {
+	const { platform } = event;
 	const backend = platform?.env?.backend;
 	if (!backend) {
 		// TODO: error logging
