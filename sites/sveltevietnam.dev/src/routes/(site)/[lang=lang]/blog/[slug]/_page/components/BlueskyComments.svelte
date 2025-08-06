@@ -1,6 +1,8 @@
 <script lang="ts">
+	import type AtpAgent from '@atproto/api';
 	import { T } from '@sveltevietnam/i18n';
 
+	import { browser } from '$app/environment';
 	import * as m from '$data/locales/generated/messages';
 	import * as bluesky from '$lib/bluesky';
 	import { Avatar } from '$lib/components/avatar';
@@ -23,11 +25,13 @@
 		},
 	};
 
-	const agent = bluesky.createAtpAgent(fetch);
+	let agent: AtpAgent | null = null;
 	let postUrl = $derived(bluesky.buildPostUri(accountId, postId, 'http'));
-	let threadPromise = $derived.by(async () =>
-		bluesky.aggregatePostThread(await bluesky.getPostThread(agent, accountId, postId)),
-	);
+	let threadPromise: Promise<bluesky.AggregatedPost> = $derived.by(async () => {
+		if (!browser) return new Promise(() => {});
+		if (!agent) agent = bluesky.createAtpAgent(fetch);
+		return bluesky.aggregatePostThread(await bluesky.getPostThread(agent, accountId, postId));
+	});
 </script>
 
 <section class="max-w-pad py-section mobile:overflow-auto space-y-10" data-pagefind-ignore>
