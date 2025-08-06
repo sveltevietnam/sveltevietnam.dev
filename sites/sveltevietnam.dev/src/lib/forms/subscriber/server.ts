@@ -5,7 +5,7 @@ import { valibot } from 'sveltekit-superforms/adapters';
 import { setError, superValidate } from 'sveltekit-superforms/server';
 
 import * as m from '$data/locales/generated/messages';
-import { getBackend } from '$lib/backend/server';
+import { getBackend } from '$lib/backend/utils';
 import { validateToken } from '$lib/turnstile/turnstile.server';
 
 import {
@@ -29,7 +29,7 @@ export const upsert = {
 		);
 	},
 	async action(event: RequestEvent) {
-		const { request, locals, platform, getClientAddress } = event;
+		const { request, locals, getClientAddress } = event;
 
 		const schema = createSubcriberUpsertSchema(locals.language);
 		const form = await superValidate(request, valibot(schema));
@@ -49,7 +49,7 @@ export const upsert = {
 			return fail(400, { form });
 		}
 
-		const backend = getBackend(platform);
+		const backend = getBackend();
 		try {
 			const result = await backend.subscribers().upsert(form.data);
 			if (!result.success) {
@@ -75,7 +75,7 @@ export const update = {
 		});
 	},
 	async action(event: RequestEvent) {
-		const { request, locals, platform, getClientAddress } = event;
+		const { request, locals, getClientAddress } = event;
 
 		const schema = createSubscriberUpdateSchema(locals.language);
 		const form = await superValidate(request, valibot(schema));
@@ -95,7 +95,7 @@ export const update = {
 			return fail(400, { form });
 		}
 
-		const backend = getBackend(platform);
+		const backend = getBackend();
 		try {
 			const result = await backend.subscribers().update(form.data);
 			if (!result.success) {

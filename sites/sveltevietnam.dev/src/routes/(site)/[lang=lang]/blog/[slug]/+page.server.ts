@@ -13,6 +13,7 @@ import { loadPersonAvatar } from '$data/people';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
+import { getBackend } from '$lib/backend/utils';
 import { buildStructuredBlogPost } from '$lib/meta/structured/blog';
 
 import ogImageEn from '../(listing)/_page/og-blog.en.jpg?url';
@@ -29,7 +30,7 @@ export const entries: EntryGenerator = () => {
 	return generateKitEntries();
 };
 
-export const load: PageServerLoad = async ({ params, platform }) => {
+export const load: PageServerLoad = async ({ params }) => {
 	const { lang } = params;
 	const post = await loadBlogPostBySlug(params.slug, lang);
 	if (!post) {
@@ -66,22 +67,16 @@ export const load: PageServerLoad = async ({ params, platform }) => {
 		}),
 	} as Record<App.Language, string>;
 
-	let bluesky: { url: string; uri: string } | null = null;
-	try {
-		if (platform?.env?.backend) {
-			const blueskyPost = await platform.env.backend.blueskyPosts().getByPostId(post.id);
-			if (blueskyPost) {
-				const { blueskyAccountId, blueskyPostId } = blueskyPost;
-				bluesky = {
-					url: `https://bsky.app/profile/${blueskyAccountId}/post/${blueskyPostId}`,
-					uri: `at://${blueskyAccountId}/app.bsky.feed.post/${blueskyPostId}`,
-				};
-			}
+	let bluesky: null | { accountId: string; postId: string } = null;
+	const backend = getBackend(false);
+	if (backend) {
+		const linkage = await backend.blueskyPosts().getByPostId(post.id);
+		if (linkage) {
+			bluesky = {
+				postId: linkage.blueskyPostId,
+				accountId: linkage.blueskyAccountId,
+			};
 		}
-	} catch (e) {
-		// if in dev, make sure you start the backend worker **beforehand**
-		// i.e `cd workers/backend && pnpm dev:wrangler`
-		console.error(e);
 	}
 
 	return {

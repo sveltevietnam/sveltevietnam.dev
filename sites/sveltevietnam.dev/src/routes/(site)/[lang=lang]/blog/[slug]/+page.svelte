@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { type AppBskyFeedDefs } from '@atproto/api';
 	import { Toc } from '@svelte-put/toc';
 	import { T } from '@sveltevietnam/i18n';
 	import type { Message } from '@sveltevietnam/i18n/runtime';
@@ -8,8 +7,6 @@
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import fallback16x9 from '$lib/assets/images/fallbacks/16x9.jpg?enhanced&w=2240;1540;1088;686&imagetools';
-	import * as bluesky from '$lib/bluesky';
-	import { Avatar } from '$lib/components/avatar';
 	import { BlogNewsletter } from '$lib/components/blog-newsletter';
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
 	import { BlogPostListItem } from '$lib/components/blog-post-list-item';
@@ -26,9 +23,9 @@
 	import * as pagefind from '$lib/pagefind/attributes';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
-	import { formatTimeDiff } from '$lib/utils/datetime';
 
 	import type { PageData } from './$types';
+	import BlueskyComments from './_page/components/BlueskyComments.svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -63,30 +60,6 @@
 			props: { data: url },
 		});
 	}
-
-	const BLUESKY_STATS_CONFIG = {
-		reply: {
-			icon: 'i-[ph--chat]',
-			message: m['pages.blog_slug.comments.bluesky.stats.reply'],
-		},
-		repost: {
-			icon: 'i-[ph--repeat]',
-			message: m['pages.blog_slug.comments.bluesky.stats.repost'],
-		},
-		like: {
-			icon: 'i-[ph--heart]',
-			message: m['pages.blog_slug.comments.bluesky.stats.like'],
-		},
-	};
-	let blueskyPost = $state<AppBskyFeedDefs.ThreadViewPost | null>(null);
-	$effect(() => {
-		// TODO: candidate for experimenting with Asynchronous Svelte & Remote Function
-		if (!data.bluesky) return;
-		const agent = bluesky.createAtpAgent(fetch);
-		bluesky.getPostThread(agent, data.bluesky.uri).then((post) => {
-			blueskyPost = post
-		});
-	});
 
 	let containerEl: HTMLDivElement;
 	let showQuickNav = $state(false);
@@ -178,10 +151,13 @@
 	</section>
 
 	<!-- quick navigation -->
-	<div class="z-overlay mobile:inset-x-0 tablet:left-1/2 tablet:-translate-x-1/2 bottom-0 fixed" data-pagefind-ignore>
+	<div
+		class="z-overlay mobile:inset-x-0 tablet:left-1/2 tablet:-translate-x-1/2 fixed bottom-0"
+		data-pagefind-ignore
+	>
 		<nav
 			class={[
-				"bg-on-surface text-surface tablet:border-surface tablet:border-onehalf mobile:justify-evenly _quick-nav flex items-center px-2",
+				'bg-on-surface text-surface tablet:border-surface tablet:border-onehalf mobile:justify-evenly _quick-nav flex items-center px-2',
 				showQuickNav ? 'translate-y-0' : 'translate-y-16',
 			]}
 			aria-label={m['pages.blog_slug.quick_nav.aria'](settings.language)}
@@ -201,7 +177,11 @@
 					{@render inlink('#share', m['pages.blog_slug.quick_nav.share'], 'i-[ph--share-fat]')}
 				</li>
 				<li class="pr-8">
-					{@render inlink('#toc', m['pages.blog_slug.quick_nav.toc'], 'i-[ph--list-magnifying-glass]')}
+					{@render inlink(
+						'#toc',
+						m['pages.blog_slug.quick_nav.toc'],
+						'i-[ph--list-magnifying-glass]',
+					)}
 				</li>
 				<li class="-translate-1/2 absolute left-1/2 top-0">
 					<a
@@ -220,13 +200,21 @@
 				</li>
 				<li class="pl-8">
 					{#if data.posts.inSeries?.length}
-						{@render inlink('#in-this-series', m['pages.blog_slug.quick_nav.series'], 'i-[ph--files]')}
+						{@render inlink(
+							'#in-this-series',
+							m['pages.blog_slug.quick_nav.series'],
+							'i-[ph--files]',
+						)}
 					{:else}
 						{@render inlink('#latest-post', m['pages.blog_slug.quick_nav.latest'], 'i-[ph--files]')}
 					{/if}
 				</li>
 				<li>
-					{@render inlink('#newsletter', m['pages.blog_slug.quick_nav.newsletter'], 'i-[ph--newspaper-clipping]')}
+					{@render inlink(
+						'#newsletter',
+						m['pages.blog_slug.quick_nav.newsletter'],
+						'i-[ph--newspaper-clipping]',
+					)}
 				</li>
 			</ul>
 		</nav>
@@ -350,166 +338,9 @@
 		{/if}
 	</div>
 
-	{#snippet blueskyStats(like: number, repost: number, reply: number, url: string, small?: boolean)}
-		{@const stats = { like, repost, reply }}
-		<a
-			class="c-link-lazy @sm:gap-6 @max-xs:col-span-2 @max-xs:justify-self-center flex flex-wrap items-center gap-4"
-			href={url}
-			data-external
-		>
-			<dl class="contents">
-				{#each Object.entries(BLUESKY_STATS_CONFIG) as [key, { icon, message }] (key)}
-					<div class="flex items-center gap-2">
-						<dt>
-							<i class={['i block', icon, small ? 'h-5 w-5' : 'h-6 w-6']}></i>
-							<span class="sr-only">
-								<T {message} />
-							</span>
-						</dt>
-						<dd class={[small && 'c-text-body-sm']}>{stats[key as keyof typeof stats]}</dd>
-					</div>
-				{/each}
-			</dl>
-		</a>
-	{/snippet}
-
-	{#snippet blueskyReplies(aggregated: bluesky.AggregatedPost, cls = '', level = 0)}
-		<ul class={cls}>
-			<!-- render actual comments here -->
-			{#each aggregated.replies ?? [] as reply, i (reply.post.uri)}
-				{@const thread = bluesky.aggregatePostThread(reply)}
-				{@const hasNext = !!aggregated.replies[i + 1] || !!thread.replies?.length}
-				{@const profileUrl = `https://bsky.app/profile/${thread.post.author.did}`}
-				{@const postUrl = `${profileUrl}/post/${thread.id}`}
-				<li>
-					<article class={['relative flex items-start gap-3', hasNext && 'pb-4']}>
-						<div class="z-1 bg-surface relative shrink-0 p-1">
-							<a href={profileUrl} data-external>
-								<Avatar
-									class="h-10 w-10 rounded-full"
-									name={thread.post.author.displayName || 'What'}
-									src={thread.post.author.avatar}
-									height="40"
-									width="40"
-								/>
-							</a>
-						</div>
-						<div class="pt-1">
-							<p>
-								<a class="c-link-preserved" href={profileUrl} data-external>
-									<span class="font-bold">
-										{thread.post.author.displayName}
-									</span>
-									<span class="c-text-body-sm not-hover:text-on-surface-dim">
-										@{thread.post.author.handle}
-									</span>
-								</a>
-								•
-								{formatTimeDiff(thread.post.indexedAt)}
-							</p>
-							<p class="pb-2 pt-1">{thread.post.record.text}</p>
-							{@render blueskyStats(
-								thread.stats.like,
-								thread.stats.repost,
-								thread.stats.reply,
-								postUrl,
-								true,
-							)}
-							{#if thread.replies?.length}
-								{@render blueskyReplies(thread, 'mt-6', level + 1)}
-							{/if}
-						</div>
-						{#if level === 0 || !!thread.replies?.length}
-							<div class="bg-outline-subtle left-5.5 absolute top-0 z-0 h-full w-0.5"></div>
-						{/if}
-						{#if level > 0}
-							<div class="bg-outline-subtle top-5.5 absolute right-full z-0 h-0.5 w-9"></div>
-						{/if}
-						{#if level > 1 && i === aggregated.replies.length - 1}
-							<div class="bg-surface -left-9.5 z-1 absolute top-6 h-full w-0.5"></div>
-						{/if}
-					</article>
-				</li>
-			{/each}
-		</ul>
-	{/snippet}
-
+	<!-- Bluesky comments -->
 	{#if data.bluesky}
-		{@const aggregated = blueskyPost ? bluesky.aggregatePostThread(blueskyPost) : null}
-
-		<!-- Bluesky comments -->
-		<section class="max-w-pad py-section mobile:overflow-auto space-y-10" data-pagefind-ignore>
-			<h2 class="c-text-heading border-outline border-b" id="comments">
-				<T message={m['pages.blog_slug.comments.heading']} />
-			</h2>
-			<div
-				class="tablet:items-start tablet:gap-8 desktop:gap-10 widescreen:gap-20 tablet:flex-row relative flex flex-col-reverse gap-10"
-			>
-				<!-- replies -->
-				<div class="flex-1 space-y-6">
-					{#if aggregated}
-						{#if aggregated?.replies.length}
-							{@render blueskyReplies(aggregated)}
-							{#if aggregated.hasMoreReplies}
-								<p class="border-outline border-t pt-1 text-right">
-									<T message={m['pages.blog_slug.comments.see_all']} />
-									<a class="c-link" href={data.bluesky.url} data-external> Bluesky </a>
-								</p>
-							{/if}
-						{:else}
-							<p><T message={m['pages.blog_slug.comments.empty']} url={data.bluesky.url} /></p>
-						{/if}
-					{:else}
-						<p><T message={m['pages.blog_slug.comments.loading']} /></p>
-					{/if}
-				</div>
-
-				<!-- stats & banner -->
-				<div class="tablet:sticky tablet:top-header">
-					<article class="@container tablet:w-64 widescreen:w-80 relative 2xl:w-96">
-						<div
-							class={[
-								'group grid grid-cols-[auto_1fr] items-center',
-								'@sm:p-6 @sm:gap-x-6 @md:p-8 @md:gap-x-10 gap-4 p-4',
-								'border-onehalf bg-surface shadow-brutal border-current',
-								'interactive',
-							]}
-						>
-							<a
-								class={[
-									'block shrink-0',
-									'i i-[simple-icons--bluesky] @xs:h-18 @xs:w-18 h-14 w-14',
-									'duration-(--duration) ease-(--easing) group-hover:-rotate-20 group-hover:text-tertiary transition-[rotate,color]',
-									'@xs:row-span-2',
-								]}
-								href={data.bluesky.url}
-								data-external
-							>
-								<span class="sr-only">Bluesky</span>
-							</a>
-							<p class="font-bold">
-								<T message={m['pages.blog_slug.comments.bluesky.desc']} url={data.bluesky.url} />
-							</p>
-							{#if aggregated}
-								{@render blueskyStats(
-									aggregated.stats.like,
-									aggregated.stats.repost,
-									aggregated.stats.reply,
-									data.bluesky.url,
-								)}
-							{:else}
-								<p><T message={m['pages.blog_slug.comments.bluesky.stats.loading']} /></p>
-							{/if}
-							{#if aggregated && aggregated.replies.length}
-								<p class="c-text-body-sm border-outline col-span-2 border-t pt-4 leading-relaxed">
-									<T message={m['pages.blog_slug.comments.bluesky.note']} url={data.bluesky.url} />
-								</p>
-							{/if}
-						</div>
-					</article>
-				</div>
-			</div>
-		</section>
+		<BlueskyComments {...data.bluesky} />
 	{/if}
 
 	<!-- newsletter -->

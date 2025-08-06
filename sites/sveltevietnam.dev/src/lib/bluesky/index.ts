@@ -21,9 +21,11 @@ export type AggregatedPost = {
 
 export async function getPostThread(
 	agent: AtpAgent,
-	uri: string,
+	accountId: string,
+	postId: string,
 	depth?: number,
 ): Promise<AppBskyFeedDefs.ThreadViewPost> {
+	const uri = buildPostUri(accountId, postId, 'at');
 	const response = await agent.app.bsky.feed.getPostThread({ uri, depth, parentHeight: 0 });
 	if (!response.success) {
 		// TODO: log error
@@ -54,4 +56,18 @@ export function aggregatePostThread(
 		),
 		hasMoreReplies: (thread.replies?.length ?? 0) > maxReplies,
 	};
+}
+
+export function buildPostUri(
+	accountId: string,
+	postId: string,
+	protocol: 'http' | 'at' = 'http',
+): string {
+	switch (protocol) {
+		case 'at':
+			return `at://${accountId}/app.bsky.feed.post/${postId}`;
+		case 'http':
+		default:
+			return `https://bsky.app/profile/${accountId}/post/${postId}`;
+	}
 }
