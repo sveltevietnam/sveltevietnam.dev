@@ -1,17 +1,17 @@
 import { error } from '@sveltejs/kit';
 
 import * as p from '$data/routes/generated';
-import { getBackend } from '$lib/backend/server';
+import { getBackend } from '$lib/backend/utils';
 import { update } from '$lib/forms/subscriber/server';
 
 import type { Actions, PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ platform, url, params, locals }) => {
+export const load: PageServerLoad = async ({ url, params, locals }) => {
 	const token = url.searchParams.get('token');
 	if (!token) {
 		error(401, { code: 'SV002', message: 'Unauthorized access' });
 	}
-	const backend = getBackend(platform);
+	const backend = getBackend();
 	const result = await backend.verify(token);
 	if (!result.success) {
 		error(401, {
