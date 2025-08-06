@@ -2,6 +2,7 @@
 	import { StackItem } from '@svelte-put/async-stack';
 	import { T } from '@sveltevietnam/i18n';
 
+	import { asset } from '$app/paths';
 	import * as m from '$data/locales/generated/messages';
 	import { BlogPostListItem } from '$lib/components/blog-post-list-item';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
@@ -319,7 +320,7 @@
 				<T message={m['pages.design.logo.inspiration.heading']} />
 			</h3>
 			<p>
-				<i class="i i-sveltevietnam text-svelte float-right h-20 w-20"></i>
+				<img class="h-20 w-20 float-right" height="40" width="40" alt="" src={asset('/favicon.svg')} />
 				<T message={m['pages.design.logo.inspiration.desc']} />
 			</p>
 			<div class="tablet:grid-cols-[auto_auto_auto] grid w-fit grid-cols-2 gap-6">
@@ -345,7 +346,7 @@
 				<div
 					class="mobile:grid-rows-subgrid tablet:grid-cols-1 mobile:col-span-2 grid grid-cols-2 justify-between gap-6"
 				>
-					<div class="i i-[simple-icons--svelte] w-30 h-30 text-svelte shrink-0"></div>
+					<svg class="w-30 h-30 shrink-0" inline-src="svelte"></svg>
 					<img
 						class="w-37 h-auto"
 						src={imgNonLa}
