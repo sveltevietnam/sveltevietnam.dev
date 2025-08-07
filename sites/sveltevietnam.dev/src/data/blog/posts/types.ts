@@ -44,11 +44,13 @@ export type BlogPostMetadata = {
 	 */
 	keywords?: string;
 	/**
-	 * indicate whether the blog post may contain outdated information
-	 * or is so after a certain number of days after publication
+	 * indicate:
+	 * - (true) the blog post may contain outdated information, or
+	 * - (number) is so after a certain number of days after publication, or
+	 * - (Date) is so after a certain date
 	 * @default false
 	 */
-	outdate?: boolean | number;
+	outdate?: boolean | number | Date;
 };
 
 export type MinimalBlogPostMetadata = Omit<BlogPostMetadata, 'id'>;

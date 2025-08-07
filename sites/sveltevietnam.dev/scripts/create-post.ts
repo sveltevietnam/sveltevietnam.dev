@@ -12,7 +12,7 @@ import { ids as categoryIds, loadBlogCategory } from '../src/data/blog/categorie
 import { ids as seriesIds, loadBlogSeries } from '../src/data/blog/series';
 import { ids as authorIds, loadPerson } from '../src/data/people';
 
-import { validateTextField, validateNumberField, onCancel, escapeQuotes } from './helpers';
+import { validateTextField, onCancel, escapeQuotes } from './helpers';
 
 const cwd = process.cwd();
 
@@ -120,8 +120,13 @@ const post = await p.group(
 			p.text({
 				defaultValue: '',
 				message:
-					'Enter the number of days after which this post may be considered outdated (optional):',
-				validate: validateNumberField,
+					'Enter the number of days (or exact date as YYYY-MM-DD) after which this post may be considered outdated (optional):',
+				validate: (str) => {
+					str = str.trim();
+					if (!isNaN(Number(str))) return undefined;
+					if (!isNaN(new Date(str).getTime())) return undefined;
+					return 'Input must be a number or a date as YYYY-MM-DD.';
+				},
 			}),
 	},
 	{
@@ -137,6 +142,14 @@ const date = new Date();
 const year = date.getFullYear();
 const month = String(date.getMonth() + 1).padStart(2, '0');
 const day = String(date.getDate()).padStart(2, '0');
+
+// transform outdate
+let outdate = post.outdate?.trim();
+if (!isNaN(new Date(outdate).getTime())) {
+	outdate = `new Date('${outdate}')`;
+} else if (!isNaN(Number(outdate))) {
+	outdate = Number(outdate).toString();
+}
 
 // generate slug
 const date_slug = `${year}${month}${day}`;
@@ -201,7 +214,7 @@ export default defineBlogPostMetadata((lang) => ({
 	authors: [${post.authors.map((id) => `'${id}'`).join(', ')}],
 	categories: [${post.categories.map((id) => `'${id}'`).join(', ')}],
 	series: [${post.series.map((id) => `'${id}'`).join(', ')}],
-	outdate: ${post.outdate ? Number(post.outdate.trim()) : false},
+	outdate: ${outdate ? outdate : false},
 	...(
 		{
 			en: {

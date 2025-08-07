@@ -5,11 +5,6 @@ export function validateTextField(text: string): string | undefined {
 	if (text.length === 0) return 'This field is required.';
 }
 
-export function validateNumberField(num: string): string | undefined {
-	num = num.trim();
-	if (isNaN(Number(num))) return 'The input must be a number.';
-}
-
 export function validateIdField(ids: string[], id: string): string | undefined {
 	id = id.trim().toLowerCase();
 	if (id.trim().length === 0) return 'This field is required.';
