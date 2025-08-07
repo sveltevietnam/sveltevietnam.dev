@@ -81,8 +81,16 @@ const post = await p.group(
 		keywords: () =>
 			p.group(
 				{
-					en: () => p.text({ message: 'Enter comma-separated keywords (English), if any:' }),
-					vi: () => p.text({ message: 'Enter comma-separated keywords (Tiếng Việt), if any:' }),
+					en: () =>
+						p.text({
+							message: 'Enter comma-separated keywords (English), if any:',
+							defaultValue: '',
+						}),
+					vi: () =>
+						p.text({
+							message: 'Enter comma-separated keywords (Tiếng Việt), if any:',
+							defaultValue: '',
+						}),
 				},
 				{
 					onCancel,
