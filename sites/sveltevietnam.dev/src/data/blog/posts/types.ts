@@ -43,6 +43,12 @@ export type BlogPostMetadata = {
 	 * comma-separated list of keywords for SEO
 	 */
 	keywords?: string;
+	/**
+	 * indicate whether the blog post may contain outdated information
+	 * or is so after a certain number of days after publication
+	 * @default false
+	 */
+	outdate?: boolean | number;
 };
 
 export type MinimalBlogPostMetadata = Omit<BlogPostMetadata, 'id'>;

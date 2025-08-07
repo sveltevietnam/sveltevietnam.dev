@@ -12,7 +12,7 @@ import { ids as categoryIds, loadBlogCategory } from '../src/data/blog/categorie
 import { ids as seriesIds, loadBlogSeries } from '../src/data/blog/series';
 import { ids as authorIds, loadPerson } from '../src/data/people';
 
-import { validateTextField, onCancel, escapeQuotes } from './helpers';
+import { validateTextField, validateNumberField, onCancel, escapeQuotes } from './helpers';
 
 const cwd = process.cwd();
 
@@ -116,6 +116,13 @@ const post = await p.group(
 				})),
 				required: false,
 			}),
+		outdate: () =>
+			p.text({
+				defaultValue: '',
+				message:
+					'Enter the number of days after which this post may be considered outdated (optional):',
+				validate: validateNumberField,
+			}),
 	},
 	{
 		onCancel,
@@ -194,6 +201,7 @@ export default defineBlogPostMetadata((lang) => ({
 	authors: [${post.authors.map((id) => `'${id}'`).join(', ')}],
 	categories: [${post.categories.map((id) => `'${id}'`).join(', ')}],
 	series: [${post.series.map((id) => `'${id}'`).join(', ')}],
+	outdate: ${post.outdate ? Number(post.outdate.trim()) : false},
 	...(
 		{
 			en: {
