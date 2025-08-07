@@ -64,7 +64,9 @@ either:
 Option (1) is helpful if you want to build your personal Bluesky account and grow your audience. After linkage is
 established, the Svelte Vietnam account will *repost* your Bluesky post.
 
-## On Using AI
+## On Artificial Intelligence (AI)
+
+### AI Usage
 
 Usage of [Generative AI](https://en.wikipedia.org/wiki/Generative_artificial_intelligence) in the
 writing process is not prohibited. AI can be helpful for various tasks such as:
@@ -87,6 +89,18 @@ export default defineBlogPostMetadata({
 ```
 
 2. disclose the purpose and usage of AI in your blog post.
+
+### AI Bot and Scraping
+
+The sveltevietnam.dev site implements several measures to discourage AI bots from scraping its content.
+We believe this is necessary until sufficient ethical and legal frameworks on AI are established.
+
+We cannot, however, guarantee that your blog post will be completely safe from bots and web scrapers,
+especially in today fast-evolving AI landscape.
+
+## License
+
+The Svelte Vietnam Blog is licensed under the [MIT License](https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/LICENSE) and as such, your blog post will also inherit the same license by default. If you wish to use a different license for your blog post, please specify it in your blog post content.
 
 ## Feedback and Contributions
 

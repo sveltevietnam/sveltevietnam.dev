@@ -51,7 +51,9 @@ Khi được liên kết, bình luận từ Bluesky sẽ được hiển thị d
 Phương án (1) nhằm tạo điều kiện trong trường hợp bạn muốn xây dựng tài khoản Bluesky cá nhân. Sau
 khi liên kết được thực hiện thành công, tài khoản Bluesky Svelte Việt Nam sẽ *đăng lại (repost)* bài của bạn.
 
-## Về việc sử dụng AI
+## Về trí tuệ nhân tạo (AI)
+
+### Sử dụng AI
 
 Ban quản trị không ngăn cấm việc sử dụng
 [Generative AI](https://vi.wikipedia.org/wiki/Tr%C3%AD_tu%E1%BB%87_nh%C3%A2n_t%E1%BA%A1o_t%E1%BA%A1o_sinh)
@@ -74,6 +76,20 @@ export default defineBlogPostMetadata({
 ```
 
 2. đề cập rõ trong bài viết về mục đích sử dụng AI và các nội dung được tạo ra bởi AI.
+
+### AI Bot
+
+Trang sveltevietnam.dev áp dụng một vài giải pháp để ngăn chặn bot AI tự ý thu thập nội
+dung bài viết. Ban quản trị xem việc này là cần thiết, cho đến khi
+các khung hình đạo đức và pháp lý về AI được hoàn thiện hơn.
+
+Tuy vậy, ban quản trị không thể cam kết rằng bài viết của bạn sẽ không bị các
+công cụ, thủ thuật tương tự thu thập — đặc biệt với bối cảnh hiện nay: các công nghệ AI
+vẫn còn mới và thay đổi nhanh chóng.
+
+## Bản quyền
+
+Blog của Svelte Việt Nam được phát triển với giấy phép [MIT License](https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/LICENSE), và bài viết của bạn sẽ mặc định tuân thủ giấy phép này. Nếu bạn muốn sử dụng giấy phép khác cho bài viết của mình, hãy ghi chú rõ trong nội dung bài viết.
 
 ## Phản hồi và đóng góp
 
