@@ -21,23 +21,23 @@ export function formatTimeDiff(date1: Date | number | string, date2 = new Date()
 	date2 = new Date(date2);
 	const diff = Math.abs(date1.getTime() - date2.getTime());
 
-	const seconds = Math.floor(diff / 1000);
-	if (seconds < 60) return `${seconds}s`;
+	const seconds = diff / 1000;
+	if (seconds < 60) return `${Math.floor(seconds)}s`;
 
-	const minutes = Math.floor(seconds / 60);
-	if (minutes < 60) return `${minutes}m`;
+	const minutes = seconds / 60;
+	if (minutes < 60) return `${Math.floor(minutes)}m`;
 
-	const hours = Math.floor(minutes / 60);
-	if (hours < 24) return `${hours}h`;
+	const hours = minutes / 60;
+	if (hours < 24) return `${Math.floor(hours)}h`;
 
-	const days = Math.floor(hours / 24);
-	if (days < 30) return `${days}d`;
+	const days = hours / 24;
+	if (days < 30) return `${Math.floor(days)}d`;
 
-	const months = Math.floor(days / 30);
-	if (months < 12) return `${months}mo`;
+	const months = days / 30;
+	if (months < 12) return `${Math.floor(months)}mo`;
 
-	const years = Math.floor(months / 12);
-	return `${years}y`;
+	const years = months / 12;
+	return `${Math.floor(years)}y`;
 }
 
 /**
@@ -100,23 +100,27 @@ export function formateDateForBlog(lang: App.Language, date: Date | number | str
 export function formatRelativeTime(lang: App.Language, ms: number) {
 	const rtf = new Intl.RelativeTimeFormat(lang, { style: 'long' });
 
-	const seconds = Math.floor(ms / 1000);
-	if (Math.abs(seconds) < 60) return rtf.format(seconds, 'second');
+	const seconds = ms / 1000;
+	if (Math.abs(seconds) < 60)
+		return rtf.format(Math.sign(seconds) * Math.floor(Math.abs(seconds)), 'seconds');
 
-	const minutes = Math.floor(seconds / 60);
-	if (Math.abs(minutes) < 60) return rtf.format(minutes, 'minute');
+	const minutes = seconds / 60;
+	if (Math.abs(minutes) < 60)
+		return rtf.format(Math.sign(minutes) * Math.floor(Math.abs(minutes)), 'minutes');
 
-	const hours = Math.floor(minutes / 60);
-	if (Math.abs(hours) < 24) return rtf.format(hours, 'hour');
+	const hours = minutes / 60;
+	if (Math.abs(hours) < 24)
+		return rtf.format(Math.sign(hours) * Math.floor(Math.abs(hours)), 'hours');
 
-	const days = Math.floor(hours / 24);
-	if (Math.abs(days) < 30) return rtf.format(days, 'day');
+	const days = hours / 24;
+	if (Math.abs(days) < 30) return rtf.format(Math.sign(days) * Math.floor(Math.abs(days)), 'days');
 
-	const months = Math.floor(days / 30);
-	if (Math.abs(months) < 12) return rtf.format(months, 'month');
+	const months = days / 30;
+	if (Math.abs(months) < 12)
+		return rtf.format(Math.sign(months) * Math.floor(Math.abs(months)), 'months');
 
-	const years = Math.floor(months / 12);
-	return rtf.format(years, 'year');
+	const years = months / 12;
+	return rtf.format(Math.sign(years) * Math.floor(Math.abs(years)), 'years');
 }
 
 /**

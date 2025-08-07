@@ -6,6 +6,7 @@ export default defineBlogPostMetadata((lang) => ({
 	authors: ['vnphanquang'],
 	categories: ['insider', 'svelte-and-kit', 'ecosystem'],
 	series: ['behind-the-screen'],
+	outdate: new Date('2024-11-10'),
 	...(
 		{
 			en: {
