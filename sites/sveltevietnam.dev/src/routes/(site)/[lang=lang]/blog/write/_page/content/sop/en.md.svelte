@@ -33,13 +33,20 @@ resources on the web for that.
 
     </enhanced-code-block>
 
-2. Run the following setup command at the root directory of the project:
+2. If you are using `volta`as recommended above, you may install `pnpm` now using the volta
+   toolchain. Run the following command at the root directory of the project:
+
+    ```bash
+    volta install pnpm
+    ```
+
+3. Run the following development setup command at the root directory of the project:
 
     ```bash
     pnpm boot
     ```
 
-3. Start the development server at the `sites/sveltevietnam.dev` directory:
+4. Start the development server at the `sites/sveltevietnam.dev` directory:
 
     ```bash title="development"
     cd sites/sveltevietnam.dev

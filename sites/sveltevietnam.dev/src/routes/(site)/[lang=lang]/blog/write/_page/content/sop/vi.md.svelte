@@ -34,13 +34,20 @@ Và đương nhiên bạn cần cài đặt [git](https://git-scm.com/) và mộ
 
     </enhanced-code-block>
 
-2. Chạy lệnh cài đặt tại thư mục gốc của dự án:
+1. Nếu bạn sử dụng `volta` như khuyến nghị ở trên, bạn có thể cài đặt `pnpm` bây giờ
+   bằng bộ công cụ của volta. Chạy lệnh sau tại thư mục gốc của dự án:
+
+    ```bash
+    volta install pnpm
+    ```
+
+3. Chạy lệnh cài đặt môi trường phát triển tại thư mục gốc của dự án:
 
     ```bash
     pnpm boot
     ```
 
-3. Khởi động development server tại thư mục `sites/sveltevietnam.dev`:
+4. Khởi động development server tại thư mục `sites/sveltevietnam.dev`:
 
     ```bash title="development"
     cd sites/sveltevietnam.dev
