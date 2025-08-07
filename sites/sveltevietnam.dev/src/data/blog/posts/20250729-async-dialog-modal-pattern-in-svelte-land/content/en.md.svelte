@@ -41,7 +41,9 @@ import ConfirmationDialog from './ConfirmationDialog.svelte';
 
 function doSomething() {
   const confirmed = await triggerAndWaitFor(ConfirmationDialog);
-  if (confirmed) // proceed with the confirmed action
+  if (confirmed) {
+    // proceed with the confirmed action
+  }
 }
 ```
 
@@ -61,7 +63,9 @@ trigger the dialog, and another context to receive the result:
 
   function handleDialogOutput(confirmed: boolean) {
     // (2) Receive the result
-    if (confirmed) // proceed with the confirmed action
+    if (confirmed) {
+      // proceed with the confirmed action
+    }
   }
 </script>
 

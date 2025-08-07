@@ -40,7 +40,9 @@ import ConfirmationDialog from './ConfirmationDialog.svelte';
 
 function doSomething() {
   const confirmed = await triggerAndWaitFor(ConfirmationDialog);
-  if (confirmed) // tiếp tục với thao tác đã xác nhận
+  if (confirmed) {
+    // tiếp tục với thao tác đã xác nhận}
+  }
 }
 ```
 
@@ -60,7 +62,9 @@ kết quả:
 
   function handleDialogOutput(confirmed: boolean) {
     // (2) Nhận kết quả từ hộp thoại
-    if (confirmed) // proceed with the confirmed action
+    if (confirmed) {
+      // proceed with the confirmed action
+    }
   }
 </script>
 
