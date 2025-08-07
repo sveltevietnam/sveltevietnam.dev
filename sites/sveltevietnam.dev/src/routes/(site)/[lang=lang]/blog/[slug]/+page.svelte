@@ -23,6 +23,7 @@
 	import * as pagefind from '$lib/pagefind/attributes';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
+	import { formatRelativeTime } from '$lib/utils/datetime';
 
 	import type { PageData } from './$types';
 	import BlueskyComments from './_page/components/BlueskyComments.svelte';
@@ -43,6 +44,18 @@
 	const thumbnail = $derived(data.post.thumbnail || fallback16x9);
 	const url = $derived(page.url.origin + routing.paths[settings.language]);
 	const encodedUrl = $derived(encodeURIComponent(url));
+	const outdated = $derived.by(() => {
+		if (!data.post.outdate) return null;
+		const elapsedMs =	data.post.publishedAt.getTime() - Date.now();
+		if (data.post.outdate === true) return formatRelativeTime(settings.language, elapsedMs);
+		if (typeof data.post.outdate === 'number') {
+			const outdateMs = data.post.outdate * 24 * 60 * 60 * 1000;
+			if (Math.abs(elapsedMs) >= outdateMs) return formatRelativeTime(settings.language, elapsedMs);
+			return null;
+		}
+		if (data.post.outdate.getTime() <= Date.now()) return formatRelativeTime(settings.language, elapsedMs);
+		return null;
+	});
 
 	const toc = new Toc({
 		selector: ':where(h2, h3, h4, h5, h6)',
@@ -241,6 +254,11 @@
 
 		<!-- content -->
 		<section class="_content prose max-w-readable-relaxed" id="content">
+			{#if outdated}
+				<p class="c-callout c-callout--warning">
+					<T message={m['pages.blog_slug.outdated']} age={outdated} />
+				</p>
+			{/if}
 			{#if data.content}
 				{#key data.content}
 					<div use:toc.actions.root>

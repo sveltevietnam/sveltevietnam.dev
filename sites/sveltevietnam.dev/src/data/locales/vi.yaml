@@ -289,6 +289,9 @@ messages:
       stats:
         read_minutes: phút đọc
         word: từ
+      outdated:
+        Cảm ơn bạn đã ghé thăm. Một chú ý nhỏ rằng bài viết được xuất bản <strong>{{age}}</strong>
+        nên một số nội dung có thể không còn đương thời nữa, đặc biệt là các chi tiết kỹ thuật.
       actions:
         copy: Sao chép liên kết bài viết
       write:

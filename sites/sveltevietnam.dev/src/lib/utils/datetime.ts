@@ -95,6 +95,31 @@ export function formateDateForBlog(lang: App.Language, date: Date | number | str
 }
 
 /**
+ * ms is directional (negative for past, positive for future)
+ */
+export function formatRelativeTime(lang: App.Language, ms: number) {
+	const rtf = new Intl.RelativeTimeFormat(lang, { style: 'long' });
+
+	const seconds = Math.floor(ms / 1000);
+	if (Math.abs(seconds) < 60) return rtf.format(seconds, 'second');
+
+	const minutes = Math.floor(seconds / 60);
+	if (Math.abs(minutes) < 60) return rtf.format(minutes, 'minute');
+
+	const hours = Math.floor(minutes / 60);
+	if (Math.abs(hours) < 24) return rtf.format(hours, 'hour');
+
+	const days = Math.floor(hours / 24);
+	if (Math.abs(days) < 30) return rtf.format(days, 'day');
+
+	const months = Math.floor(days / 30);
+	if (Math.abs(months) < 12) return rtf.format(months, 'month');
+
+	const years = Math.floor(months / 12);
+	return rtf.format(years, 'year');
+}
+
+/**
  * Format month in localized long format
  */
 export function formatLongMonth(lang: App.Language, date: Date | number | string): string {

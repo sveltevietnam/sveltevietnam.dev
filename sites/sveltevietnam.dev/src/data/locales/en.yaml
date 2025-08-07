@@ -283,6 +283,9 @@ messages:
       stats:
         read_minutes: min read
         word: words
+      outdated:
+        Thank you for stopping by. This is a friendly note that this post was published
+        <strong>{{age}}</strong> and may contain outdated information, especially technical ones.
       actions:
         copy: Copy blog post link to clipboard
       write:
