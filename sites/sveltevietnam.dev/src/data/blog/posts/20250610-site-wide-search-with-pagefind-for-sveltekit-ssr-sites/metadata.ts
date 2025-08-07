@@ -5,6 +5,7 @@ export default defineBlogPostMetadata((lang) => ({
 	authors: ['vnphanquang'],
 	categories: ['svelte-and-kit', 'ecosystem', 'insider'],
 	series: ['behind-the-screen'],
+	outdate: 365 * 2, // 2 year in days
 	...(
 		{
 			en: {

@@ -4,6 +4,7 @@ export default defineBlogPostMetadata((lang) => ({
 	publishedAt: new Date('2024-04-20'),
 	authors: ['vnphanquang'],
 	categories: ['svelte-and-kit', 'ecosystem'],
+	outdate: 365, // 1 year in days
 	...(
 		{
 			en: {

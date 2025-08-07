@@ -5,6 +5,7 @@ export default defineBlogPostMetadata((lang) => ({
 	authors: ['vnphanquang'],
 	categories: ['svelte-and-kit'],
 	series: ['styling-svelte-vietnam', 'behind-the-screen'],
+	outdate: 365, // 1 year in days
 	...(
 		{
 			en: {

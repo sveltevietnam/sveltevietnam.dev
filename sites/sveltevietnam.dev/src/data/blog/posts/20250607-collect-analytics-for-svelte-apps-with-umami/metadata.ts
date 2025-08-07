@@ -5,6 +5,7 @@ export default defineBlogPostMetadata((lang) => ({
 	authors: ['vnphanquang'],
 	categories: ['ecosystem'],
 	series: ['mini-snippet'],
+	outdate: 365 * 2, // 2 year in days
 	...(
 		{
 			en: {
