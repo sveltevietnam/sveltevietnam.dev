@@ -755,6 +755,12 @@ messages:
           làm” đã được hoàn thiện, nhà tài trợ sẽ được ưu tiên  trong quy trình đăng tuyển dụng.
           Ngoài ra, Svelte Việt Nam cũng dành  nhiều cơ hội riêng cho nhà tài trợ để quản bá thương
           hiệu, tổ chức, sản  phẩm của họ trong các sự kiện của cộng đồng.
+    everify:
+      title: Xác nhận email | Svelte Việt Nam
+      heading: Xác nhận email
+      already: Email đã được xác nhận!
+      success: Cảm ơn bạn, email đã được xác nhận thành công!
+      go_to_home: Về trang chủ
     mail:
       email:
         heading: Về email này

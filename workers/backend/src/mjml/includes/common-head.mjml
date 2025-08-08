@@ -3,5 +3,11 @@
 	<mj-all font-family="Inter" font-size="16px" color="#18140F" line-height="1.5" />
 	<mj-divider border-width="1px" border-style="solid" border-color="#BFB9B2" />
 	<mj-class name="footer-text" font-size="12px" color="gray" align="center" />
+	<mj-button
+		color="white"
+		background-color="black"
+		padding-bottom="24px"
+		padding-top="24px"
+		border-radius="0px"
+	/>
 </mj-attributes>
-

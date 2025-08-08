@@ -1,3 +1,4 @@
+import jwt from '@tsndr/cloudflare-worker-jwt';
 import { RpcTarget } from 'cloudflare:workers';
 import { eq } from 'drizzle-orm';
 import * as v from 'valibot';
@@ -19,12 +20,14 @@ import {
 import { subscribers } from './table';
 
 export class SubscriberService extends RpcTarget {
+	#env: Env;
 	#orm: ORM;
 	#mails: MailService;
 
-	constructor(orm: ORM, mailService: MailService) {
+	constructor(orm: ORM, env: Env, mailService: MailService) {
 		super();
 		this.#orm = orm;
+		this.#env = env;
 		this.#mails = mailService;
 	}
 
@@ -64,11 +67,28 @@ export class SubscriberService extends RpcTarget {
 				.values(parsed.output)
 				.returning({ id: subscribers.id });
 
+			// Workaround for this https://github.com/cloudflare/workers-sdk/issues/9006
+			const secret = this.#env.MODE !== 'development' ? await this.#env.secret_jwt.get() : 'secret';
+			const date = new Date();
+			const token = await jwt.sign(
+				{
+					sub: id,
+					iat: Math.floor(date.getTime() / 1000),
+					iss: 'backend.sveltevietnam.dev',
+				},
+				secret,
+			);
+			const eVerifyUrl = new URL(
+				`/${input.language}/everify/${token}`,
+				this.#env.SITE_URL,
+			).toString();
+
 			await this.#mails.queue({
 				lang: input.language,
 				subscriberId: id,
 				templateId: 'welcome',
 				vars: {
+					eVerifyUrl,
 					name: input.name,
 				},
 			});
@@ -112,6 +132,18 @@ export class SubscriberService extends RpcTarget {
 			})
 			.where(eq(subscribers.id, id))
 			.returning({ id: subscribers.id });
+
+		return { success: true };
+	}
+
+	async verify(id: string): Promise<{ success: true }> {
+		await this.#orm
+			.update(subscribers)
+			.set({
+				updatedAt: new Date(),
+				verifiedAt: new Date(),
+			})
+			.where(eq(subscribers.id, id));
 
 		return { success: true };
 	}

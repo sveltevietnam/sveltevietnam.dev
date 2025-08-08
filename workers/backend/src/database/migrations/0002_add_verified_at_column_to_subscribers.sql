@@ -1,0 +1,1 @@
+ALTER TABLE `subscribers` ADD `verified_at` integer;

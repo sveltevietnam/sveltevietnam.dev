@@ -23,5 +23,6 @@ export default defineTemplate((lang) => ({
 }));
 
 export interface TemplateVars {
+	eVerifyUrl: string;
 	name: string;
 }

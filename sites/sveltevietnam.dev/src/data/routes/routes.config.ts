@@ -55,6 +55,10 @@ export default defineConfig<AllRoutePath, App.Language>({
 		defs: {
 			'/': 'IHOME',
 			'/:lang/mails/:id': 'Mail',
+			'/:lang/everify/:token': {
+				vi: 'Xác thực email',
+				default: 'Email Verification',
+			},
 			'/:lang': {
 				vi: 'Trang chủ',
 				default: 'Home',

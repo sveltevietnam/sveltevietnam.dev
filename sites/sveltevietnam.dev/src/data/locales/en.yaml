@@ -751,6 +751,12 @@ messages:
           associated event or project pages. In the near future when the “Jobs” page is implemented,
           sponsors will have priority for their job posting requests. Svelte Vietnam also provides
           opportunities during its events for sponsors to promote their brands and products.
+    everify:
+      title: Email Verification | Svelte Vietnam
+      heading: Email Verification
+      already: Your email has already been verified!
+      success: Thank you, your email is now verified!
+      go_to_home: Go to homepage
     mail:
       email:
         heading: About this email

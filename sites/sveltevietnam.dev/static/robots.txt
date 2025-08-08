@@ -13,6 +13,8 @@ User-agent: *
 Sitemap: https://www.sveltevietnam.dev/sitemap.xml
 Disallow: /vi/mails/
 Disallow: /en/mails/
+Disallow: /vi/everify
+Disallow: /en/everify
 
 User-agent: Amazonbot
 Disallow: /

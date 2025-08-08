@@ -13,9 +13,13 @@
 					Cảm ơn bạn đã ghé thăm trang
 					<a href="{{siteUrl}}">sveltevietnam.dev</a>.
 					Chào mừng bạn đến với cộng đồng Svelte Việt Nam.
+					Hãy nhấn nút bên dưới để hoàn tất quy trình đăng ký!
 				</mj-text>
+				<mj-button href="{{eVerifyUrl}}">
+          Xác nhận email
+        </mj-button>
 				<mj-text>
-					Hãy tham gia
+					Tham gia
 					<a href="{{discordURL}}">Discord Svelte Việt Nam</a>
 					để kết nối và nhận các thông báo thường xuyên hơn từ cộng đồng nhé.
 				</mj-text>

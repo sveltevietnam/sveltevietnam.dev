@@ -22,7 +22,7 @@ export default class extends WorkerEntrypoint<Env> {
 		super(ctx, env);
 		const orm = getOrm(env.d1);
 		this.#mails = new MailService(orm, env);
-		this.#subscribers = new SubscriberService(orm, this.#mails);
+		this.#subscribers = new SubscriberService(orm, env, this.#mails);
 		this.#blueskyPosts = new BlueskyPostService(orm);
 	}
 

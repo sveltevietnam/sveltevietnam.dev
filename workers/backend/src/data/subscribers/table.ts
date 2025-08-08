@@ -22,4 +22,5 @@ export const subscribers = sqliteTable('subscribers', {
 		.notNull()
 		.default(sql`(unixepoch() * 1000)`),
 	updatedAt: integer('updated_at', { mode: 'timestamp_ms' }),
+	verifiedAt: integer('verified_at', { mode: 'timestamp_ms' }),
 });

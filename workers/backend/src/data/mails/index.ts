@@ -102,8 +102,7 @@ export class MailService extends RpcTarget {
 		// create mail record
 		const mailId = createId();
 		const { SITE_URL: siteUrl, MODE: mode, AWS_REGION: awsRegion } = this.#env;
-		// Workaround for this
-		// https://github.com/cloudflare/workers-sdk/issues/9006
+		// Workaround for this https://github.com/cloudflare/workers-sdk/issues/9006
 		const secret = mode !== 'development' ? await this.#env.secret_jwt.get() : 'secret';
 		const date = new Date();
 		const token = await jwt.sign(

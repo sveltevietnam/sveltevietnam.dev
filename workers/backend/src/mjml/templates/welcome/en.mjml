@@ -13,7 +13,11 @@
 					Thank you for visting
 					<a href="{{siteUrl}}">sveltevietnam.dev</a>.
 					We are happy to welcome you as a part of the Svelte Vietnam community.
+					Please click the button below to complete the registration process!
 				</mj-text>
+				<mj-button href="{{eVerifyUrl}}">
+					Verify Your Email
+        </mj-button>
 				<mj-text>
 					If you have not already, join the official
 					<a href="{{discordUrl}}">Svelte Vietnam Discord</a>
