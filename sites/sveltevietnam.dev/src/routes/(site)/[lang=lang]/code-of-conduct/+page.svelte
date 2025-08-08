@@ -8,7 +8,9 @@
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import * as pagefind from '$lib/pagefind/attributes';
 
-	let { data } = $props();
+	import type { PageProps } from './$types';
+
+	let { data }: PageProps = $props();
 </script>
 
 <main {...pagefind.page()}>

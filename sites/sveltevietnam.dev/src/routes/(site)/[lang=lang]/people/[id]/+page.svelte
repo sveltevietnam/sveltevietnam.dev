@@ -15,12 +15,15 @@
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
-	let { data } = $props();
+	import type { PageProps } from './$types';
+
+	let { data }: PageProps = $props();
 
 	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();
 
 	let paginationUrl = $derived.by(() => {
+		// eslint-disable-next-line svelte/prefer-svelte-reactivity
 		const url = new URL(page.url);
 		url.hash = 'posts';
 		return url;
@@ -29,7 +32,7 @@
 	const links = $derived({
 		events: p['/:lang/events']({ lang: settings.language }),
 		blog: p['/:lang/blog']({ lang: settings.language }),
-	})
+	});
 </script>
 
 <main {...pagefind.page({ group: 'people', importance: 'detail' })}>

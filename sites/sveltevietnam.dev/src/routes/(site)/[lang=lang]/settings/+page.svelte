@@ -14,11 +14,11 @@
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
-	import type { PageData } from './$types';
+	import type { PageProps } from './$types';
 	import ColorSchemeSkeleton from './_page/components/ColorSchemeSkeleton.svelte';
 	import imgIntro from './_page/images/lightbulb.svg?url';
 
-	let { data }: { data: PageData } = $props();
+	let { data }: PageProps = $props();
 
 	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();

@@ -17,7 +17,7 @@
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
-	import type { PageData } from '../../../routes/(site)/[lang=lang]/events/[slug]/$types';
+	import type { PageProps } from '../../../routes/(site)/[lang=lang]/events/[slug]/$types';
 
 	import dsvLogoImage from './images/designveloper_logo.webp';
 	import imgEventTicket from './images/event/e-ticket.jpg?enhanced&w=1200;630&imagetools';
@@ -35,7 +35,7 @@
 	import imgMiddleBg from './images/middle-bg.jpg?enhanced&w=2048;1440;720&imagetools';
 	import * as m from './locales/generated/messages';
 
-	let { data }: { data: PageData } = $props();
+	let { data }: PageProps = $props();
 
 	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();

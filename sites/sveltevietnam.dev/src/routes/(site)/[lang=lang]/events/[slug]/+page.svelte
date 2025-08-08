@@ -1,9 +1,9 @@
 <script lang="ts">
 	import * as pagefind from '$lib/pagefind/attributes';
 
-	import type { PageData } from './$types';
+	import type { PageProps } from './$types';
 
-	let { data }: { data: PageData }  = $props();
+	let { data }: PageProps  = $props();
 </script>
 
 <div {...pagefind.page({ group: 'events', importance: 'detail'})}>

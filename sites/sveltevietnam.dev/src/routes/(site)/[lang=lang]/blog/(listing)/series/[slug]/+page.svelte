@@ -11,11 +11,14 @@
 	import * as pagefind from '$lib/pagefind/attributes';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 
-	let { data } = $props();
+	import type { PageProps } from './$types';
+
+	let { data }: PageProps = $props();
 
 	const routing = RoutingContext.get();
 
 	let paginationUrl = $derived.by(() => {
+		// eslint-disable-next-line svelte/prefer-svelte-reactivity
 		const url = new URL(page.url);
 		url.hash = 'listing';
 		return url;

@@ -9,9 +9,10 @@
 	import * as pagefind from '$lib/pagefind/attributes';
 	import { RoutingContext } from '$lib/routing/context.svelte';
 
+	import type { PageProps } from './$types';
 	import imgIntro from './_page/images/plant.svg?url';
 
-	let { data } = $props();
+	let { data }: PageProps = $props();
 
 	const routing = RoutingContext.get();
 

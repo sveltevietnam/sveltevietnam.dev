@@ -6,11 +6,11 @@
 	import { SettingsContext } from '$lib/settings/context.svelte';
 	import { formatFullDateAndTime } from '$lib/utils/datetime';
 
-	import type { PageData } from './$types';
+	import type { PageProps } from './$types';
 
 	const settings = SettingsContext.get();
 
-	let { data }: { data: PageData } = $props();
+	let { data }: PageProps = $props();
 
 	let iframe: HTMLIFrameElement | null = null;
 	function handleIframeLoad(e: Event) {

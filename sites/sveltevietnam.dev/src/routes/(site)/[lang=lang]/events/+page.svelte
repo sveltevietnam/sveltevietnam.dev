@@ -16,9 +16,10 @@
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
+	import type { PageProps } from './$types';
 	import imgIntro from './_page/images/eco-friendly.svg?url';
 
-	let { data } = $props();
+	let { data }: PageProps = $props();
 
 	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();

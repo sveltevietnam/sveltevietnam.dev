@@ -25,10 +25,10 @@
 	import { SettingsContext } from '$lib/settings/context.svelte';
 	import { formatRelativeTime } from '$lib/utils/datetime';
 
-	import type { PageData } from './$types';
+	import type { PageProps } from './$types';
 	import BlueskyComments from './_page/components/BlueskyComments.svelte';
 
-	let { data }: { data: PageData } = $props();
+	let { data }: PageProps = $props();
 
 	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();

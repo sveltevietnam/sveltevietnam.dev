@@ -13,12 +13,12 @@
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
-	import type { PageData } from './$types';
+	import type { PageProps } from './$types';
 	import { colors } from './_page/colors';
 	import imgNonLa from './_page/images/non-la.jpg?format=avif&imagetools';
 	import imgRays from './_page/images/rays.jpg?format=avif&imagetools';
 
-	let { data }: { data: PageData } = $props();
+	let { data }: PageProps = $props();
 
 	const settings = SettingsContext.get();
 

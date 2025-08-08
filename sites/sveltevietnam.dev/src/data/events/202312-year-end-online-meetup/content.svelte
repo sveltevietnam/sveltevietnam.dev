@@ -14,7 +14,7 @@
 	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
-	import type { PageData } from '../../../routes/(site)/[lang=lang]/events/[slug]/$types';
+	import type { PageProps } from '../../../routes/(site)/[lang=lang]/events/[slug]/$types';
 
 	import imgVideo2Thumbnail from './images/a-few-secrets-of-sveltevietnamdev.jpg?enhanced&w=1200;630&imagetools';
 	import imgLivestreamMoment from './images/livestream-moment.jpg?enhanced&w=1200;630&imagetools';
@@ -23,7 +23,7 @@
 	import * as m from './locales/generated/messages';
 	import { EVENT_LINKS } from './metadata';
 
-	let { data }: { data: PageData } = $props();
+	let { data }: PageProps = $props();
 
 	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();
