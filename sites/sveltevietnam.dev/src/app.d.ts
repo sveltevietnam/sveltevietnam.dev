@@ -20,7 +20,6 @@ declare global {
 		declare type SplashOption = import('$lib/constants').SplashOption;
 
 		interface Locals {
-			userId: string;
 			internalReferer?: URL;
 			language: Language;
 			colorScheme: ColorScheme;
