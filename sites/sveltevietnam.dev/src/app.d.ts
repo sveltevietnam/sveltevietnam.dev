@@ -1,4 +1,5 @@
 /// <reference types="umami-browser" />
+import type { AppLocals, AppPlatform } from '@sveltevietnam/kit';
 
 declare global {
 	declare type MaybePromise<T> = T | Promise<T> | PromiseLike<T>;
@@ -13,18 +14,8 @@ declare global {
 	}
 
 	namespace App {
-		declare type ColorScheme = import('$lib/constants').ColorScheme;
-		declare type Screen = import('$lib/constants').Screen;
-		declare type Status = import('$lib/constants').Status;
-		declare type Language = import('@sveltevietnam/i18n').Language;
-		declare type SplashOption = import('$lib/constants').SplashOption;
-
-		interface Locals {
-			internalReferer?: URL;
-			language: Language;
-			colorScheme: ColorScheme;
-			splash: SplashOption;
-		}
+		// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+		interface Locals extends AppLocals {}
 
 		interface PageData {
 			editUrl?: string;
@@ -33,7 +24,7 @@ declare global {
 					path: string;
 					name: string;
 				}[];
-				paths: Record<App.Language, string>;
+				paths: Record<import('@sveltevietnam/i18n').Language, string>;
 			};
 			/**
 			 * per-page page metadata setup
@@ -43,14 +34,10 @@ declare global {
 		}
 
 		// interface PageState {}
-		interface Platform {
+
+		interface Platform extends AppPlatform {
 			env?: {
 				backend: import('@sveltevietnam/backend').default;
-			};
-			cf?: import('@cloudflare/workers-types').IncomingRequestCfProperties;
-			context?: import('@cloudflare/workers-types').ExecutionContext;
-			caches?: import('@cloudflare/workers-types').CacheStorage & {
-				default: import('@cloudflare/workers-types').Cache;
 			};
 		}
 

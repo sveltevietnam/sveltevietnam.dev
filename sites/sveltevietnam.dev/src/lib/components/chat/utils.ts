@@ -1,9 +1,11 @@
+import type { Language } from '@sveltevietnam/i18n';
+
 import { loadPerson } from '$data/people';
 import * as p from '$data/routes/generated';
 
 import type { ChatParticipantMap } from './context';
 
-export function loadParticipants(ids: string[], lang: App.Language): ChatParticipantMap {
+export function loadParticipants(ids: string[], lang: Language): ChatParticipantMap {
 	return Object.fromEntries(
 		ids.map((id) => [
 			id,

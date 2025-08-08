@@ -1,3 +1,4 @@
+import type { Language } from '@sveltevietnam/i18n';
 import type { Picture } from 'vite-imagetools';
 
 export type Person = {
@@ -15,7 +16,7 @@ export type Person = {
 };
 
 export type MinimalPerson = Omit<Person, 'id' | 'avatar' | 'popImage' | 'ogImage'>;
-export type PersonDefinition = (lang: App.Language) => MinimalPerson;
+export type PersonDefinition = (lang: Language) => MinimalPerson;
 
 export type PersonOptionalModules = {
 	avatar: boolean;

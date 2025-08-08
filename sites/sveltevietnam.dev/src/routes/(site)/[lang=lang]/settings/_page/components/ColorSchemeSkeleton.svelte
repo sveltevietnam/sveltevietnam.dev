@@ -1,22 +1,27 @@
 <script lang="ts">
-	import type { HTMLAttributes } from "svelte/elements";
+	import type { ColorScheme } from '@sveltevietnam/kit/constants';
+	import type { HTMLAttributes } from 'svelte/elements';
 
-	let { scheme, class: cls, ...rest }: HTMLAttributes<HTMLElement> & { scheme: App.ColorScheme } = $props();
+	let {
+		scheme,
+		class: cls,
+		...rest
+	}: HTMLAttributes<HTMLElement> & { scheme: ColorScheme } = $props();
 </script>
 
 <span
-	class={["relative overflow-hidden bg-surface-variant p-2 space-y-2", cls]}
+	class={['bg-surface-variant relative space-y-2 overflow-hidden p-2', cls]}
 	data-scheme={scheme}
 	{...rest}
 >
-	<span class="space-y-2 p-2 bg-surface">
-		<span class="w-1/2 h-2 bg-surface-variant"></span>
-		<span class="w-2/3 h-2 bg-surface-variant"></span>
+	<span class="bg-surface space-y-2 p-2">
+		<span class="bg-surface-variant h-2 w-1/2"></span>
+		<span class="bg-surface-variant h-2 w-2/3"></span>
 	</span>
 	{#each { length: 2 }, i (i)}
-		<span class="p-2 bg-surface flex items-center gap-2">
-			<span class="rounded-full w-4 h-4 bg-surface-variant"></span>
-			<span class="h-2 w-2/3 bg-surface-variant"></span>
+		<span class="bg-surface flex items-center gap-2 p-2">
+			<span class="bg-surface-variant h-4 w-4 rounded-full"></span>
+			<span class="bg-surface-variant h-2 w-2/3"></span>
 		</span>
 	{/each}
 </span>
@@ -51,4 +56,3 @@
 		}
 	}
 </style>
-

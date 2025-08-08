@@ -1,3 +1,4 @@
+import type { Language } from '@sveltevietnam/i18n';
 import type { Picture } from 'vite-imagetools';
 
 import type * as t from './types';
@@ -23,7 +24,7 @@ export const ids = Object.keys(modules).map((path) => path.split('/')[1]);
 
 export async function loadBlogCategory(
 	id: string,
-	lang: App.Language,
+	lang: Language,
 	optionalModules?: Partial<t.BlogCategoryOptionalModules> | true,
 ): Promise<t.BlogCategory | null> {
 	const path = `./${id}/index.ts`;
@@ -45,7 +46,7 @@ export async function loadBlogCategory(
 	};
 }
 
-export async function loadAllBlogCategories(lang: App.Language): Promise<t.BlogCategory[]> {
+export async function loadAllBlogCategories(lang: Language): Promise<t.BlogCategory[]> {
 	return Promise.all(ids.map((id) => loadBlogCategory(id, lang))).then((categories) =>
 		categories.filter(Boolean),
 	);
@@ -53,7 +54,7 @@ export async function loadAllBlogCategories(lang: App.Language): Promise<t.BlogC
 
 export async function loadBlogCategoryBySlug(
 	slug: string,
-	lang: App.Language,
+	lang: Language,
 	optionalModules?: Partial<t.BlogCategoryOptionalModules> | true,
 ): Promise<t.BlogCategory | null> {
 	const categories = await Promise.all(

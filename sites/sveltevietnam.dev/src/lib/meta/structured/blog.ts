@@ -1,3 +1,4 @@
+import type { Language } from '@sveltevietnam/i18n';
 import type { Thing, Blog, BlogPosting, CreativeWorkSeries, CollectionPage } from 'schema-dts';
 
 import * as p from '$data/routes/generated';
@@ -17,7 +18,7 @@ const locales = {
 	},
 };
 
-export function buildStructuredBlog(lang: App.Language, origin: string): Blog {
+export function buildStructuredBlog(lang: Language, origin: string): Blog {
 	const org = buildStructuredOrganization(lang, origin);
 	const locale = locales[lang];
 	return {
@@ -30,7 +31,7 @@ export function buildStructuredBlog(lang: App.Language, origin: string): Blog {
 }
 
 export function buildStructuredBlogSeries(
-	lang: App.Language,
+	lang: Language,
 	origin: string,
 	series: import('$data/blog/series').BlogSeries,
 	compact = false,
@@ -51,7 +52,7 @@ export function buildStructuredBlogSeries(
 }
 
 export function buildStructuredBlogCategoryPage(
-	lang: App.Language,
+	lang: Language,
 	origin: string,
 	category: import('$data/blog/categories').BlogCategory,
 	compact = false,
@@ -72,7 +73,7 @@ export function buildStructuredBlogCategoryPage(
 }
 
 export function buildStructuredBlogCategory(
-	lang: App.Language,
+	lang: Language,
 	origin: string,
 	category: import('$data/blog/categories').BlogCategory,
 ): Thing {
@@ -85,7 +86,7 @@ export function buildStructuredBlogCategory(
 }
 
 export function buildStructuredBlogPost(
-	lang: App.Language,
+	lang: Language,
 	origin: string,
 	post: import('$data/blog/posts').ExtendedBlogPostMetadata,
 ): BlogPosting {

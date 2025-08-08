@@ -1,3 +1,5 @@
+import type { Language } from '@sveltevietnam/i18n';
+import type { SplashOption, Screen, ColorScheme } from '@sveltevietnam/kit/constants';
 import { getContext, setContext } from 'svelte';
 import type { Attachment } from 'svelte/attachments';
 import { MediaQuery } from 'svelte/reactivity';
@@ -14,12 +16,12 @@ export class SettingsContext {
 	#preferredColorScheme = new MediaQuery('(prefers-color-scheme: dark)');
 
 	// $state
-	#userColorScheme = $state<App.ColorScheme>('system');
+	#userColorScheme = $state<ColorScheme>('system');
 	scrolllock = $state(false);
-	language = $state<App.Language>('en');
+	language = $state<Language>('en');
 	hydrated = $state<false | Date>(false);
 	splashed = $state<false | Date>(false);
-	splash = $state<App.SplashOption>('random');
+	splash = $state<SplashOption>('random');
 
 	// $derived
 	readonly colorScheme = $derived.by(() => {
@@ -28,15 +30,11 @@ export class SettingsContext {
 		const resolved = user === 'system' ? system : user;
 		return { user, system, resolved };
 	});
-	readonly screen = $derived<App.Screen>(
+	readonly screen = $derived<Screen>(
 		this.#desktopQuery.current ? 'desktop' : this.#tabletQuery.current ? 'tablet' : 'mobile',
 	);
 
-	constructor(settings: {
-		language: App.Language;
-		colorScheme: App.ColorScheme;
-		splash: App.SplashOption;
-	}) {
+	constructor(settings: { language: Language; colorScheme: ColorScheme; splash: SplashOption }) {
 		$effect(() => {
 			if (browser) {
 				document.documentElement.dataset.colorScheme = this.colorScheme.user;
@@ -68,7 +66,7 @@ export class SettingsContext {
 		this.splash = settings.splash;
 	}
 
-	setUserColorScheme(colorScheme: App.ColorScheme) {
+	setUserColorScheme(colorScheme: ColorScheme) {
 		this.#userColorScheme = colorScheme;
 	}
 
@@ -88,9 +86,10 @@ export class SettingsContext {
 		if (!browser) {
 			return 'server';
 		} else {
-			const platform = // eslint-disable-next-line @typescript-eslint/no-explicit-any
-			(
-				(window.navigator as any).userAgentData?.platform ?? window.navigator.platform
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			const navigator = window.navigator as any;
+			const platform = (
+				navigator.userAgentData?.platform ?? window.navigator.platform
 			).toLowerCase();
 			if (platform.includes('mac')) {
 				return 'mac';
@@ -103,11 +102,7 @@ export class SettingsContext {
 		}
 	}
 
-	static set(settings: {
-		language: App.Language;
-		colorScheme: App.ColorScheme;
-		splash: App.SplashOption;
-	}) {
+	static set(settings: { language: Language; colorScheme: ColorScheme; splash: SplashOption }) {
 		return setContext(SettingsContext.KEY, new SettingsContext(settings));
 	}
 

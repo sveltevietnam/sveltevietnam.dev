@@ -1,4 +1,5 @@
 import { error } from '@sveltejs/kit';
+import type { Language } from '@sveltevietnam/i18n';
 
 import {
 	generateKitEntries,
@@ -52,7 +53,7 @@ export const load: PageServerLoad = async ({ params }) => {
 			lang: otherLang,
 			slug: otherLangMetadata?.slug ?? event.slug,
 		}),
-	} as Record<App.Language, string>;
+	} as Record<Language, string>;
 
 	return {
 		event,

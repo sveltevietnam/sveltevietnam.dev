@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import { COLOR_SCHEMES, SPLASH_OPTIONS } from '@sveltevietnam/kit/constants';
 	import { superForm } from 'sveltekit-superforms';
 
 	import { beforeNavigate } from '$app/navigation';
@@ -8,7 +9,6 @@
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { SplashScreenPlayground } from '$lib/components/splash-screen-playground';
-	import { COLOR_SCHEMES, SPLASH_OPTIONS } from '$lib/constants';
 	import { NotificationContext } from '$lib/notifications/context.svelte';
 	import * as pagefind from '$lib/pagefind/attributes';
 	import { RoutingContext } from '$lib/routing/context.svelte';
@@ -37,7 +37,9 @@
 				// -> check and update color scheme accordingly & fire notification
 				settings.setUserColorScheme($form.colorScheme);
 				noti.toaster.success({
-					message: data.default ? m['notifications.settings.default'] : m['notifications.settings.saved'],
+					message: data.default
+						? m['notifications.settings.default']
+						: m['notifications.settings.saved'],
 				});
 			}
 		},

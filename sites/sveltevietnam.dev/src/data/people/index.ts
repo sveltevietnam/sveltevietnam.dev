@@ -1,3 +1,4 @@
+import type { Language } from '@sveltevietnam/i18n';
 import type { Picture } from 'vite-imagetools';
 
 import type * as t from './types';
@@ -26,7 +27,7 @@ export const ids = Object.keys(modules).map((path) => path.split('/')[1]);
 
 export async function loadPerson(
 	id: string,
-	lang: App.Language,
+	lang: Language,
 	optionalModules?: Partial<t.PersonOptionalModules> | true,
 ): Promise<t.Person | null> {
 	const path = `./${id}/index.ts`;
@@ -50,7 +51,7 @@ export async function loadPerson(
 }
 
 export async function loadAllPeople(
-	lang: App.Language,
+	lang: Language,
 	optionalModules?: Partial<t.PersonOptionalModules> | true,
 ): Promise<t.Person[]> {
 	return Promise.all(ids.map((id) => loadPerson(id, lang, optionalModules))).then((people) =>
@@ -58,10 +59,7 @@ export async function loadAllPeople(
 	);
 }
 
-export async function loadPersonOgImage(
-	id: string,
-	lang: App.Language,
-): Promise<string | undefined> {
+export async function loadPersonOgImage(id: string, lang: Language): Promise<string | undefined> {
 	const path = `./${id}/og.${lang}.jpg`;
 	if (path in ogImageModules) return ogImageModules[path]();
 	const universalPath = `./${id}/og.jpg`;

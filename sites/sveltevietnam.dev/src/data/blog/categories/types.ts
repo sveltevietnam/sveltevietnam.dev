@@ -1,3 +1,4 @@
+import type { Language } from '@sveltevietnam/i18n';
 import type { Picture } from 'vite-imagetools';
 
 export type BlogCategory = {
@@ -10,7 +11,7 @@ export type BlogCategory = {
 };
 
 export type MinimalBlogCategory = Omit<BlogCategory, 'id'>;
-export type BlogCategoryDefinition = (lang: App.Language) => MinimalBlogCategory;
+export type BlogCategoryDefinition = (lang: Language) => MinimalBlogCategory;
 export type BlogCategoryOptionalModules = {
 	thumbnail?: boolean;
 	ogImage?: boolean;

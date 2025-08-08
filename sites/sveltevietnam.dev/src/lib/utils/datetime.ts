@@ -1,3 +1,5 @@
+import type { Language } from '@sveltevietnam/i18n';
+
 /**
  * https://www.w3.org/TR/NOTE-datetime
  * @param date
@@ -52,7 +54,7 @@ export function formatDate(date: Date | number | string): string {
 		.padStart(2, '0')}`;
 }
 
-export function formatFullDateAndTime(lang: App.Language, date: Date | number | string): string {
+export function formatFullDateAndTime(lang: Language, date: Date | number | string): string {
 	if (!isValidDate(date)) return date.toString();
 	date = new Date(date);
 	const formatter = Intl.DateTimeFormat(lang, {
@@ -85,7 +87,7 @@ export function formatDateAndTime(
 	return `${formatDate(date)} ${formatTime(date)}`;
 }
 
-export function formateDateForBlog(lang: App.Language, date: Date | number | string): string {
+export function formateDateForBlog(lang: Language, date: Date | number | string): string {
 	if (!isValidDate(date)) return date.toString();
 	const str = new Date(date).toLocaleDateString(lang, {
 		month: 'long',
@@ -97,7 +99,7 @@ export function formateDateForBlog(lang: App.Language, date: Date | number | str
 /**
  * ms is directional (negative for past, positive for future)
  */
-export function formatRelativeTime(lang: App.Language, ms: number) {
+export function formatRelativeTime(lang: Language, ms: number) {
 	const rtf = new Intl.RelativeTimeFormat(lang, { style: 'long' });
 
 	const seconds = ms / 1000;
@@ -126,7 +128,7 @@ export function formatRelativeTime(lang: App.Language, ms: number) {
 /**
  * Format month in localized long format
  */
-export function formatLongMonth(lang: App.Language, date: Date | number | string): string {
+export function formatLongMonth(lang: Language, date: Date | number | string): string {
 	if (!isValidDate(date)) return date.toString();
 	date = new Date(date);
 	const formatter = Intl.DateTimeFormat(lang, {
@@ -138,7 +140,7 @@ export function formatLongMonth(lang: App.Language, date: Date | number | string
 /**
  * Format weekday in localized long format
  */
-export function formatLongWeekDay(lang: App.Language, date: Date | number | string) {
+export function formatLongWeekDay(lang: Language, date: Date | number | string) {
 	if (!isValidDate(date)) return date.toString();
 	date = new Date(date);
 	const formatter = Intl.DateTimeFormat(lang, {

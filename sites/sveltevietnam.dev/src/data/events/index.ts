@@ -1,3 +1,4 @@
+import type { Language } from '@sveltevietnam/i18n';
 import type { Component } from 'svelte';
 import type { Picture } from 'vite-imagetools';
 
@@ -41,7 +42,7 @@ export const ids = Object.keys(metadataModules)
 	.map((path) => path.split('/')[1])
 	.sort((a, b) => (a > b ? -1 : 1));
 
-export async function generateKitEntries(): Promise<{ lang: App.Language; slug: string }[]> {
+export async function generateKitEntries(): Promise<{ lang: Language; slug: string }[]> {
 	return (
 		await Promise.all(
 			ids.map(async (id) => {
@@ -61,7 +62,7 @@ export async function generateKitEntries(): Promise<{ lang: App.Language; slug: 
 
 export async function loadEventMetadata(
 	id: string,
-	lang: App.Language,
+	lang: Language,
 ): Promise<t.EventMetadata | null> {
 	const path = `./${id}/metadata.ts`;
 	if (!metadataModules[path]) return null;
@@ -78,7 +79,7 @@ export async function loadEventMetadata(
 
 export async function loadEventAdditionalStructuredData(
 	id: string,
-	lang: App.Language,
+	lang: Language,
 	origin: string,
 ): Promise<t.EventAdditionalStructuredData | null> {
 	const path = `./${id}/additionalStructuredData.ts`;
@@ -102,7 +103,7 @@ export async function loadEventOgImage(id: string): Promise<string | undefined> 
 
 export async function loadEventBySlug(
 	slug: string,
-	lang: App.Language,
+	lang: Language,
 ): Promise<t.EventMetadata | null> {
 	const metadatas = (await Promise.all(ids.map((id) => loadEventMetadata(id, lang)))).filter(
 		Boolean,
@@ -119,7 +120,7 @@ export async function loadEventContent(id: string): Promise<Component | null> {
 }
 
 export async function loadEvents(
-	lang: App.Language,
+	lang: Language,
 	page: number,
 	per: number,
 ): Promise<{
@@ -136,14 +137,14 @@ export async function loadEvents(
 	};
 }
 
-export async function loadAllEvents(lang: App.Language): Promise<t.EventMetadata[]> {
+export async function loadAllEvents(lang: Language): Promise<t.EventMetadata[]> {
 	return Promise.all(ids.map((id) => loadEventMetadata(id, lang))).then((events) =>
 		events.filter(Boolean),
 	);
 }
 
 export async function loadEventsByPersonId(
-	lang: App.Language,
+	lang: Language,
 	personId: string,
 	page: number,
 	per: number,

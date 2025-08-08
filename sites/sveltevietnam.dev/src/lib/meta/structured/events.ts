@@ -1,3 +1,4 @@
+import type { Language } from '@sveltevietnam/i18n';
 import type { SocialEvent } from 'schema-dts';
 
 import type { EventMetadata } from '$data/events';
@@ -7,7 +8,7 @@ import { buildStructuredOrganization } from './organization';
 import { buildStructuredTextWithLang } from './utils';
 
 export function buildStructuredEvent(
-	lang: App.Language,
+	lang: Language,
 	origin: string,
 	event: EventMetadata,
 	additionals?: Partial<SocialEvent> | null,

@@ -1,4 +1,5 @@
 import { error } from '@sveltejs/kit';
+import type { Language } from '@sveltevietnam/i18n';
 
 import { searchBlogPosts } from '$data/blog/posts';
 import { loadEventsByPersonId } from '$data/events';
@@ -50,7 +51,7 @@ export const load: PageServerLoad = async ({ url, params }) => {
 	const paths = {
 		[lang]: p['/:lang/people/:id']({ lang, id: person.id }),
 		[otherLang]: p['/:lang/people/:id']({ lang: otherLang, id: person.id }),
-	} as Record<App.Language, string>;
+	} as Record<Language, string>;
 
 	return {
 		person,

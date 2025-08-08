@@ -1,3 +1,4 @@
+import type { Language } from '@sveltevietnam/i18n';
 import type { Person } from 'schema-dts';
 
 import * as p from '$data/routes/generated';
@@ -5,7 +6,7 @@ import * as p from '$data/routes/generated';
 import { buildStructuredTextWithLang } from './utils';
 
 export function buildStructuredPerson(
-	lang: App.Language,
+	lang: Language,
 	origin: string,
 	person: import('$data/people').Person,
 ): Person {

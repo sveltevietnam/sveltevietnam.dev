@@ -1,3 +1,4 @@
+import type { Language } from '@sveltevietnam/i18n';
 import type { Organization } from 'schema-dts';
 
 import { EMAILS } from '$data/emails';
@@ -19,7 +20,7 @@ const locales = {
 };
 
 export function buildStructuredOrganization(
-	lang: App.Language,
+	lang: Language,
 	origin: string,
 ): Organization & { '@id': string } {
 	const locale = locales[lang];

@@ -1,3 +1,4 @@
+import type { Language } from '@sveltevietnam/i18n';
 import type { Thing, WithContext } from 'schema-dts';
 
 export function withContext<T extends Thing>(data: T) {
@@ -15,10 +16,10 @@ export function toStringWithContext<T extends Thing>(data: T | T[]): string {
 	return JSON.stringify(withContext(data));
 }
 
-export function buildStructuredTextWithLang(lang: App.Language, value: string) {
+export function buildStructuredTextWithLang(lang: Language, value: string) {
 	return {
 		'@language': lang,
 		'@value': value,
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	} as any;
-};
+}

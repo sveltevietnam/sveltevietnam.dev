@@ -1,10 +1,11 @@
 import { SUBSCRIPTION_CHANNELS } from '@sveltevietnam/backend/data/subscribers/channels';
 import { LANGUAGES } from '@sveltevietnam/i18n';
+import type { Language } from '@sveltevietnam/i18n';
 import * as v from 'valibot';
 
 import * as m from '$data/locales/generated/messages';
 
-export const createSubcriberUpsertSchema = (lang: App.Language) => {
+export const createSubcriberUpsertSchema = (lang: Language) => {
 	return v.object({
 		name: v.pipe(v.string(), v.nonEmpty(m['inputs.name.errors.nonempty'](lang))),
 		email: v.pipe(
@@ -25,7 +26,7 @@ export const createSubcriberUpsertSchema = (lang: App.Language) => {
 };
 export type SubscribeUpsertInput = v.InferInput<ReturnType<typeof createSubcriberUpsertSchema>>;
 
-export const createSubscriberUpdateSchema = (lang: App.Language) => {
+export const createSubscriberUpdateSchema = (lang: Language) => {
 	return v.object({
 		...createSubcriberUpsertSchema(lang).entries,
 		id: v.pipe(v.string(), v.nonEmpty(m['inputs.id.errors.nonempty'](lang))),

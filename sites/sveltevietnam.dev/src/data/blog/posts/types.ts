@@ -1,3 +1,4 @@
+import type { Language } from '@sveltevietnam/i18n';
 import type { Picture } from 'vite-imagetools';
 
 import type { BlogCategory } from '$data/blog/categories';
@@ -65,4 +66,4 @@ export type ExtendedBlogPostMetadata = Omit<
 	thumbnail?: Picture;
 };
 
-export type BlogPostMetadataDefinition = (lang: App.Language) => MinimalBlogPostMetadata;
+export type BlogPostMetadataDefinition = (lang: Language) => MinimalBlogPostMetadata;

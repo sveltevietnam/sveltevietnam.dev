@@ -1,3 +1,4 @@
+import type { Language } from '@sveltevietnam/i18n';
 import type { SocialEvent } from 'schema-dts';
 import type { Picture } from 'vite-imagetools';
 
@@ -23,9 +24,9 @@ export type EventMetadata = {
 };
 
 export type MinimalEventMetadata = Omit<EventMetadata, 'id'>;
-export type EventMetadataDefinition = (lang: App.Language) => MinimalEventMetadata;
+export type EventMetadataDefinition = (lang: Language) => MinimalEventMetadata;
 export type EventAdditionalStructuredData = Partial<SocialEvent>;
 export type EventAdditionalStructuredDataDefinition = (
-	lang: App.Language,
+	lang: Language,
 	origin: string,
 ) => EventAdditionalStructuredData;

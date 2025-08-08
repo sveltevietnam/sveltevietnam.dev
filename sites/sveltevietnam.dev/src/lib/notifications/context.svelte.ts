@@ -1,8 +1,7 @@
 import { stack as createStack } from '@svelte-put/async-stack';
 import type { Message, MessageType } from '@sveltevietnam/i18n/runtime';
+import { STATUSES, type Status } from '@sveltevietnam/kit/constants';
 import { getContext, setContext } from 'svelte';
-
-import { STATUSES } from '$lib/constants';
 
 import Toast from './components/Toast.svelte';
 
@@ -29,7 +28,7 @@ export function createNotificationStack() {
 				});
 			return acc;
 		},
-		{} as Record<App.Status, PushToast>,
+		{} as Record<Status, PushToast>,
 	);
 
 	return {

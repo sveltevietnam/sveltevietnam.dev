@@ -1,4 +1,5 @@
 import { error } from '@sveltejs/kit';
+import type { Language } from '@sveltevietnam/i18n';
 
 import { loadBlogCategory, loadBlogCategoryBySlug } from '$data/blog/categories';
 import { searchBlogPosts } from '$data/blog/posts';
@@ -44,7 +45,7 @@ export const load: PageServerLoad = async ({ url, params }) => {
 			lang: otherLang,
 			slug: otherLangMetadata?.slug ?? category.slug,
 		}),
-	} as Record<App.Language, string>;
+	} as Record<Language, string>;
 
 	return {
 		category,

@@ -22,7 +22,9 @@
 	import { SearchContext } from '$lib/search/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
-	let { children, data } = $props();
+	import type { LayoutProps } from './$types';
+
+	let { children, data }: LayoutProps = $props();
 
 	const ogImage = {
 		en: ogImageEn,

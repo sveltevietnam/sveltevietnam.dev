@@ -1,9 +1,10 @@
+import type { Language } from '@sveltevietnam/i18n';
 import type { BreadcrumbList } from 'schema-dts';
 
 import { buildStructuredTextWithLang } from './utils';
 
 export function buildStructuredBreadcrumbs(
-	lang: App.Language,
+	lang: Language,
 	origin: string,
 	routes: { path: string; name: string }[],
 ): BreadcrumbList {

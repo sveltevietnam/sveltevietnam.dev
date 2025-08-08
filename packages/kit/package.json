@@ -1,0 +1,73 @@
+{
+	"name": "@sveltevietnam/kit",
+	"version": "1.0.0-next",
+	"description": "reusable bits for Svelte Vietnam projects",
+	"private": true,
+	"main": "src/index.js",
+	"module": "src/index.js",
+	"types": "types/index.d.ts",
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./types/index.d.ts",
+			"import": "./src/index.js"
+		},
+		"./constants": {
+			"types": "./types/index.d.ts",
+			"import": "./src/constants.js"
+		},
+		"./hooks": {
+			"types": "./types/index.d.ts",
+			"import": "./src/hooks.js"
+		}
+	},
+	"publishconfig": {
+		"access": "public",
+		"provenance": true
+	},
+	"files": [
+		"src",
+		"types"
+	],
+	"license": "MIT",
+	"author": {
+		"email": "developers@sveltevietnam.dev",
+		"name": "Svelte Vietnam",
+		"url": "https://github.com/sveltevietnam"
+	},
+	"homepage": "https://www.sveltevietnam.dev",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sveltevietnam/sveltevietnam.dev.git",
+		"directory": "packages/kit"
+	},
+	"bugs": {
+		"url": "https://github.com/sveltevietnam/sveltevietnam.dev/issues"
+	},
+	"keywords": [
+		"svelte",
+		"design system",
+		"resuable",
+		"utilities",
+		"components",
+		"constants"
+	],
+	"scripts": {
+		"prepublishOnly": "dts-buddy && publint",
+		"dts": "dts-buddy && publint",
+		"lint": "run-p lint:*",
+		"lint:svelte": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"lint:es": "eslint .",
+		"lint:style": "stylelint '**/*.{svelte,css}'",
+		"format": "prettier --write --ignore-path=../../.prettierignore --config=../../prettier.config.js ."
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20250807.0",
+		"@sveltejs/kit": "^2.27.3",
+		"svelte": "^5.38.0",
+		"vite": "^7.1.1"
+	},
+	"dependencies": {
+		"@sveltevietnam/i18n": "workspace:*"
+	}
+}

@@ -1,4 +1,5 @@
 import { error } from '@sveltejs/kit';
+import type { Language } from '@sveltevietnam/i18n';
 
 import {
 	loadBlogPostBySlug,
@@ -65,7 +66,7 @@ export const load: PageServerLoad = async (event) => {
 			lang: otherLang,
 			slug: otherLangMetadata?.slug ?? post.slug,
 		}),
-	} as Record<App.Language, string>;
+	} as Record<Language, string>;
 
 	let bluesky: null | { accountId: string; postId: string } = null;
 	const backend = getBackend(event, false);

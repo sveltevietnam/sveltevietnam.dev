@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { StackItem } from '@svelte-put/async-stack';
 	import { T } from '@sveltevietnam/i18n';
+	import { STATUSES, type Status } from '@sveltevietnam/kit/constants';
 
 	import { asset } from '$app/paths';
 	import * as m from '$data/locales/generated/messages';
 	import { BlogPostListItem } from '$lib/components/blog-post-list-item';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { IntroSeparator } from '$lib/components/intro-separator';
-	import { STATUSES } from '$lib/constants';
 	import BaseNotification from '$lib/notifications/components/BaseNotification.svelte';
 	import * as pagefind from '$lib/pagefind/attributes';
 	import { RoutingContext } from '$lib/routing/context.svelte';
@@ -36,7 +36,7 @@
 	};
 
 	const routing = RoutingContext.get();
-	let status = $state<App.Status>('info');
+	let status = $state<Status>('info');
 	let [markCls, calloutCls] = $derived([MARK_CLASSES[status], CALLOUT_CLASSES[status]]);
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const item = new StackItem({ id: 'sample', timeout: 0, variant: 'custom' } as any);
@@ -320,7 +320,13 @@
 				<T message={m['pages.design.logo.inspiration.heading']} />
 			</h3>
 			<p>
-				<img class="h-20 w-20 float-right" height="40" width="40" alt="" src={asset('/favicon.svg')} />
+				<img
+					class="float-right h-20 w-20"
+					height="40"
+					width="40"
+					alt=""
+					src={asset('/favicon.svg')}
+				/>
 				<T message={m['pages.design.logo.inspiration.desc']} />
 			</p>
 			<div class="tablet:grid-cols-[auto_auto_auto] grid w-fit grid-cols-2 gap-6">

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { clickoutside } from '@svelte-put/clickoutside';
 	import { T } from '@sveltevietnam/i18n';
+	import type { ColorScheme } from '@sveltevietnam/kit/constants';
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	import * as m from '$data/locales/generated/messages';
@@ -74,7 +75,7 @@
 							method="GET"
 							onsubmit={(e) => {
 								e.preventDefault();
-								settings.setUserColorScheme(key as App.ColorScheme);
+								settings.setUserColorScheme(key as ColorScheme);
 								open = false;
 							}}
 						>

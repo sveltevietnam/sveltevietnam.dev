@@ -1,6 +1,7 @@
 import type { RequestEvent } from '@sveltejs/kit';
 import { error, fail } from '@sveltejs/kit';
 import type { SubscriptionChannel } from '@sveltevietnam/backend/data/subscribers/channels';
+import type { Language } from '@sveltevietnam/i18n';
 import { valibot } from 'sveltekit-superforms/adapters';
 import { setError, superValidate } from 'sveltekit-superforms/server';
 
@@ -15,7 +16,7 @@ import {
 } from './schema';
 
 export const upsert = {
-	async load(lang: App.Language, channel: SubscriptionChannel) {
+	async load(lang: Language, channel: SubscriptionChannel) {
 		const schema = createSubcriberUpsertSchema(lang);
 		return await superValidate(
 			{
@@ -68,7 +69,7 @@ export const upsert = {
 };
 
 export const update = {
-	async load(lang: App.Language, mail: Omit<SubscriberUpdateInput, 'turnstile'>) {
+	async load(lang: Language, mail: Omit<SubscriberUpdateInput, 'turnstile'>) {
 		const schema = createSubscriberUpdateSchema(lang);
 		return await superValidate(mail, valibot(schema), {
 			errors: false,

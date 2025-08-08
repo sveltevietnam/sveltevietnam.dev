@@ -1,8 +1,9 @@
+import type { Language } from '@sveltevietnam/i18n';
 import { defineConfig } from '@sveltevietnam/routes/vite';
 
 import type { AllRoutePath } from './generated/types';
 
-export default defineConfig<AllRoutePath, App.Language>({
+export default defineConfig<AllRoutePath, Language>({
 	outdir: 'src/data/routes/generated',
 	debug: true,
 	exclude: ['/'],

@@ -44,3 +44,8 @@ dist/
 
 # debugging artifacts
 .vscode/launch.json
+
+# misc development artifacts
+**/generated/
+**/static/pagefind/
+preprocess-inline-svg.d.ts
