@@ -23,6 +23,10 @@
 		"./utilities": {
 			"types": "./types/index.d.ts",
 			"import": "./src/utilities/index.js"
+		},
+		"./components": {
+			"types": "./types/index.d.ts",
+			"import": "./src/components/index.js"
 		}
 	},
 	"publishconfig": {
@@ -75,6 +79,7 @@
 		"vite": "^7.1.1"
 	},
 	"dependencies": {
+		"@svelte-put/clickoutside": "^4.0.0",
 		"@sveltevietnam/i18n": "workspace:*"
 	}
 }

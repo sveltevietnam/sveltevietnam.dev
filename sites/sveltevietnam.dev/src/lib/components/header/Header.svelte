@@ -2,13 +2,13 @@
 	import type { StackItem } from '@svelte-put/async-stack';
 	import { shortcut, type ShortcutEventDetail } from '@svelte-put/shortcut';
 	import { T } from '@sveltevietnam/i18n';
+	import { LanguageMenu, type LanguageMenuProps } from '@sveltevietnam/kit/components';
 	import { ScrollToggler } from '@sveltevietnam/kit/utilities';
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import { ColorSchemeMenu } from '$lib/components/color-scheme-menu';
-	import { LanguageMenu } from '$lib/components/language-menu';
 	import { PageMenu } from '$lib/components/page-menu';
 	import { SocialLinks } from '$lib/components/social-links';
 	import { SearchDialog } from '$lib/dialogs/components/search-dialog';
@@ -36,7 +36,7 @@
 			isPageMenuOpen = false;
 			isLanguageMenuOpen = false;
 		}
-	})
+	});
 	$effect(() => {
 		if (settings.screen === 'desktop') {
 			isMobileMenuOpen = false;
@@ -64,6 +64,23 @@
 			});
 		}
 	}
+
+	const languageMenuProps: LanguageMenuProps = $derived({
+		i18n: {
+			aria: m['components.language_menu.aria'],
+			open: m.open,
+			menu: m.menu,
+			switchTo: m['components.language_menu.switch_to'],
+			vietnamese: m['languages.vietnamese'],
+			english: m['languages.english'],
+		},
+		routing: {
+			vi: routing.paths.vi,
+			en: routing.paths.en,
+		},
+		hydrated: !!settings.hydrated,
+		lang: settings.language,
+	});
 </script>
 
 <svelte:window
@@ -129,7 +146,7 @@
 				</span>
 			</button>
 			<ColorSchemeMenu bind:open={isColorSchemeMenuOpen} />
-			<LanguageMenu bind:open={isLanguageMenuOpen} />
+			<LanguageMenu {...languageMenuProps} bind:open={isLanguageMenuOpen} />
 			<PageMenu bind:open={isPageMenuOpen} />
 		</div>
 	</div>
@@ -173,7 +190,7 @@
 				<div class="_mobile-menu-content max-w-pad overflow-auto border-b py-8">
 					<div class="z-1 relative flex flex-wrap items-center justify-center gap-4">
 						<ColorSchemeMenu class="border border-current" />
-						<LanguageMenu class="border border-current" />
+						<LanguageMenu {...languageMenuProps} class="border border-current" />
 					</div>
 					<PageMenu
 						class="max-w-100 relative z-0 mx-auto mb-8 mt-4"

@@ -5,3 +5,4 @@
 @import './splash.css';
 
 @source '../../../../../packages/markdown/src/**/*.{svelte,js}';
+@source '../../../../../packages/kit/src/**/*.{svelte,js}';
