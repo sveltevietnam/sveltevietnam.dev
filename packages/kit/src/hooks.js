@@ -4,13 +4,19 @@ import { getLangFromUrl } from '@sveltevietnam/i18n/utils';
 import { COMMON_COOKIE_CONFIG, PUBLIC_COOKIE_CONFIG } from './constants';
 
 /**
- * @param {{ cookieName: string }} options
+ * @typedef LangServerHookOptions
+ * @property {string} cookieName - name of the cookie to store the language.
+ * @property {string | boolean} [transform] - whether to inject the placeholder in returned html with the language value. Defaults to `%language%`.
+ */
+
+/**
+ * @param {LangServerHookOptions} options
  * @returns {import('@sveltejs/kit').Handle}
  */
 export const createLangServerHook = function (options) {
 	return function ({ event, resolve }) {
-		const { locals, cookies, url, platform, request, route } = event;
-		const { cookieName } = options;
+		const { locals, cookies, url, platform, request } = event;
+		const { cookieName, transform } = options;
 
 		// setting internal referer
 		const referer = request.headers.get('Referer');
@@ -52,25 +58,29 @@ export const createLangServerHook = function (options) {
 		// setting cookies
 		cookies.set(cookieName, locals.language, COMMON_COOKIE_CONFIG);
 
-		// return early if fetching api routes
-		if (route.id?.includes('(api)')) {
-			return resolve(event);
-		}
-
+		if (transform === false) return resolve(event);
+		const placeholder = typeof transform === 'string' ? transform : '%language%';
 		return resolve(event, {
-			transformPageChunk: ({ html }) => html.replace('%language%', locals.language),
+			transformPageChunk: ({ html }) => html.replace(placeholder, locals.language),
 		});
 	};
 };
 
 /**
- * @param {{ cookieName: string, building: boolean }} options
+ * @typedef ColorSchemeServerHookOptions
+ * @property {string} cookieName - name of the cookie to store the color scheme.
+ * @property {boolean} building - usually import('$app/environment').building
+ * @property {boolean | string} [transform] - whether to inject the placeholder in returned html with the color scheme value. Defaults to `%color-scheme%`.
+ */
+
+/**
+ * @param {ColorSchemeServerHookOptions} options
  * @returns {import('@sveltejs/kit').Handle}
  */
 export const createColorSchemeServerHook = function (options) {
 	return async function ({ event, resolve }) {
-		const { locals, cookies, route, url } = event;
-		const { cookieName, building } = options;
+		const { locals, cookies, url } = event;
+		const { cookieName, building, transform } = options;
 
 		// setting locals
 		locals.colorScheme =
@@ -82,25 +92,29 @@ export const createColorSchemeServerHook = function (options) {
 		// setting cookies
 		cookies.set(cookieName, locals.colorScheme, PUBLIC_COOKIE_CONFIG);
 
-		// return early if fetching api routes
-		if (route.id?.includes('(api)')) {
-			return resolve(event);
-		}
-
+		if (transform === false) return resolve(event);
+		const placeholder = typeof transform === 'string' ? transform : '%color-scheme%';
 		return await resolve(event, {
-			transformPageChunk: ({ html }) => html.replace('%color-scheme%', locals.colorScheme),
+			transformPageChunk: ({ html }) => html.replace(placeholder, locals.colorScheme),
 		});
 	};
 };
 
 /**
- * @param {{ splashCookieName: string; freshVisitCookieName: string; }} options
+ * @typedef SplashServerHookOptions
+ * @property {string} splashCookieName - name of the cookie to store the splash option.
+ * @property {string} freshVisitCookieName - name of the cookie to store the last fresh visit timestamp.
+ * @property {boolean | string} [transform] - whether to inject the placeholder in returned html with the splash value. Defaults to `%splash%`.
+ */
+
+/**
+ * @param {SplashServerHookOptions} options
  * @returns {import('@sveltejs/kit').Handle}
  */
 export function createSplashServerHook(options) {
 	return async function ({ event, resolve }) {
-		const { locals, cookies, route, request, url } = event;
-		const { splashCookieName, freshVisitCookieName } = options;
+		const { locals, cookies, request, url } = event;
+		const { splashCookieName, freshVisitCookieName, transform } = options;
 
 		// setting internal referer
 		const referer = request.headers.get('Referer');
@@ -117,11 +131,6 @@ export function createSplashServerHook(options) {
 
 		// setting cookies
 		cookies.set(splashCookieName, locals.splash, COMMON_COOKIE_CONFIG);
-
-		// return early if fetching api routes
-		if (route.id?.includes('(api)')) {
-			return resolve(event);
-		}
 
 		/**
 		 * take a timestamp for the last fresh visit, that is:
@@ -148,8 +157,10 @@ export function createSplashServerHook(options) {
 			});
 		}
 
+		if (transform === false) return resolve(event);
+		const placeholder = typeof transform === 'string' ? transform : '%splash%';
 		return await resolve(event, {
-			transformPageChunk: ({ html }) => html.replace('%splash%', splash),
+			transformPageChunk: ({ html }) => html.replace(placeholder, splash),
 		});
 	};
 }
