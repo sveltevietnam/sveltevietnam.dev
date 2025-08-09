@@ -16,6 +16,7 @@ export interface LanguageMenuProps extends HTMLAttributes<HTMLElement> {
 		vi: string;
 		en: string;
 	};
+	alwaysShowLabel?: boolean;
 	hydrated?: boolean;
 	lang: Language;
 	/** @bindable */

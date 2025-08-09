@@ -7,6 +7,7 @@
 		routing,
 		hydrated,
 		lang,
+		alwaysShowLabel = false,
 		open = $bindable(false),
 		class: cls,
 		...rest
@@ -32,6 +33,13 @@
 		<span class="sr-only">
 			<T message={i18n.open} />
 			<T message={i18n.menu} />
+		</span>
+		<span class={[!alwaysShowLabel && 'tablet:sr-only']} aria-hidden="true">
+			{#if lang === 'vi'}
+				<T message={i18n.vietnamese} />
+			{:else}
+				<T message={i18n.english} />
+			{/if}
 		</span>
 		<i class="i i-[ph--caret-down] h-5 w-5 transition-transform peer-checked:-rotate-180"></i>
 	</label>
