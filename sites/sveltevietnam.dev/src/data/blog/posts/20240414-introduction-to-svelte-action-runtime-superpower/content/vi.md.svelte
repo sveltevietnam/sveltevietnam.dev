@@ -1,5 +1,23 @@
 <script>
-  import { ColorSchemeMenu } from '$lib/components/color-scheme-menu';
+  import { ColorSchemeMenu } from '@sveltevietnam/kit/components';
+	import * as m from '$data/locales/generated/messages';
+  import { SettingsContext } from '$lib/settings/context.svelte';
+
+	const settings = SettingsContext.get();
+
+	const colorSchemeMenuProps = $derived({
+		i18n: {
+			aria: m['components.color_scheme_menu.aria'],
+			open: m.open,
+			light: m['components.color_scheme_menu.light'],
+			dark: m['components.color_scheme_menu.dark'],
+			system: m['components.color_scheme_menu.system'],
+		},
+		hydrated: !!settings.hydrated,
+		colorScheme: settings.colorScheme.user,
+    alwaysShowLabel: true,
+		onselect: (scheme) => settings.setUserColorScheme(scheme),
+	});
 </script>
 
 [Svelte action] (phân biệt với [SvelteKit form action](https://kit.svelte.dev/docs/form-actions)) là một kĩ thuật giúp dễ dàng thiết lập và đóng gói để tái sử dụng các thao tác xử lý logic và tương tác với DOM:
@@ -24,8 +42,8 @@ Không cần đâu xa, chính trang *sveltevietnam.dev* mà bạn đang đọc �
 Có lẽ một trong những ứng dụng phổ biến nhất của Svelte action là xử lý sự kiện click bên ngoài một phần tử DOM. Ví dụ ngay trên trang này, khi bạn sử dụng bảng chọn chế độ màu (<i class="i i-[ph--palette] h-6 w-6"></i>) hoặc ngôn ngữ (<i class="i i-[ph--translate] h-6 w-6"></i>) tại thanh công cụ phía trên (hoặc thông qua bảng chọn <i class="i i-[ph--list] h-6 w-6"></i> trên thiết bị di động), bạn có thể bấm ở bất cứ đâu trên trang để đóng bảng chọn khi nó đang mở.
 </p>
 
-<div class="p-2 border not-prose relative z-popup float-right inline-block ml-4 mt-4">
-  <ColorSchemeMenu />
+<div class="border not-prose relative z-popup float-right inline-block ml-4 mt-4">
+  <ColorSchemeMenu {...colorSchemeMenuProps} />
 </div>
 
 </div>

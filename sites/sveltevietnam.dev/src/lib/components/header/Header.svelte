@@ -2,13 +2,17 @@
 	import type { StackItem } from '@svelte-put/async-stack';
 	import { shortcut, type ShortcutEventDetail } from '@svelte-put/shortcut';
 	import { T } from '@sveltevietnam/i18n';
-	import { LanguageMenu, type LanguageMenuProps } from '@sveltevietnam/kit/components';
+	import {
+		LanguageMenu,
+		type LanguageMenuProps,
+		ColorSchemeMenu,
+		type ColorSchemeMenuProps,
+	} from '@sveltevietnam/kit/components';
 	import { ScrollToggler } from '@sveltevietnam/kit/utilities';
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
-	import { ColorSchemeMenu } from '$lib/components/color-scheme-menu';
 	import { PageMenu } from '$lib/components/page-menu';
 	import { SocialLinks } from '$lib/components/social-links';
 	import { SearchDialog } from '$lib/dialogs/components/search-dialog';
@@ -81,6 +85,19 @@
 		hydrated: !!settings.hydrated,
 		lang: settings.language,
 	});
+
+	const colorSchemeMenuProps: ColorSchemeMenuProps = $derived({
+		i18n: {
+			aria: m['components.color_scheme_menu.aria'],
+			open: m.open,
+			light: m['components.color_scheme_menu.light'],
+			dark: m['components.color_scheme_menu.dark'],
+			system: m['components.color_scheme_menu.system'],
+		},
+		hydrated: !!settings.hydrated,
+		colorScheme: settings.colorScheme.user,
+		onselect: (scheme) => settings.setUserColorScheme(scheme),
+	});
 </script>
 
 <svelte:window
@@ -145,7 +162,7 @@
 					<kbd>K</kbd>
 				</span>
 			</button>
-			<ColorSchemeMenu bind:open={isColorSchemeMenuOpen} />
+			<ColorSchemeMenu {...colorSchemeMenuProps} bind:open={isColorSchemeMenuOpen} />
 			<LanguageMenu {...languageMenuProps} bind:open={isLanguageMenuOpen} />
 			<PageMenu bind:open={isPageMenuOpen} />
 		</div>
@@ -189,7 +206,7 @@
 			<div class="overflow-hidden">
 				<div class="_mobile-menu-content max-w-pad overflow-auto border-b py-8">
 					<div class="z-1 relative flex flex-wrap items-center justify-center gap-4">
-						<ColorSchemeMenu class="border border-current" />
+						<ColorSchemeMenu {...colorSchemeMenuProps} class="border border-current" />
 						<LanguageMenu {...languageMenuProps} class="border border-current" />
 					</div>
 					<PageMenu

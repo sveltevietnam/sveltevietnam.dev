@@ -1,36 +1,32 @@
 <script lang="ts">
 	import { clickoutside } from '@svelte-put/clickoutside';
 	import { T } from '@sveltevietnam/i18n';
-	import type { ColorScheme } from '@sveltevietnam/kit/constants';
-	import type { HTMLAttributes } from 'svelte/elements';
 
-	import * as m from '$data/locales/generated/messages';
-	import { SettingsContext } from '$lib/settings/context.svelte';
+	import type { ColorScheme } from '../../constants';
 
 	let {
-		class: cls,
-		alwaysShowLabel = false,
+		i18n,
+		alwaysShowLabel,
+		hydrated,
 		open = $bindable(false),
+		colorScheme = 'system',
+		onselect,
+		class: cls,
 		...rest
-	}: HTMLAttributes<HTMLElement> & {
-		alwaysShowLabel?: boolean;
-		open?: boolean;
-	} = $props();
-
-	const settings = SettingsContext.get();
+	}: import('.').ColorSchemeMenuProps = $props();
 
 	const colorSchemes = $derived({
 		light: {
 			icon: 'i-[ph--sun]',
-			label: m['components.color_scheme_menu.light'],
+			label: i18n.light,
 		},
 		dark: {
 			icon: 'i-[ph--moon]',
-			label: m['components.color_scheme_menu.dark'],
+			label: i18n.dark,
 		},
 		system: {
 			icon: 'i-[ph--desktop]',
-			label: m['components.color_scheme_menu.system'],
+			label: i18n.system,
 		},
 	});
 </script>
@@ -54,28 +50,28 @@
 		/>
 		<i class="i i-[ph--palette] h-6 w-6"></i>
 		<span class="sr-only">
-			<T message={m.open} />
-			<T message={m['components.color_scheme_menu.aria']} />
+			<T message={i18n.open} />
+			<T message={i18n.aria} />
 		</span>
-		<span class={[alwaysShowLabel && 'tablet:sr-only']} aria-hidden="true">
-			<T message={colorSchemes[settings.colorScheme.user].label} />
+		<span class={[!alwaysShowLabel && 'tablet:sr-only']} aria-hidden="true">
+			<T message={colorSchemes[colorScheme].label} />
 		</span>
 		<i class="i i-[ph--caret-down] h-5 w-5 transition-transform peer-checked:-rotate-180"></i>
 	</label>
 	<div
 		class="_menu bg-surface absolute right-0 top-full mt-1.5 grid w-max"
-		inert={settings.hydrated && !open}
+		inert={hydrated && !open}
 	>
 		<div class="overflow-hidden">
 			<ul class="border-outline divide-outline divide-y border">
 				{#each Object.entries(colorSchemes) as [key, { icon, label }] (key)}
-					{@const current = settings.colorScheme.user === key}
+					{@const current = colorScheme === key}
 					<li>
 						<form
 							method="GET"
 							onsubmit={(e) => {
 								e.preventDefault();
-								settings.setUserColorScheme(key as ColorScheme);
+								onselect?.(key as ColorScheme);
 								open = false;
 							}}
 						>

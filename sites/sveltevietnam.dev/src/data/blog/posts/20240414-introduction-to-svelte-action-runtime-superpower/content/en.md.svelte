@@ -1,5 +1,23 @@
 <script>
-  import { ColorSchemeMenu } from '$lib/components/color-scheme-menu';
+  import { ColorSchemeMenu } from '@sveltevietnam/kit/components';
+	import * as m from '$data/locales/generated/messages';
+  import { SettingsContext } from '$lib/settings/context.svelte';
+
+	const settings = SettingsContext.get();
+
+	const colorSchemeMenuProps = $derived({
+		i18n: {
+			aria: m['components.color_scheme_menu.aria'],
+			open: m.open,
+			light: m['components.color_scheme_menu.light'],
+			dark: m['components.color_scheme_menu.dark'],
+			system: m['components.color_scheme_menu.system'],
+		},
+		hydrated: !!settings.hydrated,
+		colorScheme: settings.colorScheme.user,
+    alwaysShowLabel: true,
+		onselect: (scheme) => settings.setUserColorScheme(scheme),
+	});
 </script>
 
 [Svelte action] (different from [SvelteKit form action](https://kit.svelte.dev/docs/form-actions)) is a technique introduced first-party by Svelte that helps implement and package reusable logic and interaction with the DOM:
@@ -24,8 +42,8 @@ No need to go far, this very page you are reading on *sveltevietnam.dev* has qui
 Perhaps one of the most common applications of Svelte action that I use is handling click event <em>outside an element</em>. For example, if you use the dropdown menus for switching color schemes (<i class="i i-[ph--palette] h-6 w-6"></i>) or languages (<i class="i i-[ph--translate] h-6 w-6"></i>) at the top toolbar (or via the overlay menu <i class="i i-[ph--list] h-6 w-6"></i> on mobile), you might have noticed that when you click outside the dropdown, it will close automatically.
 </p>
 
-<div class="p-2 border not-prose relative z-popup float-right inline-block ml-4 mt-4">
-  <ColorSchemeMenu />
+<div class="border not-prose relative z-popup float-right inline-block ml-4 mt-4">
+  <ColorSchemeMenu {...colorSchemeMenuProps} />
 </div>
 
 </div>
