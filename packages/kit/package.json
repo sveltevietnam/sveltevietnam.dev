@@ -61,6 +61,9 @@
 		"lint:style": "stylelint '**/*.{svelte,css}'",
 		"format": "prettier --write --ignore-path=../../.prettierignore --config=../../prettier.config.js ."
 	},
+	"peerDependencies": {
+		"svelte": "^5.16.6"
+	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20250807.0",
 		"@sveltejs/kit": "^2.27.3",

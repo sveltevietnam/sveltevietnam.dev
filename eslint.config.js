@@ -32,7 +32,7 @@ const jsdocConfig = [
 ];
 
 /**
- * @param {import('@sveltejs/kit').Config} [svelteConfig]
+ * @param {import('@sveltejs/kit').Config | true} [svelteConfig]
  * @param {import('eslint').Linter.Config[]} [additionals]
  * @returns {Promise<import('eslint').Linter.Config>}
  */
@@ -42,7 +42,9 @@ export async function defineConfig(svelteConfig, additionals = []) {
 		...jsdocConfig,
 		...(await defineVnphanquangConfig({
 			gitignorePath,
-			...(svelteConfig ? { svelte: { config: svelteConfig } } : {}),
+			...(svelteConfig
+				? { svelte: typeof svelteConfig === 'boolean' ? true : { config: svelteConfig } }
+				: {}),
 		})),
 		...additionals,
 	]);
