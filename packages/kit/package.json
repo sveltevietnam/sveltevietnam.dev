@@ -19,6 +19,10 @@
 		"./hooks": {
 			"types": "./types/index.d.ts",
 			"import": "./src/hooks.js"
+		},
+		"./utilities": {
+			"types": "./types/index.d.ts",
+			"import": "./src/utilities/index.js"
 		}
 	},
 	"publishconfig": {

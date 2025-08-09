@@ -50,4 +50,4 @@ export async function defineConfig(svelteConfig, additionals = []) {
 	]);
 }
 
-export default defineConfig();
+export default defineConfig(true);

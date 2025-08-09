@@ -2,6 +2,7 @@
 	import type { StackItem } from '@svelte-put/async-stack';
 	import { shortcut, type ShortcutEventDetail } from '@svelte-put/shortcut';
 	import { T } from '@sveltevietnam/i18n';
+	import { ScrollToggler } from '@sveltevietnam/kit/utilities';
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	import * as m from '$data/locales/generated/messages';
@@ -23,10 +24,19 @@
 
 	let { class: cls, ...rest }: HTMLAttributes<HTMLElement> = $props();
 
+	const scrollToggler = new ScrollToggler();
+
 	let isColorSchemeMenuOpen = $state(false);
-	let isPageMenuOpen = $state(false);
+	let isPageMenuOpen = $derived(false);
 	let isLanguageMenuOpen = $state(false);
 	let isMobileMenuOpen = $state(false);
+	$effect(() => {
+		if (scrollToggler.hidden) {
+			isColorSchemeMenuOpen = false;
+			isPageMenuOpen = false;
+			isLanguageMenuOpen = false;
+		}
+	})
 	$effect(() => {
 		if (settings.screen === 'desktop') {
 			isMobileMenuOpen = false;
@@ -36,44 +46,11 @@
 		settings.toggleScrollLock(isMobileMenuOpen);
 	});
 
-	// on change scroll direction
-	// and has travelled for at least SCROLL_Y_THRESHOLD
-	// toggle the visibility of header
-	const MINIMUM_SCROLL_Y = 400;
-	const SCROLL_Y_DELTA_THRESHOLD = 100;
-	let lastScrollY = $state(0);
-	let lastDirection: 'up' | 'down' = 'down';
-	let lastScrollYAtDirectionChange = 0;
-	let shouldHideHeader = $state(false);
-
-	function onScroll() {
-		const { scrollY } = window;
-		const direction = scrollY > lastScrollY ? 'down' : 'up';
-
-		if (scrollY < MINIMUM_SCROLL_Y) {
-			shouldHideHeader = false;
-		} else if (direction !== lastDirection) {
-			lastScrollYAtDirectionChange = scrollY;
-		} else if (Math.abs(scrollY - lastScrollYAtDirectionChange) > SCROLL_Y_DELTA_THRESHOLD) {
-			if (direction === 'up') {
-				shouldHideHeader = false;
-			} else {
-				shouldHideHeader = true;
-				isColorSchemeMenuOpen = isPageMenuOpen = isLanguageMenuOpen = false;
-			}
-		}
-
-		lastScrollY = scrollY;
-		lastDirection = direction;
-	}
-
-	let toolbarBackdropOpacity = $derived(
-		!settings.hydrated ? 1 : Math.min((lastScrollY * 2) / MINIMUM_SCROLL_Y, 1),
-	);
+	let toolbarBackdropOpacity = $derived(scrollToggler.minScrollProgress);
 
 	const linkToHome = $derived(p['/:lang']({ lang: settings.language }));
 
-	let pushed: StackItem | null = $state(null);
+	let pushed: StackItem<typeof SearchDialog> | null = $state(null);
 	function handleSearch(e: MouseEvent | ShortcutEventDetail) {
 		if ('originalEvent' in e) {
 			e.originalEvent.preventDefault();
@@ -90,7 +67,6 @@
 </script>
 
 <svelte:window
-	onscroll={onScroll}
 	use:shortcut={{
 		trigger: { key: 'k', modifier: ['ctrl', 'meta'], callback: handleSearch },
 	}}
@@ -99,9 +75,10 @@
 <header
 	class={[
 		'z-header fixed w-full transition-transform',
-		shouldHideHeader && '-translate-y-full',
+		scrollToggler.hidden && '-translate-y-full',
 		cls,
 	]}
+	{@attach scrollToggler.attachment}
 	{...rest}
 >
 	<!-- non-mobile header -->
@@ -261,11 +238,11 @@
 
 		&:is(svg) {
 			& :global(.svelte) {
-				fill: url("#gradientSvelte");
+				fill: url('#gradientSvelte');
 			}
 
 			& :global(.hat) {
-				fill: url("#gradientHat");
+				fill: url('#gradientHat');
 			}
 		}
 	}
