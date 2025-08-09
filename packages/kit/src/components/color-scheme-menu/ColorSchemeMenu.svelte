@@ -6,16 +6,16 @@
 
 	let {
 		i18n,
-		alwaysShowLabel,
 		hydrated,
 		open = $bindable(false),
+		showLabel = 'mobile',
 		colorScheme = 'system',
 		onselect,
 		class: cls,
 		...rest
 	}: import('.').ColorSchemeMenuProps = $props();
 
-	const colorSchemes = $derived({
+	let colorSchemes = $derived({
 		light: {
 			icon: 'i-[ph--sun]',
 			label: i18n.light,
@@ -29,6 +29,16 @@
 			label: i18n.system,
 		},
 	});
+
+	let labelClass = $derived(
+		showLabel === 'non-mobile'
+			? 'mobile:sr-only'
+			: showLabel === 'mobile'
+				? 'tablet:sr-only'
+				: showLabel === 'never'
+					? 'sr-only'
+					: '',
+	);
 </script>
 
 <div
@@ -53,7 +63,7 @@
 			<T message={i18n.open} />
 			<T message={i18n.aria} />
 		</span>
-		<span class={[!alwaysShowLabel && 'tablet:sr-only']} aria-hidden="true">
+		<span class={labelClass} aria-hidden="true">
 			<T message={colorSchemes[colorScheme].label} />
 		</span>
 		<i class="i i-[ph--caret-down] h-5 w-5 transition-transform peer-checked:-rotate-180"></i>

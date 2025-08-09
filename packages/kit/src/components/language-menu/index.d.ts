@@ -16,7 +16,8 @@ export interface LanguageMenuProps extends HTMLAttributes<HTMLElement> {
 		vi: string;
 		en: string;
 	};
-	alwaysShowLabel?: boolean;
+	/** @default 'mobile' */
+	showLabel?: 'always' | 'never' | 'mobile' | 'non-mobile';
 	hydrated?: boolean;
 	lang: Language;
 	/** @bindable */

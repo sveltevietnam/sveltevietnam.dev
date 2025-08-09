@@ -7,11 +7,21 @@
 		routing,
 		hydrated,
 		lang,
-		alwaysShowLabel = false,
+		showLabel = 'mobile',
 		open = $bindable(false),
 		class: cls,
 		...rest
 	}: import('.').LanguageMenuProps = $props();
+
+	let labelClass = $derived(
+		showLabel === 'non-mobile'
+			? 'mobile:sr-only'
+			: showLabel === 'mobile'
+				? 'tablet:sr-only'
+				: showLabel === 'never'
+					? 'sr-only'
+					: '',
+	);
 </script>
 
 <nav
@@ -34,7 +44,7 @@
 			<T message={i18n.open} />
 			<T message={i18n.menu} />
 		</span>
-		<span class={[!alwaysShowLabel && 'tablet:sr-only']} aria-hidden="true">
+		<span class={labelClass} aria-hidden="true">
 			{#if lang === 'vi'}
 				<T message={i18n.vietnamese} />
 			{:else}

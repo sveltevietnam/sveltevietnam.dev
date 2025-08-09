@@ -12,7 +12,8 @@ export interface ColorSchemeMenuProps extends Omit<HTMLAttributes<HTMLElement>, 
 		dark: Message<'string', never>;
 		system: Message<'string', never>;
 	};
-	alwaysShowLabel?: boolean;
+	/** @default 'mobile' */
+	showLabel?: 'always' | 'never' | 'mobile' | 'non-mobile';
 	hydrated?: boolean;
 	colorScheme?: ColorScheme;
 	/** @bindable */
