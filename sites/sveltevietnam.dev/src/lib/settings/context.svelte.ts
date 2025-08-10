@@ -1,11 +1,10 @@
 import type { Language } from '@sveltevietnam/i18n';
-import type { SplashOption, Screen, ColorScheme } from '@sveltevietnam/kit/constants';
+import type { SplashOption, Screen } from '@sveltevietnam/kit/constants';
 import { getContext, setContext } from 'svelte';
 import type { Attachment } from 'svelte/attachments';
 import { MediaQuery } from 'svelte/reactivity';
 
 import { browser } from '$app/environment';
-import { VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME } from '$env/static/public';
 
 export class SettingsContext {
 	static KEY = Symbol('app:settings');
@@ -13,10 +12,8 @@ export class SettingsContext {
 	// reactive MediaQuery
 	#desktopQuery = new MediaQuery('(width >= 64rem)'); /* 1024px */
 	#tabletQuery = new MediaQuery('(width >= 48rem)'); /* 768px */
-	#preferredColorScheme = new MediaQuery('(prefers-color-scheme: dark)');
 
 	// $state
-	#userColorScheme = $state<ColorScheme>('system');
 	scrolllock = $state(false);
 	language = $state<Language>('en');
 	hydrated = $state<false | Date>(false);
@@ -24,24 +21,11 @@ export class SettingsContext {
 	splash = $state<SplashOption>('random');
 
 	// $derived
-	readonly colorScheme = $derived.by(() => {
-		const user = this.#userColorScheme;
-		const system = this.#preferredColorScheme.current ? 'dark' : 'light';
-		const resolved = user === 'system' ? system : user;
-		return { user, system, resolved };
-	});
 	readonly screen = $derived<Screen>(
 		this.#desktopQuery.current ? 'desktop' : this.#tabletQuery.current ? 'tablet' : 'mobile',
 	);
 
-	constructor(settings: { language: Language; colorScheme: ColorScheme; splash: SplashOption }) {
-		$effect(() => {
-			if (browser) {
-				document.documentElement.dataset.colorScheme = this.colorScheme.user;
-				document.cookie = `${VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME}=${this.colorScheme.user}; path=/; SameSite=Lax; Secure; Max-Age=604800`;
-			}
-		});
-
+	constructor(settings: { language: Language; splash: SplashOption }) {
 		$effect(() => {
 			document.documentElement.setAttribute('lang', this.language);
 		});
@@ -51,6 +35,7 @@ export class SettingsContext {
 		};
 		if (browser) {
 			if (document.documentElement.dataset.splashedAt) {
+				// eslint-disable-next-line svelte/prefer-svelte-reactivity
 				splash(new Date(document.documentElement.dataset.splashedAt));
 			} else {
 				window.addEventListener('splash', function listener(e) {
@@ -60,14 +45,10 @@ export class SettingsContext {
 			}
 		}
 
+		// eslint-disable-next-line svelte/prefer-svelte-reactivity
 		this.hydrated = browser ? new Date() : false;
-		this.#userColorScheme = settings.colorScheme;
 		this.language = settings.language;
 		this.splash = settings.splash;
-	}
-
-	setUserColorScheme(colorScheme: ColorScheme) {
-		this.#userColorScheme = colorScheme;
 	}
 
 	toggleScrollLock(force?: boolean) {
@@ -102,7 +83,7 @@ export class SettingsContext {
 		}
 	}
 
-	static set(settings: { language: Language; colorScheme: ColorScheme; splash: SplashOption }) {
+	static set(settings: { language: Language; splash: SplashOption }) {
 		return setContext(SettingsContext.KEY, new SettingsContext(settings));
 	}
 

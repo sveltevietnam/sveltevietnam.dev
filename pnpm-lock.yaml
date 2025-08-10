@@ -289,7 +289,7 @@ importers:
         version: 1.7.3
       '@svelte-put/async-stack':
         specifier: ^1.1.2
-        version: 1.1.2(svelte@5.38.0)
+        version: 1.1.3(svelte@5.38.0)
       '@svelte-put/avatar':
         specifier: ^4.0.0
         version: 4.0.0(svelte@5.38.0)
@@ -2203,8 +2203,8 @@ packages:
   '@standard-schema/spec@1.0.0':
     resolution: {integrity: sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA==}
 
-  '@svelte-put/async-stack@1.1.2':
-    resolution: {integrity: sha512-tgiq/M/Qrv2a3wyAD9f0CwTbims8MRy2PaRieZfl6H3Oc6vB10PZ4jm7kBcTtfdnsEg5KYOkv/YZKl4KJk7/hA==}
+  '@svelte-put/async-stack@1.1.3':
+    resolution: {integrity: sha512-8KkSpO7RvT/S9MOYeVdCIRBFkrJ15Vw1sRriPofkMkvumsAxaV3HWqEfdhmgUubPWWqm3/PQABOI6+RHkp00cw==}
     peerDependencies:
       svelte: ^5.29.0
 
@@ -8190,7 +8190,7 @@ snapshots:
 
   '@standard-schema/spec@1.0.0': {}
 
-  '@svelte-put/async-stack@1.1.2(svelte@5.38.0)':
+  '@svelte-put/async-stack@1.1.3(svelte@5.38.0)':
     dependencies:
       svelte: 5.38.0
 

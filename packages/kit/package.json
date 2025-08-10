@@ -12,9 +12,17 @@
 			"types": "./types/index.d.ts",
 			"import": "./src/index.js"
 		},
+		"./components": {
+			"types": "./types/index.d.ts",
+			"import": "./src/components/index.js"
+		},
 		"./constants": {
 			"types": "./types/index.d.ts",
 			"import": "./src/constants.js"
+		},
+		"./contexts": {
+			"types": "./types/index.d.ts",
+			"import": "./src/contexts/index.js"
 		},
 		"./hooks": {
 			"types": "./types/index.d.ts",
@@ -23,10 +31,6 @@
 		"./utilities": {
 			"types": "./types/index.d.ts",
 			"import": "./src/utilities/index.js"
-		},
-		"./components": {
-			"types": "./types/index.d.ts",
-			"import": "./src/components/index.js"
 		}
 	},
 	"publishconfig": {

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { ColorSchemeContext } from '@sveltevietnam/kit/contexts';
 	import { onMount, setContext } from 'svelte';
 
 	import { browser, dev, version } from '$app/environment';
@@ -9,6 +10,7 @@
 		VITE_PUBLIC_UMAMI,
 		VITE_PUBLIC_UMAMI_WEBSITE_ID,
 		VITE_PUBLIC_UMAMI_SCRIPT_URL,
+		VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
 	} from '$env/static/public';
 	import ogImageEn from '$lib/assets/images/fallbacks/og.en.jpg?url';
 	import ogImageVi from '$lib/assets/images/fallbacks/og.vi.jpg?url';
@@ -38,6 +40,10 @@
 	const dialog = DialogContext.set();
 	const noti = NotificationContext.set();
 	const settings = SettingsContext.set(data.settings);
+	const colorScheme = ColorSchemeContext.set(() => ({
+		cookieName: VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
+		user: data.settings.colorScheme,
+	}));
 	SearchContext.set(page.url.origin);
 
 	// for @sveltevietnam/i18n T.svelte component
@@ -107,8 +113,8 @@
 	function handleUmamiLoad() {
 		window.umami?.identify({
 			language: settings.language,
-			systemColorScheme: settings.colorScheme.system,
-			userColorScheme: settings.colorScheme.user,
+			systemColorScheme: colorScheme.system,
+			userColorScheme: colorScheme.user,
 			splash: settings.splash,
 		});
 	}

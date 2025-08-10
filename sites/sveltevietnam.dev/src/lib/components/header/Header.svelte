@@ -8,6 +8,7 @@
 		ColorSchemeMenu,
 		type ColorSchemeMenuProps,
 	} from '@sveltevietnam/kit/components';
+	import { ColorSchemeContext } from '@sveltevietnam/kit/contexts';
 	import { ScrollToggler } from '@sveltevietnam/kit/utilities';
 	import type { HTMLAttributes } from 'svelte/elements';
 
@@ -25,6 +26,7 @@
 	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();
 	const dialog = DialogContext.get();
+	const colorScheme = ColorSchemeContext.get();
 
 	let { class: cls, ...rest }: HTMLAttributes<HTMLElement> = $props();
 
@@ -95,8 +97,8 @@
 			system: m['components.color_scheme_menu.system'],
 		},
 		hydrated: !!settings.hydrated,
-		colorScheme: settings.colorScheme.user,
-		onselect: (scheme) => settings.setUserColorScheme(scheme),
+		colorScheme: colorScheme.user,
+		onselect: (scheme) => (colorScheme.user = scheme),
 	});
 </script>
 

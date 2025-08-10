@@ -1,9 +1,11 @@
 <script>
+  import { ColorSchemeContext } from '@sveltevietnam/kit/contexts';
   import { ColorSchemeMenu } from '@sveltevietnam/kit/components';
 	import * as m from '$data/locales/generated/messages';
   import { SettingsContext } from '$lib/settings/context.svelte';
 
 	const settings = SettingsContext.get();
+  const colorScheme = ColorSchemeContext.get();
 
 	const colorSchemeMenuProps = $derived({
 		i18n: {
@@ -14,11 +16,12 @@
 			system: m['components.color_scheme_menu.system'],
 		},
 		hydrated: !!settings.hydrated,
-		colorScheme: settings.colorScheme.user,
+		colorScheme: colorScheme.user,
     alwaysShowLabel: true,
-		onselect: (scheme) => settings.setUserColorScheme(scheme),
+		onselect: (scheme) => colorScheme.user = scheme,
 	});
 </script>
+
 
 [Svelte action] (phân biệt với [SvelteKit form action](https://kit.svelte.dev/docs/form-actions)) là một kĩ thuật giúp dễ dàng thiết lập và đóng gói để tái sử dụng các thao tác xử lý logic và tương tác với DOM:
 

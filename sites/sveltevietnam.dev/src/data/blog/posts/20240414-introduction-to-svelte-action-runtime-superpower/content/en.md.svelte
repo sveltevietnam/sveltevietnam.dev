@@ -1,9 +1,11 @@
 <script>
+  import { ColorSchemeContext } from '@sveltevietnam/kit/contexts';
   import { ColorSchemeMenu } from '@sveltevietnam/kit/components';
 	import * as m from '$data/locales/generated/messages';
   import { SettingsContext } from '$lib/settings/context.svelte';
 
 	const settings = SettingsContext.get();
+  const colorScheme = ColorSchemeContext.get();
 
 	const colorSchemeMenuProps = $derived({
 		i18n: {
@@ -14,9 +16,9 @@
 			system: m['components.color_scheme_menu.system'],
 		},
 		hydrated: !!settings.hydrated,
-		colorScheme: settings.colorScheme.user,
+		colorScheme: colorScheme.user,
     alwaysShowLabel: true,
-		onselect: (scheme) => settings.setUserColorScheme(scheme),
+		onselect: (scheme) => colorScheme.user = scheme,
 	});
 </script>
 

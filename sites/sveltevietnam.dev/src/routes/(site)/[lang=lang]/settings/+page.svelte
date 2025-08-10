@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 	import { COLOR_SCHEMES, SPLASH_OPTIONS } from '@sveltevietnam/kit/constants';
+	import { ColorSchemeContext } from '@sveltevietnam/kit/contexts';
 	import { superForm } from 'sveltekit-superforms';
 
 	import { beforeNavigate } from '$app/navigation';
@@ -12,7 +13,6 @@
 	import { NotificationContext } from '$lib/notifications/context.svelte';
 	import * as pagefind from '$lib/pagefind/attributes';
 	import { RoutingContext } from '$lib/routing/context.svelte';
-	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import type { PageProps } from './$types';
 	import ColorSchemeSkeleton from './_page/components/ColorSchemeSkeleton.svelte';
@@ -21,8 +21,8 @@
 	let { data }: PageProps = $props();
 
 	const routing = RoutingContext.get();
-	const settings = SettingsContext.get();
 	const noti = NotificationContext.get();
+	const colorScheme = ColorSchemeContext.get();
 
 	const { form, enhance, constraints, delayed, timeout } = superForm(data.form, {
 		resetForm: false,
@@ -35,7 +35,7 @@
 				const data = result.data as { default: boolean };
 				// Scenario 1: user does not change language, submission stays on same page
 				// -> check and update color scheme accordingly & fire notification
-				settings.setUserColorScheme($form.colorScheme);
+				colorScheme.user = $form.colorScheme;
 				noti.toaster.success({
 					message: data.default
 						? m['notifications.settings.default']
@@ -77,8 +77,8 @@
 		) {
 			// Scenario 2: user changes language, causing redirection
 			// -> check and update color scheme accordingly & fire notification
-			if (settings.colorScheme.user !== $form.colorScheme) {
-				settings.setUserColorScheme($form.colorScheme);
+			if (colorScheme.user !== $form.colorScheme) {
+				colorScheme.user = $form.colorScheme;
 			}
 			noti.toaster.success({
 				message: m['notifications.settings.saved'],

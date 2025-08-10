@@ -4,6 +4,7 @@
 	import { createQrPngDataUrl } from '@svelte-put/qr';
 	import { qr, type SvgQRParameter } from '@svelte-put/qr/svg';
 	import { T } from '@sveltevietnam/i18n';
+	import { ColorSchemeContext } from '@sveltevietnam/kit/contexts';
 	import { onMount } from 'svelte';
 
 	import * as m from '$data/locales/generated/messages';
@@ -17,11 +18,12 @@
 	}: StackItemProps & { data: string; filename?: string } = $props();
 
 	const settings = SettingsContext.get();
+	const colorScheme = ColorSchemeContext.get();
 
 	const config: SvgQRParameter = $derived({
 		data,
 		shape: 'circle',
-		logo: settings.colorScheme.resolved === 'dark' ? dark : light,
+		logo: colorScheme.resolved === 'dark' ? dark : light,
 	});
 	let href = $state('');
 
