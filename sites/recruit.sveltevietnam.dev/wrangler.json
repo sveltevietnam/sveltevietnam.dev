@@ -1,0 +1,17 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "recruit",
+	"main": ".svelte-kit/cloudflare/_worker.js",
+	"compatibility_date": "2025-04-28",
+	"account_id": "b749b5068031c54e0dddf71d07ea1004",
+	"assets": {
+		"binding": "ASSETS",
+		"directory": ".svelte-kit/cloudflare"
+	},
+	"services": [
+		{
+			"binding": "backend",
+			"service": "backend"
+		}
+	]
+}
