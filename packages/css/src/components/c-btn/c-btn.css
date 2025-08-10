@@ -112,6 +112,7 @@
 		}
 
 		&:not(.c-btn--pop, .c-btn--outlined, .c-btn--icon) {
+			border-color: var(--color-on-surface);
 			color: var(--color-surface);
 			background-color: var(--color-on-surface);
 
