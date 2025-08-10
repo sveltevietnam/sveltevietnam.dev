@@ -49,6 +49,9 @@ export default {
 		'comment-empty-line-before': null,
 		'custom-property-pattern': null,
 		'import-notation': null,
+		'no-invalid-position-declaration': null,
+		'nesting-selector-no-missing-scoping-root': null,
+		'layer-name-pattern': null,
 		'media-query-no-invalid': [
 			true,
 			{
