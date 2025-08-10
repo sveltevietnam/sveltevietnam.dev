@@ -4,6 +4,8 @@ messages:
   open: Open
   close: Close
   menu: menu
+  continue: Continue
+  or: or
   svelte_vietnam:
     name: Svelte Vietnam
   footer:
@@ -20,3 +22,28 @@ messages:
   language_menu:
     aria: switch site language
     switch_to: switch to
+  inputs:
+    email:
+      errors:
+        nonempty: Email is required
+        invalid: Email is badly formated
+    turnstile:
+      desc: Verify <em class="c-text-body-xs">(requires Javascript)</em>
+      errors:
+        nonempty: Turnstile is required
+        unknown: Something went wrong with Turnstile
+  pages:
+    login:
+      heading: Login
+      desc:
+        Managing job postings at <a class="c-link" href={{mainSiteUrl}}>sveltevietnam.dev</a> — for
+        businesses and organizations
+      input: Passwordless login via email
+      callout:
+        Please log in via the link sent to your email. If you do not receive any email, you may
+        click "Resend" in
+      signup: Create an account
+      headhunter:
+        Independent recruiter or headhunter? <br /> Connect directly with candidates via our <a
+        class="c-link" href="{{jobChannelUrl}}" target="_blank" rel="noreferrer noopener
+        external">community forum</a>.
