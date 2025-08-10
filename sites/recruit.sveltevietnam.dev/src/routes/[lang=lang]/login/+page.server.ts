@@ -3,14 +3,14 @@ import * as b from '$data/routes/generated/breadcrumbs';
 
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = ({ params }) => {
+export const load: PageServerLoad = async ({ params }) => {
 	const { lang } = params;
 	return {
 		routing: {
-			breadcrumbs: b['/:lang']({ lang }),
+			breadcrumbs: b['/:lang/login']({ lang }),
 			paths: {
-				vi: p['/:lang']({ lang: 'vi' }),
-				en: p['/:lang']({ lang: 'en' }),
+				vi: p['/:lang/login']({ lang: 'vi' }),
+				en: p['/:lang/login']({ lang: 'en' }),
 			},
 		},
 	};

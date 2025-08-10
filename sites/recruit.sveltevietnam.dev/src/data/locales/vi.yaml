@@ -4,6 +4,8 @@ messages:
   open: Mở
   close: Đóng
   menu: bảng chọn
+  continue: Tiếp tục
+  or: hoặc
   svelte_vietnam:
     name: Svelte Việt Nam
   footer:
@@ -20,3 +22,28 @@ messages:
   language_menu:
     aria: chuyển đổi ngôn ngữ trang
     switch_to: chuyển sang
+  inputs:
+    email:
+      errors:
+        nonempty: Vui lòng nhập địa chỉ email
+        invalid: Địa chỉ email không hợp lệ
+    turnstile:
+      desc: Xác thực <em class="c-text-body-xs">(cần Javascript)</em>
+      errors:
+        nonempty: Vui lòng xác thực
+        unknown: Có lỗi xảy ra trong quá trình xác thực
+  pages:
+    login:
+      heading: Đăng nhập
+      desc:
+        Quản lý bài đăng tuyển dụng tại <a class="c-link" href={{mainSiteUrl}}>sveltevietnam.dev</a>
+        — dành cho doanh nghiệp và tổ chức
+      input: Đăng nhập không mật khẩu qua email
+      callout:
+        Vui lòng đăng nhập qua đường dẫn trong email vừa được gởi đến bạn. Nếu không nhận được
+        email, bạn có thể nhấn “Gởi lại” trong
+      signup: Tạo tài khoản mới
+      headhunter:
+        Bạn là nhà tuyển dụng độc lập? <br /> Kết nối trực tiếp với ứng viên qua <a class="c-link"
+        href="{{jobChannelUrl}}" target="_blank" rel="noreferrer noopener external">diễn đàn cộng
+        đồng</a>.

@@ -7,10 +7,10 @@ export const load: PageServerLoad = ({ params }) => {
 	const { lang } = params;
 	return {
 		routing: {
-			breadcrumbs: b['/:lang']({ lang }),
+			breadcrumbs: b['/:lang/signup']({ lang }),
 			paths: {
-				vi: p['/:lang']({ lang: 'vi' }),
-				en: p['/:lang']({ lang: 'en' }),
+				vi: p['/:lang/signup']({ lang: 'vi' }),
+				en: p['/:lang/signup']({ lang: 'en' }),
 			},
 		},
 	};

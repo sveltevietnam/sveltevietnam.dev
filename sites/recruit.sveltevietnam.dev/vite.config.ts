@@ -5,9 +5,12 @@ import { enhancedImages } from '@sveltejs/enhanced-img';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { css } from '@sveltevietnam/css/vite';
 import { i18n } from '@sveltevietnam/i18n/vite';
+import { routes } from '@sveltevietnam/routes/vite';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 import { qrcode } from 'vite-plugin-qrcode';
+
+import routesConfig from './src/data/routes/routes.config';
 
 export default defineConfig({
 	define: {
@@ -44,6 +47,7 @@ export default defineConfig({
 		css(),
 		tailwindcss(),
 		i18n({ input: 'src/**/locales' }),
+		routes(routesConfig),
 		sveltekit(),
 	],
 	server: {
