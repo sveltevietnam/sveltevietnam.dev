@@ -1,0 +1,22 @@
+---
+messages:
+  app: Recruit
+  open: Open
+  close: Close
+  menu: menu
+  svelte_vietnam:
+    name: Svelte Vietnam
+  footer:
+    version: Version
+    back_to_svelte_vietnam: Back to Svelte Vietnam
+  languages:
+    vietnamese: Vietnamese
+    english: English
+  color_scheme_menu:
+    aria: Color scheme menu
+    light: Light mode
+    dark: Dark mode
+    system: System default
+  language_menu:
+    aria: switch site language
+    switch_to: switch to

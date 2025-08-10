@@ -1,0 +1,22 @@
+---
+messages:
+  app: Tuyển dụng
+  open: Mở
+  close: Đóng
+  menu: bảng chọn
+  svelte_vietnam:
+    name: Svelte Việt Nam
+  footer:
+    version: Phiên bản
+    back_to_svelte_vietnam: Trở về trang Svelte Việt Nam
+  languages:
+    vietnamese: Tiếng Việt
+    english: Tiếng Anh
+  color_scheme_menu:
+    aria: Bảng chọn chế độ màu
+    light: Chế độ sáng
+    dark: Chế độ tối
+    system: Mặc định
+  language_menu:
+    aria: chuyển đổi ngôn ngữ trang
+    switch_to: chuyển sang

@@ -1,0 +1,41 @@
+/// <reference types="umami-browser" />
+import type { Language } from '@sveltevietnam/i18n';
+import type { AppLocals, AppPlatform } from '@sveltevietnam/kit';
+
+declare global {
+	declare type MaybePromise<T> = T | Promise<T> | PromiseLike<T>;
+	declare const __BUILD_TIMESTAMP__: string;
+
+	declare module '*&imagetools' {
+		export default import('vite-imagetools').Picture;
+	}
+
+	interface Window {
+		umami?: umami.umami;
+	}
+
+	namespace App {
+		// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+		interface Locals extends AppLocals {}
+
+		interface PageData {
+			routing?: {
+				paths: Record<Language, string>;
+			};
+		}
+
+		// interface PageState {}
+		//
+		interface Platform extends AppPlatform {
+			env?: {
+				backend: import('@sveltevietnam/backend').default;
+			};
+		}
+
+		interface Error {
+			code: string;
+		}
+	}
+}
+
+export {};
