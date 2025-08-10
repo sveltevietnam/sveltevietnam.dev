@@ -21,7 +21,7 @@ Contribution and discussion are welcome.
 ## Status
 
 > [!IMPORTANT]
-> This site is in active design & development; [join the Discord server][socials.discord] and have a chat with us, or see the [Roadmap](https://www.sveltevietnam.dev/roadmap).
+> This site is in active design & development; [join the Discord server][socials.discord] and have a chat with us, or see the [Roadmap](https://www.sveltevietnam.dev/en/roadmap).
 
 ## Contributing
 
