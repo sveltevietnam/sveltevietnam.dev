@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import * as m from '$data/locales/generated/messages';
 	import { SubscriberUpdateForm } from '$lib/forms/subscriber';
-	import { SettingsContext } from '$lib/settings/context.svelte';
 	import { formatFullDateAndTime } from '$lib/utils/datetime';
 
 	import type { PageProps } from './$types';
 
-	const settings = SettingsContext.get();
+	const routing = RoutingContext.get();
 
 	let { data }: PageProps = $props();
 
@@ -74,7 +74,7 @@
 					<dt class="font-semibold">
 						<T message={m['pages.mail.email.sent']} />:
 					</dt>
-					<dd>{formatFullDateAndTime(settings.language, data.mail.sentAt)}</dd>
+					<dd>{formatFullDateAndTime(routing.lang, data.mail.sentAt)}</dd>
 				</div>
 			</dl>
 		</section>
@@ -94,10 +94,10 @@
 		<p class="c-callout c-callout--warning">
 			<T
 				message={m['pages.mail.expiration']}
-				datetime={formatFullDateAndTime(settings.language, data.expiresAt)}
+				datetime={formatFullDateAndTime(routing.lang, data.expiresAt)}
 			/>
 		</p>
-		<div class="border-onehalf h-fit p-2 tablet:p-4">
+		<div class="border-onehalf tablet:p-4 h-fit p-2">
 			<iframe
 				class="h-140 max-h-none w-full"
 				srcdoc={data.srcdoc}

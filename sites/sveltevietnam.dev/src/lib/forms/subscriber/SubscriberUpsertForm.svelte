@@ -2,6 +2,7 @@
 	import { turnstile } from '@svelte-put/cloudflare-turnstile';
 	import { SUBSCRIPTION_CHANNELS } from '@sveltevietnam/backend/data/subscribers/channels';
 	import { T } from '@sveltevietnam/i18n';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { onMount } from 'svelte';
 	import type { ChangeEventHandler, HTMLFormAttributes } from 'svelte/elements';
 	import type { SuperValidated } from 'sveltekit-superforms';
@@ -10,7 +11,6 @@
 	import * as m from '$data/locales/generated/messages';
 	import { VITE_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
 	import { NotificationContext } from '$lib/notifications/context.svelte';
-	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import { type SubscribeUpsertInput } from './schema';
 
@@ -23,7 +23,7 @@
 	let { class: cls, data, action = '?/subscribe', ...rest }: SubscriberUpsertFormProps = $props();
 
 	const noti = NotificationContext.get();
-	const settings = SettingsContext.get();
+	const routing = RoutingContext.get();
 
 	let all = $state(false);
 
@@ -65,7 +65,7 @@
 	});
 
 	$effect(() => {
-		$form.language = settings.language;
+		$form.language = routing.lang;
 	});
 
 	const handleCheckAll: ChangeEventHandler<HTMLInputElement> = function (e) {
@@ -121,7 +121,7 @@
 			<div class="c-text-body-sm flex items-baseline justify-between gap-6">
 				<p class=""><T message={m['inputs.turnstile.desc']} />:</p>
 				{#if $errors.turnstile?.[0]}
-					<p class="max-w-readable-tight text-right text-red-500 text-sm">
+					<p class="max-w-readable-tight text-right text-sm text-red-500">
 						{$errors.turnstile[0]}
 					</p>
 				{/if}
@@ -133,7 +133,7 @@
 				turnstile-size="flexible"
 				turnstile-response-field-name="turnstile"
 				turnstile-response-field
-				turnstile-language={settings.language}
+				turnstile-language={routing.lang}
 			>
 				<!-- injected by @svelte-put/cloudflare-turnstile -->
 			</div>

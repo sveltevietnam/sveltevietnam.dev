@@ -1,12 +1,12 @@
 <script>
   import { ChatContainer, ChatItem } from '$lib/components/chat';
   import { loadParticipants } from '$lib/components/chat/utils';
-  import { SettingsContext } from '$lib/settings/context.svelte';
+  import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
   import learning from '../images/effective-learning.jpg?format=avif';
 
-  const settings = SettingsContext.get();
-  const participants = loadParticipants(['liti-dev', 'anhtuank7c'], settings.language);
+  const routing = RoutingContext.get();
+  const participants = loadParticipants(['liti-dev', 'anhtuank7c'], routing.lang);
 </script>
 
 When I first met Tuan Nguyen, I noticed I was speaking with a strategist, a systems thinker, and someone who’s been coding for over 15 years. What keeps him going isn't just the thrill of new tech, but the joy of solving diverse problems and turning ideas into working solutions.

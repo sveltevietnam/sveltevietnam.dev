@@ -1,19 +1,19 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
-	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
 
-	let settings = SettingsContext.get();
+	const routing = RoutingContext.get();
 </script>
 
 <main
-	class="max-w-pad bg-gradient-primary-intro pt-40 pb-32 flex flex-1 flex-col items-center justify-center gap-4"
+	class="max-w-pad bg-gradient-primary-intro flex flex-1 flex-col items-center justify-center gap-4 pb-32 pt-40"
 >
 	<h1 class="sr-only">
 		<T message={m['pages.everify.heading']} />
@@ -26,7 +26,7 @@
 			<T message={m['pages.everify.success']} />
 		{/if}
 	</p>
-	<a class="c-btn c-btn--pop mt-4 block" href={p['/:lang']({ lang: settings.language })}>
+	<a class="c-btn c-btn--pop mt-4 block" href={p['/:lang']({ lang: routing.lang })}>
 		<T message={m['pages.everify.go_to_home']} />
 	</a>
 </main>

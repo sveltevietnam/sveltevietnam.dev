@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import trongnguyen24 from '$data/people/trongnguyen24';
 	import trongnguyen24Avatar from '$data/people/trongnguyen24/avatar.jpg?enhanced&w=400;100&imagetools';
@@ -14,7 +15,6 @@
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { ListMessage } from '$lib/components/list-message';
 	import { Person } from '$lib/components/person';
-	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import type { PageProps } from '../../../routes/(site)/[lang=lang]/events/[slug]/$types';
 
@@ -36,15 +36,15 @@
 
 	let { data }: PageProps = $props();
 
-	const settings = SettingsContext.get();
+	const routing = RoutingContext.get();
 
 	const people = $derived({
 		vnphanquang: {
-			...vnphanquang(settings.language),
+			...vnphanquang(routing.lang),
 			avatar: vnphanquangAvatar,
 		},
 		trongnguyen24: {
-			...trongnguyen24(settings.language),
+			...trongnguyen24(routing.lang),
 			avatar: trongnguyen24Avatar,
 		},
 	});
@@ -191,7 +191,7 @@
 							avatar={people.vnphanquang.avatar}
 							description={people.vnphanquang.description}
 							href={p['/:lang/people/:id']({
-								lang: settings.language,
+								lang: routing.lang,
 								id: 'vnphanquang',
 							})}
 						/>
@@ -213,7 +213,7 @@
 							avatar={people.trongnguyen24.avatar}
 							description={people.trongnguyen24.description}
 							href={p['/:lang/people/:id']({
-								lang: settings.language,
+								lang: routing.lang,
 								id: 'trongnguyen24',
 							})}
 						/>
@@ -233,7 +233,7 @@
 							avatar={people.vnphanquang.avatar}
 							description={people.vnphanquang.description}
 							href={p['/:lang/people/:id']({
-								lang: settings.language,
+								lang: routing.lang,
 								id: 'vnphanquang',
 							})}
 						/>

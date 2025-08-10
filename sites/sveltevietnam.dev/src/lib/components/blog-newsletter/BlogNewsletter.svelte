@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	import * as m from '$data/locales/generated/messages';
 	import { SubscriberUpsertForm, type SubscriberUpsertFormProps } from '$lib/forms/subscriber';
-	import { SettingsContext } from '$lib/settings/context.svelte';
 
-	const settings = SettingsContext.get();
+	const routing = RoutingContext.get();
 
 	let {
 		class: cls,
@@ -33,5 +33,5 @@
 		</svg>
 	</div>
 
-	<SubscriberUpsertForm {data} action="/{settings.language}/blog?/subscribe" />
+	<SubscriberUpsertForm {data} action="/{routing.lang}/blog?/subscribe" />
 </div>

@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import { TBA } from '$lib/components/tba';
-	import { SettingsContext } from '$lib/settings/context.svelte';
 
-	const settings = SettingsContext.get();
+	const routing = RoutingContext.get();
 </script>
 
 <section
@@ -20,13 +20,13 @@
 	<TBA class="mx-auto w-fit text-center">
 		<p class="c-text-title-sm"><T message={m['pages.home.events.tba.desc']} /></p>
 		<p>
-			<a class="c-link" href="{p['/:lang/events']({ lang: settings.language })}#participate">
+			<a class="c-link" href="{p['/:lang/events']({ lang: routing.lang })}#participate">
 				<T message={m['pages.home.events.tba.subscribe']} />
 			</a>
 			<br />
 			<T message={m['or']} />
 			<br />
-			<a class="c-link" href="{p['/:lang/events']({ lang: settings.language })}#past">
+			<a class="c-link" href="{p['/:lang/events']({ lang: routing.lang })}#past">
 				<T message={m['pages.home.events.tba.view_past']} />
 			</a>
 		</p>

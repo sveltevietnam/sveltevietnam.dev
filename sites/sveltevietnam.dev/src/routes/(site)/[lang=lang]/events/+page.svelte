@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 	import type { Message } from '@sveltevietnam/i18n/runtime';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { onScroll, createTimeline, stagger } from 'animejs';
 
 	import { page } from '$app/state';
@@ -13,14 +14,13 @@
 	import { TBA } from '$lib/components/tba';
 	import { SubscriberUpsertForm } from '$lib/forms/subscriber';
 	import * as pagefind from '$lib/pagefind/attributes';
-	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import type { PageProps } from './$types';
 	import imgIntro from './_page/images/eco-friendly.svg?url';
 
 	let { data }: PageProps = $props();
 
-	const settings = SettingsContext.get();
+	const routing = RoutingContext.get();
 
 	let elParticipate: HTMLElement;
 	let elSmallCircle: SVGCircleElement;
@@ -234,13 +234,13 @@
 				<div class="space-y-2">
 					<a
 						class="c-link c-text-body-xs block w-fit"
-						href="{p['/:lang/sponsor']({ lang: settings.language })}#why"
+						href="{p['/:lang/sponsor']({ lang: routing.lang })}#why"
 					>
 						<T message={m['pages.events.sponsor.why']} />
 					</a>
 					<a
 						class="c-btn c-btn--pop block w-fit"
-						href={p['/:lang/sponsor']({ lang: settings.language })}
+						href={p['/:lang/sponsor']({ lang: routing.lang })}
 					>
 						<T message={m['pages.events.sponsor.cta']} />
 					</a>

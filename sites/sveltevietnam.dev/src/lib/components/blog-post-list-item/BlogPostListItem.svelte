@@ -1,12 +1,12 @@
 <script lang="ts" module>
 	import { T } from '@sveltevietnam/i18n';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { Picture } from 'vite-imagetools';
 
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import fallback16x9 from '$lib/assets/images/fallbacks/16x9.jpg?enhanced&w=1540;1088;686&imagetools';
-	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	type ScreenScopedVar<T extends string> = {
 		tablet?: T;
@@ -41,17 +41,17 @@
 		...rest
 	}: BlogPostListItemProps = $props();
 
-	const settings = SettingsContext.get();
+	const routing = RoutingContext.get();
 
 	let dateFormatter = $derived(
-		new Intl.DateTimeFormat(settings.language, {
+		new Intl.DateTimeFormat(routing.lang, {
 			year: 'numeric',
 			month: 'long',
 		}),
 	);
 
 	const img = $derived(post.thumbnail ?? fallback16x9);
-	const href = $derived(p['/:lang/blog/:slug']({ lang: settings.language, slug: post.slug }));
+	const href = $derived(p['/:lang/blog/:slug']({ lang: routing.lang, slug: post.slug }));
 </script>
 
 <article
@@ -95,7 +95,7 @@
 					{#each post.series as { name, slug }, i (slug)}
 						<a
 							class="c-link-lazy hover:text-link"
-							href={p['/:lang/blog/series/:slug']({ lang: settings.language, slug })}
+							href={p['/:lang/blog/series/:slug']({ lang: routing.lang, slug })}
 						>
 							{name}
 						</a>{i < post.series.length - 1 ? ', ' : ''}
@@ -114,9 +114,7 @@
 			>
 				<a class="c-link-preserved relative" {href}>
 					{post.title}
-					<i
-						class="not-can-hover:hidden i i-[ph--cursor-click] text-[0.75em]"
-					></i>
+					<i class="not-can-hover:hidden i i-[ph--cursor-click] text-[0.75em]"></i>
 				</a>
 			</p>
 		</div>
@@ -125,7 +123,7 @@
 				{#each post.authors as { name, id }, i (id)}
 					<a
 						class="c-link-lazy font-medium"
-						href={p['/:lang/people/:id']({ lang: settings.language, id })}
+						href={p['/:lang/people/:id']({ lang: routing.lang, id })}
 					>
 						{name}
 					</a>{i < post.authors.length - 1 ? ', ' : ''}
@@ -142,7 +140,7 @@
 						<a
 							class="c-link-lazy c-text-body-sm text-on-surface-subtle hover:text-link
 							hover:border-link border-outline rounded-full border px-3 py-1 leading-tight"
-							href={p['/:lang/blog/categories/:slug']({ lang: settings.language, slug })}
+							href={p['/:lang/blog/categories/:slug']({ lang: routing.lang, slug })}
 						>
 							{name}
 						</a>

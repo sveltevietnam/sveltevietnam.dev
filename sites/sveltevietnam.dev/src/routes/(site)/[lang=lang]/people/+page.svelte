@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import * as m from '$data/locales/generated/messages';
 	import type { Person } from '$data/people';
@@ -10,18 +11,17 @@
 	import { PersonLinks } from '$lib/components/person-links';
 	import { TextArrowLink } from '$lib/components/text-arrow-link';
 	import * as pagefind from '$lib/pagefind/attributes';
-	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
 
-	const settings = SettingsContext.get();
+	const routing = RoutingContext.get();
 </script>
 
 {#snippet PersonListItem(person: Person)}
 	{@const href = p['/:lang/people/:id']({
-		lang: settings.language,
+		lang: routing.lang,
 		id: person.id,
 	})}
 	{@const image = person.popImage || person.avatar || fallback1x1}

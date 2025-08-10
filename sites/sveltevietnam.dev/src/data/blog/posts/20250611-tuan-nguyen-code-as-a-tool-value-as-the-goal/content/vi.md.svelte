@@ -1,12 +1,12 @@
 <script>
   import { ChatContainer, ChatItem } from '$lib/components/chat';
   import { loadParticipants } from '$lib/components/chat/utils';
-  import { SettingsContext } from '$lib/settings/context.svelte';
+  import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
   import learning from '../images/effective-learning.jpg?format=avif';
 
-  const settings = SettingsContext.get();
-  const participants = loadParticipants(['liti-dev', 'anhtuank7c'], settings.language);
+  const routing = RoutingContext.get();
+  const participants = loadParticipants(['liti-dev', 'anhtuank7c'], routing.lang);
 </script>
 
 Khi mình trò chuyện với anh Tuấn Nguyễn, mình nhận ra đây là người có tư duy chiến lược, hệ thống, và đã có hơn 15 năm kinh nghiệm lập trình. Điều khiến anh vẫn còn hào hứng với nghề không phải chỉ vì công nghệ mới, mà vì niềm vui trong việc giải quyết những vấn đề đa dạng và biến ý tưởng thành sản phẩm thực tế.

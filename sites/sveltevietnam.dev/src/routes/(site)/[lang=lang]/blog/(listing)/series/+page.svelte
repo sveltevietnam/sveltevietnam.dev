@@ -1,18 +1,18 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import { BlogListingIntro } from '$lib/components/blog-listing-intro';
 	import { BlogPostCollectionListItem } from '$lib/components/blog-post-collection-list-item';
 	import * as pagefind from '$lib/pagefind/attributes';
-	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
 
-	const settings = SettingsContext.get();
+	const routing = RoutingContext.get();
 </script>
 
 <main {...pagefind.page({ group: 'blog', importance: 'other' })}>
@@ -33,7 +33,7 @@
 		<ul class="tablet:space-y-10 space-y-8 divide-y">
 			{#each data.series as series (series.id)}
 				{@const href = p['/:lang/blog/series/:slug']({
-					lang: settings.language,
+					lang: routing.lang,
 					slug: series.slug,
 				})}
 				<li class="not-last:pb-8 tablet:not-last:pb-10 @container">

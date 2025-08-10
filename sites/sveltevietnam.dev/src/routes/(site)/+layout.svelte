@@ -32,7 +32,7 @@
 		vi: ogImageVi,
 	};
 
-	RoutingContext.set(() => ({
+	const routing = RoutingContext.set(() => ({
 		lang: data.settings.language,
 		paths: page.data.routing?.paths ?? {
 			en: page.url.pathname,
@@ -50,11 +50,6 @@
 
 	// for @sveltevietnam/i18n T.svelte component
 	setContext('t:lang', () => data.settings.language);
-
-	$effect(() => {
-		// FIXME: find mechanism that can do this within context itself
-		settings.language = data.settings.language;
-	});
 
 	/** SEO setup */
 	let meta = $derived.by(() => {
@@ -113,7 +108,7 @@
 
 	function handleUmamiLoad() {
 		window.umami?.identify({
-			language: settings.language,
+			language: routing.lang,
 			systemColorScheme: colorScheme.system,
 			userColorScheme: colorScheme.user,
 			splash: settings.splash,

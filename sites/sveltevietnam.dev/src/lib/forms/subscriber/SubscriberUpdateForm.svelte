@@ -3,6 +3,7 @@
 	import { SUBSCRIPTION_CHANNELS } from '@sveltevietnam/backend/data/subscribers/channels';
 	import { LANGUAGES } from '@sveltevietnam/i18n';
 	import { T } from '@sveltevietnam/i18n';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import type { HTMLFormAttributes } from 'svelte/elements';
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import { superForm } from 'sveltekit-superforms';
@@ -10,7 +11,6 @@
 	import * as m from '$data/locales/generated/messages';
 	import { VITE_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
 	import { NotificationContext } from '$lib/notifications/context.svelte';
-	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import { type SubscriberUpdateInput } from './schema';
 
@@ -23,7 +23,7 @@
 	let { class: cls, data, action = '?/update', ...rest }: SubscriberUpdateFormProps = $props();
 
 	const noti = NotificationContext.get();
-	const settings = SettingsContext.get();
+	const routing = RoutingContext.get();
 
 	const { form, enhance, constraints, errors, delayed, timeout } = superForm<
 		SubscriberUpdateInput,
@@ -184,7 +184,7 @@
 				turnstile-size="flexible"
 				turnstile-response-field-name="turnstile"
 				turnstile-response-field
-				turnstile-language={settings.language}
+				turnstile-language={routing.lang}
 			>
 				<!-- injected by @svelte-put/cloudflare-turnstile -->
 			</div>

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import { EMAILS } from '$data/emails';
 	import { SOCIAL_LINKS } from '$data/links';
@@ -8,14 +9,13 @@
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import * as pagefind from '$lib/pagefind/attributes';
-	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import type { PageProps } from './$types';
 	import imgIntro from './_page/images/irrigation.svg?url';
 
 	let { data }: PageProps = $props();
 
-	const settings = SettingsContext.get();
+	const routing = RoutingContext.get();
 </script>
 
 <main {...pagefind.page()}>
@@ -88,7 +88,7 @@
 			<li>
 				<a
 					class="c-btn c-btn--pop flex justify-between text-left"
-					href={p['/:lang/events']({ lang: settings.language })}
+					href={p['/:lang/events']({ lang: routing.lang})}
 				>
 					<T message={m['pages.sponsor.participate.events']} />
 				</a>
@@ -96,7 +96,7 @@
 			<li>
 				<a
 					class="c-btn c-btn--pop flex justify-between text-left"
-					href={p['/:lang/blog']({ lang: settings.language })}
+					href={p['/:lang/blog']({ lang: routing.lang})}
 				>
 					<T message={m['pages.sponsor.participate.blog']} />
 				</a>

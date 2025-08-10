@@ -11,7 +11,6 @@
 	import { GreenWebBadge } from '$lib/components/green-web-badge';
 	import { NotByAiBadge } from '$lib/components/not-by-ai-badge';
 	import { SocialLinks } from '$lib/components/social-links';
-	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	let {
 		version,
@@ -22,57 +21,56 @@
 	} = $props();
 
 	const routing = RoutingContext.get();
-	const settings = SettingsContext.get();
 
 	let primaryPages = $derived([
 		{
-			path: p['/:lang']({ lang: settings.language }),
-			name: n['/:lang'](settings.language),
+			path: p['/:lang']({ lang: routing.lang }),
+			name: n['/:lang'](routing.lang),
 		},
 		{
-			path: p['/:lang/blog']({ lang: settings.language }),
+			path: p['/:lang/blog']({ lang: routing.lang }),
 			name: n['/:lang/blog'](),
 		},
 		{
-			path: p['/:lang/events']({ lang: settings.language }),
-			name: n['/:lang/events'](settings.language),
+			path: p['/:lang/events']({ lang: routing.lang }),
+			name: n['/:lang/events'](routing.lang),
 		},
 		{
-			path: p['/:lang/jobs']({ lang: settings.language }),
-			name: n['/:lang/jobs'](settings.language),
+			path: p['/:lang/jobs']({ lang: routing.lang }),
+			name: n['/:lang/jobs'](routing.lang),
 		},
 		{
-			path: p['/:lang/sponsor']({ lang: settings.language }),
-			name: n['/:lang/sponsor'](settings.language),
+			path: p['/:lang/sponsor']({ lang: routing.lang }),
+			name: n['/:lang/sponsor'](routing.lang),
 		},
 		{
-			path: p['/:lang/people']({ lang: settings.language }),
-			name: n['/:lang/people'](settings.language),
+			path: p['/:lang/people']({ lang: routing.lang }),
+			name: n['/:lang/people'](routing.lang),
 		},
 		{
-			path: p['/:lang/roadmap']({ lang: settings.language }),
-			name: n['/:lang/roadmap'](settings.language),
+			path: p['/:lang/roadmap']({ lang: routing.lang }),
+			name: n['/:lang/roadmap'](routing.lang),
 		},
 		{
-			path: p['/:lang/design']({ lang: settings.language }),
-			name: n['/:lang/design'](settings.language),
+			path: p['/:lang/design']({ lang: routing.lang }),
+			name: n['/:lang/design'](routing.lang),
 		},
 	] as const);
 	let secondaryPages = $derived([
 		{
-			path: p['/:lang/settings']({ lang: settings.language }),
-			name: n['/:lang/settings'](settings.language),
+			path: p['/:lang/settings']({ lang: routing.lang }),
+			name: n['/:lang/settings'](routing.lang),
 		},
 		{
-			path: p['/:lang/code-of-conduct']({ lang: settings.language }),
-			name: n['/:lang/code-of-conduct'](settings.language),
+			path: p['/:lang/code-of-conduct']({ lang: routing.lang }),
+			name: n['/:lang/code-of-conduct'](routing.lang),
 		},
 		{
-			path: p['/:lang/sitemap.xml']({ lang: settings.language }),
-			name: n['/:lang/sitemap.xml'](settings.language),
+			path: p['/:lang/sitemap.xml']({ lang: routing.lang }),
+			name: n['/:lang/sitemap.xml'](routing.lang),
 		},
 		{
-			path: p['/:lang/rss.xml']({ lang: settings.language }),
+			path: p['/:lang/rss.xml']({ lang: routing.lang }),
 			name: n['/:lang/rss.xml'](),
 		},
 	] as const);

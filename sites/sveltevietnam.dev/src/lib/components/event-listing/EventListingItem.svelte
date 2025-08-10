@@ -1,5 +1,6 @@
 <script lang="ts" module>
 	import { T } from '@sveltevietnam/i18n';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { Picture } from 'vite-imagetools';
 
@@ -38,9 +39,10 @@
 	let { event, origin }: EventListingItemProps = $props();
 
 	const settings = SettingsContext.get();
+	const routing = RoutingContext.get();
 
 	const img = $derived(event.thumbnail ?? fallback3x2);
-	const path = $derived(p['/:lang/events/:slug']({ lang: settings.language, slug: event.slug }));
+	const path = $derived(p['/:lang/events/:slug']({ lang: routing.lang, slug: event.slug }));
 </script>
 
 <div class="@container">
@@ -72,7 +74,7 @@
 						'@xl:text-2xl @xl:[writing-mode:vertical-rl] @xl:tracking-normal',
 					]}
 				>
-					{formatLongMonth(settings.language, event.startDate)}
+					{formatLongMonth(routing.lang, event.startDate)}
 				</p>
 				<p
 					class={[
@@ -81,7 +83,7 @@
 						'@xl:leading-normal @xl:text-lg',
 					]}
 				>
-					{formatLongWeekDay(settings.language, event.startDate)}
+					{formatLongWeekDay(routing.lang, event.startDate)}
 				</p>
 			</div>
 
@@ -92,7 +94,7 @@
 				{#if settings.hydrated}
 					<CopyIconBtn
 						text={origin + path}
-						aria={m['components.event_listing_item.copy'](settings.language)}
+						aria={m['components.event_listing_item.copy'](routing.lang)}
 					/>
 				{/if}
 			</div>
@@ -119,9 +121,7 @@
 			<p class={['font-lora text-xl font-bold leading-normal', '@xl:text-2xl']}>
 				<a class="c-link-preserved relative" href={path}>
 					{event.title}
-					<i
-						class="not-can-hover:hidden i i-[ph--cursor-click] text-[0.75em]"
-					></i>
+					<i class="not-can-hover:hidden i i-[ph--cursor-click] text-[0.75em]"></i>
 				</a>
 			</p>
 			<dl class="text-on-surface-subtle space-y-1 text-sm">

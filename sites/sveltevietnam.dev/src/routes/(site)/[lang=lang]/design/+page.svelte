@@ -2,6 +2,7 @@
 	import { StackItem } from '@svelte-put/async-stack';
 	import { T } from '@sveltevietnam/i18n';
 	import { STATUSES, type Status } from '@sveltevietnam/kit/constants';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import { asset } from '$app/paths';
 	import * as m from '$data/locales/generated/messages';
@@ -10,7 +11,6 @@
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import BaseNotification from '$lib/notifications/components/BaseNotification.svelte';
 	import * as pagefind from '$lib/pagefind/attributes';
-	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import type { PageProps } from './$types';
 	import { colors } from './_page/colors';
@@ -19,7 +19,7 @@
 
 	let { data }: PageProps = $props();
 
-	const settings = SettingsContext.get();
+	const routing = RoutingContext.get();
 
 	const MARK_CLASSES = {
 		info: 'text-info-on-surface bg-info-surface',
@@ -331,7 +331,7 @@
 				<img
 					class="h-auto w-44"
 					src={imgRays}
-					alt={m['pages.design.logo.alt.rays'](settings.language)}
+					alt={m['pages.design.logo.alt.rays'](routing.lang)}
 					width="177"
 					height="264"
 					fetchpriority="low"
@@ -354,7 +354,7 @@
 					<img
 						class="w-37 h-auto"
 						src={imgNonLa}
-						alt={m['pages.design.logo.alt.non_la'](settings.language)}
+						alt={m['pages.design.logo.alt.non_la'](routing.lang)}
 						width="148"
 						height="121"
 						fetchpriority="low"

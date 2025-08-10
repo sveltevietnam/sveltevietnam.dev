@@ -35,26 +35,26 @@
 	const dialog = DialogContext.get();
 
 	let dateFormatter = $derived(
-		new Intl.DateTimeFormat(settings.language, {
+		new Intl.DateTimeFormat(routing.lang, {
 			year: 'numeric',
 			month: 'long',
 		}),
 	);
 
 	const thumbnail = $derived(data.post.thumbnail || fallback16x9);
-	const url = $derived(page.url.origin + routing.paths[settings.language]);
+	const url = $derived(page.url.origin + routing.paths[routing.lang]);
 	const encodedUrl = $derived(encodeURIComponent(url));
 	const outdated = $derived.by(() => {
 		if (!data.post.outdate) return null;
 		const elapsedMs = data.post.publishedAt.getTime() - Date.now();
-		if (data.post.outdate === true) return formatRelativeTime(settings.language, elapsedMs);
+		if (data.post.outdate === true) return formatRelativeTime(routing.lang, elapsedMs);
 		if (typeof data.post.outdate === 'number') {
 			const outdateMs = data.post.outdate * 24 * 60 * 60 * 1000;
-			if (Math.abs(elapsedMs) >= outdateMs) return formatRelativeTime(settings.language, elapsedMs);
+			if (Math.abs(elapsedMs) >= outdateMs) return formatRelativeTime(routing.lang, elapsedMs);
 			return null;
 		}
 		if (data.post.outdate.getTime() <= Date.now())
-			return formatRelativeTime(settings.language, elapsedMs);
+			return formatRelativeTime(routing.lang, elapsedMs);
 		return null;
 	});
 
@@ -109,7 +109,7 @@
 						<a
 							class="c-link-lazy c-text-body-sm text-on-surface-subtle hover:text-link
 							hover:border-link border-outline rounded-full border px-3 py-1 leading-tight"
-							href={p['/:lang/blog/categories/:slug']({ lang: settings.language, slug })}
+							href={p['/:lang/blog/categories/:slug']({ lang: routing.lang, slug })}
 						>
 							{name}
 						</a>
@@ -118,7 +118,7 @@
 			</ul>
 			<ul class="flex flex-wrap items-start gap-6">
 				{#each data.post.authors as { name, id, avatar, description } (id)}
-					{@const href = p['/:lang/people/:id']({ lang: settings.language, id })}
+					{@const href = p['/:lang/people/:id']({ lang: routing.lang, id })}
 					<li>
 						<Person {name} {avatar} {href} {description} />
 					</li>
@@ -174,7 +174,7 @@
 				'bg-on-surface text-surface tablet:border-surface tablet:border-onehalf mobile:justify-evenly _quick-nav flex items-center px-2',
 				showQuickNav ? 'translate-y-0' : 'translate-y-16',
 			]}
-			aria-label={m['pages.blog_slug.quick_nav.aria'](settings.language)}
+			aria-label={m['pages.blog_slug.quick_nav.aria'](routing.lang)}
 		>
 			{#snippet inlink(href: string, message: Message<'string', never>, iconClass: string)}
 				<a
@@ -294,7 +294,7 @@
 				<ul class="flex flex-wrap gap-4">
 					{#if settings.hydrated}
 						<li>
-							<CopyIconBtn text={url} aria={m['pages.blog_slug.actions.copy'](settings.language)} />
+							<CopyIconBtn text={url} aria={m['pages.blog_slug.actions.copy'](routing.lang)} />
 						</li>
 					{/if}
 					<li>
@@ -380,7 +380,7 @@
 					<h2 class="c-text-title uppercase" id="in-this-series">
 						<T message={m['pages.blog_slug.headings.series']} />
 					</h2>
-					<TextArrowLink href={p['/:lang/blog']({ lang: settings.language })}>
+					<TextArrowLink href={p['/:lang/blog']({ lang: routing.lang })}>
 						<T message={m.view_more} />
 					</TextArrowLink>
 				</div>

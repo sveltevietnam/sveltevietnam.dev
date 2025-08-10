@@ -53,7 +53,7 @@
 
 	let toolbarBackdropOpacity = $derived(scrollToggler.minScrollProgress);
 
-	const linkToHome = $derived(p['/:lang']({ lang: settings.language }));
+	const linkToHome = $derived(p['/:lang']({ lang: routing.lang }));
 
 	let pushed: StackItem<typeof SearchDialog> | null = $state(null);
 	function handleSearch(e: MouseEvent | ShortcutEventDetail) {
@@ -84,7 +84,7 @@
 			en: routing.paths.en,
 		},
 		hydrated: !!settings.hydrated,
-		lang: settings.language,
+		lang: routing.lang,
 	});
 
 	const colorSchemeMenuProps: ColorSchemeMenuProps = $derived({

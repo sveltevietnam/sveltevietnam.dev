@@ -1,12 +1,12 @@
 <script>
   import { ChatContainer, ChatItem } from '$lib/components/chat';
   import { loadParticipants } from '$lib/components/chat/utils';
-  import { SettingsContext } from '$lib/settings/context.svelte';
+  import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
   import summarizer from '../images/summarizer.png?format=avif';
 
-  const settings = SettingsContext.get();
-  const participants = loadParticipants(['liti-dev', 'trongnguyen24'], settings.language);
+  const routing = RoutingContext.get();
+  const participants = loadParticipants(['liti-dev', 'trongnguyen24'], routing.lang);
 </script>
 
 Lần đầu trò chuyện với Nguyên, mình ấn tượng bởi hai điều: sự khiêm tốn và nhiệt huyết ẩn sau từng câu chữ. Có một sự chân thành rõ nét trong cách anh nói về thiết kế, lập trình, và cộng đồng Svelte. Đó chính là kiểu năng lượng khiến mình nhớ rằng: **công nghệ, suy cho cùng, vẫn luôn mang đậm yếu tố con người**.

@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { onMount } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	import * as m from '$data/locales/generated/messages';
-	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	let {
 		crumbs,
@@ -15,7 +15,7 @@
 		scrollIndicator?: 'blur' | 'ellipsis';
 	} = $props();
 
-	const settings = SettingsContext.get();
+	const routing = RoutingContext.get();
 
 	let scrollableLeft = $state(true);
 	let scrollableRight = $state(true);
@@ -33,7 +33,7 @@
 </script>
 
 <nav
-	aria-label={m['components.breadcrumbs.aria'](settings.language)}
+	aria-label={m['components.breadcrumbs.aria'](routing.lang)}
 	data-scrollable={scrollable}
 	data-scrollable-left={scrollableLeft}
 	data-scrollable-right={scrollableRight}
@@ -48,7 +48,11 @@
 		{#each crumbs as { name, path }, i (name)}
 			{@const current = i === crumbs.length - 1}
 			<li class="contents">
-				<a class={['-outline-offset-1', !current && 'c-link-lazy']} aria-current={current} href={path}>
+				<a
+					class={['-outline-offset-1', !current && 'c-link-lazy']}
+					aria-current={current}
+					href={path}
+				>
 					{#if i === 0}
 						<i class="i i-[ph--house-line] h-5 w-5"></i>
 						<span class="sr-only">

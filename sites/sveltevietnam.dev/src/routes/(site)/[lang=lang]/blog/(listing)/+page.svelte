@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { onScroll, createTimeline, stagger } from 'animejs';
 
 	import * as m from '$data/locales/generated/messages';
@@ -18,6 +19,7 @@
 	let { data }: PageProps = $props();
 
 	const settings = SettingsContext.get();
+	const routing = RoutingContext.get();
 
 	const commonArrowLinkClasses = 'group-hover:translate-x-1 transition-transform';
 
@@ -106,8 +108,8 @@
 	<section class="max-w-pad py-section tablet:space-y-8 space-y-6" data-pagefind-ignore>
 		{@render listingHeader({
 			id: 'latest',
-			category: m['latest'](settings.language),
-			href: p['/:lang/blog/latest']({ lang: settings.language }),
+			category: m['latest'](routing.lang),
+			href: p['/:lang/blog/latest']({ lang: routing.lang }),
 		})}
 		<BlogPostShowcase posts={data.posts.latest}></BlogPostShowcase>
 	</section>
@@ -144,7 +146,9 @@
 				</div>
 				<div class="flex-1 space-y-6">
 					<div class="tablet:justify-between tablet:items-end mobile:flex-col flex flex-1 gap-6">
-						<h2 class="c-text-heading-md" id="write"><T message={m['pages.blog.write.heading']} /></h2>
+						<h2 class="c-text-heading-md" id="write">
+							<T message={m['pages.blog.write.heading']} />
+						</h2>
 						<div class="flex items-end gap-4">
 							{#each ['h-8', 'h-14', 'h-6', 'h-7'] as cls (cls)}
 								<svg
@@ -163,7 +167,7 @@
 					<p><T message={m['pages.blog.write.desc']} /></p>
 					<a
 						class="c-btn c-btn--pop w-fit text-left"
-						href={p['/:lang/blog/write']({ lang: settings.language })}
+						href={p['/:lang/blog/write']({ lang: routing.lang })}
 					>
 						<i class="i i-[ph--pencil-simple] h-6 w-6"></i>
 						<span><T message={m['pages.blog.write.cta']} /></span>
@@ -181,15 +185,12 @@
 
 	{#if data.series.peopleOfSvelte && data.posts.peopleOfSvelte.length}
 		<!-- people-of-svelte -->
-		<section
-			class="max-w-pad py-section tablet:space-y-8 space-y-6"
-			data-pagefind-ignore
-		>
+		<section class="max-w-pad py-section tablet:space-y-8 space-y-6" data-pagefind-ignore>
 			{@render listingHeader({
 				id: 'people-of-svelte',
 				category: data.series.peopleOfSvelte.name,
 				href: p['/:lang/blog/series/:slug']({
-					lang: settings.language,
+					lang: routing.lang,
 					slug: data.series.peopleOfSvelte.slug,
 				}),
 				description: data.series.peopleOfSvelte.description,
@@ -200,15 +201,12 @@
 
 	{#if data.categories.svelteAndKit && data.posts.svelteAndKit.length}
 		<!-- svelte-and-kit -->
-		<section
-			class="max-w-pad py-section tablet:space-y-8 space-y-6"
-			data-pagefind-ignore
-		>
+		<section class="max-w-pad py-section tablet:space-y-8 space-y-6" data-pagefind-ignore>
 			{@render listingHeader({
 				id: 'svelte-and-kit',
 				category: data.categories.svelteAndKit.name,
 				href: p['/:lang/blog/categories/:slug']({
-					lang: settings.language,
+					lang: routing.lang,
 					slug: data.categories.svelteAndKit.slug,
 				}),
 				description: data.categories.svelteAndKit.description,
@@ -227,7 +225,7 @@
 				<a
 					class="tablet:self-stretch desktop:p-4 bg-secondary mobile:shadow-brutal shadow-on-surface group grid
 					place-items-center p-8 text-white"
-					href="{p['/:lang']({ lang: settings.language })}#resources"
+					href="{p['/:lang']({ lang: routing.lang })}#resources"
 				>
 					<span class="sr-only"><T message={m['pages.blog.resources.view']} /></span>
 					<i class="i i-[ph--arrow-right] h-6 w-6 {commonArrowLinkClasses}"></i>
@@ -238,15 +236,12 @@
 
 	{#if data.categories.insider && data.posts.insider.length}
 		<!-- insider -->
-		<section
-			class="max-w-pad py-section tablet:space-y-8 space-y-6"
-			data-pagefind-ignore
-		>
+		<section class="max-w-pad py-section tablet:space-y-8 space-y-6" data-pagefind-ignore>
 			{@render listingHeader({
 				id: 'insider',
 				category: data.categories.insider.name,
 				href: p['/:lang/blog/categories/:slug']({
-					lang: settings.language,
+					lang: routing.lang,
 					slug: data.categories.insider.slug,
 				}),
 				description: data.categories.insider.description,

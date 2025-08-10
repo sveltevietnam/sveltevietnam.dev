@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import { page } from '$app/state';
 	import { EMAILS } from '$data/emails';
@@ -11,14 +12,13 @@
 	import { TBA } from '$lib/components/tba';
 	import { SubscriberUpsertForm } from '$lib/forms/subscriber';
 	import * as pagefind from '$lib/pagefind/attributes';
-	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import type { PageProps } from './$types';
 	import imgIntro from './_page/images/electricity.svg?url';
 
 	let { data }: PageProps = $props();
 
-	const settings = SettingsContext.get();
+	const routing = RoutingContext.get();
 </script>
 
 <main {...pagefind.page({ group: 'jobs' })}>
@@ -105,13 +105,13 @@
 					</p>
 					<a
 						class="c-link mb-2 mt-6 block w-fit"
-						href="{p['/:lang/sponsor']({ lang: settings.language })}#why"
+						href="{p['/:lang/sponsor']({ lang: routing.lang })}#why"
 					>
 						<T message={m['pages.jobs.recruiter.sponsor.link']} />
 					</a>
 					<a
 						class="c-btn c-btn--pop block w-fit"
-						href="{p['/:lang/sponsor']({ lang: settings.language })}#how"
+						href="{p['/:lang/sponsor']({ lang: routing.lang })}#how"
 					>
 						<T message={m['pages.jobs.recruiter.sponsor.cta']} />
 					</a>

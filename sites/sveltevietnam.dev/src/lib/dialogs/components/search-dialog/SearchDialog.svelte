@@ -3,6 +3,7 @@
 	import { enhanceDialog } from '@svelte-put/async-stack/helpers';
 	import { shortcut } from '@svelte-put/shortcut';
 	import { T } from '@sveltevietnam/i18n';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import sanitize from 'sanitize-html';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
@@ -13,6 +14,7 @@
 
 	let { item }: StackItemProps = $props();
 	const settings = SettingsContext.get();
+	const routing = RoutingContext.get();
 	const search = SearchContext.get();
 
 	let queryEl: HTMLInputElement;
@@ -32,9 +34,9 @@
 		'interactive border-b-outline hover:outline-outline-focus hover:outline';
 
 	onMount(() => {
-		window.dispatchEvent(new CustomEvent('searchopen', { detail: { query: search.query }}));
+		window.dispatchEvent(new CustomEvent('searchopen', { detail: { query: search.query } }));
 		item.resolution.then(() => {
-			window.dispatchEvent(new CustomEvent('searchclose', { detail: { query: search.query }}));
+			window.dispatchEvent(new CustomEvent('searchclose', { detail: { query: search.query } }));
 		});
 	});
 </script>
@@ -56,7 +58,7 @@
 				<i class="i i-[ph--magnifying-glass] h-6 w-6"></i>
 				<input
 					type="text"
-					placeholder={m['dialogs.search.input.placeholder'](settings.language).toString()}
+					placeholder={m['dialogs.search.input.placeholder'](routing.lang).toString()}
 					bind:value={search.query}
 					bind:this={queryEl}
 				/>

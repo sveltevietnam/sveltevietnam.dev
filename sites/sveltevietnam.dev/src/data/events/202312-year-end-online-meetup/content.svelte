@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import vnphanquangDef from '$data/people/vnphanquang';
 	import vnphanquangAvatar from '$data/people/vnphanquang/avatar.jpg?enhanced&w=400;100&imagetools';
@@ -11,7 +12,6 @@
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { ListMessage } from '$lib/components/list-message';
 	import { Person } from '$lib/components/person';
-	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import type { PageProps } from '../../../routes/(site)/[lang=lang]/events/[slug]/$types';
 
@@ -24,9 +24,9 @@
 
 	let { data }: PageProps = $props();
 
-	const settings = SettingsContext.get();
+	const routing = RoutingContext.get();
 
-	const vnphanquang = $derived(vnphanquangDef(settings.language));
+	const vnphanquang = $derived(vnphanquangDef(routing.lang));
 </script>
 
 <main>
@@ -135,7 +135,7 @@
 						avatar={vnphanquangAvatar}
 						description={vnphanquang.description}
 						href={p['/:lang/people/:id']({
-							lang: settings.language,
+							lang: routing.lang,
 							id: 'vnphanquang',
 						})}
 					/>
@@ -168,7 +168,7 @@
 						avatar={vnphanquangAvatar}
 						description={vnphanquang.description}
 						href={p['/:lang/people/:id']({
-							lang: settings.language,
+							lang: routing.lang,
 							id: 'vnphanquang',
 						})}
 					/>

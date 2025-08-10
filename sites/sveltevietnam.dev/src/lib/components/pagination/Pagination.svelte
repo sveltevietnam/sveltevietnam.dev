@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	import * as m from '$data/locales/generated/messages';
-	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	let {
 		url,
@@ -17,12 +17,12 @@
 		max: number;
 	} & HTMLAttributes<HTMLElement> = $props();
 
-	const settings = SettingsContext.get();
+	const routing = RoutingContext.get();
 </script>
 
 <nav
 	class={['flex w-fit items-center gap-4', cls]}
-	aria-label={m['components.pagination.aria'](settings.language)}
+	aria-label={m['components.pagination.aria'](routing.lang)}
 	{...rest}
 >
 	<form class="flex items-center gap-2" method="GET" action={url.toString()}>

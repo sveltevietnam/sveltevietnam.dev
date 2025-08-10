@@ -21,46 +21,46 @@
 		open?: boolean;
 	} & HTMLAttributes<HTMLElement> = $props();
 
-	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();
+	const routing = RoutingContext.get();
 
-	const links = [
+	const links = $derived([
 		{
 			icon: 'i-[ph--house]',
-			path: p['/:lang']({ lang: settings.language }),
-			name: n['/:lang'](settings.language),
+			path: p['/:lang']({ lang: routing.lang }),
+			name: n['/:lang'](routing.lang),
 		},
 		{
 			icon: 'i-[ph--calendar-dots]',
-			path: p['/:lang/events']({ lang: settings.language }),
-			name: n['/:lang/events'](settings.language),
+			path: p['/:lang/events']({ lang: routing.lang }),
+			name: n['/:lang/events'](routing.lang),
 		},
 		{
 			icon: 'i-[ph--book-open]',
-			path: p['/:lang/blog']({ lang: settings.language }),
+			path: p['/:lang/blog']({ lang: routing.lang }),
 			name: n['/:lang/blog'](),
 		},
 		{
 			icon: 'i-[ph--read-cv-logo]',
-			path: p['/:lang/jobs']({ lang: settings.language }),
-			name: n['/:lang/jobs'](settings.language),
+			path: p['/:lang/jobs']({ lang: routing.lang }),
+			name: n['/:lang/jobs'](routing.lang),
 		},
 		{
 			icon: 'i-[ph--lightbulb]',
-			path: p['/:lang/sponsor']({ lang: settings.language }),
-			name: n['/:lang/sponsor'](settings.language),
+			path: p['/:lang/sponsor']({ lang: routing.lang }),
+			name: n['/:lang/sponsor'](routing.lang),
 		},
 		{
 			icon: 'i-[ph--users-three]',
-			path: p['/:lang/people']({ lang: settings.language }),
-			name: n['/:lang/people'](settings.language),
+			path: p['/:lang/people']({ lang: routing.lang }),
+			name: n['/:lang/people'](routing.lang),
 		},
 		{
 			icon: 'i-[ph--gear]',
-			path: p['/:lang/settings']({ lang: settings.language }),
-			name: n['/:lang/settings'](settings.language),
+			path: p['/:lang/settings']({ lang: routing.lang }),
+			name: n['/:lang/settings'](routing.lang),
 		},
-	];
+	]);
 
 	function onClickPageLink() {
 		open = false;
@@ -70,7 +70,7 @@
 
 <nav
 	class={['relative', !flat && 'w-fit', cls]}
-	aria-label={m['components.page_menu.aria'](settings.language)}
+	aria-label={m['components.page_menu.aria'](routing.lang)}
 	data-sveltekit-noscroll
 	data-sveltekit-preload-data="hover"
 	use:clickoutside={{ enabled: open }}

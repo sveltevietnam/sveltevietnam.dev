@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { createTimeline, onScroll, stagger, eases, type Timeline } from 'animejs';
 	import { onMount } from 'svelte';
 
@@ -10,6 +11,7 @@
 	import svgMesh from './images/mesh.svg?no-inline';
 
 	const settings = SettingsContext.get();
+	const routing = RoutingContext.get();
 
 	let elSection: HTMLElement;
 
@@ -98,7 +100,7 @@
 </script>
 
 <section
-	class="max-w-pad -mt-header relative flex min-h-svh flex-col items-center justify-center overflow-hidden select-none"
+	class="max-w-pad -mt-header relative flex min-h-svh select-none flex-col items-center justify-center overflow-hidden"
 	bind:this={elSection}
 >
 	<div class="space-y-15 tablet:space-y-20 desktop:space-y-24">
@@ -131,11 +133,10 @@
 				bind:this={elPyramid}
 			></svg>
 			<p
-				class="font-lora tablet:text-2xl desktop:text-3xl text-center text-lg font-medium leading-tight select-text"
+				class="font-lora tablet:text-2xl desktop:text-3xl select-text text-center text-lg font-medium leading-tight"
 				bind:this={elSubtitle}
 			>
-				<!-- <T message={m['pages.home.intro.subtitle']} /> -->
-				<SplitText text={m['pages.home.intro.subtitle'](settings.language)} />
+				<SplitText text={m['pages.home.intro.subtitle'](routing.lang)} />
 			</p>
 			<svg
 				class="h-15 tablet:h-20 desktop:h-25 w-auto shrink-0"

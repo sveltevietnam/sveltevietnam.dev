@@ -1,10 +1,7 @@
-import type { Language } from '@sveltevietnam/i18n';
 import type { SplashOption, Screen } from '@sveltevietnam/kit/constants';
 import { getContext, setContext } from 'svelte';
 import type { Attachment } from 'svelte/attachments';
 import { MediaQuery } from 'svelte/reactivity';
-
-import { browser } from '$app/environment';
 
 export class SettingsContext {
 	static KEY = Symbol('app:settings');
@@ -15,7 +12,6 @@ export class SettingsContext {
 
 	// $state
 	scrolllock = $state(false);
-	language = $state<Language>('en');
 	hydrated = $state<false | Date>(false);
 	splashed = $state<false | Date>(false);
 	splash = $state<SplashOption>('random');
@@ -25,15 +21,11 @@ export class SettingsContext {
 		this.#desktopQuery.current ? 'desktop' : this.#tabletQuery.current ? 'tablet' : 'mobile',
 	);
 
-	constructor(settings: { language: Language; splash: SplashOption }) {
-		$effect(() => {
-			document.documentElement.setAttribute('lang', this.language);
-		});
-
+	constructor(settings: { splash: SplashOption }) {
 		const splash = (date: Date) => {
 			this.splashed = date;
 		};
-		if (browser) {
+		if ('window' in globalThis) {
 			if (document.documentElement.dataset.splashedAt) {
 				// eslint-disable-next-line svelte/prefer-svelte-reactivity
 				splash(new Date(document.documentElement.dataset.splashedAt));
@@ -43,11 +35,11 @@ export class SettingsContext {
 					window.removeEventListener('splash', listener);
 				});
 			}
+
+			// eslint-disable-next-line svelte/prefer-svelte-reactivity
+			this.hydrated = new Date();
 		}
 
-		// eslint-disable-next-line svelte/prefer-svelte-reactivity
-		this.hydrated = browser ? new Date() : false;
-		this.language = settings.language;
 		this.splash = settings.splash;
 	}
 
@@ -64,7 +56,7 @@ export class SettingsContext {
 	};
 
 	get platform() {
-		if (!browser) {
+		if (!('window' in globalThis)) {
 			return 'server';
 		} else {
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -83,7 +75,7 @@ export class SettingsContext {
 		}
 	}
 
-	static set(settings: { language: Language; splash: SplashOption }) {
+	static set(settings: { splash: SplashOption }) {
 		return setContext(SettingsContext.KEY, new SettingsContext(settings));
 	}
 
