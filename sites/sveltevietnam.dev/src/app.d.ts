@@ -19,7 +19,7 @@ declare global {
 
 		interface PageData {
 			editUrl?: string;
-			routing: null | {
+			routing?: {
 				breadcrumbs?: {
 					path: string;
 					name: string;

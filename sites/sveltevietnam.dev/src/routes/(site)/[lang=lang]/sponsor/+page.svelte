@@ -8,13 +8,14 @@
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import * as pagefind from '$lib/pagefind/attributes';
-	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
+	import type { PageProps } from './$types';
 	import imgIntro from './_page/images/irrigation.svg?url';
 
+	let { data }: PageProps = $props();
+
 	const settings = SettingsContext.get();
-	const routing = RoutingContext.get();
 </script>
 
 <main {...pagefind.page()}>
@@ -24,7 +25,7 @@
 			class="max-w-pad tablet:flex-row tablet:gap-6 tablet:items-start flex flex-col justify-between"
 		>
 			<div class="tablet:space-y-8 space-y-6">
-				<Breadcrumbs crumbs={routing.breadcrumbs} />
+				<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 				<div class="space-y-4">
 					<h1 class="c-text-heading-page text-primary-on-surface">
 						<T message={m['pages.sponsor.heading']} />
@@ -79,11 +80,7 @@
 		</p>
 		<ul class="max-w-readable-relaxed space-y-6">
 			<li>
-				<a
-					class="c-btn c-btn--pop flex justify-between"
-					href={SOCIAL_LINKS.DISCORD}
-					data-external
-				>
+				<a class="c-btn c-btn--pop flex justify-between" href={SOCIAL_LINKS.DISCORD} data-external>
 					<T message={m['pages.sponsor.participate.discord']} />
 					<i class="i i-[ph--arrow-square-out] h-6 w-6"></i>
 				</a>
@@ -100,7 +97,7 @@
 				<a
 					class="c-btn c-btn--pop flex justify-between text-left"
 					href={p['/:lang/blog']({ lang: settings.language })}
-					>
+				>
 					<T message={m['pages.sponsor.participate.blog']} />
 				</a>
 			</li>
@@ -119,7 +116,9 @@
 
 	<!-- Why -->
 	<section class="max-w-pad bg-gradient-primary py-section space-y-6">
-		<h2 class="c-text-heading-lg border-b" id="why"><T message={m['pages.sponsor.why.heading']} /></h2>
+		<h2 class="c-text-heading-lg border-b" id="why">
+			<T message={m['pages.sponsor.why.heading']} />
+		</h2>
 		<p class="max-w-readable-relaxed leading-relaxed">
 			<T message={m['pages.sponsor.why.desc']} />
 			<br /><br />
@@ -140,7 +139,9 @@
 
 	<!-- Benefits -->
 	<section class="py-section max-w-pad space-y-6">
-		<h2 class="c-text-heading-lg border-b" id="benefits"><T message={m['pages.sponsor.benefit.heading']} /></h2>
+		<h2 class="c-text-heading-lg border-b" id="benefits">
+			<T message={m['pages.sponsor.benefit.heading']} />
+		</h2>
 		<p class="max-w-readable-relaxed leading-relaxed">
 			<T message={m['pages.sponsor.benefit.desc']} />
 		</p>

@@ -12,7 +12,6 @@
 	import { SplashScreenPlayground } from '$lib/components/splash-screen-playground';
 	import { NotificationContext } from '$lib/notifications/context.svelte';
 	import * as pagefind from '$lib/pagefind/attributes';
-	import { RoutingContext } from '$lib/routing/context.svelte';
 
 	import type { PageProps } from './$types';
 	import ColorSchemeSkeleton from './_page/components/ColorSchemeSkeleton.svelte';
@@ -20,7 +19,6 @@
 
 	let { data }: PageProps = $props();
 
-	const routing = RoutingContext.get();
 	const noti = NotificationContext.get();
 	const colorScheme = ColorSchemeContext.get();
 
@@ -110,7 +108,7 @@
 			class="max-w-pad tablet:flex-row tablet:gap-6 tablet:items-start flex flex-col justify-between"
 		>
 			<div class="tablet:space-y-8 space-y-6">
-				<Breadcrumbs crumbs={routing.breadcrumbs} />
+				<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 				<div class="space-y-4">
 					<h1 class="c-text-heading-page text-primary-on-surface">
 						<T message={m['pages.settings.heading']} />

@@ -2,6 +2,7 @@
 	import { Toc } from '@svelte-put/toc';
 	import { T } from '@sveltevietnam/i18n';
 	import type { Message } from '@sveltevietnam/i18n/runtime';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
@@ -21,7 +22,6 @@
 	import { QrCodeDialog } from '$lib/dialogs/components/qr-code-dialog';
 	import { DialogContext } from '$lib/dialogs/context.svelte';
 	import * as pagefind from '$lib/pagefind/attributes';
-	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 	import { formatRelativeTime } from '$lib/utils/datetime';
 
@@ -46,14 +46,15 @@
 	const encodedUrl = $derived(encodeURIComponent(url));
 	const outdated = $derived.by(() => {
 		if (!data.post.outdate) return null;
-		const elapsedMs =	data.post.publishedAt.getTime() - Date.now();
+		const elapsedMs = data.post.publishedAt.getTime() - Date.now();
 		if (data.post.outdate === true) return formatRelativeTime(settings.language, elapsedMs);
 		if (typeof data.post.outdate === 'number') {
 			const outdateMs = data.post.outdate * 24 * 60 * 60 * 1000;
 			if (Math.abs(elapsedMs) >= outdateMs) return formatRelativeTime(settings.language, elapsedMs);
 			return null;
 		}
-		if (data.post.outdate.getTime() <= Date.now()) return formatRelativeTime(settings.language, elapsedMs);
+		if (data.post.outdate.getTime() <= Date.now())
+			return formatRelativeTime(settings.language, elapsedMs);
 		return null;
 	});
 
@@ -86,7 +87,7 @@
 <main {...pagefind.page({ group: 'blog', importance: 'detail' })}>
 	<!-- intro -->
 	<section class="pt-intro-pad-top max-w-pad bg-gradient-primary-intro">
-		<Breadcrumbs crumbs={routing.breadcrumbs} />
+		<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 		<h1 class="c-text-heading-lg tablet:mt-10 desktop:mt-15 mt-8">
 			{data.post.title}
 		</h1>

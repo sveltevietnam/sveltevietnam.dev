@@ -8,12 +8,12 @@
 	import svgTuNom from '$lib/assets/images/svg/tu-nom.svg?no-inline';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import * as pagefind from '$lib/pagefind/attributes';
-	import { RoutingContext } from '$lib/routing/context.svelte';
 
+	import type { PageProps } from './$types';
 	import { Milestone } from './_page/components/milestone';
 	import environmentProtectionSvg from './_page/images/environment-protection.svg';
 
-	const routing = RoutingContext.get();
+	let { data }: PageProps = $props();
 </script>
 
 <main {...pagefind.page({ group: 'general' })}>
@@ -24,7 +24,7 @@
 			gap-6"
 		>
 			<div class="tablet:space-y-8 relative space-y-6">
-				<Breadcrumbs crumbs={routing.breadcrumbs} />
+				<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 				<div class="space-y-4">
 					<h1 class="c-text-heading-page text-primary-on-surface">
 						<T message={m['pages.roadmap.heading']} />

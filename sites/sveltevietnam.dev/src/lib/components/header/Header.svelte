@@ -8,7 +8,7 @@
 		ColorSchemeMenu,
 		type ColorSchemeMenuProps,
 	} from '@sveltevietnam/kit/components';
-	import { ColorSchemeContext } from '@sveltevietnam/kit/contexts';
+	import { ColorSchemeContext, RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { ScrollToggler } from '@sveltevietnam/kit/utilities';
 	import type { HTMLAttributes } from 'svelte/elements';
 
@@ -18,7 +18,6 @@
 	import { SocialLinks } from '$lib/components/social-links';
 	import { SearchDialog } from '$lib/dialogs/components/search-dialog';
 	import { DialogContext } from '$lib/dialogs/context.svelte';
-	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	const isPrideMonth = new Date().getMonth() === 5; // June is Pride Month

@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { clickoutside } from '@svelte-put/clickoutside';
 	import { T } from '@sveltevietnam/i18n';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import * as n from '$data/routes/generated/names';
-	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	let {

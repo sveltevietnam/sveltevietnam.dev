@@ -7,14 +7,11 @@
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { TableOfContents } from '$lib/components/table-of-contents';
 	import * as pagefind from '$lib/pagefind/attributes';
-	import { RoutingContext } from '$lib/routing/context.svelte';
 
 	import type { PageProps } from './$types';
 	import imgIntro from './_page/images/plant.svg?url';
 
 	let { data }: PageProps = $props();
-
-	const routing = RoutingContext.get();
 
 	const toc = new Toc({
 		selector: ':where(h2, h3, h4, h5, h6)',
@@ -34,7 +31,7 @@
 			class="max-w-pad tablet:flex-row tablet:gap-6 tablet:items-start flex flex-col justify-between"
 		>
 			<div class="tablet:space-y-8 space-y-6">
-				<Breadcrumbs crumbs={routing.breadcrumbs} />
+				<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 				<div class="space-y-4">
 					<h1 class="c-text-heading-page text-primary-on-surface">
 						<T message={m['pages.blog_write.heading']} />

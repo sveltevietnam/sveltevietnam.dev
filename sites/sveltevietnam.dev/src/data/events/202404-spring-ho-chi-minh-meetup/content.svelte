@@ -14,7 +14,6 @@
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { ListMessage } from '$lib/components/list-message';
 	import { Person } from '$lib/components/person';
-	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import type { PageProps } from '../../../routes/(site)/[lang=lang]/events/[slug]/$types';
@@ -37,7 +36,6 @@
 
 	let { data }: PageProps = $props();
 
-	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();
 
 	const people = $derived({
@@ -68,7 +66,7 @@
 			></div>
 		</div>
 		<div class="tablet:space-y-10 max-w-pad z-1 relative space-y-8">
-			<Breadcrumbs crumbs={routing.breadcrumbs} />
+			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 			<div class="space-y-10">
 				<h1 class="c-text-heading-page text-primary-on-surface">
 					{data.event.title}

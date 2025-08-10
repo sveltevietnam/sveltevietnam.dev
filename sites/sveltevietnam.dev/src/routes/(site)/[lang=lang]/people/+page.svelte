@@ -10,14 +10,12 @@
 	import { PersonLinks } from '$lib/components/person-links';
 	import { TextArrowLink } from '$lib/components/text-arrow-link';
 	import * as pagefind from '$lib/pagefind/attributes';
-	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
 
-	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();
 </script>
 
@@ -87,7 +85,7 @@
 	<!-- intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div class="max-w-pad space-y-10">
-			<Breadcrumbs crumbs={routing.breadcrumbs} />
+			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 			<div class="space-y-4">
 				<h1 class="c-text-heading-lg text-primary-on-surface font-bold">
 					<T message={m['pages.people.heading']}></T>

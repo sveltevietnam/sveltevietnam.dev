@@ -11,7 +11,6 @@
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { TextArrowLink } from '$lib/components/text-arrow-link';
 	import * as pagefind from '$lib/pagefind/attributes';
-	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import type { PageProps } from './$types';
@@ -19,7 +18,6 @@
 	let { data }: PageProps = $props();
 
 	const settings = SettingsContext.get();
-	const routing = RoutingContext.get();
 
 	const commonArrowLinkClasses = 'group-hover:translate-x-1 transition-transform';
 
@@ -93,7 +91,7 @@
 	<!-- intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div class="max-w-pad space-y-10">
-			<Breadcrumbs crumbs={routing.breadcrumbs} />
+			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 			<div class="space-y-4 text-center">
 				<h1 class="c-text-heading-page text-primary-on-surface">
 					<T message={m['pages.blog.heading']} />

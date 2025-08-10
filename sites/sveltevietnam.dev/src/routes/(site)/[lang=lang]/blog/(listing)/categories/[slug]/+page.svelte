@@ -9,13 +9,10 @@
 	import { GradientBackground } from '$lib/components/gradient-background';
 	import { Pagination } from '$lib/components/pagination';
 	import * as pagefind from '$lib/pagefind/attributes';
-	import { RoutingContext } from '$lib/routing/context.svelte';
 
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
-
-	const routing = RoutingContext.get();
 
 	let paginationUrl = $derived.by(() => {
 		// eslint-disable-next-line svelte/prefer-svelte-reactivity
@@ -27,7 +24,7 @@
 
 <main {...pagefind.page({ group: 'blog', importance: 'listing' })}>
 	<BlogListingIntro
-		breadcrumbs={routing.breadcrumbs}
+		breadcrumbs={data.routing.breadcrumbs}
 		heading={data.category.name}
 		description={data.category.description}
 	/>

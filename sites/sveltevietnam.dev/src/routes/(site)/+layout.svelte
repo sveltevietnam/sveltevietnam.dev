@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ColorSchemeContext } from '@sveltevietnam/kit/contexts';
+	import { ColorSchemeContext, RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { onMount, setContext } from 'svelte';
 
 	import { browser, dev, version } from '$app/environment';
@@ -20,7 +20,6 @@
 	import { toStringWithContext } from '$lib/meta/structured/utils';
 	import NotificationPortal from '$lib/notifications/components/NotificationPortal.svelte';
 	import { NotificationContext } from '$lib/notifications/context.svelte';
-	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SearchContext } from '$lib/search/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
@@ -33,10 +32,13 @@
 		vi: ogImageVi,
 	};
 
-	const routing = RoutingContext.set(page.data.routing);
-	$effect(() => {
-		routing.update(page.data.routing);
-	});
+	RoutingContext.set(() => ({
+		lang: data.settings.language,
+		paths: page.data.routing?.paths ?? {
+			en: page.url.pathname,
+			vi: page.url.pathname,
+		},
+	}));
 	const dialog = DialogContext.set();
 	const noti = NotificationContext.set();
 	const settings = SettingsContext.set(data.settings);
@@ -47,7 +49,6 @@
 	SearchContext.set(page.url.origin);
 
 	// for @sveltevietnam/i18n T.svelte component
-	// TODO: create some abstraction around this
 	setContext('t:lang', () => data.settings.language);
 
 	$effect(() => {

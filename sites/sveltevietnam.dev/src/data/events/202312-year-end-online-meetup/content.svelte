@@ -11,7 +11,6 @@
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { ListMessage } from '$lib/components/list-message';
 	import { Person } from '$lib/components/person';
-	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import type { PageProps } from '../../../routes/(site)/[lang=lang]/events/[slug]/$types';
@@ -25,7 +24,6 @@
 
 	let { data }: PageProps = $props();
 
-	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();
 
 	const vnphanquang = $derived(vnphanquangDef(settings.language));
@@ -35,7 +33,7 @@
 	<!-- Intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div class="tablet:space-y-8 max-w-pad space-y-6">
-			<Breadcrumbs crumbs={routing.breadcrumbs} />
+			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 			<div class="space-y-6">
 				<h1 class="c-text-heading-page text-primary-on-surface">
 					{data.event.title}

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	import { EMAILS } from '$data/emails';
@@ -10,7 +11,6 @@
 	import { GreenWebBadge } from '$lib/components/green-web-badge';
 	import { NotByAiBadge } from '$lib/components/not-by-ai-badge';
 	import { SocialLinks } from '$lib/components/social-links';
-	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	let {

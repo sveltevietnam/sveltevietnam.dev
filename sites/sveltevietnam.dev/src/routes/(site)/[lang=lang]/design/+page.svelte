@@ -10,7 +10,6 @@
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import BaseNotification from '$lib/notifications/components/BaseNotification.svelte';
 	import * as pagefind from '$lib/pagefind/attributes';
-	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import type { PageProps } from './$types';
@@ -35,7 +34,6 @@
 		error: 'c-callout--error',
 	};
 
-	const routing = RoutingContext.get();
 	let status = $state<Status>('info');
 	let [markCls, calloutCls] = $derived([MARK_CLASSES[status], CALLOUT_CLASSES[status]]);
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -46,7 +44,7 @@
 	<!-- intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div class="max-w-pad tablet:space-y-8 space-y-6">
-			<Breadcrumbs crumbs={routing.breadcrumbs} />
+			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 			<div class="space-y-4">
 				<h1 class="c-text-heading-page text-primary-on-surface">
 					<T message={m['pages.design.heading']} />

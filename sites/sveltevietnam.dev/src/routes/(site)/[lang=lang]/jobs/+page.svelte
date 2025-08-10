@@ -11,7 +11,6 @@
 	import { TBA } from '$lib/components/tba';
 	import { SubscriberUpsertForm } from '$lib/forms/subscriber';
 	import * as pagefind from '$lib/pagefind/attributes';
-	import { RoutingContext } from '$lib/routing/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import type { PageProps } from './$types';
@@ -19,7 +18,6 @@
 
 	let { data }: PageProps = $props();
 
-	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();
 </script>
 
@@ -30,7 +28,7 @@
 			class="max-w-pad tablet:flex-row tablet:gap-6 tablet:items-start flex flex-col justify-between"
 		>
 			<div class="tablet:space-y-8 space-y-6">
-				<Breadcrumbs crumbs={routing.breadcrumbs} />
+				<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 				<div class="space-y-4">
 					<h1 class="c-text-heading-page text-primary-on-surface">
 						<T message={m['pages.jobs.heading']} />
