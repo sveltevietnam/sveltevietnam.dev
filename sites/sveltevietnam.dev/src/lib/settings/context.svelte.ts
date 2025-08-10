@@ -1,10 +1,13 @@
 import type { SplashOption, Screen } from '@sveltevietnam/kit/constants';
+import { platform } from '@sveltevietnam/kit/utilities';
 import { getContext, setContext } from 'svelte';
 import type { Attachment } from 'svelte/attachments';
 import { MediaQuery } from 'svelte/reactivity';
 
 export class SettingsContext {
 	static KEY = Symbol('app:settings');
+
+	platform = platform();
 
 	// reactive MediaQuery
 	#desktopQuery = new MediaQuery('(width >= 64rem)'); /* 1024px */
@@ -54,26 +57,6 @@ export class SettingsContext {
 			this.toggleScrollLock(false);
 		};
 	};
-
-	get platform() {
-		if (!('window' in globalThis)) {
-			return 'server';
-		} else {
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			const navigator = window.navigator as any;
-			const platform = (
-				navigator.userAgentData?.platform ?? window.navigator.platform
-			).toLowerCase();
-			if (platform.includes('mac')) {
-				return 'mac';
-			} else if (platform.includes('win')) {
-				return 'windows';
-			} else if (platform.includes('linux')) {
-				return 'linux';
-			}
-			return 'unknown';
-		}
-	}
 
 	static set(settings: { splash: SplashOption }) {
 		return setContext(SettingsContext.KEY, new SettingsContext(settings));

@@ -7,7 +7,7 @@
 
 If you are using a keyboard, try pressing the key combination
 <span class="c-text-body-xs">
-  {#if settings.platform === 'mac'}
+  {#if settings.platform === 'apple'}
     <kbd>⌘</kbd>
   {:else}
     <kbd>Ctrl</kbd>

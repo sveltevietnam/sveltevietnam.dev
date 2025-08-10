@@ -155,7 +155,7 @@
 				<i class="i i-[ph--magnifying-glass] h-5 w-5"></i>
 				<span><T message={m.search} /></span>
 				<span class="c-text-body-xs">
-					{#if settings.platform === 'mac'}
+					{#if settings.platform === 'apple'}
 						<kbd>⌘</kbd>
 					{:else}
 						<kbd>Ctrl</kbd>
