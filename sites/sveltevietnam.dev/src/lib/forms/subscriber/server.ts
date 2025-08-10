@@ -2,12 +2,13 @@ import type { RequestEvent } from '@sveltejs/kit';
 import { error, fail } from '@sveltejs/kit';
 import type { SubscriptionChannel } from '@sveltevietnam/backend/data/subscribers/channels';
 import type { Language } from '@sveltevietnam/i18n';
+import { validateCloudflareToken } from '@sveltevietnam/kit/utilities';
 import { valibot } from 'sveltekit-superforms/adapters';
 import { setError, superValidate } from 'sveltekit-superforms/server';
 
 import * as m from '$data/locales/generated/messages';
+import { VITE_PRIVATE_CLOUDFLARE_TURNSTILE_SECRET_KEY } from '$env/static/private';
 import { getBackend } from '$lib/backend/utils';
-import { validateToken } from '$lib/turnstile/turnstile.server';
 
 import {
 	createSubcriberUpsertSchema,
@@ -40,7 +41,11 @@ export const upsert = {
 		form.data.email = form.data.email.toLowerCase();
 
 		// check cloudflare turnstile captcha
-		const turnstile = await validateToken(form.data.turnstile, getClientAddress());
+		const turnstile = await validateCloudflareToken(
+			VITE_PRIVATE_CLOUDFLARE_TURNSTILE_SECRET_KEY,
+			form.data.turnstile,
+			getClientAddress(),
+		);
 		if (!turnstile.success) {
 			setError(
 				form,
@@ -86,7 +91,11 @@ export const update = {
 		form.data.email = form.data.email.toLowerCase();
 
 		// check cloudflare turnstile captcha
-		const turnstile = await validateToken(form.data.turnstile, getClientAddress());
+		const turnstile = await validateCloudflareToken(
+			VITE_PRIVATE_CLOUDFLARE_TURNSTILE_SECRET_KEY,
+			form.data.turnstile,
+			getClientAddress(),
+		);
 		if (!turnstile.success) {
 			setError(
 				form,
