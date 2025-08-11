@@ -106,7 +106,7 @@
 		};
 	});
 
-	function handleUmamiLoad() {
+	function callUmamiIdentify() {
 		window.umami?.identify({
 			language: routing.lang,
 			systemColorScheme: colorScheme.system,
@@ -122,6 +122,12 @@
 	}
 
 	onMount(() => {
+		if (window.umami) {
+			callUmamiIdentify();
+		} else {
+			document.getElementById('umami-script')?.addEventListener('load', callUmamiIdentify);
+		}
+
 		if (
 			!dev &&
 			settings.splashed &&
@@ -205,8 +211,8 @@
 
 	{#if VITE_PUBLIC_UMAMI !== '0' && VITE_PUBLIC_UMAMI !== 'false' && !browser}
 		<script
+			id="umami-script"
 			defer
-			onload={handleUmamiLoad}
 			src={VITE_PUBLIC_UMAMI_SCRIPT_URL}
 			data-website-id={VITE_PUBLIC_UMAMI_WEBSITE_ID}
 		></script>
