@@ -6,3 +6,33 @@
 
 @source '../../../../../packages/markdown/src/**/*.{svelte,js}';
 @source '../../../../../packages/kit/src/**/*.{svelte,js}';
+
+:root.in-theme-transition {
+	&::view-transition-old(root) {
+		animation-delay: 400ms;
+	}
+
+	&::view-transition-new(root) {
+		animation: circle-in 400ms var(--default-transition-timing-function);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		&::view-transition-old(root) {
+			animation-duration: 0ms;
+		}
+
+		&::view-transition-new(root) {
+			animation-duration: 0ms;
+		}
+	}
+}
+
+@keyframes circle-in {
+	from {
+		clip-path: circle(0% at 100% 0%);
+	}
+
+	to {
+		clip-path: circle(140% at 100% 0%);
+	}
+}
