@@ -31,6 +31,9 @@ Below is a working example. The source code for the example is provided in the "
 <p class="mt-4 c-text-body-sm">Note: playground requires Javascript to function properly</p>
 </fieldset>
 
+You may also checkout [this REPL](https://svelte.dev/playground/16f541304f9246c1a180d80d44780ebd?version=5.38.0)
+for the same example (remember to turn on "Tailwind Mode").
+
 ## Async Dialog
 
 The term "async dialog" in this post refers to a dialog that is triggered via Javascript and whose

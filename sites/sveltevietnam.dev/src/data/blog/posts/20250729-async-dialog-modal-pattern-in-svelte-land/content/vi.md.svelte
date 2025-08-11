@@ -30,6 +30,9 @@ Dưới đây là ví dụ đã hiện thực hóa. Mã nguồn của ví dụ �
 <p class="mt-4 c-text-body-sm">Ghi chú: cần Javascript để hoạt động</p>
 </fieldset>
 
+Bạn cũng có thể tham khảo [REPL này](https://svelte.dev/playground/16f541304f9246c1a180d80d44780ebd?version=5.38.0)
+để xem ví dụ tương tự (nhớ bật "Taiwind Mode" bạn nhé!).
+
 ## "Hộp thoại async"
 
 Thuật ngữ "hộp thoại async" mình sử dụng trong bài viết này để chỉ việc hộp thoại được kích hoạt
