@@ -863,6 +863,7 @@ messages:
       desc: Share and scan this code for quick access the blog post!
     search:
       input:
+        label: Keywords
         placeholder: Type something...
         clear: Clear
         exit: Exit

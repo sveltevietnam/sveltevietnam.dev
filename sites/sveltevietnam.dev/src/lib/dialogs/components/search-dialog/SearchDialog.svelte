@@ -27,7 +27,7 @@
 	}
 
 	function closeDialog() {
-		dialog.close();
+		dialog.requestClose();
 	}
 
 	const commonItemClasses =
@@ -49,12 +49,16 @@
 	use:shortcut={{
 		trigger: { key: 'k', modifier: ['ctrl', 'meta'], callback: closeDialog },
 	}}
+	aria-label={m.search.toString()}
 	{@attach settings.lockScrollWhenMounted}
 >
-	<form class="min-h-50 w-150 flex h-full max-w-full flex-col" method="dialog">
+	<search class="min-h-50 w-150 flex h-full max-w-full flex-col">
 		<!-- query -->
-		<div class="border-outline relative flex max-w-full items-center gap-2 border-b p-4">
+		<form class="border-outline relative flex max-w-full items-center gap-2 border-b p-4">
 			<label class="c-text-input bg-surface relative min-w-0 flex-1">
+				<span class="sr-only">
+					<T message={m['dialogs.search.input.label']} />
+				</span>
 				<i class="i i-[ph--magnifying-glass] h-6 w-6"></i>
 				<input
 					type="text"
@@ -79,10 +83,10 @@
 			<button class="c-btn c-btn--outlined mobile:block hidden" formmethod="dialog">
 				<span><T message={m['dialogs.search.input.exit']} /></span>
 			</button>
-		</div>
+		</form>
 
 		<!-- results -->
-		<div class="tablet:min-h-[20vh] flex flex-1 flex-col">
+		<output class="tablet:min-h-[20vh] flex flex-1 flex-col">
 			{#if search.results}
 				{#await search.results}
 					<p class="p-4"><T message={m['dialogs.search.results.searching']} /></p>
@@ -153,12 +157,7 @@
 										commonItemClasses,
 									]}
 								>
-									<input
-										class="sr-only"
-										type="checkbox"
-										bind:checked={search.clip.results}
-										onclick={(e) => e.stopPropagation()}
-									/>
+									<input class="sr-only" type="checkbox" bind:checked={search.clip.results} />
 									<span>
 										<T message={m['dialogs.search.results.clip.results']} />
 									</span>
@@ -176,18 +175,19 @@
 					<svg
 						class="my-7.5 text-surface-variant mx-auto h-auto w-1/2 justify-self-center opacity-40"
 						inline-src="blocks"
+						aria-hidden="true"
 					>
 					</svg>
 				</div>
 			{/if}
-		</div>
+		</output>
 
 		<div class="border-outline border-t p-4 py-2">
 			<p class="c-text-body-sm text-right">
 				<T message={m['dialogs.search.footer']} />
 			</p>
 		</div>
-	</form>
+	</search>
 </dialog>
 
 <style lang="postcss">

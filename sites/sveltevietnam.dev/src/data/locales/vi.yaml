@@ -868,6 +868,7 @@ messages:
       desc: Chia sẻ và quét mã này để dễ dàng truy cập vào bài viết nhé!
     search:
       input:
+        label: Từ khóa
         placeholder: Nhập từ khóa...
         clear: Xóa
         exit: Thoát
