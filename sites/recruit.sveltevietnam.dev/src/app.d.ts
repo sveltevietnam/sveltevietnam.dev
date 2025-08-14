@@ -1,6 +1,6 @@
 /// <reference types="umami-browser" />
 import type { Language } from '@sveltevietnam/i18n';
-import type { AppLocals, AppPlatform } from '@sveltevietnam/kit';
+import type { AppLocals, AppPlatform, PageMetadata } from '@sveltevietnam/kit';
 
 declare global {
 	declare type MaybePromise<T> = T | Promise<T> | PromiseLike<T>;
@@ -22,6 +22,7 @@ declare global {
 			routing?: {
 				paths: Record<Language, string>;
 			};
+			meta?: PageMetadata;
 		}
 
 		// interface PageState {}
