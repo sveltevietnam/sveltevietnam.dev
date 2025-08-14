@@ -23,4 +23,5 @@ export interface LanguageMenuProps extends HTMLAttributes<HTMLElement> {
 	/** @bindable */
 	open?: boolean;
 }
+/** Dropdown menu for switching global language. */
 export const LanguageMenu: Component<LanguageMenuProps>;

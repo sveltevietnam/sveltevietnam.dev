@@ -20,4 +20,6 @@ export interface ColorSchemeMenuProps extends Omit<HTMLAttributes<HTMLElement>, 
 	open?: boolean;
 	onselect?: (scheme: ColorScheme) => void;
 }
+
+/** Dropdown menu for switching global color scheme. */
 export const ColorSchemeMenu: Component<ColorSchemeMenuProps>;
