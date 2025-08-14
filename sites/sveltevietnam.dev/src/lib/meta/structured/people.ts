@@ -1,9 +1,8 @@
 import type { Language } from '@sveltevietnam/i18n';
+import { buildStructuredTextWithLang } from '@sveltevietnam/kit/utilities/structured-data';
 import type { Person } from 'schema-dts';
 
 import * as p from '$data/routes/generated';
-
-import { buildStructuredTextWithLang } from './utils';
 
 export function buildStructuredPerson(
 	lang: Language,
@@ -15,9 +14,9 @@ export function buildStructuredPerson(
 	return {
 		'@type': 'Person',
 		'@id': id,
-		url: buildStructuredTextWithLang(lang, canonical),
-		name: buildStructuredTextWithLang(lang, person.name),
-		description: buildStructuredTextWithLang(lang, person.description),
+		url: buildStructuredTextWithLang({ lang, value: canonical }),
+		name: buildStructuredTextWithLang({ lang, value: person.name }),
+		description: buildStructuredTextWithLang({ lang, value: person.description }),
 		...(person.avatar && {
 			image: {
 				'@type': 'ImageObject',

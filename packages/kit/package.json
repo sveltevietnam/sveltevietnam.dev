@@ -31,6 +31,10 @@
 		"./utilities": {
 			"types": "./types/index.d.ts",
 			"import": "./src/utilities/index.js"
+		},
+		"./utilities/structured-data": {
+			"types": "./types/index.d.ts",
+			"import": "./src/utilities/structured-data/index.js"
 		}
 	},
 	"publishconfig": {
