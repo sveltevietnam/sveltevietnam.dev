@@ -47,3 +47,16 @@ messages:
         Independent recruiter or headhunter? <br /> Connect directly with candidates via our <a
         class="c-link" href="{{jobChannelUrl}}" target="_blank" rel="noreferrer noopener
         external">community forum</a>.
+    signup:
+      heading: Sign up
+      desc:
+        Managing job postings at <a class="c-link" href={{mainSiteUrl}}>sveltevietnam.dev</a> — for
+        businesses and organizations
+      callout:
+        Please continue the sign-up process following instructions in the email sent to you. If you
+        do not receive any email, you may click "Resend" in
+      login: Log in
+      headhunter:
+        Independent recruiter or headhunter? <br /> Connect directly with candidates via our <a
+        class="c-link" href="{{jobChannelUrl}}" target="_blank" rel="noreferrer noopener
+        external">community forum</a>.

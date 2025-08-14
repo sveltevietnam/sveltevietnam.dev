@@ -47,3 +47,16 @@ messages:
         Bạn là nhà tuyển dụng độc lập? <br /> Kết nối trực tiếp với ứng viên qua <a class="c-link"
         href="{{jobChannelUrl}}" target="_blank" rel="noreferrer noopener external">diễn đàn cộng
         đồng</a>.
+    signup:
+      heading: Đăng ký
+      desc:
+        Quản lý bài đăng tuyển dụng tại <a class="c-link" href={{mainSiteUrl}}>sveltevietnam.dev</a>
+        — dành cho doanh nghiệp và tổ chức
+      callout:
+        Vui lòng tiếp tục quy trình đăng ký qua hướng dẫn trong email vừa được gởi đến bạn. Nếu
+        không nhận được email, bạn có thể nhấn “Gởi lại” trong
+      login: Đăng nhập
+      headhunter:
+        Bạn là nhà tuyển dụng độc lập? <br /> Kết nối trực tiếp với ứng viên qua <a class="c-link"
+        href="{{jobChannelUrl}}" target="_blank" rel="noreferrer noopener external">diễn đàn cộng
+        đồng</a>.

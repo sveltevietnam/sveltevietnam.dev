@@ -41,8 +41,9 @@ export const load: PageServerLoad = async ({ params }) => {
 export const actions: Actions = {
 	login: async (event) => {
 		const { request, locals, getClientAddress } = event;
+		const { language } = locals;
 
-		const schema = createLoginSchema(locals.language);
+		const schema = createLoginSchema(language);
 		const form = await superValidate(request, valibot(schema));
 		if (!form.valid) {
 			return fail(400, { form });
@@ -59,7 +60,7 @@ export const actions: Actions = {
 			setError(
 				form,
 				'turnstile',
-				turnstile.error?.[0] ?? m['inputs.turnstile.errors.unknown'](locals.language),
+				turnstile.error?.[0] ?? m['inputs.turnstile.errors.unknown'](language),
 			);
 			return fail(400, { form });
 		}
