@@ -2,7 +2,7 @@ import type { Message } from '@sveltevietnam/i18n/runtime';
 import type { Component } from 'svelte';
 import type { HTMLAttributes } from 'svelte/elements';
 
-import type { ColorScheme } from '../../constants';
+import type { ColorScheme } from '@sveltevietnam/kit/constants';
 
 export interface ColorSchemeMenuProps extends Omit<HTMLAttributes<HTMLElement>, 'onselect'> {
 	i18n: {

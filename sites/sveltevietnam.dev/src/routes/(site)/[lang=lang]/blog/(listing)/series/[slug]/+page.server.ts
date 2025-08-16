@@ -57,7 +57,9 @@ export const load: PageServerLoad = async ({ url, params }) => {
 		},
 		meta: {
 			og: {
-				image: series.ogImage,
+				image: {
+					src: series.ogImage,
+				},
 			},
 			structured: buildStructuredBlogSeries(lang, VITE_PUBLIC_ORIGIN, series),
 			title: `${series.name} | Svelte Vietnam`,

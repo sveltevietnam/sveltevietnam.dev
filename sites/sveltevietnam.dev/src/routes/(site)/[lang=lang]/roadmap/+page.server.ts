@@ -27,7 +27,9 @@ export const load: PageServerLoad = async ({ params }) => {
 			description: m['pages.roadmap.desc'](lang),
 			keywords: m['pages.roadmap.keywords'](lang),
 			og: {
-				image: ogImage[lang],
+				image: {
+					src: ogImage[lang],
+				},
 			},
 		},
 	};

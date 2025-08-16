@@ -157,6 +157,9 @@ importers:
       '@sveltevietnam/i18n':
         specifier: workspace:*
         version: link:../i18n
+      defu:
+        specifier: ^6.1.4
+        version: 6.1.4
     devDependencies:
       '@cloudflare/workers-types':
         specifier: ^4.20250807.0

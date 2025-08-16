@@ -70,7 +70,9 @@ export const load: PageServerLoad = async ({ params }) => {
 			description: m['pages.blog.desc'](lang),
 			keywords: m['pages.blog.keywords'](lang),
 			og: {
-				image: ogImage[lang],
+				image: {
+					src: ogImage[lang],
+				},
 			},
 			structured: buildStructuredBlog(lang, VITE_PUBLIC_ORIGIN),
 		},

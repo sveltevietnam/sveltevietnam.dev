@@ -96,7 +96,9 @@ export const load: PageServerLoad = async (event) => {
 			description: post.description,
 			keywords: post.keywords,
 			og: {
-				image: ogImage ?? ogImageFallback[lang],
+				image: {
+					src: ogImage ?? ogImageFallback[lang],
+				},
 			},
 		},
 	};

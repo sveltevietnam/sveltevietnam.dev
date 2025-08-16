@@ -67,7 +67,9 @@ export const load: PageServerLoad = async ({ url, params }) => {
 			title: `${person.name} | Svelte Vietnam`,
 			description: person.description,
 			og: {
-				image: person.ogImage ?? ogImage[lang],
+				image: {
+					src: person.ogImage ?? ogImage[lang],
+				},
 			},
 		},
 	};

@@ -50,7 +50,9 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 			title: m['pages.settings.title'](lang),
 			description: m['pages.settings.desc'](lang),
 			og: {
-				image: ogImage[lang],
+				image: {
+					src: ogImage[lang],
+				},
 			},
 		},
 		form: await superValidate(

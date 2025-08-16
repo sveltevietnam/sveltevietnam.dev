@@ -27,22 +27,38 @@ export type PageMetadata = {
 	description?: string;
 	keywords?: string;
 	canonical?: string;
-	structured?: Thing[] | Thing; // Structured Data LD+JSON
+	/** LD+JSON structured data */
+	structured?: Thing[] | Thing;
+	paths?: {
+		default: string;
+		alternate: Record<string, string>;
+	};
 	og?: {
-		title?: string;
-		site_name?: string;
-		description?: string;
 		type?: 'website' | 'article' | 'profile';
-		image?: string;
-		imageAlt?: string;
+		title?: string;
+		description?: string;
+		siteName?: string;
 		url?: string;
+		locale?: {
+			current?: string;
+			alternate?: string[];
+		};
+		image?: {
+			src?: string;
+			alt?: string;
+			width?: number;
+			height?: number;
+			type?: string;
+		};
 	};
 	twitter?: {
 		title?: string;
 		description?: string;
 		card?: string;
-		image?: string;
-		imageAlt?: string;
+		image?: {
+			src?: string;
+			alt?: string;
+		};
 		site?: string;
 		creator?: string;
 	};

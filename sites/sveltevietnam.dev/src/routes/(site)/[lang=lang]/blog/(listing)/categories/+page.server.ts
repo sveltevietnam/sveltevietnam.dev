@@ -33,7 +33,9 @@ export const load: PageServerLoad = async ({ params }) => {
 			description: m['pages.blog_categories.desc'](lang),
 			keywords: m['pages.blog_categories.keywords'](lang),
 			og: {
-				image: ogImage[lang],
+				image: {
+					src: ogImage[lang],
+				},
 			},
 		},
 	};

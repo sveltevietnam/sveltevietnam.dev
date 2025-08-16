@@ -27,7 +27,9 @@ export const load: PageServerLoad = async ({ params }) => {
 			description: m['pages.coc.desc'](lang),
 			keywords: m['pages.coc.keywords'](lang),
 			og: {
-				image: ogImage[lang],
+				image: {
+					src: ogImage[lang],
+				},
 			},
 		},
 	};
