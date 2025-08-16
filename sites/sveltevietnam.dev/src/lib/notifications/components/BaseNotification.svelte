@@ -39,8 +39,8 @@
 	const iconClass = status ? iconClassMap[status] : 'i-[ph--info]';
 </script>
 
-<article
-	class={['relative shadow', !status && 'border', cls]}
+<div
+	class={['_container relative shadow', !status && 'border', cls]}
 	role="status"
 	aria-live="polite"
 	aria-atomic="true"
@@ -93,10 +93,10 @@
 			></div>
 		{/if}
 	</div>
-</article>
+</div>
 
 <style>
-	article {
+	._container {
 		--noti-color-icon: var(--color-on-surface);
 		--noti-color-progress: var(--color-on-surface-subtle);
 		--noti-color-bg: var(--color-surface);

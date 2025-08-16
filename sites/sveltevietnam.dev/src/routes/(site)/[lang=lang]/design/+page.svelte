@@ -62,7 +62,7 @@
 		<h2 class="c-text-heading-lg border-b" id="typography">
 			<T message={m['pages.design.typography.heading']} />
 		</h2>
-		<table class="border-outline w-full border-collapse border">
+		<table class="border-outline w-full border-collapse border" aria-labelledby="typography">
 			<thead>
 				<tr class="bg-surface-variant text-left *:w-1/2 *:border *:px-3 *:py-2">
 					<th scope="col"><T message={m['pages.design.typography.headers.example']} /></th>

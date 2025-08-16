@@ -27,7 +27,7 @@
 >
 	<form class="flex items-center gap-2" method="GET" action={url.toString()}>
 		<p><T message={m['components.pagination.page']} /></p>
-		<label class="sr-only"><T message={m['components.pagination.number']} /></label>
+		<label class="sr-only" for="page"><T message={m['components.pagination.number']} /></label>
 		<input
 			class="appearance-none border border-current px-2 py-1"
 			style:width="{1.75 + 1.5 * max.toString().length}ch"

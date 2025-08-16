@@ -179,6 +179,8 @@
 					data-external
 					data-umami-event="click-homepage-resource-link"
 					data-umami-event-url={image.href}
+					aria-hidden="true"
+					tabindex="-1"
 				>
 					<span class="sr-only"><T message={image.message} /></span>
 					<enhanced:img
