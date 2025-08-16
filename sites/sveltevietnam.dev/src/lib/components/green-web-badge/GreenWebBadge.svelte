@@ -1,8 +1,5 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n';
 	import type { HTMLAnchorAttributes } from 'svelte/elements';
-
-	import * as m from '$data/locales/generated/messages';
 
 	let {
 		class: cls,
@@ -12,10 +9,10 @@
 
 <a
 	class={['green-web-badge', cls]}
+	lang="en"
 	href="https://www.thegreenwebfoundation.org/green-web-check/?url=sveltevietnam.dev"
 	{...rest}
 >
-	<span class="sr-only">(<T message={m['components.green_web_badge']} />)</span>
 	<span class="flex items-start justify-between gap-4">
 		<span class="border-b-onehalf border-current font-medium uppercase tracking-wider"
 			>Green Hosting</span

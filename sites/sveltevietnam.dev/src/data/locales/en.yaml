@@ -805,9 +805,6 @@ messages:
     blog_newsletter:
       heading: The Svelte Vietnam Blog Newsletter
       desc: Subscribe to receive notification for new blog post from Svelte Vietnam
-    green_web_badge:
-      sveltevietnam.dev is hosted by Cloudflare and passes the green hosting check by the Green Web
-      Foundation
     header:
       go_to_home_page: Go to home page
       mobile_menu: mobile menu

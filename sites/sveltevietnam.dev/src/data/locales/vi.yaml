@@ -810,9 +810,6 @@ messages:
     blog_newsletter:
       heading: Bản tin Svelte Việt Nam
       desc: Đăng ký nhận thông báo để không bỏ lỡ bài viết mới từ Blog của Svelte Việt Nam
-    green_web_badge:
-      sveltevietnam.dev được lưu trữ bởi Cloudflare đạt tiêu chuẩn hosting xanh từ tổ chức Green Web
-      Foundation
     header:
       go_to_home_page: Về trang chủ
       mobile_menu: bảng điều khiển
