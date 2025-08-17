@@ -10,6 +10,7 @@
 		VITE_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY,
 		VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN,
 	} from '$env/static/public';
+	import { AuthPageLayout } from '$lib/components/auth-page-layout';
 
 	import type { PageProps } from './$types';
 
@@ -26,80 +27,78 @@
 	});
 </script>
 
-<div class="max-w-pad grid flex-1 place-items-center">
-	<main class="tablet:p-10 max-w-readable-tight space-y-6 border border-current">
-		<h1 class="c-text-heading-lg">
-			<T message={m['pages.signup.heading']} />
-		</h1>
-		<p>
-			<T message={m['pages.signup.desc']} mainSiteUrl={VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN} />
-		</p>
-		<form class="space-y-6" use:enhance method="POST" action="?/signup">
-			<!-- cloudflare-turnstile -->
-			<div class="space-y-1">
-				<div class="c-text-body-sm flex items-baseline justify-between gap-6">
-					<p class=""><T message={m['inputs.turnstile.desc']} />:</p>
-					{#if $errors.turnstile?.[0]}
-						<p class="max-w-readable-tight text-right text-sm text-red-500">
-							{$errors.turnstile[0]}
-						</p>
-					{/if}
-				</div>
-				<div
-					class="turnstile border-onehalf border-current"
-					use:turnstile
-					turnstile-sitekey={VITE_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY}
-					turnstile-size="flexible"
-					turnstile-response-field-name="turnstile"
-					turnstile-response-field
-					turnstile-language={routing.lang}
-				>
-					<!-- injected by @svelte-put/cloudflare-turnstile -->
-				</div>
-			</div>
-
-			<!-- combined email input & submit button -->
-			<div class="space-y-1">
-				<div class="flex items-stretch">
-					<label class="c-text-input flex-1">
-						<span class="min-w-12">Email:</span>
-						<input
-							type="email"
-							name="email"
-							placeholder="email@example.com"
-							bind:value={$form.email}
-							{...$constraints.email}
-							{...$errors.email && {
-								'aria-invalid': 'true',
-								'aria-errormessage': 'error-email',
-							}}
-						/>
-					</label>
-					<button class="c-btn px-4" type="submit" data-delayed={$delayed} data-timeout={$timeout}>
-						<T message={m.continue} />
-					</button>
-				</div>
-				{#if $errors.email?.[0]}
-					<p class="text-sm text-red-500" id="error-email">{$errors.email[0]}</p>
+<AuthPageLayout>
+	<h1 class="c-text-heading-lg">
+		<T message={m['pages.signup.heading']} />
+	</h1>
+	<p>
+		<T message={m['pages.signup.desc']} mainSiteUrl={VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN} />
+	</p>
+	<form class="space-y-6" use:enhance method="POST" action="?/signup">
+		<!-- cloudflare-turnstile -->
+		<div class="space-y-1">
+			<div class="c-text-body-sm flex items-baseline justify-between gap-6">
+				<p class=""><T message={m['inputs.turnstile.desc']} />:</p>
+				{#if $errors.turnstile?.[0]}
+					<p class="max-w-readable-tight text-right text-sm text-red-500">
+						{$errors.turnstile[0]}
+					</p>
 				{/if}
 			</div>
-		</form>
-		<p class="c-callout c-callout--info">
-			<T message={m['pages.signup.callout']} />
-			<strong>01:33</strong>.
-		</p>
-		<div class="flex items-center gap-2">
-			<div class="bg-outline h-px flex-1"></div>
-			<p class="text-on-surface-dim">
-				<T message={m.or} />
-			</p>
-			<div class="bg-outline h-px flex-1"></div>
+			<div
+				class="turnstile border-onehalf border-current"
+				use:turnstile
+				turnstile-sitekey={VITE_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY}
+				turnstile-size="flexible"
+				turnstile-response-field-name="turnstile"
+				turnstile-response-field
+				turnstile-language={routing.lang}
+			>
+				<!-- injected by @svelte-put/cloudflare-turnstile -->
+			</div>
 		</div>
-		<a class="c-btn c-btn--outlined block w-full" href={p['/:lang/login']({ lang: routing.lang })}>
-			<T message={m['pages.signup.login']} />
-		</a>
-		<p>
-			<T message={m['pages.signup.headhunter']} jobChannelUrl="https://discord.sveltevietnam.dev" />
+
+		<!-- combined email input & submit button -->
+		<div class="space-y-1">
+			<div class="flex items-stretch">
+				<label class="c-text-input flex-1">
+					<span class="min-w-12">Email:</span>
+					<input
+						type="email"
+						name="email"
+						placeholder="email@example.com"
+						bind:value={$form.email}
+						{...$constraints.email}
+						{...$errors.email && {
+							'aria-invalid': 'true',
+							'aria-errormessage': 'error-email',
+						}}
+					/>
+				</label>
+				<button class="c-btn px-4" type="submit" data-delayed={$delayed} data-timeout={$timeout}>
+					<T message={m.continue} />
+				</button>
+			</div>
+			{#if $errors.email?.[0]}
+				<p class="text-sm text-red-500" id="error-email">{$errors.email[0]}</p>
+			{/if}
+		</div>
+	</form>
+	<p class="c-callout c-callout--info">
+		<T message={m['pages.signup.callout']} />
+		<strong>01:33</strong>.
+	</p>
+	<div class="flex items-center gap-2">
+		<div class="bg-outline h-px flex-1"></div>
+		<p class="text-on-surface-dim">
+			<T message={m.or} />
 		</p>
-	</main>
-</div>
+		<div class="bg-outline h-px flex-1"></div>
+	</div>
+	<a class="c-btn c-btn--outlined block w-full" href={p['/:lang/login']({ lang: routing.lang })}>
+		<T message={m['pages.signup.login']} />
+	</a>
+	<p>
+		<T message={m['pages.signup.headhunter']} jobChannelUrl="https://discord.sveltevietnam.dev" />
+	</p>
+</AuthPageLayout>

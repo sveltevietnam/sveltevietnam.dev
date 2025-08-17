@@ -86,24 +86,37 @@
 <header
 	class={[
 		'max-w-pad z-header fixed flex w-full items-start justify-between transition-transform',
+		'max-tablet:py-2 max-tablet:border-b max-tablet:border-outline max-tablet:items-center',
 		scrollToggler.hidden && '-translate-y-full',
 	]}
 	{@attach scrollToggler.attachment}
 >
 	<a
-		class="bg-on-surface text-surface flex w-fit -translate-y-2 items-center gap-2 px-4 pb-4 pt-6
-		uppercase transition-transform duration-500 hover:translate-y-0 hover:duration-100"
+		class={[
+			'tablet:bg-on-surface tablet:text-surface tablet:-translate-y-2 tablet:px-4 tablet:pb-4 tablet:pt-6 ',
+			'flex w-fit items-center gap-2 uppercase transition-transform duration-500 hover:translate-y-0 hover:duration-100',
+		]}
 		href={resolve('/')}
 	>
-		<i class="i i-sveltevietnam w-15 h-15"></i>
-		<span class="">
-			<span class="c-text-title-sm"><T message={m['svelte_vietnam.name']} /></span>
+		<i class="i i-sveltevietnam tablet:w-15 tablet:h-15 h-10 w-10"></i>
+		<span class="leading-4">
+			<span class="font-lora max-tablet:whitespace-nowrap c-text-body-sm tablet:c-text-title-sm"
+				><T message={m['svelte_vietnam.name']} /></span
+			>
 			<br />
-			<span class="tracking-wide"> — <T message={m['app']} /> </span>
+			<span class="c-text-body-xs tablet:c-text-body tracking-wide">
+				— <T message={m['app']} />
+			</span>
 		</span>
 	</a>
-	<div class="relative flex w-fit items-center gap-5 border-x border-b px-6 py-5">
-		<div class="-z-1 bg-surface absolute inset-0" style:opacity={toolbarBackdropOpacity}>
+	<div
+		class="tablet:gap-5 tablet:border-x tablet:border-b tablet:px-6 tablet:py-5 relative flex w-fit items-center gap-2"
+	>
+		<div
+			class="toolbar-backdrop -z-1 bg-surface opacity-(--toolbar-backdrop-opacity) absolute
+			inset-0"
+			style:--toolbar-backdrop-opacity={toolbarBackdropOpacity}
+		>
 			<!-- backdrop -->
 		</div>
 		<ColorSchemeMenu {...colorSchemeMenuProps} bind:open={isColorSchemeMenuOpen} />

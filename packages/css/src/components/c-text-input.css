@@ -21,6 +21,7 @@
 
 			& :is(input, textarea) {
 				flex: 1;
+				width: 100%;
 				padding-block: calc(var(--spacing) * 2);
 			}
 		}
