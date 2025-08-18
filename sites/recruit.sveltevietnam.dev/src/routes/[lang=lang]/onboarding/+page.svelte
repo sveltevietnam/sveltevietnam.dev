@@ -4,7 +4,7 @@
 	import { superForm, fileProxy } from 'sveltekit-superforms';
 
 	import * as m from '$data/locales/generated/messages';
-	import { AuthPageLayout } from '$lib/components/auth-page-layout';
+	import { SingleBoxPageLayout } from '$lib/components/single-box-page-layout';
 
 	import type { PageProps } from './$types';
 
@@ -24,7 +24,7 @@
 	let avatarPreviewUri = $derived($form.avatar ? URL.createObjectURL($form.avatar) : '');
 </script>
 
-<AuthPageLayout class="max-w-readable space-y-6">
+<SingleBoxPageLayout class="max-w-readable space-y-6">
 	<h1 class="c-text-heading-md">
 		<T message={m['pages.onboarding.heading']} />
 	</h1>
@@ -196,4 +196,4 @@
 			</button>
 		</div>
 	</form>
-</AuthPageLayout>
+</SingleBoxPageLayout>

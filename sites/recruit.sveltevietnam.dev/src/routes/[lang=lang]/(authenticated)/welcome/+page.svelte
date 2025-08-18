@@ -4,14 +4,14 @@
 
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
-	import { AuthPageLayout } from '$lib/components/auth-page-layout';
+	import { SingleBoxPageLayout } from '$lib/components/single-box-page-layout';
 
 	import svgKeyVisual from './_local/images/key-visual.svg';
 
 	const routing = RoutingContext.get();
 </script>
 
-<AuthPageLayout class="max-w-readable">
+<SingleBoxPageLayout class="max-w-readable">
 	<div class="tablet:-mx-10">
 		<div class="tablet:px-10 space-y-6">
 			<h1 class="c-text-heading-md">
@@ -36,4 +36,4 @@
 			<T message={m['pages.welcome.feedback']} />
 		</p>
 	</div>
-</AuthPageLayout>
+</SingleBoxPageLayout>

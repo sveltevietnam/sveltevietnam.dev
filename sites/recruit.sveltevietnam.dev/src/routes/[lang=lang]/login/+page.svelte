@@ -10,7 +10,7 @@
 		VITE_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY,
 		VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN,
 	} from '$env/static/public';
-	import { AuthPageLayout } from '$lib/components/auth-page-layout';
+	import { SingleBoxPageLayout } from '$lib/components/single-box-page-layout';
 
 	import type { PageProps } from './$types';
 
@@ -27,7 +27,7 @@
 	});
 </script>
 
-<AuthPageLayout class="space-y-6 max-w-readable-tight">
+<SingleBoxPageLayout class="max-w-readable-tight space-y-6">
 	<h1 class="c-text-heading-lg">
 		<T message={m['pages.login.heading']} />
 	</h1>
@@ -104,4 +104,4 @@
 	<p>
 		<T message={m['pages.login.headhunter']} jobChannelUrl="https://discord.sveltevietnam.dev" />
 	</p>
-</AuthPageLayout>
+</SingleBoxPageLayout>
