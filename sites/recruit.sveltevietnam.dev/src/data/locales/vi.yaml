@@ -94,3 +94,12 @@ messages:
             quyền đại diện cho người sử dụng lao động.
           error: Vui lòng đọc và đồng ý với cam kết
         submit: Yêu cầu xét duyệt
+    welcome:
+      heading: Hồ sơ đã được duyệt
+      desc: Xin cảm ơn. Bạn có thể bắt đầu sử dụng ứng dụng ngay bây giờ!
+      cta: Tạo bài đăng tuyển
+      feedback:
+        Gởi góp ý cải thiện cho quy trình đăng ký qua <a class="c-link"
+        href="mailto:jobs@sveltevietnam.dev">jobs@sveltevietnam.dev</a> hoặc <a class="c-link"
+        href="https://discord.sveltevietnam.dev" target="_blank" rel="noreferrer noopener
+        external">Discord chính thức của Svelte Việt Nam</a>.

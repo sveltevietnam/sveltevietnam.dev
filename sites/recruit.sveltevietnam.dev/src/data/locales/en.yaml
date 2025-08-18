@@ -94,3 +94,12 @@ messages:
             authority to represent this employer.
           error: You must agree to the terms
         submit: Submit for review
+    welcome:
+      heading: Your account is approved!
+      desc: Thank you. You can start using the application immediately!
+      cta: Create a job posting
+      feedback:
+        Send feedback to improve the sign-up process via <a class="c-link"
+        href="mailto:jobs@sveltevietnam.dev">jobs@sveltevietnam.dev</a> or <a class="c-link"
+        href="https://discord.sveltevietnam.dev" target="_blank" rel="noreferrer noopener
+        external">Svelte Vietnam's official Discord</a>.

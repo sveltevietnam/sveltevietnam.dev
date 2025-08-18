@@ -19,6 +19,9 @@ export default defineConfig<AllRoutePath, Language>({
 			'/:lang/onboarding': {
 				vi: '/:lang/hoan-thien-ho-so',
 			},
+			'/:lang/welcome': {
+				vi: '/:lang/chao-mung',
+			},
 			'/:lang/postings/:id': {
 				vi: '/:lang/bai-dang-tuyen/:id',
 			},
@@ -48,6 +51,10 @@ export default defineConfig<AllRoutePath, Language>({
 			'/:lang/onboarding': {
 				vi: 'Hoàn thiện hồ sơ',
 				default: 'Onboarding',
+			},
+			'/:lang/welcome': {
+				vi: 'Chào mừng',
+				default: 'Welcome',
 			},
 			'/:lang/postings/:id': {
 				vi: 'Bài đăng tuyển',
