@@ -27,7 +27,7 @@
 	});
 </script>
 
-<AuthPageLayout>
+<AuthPageLayout class="space-y-6 max-w-readable-tight">
 	<h1 class="c-text-heading-lg">
 		<T message={m['pages.login.heading']} />
 	</h1>

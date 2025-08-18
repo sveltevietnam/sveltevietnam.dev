@@ -27,6 +27,12 @@ messages:
       errors:
         nonempty: Email is required
         invalid: Email is badly formated
+    name:
+      errors:
+        nonempty: Name is required
+    url:
+      errors:
+        invalid: URL is badly formated
     turnstile:
       desc: Verify <em class="c-text-body-xs">(requires Javascript)</em>
       errors:
@@ -36,8 +42,8 @@ messages:
     login:
       heading: Login
       desc:
-        Managing job postings at <a class="c-link" href={{mainSiteUrl}}>sveltevietnam.dev</a> — for
-        businesses and organizations
+        Managing job postings at <a class="c-link" href={{mainSiteUrl}}>sveltevietnam.dev</a> — free
+        and secure — connecting businesses and organizations with community.
       input: Passwordless login via email
       callout:
         Please log in via the link sent to your email. If you do not receive any email, you may
@@ -50,8 +56,8 @@ messages:
     signup:
       heading: Sign up
       desc:
-        Managing job postings at <a class="c-link" href={{mainSiteUrl}}>sveltevietnam.dev</a> — for
-        businesses and organizations
+        Managing job postings at <a class="c-link" href={{mainSiteUrl}}>sveltevietnam.dev</a> — free
+        and secure — connecting businesses and organizations with community.
       callout:
         Please continue the sign-up process following instructions in the email sent to you. If you
         do not receive any email, you may click "Resend" in
@@ -60,3 +66,31 @@ messages:
         Independent recruiter or headhunter? <br /> Connect directly with candidates via our <a
         class="c-link" href="{{jobChannelUrl}}" target="_blank" rel="noreferrer noopener
         external">community forum</a>.
+    onboarding:
+      heading: Onboarding
+      desc:
+        Thank you for your interest in the Recruitment app from the Svelte Vietnam community. Please
+        fill in some necessary information below to complete the registration process!
+      form:
+        email:
+          label: Employer email (not public)
+          placeholder: human-resources@abc.com
+          note: This is the email you used to sign up.
+        name:
+          label: Employer name
+          placeholder: Company ABC / Organization XYZ
+        website:
+          label: Employer website (optional)
+          placeholder: https://company-abc.com
+        avatar:
+          label: Profile picture
+          desc: 'Maximum: <strong></strong>1MB</strong><br /> Recommended: <strong>200x200</strong>'
+          errors:
+            type: File must be an image
+            size: File must be less than 1MB
+        agreement:
+          desc:
+            I hereby declare that the information provided is true and I am the employer or have the
+            authority to represent this employer.
+          error: You must agree to the terms
+        submit: Submit for review

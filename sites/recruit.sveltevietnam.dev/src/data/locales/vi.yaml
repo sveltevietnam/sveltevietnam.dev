@@ -27,6 +27,12 @@ messages:
       errors:
         nonempty: Vui lòng nhập địa chỉ email
         invalid: Địa chỉ email không hợp lệ
+    name:
+      errors:
+        nonempty: Vui lòng nhập tên
+    url:
+      errors:
+        invalid: Địa chỉ URL không hợp lệ
     turnstile:
       desc: Xác thực <em class="c-text-body-xs">(cần Javascript)</em>
       errors:
@@ -37,7 +43,7 @@ messages:
       heading: Đăng nhập
       desc:
         Quản lý bài đăng tuyển dụng tại <a class="c-link" href={{mainSiteUrl}}>sveltevietnam.dev</a>
-        — dành cho doanh nghiệp và tổ chức
+        — miễn phí và bảo mật dành — kết nối doanh nghiệp và tổ chức với cộng đồng
       input: Đăng nhập không mật khẩu qua email
       callout:
         Vui lòng đăng nhập qua đường dẫn trong email vừa được gởi đến bạn. Nếu không nhận được
@@ -51,7 +57,7 @@ messages:
       heading: Đăng ký
       desc:
         Quản lý bài đăng tuyển dụng tại <a class="c-link" href={{mainSiteUrl}}>sveltevietnam.dev</a>
-        — dành cho doanh nghiệp và tổ chức
+        — miễn phí và bảo mật dành — kết nối doanh nghiệp và tổ chức với cộng đồng
       callout:
         Vui lòng tiếp tục quy trình đăng ký qua hướng dẫn trong email vừa được gởi đến bạn. Nếu
         không nhận được email, bạn có thể nhấn “Gởi lại” trong
@@ -60,3 +66,31 @@ messages:
         Bạn là nhà tuyển dụng độc lập? <br /> Kết nối trực tiếp với ứng viên qua <a class="c-link"
         href="{{jobChannelUrl}}" target="_blank" rel="noreferrer noopener external">diễn đàn cộng
         đồng</a>.
+    onboarding:
+      heading: Hoàn thiện hồ sơ
+      desc:
+        Cảm ơn bạn đã đăng ký sử dụng ứng dụng Tuyển dụng của cộng đồng Svelte Việt Nam. Hãy điền
+        một số thông tin cần thiết dưới đây để hoàn tất quy trình đăng ký!
+      form:
+        email:
+          label: Email người sử dụng lao động (không công khai)
+          placeholder: human-resources@abc.com
+          note: Đây là là email đã sử dụng trong đăng ký.
+        name:
+          label: Tên người sử dụng lao động
+          placeholder: Công ty ABC / Tổ chức XYZ
+        website:
+          label: Website của người sử dụng lao động (không bắt buộc)
+          placeholder: https://cong-ty-abc.com
+        avatar:
+          label: Hình đại diện
+          desc: 'Tối đa: <strong>1MB</strong><br /> Đề xuất: <strong>200x200</strong>'
+          errors:
+            type: Tệp tải lên phải là hình ảnh
+            size: Kích thước tệp không quá 1MB
+        agreement:
+          desc:
+            Tôi xin cam kết thông tin trên là đúng sự thật và tôi là người sử dụng lao động hoặc có
+            quyền đại diện cho người sử dụng lao động.
+          error: Vui lòng đọc và đồng ý với cam kết
+        submit: Yêu cầu xét duyệt

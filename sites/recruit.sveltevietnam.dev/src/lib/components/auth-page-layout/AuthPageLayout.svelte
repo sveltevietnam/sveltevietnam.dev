@@ -4,9 +4,13 @@
 	let { children, class: cls, ...rest }: HTMLAttributes<HTMLElement> = $props();
 </script>
 
-<div class={['max-w-pad mt-header pt-section pb-section-more grid flex-1 place-items-center', cls]} {...rest}>
+<div class='max-w-pad mt-header pt-section pb-section-more grid flex-1 place-items-center'>
 	<main
-		class="auth tablet:p-10 tablet:max-w-readable-tight tablet:border tablet:border-current space-y-6"
+		class={[
+			"auth tablet:p-10 tablet:border tablet:border-current",
+			cls,
+		]}
+		{...rest}
 	>
 		{@render children?.()}
 	</main>
