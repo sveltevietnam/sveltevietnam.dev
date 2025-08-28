@@ -11,7 +11,14 @@
 		"lib": ["esnext", "DOM", "DOM.Iterable"],
 		"allowSyntheticDefaultImports": true,
 		"noUnusedLocals": true,
-		"noUnusedParameters": true
+		"noUnusedParameters": true,
+		"plugins": [
+			{
+				"name": "typescript-svelte-plugin",
+				"enabled": true,
+				"assumeIsSvelteProject": false
+			}
+		]
 	},
 	"include": ["src/**/*"],
 	"exclude": ["node_modules"]
