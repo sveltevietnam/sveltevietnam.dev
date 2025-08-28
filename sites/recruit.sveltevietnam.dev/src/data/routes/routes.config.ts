@@ -22,6 +22,9 @@ export default defineConfig<AllRoutePath, Language>({
 			'/:lang/welcome': {
 				vi: '/:lang/chao-mung',
 			},
+			'/:lang/profile': {
+				vi: '/:lang/ho-so',
+			},
 			'/:lang/postings/:id': {
 				vi: '/:lang/bai-dang-tuyen/:id',
 			},
@@ -55,6 +58,10 @@ export default defineConfig<AllRoutePath, Language>({
 			'/:lang/welcome': {
 				vi: 'Chào mừng',
 				default: 'Welcome',
+			},
+			'/:lang/profile': {
+				vi: 'Hồ sơ',
+				default: 'Profile',
 			},
 			'/:lang/postings/:id': {
 				vi: 'Bài đăng tuyển',

@@ -161,7 +161,7 @@
 				<!-- backdrop -->
 			</div>
 			<button
-				class="c-btn c-btn--outlined shrink-0 bg-transparent text-sm"
+				class="c-btn c-btn--outlined c-text-body-sm shrink-0 bg-transparent"
 				onclick={handleSearch}
 				type="button"
 			>

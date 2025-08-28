@@ -5,6 +5,7 @@ messages:
   close: Đóng
   menu: bảng chọn
   continue: Tiếp tục
+  save: Lưu
   or: hoặc
   svelte_vietnam:
     name: Svelte Việt Nam
@@ -38,6 +39,28 @@ messages:
       errors:
         nonempty: Vui lòng xác thực
         unknown: Có lỗi xảy ra trong quá trình xác thực
+    employer:
+      email:
+        label: Email người sử dụng lao động (không công khai)
+        placeholder: human-resources@abc.com
+        note: Đây là là email đã sử dụng trong đăng ký.
+      name:
+        label: Tên người sử dụng lao động
+        placeholder: Công ty ABC / Tổ chức XYZ
+      website:
+        label: Website của người sử dụng lao động (không bắt buộc)
+        placeholder: https://cong-ty-abc.com
+      avatar:
+        label: Hình đại diện
+        desc: 'Tối đa: <strong>1MB</strong><br /> Đề xuất: <strong>200x200</strong>'
+        errors:
+          type: Tệp tải lên phải là hình ảnh
+          size: Kích thước tệp không quá 1MB
+      agreement:
+        desc:
+          Tôi xin cam kết thông tin trên là đúng sự thật và tôi là người sử dụng lao động hoặc có
+          quyền đại diện cho người sử dụng lao động.
+        error: Vui lòng đọc và đồng ý với cam kết
   pages:
     login:
       heading: Đăng nhập
@@ -71,29 +94,7 @@ messages:
       desc:
         Cảm ơn bạn đã đăng ký sử dụng ứng dụng Tuyển dụng của cộng đồng Svelte Việt Nam. Hãy điền
         một số thông tin cần thiết dưới đây để hoàn tất quy trình đăng ký!
-      form:
-        email:
-          label: Email người sử dụng lao động (không công khai)
-          placeholder: human-resources@abc.com
-          note: Đây là là email đã sử dụng trong đăng ký.
-        name:
-          label: Tên người sử dụng lao động
-          placeholder: Công ty ABC / Tổ chức XYZ
-        website:
-          label: Website của người sử dụng lao động (không bắt buộc)
-          placeholder: https://cong-ty-abc.com
-        avatar:
-          label: Hình đại diện
-          desc: 'Tối đa: <strong>1MB</strong><br /> Đề xuất: <strong>200x200</strong>'
-          errors:
-            type: Tệp tải lên phải là hình ảnh
-            size: Kích thước tệp không quá 1MB
-        agreement:
-          desc:
-            Tôi xin cam kết thông tin trên là đúng sự thật và tôi là người sử dụng lao động hoặc có
-            quyền đại diện cho người sử dụng lao động.
-          error: Vui lòng đọc và đồng ý với cam kết
-        submit: Yêu cầu xét duyệt
+      submit: Yêu cầu xét duyệt
     welcome:
       heading: Hồ sơ đã được duyệt
       desc: Xin cảm ơn. Bạn có thể bắt đầu sử dụng ứng dụng ngay bây giờ!
@@ -103,3 +104,13 @@ messages:
         href="mailto:jobs@sveltevietnam.dev">jobs@sveltevietnam.dev</a> hoặc <a class="c-link"
         href="https://discord.sveltevietnam.dev" target="_blank" rel="noreferrer noopener
         external">Discord chính thức của Svelte Việt Nam</a>.
+    profile:
+      heading: Hồ sơ
+      update_email:
+        heading: Sửa đổi email
+        form:
+          email:
+            note: Email này được sử dụng để đăng nhập.
+        callout: Vui lòng kiểm tra email để hoàn thành yêu cầu sửa đổi email của bạn!
+      update_info:
+        heading: Sửa đổi hồ sơ tuyển dụng

@@ -73,7 +73,7 @@
 			<!-- name -->
 			<div class="space-y-1">
 				{#if $errors.name?.[0]}
-					<p class="text-sm text-red-500" id="error-name">{$errors.name[0]}</p>
+					<p class="c-text-body-sm text-red-500" id="error-name">{$errors.name[0]}</p>
 				{/if}
 				<label class="c-text-input">
 					<span class="min-w-12"><T message={m['inputs.name.label']} />:</span>
@@ -95,7 +95,7 @@
 			<!-- email -->
 			<div class="space-y-1">
 				{#if $errors.email?.[0]}
-					<p class="text-sm text-red-500" id="error-email">{$errors.email[0]}</p>
+					<p class="c-text-body-sm text-red-500" id="error-email">{$errors.email[0]}</p>
 				{/if}
 				<label class="c-text-input">
 					<span class="min-w-12">Email:</span>

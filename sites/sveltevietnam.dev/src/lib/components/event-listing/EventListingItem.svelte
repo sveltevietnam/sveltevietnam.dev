@@ -124,7 +124,7 @@
 					<i class="not-can-hover:hidden i i-[ph--cursor-click] text-[0.75em]"></i>
 				</a>
 			</p>
-			<dl class="text-on-surface-subtle space-y-1 text-sm">
+			<dl class="text-on-surface-subtle space-y-1 c-text-body-sm">
 				<!-- location -->
 				{#if event.location}
 					<div class="flex items-start gap-2">

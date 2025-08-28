@@ -5,6 +5,7 @@ messages:
   close: Close
   menu: menu
   continue: Continue
+  save: Save
   or: or
   svelte_vietnam:
     name: Svelte Vietnam
@@ -38,6 +39,28 @@ messages:
       errors:
         nonempty: Turnstile is required
         unknown: Something went wrong with Turnstile
+    employer:
+      email:
+        label: Employer email (not public)
+        placeholder: human-resources@abc.com
+        note: This is the email you used to sign up.
+      name:
+        label: Employer name
+        placeholder: Company ABC / Organization XYZ
+      website:
+        label: Employer website (optional)
+        placeholder: https://company-abc.com
+      avatar:
+        label: Profile picture
+        desc: 'Maximum: <strong></strong>1MB</strong><br /> Recommended: <strong>200x200</strong>'
+        errors:
+          type: File must be an image
+          size: File must be less than 1MB
+      agreement:
+        desc:
+          I hereby declare that the information provided is true and I am the employer or have the
+          authority to represent this employer.
+        error: You must agree to the terms
   pages:
     login:
       heading: Login
@@ -71,29 +94,7 @@ messages:
       desc:
         Thank you for your interest in the Recruitment app from the Svelte Vietnam community. Please
         fill in some necessary information below to complete the registration process!
-      form:
-        email:
-          label: Employer email (not public)
-          placeholder: human-resources@abc.com
-          note: This is the email you used to sign up.
-        name:
-          label: Employer name
-          placeholder: Company ABC / Organization XYZ
-        website:
-          label: Employer website (optional)
-          placeholder: https://company-abc.com
-        avatar:
-          label: Profile picture
-          desc: 'Maximum: <strong></strong>1MB</strong><br /> Recommended: <strong>200x200</strong>'
-          errors:
-            type: File must be an image
-            size: File must be less than 1MB
-        agreement:
-          desc:
-            I hereby declare that the information provided is true and I am the employer or have the
-            authority to represent this employer.
-          error: You must agree to the terms
-        submit: Submit for review
+      submit: Submit for review
     welcome:
       heading: Your account is approved!
       desc: Thank you. You can start using the application immediately!
@@ -103,3 +104,13 @@ messages:
         href="mailto:jobs@sveltevietnam.dev">jobs@sveltevietnam.dev</a> or <a class="c-link"
         href="https://discord.sveltevietnam.dev" target="_blank" rel="noreferrer noopener
         external">Svelte Vietnam's official Discord</a>.
+    profile:
+      heading: Profile
+      update_email:
+        heading: Update email
+        form:
+          email:
+            note: This email is used for login.
+        callout: Please verify the change via the link sent to your new email.
+      update_info:
+        heading: Update information

@@ -40,7 +40,7 @@
 			<div class="c-text-body-sm flex items-baseline justify-between gap-6">
 				<p class=""><T message={m['inputs.turnstile.desc']} />:</p>
 				{#if $errors.turnstile?.[0]}
-					<p class="max-w-readable-tight text-right text-sm text-red-500">
+					<p class="max-w-readable-tight text-right c-text-body-sm text-red-500">
 						{$errors.turnstile[0]}
 					</p>
 				{/if}
@@ -80,7 +80,7 @@
 				</button>
 			</div>
 			{#if $errors.email?.[0]}
-				<p class="text-sm text-red-500" id="error-email">{$errors.email[0]}</p>
+				<p class="c-text-body-sm text-red-500" id="error-email">{$errors.email[0]}</p>
 			{/if}
 		</div>
 	</form>
