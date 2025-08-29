@@ -14,8 +14,13 @@ pre-commit:
             root: sites/sveltevietnam.dev
             run: pnpm eslint --fix {staged_files}
             stage_fixed: true
-            glob: '*.svelte'
+            glob: 'sites/sveltevietnam.dev/*.svelte'
             exclude: ['*.md.svelte']
+          - name: recruit.sveltevietnam.dev
+            root: sites/recruit.sveltevietnam.dev
+            run: pnpm eslint --fix {staged_files}
+            stage_fixed: true
+            glob: 'sites/recruit.sveltevietnam.dev/*.svelte'
           - name: others
             run: pnpm eslint --fix {staged_files}
             stage_fixed: true
