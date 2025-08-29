@@ -1,7 +1,5 @@
 <script lang="ts">
-	import type { HTMLAttributes } from 'svelte/elements';
-
-	let { children, class: cls, ...rest }: HTMLAttributes<HTMLElement> = $props();
+	let { children, class: cls, ...rest }: import('.').TBAProps = $props();
 </script>
 
 <div

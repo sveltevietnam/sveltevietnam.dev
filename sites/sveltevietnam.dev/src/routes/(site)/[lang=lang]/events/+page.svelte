@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 	import type { Message } from '@sveltevietnam/i18n/runtime';
+	import { TBA } from '@sveltevietnam/kit/components';
 	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { onScroll, createTimeline, stagger } from 'animejs';
 
@@ -11,7 +12,6 @@
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { EventListing } from '$lib/components/event-listing';
 	import { IntroSeparator } from '$lib/components/intro-separator';
-	import { TBA } from '$lib/components/tba';
 	import { SubscriberUpsertForm } from '$lib/forms/subscriber';
 	import * as pagefind from '$lib/pagefind/attributes';
 
