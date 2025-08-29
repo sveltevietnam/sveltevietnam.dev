@@ -1,4 +1,5 @@
 import { LANGUAGES } from '@sveltevietnam/i18n';
+import { toW3CDate } from '@sveltevietnam/kit/utilities/datetime';
 import Mustache from 'mustache';
 
 import { loadAllBlogCategories } from '$data/blog/categories';
@@ -8,7 +9,6 @@ import { loadAllEvents } from '$data/events';
 import { loadAllPeople } from '$data/people';
 import * as p from '$data/routes/generated';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
-import { toW3CDate } from '$lib/utils/datetime';
 
 import type { RequestHandler } from './$types';
 import template from './sitemap.template.xml?raw';

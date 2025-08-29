@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { formatFullDateAndTime } from '@sveltevietnam/kit/utilities/datetime';
 
 	import * as m from '$data/locales/generated/messages';
 	import { SubscriberUpdateForm } from '$lib/forms/subscriber';
-	import { formatFullDateAndTime } from '$lib/utils/datetime';
 
 	import type { PageProps } from './$types';
 

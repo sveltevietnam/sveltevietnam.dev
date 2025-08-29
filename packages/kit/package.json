@@ -35,6 +35,10 @@
 		"./utilities/structured-data": {
 			"types": "./types/index.d.ts",
 			"import": "./src/utilities/structured-data/index.js"
+		},
+		"./utilities/datetime": {
+			"types": "./types/index.d.ts",
+			"import": "./src/utilities/datetime.js"
 		}
 	},
 	"publishconfig": {

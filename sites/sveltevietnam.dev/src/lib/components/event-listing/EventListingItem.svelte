@@ -1,6 +1,7 @@
 <script lang="ts" module>
 	import { T } from '@sveltevietnam/i18n';
 	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { formatLongMonth, formatLongWeekDay } from '@sveltevietnam/kit/utilities/datetime';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { Picture } from 'vite-imagetools';
 
@@ -8,7 +9,6 @@
 	import * as p from '$data/routes/generated';
 	import fallback3x2 from '$lib/assets/images/fallbacks/3x2.jpg?enhanced&w=1200;700;400&imagetools';
 	import { SettingsContext } from '$lib/settings/context.svelte';
-	import { formatLongMonth, formatLongWeekDay } from '$lib/utils/datetime';
 
 	import { CopyIconBtn } from '../copy-icon-btn';
 	import { DateTimeRangeText } from '../date-time-range-text';
@@ -124,7 +124,7 @@
 					<i class="not-can-hover:hidden i i-[ph--cursor-click] text-[0.75em]"></i>
 				</a>
 			</p>
-			<dl class="text-on-surface-subtle space-y-1 c-text-body-sm">
+			<dl class="text-on-surface-subtle c-text-body-sm space-y-1">
 				<!-- location -->
 				{#if event.location}
 					<div class="flex items-start gap-2">

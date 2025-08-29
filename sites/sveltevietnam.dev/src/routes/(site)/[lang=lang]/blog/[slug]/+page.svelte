@@ -3,6 +3,7 @@
 	import { T } from '@sveltevietnam/i18n';
 	import type { Message } from '@sveltevietnam/i18n/runtime';
 	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { formatRelativeTime } from '@sveltevietnam/kit/utilities/datetime';
 
 	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
@@ -23,7 +24,6 @@
 	import { DialogContext } from '$lib/dialogs/context.svelte';
 	import * as pagefind from '$lib/pagefind/attributes';
 	import { SettingsContext } from '$lib/settings/context.svelte';
-	import { formatRelativeTime } from '$lib/utils/datetime';
 
 	import type { PageProps } from './$types';
 	import BlueskyComments from './_page/components/BlueskyComments.svelte';

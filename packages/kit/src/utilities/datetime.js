@@ -1,11 +1,9 @@
-import type { Language } from '@sveltevietnam/i18n';
-
 /**
  * https://www.w3.org/TR/NOTE-datetime
- * @param date
- * @returns
+ * @param {Date | number} date
+ * @returns {string}
  */
-export function toW3CDate(date: Date | number): string {
+export function toW3CDate(date) {
 	date = new Date(date);
 	return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date
 		.getDate()
@@ -13,11 +11,20 @@ export function toW3CDate(date: Date | number): string {
 		.padStart(2, '0')}`;
 }
 
-export function isValidDate(str: Date | number | string) {
-	return !isNaN(new Date(str).getTime());
+/**
+ * @param {Date | number | string} value
+ * @returns {boolean}
+ */
+export function isValidDate(value) {
+	return !isNaN(new Date(value).getTime());
 }
 
-export function formatTimeDiff(date1: Date | number | string, date2 = new Date()) {
+/**
+ * @param {Date | number | string} date1
+ * @param {Date | number | string} [date2]
+ * @returns {string}
+ */
+export function formatTimeDiff(date1, date2 = new Date()) {
 	if (!isValidDate(date1) || !isValidDate(date2)) return 'invalid date(s)';
 	date1 = new Date(date1);
 	date2 = new Date(date2);
@@ -44,8 +51,10 @@ export function formatTimeDiff(date1: Date | number | string, date2 = new Date()
 
 /**
  * format date to YYYY.MM.DD
+ * @param {Date | number | string} date
+ * @returns {string}
  */
-export function formatDate(date: Date | number | string): string {
+export function formatDate(date) {
 	if (!isValidDate(date)) return date.toString();
 	date = new Date(date);
 	return `${date.getFullYear()}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date
@@ -54,10 +63,15 @@ export function formatDate(date: Date | number | string): string {
 		.padStart(2, '0')}`;
 }
 
-export function formatFullDateAndTime(lang: Language, date: Date | number | string): string {
+/**
+ * @param {string} locale
+ * @param {Date | number | string} date
+ * @returns {string}
+ */
+export function formatFullDateAndTime(locale, date) {
 	if (!isValidDate(date)) return date.toString();
 	date = new Date(date);
-	const formatter = Intl.DateTimeFormat(lang, {
+	const formatter = Intl.DateTimeFormat(locale, {
 		timeStyle: 'long',
 		hour12: false,
 		dateStyle: 'full',
@@ -67,8 +81,10 @@ export function formatFullDateAndTime(lang: Language, date: Date | number | stri
 
 /**
  * format time to HH:MM
+ * @param {Date | number | string} date
+ * @returns {string}
  */
-export function formatTime(date: Date | number | string): string {
+export function formatTime(date) {
 	if (!isValidDate(date)) return date.toString();
 	date = new Date(date);
 	return `${date.getHours().toString().padStart(2, '0')}:${date
@@ -77,19 +93,26 @@ export function formatTime(date: Date | number | string): string {
 		.padStart(2, '0')}`;
 }
 
-export function formatDateAndTime(
-	date: Date | number | string,
-	order: 'date-first' | 'time-first' = 'date-first',
-): string {
+/**
+ * @param {Date | number | string} date
+ * @param {'date-first' | 'time-first'} [order]
+ * @returns {string}
+ */
+export function formatDateAndTime(date, order) {
 	if (!isValidDate(date)) return date.toString();
 	date = new Date(date);
 	if (order === 'time-first') return `${formatTime(date)} ${formatDate(date)}`;
 	return `${formatDate(date)} ${formatTime(date)}`;
 }
 
-export function formateDateForBlog(lang: Language, date: Date | number | string): string {
+/**
+ * @param {string} locale
+ * @param {Date | number | string} date
+ * @returns {string}
+ */
+export function formateDateForBlog(locale, date) {
 	if (!isValidDate(date)) return date.toString();
-	const str = new Date(date).toLocaleDateString(lang, {
+	const str = new Date(date).toLocaleDateString(locale, {
 		month: 'long',
 		year: 'numeric',
 	});
@@ -98,9 +121,12 @@ export function formateDateForBlog(lang: Language, date: Date | number | string)
 
 /**
  * ms is directional (negative for past, positive for future)
+ * @param {string} locale
+ * @param {number} ms
+ * @returns {string}
  */
-export function formatRelativeTime(lang: Language, ms: number) {
-	const rtf = new Intl.RelativeTimeFormat(lang, { style: 'long' });
+export function formatRelativeTime(locale, ms) {
+	const rtf = new Intl.RelativeTimeFormat(locale, { style: 'long' });
 
 	const seconds = ms / 1000;
 	if (Math.abs(seconds) < 60)
@@ -127,11 +153,14 @@ export function formatRelativeTime(lang: Language, ms: number) {
 
 /**
  * Format month in localized long format
+ * @param {string} locale
+ * @param {Date | number | string} date
+ * @returns {string}
  */
-export function formatLongMonth(lang: Language, date: Date | number | string): string {
+export function formatLongMonth(locale, date) {
 	if (!isValidDate(date)) return date.toString();
 	date = new Date(date);
-	const formatter = Intl.DateTimeFormat(lang, {
+	const formatter = Intl.DateTimeFormat(locale, {
 		month: 'long',
 	});
 	return formatter.format(date);
@@ -139,11 +168,14 @@ export function formatLongMonth(lang: Language, date: Date | number | string): s
 
 /**
  * Format weekday in localized long format
+ * @param {string} locale
+ * @param {Date | number | string} date
+ * @returns {string}
  */
-export function formatLongWeekDay(lang: Language, date: Date | number | string) {
+export function formatLongWeekDay(locale, date) {
 	if (!isValidDate(date)) return date.toString();
 	date = new Date(date);
-	const formatter = Intl.DateTimeFormat(lang, {
+	const formatter = Intl.DateTimeFormat(locale, {
 		weekday: 'long',
 	});
 	return formatter.format(date);
