@@ -83,8 +83,11 @@
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20250807.0",
 		"@sveltejs/kit": "^2.27.3",
+		"@sveltevietnam/css": "workspace:*",
+		"@tailwindcss/vite": "4.1.11",
 		"schema-dts": "^1.1.5",
 		"svelte": "^5.38.0",
+		"tailwindcss": "4.1.11",
 		"vite": "^7.1.1"
 	},
 	"dependencies": {
