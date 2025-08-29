@@ -58,8 +58,8 @@ messages:
           size: File must be less than 1MB
       agreement:
         desc:
-          I hereby declare that the information provided is true and I am the employer or have the
-          authority to represent this employer.
+          I hereby declare that the information provided above is true and correct, and that I am
+          the employer or authorized to represent this employer.
         error: You must agree to the terms
   pages:
     login:
