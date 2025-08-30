@@ -39,7 +39,8 @@
 		"./utilities/datetime": {
 			"types": "./types/index.d.ts",
 			"import": "./src/utilities/datetime.js"
-		}
+		},
+		"./assets/images/fallbacks/*.jpg": "./src/assets/images/fallbacks/*.jpg"
 	},
 	"publishconfig": {
 		"access": "public",
@@ -92,7 +93,8 @@
 		"schema-dts": "^1.1.5",
 		"svelte": "^5.38.0",
 		"tailwindcss": "4.1.11",
-		"vite": "^7.1.1"
+		"vite": "^7.1.1",
+		"vite-imagetools": "^7.1.0"
 	},
 	"dependencies": {
 		"@svelte-put/clickoutside": "^4.0.0",

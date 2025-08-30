@@ -1,5 +1,6 @@
 <script lang="ts" module>
 	import { T } from '@sveltevietnam/i18n';
+	import fallback3x2 from '@sveltevietnam/kit/assets/images/fallbacks/3x2.jpg?enhanced&w=1200;700;400&imagetools';
 	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { formatLongMonth, formatLongWeekDay } from '@sveltevietnam/kit/utilities/datetime';
 	import type { HTMLAttributes } from 'svelte/elements';
@@ -7,7 +8,6 @@
 
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
-	import fallback3x2 from '$lib/assets/images/fallbacks/3x2.jpg?enhanced&w=1200;700;400&imagetools';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import { CopyIconBtn } from '../copy-icon-btn';

@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import fallback1x1 from '@sveltevietnam/kit/assets/images/fallbacks/1x1.jpg?enhanced&w=w=640;320&imagetools';
 	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import * as m from '$data/locales/generated/messages';
 	import type { Person } from '$data/people';
 	import * as p from '$data/routes/generated';
-	import fallback1x1 from '$lib/assets/images/fallbacks/1x1.jpg?enhanced&w=w=640;320&imagetools';
 	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { PersonLinks } from '$lib/components/person-links';
