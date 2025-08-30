@@ -1,21 +1,13 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
-	import { onMount } from 'svelte';
-	import type { HTMLAttributes } from 'svelte/elements';
+	import { getContext, onMount } from 'svelte';
 
-	import * as m from '$data/locales/generated/messages';
+	import { type BreadcrumbsProps } from '.';
 
-	let {
-		crumbs,
-		scrollIndicator = 'blur',
-		...rest
-	}: HTMLAttributes<HTMLElement> & {
-		crumbs: { path: string; name: string }[];
-		scrollIndicator?: 'blur' | 'ellipsis';
-	} = $props();
+	let { crumbs, scrollIndicator = 'blur', i18n, ...rest }: BreadcrumbsProps = $props();
 
-	const routing = RoutingContext.get();
+	// FIXME: extract lang getter to i18n package
+	const lang = getContext<() => string>('t:lang');
 
 	let scrollableLeft = $state(true);
 	let scrollableRight = $state(true);
@@ -33,7 +25,7 @@
 </script>
 
 <nav
-	aria-label={m['components.breadcrumbs.aria'](routing.lang)}
+	aria-label={i18n.aria(lang()).toString()}
 	data-scrollable={scrollable}
 	data-scrollable-left={scrollableLeft}
 	data-scrollable-right={scrollableRight}
@@ -56,7 +48,7 @@
 					{#if i === 0}
 						<i class="i i-[ph--house-line] h-5 w-5"></i>
 						<span class="sr-only">
-							<T message={m['components.breadcrumbs.home']} />
+							<T message={i18n.home} />
 						</span>
 					{:else}
 						<span class="whitespace-nowrap">{name}</span>
