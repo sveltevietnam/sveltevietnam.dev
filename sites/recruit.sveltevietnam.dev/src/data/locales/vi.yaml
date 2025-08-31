@@ -1,5 +1,6 @@
 ---
 messages:
+  at: tại
   app: Tuyển dụng
   open: Mở
   close: Đóng
@@ -114,3 +115,16 @@ messages:
         callout: Vui lòng kiểm tra email để hoàn thành yêu cầu sửa đổi email của bạn!
       update_info:
         heading: Sửa đổi hồ sơ tuyển dụng
+    postings:
+      heading: Bài đăng tuyển
+      create: Tạo mới
+      tba:
+        desc: Chưa có bài đăng tuyển nào.
+        cta: Tạo bài đăng tuyển!
+  components:
+    job_posting_list:
+      posted_at: Đăng ngày
+      expired_at: Hết hạn ngày
+    breadcrumbs:
+      aria: phân cấp trang
+      home: Trang chủ

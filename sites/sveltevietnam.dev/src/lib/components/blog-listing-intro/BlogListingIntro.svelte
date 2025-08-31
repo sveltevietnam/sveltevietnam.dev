@@ -1,8 +1,9 @@
 <script lang="ts">
+	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import type { Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 
-	import { Breadcrumbs } from '$lib/components/breadcrumbs';
+	import * as m from '$data/locales/generated/messages';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 
 	let {
@@ -21,7 +22,13 @@
 
 <section class={['space-y-section pt-intro-pad-top bg-gradient-primary-intro', cls]} {...rest}>
 	<div class="max-w-pad space-y-10">
-		<Breadcrumbs crumbs={breadcrumbs} />
+		<Breadcrumbs
+			crumbs={breadcrumbs}
+			i18n={{
+				aria: m['components.breadcrumbs.aria'],
+				home: m['components.breadcrumbs.home'],
+			}}
+		/>
 		{#if children}
 			{@render children()}
 		{:else}

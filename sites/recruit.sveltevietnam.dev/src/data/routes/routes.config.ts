@@ -25,6 +25,9 @@ export default defineConfig<AllRoutePath, Language>({
 			'/:lang/profile': {
 				vi: '/:lang/ho-so',
 			},
+			'/:lang/postings': {
+				vi: '/:lang/bai-dang-tuyen',
+			},
 			'/:lang/postings/:id': {
 				vi: '/:lang/bai-dang-tuyen/:id',
 			},
@@ -63,7 +66,7 @@ export default defineConfig<AllRoutePath, Language>({
 				vi: 'Hồ sơ',
 				default: 'Profile',
 			},
-			'/:lang/postings/:id': {
+			'/:lang/postings': {
 				vi: 'Bài đăng tuyển',
 				default: 'Job Posting',
 			},

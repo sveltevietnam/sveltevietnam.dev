@@ -1,5 +1,6 @@
 ---
 messages:
+  at: at
   app: Recruit
   open: Open
   close: Close
@@ -114,3 +115,16 @@ messages:
         callout: Please verify the change via the link sent to your new email.
       update_info:
         heading: Update information
+    postings:
+      heading: Your Postings
+      create: Create
+      tba:
+        desc: No postings yet.
+        cta: Create a job posting!
+  components:
+    job_posting_list:
+      posted_at: Posted on
+      expired_at: Expires on
+    breadcrumbs:
+      aria: breadcrumbs
+      home: Home

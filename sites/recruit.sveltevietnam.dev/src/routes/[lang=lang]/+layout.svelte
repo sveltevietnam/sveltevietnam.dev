@@ -38,6 +38,7 @@
 		},
 	}));
 
+	// FIXME: extract to i18n package
 	// for @sveltevietnam/i18n T.svelte component
 	setContext('t:lang', () => data.settings.language);
 
