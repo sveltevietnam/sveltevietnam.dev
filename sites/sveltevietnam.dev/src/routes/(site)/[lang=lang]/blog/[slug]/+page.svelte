@@ -3,6 +3,7 @@
 	import { T } from '@sveltevietnam/i18n';
 	import type { Message } from '@sveltevietnam/i18n/runtime';
 	import fallback16x9 from '@sveltevietnam/kit/assets/images/fallbacks/16x9.jpg?enhanced&w=2240;1540;1088;686&imagetools';
+	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { formatRelativeTime } from '@sveltevietnam/kit/utilities/datetime';
 
@@ -12,7 +13,6 @@
 	import { BlogNewsletter } from '$lib/components/blog-newsletter';
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
 	import { BlogPostListItem } from '$lib/components/blog-post-list-item';
-	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { CopyIconBtn } from '$lib/components/copy-icon-btn';
 	import { GradientBackground } from '$lib/components/gradient-background';
 	import { HintedText } from '$lib/components/hinted-text';
@@ -87,7 +87,13 @@
 <main {...pagefind.page({ group: 'blog', importance: 'detail' })}>
 	<!-- intro -->
 	<section class="pt-intro-pad-top max-w-pad bg-gradient-primary-intro">
-		<Breadcrumbs crumbs={data.routing.breadcrumbs} />
+		<Breadcrumbs
+			crumbs={data.routing.breadcrumbs}
+			i18n={{
+				aria: m['components.breadcrumbs.aria'],
+				home: m['components.breadcrumbs.home'],
+			}}
+		/>
 		<h1 class="c-text-heading-lg tablet:mt-10 desktop:mt-15 mt-8">
 			{data.post.title}
 		</h1>

@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 
 	import { EMAILS } from '$data/emails';
 	import { SOCIAL_LINKS } from '$data/links';
 	import * as m from '$data/locales/generated/messages';
-	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import * as pagefind from '$lib/pagefind/attributes';
 
@@ -17,7 +17,13 @@
 	<!-- intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div class="max-w-pad tablet:space-y-8 w-full space-y-6">
-			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
+				<Breadcrumbs
+					crumbs={data.routing.breadcrumbs}
+					i18n={{
+						aria: m['components.breadcrumbs.aria'],
+						home: m['components.breadcrumbs.home'],
+					}}
+				/>
 			<h1
 				class="c-text-heading-page text-primary-on-surface flex items-center justify-center uppercase"
 			>

@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
-	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { EventListing } from '$lib/components/event-listing';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { Pagination } from '$lib/components/pagination';
@@ -43,7 +43,13 @@
 					!data.person.popImage && 'pb-section',
 				]}
 			>
-				<Breadcrumbs crumbs={data.routing.breadcrumbs} />
+				<Breadcrumbs
+					crumbs={data.routing.breadcrumbs}
+					i18n={{
+						aria: m['components.breadcrumbs.aria'],
+						home: m['components.breadcrumbs.home'],
+					}}
+				/>
 				<div class="space-y-4">
 					<h1 class="c-text-heading-lg text-primary-on-surface font-bold">
 						{data.person.name}

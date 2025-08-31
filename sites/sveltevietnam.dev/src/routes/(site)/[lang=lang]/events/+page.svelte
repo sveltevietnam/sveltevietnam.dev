@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 	import type { Message } from '@sveltevietnam/i18n/runtime';
-	import { TBA } from '@sveltevietnam/kit/components';
+	import { TBA, Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { onScroll, createTimeline, stagger } from 'animejs';
 
@@ -9,7 +9,6 @@
 	import { EMAILS } from '$data/emails';
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
-	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { EventListing } from '$lib/components/event-listing';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { SubscriberUpsertForm } from '$lib/forms/subscriber';
@@ -121,7 +120,13 @@
 			class="max-w-pad tablet:flex-row tablet:gap-6 tablet:items-start flex flex-col justify-between"
 		>
 			<div class="tablet:space-y-8 space-y-6">
-				<Breadcrumbs crumbs={data.routing.breadcrumbs} />
+				<Breadcrumbs
+					crumbs={data.routing.breadcrumbs}
+					i18n={{
+						aria: m['components.breadcrumbs.aria'],
+						home: m['components.breadcrumbs.home'],
+					}}
+				/>
 				<div class="space-y-4">
 					<h1 class="c-text-heading-page text-primary-on-surface">
 						<T message={m['pages.events.heading']} />

@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 	import fallback1x1 from '@sveltevietnam/kit/assets/images/fallbacks/1x1.jpg?enhanced&w=w=640;320&imagetools';
+	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import * as m from '$data/locales/generated/messages';
 	import type { Person } from '$data/people';
 	import * as p from '$data/routes/generated';
-	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { PersonLinks } from '$lib/components/person-links';
 	import { TextArrowLink } from '$lib/components/text-arrow-link';
@@ -85,7 +85,13 @@
 	<!-- intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div class="max-w-pad space-y-10">
-			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
+			<Breadcrumbs
+				crumbs={data.routing.breadcrumbs}
+				i18n={{
+					aria: m['components.breadcrumbs.aria'],
+					home: m['components.breadcrumbs.home'],
+				}}
+			/>
 			<div class="space-y-4">
 				<h1 class="c-text-heading-lg text-primary-on-surface font-bold">
 					<T message={m['pages.people.heading']}></T>

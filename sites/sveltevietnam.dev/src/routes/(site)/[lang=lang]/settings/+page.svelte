@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { COLOR_SCHEMES, SPLASH_OPTIONS } from '@sveltevietnam/kit/constants';
 	import { ColorSchemeContext } from '@sveltevietnam/kit/contexts';
 	import { superForm } from 'sveltekit-superforms';
@@ -7,7 +8,6 @@
 	import { beforeNavigate } from '$app/navigation';
 	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
-	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { SplashScreenPlayground } from '$lib/components/splash-screen-playground';
 	import { NotificationContext } from '$lib/notifications/context.svelte';
@@ -108,7 +108,13 @@
 			class="max-w-pad tablet:flex-row tablet:gap-6 tablet:items-start flex flex-col justify-between"
 		>
 			<div class="tablet:space-y-8 space-y-6">
-				<Breadcrumbs crumbs={data.routing.breadcrumbs} />
+				<Breadcrumbs
+					crumbs={data.routing.breadcrumbs}
+					i18n={{
+						aria: m['components.breadcrumbs.aria'],
+						home: m['components.breadcrumbs.home'],
+					}}
+				/>
 				<div class="space-y-4">
 					<h1 class="c-text-heading-page text-primary-on-surface">
 						<T message={m['pages.settings.heading']} />

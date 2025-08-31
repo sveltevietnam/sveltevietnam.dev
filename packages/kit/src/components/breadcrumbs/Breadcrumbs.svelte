@@ -1,21 +1,10 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { onMount } from 'svelte';
-	import type { HTMLAttributes } from 'svelte/elements';
 
-	import * as m from '$data/locales/generated/messages';
+	import { type BreadcrumbsProps } from '.';
 
-	let {
-		crumbs,
-		scrollIndicator = 'blur',
-		...rest
-	}: HTMLAttributes<HTMLElement> & {
-		crumbs: { path: string; name: string }[];
-		scrollIndicator?: 'blur' | 'ellipsis';
-	} = $props();
-
-	const routing = RoutingContext.get();
+	let { crumbs, scrollIndicator = 'blur', i18n, ...rest }: BreadcrumbsProps = $props();
 
 	let scrollableLeft = $state(true);
 	let scrollableRight = $state(true);
@@ -33,13 +22,16 @@
 </script>
 
 <nav
-	aria-label={m['components.breadcrumbs.aria'](routing.lang)}
+	aria-labelledby="breadcrumbs-label"
 	data-scrollable={scrollable}
 	data-scrollable-left={scrollableLeft}
 	data-scrollable-right={scrollableRight}
 	data-scrollable-indicator={scrollIndicator}
 	{...rest}
 >
+	<p class="sr-only" id="breadcrumbs-label">
+		<T message={i18n.aria} />
+	</p>
 	<ol
 		class="scrollbar-hidden flex items-center gap-2 overflow-auto border border-transparent"
 		bind:this={ol}
@@ -56,7 +48,7 @@
 					{#if i === 0}
 						<i class="i i-[ph--house-line] h-5 w-5"></i>
 						<span class="sr-only">
-							<T message={m['components.breadcrumbs.home']} />
+							<T message={i18n.home} />
 						</span>
 					{:else}
 						<span class="whitespace-nowrap">{name}</span>
