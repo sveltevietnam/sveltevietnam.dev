@@ -51,6 +51,12 @@ messages:
       name:
         label: Employer name
         placeholder: Company ABC / Organization XYZ
+      desc:
+        label: Description about employer
+        placeholder: XYZ is a non-profit organization operating in the education sector...
+        note: A brief description to help candidates learn more about your organization/company
+        errors:
+          nonempty: Employer description is required
       website:
         label: Employer website (optional)
         placeholder: https://company-abc.com

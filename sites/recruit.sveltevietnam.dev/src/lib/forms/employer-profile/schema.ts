@@ -7,6 +7,7 @@ function createEmployerProfileSchemaBase(lang: Language) {
 	return v.object({
 		name: v.pipe(v.string(), v.nonEmpty(m['inputs.name.errors.nonempty'](lang))),
 		website: v.optional(v.pipe(v.string(), v.url(m['inputs.url.errors.invalid'](lang)))),
+		description: v.pipe(v.string(), v.nonEmpty(m['inputs.employer.desc.errors.nonempty'](lang))),
 		avatar: v.optional(
 			v.pipe(
 				v.file(),
