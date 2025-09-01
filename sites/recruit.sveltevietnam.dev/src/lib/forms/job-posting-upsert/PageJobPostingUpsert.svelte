@@ -11,6 +11,7 @@
 
 	import * as m from '$data/locales/generated/messages';
 	import { VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN } from '$env/static/public';
+	import { SponsorReminder } from '$lib/components/sponsor-reminder';
 	import {
 		FormJobPostingUpsert,
 		type FormJobPostingUpsertProps,
@@ -107,22 +108,7 @@
 			</section>
 
 			<!-- Sponsor -->
-			<section class="space-y-6">
-				<div class=" border-outline flex items-end justify-between border-b">
-					<h2 class="c-text-heading">
-						<T message={m['pages.postings_upsert.sponsor.heading']} />
-					</h2>
-					<a class="c-btn float-end inline-block" href="https://opencollective.com/sveltevietnam">
-						<T message={m['pages.postings_upsert.sponsor.cta']} />
-					</a>
-				</div>
-				<p class="leading-relaxed">
-					<T message={m['pages.postings_upsert.sponsor.desc']} />
-				</p>
-				<p class="c-callout c-callout--info c-callout--icon-bulb leading-relaxed">
-					<T message={m['pages.postings_upsert.sponsor.callout']} />
-				</p>
-			</section>
+			<SponsorReminder />
 
 			<!-- Support -->
 			<section class="space-y-6">

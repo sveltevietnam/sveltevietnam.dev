@@ -205,13 +205,6 @@ messages:
         callout:
           Bài đăng tuyển nên mô tả rõ ràng về trách nhiệm công việc và phúc lợi. Đăng tuyển với
           thông tin đầy đủ cũng sẽ giúp ban quản trị xét duyệt dễ dàng hơn.
-      sponsor:
-        heading: Tài trợ
-        desc:
-          Svelte Việt Nam được xây dựng bởi cộng đồng. Hãy cân nhắc tài trợ tài chính để góp phần
-          duy trì và phát triển ứng dụng.
-        callout: Đăng tuyển từ nhà tài trợ được ưu tiên xét duyệt và hiển thị trên trang việc làm.
-        cta: Trở thành nhà tài trợ
       support:
         heading: Hỗ trợ
         desc:
@@ -226,3 +219,10 @@ messages:
     breadcrumbs:
       aria: phân cấp trang
       home: Trang chủ
+    sponsor_reminder:
+      heading: Tài trợ
+      desc:
+        Svelte Việt Nam được xây dựng bởi cộng đồng. Hãy cân nhắc tài trợ tài chính để góp phần duy
+        trì và phát triển ứng dụng.
+      callout: Đăng tuyển từ nhà tài trợ được ưu tiên xét duyệt và hiển thị trên trang việc làm.
+      cta: Trở thành nhà tài trợ
