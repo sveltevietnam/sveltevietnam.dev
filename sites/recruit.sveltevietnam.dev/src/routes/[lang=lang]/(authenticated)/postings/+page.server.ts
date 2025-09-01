@@ -1,12 +1,12 @@
-import type { JobPosting } from '@sveltevietnam/kit/components';
+import type { JobPostingData } from '@sveltevietnam/kit/components';
 
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 
 import type { PageServerLoad } from './$types';
 
-function createMockPostings(num = 9): JobPosting[] {
-	const postings: JobPosting[] = [];
+function createMockPostings(num = 9): JobPostingData[] {
+	const postings: JobPostingData[] = [];
 
 	for (let i = 1; i <= num; i++) {
 		const id = crypto.randomUUID();
@@ -29,6 +29,7 @@ function createMockPostings(num = 9): JobPosting[] {
 }
 
 export const load: PageServerLoad = ({ params }) => {
+	// TODO: remember to map enum value to actual i18n-aware string
 	const { lang } = params;
 	return {
 		postings: createMockPostings(),
