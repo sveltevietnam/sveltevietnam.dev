@@ -8,19 +8,9 @@
 </script>
 
 <PageJobPostingUpsert
-	heading={m['pages.postings_upsert.heading.create']}
+	heading={m['pages.postings_upsert.heading.edit']}
 	data={data.form}
 	breadcrumbs={data.routing.breadcrumbs}
-	action="?/create"
-	posting={{
-		id: 'preview',
-		postedAt: new Date(),
-		employer: data.employer,
-		// these fields are from the form
-		title: '<job_title>',
-		type: '<job_type>',
-		expiredAt: new Date(),
-		location: '<job_location>',
-		salary: '<job_salary>',
-	}}
+	action="?/edit"
+	posting={data.posting}
 />

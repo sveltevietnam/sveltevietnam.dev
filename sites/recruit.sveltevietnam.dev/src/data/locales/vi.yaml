@@ -181,8 +181,20 @@ messages:
       tba:
         desc: Chưa có bài đăng tuyển nào.
         cta: Tạo bài đăng tuyển!
-    postings_create:
-      heading: Tạo mới bài đăng tuyển
+    postings_id:
+      general:
+        heading: Thông tin chung
+        posted_at: Đăng ngày
+        expired_at: Hết hạn ngày
+      desc:
+        heading: Mô tả công việc
+      actions:
+        edit: Chỉnh sửa
+        delete: Xoá
+    postings_upsert:
+      heading:
+        create: Tạo mới bài đăng tuyển
+        edit: Chỉnh sửa bài đăng tuyển
       form:
         cta: Yêu cầu xét duyệt
       preview:

@@ -1,6 +1,5 @@
 <script lang="ts" module>
 	import { T } from '@sveltevietnam/i18n';
-	import type { Message } from '@sveltevietnam/i18n/runtime';
 	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import type { Snippet } from 'svelte';
 	import type { HTMLFormAttributes } from 'svelte/elements';
@@ -10,8 +9,9 @@
 
 	import {
 		JOB_POSTING_APPLICATION_METHODS,
+		JOB_POSTING_TYPE_LABEL,
+		JOB_POSTING_APPLICATION_METHOD_MESSAGES,
 		type JobPostingUpsertInput,
-		type JobPostingType,
 		type JobPostingApplicationMethod,
 		JOB_POSTING_TYPES,
 	} from './schema';
@@ -26,46 +26,6 @@
 <script lang="ts">
 	let { data, cta, class: cls, ...rest }: FormJobPostingUpsertProps = $props();
 
-	const APPLICATION_METHOD_CONFIG: Record<
-		JobPostingApplicationMethod,
-		{
-			label: Message<'string', never>;
-			note: Message<'string', never>;
-			link: {
-				label: Message<'string', never>;
-				iconClass: string;
-				placeholder: Message<'string', never>;
-			};
-		}
-	> = {
-		email: {
-			label: m['inputs.job_posting.application.options.email.label'],
-			note: m['inputs.job_posting.application.options.email.note'],
-			link: {
-				label: m['inputs.email.label'],
-				iconClass: 'i-[ph--envelope-simple]',
-				placeholder: m['inputs.job_posting.application.options.email.placeholder'],
-			},
-		},
-		url: {
-			label: m['inputs.job_posting.application.options.url.label'],
-			note: m['inputs.job_posting.application.options.url.note'],
-			link: {
-				label: m['inputs.url.label'],
-				iconClass: 'i-[ph--globe]',
-				placeholder: m['inputs.job_posting.application.options.url.placeholder'],
-			},
-		},
-	};
-
-	const TYPE_MESSAGE: Record<JobPostingType, Message<'string', never>> = {
-		'full-time': m['inputs.job_posting.type.options.full_time'],
-		'part-time': m['inputs.job_posting.type.options.part_time'],
-		internship: m['inputs.job_posting.type.options.internship'],
-		contract: m['inputs.job_posting.type.options.contract'],
-		volunteer: m['inputs.job_posting.type.options.volunteer'],
-	};
-
 	const routing = RoutingContext.get();
 
 	const { form, enhance, constraints, errors, delayed, timeout } = superForm<JobPostingUpsertInput>(
@@ -78,7 +38,9 @@
 			timeoutMs: 2000,
 		},
 	);
-	const applicationConfig = $derived(APPLICATION_METHOD_CONFIG[$form.applicationMethod]);
+	const applicationMessages = $derived(
+		JOB_POSTING_APPLICATION_METHOD_MESSAGES[$form.applicationMethod],
+	);
 
 	const cachedApplicationLink: Record<JobPostingApplicationMethod, string> = $state({
 		email: '',
@@ -146,7 +108,7 @@
 			>
 				{#each JOB_POSTING_TYPES as type (type)}
 					<option value={type}>
-						<T message={TYPE_MESSAGE[type]} />
+						<T message={JOB_POSTING_TYPE_LABEL[type]} />
 					</option>
 				{/each}
 			</select>
@@ -226,7 +188,7 @@
 				>
 					{#each JOB_POSTING_APPLICATION_METHODS as method (method)}
 						<option value={method}>
-							<T message={APPLICATION_METHOD_CONFIG[method].label} />
+							<T message={JOB_POSTING_APPLICATION_METHOD_MESSAGES[method].label} />
 						</option>
 					{/each}
 				</select>
@@ -237,7 +199,7 @@
 						</p>
 					{/if}
 					<p class="c-text-body-xs ml-auto">
-						<T message={applicationConfig.note} />
+						<T message={applicationMessages.note} />
 					</p>
 				</div>
 			</div>
@@ -245,13 +207,13 @@
 				<div class="absolute bottom-1/2 left-2 h-12 w-4 border-b border-l border-current"></div>
 				<label class="c-text-input">
 					<span class="flex items-center gap-2">
-						<i class={['i h-6 w-6', applicationConfig.link.iconClass]}></i>
-						<T message={applicationConfig.link.label} />
+						<i class={['i h-6 w-6', applicationMessages.link.iconClass]}></i>
+						<T message={applicationMessages.link.label} />
 					</span>
 					<input
 						type={$form.applicationMethod}
 						name="applicationLink"
-						placeholder={applicationConfig.link.placeholder(routing.lang).toString()}
+						placeholder={applicationMessages.link.placeholder(routing.lang).toString()}
 						bind:value={$form.applicationLink}
 						{...$constraints.applicationLink}
 						{...$errors.applicationLink && {
@@ -299,20 +261,20 @@
 			</label>
 			<textarea
 				class="c-text-input w-full"
-				name="desc"
-				id="desc"
+				name="description"
+				id="description"
 				placeholder={m['inputs.job_posting.desc.placeholder'](routing.lang).toString()}
 				rows="15"
-				bind:value={$form.desc}
-				{...$constraints.desc}
-				{...$errors.desc && {
+				bind:value={$form.description}
+				{...$constraints.description}
+				{...$errors.description && {
 					'aria-invalid': 'true',
-					'aria-errormessage': 'error-desc',
+					'aria-errormessage': 'error-description',
 				}}
 			></textarea>
-			{#if $errors.desc?.[0]}
-				<p class={commonErrorClasses} id="error-desc">
-					{$errors.desc[0]}
+			{#if $errors.description?.[0]}
+				<p class={commonErrorClasses} id="error-description">
+					{$errors.description[0]}
 				</p>
 			{/if}
 		</div>

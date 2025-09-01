@@ -1,3 +1,5 @@
-export { default as FormJobPostingUpsert } from './JobPostingUpsert.svelte';
-export * from './JobPostingUpsert.svelte';
+export { default as FormJobPostingUpsert } from './FormJobPostingUpsert.svelte';
+export { default as PageJobPostingUpsert } from './PageJobPostingUpsert.svelte';
+export * from './FormJobPostingUpsert.svelte';
+export * from './PageJobPostingUpsert.svelte';
 export * from './schema';

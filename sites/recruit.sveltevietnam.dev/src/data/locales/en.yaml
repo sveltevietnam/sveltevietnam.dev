@@ -183,8 +183,20 @@ messages:
       tba:
         desc: No postings yet.
         cta: Create a job posting!
-    postings_create:
-      heading: Create new job posting
+    postings_id:
+      general:
+        heading: General Information
+        posted_at: Posted on
+        expired_at: Expires on
+      desc:
+        heading: Job Description
+      actions:
+        edit: Chỉnh sửa
+        delete: Xoá
+    postings_upsert:
+      heading:
+        create: Create new job posting
+        edit: Edit job posting
       form:
         cta: Submit for review
       preview:

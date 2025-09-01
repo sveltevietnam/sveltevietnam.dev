@@ -31,6 +31,9 @@ export default defineConfig<AllRoutePath, Language>({
 			'/:lang/postings/:id': {
 				vi: '/:lang/bai-dang-tuyen/:id',
 			},
+			'/:lang/postings/:id/edit': {
+				vi: '/:lang/bai-dang-tuyen/:id/edit',
+			},
 			'/:lang/postings/create': {
 				vi: '/:lang/bai-dang-tuyen/tao-moi',
 			},
@@ -69,6 +72,10 @@ export default defineConfig<AllRoutePath, Language>({
 			'/:lang/postings': {
 				vi: 'Bài đăng tuyển',
 				default: 'Job Posting',
+			},
+			'/:lang/postings/:id/edit': {
+				vi: 'Chỉnh sửa',
+				default: 'Edit',
 			},
 			'/:lang/postings/create': {
 				vi: 'Tạo mới',

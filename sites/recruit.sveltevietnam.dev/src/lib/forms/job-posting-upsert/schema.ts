@@ -1,4 +1,5 @@
 import type { Language } from '@sveltevietnam/i18n';
+import type { Message } from '@sveltevietnam/i18n/runtime';
 import * as v from 'valibot';
 
 import * as m from '$data/locales/generated/messages';
@@ -32,12 +33,49 @@ export function createJobPostingUpsertSchema(lang: Language) {
 			v.string(),
 			v.nonEmpty(m['inputs.job_posting.application.errors.nonempty_link'](lang)),
 		),
-		expiredAt: v.pipe(
-			v.string(),
-			v.isoDate(m['inputs.job_posting.expired_at.errors.nonempty'](lang)),
-		),
-		desc: v.pipe(v.string(), v.nonEmpty(m['inputs.job_posting.desc.errors.nonempty'](lang))),
+		expiredAt: v.date(m['inputs.job_posting.expired_at.errors.nonempty'](lang)),
+		description: v.pipe(v.string(), v.nonEmpty(m['inputs.job_posting.desc.errors.nonempty'](lang))),
 	});
 }
 
 export type JobPostingUpsertInput = v.InferInput<ReturnType<typeof createJobPostingUpsertSchema>>;
+
+export const JOB_POSTING_TYPE_LABEL: Record<JobPostingType, Message<'string', never>> = {
+	'full-time': m['inputs.job_posting.type.options.full_time'],
+	'part-time': m['inputs.job_posting.type.options.part_time'],
+	internship: m['inputs.job_posting.type.options.internship'],
+	contract: m['inputs.job_posting.type.options.contract'],
+	volunteer: m['inputs.job_posting.type.options.volunteer'],
+};
+
+export const JOB_POSTING_APPLICATION_METHOD_MESSAGES: Record<
+	JobPostingApplicationMethod,
+	{
+		label: Message<'string', never>;
+		note: Message<'string', never>;
+		link: {
+			label: Message<'string', never>;
+			iconClass: string;
+			placeholder: Message<'string', never>;
+		};
+	}
+> = {
+	email: {
+		label: m['inputs.job_posting.application.options.email.label'],
+		note: m['inputs.job_posting.application.options.email.note'],
+		link: {
+			label: m['inputs.email.label'],
+			iconClass: 'i-[ph--envelope-simple]',
+			placeholder: m['inputs.job_posting.application.options.email.placeholder'],
+		},
+	},
+	url: {
+		label: m['inputs.job_posting.application.options.url.label'],
+		note: m['inputs.job_posting.application.options.url.note'],
+		link: {
+			label: m['inputs.url.label'],
+			iconClass: 'i-[ph--globe]',
+			placeholder: m['inputs.job_posting.application.options.url.placeholder'],
+		},
+	},
+};
