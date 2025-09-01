@@ -189,6 +189,12 @@ messages:
       desc:
         heading: Mô tả công việc
       actions:
+        apply: Ứng tuyển
+        share:
+          link: Sao chép đường dẫn
+          qr: Tạo mã QR
+      manage:
+        heading: Quản lý bài đăng
         edit: Chỉnh sửa
         delete: Xoá
     postings_upsert:

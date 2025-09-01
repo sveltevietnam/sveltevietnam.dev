@@ -1,0 +1,204 @@
+<script lang="ts">
+	import { T } from '@sveltevietnam/i18n';
+	import fallback1x1 from '@sveltevietnam/kit/assets/images/fallbacks/1x1.jpg?enhanced&w=w=224;112&imagetools';
+	import { Breadcrumbs } from '@sveltevietnam/kit/components';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
+
+	import * as m from '$data/locales/generated/messages';
+	import * as p from '$data/routes/generated';
+	import { SponsorReminder } from '$lib/components/sponsor-reminder';
+	import { JOB_POSTING_TYPE_LABEL } from '$lib/forms/job-posting-upsert';
+
+	import type { PageProps } from './$types';
+
+	let { data }: PageProps = $props();
+
+	const routing = RoutingContext.get();
+
+	let avatarUrl = $derived(data.posting.employer.avatarUrl ?? fallback1x1);
+	const typeLabelMessage = $derived(JOB_POSTING_TYPE_LABEL[data.posting.type]);
+</script>
+
+<main
+	class="max-w-pad mt-header pt-section pb-section-more tablet:space-y-8 desktop:space-y-10 flex-1 space-y-6"
+>
+	<Breadcrumbs
+		crumbs={data.routing.breadcrumbs}
+		i18n={{
+			aria: m['components.breadcrumbs.aria'],
+			home: m['components.breadcrumbs.home'],
+		}}
+	/>
+
+	<div class="desktop:flex-row gap-section desktop:gap-20 flex flex-col">
+		<!-- main content -->
+		<div class="max-w-readable-relaxed flex-1 space-y-6">
+			<h1 class="c-text-heading font-bold">
+				{data.posting.title}
+			</h1>
+
+			<div class="border-outline p-4 border">
+				<h2 class="sr-only">
+					<T message={m['pages.postings_id.general.heading']} />
+				</h2>
+
+				<!-- general information -->
+				<section
+					class="tablet:flex-row flex flex-col-reverse items-start justify-between gap-4 space-y-6"
+				>
+					<dl class="grid grid-cols-[auto_1fr] gap-4">
+						<!-- employer -->
+						<dt>
+							<i class="i i-[ph--buildings] h-6 w-6"></i>
+							<span class="sr-only">
+								<T message={m['inputs.employer.name.label']} />
+							</span>
+						</dt>
+						<dd class="font-medium">
+							{#if data.posting.employer.website}
+								<a class="c-link-preserved" href={data.posting.employer.website} data-external>
+									{data.posting.employer.name}
+								</a>
+							{:else}
+								{data.posting.employer.name}
+							{/if}
+						</dd>
+
+						<!-- type -->
+						<dt>
+							<i class="i i-[ph--suitcase] h-6 w-6"></i>
+							<span class="sr-only">
+								<T message={m['inputs.job_posting.type.label']} />
+							</span>
+						</dt>
+						<dd>
+							{typeLabelMessage(routing.lang)}
+						</dd>
+
+						<!-- location -->
+						<dt>
+							<i class="i i-[ph--map-pin] h-6 w-6"></i>
+							<span class="sr-only">
+								<T message={m['inputs.job_posting.location.label']} />
+							</span>
+						</dt>
+						<dd>
+							{data.posting.location}
+						</dd>
+
+						<!-- salary -->
+						<dt>
+							<i class="i i-[ph--money] h-6 w-6"></i>
+							<span class="sr-only">
+								<T message={m['inputs.job_posting.salary.label']} />
+							</span>
+						</dt>
+						<dd>
+							{data.posting.salary}
+						</dd>
+
+						<!-- publication date -->
+						<dt>
+							<i class="i i-[ph--calendar-blank] h-6 w-6"></i>
+						</dt>
+						<dd>
+							<T message={m['pages.postings_id.general.posted_at']} />
+							{formatDate(data.posting.postedAt)}
+						</dd>
+
+						<!-- expiration date -->
+						<dt>
+							<i class="i i-[ph--calendar-x] h-6 w-6"></i>
+						</dt>
+						<dd>
+							<T message={m['pages.postings_id.general.expired_at']} />
+							{formatDate(data.posting.expiredAt)}
+						</dd>
+					</dl>
+					<div class="tablet:items-end flex flex-col justify-between gap-4 self-stretch">
+						<!-- image -->
+						{#snippet imageContent()}
+							<enhanced:img class="tablet:h-31 aspect-square h-20 w-auto" src={avatarUrl} alt="" />
+						{/snippet}
+						{#if data.posting.href}
+							<a class="c-link-image" href={data.posting.href} aria-hidden="true">
+								{@render imageContent()}
+							</a>
+						{:else}
+							<div aria-hidden="true">
+								{@render imageContent()}
+							</div>
+						{/if}
+					</div>
+				</section>
+
+				<!-- actions -->
+				<section class="flex flex-wrap gap-4">
+					<!-- apply -->
+					<a
+						class="c-btn block flex-1 border-orange-600 bg-orange-600 font-bold text-gray-50"
+						href={data.posting.applicationLink}
+						data-external
+					>
+						<T message={m['pages.postings_id.actions.apply']} />
+					</a>
+
+					<!-- copy link -->
+					<button class="c-btn c-btn--outlined shrink-0 grid-cols-1 p-2">
+						<span class="sr-only"><T message={m['pages.postings_id.actions.share.link']} /></span>
+						<i class="i i-[ph--link] h-6 w-6"></i>
+					</button>
+
+					<!-- generate QR -->
+					<button class="c-btn c-btn--outlined shrink-0 grid-cols-1 p-2">
+						<span class="sr-only"><T message={m['pages.postings_id.actions.share.link']} /></span>
+						<i class="i i-[ph--qr-code] h-6 w-6"></i>
+					</button>
+				</section>
+			</div>
+
+			<section>
+				<h2 class="sr-only">
+					<T message={m['pages.postings_id.desc.heading']} />
+				</h2>
+				<div class="prose max-w-full">
+					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+					{@html data.posting.description}
+				</div>
+			</section>
+		</div>
+
+		<!-- sidebar -->
+		<div
+			class="desktop:self-start desktop:sticky desktop:top-header max-w-readable-relaxed
+			desktop:max-w-96 space-y-section h-fit"
+		>
+			<section class="space-y-6">
+				<h2 class="border-outline c-text-heading border-b">
+					<T message={m['pages.postings_id.manage.heading']} />
+				</h2>
+
+				<div class="flex gap-4">
+					<button
+						class="c-btn bg-error-on-surface text-error-surface border-error-on-surface flex-1 place-content-center
+						px-6"
+						type="button"
+					>
+						<i class="i i-[ph--trash] h-6 w-6"></i>
+						<T message={m['pages.postings_id.manage.delete']} />
+					</button>
+					<a
+						class="c-btn flex-1 place-content-center"
+						href={p['/:lang/postings/:id/edit']({ lang: routing.lang, id: data.posting.id })}
+					>
+						<i class="i i-[ph--pencil] h-6 w-6"></i>
+						<T message={m['pages.postings_id.manage.edit']} />
+					</a>
+				</div>
+			</section>
+
+			<SponsorReminder />
+		</div>
+	</div>
+</main>

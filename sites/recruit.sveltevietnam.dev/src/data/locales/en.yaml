@@ -191,8 +191,14 @@ messages:
       desc:
         heading: Job Description
       actions:
-        edit: Chỉnh sửa
-        delete: Xoá
+        apply: Apply
+        share:
+          link: Copy link
+          qr: Generate QR code
+      manage:
+        heading: Manage Posting
+        edit: Edit
+        delete: Delete
     postings_upsert:
       heading:
         create: Create new job posting
