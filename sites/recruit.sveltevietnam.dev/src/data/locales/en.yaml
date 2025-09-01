@@ -26,6 +26,7 @@ messages:
     switch_to: switch to
   inputs:
     email:
+      label: Email
       errors:
         nonempty: Email is required
         invalid: Email is badly formated
@@ -33,7 +34,9 @@ messages:
       errors:
         nonempty: Name is required
     url:
+      label: URL
       errors:
+        nonempty: URL is required
         invalid: URL is badly formated
     turnstile:
       desc: Verify <em class="c-text-body-xs">(requires Javascript)</em>
@@ -62,6 +65,59 @@ messages:
           I hereby declare that the information provided above is true and correct, and that I am
           the employer or authorized to represent this employer.
         error: You must agree to the terms
+    job_posting:
+      title:
+        label: Job title
+        placeholder: Frontend Developer (Svelte & SvelteKit)
+        errors:
+          nonempty: Job title is required
+      type:
+        label: Job type
+        options:
+          volunteer: Volunteer
+          internship: Internship
+          contract: Contract
+          part_time: Part-time
+          full_time: Full-time
+        errors:
+          nonempty: Job type is required
+      location:
+        label: Work location
+        placeholder: Remote / Ha Noi / Ho Chi Minh City / ...
+        errors:
+          nonempty: Work location is required
+      salary:
+        label: Salary range
+        placeholder: $1000 - $2000 / 20M - 40M VND / Unpaid / ...
+        errors:
+          nonempty: Salary range is required
+      application:
+        label: Application method
+        options:
+          email:
+            label: Via email to recruiter
+            placeholder: career@abc.com
+            note:
+              When clicking "Apply", the candidate needs to compose an email to the specified
+              address.
+          url:
+            label: Via employer's portal
+            placeholder: https://career.abc.com/portal/...
+            note: When clicking "Apply", the candidate will be redirected to the linked url.
+        errors:
+          nonempty_method: Application method is required
+          nonempty_link: Application link is required
+      expired_at:
+        label: Application deadline
+        errors:
+          nonempty: Application deadline is required
+      desc:
+        label: Job description
+        placeholder:
+          We are looking for a skilled Frontend Developer with experience in Svelte and SvelteKit to
+          join our dynamic team... We provide the following benefits...
+        errors:
+          nonempty: Job description is required
   pages:
     login:
       heading: Login
@@ -121,6 +177,32 @@ messages:
       tba:
         desc: No postings yet.
         cta: Create a job posting!
+    postings_create:
+      heading: Create new job posting
+      form:
+        cta: Submit for review
+      preview:
+        heading: Preview
+        desc:
+          This job posting will be displayed at the <a class="c-link"
+          href="{{mainSiteUrl}}/en/jobs">"Jobs"</a> page as
+        callout:
+          Postings should describe responsibilities and benefits with clarity. Comprehensive
+          postings can also help streamline the admin review process.
+      sponsor:
+        heading: Sponsor
+        desc:
+          Svelte Vietnam is built by the community. Please consider sponsoring to help sustain the
+          development and maintenance of this app.
+        callout: Postings from sponsors will be expedited during review and prioritized in listings.
+        cta: Become a sponsor
+      support:
+        heading: Support
+        desc:
+          If you need support or have any questions or feedback about the job posting process,
+          please contact the admin team via email at <a class="c-link"
+          href="mailto:jobs@sveltevietnam.dev">jobs@sveltevietnam.dev</a> or via the <a
+          class="c-link" href="https://discord.sveltevietnam.dev">Svelte Vietnam Discord</a>."
   components:
     job_posting_list:
       posted_at: Posted on

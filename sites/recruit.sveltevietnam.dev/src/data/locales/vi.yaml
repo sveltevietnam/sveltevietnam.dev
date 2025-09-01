@@ -26,6 +26,7 @@ messages:
     switch_to: chuyển sang
   inputs:
     email:
+      label: Email
       errors:
         nonempty: Vui lòng nhập địa chỉ email
         invalid: Địa chỉ email không hợp lệ
@@ -33,7 +34,9 @@ messages:
       errors:
         nonempty: Vui lòng nhập tên
     url:
+      label: Đường dẫn
       errors:
+        nonempty: Vui lòng nhập đường dẫn
         invalid: Địa chỉ URL không hợp lệ
     turnstile:
       desc: Xác thực <em class="c-text-body-xs">(cần Javascript)</em>
@@ -62,6 +65,57 @@ messages:
           Tôi xin cam kết thông tin trên là đúng sự thật và tôi là người sử dụng lao động hoặc có
           quyền đại diện cho người sử dụng lao động.
         error: Vui lòng đọc và đồng ý với cam kết
+    job_posting:
+      title:
+        label: Tiêu đề công việc
+        placeholder: Lập trình viên Frontend (Svelte & SvelteKit)
+        errors:
+          nonempty: Vui lòng nhập tiêu đề công việc
+      type:
+        label: Loại hình công việc
+        options:
+          volunteer: Tình nguyện
+          internship: Thực tập
+          contract: Hợp đồng
+          part_time: Bán thời gian
+          full_time: Toàn thời gian
+        errors:
+          nonempty: Vui lòng chọn loại hình công việc
+      location:
+        label: Địa điểm làm việc
+        placeholder: Tự do (remote) / Hà Nội / Hồ Chí Minh / ...
+        errors:
+          nonempty: Vui lòng nhập địa điểm làm việc
+      salary:
+        label: Mức lương
+        placeholder: ₫20tr/tháng, $1000-$2000/tháng, không lương, ...
+        errors:
+          nonempty: Vui lòng nhập mức lương
+      application:
+        label: Phương thức ứng tuyển
+        options:
+          email:
+            label: Qua email đến nhà tuyển dụng
+            note: Khi nhấn nút “ứng tuyển", ứng viên cần tự soạn email gởi đến địa chỉ trên.
+            placeholder: career@abc.com
+          url:
+            label: Qua cổng thông tin riêng
+            note: Khi nhấn nút “ứng tuyển", ứng viên sẽ được dẫn đến cổng thông trên.
+            placeholder: https://career.abc.com/portal/...
+        errors:
+          nonempty_method: Vui lòng chọn phương thức ứng tuyển
+          nonempty_link: Vui lòng nhập địa chỉ ứng tuyển
+      expired_at:
+        label: Hạn đăng tuyển
+        errors:
+          nonempty: Vui lòng chọn hạn đăng tuyển
+      desc:
+        label: Mô tả công việc
+        placeholder:
+          Tìm kiếm lập trình viên Frontend có kinh nghiệm với Svelte và SvelteKit cho đội ngũ năng
+          động và sáng tạo... Các phúc lợi cho nhân viên...
+        errors:
+          nonempty: Vui lòng nhập mô tả công việc
   pages:
     login:
       heading: Đăng nhập
@@ -121,6 +175,32 @@ messages:
       tba:
         desc: Chưa có bài đăng tuyển nào.
         cta: Tạo bài đăng tuyển!
+    postings_create:
+      heading: Tạo mới bài đăng tuyển
+      form:
+        cta: Yêu cầu xét duyệt
+      preview:
+        heading: Xem trước
+        desc:
+          Bài đăng tuyển sẽ được hiển thị tại trang <a class="c-link"
+          href="{{mainSiteUrl}}/vi/viec-lam">“Việc làm"</a> với giao diện như sau
+        callout:
+          Bài đăng tuyển nên mô tả rõ ràng về trách nhiệm công việc và phúc lợi. Đăng tuyển với
+          thông tin đầy đủ cũng sẽ giúp ban quản trị xét duyệt dễ dàng hơn.
+      sponsor:
+        heading: Tài trợ
+        desc:
+          Svelte Việt Nam được xây dựng bởi cộng đồng. Hãy cân nhắc tài trợ tài chính để góp phần
+          duy trì và phát triển ứng dụng.
+        callout: Đăng tuyển từ nhà tài trợ được ưu tiên xét duyệt và hiển thị trên trang việc làm.
+        cta: Trở thành nhà tài trợ
+      support:
+        heading: Hỗ trợ
+        desc:
+          Nếu bạn cần hỗ trợ hoặc có thắc mắc, góp ý cho ứng dụng, hãy liên lạc ban quản trị qua
+          email <a class="c-link" href="mailto:jobs@sveltevietnam.dev">jobs@sveltevietnam.dev</a>
+          hoặc tại <a class="c-link" href="https://discord.sveltevietnam.dev">Discord của Svelte
+          Việt Nam</a>.
   components:
     job_posting_list:
       posted_at: Đăng ngày

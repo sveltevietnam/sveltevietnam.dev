@@ -71,8 +71,8 @@ export default defineConfig<AllRoutePath, Language>({
 				default: 'Job Posting',
 			},
 			'/:lang/postings/create': {
-				vi: 'Tạo bài đăng tuyển',
-				default: 'Create Job Posting',
+				vi: 'Tạo mới',
+				default: 'Create',
 			},
 		},
 	},

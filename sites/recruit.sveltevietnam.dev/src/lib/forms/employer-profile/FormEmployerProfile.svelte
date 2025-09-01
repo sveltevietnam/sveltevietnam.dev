@@ -9,7 +9,7 @@
 
 	import type { EmployerProfileInput } from './schema';
 
-	export interface EmployerProfileFormProps<WithEmail extends boolean> extends HTMLFormAttributes {
+	export interface FormEmployerProfileProps<WithEmail extends boolean> extends HTMLFormAttributes {
 		withEmail?: WithEmail;
 		data: SuperValidated<EmployerProfileInput<WithEmail>>;
 		cta: Snippet<[{ delayed: boolean; timeout: boolean }]>;
@@ -18,7 +18,7 @@
 </script>
 
 <script lang="ts" generics="WithEmail extends boolean = true">
-	let { withEmail, data, cta, class: cls, ...rest }: EmployerProfileFormProps<WithEmail> = $props();
+	let { withEmail, data, cta, class: cls, ...rest }: FormEmployerProfileProps<WithEmail> = $props();
 
 	const routing = RoutingContext.get();
 
