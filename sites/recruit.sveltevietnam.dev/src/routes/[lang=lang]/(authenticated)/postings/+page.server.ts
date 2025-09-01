@@ -21,6 +21,7 @@ function createMockPostings(num = 9): JobPostingData[] {
 			expiredAt: new Date(Date.now() + (30 - i) * 86400000), // Expires in (30 - i) days
 			employer: {
 				name: `Company ${i}`,
+				website: `https://sveltevietnam.dev`,
 			},
 		});
 	}

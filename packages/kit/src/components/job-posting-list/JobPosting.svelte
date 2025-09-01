@@ -58,7 +58,13 @@
 			<strong>{posting.type}</strong>
 			<br class="@md:hidden" />
 			<T message={i18n.at} />
-			<strong>{posting.employer.name}</strong>
+			{#if posting.employer.website}
+				<a class="c-link-preserved" href={posting.employer.website} data-external>
+					<strong>{posting.employer.name}</strong>
+				</a>
+			{:else}
+				<strong>{posting.employer.name}</strong>
+			{/if}
 		</p>
 
 		<!-- location & salary -->

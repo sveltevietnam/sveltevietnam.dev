@@ -16,6 +16,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		employer: {
 			name: 'Company ABC XYZ',
 			avatarUrl: undefined,
+			website: 'https://sveltevietnam.dev',
 		},
 		form: await superValidate(valibot(schema)),
 		routing: {

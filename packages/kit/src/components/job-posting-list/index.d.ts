@@ -14,6 +14,7 @@ export interface JobPostingData {
 	employer: {
 		avatarUrl?: string;
 		name: string;
+		website?: string;
 	};
 }
 
