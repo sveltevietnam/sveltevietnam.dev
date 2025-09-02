@@ -10,7 +10,6 @@
 	import { onMount } from 'svelte';
 
 	import * as m from '$data/locales/generated/messages';
-	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	let {
 		item,
@@ -18,7 +17,6 @@
 		filename = 'qr.png',
 	}: StackItemProps & { data: string; filename?: string } = $props();
 
-	const settings = SettingsContext.get();
 	const colorScheme = ColorSchemeContext.get();
 
 	const config: SvgQRParameter = $derived({
@@ -42,7 +40,6 @@
 <dialog
 	class="c-dialog"
 	{...enhanceDialog(item, { delayResolution: 'animationend' })}
-	{@attach settings.lockScrollWhenMounted}
 >
 	<form class="space-y-6" method="dialog">
 		<!-- svelte-ignore a11y_autofocus -->

@@ -10,10 +10,8 @@
 
 	import * as m from '$data/locales/generated/messages';
 	import { SearchContext } from '$lib/search/context.svelte';
-	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	let { item }: StackItemProps = $props();
-	const settings = SettingsContext.get();
 	const routing = RoutingContext.get();
 	const search = SearchContext.get();
 
@@ -50,7 +48,6 @@
 		trigger: { key: 'k', modifier: ['ctrl', 'meta'], callback: closeDialog },
 	}}
 	aria-label={m.search.toString()}
-	{@attach settings.lockScrollWhenMounted}
 >
 	<search class="min-h-50 w-150 flex h-full max-w-full flex-col">
 		<!-- query -->
