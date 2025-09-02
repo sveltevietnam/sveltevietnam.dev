@@ -10,7 +10,6 @@
 
 	import * as m from '$data/locales/generated/messages';
 	import { VITE_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
-	import { NotificationContext } from '$lib/notifications/context.svelte';
 
 	import { type SubscriberUpdateInput } from './schema';
 
@@ -22,8 +21,7 @@
 <script lang="ts">
 	let { class: cls, data, action = '?/update', ...rest }: SubscriberUpdateFormProps = $props();
 
-	const noti = NotificationContext.get();
-	const { routing } = Contexts.get();
+	const { routing, notifications: { toaster } } = Contexts.get();
 
 	const { form, enhance, constraints, errors, delayed, timeout } = superForm<
 		SubscriberUpdateInput,
@@ -35,12 +33,12 @@
 		timeoutMs: 2000,
 		onResult({ result }) {
 			if (result.type === 'success') {
-				noti.toaster.success({
+				toaster.success({
 					message: m['forms.subscriber.update.success'],
 				});
 			} else if (result.type === 'error') {
 				const error = result.error as App.Error;
-				noti.toaster.error({
+				toaster.error({
 					title: `${error.code} - ${error.message}`,
 					message: m['forms.subscriber.update.errors.unknown'],
 				});

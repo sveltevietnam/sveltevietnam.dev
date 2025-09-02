@@ -4,12 +4,12 @@
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { STATUSES, type Status } from '@sveltevietnam/kit/constants';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { BaseNotification } from '@sveltevietnam/kit/notifications';
 
 	import { asset } from '$app/paths';
 	import * as m from '$data/locales/generated/messages';
 	import { BlogPostListItem } from '$lib/components/blog-post-list-item';
 	import { IntroSeparator } from '$lib/components/intro-separator';
-	import BaseNotification from '$lib/notifications/components/BaseNotification.svelte';
 	import * as pagefind from '$lib/pagefind/attributes';
 
 	import type { PageProps } from './$types';

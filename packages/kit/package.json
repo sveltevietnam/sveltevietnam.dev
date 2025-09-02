@@ -32,6 +32,10 @@
 			"types": "./types/index.d.ts",
 			"import": "./src/hooks.js"
 		},
+		"./notifications": {
+			"types": "./types/index.d.ts",
+			"import": "./src/notifications/index.js"
+		},
 		"./utilities": {
 			"types": "./types/index.d.ts",
 			"import": "./src/utilities/index.js"

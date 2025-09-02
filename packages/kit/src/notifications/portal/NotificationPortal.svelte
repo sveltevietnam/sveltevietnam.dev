@@ -1,9 +1,10 @@
 <script lang="ts">
-	import type { Stack } from '@svelte-put/async-stack';
 	import { flip } from 'svelte/animate';
 	import { fly } from 'svelte/transition';
 
-	let { stack }: { stack: Stack } = $props();
+	import type { NotificationPortalProps } from '.';
+
+	let { stack, class: cls, ...rest }: NotificationPortalProps = $props();
 
 	const MAX_ITEMS = 3;
 	const SCALE_STEP = 0.05;
@@ -97,11 +98,15 @@
 </script>
 
 <ol
-	class="z-notification tablet:top-10 tablet:right-10 fixed right-4 top-4 grid content-start items-start"
+	class={[
+		'z-notification tablet:top-10 tablet:right-10 fixed right-4 top-4 grid content-start items-start',
+		cls,
+	]}
 	style:height={olHeight}
 	onpointerenter={onPointerEnter}
 	onpointerleave={onPointerLeave}
 	data-expanded={expanded}
+	{...rest}
 >
 	{#each stack.items as notification, index (notification.config.id)}
 		{@const id = notification.config.id}

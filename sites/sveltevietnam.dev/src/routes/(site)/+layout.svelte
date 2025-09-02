@@ -15,8 +15,6 @@
 	} from '$env/static/public';
 	import ogImageEn from '$lib/assets/images/fallbacks/og.en.jpg?url';
 	import ogImageVi from '$lib/assets/images/fallbacks/og.vi.jpg?url';
-	import NotificationPortal from '$lib/notifications/components/NotificationPortal.svelte';
-	import { NotificationContext } from '$lib/notifications/context.svelte';
 	import { SearchContext } from '$lib/search/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
@@ -42,8 +40,7 @@
 			user: data.settings.colorScheme,
 		}),
 	});
-	const { routing, colorScheme } = contexts;
-	const noti = NotificationContext.set();
+	const { routing, colorScheme, notifications: { toaster } } = contexts;
 	const settings = SettingsContext.set(data.settings);
 	SearchContext.set(page.url.origin);
 
@@ -80,7 +77,7 @@
 					delta: settings.hydrated.getTime() - settings.splashed.getTime(),
 				});
 			}
-			noti.toaster.info({
+			toaster.info({
 				title: m['notifications.delayed_hydration.title'],
 				message: m['notifications.delayed_hydration.message'],
 			});
@@ -151,5 +148,4 @@
 
 <ContextsProvider {contexts}>
 	{@render children()}
-	<NotificationPortal stack={noti.stack} />
 </ContextsProvider>

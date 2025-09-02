@@ -1,27 +1,9 @@
-<script lang="ts" module>
-	import type { StackItemProps } from '@svelte-put/async-stack';
-	import { T } from '@sveltevietnam/i18n';
-	import { type Message, type MessageType, isMessage } from '@sveltevietnam/i18n/runtime';
-	import type { Snippet } from 'svelte';
-	import type { HTMLAttributes } from 'svelte/elements';
-
-	export interface BaseNotificationProps<T = never>
-		extends Omit<HTMLAttributes<HTMLElement>, 'title'>,
-			StackItemProps<T> {
-		title?: string | null | Snippet | Message<MessageType, never>;
-		icon?: string | Snippet;
-		status?: 'info' | 'success' | 'warning' | 'error';
-	}
-
-	const iconClassMap: Record<NonNullable<BaseNotificationProps['status']>, string> = {
-		info: 'i-[ph--info]',
-		success: 'i-[ph--check-circle]',
-		warning: 'i-[ph--warning]',
-		error: 'i-[ph--warning-circle]',
-	};
-</script>
-
 <script lang="ts" generics="T">
+	import { T } from '@sveltevietnam/i18n';
+	import { isMessage } from '@sveltevietnam/i18n/runtime';
+
+	import type { BaseNotificationProps } from '.';
+
 	let {
 		item,
 		title,
@@ -36,6 +18,12 @@
 		item?.resolve();
 	}
 
+	const iconClassMap: Record<NonNullable<BaseNotificationProps['status']>, string> = {
+		info: 'i-[ph--info]',
+		success: 'i-[ph--check-circle]',
+		warning: 'i-[ph--warning]',
+		error: 'i-[ph--warning-circle]',
+	};
 	const iconClass = status ? iconClassMap[status] : 'i-[ph--info]';
 </script>
 

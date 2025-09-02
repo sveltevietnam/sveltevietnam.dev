@@ -10,7 +10,6 @@
 
 	import * as m from '$data/locales/generated/messages';
 	import { VITE_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
-	import { NotificationContext } from '$lib/notifications/context.svelte';
 
 	import { type SubscribeUpsertInput } from './schema';
 
@@ -22,8 +21,7 @@
 <script lang="ts">
 	let { class: cls, data, action = '?/subscribe', ...rest }: SubscriberUpsertFormProps = $props();
 
-	const noti = NotificationContext.get();
-	const { routing } = Contexts.get();
+	const { routing, notifications: { toaster } } = Contexts.get();
 
 	let all = $state(false);
 
@@ -44,7 +42,7 @@
 					all: $state.snapshot(all).toString(),
 					defaultChannels: data.data.channels,
 				});
-				noti.toaster.success({
+				toaster.success({
 					message: m['forms.subscriber.upsert.success'],
 				});
 			} else if (result.type === 'error') {
@@ -56,7 +54,7 @@
 						message: error.message,
 					},
 				});
-				noti.toaster.error({
+				toaster.error({
 					title: `${error.code} - ${error.message}`,
 					message: m['forms.subscriber.upsert.errors.unknown'],
 				});

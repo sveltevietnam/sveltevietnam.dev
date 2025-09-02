@@ -10,7 +10,6 @@
 	import * as m from '$data/locales/generated/messages';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { SplashScreenPlayground } from '$lib/components/splash-screen-playground';
-	import { NotificationContext } from '$lib/notifications/context.svelte';
 	import * as pagefind from '$lib/pagefind/attributes';
 
 	import type { PageProps } from './$types';
@@ -19,8 +18,7 @@
 
 	let { data }: PageProps = $props();
 
-	const noti = NotificationContext.get();
-	const { colorScheme } = Contexts.get();
+	const { colorScheme, notifications: { toaster } } = Contexts.get();
 
 	const { form, enhance, constraints, delayed, timeout } = superForm(data.form, {
 		resetForm: false,
@@ -34,7 +32,7 @@
 				// Scenario 1: user does not change language, submission stays on same page
 				// -> check and update color scheme accordingly & fire notification
 				colorScheme.user = $form.colorScheme;
-				noti.toaster.success({
+				toaster.success({
 					message: data.default
 						? m['notifications.settings.default']
 						: m['notifications.settings.saved'],
@@ -78,7 +76,7 @@
 			if (colorScheme.user !== $form.colorScheme) {
 				colorScheme.user = $form.colorScheme;
 			}
-			noti.toaster.success({
+			toaster.success({
 				message: m['notifications.settings.saved'],
 			});
 		}

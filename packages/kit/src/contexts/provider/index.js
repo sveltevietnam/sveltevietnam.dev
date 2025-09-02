@@ -1,1 +1,2 @@
-export { default as ContextsProvider, Contexts } from './ContextsProvider.svelte';
+export { default as ContextsProvider } from './ContextsProvider.svelte';
+export * from './context.js';
