@@ -1,15 +1,14 @@
 import { superValidate } from 'sveltekit-superforms';
 import { valibot } from 'sveltekit-superforms/adapters';
+import * as v from 'valibot';
 
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
-import { createJobPostingUpsertSchema } from '$lib/forms/job-posting-upsert';
 
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params }) => {
 	const { lang, id } = params;
-	const schema = createJobPostingUpsertSchema(lang);
 
 	// TODO: get this form DB of current user
 	const posting = {
@@ -46,9 +45,13 @@ Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots 
 The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
 `,
 	};
+
+	const deleteSchema = v.object({
+		id: v.pipe(v.string(), v.nonEmpty()),
+	});
 	return {
 		posting,
-		form: await superValidate(valibot(schema)),
+		deleteForm: await superValidate({ id: posting.id }, valibot(deleteSchema)),
 		routing: {
 			breadcrumbs: b['/:lang/postings/:id']({ lang, id: [id, posting.title] }),
 			paths: {

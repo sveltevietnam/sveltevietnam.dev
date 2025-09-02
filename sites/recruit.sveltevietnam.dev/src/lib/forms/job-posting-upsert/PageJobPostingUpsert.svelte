@@ -76,7 +76,7 @@
 						data-delayed={delayed}
 						data-timeout={timeout}
 					>
-						<T message={m['pages.postings_upsert.form.cta']} />
+						<span><T message={m['pages.postings_upsert.form.cta']} /></span>
 					</button>
 				{/snippet}
 			</FormJobPostingUpsert>

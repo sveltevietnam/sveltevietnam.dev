@@ -4,6 +4,7 @@
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
+	import { superForm } from 'sveltekit-superforms';
 
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
@@ -18,6 +19,14 @@
 
 	let avatarUrl = $derived(data.posting.employer.avatarUrl ?? fallback1x1);
 	const typeLabelMessage = $derived(JOB_POSTING_TYPE_LABEL[data.posting.type]);
+
+	const { delayed, timeout, enhance } = superForm(data.deleteForm, {
+		resetForm: false,
+		invalidateAll: false,
+		multipleSubmits: 'prevent',
+		delayMs: 500,
+		timeoutMs: 2000,
+	});
 </script>
 
 <main
@@ -38,7 +47,7 @@
 				{data.posting.title}
 			</h1>
 
-			<div class="border-outline p-4 border">
+			<div class="border-outline border p-4">
 				<h2 class="sr-only">
 					<T message={m['pages.postings_id.general.heading']} />
 				</h2>
@@ -180,14 +189,19 @@
 				</h2>
 
 				<div class="flex gap-4">
-					<button
-						class="c-btn bg-error-on-surface text-error-surface border-error-on-surface flex-1 place-content-center
-						px-6"
-						type="button"
-					>
-						<i class="i i-[ph--trash] h-6 w-6"></i>
-						<T message={m['pages.postings_id.manage.delete']} />
-					</button>
+					<form class="contents" action="?/delete" method="POST" use:enhance>
+						<input name="id" value={data.posting.id} required hidden />
+						<button
+							class="c-btn bg-error-on-surface text-error-surface border-error-on-surface flex-1 place-content-center
+							px-6"
+							type="submit"
+							data-delayed={$delayed}
+							data-timeout={$timeout}
+						>
+							<i class="i i-[ph--trash] h-6 w-6"></i>
+							<span><T message={m['pages.postings_id.manage.delete']} /></span>
+						</button>
+					</form>
 					<a
 						class="c-btn flex-1 place-content-center"
 						href={p['/:lang/postings/:id/edit']({ lang: routing.lang, id: data.posting.id })}
