@@ -1,6 +1,6 @@
 <script lang="ts">
 	import QR from '@svelte-put/qr/svg/QR.svelte';
-	import { dark } from '@sveltevietnam/kit/assets/images/logos/base64';
+	import dark from '@sveltevietnam/kit/assets/images/logos/monotone-dark.base64?raw';
 
 	import { SOCIAL_LINKS } from '$data/links';
 </script>

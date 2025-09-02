@@ -4,7 +4,8 @@
 	import { createQrPngDataUrl } from '@svelte-put/qr';
 	import { qr, type SvgQRParameter } from '@svelte-put/qr/svg';
 	import { T } from '@sveltevietnam/i18n';
-	import { light, dark } from '@sveltevietnam/kit/assets/images/logos/base64';
+	import dark from '@sveltevietnam/kit/assets/images/logos/monotone-dark.base64?raw';
+	import light from '@sveltevietnam/kit/assets/images/logos/monotone-light.base64?raw';
 	import { ColorSchemeContext } from '@sveltevietnam/kit/contexts';
 	import { onMount } from 'svelte';
 
