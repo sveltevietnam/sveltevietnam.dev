@@ -4,7 +4,8 @@
 	import type { Message } from '@sveltevietnam/i18n/runtime';
 	import fallback16x9 from '@sveltevietnam/kit/assets/images/fallbacks/16x9.jpg?enhanced&w=2240;1540;1088;686&imagetools';
 	import { Breadcrumbs, CopyBtn } from '@sveltevietnam/kit/components';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { ColorSchemeContext, RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { DialogQrCode } from '@sveltevietnam/kit/dialogs';
 	import { formatRelativeTime } from '@sveltevietnam/kit/utilities/datetime';
 
 	import { page } from '$app/state';
@@ -19,7 +20,6 @@
 	import { Person } from '$lib/components/person';
 	import { TableOfContents } from '$lib/components/table-of-contents';
 	import { TextArrowLink } from '$lib/components/text-arrow-link';
-	import { QrCodeDialog } from '$lib/dialogs/components/qr-code-dialog';
 	import { DialogContext } from '$lib/dialogs/context.svelte';
 	import * as pagefind from '$lib/pagefind/attributes';
 	import { SettingsContext } from '$lib/settings/context.svelte';
@@ -32,6 +32,7 @@
 	const routing = RoutingContext.get();
 	const settings = SettingsContext.get();
 	const dialog = DialogContext.get();
+	const colorScheme = ColorSchemeContext.get();
 
 	let dateFormatter = $derived(
 		new Intl.DateTimeFormat(routing.lang, {
@@ -69,8 +70,17 @@
 
 	function openQrDialog() {
 		dialog.push('custom', {
-			component: QrCodeDialog,
-			props: { data: url },
+			component: DialogQrCode,
+			props: {
+				data: url,
+				theme: () => colorScheme.resolved,
+				i18n: {
+					close: m.close,
+					title: m['dialogs.qr.title'],
+					desc: m['dialogs.qr.desc'],
+					download: m.download,
+				}
+			},
 		});
 	}
 

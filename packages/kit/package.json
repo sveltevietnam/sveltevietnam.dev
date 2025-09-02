@@ -24,6 +24,10 @@
 			"types": "./types/index.d.ts",
 			"import": "./src/contexts/index.js"
 		},
+		"./dialogs": {
+			"types": "./types/index.d.ts",
+			"import": "./src/dialogs/index.js"
+		},
 		"./hooks": {
 			"types": "./types/index.d.ts",
 			"import": "./src/hooks.js"
@@ -98,8 +102,10 @@
 		"vite-imagetools": "^7.1.0"
 	},
 	"dependencies": {
+		"@svelte-put/async-stack": "^1.5.1",
 		"@svelte-put/clickoutside": "^4.0.0",
 		"@svelte-put/copy": "^4.0.0",
+		"@svelte-put/qr": "^2.1.0",
 		"@sveltevietnam/i18n": "workspace:*",
 		"defu": "^6.1.4"
 	}
