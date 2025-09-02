@@ -40,6 +40,7 @@
 		contexts,
 	}: ContextsProviderProps = $props();
 
+	// FIXME: extract to i18n package
 	// for @sveltevietnam/i18n T.svelte component
 	setContext('t:lang', () => contexts.routing.lang);
 </script>
