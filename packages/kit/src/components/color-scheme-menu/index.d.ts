@@ -1,10 +1,10 @@
 import type { Message } from '@sveltevietnam/i18n/runtime';
 import type { Component } from 'svelte';
-import type { HTMLAttributes } from 'svelte/elements';
+import type { HTMLDetailsAttributes } from 'svelte/elements';
 
 import type { ColorScheme } from '@sveltevietnam/kit/constants';
 
-export interface ColorSchemeMenuProps extends Omit<HTMLAttributes<HTMLElement>, 'onselect'> {
+export interface ColorSchemeMenuProps extends Omit<HTMLDetailsAttributes, 'onselect'> {
 	i18n: {
 		aria: Message<'string', never>;
 		open: Message<'string', never>;
@@ -14,7 +14,6 @@ export interface ColorSchemeMenuProps extends Omit<HTMLAttributes<HTMLElement>, 
 	};
 	/** @default 'mobile' */
 	showLabel?: 'always' | 'never' | 'mobile' | 'non-mobile';
-	hydrated?: boolean;
 	colorScheme?: ColorScheme;
 	/** @bindable */
 	open?: boolean;
