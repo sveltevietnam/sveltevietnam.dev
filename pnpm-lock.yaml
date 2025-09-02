@@ -157,6 +157,9 @@ importers:
       '@svelte-put/clickoutside':
         specifier: ^4.0.0
         version: 4.0.0(svelte@5.38.0)
+      '@svelte-put/copy':
+        specifier: ^4.0.0
+        version: 4.0.0(svelte@5.38.0)
       '@sveltevietnam/i18n':
         specifier: workspace:*
         version: link:../i18n

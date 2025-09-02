@@ -1,19 +1,16 @@
 <script lang="ts">
 	import { copy } from '@svelte-put/copy';
-	import type { HTMLButtonAttributes } from 'svelte/elements';
+	import { T } from '@sveltevietnam/i18n';
 	import { fly } from 'svelte/transition';
 
+	import { type CopyBtnProps } from '.';
+
 	let {
-		text,
+		textToCopy,
 		aria,
 		iconClass = 'i-[ph--link]',
-		class: cls,
 		...rest
-	}: HTMLButtonAttributes & {
-		text: string;
-		aria: string;
-		iconClass?: string;
-	} = $props();
+	}: CopyBtnProps = $props();
 
 	let copyTimeoutId: ReturnType<typeof setTimeout>;
 	let copied = $state(false);
@@ -32,14 +29,16 @@
 
 <!-- TODO: Add tooltip on hover? -->
 <button
-	class={['c-link-icon flex rounded-full border-onehalf border-current p-2', cls]}
-	use:copy={{ text }}
+	type="button"
+	use:copy={{ text: textToCopy }}
 	oncopied={onCopied}
 	onmouseleave={onMouseLeaveCopyButton}
 	onmouseenter={onMouseEnterCopyButton}
 	{...rest}
 >
-	<span class="sr-only">{aria}</span>
+	<span class="sr-only">
+		<T message={aria} />
+	</span>
 	{#if copied}
 		<i class="i i-[ph--clipboard-text] h-6 w-6" in:fly={{ duration: 200, y: 10 }}></i>
 	{:else}

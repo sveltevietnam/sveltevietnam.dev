@@ -98,6 +98,7 @@
 	},
 	"dependencies": {
 		"@svelte-put/clickoutside": "^4.0.0",
+		"@svelte-put/copy": "^4.0.0",
 		"@sveltevietnam/i18n": "workspace:*",
 		"defu": "^6.1.4"
 	}

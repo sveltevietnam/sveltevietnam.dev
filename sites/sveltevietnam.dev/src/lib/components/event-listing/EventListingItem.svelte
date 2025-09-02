@@ -1,6 +1,7 @@
 <script lang="ts" module>
 	import { T } from '@sveltevietnam/i18n';
 	import fallback3x2 from '@sveltevietnam/kit/assets/images/fallbacks/3x2.jpg?enhanced&w=1200;700;400&imagetools';
+	import { CopyBtn } from '@sveltevietnam/kit/components';
 	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { formatLongMonth, formatLongWeekDay } from '@sveltevietnam/kit/utilities/datetime';
 	import type { HTMLAttributes } from 'svelte/elements';
@@ -10,7 +11,6 @@
 	import * as p from '$data/routes/generated';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
-	import { CopyIconBtn } from '../copy-icon-btn';
 	import { DateTimeRangeText } from '../date-time-range-text';
 	import { ListMessage } from '../list-message';
 
@@ -92,9 +92,10 @@
 			<!-- actions -->
 			<div>
 				{#if settings.hydrated}
-					<CopyIconBtn
-						text={origin + path}
-						aria={m['components.event_listing_item.copy'](routing.lang)}
+					<CopyBtn
+						class="c-link-icon border-onehalf flex rounded-full border-current p-2"
+						textToCopy={origin + path}
+						aria={m['components.event_listing_item.copy']}
 					/>
 				{/if}
 			</div>

@@ -3,7 +3,7 @@
 	import { T } from '@sveltevietnam/i18n';
 	import type { Message } from '@sveltevietnam/i18n/runtime';
 	import fallback16x9 from '@sveltevietnam/kit/assets/images/fallbacks/16x9.jpg?enhanced&w=2240;1540;1088;686&imagetools';
-	import { Breadcrumbs } from '@sveltevietnam/kit/components';
+	import { Breadcrumbs, CopyBtn } from '@sveltevietnam/kit/components';
 	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { formatRelativeTime } from '@sveltevietnam/kit/utilities/datetime';
 
@@ -13,7 +13,6 @@
 	import { BlogNewsletter } from '$lib/components/blog-newsletter';
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
 	import { BlogPostListItem } from '$lib/components/blog-post-list-item';
-	import { CopyIconBtn } from '$lib/components/copy-icon-btn';
 	import { GradientBackground } from '$lib/components/gradient-background';
 	import { HintedText } from '$lib/components/hinted-text';
 	import { NotByAiBadge } from '$lib/components/not-by-ai-badge';
@@ -300,7 +299,11 @@
 				<ul class="flex flex-wrap gap-4">
 					{#if settings.hydrated}
 						<li>
-							<CopyIconBtn text={url} aria={m['pages.blog_slug.actions.copy'](routing.lang)} />
+							<CopyBtn
+								class="c-link-icon flex rounded-full border-onehalf border-current p-2"
+								textToCopy={url}
+								aria={m['pages.blog_slug.actions.copy']}
+							/>
 						</li>
 					{/if}
 					<li>
@@ -337,6 +340,7 @@
 					<li>
 						{#if settings.hydrated}
 							<button
+								type="button"
 								class="c-link-icon border-onehalf flex rounded-full border-current p-2"
 								onclick={openQrDialog}
 							>
