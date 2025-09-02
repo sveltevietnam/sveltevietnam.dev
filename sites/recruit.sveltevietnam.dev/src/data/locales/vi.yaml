@@ -6,6 +6,7 @@ messages:
   close: Đóng
   menu: bảng chọn
   continue: Tiếp tục
+  download: Tải về
   save: Lưu
   or: hoặc
   svelte_vietnam:
@@ -232,3 +233,7 @@ messages:
         trì và phát triển ứng dụng.
       callout: Đăng tuyển từ nhà tài trợ được ưu tiên xét duyệt và hiển thị trên trang việc làm.
       cta: Trở thành nhà tài trợ
+  dialogs:
+    qr:
+      title: Mã QR
+      desc: Chia sẻ và quét mã này để truy cập nhanh vào trang!

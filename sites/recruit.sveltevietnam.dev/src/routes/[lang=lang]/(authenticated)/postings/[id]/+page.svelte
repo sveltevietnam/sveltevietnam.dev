@@ -3,6 +3,7 @@
 	import fallback1x1 from '@sveltevietnam/kit/assets/images/fallbacks/1x1.jpg?enhanced&w=w=224;112&imagetools';
 	import { Breadcrumbs, CopyBtn } from '@sveltevietnam/kit/components';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { DialogQrCode } from '@sveltevietnam/kit/dialogs';
 	import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
 	import { superForm } from 'sveltekit-superforms';
 
@@ -16,7 +17,7 @@
 
 	let { data }: PageProps = $props();
 
-	const { routing } = Contexts.get();
+	const { routing, dialogs, colorScheme } = Contexts.get();
 
 	let url = $derived(page.url.origin + routing.paths[routing.lang]);
 	let avatarUrl = $derived(data.posting.employer.avatarUrl ?? fallback1x1);
@@ -30,7 +31,21 @@
 		timeoutMs: 2000,
 	});
 
-	function openQrDialog() {}
+	function openQrDialog() {
+		dialogs.push('custom', {
+			component: DialogQrCode,
+			props: {
+				data: url,
+				theme: () => colorScheme.resolved,
+				i18n: {
+					close: m.close,
+					title: m['dialogs.qr.title'],
+					desc: m['dialogs.qr.desc'],
+					download: m.download,
+				},
+			},
+		});
+	}
 </script>
 
 <main

@@ -862,7 +862,7 @@ messages:
   dialogs:
     qr:
       title: Mã QR
-      desc: Chia sẻ và quét mã này để dễ dàng truy cập vào bài viết nhé!
+      desc: Chia sẻ và quét mã này để truy cập nhanh vào trang!
     search:
       input:
         label: Từ khóa

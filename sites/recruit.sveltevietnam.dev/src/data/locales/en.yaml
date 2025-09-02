@@ -7,6 +7,7 @@ messages:
   menu: menu
   continue: Continue
   save: Save
+  download: Download
   or: or
   svelte_vietnam:
     name: Svelte Vietnam
@@ -234,3 +235,7 @@ messages:
         development and maintenance of this app.
       callout: Postings from sponsors will be expedited during review and prioritized in listings.
       cta: Become a sponsor
+  dialogs:
+    qr:
+      title: QR Code
+      desc: Share and scan this code for quick access to this page!

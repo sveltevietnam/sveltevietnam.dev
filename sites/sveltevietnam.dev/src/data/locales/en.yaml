@@ -857,7 +857,7 @@ messages:
   dialogs:
     qr:
       title: QR Code
-      desc: Share and scan this code for quick access the blog post!
+      desc: Share and scan this code for quick access to this page!
     search:
       input:
         label: Keywords
