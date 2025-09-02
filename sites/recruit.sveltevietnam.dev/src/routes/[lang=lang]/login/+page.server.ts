@@ -1,4 +1,4 @@
-import { fail } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import type { Language } from '@sveltevietnam/i18n';
 import { validateCloudflareToken } from '@sveltevietnam/kit/utilities';
 import { valibot } from 'sveltekit-superforms/adapters';
@@ -66,5 +66,10 @@ export const actions: Actions = {
 		}
 
 		return { form };
+	},
+	logout: async ({ params }) => {
+		const { lang } = params;
+		// TODO: perform logout logic here
+		redirect(302, p['/:lang/login']({ lang }));
 	},
 };
