@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 	import fallback1x1 from '@sveltevietnam/kit/assets/images/fallbacks/1x1.jpg?enhanced&w=w=224;112&imagetools';
-	import { Breadcrumbs } from '@sveltevietnam/kit/components';
+	import { Breadcrumbs, CopyBtn } from '@sveltevietnam/kit/components';
 	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
 	import { superForm } from 'sveltekit-superforms';
 
+	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import { SponsorReminder } from '$lib/components/sponsor-reminder';
@@ -17,6 +18,7 @@
 
 	const routing = RoutingContext.get();
 
+	let url = $derived(page.url.origin + routing.paths[routing.lang]);
 	let avatarUrl = $derived(data.posting.employer.avatarUrl ?? fallback1x1);
 	const typeLabelMessage = $derived(JOB_POSTING_TYPE_LABEL[data.posting.type]);
 
@@ -27,6 +29,8 @@
 		delayMs: 500,
 		timeoutMs: 2000,
 	});
+
+	function openQrDialog() {}
 </script>
 
 <main
@@ -154,13 +158,18 @@
 					</a>
 
 					<!-- copy link -->
-					<button class="c-btn c-btn--outlined shrink-0 grid-cols-1 p-2">
-						<span class="sr-only"><T message={m['pages.postings_id.actions.share.link']} /></span>
-						<i class="i i-[ph--link] h-6 w-6"></i>
-					</button>
+					<CopyBtn
+						class="c-btn c-btn--outlined shrink-0 grid-cols-1 p-2"
+						aria={m['pages.postings_id.actions.share.link']}
+						textToCopy={url}
+					/>
 
 					<!-- generate QR -->
-					<button class="c-btn c-btn--outlined shrink-0 grid-cols-1 p-2">
+					<button
+						class="c-btn c-btn--outlined shrink-0 grid-cols-1 p-2"
+						type="button"
+						onclick={openQrDialog}
+					>
 						<span class="sr-only"><T message={m['pages.postings_id.actions.share.link']} /></span>
 						<i class="i i-[ph--qr-code] h-6 w-6"></i>
 					</button>
