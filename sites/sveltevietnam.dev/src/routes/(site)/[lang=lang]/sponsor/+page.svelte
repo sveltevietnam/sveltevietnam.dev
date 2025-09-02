@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 
 	import { EMAILS } from '$data/emails';
 	import { SOCIAL_LINKS } from '$data/links';
@@ -15,7 +15,7 @@
 
 	let { data }: PageProps = $props();
 
-	const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
 </script>
 
 <main {...pagefind.page()}>

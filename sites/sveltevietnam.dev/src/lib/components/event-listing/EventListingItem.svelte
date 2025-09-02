@@ -2,7 +2,7 @@
 	import { T } from '@sveltevietnam/i18n';
 	import fallback3x2 from '@sveltevietnam/kit/assets/images/fallbacks/3x2.jpg?enhanced&w=1200;700;400&imagetools';
 	import { CopyBtn } from '@sveltevietnam/kit/components';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { formatLongMonth, formatLongWeekDay } from '@sveltevietnam/kit/utilities/datetime';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { Picture } from 'vite-imagetools';
@@ -39,7 +39,7 @@
 	let { event, origin }: EventListingItemProps = $props();
 
 	const settings = SettingsContext.get();
-	const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
 
 	const img = $derived(event.thumbnail ?? fallback3x2);
 	const path = $derived(p['/:lang/events/:slug']({ lang: routing.lang, slug: event.slug }));

@@ -2,7 +2,7 @@
 	import { turnstile } from '@svelte-put/cloudflare-turnstile';
 	import { SUBSCRIPTION_CHANNELS } from '@sveltevietnam/backend/data/subscribers/channels';
 	import { T } from '@sveltevietnam/i18n';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { onMount } from 'svelte';
 	import type { ChangeEventHandler, HTMLFormAttributes } from 'svelte/elements';
 	import type { SuperValidated } from 'sveltekit-superforms';
@@ -23,7 +23,7 @@
 	let { class: cls, data, action = '?/subscribe', ...rest }: SubscriberUpsertFormProps = $props();
 
 	const noti = NotificationContext.get();
-	const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
 
 	let all = $state(false);
 

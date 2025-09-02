@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import { T } from '@sveltevietnam/i18n';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import type { Snippet } from 'svelte';
 	import type { HTMLFormAttributes } from 'svelte/elements';
 	import { superForm, type SuperValidated, dateProxy } from 'sveltekit-superforms';
@@ -26,7 +26,7 @@
 <script lang="ts">
 	let { data, cta, class: cls, ...rest }: FormJobPostingUpsertProps = $props();
 
-	const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
 
 	const { form, enhance, constraints, errors, delayed, timeout } = superForm<JobPostingUpsertInput>(
 		data as SuperValidated<JobPostingUpsertInput>,

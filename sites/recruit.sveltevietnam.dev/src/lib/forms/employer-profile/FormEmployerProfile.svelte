@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import { T } from '@sveltevietnam/i18n';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import type { Snippet } from 'svelte';
 	import type { HTMLFormAttributes } from 'svelte/elements';
 	import { superForm, fileProxy, type SuperValidated } from 'sveltekit-superforms';
@@ -20,7 +20,7 @@
 <script lang="ts" generics="WithEmail extends boolean = true">
 	let { withEmail, data, cta, class: cls, ...rest }: FormEmployerProfileProps<WithEmail> = $props();
 
-	const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
 
 	const { form, enhance, constraints, errors, delayed, timeout } = superForm<
 		EmployerProfileInput<true>

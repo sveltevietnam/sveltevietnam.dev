@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 
 	import * as globalM from '$data/locales/generated/messages';
 	import vnphanquangDef from '$data/people/vnphanquang';
@@ -25,7 +25,7 @@
 
 	let { data }: PageProps = $props();
 
-	const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
 
 	const vnphanquang = $derived(vnphanquangDef(routing.lang));
 </script>

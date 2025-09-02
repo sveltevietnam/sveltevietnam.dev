@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { formatFullDateAndTime } from '@sveltevietnam/kit/utilities/datetime';
 
 	import * as m from '$data/locales/generated/messages';
@@ -8,7 +8,7 @@
 
 	import type { PageProps } from './$types';
 
-	const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
 
 	let { data }: PageProps = $props();
 

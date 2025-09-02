@@ -3,7 +3,7 @@
 	import { T } from '@sveltevietnam/i18n';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { STATUSES, type Status } from '@sveltevietnam/kit/constants';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 
 	import { asset } from '$app/paths';
 	import * as m from '$data/locales/generated/messages';
@@ -19,7 +19,7 @@
 
 	let { data }: PageProps = $props();
 
-	const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
 
 	const MARK_CLASSES = {
 		info: 'text-info-on-surface bg-info-surface',

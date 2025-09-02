@@ -2,7 +2,7 @@
 	import { T } from '@sveltevietnam/i18n';
 	import fallback1x1 from '@sveltevietnam/kit/assets/images/fallbacks/1x1.jpg?enhanced&w=w=224;112&imagetools';
 	import { Breadcrumbs, CopyBtn } from '@sveltevietnam/kit/components';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
 	import { superForm } from 'sveltekit-superforms';
 
@@ -16,7 +16,7 @@
 
 	let { data }: PageProps = $props();
 
-	const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
 
 	let url = $derived(page.url.origin + routing.paths[routing.lang]);
 	let avatarUrl = $derived(data.posting.employer.avatarUrl ?? fallback1x1);

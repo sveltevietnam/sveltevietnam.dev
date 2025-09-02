@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { turnstile } from '@svelte-put/cloudflare-turnstile';
 	import { T } from '@sveltevietnam/i18n';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { superForm } from 'sveltekit-superforms';
 
 	import * as m from '$data/locales/generated/messages';
@@ -16,7 +16,7 @@
 
 	let { data }: PageProps = $props();
 
-	const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
 
 	const { form, enhance, constraints, errors, delayed, timeout } = superForm(data.form, {
 		resetForm: false,

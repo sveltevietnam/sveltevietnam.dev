@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
@@ -8,7 +8,7 @@
 
 	import svgKeyVisual from './_local/images/key-visual.svg';
 
-	const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
 </script>
 
 <SingleBoxPageLayout class="max-w-readable">

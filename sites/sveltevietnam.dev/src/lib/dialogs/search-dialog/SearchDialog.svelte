@@ -3,7 +3,7 @@
 	import { enhanceDialog } from '@svelte-put/async-stack/helpers';
 	import { shortcut } from '@svelte-put/shortcut';
 	import { T } from '@sveltevietnam/i18n';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import sanitize from 'sanitize-html';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
@@ -12,7 +12,7 @@
 	import { SearchContext } from '$lib/search/context.svelte';
 
 	let { item }: StackItemProps = $props();
-	const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
 	const search = SearchContext.get();
 
 	let queryEl: HTMLInputElement;

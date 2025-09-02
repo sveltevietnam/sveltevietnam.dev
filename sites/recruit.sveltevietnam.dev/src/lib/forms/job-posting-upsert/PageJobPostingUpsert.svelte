@@ -7,7 +7,7 @@
 		type JobPostingProps,
 		JobPosting,
 	} from '@sveltevietnam/kit/components';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 
 	import * as m from '$data/locales/generated/messages';
 	import { VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN } from '$env/static/public';
@@ -31,7 +31,7 @@
 <script lang="ts">
 	let { breadcrumbs, action, posting, data, heading }: JobPostingUpsertLayoutProps = $props();
 
-	const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
 
 	let previewPosting: Omit<JobPostingProps['posting'], 'href'> = $state(posting);
 

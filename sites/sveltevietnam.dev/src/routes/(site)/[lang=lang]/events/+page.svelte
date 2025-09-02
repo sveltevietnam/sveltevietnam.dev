@@ -2,7 +2,7 @@
 	import { T } from '@sveltevietnam/i18n';
 	import type { Message } from '@sveltevietnam/i18n/runtime';
 	import { TBA, Breadcrumbs } from '@sveltevietnam/kit/components';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { onScroll, createTimeline, stagger } from 'animejs';
 
 	import { page } from '$app/state';
@@ -19,7 +19,7 @@
 
 	let { data }: PageProps = $props();
 
-	const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
 
 	let elParticipate: HTMLElement;
 	let elSmallCircle: SVGCircleElement;

@@ -2,7 +2,7 @@
 	import { T } from '@sveltevietnam/i18n';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { COLOR_SCHEMES, SPLASH_OPTIONS } from '@sveltevietnam/kit/constants';
-	import { ColorSchemeContext } from '@sveltevietnam/kit/contexts';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { superForm } from 'sveltekit-superforms';
 
 	import { beforeNavigate } from '$app/navigation';
@@ -20,7 +20,7 @@
 	let { data }: PageProps = $props();
 
 	const noti = NotificationContext.get();
-	const colorScheme = ColorSchemeContext.get();
+	const { colorScheme } = Contexts.get();
 
 	const { form, enhance, constraints, delayed, timeout } = superForm(data.form, {
 		resetForm: false,

@@ -3,7 +3,7 @@
 	import { SUBSCRIPTION_CHANNELS } from '@sveltevietnam/backend/data/subscribers/channels';
 	import { LANGUAGES } from '@sveltevietnam/i18n';
 	import { T } from '@sveltevietnam/i18n';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import type { HTMLFormAttributes } from 'svelte/elements';
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import { superForm } from 'sveltekit-superforms';
@@ -23,7 +23,7 @@
 	let { class: cls, data, action = '?/update', ...rest }: SubscriberUpdateFormProps = $props();
 
 	const noti = NotificationContext.get();
-	const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
 
 	const { form, enhance, constraints, errors, delayed, timeout } = superForm<
 		SubscriberUpdateInput,

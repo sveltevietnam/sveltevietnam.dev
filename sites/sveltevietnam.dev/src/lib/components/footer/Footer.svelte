@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	import { EMAILS } from '$data/emails';
@@ -20,7 +20,7 @@
 		version: string;
 	} = $props();
 
-	const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
 
 	let primaryPages = $derived([
 		{
