@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { PageMetadata } from '@sveltevietnam/kit/components';
-	import { ColorSchemeContext, RoutingContext } from '@sveltevietnam/kit/contexts';
-	import { onMount, setContext } from 'svelte';
+	import { Contexts, ContextsProvider } from '@sveltevietnam/kit/contexts';
+	import { onMount } from 'svelte';
 
 	import { browser, dev, version } from '$app/environment';
 	import { page } from '$app/state';
@@ -15,8 +15,6 @@
 	} from '$env/static/public';
 	import ogImageEn from '$lib/assets/images/fallbacks/og.en.jpg?url';
 	import ogImageVi from '$lib/assets/images/fallbacks/og.vi.jpg?url';
-	import DialogPortal from '$lib/dialogs/components/DialogPortal.svelte';
-	import { DialogContext } from '$lib/dialogs/context.svelte';
 	import NotificationPortal from '$lib/notifications/components/NotificationPortal.svelte';
 	import { NotificationContext } from '$lib/notifications/context.svelte';
 	import { SearchContext } from '$lib/search/context.svelte';
@@ -31,24 +29,23 @@
 		vi: ogImageVi,
 	};
 
-	const routing = RoutingContext.set(() => ({
-		lang: data.settings.language,
-		paths: page.data.routing?.paths ?? {
-			en: page.url.pathname,
-			vi: page.url.pathname,
-		},
-	}));
-	const dialog = DialogContext.set();
+	const contexts = Contexts.set({
+		routing: () => ({
+			lang: data.settings.language,
+			paths: page.data.routing?.paths ?? {
+				en: page.url.pathname,
+				vi: page.url.pathname,
+			},
+		}),
+		colorScheme: () => ({
+			cookieName: VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
+			user: data.settings.colorScheme,
+		}),
+	});
+	const { routing, colorScheme } = contexts;
 	const noti = NotificationContext.set();
 	const settings = SettingsContext.set(data.settings);
-	const colorScheme = ColorSchemeContext.set(() => ({
-		cookieName: VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
-		user: data.settings.colorScheme,
-	}));
 	SearchContext.set(page.url.origin);
-
-	// for @sveltevietnam/i18n T.svelte component
-	setContext('t:lang', () => data.settings.language);
 
 	function callUmamiIdentify() {
 		window.umami?.identify({
@@ -152,7 +149,7 @@
 	{/if}
 </svelte:head>
 
-{@render children()}
-
-<DialogPortal stack={dialog} />
-<NotificationPortal stack={noti.stack} />
+<ContextsProvider {contexts}>
+	{@render children()}
+	<NotificationPortal stack={noti.stack} />
+</ContextsProvider>

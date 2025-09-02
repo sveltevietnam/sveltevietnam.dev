@@ -4,7 +4,7 @@
 	import type { Message } from '@sveltevietnam/i18n/runtime';
 	import fallback16x9 from '@sveltevietnam/kit/assets/images/fallbacks/16x9.jpg?enhanced&w=2240;1540;1088;686&imagetools';
 	import { Breadcrumbs, CopyBtn } from '@sveltevietnam/kit/components';
-	import { ColorSchemeContext, RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { DialogQrCode } from '@sveltevietnam/kit/dialogs';
 	import { formatRelativeTime } from '@sveltevietnam/kit/utilities/datetime';
 
@@ -20,7 +20,6 @@
 	import { Person } from '$lib/components/person';
 	import { TableOfContents } from '$lib/components/table-of-contents';
 	import { TextArrowLink } from '$lib/components/text-arrow-link';
-	import { DialogContext } from '$lib/dialogs/context.svelte';
 	import * as pagefind from '$lib/pagefind/attributes';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
@@ -29,10 +28,8 @@
 
 	let { data }: PageProps = $props();
 
-	const routing = RoutingContext.get();
+	const { routing, dialogs, colorScheme } = Contexts.get();
 	const settings = SettingsContext.get();
-	const dialog = DialogContext.get();
-	const colorScheme = ColorSchemeContext.get();
 
 	let dateFormatter = $derived(
 		new Intl.DateTimeFormat(routing.lang, {
@@ -69,7 +66,7 @@
 	});
 
 	function openQrDialog() {
-		dialog.push('custom', {
+		dialogs.push('custom', {
 			component: DialogQrCode,
 			props: {
 				data: url,
@@ -79,7 +76,7 @@
 					title: m['dialogs.qr.title'],
 					desc: m['dialogs.qr.desc'],
 					download: m.download,
-				}
+				},
 			},
 		});
 	}
@@ -310,7 +307,7 @@
 					{#if settings.hydrated}
 						<li>
 							<CopyBtn
-								class="c-link-icon flex rounded-full border-onehalf border-current p-2"
+								class="c-link-icon border-onehalf flex rounded-full border-current p-2"
 								textToCopy={url}
 								aria={m['pages.blog_slug.actions.copy']}
 							/>

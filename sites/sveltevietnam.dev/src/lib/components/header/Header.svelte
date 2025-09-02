@@ -8,7 +8,7 @@
 		ColorSchemeMenu,
 		type ColorSchemeMenuProps,
 	} from '@sveltevietnam/kit/components';
-	import { ColorSchemeContext, RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { ScrollToggler } from '@sveltevietnam/kit/utilities';
 	import type { HTMLAttributes } from 'svelte/elements';
 
@@ -16,16 +16,13 @@
 	import * as p from '$data/routes/generated';
 	import { PageMenu } from '$lib/components/page-menu';
 	import { SocialLinks } from '$lib/components/social-links';
-	import { SearchDialog } from '$lib/dialogs/components/search-dialog';
-	import { DialogContext } from '$lib/dialogs/context.svelte';
+	import { SearchDialog } from '$lib/dialogs/search-dialog';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	const isPrideMonth = new Date().getMonth() === 5; // June is Pride Month
 
-	const routing = RoutingContext.get();
+	const { routing, colorScheme, dialogs, lockscroll } = Contexts.get();
 	const settings = SettingsContext.get();
-	const dialog = DialogContext.get();
-	const colorScheme = ColorSchemeContext.get();
 
 	let { class: cls, ...rest }: HTMLAttributes<HTMLElement> = $props();
 
@@ -48,7 +45,7 @@
 		}
 	});
 	$effect(() => {
-		settings.toggleScrollLock(isMobileMenuOpen);
+		lockscroll.toggle(isMobileMenuOpen);
 	});
 
 	let toolbarBackdropOpacity = $derived(scrollToggler.minScrollProgress);
@@ -63,7 +60,7 @@
 			e.preventDefault();
 		}
 		if (!pushed) {
-			pushed = dialog.push('custom', { component: SearchDialog });
+			pushed = dialogs.push('custom', { component: SearchDialog });
 			pushed.resolution.then(() => {
 				pushed = null;
 			});
