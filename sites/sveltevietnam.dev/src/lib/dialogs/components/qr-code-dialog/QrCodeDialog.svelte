@@ -4,11 +4,11 @@
 	import { createQrPngDataUrl } from '@svelte-put/qr';
 	import { qr, type SvgQRParameter } from '@svelte-put/qr/svg';
 	import { T } from '@sveltevietnam/i18n';
+	import { light, dark } from '@sveltevietnam/kit/assets/images/logos/base64';
 	import { ColorSchemeContext } from '@sveltevietnam/kit/contexts';
 	import { onMount } from 'svelte';
 
 	import * as m from '$data/locales/generated/messages';
-	import { light, dark } from '$data/logos';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	let {

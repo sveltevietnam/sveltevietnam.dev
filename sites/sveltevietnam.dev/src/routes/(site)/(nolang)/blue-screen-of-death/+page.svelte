@@ -1,8 +1,8 @@
 <script lang="ts">
 	import QR from '@svelte-put/qr/svg/QR.svelte';
+	import { dark } from '@sveltevietnam/kit/assets/images/logos/base64';
 
 	import { SOCIAL_LINKS } from '$data/links';
-	import { dark } from '$data/logos';
 </script>
 
 <main

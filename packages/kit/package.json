@@ -40,6 +40,10 @@
 			"types": "./types/index.d.ts",
 			"import": "./src/utilities/datetime.js"
 		},
+		"./assets/images/logos/base64": {
+			"types": "./types/index.d.ts",
+			"import": "./src/assets/images/logos/base64.js"
+		},
 		"./assets/images/fallbacks/*.jpg": "./src/assets/images/fallbacks/*.jpg"
 	},
 	"publishconfig": {
