@@ -11,6 +11,7 @@
 				"MODE": "development",
 				"ORIGIN": "http://localhost:5006",
 				"SITE_URL": "http://localhost:5005",
+				"RECRUIT_URL": "http://localhost:5007",
 				"AWS_REGION": "ap-northeast-1"
 			},
 			"secrets_store_secrets": [
@@ -28,6 +29,11 @@
 					"binding": "secret_ses_access_secret",
 					"store_id": "c3a8857d65d44b69aad72733c3cd44b4",
 					"secret_name": "ses_access_secret"
+				},
+				{
+					"binding": "secret_recruit_better_auth",
+					"store_id": "c3a8857d65d44b69aad72733c3cd44b4",
+					"secret_name": "recruit_better_auth_secret"
 				}
 			],
 			"d1_databases": [
@@ -75,6 +81,7 @@
 				"MODE": "production",
 				"ORIGIN": "https://backend.sveltevietnam.dev",
 				"SITE_URL": "https://www.sveltevietnam.dev",
+				"RECRUIT_URL": "https://recruit.sveltevietnam.dev",
 				"AWS_REGION": "ap-northeast-1"
 			},
 			"secrets_store_secrets": [
@@ -92,6 +99,11 @@
 					"binding": "secret_ses_access_secret",
 					"store_id": "c3a8857d65d44b69aad72733c3cd44b4",
 					"secret_name": "ses_access_secret"
+				},
+				{
+					"binding": "secret_recruit_better_auth",
+					"store_id": "c3a8857d65d44b69aad72733c3cd44b4",
+					"secret_name": "recruit_better_auth_secret"
 				}
 			],
 			"d1_databases": [

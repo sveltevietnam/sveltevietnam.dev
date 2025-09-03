@@ -17,6 +17,7 @@ declare global {
 		MODE: string;
 		ORIGIN: string;
 		SITE_URL: string;
+		RECRUIT_URL: string;
 		AWS_REGION: string;
 
 		// Cloudflare bindings
@@ -26,6 +27,7 @@ declare global {
 		secret_jwt: import('@cloudflare/workers-types').SecretsStoreSecret;
 		secret_ses_access_key: import('@cloudflare/workers-types').SecretsStoreSecret;
 		secret_ses_access_secret: import('@cloudflare/workers-types').SecretsStoreSecret;
+		secret_recruit_better_auth: import('@cloudflare/workers-types').SecretsStoreSecret;
 	}
 }
 
