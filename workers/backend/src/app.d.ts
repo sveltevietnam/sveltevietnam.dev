@@ -21,6 +21,7 @@ declare global {
 		AWS_REGION: string;
 
 		// Cloudflare bindings
+		r2: import('@cloudflare/workers-types').R2Bucket;
 		d1: import('@cloudflare/workers-types').D1Database;
 		queue: import('@cloudflare/workers-types').Queue<Queue.Message>;
 		kv_mails: import('@cloudflare/workers-types').KVNamespace;
