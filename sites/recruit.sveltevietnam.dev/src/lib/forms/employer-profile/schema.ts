@@ -8,14 +8,14 @@ function createEmployerProfileSchemaBase(lang: Language) {
 		name: v.pipe(v.string(), v.nonEmpty(m['inputs.name.errors.nonempty'](lang))),
 		website: v.optional(v.pipe(v.string(), v.url(m['inputs.url.errors.invalid'](lang)))),
 		description: v.pipe(v.string(), v.nonEmpty(m['inputs.employer.desc.errors.nonempty'](lang))),
-		avatar: v.optional(
+		image: v.optional(
 			v.pipe(
 				v.file(),
 				v.check(
 					(input) => input.type.startsWith('image/'),
-					m['inputs.employer.avatar.errors.type'](lang),
+					m['inputs.employer.image.errors.type'](lang),
 				),
-				v.maxSize(1024 * 1024, m['inputs.employer.avatar.errors.size'](lang)),
+				v.maxSize(1024 * 1024, m['inputs.employer.image.errors.size'](lang)),
 			),
 		),
 		agreed: v.pipe(

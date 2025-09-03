@@ -61,7 +61,7 @@ messages:
       website:
         label: Website của người sử dụng lao động (không bắt buộc)
         placeholder: https://cong-ty-abc.com
-      avatar:
+      image:
         label: Hình đại diện
         desc: 'Tối đa: <strong>1MB</strong><br /> Đề xuất: <strong>200x200</strong>'
         errors:

@@ -31,9 +31,9 @@
 		delayMs: 500,
 		timeoutMs: 2000,
 	});
-	const avatarFile = fileProxy(form, 'avatar');
+	const imageFile = fileProxy(form, 'image');
 
-	let avatarPreviewUri = $derived($form.avatar ? URL.createObjectURL($form.avatar) : '');
+	let imagePreviewUri = $derived($form.image ? URL.createObjectURL($form.image) : '');
 </script>
 
 <form class={['space-y-10', cls]} method="POST" enctype="multipart/form-data" use:enhance {...rest}>
@@ -119,44 +119,44 @@
 				</div>
 			</div>
 
-			<!-- avatar -->
+			<!-- image -->
 			<div class="w-32 space-y-1">
 				<label class="flex cursor-pointer flex-col gap-1">
-					<span><T message={m['inputs.employer.avatar.label']} />:</span>
+					<span><T message={m['inputs.employer.image.label']} />:</span>
 					<span
 						class={[
 							'border-onehalf c-text-body-xs grid aspect-square h-auto w-full place-items-center border-current text-center',
-							!$form.avatar && 'p-2',
+							!$form.image && 'p-2',
 						]}
 					>
-						{#if $form.avatar}
+						{#if $form.image}
 							<img
 								class="h-full w-full object-cover"
 								width="200"
 								height="200"
 								alt=""
-								src={avatarPreviewUri}
+								src={imagePreviewUri}
 							/>
 						{:else}
-							<T message={m['inputs.employer.avatar.desc']} />
+							<T message={m['inputs.employer.image.desc']} />
 						{/if}
 					</span>
 					<input
 						class="sr-only"
 						type="file"
-						name="avatar"
-						id="avatar"
+						name="image"
+						id="image"
 						accept="image/*"
-						bind:files={$avatarFile}
-						{...$constraints.avatar}
-						{...$errors.avatar && {
+						bind:files={$imageFile}
+						{...$constraints.image}
+						{...$errors.image && {
 							'aria-invalid': 'true',
-							'aria-errormessage': 'error-avatar',
+							'aria-errormessage': 'error-image',
 						}}
 					/>
 				</label>
-				{#if $errors.avatar?.[0]}
-					<p class="text-xs text-red-500" id="error-avatar">{$errors.avatar[0]}</p>
+				{#if $errors.image?.[0]}
+					<p class="text-xs text-red-500" id="error-image">{$errors.image[0]}</p>
 				{/if}
 			</div>
 		</div>
