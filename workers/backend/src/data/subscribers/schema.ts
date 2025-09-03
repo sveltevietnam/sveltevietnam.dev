@@ -2,7 +2,7 @@ import { createSelectSchema, createInsertSchema, createUpdateSchema } from 'driz
 import * as v from 'valibot';
 
 import { SUBSCRIPTION_CHANNELS, channelsToMask, maskToChannels } from './channels';
-import { subscribers } from './table';
+import { subscribers } from './tables';
 
 export const SubscriberSelectSchema = createSelectSchema(subscribers, {
 	id: v.pipe(v.string(), v.startsWith('subscriber_')),

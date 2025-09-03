@@ -12,7 +12,7 @@ import { TemplateVarMap, type TemplateId, loadTemplate, BaseTemplateVars } from 
 
 import { createSocials, createLogoImageUrl } from '../links';
 
-import { mails } from './table';
+import { mails } from './tables';
 
 /**
  * expiration time for html and JWT,

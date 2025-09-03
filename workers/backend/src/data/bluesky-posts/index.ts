@@ -5,7 +5,7 @@ import * as v from 'valibot';
 import { ORM } from '$/database/orm';
 
 import { BlueskyPostSelectSchema, type BlueskyPostSelectResult } from './schema';
-import { blueskyPosts } from './table';
+import { blueskyPosts } from './tables';
 
 export class BlueskyPostService extends RpcTarget {
 	#orm: ORM;

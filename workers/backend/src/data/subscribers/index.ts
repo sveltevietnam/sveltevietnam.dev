@@ -17,7 +17,7 @@ import {
 	SubscriberSelectSchema,
 	type SubscriberSelectResult,
 } from './schema';
-import { subscribers } from './table';
+import { subscribers } from './tables';
 
 export class SubscriberService extends RpcTarget {
 	#env: Env;
