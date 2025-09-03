@@ -130,9 +130,13 @@ export class MailService extends RpcTarget {
 			console.log('Mail web url:', `${siteUrl}/${lang}/mails/${mailId}?token=${token}`);
 		} else {
 			// send actual email with AWS SES
+			const [accessKeyId, secretAccessKey] = await Promise.all([
+				this.#env.secret_ses_access_key.get(),
+				this.#env.secret_ses_access_secret.get(),
+			]);
 			const aws = new AwsClient({
-				accessKeyId: await this.#env.secret_ses_access_key.get(),
-				secretAccessKey: await this.#env.secret_ses_access_secret.get(),
+				accessKeyId,
+				secretAccessKey,
 				region: awsRegion,
 			});
 			const response = await aws.fetch(
