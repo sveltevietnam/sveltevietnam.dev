@@ -5,13 +5,15 @@ import { SUBSCRIPTION_CHANNELS, channelsToMask, maskToChannels } from './channel
 import { subscribers } from './table';
 
 export const SubscriberSelectSchema = createSelectSchema(subscribers, {
+	id: v.pipe(v.string(), v.startsWith('subscriber_')),
 	channels: v.pipe(v.number(), v.transform(maskToChannels)),
 });
 export const SubscriberInsertSchema = createInsertSchema(subscribers, {
+	id: v.optional(v.pipe(v.string(), v.startsWith('subscriber_'))),
 	channels: v.pipe(v.array(v.picklist(SUBSCRIPTION_CHANNELS)), v.transform(channelsToMask)),
 });
 export const SubscriberUpdateSchema = createUpdateSchema(subscribers, {
-	id: v.string(),
+	id: v.pipe(v.string(), v.startsWith('subscriber_')),
 	channels: v.pipe(v.array(v.picklist(SUBSCRIPTION_CHANNELS)), v.transform(channelsToMask)),
 });
 

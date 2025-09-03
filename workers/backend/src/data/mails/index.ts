@@ -30,7 +30,7 @@ export type WebMail = {
 };
 
 export type SendMailInput<T extends TemplateId> = {
-	subscriberId: string;
+	actorId: string;
 	templateId: T;
 	lang: Language;
 	vars: TemplateVarMap[T];
@@ -82,7 +82,7 @@ export class MailService extends RpcTarget {
 	}
 
 	async send<T extends TemplateId>(input: SendMailInput<T>): Promise<string> {
-		const { templateId, subscriberId, lang, vars } = input;
+		const { templateId, actorId, lang, vars } = input;
 
 		// get template
 		const template = await loadTemplate(templateId, lang);
@@ -91,23 +91,31 @@ export class MailService extends RpcTarget {
 		}
 
 		// get subscriber
-		const subscriber = await this.#orm.query.subscribers.findFirst({
-			where: (subscriber, { eq }) => eq(subscriber.id, subscriberId),
-			columns: { email: true, name: true },
-		});
-		if (!subscriber) {
-			throw new Error(`Subscriber ${subscriberId} not found`);
+		let to: string | null = null;
+		if (actorId.startsWith('subscriber_')) {
+			const subscriber = await this.#orm.query.subscribers.findFirst({
+				where: (subscriber, { eq }) => eq(subscriber.id, actorId),
+				columns: { email: true, name: true },
+			});
+			if (!subscriber) {
+				throw new Error(`Subscriber ${actorId} not found`);
+			}
+			to = subscriber.email;
+		}
+
+		if (!to) {
+			throw new Error(`Cannot determine recipient email for actor ${actorId}`);
 		}
 
 		// create mail record
-		const mailId = createId();
+		const mailId = `mail_` + createId();
 		const { SITE_URL: siteUrl, MODE: mode, AWS_REGION: awsRegion } = this.#env;
 		// Workaround for this https://github.com/cloudflare/workers-sdk/issues/9006
 		const secret = mode !== 'development' ? await this.#env.secret_jwt.get() : 'secret';
 		const date = new Date();
 		const token = await jwt.sign(
 			{
-				sub: subscriberId,
+				sub: actorId,
 				iat: Math.floor(date.getTime() / 1000),
 				iss: 'backend.sveltevietnam.dev',
 				exp: Math.floor(date.getTime() / 1000) + TTL,
@@ -151,7 +159,7 @@ export class MailService extends RpcTarget {
 						ReplyToAddresses: [template.from.email],
 						FeedbackForwardingEmailAddress: template.from.email,
 						Destination: {
-							ToAddresses: [subscriber.email],
+							ToAddresses: [to],
 						},
 						Content: {
 							Simple: {
@@ -187,10 +195,10 @@ export class MailService extends RpcTarget {
 
 		await this.#orm.insert(mails).values({
 			id: mailId,
-			subscriberId,
+			actorId,
 			subject: template.subject,
 			from: template.from.email,
-			to: subscriber.email,
+			to,
 			templateId,
 			sentAt: date,
 		});

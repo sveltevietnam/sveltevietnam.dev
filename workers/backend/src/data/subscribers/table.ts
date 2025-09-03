@@ -7,7 +7,7 @@ export const subscribers = sqliteTable('subscribers', {
 	id: text('id')
 		.notNull()
 		.primaryKey()
-		.$default(() => createId()),
+		.$default(() => `subscriber_` + createId()),
 	name: text('name').notNull(),
 	email: text('email').unique().notNull(),
 	/** as a bit mask, see './channels.ts' */

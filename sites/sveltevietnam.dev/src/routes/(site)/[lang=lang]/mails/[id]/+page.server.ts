@@ -21,18 +21,13 @@ export const load: PageServerLoad = async (event) => {
 		});
 	}
 
-	const { sub: subscriberId, exp } = result.payload;
+	const { sub: actorId, exp } = result.payload;
+
 	const [subscriber, mail] = await Promise.all([
-		backend.subscribers().getById(subscriberId),
+		actorId.startsWith('subscriber_') ? backend.subscribers().getById(actorId) : null,
 		backend.mails().getWebMail(params.id),
 	]);
 
-	if (!subscriber) {
-		error(404, {
-			code: 'SV004',
-			message: 'Subscriber not found',
-		});
-	}
 	if (!mail) {
 		error(404, {
 			code: 'SV005',
@@ -41,9 +36,6 @@ export const load: PageServerLoad = async (event) => {
 	}
 
 	const { html, ...rest } = mail;
-
-	const form = await update.load(locals.language, subscriber);
-
 	return {
 		routing: {
 			paths: {
@@ -55,7 +47,7 @@ export const load: PageServerLoad = async (event) => {
 		subscriber,
 		mail: rest,
 		srcdoc: html,
-		form,
+		form: subscriber ? await update.load(locals.language, subscriber) : null,
 	};
 };
 

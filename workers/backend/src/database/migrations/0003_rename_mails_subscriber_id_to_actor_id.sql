@@ -1,0 +1,1 @@
+ALTER TABLE `mails` RENAME COLUMN "subscriber_id" TO "actor_id";

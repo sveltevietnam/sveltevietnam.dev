@@ -80,12 +80,14 @@
 		</section>
 
 		<!-- subscriber info -->
-		<section class="space-y-6">
-			<h2 class="c-text-heading border-b">
-				<T message={m['pages.mail.subscriber.heading']} />
-			</h2>
-			<SubscriberUpdateForm data={data.form} />
-		</section>
+		{#if data.form}
+			<section class="space-y-6">
+				<h2 class="c-text-heading border-b">
+					<T message={m['pages.mail.subscriber.heading']} />
+				</h2>
+				<SubscriberUpdateForm data={data.form} />
+			</section>
+		{/if}
 	</div>
 
 	<!-- mail as html -->
