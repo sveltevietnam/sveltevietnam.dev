@@ -55,7 +55,9 @@ messages:
       desc:
         label: Mô tả về người sử dụng lao động
         placeholder: XYZ là một tổ chức phi lợi nhuận hoạt động trong lĩnh vực giáo dục...
-        note: Mô tả ngắn ngắn gọn giúp ứng viên hiểu thêm về tổ chức / công ty của bạn
+        note:
+          Mô tả ngắn ngắn gọn giúp ứng viên hiểu thêm về tổ chức / công ty của bạn. Mô tả này được
+          hiển thịtrang chi tiết của bài đăng tuyển.
         errors:
           nonempty: Vui lòng nhập mô tả người sử dụng lao động
       website:

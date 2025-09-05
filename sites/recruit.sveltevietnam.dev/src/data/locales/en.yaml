@@ -55,7 +55,9 @@ messages:
       desc:
         label: Description about employer
         placeholder: XYZ is a non-profit organization operating in the education sector...
-        note: A brief description to help candidates learn more about your organization/company
+        note:
+          A brief description to help candidates learn more about your organization/company, shown
+          in the job posting detail page.
         errors:
           nonempty: Employer description is required
       website:

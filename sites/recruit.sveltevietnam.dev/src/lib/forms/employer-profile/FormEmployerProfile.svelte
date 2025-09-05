@@ -183,7 +183,7 @@
 				{#if $errors.description?.[0]}
 					<p class="text-xs text-red-500" id="error-description">{$errors.description[0]}</p>
 				{/if}
-				<p class="c-text-body-xs ml-auto">
+				<p class="c-text-body-xs ml-auto text-right">
 					<T message={m['inputs.employer.desc.note']} />
 				</p>
 			</div>
