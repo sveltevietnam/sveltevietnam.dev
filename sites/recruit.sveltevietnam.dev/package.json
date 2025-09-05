@@ -7,6 +7,7 @@
 	"scripts": {
 		"boot:env": "shx cp .env.example .env",
 		"dev": "vite dev --port 5007",
+		"dev:wrangler": "wrangler pages dev .svelte-kit/cloudflare --port 5007 --persist-to=../../workers/backend/.wrangler/state",
 		"build:i18n": "pnpm i18n build 'src/**/locales'",
 		"build": "svelte-kit sync && vite build",
 		"preview": "vite preview",
