@@ -31,6 +31,10 @@ export default {
 		adapter: adapter({
 			config: path.join(__dirname, 'wrangler.json'),
 			platformProxy: {
+				// point to same miniflare cache as used in backend worker
+				persist: {
+					path: path.join(__dirname, '../../workers/backend/.wrangler/state/v3'),
+				},
 				configPath: path.join(__dirname, 'wrangler.json'),
 			},
 			routes: {
