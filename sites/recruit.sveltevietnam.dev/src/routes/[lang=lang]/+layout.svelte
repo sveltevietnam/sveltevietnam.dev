@@ -1,27 +1,24 @@
 <script lang="ts">
 	import '@sveltevietnam/css/layers';
 	import { T } from '@sveltevietnam/i18n';
-	import fallback1x1 from '@sveltevietnam/kit/assets/images/fallbacks/1x1.jpg?enhanced&w=w=224;112&imagetools';
 	import {
 		LanguageMenu,
 		type LanguageMenuProps,
 		ColorSchemeMenu,
 		type ColorSchemeMenuProps,
-		Dropdown,
 	} from '@sveltevietnam/kit/components';
 	import { Contexts, ContextsProvider } from '@sveltevietnam/kit/contexts';
 	import { ScrollToggler } from '@sveltevietnam/kit/utilities';
 
 	import { browser, version } from '$app/environment';
-	import { enhance } from '$app/forms';
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
-	import * as p from '$data/routes/generated';
 	import {
 		VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
 		VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN,
 	} from '$env/static/public';
+	import { AccountMenu } from '$lib/components/account-menu';
 
 	import '../../app.css';
 
@@ -86,10 +83,6 @@
 		colorScheme: colorScheme.user,
 		onselect: (scheme) => (colorScheme.user = scheme),
 	});
-
-	let avatarUrl = $derived(fallback1x1); // TODO: load from page data
-	const accountMenuItemClasses =
-		'hover:bg-primary-surface flex cursor-pointer items-center gap-4 px-4 py-2 -outline-offset-1';
 </script>
 
 <ContextsProvider {contexts}>
@@ -132,41 +125,8 @@
 
 			<ColorSchemeMenu {...colorSchemeMenuProps} bind:open={isColorSchemeMenuOpen} />
 			<LanguageMenu {...languageMenuProps} bind:open={isLanguageMenuOpen} />
-
-			<Dropdown bind:open={isAccountMenuOpen}>
-				{#snippet label()}
-					<span class="sr-only">Manage your account</span>
-					<enhanced:img
-						class="aspect-square h-8 w-auto overflow-hidden rounded-full"
-						src={avatarUrl}
-						alt=""
-					/>
-				{/snippet}
-
-				{#snippet content()}
-					<ul class="border-outline divide-outline bg-surface mt-0.5 w-max divide-y border">
-						<li>
-							<a class={accountMenuItemClasses} href={p['/:lang/profile']({ lang: routing.lang })}>
-								<i class="i i-[ph--user] h-6 w-6"></i>
-								<span>Profile</span>
-							</a>
-						</li>
-						<li>
-							<form
-								class="contents"
-								action="{p['/:lang/login']({ lang: routing.lang })}?/logout"
-								method="POST"
-								use:enhance
-							>
-								<button class={accountMenuItemClasses} type="submit">
-									<i class="i i-[ph--sign-out] h-6 w-6"></i>
-									<span>Logout</span>
-								</button>
-							</form>
-						</li>
-					</ul>
-				{/snippet}
-			</Dropdown>
+			<!-- TODO: load user image in once ready -->
+			<AccountMenu bind:open={isAccountMenuOpen} />
 		</div>
 	</header>
 

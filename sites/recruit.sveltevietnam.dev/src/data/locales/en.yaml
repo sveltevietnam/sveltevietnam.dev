@@ -224,6 +224,10 @@ messages:
           href="mailto:jobs@sveltevietnam.dev">jobs@sveltevietnam.dev</a> or via the <a
           class="c-link" href="https://discord.sveltevietnam.dev">Svelte Vietnam Discord</a>."
   components:
+    account_menu:
+      aria: Manage your account
+      profile: Profile
+      logout: Logout
     job_posting_list:
       posted_at: Posted on
       expired_at: Expires on
