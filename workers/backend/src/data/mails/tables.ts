@@ -16,7 +16,9 @@ export const mails = sqliteTable('mails', {
 	subject: text('subject').notNull(),
 	to: text('to').notNull(),
 	// the user that triggered the email
-	actorId: text('actor_id').notNull(),
+	// or null if sent to an anonymous user that
+	// does not exist in our system
+	actorId: text('actor_id'),
 
 	// timestamps
 	sentAt: integer('created_at', { mode: 'timestamp_ms' })

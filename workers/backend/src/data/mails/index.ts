@@ -30,11 +30,10 @@ export type WebMail = {
 };
 
 export type SendMailInput<T extends TemplateId> = {
-	actorId: string;
 	templateId: T;
 	lang: Language;
 	vars: TemplateVarMap[T];
-};
+} & ({ actorId: string } | { email: string });
 
 export class MailService extends RpcTarget {
 	#orm: ORM;
@@ -82,7 +81,7 @@ export class MailService extends RpcTarget {
 	}
 
 	async send<T extends TemplateId>(input: SendMailInput<T>): Promise<string> {
-		const { templateId, actorId, lang, vars } = input;
+		const { templateId, lang, vars } = input;
 
 		// get template
 		const template = await loadTemplate(templateId, lang);
@@ -92,19 +91,34 @@ export class MailService extends RpcTarget {
 
 		// get subscriber
 		let to: string | null = null;
-		if (actorId.startsWith('subscriber_')) {
-			const subscriber = await this.#orm.query.subscribers.findFirst({
-				where: (subscriber, { eq }) => eq(subscriber.id, actorId),
-				columns: { email: true, name: true },
-			});
-			if (!subscriber) {
-				throw new Error(`Subscriber ${actorId} not found`);
+		let actorId: string | null = null;
+		if ('email' in input) {
+			to = input.email;
+		} else {
+			actorId = input.actorId;
+			if (actorId.startsWith('subscriber_')) {
+				const subscriber = await this.#orm.query.subscribers.findFirst({
+					where: (subscriber, { eq }) => eq(subscriber.id, actorId!),
+					columns: { email: true, name: true },
+				});
+				if (!subscriber) {
+					throw new Error(`Subscriber ${actorId} not found`);
+				}
+				to = subscriber.email;
+			} else if (actorId.startsWith('employer_')) {
+				const employer = await this.#orm.query.employers.findFirst({
+					where: (employer, { eq }) => eq(employer.id, actorId),
+					columns: { email: true, name: true },
+				});
+				if (!employer) {
+					throw new Error(`Employer ${actorId} not found`);
+				}
+				to = employer.email;
 			}
-			to = subscriber.email;
-		}
 
-		if (!to) {
-			throw new Error(`Cannot determine recipient email for actor ${actorId}`);
+			if (!to) {
+				throw new Error(`Cannot determine recipient email for actor ${actorId}`);
+			}
 		}
 
 		// create mail record
@@ -115,7 +129,7 @@ export class MailService extends RpcTarget {
 		const date = new Date();
 		const token = await jwt.sign(
 			{
-				sub: actorId,
+				sub: actorId ?? 'anonymous',
 				iat: Math.floor(date.getTime() / 1000),
 				iss: 'backend.sveltevietnam.dev',
 				exp: Math.floor(date.getTime() / 1000) + TTL,
