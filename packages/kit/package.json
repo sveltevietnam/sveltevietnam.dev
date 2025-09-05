@@ -95,16 +95,16 @@
 		"svelte": "^5.16.6"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20250807.0",
+		"@cloudflare/workers-types": "^4.20250903.0",
 		"@svelte-put/lockscroll": "^2.0.1",
-		"@sveltejs/kit": "^2.27.3",
+		"@sveltejs/kit": "^2.37.0",
 		"@sveltevietnam/css": "workspace:*",
-		"@tailwindcss/vite": "4.1.11",
+		"@tailwindcss/vite": "4.1.12",
 		"schema-dts": "^1.1.5",
-		"svelte": "^5.38.0",
-		"tailwindcss": "4.1.11",
-		"vite": "^7.1.1",
-		"vite-imagetools": "^7.1.0"
+		"svelte": "^5.38.6",
+		"tailwindcss": "4.1.12",
+		"vite": "^7.1.4",
+		"vite-imagetools": "^8.0.0"
 	},
 	"dependencies": {
 		"@svelte-put/async-stack": "^1.5.1",
