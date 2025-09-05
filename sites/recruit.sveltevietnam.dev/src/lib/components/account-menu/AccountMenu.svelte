@@ -6,7 +6,6 @@
 	import type { HTMLDetailsAttributes } from 'svelte/elements';
 	import type { Picture } from 'vite-imagetools';
 
-	import { enhance } from '$app/forms';
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 
@@ -49,17 +48,10 @@
 				</a>
 			</li>
 			<li>
-				<form
-					class="contents"
-					action="{p['/:lang/login']({ lang: routing.lang })}?/logout"
-					method="POST"
-					use:enhance
-				>
-					<button class={accountMenuItemClasses} type="submit">
-						<i class="i i-[ph--sign-out] h-6 w-6"></i>
-						<T message={m['components.account_menu.logout']} />
-					</button>
-				</form>
+				<a class={accountMenuItemClasses} href={p['/:lang/logout']({ lang: routing.lang })}>
+					<i class="i i-[ph--sign-out] h-6 w-6"></i>
+					<T message={m['components.account_menu.logout']} />
+				</a>
 			</li>
 		</ul>
 	{/snippet}

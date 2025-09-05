@@ -13,6 +13,9 @@ export default defineConfig<AllRoutePath, Language>({
 			'/:lang/login': {
 				vi: '/:lang/dang-nhap',
 			},
+			'/:lang/logout': {
+				vi: '/:lang/dang-nhap',
+			},
 			'/:lang/signup': {
 				vi: '/:lang/dang-ky',
 			},
