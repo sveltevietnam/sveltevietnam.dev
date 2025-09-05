@@ -158,7 +158,9 @@ messages:
       desc:
         Cảm ơn bạn đã đăng ký sử dụng ứng dụng Tuyển dụng của cộng đồng Svelte Việt Nam. Hãy điền
         một số thông tin cần thiết dưới đây để hoàn tất quy trình đăng ký!
-      submit: Yêu cầu xét duyệt
+      cta:
+        use_another_account: Đăng nhập vào tài khoản khác
+        submit: Yêu cầu xét duyệt
     welcome:
       heading: Hồ sơ đã được duyệt
       desc: Xin cảm ơn. Bạn có thể bắt đầu sử dụng ứng dụng ngay bây giờ!

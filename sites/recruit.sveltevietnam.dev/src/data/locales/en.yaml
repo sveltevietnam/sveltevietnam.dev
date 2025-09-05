@@ -160,7 +160,9 @@ messages:
       desc:
         Thank you for your interest in the Recruitment app from the Svelte Vietnam community. Please
         fill in some necessary information below to complete the registration process!
-      submit: Submit for review
+      cta:
+        use_another_account: Login to another account
+        submit: Submit for review
     welcome:
       heading: Your account is approved!
       desc: Thank you. You can start using the application immediately!
