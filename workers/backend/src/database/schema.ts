@@ -1,3 +1,4 @@
-export * from '$/data/subscribers/table';
-export * from '$/data/mails/table';
-export * from '$/data/bluesky-posts/table';
+export * from '$/data/subscribers/tables';
+export * from '$/data/mails/tables';
+export * from '$/data/bluesky-posts/tables';
+export * from '$/data/employers/tables';
