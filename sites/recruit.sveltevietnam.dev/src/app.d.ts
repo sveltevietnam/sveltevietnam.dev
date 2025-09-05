@@ -15,8 +15,11 @@ declare global {
 	}
 
 	namespace App {
-		// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-		interface Locals extends AppLocals {}
+		interface Locals extends AppLocals {
+			auth: import('$lib/auth').Auth;
+			session: import('$lib/auth').Session | null;
+			user: import('$lib/auth').User | null;
+		}
 
 		interface PageData {
 			routing?: {
@@ -26,9 +29,10 @@ declare global {
 		}
 
 		// interface PageState {}
-		//
+
 		interface Platform extends AppPlatform {
 			env?: {
+				d1: import('@cloudflare/workers-types').D1Database;
 				backend: import('@sveltevietnam/backend').default;
 			};
 		}
