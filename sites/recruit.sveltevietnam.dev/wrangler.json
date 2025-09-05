@@ -3,11 +3,19 @@
 	"name": "recruit",
 	"main": ".svelte-kit/cloudflare/_worker.js",
 	"compatibility_date": "2025-04-28",
+	"compatibility_flags": ["nodejs_compat"],
 	"account_id": "b749b5068031c54e0dddf71d07ea1004",
 	"assets": {
 		"binding": "ASSETS",
 		"directory": ".svelte-kit/cloudflare"
 	},
+	"d1_databases": [
+		{
+			"binding": "d1",
+			"database_name": "sveltevietnam",
+			"database_id": "ada662cd-7b9b-459c-a58a-eba22c43a94d"
+		}
+	],
 	"services": [
 		{
 			"binding": "backend",
