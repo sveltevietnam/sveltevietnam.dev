@@ -1,1 +1,1 @@
-export const ids = ['welcome'] as const;
+export const ids = ['welcome', 'recruit-onboard-employer'] as const;

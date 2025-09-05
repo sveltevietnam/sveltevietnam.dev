@@ -1,0 +1,15 @@
+<mj-section padding-top="0">
+	<mj-column>
+		<mj-divider />
+		<mj-include path="../socials.mjml" />
+		<mj-text mj-class="footer-text">
+			<a href="{{mailUrl}}">Xem email này trên web</a>
+		</mj-text>
+		<mj-text mj-class="footer-text">
+			Bạn nhận được email này vì bạn đã đăng ký sử dụng tảng Tuyển dụng của Svelte Việt Nam.<br />Đây
+			là email tự động, vui lòng không phản hồi vì chúng tôi không thể trả lời thông qua hòm thư
+			này. Nếu cần hỗ trợ, hãy liên hệ thông qua <a href="{{discordUrl}}">Discord</a> hoặc email đến
+			<a href="mailto:jobs@sveltevietnam.dev">jobs@sveltevietnam.dev</a>. Xin cảm ơn.
+		</mj-text>
+	</mj-column>
+</mj-section>

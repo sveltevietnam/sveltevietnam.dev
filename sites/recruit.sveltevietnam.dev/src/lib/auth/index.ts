@@ -1,4 +1,5 @@
 import * as tables from '@sveltevietnam/backend/data/employers/tables';
+import type { Language } from '@sveltevietnam/i18n';
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { magicLink } from 'better-auth/plugins';
@@ -8,6 +9,7 @@ import { drizzle } from 'drizzle-orm/d1';
 import { getRequestEvent } from '$app/server';
 import { VITE_PRIVATE_BETTER_AUTH_SECRET } from '$env/static/private';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
+import { getBackend } from '$lib/backend/utils';
 
 export function createEmployerAuth() {
 	const event = getRequestEvent();
@@ -58,14 +60,18 @@ export function createEmployerAuth() {
 		},
 		plugins: [
 			magicLink({
-				sendMagicLink: async ({ url, email, token }) => {
+				sendMagicLink: async ({ url, email }) => {
 					console.error('IP', event.getClientAddress());
-					const lang = event.params.lang ?? 'en';
-					const type = event.route.id === '/[lang=lang]/signup' ? 'signup' : 'login';
+					const lang = (event.params.lang as Language) ?? 'en';
+					// const type = event.route.id === '/[lang=lang]/signup' ? 'signup' : 'login';
 
-					// TODO: send email with lang; distinguish between signup and login
-					// const mails = getBackend(event).mails();
-					console.error(url, email, token, lang, type);
+					const mails = getBackend(event).mails();
+					await mails.queue({
+						lang,
+						email,
+						templateId: 'recruit-onboard-employer',
+						vars: { callbackUrl: url },
+					});
 				},
 			}),
 			sveltekitCookies(getRequestEvent),

@@ -1,8 +1,8 @@
-import { fail } from '@sveltejs/kit';
+import { fail, error } from '@sveltejs/kit';
 import type { Language } from '@sveltevietnam/i18n';
 import { validateCloudflareToken } from '@sveltevietnam/kit/utilities';
 import { valibot } from 'sveltekit-superforms/adapters';
-import { superValidate, setError } from 'sveltekit-superforms/server';
+import { superValidate, setError, message } from 'sveltekit-superforms/server';
 import * as v from 'valibot';
 
 import * as m from '$data/locales/generated/messages';
@@ -65,6 +65,27 @@ export const actions: Actions = {
 			return fail(400, { form });
 		}
 
-		return { form };
+		// TODO: check if email already exists in system
+
+		// TODO: check if verification request already sent
+		// rate limit to 1 per 1 minutes
+
+		const { status } = await locals.auth.api.signInMagicLink({
+			body: {
+				email: form.data.email,
+				newUserCallbackURL: p['/:lang/onboarding']({ lang: language }),
+			},
+			headers: request.headers,
+		});
+
+		if (!status) {
+			// TODO: error logging
+			error(500, { code: 'SV001', message: 'Error from backend' });
+		}
+
+		// TODO: get the creation date of the verification request for rate limiting
+		const date = new Date();
+
+		return message(form, date);
 	},
 };

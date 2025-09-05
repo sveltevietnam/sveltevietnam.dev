@@ -1,0 +1,29 @@
+<mjml>
+	<mj-head>
+		<mj-title>{{subject}}</mj-title>
+		<mj-include path="../../includes/common-head.mjml" />
+	</mj-head>
+	<mj-body background-color="#ffffff">
+		<mj-include path="../../includes/header.mjml" />
+
+		<mj-section padding-top="0">
+			<mj-column>
+				<mj-text padding-top="0">Hello there,</mj-text>
+				<mj-text>
+					Thank you for signing up to use Svelte Vietnam's Recruitment platform. To complete the
+					registration process, please provide some additional information. Click the
+					button below to continue.
+				</mj-text>
+				<mj-button href="{{callbackUrl}}">Complete your profile</mj-button>
+				<mj-text>
+					If you are an independent recruiter, you can connect directly with candidates via the
+					<a href="{{discordURL}}">Svelte Vietnam community forum</a>.
+				</mj-text>
+				<mj-text>See you on the other side,</mj-text>
+				<mj-text>Svelte Vietnam</mj-text>
+			</mj-column>
+		</mj-section>
+
+		<mj-include path="../../includes/recruit-footer/en.mjml" />
+	</mj-body>
+</mjml>

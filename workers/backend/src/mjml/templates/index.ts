@@ -3,6 +3,7 @@ import type { Language } from '@sveltevietnam/i18n';
 import { DEFAULT_VARS } from './constants';
 import * as t from './types';
 import { TemplateVars as WelcomTemplateVars } from './welcome';
+import { TemplateVars as RecruitOnboardEmployerVars } from './welcome';
 
 export function defineTemplate(def: t.TemplateDefinition): t.TemplateDefinition {
 	return def;
@@ -14,6 +15,7 @@ const modules = import.meta.glob<t.TemplateDefinition>('./*/index.ts', {
 
 export type TemplateVarMap = {
 	welcome: WelcomTemplateVars;
+	'recruit-onboard-employer': RecruitOnboardEmployerVars;
 };
 
 export async function loadTemplate(id: t.TemplateId, lang: Language): Promise<t.Template | null> {
