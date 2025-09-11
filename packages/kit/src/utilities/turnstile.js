@@ -1,3 +1,5 @@
+import * as v from 'valibot';
+
 /** https://developers.cloudflare.com/turnstile/get-started/server-side-validation/ */
 
 /**
@@ -40,4 +42,34 @@ export async function validateCloudflareToken(secret, token, ip) {
 		success: data.success,
 		error: data['error-codes'],
 	};
+}
+
+/**
+ * @param {{ nonempty: string }} messages
+ */
+export function createTurnstileValibotClientSchema(messages) {
+	return v.pipe(v.string(), v.nonEmpty(messages.nonempty));
+}
+
+/**
+ * @param {{ secret: string; ip?: string; messages: { nonempty: string; generic: string } }} config
+ */
+export function createTurnstileValibotServerSchema(config) {
+	return v.pipeAsync(
+		v.string(),
+		v.nonEmpty(config.messages.nonempty),
+		// check cloudflare turnstile captcha
+		v.rawCheckAsync(async ({ dataset, addIssue }) => {
+			const turnstile = await validateCloudflareToken(
+				config.secret,
+				/** @type {string} */ (dataset.value),
+				config.ip,
+			);
+			if (!turnstile.success) {
+				addIssue({
+					message: turnstile.error?.[0] ?? config.messages.generic,
+				});
+			}
+		}),
+	);
 }
