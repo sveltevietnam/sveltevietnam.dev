@@ -27,7 +27,7 @@ export function createEmployerAuth() {
 			schema: {
 				user: tables.employers,
 				session: tables.employerSessions,
-				verification: tables.employerVerifications,
+				verification: tables.employerAuthVerifications,
 			},
 		}),
 		user: {

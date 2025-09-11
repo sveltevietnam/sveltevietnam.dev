@@ -103,7 +103,7 @@ export const employerSessionRelations = relations(employerSessions, ({ one }) =>
 /**
  * @see https://www.better-auth.com/docs/concepts/database#verification
  */
-export const employerVerifications = sqliteTable('employer_verifications', {
+export const employerAuthVerifications = sqliteTable('employer_auth_verifications', {
 	id: text('id')
 		.notNull()
 		.primaryKey()
@@ -118,3 +118,4 @@ export const employerVerifications = sqliteTable('employer_verifications', {
 	updatedAt: integer('updated_at', { mode: 'timestamp_ms' }),
 	expiresAt: integer('expires_at', { mode: 'timestamp_ms' }).notNull(),
 });
+
