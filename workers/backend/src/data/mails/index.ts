@@ -95,30 +95,30 @@ export class MailService extends RpcTarget {
 		if ('email' in input) {
 			to = input.email;
 		} else {
-			actorId = input.actorId;
-			if (actorId.startsWith('subscriber_')) {
+			if (input.actorId.startsWith('subscriber_')) {
 				const subscriber = await this.#orm.query.subscribers.findFirst({
-					where: (subscriber, { eq }) => eq(subscriber.id, actorId!),
+					where: (subscriber, { eq }) => eq(subscriber.id, input.actorId),
 					columns: { email: true, name: true },
 				});
 				if (!subscriber) {
-					throw new Error(`Subscriber ${actorId} not found`);
+					throw new Error(`Subscriber ${input.actorId} not found`);
 				}
 				to = subscriber.email;
-			} else if (actorId.startsWith('employer_')) {
+			} else if (input.actorId.startsWith('employer_')) {
 				const employer = await this.#orm.query.employers.findFirst({
-					where: (employer, { eq }) => eq(employer.id, actorId),
+					where: (employer, { eq }) => eq(employer.id, input.actorId),
 					columns: { email: true, name: true },
 				});
 				if (!employer) {
-					throw new Error(`Employer ${actorId} not found`);
+					throw new Error(`Employer ${input.actorId} not found`);
 				}
 				to = employer.email;
 			}
 
 			if (!to) {
-				throw new Error(`Cannot determine recipient email for actor ${actorId}`);
+				throw new Error(`Cannot determine recipient email for actor ${input.actorId}`);
 			}
+			actorId = input.actorId;
 		}
 
 		// create mail record
