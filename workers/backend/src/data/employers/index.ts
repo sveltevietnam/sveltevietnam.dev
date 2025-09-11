@@ -3,6 +3,8 @@ import { sql } from 'drizzle-orm';
 
 import { ORM } from '$/database/orm';
 
+import { employers } from './tables';
+
 export class EmployerService extends RpcTarget {
 	#orm: ORM;
 	#env: Env;
@@ -15,7 +17,7 @@ export class EmployerService extends RpcTarget {
 
 	async exists(email: string): Promise<boolean> {
 		const { isExist } = await this.#orm.get<{ isExist: 0 | 1 }>(
-			sql`select exists(select 1 from employers where email = ${email}) as isExist`,
+			sql<number>`select exists(select 1 from ${employers} where ${employers.email} = ${email}) as isExist`,
 		);
 		return !!isExist;
 	}
