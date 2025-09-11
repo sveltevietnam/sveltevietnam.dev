@@ -31,6 +31,7 @@ messages:
       errors:
         nonempty: Vui lòng nhập địa chỉ email
         invalid: Địa chỉ email không hợp lệ
+        existed: Email đã được đăng ký
     name:
       errors:
         nonempty: Vui lòng nhập tên

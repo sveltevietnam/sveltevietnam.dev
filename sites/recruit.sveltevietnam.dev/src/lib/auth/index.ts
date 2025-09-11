@@ -61,7 +61,6 @@ export function createEmployerAuth() {
 		plugins: [
 			magicLink({
 				sendMagicLink: async ({ url, email }) => {
-					console.error('IP', event.getClientAddress());
 					const lang = (event.params.lang as Language) ?? 'en';
 					// const type = event.route.id === '/[lang=lang]/signup' ? 'signup' : 'login';
 

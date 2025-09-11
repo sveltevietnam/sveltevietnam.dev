@@ -1,31 +1,38 @@
 import { fail, error } from '@sveltejs/kit';
 import type { Language } from '@sveltevietnam/i18n';
-import { validateCloudflareToken } from '@sveltevietnam/kit/utilities';
+import {
+	createTurnstileValibotClientSchema,
+	createTurnstileValibotServerSchema,
+} from '@sveltevietnam/kit/utilities';
+import { superValidate, message } from 'sveltekit-superforms';
 import { valibot } from 'sveltekit-superforms/adapters';
-import { superValidate, setError, message } from 'sveltekit-superforms/server';
 import * as v from 'valibot';
 
 import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { VITE_PRIVATE_CLOUDFLARE_TURNSTILE_SECRET_KEY } from '$env/static/private';
+import { getBackend } from '$lib/backend/utils';
 
 import type { Actions, PageServerLoad } from './$types';
 
-function createSignUpSchema(lang: Language) {
-	return v.object({
-		email: v.pipe(
-			v.string(),
-			v.nonEmpty(m['inputs.email.errors.nonempty'](lang)),
-			v.email(m['inputs.email.errors.invalid'](lang)),
-		),
-		turnstile: v.pipe(v.string(), v.nonEmpty(m['inputs.turnstile.errors.nonempty'](lang))),
-	});
+function createEmailSchema(lang: Language) {
+	return v.pipe(
+		v.string(),
+		v.nonEmpty(m['inputs.email.errors.nonempty'](lang)),
+		v.email(m['inputs.email.errors.invalid'](lang)),
+	);
 }
 
 export const load: PageServerLoad = async ({ params }) => {
 	const { lang } = params;
-	const schema = createSignUpSchema(lang);
+	const schema = v.object({
+		email: createEmailSchema(lang),
+		turnstile: createTurnstileValibotClientSchema({
+			nonempty: m['inputs.turnstile.errors.nonempty'](lang),
+		}),
+	});
+
 	return {
 		form: await superValidate(valibot(schema)),
 		routing: {
@@ -43,29 +50,36 @@ export const actions: Actions = {
 		const { request, locals, getClientAddress } = event;
 		const { language } = locals;
 
-		const schema = createSignUpSchema(language);
-		const form = await superValidate(request, valibot(schema));
+		const employers = getBackend(event).employers();
+		const schema = v.objectAsync({
+			turnstile: createTurnstileValibotServerSchema({
+				secret: VITE_PRIVATE_CLOUDFLARE_TURNSTILE_SECRET_KEY,
+				ip: getClientAddress(),
+				messages: {
+					nonempty: m['inputs.turnstile.errors.nonempty'](language),
+					generic: m['inputs.turnstile.errors.unknown'](language),
+				},
+			}),
+			email: v.pipeAsync(
+				createEmailSchema(language),
+				v.toLowerCase(),
+				v.checkAsync(
+					async (email) => !(await employers.exists(email)),
+					m['inputs.email.errors.existed'](language),
+				),
+			),
+		});
+		const form = await superValidate(
+			request,
+			valibot(schema, {
+				config: {
+					abortEarly: true,
+				},
+			}),
+		);
 		if (!form.valid) {
 			return fail(400, { form });
 		}
-		form.data.email = form.data.email.toLowerCase();
-
-		// check cloudflare turnstile captcha
-		const turnstile = await validateCloudflareToken(
-			VITE_PRIVATE_CLOUDFLARE_TURNSTILE_SECRET_KEY,
-			form.data.turnstile,
-			getClientAddress(),
-		);
-		if (!turnstile.success) {
-			setError(
-				form,
-				'turnstile',
-				turnstile.error?.[0] ?? m['inputs.turnstile.errors.unknown'](language),
-			);
-			return fail(400, { form });
-		}
-
-		// TODO: check if email already exists in system
 
 		// TODO: check if verification request already sent
 		// rate limit to 1 per 1 minutes
@@ -73,7 +87,7 @@ export const actions: Actions = {
 		const { status } = await locals.auth.api.signInMagicLink({
 			body: {
 				email: form.data.email,
-				newUserCallbackURL: p['/:lang/onboarding']({ lang: language }),
+				callbackURL: p['/:lang/onboarding']({ lang: language }),
 			},
 			headers: request.headers,
 		});

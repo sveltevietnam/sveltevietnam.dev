@@ -31,6 +31,7 @@ messages:
       errors:
         nonempty: Email is required
         invalid: Email is badly formated
+        existed: Email is already registered
     name:
       errors:
         nonempty: Name is required
