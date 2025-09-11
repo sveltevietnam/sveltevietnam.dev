@@ -5,6 +5,7 @@ import { Hono } from 'hono';
 import { getOrm } from '$/database/orm';
 
 import { BlueskyPostService } from './data/bluesky-posts';
+import { EmployerService } from './data/employers';
 import { MailService } from './data/mails';
 import { SubscriberService } from './data/subscribers';
 import {
@@ -17,6 +18,7 @@ export default class extends WorkerEntrypoint<Env> {
 	#subscribers: SubscriberService;
 	#mails: MailService;
 	#blueskyPosts: BlueskyPostService;
+	#employers: EmployerService;
 
 	constructor(ctx: ExecutionContext, env: Env) {
 		super(ctx, env);
@@ -24,6 +26,7 @@ export default class extends WorkerEntrypoint<Env> {
 		this.#mails = new MailService(orm, env);
 		this.#subscribers = new SubscriberService(orm, env, this.#mails);
 		this.#blueskyPosts = new BlueskyPostService(orm);
+		this.#employers = new EmployerService(orm, env);
 	}
 
 	get healthy() {
@@ -40,6 +43,10 @@ export default class extends WorkerEntrypoint<Env> {
 
 	blueskyPosts() {
 		return this.#blueskyPosts;
+	}
+
+	employers() {
+		return this.#employers;
 	}
 
 	async verify(token: string): Promise<JwtVerificationResult> {
