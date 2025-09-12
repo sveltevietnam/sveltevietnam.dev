@@ -100,7 +100,7 @@
 					</label>
 					<input
 						class="c-text-input w-full"
-						type="website"
+						type="url"
 						name="website"
 						id="website"
 						placeholder={m['inputs.employer.website.placeholder'](routing.lang).toString()}
