@@ -22,6 +22,6 @@ export default defineTemplate((lang) => ({
 	)[lang],
 }));
 
-export interface TemplateVars {
+export interface RecruitOnboardEmployerVars {
 	callbackUrl: string;
 }

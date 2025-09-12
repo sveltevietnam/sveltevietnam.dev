@@ -68,17 +68,15 @@ export function createEmployerAuth() {
 
 					const mails = getBackend(event).mails();
 					if (type === 'signup') {
-						await mails.queue({
+						await mails.queue('recruit-onboard-employer' as const, {
 							lang,
 							email,
-							templateId: 'recruit-onboard-employer' as const,
 							vars: { callbackUrl: url },
 						});
 					} else {
-						await mails.queue({
+						await mails.queue('recruit-login-employer' as const, {
 							lang,
 							email,
-							templateId: 'recruit-login-employer' as const,
 							vars: { name: headers['x-auth-name']!, callbackUrl: url },
 						});
 					}

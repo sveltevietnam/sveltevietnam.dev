@@ -76,10 +76,9 @@ export class SubscriberService extends RpcTarget {
 				this.#env.SITE_URL,
 			).toString();
 
-			await this.#mails.queue({
+			await this.#mails.queue('welcome', {
 				lang: input.language,
 				actorId: id,
-				templateId: 'welcome',
 				vars: {
 					eVerifyUrl,
 					name: input.name,

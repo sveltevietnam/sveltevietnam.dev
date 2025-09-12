@@ -22,7 +22,7 @@ export default defineTemplate((lang) => ({
 	)[lang],
 }));
 
-export interface TemplateVars {
+export interface WelcomTemplateVars {
 	eVerifyUrl: string;
 	name: string;
 }

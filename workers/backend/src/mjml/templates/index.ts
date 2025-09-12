@@ -1,10 +1,10 @@
 import type { Language } from '@sveltevietnam/i18n';
 
 import { DEFAULT_VARS } from './constants';
-import { TemplateVars as RecruitOnboardEmployerVars } from './recruit-login-employer';
-import { TemplateVars as RecruitLoginEmployerVars } from './recruit-onboard-employer';
+import type { RecruitLoginEmployerVars } from './recruit-login-employer';
+import type { RecruitOnboardEmployerVars } from './recruit-onboard-employer';
 import * as t from './types';
-import { TemplateVars as WelcomTemplateVars } from './welcome';
+import type { WelcomTemplateVars } from './welcome';
 
 export function defineTemplate(def: t.TemplateDefinition): t.TemplateDefinition {
 	return def;

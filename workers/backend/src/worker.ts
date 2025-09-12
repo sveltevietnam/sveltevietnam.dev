@@ -85,7 +85,7 @@ export default class extends WorkerEntrypoint<Env> {
 				switch (message.body.type) {
 					case 'send-mail':
 						try {
-							await this.#mails.send(message.body.input);
+							await this.#mails.send(message.body.templateId, message.body.input);
 							message.ack();
 						} catch (e) {
 							// TODO: log error

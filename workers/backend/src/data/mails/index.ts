@@ -30,7 +30,6 @@ export type WebMail = {
 };
 
 export type SendMailInput<T extends TemplateId> = {
-	templateId: T;
 	lang: Language;
 	vars: TemplateVarMap[T];
 } & ({ actorId: string } | { email: string });
@@ -67,11 +66,12 @@ export class MailService extends RpcTarget {
 		};
 	}
 
-	async queue<T extends TemplateId>(input: SendMailInput<T>): Promise<void> {
+	async queue<T extends TemplateId>(templateId: T, input: SendMailInput<T>): Promise<void> {
 		return this.#env.queue.send(
 			{
 				type: 'send-mail',
-				input: input,
+				templateId,
+				input,
 			},
 			{
 				delaySeconds: 0,
@@ -80,8 +80,8 @@ export class MailService extends RpcTarget {
 		);
 	}
 
-	async send<T extends TemplateId>(input: SendMailInput<T>): Promise<string> {
-		const { templateId, lang, vars } = input;
+	async send<T extends TemplateId>(templateId: T, input: SendMailInput<T>): Promise<string> {
+		const { lang, vars } = input;
 
 		// get template
 		const template = await loadTemplate(templateId, lang);
