@@ -125,7 +125,9 @@
 
 			<ColorSchemeMenu {...colorSchemeMenuProps} bind:open={isColorSchemeMenuOpen} />
 			<LanguageMenu {...languageMenuProps} bind:open={isLanguageMenuOpen} />
-			<AccountMenu bind:open={isAccountMenuOpen} image={data.user?.image} />
+			{#if data.user}
+				<AccountMenu bind:open={isAccountMenuOpen} image={data.user.image} />
+			{/if}
 		</div>
 	</header>
 
