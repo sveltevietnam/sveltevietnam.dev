@@ -80,6 +80,7 @@ export const actions: Actions = {
 			return message(form, lastVerification.expiresAt);
 		}
 
+		const employer = await employers.getByEmail(email);
 		const { status } = await locals.auth.api.signInMagicLink({
 			body: {
 				email: email,
@@ -93,7 +94,8 @@ export const actions: Actions = {
 				headers: {
 					...Object.fromEntries(request.headers.entries()),
 					'x-auth-lang': language,
-					'x-auth-type': (await employers.exists(email)) ? 'login' : 'signup',
+					'x-auth-type': employer?.onboardedAt ? 'login' : 'signup',
+					'x-auth-name': employer?.name ?? '',
 				},
 			}),
 		});

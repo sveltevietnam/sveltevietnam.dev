@@ -1,8 +1,10 @@
 import { RpcTarget } from 'cloudflare:workers';
 import { sql } from 'drizzle-orm';
+import * as v from 'valibot';
 
 import { ORM } from '$/database/orm';
 
+import { EmployerSelectResult, EmployerSelectSchema } from './schema';
 import { employers } from './tables';
 
 export class EmployerService extends RpcTarget {
@@ -20,6 +22,13 @@ export class EmployerService extends RpcTarget {
 			sql<number>`select exists(select 1 from ${employers} where ${employers.email} = ${email}) as isExist`,
 		);
 		return !!isExist;
+	}
+
+	async getByEmail(email: string): Promise<null | EmployerSelectResult> {
+		const employer = await this.#orm.query.employers.findFirst({
+			where: (table, { eq }) => eq(table.email, email),
+		});
+		return v.parse(EmployerSelectSchema, employer) ?? null;
 	}
 
 	async getLastAuthVerification(email: string): Promise<null | {

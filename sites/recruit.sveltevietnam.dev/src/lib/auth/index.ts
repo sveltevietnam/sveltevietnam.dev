@@ -64,18 +64,24 @@ export function createEmployerAuth() {
 				sendMagicLink: async ({ url, email }, request) => {
 					const headers = Object.fromEntries(request!.headers.entries());
 					const lang = headers['x-auth-lang'] as Language;
+					const type = headers['x-auth-type'] === 'signup' ? 'signup' : 'login';
 
 					const mails = getBackend(event).mails();
-					const templateId =
-						headers['x-auth-type'] === 'signup'
-							? 'recruit-onboard-employer'
-							: 'recruit-login-employer';
-					await mails.queue({
-						lang,
-						email,
-						templateId,
-						vars: { callbackUrl: url },
-					});
+					if (type === 'signup') {
+						await mails.queue({
+							lang,
+							email,
+							templateId: 'recruit-onboard-employer' as const,
+							vars: { callbackUrl: url },
+						});
+					} else {
+						await mails.queue({
+							lang,
+							email,
+							templateId: 'recruit-login-employer' as const,
+							vars: { name: headers['x-auth-name']!, callbackUrl: url },
+						});
+					}
 				},
 			}),
 			sveltekitCookies(getRequestEvent),

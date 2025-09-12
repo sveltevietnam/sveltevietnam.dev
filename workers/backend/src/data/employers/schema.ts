@@ -1,7 +1,12 @@
-import { createInsertSchema } from 'drizzle-valibot';
+import { createInsertSchema, createSelectSchema } from 'drizzle-valibot';
 import * as v from 'valibot';
 
 import { employers } from './tables';
+
+export const EmployerSelectSchema = createSelectSchema(employers, {
+	id: v.optional(v.pipe(v.string(), v.startsWith('employer_'))),
+});
+export type EmployerSelectResult = v.InferOutput<typeof EmployerInsertSchema>;
 
 export const EmployerInsertSchema = createInsertSchema(employers, {
 	id: v.optional(v.pipe(v.string(), v.startsWith('employer_'))),

@@ -1,0 +1,34 @@
+<mjml>
+	<mj-head>
+		<mj-title>{{subject}}</mj-title>
+		<mj-include path="../../includes/common-head.mjml" />
+	</mj-head>
+	<mj-body background-color="#ffffff">
+		<mj-include path="../../includes/header.mjml" />
+
+		<mj-section padding-top="0">
+			<mj-column>
+				<mj-text padding-top="0">Chào {{name}},</mj-text>
+				<mj-text>
+					Hệ thống vừa tiếp nhận yêu cầu đăng nhập vào tài khoản của bạn trên nền tảng Tuyển
+					dụng từ cộng đồng Svelte Việt Nam.
+				</mj-text>
+				<mj-text>
+					<strong>Chỉtiếp tục nếu bạn là người đã thực hiện yêu cầu này.</strong>
+					Nhấn nút dưới đây để hoàn tất quá trình đăng nhập:
+				</mj-text>
+				<mj-button href="{{callbackUrl}}">Đăng nhập</mj-button>
+				<mj-text>
+					Vui lòng bỏ qua email này nếu bạn không thực hiện yêu cầu trên.
+					Bạn không nên chia sẻ email cho bất cứ ai. Nếu có nghi ngờ tài khoản
+					của bạn đã bị đánh cắp, hãy nhanh chóng liên hệ với ban quản trị
+					qua email <a href="mailto:jobs@sveltevietnam.dev">jobs@sveltevietnam.dev</a>.
+				</mj-text>
+				<mj-text>Xin cảm ơn,</mj-text>
+				<mj-text>Svelte Việt Nam</mj-text>
+			</mj-column>
+		</mj-section>
+
+		<mj-include path="../../includes/recruit-footer/vi.mjml" />
+	</mj-body>
+</mjml>
