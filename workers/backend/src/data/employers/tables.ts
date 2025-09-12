@@ -13,7 +13,7 @@ export const employers = sqliteTable('employers', {
 	name: text('name').notNull(),
 	email: text('email').unique().notNull(),
 	emailVerified: integer('email_verified', { mode: 'boolean' }).notNull().default(false),
-	/** expects R2 resource url */
+	/** expects internal path to R2 resource */
 	image: text('image'),
 
 	/** additional fields (outside better auth's core schema) */

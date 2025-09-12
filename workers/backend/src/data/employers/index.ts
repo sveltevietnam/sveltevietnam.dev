@@ -4,7 +4,10 @@ import * as v from 'valibot';
 
 import { ORM } from '$/database/orm';
 
-import { EmployerSelectResult, EmployerSelectSchema } from './schema';
+import {
+	type EmployerSelectResult,
+	EmployerSelectSchema,
+} from './schema';
 import { employers } from './tables';
 
 export class EmployerService extends RpcTarget {
@@ -28,7 +31,7 @@ export class EmployerService extends RpcTarget {
 		const employer = await this.#orm.query.employers.findFirst({
 			where: (table, { eq }) => eq(table.email, email),
 		});
-		return v.parse(EmployerSelectSchema, employer) ?? null;
+		return employer ? v.parse(EmployerSelectSchema, employer) : null;
 	}
 
 	async getLastAuthVerification(email: string): Promise<null | {
