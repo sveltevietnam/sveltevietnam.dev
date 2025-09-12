@@ -16,6 +16,12 @@
 			"database_id": "ada662cd-7b9b-459c-a58a-eba22c43a94d"
 		}
 	],
+	"r2_buckets": [
+		{
+			"binding": "r2",
+			"bucket_name": "sveltevietnam"
+		}
+	],
 	"services": [
 		{
 			"binding": "backend",

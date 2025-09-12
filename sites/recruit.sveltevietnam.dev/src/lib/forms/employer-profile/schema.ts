@@ -18,10 +18,7 @@ function createEmployerProfileSchemaBase(lang: Language) {
 				v.maxSize(1024 * 1024, m['inputs.employer.image.errors.size'](lang)),
 			),
 		),
-		agreed: v.pipe(
-			v.boolean(),
-			v.check((value) => value === true, m['inputs.employer.agreement.error'](lang)),
-		),
+		agreed: v.literal(true, m['inputs.employer.agreement.error'](lang)),
 	});
 }
 
@@ -31,6 +28,7 @@ export function createEmployerEmailSchema(lang: Language) {
 			v.string(),
 			v.nonEmpty(m['inputs.email.errors.nonempty'](lang)),
 			v.email(m['inputs.email.errors.invalid'](lang)),
+			v.toLowerCase(),
 		),
 	});
 }

@@ -23,3 +23,7 @@ export function getBackend<
 	}
 	return undefined as Returned;
 }
+
+export function getEmployerImagePath(employerId: string) {
+	return `/employers/${employerId}/image`;
+}
