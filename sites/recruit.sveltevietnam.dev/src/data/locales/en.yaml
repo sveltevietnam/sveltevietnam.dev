@@ -156,6 +156,7 @@ messages:
         Independent recruiter or headhunter? <br /> Connect directly with candidates via our <a
         class="c-link" href="{{jobChannelUrl}}" target="_blank" rel="noreferrer noopener
         external">community forum</a>.
+      resend: Resend
     onboarding:
       heading: Onboarding
       desc:

@@ -21,4 +21,17 @@ export class EmployerService extends RpcTarget {
 		);
 		return !!isExist;
 	}
+
+	async getLastAuthVerification(email: string): Promise<null | {
+		createdAt: Date;
+		expiresAt: Date;
+	}> {
+		const value = { email };
+		const verification = await this.#orm.query.employerAuthVerifications.findFirst({
+			columns: { createdAt: true, expiresAt: true },
+			where: (table, { eq }) => eq(table.value, JSON.stringify(value)),
+			orderBy: (table, { desc }) => [desc(table.expiresAt)],
+		});
+		return verification ?? null;
+	}
 }

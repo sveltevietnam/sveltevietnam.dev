@@ -10,6 +10,7 @@
 		VITE_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY,
 		VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN,
 	} from '$env/static/public';
+	import { Countdown } from '$lib/components/countdown';
 	import { SingleBoxPageLayout } from '$lib/components/single-box-page-layout';
 
 	import type { PageProps } from './$types';
@@ -18,16 +19,28 @@
 
 	const { routing } = Contexts.get();
 
-	const { form, enhance, constraints, errors, delayed, timeout } = superForm(data.form, {
+	const { form, enhance, constraints, errors, delayed, timeout, message } = superForm<
+		{
+			email: string;
+			turnstile?: string;
+		},
+		Date
+	>(data.form, {
 		resetForm: false,
 		invalidateAll: false,
 		multipleSubmits: 'prevent',
 		delayMs: 500,
 		timeoutMs: 2000,
 	});
+
+	let sentAgainAt = $derived($message);
+	let rateLimited = $derived(sentAgainAt ? sentAgainAt > new Date() : false);
+	function handleRateLimitEnd() {
+		rateLimited = false;
+	}
 </script>
 
-<SingleBoxPageLayout class="space-y-6 max-w-readable-tight">
+<SingleBoxPageLayout class="max-w-readable-tight space-y-6">
 	<h1 class="c-text-heading-lg">
 		<T message={m['pages.signup.heading']} />
 	</h1>
@@ -40,7 +53,7 @@
 			<div class="c-text-body-sm flex items-baseline justify-between gap-6">
 				<p class=""><T message={m['inputs.turnstile.desc']} />:</p>
 				{#if $errors.turnstile?.[0]}
-					<p class="max-w-readable-tight text-right c-text-body-sm text-red-500">
+					<p class="max-w-readable-tight c-text-body-sm text-right text-red-500">
 						{$errors.turnstile[0]}
 					</p>
 				{/if}
@@ -73,10 +86,21 @@
 							'aria-invalid': 'true',
 							'aria-errormessage': 'error-email',
 						}}
+						disabled={!!rateLimited}
 					/>
 				</label>
-				<button class="c-btn px-4" type="submit" data-delayed={$delayed} data-timeout={$timeout}>
-					<T message={m.continue} />
+				<button
+					class="c-btn px-4"
+					type="submit"
+					data-delayed={$delayed}
+					data-timeout={$timeout}
+					disabled={!!rateLimited}
+				>
+					{#if sentAgainAt}
+						<T message={m['pages.signup.resend']} />
+					{:else}
+						<T message={m.continue} />
+					{/if}
 				</button>
 			</div>
 			{#if $errors.email?.[0]}
@@ -84,10 +108,14 @@
 			{/if}
 		</div>
 	</form>
-	<p class="c-callout c-callout--info">
-		<T message={m['pages.signup.callout']} />
-		<strong>01:33</strong>.
-	</p>
+	{#if sentAgainAt}
+		<p class="c-callout c-callout--info">
+			<T message={m['pages.signup.callout']} />
+			<strong>
+				<Countdown endAt={sentAgainAt} onEnd={handleRateLimitEnd} />
+			</strong>.
+		</p>
+	{/if}
 	<div class="flex items-center gap-2">
 		<div class="bg-outline h-px flex-1"></div>
 		<p class="text-on-surface-dim">

@@ -60,6 +60,7 @@ export function createEmployerAuth() {
 		},
 		plugins: [
 			magicLink({
+				expiresIn: 90, // 1.5 minutes
 				sendMagicLink: async ({ url, email }) => {
 					const lang = (event.params.lang as Language) ?? 'en';
 					// const type = event.route.id === '/[lang=lang]/signup' ? 'signup' : 'login';

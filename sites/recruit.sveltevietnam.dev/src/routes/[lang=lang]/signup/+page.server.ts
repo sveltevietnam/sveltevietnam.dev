@@ -4,7 +4,7 @@ import {
 	createTurnstileValibotClientSchema,
 	createTurnstileValibotServerSchema,
 } from '@sveltevietnam/kit/utilities';
-import { superValidate, message } from 'sveltekit-superforms';
+import { superValidate, message, setError } from 'sveltekit-superforms';
 import { valibot } from 'sveltekit-superforms/adapters';
 import * as v from 'valibot';
 
@@ -31,6 +31,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		turnstile: createTurnstileValibotClientSchema({
 			nonempty: m['inputs.turnstile.errors.nonempty'](lang),
 		}),
+		callbackURL: v.optional(v.string()),
 	});
 
 	return {
@@ -52,6 +53,7 @@ export const actions: Actions = {
 
 		const employers = getBackend(event).employers();
 		const schema = v.objectAsync({
+			callbackURL: v.optional(v.string()),
 			turnstile: createTurnstileValibotServerSchema({
 				secret: VITE_PRIVATE_CLOUDFLARE_TURNSTILE_SECRET_KEY,
 				ip: getClientAddress(),
@@ -81,8 +83,10 @@ export const actions: Actions = {
 			return fail(400, { form });
 		}
 
-		// TODO: check if verification request already sent
-		// rate limit to 1 per 1 minutes
+		let lastVerification = await employers.getLastAuthVerification(form.data.email);
+		if (lastVerification && new Date() < lastVerification.expiresAt) {
+			return message(form, lastVerification.expiresAt);
+		}
 
 		const { status } = await locals.auth.api.signInMagicLink({
 			body: {
@@ -91,15 +95,12 @@ export const actions: Actions = {
 			},
 			headers: request.headers,
 		});
-
 		if (!status) {
 			// TODO: error logging
 			error(500, { code: 'SV001', message: 'Error from backend' });
 		}
 
-		// TODO: get the creation date of the verification request for rate limiting
-		const date = new Date();
-
-		return message(form, date);
+		lastVerification = await employers.getLastAuthVerification(form.data.email);
+		return message(form, lastVerification!.expiresAt);
 	},
 };
