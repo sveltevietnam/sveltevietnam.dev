@@ -10,7 +10,7 @@ import { createEmployerProfileSchema } from '$lib/forms/employer-profile';
 
 import type { Actions, PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ params }) => {
+export const load: PageServerLoad = async ({ params, locals }) => {
 	const { lang } = params;
 	const schema = createEmployerProfileSchema(lang);
 	return {
