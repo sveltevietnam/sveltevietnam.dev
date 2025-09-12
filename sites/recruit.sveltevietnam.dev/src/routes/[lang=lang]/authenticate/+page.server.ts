@@ -90,7 +90,8 @@ export const actions: Actions = {
 		const { status } = await locals.auth.api.signInMagicLink({
 			body: {
 				email: email,
-				callbackURL: url.searchParams.get('callbackURL') ?? p['/:lang']({ lang: language }),
+				callbackURL:
+					url.searchParams.get('callbackURL') ?? p['/:lang/postings']({ lang: language }),
 				newUserCallbackURL: p['/:lang/onboarding']({ lang: language }),
 			},
 			headers: request.headers,
