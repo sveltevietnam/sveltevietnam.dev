@@ -12,6 +12,7 @@ import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params, locals }) => {
 	const { lang } = params;
+	if (locals.user?.onboardedAt) redirect(302, p['/:lang/welcome']({ lang: locals.language }));
 	const schema = createEmployerProfileSchema(lang);
 	return {
 		form: await superValidate(valibot(schema)),
@@ -30,7 +31,7 @@ export const actions: Actions = {
 		const { request, locals, platform } = event;
 		const { language } = locals;
 
-		if (!locals.user) redirect(401, p['/:lang/authenticate']({ lang: language }));
+		if (!locals.user) redirect(302, p['/:lang/authenticate']({ lang: language }));
 
 		const r2 = platform?.env?.r2;
 		if (!r2) {

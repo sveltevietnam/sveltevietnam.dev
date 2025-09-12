@@ -85,7 +85,7 @@ export const actions: Actions = {
 			body: {
 				email: email,
 				callbackURL:
-					url.searchParams.get('callbackURL') ?? p['/:lang/postings']({ lang: language }),
+					url.searchParams.get('callbackURL') ?? p['/:lang']({ lang: language }),
 				newUserCallbackURL: p['/:lang/onboarding']({ lang: language }),
 			},
 			headers: request.headers,
