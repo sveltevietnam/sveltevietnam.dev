@@ -86,6 +86,9 @@ export function createEmployerAuth() {
 		],
 		telemetry: { enabled: false },
 		advanced: {
+			database: {
+				generateId: false,
+			},
 			ipAddress: {
 				ipAddressHeaders: ['cf-connecting-ip', 'x-real-ip'],
 				disabled: false,
