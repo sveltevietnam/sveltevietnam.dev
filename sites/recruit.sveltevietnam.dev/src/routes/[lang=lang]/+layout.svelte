@@ -125,8 +125,7 @@
 
 			<ColorSchemeMenu {...colorSchemeMenuProps} bind:open={isColorSchemeMenuOpen} />
 			<LanguageMenu {...languageMenuProps} bind:open={isLanguageMenuOpen} />
-			<!-- TODO: load user image in once ready -->
-			<AccountMenu bind:open={isAccountMenuOpen} />
+			<AccountMenu bind:open={isAccountMenuOpen} image={data.user?.image} />
 		</div>
 	</header>
 

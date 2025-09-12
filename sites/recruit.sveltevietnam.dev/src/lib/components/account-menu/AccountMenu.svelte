@@ -4,13 +4,12 @@
 	import { Dropdown } from '@sveltevietnam/kit/components';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import type { HTMLDetailsAttributes } from 'svelte/elements';
-	import type { Picture } from 'vite-imagetools';
 
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 
 	interface AccountMenuProps extends HTMLDetailsAttributes {
-		image?: string | Picture | null;
+		image?: string | null;
 		/** @bindable */
 		open: boolean;
 	}
@@ -21,10 +20,9 @@
 
 	const { routing } = Contexts.get();
 
-	let rImage = $derived(image ?? fallback1x1);
-
 	const accountMenuItemClasses =
 		'hover:bg-primary-surface flex cursor-pointer items-center gap-4 px-4 py-2 -outline-offset-1';
+	const imageClasses = 'aspect-square h-8 w-auto overflow-hidden rounded-full';
 </script>
 
 <Dropdown bind:open {...rest}>
@@ -32,11 +30,15 @@
 		<span class="sr-only">
 			<T message={m['components.account_menu.aria']} />
 		</span>
-		<enhanced:img
-			class="aspect-square h-8 w-auto overflow-hidden rounded-full"
-			src={rImage}
-			alt=""
-		/>
+		{#if image}
+			<img class={imageClasses} src={image} alt="" width="32" height="32" />
+		{:else}
+			<enhanced:img
+				class="aspect-square h-8 w-auto overflow-hidden rounded-full"
+				src={fallback1x1}
+				alt=""
+			/>
+		{/if}
 	{/snippet}
 
 	{#snippet content()}
