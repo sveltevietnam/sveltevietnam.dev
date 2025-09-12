@@ -32,17 +32,10 @@ export class SubscriberService extends RpcTarget {
 	}
 
 	async getById(id: string): Promise<SubscriberSelectResult | null> {
-		const result = await this.#orm
-			.select()
-			.from(subscribers)
-			.where(eq(subscribers.id, id))
-			.execute();
-
-		if (result.length === 0) {
-			return null;
-		}
-
-		return v.parse(SubscriberSelectSchema, result[0]);
+		const subscriber = await this.#orm.query.subscribers.findFirst({
+			where: (table, { eq }) => eq(table.id, id),
+		});
+		return subscriber ? v.parse(SubscriberSelectSchema, subscriber) : null;
 	}
 
 	async upsert(input: SubscriberUpsertInput): Promise<SubscriberUpsertResult> {
