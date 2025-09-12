@@ -11,9 +11,9 @@
 	import { ScrollToggler } from '@sveltevietnam/kit/utilities';
 
 	import { browser, version } from '$app/environment';
-	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
+	import * as p from '$data/routes/generated';
 	import {
 		VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
 		VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN,
@@ -99,7 +99,7 @@
 				'tablet:bg-on-surface tablet:text-surface tablet:-translate-y-2 tablet:px-4 tablet:pb-4 tablet:pt-6 ',
 				'flex w-fit items-center gap-2 uppercase transition-transform duration-500 hover:translate-y-0 hover:duration-100',
 			]}
-			href={resolve('/')}
+			href={data.user ? p['/:lang/postings']({ lang: routing.lang }) : p['/:lang']({ lang: routing.lang })}
 		>
 			<i class="i i-sveltevietnam tablet:w-15 tablet:h-15 h-10 w-10"></i>
 			<span class="leading-4">
