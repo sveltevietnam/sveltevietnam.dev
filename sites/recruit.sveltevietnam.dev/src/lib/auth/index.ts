@@ -61,15 +61,19 @@ export function createEmployerAuth() {
 		plugins: [
 			magicLink({
 				expiresIn: 90, // 1.5 minutes
-				sendMagicLink: async ({ url, email }) => {
-					const lang = (event.params.lang as Language) ?? 'en';
-					// const type = event.route.id === '/[lang=lang]/signup' ? 'signup' : 'login';
+				sendMagicLink: async ({ url, email }, request) => {
+					const headers = Object.fromEntries(request!.headers.entries());
+					const lang = headers['x-auth-lang'] as Language;
 
 					const mails = getBackend(event).mails();
+					const templateId =
+						headers['x-auth-type'] === 'signup'
+							? 'recruit-onboard-employer'
+							: 'recruit-login-employer';
 					await mails.queue({
 						lang,
 						email,
-						templateId: 'recruit-onboard-employer',
+						templateId,
 						vars: { callbackUrl: url },
 					});
 				},

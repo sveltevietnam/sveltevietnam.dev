@@ -5,7 +5,6 @@
 	import { superForm } from 'sveltekit-superforms';
 
 	import * as m from '$data/locales/generated/messages';
-	import * as p from '$data/routes/generated';
 	import {
 		VITE_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY,
 		VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN,
@@ -42,12 +41,12 @@
 
 <SingleBoxPageLayout class="max-w-readable-tight space-y-6">
 	<h1 class="c-text-heading-lg">
-		<T message={m['pages.signup.heading']} />
+		<T message={m['pages.authenticate.heading']} />
 	</h1>
 	<p>
-		<T message={m['pages.signup.desc']} mainSiteUrl={VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN} />
+		<T message={m['pages.authenticate.desc']} mainSiteUrl={VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN} />
 	</p>
-	<form class="space-y-6" use:enhance method="POST" action="?/signup">
+	<form class="space-y-6" use:enhance method="POST">
 		<!-- cloudflare-turnstile -->
 		<div class="space-y-1">
 			<div class="c-text-body-sm flex items-baseline justify-between gap-6">
@@ -97,7 +96,7 @@
 					disabled={!!rateLimited}
 				>
 					{#if sentAgainAt}
-						<T message={m['pages.signup.resend']} />
+						<T message={m['pages.authenticate.resend']} />
 					{:else}
 						<T message={m.continue} />
 					{/if}
@@ -110,7 +109,7 @@
 	</form>
 	{#if sentAgainAt}
 		<p class="c-callout c-callout--info">
-			<T message={m['pages.signup.callout']} />
+			<T message={m['pages.authenticate.callout.signup']} />
 			<strong>
 				<Countdown endAt={sentAgainAt} onEnd={handleRateLimitEnd} />
 			</strong>.
@@ -123,10 +122,10 @@
 		</p>
 		<div class="bg-outline h-px flex-1"></div>
 	</div>
-	<a class="c-btn c-btn--outlined block w-full" href={p['/:lang/login']({ lang: routing.lang })}>
-		<T message={m['pages.signup.login']} />
-	</a>
 	<p>
-		<T message={m['pages.signup.headhunter']} jobChannelUrl="https://discord.sveltevietnam.dev" />
+		<T
+			message={m['pages.authenticate.headhunter']}
+			jobChannelUrl="https://discord.sveltevietnam.dev"
+		/>
 	</p>
 </SingleBoxPageLayout>

@@ -127,29 +127,19 @@ messages:
         errors:
           nonempty: Vui lòng nhập mô tả công việc
   pages:
-    login:
-      heading: Đăng nhập
+    authenticate:
+      heading: Đăng nhập / Đăng ký
       desc:
         Quản lý bài đăng tuyển dụng tại <a class="c-link" href={{mainSiteUrl}}>sveltevietnam.dev</a>
-        — miễn phí và bảo mật — kết nối doanh nghiệp và tổ chức với cộng đồng
-      input: Đăng nhập không mật khẩu qua email
+        — miễn phí và bảo mật — kết nối cộng đồng với doanh nghiệp và tổ chức
       callout:
-        Vui lòng đăng nhập qua đường dẫn trong email vừa được gởi đến bạn. Nếu không nhận được
-        email, bạn có thể nhấn “Gởi lại” trong
-      signup: Tạo tài khoản mới
-      headhunter:
-        Bạn là nhà tuyển dụng độc lập? <br /> Kết nối trực tiếp với ứng viên qua <a class="c-link"
-        href="{{jobChannelUrl}}" target="_blank" rel="noreferrer noopener external">diễn đàn cộng
-        đồng</a>.
-    signup:
-      heading: Đăng ký
-      desc:
-        Quản lý bài đăng tuyển dụng tại <a class="c-link" href={{mainSiteUrl}}>sveltevietnam.dev</a>
-        — miễn phí và bảo mật — kết nối doanh nghiệp và tổ chức với cộng đồng
-      callout:
-        Vui lòng tiếp tục quy trình đăng ký qua hướng dẫn trong email vừa được gởi đến bạn. Nếu
-        không nhận được email, bạn có thể nhấn “Gởi lại” trong
-      login: Đăng nhập
+        in: trong
+        login:
+          Vui lòng hoàn tất đăng nhập qua đường dẫn trong email vừa được gởi đến bạn. Nếu không nhận được
+          email, bạn có thể nhấn “Gởi lại”
+        signup:
+          Vui lòng tiếp tục quy trình đăng ký qua hướng dẫn trong email vừa được gởi đến bạn. Nếu
+          không nhận được email, bạn có thể nhấn “Gởi lại”
       headhunter:
         Bạn là nhà tuyển dụng độc lập? <br /> Kết nối trực tiếp với ứng viên qua <a class="c-link"
         href="{{jobChannelUrl}}" target="_blank" rel="noreferrer noopener external">diễn đàn cộng

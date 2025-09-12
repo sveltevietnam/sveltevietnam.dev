@@ -4,7 +4,7 @@ import {
 	createTurnstileValibotClientSchema,
 	createTurnstileValibotServerSchema,
 } from '@sveltevietnam/kit/utilities';
-import { superValidate, message, setError } from 'sveltekit-superforms';
+import { superValidate, message } from 'sveltekit-superforms';
 import { valibot } from 'sveltekit-superforms/adapters';
 import * as v from 'valibot';
 
@@ -31,29 +31,26 @@ export const load: PageServerLoad = async ({ params }) => {
 		turnstile: createTurnstileValibotClientSchema({
 			nonempty: m['inputs.turnstile.errors.nonempty'](lang),
 		}),
-		callbackURL: v.optional(v.string()),
 	});
 
 	return {
 		form: await superValidate(valibot(schema)),
 		routing: {
-			breadcrumbs: b['/:lang/signup']({ lang }),
+			breadcrumbs: b['/:lang/authenticate']({ lang }),
 			paths: {
-				vi: p['/:lang/signup']({ lang: 'vi' }),
-				en: p['/:lang/signup']({ lang: 'en' }),
+				vi: p['/:lang/authenticate']({ lang: 'vi' }),
+				en: p['/:lang/authenticate']({ lang: 'en' }),
 			},
 		},
 	};
 };
 
 export const actions: Actions = {
-	signup: async (event) => {
-		const { request, locals, getClientAddress } = event;
+	default: async (event) => {
+		const { request, locals, getClientAddress, url } = event;
 		const { language } = locals;
 
-		const employers = getBackend(event).employers();
 		const schema = v.objectAsync({
-			callbackURL: v.optional(v.string()),
 			turnstile: createTurnstileValibotServerSchema({
 				secret: VITE_PRIVATE_CLOUDFLARE_TURNSTILE_SECRET_KEY,
 				ip: getClientAddress(),
@@ -62,14 +59,7 @@ export const actions: Actions = {
 					generic: m['inputs.turnstile.errors.unknown'](language),
 				},
 			}),
-			email: v.pipeAsync(
-				createEmailSchema(language),
-				v.toLowerCase(),
-				v.checkAsync(
-					async (email) => !(await employers.exists(email)),
-					m['inputs.email.errors.existed'](language),
-				),
-			),
+			email: v.pipeAsync(createEmailSchema(language), v.toLowerCase()),
 		});
 		const form = await superValidate(
 			request,
@@ -83,24 +73,36 @@ export const actions: Actions = {
 			return fail(400, { form });
 		}
 
-		let lastVerification = await employers.getLastAuthVerification(form.data.email);
+		const { email } = form.data;
+		const employers = getBackend(event).employers();
+		let lastVerification = await employers.getLastAuthVerification(email);
 		if (lastVerification && new Date() < lastVerification.expiresAt) {
 			return message(form, lastVerification.expiresAt);
 		}
 
 		const { status } = await locals.auth.api.signInMagicLink({
 			body: {
-				email: form.data.email,
-				callbackURL: p['/:lang/onboarding']({ lang: language }),
+				email: email,
+				callbackURL:
+					url.searchParams.get('callbackURL') ?? p['/:lang/postings']({ lang: language }),
+				newUserCallbackURL: p['/:lang/onboarding']({ lang: language }),
 			},
 			headers: request.headers,
+			request: new Request(request.url, {
+				method: request.method,
+				headers: {
+					...Object.fromEntries(request.headers.entries()),
+					'x-auth-lang': language,
+					'x-auth-type': (await employers.exists(email)) ? 'login' : 'signup',
+				},
+			}),
 		});
 		if (!status) {
 			// TODO: error logging
 			error(500, { code: 'SV001', message: 'Error from backend' });
 		}
 
-		lastVerification = await employers.getLastAuthVerification(form.data.email);
+		lastVerification = await employers.getLastAuthVerification(email);
 		return message(form, lastVerification!.expiresAt);
 	},
 };

@@ -10,14 +10,11 @@ export default defineConfig<AllRoutePath, Language>({
 	localization: {
 		param: 'lang',
 		defs: {
-			'/:lang/login': {
-				vi: '/:lang/dang-nhap',
+			'/:lang/authenticate': {
+				vi: '/:lang/xac-thuc',
 			},
 			'/:lang/logout': {
 				vi: '/:lang/dang-xuat',
-			},
-			'/:lang/signup': {
-				vi: '/:lang/dang-ky',
 			},
 			'/:lang/onboarding': {
 				vi: '/:lang/hoan-thien-ho-so',
@@ -52,13 +49,9 @@ export default defineConfig<AllRoutePath, Language>({
 				vi: 'Hồ sơ',
 				default: 'Profile',
 			},
-			'/:lang/login': {
-				vi: 'Đăng nhập',
-				default: 'Login',
-			},
-			'/:lang/signup': {
-				vi: 'Đăng ký',
-				default: 'Sign Up',
+			'/:lang/authenticate': {
+				vi: 'Xác thực',
+				default: 'Authenticate',
 			},
 			'/:lang/onboarding': {
 				vi: 'Hoàn thiện hồ sơ',
