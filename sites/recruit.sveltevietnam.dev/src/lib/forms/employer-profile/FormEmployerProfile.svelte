@@ -10,6 +10,7 @@
 	import type { EmployerProfileInput } from './schema';
 
 	export interface FormEmployerProfileProps<WithEmail extends boolean> extends HTMLFormAttributes {
+		image?: string | null;
 		withEmail?: WithEmail;
 		data: SuperValidated<EmployerProfileInput<WithEmail>>;
 		cta: Snippet<[{ delayed: boolean; timeout: boolean }]>;
@@ -18,7 +19,14 @@
 </script>
 
 <script lang="ts" generics="WithEmail extends boolean = true">
-	let { withEmail, data, cta, class: cls, ...rest }: FormEmployerProfileProps<WithEmail> = $props();
+	let {
+		image,
+		withEmail,
+		data,
+		cta,
+		class: cls,
+		...rest
+	}: FormEmployerProfileProps<WithEmail> = $props();
 
 	const { routing } = Contexts.get();
 
@@ -33,7 +41,7 @@
 	});
 	const imageFile = fileProxy(form, 'image');
 
-	let imagePreviewUri = $derived($form.image ? URL.createObjectURL($form.image) : '');
+	let imagePreviewUri = $derived($form.image ? URL.createObjectURL($form.image) : image);
 </script>
 
 <form class={['space-y-10', cls]} method="POST" enctype="multipart/form-data" use:enhance {...rest}>
@@ -126,10 +134,10 @@
 					<span
 						class={[
 							'border-onehalf c-text-body-xs grid aspect-square h-auto w-full place-items-center border-current text-center',
-							!$form.image && 'p-2',
+							!imagePreviewUri && 'p-2',
 						]}
 					>
-						{#if $form.image}
+						{#if imagePreviewUri}
 							<img
 								class="h-full w-full object-cover"
 								width="200"

@@ -76,7 +76,12 @@
 			<T message={m['pages.profile.update_info.heading']} />
 		</h2>
 
-		<FormEmployerProfile data={data.updateInfoForm} action="?/update-info" withEmail={false}>
+		<FormEmployerProfile
+			data={data.updateInfoForm}
+			action="?/update-info"
+			withEmail={false}
+			image={data.image}
+		>
 			{#snippet cta({ delayed, timeout })}
 				<button class="c-btn px-4" type="submit" data-delayed={delayed} data-timeout={timeout}>
 					<i class="i i-[ph--floppy-disk] h-6 w-6"></i>
