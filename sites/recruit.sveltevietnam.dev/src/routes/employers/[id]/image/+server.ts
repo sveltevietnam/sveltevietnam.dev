@@ -1,4 +1,4 @@
-import { getEmployerImage } from '$lib/data/employers';
+import { getEmployerImage, IMAGE_CACHE_CONTROL } from '$lib/data/employers';
 
 import type { RequestHandler } from './$types';
 
@@ -13,9 +13,9 @@ export const GET: RequestHandler = async ({ params, request, setHeaders }) => {
 	}
 
 	setHeaders({
-		etag: image.httpEtag,
-		'content-type': image.httpMetadata?.contentType || 'application/octet-stream',
-		'cache-control': image.httpMetadata?.cacheControl || 'public, max-age=86400, immutable',
+		ETag: image.httpEtag,
+		'Content-Type': image.httpMetadata?.contentType || 'application/octet-stream',
+		'Cache-Control': image.httpMetadata?.cacheControl || IMAGE_CACHE_CONTROL,
 	});
 
 	return new Response(image.body as BodyInit);

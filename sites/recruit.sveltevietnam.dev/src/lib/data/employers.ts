@@ -1,12 +1,14 @@
 import { getR2 } from '$lib/backend/utils';
 
+export const IMAGE_CACHE_CONTROL = 'public, max-age=86400, must-revalidate';
+
 export async function uploadEmployerImage(id: string, image: File) {
 	const r2 = getR2();
 	const imageUrl = getEmployerImagePath(id);
 	await r2.put(getEmployerImagePath(id), await image.bytes(), {
 		httpMetadata: {
 			contentType: image.type,
-			cacheControl: 'public, max-age=86400, immutable',
+			cacheControl: IMAGE_CACHE_CONTROL,
 		},
 	});
 	return imageUrl;
