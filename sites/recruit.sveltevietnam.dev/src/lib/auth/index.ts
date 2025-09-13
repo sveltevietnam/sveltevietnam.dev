@@ -66,7 +66,7 @@ export function createEmployerAuth() {
 					const lang = headers['x-auth-lang'] as Language;
 					const type = headers['x-auth-type'] === 'signup' ? 'signup' : 'login';
 
-					const mails = getBackend(event).mails();
+					const mails = getBackend().mails();
 					if (type === 'signup') {
 						await mails.queue('recruit-onboard-employer' as const, {
 							lang,

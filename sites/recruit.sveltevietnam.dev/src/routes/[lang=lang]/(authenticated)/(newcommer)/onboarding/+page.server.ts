@@ -4,8 +4,7 @@ import { superValidate, withFiles } from 'sveltekit-superforms/server';
 
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
-import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
-import { getEmployerImagePath } from '$lib/backend/utils';
+import { uploadEmployerImage } from '$lib/data/employers';
 import { createEmployerProfileSchema } from '$lib/forms/employer-profile';
 
 import type { Actions, PageServerLoad } from './$types';
@@ -47,23 +46,10 @@ export const actions: Actions = {
 		const { image, ...update } = form.data;
 		const id = locals.user.id;
 
-		// upload image
-		let imageUrl: undefined | string = undefined;
-		if (image) {
-			imageUrl = getEmployerImagePath(id);
-			await r2.put(getEmployerImagePath(id), await image.bytes(), {
-				httpMetadata: {
-					contentType: image.type,
-					cacheControl: 'public, max-age=86400, immutable',
-				},
-			});
-			imageUrl = VITE_PUBLIC_ORIGIN + imageUrl;
-		}
-
 		const { status } = await locals.auth.api.updateUser({
 			body: {
 				...update,
-				image: imageUrl,
+				image: image ? await uploadEmployerImage(id, image) : undefined,
 				onboardedAt: new Date(),
 			},
 			headers: request.headers,

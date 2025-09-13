@@ -80,7 +80,7 @@ export const actions: Actions = {
 		}
 
 		const { email } = form.data;
-		const employers = getBackend(event).employers();
+		const employers = getBackend().employers();
 		let lastVerification = await employers.getLastAuthVerification(email);
 		if (lastVerification && new Date() < lastVerification.expiresAt) {
 			return message(form, lastVerification.expiresAt);
