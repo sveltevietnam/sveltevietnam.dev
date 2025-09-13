@@ -41,3 +41,5 @@ export class NotificationContext {
 		return getContext(NotificationContext.KEY);
 	}
 }
+
+export * from './types.js';
