@@ -25,6 +25,8 @@ messages:
   language_menu:
     aria: switch site language
     switch_to: switch to
+  errors:
+    generic: Something went wrong, please try again later! We are sorry for the inconvenience.
   inputs:
     email:
       label: Email
@@ -174,6 +176,7 @@ messages:
         callout: Please verify the change via the link sent to your new email.
       update_info:
         heading: Update information
+        success: Your profile has been updated!
     postings:
       heading: Your Postings
       create: Create

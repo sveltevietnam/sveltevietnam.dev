@@ -1,14 +1,20 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { superForm } from 'sveltekit-superforms';
 
 	import * as m from '$data/locales/generated/messages';
 	import { SingleBoxPageLayout } from '$lib/components/single-box-page-layout';
 	import { FormEmployerProfile } from '$lib/forms/employer-profile';
+	import { createSuperFormGenericErrorHandler } from '$lib/forms/utils';
 
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
+
+	const {
+		notifications: { toaster },
+	} = Contexts.get();
 
 	const { form, enhance, constraints, errors, delayed, timeout } = superForm(data.updateEmailForm, {
 		resetForm: false,
@@ -16,7 +22,17 @@
 		multipleSubmits: 'prevent',
 		delayMs: 500,
 		timeoutMs: 2000,
+		onError: createSuperFormGenericErrorHandler(toaster),
+		onUpdated({ form }) {
+			if (form.valid) {
+				// TODO: ...
+			}
+		},
 	});
+
+	function handleProfileUpdateSuccess() {
+		toaster.success({ message: m['pages.profile.update_info.success'] });
+	}
 </script>
 
 <SingleBoxPageLayout class="max-w-readable space-y-10">
@@ -81,6 +97,7 @@
 			action="?/update-info"
 			withEmail={false}
 			image={data.image}
+			onSuccess={handleProfileUpdateSuccess}
 		>
 			{#snippet cta({ delayed, timeout })}
 				<button class="c-btn px-4" type="submit" data-delayed={delayed} data-timeout={timeout}>

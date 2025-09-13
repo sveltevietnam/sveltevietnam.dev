@@ -7,6 +7,8 @@
 
 	import * as m from '$data/locales/generated/messages';
 
+	import { createSuperFormGenericErrorHandler } from '../utils';
+
 	import type { EmployerProfileInput } from './schema';
 
 	export interface FormEmployerProfileProps<WithEmail extends boolean> extends HTMLFormAttributes {
@@ -15,12 +17,14 @@
 		data: SuperValidated<EmployerProfileInput<WithEmail>>;
 		cta: Snippet<[{ delayed: boolean; timeout: boolean }]>;
 		action: string;
+		onSuccess?: () => void;
 	}
 </script>
 
 <script lang="ts" generics="WithEmail extends boolean = true">
 	let {
 		image,
+		onSuccess,
 		withEmail,
 		data,
 		cta,
@@ -28,7 +32,10 @@
 		...rest
 	}: FormEmployerProfileProps<WithEmail> = $props();
 
-	const { routing } = Contexts.get();
+	const {
+		routing,
+		notifications: { toaster },
+	} = Contexts.get();
 
 	const { form, enhance, constraints, errors, delayed, timeout } = superForm<
 		EmployerProfileInput<true>
@@ -38,6 +45,10 @@
 		multipleSubmits: 'prevent',
 		delayMs: 500,
 		timeoutMs: 2000,
+		onError: createSuperFormGenericErrorHandler(toaster),
+		onUpdated({ form }) {
+			if (form.valid) onSuccess?.();
+		},
 	});
 	const imageFile = fileProxy(form, 'image');
 

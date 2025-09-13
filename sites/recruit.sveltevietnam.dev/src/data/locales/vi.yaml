@@ -25,6 +25,8 @@ messages:
   language_menu:
     aria: chuyển đổi ngôn ngữ trang
     switch_to: chuyển sang
+  errors:
+    generic: Đã có lỗi xảy ra, vui lòng thử lại sau! Xin lỗi vì sự bất tiện này.
   inputs:
     email:
       label: Email
@@ -135,8 +137,8 @@ messages:
       callout:
         in: trong
         login:
-          Vui lòng hoàn tất đăng nhập qua đường dẫn trong email vừa được gởi đến bạn. Nếu không nhận được
-          email, bạn có thể nhấn “Gởi lại”
+          Vui lòng hoàn tất đăng nhập qua đường dẫn trong email vừa được gởi đến bạn. Nếu không nhận
+          được email, bạn có thể nhấn “Gởi lại”
         signup:
           Vui lòng tiếp tục quy trình đăng ký qua hướng dẫn trong email vừa được gởi đến bạn. Nếu
           không nhận được email, bạn có thể nhấn “Gởi lại”
@@ -172,6 +174,7 @@ messages:
         callout: Vui lòng kiểm tra email để hoàn thành yêu cầu sửa đổi email của bạn!
       update_info:
         heading: Sửa đổi hồ sơ tuyển dụng
+        success: Hồ sơ đã được cập nhật!
     postings:
       heading: Bài đăng tuyển
       create: Tạo mới
