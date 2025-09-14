@@ -1,9 +1,12 @@
 import { fail, error, redirect } from '@sveltejs/kit';
 import { valibot } from 'sveltekit-superforms/adapters';
-import { superValidate, withFiles } from 'sveltekit-superforms/server';
+import { message, superValidate, withFiles } from 'sveltekit-superforms/server';
+import * as v from 'valibot';
 
+import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
+import { getBackend } from '$lib/backend/utils';
 import { uploadEmployerImage } from '$lib/data/employers';
 import {
 	createEmployerProfileSchema,
@@ -47,14 +50,51 @@ export const actions: Actions = {
 		const { request, locals } = event;
 		const { language } = locals;
 
-		const schema = createEmployerEmailSchema(language);
+		const employers = getBackend().employers();
+		const schema = v.objectAsync({
+			email: v.pipeAsync(
+				createEmployerEmailSchema(language).entries.email,
+				v.checkAsync(
+					(email) => email !== locals.user!.email,
+					m['inputs.email.errors.current'](language),
+				),
+				v.checkAsync(
+					async (email) => !employers.exists(email),
+					m['inputs.email.errors.existed'](language),
+				),
+			),
+		});
 		const form = await superValidate(request, valibot(schema));
 		if (!form.valid) {
 			return fail(400, { form });
 		}
-		form.data.email = form.data.email.toLowerCase();
 
-		return { form };
+		const isEmailVerified = await employers.isEmailVerified(locals.user!.id);
+		if (!isEmailVerified) {
+			// This likely means user just updated their email (email becomes unverified in DB)
+			// and should login again to verify their email before they are allowed to change it again
+			// we don't kick user out immediately because that would be bad UX
+			return message(form, 'unverified');
+		}
+
+		const { status } = await locals.auth.api.changeEmail({
+			body: { newEmail: form.data.email },
+			headers: request.headers,
+			request: new Request(request.url, {
+				method: request.method,
+				headers: {
+					...Object.fromEntries(request.headers.entries()),
+					'x-auth-lang': language,
+				},
+			}),
+		});
+
+		if (!status) {
+			// TODO: error logging
+			return message(form, 'error');
+		}
+
+		return message(form, 'pending');
 	},
 	'update-info': async (event) => {
 		const { request, locals } = event;

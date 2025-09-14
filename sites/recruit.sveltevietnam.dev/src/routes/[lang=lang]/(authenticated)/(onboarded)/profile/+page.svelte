@@ -16,18 +16,18 @@
 		notifications: { toaster },
 	} = Contexts.get();
 
-	const { form, enhance, constraints, errors, delayed, timeout } = superForm(data.updateEmailForm, {
+	const { form, enhance, constraints, errors, delayed, timeout, message } = superForm<
+		{
+			email: string;
+		},
+		'error' | 'pending' | 'unverified'
+	>(data.updateEmailForm, {
 		resetForm: false,
 		invalidateAll: false,
 		multipleSubmits: 'prevent',
 		delayMs: 500,
 		timeoutMs: 2000,
 		onError: createSuperFormGenericErrorHandler(toaster),
-		onUpdated({ form }) {
-			if (form.valid) {
-				// TODO: ...
-			}
-		},
 	});
 
 	function handleProfileUpdateSuccess() {
@@ -45,46 +45,60 @@
 			<T message={m['pages.profile.update_email.heading']} />
 		</h2>
 
-		<form method="POST" action="?/update-email" use:enhance>
-			<!-- combined email input & submit button -->
-			<div class="space-y-1">
-				<p>
-					<T message={m['inputs.employer.email.label']} />:
-				</p>
-				<div class="flex items-stretch">
-					<label class="c-text-input flex-1">
-						<span class="min-w-12">Email:</span>
-						<input
-							type="email"
-							name="email"
-							placeholder="email@example.com"
-							bind:value={$form.email}
-							{...$constraints.email}
-							{...$errors.email && {
-								'aria-invalid': 'true',
-								'aria-errormessage': 'error-email',
-							}}
-						/>
-					</label>
-					<button class="c-btn px-4" type="submit" data-delayed={$delayed} data-timeout={$timeout}>
-						<i class="i i-[ph--floppy-disk] h-6 w-6"></i>
-						<T message={m.save} />
-					</button>
-				</div>
-				<div class="c-text-body-sm flex items-baseline justify-between gap-4">
-					{#if $errors.email?.[0]}
-						<p class="text-red-500" id="error-email">{$errors.email[0]}</p>
-					{/if}
-					<p class="ml-auto">
-						<T message={m['pages.profile.update_email.form.email.note']} />
+		{#if !$message || $message === 'error'}
+			<form method="POST" action="?/update-email" use:enhance>
+				<!-- combined email input & submit button -->
+				<div class="space-y-1">
+					<p>
+						<T message={m['inputs.employer.email.label']} />:
 					</p>
+					<div class="flex items-stretch">
+						<label class="c-text-input flex-1">
+							<span class="min-w-12">Email:</span>
+							<input
+								type="email"
+								name="email"
+								placeholder="email@example.com"
+								bind:value={$form.email}
+								{...$constraints.email}
+								{...$errors.email && {
+									'aria-invalid': 'true',
+									'aria-errormessage': 'error-email',
+								}}
+							/>
+						</label>
+						<button class="c-btn px-4" type="submit" data-delayed={$delayed} data-timeout={$timeout}>
+							<i class="i i-[ph--floppy-disk] h-6 w-6"></i>
+							<T message={m.save} />
+						</button>
+					</div>
+					<div class="c-text-body-sm flex items-baseline justify-between gap-4">
+						{#if $errors.email?.[0]}
+							<p class="text-red-500" id="error-email">{$errors.email[0]}</p>
+						{/if}
+						<p class="ml-auto">
+							<T message={m['pages.profile.update_email.form.email.note']} />
+						</p>
+					</div>
 				</div>
-			</div>
-		</form>
+			</form>
+		{/if}
 
-		<p class="c-callout c-callout--info">
-			<T message={m['pages.profile.update_email.callout']} />
-		</p>
+		{#if $message}
+			{#if $message === 'pending'}
+				<p class="c-callout c-callout--info">
+					<T message={m['pages.profile.update_email.callout.pending']} />
+				</p>
+			{:else if $message === 'unverified'}
+				<p class="c-callout c-callout--warning">
+					<T message={m['pages.profile.update_email.callout.unverified']} />
+				</p>
+			{:else}
+				<p class="c-callout c-callout--error">
+					<T message={m['errors.generic']} />
+				</p>
+			{/if}
+		{/if}
 	</section>
 
 	<section class="space-y-6">

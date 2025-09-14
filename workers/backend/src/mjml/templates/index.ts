@@ -1,6 +1,7 @@
 import type { Language } from '@sveltevietnam/i18n';
 
 import { DEFAULT_VARS } from './constants';
+import type { RecruitEmployerChangeEmailVars } from './recruit-employer-change-email';
 import type { RecruitLoginEmployerVars } from './recruit-login-employer';
 import type { RecruitOnboardEmployerVars } from './recruit-onboard-employer';
 import * as t from './types';
@@ -18,6 +19,7 @@ export type TemplateVarMap = {
 	welcome: WelcomTemplateVars;
 	'recruit-onboard-employer': RecruitOnboardEmployerVars;
 	'recruit-login-employer': RecruitLoginEmployerVars;
+	'recruit-employer-change-email': RecruitEmployerChangeEmailVars;
 };
 
 export async function loadTemplate(id: t.TemplateId, lang: Language): Promise<t.Template | null> {

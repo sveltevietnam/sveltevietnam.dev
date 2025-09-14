@@ -4,20 +4,15 @@ import * as v from 'valibot';
 
 import { ORM } from '$/database/orm';
 
-import {
-	type EmployerSelectResult,
-	EmployerSelectSchema,
-} from './schema';
+import { type EmployerSelectResult, EmployerSelectSchema } from './schema';
 import { employers } from './tables';
 
 export class EmployerService extends RpcTarget {
 	#orm: ORM;
-	#env: Env;
 
-	constructor(orm: ORM, env: Env) {
+	constructor(orm: ORM) {
 		super();
 		this.#orm = orm;
-		this.#env = env;
 	}
 
 	async exists(email: string): Promise<boolean> {
@@ -45,5 +40,13 @@ export class EmployerService extends RpcTarget {
 			orderBy: (table, { desc }) => [desc(table.expiresAt)],
 		});
 		return verification ?? null;
+	}
+
+	async isEmailVerified(id: string): Promise<boolean | null> {
+		const employer = await this.#orm.query.employers.findFirst({
+			columns: { emailVerified: true },
+			where: (table, { eq }) => eq(table.id, id),
+		});
+		return employer ? employer.emailVerified : null;
 	}
 }

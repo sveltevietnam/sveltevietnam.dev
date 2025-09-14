@@ -26,7 +26,7 @@ export default class extends WorkerEntrypoint<Env> {
 		this.#mails = new MailService(orm, env);
 		this.#subscribers = new SubscriberService(orm, env, this.#mails);
 		this.#blueskyPosts = new BlueskyPostService(orm);
-		this.#employers = new EmployerService(orm, env);
+		this.#employers = new EmployerService(orm);
 	}
 
 	get healthy() {

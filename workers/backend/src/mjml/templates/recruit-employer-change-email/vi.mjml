@@ -10,14 +10,17 @@
 			<mj-column>
 				<mj-text padding-top="0">Chào {{name}},</mj-text>
 				<mj-text>
-					Hệ thống vừa tiếp nhận yêu cầu đăng nhập vào tài khoản của bạn trên nền tảng Tuyển
+					Hệ thống vừa tiếp nhận yêu cầu thay đổi email cho tài khoản của bạn trên nền tảng Tuyển
 					dụng từ cộng đồng Svelte Việt Nam.
 				</mj-text>
 				<mj-text>
-					<strong>Chỉ tiếp tục nếu bạn là người đã thực hiện yêu cầu này.</strong>
-					Nhấn nút dưới đây để hoàn tất quá trình đăng nhập:
+					Email sẽ được đổi thành: <strong>{{newEmail}}</strong>
 				</mj-text>
-				<mj-button href="{{callbackUrl}}">Đăng nhập</mj-button>
+				<mj-text>
+					<strong>Chỉ tiếp tục nếu bạn là người đã thực hiện yêu cầu này!</strong>
+					Nhấn nút dưới đây để cập nhật email mới:
+				</mj-text>
+				<mj-button background-color="red" color="white" href="{{callbackUrl}}"><strong>Xác nhận</strong></mj-button>
 				<mj-include path="../../includes/recruit-ignore-request/vi.mjml" />
 				<mj-text>Xin cảm ơn,</mj-text>
 				<mj-text>Svelte Việt Nam</mj-text>

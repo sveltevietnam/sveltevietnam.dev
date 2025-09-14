@@ -33,7 +33,8 @@ messages:
       errors:
         nonempty: Vui lòng nhập địa chỉ email
         invalid: Địa chỉ email không hợp lệ
-        existed: Email đã được đăng ký
+        existed: Email đã được dùng bởi tài khoản khác
+        current: Đây đã là email hiện tại của bạn
     name:
       errors:
         nonempty: Vui lòng nhập tên
@@ -171,10 +172,31 @@ messages:
         form:
           email:
             note: Email này được sử dụng để đăng nhập.
-        callout: Vui lòng kiểm tra email để hoàn thành yêu cầu sửa đổi email của bạn!
+        callout:
+          pending: Vui lòng kiểm tra email để hoàn thành yêu cầu sửa đổi email của bạn!
+          unverified:
+            Email vừa được thay đổi. Vì lý do bảo mật, vui lòng đăng xuất và đăng nhập lại trước khi
+            thay đổi email lần nữa.
       update_info:
         heading: Sửa đổi hồ sơ tuyển dụng
         success: Hồ sơ đã được cập nhật!
+    email_change_verification:
+      heading:
+        ok: Yêu cầu đã được xác nhận
+        invalid: Yêu cầu không hợp lệ
+        expired: Yêu cầu đã hết hạn
+        unknown: Lỗi không xác định
+      desc:
+        ok: Email của bạn đã được cập nhật. Xin cảm ơn!
+        invalid:
+          Đường dẫn không hợp lệ hoặc đã bị sửa đổi. Vui lòng kiểm tra lại email được gởi đến bạn.
+        expired:
+          Yêu cầu đã quá hạn sử dụng. Vui lòng thực hiện lại sửa đổi tại <a href="{{profilePath}}"
+          class="c-link">trang quản lý tài khoản</a>.
+      reminder:
+        'Nhắc bạn: email được sử dụng để đăng nhập và quản lý tài khoản. Vui lòng không chia sẻ
+        email của bạn với ai!'
+      login: Đăng nhập
     postings:
       heading: Bài đăng tuyển
       create: Tạo mới
@@ -221,6 +243,7 @@ messages:
   components:
     account_menu:
       aria: Quản lý tài khoản của bạn
+      # FIXME: change to account instead of profile
       profile: Hồ sơ
       logout: Đăng xuất
     job_posting_list:

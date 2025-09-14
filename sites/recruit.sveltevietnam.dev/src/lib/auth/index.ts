@@ -7,6 +7,7 @@ import { sveltekitCookies } from 'better-auth/svelte-kit';
 import { drizzle } from 'drizzle-orm/d1';
 
 import { getRequestEvent } from '$app/server';
+import * as p from '$data/routes/generated';
 import { VITE_PRIVATE_BETTER_AUTH_SECRET } from '$env/static/private';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 import { getBackend } from '$lib/backend/utils';
@@ -51,12 +52,35 @@ export function createEmployerAuth() {
 					required: false,
 				},
 			},
+			changeEmail: {
+				enabled: true,
+				sendChangeEmailVerification: async ({ user, newEmail, token }, request) => {
+					const headers = Object.fromEntries(request!.headers.entries());
+					const lang = headers['x-auth-lang'] as Language;
+					await getBackend()
+						.mails()
+						.queue('recruit-employer-change-email' as const, {
+							actorId: user.id,
+							lang,
+							vars: {
+								name: user.name,
+								newEmail,
+								callbackUrl:
+									VITE_PUBLIC_ORIGIN +
+									p['/:lang/email-change-verification/:token']({ lang, token }),
+							},
+						});
+				},
+			},
 		},
 		session: {
 			fields: {
 				userId: 'employerId',
 				ipAddress: 'ip',
 			},
+		},
+		emailVerification: {
+			expiresIn: 180, // 3 minutes
 		},
 		plugins: [
 			magicLink({
@@ -68,14 +92,17 @@ export function createEmployerAuth() {
 
 					const mails = getBackend().mails();
 					if (type === 'signup') {
+						// FIXME: change templateId to `recruit-employer-onboard`
 						await mails.queue('recruit-onboard-employer' as const, {
 							lang,
 							email,
 							vars: { callbackUrl: url },
 						});
 					} else {
+						// FIXME: change templateId to `recruit-employer-login`
 						await mails.queue('recruit-login-employer' as const, {
 							lang,
+							// FIXME: get actorId by email here
 							email,
 							vars: { name: headers['x-auth-name']!, callbackUrl: url },
 						});

@@ -25,6 +25,9 @@ export default defineConfig<AllRoutePath, Language>({
 			'/:lang/profile': {
 				vi: '/:lang/ho-so',
 			},
+			'/:lang/email-change-verification/:token': {
+				vi: '/:lang/xac-thuc-thay-doi-email/:token',
+			},
 			'/:lang/postings': {
 				vi: '/:lang/bai-dang-tuyen',
 			},

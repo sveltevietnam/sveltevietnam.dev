@@ -33,7 +33,8 @@ messages:
       errors:
         nonempty: Email is required
         invalid: Email is badly formated
-        existed: Email is already registered
+        existed: Email is used by another account
+        current: This is already your current email
     name:
       errors:
         nonempty: Name is required
@@ -173,10 +174,30 @@ messages:
         form:
           email:
             note: This email is used for login.
-        callout: Please verify the change via the link sent to your new email.
+        callout:
+          pending: Please verify the change via a link sent to your new email.
+          unverified:
+            Your email has just been changed. For security reasons, please logout and log in again
+            if you wish to change your email again.
       update_info:
         heading: Update information
         success: Your profile has been updated!
+    email_change_verification:
+      heading:
+        ok: Your Request is Verified
+        invalid: Your Request is Invalid
+        expired: Your Request Has Expired
+        unknown: Unknown Error
+      desc:
+        ok: Your email has been updated successfully. Thank you!
+        invalid:
+          The URL is not valid or has been tampered with. Please check again the email sent to you.
+        expired:
+          Your request is no longer valid. Please submit another one via the <a
+          href="{{profilePath}}" class="c-link">account management page</a>.
+      reminder:
+        'Reminder: email is used for login and account management. Please do not share with anyone!'
+      login: Login
     postings:
       heading: Your Postings
       create: Create

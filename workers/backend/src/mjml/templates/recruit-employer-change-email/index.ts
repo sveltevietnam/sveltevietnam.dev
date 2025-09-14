@@ -1,0 +1,28 @@
+import { defineTemplate } from '..';
+import { EMAILS } from '../constants';
+
+import en from './en.mjml';
+import vi from './vi.mjml';
+
+export default defineTemplate((lang) => ({
+	from: {
+		email: EMAILS.NO_REPLY,
+	},
+	...(
+		{
+			en: {
+				subject: 'Verify your Email Change Request — Svelte Vietnam Recruit Platform',
+				html: en,
+			},
+			vi: {
+				subject: 'Xác nhận yêu cầu thay đổi email — Nền tảng Tuyển dụng Svelte Việt Nam',
+				html: vi,
+			},
+		} as const
+	)[lang],
+}));
+
+export interface RecruitEmployerChangeEmailVars {
+	newEmail: string;
+	callbackUrl: string;
+}

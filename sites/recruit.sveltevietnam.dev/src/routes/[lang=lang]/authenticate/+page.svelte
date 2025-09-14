@@ -108,6 +108,7 @@
 		</div>
 	</form>
 	{#if sentAgainAt}
+		<!-- FIXME: distinguish callout for signup vs signin -->
 		<p class="c-callout c-callout--info">
 			<T message={m['pages.authenticate.callout.signup']} />
 			<strong>
