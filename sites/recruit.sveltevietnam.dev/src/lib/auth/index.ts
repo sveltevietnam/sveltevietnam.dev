@@ -84,7 +84,7 @@ export function createEmployerAuth() {
 		},
 		plugins: [
 			magicLink({
-				expiresIn: 90, // 1.5 minutes
+				expiresIn: 180, // 3 minutes
 				sendMagicLink: async ({ url, email }, request) => {
 					const headers = Object.fromEntries(request!.headers.entries());
 					const lang = headers['x-auth-lang'] as Language;
