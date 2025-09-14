@@ -90,7 +90,9 @@ export function createEmployerAuth() {
 					const lang = headers['x-auth-lang'] as Language;
 					const type = headers['x-auth-type'] === 'signup' ? 'signup' : 'login';
 
-					const mails = getBackend().mails();
+					const backend = getBackend();
+					const mails = backend.mails();
+					const employers = backend.employers();
 					if (type === 'signup') {
 						// FIXME: change templateId to `recruit-employer-onboard`
 						await mails.queue('recruit-onboard-employer' as const, {
@@ -102,8 +104,7 @@ export function createEmployerAuth() {
 						// FIXME: change templateId to `recruit-employer-login`
 						await mails.queue('recruit-login-employer' as const, {
 							lang,
-							// FIXME: get actorId by email here
-							email,
+							actorId: (await employers.getIdByEmail(email))!,
 							vars: { name: headers['x-auth-name']!, callbackUrl: url },
 						});
 					}

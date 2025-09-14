@@ -22,6 +22,14 @@ export class EmployerService extends RpcTarget {
 		return !!isExist;
 	}
 
+	async getIdByEmail(email: string): Promise<null | string> {
+		const employer = await this.#orm.query.employers.findFirst({
+			columns: { id: true },
+			where: (table, { eq }) => eq(table.email, email),
+		});
+		return employer ? employer.id : null;
+	}
+
 	async getByEmail(email: string): Promise<null | EmployerSelectResult> {
 		const employer = await this.#orm.query.employers.findFirst({
 			where: (table, { eq }) => eq(table.email, email),
