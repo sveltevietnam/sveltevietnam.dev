@@ -81,12 +81,18 @@ export const actions: Actions = {
 
 		const { email } = form.data;
 		const employers = getBackend().employers();
+		const employer = await employers.getByEmail(email);
+		const authType = employer?.onboardedAt ? 'login' : 'signup';
+
+		// TODO: separate expiration and rate limiting time period, show exactly how many minutes in callout
 		let lastVerification = await employers.getLastAuthVerification(email);
 		if (lastVerification && new Date() < lastVerification.expiresAt) {
-			return message(form, lastVerification.expiresAt);
+			return message(form, {
+				type: authType,
+				sentAgainAt: lastVerification.expiresAt,
+			});
 		}
 
-		const employer = await employers.getByEmail(email);
 		const { status } = await locals.auth.api.signInMagicLink({
 			body: {
 				email: email,
@@ -99,7 +105,7 @@ export const actions: Actions = {
 				headers: {
 					...Object.fromEntries(request.headers.entries()),
 					'x-auth-lang': language,
-					'x-auth-type': employer?.onboardedAt ? 'login' : 'signup',
+					'x-auth-type': authType,
 					'x-auth-name': employer?.name ?? '',
 				},
 			}),
@@ -110,6 +116,9 @@ export const actions: Actions = {
 		}
 
 		lastVerification = await employers.getLastAuthVerification(email);
-		return message(form, lastVerification!.expiresAt);
+		return message(form, {
+			type: authType,
+			sentAgainAt: lastVerification!.expiresAt,
+		});
 	},
 };

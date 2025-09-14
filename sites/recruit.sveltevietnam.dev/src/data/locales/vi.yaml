@@ -243,7 +243,6 @@ messages:
   components:
     account_menu:
       aria: Quản lý tài khoản của bạn
-      # FIXME: change to account instead of profile
       profile: Hồ sơ
       logout: Đăng xuất
     job_posting_list:

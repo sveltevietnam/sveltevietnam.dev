@@ -23,7 +23,10 @@
 			email: string;
 			turnstile?: string;
 		},
-		Date
+		{
+			type: 'login' | 'signup';
+			sentAgainAt: Date;
+		}
 	>(data.form, {
 		resetForm: false,
 		invalidateAll: false,
@@ -32,8 +35,8 @@
 		timeoutMs: 2000,
 	});
 
-	let sentAgainAt = $derived($message);
-	let rateLimited = $derived(sentAgainAt ? sentAgainAt > new Date() : false);
+	let result = $derived($message);
+	let rateLimited = $derived(result?.sentAgainAt ? result.sentAgainAt > new Date() : false);
 	function handleRateLimitEnd() {
 		rateLimited = false;
 	}
@@ -95,7 +98,7 @@
 					data-timeout={$timeout}
 					disabled={!!rateLimited}
 				>
-					{#if sentAgainAt}
+					{#if result}
 						<T message={m['pages.authenticate.resend']} />
 					{:else}
 						<T message={m.continue} />
@@ -107,13 +110,20 @@
 			{/if}
 		</div>
 	</form>
-	{#if sentAgainAt}
-		<!-- FIXME: distinguish callout for signup vs signin -->
+	{#if result}
 		<p class="c-callout c-callout--info">
-			<T message={m['pages.authenticate.callout.signup']} />
-			<strong>
-				<Countdown endAt={sentAgainAt} onEnd={handleRateLimitEnd} />
-			</strong>.
+			{#if result.type === 'signup'}
+				<T message={m['pages.authenticate.callout.signup']} />
+			{:else if result.type === 'login'}
+				<T message={m['pages.authenticate.callout.login']} />
+			{/if}
+			{#if rateLimited}
+				<T message={m['pages.authenticate.callout.in']} />
+				<strong>
+					<Countdown endAt={result.sentAgainAt} onEnd={handleRateLimitEnd} />
+				</strong>
+			{/if}
+			.
 		</p>
 	{/if}
 	<div class="flex items-center gap-2">
