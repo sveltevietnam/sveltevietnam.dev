@@ -2,8 +2,8 @@ import type { Language } from '@sveltevietnam/i18n';
 
 import { DEFAULT_VARS } from './constants';
 import type { RecruitEmployerChangeEmailVars } from './recruit-employer-change-email';
-import type { RecruitLoginEmployerVars } from './recruit-login-employer';
-import type { RecruitOnboardEmployerVars } from './recruit-onboard-employer';
+import type { RecuirtEmployerLoginVars } from './recruit-employer-login';
+import type { RecruitEmployerOnboardVars } from './recruit-employer-onboard';
 import * as t from './types';
 import type { WelcomTemplateVars } from './welcome';
 
@@ -17,8 +17,8 @@ const modules = import.meta.glob<t.TemplateDefinition>('./*/index.ts', {
 
 export type TemplateVarMap = {
 	welcome: WelcomTemplateVars;
-	'recruit-onboard-employer': RecruitOnboardEmployerVars;
-	'recruit-login-employer': RecruitLoginEmployerVars;
+	'recruit-employer-onboard': RecruitEmployerOnboardVars;
+	'recruit-employer-login': RecuirtEmployerLoginVars;
 	'recruit-employer-change-email': RecruitEmployerChangeEmailVars;
 };
 

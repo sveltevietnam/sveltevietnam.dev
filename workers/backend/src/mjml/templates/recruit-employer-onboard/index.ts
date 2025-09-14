@@ -11,18 +11,17 @@ export default defineTemplate((lang) => ({
 	...(
 		{
 			en: {
-				subject: 'Login — Recruit Platform from the Svelte Vietnam Community',
+				subject: 'Complete your Registration — Recruit Platform from the Svelte Vietnam Community',
 				html: en,
 			},
 			vi: {
-				subject: 'Đăng nhập — Nền tảng Tuyển dụng từ Cộng đồng Svelte Việt Nam',
+				subject: 'Hoàn thiện quy trình đăng ký — Nền tảng Tuyển dụng từ Cộng đồng Svelte Việt Nam',
 				html: vi,
 			},
 		} as const
 	)[lang],
 }));
 
-export interface RecruitLoginEmployerVars {
-	name: string;
+export interface RecruitEmployerOnboardVars {
 	callbackUrl: string;
 }

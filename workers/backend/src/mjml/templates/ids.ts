@@ -1,6 +1,6 @@
 export const ids = [
 	'welcome',
-	'recruit-onboard-employer',
-	'recruit-login-employer',
+	'recruit-employer-onboard',
+	'recruit-employer-login',
 	'recruit-employer-change-email',
 ] as const;

@@ -94,15 +94,13 @@ export function createEmployerAuth() {
 					const mails = backend.mails();
 					const employers = backend.employers();
 					if (type === 'signup') {
-						// FIXME: change templateId to `recruit-employer-onboard`
-						await mails.queue('recruit-onboard-employer' as const, {
+						await mails.queue('recruit-employer-onboard' as const, {
 							lang,
 							email,
 							vars: { callbackUrl: url },
 						});
 					} else {
-						// FIXME: change templateId to `recruit-employer-login`
-						await mails.queue('recruit-login-employer' as const, {
+						await mails.queue('recruit-employer-login' as const, {
 							lang,
 							actorId: (await employers.getIdByEmail(email))!,
 							vars: { name: headers['x-auth-name']!, callbackUrl: url },
