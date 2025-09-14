@@ -82,14 +82,18 @@ export const actions: Actions = {
 		const { email } = form.data;
 		const employers = getBackend().employers();
 		const employer = await employers.getByEmail(email);
-		const authType = employer?.onboardedAt ? 'login' : 'signup';
+		const type = employer?.onboardedAt ? 'login' : 'signup';
 
-		// TODO: separate expiration and rate limiting time period, show exactly how many minutes in callout
+		const RESENT_WAITING_TIME = 90 * 1000; // 90 seconds
+
 		let lastVerification = await employers.getLastAuthVerification(email);
-		if (lastVerification && new Date() < lastVerification.expiresAt) {
+		let sentAgainAt = lastVerification
+			? new Date(lastVerification.createdAt.getTime() + RESENT_WAITING_TIME)
+			: null;
+		if (sentAgainAt && new Date() < sentAgainAt) {
 			return message(form, {
-				type: authType,
-				sentAgainAt: lastVerification.expiresAt,
+				type,
+				sentAgainAt,
 			});
 		}
 
@@ -105,7 +109,7 @@ export const actions: Actions = {
 				headers: {
 					...Object.fromEntries(request.headers.entries()),
 					'x-auth-lang': language,
-					'x-auth-type': authType,
+					'x-auth-type': type,
 					'x-auth-name': employer?.name ?? '',
 				},
 			}),
@@ -116,9 +120,10 @@ export const actions: Actions = {
 		}
 
 		lastVerification = await employers.getLastAuthVerification(email);
+		sentAgainAt = new Date(lastVerification!.createdAt.getTime() + RESENT_WAITING_TIME);
 		return message(form, {
-			type: authType,
-			sentAgainAt: lastVerification!.expiresAt,
+			type,
+			sentAgainAt: sentAgainAt,
 		});
 	},
 };
