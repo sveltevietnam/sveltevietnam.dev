@@ -16,6 +16,7 @@ export const JobPostingSelectWithEmployerSchema = v.object({
 		name: EmployerSelectSchema.entries.name,
 		image: EmployerSelectSchema.entries.image,
 		website: EmployerSelectSchema.entries.website,
+		description: EmployerSelectSchema.entries.description,
 	}),
 });
 export type JobPostingSelectWithEmployerResult = v.InferOutput<

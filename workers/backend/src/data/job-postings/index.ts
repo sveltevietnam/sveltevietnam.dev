@@ -58,6 +58,7 @@ export class JobPostingService extends RpcTarget {
 						name: true,
 						image: true,
 						website: true,
+						description: true,
 					},
 				},
 			},

@@ -217,7 +217,8 @@
 				</section>
 			</div>
 
-			<section>
+			<!-- job description -->
+			<section class="py-6">
 				<h2 class="sr-only">
 					<T message={m['pages.postings_id.desc.heading']} />
 				</h2>
@@ -225,6 +226,12 @@
 					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 					{@html data.posting.description}
 				</div>
+			</section>
+
+			<!-- employer description -->
+			<section class="prose max-w-full">
+				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+				{@html data.posting.employer.description}
 			</section>
 		</div>
 
