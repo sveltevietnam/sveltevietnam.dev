@@ -1,4 +1,4 @@
-import { error, fail } from '@sveltejs/kit';
+import { error, fail, redirect } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms';
 import { valibot } from 'sveltekit-superforms/adapters';
 
@@ -14,8 +14,13 @@ export const load: PageServerLoad = async ({ params, parent, depends }) => {
 
 	const { lang, id } = params;
 	const parentData = await parent();
-	const schema = createJobPostingUpsertSchema(lang);
 
+	if (parentData.expired) {
+		// prevent edit if the posting is expired
+		redirect(302, p['/:lang/postings/:id']({ lang, id }));
+	}
+
+	const schema = createJobPostingUpsertSchema(lang);
 	return {
 		...parentData,
 		form: await superValidate(parentData.posting, valibot(schema)),

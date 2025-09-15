@@ -204,10 +204,17 @@ messages:
       login: Đăng nhập
     postings:
       heading: Bài đăng tuyển
-      create: Tạo mới
-      tba:
-        desc: Chưa có bài đăng tuyển nào.
-        cta: Tạo bài đăng tuyển!
+      active:
+        heading: Đăng tuyển hiện tại
+        create: Tạo mới
+        tba:
+          desc: Chưa có bài đăng tuyển nào.
+          cta: Tạo bài đăng tuyển!
+      expired:
+        heading: Đăng tuyển đã hết hạn
+        desc:
+          Các bài đăng tuyển này không thể sửa đổi và không còn hiển thị trên <a class="c-link"
+          href="{{mainSiteUrl}}/vi/viec-lam">trang việc làm</a>.
     postings_id:
       general:
         heading: Thông tin chung

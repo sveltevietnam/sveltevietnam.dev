@@ -252,13 +252,15 @@
 							<span><T message={m['pages.postings_id.manage.delete']} /></span>
 						</button>
 					</form>
-					<a
-						class="c-btn flex-1 place-content-center"
-						href={p['/:lang/postings/:id/edit']({ lang: routing.lang, id: data.posting.id })}
-					>
-						<i class="i i-[ph--pencil] h-6 w-6"></i>
-						<T message={m['pages.postings_id.manage.edit']} />
-					</a>
+					{#if !data.expired}
+						<a
+							class="c-btn flex-1 place-content-center"
+							href={p['/:lang/postings/:id/edit']({ lang: routing.lang, id: data.posting.id })}
+						>
+							<i class="i i-[ph--pencil] h-6 w-6"></i>
+							<T message={m['pages.postings_id.manage.edit']} />
+						</a>
+					{/if}
 				</div>
 			</section>
 

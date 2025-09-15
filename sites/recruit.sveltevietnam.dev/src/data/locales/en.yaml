@@ -205,10 +205,17 @@ messages:
       login: Login
     postings:
       heading: Your Postings
-      create: Create
-      tba:
-        desc: No postings yet.
-        cta: Create a job posting!
+      active:
+        heading: Active Postings
+        create: Create
+        tba:
+          desc: No postings yet.
+          cta: Create a job posting!
+      expired:
+        heading: Expired Postings
+        desc:
+          These postings are read-only and no longer listed on the <a class="c-link"
+          href="{{mainSiteUrl}}/en/jobs">"Jobs"</a> page.
     postings_id:
       general:
         heading: General Information

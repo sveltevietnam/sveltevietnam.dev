@@ -7,18 +7,28 @@ import type { PageServerLoad } from './$types';
 export const load: PageServerLoad = async ({ params, locals }) => {
 	const { lang } = params;
 	const user = locals.user!;
-	const postings = await getBackend().jobPostings().getByEmployerId(user.id);
+	const postings = (await getBackend().jobPostings().getByEmployerId(user.id)).map((posting) => ({
+		...posting,
+		postedAt: posting.createdAt,
+		href: p['/:lang/postings/:id']({ lang, id: posting.id }),
+		employer: {
+			name: user.name,
+			image: user.image,
+			website: user.website,
+		},
+	}));
+	const expired: typeof postings = [];
+	const active: typeof postings = [];
+	for (const posting of postings) {
+		if (posting.expiredAt < new Date()) {
+			expired.push(posting);
+		} else {
+			active.push(posting);
+		}
+	}
 	return {
-		postings: postings.map((posting) => ({
-			...posting,
-			postedAt: posting.createdAt,
-			href: p['/:lang/postings/:id']({ lang, id: posting.id }),
-			employer: {
-				name: user.name,
-				image: user.image,
-				website: user.website,
-			},
-		})),
+		active,
+		expired,
 		routing: {
 			breadcrumbs: b['/:lang/postings']({ lang }),
 			paths: {
