@@ -27,6 +27,11 @@
 
 	let url = $derived(page.url.origin + routing.paths[routing.lang]);
 	const typeLabelMessage = $derived(JOB_POSTING_TYPE_LABEL[data.posting.type]);
+	const applicationLink = $derived(
+		data.posting.applicationMethod === 'email'
+			? `mailto:${data.posting.applicationLink}`
+			: data.posting.applicationLink,
+	);
 
 	const { delayed, timeout, enhance } = superForm(data.deleteForm, {
 		resetForm: false,
@@ -150,7 +155,7 @@
 							{formatDate(data.posting.expiredAt)}
 						</dd>
 					</dl>
-					<div class="tablet:items-end flex flex-col justify-between gap-4 self-stretch shrink-0">
+					<div class="tablet:items-end flex shrink-0 flex-col justify-between gap-4 self-stretch">
 						<!-- image -->
 						{#snippet imageContent()}
 							{@const classes = 'tablet:h-31 aspect-square h-20 w-auto'}
@@ -185,10 +190,9 @@
 				<!-- actions -->
 				<section class="flex flex-wrap gap-4">
 					<!-- apply -->
-					<!-- FIXME: update href to mailto if email -->
 					<a
 						class="c-btn block flex-1 border-orange-600 bg-orange-600 font-bold text-gray-50"
-						href={data.posting.applicationLink}
+						href={applicationLink}
 						data-external
 					>
 						<T message={m['pages.postings_id.actions.apply']} />
