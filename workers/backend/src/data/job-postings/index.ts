@@ -10,8 +10,11 @@ import {
 	JobPostingInsertSchema,
 	type JobPostingUpdateResult,
 	type JobPostingUpdateInput,
-	JobPostingSelectSchema,
+	JobPostingUpdateSchema,
 	type JobPostingSelectResult,
+	JobPostingSelectSchema,
+	type JobPostingSelectWithEmployerResult,
+	JobPostingSelectWithEmployerSchema,
 } from './schema';
 import { jobPostings } from './tables';
 
@@ -21,6 +24,14 @@ export class JobPostingService extends RpcTarget {
 	constructor(orm: ORM) {
 		super();
 		this.#orm = orm;
+	}
+
+	async getByEmployerId(employerId: string): Promise<JobPostingSelectResult[]> {
+		const jobPostingsList = await this.#orm.query.jobPostings.findMany({
+			where: (table, { eq }) => eq(table.employerId, employerId),
+			orderBy: (table, { desc }) => [desc(table.createdAt)],
+		});
+		return jobPostingsList.map((jp) => v.parse(JobPostingSelectSchema, jp));
 	}
 
 	async insert(input: JobPostingInsertInput): Promise<JobPostingInsertResult> {
@@ -38,7 +49,7 @@ export class JobPostingService extends RpcTarget {
 		return { success: true, id };
 	}
 
-	async getById(id: string): Promise<null | JobPostingSelectResult> {
+	async getById(id: string): Promise<null | JobPostingSelectWithEmployerResult> {
 		const jobPosting = await this.#orm.query.jobPostings.findFirst({
 			where: (table, { eq }) => eq(table.id, id),
 			with: {
@@ -52,11 +63,11 @@ export class JobPostingService extends RpcTarget {
 			},
 		});
 		if (!jobPosting) return null;
-		return v.parse(JobPostingSelectSchema, jobPosting);
+		return v.parse(JobPostingSelectWithEmployerSchema, jobPosting);
 	}
 
 	async updateById(id: string, input: JobPostingUpdateInput): Promise<JobPostingUpdateResult> {
-		const parsed = v.safeParse(JobPostingInsertSchema, input);
+		const parsed = v.safeParse(JobPostingUpdateSchema, input);
 		if (!parsed.success) {
 			return {
 				success: false,

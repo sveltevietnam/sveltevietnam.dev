@@ -5,17 +5,20 @@ import { EmployerSelectSchema } from '../employers/schema';
 
 import { jobPostings } from './tables';
 
-export const JobPostingSelectSchema = v.object({
-	...createSelectSchema(jobPostings, {
-		id: v.pipe(v.string(), v.startsWith('job_')),
-	}).entries,
+export const JobPostingSelectSchema = createSelectSchema(jobPostings, {
+	id: v.pipe(v.string(), v.startsWith('job_')),
+});
+export type JobPostingSelectResult = v.InferOutput<typeof JobPostingSelectSchema>;
+
+export const JobPostingSelectWithEmployerSchema = v.object({
+	...JobPostingSelectSchema.entries,
 	employer: v.object({
 		name: EmployerSelectSchema.entries.name,
 		image: EmployerSelectSchema.entries.image,
 		website: EmployerSelectSchema.entries.website,
 	}),
 });
-export type JobPostingSelectResult = v.InferOutput<typeof JobPostingSelectSchema>;
+export type JobPostingSelectWithEmployerResult = v.InferOutput<typeof JobPostingSelectSchema>;
 
 export const JobPostingInsertSchema = createInsertSchema(jobPostings, {
 	id: v.optional(v.pipe(v.string(), v.startsWith('job_'))),
