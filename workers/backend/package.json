@@ -18,6 +18,10 @@
 		"./data/employers/tables": {
 			"types": "./src/data/employers/tables.ts",
 			"import": "./src/data/employers/tables.ts"
+		},
+		"./data/job-postings/enums": {
+			"types": "./src/data/job-postings/enums.ts",
+			"import": "./src/data/job-postings/enums.ts"
 		}
 	},
 	"scripts": {

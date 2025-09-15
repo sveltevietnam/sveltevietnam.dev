@@ -6,6 +6,7 @@ import { getOrm } from '$/database/orm';
 
 import { BlueskyPostService } from './data/bluesky-posts';
 import { EmployerService } from './data/employers';
+import { JobPostingService } from './data/job-postings';
 import { MailService } from './data/mails';
 import { SubscriberService } from './data/subscribers';
 import {
@@ -19,14 +20,17 @@ export default class extends WorkerEntrypoint<Env> {
 	#mails: MailService;
 	#blueskyPosts: BlueskyPostService;
 	#employers: EmployerService;
+	#jobPostings: JobPostingService;
 
 	constructor(ctx: ExecutionContext, env: Env) {
 		super(ctx, env);
 		const orm = getOrm(env.d1);
+		// TODO: lazy init services?
 		this.#mails = new MailService(orm, env);
 		this.#subscribers = new SubscriberService(orm, env, this.#mails);
 		this.#blueskyPosts = new BlueskyPostService(orm);
 		this.#employers = new EmployerService(orm);
+		this.#jobPostings = new JobPostingService(orm);
 	}
 
 	get healthy() {
@@ -47,6 +51,10 @@ export default class extends WorkerEntrypoint<Env> {
 
 	employers() {
 		return this.#employers;
+	}
+
+	jobPostings() {
+		return this.#jobPostings;
 	}
 
 	async verify(token: string): Promise<JwtVerificationResult> {
