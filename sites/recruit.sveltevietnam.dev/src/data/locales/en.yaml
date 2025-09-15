@@ -122,8 +122,13 @@ messages:
           nonempty_link: Application link is required
       expired_at:
         label: Application deadline
+        note:
+          Posting will no longer be listed on the <a class="c-link"
+          href="{{mainSiteUrl}}/en/jobs">"Jobs"</a> page after this date.
         errors:
           nonempty: Application deadline is required
+          min: Deadline must be later than today
+          max: Deadline must be at most 180 days
       desc:
         label: Job description
         placeholder:

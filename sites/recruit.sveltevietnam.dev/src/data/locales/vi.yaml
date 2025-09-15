@@ -120,8 +120,13 @@ messages:
           nonempty_link: Vui lòng nhập địa chỉ ứng tuyển
       expired_at:
         label: Hạn đăng tuyển
+        note:
+          Đăng tuyển sẽ không còn hiển trên <a class="c-link"
+          href="{{mainSiteUrl}}/vi/viec-lam">trang tuyển dụng</a> sau ngày này.
         errors:
           nonempty: Vui lòng chọn hạn đăng tuyển
+          min: Hạn phải sau ngày hôm nay
+          max: Hạn không được quá 180 ngày
       desc:
         label: Mô tả công việc
         placeholder:

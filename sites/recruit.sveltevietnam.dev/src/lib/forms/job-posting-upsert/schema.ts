@@ -17,8 +17,10 @@ export {
 	JOB_POSTING_APPLICATION_METHODS,
 };
 
+export const JOB_POSTING_MAX_EXPIRATION_MS = 180 * 24 * 60 * 60 * 1000; // 180 days
+
 export function createJobPostingUpsertSchema(lang: Language) {
-	return v.object({
+	return v.objectAsync({
 		title: v.pipe(v.string(), v.nonEmpty(m['inputs.job_posting.title.errors.nonempty'](lang))),
 		type: v.picklist(JOB_POSTING_TYPES, m['inputs.job_posting.type.errors.nonempty'](lang)),
 		location: v.pipe(
@@ -34,8 +36,14 @@ export function createJobPostingUpsertSchema(lang: Language) {
 			v.string(),
 			v.nonEmpty(m['inputs.job_posting.application.errors.nonempty_link'](lang)),
 		),
-		// FIXME: validate to be in future
-		expiredAt: v.date(m['inputs.job_posting.expired_at.errors.nonempty'](lang)),
+		expiredAt: v.pipe(
+			v.date(m['inputs.job_posting.expired_at.errors.nonempty'](lang)),
+			v.minValue(new Date(), m['inputs.job_posting.expired_at.errors.min'](lang)),
+			v.maxValue(
+				new Date(Date.now() + JOB_POSTING_MAX_EXPIRATION_MS),
+				m['inputs.job_posting.expired_at.errors.max'](lang),
+			),
+		),
 		description: v.pipe(v.string(), v.nonEmpty(m['inputs.job_posting.desc.errors.nonempty'](lang))),
 	});
 }

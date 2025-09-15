@@ -52,12 +52,13 @@ export function formatTimeDiff(date1, date2 = new Date()) {
 /**
  * format date to YYYY.MM.DD
  * @param {Date | number | string} date
+ * @param {string} [delimiter]
  * @returns {string}
  */
-export function formatDate(date) {
+export function formatDate(date, delimiter = '.') {
 	if (!isValidDate(date)) return date.toString();
 	date = new Date(date);
-	return `${date.getFullYear()}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date
+	return `${date.getFullYear()}${delimiter}${(date.getMonth() + 1).toString().padStart(2, '0')}${delimiter}${date
 		.getDate()
 		.toString()
 		.padStart(2, '0')}`;

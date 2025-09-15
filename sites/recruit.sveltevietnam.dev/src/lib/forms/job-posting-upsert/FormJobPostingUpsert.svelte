@@ -1,12 +1,14 @@
 <script lang="ts" module>
 	import { T } from '@sveltevietnam/i18n';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
 	import type { Snippet } from 'svelte';
 	import type { HTMLFormAttributes } from 'svelte/elements';
 	import { superForm, type SuperValidated, dateProxy } from 'sveltekit-superforms';
 
 	import { invalidate } from '$app/navigation';
 	import * as m from '$data/locales/generated/messages';
+	import { VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN } from '$env/static/public';
 
 	import { createSuperFormGenericErrorHandler } from '../utils';
 
@@ -17,6 +19,7 @@
 		type JobPostingUpsertInput,
 		type JobPostingApplicationMethod,
 		JOB_POSTING_TYPES,
+		JOB_POSTING_MAX_EXPIRATION_MS,
 	} from './schema';
 
 	export interface FormJobPostingUpsertProps extends HTMLFormAttributes {
@@ -261,16 +264,26 @@
 				id="expires-at"
 				bind:value={$proxyExpiredAt}
 				{...$constraints.expiredAt}
+				min={formatDate(new Date(), '-')}
+				max={formatDate(Date.now() + JOB_POSTING_MAX_EXPIRATION_MS, '-')}
 				{...$errors.expiredAt && {
 					'aria-invalid': 'true',
 					'aria-errormessage': 'error-expires-at',
 				}}
 			/>
-			{#if $errors.expiredAt?.[0]}
-				<p class={commonErrorClasses} id="error-expires-at">
-					{$errors.expiredAt[0]}
+			<div class="flex items-baseline justify-between gap-4">
+				{#if $errors.expiredAt?.[0]}
+					<p class={commonErrorClasses} id="error-expires-at">
+						{$errors.expiredAt[0]}
+					</p>
+				{/if}
+				<p class="c-text-body-xs ml-auto">
+					<T
+						message={m['inputs.job_posting.expired_at.note']}
+						mainSiteUrl={VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN}
+					/>
 				</p>
-			{/if}
+			</div>
 		</div>
 
 		<!-- description -->
