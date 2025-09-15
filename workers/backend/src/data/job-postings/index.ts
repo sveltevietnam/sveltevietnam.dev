@@ -8,8 +8,10 @@ import {
 	type JobPostingInsertInput,
 	type JobPostingInsertResult,
 	JobPostingInsertSchema,
-	JobPostingUpdateResult,
-	JobPostingUpdateInput,
+	type JobPostingUpdateResult,
+	type JobPostingUpdateInput,
+	JobPostingSelectSchema,
+	type JobPostingSelectResult,
 } from './schema';
 import { jobPostings } from './tables';
 
@@ -36,12 +38,21 @@ export class JobPostingService extends RpcTarget {
 		return { success: true, id };
 	}
 
-	async getById(id: string): Promise<null | JobPostingInsertInput> {
+	async getById(id: string): Promise<null | JobPostingSelectResult> {
 		const jobPosting = await this.#orm.query.jobPostings.findFirst({
 			where: (table, { eq }) => eq(table.id, id),
+			with: {
+				employer: {
+					columns: {
+						name: true,
+						image: true,
+						website: true,
+					},
+				},
+			},
 		});
 		if (!jobPosting) return null;
-		return v.parse(JobPostingInsertSchema, jobPosting);
+		return v.parse(JobPostingSelectSchema, jobPosting);
 	}
 
 	async updateById(id: string, input: JobPostingUpdateInput): Promise<JobPostingUpdateResult> {

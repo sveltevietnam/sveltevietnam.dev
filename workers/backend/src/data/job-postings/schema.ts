@@ -1,10 +1,19 @@
 import { createSelectSchema, createInsertSchema, createUpdateSchema } from 'drizzle-valibot';
 import * as v from 'valibot';
 
+import { EmployerSelectSchema } from '../employers/schema';
+
 import { jobPostings } from './tables';
 
-export const JobPostingSelectSchema = createSelectSchema(jobPostings, {
-	id: v.pipe(v.string(), v.startsWith('job_')),
+export const JobPostingSelectSchema = v.object({
+	...createSelectSchema(jobPostings, {
+		id: v.pipe(v.string(), v.startsWith('job_')),
+	}).entries,
+	employer: v.object({
+		name: EmployerSelectSchema.entries.name,
+		image: EmployerSelectSchema.entries.image,
+		website: EmployerSelectSchema.entries.website,
+	}),
 });
 export type JobPostingSelectResult = v.InferOutput<typeof JobPostingSelectSchema>;
 

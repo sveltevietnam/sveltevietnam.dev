@@ -9,9 +9,7 @@
 
 	let { i18n, posting, class: cls, ...rest }: JobPostingProps = $props();
 
-	let image = $derived(posting.employer.image ?? fallback1x1);
-
-	const imageClasses = '@md:row-span-4';
+	const imageContainerClasses = '@md:row-span-4';
 </script>
 
 <div class="@container">
@@ -25,14 +23,19 @@
 	>
 		<!-- image -->
 		{#snippet imageContent()}
-			<enhanced:img class="@md:h-31 aspect-square h-20 w-auto" src={image} alt="" />
+			{@const classes = '@md:h-31 aspect-square h-20 w-auto'}
+			{#if posting.employer.image}
+				<img class={classes} width="80" height="80" src={posting.employer.image} alt="" />
+			{:else}
+				<enhanced:img class={classes} src={fallback1x1} alt="" />
+			{/if}
 		{/snippet}
 		{#if posting.href}
-			<a class={['c-link-image', imageClasses]} href={posting.href} aria-hidden="true">
+			<a class={['c-link-image', imageContainerClasses]} href={posting.href} aria-hidden="true">
 				{@render imageContent()}
 			</a>
 		{:else}
-			<div class={imageClasses} aria-hidden="true">
+			<div class={imageContainerClasses} aria-hidden="true">
 				{@render imageContent()}
 			</div>
 		{/if}
