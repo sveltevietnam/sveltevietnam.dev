@@ -26,7 +26,7 @@
 	} = Contexts.get();
 
 	let url = $derived(page.url.origin + routing.paths[routing.lang]);
-	let avatarUrl = $derived(data.posting.employer.avatarUrl ?? fallback1x1);
+	let image = $derived(data.posting.employer.image ?? fallback1x1);
 	const typeLabelMessage = $derived(JOB_POSTING_TYPE_LABEL[data.posting.type]);
 
 	const { delayed, timeout, enhance } = superForm(data.deleteForm, {
@@ -154,7 +154,7 @@
 					<div class="tablet:items-end flex flex-col justify-between gap-4 self-stretch">
 						<!-- image -->
 						{#snippet imageContent()}
-							<enhanced:img class="tablet:h-31 aspect-square h-20 w-auto" src={avatarUrl} alt="" />
+							<enhanced:img class="tablet:h-31 aspect-square h-20 w-auto" src={image} alt="" />
 						{/snippet}
 						{#if data.posting.href}
 							<a class="c-link-image" href={data.posting.href} aria-hidden="true">

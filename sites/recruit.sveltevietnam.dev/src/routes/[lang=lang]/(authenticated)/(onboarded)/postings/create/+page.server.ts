@@ -16,7 +16,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 	return {
 		employer: {
 			name: employer.name,
-			avatarUrl: employer.image,
+			image: employer.image,
 			website: employer.website,
 		},
 		form: await superValidate(valibot(schema)),

@@ -9,7 +9,7 @@
 
 	let { i18n, posting, class: cls, ...rest }: JobPostingProps = $props();
 
-	let avatarUrl = $derived(posting.employer.avatarUrl ?? fallback1x1);
+	let image = $derived(posting.employer.image ?? fallback1x1);
 
 	const imageClasses = '@md:row-span-4';
 </script>
@@ -25,7 +25,7 @@
 	>
 		<!-- image -->
 		{#snippet imageContent()}
-			<enhanced:img class="@md:h-31 aspect-square h-20 w-auto" src={avatarUrl} alt="" />
+			<enhanced:img class="@md:h-31 aspect-square h-20 w-auto" src={image} alt="" />
 		{/snippet}
 		{#if posting.href}
 			<a class={['c-link-image', imageClasses]} href={posting.href} aria-hidden="true">

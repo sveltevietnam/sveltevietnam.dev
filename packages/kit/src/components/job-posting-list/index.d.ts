@@ -12,7 +12,7 @@ export interface JobPostingData {
 	postedAt: Date;
 	expiredAt: Date;
 	employer: {
-		avatarUrl?: string;
+		image?: string;
 		name: string;
 		website?: string;
 	};

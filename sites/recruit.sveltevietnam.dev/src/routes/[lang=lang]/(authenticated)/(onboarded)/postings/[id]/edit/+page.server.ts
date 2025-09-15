@@ -25,7 +25,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		expiredAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
 		employer: {
 			name: 'Company XYZ ABC',
-			avatarUrl: undefined,
+			image: undefined,
 			website: 'https://company.xyz',
 		},
 		href: p['/:lang/postings/:id']({ lang, id }),
