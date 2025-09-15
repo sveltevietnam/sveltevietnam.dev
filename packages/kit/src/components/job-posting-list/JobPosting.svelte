@@ -89,8 +89,8 @@
 			gap-y-2 border-t pt-1"
 		>
 			<p>
-				<T message={i18n.postedAt} />
-				{formatDate(posting.postedAt)}
+				<T message={i18n.createdAt} />
+				{formatDate(posting.createdAt)}
 			</p>
 			<p>
 				<T message={i18n.expiredAt} />

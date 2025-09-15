@@ -219,7 +219,7 @@ messages:
     postings_id:
       general:
         heading: General Information
-        posted_at: Posted on
+        created_at: Posted on
         expired_at: Expires on
       desc:
         heading: Job Description
@@ -262,7 +262,7 @@ messages:
       profile: Profile
       logout: Logout
     job_posting_list:
-      posted_at: Posted on
+      created_at: Posted on
       expired_at: Expires on
     breadcrumbs:
       aria: breadcrumbs

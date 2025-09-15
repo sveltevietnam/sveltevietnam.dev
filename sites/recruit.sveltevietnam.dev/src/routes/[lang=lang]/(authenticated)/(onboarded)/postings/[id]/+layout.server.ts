@@ -19,8 +19,6 @@ export const load: LayoutServerLoad = async ({ params, depends }) => {
 	return {
 		posting: {
 			...posting,
-			// FIXME: change postedAt to createdAt for consistency
-			postedAt: posting.createdAt,
 			href: p['/:lang/postings/:id']({ lang, id }),
 		},
 		expired: posting.expiredAt < new Date(),

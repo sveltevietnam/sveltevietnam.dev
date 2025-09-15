@@ -46,7 +46,7 @@
 					postings={data.active}
 					i18n={{
 						at: m['at'],
-						postedAt: m['components.job_posting_list.posted_at'],
+						createdAt: m['components.job_posting_list.created_at'],
 						expiredAt: m['components.job_posting_list.expired_at'],
 					}}
 				/>
@@ -79,7 +79,7 @@
 					postings={data.expired}
 					i18n={{
 						at: m['at'],
-						postedAt: m['components.job_posting_list.posted_at'],
+						createdAt: m['components.job_posting_list. created_at'],
 						expiredAt: m['components.job_posting_list.expired_at'],
 					}}
 				/>

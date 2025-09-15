@@ -9,7 +9,7 @@ export interface JobPostingData {
 	type: string;
 	location: string;
 	salary: string;
-	postedAt: Date;
+	createdAt: Date;
 	expiredAt: Date;
 	employer: {
 		image?: string | null;
@@ -20,7 +20,7 @@ export interface JobPostingData {
 
 export interface JobPostingI18N {
 	at: Message<'string', never>;
-	postedAt: Message<'string', never>;
+	createdAt: Message<'string', never>;
 	expiredAt: Message<'string', never>;
 }
 

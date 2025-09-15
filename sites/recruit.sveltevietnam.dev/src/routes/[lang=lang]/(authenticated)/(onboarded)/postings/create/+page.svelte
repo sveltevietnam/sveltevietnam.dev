@@ -14,7 +14,7 @@
 	action="?/create"
 	posting={{
 		id: 'preview',
-		postedAt: new Date(),
+		createdAt: new Date(),
 		employer: data.employer,
 		// these fields are from the form
 		title: '<job_title>',

@@ -142,8 +142,8 @@
 							<i class="i i-[ph--calendar-blank] h-6 w-6"></i>
 						</dt>
 						<dd>
-							<T message={m['pages.postings_id.general.posted_at']} />
-							{formatDate(data.posting.postedAt)}
+							<T message={m['pages.postings_id.general.created_at']} />
+							{formatDate(data.posting.createdAt)}
 						</dd>
 
 						<!-- expiration date -->

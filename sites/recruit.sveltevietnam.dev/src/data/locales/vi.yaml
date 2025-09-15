@@ -218,7 +218,7 @@ messages:
     postings_id:
       general:
         heading: Thông tin chung
-        posted_at: Đăng ngày
+        created_at: Đăng ngày
         expired_at: Hết hạn ngày
       desc:
         heading: Mô tả công việc
@@ -261,7 +261,7 @@ messages:
       profile: Hồ sơ
       logout: Đăng xuất
     job_posting_list:
-      posted_at: Đăng ngày
+      created_at: Đăng ngày
       expired_at: Hết hạn ngày
     breadcrumbs:
       aria: phân cấp trang
