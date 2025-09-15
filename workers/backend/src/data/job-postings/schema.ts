@@ -18,7 +18,9 @@ export const JobPostingSelectWithEmployerSchema = v.object({
 		website: EmployerSelectSchema.entries.website,
 	}),
 });
-export type JobPostingSelectWithEmployerResult = v.InferOutput<typeof JobPostingSelectSchema>;
+export type JobPostingSelectWithEmployerResult = v.InferOutput<
+	typeof JobPostingSelectWithEmployerSchema
+>;
 
 export const JobPostingInsertSchema = createInsertSchema(jobPostings, {
 	id: v.optional(v.pipe(v.string(), v.startsWith('job_'))),
