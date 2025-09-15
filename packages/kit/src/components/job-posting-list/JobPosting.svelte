@@ -7,12 +7,12 @@
 
 	import type { JobPostingProps } from '.';
 
-	let { i18n, posting, class: cls, ...rest }: JobPostingProps = $props();
+	let { i18n, posting, class: cls, containerClass, ...rest }: JobPostingProps = $props();
 
-	const imageContainerClasses = '@md:row-span-4';
+	const imageContainerClasses = '@md:row-span-4 shrink-0';
 </script>
 
-<div class="@container">
+<div class={['@container', containerClass]}>
 	<article
 		class={[
 			'@md:gap-y-2 @md:gap-x-6 grid grid-cols-[auto_1fr] grid-rows-[auto_auto_auto_auto] gap-4',

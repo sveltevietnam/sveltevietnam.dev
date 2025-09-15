@@ -1,6 +1,6 @@
 import type { Message } from '@sveltevietnam/i18n/runtime';
 import type { Component } from 'svelte';
-import type { HTMLAttributes } from 'svelte/elements';
+import type { ClassValue, HTMLAttributes } from 'svelte/elements';
 
 export interface JobPostingData {
 	id: string;
@@ -27,6 +27,7 @@ export interface JobPostingI18N {
 export interface JobPostingProps extends HTMLAttributes<HTMLElement> {
 	posting: JobPostingData;
 	i18n: JobPostingI18N;
+	containerClass?: ClassValue;
 }
 
 export interface JobPostingListProps extends HTMLAttributes<HTMLUListElement> {
