@@ -7,6 +7,8 @@
 
 	import * as m from '$data/locales/generated/messages';
 
+	import { createSuperFormGenericErrorHandler } from '../utils';
+
 	import {
 		JOB_POSTING_APPLICATION_METHODS,
 		JOB_POSTING_TYPE_LABEL,
@@ -26,7 +28,10 @@
 <script lang="ts">
 	let { data, cta, class: cls, ...rest }: FormJobPostingUpsertProps = $props();
 
-	const { routing } = Contexts.get();
+	const {
+		routing,
+		notifications: { toaster },
+	} = Contexts.get();
 
 	const { form, enhance, constraints, errors, delayed, timeout } = superForm<JobPostingUpsertInput>(
 		data as SuperValidated<JobPostingUpsertInput>,
@@ -36,6 +41,18 @@
 			multipleSubmits: 'prevent',
 			delayMs: 500,
 			timeoutMs: 2000,
+			onError: createSuperFormGenericErrorHandler(toaster),
+			onResult({ result }) {
+				if (result.type === 'redirect') {
+					toaster.success({
+						message: m['pages.postings_upsert.notifications.create'],
+					});
+				} else if (result.type === 'success') {
+					toaster.success({
+						message: m['pages.postings_upsert.notifications.update'],
+					});
+				}
+			}
 		},
 	);
 	const applicationMessages = $derived(

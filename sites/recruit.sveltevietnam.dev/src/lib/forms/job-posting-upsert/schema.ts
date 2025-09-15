@@ -1,20 +1,21 @@
+import {
+	JOB_POSTING_TYPES,
+	JOB_POSTING_APPLICATION_METHODS,
+	type JobPostingType,
+	type JobPostingApplicationMethod,
+} from '@sveltevietnam/backend/data/job-postings/enums';
 import type { Language } from '@sveltevietnam/i18n';
 import type { Message } from '@sveltevietnam/i18n/runtime';
 import * as v from 'valibot';
 
 import * as m from '$data/locales/generated/messages';
 
-export const JOB_POSTING_TYPES = [
-	'full-time',
-	'part-time',
-	'internship',
-	'contract',
-	'volunteer',
-] as const;
-export type JobPostingType = (typeof JOB_POSTING_TYPES)[number];
-
-export const JOB_POSTING_APPLICATION_METHODS = ['email', 'url'] as const;
-export type JobPostingApplicationMethod = (typeof JOB_POSTING_APPLICATION_METHODS)[number];
+export {
+	type JobPostingType,
+	type JobPostingApplicationMethod,
+	JOB_POSTING_TYPES,
+	JOB_POSTING_APPLICATION_METHODS,
+};
 
 export function createJobPostingUpsertSchema(lang: Language) {
 	return v.object({

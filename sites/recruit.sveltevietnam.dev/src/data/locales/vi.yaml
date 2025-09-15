@@ -240,6 +240,9 @@ messages:
           email <a class="c-link" href="mailto:jobs@sveltevietnam.dev">jobs@sveltevietnam.dev</a>
           hoặc tại <a class="c-link" href="https://discord.sveltevietnam.dev">Discord của Svelte
           Việt Nam</a>.
+      notifications:
+        update: Bài đăng tuyển đã được cập nhật!
+        create: Bài đăng tuyển đã được tạo!
   components:
     account_menu:
       aria: Quản lý tài khoản của bạn

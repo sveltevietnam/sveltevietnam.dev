@@ -11,12 +11,16 @@
 	} from '$env/static/public';
 	import { Countdown } from '$lib/components/countdown';
 	import { SingleBoxPageLayout } from '$lib/components/single-box-page-layout';
+	import { createSuperFormGenericErrorHandler } from '$lib/forms/utils';
 
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
 
-	const { routing } = Contexts.get();
+	const {
+		routing,
+		notifications: { toaster },
+	} = Contexts.get();
 
 	const { form, enhance, constraints, errors, delayed, timeout, message } = superForm<
 		{
@@ -33,6 +37,7 @@
 		multipleSubmits: 'prevent',
 		delayMs: 500,
 		timeoutMs: 2000,
+		onError: createSuperFormGenericErrorHandler(toaster),
 	});
 
 	let result = $derived($message);

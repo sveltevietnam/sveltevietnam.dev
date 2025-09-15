@@ -12,12 +12,18 @@
 	import * as p from '$data/routes/generated';
 	import { SponsorReminder } from '$lib/components/sponsor-reminder';
 	import { JOB_POSTING_TYPE_LABEL } from '$lib/forms/job-posting-upsert';
+	import { createSuperFormGenericErrorHandler } from '$lib/forms/utils';
 
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
 
-	const { routing, dialogs, colorScheme } = Contexts.get();
+	const {
+		routing,
+		dialogs,
+		colorScheme,
+		notifications: { toaster },
+	} = Contexts.get();
 
 	let url = $derived(page.url.origin + routing.paths[routing.lang]);
 	let avatarUrl = $derived(data.posting.employer.avatarUrl ?? fallback1x1);
@@ -29,6 +35,7 @@
 		multipleSubmits: 'prevent',
 		delayMs: 500,
 		timeoutMs: 2000,
+		onError: createSuperFormGenericErrorHandler(toaster),
 	});
 
 	function openQrDialog() {
