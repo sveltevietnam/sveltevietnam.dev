@@ -185,6 +185,7 @@
 				<!-- actions -->
 				<section class="flex flex-wrap gap-4">
 					<!-- apply -->
+					<!-- FIXME: update href to mailto if email -->
 					<a
 						class="c-btn block flex-1 border-orange-600 bg-orange-600 font-bold text-gray-50"
 						href={data.posting.applicationLink}

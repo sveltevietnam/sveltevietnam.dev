@@ -242,8 +242,8 @@ messages:
           href="mailto:jobs@sveltevietnam.dev">jobs@sveltevietnam.dev</a> or via the <a
           class="c-link" href="https://discord.sveltevietnam.dev">Svelte Vietnam Discord</a>."
       notifications:
-        update: Job posting has been updated!
-        create: Job posting has been created!
+        update: Update has been approved and applied to your posting!
+        create: Posting has been approved and is now live!
   components:
     account_menu:
       aria: Manage your account

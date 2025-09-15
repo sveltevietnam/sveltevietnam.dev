@@ -241,8 +241,8 @@ messages:
           hoặc tại <a class="c-link" href="https://discord.sveltevietnam.dev">Discord của Svelte
           Việt Nam</a>.
       notifications:
-        update: Bài đăng tuyển đã được cập nhật!
-        create: Bài đăng tuyển đã được tạo!
+        update: Sửa đổi đã được xét duyệt và cập nhật!
+        create: Bài đăng tuyển đã được xét duyệt và có hiệu lực ngay lập tức!
   components:
     account_menu:
       aria: Quản lý tài khoản của bạn

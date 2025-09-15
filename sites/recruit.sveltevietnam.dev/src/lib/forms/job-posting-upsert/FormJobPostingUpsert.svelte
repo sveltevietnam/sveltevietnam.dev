@@ -5,6 +5,7 @@
 	import type { HTMLFormAttributes } from 'svelte/elements';
 	import { superForm, type SuperValidated, dateProxy } from 'sveltekit-superforms';
 
+	import { invalidate } from '$app/navigation';
 	import * as m from '$data/locales/generated/messages';
 
 	import { createSuperFormGenericErrorHandler } from '../utils';
@@ -48,11 +49,12 @@
 						message: m['pages.postings_upsert.notifications.create'],
 					});
 				} else if (result.type === 'success') {
+					invalidate('job-posting-edit');
 					toaster.success({
 						message: m['pages.postings_upsert.notifications.update'],
 					});
 				}
-			}
+			},
 		},
 	);
 	const applicationMessages = $derived(

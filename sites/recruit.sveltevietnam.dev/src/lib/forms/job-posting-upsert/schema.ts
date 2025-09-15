@@ -34,6 +34,7 @@ export function createJobPostingUpsertSchema(lang: Language) {
 			v.string(),
 			v.nonEmpty(m['inputs.job_posting.application.errors.nonempty_link'](lang)),
 		),
+		// FIXME: validate to be in future
 		expiredAt: v.date(m['inputs.job_posting.expired_at.errors.nonempty'](lang)),
 		description: v.pipe(v.string(), v.nonEmpty(m['inputs.job_posting.desc.errors.nonempty'](lang))),
 	});
