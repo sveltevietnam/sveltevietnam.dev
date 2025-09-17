@@ -58,9 +58,13 @@ export class JobPostingService extends RpcTarget {
 		return jobPosting.employerId;
 	}
 
-	async getById(id: string): Promise<null | JobPostingSelectWithEmployerResult> {
+	async getById(
+		id: string,
+		employerId?: string,
+	): Promise<null | JobPostingSelectWithEmployerResult> {
 		const jobPosting = await this.#orm.query.jobPostings.findFirst({
-			where: (table, { eq }) => eq(table.id, id),
+			where: (table, { eq, and }) =>
+				employerId ? and(eq(table.id, id), eq(table.employerId, employerId)) : eq(table.id, id),
 			with: {
 				employer: {
 					columns: {
