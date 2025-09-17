@@ -10,6 +10,7 @@
 		"dev:wrangler": "wrangler pages dev .svelte-kit/cloudflare --port 5007 --persist-to=../../workers/backend/.wrangler/state",
 		"build:i18n": "pnpm i18n build 'src/**/locales'",
 		"build": "svelte-kit sync && vite build",
+		"deploy": "wrangler deploy",
 		"preview": "vite preview",
 		"lint": "run-p lint:*",
 		"lint:i18n": "pnpm i18n lint 'src/**/locales'",
