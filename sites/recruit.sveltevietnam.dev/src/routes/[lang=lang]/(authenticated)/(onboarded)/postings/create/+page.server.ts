@@ -4,6 +4,7 @@ import { valibot } from 'sveltekit-superforms/adapters';
 
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
+import { VITE_PRIVATE_ADMIN_EMAIL } from '$env/static/private';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 import { getBackend } from '$lib/backend/utils';
 import { createJobPostingUpsertSchema } from '$lib/forms/job-posting-upsert';
@@ -57,18 +58,27 @@ export const actions = {
 			error(500, { code: 'SV001', message: 'Unknown sever error' });
 		}
 
-		// TODO: queue emails to employer and to admin
 		const jobPath = p['/:lang/postings/:id']({ lang, id: result.id });
 
-		await backend.mails().queue('recruit-employer-create-job-posting', {
-			actorId: employer.id,
-			lang,
-			vars: {
-				name: employer.name,
-				jobTitle: form.data.title,
-				jobUrl: VITE_PUBLIC_ORIGIN + jobPath,
-			},
-		});
+		await Promise.all([
+			backend.mails().queue('recruit-employer-create-job-posting', {
+				actorId: employer.id,
+				lang,
+				vars: {
+					name: employer.name,
+					jobTitle: form.data.title,
+					jobUrl: VITE_PUBLIC_ORIGIN + jobPath,
+				},
+			}),
+			backend.mails().queue('recruit-admin-job-posting-pending-approval', {
+				email: VITE_PRIVATE_ADMIN_EMAIL,
+				lang,
+				vars: {
+					employerName: employer.name,
+					jobTitle: form.data.title,
+				},
+			}),
+		]);
 
 		redirect(302, jobPath);
 	},

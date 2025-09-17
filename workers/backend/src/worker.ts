@@ -57,6 +57,7 @@ export default class extends WorkerEntrypoint<Env> {
 		return this.#jobPostings;
 	}
 
+	// TODO: maybe can create a token service for verify & create/sign
 	async verify(token: string): Promise<JwtVerificationResult> {
 		const secret = this.env.MODE !== 'development' ? await this.env.secret_jwt.get() : 'secret';
 		try {
@@ -82,9 +83,13 @@ export default class extends WorkerEntrypoint<Env> {
 	}
 
 	override fetch(request: Request): Response | Promise<Response> {
-		return new Hono<{ Bindings: Env }>()
-			.get('/health', (c) => c.text('ok'))
-			.fetch(request, this.env, this.ctx);
+		return (
+			new Hono<{ Bindings: Env }>()
+				.get('/health', (c) => c.text('ok'))
+				// TODO: implement quick approval endpoint for admin
+				// used in email sent to admin on job posting creation
+				.fetch(request, this.env, this.ctx)
+		);
 	}
 
 	override async queue(batch: MessageBatch<Queue.Message>): Promise<void> {

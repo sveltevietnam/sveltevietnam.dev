@@ -1,0 +1,10 @@
+<mj-section padding-top="0">
+	<mj-column>
+		<mj-divider />
+		<mj-include path="../socials.mjml" />
+		<mj-text mj-class="footer-text">
+			<a href="{{mailUrl}}">View this email on web</a>
+		</mj-text>
+	</mj-column>
+</mj-section>
+
