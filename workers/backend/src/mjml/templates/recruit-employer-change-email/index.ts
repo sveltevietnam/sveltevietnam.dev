@@ -23,6 +23,7 @@ export default defineTemplate((lang) => ({
 }));
 
 export interface RecruitEmployerChangeEmailVars {
+	name: string;
 	newEmail: string;
 	callbackUrl: string;
 }
