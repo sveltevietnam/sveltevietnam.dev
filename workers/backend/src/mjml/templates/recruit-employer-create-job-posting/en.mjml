@@ -1,0 +1,28 @@
+<mjml>
+	<mj-head>
+		<mj-title>{{subject}}</mj-title>
+		<mj-include path="../../includes/common-head.mjml" />
+	</mj-head>
+	<mj-body background-color="#ffffff">
+		<mj-include path="../../includes/header.mjml" />
+
+		<mj-section padding-top="0">
+			<mj-column>
+				<mj-text padding-top="0">Hello {{name}},</mj-text>
+				<mj-text>
+					Your job posting <a href="{{jobUrl}}">"{{jobTitle}}"</a> has been successfully created
+					and is pending approval.
+				</mj-text>
+				<mj-text>
+					You will receive an email when the job posting is approved or if additional information is
+					required. The job posting will go live on the
+					<a href="https://www.sveltevietnam.dev/en/jobs">Jobs</a> page as soon as it is approved.
+				</mj-text>
+				<mj-text>Thank you,</mj-text>
+				<mj-text>Svelte Vietnam</mj-text>
+			</mj-column>
+		</mj-section>
+
+		<mj-include path="../../includes/recruit-footer/en.mjml" />
+	</mj-body>
+</mjml>

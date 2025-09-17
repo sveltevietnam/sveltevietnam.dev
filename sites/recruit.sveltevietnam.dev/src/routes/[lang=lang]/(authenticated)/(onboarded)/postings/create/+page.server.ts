@@ -4,6 +4,7 @@ import { valibot } from 'sveltekit-superforms/adapters';
 
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
+import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 import { getBackend } from '$lib/backend/utils';
 import { createJobPostingUpsertSchema } from '$lib/forms/job-posting-upsert';
 
@@ -32,23 +33,23 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 
 export const actions = {
 	create: async (event) => {
-		const { request, locals } = event;
-		const { language } = locals;
+		const { request, locals, params } = event;
+		const { lang } = params;
 
-		const jobPostings = getBackend().jobPostings();
+		const backend = getBackend();
 
-		const employerId = locals.user?.id;
-		if (!employerId) redirect(302, p['/:lang/authenticate']({ lang: language }));
+		const employer = locals.user;
+		if (!employer) redirect(302, p['/:lang/authenticate']({ lang }));
 
-		const schema = createJobPostingUpsertSchema(language);
+		const schema = createJobPostingUpsertSchema(lang);
 		const form = await superValidate(request, valibot(schema));
 		if (!form.valid) {
 			return fail(400, { form });
 		}
 
-		const result = await jobPostings.insert({
+		const result = await backend.jobPostings().insert({
 			...form.data,
-			employerId,
+			employerId: employer.id,
 		});
 
 		if (!result.success) {
@@ -57,7 +58,18 @@ export const actions = {
 		}
 
 		// TODO: queue emails to employer and to admin
+		const jobPath = p['/:lang/postings/:id']({ lang, id: result.id });
 
-		redirect(302, p['/:lang/postings/:id']({ lang: language, id: result.id }));
+		await backend.mails().queue('recruit-employer-create-job-posting', {
+			actorId: employer.id,
+			lang,
+			vars: {
+				name: employer.name,
+				jobTitle: form.data.title,
+				jobUrl: VITE_PUBLIC_ORIGIN + jobPath,
+			},
+		});
+
+		redirect(302, jobPath);
 	},
 };
