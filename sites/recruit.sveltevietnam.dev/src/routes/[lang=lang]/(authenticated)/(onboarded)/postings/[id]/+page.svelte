@@ -174,14 +174,16 @@
 							{data.posting.salary}
 						</dd>
 
-						<!-- publication date -->
-						<dt>
-							<i class="i i-[ph--calendar-blank] h-6 w-6"></i>
-						</dt>
-						<dd>
-							<T message={m['pages.postings_id.general.created_at']} />
-							{formatDate(data.posting.createdAt)}
-						</dd>
+						{#if data.posting.postedAt}
+							<!-- publication date -->
+							<dt>
+								<i class="i i-[ph--calendar-blank] h-6 w-6"></i>
+							</dt>
+							<dd>
+								<T message={m['pages.postings_id.general.posted_at']} />
+								{formatDate(data.posting.postedAt)}
+							</dd>
+						{/if}
 
 						<!-- expiration date -->
 						<dt>

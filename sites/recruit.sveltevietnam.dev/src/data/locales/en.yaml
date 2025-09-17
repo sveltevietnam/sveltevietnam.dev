@@ -212,6 +212,9 @@ messages:
           they are approved or need changes.
       active:
         heading: Active Postings
+        desc:
+          These postings are appproved and live on the <a class="c-link"
+          href="{{mainSiteUrl}}/en/jobs">"Jobs"</a> page.
         create: Create
         tba:
           desc: No active postings yet.
@@ -227,7 +230,7 @@ messages:
         is approved or need changes.
       general:
         heading: General Information
-        created_at: Posted on
+        posted_at: Posted on
         expired_at: Expires on
       desc:
         heading: Job Description
@@ -280,7 +283,7 @@ messages:
       profile: Profile
       logout: Logout
     job_posting_list:
-      created_at: Posted on
+      posted_at: Posted on
       expired_at: Expires on
     breadcrumbs:
       aria: breadcrumbs

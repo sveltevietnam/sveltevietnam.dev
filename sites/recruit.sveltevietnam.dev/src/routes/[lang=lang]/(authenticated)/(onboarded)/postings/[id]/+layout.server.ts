@@ -20,6 +20,7 @@ export const load: LayoutServerLoad = async ({ params, depends, locals }) => {
 		posting: {
 			...posting,
 			href: p['/:lang/postings/:id']({ lang, id }),
+			postedAt: posting.approvedAt,
 		},
 		expired: posting.expiredAt < new Date(),
 	};

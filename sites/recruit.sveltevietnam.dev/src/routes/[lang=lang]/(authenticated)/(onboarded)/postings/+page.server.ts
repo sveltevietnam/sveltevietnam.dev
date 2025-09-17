@@ -10,6 +10,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 	const postings = (await getBackend().jobPostings().getByEmployerId(user.id)).map((posting) => ({
 		...posting,
 		href: p['/:lang/postings/:id']({ lang, id: posting.id }),
+		postedAt: posting.approvedAt,
 		employer: {
 			name: user.name,
 			image: user.image,

@@ -31,14 +31,20 @@
 
 	<div class="space-y-section">
 		<div class="space-y-10">
-			<div class="border-outline flex items-end justify-between gap-2 border-b">
-				<h2 class="c-text-heading">
-					<T message={m['pages.postings.active.heading']} />
-				</h2>
-				<a class="c-btn gap-2" href={p['/:lang/postings/create']({ lang: routing.lang })}>
-					<T message={m['pages.postings.active.create']} />
-					<i class="i i-[ph--plus] h-6 w-6"></i>
-				</a>
+			<div class="space-y-6">
+				<div class="border-outline flex items-end justify-between gap-2 border-b">
+					<h2 class="c-text-heading">
+						<T message={m['pages.postings.active.heading']} />
+					</h2>
+					<a class="c-btn gap-2" href={p['/:lang/postings/create']({ lang: routing.lang })}>
+						<T message={m['pages.postings.active.create']} />
+						<i class="i i-[ph--plus] h-6 w-6"></i>
+					</a>
+				</div>
+
+				<p>
+					<T message={m['pages.postings.active.desc']} mainSiteUrl={VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN} />
+				</p>
 			</div>
 
 			{#if data.active.length > 0}
@@ -46,7 +52,7 @@
 					postings={data.active}
 					i18n={{
 						at: m['at'],
-						createdAt: m['components.job_posting_list.created_at'],
+						postedAt: m['components.job_posting_list.posted_at'],
 						expiredAt: m['components.job_posting_list.expired_at'],
 					}}
 				/>
@@ -76,7 +82,7 @@
 					postings={data.pending}
 					i18n={{
 						at: m['at'],
-						createdAt: m['components.job_posting_list.created_at'],
+						postedAt: m['components.job_posting_list.posted_at'],
 						expiredAt: m['components.job_posting_list.expired_at'],
 					}}
 				/>
@@ -100,7 +106,7 @@
 					postings={data.expired}
 					i18n={{
 						at: m['at'],
-						createdAt: m['components.job_posting_list.created_at'],
+						postedAt: m['components.job_posting_list.posted_at'],
 						expiredAt: m['components.job_posting_list.expired_at'],
 					}}
 				/>

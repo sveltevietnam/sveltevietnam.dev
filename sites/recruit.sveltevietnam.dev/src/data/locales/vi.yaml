@@ -206,6 +206,9 @@ messages:
       heading: Bài đăng tuyển
       active:
         heading: Đăng tuyển hiện tại
+        desc:
+          Các bài đăng tuyển này đã được duyệt và đang hiển thị trên <a class="c-link"
+          href="{{mainSiteUrl}}/vi/viec-lam">trang việc làm</a>.
         create: Tạo mới
         tba:
           desc: Chưa có bài đăng tuyển nào.
@@ -226,7 +229,7 @@ messages:
         đăng được duyệt hoặc cần bổ sung thông tin.
       general:
         heading: Thông tin chung
-        created_at: Đăng ngày
+        posted_at: Đăng ngày
         expired_at: Hết hạn ngày
       desc:
         heading: Mô tả công việc
@@ -278,7 +281,7 @@ messages:
       profile: Hồ sơ
       logout: Đăng xuất
     job_posting_list:
-      created_at: Đăng ngày
+      posted_at: Đăng ngày
       expired_at: Hết hạn ngày
     breadcrumbs:
       aria: phân cấp trang

@@ -98,7 +98,7 @@
 					posting={previewPosting}
 					i18n={{
 						at: m['at'],
-						createdAt: m['components.job_posting_list.created_at'],
+						postedAt: m['components.job_posting_list.posted_at'],
 						expiredAt: m['components.job_posting_list.expired_at'],
 					}}
 				/>
