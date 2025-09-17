@@ -205,11 +205,16 @@ messages:
       login: Login
     postings:
       heading: Your Postings
+      pending:
+        heading: Pending Postings
+        desc:
+          These postings are under review by the admin team. You will be notified via email once
+          they are approved or need changes.
       active:
         heading: Active Postings
         create: Create
         tba:
-          desc: No postings yet.
+          desc: No active postings yet.
           cta: Create a job posting!
       expired:
         heading: Expired Postings
@@ -217,6 +222,9 @@ messages:
           These postings are read-only and no longer listed on the <a class="c-link"
           href="{{mainSiteUrl}}/en/jobs">"Jobs"</a> page.
     postings_id:
+      pending:
+        This posting is pending review from the admin team. You will be notified via email once it
+        is approved or need changes.
       general:
         heading: General Information
         created_at: Posted on
@@ -265,7 +273,7 @@ messages:
           class="c-link" href="https://discord.sveltevietnam.dev">Svelte Vietnam Discord</a>."
       notifications:
         update: Update has been approved and applied to your posting!
-        create: Posting has been approved and is now live!
+        create: Posting has been created and is pending admin review!
   components:
     account_menu:
       aria: Manage your account

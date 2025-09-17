@@ -108,6 +108,12 @@
 				{data.posting.title}
 			</h1>
 
+			{#if !data.posting.approvedAt}
+				<p class="c-callout c-callout--info">
+					<T message={m['pages.postings_id.pending']} />
+				</p>
+			{/if}
+
 			<div class="border-outline border p-4">
 				<h2 class="sr-only">
 					<T message={m['pages.postings_id.general.heading']} />

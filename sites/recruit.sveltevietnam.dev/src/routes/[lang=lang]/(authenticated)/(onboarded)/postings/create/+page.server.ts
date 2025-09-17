@@ -58,8 +58,6 @@ export const actions = {
 
 		// TODO: queue emails to employer and to admin
 
-		// TODO: add `approvedAt` to job posting data model for manual approval workflow?
-
 		redirect(302, p['/:lang/postings/:id']({ lang: language, id: result.id }));
 	},
 };

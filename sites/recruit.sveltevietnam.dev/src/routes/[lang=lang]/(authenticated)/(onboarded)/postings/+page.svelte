@@ -62,6 +62,27 @@
 			{/if}
 		</div>
 
+		{#if data.pending.length > 0}
+			<div class="space-y-10">
+				<div class="space-y-6">
+					<h2 class="c-text-heading border-outline border-b">
+						<T message={m['pages.postings.pending.heading']} />
+					</h2>
+					<p>
+						<T message={m['pages.postings.pending.desc']} />
+					</p>
+				</div>
+				<JobPostingList
+					postings={data.pending}
+					i18n={{
+						at: m['at'],
+						createdAt: m['components.job_posting_list.created_at'],
+						expiredAt: m['components.job_posting_list.expired_at'],
+					}}
+				/>
+			</div>
+		{/if}
+
 		{#if data.expired.length > 0}
 			<div class="space-y-10">
 				<div class="space-y-6">
@@ -79,7 +100,7 @@
 					postings={data.expired}
 					i18n={{
 						at: m['at'],
-						createdAt: m['components.job_posting_list. created_at'],
+						createdAt: m['components.job_posting_list.created_at'],
 						expiredAt: m['components.job_posting_list.expired_at'],
 					}}
 				/>

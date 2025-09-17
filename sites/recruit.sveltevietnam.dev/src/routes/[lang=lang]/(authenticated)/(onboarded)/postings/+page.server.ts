@@ -17,10 +17,13 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 		},
 	}));
 	const expired: typeof postings = [];
+	const pending: typeof postings = [];
 	const active: typeof postings = [];
 	for (const posting of postings) {
 		if (posting.expiredAt < new Date()) {
 			expired.push(posting);
+		} else if (!posting.approvedAt) {
+			pending.push(posting);
 		} else {
 			active.push(posting);
 		}
@@ -28,6 +31,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 	return {
 		active,
 		expired,
+		pending,
 		routing: {
 			breadcrumbs: b['/:lang/postings']({ lang }),
 			paths: {

@@ -210,12 +210,20 @@ messages:
         tba:
           desc: Chưa có bài đăng tuyển nào.
           cta: Tạo bài đăng tuyển!
+      pending:
+        heading: Đăng tuyển chờ xét duyệt
+        desc:
+          Các bài đăng tuyển này đang chờ ban quản trị xét duyệt. Bạn sẽ nhận được email thông báo
+          khi bài đăng được duyệt hoặc cần bổ sung thông tin.
       expired:
         heading: Đăng tuyển đã hết hạn
         desc:
           Các bài đăng tuyển này không thể sửa đổi và không còn hiển thị trên <a class="c-link"
           href="{{mainSiteUrl}}/vi/viec-lam">trang việc làm</a>.
     postings_id:
+      pending:
+        Bài đăng tuyển đang chờ xét duyệt từ ban quản trị. Bạn sẽ nhận được email thông báo khi bài
+        đăng được duyệt hoặc cần bổ sung thông tin.
       general:
         heading: Thông tin chung
         created_at: Đăng ngày
@@ -263,7 +271,7 @@ messages:
           Việt Nam</a>.
       notifications:
         update: Sửa đổi đã được xét duyệt và cập nhật!
-        create: Bài đăng tuyển đã được xét duyệt và có hiệu lực ngay lập tức!
+        create: Bài đăng tuyển đã được tạo thành công và đang chờ xét duyệt!
   components:
     account_menu:
       aria: Quản lý tài khoản của bạn

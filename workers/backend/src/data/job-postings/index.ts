@@ -18,6 +18,8 @@ import {
 } from './schema';
 import { jobPostings } from './tables';
 
+// FIXME: exclude soft-deleted records in all queries
+
 export class JobPostingService extends RpcTarget {
 	#orm: ORM;
 

@@ -26,6 +26,7 @@ export const jobPostings = sqliteTable('job_postings', {
 	description: text('description').notNull(),
 
 	// timestamps
+	approvedAt: integer('approved_at', { mode: 'timestamp_ms' }),
 	expiredAt: integer('expired_at', { mode: 'timestamp_ms' }).notNull(),
 	createdAt: integer('created_at', { mode: 'timestamp_ms' })
 		.notNull()
