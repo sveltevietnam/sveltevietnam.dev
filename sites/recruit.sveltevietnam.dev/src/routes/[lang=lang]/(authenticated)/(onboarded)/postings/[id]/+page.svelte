@@ -3,7 +3,7 @@
 	import fallback1x1 from '@sveltevietnam/kit/assets/images/fallbacks/1x1.jpg?enhanced&w=w=224;112&imagetools';
 	import { Breadcrumbs, CopyBtn } from '@sveltevietnam/kit/components';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
-	import { DialogQrCode } from '@sveltevietnam/kit/dialogs';
+	import { DialogConfirmation, DialogQrCode } from '@sveltevietnam/kit/dialogs';
 	import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
 	import { superForm } from 'sveltekit-superforms';
 
@@ -40,6 +40,13 @@
 		delayMs: 500,
 		timeoutMs: 2000,
 		onError: createSuperFormGenericErrorHandler(toaster),
+		onResult({ result }) {
+			if (result.type === 'success') {
+				toaster.success({
+					message: m['pages.postings_id.delete.success'],
+				});
+			}
+		},
 	});
 
 	function openQrDialog() {
@@ -56,6 +63,30 @@
 				},
 			},
 		});
+	}
+
+	let deleteForm: HTMLFormElement;
+	async function confirmDelete(e: Event) {
+		e.preventDefault();
+		const pushed = dialogs.push('custom', {
+			component: DialogConfirmation,
+			props: {
+				title: m['pages.postings_id.delete.confirmation.title'],
+				description: m['pages.postings_id.delete.confirmation.desc'],
+				cancel: m['pages.postings_id.delete.confirmation.cancel'],
+				confirm: {
+					content: m['pages.postings_id.delete.confirmation.confirm'],
+					attributes: {
+						class:
+							'c-btn c-btn--outlined bg-error-on-surface border-error-on-surface text-error-surface',
+					},
+				},
+			},
+		});
+		const result = await pushed.resolution;
+		if (result === 'confirm') {
+			deleteForm.requestSubmit();
+		}
 	}
 </script>
 
@@ -246,7 +277,7 @@
 				</h2>
 
 				<div class="flex gap-4">
-					<form class="contents" action="?/delete" method="POST" use:enhance>
+					<form class="contents" action="?/delete" method="POST" use:enhance bind:this={deleteForm}>
 						<input name="id" value={data.posting.id} required hidden />
 						<button
 							class="c-btn bg-error-on-surface text-error-surface border-error-on-surface flex-1 place-content-center
@@ -254,6 +285,7 @@
 							type="submit"
 							data-delayed={$delayed}
 							data-timeout={$timeout}
+							onclick={confirmDelete}
 						>
 							<i class="i i-[ph--trash] h-6 w-6"></i>
 							<span><T message={m['pages.postings_id.manage.delete']} /></span>

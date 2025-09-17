@@ -231,6 +231,15 @@ messages:
         heading: Quản lý bài đăng
         edit: Chỉnh sửa
         delete: Xoá
+      delete:
+        confirmation:
+          title: Cảnh báo về tác vụ này
+          desc: Đăng tuyển sẽ bị xoá vĩnh viễn và không thể khôi phục. Bạn có chắc chắn muốn xoá?
+          confirm: Xác nhận
+          cancel: Quay lại
+        errors:
+          unauthorized: Bạn không có quyền quản lý bài đăng tuyển này
+        success: Bài đăng tuyển đã được xóa! Khi rời trang này, bạn sẽ không thể truy cập lại.
     postings_upsert:
       heading:
         create: Tạo mới bài đăng tuyển

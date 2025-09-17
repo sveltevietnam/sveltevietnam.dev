@@ -7,6 +7,7 @@ import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = async ({ params, depends }) => {
 	depends('job-posting-edit');
+	// FIXME: protect route to jobs owned by logged-in employer only
 
 	const { lang, id } = params;
 

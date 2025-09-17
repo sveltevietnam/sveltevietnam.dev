@@ -49,6 +49,15 @@ export class JobPostingService extends RpcTarget {
 		return { success: true, id };
 	}
 
+	async getEmployerIdById(id: string): Promise<string | null> {
+		const jobPosting = await this.#orm.query.jobPostings.findFirst({
+			where: (table, { eq }) => eq(table.id, id),
+			columns: { employerId: true },
+		});
+		if (!jobPosting) return null;
+		return jobPosting.employerId;
+	}
+
 	async getById(id: string): Promise<null | JobPostingSelectWithEmployerResult> {
 		const jobPosting = await this.#orm.query.jobPostings.findFirst({
 			where: (table, { eq }) => eq(table.id, id),
@@ -85,7 +94,8 @@ export class JobPostingService extends RpcTarget {
 
 	async deleteById(id: string): Promise<boolean> {
 		const result = await this.#orm
-			.delete(jobPostings)
+			.update(jobPostings)
+			.set({ deletedAt: new Date() })
 			.where(eq(jobPostings.id, id))
 			.returning({ id: jobPostings.id });
 		if (!result.length) return false;

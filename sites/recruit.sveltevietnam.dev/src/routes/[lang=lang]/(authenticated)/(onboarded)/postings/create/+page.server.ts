@@ -56,6 +56,10 @@ export const actions = {
 			error(500, { code: 'SV001', message: 'Unknown sever error' });
 		}
 
+		// TODO: queue emails to employer and to admin
+
+		// TODO: add `approvedAt` to job posting data model for manual approval workflow?
+
 		redirect(302, p['/:lang/postings/:id']({ lang: language, id: result.id }));
 	},
 };
