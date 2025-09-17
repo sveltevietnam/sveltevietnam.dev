@@ -11,11 +11,11 @@ export default defineTemplate((lang) => ({
 	...(
 		{
 			en: {
-				subject: 'Login — Recruit Platform from the Svelte Vietnam Community',
+				subject: 'Login — Svelte Vietnam Community Recruit Platform',
 				html: en,
 			},
 			vi: {
-				subject: 'Đăng nhập — Nền tảng Tuyển dụng từ Cộng đồng Svelte Việt Nam',
+				subject: 'Đăng nhập — Nền tảng Tuyển dụng Cộng đồng Svelte Việt Nam',
 				html: vi,
 			},
 		} as const

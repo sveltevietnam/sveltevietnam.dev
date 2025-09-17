@@ -11,11 +11,11 @@ export default defineTemplate((lang) => ({
 	...(
 		{
 			en: {
-				subject: 'Verify your Email Change Request — Svelte Vietnam Recruit Platform',
+				subject: 'Verify your Email Change Request — Svelte Vietnam Community Recruit Platform',
 				html: en,
 			},
 			vi: {
-				subject: 'Xác nhận yêu cầu thay đổi email — Nền tảng Tuyển dụng Svelte Việt Nam',
+				subject: 'Xác nhận yêu cầu thay đổi email — Nền tảng Tuyển dụng Cộng đồng Svelte Việt Nam',
 				html: vi,
 			},
 		} as const
