@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { StackItem } from '@svelte-put/async-stack';
-	import { T } from '@sveltevietnam/i18n';
+	import { T } from '@sveltevietnam/i18n/runtime';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { STATUSES, type Status } from '@sveltevietnam/kit/constants';
 	import { Contexts } from '@sveltevietnam/kit/contexts';

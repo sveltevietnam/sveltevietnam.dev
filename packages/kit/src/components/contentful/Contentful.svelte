@@ -1,6 +1,6 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script lang="ts" generics="Attributes extends Record<string, any>">
-	import { T } from '@sveltevietnam/i18n';
+	import { T } from '@sveltevietnam/i18n/runtime';
 	import { isMessage } from '@sveltevietnam/i18n/runtime';
 
 	import type { ContentfulProps } from '.';

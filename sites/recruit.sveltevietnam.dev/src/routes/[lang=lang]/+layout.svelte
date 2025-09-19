@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '@sveltevietnam/css/layers';
-	import { T } from '@sveltevietnam/i18n';
+	import { T } from '@sveltevietnam/i18n/runtime';
 	import {
 		LanguageMenu,
 		type LanguageMenuProps,

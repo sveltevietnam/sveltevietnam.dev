@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { clickoutside } from '@svelte-put/clickoutside';
-	import { T } from '@sveltevietnam/i18n';
+	import { T } from '@sveltevietnam/i18n/runtime';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import type { HTMLAttributes } from 'svelte/elements';
 

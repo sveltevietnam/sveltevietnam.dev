@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import { T } from '@sveltevietnam/i18n';
+	import { T } from '@sveltevietnam/i18n/runtime';
 	import { isMessage, type Message, type MessageType } from '@sveltevietnam/i18n/runtime';
 	import type { Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';

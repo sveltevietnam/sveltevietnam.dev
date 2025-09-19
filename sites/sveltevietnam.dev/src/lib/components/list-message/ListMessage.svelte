@@ -1,5 +1,5 @@
 <script lang="ts" generics="T">
-	import { T } from '@sveltevietnam/i18n';
+	import { T } from '@sveltevietnam/i18n/runtime';
 	import type { Snippet } from 'svelte';
 
 	import * as m from '$data/locales/generated/messages';

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n';
+	import { T } from '@sveltevietnam/i18n/runtime';
 	import type { Message, MessageType } from '@sveltevietnam/i18n/runtime';
 	import { createTimeline, onScroll } from 'animejs';
 	import type { Picture } from 'vite-imagetools';

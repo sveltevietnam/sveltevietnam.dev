@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n';
+	import { T } from '@sveltevietnam/i18n/runtime';
 
 	import type { ColorScheme } from '../../constants';
 	import { Dropdown } from '../dropdown';

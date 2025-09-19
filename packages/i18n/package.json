@@ -11,33 +11,23 @@
 	"exports": {
 		".": {
 			"types": "./types/index.d.ts",
-			"import": "./src/index.js",
-			"default": "./src/index.js"
+			"import": "./src/index.js"
 		},
 		"./language": {
 			"types": "./types/index.d.ts",
-			"import": "./src/language.js",
-			"default": "./src/language.js"
+			"import": "./src/language.js"
 		},
 		"./utils": {
 			"types": "./types/index.d.ts",
-			"import": "./src/utils/index.js",
-			"default": "./src/utils/index.js"
+			"import": "./src/utils/index.js"
 		},
 		"./vite": {
 			"types": "./types/index.d.ts",
-			"import": "./src/vite.js",
-			"default": "./src/vite.js"
+			"import": "./src/vite.js"
 		},
 		"./runtime": {
 			"types": "./types/index.d.ts",
-			"import": "./src/runtime/index.js",
-			"default": "./src/runtime/index.js"
-		},
-		"./T.svelte": {
-			"types": "./src/runtime/T.svelte.d.ts",
-			"svelte": "./src/runtime/T.svelte",
-			"import": "./src/runtime/T.svelte"
+			"import": "./src/runtime/index.js"
 		}
 	},
 	"publishconfig": {
@@ -80,6 +70,14 @@
 		"lint:style": "stylelint '**/*.{svelte,css}'",
 		"format": "prettier --write --ignore-path=../../.prettierignore --config=../../prettier.config.js ."
 	},
+	"peerDependencies": {
+		"svelte": "^5.38.6",
+		"vite": "^7.1.4"
+	},
+	"devDependencies": {
+		"svelte": "^5.38.6",
+		"vite": "^7.1.4"
+	},
 	"dependencies": {
 		"@clack/prompts": "^0.11.0",
 		"commander": "^14.0.0",
@@ -88,9 +86,5 @@
 		"tiny-glob": "^0.2.9",
 		"typescript": "^5.9.2",
 		"yaml": "^2.8.1"
-	},
-	"devDependencies": {
-		"svelte": "^5.38.6",
-		"vite": "^7.1.4"
 	}
 }

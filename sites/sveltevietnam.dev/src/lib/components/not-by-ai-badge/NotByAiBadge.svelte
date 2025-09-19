@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n';
+	import { T } from '@sveltevietnam/i18n/runtime';
 	import type { HTMLAnchorAttributes } from 'svelte/elements';
 
 	import * as m from '$data/locales/generated/messages';

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n';
+	import { T } from '@sveltevietnam/i18n/runtime';
 	import { onMount } from 'svelte';
 
 	import { type BreadcrumbsProps } from '.';

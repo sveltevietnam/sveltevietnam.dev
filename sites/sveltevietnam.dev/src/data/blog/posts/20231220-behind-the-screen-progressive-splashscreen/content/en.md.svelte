@@ -1,6 +1,6 @@
 <script>
   import { StackItem } from '@svelte-put/async-stack';
-	import { T } from '@sveltevietnam/i18n';
+	import { T } from '@sveltevietnam/i18n/runtime';
   import { BaseNotification} from '@sveltevietnam/kit/notifications';
 
   import * as m from '$data/locales/generated/messages';

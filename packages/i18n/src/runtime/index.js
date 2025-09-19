@@ -1,4 +1,5 @@
 export * from './types.public.js';
+export { default as T } from './T.svelte';
 
 /**
  * @param {string} content

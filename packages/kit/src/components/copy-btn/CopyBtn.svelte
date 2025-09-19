@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { copy } from '@svelte-put/copy';
-	import { T } from '@sveltevietnam/i18n';
+	import { T } from '@sveltevietnam/i18n/runtime';
 	import { fly } from 'svelte/transition';
 
 	import { type CopyBtnProps } from '.';

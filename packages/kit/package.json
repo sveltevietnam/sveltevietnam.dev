@@ -92,7 +92,8 @@
 		"format": "prettier --write --ignore-path=../../.prettierignore --config=../../prettier.config.js ."
 	},
 	"peerDependencies": {
-		"svelte": "^5.16.6"
+		"svelte": "^5.38.6",
+		"vite": "^7.1.4"
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20250903.0",

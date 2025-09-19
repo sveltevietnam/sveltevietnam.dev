@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Toc } from '@svelte-put/toc';
-	import { T } from '@sveltevietnam/i18n';
+	import { T } from '@sveltevietnam/i18n/runtime';
 	import type { Message } from '@sveltevietnam/i18n/runtime';
 	import fallback16x9 from '@sveltevietnam/kit/assets/images/fallbacks/16x9.jpg?enhanced&w=2240;1540;1088;686&imagetools';
 	import { Breadcrumbs, CopyBtn } from '@sveltevietnam/kit/components';
