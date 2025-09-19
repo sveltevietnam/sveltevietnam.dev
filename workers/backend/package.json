@@ -15,19 +15,15 @@
 			"types": "./src/data/subscribers/channels.ts",
 			"import": "./src/data/subscribers/channels.ts"
 		},
-		"./data/employers/tables": {
-			"types": "./src/data/employers/tables.ts",
-			"import": "./src/data/employers/tables.ts"
-		},
 		"./data/job-postings/enums": {
 			"types": "./src/data/job-postings/enums.ts",
 			"import": "./src/data/job-postings/enums.ts"
 		},
-		"./databases/schema": {
+		"./db/schema": {
 			"types": "./src/database/schema.ts",
 			"import": "./src/database/schema.ts"
 		},
-		"./databases/dev": {
+		"./db/dev": {
 			"types": "./src/database/dev.js",
 			"import": "./src/database/dev.js"
 		},

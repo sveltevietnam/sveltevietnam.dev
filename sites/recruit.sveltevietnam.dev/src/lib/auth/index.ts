@@ -1,4 +1,8 @@
-import * as tables from '@sveltevietnam/backend/data/employers/tables';
+import {
+	employers,
+	employerSessions,
+	employerAuthVerifications,
+} from '@sveltevietnam/backend/db/schema';
 import type { Language } from '@sveltevietnam/i18n';
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
@@ -18,19 +22,18 @@ export function createEmployerAuth() {
 	if (!d1) {
 		throw new Error('D1 database is not available');
 	}
-	const orm = drizzle(d1, { schema: tables });
+	const orm = drizzle(d1, {
+		schema: {
+			user: employers,
+			session: employerSessions,
+			verification: employerAuthVerifications,
+		},
+	});
 	return betterAuth({
 		appName: 'Svelte Vietnam Recruit',
 		baseURL: VITE_PUBLIC_ORIGIN,
 		secret: VITE_PRIVATE_BETTER_AUTH_SECRET,
-		database: drizzleAdapter(orm, {
-			provider: 'sqlite',
-			schema: {
-				user: tables.employers,
-				session: tables.employerSessions,
-				verification: tables.employerAuthVerifications,
-			},
-		}),
+		database: drizzleAdapter(orm, { provider: 'sqlite' }),
 		user: {
 			additionalFields: {
 				website: {
