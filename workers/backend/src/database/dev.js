@@ -77,7 +77,6 @@ export async function getLocalORM(databaseId, schema, cwd) {
 	// 3. create a Drizzle instance
 	const { drizzle } = await import('drizzle-orm/libsql');
 	const orm = drizzle(client, { schema, casing: 'snake_case' });
-	orm.$client.close();
 
 	return orm;
 }
@@ -91,6 +90,9 @@ export async function getLocalORM(databaseId, schema, cwd) {
  */
 export async function pushSchema(databaseId, schema, cwd) {
 	const orm = await getLocalORM(databaseId, schema, cwd);
+	if (orm.$client.closed) {
+		orm.$client.reconnect();
+	}
 
 	// push schema
 	const require = createRequire(import.meta.url);
