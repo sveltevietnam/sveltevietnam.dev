@@ -16,31 +16,36 @@ export const WRANGLER_LOCAL_D1_DIRPATH = '.wrangler/state/v3/d1/miniflare-D1Data
  * @param {string} uniqueKey
  * @returns {string}
  */
-export function durableObjectNamespaceIdFromName(name, uniqueKey) {
+export function durableObjectNamespaceIdFromName(name: string, uniqueKey: string): string {
 	const key = crypto.createHash('sha256').update(uniqueKey).digest();
 	const nameHmac = crypto.createHmac('sha256', key).update(name).digest().subarray(0, 16);
 	const hmac = crypto.createHmac('sha256', key).update(nameHmac).digest().subarray(0, 16);
 	return Buffer.concat([nameHmac, hmac]).toString('hex');
 }
 
-/**
- * @typedef GetLocalD1PathOptions
- * @property {string} [cwd] - current working directory, default to `process.cwd()`
- * @property {boolean} [vacuum] - create a vacuum Sqlite database if not exist, default to `true`
- */
+interface GetLocalD1PathOptions {
+	/** current working directory, default to `process.cwd()` */
+	cwd?: string;
+	/** create a vacuum Sqlite database if not exist, default to `true` */
+	vacuum?: boolean;
+}
 
-/**
- * @typedef GetLocalD1PathResult
- * @property {string} path - absolute path to the local D1 database file
- * @property {boolean} created - whether the database file was created (i.e. did not exist before)
- */
+interface GetLocalD1PathResult {
+	/** absolute path to the local D1 database file */
+	path: string;
+	/** whether the database file was created (i.e. did not exist before) */
+	created: boolean;
+}
 
 /**
  * @param {string} databaseId
  * @param {GetLocalD1PathOptions} [options]
  * @returns {GetLocalD1PathResult}
  */
-export function getLocalD1Path(databaseId, options = {}) {
+export function getLocalD1Path(
+	databaseId: string,
+	options: GetLocalD1PathOptions = {},
+): GetLocalD1PathResult {
 	const { cwd = process.cwd(), vacuum = true } = options;
 	const filepath = path.join(
 		cwd,
@@ -66,7 +71,15 @@ export function getLocalD1Path(databaseId, options = {}) {
  * @param {string} [cwd]
  * @returns {Promise<import('drizzle-orm/libsql').LibSQLDatabase<TSchema> & { $client: import('@libsql/client').Client }>}
  */
-export async function getLocalORM(databaseId, schema, cwd) {
+export async function getLocalORM<TSchema extends Record<string, unknown>>(
+	databaseId: string,
+	schema: TSchema,
+	cwd?: string,
+): Promise<
+	import('drizzle-orm/libsql').LibSQLDatabase<TSchema> & {
+		$client: import('@libsql/client').Client;
+	}
+> {
 	// 1. get local D1 path, create a vacuum database if not exist
 	const { path } = getLocalD1Path(databaseId, { vacuum: true, cwd });
 
@@ -83,12 +96,17 @@ export async function getLocalORM(databaseId, schema, cwd) {
 
 /**
  * https://github.com/drizzle-team/drizzle-orm/discussions/4373#discussioncomment-12743792
+ * @template {Record<string, unknown>} TSchema
  * @param {string} databaseId
- * @param {Record<string, import('drizzle-orm/sqlite-core').SQLiteTable | import('drizzle-orm').Relations>} schema
+ * @param {TSchema} schema
  * @param {string} [cwd]
  * @returns {Promise<void>}
  */
-export async function pushSchema(databaseId, schema, cwd) {
+export async function pushSchema<TSchema extends Record<string, unknown>>(
+	databaseId: string,
+	schema: TSchema,
+	cwd?: string,
+): Promise<void> {
 	const orm = await getLocalORM(databaseId, schema, cwd);
 	if (orm.$client.closed) {
 		orm.$client.reconnect();
@@ -111,8 +129,9 @@ export async function pushSchema(databaseId, schema, cwd) {
 /**
  * @param {string} databaseId
  * @param {string} [cwd]
+ * @return {void}
  */
-export function deleteLocalD1(databaseId, cwd) {
+export function deleteLocalD1(databaseId: string, cwd?: string): void {
 	const { path } = getLocalD1Path(databaseId, { vacuum: false, cwd });
 	if (fs.existsSync(path)) {
 		fs.rmSync(path);

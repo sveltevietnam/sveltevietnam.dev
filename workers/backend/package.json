@@ -24,8 +24,8 @@
 			"import": "./src/database/schema.ts"
 		},
 		"./db/dev": {
-			"types": "./src/database/dev.js",
-			"import": "./src/database/dev.js"
+			"types": "./src/database/dev.ts",
+			"import": "./src/database/dev.ts"
 		},
 		"./wrangler.json": "./wrangler.json"
 	},
