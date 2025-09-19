@@ -2,13 +2,12 @@ import jwt from '@tsndr/cloudflare-worker-jwt';
 import { WorkerEntrypoint } from 'cloudflare:workers';
 import { Hono } from 'hono';
 
-import { getOrm } from '$/database/orm';
-
 import { BlueskyPostService } from './data/bluesky-posts';
 import { EmployerService } from './data/employers';
 import { JobPostingService } from './data/job-postings';
 import { MailService } from './data/mails';
 import { SubscriberService } from './data/subscribers';
+import { getOrm } from './database/orm';
 import {
 	type JwtPayload,
 	type JwtVerificationResult,

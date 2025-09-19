@@ -5,12 +5,12 @@ declare global {
 	}
 
 	namespace Queue {
-		declare type MessageSendMail<T extends import('$/mjml/templates').TemplateId> = {
+		declare type MessageSendMail<T extends import('./mjml/templates').TemplateId> = {
 			type: 'send-mail';
 			templateId: T;
-			input: import('$/data/mails').SendMailInput<T>;
+			input: import('./data/mails').SendMailInput<T>;
 		};
-		declare type Message = MessageSendMail<import('$/mjml/templates').TemplateId>;
+		declare type Message = MessageSendMail<import('./mjml/templates').TemplateId>;
 	}
 
 	interface Env {

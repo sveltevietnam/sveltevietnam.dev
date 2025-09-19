@@ -2,7 +2,7 @@ import { RpcTarget } from 'cloudflare:workers';
 import { sql } from 'drizzle-orm';
 import * as v from 'valibot';
 
-import { ORM } from '$/database/orm';
+import { ORM } from '../../database/orm';
 
 import { type EmployerSelectResult, EmployerSelectSchema } from './schema';
 import { employers } from './tables';

@@ -2,7 +2,7 @@ import { createId } from '@paralleldrive/cuid2';
 import { relations, sql } from 'drizzle-orm';
 import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
 
-import { employers } from '$/data/employers/tables';
+import { employers } from '../../data/employers/tables';
 
 import { JOB_POSTING_TYPES, JOB_POSTING_APPLICATION_METHODS } from './enums';
 

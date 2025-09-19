@@ -2,7 +2,7 @@ import { createId } from '@paralleldrive/cuid2';
 import { sql } from 'drizzle-orm';
 import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
 
-import { ids } from '$/mjml/templates/ids';
+import { ids } from '../../mjml/templates/ids';
 
 export const mails = sqliteTable('mails', {
 	id: text('id')

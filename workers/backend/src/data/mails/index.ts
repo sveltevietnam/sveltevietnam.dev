@@ -7,9 +7,13 @@ import { RpcTarget } from 'cloudflare:workers';
 import { eq } from 'drizzle-orm';
 import Mustache from 'mustache';
 
-import { ORM } from '$/database/orm';
-import { TemplateVarMap, type TemplateId, loadTemplate, BaseTemplateVars } from '$/mjml/templates';
-
+import { ORM } from '../../database/orm';
+import {
+	TemplateVarMap,
+	type TemplateId,
+	loadTemplate,
+	BaseTemplateVars,
+} from '../../mjml/templates';
 import { createSocials, createLogoImageUrl } from '../links';
 
 import { mails } from './tables';

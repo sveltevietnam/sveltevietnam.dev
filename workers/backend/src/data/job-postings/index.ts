@@ -2,7 +2,7 @@ import { RpcTarget } from 'cloudflare:workers';
 import { eq } from 'drizzle-orm';
 import * as v from 'valibot';
 
-import { ORM } from '$/database/orm';
+import { ORM } from '../../database/orm';
 
 import {
 	type JobPostingInsertInput,
