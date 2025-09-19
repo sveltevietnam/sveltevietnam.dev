@@ -114,23 +114,23 @@
 				<p class="c-text-body-sm text-red-500" id="error-email">{$errors.email[0]}</p>
 			{/if}
 		</div>
+		{#if result}
+			<output class="c-callout c-callout--info block">
+				{#if result.type === 'signup'}
+					<T message={m['pages.authenticate.callout.signup']} />
+				{:else if result.type === 'login'}
+					<T message={m['pages.authenticate.callout.login']} />
+				{/if}
+				{#if rateLimited}
+					<T message={m['pages.authenticate.callout.in']} />
+					<strong>
+						<Countdown endAt={result.sentAgainAt} onEnd={handleRateLimitEnd} />
+					</strong>
+				{/if}
+				.
+			</output>
+		{/if}
 	</form>
-	{#if result}
-		<p class="c-callout c-callout--info">
-			{#if result.type === 'signup'}
-				<T message={m['pages.authenticate.callout.signup']} />
-			{:else if result.type === 'login'}
-				<T message={m['pages.authenticate.callout.login']} />
-			{/if}
-			{#if rateLimited}
-				<T message={m['pages.authenticate.callout.in']} />
-				<strong>
-					<Countdown endAt={result.sentAgainAt} onEnd={handleRateLimitEnd} />
-				</strong>
-			{/if}
-			.
-		</p>
-	{/if}
 	<div class="flex items-center gap-2">
 		<div class="bg-outline h-px flex-1"></div>
 		<p class="text-on-surface-dim">
