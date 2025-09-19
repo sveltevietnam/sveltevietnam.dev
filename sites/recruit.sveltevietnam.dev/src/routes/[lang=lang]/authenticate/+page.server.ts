@@ -56,6 +56,8 @@ export const actions: Actions = {
 		const { request, locals, getClientAddress, url } = event;
 		const { language } = locals;
 
+		const employers = getBackend().employers();
+
 		const schema = v.objectAsync({
 			turnstile: createTurnstileValibotServerSchema({
 				secret: VITE_PRIVATE_CLOUDFLARE_TURNSTILE_SECRET_KEY,
@@ -80,7 +82,6 @@ export const actions: Actions = {
 		}
 
 		const { email } = form.data;
-		const employers = getBackend().employers();
 		const employer = await employers.getByEmail(email);
 		const type = employer?.onboardedAt ? 'login' : 'signup';
 
