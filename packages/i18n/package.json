@@ -28,6 +28,10 @@
 		"./runtime": {
 			"types": "./types/index.d.ts",
 			"import": "./src/runtime/index.js"
+		},
+		"./runtime/factory": {
+			"types": "./types/index.d.ts",
+			"import": "./src/runtime/factory.js"
 		}
 	},
 	"publishconfig": {
