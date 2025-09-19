@@ -22,7 +22,16 @@
 		"./data/job-postings/enums": {
 			"types": "./src/data/job-postings/enums.ts",
 			"import": "./src/data/job-postings/enums.ts"
-		}
+		},
+		"./databases/schema": {
+			"types": "./src/database/schema.ts",
+			"import": "./src/database/schema.ts"
+		},
+		"./databases/dev": {
+			"types": "./src/database/dev.js",
+			"import": "./src/database/dev.js"
+		},
+		"./wrangler.json": "./wrangler.json"
 	},
 	"scripts": {
 		"boot:env": "shx cp .env.example .env",
