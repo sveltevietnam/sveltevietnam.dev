@@ -1,40 +1,37 @@
-import path from 'node:path';
-
 import { defineConfig } from 'drizzle-kit';
 import pico from 'picocolors';
-import glob from 'tiny-glob/sync';
 
+import { getLocalD1Path } from './src/database/dev';
 import wrangler from './wrangler.json';
 
-const { CLOUDFLARE_ENV: mode = 'development', CLOUDFLARE_TOKEN: token } = process.env;
+const { CLOUDFLARE_ENV, CLOUDFLARE_TOKEN: token } = process.env;
+
+// parse mode
+type Mode = 'development' | 'test' | 'production';
+const mode = (CLOUDFLARE_ENV ?? 'development') as Mode;
 
 if (mode !== 'development' && !token) {
 	throw new Error(pico.red('CLOUDFLARE_TOKEN is required in non-development mode.'));
 }
 
-let files: string[] = [];
-
-if (mode === 'development') {
-	const relativeDirpath = '.wrangler/state/v3/d1/miniflare-D1DatabaseObject';
-	const dirpath = path.join(__dirname, relativeDirpath);
-	files = glob(path.join(dirpath, '*.sqlite'));
-	if (files.length === 0) {
-		throw new Error(
-			pico.red(`No SQLite file found at ${pico.yellow(relativeDirpath)}. Maybe run dev once?`),
-		);
-	} else if (files.length > 1) {
-		console.warn(pico.yellow(`Found multiple SQLite files at ${relativeDirpath}.`));
-	}
+const databaseId = wrangler.env[mode as Mode].d1_databases[0].database_id;
+const { path: sqliteFilepath, created } = getLocalD1Path(databaseId);
+if (created) {
+	console.warn(
+		pico.yellow(
+			`Expect "${pico.underline(sqliteFilepath)}" but not found. Will attempt to create one. If this doesn't work, consider checking drizzle.config for the sqlite3 filename hashing algorithm (potentially outdated).`,
+		),
+	);
 }
 
 export default defineConfig({
 	schema: './src/database/schema.ts',
 	out: wrangler.env.production.d1_databases[0].migrations_dir,
 	dialect: 'sqlite',
-	...(mode === 'development'
+	...(mode !== 'production'
 		? {
 				dbCredentials: {
-					url: files[0],
+					url: sqliteFilepath,
 				},
 			}
 		: {
