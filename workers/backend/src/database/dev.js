@@ -63,11 +63,12 @@ export function getLocalD1Path(databaseId, options = {}) {
  * @template {Record<string, unknown>} TSchema
  * @param {string} databaseId
  * @param {TSchema} schema
+ * @param {string} [cwd]
  * @returns {Promise<import('drizzle-orm/libsql').LibSQLDatabase<TSchema> & { $client: import('@libsql/client').Client }>}
  */
-export async function getLocalORM(databaseId, schema) {
+export async function getLocalORM(databaseId, schema, cwd) {
 	// 1. get local D1 path, create a vacuum database if not exist
-	const { path } = getLocalD1Path(databaseId);
+	const { path } = getLocalD1Path(databaseId, { vacuum: true, cwd });
 
 	// 2. create an explicit LibSQL client
 	const { createClient } = await import('@libsql/client');
@@ -85,10 +86,11 @@ export async function getLocalORM(databaseId, schema) {
  * https://github.com/drizzle-team/drizzle-orm/discussions/4373#discussioncomment-12743792
  * @param {string} databaseId
  * @param {Record<string, import('drizzle-orm/sqlite-core').SQLiteTable | import('drizzle-orm').Relations>} schema
+ * @param {string} [cwd]
  * @returns {Promise<void>}
  */
-export async function pushSchema(databaseId, schema) {
-	const orm = await getLocalORM(databaseId, schema);
+export async function pushSchema(databaseId, schema, cwd) {
+	const orm = await getLocalORM(databaseId, schema, cwd);
 
 	// push schema
 	const require = createRequire(import.meta.url);
@@ -106,9 +108,10 @@ export async function pushSchema(databaseId, schema) {
 
 /**
  * @param {string} databaseId
+ * @param {string} [cwd]
  */
-export function deleteLocalD1(databaseId) {
-	const { path } = getLocalD1Path(databaseId, { vacuum: false });
+export function deleteLocalD1(databaseId, cwd) {
+	const { path } = getLocalD1Path(databaseId, { vacuum: false, cwd });
 	if (fs.existsSync(path)) {
 		fs.rmSync(path);
 	}
