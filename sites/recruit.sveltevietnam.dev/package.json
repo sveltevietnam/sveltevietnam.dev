@@ -7,16 +7,19 @@
 	"scripts": {
 		"boot:env": "shx cp .env.example .env",
 		"dev": "vite dev --port 5007",
-		"dev:wrangler": "wrangler pages dev .svelte-kit/cloudflare --port 5007 --persist-to=../../workers/backend/.wrangler/state",
+		"dev:wrangler": "wrangler dev --port 5007 --persist-to=../../workers/backend/.wrangler/state",
+		"dev:wrangler:test": "wrangler dev --port 5007 --persist-to=../../workers/backend/.wrangler/state --env test",
 		"build:i18n": "pnpm i18n build 'src/**/locales'",
 		"build": "svelte-kit sync && vite build",
+		"build:test": "svelte-kit sync && CLOUDFLARE_ENV=test vite build --mode test",
 		"deploy": "wrangler deploy",
 		"preview": "vite preview",
 		"lint": "run-p lint:*",
 		"lint:i18n": "pnpm i18n lint 'src/**/locales'",
 		"lint:svelte": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"lint:es": "svelte-kit sync && eslint .",
-		"lint:style": "stylelint '**/*.{svelte,css}'"
+		"lint:style": "stylelint '**/*.{svelte,css}'",
+		"test:e2e": "playwright test"
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20250903.0",

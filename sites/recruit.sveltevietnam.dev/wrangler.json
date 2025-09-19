@@ -5,33 +5,81 @@
 	"compatibility_date": "2025-04-28",
 	"compatibility_flags": ["nodejs_compat"],
 	"account_id": "b749b5068031c54e0dddf71d07ea1004",
-	"routes": [
-		{
-			"pattern": "recruit.sveltevietnam.dev",
-			"custom_domain": true
-		}
-	],
 	"assets": {
 		"binding": "ASSETS",
 		"directory": ".svelte-kit/cloudflare"
 	},
-	"d1_databases": [
-		{
-			"binding": "d1",
-			"database_name": "sveltevietnam",
-			"database_id": "ada662cd-7b9b-459c-a58a-eba22c43a94d"
+	"env": {
+		"development": {
+			"d1_databases": [
+				{
+					"binding": "d1",
+					"database_name": "sveltevietnam",
+					"database_id": "ada662cd-7b9b-459c-a58a-eba22c43a94d"
+				}
+			],
+			"r2_buckets": [
+				{
+					"binding": "r2",
+					"bucket_name": "sveltevietnam"
+				}
+			],
+			"services": [
+				{
+					"binding": "backend",
+					"service": "backend"
+				}
+			]
+		},
+
+		"test": {
+			"d1_databases": [
+				{
+					"binding": "d1",
+					"database_name": "sveltevietnam-test",
+					"database_id": "82167d9c-5f56-42a0-bec8-a5721bc4566e"
+				}
+			],
+			"r2_buckets": [
+				{
+					"binding": "r2",
+					"bucket_name": "sveltevietnam-test"
+				}
+			],
+			"services": [
+				{
+					"binding": "backend",
+					"service": "backend"
+				}
+			]
+		},
+
+		"production": {
+			"routes": [
+				{
+					"pattern": "recruit.sveltevietnam.dev",
+					"custom_domain": true
+				}
+			],
+			"d1_databases": [
+				{
+					"binding": "d1",
+					"database_name": "sveltevietnam",
+					"database_id": "ada662cd-7b9b-459c-a58a-eba22c43a94d"
+				}
+			],
+			"r2_buckets": [
+				{
+					"binding": "r2",
+					"bucket_name": "sveltevietnam"
+				}
+			],
+			"services": [
+				{
+					"binding": "backend",
+					"service": "backend"
+				}
+			]
 		}
-	],
-	"r2_buckets": [
-		{
-			"binding": "r2",
-			"bucket_name": "sveltevietnam"
-		}
-	],
-	"services": [
-		{
-			"binding": "backend",
-			"service": "backend"
-		}
-	]
+	}
 }

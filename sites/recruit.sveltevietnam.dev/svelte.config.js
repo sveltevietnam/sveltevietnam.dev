@@ -35,6 +35,7 @@ export default {
 				persist: {
 					path: path.join(__dirname, '../../workers/backend/.wrangler/state/v3'),
 				},
+				environment: 'development',
 				configPath: path.join(__dirname, 'wrangler.json'),
 			},
 			routes: {
