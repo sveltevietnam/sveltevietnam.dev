@@ -10,8 +10,9 @@ const { CLOUDFLARE_ENV, CLOUDFLARE_TOKEN: token } = process.env;
 type Mode = 'development' | 'test' | 'production';
 const mode = (CLOUDFLARE_ENV ?? 'development') as Mode;
 
-if (mode !== 'development' && !token) {
-	throw new Error(pico.red('CLOUDFLARE_TOKEN is required in non-development mode.'));
+const local = mode === 'development' || mode === 'test';
+if (!local) {
+	throw new Error(pico.red('CLOUDFLARE_TOKEN is required in non-local mode.'));
 }
 
 const databaseId = wrangler.env[mode as Mode].d1_databases[0].database_id;
@@ -28,7 +29,7 @@ export default defineConfig({
 	schema: './src/database/schema.ts',
 	out: wrangler.env.production.d1_databases[0].migrations_dir,
 	dialect: 'sqlite',
-	...(mode !== 'production'
+	...(local
 		? {
 				dbCredentials: {
 					url: sqliteFilepath,
