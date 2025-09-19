@@ -2,6 +2,7 @@
 	import { turnstile } from '@svelte-put/cloudflare-turnstile';
 	import { T } from '@sveltevietnam/i18n/runtime';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { formatRelativeTime } from '@sveltevietnam/kit/utilities/datetime';
 	import { superForm } from 'sveltekit-superforms';
 
 	import * as m from '$data/locales/generated/messages';
@@ -117,9 +118,15 @@
 		{#if result}
 			<output class="c-callout c-callout--info block">
 				{#if result.type === 'signup'}
-					<T message={m['pages.authenticate.callout.signup']} />
+					<T
+						message={m['pages.authenticate.callout.signup']}
+						exp={formatRelativeTime(routing.lang, data.resentWaitingMs)}
+					/>
 				{:else if result.type === 'login'}
-					<T message={m['pages.authenticate.callout.login']} />
+					<T
+						message={m['pages.authenticate.callout.login']}
+						exp={formatRelativeTime(routing.lang, data.resentWaitingMs)}
+					/>
 				{/if}
 				{#if rateLimited}
 					<T message={m['pages.authenticate.callout.in']} />
@@ -127,7 +134,6 @@
 						<Countdown endAt={result.sentAgainAt} onEnd={handleRateLimitEnd} />
 					</strong>
 				{/if}
-				.
 			</output>
 		{/if}
 	</form>

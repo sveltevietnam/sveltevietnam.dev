@@ -24,7 +24,7 @@ function createEmailSchema(lang: Language) {
 	);
 }
 
-export const load: PageServerLoad = async ({ params, locals }) => {
+export const load: PageServerLoad = async ({ params, locals, platform }) => {
 	const { lang } = params;
 	if (locals.user) {
 		if (locals.user.onboardedAt) {
@@ -38,8 +38,10 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 			nonempty: m['inputs.turnstile.errors.nonempty'](lang),
 		}),
 	});
+	const resentWaitingMs = platform?.env?.AUTHENTICATE_RESENT_WAITING_MS ?? 0;
 
 	return {
+		resentWaitingMs,
 		form: await superValidate(valibot(schema)),
 		routing: {
 			breadcrumbs: b['/:lang/authenticate']({ lang }),
@@ -53,7 +55,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 
 export const actions: Actions = {
 	default: async (event) => {
-		const { request, locals, getClientAddress, url } = event;
+		const { request, locals, getClientAddress, url, platform } = event;
 		const { language } = locals;
 
 		const employers = getBackend().employers();
@@ -85,11 +87,10 @@ export const actions: Actions = {
 		const employer = await employers.getByEmail(email);
 		const type = employer?.onboardedAt ? 'login' : 'signup';
 
-		const RESENT_WAITING_TIME = 90 * 1000; // 90 seconds
-
+		const resentWaitingMs = platform?.env?.AUTHENTICATE_RESENT_WAITING_MS ?? 0;
 		let lastVerification = await employers.getLastAuthVerification(email);
 		let sentAgainAt = lastVerification
-			? new Date(lastVerification.createdAt.getTime() + RESENT_WAITING_TIME)
+			? new Date(lastVerification.createdAt.getTime() + resentWaitingMs)
 			: null;
 		if (sentAgainAt && new Date() < sentAgainAt) {
 			return message(form, {
@@ -121,7 +122,7 @@ export const actions: Actions = {
 		}
 
 		lastVerification = await employers.getLastAuthVerification(email);
-		sentAgainAt = new Date(lastVerification!.createdAt.getTime() + RESENT_WAITING_TIME);
+		sentAgainAt = new Date(lastVerification!.createdAt.getTime() + resentWaitingMs);
 		return message(form, {
 			type,
 			sentAgainAt: sentAgainAt,

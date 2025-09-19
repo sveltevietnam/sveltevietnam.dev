@@ -143,11 +143,11 @@ messages:
       callout:
         in: trong
         login:
-          Vui lòng hoàn tất đăng nhập qua đường dẫn trong email vừa được gởi đến bạn (có hiệu lực
-          trong vòng 3 phút). Nếu không nhận được email, bạn có thể nhấn “Gởi lại”
+          Vui lòng hoàn tất đăng nhập qua đường dẫn trong email vừa được gởi đến bạn (hết hiệu lực
+          {{exp}}). Nếu không nhận được email, bạn có thể nhấn “Gởi lại”
         signup:
-          Vui lòng tiếp tục quy trình đăng ký qua hướng dẫn trong email vừa được gởi đến bạn (có
-          hiệu lực trong vòng 3 phút). Nếu không nhận được email, bạn có thể nhấn “Gởi lại”
+          Vui lòng tiếp tục quy trình đăng ký qua hướng dẫn trong email vừa được gởi đến bạn (hết
+          hiệu lực {{exp}}). Nếu không nhận được email, bạn có thể nhấn “Gởi lại”
       headhunter:
         Bạn là nhà tuyển dụng độc lập? <br /> Kết nối trực tiếp với ứng viên qua <a class="c-link"
         href="{{jobChannelUrl}}" target="_blank" rel="noreferrer noopener external">diễn đàn cộng

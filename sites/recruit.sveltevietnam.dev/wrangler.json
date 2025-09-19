@@ -11,6 +11,9 @@
 	},
 	"env": {
 		"development": {
+			"vars": {
+				"AUTHENTICATE_RESENT_WAITING_MS": 10000
+			},
 			"d1_databases": [
 				{
 					"binding": "d1",
@@ -33,6 +36,9 @@
 		},
 
 		"test": {
+			"vars": {
+				"AUTHENTICATE_RESENT_WAITING_MS": 3000
+			},
 			"d1_databases": [
 				{
 					"binding": "d1",
@@ -55,6 +61,9 @@
 		},
 
 		"production": {
+			"vars": {
+				"AUTHENTICATE_RESENT_WAITING_MS": 90000
+			},
 			"routes": [
 				{
 					"pattern": "recruit.sveltevietnam.dev",

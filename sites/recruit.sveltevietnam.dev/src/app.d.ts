@@ -32,6 +32,7 @@ declare global {
 
 		interface Platform extends AppPlatform {
 			env?: {
+				AUTHENTICATE_RESENT_WAITING_MS: number;
 				d1: import('@cloudflare/workers-types').D1Database;
 				r2: import('@cloudflare/workers-types').R2Bucket;
 				backend: import('@sveltevietnam/backend').default;
