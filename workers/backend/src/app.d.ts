@@ -13,9 +13,12 @@ declare global {
 		declare type Message = MessageSendMail<import('./mjml/templates').TemplateId>;
 	}
 
+	// environment variables
 	interface Env {
-		// environment variables
+		/** 'development' | 'test' | 'production' */
 		MODE: string;
+		/** whether this environment runs on local machine or deployed to the cloud  */
+		LOCAL: boolean;
 		ORIGIN: string;
 		SITE_URL: string;
 		RECRUIT_URL: string;
@@ -29,7 +32,6 @@ declare global {
 		secret_jwt: import('@cloudflare/workers-types').SecretsStoreSecret;
 		secret_ses_access_key: import('@cloudflare/workers-types').SecretsStoreSecret;
 		secret_ses_access_secret: import('@cloudflare/workers-types').SecretsStoreSecret;
-		secret_recruit_better_auth: import('@cloudflare/workers-types').SecretsStoreSecret;
 	}
 }
 

@@ -127,9 +127,9 @@ export class MailService extends RpcTarget {
 
 		// create mail record
 		const mailId = `mail_` + createId();
-		const { SITE_URL: siteUrl, MODE: mode, AWS_REGION: awsRegion } = this.#env;
+		const { SITE_URL: siteUrl, LOCAL: local, AWS_REGION: awsRegion } = this.#env;
 		// Workaround for this https://github.com/cloudflare/workers-sdk/issues/9006
-		const secret = mode !== 'development' ? await this.#env.secret_jwt.get() : 'secret';
+		const secret = !local ? await this.#env.secret_jwt.get() : 'secret';
 		const date = new Date();
 		const token = await jwt.sign(
 			{
@@ -151,8 +151,8 @@ export class MailService extends RpcTarget {
 			...vars,
 		} satisfies TemplateVarMap[T] & BaseTemplateVars);
 
-		if (mode === 'development') {
-			// skip sending email in dev mode
+		if (local) {
+			// skip sending email in local env
 			console.log('Mail web url:', `${siteUrl}/${lang}/mails/${mailId}?token=${token}`);
 		} else {
 			// send actual email with AWS SES

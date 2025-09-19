@@ -9,6 +9,7 @@
 			"name": "backend",
 			"vars": {
 				"MODE": "development",
+				"LOCAL": true,
 				"ORIGIN": "http://localhost:5006",
 				"SITE_URL": "http://localhost:5005",
 				"RECRUIT_URL": "http://localhost:5007",
@@ -75,6 +76,7 @@
 			"name": "backend",
 			"vars": {
 				"MODE": "test",
+				"LOCAL": true,
 				"ORIGIN": "http://localhost:5006",
 				"SITE_URL": "http://localhost:5005",
 				"RECRUIT_URL": "http://localhost:5007",
@@ -147,6 +149,7 @@
 			],
 			"vars": {
 				"MODE": "production",
+				"LOCAL": false,
 				"ORIGIN": "https://backend.sveltevietnam.dev",
 				"SITE_URL": "https://www.sveltevietnam.dev",
 				"RECRUIT_URL": "https://recruit.sveltevietnam.dev",

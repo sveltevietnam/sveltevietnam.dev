@@ -58,7 +58,7 @@ export default class extends WorkerEntrypoint<Env> {
 
 	// TODO: maybe can create a token service for verify & create/sign
 	async verify(token: string): Promise<JwtVerificationResult> {
-		const secret = this.env.MODE !== 'development' ? await this.env.secret_jwt.get() : 'secret';
+		const secret = !this.env.LOCAL ? await this.env.secret_jwt.get() : 'secret';
 		try {
 			const verifiedToken = await jwt.verify<JwtPayload>(token, secret, { throwError: true });
 			if (!verifiedToken || !verifiedToken.payload)

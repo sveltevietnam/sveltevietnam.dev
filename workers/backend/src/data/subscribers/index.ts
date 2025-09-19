@@ -61,7 +61,7 @@ export class SubscriberService extends RpcTarget {
 				.returning({ id: subscribers.id });
 
 			// Workaround for this https://github.com/cloudflare/workers-sdk/issues/9006
-			const secret = this.#env.MODE !== 'development' ? await this.#env.secret_jwt.get() : 'secret';
+			const secret = !this.#env.LOCAL ? await this.#env.secret_jwt.get() : 'secret';
 			const date = new Date();
 			const token = await jwt.sign(
 				{
