@@ -11,27 +11,33 @@
 	"exports": {
 		".": {
 			"types": "./types/index.d.ts",
-			"import": "./src/index.js"
+			"import": "./src/index.js",
+			"default": "./src/index.js"
 		},
 		"./language": {
 			"types": "./types/index.d.ts",
-			"import": "./src/language.js"
+			"import": "./src/language.js",
+			"default": "./src/language.js"
 		},
 		"./utils": {
 			"types": "./types/index.d.ts",
-			"import": "./src/utils/index.js"
+			"import": "./src/utils/index.js",
+			"default": "./src/utils/index.js"
 		},
 		"./vite": {
 			"types": "./types/index.d.ts",
-			"import": "./src/vite.js"
+			"import": "./src/vite.js",
+			"default": "./src/vite.js"
 		},
 		"./runtime": {
 			"types": "./types/index.d.ts",
-			"import": "./src/runtime/index.js"
+			"import": "./src/runtime/index.js",
+			"default": "./src/runtime/index.js"
 		},
 		"./runtime/factory": {
 			"types": "./types/index.d.ts",
-			"import": "./src/runtime/factory.js"
+			"import": "./src/runtime/factory.js",
+			"default": "./src/runtime/factory.js"
 		}
 	},
 	"publishconfig": {
