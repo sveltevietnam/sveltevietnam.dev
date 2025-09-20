@@ -76,5 +76,8 @@
 		"mustache": "^4.2.0",
 		"sanitize-html": "^2.17.0",
 		"valibot": "1.1.0"
+	},
+	"volta": {
+		"extends": "../../package.json"
 	}
 }

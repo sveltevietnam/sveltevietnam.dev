@@ -69,5 +69,8 @@
 	"devDependencies": {
 		"svelte": "^5.38.6",
 		"vite": "^7.1.4"
+	},
+	"volta": {
+		"extends": "../../package.json"
 	}
 }

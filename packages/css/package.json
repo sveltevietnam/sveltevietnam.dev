@@ -63,5 +63,8 @@
 	"devDependencies": {
 		"tailwindcss": "4.1.12",
 		"vite": "^7.1.4"
+	},
+	"volta": {
+		"extends": "../../package.json"
 	}
 }
