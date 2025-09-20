@@ -18,12 +18,6 @@ import { createSocials, createLogoImageUrl } from '../links';
 
 import { mails } from './tables';
 
-/**
- * expiration time for html and JWT,
- * in seconds (7 days)
- */
-const TTL = 60 * 60 * 24 * 7;
-
 export type WebMail = {
 	id: string;
 	subject: string;
@@ -127,7 +121,12 @@ export class MailService extends RpcTarget {
 
 		// create mail record
 		const mailId = `mail_` + createId();
-		const { SITE_URL: siteUrl, LOCAL: local, AWS_REGION: awsRegion } = this.#env;
+		const {
+			SITE_URL: siteUrl,
+			LOCAL: local,
+			AWS_REGION: awsRegion,
+			MAIL_TOKEN_TTL: ttl,
+		} = this.#env;
 		// Workaround for this https://github.com/cloudflare/workers-sdk/issues/9006
 		const secret = !local ? await this.#env.secret_jwt.get() : 'secret';
 		const date = new Date();
@@ -136,7 +135,7 @@ export class MailService extends RpcTarget {
 				sub: actorId ?? 'anonymous',
 				iat: Math.floor(date.getTime() / 1000),
 				iss: 'backend.sveltevietnam.dev',
-				exp: Math.floor(date.getTime() / 1000) + TTL,
+				exp: Math.floor(date.getTime() / 1000) + ttl,
 			},
 			secret,
 		);
@@ -208,7 +207,7 @@ export class MailService extends RpcTarget {
 
 		// save html to kv
 		await this.#env.kv_mails.put(mailId, html, {
-			expirationTtl: TTL,
+			expirationTtl: ttl,
 		});
 
 		await this.#orm.insert(mails).values({

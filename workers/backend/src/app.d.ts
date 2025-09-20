@@ -19,6 +19,8 @@ declare global {
 		MODE: string;
 		/** whether this environment runs on local machine or deployed to the cloud  */
 		LOCAL: boolean;
+		/** in seconds */
+		MAIL_TOKEN_TTL: number;
 		ORIGIN: string;
 		SITE_URL: string;
 		RECRUIT_URL: string;

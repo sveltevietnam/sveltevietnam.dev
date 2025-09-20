@@ -10,6 +10,7 @@
 			"vars": {
 				"MODE": "development",
 				"LOCAL": true,
+				"MAIL_TOKEN_TTL": 120,
 				"ORIGIN": "http://localhost:5006",
 				"SITE_URL": "http://localhost:5005",
 				"RECRUIT_URL": "http://localhost:5007",
@@ -77,6 +78,7 @@
 			"vars": {
 				"MODE": "test",
 				"LOCAL": true,
+				"MAIL_TOKEN_TTL": 60,
 				"ORIGIN": "http://localhost:5006",
 				"SITE_URL": "http://localhost:5005",
 				"RECRUIT_URL": "http://localhost:5007",
@@ -150,6 +152,7 @@
 			"vars": {
 				"MODE": "production",
 				"LOCAL": false,
+				"MAIL_TOKEN_TTL": 604800,
 				"ORIGIN": "https://backend.sveltevietnam.dev",
 				"SITE_URL": "https://www.sveltevietnam.dev",
 				"RECRUIT_URL": "https://recruit.sveltevietnam.dev",
