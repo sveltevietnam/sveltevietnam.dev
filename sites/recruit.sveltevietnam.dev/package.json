@@ -19,7 +19,7 @@
 		"lint:svelte": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"lint:es": "svelte-kit sync && eslint .",
 		"lint:style": "stylelint '**/*.{svelte,css}'",
-		"test:e2e": "playwright test"
+		"test:uat": "playwright test"
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20250903.0",
