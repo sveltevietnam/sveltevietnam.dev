@@ -1,4 +1,6 @@
 import fs from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { test } from '@playwright/test';
 import {
@@ -8,8 +10,23 @@ import {
 	pushSchema,
 } from '@sveltevietnam/backend/db/dev';
 import * as schema from '@sveltevietnam/backend/db/schema';
+import backendWranglerConfig from '@sveltevietnam/backend/wrangler.json' with { type: 'json' };
 
-import { getBackendConfig } from '../utils';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+export function getBackendConfig() {
+	const cwd = path.resolve(__dirname, '../../../../workers/backend');
+	return {
+		cwd,
+		d1: {
+			id: backendWranglerConfig.env.test.d1_databases[0].database_id,
+			schema,
+		},
+		kvMails: {
+			id: backendWranglerConfig.env.test.kv_namespaces[0].id,
+		},
+	};
+}
 
 interface TestWithBackendFixtures {
 	d1: Awaited<ReturnType<typeof getLocalORM<typeof schema>>>;
