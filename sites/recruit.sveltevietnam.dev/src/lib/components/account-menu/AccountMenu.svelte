@@ -25,9 +25,9 @@
 	const imageClasses = 'aspect-square h-8 w-auto overflow-hidden rounded-full';
 </script>
 
-<Dropdown bind:open {...rest}>
+<Dropdown bind:open {...rest} role="navigation" aria-labelledby="account-menu-label">
 	{#snippet label()}
-		<span class="sr-only">
+		<span class="sr-only" id="account-menu-label">
 			<T message={m['components.account_menu.aria']} />
 		</span>
 		{#if image}
@@ -44,13 +44,21 @@
 	{#snippet content()}
 		<ul class="border-outline divide-outline bg-surface mt-0.5 w-max divide-y border">
 			<li>
-				<a class={accountMenuItemClasses} href={p['/:lang/profile']({ lang: routing.lang })}>
+				<a
+					class={accountMenuItemClasses}
+					href={p['/:lang/profile']({ lang: routing.lang })}
+					onclick={() => (open = false)}
+				>
 					<i class="i i-[ph--user] h-6 w-6"></i>
 					<T message={m['components.account_menu.profile']} />
 				</a>
 			</li>
 			<li>
-				<a class={accountMenuItemClasses} href={p['/:lang/logout']({ lang: routing.lang })}>
+				<a
+					class={accountMenuItemClasses}
+					href={p['/:lang/logout']({ lang: routing.lang })}
+					onclick={() => (open = false)}
+				>
 					<i class="i i-[ph--sign-out] h-6 w-6"></i>
 					<T message={m['components.account_menu.logout']} />
 				</a>
