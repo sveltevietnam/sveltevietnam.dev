@@ -63,10 +63,10 @@
 				"consumers": [
 					{
 						"queue": "sveltevietnam",
-						"max_batch_size": 10,
-						"max_batch_timeout": 5,
-						"retry_delay": 5,
-						"max_retries": 3,
+						"max_batch_size": 1,
+						"max_batch_timeout": 1,
+						"retry_delay": 0,
+						"max_retries": 0,
 						"dead_letter_queue": "sveltevietnam-dlq"
 					}
 				]
@@ -131,10 +131,10 @@
 				"consumers": [
 					{
 						"queue": "sveltevietnam-test",
-						"max_batch_size": 10,
-						"max_batch_timeout": 5,
-						"retry_delay": 5,
-						"max_retries": 3,
+						"max_batch_size": 1,
+						"max_batch_timeout": 1,
+						"retry_delay": 0,
+						"max_retries": 0,
 						"dead_letter_queue": "sveltevietnam-dlq-test"
 					}
 				]
