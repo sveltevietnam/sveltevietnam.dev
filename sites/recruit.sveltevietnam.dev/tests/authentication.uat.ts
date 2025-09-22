@@ -16,28 +16,17 @@ testWithBackend(
 	{
 		tag: ['@uat', '@authentication'],
 	},
-	async ({ page, d1, kvMails }) => {
+	async ({ page, d1, mails }) => {
+		// 1. User goes to authentication page, fill form, and submit
 		const pomAuthenticate = new PageAuthenticate({ page, lang });
-
-		// 1. Go to authentication page, fill form, and submit
+		const email = `test+uat-001@example.com`;
 		await pomAuthenticate.goto();
-		await pomAuthenticate.fill();
+		await pomAuthenticate.fill(email);
 		await pomAuthenticate.submit();
 
-		// 2. User receives onboarding email
-		await page.waitForTimeout(1000);
-		const mail = await d1.query.mails.findFirst({
-			where: (table, { eq }) => eq(table.to, pomAuthenticate.data.email),
-		});
-		expect(mail).not.toBeFalsy();
-
-		const mailHtml = await kvMails.getById(mail!.id);
-		expect(mailHtml).not.toBeFalsy();
-
-		// 3. User opens the email
-		await page.evaluate((mailHtml) => {
-			document.documentElement.innerHTML = mailHtml!;
-		}, mailHtml);
+		// 2. User receives and opens onboarding email
+		await page.waitForTimeout(2000); // wait for backend queue to process
+		await mails.openLatest(email, 'recruit-employer-onboard');
 
 		// 4. User clicks onboarding link in email
 		const onboardLink = page.getByRole('link', {
@@ -71,15 +60,15 @@ testWithBackend(
 		// 13. User goes to profile page and verify their data
 		const pomProfile = await pomWelcome.accountMenu.goToProfile();
 		const employer = await d1.query.employers.findFirst({
-			where: (table, { eq }) => eq(table.email, pomAuthenticate.data.email),
+			where: (table, { eq }) => eq(table.email, email),
 		});
 		expect(employer).not.toBeFalsy();
-		expect(employer!.email).toBe(pomAuthenticate.data.email);
+		expect(employer!.email).toBe(email);
 		expect(employer!.image).toBeTruthy();
 		expect(employer!.emailVerified).toBe(true);
 		await pomProfile.expectData({
 			...profileData,
-			email: pomAuthenticate.data.email,
+			email,
 			image: new URL(page.url()).origin + employer!.image,
 		});
 

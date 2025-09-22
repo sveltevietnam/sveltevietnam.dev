@@ -19,6 +19,10 @@
 			"types": "./src/data/job-postings/enums.ts",
 			"import": "./src/data/job-postings/enums.ts"
 		},
+		"./mails": {
+			"types": "./src/mjml/templates/ids.ts",
+			"import": "./src/mjml/templates/ids.ts"
+		},
 		"./db/schema": {
 			"types": "./src/database/schema.ts",
 			"import": "./src/database/schema.ts"

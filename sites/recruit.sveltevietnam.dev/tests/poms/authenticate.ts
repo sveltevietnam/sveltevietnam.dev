@@ -7,19 +7,8 @@ import { generateTimestampedEmail, getWranglerVars } from '../utils';
 
 import { CommonPageObjectModel, type CommonPageObjectModelInit } from './utils';
 
-interface PageAuthenticateInit extends CommonPageObjectModelInit {
-	data?: {
-		/** generated with {@link generateTimestampedEmail} if not provided */
-		email?: string;
-	};
-}
-
 export class PageAuthenticate extends CommonPageObjectModel {
 	public readonly path: string;
-
-	public readonly data: {
-		email: string;
-	};
 
 	public readonly inputs: {
 		email: Locator;
@@ -30,12 +19,9 @@ export class PageAuthenticate extends CommonPageObjectModel {
 		resend: Locator;
 	};
 
-	constructor(init: PageAuthenticateInit) {
+	constructor(init: CommonPageObjectModelInit) {
 		super(init);
 		this.path = p['/:lang/authenticate']({ lang: this.lang });
-		this.data = {
-			email: init.data?.email || generateTimestampedEmail(),
-		};
 		this.inputs = {
 			email: this.page.getByRole('textbox', {
 				name: m['inputs.email.label'](this.lang).toString(),
@@ -55,9 +41,11 @@ export class PageAuthenticate extends CommonPageObjectModel {
 		await this.page.goto(this.path);
 	}
 
-	async fill() {
+	async fill(email?: string): Promise<string> {
+		if (!email) email = generateTimestampedEmail();
 		await expect(this.inputs.email).toBeVisible();
-		await this.inputs.email.fill(this.data.email);
+		await this.inputs.email.fill(email);
+		return email;
 	}
 
 	async submit() {
