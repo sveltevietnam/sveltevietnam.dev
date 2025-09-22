@@ -41,12 +41,12 @@
 	</h1>
 
 	<section class="space-y-6">
-		<h2 class="c-text-heading border-outline border-b">
+		<h2 class="c-text-heading border-outline border-b" id="update-email">
 			<T message={m['pages.profile.update_email.heading']} />
 		</h2>
 
 		{#if !$message || $message === 'error'}
-			<form method="POST" action="?/update-email" use:enhance>
+			<form method="POST" action="?/update-email" use:enhance aria-labelledby="update-email">
 				<!-- combined email input & submit button -->
 				<div class="space-y-1">
 					<p>
@@ -67,7 +67,12 @@
 								}}
 							/>
 						</label>
-						<button class="c-btn px-4" type="submit" data-delayed={$delayed} data-timeout={$timeout}>
+						<button
+							class="c-btn px-4"
+							type="submit"
+							data-delayed={$delayed}
+							data-timeout={$timeout}
+						>
 							<i class="i i-[ph--floppy-disk] h-6 w-6"></i>
 							<T message={m.save} />
 						</button>
@@ -102,7 +107,7 @@
 	</section>
 
 	<section class="space-y-6">
-		<h2 class="c-text-heading border-outline border-b">
+		<h2 class="c-text-heading border-outline border-b" id="update-info">
 			<T message={m['pages.profile.update_info.heading']} />
 		</h2>
 
@@ -112,6 +117,7 @@
 			withEmail={false}
 			image={data.image}
 			onSuccess={handleProfileUpdateSuccess}
+			aria-labelledby="update-info"
 		>
 			{#snippet cta({ delayed, timeout })}
 				<button class="c-btn px-4" type="submit" data-delayed={delayed} data-timeout={timeout}>
