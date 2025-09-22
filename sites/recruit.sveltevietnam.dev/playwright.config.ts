@@ -28,7 +28,17 @@ export default defineConfig({
 	],
 	projects: [
 		{
+			name: 'db-setup',
+			testMatch: 'tests/_db.setup.ts',
+			teardown: 'db-teardown',
+		},
+		{
+			name: 'db-teardown',
+			testMatch: 'tests/_db.teardown.ts',
+		},
+		{
 			name: 'chromium',
+			dependencies: ['db-setup'],
 			use: {
 				baseURL: 'http://localhost:5007',
 				...devices['Desktop Chrome'],
