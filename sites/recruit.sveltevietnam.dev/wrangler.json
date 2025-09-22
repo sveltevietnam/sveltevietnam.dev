@@ -12,7 +12,7 @@
 	"env": {
 		"development": {
 			"vars": {
-				"AUTHENTICATE_RESENT_WAITING_MS": 10000
+				"AUTHENTICATE_RESENT_WAITING_MS": 20000
 			},
 			"d1_databases": [
 				{
@@ -37,7 +37,7 @@
 
 		"test": {
 			"vars": {
-				"AUTHENTICATE_RESENT_WAITING_MS": 3000
+				"AUTHENTICATE_RESENT_WAITING_MS": 2000
 			},
 			"d1_databases": [
 				{
