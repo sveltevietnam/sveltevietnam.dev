@@ -140,7 +140,7 @@
 
 			<!-- image -->
 			<div class="w-32 space-y-1">
-				<label class="flex cursor-pointer flex-col gap-1">
+				<label class="flex cursor-pointer flex-col gap-1" data-testid="image">
 					<span><T message={m['inputs.employer.image.label']} />:</span>
 					<span
 						class={[
@@ -150,6 +150,7 @@
 					>
 						{#if imagePreviewUri}
 							<img
+								data-testid="image-preview"
 								class="h-full w-full object-cover"
 								width="200"
 								height="200"
