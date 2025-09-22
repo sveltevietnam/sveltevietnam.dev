@@ -1,22 +1,29 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { expect, type Page, type Locator } from '@playwright/test';
 import * as schema from '@sveltevietnam/backend/db/schema';
-import wrangler from '@sveltevietnam/backend/wrangler.json' with { type: 'json' };
+import backendWranglerConfig from '@sveltevietnam/backend/wrangler.json' with { type: 'json' };
+
+import recruitWranglerConfig from '../wrangler.json' with { type: 'json' };
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export function getBackendConfig() {
-	const id = wrangler.env.test.d1_databases[0].database_id;
 	const cwd = path.resolve(__dirname, '../../../workers/backend');
-	return { database: { id, schema }, cwd };
+	return {
+		cwd,
+		d1: {
+			id: backendWranglerConfig.env.test.d1_databases[0].database_id,
+			schema,
+		},
+		kvMails: {
+			id: backendWranglerConfig.env.test.kv_namespaces[0].id,
+		},
+	};
 }
 
-export async function expectEmailInput(page: Page): Promise<Locator> {
-	const input = page.getByRole('textbox', { name: 'Email' });
-	await expect(input).toBeVisible();
-	return input;
+export function getWranglerVars() {
+	return recruitWranglerConfig.env.test.vars;
 }
 
 export function generateTimestampedEmail(): string {
