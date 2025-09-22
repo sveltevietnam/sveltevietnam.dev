@@ -9,14 +9,17 @@ import path from 'node:path';
 import sqlite from 'node:sqlite';
 
 export const WRANGLER_LOCAL_D1_DIRPATH = '.wrangler/state/v3/d1/miniflare-D1DatabaseObject';
+export const WRANGLER_LOCAL_R2_DIRPATH = '.wrangler/state/v3/kv/miniflare-KVNamespaceObject';
 
+type StorageClass = 'D1Database' | 'R2Bucket' | 'KVNamespace' | 'Cache';
 /**
  * Credit: https://github.com/cloudflare/workers-sdk/issues/4548#issuecomment-1934930563
  * @param {string} name
- * @param {string} uniqueKey
+ * @param {StorageClass} storageClass
  * @returns {string}
  */
-export function durableObjectNamespaceIdFromName(name: string, uniqueKey: string): string {
+export function getObjectStorageId(name: string, storageClass: StorageClass): string {
+	const uniqueKey = `miniflare-${storageClass}Object`;
 	const key = crypto.createHash('sha256').update(uniqueKey).digest();
 	const nameHmac = crypto.createHmac('sha256', key).update(name).digest().subarray(0, 16);
 	const hmac = crypto.createHmac('sha256', key).update(nameHmac).digest().subarray(0, 16);
@@ -50,7 +53,7 @@ export function getLocalD1Path(
 	const filepath = path.join(
 		cwd,
 		WRANGLER_LOCAL_D1_DIRPATH,
-		`${durableObjectNamespaceIdFromName(databaseId, 'miniflare-D1DatabaseObject')}.sqlite`,
+		`${getObjectStorageId(databaseId, 'D1Database')}.sqlite`,
 	);
 
 	const created = vacuum && !fs.existsSync(filepath);
@@ -62,6 +65,57 @@ export function getLocalD1Path(
 	}
 
 	return { path: filepath, created };
+}
+
+/**
+ * @param {string} kvId
+ * @param {string} [cwd]
+ * @returns {string}
+ */
+export function getLocalKVStoragePath(kvId: string, cwd = process.cwd()): string {
+	return path.join(
+		cwd,
+		WRANGLER_LOCAL_R2_DIRPATH,
+		`${getObjectStorageId(kvId, 'KVNamespace')}.sqlite`,
+	);
+}
+
+/**
+ * @param {string} kvId
+ * @param {string} itemKey
+ * @param {string} [cwd]
+ * @returns {string | null}
+ */
+export function getLocalKVBlobPath(
+	kvId: string,
+	itemKey: string,
+	cwd = process.cwd(),
+): string | null {
+	const storagePath = getLocalKVStoragePath(kvId, cwd);
+	const db = new sqlite.DatabaseSync(storagePath);
+
+	const query = db.prepare(`SELECT * FROM _mf_entries WHERE key = ?`);
+	const [blob] = query.all(itemKey);
+	if (!blob?.blob_id) {
+		db.close();
+		return null;
+	}
+
+	// can be improved here? as currently i don't know how to get the middle dirname
+	const globPattern = path.join(
+		cwd,
+		path.dirname(WRANGLER_LOCAL_R2_DIRPATH),
+		'**',
+		blob.blob_id.toString(),
+	);
+	const files = fs.globSync(globPattern);
+	if (!files.length) {
+		db.close();
+		return null;
+	}
+
+	db.close();
+	return files[0];
 }
 
 /**
