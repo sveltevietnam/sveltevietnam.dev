@@ -12,6 +12,7 @@ import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { VITE_PRIVATE_CLOUDFLARE_TURNSTILE_SECRET_KEY } from '$env/static/private';
+import { VITE_PUBLIC_MODE } from '$env/static/public';
 import { getBackend } from '$lib/backend/utils';
 
 import type { Actions, PageServerLoad } from './$types';
@@ -32,12 +33,17 @@ export const load: PageServerLoad = async ({ params, locals, platform }) => {
 		}
 		redirect(302, p['/:lang/onboarding']({ lang }));
 	}
-	const schema = v.object({
-		email: createEmailSchema(lang),
-		turnstile: createTurnstileValibotClientSchema({
-			nonempty: m['inputs.turnstile.errors.nonempty'](lang),
-		}),
-	});
+	const schema =
+		VITE_PUBLIC_MODE === 'test'
+			? v.object({
+					email: createEmailSchema(lang),
+				})
+			: v.object({
+					email: createEmailSchema(lang),
+					turnstile: createTurnstileValibotClientSchema({
+						nonempty: m['inputs.turnstile.errors.nonempty'](lang),
+					}),
+				});
 	const resentWaitingMs = platform?.env?.AUTHENTICATE_RESENT_WAITING_MS ?? 0;
 
 	return {
@@ -60,17 +66,22 @@ export const actions: Actions = {
 
 		const employers = getBackend().employers();
 
-		const schema = v.objectAsync({
-			turnstile: createTurnstileValibotServerSchema({
-				secret: VITE_PRIVATE_CLOUDFLARE_TURNSTILE_SECRET_KEY,
-				ip: getClientAddress(),
-				messages: {
-					nonempty: m['inputs.turnstile.errors.nonempty'](language),
-					generic: m['inputs.turnstile.errors.unknown'](language),
-				},
-			}),
-			email: v.pipeAsync(createEmailSchema(language), v.toLowerCase()),
-		});
+		const schema =
+			VITE_PUBLIC_MODE === 'test'
+				? v.objectAsync({
+						email: v.pipeAsync(createEmailSchema(language), v.toLowerCase()),
+					})
+				: v.objectAsync({
+						turnstile: createTurnstileValibotServerSchema({
+							secret: VITE_PRIVATE_CLOUDFLARE_TURNSTILE_SECRET_KEY,
+							ip: getClientAddress(),
+							messages: {
+								nonempty: m['inputs.turnstile.errors.nonempty'](language),
+								generic: m['inputs.turnstile.errors.unknown'](language),
+							},
+						}),
+						email: v.pipeAsync(createEmailSchema(language), v.toLowerCase()),
+					});
 		const form = await superValidate(
 			request,
 			valibot(schema, {
