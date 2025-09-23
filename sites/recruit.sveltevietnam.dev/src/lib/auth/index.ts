@@ -34,7 +34,7 @@ export function createEmployerAuth() {
 		appName: 'Svelte Vietnam Recruit',
 		baseURL: VITE_PUBLIC_ORIGIN,
 		secret: VITE_PRIVATE_BETTER_AUTH_SECRET,
-		database: drizzleAdapter(orm, { provider: 'sqlite', transaction: true }),
+		database: drizzleAdapter(orm, { provider: 'sqlite' }),
 		user: {
 			additionalFields: {
 				website: {

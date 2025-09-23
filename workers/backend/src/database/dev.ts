@@ -139,7 +139,7 @@ export async function getLocalORM<TSchema extends Record<string, unknown>>(
 
 	// 2. create an explicit LibSQL client
 	const { createClient } = await import('@libsql/client');
-	const client = createClient({ url: `file:${path}`, concurrency: 100 });
+	const client = createClient({ url: `file:${path}` });
 
 	// 3. create a Drizzle instance
 	const { drizzle } = await import('drizzle-orm/libsql');

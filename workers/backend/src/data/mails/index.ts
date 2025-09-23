@@ -57,10 +57,7 @@ export class MailService extends RpcTarget {
 			},
 		});
 		if (!mail) return null; // not found
-		await this.#orm.transaction(
-			(tx) => tx.update(mails).set({ lastViewOnWebAt: new Date() }).where(eq(mails.id, id)),
-			{ behavior: 'deferred' },
-		);
+		await this.#orm.update(mails).set({ lastViewOnWebAt: new Date() }).where(eq(mails.id, id));
 		return {
 			...mail,
 			html,
@@ -213,19 +210,15 @@ export class MailService extends RpcTarget {
 			expirationTtl: ttl,
 		});
 
-		await this.#orm.transaction(
-			(tx) =>
-				tx.insert(mails).values({
-					id: mailId,
-					actorId,
-					subject: template.subject,
-					from: template.from.email,
-					to,
-					templateId,
-					sentAt: date,
-				}),
-			{ behavior: 'deferred' },
-		);
+		await this.#orm.insert(mails).values({
+			id: mailId,
+			actorId,
+			subject: template.subject,
+			from: template.from.email,
+			to,
+			templateId,
+			sentAt: date,
+		});
 
 		return mailId;
 	}

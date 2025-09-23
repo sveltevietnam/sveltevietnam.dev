@@ -55,10 +55,10 @@ export class SubscriberService extends RpcTarget {
 
 		// insert
 		if (!subscriber) {
-			const [{ id }] = await this.#orm.transaction(
-				(tx) => tx.insert(subscribers).values(parsed.output).returning({ id: subscribers.id }),
-				{ behavior: 'deferred' },
-			);
+			const [{ id }] = await this.#orm
+				.insert(subscribers)
+				.values(parsed.output)
+				.returning({ id: subscribers.id });
 
 			// Workaround for this https://github.com/cloudflare/workers-sdk/issues/9006
 			const secret = !this.#env.LOCAL ? await this.#env.secret_jwt.get() : 'secret';
@@ -89,19 +89,15 @@ export class SubscriberService extends RpcTarget {
 		}
 
 		// update
-		await this.#orm.transaction(
-			(tx) =>
-				tx
-					.update(subscribers)
-					.set({
-						channels: mergeMasks(subscriber.channels, parsed.output.channels),
-						name: parsed.output.name,
-						updatedAt: new Date(),
-						language: parsed.output.language,
-					})
-					.where(eq(subscribers.id, subscriber.id)),
-			{ behavior: 'deferred' },
-		);
+		await this.#orm
+			.update(subscribers)
+			.set({
+				channels: mergeMasks(subscriber.channels, parsed.output.channels),
+				name: parsed.output.name,
+				updatedAt: new Date(),
+				language: parsed.output.language,
+			})
+			.where(eq(subscribers.id, subscriber.id));
 
 		return { success: true, id: subscriber.id, action: 'update' };
 	}
@@ -120,33 +116,26 @@ export class SubscriberService extends RpcTarget {
 
 		// persist data
 		const { id, ...rest } = parsed.output;
-		await this.#orm.transaction(
-			(tx) =>
-				tx
-					.update(subscribers)
-					.set({
-						updatedAt: new Date(),
-						...rest,
-					})
-					.where(eq(subscribers.id, id)),
-			{ behavior: 'deferred' },
-		);
+		await this.#orm
+			.update(subscribers)
+			.set({
+				updatedAt: new Date(),
+				...rest,
+			})
+			.where(eq(subscribers.id, id))
+			.returning({ id: subscribers.id });
 
 		return { success: true };
 	}
 
 	async verify(id: string): Promise<{ success: true }> {
-		await this.#orm.transaction(
-			(tx) =>
-				tx
-					.update(subscribers)
-					.set({
-						updatedAt: new Date(),
-						verifiedAt: new Date(),
-					})
-					.where(eq(subscribers.id, id)),
-			{ behavior: 'deferred' },
-		);
+		await this.#orm
+			.update(subscribers)
+			.set({
+				updatedAt: new Date(),
+				verifiedAt: new Date(),
+			})
+			.where(eq(subscribers.id, id));
 
 		return { success: true };
 	}
