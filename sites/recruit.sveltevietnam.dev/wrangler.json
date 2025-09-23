@@ -12,7 +12,8 @@
 	"env": {
 		"development": {
 			"vars": {
-				"AUTHENTICATE_RESENT_WAITING_MS": 20000
+				"AUTHENTICATE_RESENT_WAITING_MS": 20000,
+				"AUTHENTICATE_EMAIL_EXPIRATION_SECONDS": 180
 			},
 			"d1_databases": [
 				{
@@ -37,7 +38,8 @@
 
 		"test": {
 			"vars": {
-				"AUTHENTICATE_RESENT_WAITING_MS": 2000
+				"AUTHENTICATE_RESENT_WAITING_MS": 2000,
+				"AUTHENTICATE_EMAIL_EXPIRATION_SECONDS": 180
 			},
 			"d1_databases": [
 				{
@@ -62,7 +64,8 @@
 
 		"production": {
 			"vars": {
-				"AUTHENTICATE_RESENT_WAITING_MS": 90000
+				"AUTHENTICATE_RESENT_WAITING_MS": 90000,
+				"AUTHENTICATE_EMAIL_EXPIRATION_SECONDS": 180
 			},
 			"routes": [
 				{

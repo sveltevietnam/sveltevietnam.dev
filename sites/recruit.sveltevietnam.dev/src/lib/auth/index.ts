@@ -29,6 +29,7 @@ export function createEmployerAuth() {
 			verification: employerAuthVerifications,
 		},
 	});
+	const emailExpiresIn = event.platform?.env?.AUTHENTICATE_EMAIL_EXPIRATION_SECONDS ?? 180;
 	return betterAuth({
 		appName: 'Svelte Vietnam Recruit',
 		baseURL: VITE_PUBLIC_ORIGIN,
@@ -83,11 +84,11 @@ export function createEmployerAuth() {
 			},
 		},
 		emailVerification: {
-			expiresIn: 180, // 3 minutes
+			expiresIn: emailExpiresIn,
 		},
 		plugins: [
 			magicLink({
-				expiresIn: 180, // 3 minutes
+				expiresIn: emailExpiresIn,
 				sendMagicLink: async ({ url, email }, request) => {
 					const headers = Object.fromEntries(request!.headers.entries());
 					const lang = headers['x-auth-lang'] as Language;
