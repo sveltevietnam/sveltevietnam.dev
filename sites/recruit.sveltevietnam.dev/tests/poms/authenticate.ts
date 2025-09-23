@@ -97,4 +97,22 @@ export class PageAuthenticate extends CommonPageObjectModel {
 			);
 		}
 	}
+
+	public async expectError(error: 'EXPIRED_TOKEN' | 'INVALID_TOKEN' | 'UNKNOWN') {
+		const output = this.page.getByRole('alert');
+		await expect(output).toBeVisible();
+		if (error === 'EXPIRED_TOKEN') {
+			await expect(output).toContainText(
+				m['pages.authenticate.error.token_expired'](this.lang).toString(),
+			);
+		} else if (error === 'INVALID_TOKEN') {
+			await expect(output).toContainText(
+				m['pages.authenticate.error.token_invalid'](this.lang).toString(),
+			);
+		} else {
+			await expect(output).toContainText(
+				m['pages.authenticate.error.generic'](this.lang).toString(),
+			);
+		}
+	}
 }

@@ -39,7 +39,7 @@
 		"test": {
 			"vars": {
 				"AUTHENTICATE_RESENT_WAITING_MS": 2000,
-				"AUTHENTICATE_EMAIL_EXPIRATION_SECONDS": 180
+				"AUTHENTICATE_EMAIL_EXPIRATION_SECONDS": 1.2
 			},
 			"d1_databases": [
 				{

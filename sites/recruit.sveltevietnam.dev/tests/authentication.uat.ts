@@ -9,7 +9,7 @@ import { PageAuthenticate } from './poms/authenticate';
 import { PageMail } from './poms/mail';
 import { PageOnboarding } from './poms/onboarding';
 import { PagePostings } from './poms/postings';
-import { generateTimestampedEmail } from './utils';
+import { generateTimestampedEmail, getWranglerVars } from './utils';
 
 const lang = 'vi';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -23,17 +23,17 @@ testWithBackend.describe(() => {
 	});
 
 	test.beforeEach(async ({ page, mails, d1, email }) => {
-		// 1. User goes to authentication page, fill form, and submit
+		// User goes to authentication page, fill form, and submit
 		const pomAuthenticate = new PageAuthenticate({ page, lang });
 		await pomAuthenticate.goto();
 		await pomAuthenticate.fill(email);
 		await pomAuthenticate.continue('signup');
 
-		// 2. User receives and get to onboarding page via email
+		// User receives and get to onboarding page via email
 		const pomMail = new PageMail({ page, lang, mails, d1 });
 		await pomMail.onboard(email);
 
-		// 3. User is redirected to onboarding page
+		// User is redirected to onboarding page
 		const pomOnboarding = new PageOnboarding({ page, lang });
 		await pomOnboarding.waitForPage();
 		await expect(pomOnboarding.accountMenu.locator).toBeHidden();
@@ -47,7 +47,7 @@ testWithBackend.describe(() => {
 		async ({ page, d1, email }) => {
 			const pomOnboarding = new PageOnboarding({ page, lang });
 
-			// 1. User fills and submits onboarding form, and is redirected to welcome page
+			// User fills and submits onboarding form, and is redirected to welcome page
 			const profileData = {
 				name: 'Company ABC',
 				description: 'We are Company ABC, we do XYZ things.',
@@ -57,7 +57,7 @@ testWithBackend.describe(() => {
 			await pomOnboarding.fill(profileData);
 			const pomWelcome = await pomOnboarding.submitForReview();
 
-			// 2. User goes to profile page and verify their data
+			// User goes to profile page and verify their data
 			const pomProfile = await pomWelcome.accountMenu.goToProfile();
 			const employer = await d1.query.employers.findFirst({
 				where: (table, { eq }) => eq(table.email, email),
@@ -84,19 +84,19 @@ testWithBackend.describe(() => {
 			tag: ['@uat', '@authentication'],
 		},
 		async ({ page, mails, d1, email }) => {
-			// 1. User logs out during onboarding and is redirected to authenticate page
+			// User logs out during onboarding and is redirected to authenticate page
 			const pomOnboarding = new PageOnboarding({ page, lang });
 			const pomAuthenticate = await pomOnboarding.useAnotherAccount();
 
-			// 2. User signs up again
+			// User signs up again
 			await pomAuthenticate.fill(email);
 			await pomAuthenticate.continue('signup');
 
-			// 3. User receives and opens email
+			// User receives and opens email
 			const pomMail = new PageMail({ page, lang, mails, d1 });
 			await pomMail.onboard(email);
 
-			// 4. User is redirected to onboarding page
+			// User is redirected to onboarding page
 			await pomOnboarding.waitForPage();
 		},
 	);
@@ -110,13 +110,13 @@ testWithBackend(
 	async ({ page, d1 }) => {
 		const email = generateTimestampedEmail();
 
-		// 1. User goes to authentication page, fill form, and submit
+		// User goes to authentication page, fill form, and submit
 		const pomAuthenticate = new PageAuthenticate({ page, lang });
 		await pomAuthenticate.goto();
 		await pomAuthenticate.fill(email);
 		await pomAuthenticate.continue('signup');
 
-		// 2. User waits and hits resend
+		// User waits and hits resend
 		await pomAuthenticate.resend('signup');
 
 		// verify that two emails are sent
@@ -128,38 +128,68 @@ testWithBackend(
 	},
 );
 
-testWithBackend(
-	'UAT-004: User can log in after being onboarded',
-	{
-		tag: ['@uat', '@authentication'],
-	},
-	async ({ page, d1, mails }) => {
-		const [employer] = await d1
-			.insert(schema.employers)
-			.values({
-				email: 'test+uat-002@example.com',
-				emailVerified: true,
-				name: 'Company ABC',
-				description: 'We are Company ABC, we do XYZ things.',
-				website: 'https://example.com',
-				onboardedAt: new Date(),
-				agreed: true,
-			})
-			.returning({ email: schema.employers.email });
-		expect(employer).toBeTruthy();
+testWithBackend.describe(() => {
+	const test = testWithBackend.extend<{ email: string }>({
+		email: async ({ d1 }, use) => {
+			const email = generateTimestampedEmail();
+			const [employer] = await d1
+				.insert(schema.employers)
+				.values({
+					email,
+					emailVerified: true,
+					name: 'Company ABC',
+					description: 'We are Company ABC, we do XYZ things.',
+					website: 'https://example.com',
+					onboardedAt: new Date(),
+					agreed: true,
+				})
+				.returning({ email: schema.employers.email });
+			expect(employer).toBeTruthy();
+			await use(email);
+		},
+	});
 
-		// 1. Go to authentication page, fill form, and submit
+	test.beforeEach(async ({ page, email }) => {
 		const pomAuthenticate = new PageAuthenticate({ page, lang });
 		await pomAuthenticate.goto();
-		await pomAuthenticate.fill(employer.email);
+		await pomAuthenticate.fill(email);
 		await pomAuthenticate.continue('login');
+	});
 
-		// 2. User receives and finishes login via email
-		const pomMail = new PageMail({ page, lang, mails, d1 });
-		await pomMail.login(employer.email);
+	test(
+		'UAT-004: User can log in after being onboarded',
+		{
+			tag: ['@uat', '@authentication'],
+		},
+		async ({ page, d1, mails, email }) => {
+			// User receives and finishes login via email
+			const pomMail = new PageMail({ page, lang, mails, d1 });
+			await pomMail.login(email);
 
-		// 3. User is redirected to posting page
-		const pomPostings = new PagePostings({ page, lang });
-		await pomPostings.waitForPage();
-	},
-);
+			// User is redirected to posting page
+			const pomPostings = new PagePostings({ page, lang });
+			await pomPostings.waitForPage();
+		},
+	);
+
+	test(
+		'UAT-005: User is redirected to auth page if email link is expired',
+		{
+			tag: ['@uat', '@authentication'],
+		},
+		async ({ page, d1, mails, email }) => {
+			// wait for token to expire
+			const vars = getWranglerVars();
+			await page.waitForTimeout(vars.AUTHENTICATE_EMAIL_EXPIRATION_SECONDS * 1000);
+
+			// User receives and click on email link
+			const pomMail = new PageMail({ page, lang, mails, d1 });
+			pomMail.login(email);
+
+			// User is redirected to authenticate page with error message
+			const pomAuthenticate = new PageAuthenticate({ page, lang });
+			await pomAuthenticate.waitForPage();
+			await pomAuthenticate.expectError('EXPIRED_TOKEN');
+		},
+	);
+});
