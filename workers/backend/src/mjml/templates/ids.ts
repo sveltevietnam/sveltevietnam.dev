@@ -4,6 +4,7 @@ export const ids = [
 	'recruit-employer-login',
 	'recruit-employer-change-email',
 	'recruit-employer-create-job-posting',
+	'recruit-admin-job-posting-pending-approval',
 ] as const;
 
 export type Id = (typeof ids)[number];
