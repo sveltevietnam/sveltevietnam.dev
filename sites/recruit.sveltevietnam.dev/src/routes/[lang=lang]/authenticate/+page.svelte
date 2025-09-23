@@ -135,6 +135,16 @@
 					</strong>
 				{/if}
 			</output>
+		{:else if data.error}
+			<output class="c-callout c-callout--error block">
+				{#if data.error === 'EXPIRED_TOKEN'}
+					<T message={m['pages.authenticate.error.token_expired']} />
+				{:else if data.error === 'INVALID_TOKEN'}
+					<T message={m['pages.authenticate.error.token_invalid']} />
+				{:else}
+					<T message={m['pages.authenticate.error.generic']} />
+				{/if}
+			</output>
 		{/if}
 	</form>
 	<div class="flex items-center gap-2">

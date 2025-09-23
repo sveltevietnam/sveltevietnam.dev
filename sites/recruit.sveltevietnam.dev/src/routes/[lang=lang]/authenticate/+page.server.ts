@@ -25,7 +25,7 @@ function createEmailSchema(lang: Language) {
 	);
 }
 
-export const load: PageServerLoad = async ({ params, locals, platform }) => {
+export const load: PageServerLoad = async ({ params, locals, platform, url }) => {
 	const { lang } = params;
 	if (locals.user) {
 		if (locals.user.onboardedAt) {
@@ -33,6 +33,10 @@ export const load: PageServerLoad = async ({ params, locals, platform }) => {
 		}
 		redirect(302, p['/:lang/onboarding']({ lang }));
 	}
+
+	// get error code, provided by better-auth on failed authentication
+	const error = url.searchParams.get('error');
+
 	const schema =
 		VITE_PUBLIC_MODE === 'test'
 			? v.object({
@@ -44,16 +48,18 @@ export const load: PageServerLoad = async ({ params, locals, platform }) => {
 						nonempty: m['inputs.turnstile.errors.nonempty'](lang),
 					}),
 				});
+
 	const resentWaitingMs = platform?.env?.AUTHENTICATE_RESENT_WAITING_MS ?? 0;
 
 	return {
+		error,
 		resentWaitingMs,
 		form: await superValidate(valibot(schema)),
 		routing: {
 			breadcrumbs: b['/:lang/authenticate']({ lang }),
 			paths: {
-				vi: p['/:lang/authenticate']({ lang: 'vi' }),
-				en: p['/:lang/authenticate']({ lang: 'en' }),
+				vi: p['/:lang/authenticate']({ lang: 'vi' }) + url.search,
+				en: p['/:lang/authenticate']({ lang: 'en' }) + url.search,
 			},
 		},
 	};
@@ -115,6 +121,7 @@ export const actions: Actions = {
 				email: email,
 				callbackURL: url.searchParams.get('callback') ?? p['/:lang/postings']({ lang: language }),
 				newUserCallbackURL: p['/:lang/onboarding']({ lang: language }),
+				errorCallbackURL: p['/:lang/authenticate']({ lang: language }),
 			},
 			headers: request.headers,
 			request: new Request(request.url, {

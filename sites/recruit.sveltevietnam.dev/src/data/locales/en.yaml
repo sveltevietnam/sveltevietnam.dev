@@ -155,6 +155,10 @@ messages:
         class="c-link" href="{{jobChannelUrl}}" target="_blank" rel="noreferrer noopener
         external">community forum</a>.
       resend: Resend
+      error:
+        token_expired: Your token has expired. Please try again.
+        token_invalid: Your token is invalid. Please try again.
+        generic: Something went wrong. Please try again later.
     onboarding:
       heading: Onboarding
       desc:

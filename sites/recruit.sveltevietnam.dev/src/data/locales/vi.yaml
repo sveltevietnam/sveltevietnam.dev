@@ -153,6 +153,10 @@ messages:
         href="{{jobChannelUrl}}" target="_blank" rel="noreferrer noopener external">diễn đàn cộng
         đồng</a>.
       resend: Gởi lại
+      error:
+        token_expired: Yêu cầu đã hết hiệu lực. Vui lòng thử lại.
+        token_invalid: Yêu cầu không hợp lệ. Vui lòng thử lại.
+        generic: Đã có lỗi xảy ra. Vui lòng thử lại.
     onboarding:
       heading: Hoàn thiện hồ sơ
       desc:
