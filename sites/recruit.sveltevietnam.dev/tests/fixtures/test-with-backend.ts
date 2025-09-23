@@ -29,10 +29,10 @@ export function getBackendConfig() {
 	};
 }
 
-interface TestWithBackendFixtures {
+export interface TestWithBackendFixtures {
 	d1: Awaited<ReturnType<typeof getLocalORM<typeof schema>>>;
 	mails: {
-		openLatest(email: string, templateId: MailTemplateId, actorId?: string): Promise<void>;
+		getLatest(email: string, templateId: MailTemplateId, actorId?: string): Promise<string>;
 	};
 }
 
@@ -57,10 +57,10 @@ export const testWithBackend = test.extend<TestWithBackendFixtures>({
 		orm.$client.close();
 	},
 
-	mails: async ({ page, d1 }, use) => {
+	mails: async ({ d1 }, use) => {
 		const { kvMails, cwd } = getBackendConfig();
 		await use({
-			openLatest: async (email, templateId, actorId) => {
+			getLatest: async (email, templateId, actorId) => {
 				// 1. Get the latest mail record for the email
 				const record = await d1.query.mails.findFirst({
 					where: (table, { eq, and, isNull }) =>
@@ -79,10 +79,7 @@ export const testWithBackend = test.extend<TestWithBackendFixtures>({
 				const html = await fs.readFile(blobPath!, 'utf-8');
 				expect(html).toBeTruthy();
 
-				// 3. Replace the current page content with the mail HTML
-				await page.evaluate((mailHtml) => {
-					document.documentElement.innerHTML = mailHtml!;
-				}, html);
+				return html;
 			},
 		});
 	},

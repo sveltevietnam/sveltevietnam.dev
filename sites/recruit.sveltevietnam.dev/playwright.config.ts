@@ -5,7 +5,6 @@ import { fileURLToPath } from 'node:url';
 import { defineConfig, devices } from '@playwright/test';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
 // NOTE: Guide for installing dependencies on Arch Linux
 // https://github.com/microsoft/playwright/issues/2621#issuecomment-2083083392
 export default defineConfig({

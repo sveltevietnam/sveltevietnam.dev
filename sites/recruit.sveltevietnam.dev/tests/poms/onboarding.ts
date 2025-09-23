@@ -1,4 +1,4 @@
-import type { Locator } from '@playwright/test';
+import { expect, type Locator } from '@playwright/test';
 
 import * as m from '../../src/data/locales/generated/messages';
 import * as p from '../../src/data/routes/generated';
@@ -80,11 +80,25 @@ export class PageOnboarding extends CommonPageObjectModel {
 		await this.inputs.agreement.check();
 	}
 
-	async submitForReview() {
-		await this.ctas.submitForReview.click();
+	async submitForReview(): Promise<import('./welcome').PageWelcome> {
+		this.ctas.submitForReview.click();
+
+		// After submission, user is redirected to welcome page
+		const { PageWelcome } = await import('./welcome');
+		const pomWelcome = new PageWelcome({ page: this.page, lang: this.lang });
+		await pomWelcome.waitForPage();
+		await expect(pomWelcome.accountMenu.locator).toBeVisible();
+		return pomWelcome;
 	}
 
-	async useAnotherAccount() {
-		await this.ctas.useAnotherAccount.click();
+	async useAnotherAccount(): Promise<import('./authenticate').PageAuthenticate> {
+		this.ctas.useAnotherAccount.click();
+
+		// This link logs user out and redirects to authentication page
+		const { PageAuthenticate } = await import('./authenticate');
+		const pomAuthenticate = new PageAuthenticate({ page: this.page, lang: this.lang });
+		await pomAuthenticate.waitForPage();
+		await expect(pomAuthenticate.accountMenu.locator).toBeHidden();
+		return pomAuthenticate;
 	}
 }

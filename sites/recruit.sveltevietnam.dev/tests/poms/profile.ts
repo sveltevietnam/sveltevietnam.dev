@@ -73,6 +73,10 @@ export class PageProfile extends CommonPageObjectModel {
 		await this.page.goto(this.path);
 	}
 
+	async waitForPage() {
+		await this.page.waitForURL(this.path);
+	}
+
 	async expectData(data: {
 		email: string;
 		name: string;

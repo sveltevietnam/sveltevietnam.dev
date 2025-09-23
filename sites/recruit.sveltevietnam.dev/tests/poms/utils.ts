@@ -2,9 +2,7 @@ import { expect, type Locator, type Page } from '@playwright/test';
 import type { Language } from '@sveltevietnam/i18n';
 
 import * as m from '../../src/data/locales/generated/messages';
-import * as p from '../../src/data/routes/generated';
-
-import { type PageProfile } from './profile';
+import { getWranglerVars } from '../utils';
 
 export interface CommonPageObjectModelInit {
 	page: Page;
@@ -13,19 +11,21 @@ export interface CommonPageObjectModelInit {
 }
 
 export class CommonPageObjectModel {
+	public readonly vars: ReturnType<typeof getWranglerVars>;
 	public readonly page: Page;
 	public readonly lang: Language;
 	public readonly accountMenu: {
 		locator: Locator;
 		open: () => Promise<void>;
 		checkOpenState(expected: boolean): Promise<void>;
-		goToProfile: () => Promise<PageProfile>;
-		logout: () => Promise<void>;
+		goToProfile: () => Promise<import('./profile').PageProfile>;
+		logout: () => Promise<import('./authenticate').PageAuthenticate>;
 	};
 
 	constructor(init: CommonPageObjectModelInit) {
 		this.page = init.page;
 		this.lang = init.lang || 'vi';
+		this.vars = getWranglerVars();
 
 		this.accountMenu = {
 			locator: this.page.getByRole('navigation', {
@@ -59,7 +59,7 @@ export class CommonPageObjectModel {
 				// 3. User is redirected to profile page
 				const { PageProfile } = await import('./profile');
 				const pomProfile = new PageProfile({ page: this.page, lang: this.lang });
-				await this.page.waitForURL(p['/:lang/profile']({ lang: this.lang }));
+				await pomProfile.waitForPage();
 				await this.accountMenu.checkOpenState(false);
 				return pomProfile;
 			},
@@ -75,8 +75,12 @@ export class CommonPageObjectModel {
 				link.click();
 
 				// 3. User is redirected to authentication page
-				await this.page.waitForURL(p['/:lang/authenticate']({ lang: this.lang }));
+				const { PageAuthenticate } = await import('./authenticate');
+				const pomAuthenticate = new PageAuthenticate({ page: this.page, lang: this.lang });
+				await pomAuthenticate.waitForPage();
 				await expect(this.accountMenu.locator).toBeHidden();
+
+				return pomAuthenticate;
 			},
 		};
 	}

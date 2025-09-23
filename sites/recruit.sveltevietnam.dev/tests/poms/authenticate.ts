@@ -3,7 +3,7 @@ import { formatRelativeTime } from '@sveltevietnam/kit/utilities/datetime';
 
 import * as m from '../../src/data/locales/generated/messages';
 import * as p from '../../src/data/routes/generated';
-import { generateTimestampedEmail, getWranglerVars } from '../utils';
+import { generateTimestampedEmail } from '../utils';
 
 import { CommonPageObjectModel, type CommonPageObjectModelInit } from './utils';
 
@@ -41,6 +41,10 @@ export class PageAuthenticate extends CommonPageObjectModel {
 		await this.page.goto(this.path);
 	}
 
+	async waitForPage() {
+		await this.page.waitForURL(this.path);
+	}
+
 	async fill(email?: string): Promise<string> {
 		if (!email) email = generateTimestampedEmail();
 		await expect(this.inputs.email).toBeVisible();
@@ -48,7 +52,7 @@ export class PageAuthenticate extends CommonPageObjectModel {
 		return email;
 	}
 
-	async submit() {
+	async continue(authType: 'login' | 'signup') {
 		// 1. User submits
 		await expect(this.ctas.continue).toBeVisible();
 		await expect(this.ctas.continue).toBeEnabled();
@@ -60,18 +64,37 @@ export class PageAuthenticate extends CommonPageObjectModel {
 		await expect(this.ctas.resend).toBeDisabled();
 
 		// 3. User see authentication result with wait time
-		const vars = getWranglerVars();
+		await this.expectOutput(authType);
+	}
+
+	async resend(authType: 'login' | 'signup') {
+		// 1. User can click resend after waiting time
+		await expect(this.ctas.resend).toBeEnabled({
+			timeout: this.vars.AUTHENTICATE_RESENT_WAITING_MS + 1000,
+		});
+
+		// 2. User clicks resend button
+		await this.ctas.resend.click();
+
+		// 3. User see authentication result with wait time
+		await this.expectOutput(authType);
+	}
+
+	private async expectOutput(authType: 'login' | 'signup') {
 		const output = this.page.getByRole('status');
 		await expect(output).toBeVisible();
-		await expect(output).toContainText(
-			m['pages.authenticate.callout.signup'](this.lang)({
-				exp: formatRelativeTime(this.lang, vars.AUTHENTICATE_RESENT_WAITING_MS),
-			}).toString(),
-		);
-
-		// 4. User can click resend after waiting time
-		await expect(this.ctas.resend).toBeEnabled({
-			timeout: vars.AUTHENTICATE_RESENT_WAITING_MS + 1000,
-		});
+		if (authType === 'login') {
+			await expect(output).toContainText(
+				m['pages.authenticate.callout.login'](this.lang)({
+					exp: formatRelativeTime(this.lang, this.vars.AUTHENTICATE_RESENT_WAITING_MS),
+				}).toString(),
+			);
+		} else {
+			await expect(output).toContainText(
+				m['pages.authenticate.callout.signup'](this.lang)({
+					exp: formatRelativeTime(this.lang, this.vars.AUTHENTICATE_RESENT_WAITING_MS),
+				}).toString(),
+			);
+		}
 	}
 }
