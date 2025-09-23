@@ -12,14 +12,14 @@ export default defineConfig({
 	webServer: [
 		{
 			name: 'Recruit',
-			command: 'pnpm build:test && pnpm dev:wrangler:test',
+			command: 'pnpm dev:wrangler:test',
 			cwd: path.resolve(__dirname),
 			port: 5007,
 			reuseExistingServer: !process.env.CI,
 		},
 		{
 			name: 'Backend',
-			command: 'pnpm build:test && pnpm dev:wrangler',
+			command: 'pnpm dev:wrangler',
 			cwd: path.resolve(__dirname, '../../workers/backend'),
 			port: 5006,
 			reuseExistingServer: !process.env.CI,

@@ -44,10 +44,10 @@ export class JobPostingService extends RpcTarget {
 				errors: v.flatten(parsed.issues),
 			};
 		}
-		const [{ id }] = await this.#orm
-			.insert(jobPostings)
-			.values(parsed.output)
-			.returning({ id: jobPostings.id });
+		const [{ id }] = await this.#orm.transaction(
+			(tx) => tx.insert(jobPostings).values(parsed.output).returning({ id: jobPostings.id }),
+			{ behavior: 'deferred' },
+		);
 		return { success: true, id };
 	}
 
@@ -90,20 +90,28 @@ export class JobPostingService extends RpcTarget {
 				errors: v.flatten(parsed.issues),
 			};
 		}
-		await this.#orm
-			.update(jobPostings)
-			.set(parsed.output)
-			.where(eq(jobPostings.id, id))
-			.returning({ id: jobPostings.id });
+		await this.#orm.transaction(
+			(tx) =>
+				tx
+					.update(jobPostings)
+					.set(parsed.output)
+					.where(eq(jobPostings.id, id))
+					.returning({ id: jobPostings.id }),
+			{ behavior: 'deferred' },
+		);
 		return { success: true };
 	}
 
 	async deleteById(id: string): Promise<boolean> {
-		const result = await this.#orm
-			.update(jobPostings)
-			.set({ deletedAt: new Date() })
-			.where(eq(jobPostings.id, id))
-			.returning({ id: jobPostings.id });
+		const result = await this.#orm.transaction(
+			(tx) =>
+				tx
+					.update(jobPostings)
+					.set({ deletedAt: new Date() })
+					.where(eq(jobPostings.id, id))
+					.returning({ id: jobPostings.id }),
+			{ behavior: 'deferred' },
+		);
 		if (!result.length) return false;
 		return true;
 	}

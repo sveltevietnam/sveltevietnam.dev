@@ -129,18 +129,22 @@ testWithBackend(
 testWithBackend.describe(() => {
 	const test = testWithBackend.extend<{ email: string }>({
 		email: async ({ page, lang, d1, faker }, use) => {
-			const [employer] = await d1
-				.insert(schema.employers)
-				.values({
-					email: faker.internet.email().toLowerCase(),
-					emailVerified: true,
-					name: faker.company.name(),
-					description: faker.lorem.paragraphs(3),
-					website: faker.internet.url(),
-					onboardedAt: new Date(),
-					agreed: true,
-				})
-				.returning();
+			const [employer] = await d1.transaction(
+				(tx) =>
+					tx
+						.insert(schema.employers)
+						.values({
+							email: faker.internet.email().toLowerCase(),
+							emailVerified: true,
+							name: faker.company.name(),
+							description: faker.lorem.paragraphs(3),
+							website: faker.internet.url(),
+							onboardedAt: new Date(),
+							agreed: true,
+						})
+						.returning(),
+				{ behavior: 'deferred' },
+			);
 			expect(employer).toBeTruthy();
 
 			const pomAuthenticate = new PageAuthenticate({ page, lang });
