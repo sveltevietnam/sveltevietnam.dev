@@ -11,32 +11,31 @@ import { PageOnboarding } from './poms/onboarding';
 import { PagePostings } from './poms/postings';
 import { generateTimestampedEmail, getWranglerVars } from './utils';
 
-const lang = 'vi';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+testWithBackend.use({ lang: 'vi' });
 
 testWithBackend.describe(() => {
 	const test = testWithBackend.extend<{ email: string }>({
-		// eslint-disable-next-line no-empty-pattern
-		email: async ({}, use) => {
-			await use(generateTimestampedEmail());
+		email: async ({ page, lang, mails, d1 }, use) => {
+			const email = generateTimestampedEmail();
+			// User goes to authentication page, fill form, and submit
+			const pomAuthenticate = new PageAuthenticate({ page, lang });
+			await pomAuthenticate.goto();
+			await pomAuthenticate.fill(email);
+			await pomAuthenticate.continue('signup');
+
+			// User receives and get to onboarding page via email
+			const pomMail = new PageMail({ page, lang, mails, d1 });
+			await pomMail.onboard(email);
+
+			// User is redirected to onboarding page
+			const pomOnboarding = new PageOnboarding({ page, lang });
+			await pomOnboarding.waitForPage();
+			await expect(pomOnboarding.accountMenu.locator).toBeHidden();
+
+			await use(email);
 		},
-	});
-
-	test.beforeEach(async ({ page, mails, d1, email }) => {
-		// User goes to authentication page, fill form, and submit
-		const pomAuthenticate = new PageAuthenticate({ page, lang });
-		await pomAuthenticate.goto();
-		await pomAuthenticate.fill(email);
-		await pomAuthenticate.continue('signup');
-
-		// User receives and get to onboarding page via email
-		const pomMail = new PageMail({ page, lang, mails, d1 });
-		await pomMail.onboard(email);
-
-		// User is redirected to onboarding page
-		const pomOnboarding = new PageOnboarding({ page, lang });
-		await pomOnboarding.waitForPage();
-		await expect(pomOnboarding.accountMenu.locator).toBeHidden();
 	});
 
 	test(
@@ -44,7 +43,7 @@ testWithBackend.describe(() => {
 		{
 			tag: ['@uat', '@authentication'],
 		},
-		async ({ page, d1, email }) => {
+		async ({ page, lang, d1, email }) => {
 			const pomOnboarding = new PageOnboarding({ page, lang });
 
 			// User fills and submits onboarding form, and is redirected to welcome page
@@ -83,7 +82,7 @@ testWithBackend.describe(() => {
 		{
 			tag: ['@uat', '@authentication'],
 		},
-		async ({ page, mails, d1, email }) => {
+		async ({ page, lang, mails, d1, email }) => {
 			// User logs out during onboarding and is redirected to authenticate page
 			const pomOnboarding = new PageOnboarding({ page, lang });
 			const pomAuthenticate = await pomOnboarding.useAnotherAccount();
@@ -107,7 +106,7 @@ testWithBackend(
 	{
 		tag: ['@uat', '@authentication'],
 	},
-	async ({ page, d1 }) => {
+	async ({ page, lang, d1 }) => {
 		const email = generateTimestampedEmail();
 
 		// User goes to authentication page, fill form, and submit
@@ -130,7 +129,7 @@ testWithBackend(
 
 testWithBackend.describe(() => {
 	const test = testWithBackend.extend<{ email: string }>({
-		email: async ({ d1 }, use) => {
+		email: async ({ page, lang, d1 }, use) => {
 			const email = generateTimestampedEmail();
 			const [employer] = await d1
 				.insert(schema.employers)
@@ -145,15 +144,14 @@ testWithBackend.describe(() => {
 				})
 				.returning({ email: schema.employers.email });
 			expect(employer).toBeTruthy();
+
+			const pomAuthenticate = new PageAuthenticate({ page, lang });
+			await pomAuthenticate.goto();
+			await pomAuthenticate.fill(email);
+			await pomAuthenticate.continue('login');
+
 			await use(email);
 		},
-	});
-
-	test.beforeEach(async ({ page, email }) => {
-		const pomAuthenticate = new PageAuthenticate({ page, lang });
-		await pomAuthenticate.goto();
-		await pomAuthenticate.fill(email);
-		await pomAuthenticate.continue('login');
 	});
 
 	test(
@@ -161,7 +159,7 @@ testWithBackend.describe(() => {
 		{
 			tag: ['@uat', '@authentication'],
 		},
-		async ({ page, d1, mails, email }) => {
+		async ({ page, lang, d1, mails, email }) => {
 			// User receives and finishes login via email
 			const pomMail = new PageMail({ page, lang, mails, d1 });
 			await pomMail.login(email);
@@ -177,7 +175,7 @@ testWithBackend.describe(() => {
 		{
 			tag: ['@uat', '@authentication'],
 		},
-		async ({ page, d1, mails, email }) => {
+		async ({ page, lang, d1, mails, email }) => {
 			// wait for token to expire
 			const vars = getWranglerVars();
 			await page.waitForTimeout(vars.AUTHENTICATE_EMAIL_EXPIRATION_SECONDS * 1000);

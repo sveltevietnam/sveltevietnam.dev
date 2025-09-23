@@ -12,6 +12,7 @@ import {
 import * as schema from '@sveltevietnam/backend/db/schema';
 import { type Id as MailTemplateId } from '@sveltevietnam/backend/mails';
 import backendWranglerConfig from '@sveltevietnam/backend/wrangler.json' with { type: 'json' };
+import type { Language } from '@sveltevietnam/i18n';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -29,6 +30,9 @@ export function getBackendConfig() {
 	};
 }
 
+export interface TestWithBackendWorkerOptions {
+	lang: Language;
+}
 export interface TestWithBackendWorkerFixtures {
 	d1: Awaited<ReturnType<typeof getLocalORM<typeof schema>>>;
 	mails: {
@@ -48,8 +52,12 @@ export async function teardown() {
 	deleteLocalD1(d1.id, cwd);
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export const testWithBackend = test.extend<{}, TestWithBackendWorkerFixtures>({
+export const testWithBackend = test.extend<
+	// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+	{},
+	TestWithBackendWorkerFixtures & TestWithBackendWorkerOptions
+>({
+	lang: ['vi', { scope: 'worker', option: true }],
 	d1: [
 		// eslint-disable-next-line no-empty-pattern
 		async ({}, use) => {
