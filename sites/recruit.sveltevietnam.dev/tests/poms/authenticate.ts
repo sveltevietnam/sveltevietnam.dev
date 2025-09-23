@@ -81,7 +81,7 @@ export class PageAuthenticate extends CommonPageObjectModel {
 	}
 
 	private async expectOutput(authType: 'login' | 'signup') {
-		const output = this.page.getByRole('status');
+		const output = this.page.getByRole('alert');
 		await expect(output).toBeVisible();
 		if (authType === 'login') {
 			await expect(output).toContainText(

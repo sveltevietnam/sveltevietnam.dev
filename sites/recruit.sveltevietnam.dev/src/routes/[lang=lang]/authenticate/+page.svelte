@@ -116,7 +116,7 @@
 			{/if}
 		</div>
 		{#if result}
-			<output class="c-callout c-callout--info block">
+			<output class="c-callout c-callout--info block" role="alert">
 				{#if result.type === 'signup'}
 					<T
 						message={m['pages.authenticate.callout.signup']}
@@ -136,7 +136,7 @@
 				{/if}
 			</output>
 		{:else if data.error}
-			<output class="c-callout c-callout--error block">
+			<output class="c-callout c-callout--error block" role="alert" >
 				{#if data.error === 'EXPIRED_TOKEN'}
 					<T message={m['pages.authenticate.error.token_expired']} />
 				{:else if data.error === 'INVALID_TOKEN'}
