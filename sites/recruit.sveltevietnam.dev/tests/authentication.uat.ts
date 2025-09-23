@@ -40,7 +40,7 @@ testWithBackend.describe(() => {
 	});
 
 	test(
-		'UAT-001: User can sign up and be onboarded',
+		'UAT-AUTH-001: User can sign up and be onboarded',
 		{
 			tag: ['@uat', '@authentication'],
 		},
@@ -79,7 +79,7 @@ testWithBackend.describe(() => {
 	);
 
 	test(
-		'UAT-002: User can log out during onboarding and sign up again',
+		'UAT-AUTH-002: User can log out during onboarding and sign up again',
 		{
 			tag: ['@uat', '@authentication'],
 		},
@@ -103,7 +103,7 @@ testWithBackend.describe(() => {
 });
 
 testWithBackend(
-	'UAT-003: User can hit resend after waiting time',
+	'UAT-AUTH-003: User can hit resend after waiting time',
 	{
 		tag: ['@uat', '@authentication'],
 	},
@@ -157,7 +157,7 @@ testWithBackend.describe(() => {
 	});
 
 	test(
-		'UAT-004: User can log in after being onboarded',
+		'UAT-AUTH-004: User can log in after being onboarded',
 		{
 			tag: ['@uat', '@authentication'],
 		},
@@ -173,7 +173,7 @@ testWithBackend.describe(() => {
 	);
 
 	test(
-		'UAT-005: User is redirected to auth page if email link is expired',
+		'UAT-AUTH-005: User is redirected to auth page if email link is expired',
 		{
 			tag: ['@uat', '@authentication'],
 		},
@@ -192,4 +192,6 @@ testWithBackend.describe(() => {
 			await pomAuthenticate.expectError('EXPIRED_TOKEN');
 		},
 	);
+
+	// TODO: test navigate to welcome, onboard, etc. after logged in
 });
