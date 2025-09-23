@@ -3,7 +3,6 @@ import { formatRelativeTime } from '@sveltevietnam/kit/utilities/datetime';
 
 import * as m from '../../src/data/locales/generated/messages';
 import * as p from '../../src/data/routes/generated';
-import { generateTimestampedEmail } from '../utils';
 
 import { CommonPageObjectModel, type CommonPageObjectModelInit } from './utils';
 
@@ -45,11 +44,9 @@ export class PageAuthenticate extends CommonPageObjectModel {
 		await this.page.waitForURL(this.path);
 	}
 
-	async fill(email?: string): Promise<string> {
-		if (!email) email = generateTimestampedEmail();
+	async fill(email: string) {
 		await expect(this.inputs.email).toBeVisible();
 		await this.inputs.email.fill(email);
-		return email;
 	}
 
 	async continue(authType: 'login' | 'signup') {

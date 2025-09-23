@@ -1,10 +1,13 @@
 import { expect, type Locator } from '@playwright/test';
 
-import type { TestWithBackendWorkerFixtures } from '../fixtures/test-with-backend';
+import type { TestWithBackendWorkerFixtures } from '../fixtures/with-backend';
 
 import { CommonPageObjectModel, type CommonPageObjectModelInit } from './utils';
 
-export interface PageMailInit extends CommonPageObjectModelInit, TestWithBackendWorkerFixtures {}
+export interface PageMailInit extends CommonPageObjectModelInit {
+	mails: TestWithBackendWorkerFixtures['mails'];
+	d1: TestWithBackendWorkerFixtures['d1'];
+}
 
 export class PageMail extends CommonPageObjectModel {
 	private readonly mails: TestWithBackendWorkerFixtures['mails'];

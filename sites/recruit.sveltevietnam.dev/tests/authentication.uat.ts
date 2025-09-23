@@ -4,12 +4,11 @@ import { fileURLToPath } from 'node:url';
 import { expect } from '@playwright/test';
 import { count, eq } from 'drizzle-orm';
 
-import { testWithBackend, schema } from './fixtures/test-with-backend';
+import { testWithBackend, schema } from './fixtures/with-backend';
 import { PageAuthenticate } from './poms/authenticate';
 import { PageMail } from './poms/mail';
 import { PageOnboarding } from './poms/onboarding';
 import { PagePostings } from './poms/postings';
-import { generateTimestampedEmail, getWranglerVars } from './utils';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -17,8 +16,8 @@ testWithBackend.use({ lang: 'vi' });
 
 testWithBackend.describe(() => {
 	const test = testWithBackend.extend<{ email: string }>({
-		email: async ({ page, lang, mails, d1 }, use) => {
-			const email = generateTimestampedEmail();
+		email: async ({ page, lang, mails, d1, faker }, use) => {
+			const email = faker.internet.email().toLowerCase();
 			// User goes to authentication page, fill form, and submit
 			const pomAuthenticate = new PageAuthenticate({ page, lang });
 			await pomAuthenticate.goto();
@@ -106,8 +105,8 @@ testWithBackend(
 	{
 		tag: ['@uat', '@authentication'],
 	},
-	async ({ page, lang, d1 }) => {
-		const email = generateTimestampedEmail();
+	async ({ page, lang, d1, faker }) => {
+		const email = faker.internet.email().toLowerCase();
 
 		// User goes to authentication page, fill form, and submit
 		const pomAuthenticate = new PageAuthenticate({ page, lang });
@@ -129,28 +128,27 @@ testWithBackend(
 
 testWithBackend.describe(() => {
 	const test = testWithBackend.extend<{ email: string }>({
-		email: async ({ page, lang, d1 }, use) => {
-			const email = generateTimestampedEmail();
+		email: async ({ page, lang, d1, faker }, use) => {
 			const [employer] = await d1
 				.insert(schema.employers)
 				.values({
-					email,
+					email: faker.internet.email().toLowerCase(),
 					emailVerified: true,
-					name: 'Company ABC',
-					description: 'We are Company ABC, we do XYZ things.',
-					website: 'https://example.com',
+					name: faker.company.name(),
+					description: faker.lorem.paragraphs(3),
+					website: faker.internet.url(),
 					onboardedAt: new Date(),
 					agreed: true,
 				})
-				.returning({ email: schema.employers.email });
+				.returning();
 			expect(employer).toBeTruthy();
 
 			const pomAuthenticate = new PageAuthenticate({ page, lang });
 			await pomAuthenticate.goto();
-			await pomAuthenticate.fill(email);
+			await pomAuthenticate.fill(employer.email);
 			await pomAuthenticate.continue('login');
 
-			await use(email);
+			await use(employer.email);
 		},
 	});
 
@@ -175,9 +173,8 @@ testWithBackend.describe(() => {
 		{
 			tag: ['@uat', '@authentication'],
 		},
-		async ({ page, lang, d1, mails, email }) => {
+		async ({ page, lang, d1, mails, email, vars }) => {
 			// wait for token to expire
-			const vars = getWranglerVars();
 			await page.waitForTimeout(vars.AUTHENTICATE_EMAIL_EXPIRATION_SECONDS * 1000);
 
 			// User receives and click on email link

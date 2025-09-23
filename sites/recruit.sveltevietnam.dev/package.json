@@ -23,6 +23,7 @@
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20250903.0",
+		"@faker-js/faker": "^10.0.0",
 		"@svelte-put/async-stack": "^1.5.1",
 		"@svelte-put/cloudflare-turnstile": "^1.2.0",
 		"@svelte-put/inline-svg": "^4.0.1",
