@@ -1,14 +1,14 @@
 import { expect, type Locator } from '@playwright/test';
 
-import type { TestWithBackendFixtures } from '../fixtures/test-with-backend';
+import type { TestWithBackendWorkerFixtures } from '../fixtures/test-with-backend';
 
 import { CommonPageObjectModel, type CommonPageObjectModelInit } from './utils';
 
-export interface PageMailInit extends CommonPageObjectModelInit, TestWithBackendFixtures {}
+export interface PageMailInit extends CommonPageObjectModelInit, TestWithBackendWorkerFixtures {}
 
 export class PageMail extends CommonPageObjectModel {
-	private readonly mails: TestWithBackendFixtures['mails'];
-	private readonly d1: TestWithBackendFixtures['d1'];
+	private readonly mails: TestWithBackendWorkerFixtures['mails'];
+	private readonly d1: TestWithBackendWorkerFixtures['d1'];
 
 	private readonly timeoutForBackendQueue = 100;
 

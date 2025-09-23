@@ -29,7 +29,7 @@ export function getBackendConfig() {
 	};
 }
 
-export interface TestWithBackendFixtures {
+export interface TestWithBackendWorkerFixtures {
 	d1: Awaited<ReturnType<typeof getLocalORM<typeof schema>>>;
 	mails: {
 		getLatest(email: string, templateId: MailTemplateId, actorId?: string): Promise<string>;
@@ -48,41 +48,47 @@ export async function teardown() {
 	deleteLocalD1(d1.id, cwd);
 }
 
-export const testWithBackend = test.extend<TestWithBackendFixtures>({
-	// eslint-disable-next-line no-empty-pattern
-	d1: async ({}, use) => {
-		const { d1, cwd } = getBackendConfig();
-		const orm = await getLocalORM(d1.id, d1.schema, cwd);
-		await use(orm);
-		orm.$client.close();
-	},
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export const testWithBackend = test.extend<{}, TestWithBackendWorkerFixtures>({
+	d1: [
+		// eslint-disable-next-line no-empty-pattern
+		async ({}, use) => {
+			const { d1, cwd } = getBackendConfig();
+			const orm = await getLocalORM(d1.id, d1.schema, cwd);
+			await use(orm);
+			orm.$client.close();
+		},
+		{ scope: 'worker' },
+	],
+	mails: [
+		async ({ d1 }, use) => {
+			const { kvMails, cwd } = getBackendConfig();
+			await use({
+				getLatest: async (email, templateId, actorId) => {
+					// 1. Get the latest mail record for the email
+					const record = await d1.query.mails.findFirst({
+						where: (table, { eq, and, isNull }) =>
+							and(
+								eq(table.to, email),
+								eq(table.templateId, templateId),
+								actorId ? eq(table.actorId, actorId) : isNull(table.actorId),
+							),
+						orderBy: (table, { desc }) => [desc(table.sentAt)],
+					});
+					expect(record).toBeTruthy();
 
-	mails: async ({ d1 }, use) => {
-		const { kvMails, cwd } = getBackendConfig();
-		await use({
-			getLatest: async (email, templateId, actorId) => {
-				// 1. Get the latest mail record for the email
-				const record = await d1.query.mails.findFirst({
-					where: (table, { eq, and, isNull }) =>
-						and(
-							eq(table.to, email),
-							eq(table.templateId, templateId),
-							actorId ? eq(table.actorId, actorId) : isNull(table.actorId),
-						),
-					orderBy: (table, { desc }) => [desc(table.sentAt)],
-				});
-				expect(record).toBeTruthy();
+					// 2. Get the mail HTML content from local KV
+					const blobPath = getLocalKVBlobPath(kvMails.id, record!.id, cwd);
+					expect(blobPath).toBeTruthy();
+					const html = await fs.readFile(blobPath!, 'utf-8');
+					expect(html).toBeTruthy();
 
-				// 2. Get the mail HTML content from local KV
-				const blobPath = getLocalKVBlobPath(kvMails.id, record!.id, cwd);
-				expect(blobPath).toBeTruthy();
-				const html = await fs.readFile(blobPath!, 'utf-8');
-				expect(html).toBeTruthy();
-
-				return html;
-			},
-		});
-	},
+					return html;
+				},
+			});
+		},
+		{ scope: 'worker' },
+	],
 });
 
 export { schema };
