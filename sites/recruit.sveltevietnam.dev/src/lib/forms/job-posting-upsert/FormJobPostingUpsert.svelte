@@ -8,7 +8,7 @@
 
 	import { invalidate } from '$app/navigation';
 	import * as m from '$data/locales/generated/messages';
-	import { VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN } from '$env/static/public';
+	import { VITE_PUBLIC_MODE, VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN } from '$env/static/public';
 
 	import { createSuperFormGenericErrorHandler } from '../utils';
 
@@ -86,6 +86,9 @@
 </script>
 
 <form class={['space-y-10', cls]} method="POST" use:enhance {...rest}>
+	{#if VITE_PUBLIC_MODE === 'test'}
+		<input type="text" name="id" data-testid="id" bind:value={$form.id} {...$constraints.id} />
+	{/if}
 	<div class="space-y-6">
 		<!-- title -->
 		<div class="space-y-1">

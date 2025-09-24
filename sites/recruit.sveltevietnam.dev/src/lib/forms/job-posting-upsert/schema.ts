@@ -21,6 +21,7 @@ export const JOB_POSTING_MAX_EXPIRATION_MS = 180 * 24 * 60 * 60 * 1000; // 180 d
 
 export function createJobPostingUpsertSchema(lang: Language) {
 	return v.objectAsync({
+		id: v.optional(v.pipe(v.string(), v.startsWith('job_'))),
 		title: v.pipe(v.string(), v.nonEmpty(m['inputs.job_posting.title.errors.nonempty'](lang))),
 		type: v.picklist(JOB_POSTING_TYPES, m['inputs.job_posting.type.errors.nonempty'](lang)),
 		location: v.pipe(
