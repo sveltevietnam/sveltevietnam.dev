@@ -143,7 +143,7 @@
 
 		<!-- location -->
 		<div class="space-y-1">
-			<label class="block" for="title">
+			<label class="block" for="location">
 				<T message={m['inputs.job_posting.location.label']} />:
 			</label>
 			<input
@@ -168,7 +168,7 @@
 
 		<!-- salary -->
 		<div class="space-y-1">
-			<label class="block" for="title">
+			<label class="block" for="salary">
 				<T message={m['inputs.job_posting.salary.label']} />:
 			</label>
 			<input
@@ -192,9 +192,9 @@
 		</div>
 
 		<!-- application method -->
-		<div>
+		<fieldset>
 			<div class="space-y-1">
-				<label class="block" for="title">
+				<label class="block" for="application-method">
 					<T message={m['inputs.job_posting.application.label']} />:
 				</label>
 				<select
@@ -250,11 +250,11 @@
 					</p>
 				{/if}
 			</div>
-		</div>
+		</fieldset>
 
 		<!-- expired-at -->
 		<div class="space-y-1">
-			<label class="block" for="title">
+			<label class="block" for="expires-at">
 				<T message={m['inputs.job_posting.expired_at.label']} />:
 			</label>
 			<input
@@ -288,7 +288,7 @@
 
 		<!-- description -->
 		<div class="space-y-1">
-			<label class="block" for="desc">
+			<label class="block" for="description">
 				<T message={m['inputs.job_posting.desc.label']} />:
 			</label>
 			<textarea
