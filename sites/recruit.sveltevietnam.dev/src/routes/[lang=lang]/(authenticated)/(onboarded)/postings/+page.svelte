@@ -30,10 +30,10 @@
 	</h1>
 
 	<div class="space-y-section">
-		<div class="space-y-10">
+		<section class="space-y-10" aria-labelledby="active-job-postings">
 			<div class="space-y-6">
 				<div class="border-outline flex items-end justify-between gap-2 border-b">
-					<h2 class="c-text-heading">
+					<h2 class="c-text-heading" id="active-job-postings">
 						<T message={m['pages.postings.active.heading']} />
 					</h2>
 					<a class="c-btn gap-2" href={p['/:lang/postings/create']({ lang: routing.lang })}>
@@ -43,7 +43,10 @@
 				</div>
 
 				<p>
-					<T message={m['pages.postings.active.desc']} mainSiteUrl={VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN} />
+					<T
+						message={m['pages.postings.active.desc']}
+						mainSiteUrl={VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN}
+					/>
 				</p>
 			</div>
 
@@ -57,7 +60,7 @@
 					}}
 				/>
 			{:else}
-				<TBA class="mx-auto w-fit">
+				<TBA class="mx-auto w-fit" role="note">
 					<p class="c-text-title-sm"><T message={m['pages.postings.active.tba.desc']} /></p>
 					<p>
 						<a class="c-link" href={p['/:lang/postings/create']({ lang: routing.lang })}>
@@ -66,12 +69,12 @@
 					</p>
 				</TBA>
 			{/if}
-		</div>
+		</section>
 
 		{#if data.pending.length > 0}
-			<div class="space-y-10">
+			<section class="space-y-10" aria-labelledby="pending-job-postings">
 				<div class="space-y-6">
-					<h2 class="c-text-heading border-outline border-b">
+					<h2 class="c-text-heading border-outline border-b" id="pending-job-postings">
 						<T message={m['pages.postings.pending.heading']} />
 					</h2>
 					<p>
@@ -86,13 +89,13 @@
 						expiredAt: m['components.job_posting_list.expired_at'],
 					}}
 				/>
-			</div>
+			</section>
 		{/if}
 
 		{#if data.expired.length > 0}
-			<div class="space-y-10">
+			<section class="space-y-10" aria-labelledby="expired-job-postings">
 				<div class="space-y-6">
-					<h2 class="c-text-heading border-outline border-b">
+					<h2 class="c-text-heading border-outline border-b" id="expired-job-postings">
 						<T message={m['pages.postings.expired.heading']} />
 					</h2>
 					<p>
@@ -110,7 +113,7 @@
 						expiredAt: m['components.job_posting_list.expired_at'],
 					}}
 				/>
-			</div>
+			</section>
 		{/if}
 	</div>
 </main>

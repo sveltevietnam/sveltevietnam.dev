@@ -1,0 +1,17 @@
+- region "Đăng tuyển hiện tại":
+    - heading "Đăng tuyển hiện tại" [level=2]
+    - link "Tạo mới":
+        - /url: /vi/bai-dang-tuyen/tao-moi
+    - paragraph:
+        - text: Các bài đăng tuyển này đã được duyệt và đang hiển thị trên
+        - link "trang việc làm":
+            - /url: http://localhost:5005/vi/viec-lam
+        - text: .
+    - note:
+        - img
+        - img
+        - img
+        - paragraph: Chưa có bài đăng tuyển nào.
+        - paragraph:
+            - link "Tạo bài đăng tuyển!":
+                - /url: /vi/bai-dang-tuyen/tao-moi

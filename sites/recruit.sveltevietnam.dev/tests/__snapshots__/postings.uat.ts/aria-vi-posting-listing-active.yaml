@@ -1,0 +1,25 @@
+- region "Đăng tuyển hiện tại":
+    - heading "Đăng tuyển hiện tại" [level=2]
+    - link "Tạo mới":
+        - /url: /vi/bai-dang-tuyen/tao-moi
+    - paragraph:
+        - text: Các bài đăng tuyển này đã được duyệt và đang hiển thị trên
+        - link "trang việc làm":
+            - /url: http://localhost:5005/vi/viec-lam
+        - text: .
+    - list:
+        - listitem:
+            - article:
+                - paragraph:
+                    - link "Direct Communications Strategist":
+                        - /url: /vi/bai-dang-tuyen/job_EE5gYTNzchEWU0qXiQaWz
+                - paragraph:
+                    - strong: Thực tập
+                    - text: tại
+                    - link "Mills, Quigley and Aufderhar":
+                        - /url: https://posh-final.biz
+                        - strong: Mills, Quigley and Aufderhar
+                - paragraph: Fort Myrna, Marshall Islands
+                - paragraph: /\d+ USD \/ tháng/
+                - paragraph: /Đăng ngày \d+\.\d+\.\d+/
+                - paragraph: /Hết hạn ngày \d+\.\d+\.\d+/

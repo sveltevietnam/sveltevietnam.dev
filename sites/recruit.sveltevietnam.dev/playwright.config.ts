@@ -9,6 +9,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // https://github.com/microsoft/playwright/issues/2621#issuecomment-2083083392
 export default defineConfig({
 	testMatch: /(.+\.)?(uat)\.[jt]s/,
+	expect: {
+		toMatchAriaSnapshot: {
+			pathTemplate: '{testFileDir}/__snapshots__/{testFileName}/aria-{arg}{ext}',
+		},
+	},
 	webServer: [
 		{
 			name: 'Recruit',
