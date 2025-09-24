@@ -1,22 +1,26 @@
-import { expect, type Locator } from '@playwright/test';
+import { expect, type Locator, type Page } from '@playwright/test';
+import type { Language } from '@sveltevietnam/i18n';
 
 import type { TestWithBackendWorkerFixtures } from '../fixtures/with-backend';
 
-import { CommonPageObjectModel, type CommonPageObjectModelInit } from './utils';
-
-export interface PageMailInit extends CommonPageObjectModelInit {
+export interface PageMailInit {
+	lang: Language;
+	page: Page;
 	mails: TestWithBackendWorkerFixtures['mails'];
 	d1: TestWithBackendWorkerFixtures['d1'];
 }
 
-export class PageMail extends CommonPageObjectModel {
+export class PageMail {
+	private readonly lang: string;
+	private readonly page: Page;
 	private readonly mails: TestWithBackendWorkerFixtures['mails'];
 	private readonly d1: TestWithBackendWorkerFixtures['d1'];
 
 	private readonly timeoutForBackendQueue = 100;
 
 	constructor(init: PageMailInit) {
-		super(init);
+		this.lang = init.lang;
+		this.page = init.page;
 		this.mails = init.mails;
 		this.d1 = init.d1;
 	}

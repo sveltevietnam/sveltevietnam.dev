@@ -20,12 +20,4 @@ export class PageWelcome extends CommonPageObjectModel {
 			}),
 		};
 	}
-
-	async goto() {
-		await this.page.goto(this.path);
-	}
-
-	async waitForPage() {
-		await this.page.waitForURL(this.path);
-	}
 }

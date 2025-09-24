@@ -10,7 +10,9 @@ export interface CommonPageObjectModelInit {
 	lang?: Language;
 }
 
-export class CommonPageObjectModel {
+export abstract class CommonPageObjectModel {
+	public abstract path: string;
+
 	public readonly vars: ReturnType<typeof getWranglerVars>;
 	public readonly page: Page;
 	public readonly lang: Language;
@@ -83,5 +85,13 @@ export class CommonPageObjectModel {
 				return pomAuthenticate;
 			},
 		};
+	}
+
+	public async goto() {
+		await this.page.goto(this.path);
+	}
+
+	public async waitForPage() {
+		await this.page.waitForURL(this.path);
 	}
 }

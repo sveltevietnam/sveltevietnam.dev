@@ -69,14 +69,6 @@ export class PageProfile extends CommonPageObjectModel {
 		};
 	}
 
-	async goto() {
-		await this.page.goto(this.path);
-	}
-
-	async waitForPage() {
-		await this.page.waitForURL(this.path);
-	}
-
 	async match(data: {
 		email: string;
 		name: string;

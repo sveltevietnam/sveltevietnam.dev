@@ -8,7 +8,7 @@ import { testWithBackend, schema } from './fixtures/with-backend';
 import { PageAuthenticate } from './poms/authenticate';
 import { PageMail } from './poms/mail';
 import { PageOnboarding } from './poms/onboarding';
-import { PagePostings } from './poms/postings';
+import { PagePostingList } from './poms/posting-list';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -163,7 +163,7 @@ testWithBackend.describe(() => {
 			await pomMail.login(email);
 
 			// User is redirected to posting page
-			const pomPostings = new PagePostings({ page, lang });
+			const pomPostings = new PagePostingList({ page, lang });
 			await pomPostings.waitForPage();
 		},
 	);

@@ -36,14 +36,6 @@ export class PageAuthenticate extends CommonPageObjectModel {
 		};
 	}
 
-	async goto() {
-		await this.page.goto(this.path);
-	}
-
-	async waitForPage() {
-		await this.page.waitForURL(this.path);
-	}
-
 	async fill(email: string) {
 		await expect(this.inputs.email).toBeVisible();
 		await this.inputs.email.fill(email);

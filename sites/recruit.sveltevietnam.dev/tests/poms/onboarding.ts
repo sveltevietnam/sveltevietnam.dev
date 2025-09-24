@@ -56,14 +56,6 @@ export class PageOnboarding extends CommonPageObjectModel {
 		};
 	}
 
-	async goto() {
-		await this.page.goto(this.path);
-	}
-
-	async waitForPage() {
-		await this.page.waitForURL(this.path);
-	}
-
 	async fill(data: PageOnboardingFormData) {
 		// 1. User fills text-based info
 		await this.inputs.name.fill(data.name);
