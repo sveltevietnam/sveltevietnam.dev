@@ -77,23 +77,22 @@ export class PageProfile extends CommonPageObjectModel {
 		await this.page.waitForURL(this.path);
 	}
 
-	async expectData(data: {
+	async match(data: {
 		email: string;
 		name: string;
 		description: string;
 		website?: string | null;
 		image?: string | null;
 	}) {
-		await expect(this.forms.email.input).toHaveValue(data.email);
-		await expect(this.forms.info.inputs.name).toHaveValue(data.name);
-		await expect(this.forms.info.inputs.description).toHaveValue(data.description);
-		if (data.website) await expect(this.forms.info.inputs.website).toHaveValue(data.website);
-		if (data.image) {
-			await expect(this.forms.info.imagePreview).toBeVisible();
-			const src = await this.forms.info.imagePreview.evaluate((el) => (el as HTMLImageElement).src);
-			expect(src).toBe(data.image);
-		} else {
-			await expect(this.forms.info.imagePreview).toBeHidden();
-		}
+		await Promise.all([
+			expect(this.forms.email.input).toHaveValue(data.email),
+			expect(this.forms.info.inputs.name).toHaveValue(data.name),
+			expect(this.forms.info.inputs.description).toHaveValue(data.description),
+			expect(this.forms.info.inputs.website).toHaveValue(data.website ?? ''),
+			expect(this.forms.info.inputs.agreement).toBeChecked(),
+			data.image
+				? expect(this.forms.info.imagePreview).toHaveAttribute('src', data.image)
+				: expect(this.forms.info.imagePreview).toBeHidden(),
+		]);
 	}
 }

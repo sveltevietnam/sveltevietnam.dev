@@ -65,10 +65,10 @@ testWithBackend.describe(() => {
 			expect(employer!.image).toBeTruthy();
 			expect(employer!.emailVerified).toBe(true);
 			expect(employer!.onboardedAt).toBeTruthy();
-			await pomProfile.expectData({
+			await pomProfile.match({
 				...profileData,
 				email,
-				image: new URL(page.url()).origin + employer!.image,
+				image: employer!.image,
 			});
 
 			// 3. User logs out
