@@ -28,9 +28,10 @@ export class JobPostingService extends RpcTarget {
 		this.#orm = orm;
 	}
 
-	async getByEmployerId(employerId: string): Promise<JobPostingSelectResult[]> {
+	async getAllByEmployerId(employerId: string): Promise<JobPostingSelectResult[]> {
 		const jobPostingsList = await this.#orm.query.jobPostings.findMany({
-			where: (table, { eq }) => eq(table.employerId, employerId),
+			where: (table, { eq, and, isNull }) =>
+				and(eq(table.employerId, employerId), isNull(table.deletedAt)),
 			orderBy: (table, { desc }) => [desc(table.createdAt)],
 		});
 		return jobPostingsList.map((jp) => v.parse(JobPostingSelectSchema, jp));
@@ -53,7 +54,7 @@ export class JobPostingService extends RpcTarget {
 
 	async getEmployerIdById(id: string): Promise<string | null> {
 		const jobPosting = await this.#orm.query.jobPostings.findFirst({
-			where: (table, { eq }) => eq(table.id, id),
+			where: (table, { eq, and, isNull }) => and(eq(table.id, id), isNull(table.deletedAt)),
 			columns: { employerId: true },
 		});
 		if (!jobPosting) return null;
@@ -65,8 +66,11 @@ export class JobPostingService extends RpcTarget {
 		employerId?: string,
 	): Promise<null | JobPostingSelectWithEmployerResult> {
 		const jobPosting = await this.#orm.query.jobPostings.findFirst({
-			where: (table, { eq, and }) =>
-				employerId ? and(eq(table.id, id), eq(table.employerId, employerId)) : eq(table.id, id),
+			where: (table, { eq, and, isNull }) =>
+				and(
+					employerId ? and(eq(table.id, id), eq(table.employerId, employerId)) : eq(table.id, id),
+					isNull(table.deletedAt),
+				),
 			with: {
 				employer: {
 					columns: {
