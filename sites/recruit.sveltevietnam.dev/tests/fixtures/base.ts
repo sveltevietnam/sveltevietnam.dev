@@ -1,5 +1,5 @@
-import { Faker, en } from '@faker-js/faker';
-import { test as base } from '@playwright/test';
+import { Faker, en, base } from '@faker-js/faker';
+import { test as testBase } from '@playwright/test';
 import * as schema from '@sveltevietnam/backend/db/schema';
 import type { Language } from '@sveltevietnam/i18n';
 
@@ -13,7 +13,7 @@ export interface TestWorkerFixtures {
 	faker: Faker;
 }
 
-export const test = base.extend<
+export const test = testBase.extend<
 	// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 	{},
 	TestWorkerFixtures & TestWorkerOptions
@@ -25,7 +25,7 @@ export const test = base.extend<
 		async ({}, use, workerInfo) => {
 			const faker = new Faker({
 				seed: 42 + workerInfo.parallelIndex,
-				locale: en,
+				locale: [en, base],
 			});
 			await use(faker);
 		},
