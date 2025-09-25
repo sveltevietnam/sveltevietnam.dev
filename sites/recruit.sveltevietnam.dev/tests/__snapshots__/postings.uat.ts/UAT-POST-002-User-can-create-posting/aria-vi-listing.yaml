@@ -1,0 +1,20 @@
+- region "Đăng tuyển chờ xét duyệt":
+    - heading "Đăng tuyển chờ xét duyệt" [level=2]
+    - paragraph:
+        Các bài đăng tuyển này đang chờ ban quản trị xét duyệt. Bạn sẽ nhận được email thông báo khi
+        bài đăng được duyệt hoặc cần bổ sung thông tin.
+    - list:
+        - listitem:
+            - article:
+                - paragraph:
+                    - link "Human Solutions Analyst":
+                        - /url: /vi/bai-dang-tuyen/job_JT7LLw11jUpehVDNTOjeO
+                - paragraph:
+                    - strong: Hợp đồng
+                    - text: tại
+                    - link "Mills, Quigley and Aufderhar":
+                        - /url: https://posh-final.biz
+                        - strong: Mills, Quigley and Aufderhar
+                - paragraph: North Malachitown, Cape Verde
+                - paragraph: /\d+ USD \/ tháng/
+                - paragraph: /Hết hạn ngày \d+\.\d+\.\d+/

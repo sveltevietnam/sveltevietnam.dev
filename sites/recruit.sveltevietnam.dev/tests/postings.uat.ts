@@ -1,5 +1,6 @@
 import type { Faker } from '@faker-js/faker';
-// import { expect } from '@playwright/test';
+import { expect } from '@playwright/test';
+import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
 import { eq } from 'drizzle-orm';
 
 import {
@@ -41,12 +42,12 @@ function createJobPosting(options: {
 	};
 
 	if (status === 'active') {
-		posting.approvedAt = new Date();
+		posting.approvedAt = new Date(); // today
 	} else if (status === 'expired') {
 		posting.expiredAt = new Date(Date.now() - 24 * 60 * 60 * 1000); // 1 day ago
 		posting.createdAt = new Date(Date.now() - 40 * 24 * 60 * 60 * 1000); // 40 days ago
 	} else if (status === 'deleted') {
-		posting.deletedAt = new Date();
+		posting.deletedAt = new Date(); // today
 	}
 
 	return posting;
@@ -116,9 +117,9 @@ test('UAT-POST-001: User sees listing grouped by status', async ({
 
 	const pomPostingList = new PagePostingList({ page, lang });
 	await pomPostingList.match({
-		active: `${lang}-posting-listing-active.yaml`,
-		pending: `${lang}-posting-listing-pending.yaml`,
-		expired: `${lang}-posting-listing-expired.yaml`,
+		active: `${lang}-active.yaml`,
+		pending: `${lang}-pending.yaml`,
+		expired: `${lang}-expired.yaml`,
 	});
 
 	await d1.batch([
@@ -128,6 +129,56 @@ test('UAT-POST-001: User sees listing grouped by status', async ({
 	]);
 	await page.reload();
 	await pomPostingList.match({
-		active: `${lang}-posting-listing-active.empty.yaml`,
+		active: `${lang}-active.empty.yaml`,
+	});
+});
+
+test('UAT-POST-002: User can create posting', async ({ page, lang, d1, faker, employer }) => {
+	const posting = createJobPosting({ faker, employer, status: 'pending' });
+
+	// User clicks "Create Posting" button and is redirected to posting creation page
+	let pomPostingList = new PagePostingList({ page, lang });
+	const pomPostingCreate = await pomPostingList.create();
+
+	// User fills out the form
+	await pomPostingCreate.fill(posting);
+
+	// User submits, is redirected to posting details page, and sees success alert
+	const pomPostingDetails = await pomPostingCreate.submit(posting.id);
+
+	// check data consistency
+	const dbPosting = await d1.query.jobPostings.findFirst({
+		where: (table, { eq }) => eq(table.id, posting.id),
+	});
+	expect(dbPosting).toMatchObject({
+		id: posting.id,
+		employerId: employer.id,
+		title: posting.title,
+		description: posting.description,
+		location: posting.location,
+		salary: posting.salary,
+		type: posting.type,
+		applicationMethod: posting.applicationMethod,
+		applicationLink: posting.applicationLink,
+		expiredAt: new Date(formatDate(posting.expiredAt, '-')),
+		approvedAt: posting.approvedAt,
+	});
+
+	// User sees all info correctly displayed on posting details page
+	await pomPostingDetails.match({ employer, posting });
+
+	// User sees
+	await expect(pomPostingDetails.pendingApprovalNote).toBeVisible();
+
+	// User sees "Edit" and "Delete" actions enabled
+	await expect(pomPostingDetails.actions.edit).toBeVisible();
+	await expect(pomPostingDetails.actions.edit).not.toBeDisabled();
+	await expect(pomPostingDetails.actions.delete).toBeVisible();
+	await expect(pomPostingDetails.actions.delete).not.toBeDisabled();
+
+	// User gets back to listing page and sees the new posting in "Pending" section
+	pomPostingList = await pomPostingDetails.backToListing();
+	await pomPostingList.match({
+		pending: `${lang}-listing.yaml`,
 	});
 });

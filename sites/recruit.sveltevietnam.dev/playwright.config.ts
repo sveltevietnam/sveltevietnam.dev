@@ -11,7 +11,7 @@ export default defineConfig({
 	testMatch: /(.+\.)?(uat)\.[jt]s/,
 	expect: {
 		toMatchAriaSnapshot: {
-			pathTemplate: '{testFileDir}/__snapshots__/{testFileName}/aria-{arg}{ext}',
+			pathTemplate: '{testFileDir}/__snapshots__/{testFileName}/{testName}/aria-{arg}{ext}',
 		},
 	},
 	webServer: [
