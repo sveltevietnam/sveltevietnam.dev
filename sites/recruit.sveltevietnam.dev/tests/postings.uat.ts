@@ -167,7 +167,7 @@ test('UAT-POST-002: User can create posting', async ({ page, lang, d1, faker, em
 	// User sees all info correctly displayed on posting details page
 	await pomPostingDetails.match({ employer, posting });
 
-	// User sees
+	// User sees callout about posting pending approval
 	await expect(pomPostingDetails.pendingApprovalNote).toBeVisible();
 
 	// User sees "Edit" and "Delete" actions enabled
@@ -181,4 +181,27 @@ test('UAT-POST-002: User can create posting', async ({ page, lang, d1, faker, em
 	await pomPostingList.match({
 		pending: `${lang}-listing.yaml`,
 	});
+});
+
+test('UAT-POST-003: User can edit posting', async ({ page, lang, d1, faker, employer }) => {
+	const posting = createJobPosting({ faker, employer, status: 'pending' });
+	await d1.insert(schema.jobPostings).values(posting);
+	await page.reload();
+
+	// User clicks on a posting in the list and is redirected to posting details page
+	const pomPostingList = new PagePostingList({ page, lang });
+	let pomPostingDetails = await pomPostingList.goToDetailPage(posting);
+
+	// User clicks "Edit" and is redirected to posting edit page
+	const pomPostingEdit = await pomPostingDetails.edit();
+
+	// User updates some fields
+	const editedPosting = createJobPosting({ faker, employer, status: 'pending' });
+	await pomPostingEdit.fill(editedPosting);
+
+	// User submits, is redirected to posting details page, and sees success alert
+	pomPostingDetails = await pomPostingEdit.submit(posting.id);
+
+	// User sees all updated info correctly displayed
+	await pomPostingDetails.match({ employer, posting: editedPosting });
 });
