@@ -3,7 +3,7 @@ import type { Locator } from '@playwright/test';
 import * as m from '../../src/data/locales/generated/messages';
 import * as p from '../../src/data/routes/generated';
 
-import { CommonPageObjectModel, type CommonPageObjectModelInit } from './utils';
+import { CommonPageObjectModel, type CommonPageObjectModelInit } from './common';
 
 export class PageWelcome extends CommonPageObjectModel {
 	public readonly path: string;

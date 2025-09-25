@@ -4,7 +4,7 @@ import { formatRelativeTime } from '@sveltevietnam/kit/utilities/datetime';
 import * as m from '../../src/data/locales/generated/messages';
 import * as p from '../../src/data/routes/generated';
 
-import { CommonPageObjectModel, type CommonPageObjectModelInit } from './utils';
+import { CommonPageObjectModel, type CommonPageObjectModelInit } from './common';
 
 export class PageAuthenticate extends CommonPageObjectModel {
 	public readonly path: string;

@@ -1,8 +1,8 @@
 import * as m from '../../src/data/locales/generated/messages';
 import * as p from '../../src/data/routes/generated';
 
+import { type CommonPageObjectModelInit } from './common';
 import { PagePostingCreate } from './posting-create';
-import { type CommonPageObjectModelInit } from './utils';
 
 export interface PagePostingEditInit extends CommonPageObjectModelInit {
 	id: string;

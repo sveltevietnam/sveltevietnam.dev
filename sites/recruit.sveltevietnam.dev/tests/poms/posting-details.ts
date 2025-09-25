@@ -7,7 +7,7 @@ import * as b from '../../src/data/routes/generated/breadcrumbs';
 import { JOB_POSTING_TYPE_LABEL } from '../../src/lib/forms/job-posting-upsert/schema';
 import { type schema } from '../fixtures/with-backend';
 
-import { CommonPageObjectModel, type CommonPageObjectModelInit } from './utils';
+import { CommonPageObjectModel, type CommonPageObjectModelInit } from './common';
 
 export interface PagePostingDetailsInit extends CommonPageObjectModelInit {
 	id: string;

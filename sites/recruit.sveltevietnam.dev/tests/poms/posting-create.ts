@@ -6,7 +6,7 @@ import type { JobPostingUpsertInput } from '$lib/forms/job-posting-upsert';
 import * as m from '../../src/data/locales/generated/messages';
 import * as p from '../../src/data/routes/generated';
 
-import { CommonPageObjectModel, type CommonPageObjectModelInit } from './utils';
+import { CommonPageObjectModel, type CommonPageObjectModelInit } from './common';
 
 export class PagePostingCreate extends CommonPageObjectModel {
 	public readonly path: string;
