@@ -6,7 +6,6 @@ import type { JobPostingUpsertInput } from '$lib/forms/job-posting-upsert';
 import * as m from '../../src/data/locales/generated/messages';
 import * as p from '../../src/data/routes/generated';
 
-import { PagePostingDetails } from './posting-details';
 import { CommonPageObjectModel, type CommonPageObjectModelInit } from './utils';
 
 export class PagePostingCreate extends CommonPageObjectModel {
@@ -25,6 +24,7 @@ export class PagePostingCreate extends CommonPageObjectModel {
 		};
 		submit: Locator;
 	};
+	public readonly successMessage = m['pages.postings_upsert.notifications.create'];
 
 	constructor(init: CommonPageObjectModelInit) {
 		super(init);
@@ -79,7 +79,7 @@ export class PagePostingCreate extends CommonPageObjectModel {
 		await this.form.inputs.description.fill(data.description);
 	}
 
-	async submit(id: string): Promise<PagePostingDetails> {
+	async submit(id: string): Promise<import('./posting-details').PagePostingDetails> {
 		await this.form.inputs.id.fill(id);
 
 		// User clicks "Submit for Review" button
@@ -89,11 +89,12 @@ export class PagePostingCreate extends CommonPageObjectModel {
 
 		// User sees alert of success creation
 		const alert = this.page.getByRole('alert').filter({
-			hasText: m['pages.postings_upsert.notifications.create'](this.lang).toString(),
+			hasText: this.successMessage(this.lang).toString(),
 		});
 		promises.push(expect(alert).toBeVisible());
 
 		// User is redirected to posting details page
+		const { PagePostingDetails } = await import('./posting-details');
 		const pomPostingDetails = new PagePostingDetails({ lang: this.lang, page: this.page, id });
 		promises.push(pomPostingDetails.waitForPage());
 

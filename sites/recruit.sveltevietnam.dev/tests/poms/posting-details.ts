@@ -7,7 +7,6 @@ import * as b from '../../src/data/routes/generated/breadcrumbs';
 import { JOB_POSTING_TYPE_LABEL } from '../../src/lib/forms/job-posting-upsert/schema';
 import { type schema } from '../fixtures/with-backend';
 
-import { PagePostingList } from './posting-list';
 import { CommonPageObjectModel, type CommonPageObjectModelInit } from './utils';
 
 export interface PagePostingDetailsInit extends CommonPageObjectModelInit {
@@ -122,7 +121,7 @@ export class PagePostingDetails extends CommonPageObjectModel {
 		]);
 	}
 
-	async backToListing() {
+	async backToListing(): Promise<import('./posting-list').PagePostingList> {
 		const breadcrumbs = this.page.getByRole('navigation', {
 			name: m['components.breadcrumbs.aria'](this.lang).toString(),
 		});
@@ -132,8 +131,18 @@ export class PagePostingDetails extends CommonPageObjectModel {
 		});
 		await expect(link).toBeVisible();
 		link.click();
+		const { PagePostingList } = await import('./posting-list');
 		const pagePostingList = new PagePostingList({ page: this.page, lang: this.lang });
 		await pagePostingList.waitForPage();
 		return pagePostingList;
+	}
+
+	async edit(): Promise<import('./posting-edit').PagePostingEdit> {
+		await expect(this.actions.edit).toBeVisible();
+		this.actions.edit.click();
+		const { PagePostingEdit } = await import('./posting-edit');
+		const pomPostingEdit = new PagePostingEdit({ page: this.page, lang: this.lang, id: this.id });
+		await pomPostingEdit.waitForPage();
+		return pomPostingEdit;
 	}
 }

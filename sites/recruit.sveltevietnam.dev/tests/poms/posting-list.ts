@@ -3,7 +3,6 @@ import { expect, type Locator } from '@playwright/test';
 import * as m from '../../src/data/locales/generated/messages';
 import * as p from '../../src/data/routes/generated';
 
-import { PagePostingCreate } from './posting-create';
 import { CommonPageObjectModel, type CommonPageObjectModelInit } from './utils';
 
 export class PagePostingList extends CommonPageObjectModel {
@@ -58,20 +57,40 @@ export class PagePostingList extends CommonPageObjectModel {
 			const snapshot = rSnapshots[key];
 			if (snapshot) {
 				promises.push(expect(list).toMatchAriaSnapshot({ name: snapshot }));
-			} else {
+			} else if (key !== 'active') {
 				promises.push(expect(list).toBeHidden());
 			}
 		}
 		await Promise.all(promises);
 	}
 
-	async create(): Promise<PagePostingCreate> {
+	async create(): Promise<import('./posting-create').PagePostingCreate> {
 		this.ctas.create.click();
+		const { PagePostingCreate } = await import('./posting-create');
 		const pagePostingCreate = new PagePostingCreate({
 			page: this.page,
 			lang: this.lang,
 		});
 		await pagePostingCreate.waitForPage();
 		return pagePostingCreate;
+	}
+
+	async goToDetailPage(posting: {
+		id: string;
+		title: string;
+	}): Promise<import('./posting-details').PagePostingDetails> {
+		const link = this.page.getByRole('link', {
+			name: posting.title,
+		});
+		await expect(link).toBeVisible();
+		link.click();
+		const { PagePostingDetails } = await import('./posting-details');
+		const pagePostingDetails = new PagePostingDetails({
+			page: this.page,
+			lang: this.lang,
+			id: posting.id,
+		});
+		await pagePostingDetails.waitForPage();
+		return pagePostingDetails;
 	}
 }
