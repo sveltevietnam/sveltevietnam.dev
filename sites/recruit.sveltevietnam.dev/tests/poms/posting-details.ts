@@ -145,4 +145,41 @@ export class PagePostingDetails extends CommonPageObjectModel {
 		await pomPostingEdit.waitForPage();
 		return pomPostingEdit;
 	}
+
+	async delete() {
+		// User clicks "Delete" button
+		await expect(this.actions.delete).toBeVisible();
+		this.actions.delete.click();
+
+		// User sees confirmation dialog
+		const dialog = this.page.getByRole('dialog');
+		await expect(dialog).toBeVisible();
+
+		// User clicks "cancel"
+		const cancelButton = dialog.getByRole('button', {
+			name: m['pages.postings_id.delete.confirmation.cancel'](this.lang).toString(),
+		});
+		await expect(cancelButton).toBeVisible();
+		cancelButton.click();
+
+		// User sees dialog closed
+		await expect(dialog).toBeHidden();
+
+		// User clicks "Delete" button again
+		this.actions.delete.click();
+		await expect(dialog).toBeVisible();
+
+		// User clicks "confirm"
+		const confirmButton = dialog.getByRole('button', {
+			name: m['pages.postings_id.delete.confirmation.confirm'](this.lang).toString(),
+		});
+		await expect(confirmButton).toBeVisible();
+		confirmButton.click();
+
+		// User sees alert of success deletion
+		const alert = this.page.getByRole('alert').filter({
+			hasText: m['pages.postings_id.delete.success'](this.lang).toString(),
+		});
+		await expect(alert).toBeVisible();
+	}
 }

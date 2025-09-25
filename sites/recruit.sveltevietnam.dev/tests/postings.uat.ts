@@ -11,6 +11,7 @@ import {
 import { testWithBackend, schema } from './fixtures/with-backend';
 import { PageAuthenticate } from './poms/authenticate';
 import { PageMail } from './poms/mail';
+import { PagePostingDetails } from './poms/posting-details';
 import { PagePostingList } from './poms/posting-list';
 
 testWithBackend.use({ lang: 'vi' });
@@ -183,25 +184,54 @@ test('UAT-POST-002: User can create posting', async ({ page, lang, d1, faker, em
 	});
 });
 
-test('UAT-POST-003: User can edit posting', async ({ page, lang, d1, faker, employer }) => {
-	const posting = createJobPosting({ faker, employer, status: 'pending' });
-	await d1.insert(schema.jobPostings).values(posting);
-	await page.reload();
+test.describe(() => {
+	const testWithExistingPosting = test.extend<{
+		posting: (typeof schema.jobPostings)['$inferSelect'];
+	}>({
+		posting: async ({ d1, faker, lang, employer, page }, use) => {
+			const posting = createJobPosting({ faker, employer, status: 'pending' });
+			await d1.insert(schema.jobPostings).values(posting);
+			await page.reload();
 
-	// User clicks on a posting in the list and is redirected to posting details page
-	const pomPostingList = new PagePostingList({ page, lang });
-	let pomPostingDetails = await pomPostingList.goToDetailPage(posting);
+			// User clicks on a posting in the list and is redirected to posting details page
+			const pomPostingList = new PagePostingList({ page, lang });
+			await pomPostingList.goToDetailPage(posting);
 
-	// User clicks "Edit" and is redirected to posting edit page
-	const pomPostingEdit = await pomPostingDetails.edit();
+			await use(posting);
 
-	// User updates some fields
-	const editedPosting = createJobPosting({ faker, employer, status: 'pending' });
-	await pomPostingEdit.fill(editedPosting);
+			await d1.delete(schema.jobPostings).where(eq(schema.jobPostings.id, posting.id));
+		},
+	});
 
-	// User submits, is redirected to posting details page, and sees success alert
-	pomPostingDetails = await pomPostingEdit.submit(posting.id);
+	testWithExistingPosting(
+		'UAT-POST-003: User can edit posting',
+		async ({ page, lang, faker, employer, posting }) => {
+			// User clicks "Edit" and is redirected to posting edit page
+			let pomPostingDetails = new PagePostingDetails({ page, lang, id: posting.id });
+			const pomPostingEdit = await pomPostingDetails.edit();
 
-	// User sees all updated info correctly displayed
-	await pomPostingDetails.match({ employer, posting: editedPosting });
+			// User updates some fields
+			const editedPosting = createJobPosting({ faker, employer, status: 'pending' });
+			await pomPostingEdit.fill(editedPosting);
+
+			// User submits, is redirected to posting details page, and sees success alert
+			pomPostingDetails = await pomPostingEdit.submit(posting.id);
+
+			// User sees all updated info correctly displayed
+			await pomPostingDetails.match({ employer, posting: editedPosting });
+		},
+	);
+
+	testWithExistingPosting(
+		'UAT-POST-004: User can delete posting',
+		async ({ page, lang, posting }) => {
+			// User clicks "Delete", confirms in dialog, and sees success alert
+			const pomPostingDetails = new PagePostingDetails({ page, lang, id: posting.id });
+			await pomPostingDetails.delete();
+
+			// User gets back to listing page and no longer sees the deleted posting
+			const pomPostingList = await pomPostingDetails.backToListing();
+			await pomPostingList.match(null);
+		},
+	);
 });
