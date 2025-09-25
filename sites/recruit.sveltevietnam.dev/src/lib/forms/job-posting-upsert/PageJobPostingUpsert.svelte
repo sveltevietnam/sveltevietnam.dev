@@ -25,11 +25,12 @@
 		action: string;
 		posting: Omit<JobPostingProps['posting'], 'href'>;
 		data: FormJobPostingUpsertProps['data'];
+		successMessage: Message<'string', never>;
 	}
 </script>
 
 <script lang="ts">
-	let { breadcrumbs, action, posting, data, heading }: JobPostingUpsertLayoutProps = $props();
+	let { breadcrumbs, action, posting, data, heading, successMessage }: JobPostingUpsertLayoutProps = $props();
 
 	const { routing } = Contexts.get();
 
@@ -68,7 +69,7 @@
 			<h1 class="c-text-heading border-outline border-b">
 				<T message={heading} />
 			</h1>
-			<FormJobPostingUpsert {data} {action} onchange={handleChangeForm}>
+			<FormJobPostingUpsert {data} {action} onchange={handleChangeForm} {successMessage}>
 				{#snippet cta({ delayed, timeout })}
 					<button
 						class="c-btn c-btn--pop"

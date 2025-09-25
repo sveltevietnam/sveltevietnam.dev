@@ -13,4 +13,5 @@
 	breadcrumbs={data.routing.breadcrumbs}
 	action="?/edit"
 	posting={data.posting}
+	successMessage={m['pages.postings_upsert.notifications.update']}
 />

@@ -23,4 +23,5 @@
 		location: '<job_location>',
 		salary: '<job_salary>',
 	}}
+	successMessage={m['pages.postings_upsert.notifications.create']}
 />

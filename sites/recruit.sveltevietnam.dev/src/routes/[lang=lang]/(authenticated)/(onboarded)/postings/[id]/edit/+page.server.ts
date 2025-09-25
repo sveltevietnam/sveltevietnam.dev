@@ -9,9 +9,7 @@ import { createJobPostingUpsertSchema } from '$lib/forms/job-posting-upsert';
 
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ params, parent, depends }) => {
-	depends('job-posting-edit');
-
+export const load: PageServerLoad = async ({ params, parent }) => {
 	const { lang, id } = params;
 	const parentData = await parent();
 
@@ -56,6 +54,12 @@ export const actions = {
 			error(500, { code: 'SV001', message: 'Unknown sever error' });
 		}
 
-		return { form };
+		redirect(
+			302,
+			p['/:lang/postings/:id']({
+				lang: params.lang,
+				id: params.id,
+			}),
+		);
 	},
 };

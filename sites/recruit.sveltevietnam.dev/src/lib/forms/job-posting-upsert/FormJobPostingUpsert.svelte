@@ -1,12 +1,11 @@
 <script lang="ts" module>
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T, type Message } from '@sveltevietnam/i18n/runtime';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
 	import type { Snippet } from 'svelte';
 	import type { HTMLFormAttributes } from 'svelte/elements';
 	import { superForm, type SuperValidated, dateProxy } from 'sveltekit-superforms';
 
-	import { invalidate } from '$app/navigation';
 	import * as m from '$data/locales/generated/messages';
 	import { VITE_PUBLIC_MODE, VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN } from '$env/static/public';
 
@@ -26,11 +25,12 @@
 		data: SuperValidated<JobPostingUpsertInput>;
 		cta: Snippet<[{ delayed: boolean; timeout: boolean }]>;
 		action: string;
+		successMessage: Message<'string', never>;
 	}
 </script>
 
 <script lang="ts">
-	let { data, cta, class: cls, ...rest }: FormJobPostingUpsertProps = $props();
+	let { data, cta, class: cls, successMessage, ...rest }: FormJobPostingUpsertProps = $props();
 
 	const {
 		routing,
@@ -48,14 +48,7 @@
 			onError: createSuperFormGenericErrorHandler(toaster),
 			onResult({ result }) {
 				if (result.type === 'redirect') {
-					toaster.success({
-						message: m['pages.postings_upsert.notifications.create'],
-					});
-				} else if (result.type === 'success') {
-					invalidate('job-posting-edit');
-					toaster.success({
-						message: m['pages.postings_upsert.notifications.update'],
-					});
+					toaster.success({ message: successMessage });
 				}
 			},
 		},
