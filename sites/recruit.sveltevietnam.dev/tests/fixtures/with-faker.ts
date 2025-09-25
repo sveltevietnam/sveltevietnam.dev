@@ -13,7 +13,7 @@ export interface WithFakerWorkerArgs {
 	/**
 	 * use this if Faker instance is needed in per-worker context,
 	 * for example to generate a different email for each test in a suite
-	 * that doesn't need to be cleaned up in database (avoid UNIQUE CONFLICT)
+	 * that doesn't need to be cleaned up in database (avoid UNIQUE constraint error)
 	 */
 	workerFaker: Faker;
 }

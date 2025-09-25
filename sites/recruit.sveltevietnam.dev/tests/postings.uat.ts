@@ -1,5 +1,5 @@
 import type { Faker } from '@faker-js/faker';
-import { expect, mergeTests } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
 import { eq } from 'drizzle-orm';
 
@@ -8,17 +8,13 @@ import {
 	JOB_POSTING_TYPES,
 } from '../src/lib/forms/job-posting-upsert/schema';
 
-import { testWithBackend, schema } from './fixtures/with-backend';
-import { testWithCommon } from './fixtures/with-common';
-import { testWithFaker } from './fixtures/with-faker';
-import { PageAuthenticate } from './poms/authenticate';
-import { PageMail } from './poms/mail';
+import { testWithAuthenticatedEmployer } from './fixtures/with-authenticated-employer';
+import { schema } from './fixtures/with-backend';
 import { PagePostingDetails } from './poms/posting-details';
 import { PagePostingList } from './poms/posting-list';
 
 // Setup test
-const test = mergeTests(testWithCommon, testWithBackend, testWithFaker);
-test.use({ lang: 'vi' });
+testWithAuthenticatedEmployer.use({ lang: 'vi' });
 
 function createJobPosting(options: {
 	faker: Faker;
@@ -58,44 +54,7 @@ function createJobPosting(options: {
 	return posting;
 }
 
-const testWithEmployer = test.extend<{
-	employer: (typeof schema.employers)['$inferSelect'];
-}>({
-	employer: async ({ d1, testFaker: faker }, use) => {
-		// create employer in DB
-		const [employer] = await d1
-			.insert(schema.employers)
-			.values({
-				email: faker.internet.email().toLowerCase(),
-				emailVerified: true,
-				name: faker.company.name(),
-				description: faker.lorem.paragraphs(3),
-				website: faker.internet.url(),
-				onboardedAt: new Date(),
-				agreed: true,
-			})
-			.onConflictDoNothing({ target: schema.employers.email })
-			.returning();
-
-		await use(employer);
-		await d1.delete(schema.employers).where(eq(schema.employers.id, employer.id));
-	},
-	page: async ({ lang, page, employer, mails, d1 }, use) => {
-		// log in as the employer
-		const pomAuthenticate = new PageAuthenticate({ page, lang });
-		await pomAuthenticate.goto();
-		await pomAuthenticate.fill(employer.email);
-		await pomAuthenticate.continue('login');
-		const pomMail = new PageMail({ page, lang, mails, d1 });
-		await pomMail.login(employer.email);
-		const pomPostingList = new PagePostingList({ page, lang });
-		await pomPostingList.waitForPage();
-		await use(page);
-		await pomPostingList.accountMenu.logout();
-	},
-});
-
-testWithEmployer(
+testWithAuthenticatedEmployer(
 	'UAT-POST-001: User sees listing grouped by status',
 	async ({ page, lang, d1, testFaker: faker, employer }) => {
 		const postings = await d1
@@ -130,7 +89,7 @@ testWithEmployer(
 	},
 );
 
-testWithEmployer(
+testWithAuthenticatedEmployer(
 	'UAT-POST-002: User can create posting',
 	async ({ page, lang, d1, testFaker: faker, employer }) => {
 		const posting = createJobPosting({ faker, employer, status: 'pending' });
@@ -186,8 +145,8 @@ testWithEmployer(
 	},
 );
 
-testWithEmployer.describe(() => {
-	const testWithPosting = testWithEmployer.extend<{
+testWithAuthenticatedEmployer.describe(() => {
+	const testWithPosting = testWithAuthenticatedEmployer.extend<{
 		posting: (typeof schema.jobPostings)['$inferSelect'];
 	}>({
 		posting: async ({ d1, testFaker: faker, lang, employer, page }, use) => {
