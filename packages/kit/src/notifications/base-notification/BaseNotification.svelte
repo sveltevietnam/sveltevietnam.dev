@@ -29,7 +29,7 @@
 
 <div
 	class={['_container relative shadow', !status && 'border', cls]}
-	role="status"
+	role="alert"
 	aria-live="polite"
 	aria-atomic="true"
 	data-status={status}
