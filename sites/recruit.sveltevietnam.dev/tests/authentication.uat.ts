@@ -64,7 +64,7 @@ test.describe(() => {
 			// User goes to profile page and verify their data
 			const pomProfile = await pomWelcome.accountMenu.goToProfile();
 			const employer = await d1.query.employers.findFirst({
-				where: (table, { eq }) => eq(table.email, email),
+				where: (table, { eq }) => eq(table.email, email.toLowerCase()),
 			});
 			expect(employer).not.toBeFalsy();
 			expect(employer!.email).toBe(email);

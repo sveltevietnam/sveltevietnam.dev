@@ -29,11 +29,14 @@ export function getBackendConfig() {
 	};
 }
 
+export type D1 = Awaited<ReturnType<typeof getLocalORM<typeof schema>>>;
+export interface Mails {
+	getLatest(email: string, templateId: MailTemplateId, actorId?: string): Promise<string>;
+}
+
 export interface WithBackendWorkerArgs {
-	d1: Awaited<ReturnType<typeof getLocalORM<typeof schema>>>;
-	mails: {
-		getLatest(email: string, templateId: MailTemplateId, actorId?: string): Promise<string>;
-	};
+	d1: D1;
+	mails: Mails;
 }
 
 export async function setup() {
@@ -72,7 +75,7 @@ export const testWithBackend = test.extend<
 					const record = await d1.query.mails.findFirst({
 						where: (table, { eq, and, isNull }) =>
 							and(
-								eq(table.to, email),
+								eq(table.to, email.toLowerCase()),
 								eq(table.templateId, templateId),
 								actorId ? eq(table.actorId, actorId) : isNull(table.actorId),
 							),
