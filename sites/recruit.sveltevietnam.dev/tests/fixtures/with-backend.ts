@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import {
 	getLocalORM,
 	getLocalKVBlobPath,
@@ -12,8 +12,6 @@ import {
 import * as schema from '@sveltevietnam/backend/db/schema';
 import { type Id as MailTemplateId } from '@sveltevietnam/backend/mails';
 import backendWranglerConfig from '@sveltevietnam/backend/wrangler.json' with { type: 'json' };
-
-import { test } from './base';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -31,9 +29,7 @@ export function getBackendConfig() {
 	};
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface TestWithBackendWorkerOptions {}
-export interface TestWithBackendWorkerFixtures {
+export interface WithBackendWorkerArgs {
 	d1: Awaited<ReturnType<typeof getLocalORM<typeof schema>>>;
 	mails: {
 		getLatest(email: string, templateId: MailTemplateId, actorId?: string): Promise<string>;
@@ -55,7 +51,7 @@ export async function teardown() {
 export const testWithBackend = test.extend<
 	// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 	{},
-	TestWithBackendWorkerFixtures & TestWithBackendWorkerOptions
+	WithBackendWorkerArgs
 >({
 	d1: [
 		// eslint-disable-next-line no-empty-pattern

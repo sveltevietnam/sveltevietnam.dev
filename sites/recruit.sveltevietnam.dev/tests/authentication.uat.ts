@@ -1,10 +1,12 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { expect } from '@playwright/test';
+import { expect, mergeTests } from '@playwright/test';
 import { count, eq } from 'drizzle-orm';
 
 import { testWithBackend, schema } from './fixtures/with-backend';
+import { testWithCommon } from './fixtures/with-common';
+import { testWithFaker } from './fixtures/with-faker';
 import { PageAuthenticate } from './poms/authenticate';
 import { PageMail } from './poms/mail';
 import { PageOnboarding } from './poms/onboarding';
@@ -12,12 +14,14 @@ import { PagePostingList } from './poms/posting-list';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-testWithBackend.use({ lang: 'vi' });
+// Setup test
+const test = mergeTests(testWithCommon, testWithBackend, testWithFaker);
+test.use({ lang: 'vi' });
 
-testWithBackend.describe(() => {
-	const test = testWithBackend.extend<{ email: string }>({
-		email: async ({ page, lang, mails, d1, faker }, use) => {
-			const email = faker.internet.email().toLowerCase();
+test.describe(() => {
+	const testWithEmail = test.extend<{ email: string }>({
+		email: async ({ page, lang, mails, d1, workerFaker }, use) => {
+			const email = workerFaker.internet.email().toLowerCase();
 			// User goes to authentication page, fill form, and submit
 			const pomAuthenticate = new PageAuthenticate({ page, lang });
 			await pomAuthenticate.goto();
@@ -34,10 +38,12 @@ testWithBackend.describe(() => {
 			await expect(pomOnboarding.accountMenu.locator).toBeHidden();
 
 			await use(email);
+
+			await d1.delete(schema.employers).where(eq(schema.employers.email, email));
 		},
 	});
 
-	test(
+	testWithEmail(
 		'UAT-AUTH-001: User can sign up and be onboarded',
 		{
 			tag: ['@uat', '@authentication'],
@@ -76,7 +82,7 @@ testWithBackend.describe(() => {
 		},
 	);
 
-	test(
+	testWithEmail(
 		'UAT-AUTH-002: User can log out during onboarding and sign up again',
 		{
 			tag: ['@uat', '@authentication'],
@@ -100,13 +106,13 @@ testWithBackend.describe(() => {
 	);
 });
 
-testWithBackend(
+test(
 	'UAT-AUTH-003: User can hit resend after waiting time',
 	{
 		tag: ['@uat', '@authentication'],
 	},
-	async ({ page, lang, d1, faker }) => {
-		const email = faker.internet.email().toLowerCase();
+	async ({ page, lang, d1, workerFaker }) => {
+		const email = workerFaker.internet.email().toLowerCase();
 
 		// User goes to authentication page, fill form, and submit
 		const pomAuthenticate = new PageAuthenticate({ page, lang });
@@ -126,17 +132,17 @@ testWithBackend(
 	},
 );
 
-testWithBackend.describe(() => {
-	const test = testWithBackend.extend<{ email: string }>({
-		email: async ({ page, lang, d1, faker }, use) => {
+test.describe(() => {
+	const testWithEmail = test.extend<{ email: string }>({
+		email: async ({ page, lang, d1, workerFaker }, use) => {
 			const [employer] = await d1
 				.insert(schema.employers)
 				.values({
-					email: faker.internet.email().toLowerCase(),
+					email: workerFaker.internet.email().toLowerCase(),
 					emailVerified: true,
-					name: faker.company.name(),
-					description: faker.lorem.paragraphs(3),
-					website: faker.internet.url(),
+					name: workerFaker.company.name(),
+					description: workerFaker.lorem.paragraphs(3),
+					website: workerFaker.internet.url(),
 					onboardedAt: new Date(),
 					agreed: true,
 				})
@@ -149,10 +155,12 @@ testWithBackend.describe(() => {
 			await pomAuthenticate.continue('login');
 
 			await use(employer.email);
+
+			await d1.delete(schema.employers).where(eq(schema.employers.id, employer.id));
 		},
 	});
 
-	test(
+	testWithEmail(
 		'UAT-AUTH-004: User can log in after being onboarded',
 		{
 			tag: ['@uat', '@authentication'],
@@ -168,7 +176,7 @@ testWithBackend.describe(() => {
 		},
 	);
 
-	test(
+	testWithEmail(
 		'UAT-AUTH-005: User is redirected to auth page if email link is expired',
 		{
 			tag: ['@uat', '@authentication'],
