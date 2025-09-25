@@ -29,7 +29,7 @@
 				{/if}
 			</h1>
 
-			<p>
+			<p data-testid="result">
 				{#if data.status === 'ok'}
 					<T message={m['pages.email_change_verification.desc.ok']} />
 				{:else if data.status === 'invalid'}

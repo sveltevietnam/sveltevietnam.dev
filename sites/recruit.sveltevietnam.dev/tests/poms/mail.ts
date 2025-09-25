@@ -1,20 +1,20 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 import type { Language } from '@sveltevietnam/i18n';
 
-import type { TestWithBackendWorkerFixtures } from '../fixtures/with-backend';
+import type { WithBackendWorkerArgs, schema } from '../fixtures/with-backend';
 
 export interface PageMailInit {
 	lang: Language;
 	page: Page;
-	mails: TestWithBackendWorkerFixtures['mails'];
-	d1: TestWithBackendWorkerFixtures['d1'];
+	mails: WithBackendWorkerArgs['mails'];
+	d1: WithBackendWorkerArgs['d1'];
 }
 
 export class PageMail {
-	private readonly lang: string;
+	private readonly lang: Language;
 	private readonly page: Page;
-	private readonly mails: TestWithBackendWorkerFixtures['mails'];
-	private readonly d1: TestWithBackendWorkerFixtures['d1'];
+	private readonly mails: WithBackendWorkerArgs['mails'];
+	private readonly d1: WithBackendWorkerArgs['d1'];
 
 	private readonly timeoutForBackendQueue = 100;
 
@@ -31,11 +31,12 @@ export class PageMail {
 		}, html);
 	}
 
-	private async click(link: Locator) {
+	private async click(link: Locator): Promise<string> {
 		await expect(link).toBeVisible();
 		const url = await link.getAttribute('href');
 		expect(url).not.toBeFalsy();
 		await this.page.goto(url!);
+		return url!;
 	}
 
 	public async onboard(email: string) {
@@ -51,17 +52,21 @@ export class PageMail {
 		await this.click(onboardLink);
 	}
 
-	public async login(email: string) {
+	private async getEmployer(email: string): Promise<typeof schema.employers.$inferSelect> {
 		// Get employer DB record by email
 		const employer = await this.d1.query.employers.findFirst({
-			columns: { id: true },
-			where: (table, { eq }) => eq(table.email, email),
+			where: (table, { eq }) => eq(table.email, email.toLowerCase()),
 		});
 		expect(employer).toBeTruthy();
+		return employer!;
+	}
+
+	public async login(email: string) {
+		const employer = await this.getEmployer(email);
 
 		// 1. User receives and opens login email
 		await this.page.waitForTimeout(this.timeoutForBackendQueue);
-		const html = await this.mails.getLatest(email, 'recruit-employer-login', employer!.id);
+		const html = await this.mails.getLatest(email, 'recruit-employer-login', employer.id);
 		await this.open(html);
 
 		// 2. User clicks login link in email
@@ -69,5 +74,33 @@ export class PageMail {
 			name: this.lang === 'vi' ? 'Đăng nhập' : 'Login',
 		});
 		await this.click(link);
+	}
+
+	public async verifyEmailChange(
+		email: string,
+	): Promise<import('./email-change-verification').PageEmailChangeVerification> {
+		const employer = await this.getEmployer(email);
+
+		// 1. User receives and open email
+		await this.page.waitForTimeout(this.timeoutForBackendQueue);
+		const html = await this.mails.getLatest(email, 'recruit-employer-change-email', employer.id);
+		await this.open(html);
+
+		// 2. User clicks verify link in email
+		const link = this.page.getByRole('link', {
+			name: this.lang === 'vi' ? 'Xác nhận' : 'Verify change',
+		});
+		const url = new URL(await this.click(link));
+		const token = url.pathname.split('/').pop()!;
+
+		// 3. User is redirected to email change verification page
+		const { PageEmailChangeVerification } = await import('./email-change-verification');
+		const pomEmailChangeVerification = new PageEmailChangeVerification({
+			page: this.page,
+			lang: this.lang,
+			token,
+		});
+		await pomEmailChangeVerification.waitForPage();
+		return pomEmailChangeVerification;
 	}
 }

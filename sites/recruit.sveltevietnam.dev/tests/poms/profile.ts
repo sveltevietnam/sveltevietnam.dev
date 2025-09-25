@@ -1,4 +1,5 @@
 import { type Locator, expect } from '@playwright/test';
+import type { Message } from '@sveltevietnam/i18n/runtime';
 
 import * as m from '../../src/data/locales/generated/messages';
 import * as p from '../../src/data/routes/generated';
@@ -11,6 +12,7 @@ export class PageProfile extends CommonPageObjectModel {
 		email: {
 			input: Locator;
 			save: Locator;
+			alert: Locator;
 		};
 		info: {
 			inputs: {
@@ -29,40 +31,41 @@ export class PageProfile extends CommonPageObjectModel {
 		super(init);
 		this.path = p['/:lang/profile']({ lang: this.lang });
 
-		const formEmail = this.page.getByRole('form', {
+		const sectionEmail = this.page.getByRole('region', {
 			name: m['pages.profile.update_email.heading'](this.lang).toString(),
 		});
-		const formInfo = this.page.getByRole('form', {
+		const sectionInfo = this.page.getByRole('region', {
 			name: m['pages.profile.update_info.heading'](this.lang).toString(),
 		});
 
 		this.forms = {
 			email: {
-				input: formEmail.getByRole('textbox', {
+				input: sectionEmail.getByRole('textbox', {
 					name: m['inputs.email.label'](this.lang).toString(),
 				}),
-				save: formEmail.getByRole('button', {
+				save: sectionEmail.getByRole('button', {
 					name: m['save'](this.lang).toString(),
 				}),
+				alert: sectionEmail.getByRole('alert'),
 			},
 			info: {
 				inputs: {
-					name: formInfo.getByRole('textbox', {
+					name: sectionInfo.getByRole('textbox', {
 						name: m['inputs.employer.name.label'](this.lang).toString(),
 					}),
-					website: formInfo.getByRole('textbox', {
+					website: sectionInfo.getByRole('textbox', {
 						name: m['inputs.employer.website.label'](this.lang).toString(),
 					}),
-					description: formInfo.getByRole('textbox', {
+					description: sectionInfo.getByRole('textbox', {
 						name: m['inputs.employer.desc.label'](this.lang).toString(),
 					}),
-					agreement: formInfo.getByRole('checkbox', {
+					agreement: sectionInfo.getByRole('checkbox', {
 						name: m['inputs.employer.agreement.desc'](this.lang).toString(),
 					}),
-					image: formInfo.getByTestId('image'),
+					image: sectionInfo.getByTestId('image'),
 				},
-				imagePreview: formInfo.getByTestId('image-preview'),
-				save: formEmail.getByRole('button', {
+				imagePreview: sectionInfo.getByTestId('image-preview'),
+				save: sectionInfo.getByRole('button', {
 					name: m['save'](this.lang).toString(),
 				}),
 			},
@@ -86,5 +89,11 @@ export class PageProfile extends CommonPageObjectModel {
 				? expect(this.forms.info.imagePreview).toHaveAttribute('src', data.image)
 				: expect(this.forms.info.imagePreview).toBeHidden(),
 		]);
+	}
+
+	async changeEmail(data: { email: string }, alertMessage: Message<'string', never>) {
+		await this.forms.email.input.fill(data.email);
+		await this.forms.email.save.click();
+		await expect(this.forms.email.alert).toHaveText(alertMessage(this.lang).toString());
 	}
 }

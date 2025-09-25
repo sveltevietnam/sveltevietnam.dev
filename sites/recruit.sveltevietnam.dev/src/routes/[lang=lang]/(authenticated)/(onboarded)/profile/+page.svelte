@@ -40,13 +40,13 @@
 		<T message={m['pages.profile.heading']} />
 	</h1>
 
-	<section class="space-y-6">
+	<section class="space-y-6" aria-labelledby="update-email">
 		<h2 class="c-text-heading border-outline border-b" id="update-email">
 			<T message={m['pages.profile.update_email.heading']} />
 		</h2>
 
 		{#if !$message || $message === 'error'}
-			<form method="POST" action="?/update-email" use:enhance aria-labelledby="update-email">
+			<form method="POST" action="?/update-email" use:enhance>
 				<!-- combined email input & submit button -->
 				<div class="space-y-1">
 					<p>
@@ -91,22 +91,22 @@
 
 		{#if $message}
 			{#if $message === 'pending'}
-				<p class="c-callout c-callout--info">
+				<p class="c-callout c-callout--info" role="alert">
 					<T message={m['pages.profile.update_email.callout.pending']} />
 				</p>
 			{:else if $message === 'unverified'}
-				<p class="c-callout c-callout--warning">
+				<p class="c-callout c-callout--warning" role="alert">
 					<T message={m['pages.profile.update_email.callout.unverified']} />
 				</p>
 			{:else}
-				<p class="c-callout c-callout--error">
+				<p class="c-callout c-callout--error" role="alert">
 					<T message={m['errors.generic']} />
 				</p>
 			{/if}
 		{/if}
 	</section>
 
-	<section class="space-y-6">
+	<section class="space-y-6" aria-labelledby="update-info">
 		<h2 class="c-text-heading border-outline border-b" id="update-info">
 			<T message={m['pages.profile.update_info.heading']} />
 		</h2>
@@ -117,7 +117,6 @@
 			withEmail={false}
 			image={data.image}
 			onSuccess={handleProfileUpdateSuccess}
-			aria-labelledby="update-info"
 		>
 			{#snippet cta({ delayed, timeout })}
 				<button class="c-btn px-4" type="submit" data-delayed={delayed} data-timeout={timeout}>
