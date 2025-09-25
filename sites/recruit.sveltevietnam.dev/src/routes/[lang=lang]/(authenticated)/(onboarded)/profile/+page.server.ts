@@ -58,10 +58,10 @@ export const actions: Actions = {
 					(email) => email !== locals.user!.email,
 					m['inputs.email.errors.current'](language),
 				),
-				v.checkAsync(
-					async (email) => !employers.exists(email),
-					m['inputs.email.errors.existed'](language),
-				),
+				v.checkAsync(async (email) => {
+					const existed = await employers.exists(email);
+					return !existed;
+				}, m['inputs.email.errors.existed'](language)),
 			),
 		});
 		const form = await superValidate(request, valibot(schema));
