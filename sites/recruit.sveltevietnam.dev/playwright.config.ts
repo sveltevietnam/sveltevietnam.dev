@@ -9,6 +9,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // https://github.com/microsoft/playwright/issues/2621#issuecomment-2083083392
 export default defineConfig({
 	testMatch: /(.+\.)?(uat)\.[jt]s/,
+	// NOTE: right now if too many connections to D1 are opened at once,
+	// miniflare will throw "Error: SQLITE_BUSY: database is locked"
+	// so we limit the number of workers to 1. Perhaps it is possible
+	// to optimize this somehow?
+	workers: 1,
 	expect: {
 		toMatchAriaSnapshot: {
 			pathTemplate: '{testFileDir}/__snapshots__/{testFileName}/{testName}/aria-{arg}{ext}',
