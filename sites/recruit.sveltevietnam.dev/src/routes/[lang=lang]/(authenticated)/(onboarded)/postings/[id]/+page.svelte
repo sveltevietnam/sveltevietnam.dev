@@ -109,7 +109,7 @@
 			</h1>
 
 			{#if !data.posting.approvedAt}
-				<p class="c-callout c-callout--info">
+				<p class="c-callout c-callout--info" role="note">
 					<T message={m['pages.postings_id.pending']} />
 				</p>
 			{/if}
@@ -131,7 +131,7 @@
 								<T message={m['inputs.employer.name.label']} />
 							</span>
 						</dt>
-						<dd class="font-medium">
+						<dd class="font-medium" data-testid="employer-name">
 							{#if data.posting.employer.website}
 								<a class="c-link-preserved" href={data.posting.employer.website} data-external>
 									{data.posting.employer.name}
@@ -148,7 +148,7 @@
 								<T message={m['inputs.job_posting.type.label']} />
 							</span>
 						</dt>
-						<dd>
+						<dd data-testid="job-type">
 							{typeLabelMessage(routing.lang)}
 						</dd>
 
@@ -159,7 +159,7 @@
 								<T message={m['inputs.job_posting.location.label']} />
 							</span>
 						</dt>
-						<dd>
+						<dd data-testid="job-location">
 							{data.posting.location}
 						</dd>
 
@@ -170,7 +170,7 @@
 								<T message={m['inputs.job_posting.salary.label']} />
 							</span>
 						</dt>
-						<dd>
+						<dd data-testid="job-salary">
 							{data.posting.salary}
 						</dd>
 
@@ -179,7 +179,7 @@
 							<dt>
 								<i class="i i-[ph--calendar-blank] h-6 w-6"></i>
 							</dt>
-							<dd>
+							<dd data-testid="job-posted-at">
 								<T message={m['pages.postings_id.general.posted_at']} />
 								{formatDate(data.posting.postedAt)}
 							</dd>
@@ -189,7 +189,7 @@
 						<dt>
 							<i class="i i-[ph--calendar-x] h-6 w-6"></i>
 						</dt>
-						<dd>
+						<dd data-testid="job-expired-at">
 							<T message={m['pages.postings_id.general.expired_at']} />
 							{formatDate(data.posting.expiredAt)}
 						</dd>
@@ -205,6 +205,7 @@
 									height="80"
 									src={data.posting.employer.image}
 									alt=""
+									data-testid="employer-image"
 								/>
 							{:else}
 								<enhanced:img
@@ -250,7 +251,7 @@
 						type="button"
 						onclick={openQrDialog}
 					>
-						<span class="sr-only"><T message={m['pages.postings_id.actions.share.link']} /></span>
+						<span class="sr-only"><T message={m['pages.postings_id.actions.share.qr']} /></span>
 						<i class="i i-[ph--qr-code] h-6 w-6"></i>
 					</button>
 				</section>
@@ -261,14 +262,14 @@
 				<h2 class="sr-only">
 					<T message={m['pages.postings_id.desc.heading']} />
 				</h2>
-				<div class="prose max-w-full">
+				<div class="prose max-w-full" data-testid="job-description">
 					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 					{@html data.posting.description}
 				</div>
 			</section>
 
 			<!-- employer description -->
-			<section class="prose max-w-full">
+			<section class="prose max-w-full" data-testid="employer-description">
 				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 				{@html data.posting.employer.description}
 			</section>
