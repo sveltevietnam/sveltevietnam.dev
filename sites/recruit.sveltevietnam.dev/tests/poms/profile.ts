@@ -16,6 +16,13 @@ type ChangeEmailOutput =
 			message: Message<'string', never>;
 	  };
 
+export interface UpdateInfoFormData {
+	name: string;
+	description: string;
+	website?: string | null;
+	image?: string | null;
+}
+
 export class PageProfile extends CommonPageObjectModel {
 	public readonly path: string;
 	public readonly forms: {
@@ -111,5 +118,29 @@ export class PageProfile extends CommonPageObjectModel {
 		} else {
 			await expect(this.forms.email.error).toHaveText(output.message(this.lang).toString());
 		}
+	}
+
+	async fillInfoForm(data: UpdateInfoFormData) {
+		// 1. User fills text-based info
+		await this.forms.info.inputs.name.fill(data.name);
+		if (data.website) await this.forms.info.inputs.website.fill(data.website);
+		await this.forms.info.inputs.description.fill(data.description);
+
+		// 2. User uploads image
+		const fileChooserPromise = this.page.waitForEvent('filechooser');
+		await this.forms.info.inputs.image.click();
+		const fileChooser = await fileChooserPromise;
+		if (data.image) await fileChooser.setFiles(data.image);
+
+		// 3. User checks agreement
+		await this.forms.info.inputs.agreement.check();
+	}
+
+	async saveInfo(message: Message<'string', never>): Promise<void> {
+		await this.forms.info.save.click();
+		const alert = this.page.getByRole('alert').filter({
+			hasText: message(this.lang).toString(),
+		});
+		await expect(alert).toBeVisible();
 	}
 }

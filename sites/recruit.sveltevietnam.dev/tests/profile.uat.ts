@@ -1,3 +1,6 @@
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
 import { expect } from '@playwright/test';
 
 import * as m from '../src/data/locales/generated/messages';
@@ -10,6 +13,8 @@ import {
 import { type D1, schema } from './fixtures/with-backend';
 import { PageMail } from './poms/mail';
 import { PageProfile } from './poms/profile';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Setup test
 testWithAuthenticatedEmployer.use({ lang: 'vi' });
@@ -129,5 +134,38 @@ testWithAuthenticatedEmployer(
 			{ email: anotherEmployer.email },
 			{ type: 'error', message: m['inputs.email.errors.existed'] },
 		);
+	},
+);
+
+testWithAuthenticatedEmployer.only(
+	'UAT-PRO-004: User can update profile information',
+	async ({ page, lang, testFaker: faker, employer, d1 }) => {
+		// User goes to profile page
+		const pomProfile = new PageProfile({ page, lang });
+		await pomProfile.accountMenu.goToProfile();
+
+		// User updates their profile information
+		const newEmployerProfile = {
+			...generateEmployerTestData(faker),
+			image: path.join(__dirname, './assets/images/image-500x500.jpeg'),
+		};
+		await pomProfile.fillInfoForm(newEmployerProfile);
+
+		// User submits the form and sees success alert
+		await pomProfile.saveInfo(m['pages.profile.update_info.success']);
+
+		// User reloads and verify
+		await page.reload();
+		const { image } =
+			(await d1.query.employers.findFirst({
+				columns: { image: true },
+				where: (table, { eq }) => eq(table.email, employer.email),
+			})) ?? {};
+		expect(image).not.toBe(employer.image);
+		await pomProfile.match({
+			...newEmployerProfile,
+			email: employer.email, // email doesn't change here
+			image,
+		});
 	},
 );
