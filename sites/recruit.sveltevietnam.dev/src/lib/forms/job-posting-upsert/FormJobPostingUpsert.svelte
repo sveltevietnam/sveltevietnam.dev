@@ -188,7 +188,7 @@
 			{/if}
 		</div>
 
-		<!-- application method -->
+		<!-- application -->
 		<fieldset>
 			<div class="space-y-1">
 				<label class="block" for="application-method">
@@ -242,7 +242,7 @@
 					/>
 				</label>
 				{#if $errors.application?.link?.[0]}
-					<p class="text-xs text-red-500" id="error-application-link">
+					<p class="pt-1 text-right text-xs text-red-500" id="error-application-link">
 						{$errors.application.link[0]}
 					</p>
 				{/if}
@@ -268,19 +268,17 @@
 					'aria-errormessage': 'error-expires-at',
 				}}
 			/>
-			<div class="flex items-baseline justify-between gap-4">
-				{#if $errors.expiredAt?.[0]}
-					<p class={commonErrorClasses} id="error-expires-at">
-						{$errors.expiredAt[0]}
-					</p>
-				{/if}
-				<p class="c-text-body-xs ml-auto">
-					<T
-						message={m['inputs.job_posting.expired_at.note']}
-						mainSiteUrl={VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN}
-					/>
+			<p class="c-text-body-xs ml-auto text-right">
+				<T
+					message={m['inputs.job_posting.expired_at.note']}
+					mainSiteUrl={VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN}
+				/>
+			</p>
+			{#if $errors.expiredAt?.[0]}
+				<p class={commonErrorClasses} id="error-expires-at">
+					{$errors.expiredAt[0]}
 				</p>
-			</div>
+			{/if}
 		</div>
 
 		<!-- description -->
