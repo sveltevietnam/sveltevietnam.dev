@@ -191,3 +191,5 @@ export function deleteLocalD1(databaseId: string, cwd?: string): void {
 		fs.rmSync(path);
 	}
 }
+
+export * from './utils';
