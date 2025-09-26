@@ -19,6 +19,27 @@ export {
 
 export const JOB_POSTING_MAX_EXPIRATION_MS = 180 * 24 * 60 * 60 * 1000; // 180 days
 
+export function createJobPostingApplicationSchema(lang: Language) {
+	return v.variant('method', [
+		v.object({
+			method: v.literal('email' satisfies JobPostingApplicationMethod),
+			link: v.pipe(
+				v.string(),
+				v.nonEmpty(m['inputs.job_posting.application.errors.nonempty_link'](lang)),
+				v.email(m['inputs.email.errors.invalid'](lang)),
+			),
+		}),
+		v.object({
+			method: v.literal('url' satisfies JobPostingApplicationMethod),
+			link: v.pipe(
+				v.string(),
+				v.nonEmpty(m['inputs.job_posting.application.errors.nonempty_link'](lang)),
+				v.url(m['inputs.url.errors.invalid'](lang)),
+			),
+		}),
+	]);
+}
+
 export function createJobPostingUpsertSchema(lang: Language) {
 	return v.objectAsync({
 		id: v.optional(v.pipe(v.string(), v.startsWith('job_'))),
@@ -29,14 +50,7 @@ export function createJobPostingUpsertSchema(lang: Language) {
 			v.nonEmpty(m['inputs.job_posting.location.errors.nonempty'](lang)),
 		),
 		salary: v.pipe(v.string(), v.nonEmpty(m['inputs.job_posting.salary.errors.nonempty'](lang))),
-		applicationMethod: v.picklist(
-			JOB_POSTING_APPLICATION_METHODS,
-			m['inputs.job_posting.application.errors.nonempty_method'](lang),
-		),
-		applicationLink: v.pipe(
-			v.string(),
-			v.nonEmpty(m['inputs.job_posting.application.errors.nonempty_link'](lang)),
-		),
+		application: createJobPostingApplicationSchema(lang),
 		expiredAt: v.pipe(
 			v.date(m['inputs.job_posting.expired_at.errors.nonempty'](lang)),
 			v.minValue(new Date(), m['inputs.job_posting.expired_at.errors.min'](lang)),

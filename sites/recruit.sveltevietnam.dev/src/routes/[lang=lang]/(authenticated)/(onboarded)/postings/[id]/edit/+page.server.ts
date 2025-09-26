@@ -21,7 +21,16 @@ export const load: PageServerLoad = async ({ params, parent }) => {
 	const schema = createJobPostingUpsertSchema(lang);
 	return {
 		...parentData,
-		form: await superValidate(parentData.posting, valibot(schema)),
+		form: await superValidate(
+			{
+				...parentData.posting,
+				application: {
+					method: parentData.posting.applicationMethod,
+					link: parentData.posting.applicationLink,
+				},
+			},
+			valibot(schema),
+		),
 		routing: {
 			breadcrumbs: b['/:lang/postings/:id/edit']({ lang, id: [id, parentData.posting.title] }),
 			paths: {
@@ -47,6 +56,8 @@ export const actions = {
 
 		const result = await jobPostings.updateById(params.id, {
 			...form.data,
+			applicationMethod: form.data.application.method,
+			applicationLink: form.data.application.link,
 		});
 
 		if (!result.success) {

@@ -40,6 +40,7 @@
 	const { form, enhance, constraints, errors, delayed, timeout } = superForm<JobPostingUpsertInput>(
 		data as SuperValidated<JobPostingUpsertInput>,
 		{
+			dataType: 'json',
 			resetForm: false,
 			invalidateAll: false,
 			multipleSubmits: 'prevent',
@@ -54,7 +55,7 @@
 		},
 	);
 	const applicationMessages = $derived(
-		JOB_POSTING_APPLICATION_METHOD_MESSAGES[$form.applicationMethod],
+		JOB_POSTING_APPLICATION_METHOD_MESSAGES[$form.application.method],
 	);
 
 	const cachedApplicationLink: Record<JobPostingApplicationMethod, string> = $state({
@@ -62,15 +63,15 @@
 		url: '',
 	});
 	function getApplicationMethod() {
-		return $form.applicationMethod;
+		return $form.application.method;
 	}
 	function setApplicationMethod(newMethod: JobPostingApplicationMethod) {
 		// cache current link
-		cachedApplicationLink[$form.applicationMethod] = $form.applicationLink;
+		cachedApplicationLink[$form.application.method] = $form.application.link;
 		// update to new method
-		$form.applicationMethod = newMethod;
+		$form.application.method = newMethod;
 		// restore cached link
-		$form.applicationLink = cachedApplicationLink[newMethod];
+		$form.application.link = cachedApplicationLink[newMethod];
 	}
 
 	const proxyExpiredAt = dateProxy(form, 'expiredAt', { format: 'date' });
@@ -198,8 +199,8 @@
 					name="applicationMethod"
 					id="application-method"
 					bind:value={getApplicationMethod, setApplicationMethod}
-					{...$constraints.applicationMethod}
-					{...$errors.applicationMethod && {
+					{...$constraints.application?.method}
+					{...$errors.application?.method && {
 						'aria-invalid': 'true',
 						'aria-errormessage': 'error-application-method',
 					}}
@@ -211,9 +212,9 @@
 					{/each}
 				</select>
 				<div class="flex items-baseline justify-between gap-4">
-					{#if $errors.applicationMethod?.[0]}
+					{#if $errors.application?.method?.[0]}
 						<p class="text-xs text-red-500" id="error-application-method">
-							{$errors.applicationMethod[0]}
+							{$errors.application.method[0]}
 						</p>
 					{/if}
 					<p class="c-text-body-xs ml-auto">
@@ -229,20 +230,20 @@
 						<T message={applicationMessages.link.label} />
 					</span>
 					<input
-						type={$form.applicationMethod}
+						type={$form.application.method}
 						name="applicationLink"
 						placeholder={applicationMessages.link.placeholder(routing.lang).toString()}
-						bind:value={$form.applicationLink}
-						{...$constraints.applicationLink}
-						{...$errors.applicationLink && {
+						bind:value={$form.application.link}
+						{...$constraints.application?.link}
+						{...$errors.application?.link && {
 							'aria-invalid': 'true',
 							'aria-errormessage': 'error-application-link',
 						}}
 					/>
 				</label>
-				{#if $errors.applicationLink?.[0]}
+				{#if $errors.application?.link?.[0]}
 					<p class="text-xs text-red-500" id="error-application-link">
-						{$errors.applicationLink[0]}
+						{$errors.application.link[0]}
 					</p>
 				{/if}
 			</div>

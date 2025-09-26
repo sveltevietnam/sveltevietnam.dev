@@ -50,6 +50,8 @@ export const actions = {
 
 		const result = await backend.jobPostings().insert({
 			...form.data,
+			applicationMethod: form.data.application.method,
+			applicationLink: form.data.application.link,
 			employerId: employer.id,
 		});
 

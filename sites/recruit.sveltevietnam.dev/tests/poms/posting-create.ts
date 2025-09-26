@@ -1,10 +1,9 @@
 import { expect, type Locator } from '@playwright/test';
 import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
 
-import type { JobPostingUpsertInput } from '$lib/forms/job-posting-upsert';
-
 import * as m from '../../src/data/locales/generated/messages';
 import * as p from '../../src/data/routes/generated';
+import { schema } from '../fixtures/with-backend';
 
 import { CommonPageObjectModel, type CommonPageObjectModelInit } from './common';
 
@@ -68,7 +67,7 @@ export class PagePostingCreate extends CommonPageObjectModel {
 		};
 	}
 
-	async fill(data: Omit<JobPostingUpsertInput, 'id'>) {
+	async fill(data: typeof schema.jobPostings.$inferSelect) {
 		await this.form.inputs.title.fill(data.title);
 		await this.form.inputs.type.selectOption({ value: data.type });
 		await this.form.inputs.location.fill(data.location);
