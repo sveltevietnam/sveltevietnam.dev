@@ -23,27 +23,30 @@ test.use({ lang: 'vi' });
 
 test.describe(() => {
 	const testWithEmail = test.extend<{ email: string }>({
-		email: async ({ page, lang, mails, d1, workerFaker }, use) => {
-			const email = workerFaker.internet.email().toLowerCase();
-			// User goes to authentication page, fill form, and submit
-			const pomAuthenticate = new PageAuthenticate({ page, lang });
-			await pomAuthenticate.goto();
-			await pomAuthenticate.fill(email);
-			await pomAuthenticate.continue('signup');
+		email: [
+			async ({ page, lang, mails, d1, workerFaker }, use) => {
+				const email = workerFaker.internet.email().toLowerCase();
+				// User goes to authentication page, fill form, and submit
+				const pomAuthenticate = new PageAuthenticate({ page, lang });
+				await pomAuthenticate.goto();
+				await pomAuthenticate.fill(email);
+				await pomAuthenticate.continue('signup');
 
-			// User receives and get to onboarding page via email
-			const pomMail = new PageMail({ page, lang, mails, d1 });
-			await pomMail.onboard(email);
+				// User receives and get to onboarding page via email
+				const pomMail = new PageMail({ page, lang, mails, d1 });
+				await pomMail.onboard(email);
 
-			// User is redirected to onboarding page
-			const pomOnboarding = new PageOnboarding({ page, lang });
-			await pomOnboarding.waitForPage();
-			await expect(pomOnboarding.accountMenu.locator).toBeHidden();
+				// User is redirected to onboarding page
+				const pomOnboarding = new PageOnboarding({ page, lang });
+				await pomOnboarding.waitForPage();
+				await expect(pomOnboarding.accountMenu.locator).toBeHidden();
 
-			await use(email);
+				await use(email);
 
-			await d1.delete(schema.employers).where(eq(schema.employers.email, email));
-		},
+				await d1.delete(schema.employers).where(eq(schema.employers.email, email));
+			},
+			{ auto: true },
+		],
 	});
 
 	testWithEmail(
@@ -213,24 +216,27 @@ test(
 
 test.describe(() => {
 	const testWithEmail = test.extend<{ email: string }>({
-		email: async ({ page, lang, d1, workerFaker }, use) => {
-			const data = generateEmployerTestData(workerFaker);
-			const [employer] = await d1
-				.insert(schema.employers)
-				.values(data)
-				.onConflictDoUpdate({ target: schema.employers.email, set: data })
-				.returning();
-			expect(employer).toBeTruthy();
+		email: [
+			async ({ page, lang, d1, workerFaker }, use) => {
+				const data = generateEmployerTestData(workerFaker);
+				const [employer] = await d1
+					.insert(schema.employers)
+					.values(data)
+					.onConflictDoUpdate({ target: schema.employers.email, set: data })
+					.returning();
+				expect(employer).toBeTruthy();
 
-			const pomAuthenticate = new PageAuthenticate({ page, lang });
-			await pomAuthenticate.goto();
-			await pomAuthenticate.fill(employer.email);
-			await pomAuthenticate.continue('login');
+				const pomAuthenticate = new PageAuthenticate({ page, lang });
+				await pomAuthenticate.goto();
+				await pomAuthenticate.fill(employer.email);
+				await pomAuthenticate.continue('login');
 
-			await use(employer.email);
+				await use(employer.email);
 
-			await d1.delete(schema.employers).where(eq(schema.employers.id, employer.id));
-		},
+				await d1.delete(schema.employers).where(eq(schema.employers.id, employer.id));
+			},
+			{ auto: true },
+		],
 	});
 
 	testWithEmail(
