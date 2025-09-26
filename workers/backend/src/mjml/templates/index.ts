@@ -1,6 +1,7 @@
 import type { Language } from '@sveltevietnam/i18n';
 
 import { DEFAULT_VARS } from './constants';
+import { RecruitAdminJobPostingPendingApprovalVars } from './recruit-admin-job-posting-pending-approval';
 import type { RecruitEmployerChangeEmailVars } from './recruit-employer-change-email';
 import type { RecruitEmployerCreateJobPostingVars } from './recruit-employer-create-job-posting';
 import type { RecuirtEmployerLoginVars } from './recruit-employer-login';
@@ -22,6 +23,7 @@ export type TemplateVarMap = {
 	'recruit-employer-login': RecuirtEmployerLoginVars;
 	'recruit-employer-change-email': RecruitEmployerChangeEmailVars;
 	'recruit-employer-create-job-posting': RecruitEmployerCreateJobPostingVars;
+	'recruit-admin-job-posting-pending-approval': RecruitAdminJobPostingPendingApprovalVars;
 };
 
 export async function loadTemplate(id: t.TemplateId, lang: Language): Promise<t.Template | null> {
