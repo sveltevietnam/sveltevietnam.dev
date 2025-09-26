@@ -4,7 +4,7 @@ import * as v from 'valibot';
 import * as m from '$data/locales/generated/messages';
 
 function createEmployerProfileSchemaBase(lang: Language) {
-	return v.object({
+	return v.objectAsync({
 		name: v.pipe(v.string(), v.nonEmpty(m['inputs.name.errors.nonempty'](lang))),
 		website: v.optional(v.pipe(v.string(), v.url(m['inputs.url.errors.invalid'](lang)))),
 		description: v.pipe(v.string(), v.nonEmpty(m['inputs.employer.desc.errors.nonempty'](lang))),
@@ -18,12 +18,15 @@ function createEmployerProfileSchemaBase(lang: Language) {
 				v.maxSize(1024 * 1024, m['inputs.employer.image.errors.size'](lang)),
 			),
 		),
-		agreed: v.literal(true, m['inputs.employer.agreement.error'](lang)),
+		agreed: v.pipe(
+			v.boolean(),
+			v.check((agreed) => agreed === true, m['inputs.employer.agreement.error'](lang)),
+		),
 	});
 }
 
 export function createEmployerEmailSchema(lang: Language) {
-	return v.object({
+	return v.objectAsync({
 		email: v.pipe(
 			v.string(),
 			v.nonEmpty(m['inputs.email.errors.nonempty'](lang)),
