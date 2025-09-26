@@ -6,6 +6,16 @@ import * as p from '../../src/data/routes/generated';
 
 import { CommonPageObjectModel, type CommonPageObjectModelInit } from './common';
 
+type ChangeEmailOutput =
+	| {
+			type: 'success';
+			message: Message<'string', never>;
+	  }
+	| {
+			type: 'error';
+			message: Message<'string', never>;
+	  };
+
 export class PageProfile extends CommonPageObjectModel {
 	public readonly path: string;
 	public readonly forms: {
@@ -13,6 +23,7 @@ export class PageProfile extends CommonPageObjectModel {
 			input: Locator;
 			save: Locator;
 			alert: Locator;
+			error: Locator;
 		};
 		info: {
 			inputs: {
@@ -47,6 +58,7 @@ export class PageProfile extends CommonPageObjectModel {
 					name: m['save'](this.lang).toString(),
 				}),
 				alert: sectionEmail.getByRole('alert'),
+				error: sectionEmail.locator('#error-email'),
 			},
 			info: {
 				inputs: {
@@ -91,9 +103,13 @@ export class PageProfile extends CommonPageObjectModel {
 		]);
 	}
 
-	async changeEmail(data: { email: string }, alertMessage: Message<'string', never>) {
+	async changeEmail(data: { email: string }, output: ChangeEmailOutput) {
 		await this.forms.email.input.fill(data.email);
 		await this.forms.email.save.click();
-		await expect(this.forms.email.alert).toHaveText(alertMessage(this.lang).toString());
+		if (output.type === 'success') {
+			await expect(this.forms.email.alert).toHaveText(output.message(this.lang).toString());
+		} else {
+			await expect(this.forms.email.error).toHaveText(output.message(this.lang).toString());
+		}
 	}
 }

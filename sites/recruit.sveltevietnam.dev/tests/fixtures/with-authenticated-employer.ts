@@ -1,3 +1,4 @@
+import type { Faker } from '@faker-js/faker';
 import { mergeTests, type Page } from '@playwright/test';
 import type { Language } from '@sveltevietnam/i18n';
 import { eq } from 'drizzle-orm';
@@ -32,6 +33,22 @@ export async function login(settings: {
 	return pomPostingList;
 }
 
+export function generateEmployerTestData(faker: Faker): (typeof schema.employers)['$inferSelect'] {
+	return {
+		id: 'employer_' + faker.string.nanoid(),
+		email: faker.internet.email().toLowerCase(),
+		image: faker.image.urlLoremFlickr({ category: 'business' }),
+		emailVerified: true,
+		name: faker.company.name(),
+		description: faker.lorem.paragraphs(3),
+		website: faker.internet.url(),
+		onboardedAt: new Date(),
+		agreed: true,
+		createdAt: new Date(),
+		updatedAt: null,
+	};
+}
+
 export const testWithAuthenticatedEmployer = mergeTests(
 	testWithCommon,
 	testWithBackend,
@@ -40,15 +57,7 @@ export const testWithAuthenticatedEmployer = mergeTests(
 	employer: (typeof schema.employers)['$inferSelect'];
 }>({
 	employer: async ({ d1, testFaker: faker }, use) => {
-		const data = {
-			email: faker.internet.email().toLowerCase(),
-			emailVerified: true,
-			name: faker.company.name(),
-			description: faker.lorem.paragraphs(3),
-			website: faker.internet.url(),
-			onboardedAt: new Date(),
-			agreed: true,
-		};
+		const data = generateEmployerTestData(faker);
 		// create employer in DB
 		const [employer] = await d1
 			.insert(schema.employers)

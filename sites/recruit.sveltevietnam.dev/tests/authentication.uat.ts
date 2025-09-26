@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { expect, mergeTests } from '@playwright/test';
 import { count, eq } from 'drizzle-orm';
 
+import { generateEmployerTestData } from './fixtures/with-authenticated-employer';
 import { testWithBackend, schema } from './fixtures/with-backend';
 import { testWithCommon } from './fixtures/with-common';
 import { testWithFaker } from './fixtures/with-faker';
@@ -135,17 +136,11 @@ test(
 test.describe(() => {
 	const testWithEmail = test.extend<{ email: string }>({
 		email: async ({ page, lang, d1, workerFaker }, use) => {
+			const data = generateEmployerTestData(workerFaker);
 			const [employer] = await d1
 				.insert(schema.employers)
-				.values({
-					email: workerFaker.internet.email().toLowerCase(),
-					emailVerified: true,
-					name: workerFaker.company.name(),
-					description: workerFaker.lorem.paragraphs(3),
-					website: workerFaker.internet.url(),
-					onboardedAt: new Date(),
-					agreed: true,
-				})
+				.values(data)
+				.onConflictDoUpdate({ target: schema.employers.email, set: data })
 				.returning();
 			expect(employer).toBeTruthy();
 

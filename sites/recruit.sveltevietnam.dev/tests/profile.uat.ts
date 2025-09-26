@@ -2,8 +2,12 @@ import { expect } from '@playwright/test';
 
 import * as m from '../src/data/locales/generated/messages';
 
-import { login, testWithAuthenticatedEmployer } from './fixtures/with-authenticated-employer';
-import type { D1 } from './fixtures/with-backend';
+import {
+	generateEmployerTestData,
+	login,
+	testWithAuthenticatedEmployer,
+} from './fixtures/with-authenticated-employer';
+import { type D1, schema } from './fixtures/with-backend';
 import { PageMail } from './poms/mail';
 import { PageProfile } from './poms/profile';
 
@@ -30,14 +34,14 @@ testWithAuthenticatedEmployer(
 		// User fills in the form and submits
 		await pomProfile.changeEmail(
 			{ email: newEmail },
-			m['pages.profile.update_email.callout.pending'],
+			{ type: 'success', message: m['pages.profile.update_email.callout.pending'] },
 		);
 
 		// User reloads page and do it again
 		await page.reload();
 		await pomProfile.changeEmail(
 			{ email: newEmail },
-			m['pages.profile.update_email.callout.pending'],
+			{ type: 'success', message: m['pages.profile.update_email.callout.pending'] },
 		);
 
 		// User verifies change via email and is redirected to email change verification page
@@ -62,7 +66,7 @@ testWithAuthenticatedEmployer(
 		// User fills in the form and submits
 		await pomProfile.changeEmail(
 			{ email: newEmail },
-			m['pages.profile.update_email.callout.pending'],
+			{ type: 'success', message: m['pages.profile.update_email.callout.pending'] },
 		);
 
 		// User verifies change via email and is redirected to email change verification page
@@ -79,7 +83,7 @@ testWithAuthenticatedEmployer(
 		await page.reload();
 		await pomProfile.changeEmail(
 			{ email: anotherEmail },
-			m['pages.profile.update_email.callout.unverified'],
+			{ type: 'success', message: m['pages.profile.update_email.callout.unverified'] },
 		);
 
 		// User logs out and logs in again
@@ -97,7 +101,33 @@ testWithAuthenticatedEmployer(
 		pomProfile = await pomPostingList.accountMenu.goToProfile();
 		await pomProfile.changeEmail(
 			{ email: anotherEmail },
-			m['pages.profile.update_email.callout.pending'],
+			{ type: 'success', message: m['pages.profile.update_email.callout.pending'] },
+		);
+	},
+);
+
+testWithAuthenticatedEmployer(
+	"UAT-PRO-003: User cannot change email to existing ones (theirs or others')",
+	async ({ page, lang, employer, testFaker: faker, d1 }) => {
+		// User goes to profile page
+		const pomProfile = new PageProfile({ page, lang });
+		await pomProfile.accountMenu.goToProfile();
+
+		// User tries their own email
+		await pomProfile.changeEmail(
+			{ email: employer.email },
+			{ type: 'error', message: m['inputs.email.errors.current'] },
+		);
+
+		// User tries someone else's email
+		const anotherEmployer = generateEmployerTestData(faker);
+		await d1
+			.insert(schema.employers)
+			.values(anotherEmployer)
+			.onConflictDoUpdate({ target: schema.employers.email, set: anotherEmployer });
+		await pomProfile.changeEmail(
+			{ email: anotherEmployer.email },
+			{ type: 'error', message: m['inputs.email.errors.existed'] },
 		);
 	},
 );
