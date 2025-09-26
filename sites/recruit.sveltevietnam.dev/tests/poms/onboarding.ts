@@ -16,12 +16,29 @@ export class PageOnboarding extends CommonPageObjectModel {
 	public readonly path: string;
 
 	public readonly inputs: {
-		name: Locator;
-		description: Locator;
-		image: Locator;
-		website: Locator;
-		agreement: Locator;
+		name: {
+			input: Locator;
+			error: Locator;
+		};
+		description: {
+			input: Locator;
+			error: Locator;
+		};
+		image: {
+			input: Locator;
+			error: Locator;
+		};
+		website: {
+			input: Locator;
+			error: Locator;
+		};
+		agreement: {
+			input: Locator;
+			error: Locator;
+		};
 	};
+
+	public readonly imagePreview: Locator;
 
 	public readonly ctas: {
 		submitForReview: Locator;
@@ -32,20 +49,36 @@ export class PageOnboarding extends CommonPageObjectModel {
 		super(init);
 		this.path = p['/:lang/onboarding']({ lang: this.lang });
 		this.inputs = {
-			name: this.page.getByRole('textbox', {
-				name: m['inputs.employer.name.label'](this.lang).toString(),
-			}),
-			website: this.page.getByRole('textbox', {
-				name: m['inputs.employer.website.label'](this.lang).toString(),
-			}),
-			description: this.page.getByRole('textbox', {
-				name: m['inputs.employer.desc.label'](this.lang).toString(),
-			}),
-			agreement: this.page.getByRole('checkbox', {
-				name: m['inputs.employer.agreement.desc'](this.lang).toString(),
-			}),
-			image: this.page.getByTestId('image'),
+			name: {
+				input: this.page.getByRole('textbox', {
+					name: m['inputs.employer.name.label'](this.lang).toString(),
+				}),
+				error: this.page.locator('#error-name'),
+			},
+			website: {
+				input: this.page.getByRole('textbox', {
+					name: m['inputs.employer.website.label'](this.lang).toString(),
+				}),
+				error: this.page.locator('#error-website'),
+			},
+			description: {
+				input: this.page.getByRole('textbox', {
+					name: m['inputs.employer.desc.label'](this.lang).toString(),
+				}),
+				error: this.page.locator('#error-description'),
+			},
+			agreement: {
+				input: this.page.getByRole('checkbox', {
+					name: m['inputs.employer.agreement.desc'](this.lang).toString(),
+				}),
+				error: this.page.locator('#error-agreed'),
+			},
+			image: {
+				input: this.page.getByTestId('image'),
+				error: this.page.locator('#error-image'),
+			},
 		};
+		this.imagePreview = this.page.getByTestId('image-preview');
 		this.ctas = {
 			submitForReview: this.page.getByRole('button', {
 				name: m['pages.onboarding.cta.submit'](this.lang).toString(),
@@ -58,18 +91,18 @@ export class PageOnboarding extends CommonPageObjectModel {
 
 	async fill(data: PageOnboardingFormData) {
 		// 1. User fills text-based info
-		await this.inputs.name.fill(data.name);
-		if (data.website) await this.inputs.website.fill(data.website);
-		await this.inputs.description.fill(data.description);
+		await this.inputs.name.input.fill(data.name);
+		if (data.website) await this.inputs.website.input.fill(data.website);
+		await this.inputs.description.input.fill(data.description);
 
 		// 2. User uploads image
 		const fileChooserPromise = this.page.waitForEvent('filechooser');
-		await this.inputs.image.click();
+		await this.inputs.image.input.click();
 		const fileChooser = await fileChooserPromise;
 		if (data.image) await fileChooser.setFiles(data.image);
 
 		// 3. User checks agreement
-		await this.inputs.agreement.check();
+		await this.inputs.agreement.input.check();
 	}
 
 	async submitForReview(): Promise<import('./welcome').PageWelcome> {

@@ -4,6 +4,8 @@ import { fileURLToPath } from 'node:url';
 import { expect, mergeTests } from '@playwright/test';
 import { count, eq } from 'drizzle-orm';
 
+import * as m from '../src/data/locales/generated/messages';
+
 import { generateEmployerTestData } from './fixtures/with-authenticated-employer';
 import { testWithBackend, schema } from './fixtures/with-backend';
 import { testWithCommon } from './fixtures/with-common';
@@ -84,7 +86,83 @@ test.describe(() => {
 	);
 
 	testWithEmail(
-		'UAT-AUTH-002: User can log out during onboarding and sign up again',
+		'UAT-AUTH-002: User has to pass all input validation during onboarding',
+		{
+			tag: ['@uat', '@authentication'],
+		},
+		async ({ page, lang, testFaker: faker }) => {
+			const pomOnboarding = new PageOnboarding({ page, lang });
+
+			// 1. Programatically make all inputs non-required,
+			// so that we can trigger server validation
+			await expect(pomOnboarding.inputs.agreement.input).toBeChecked({ checked: false });
+			await Promise.all([
+				pomOnboarding.inputs.name.input.evaluate((el) => el.removeAttribute('required')),
+				pomOnboarding.inputs.website.input.evaluate((el) => {
+					el.removeAttribute('required');
+					el.setAttribute('type', 'text'); // make it text so that invalid url can be tested
+				}),
+				pomOnboarding.inputs.description.input.evaluate((el) => el.removeAttribute('required')),
+				pomOnboarding.inputs.image.input.evaluate((el) => {
+					el.removeAttribute('required');
+					el.removeAttribute('accept'); // make it accept all files so that invalid file can be tested
+				}),
+				pomOnboarding.inputs.agreement.input.evaluate((el) => el.removeAttribute('required')),
+			]);
+
+			// 2. User tries to submit empty form
+			await pomOnboarding.ctas.submitForReview.click();
+
+			// 3. User sees validation errors for all required fields
+			await Promise.all([
+				expect(pomOnboarding.inputs.name.error).toHaveText(
+					m['inputs.name.errors.nonempty'](lang).toString(),
+				),
+				expect(pomOnboarding.inputs.description.error).toHaveText(
+					m['inputs.employer.desc.errors.nonempty'](lang).toString(),
+				),
+				expect(pomOnboarding.inputs.agreement.error).toHaveText(
+					m['inputs.employer.agreement.error'](lang).toString(),
+				),
+			]);
+
+			// 4. User tries invalid url for website
+			await pomOnboarding.inputs.website.input.fill(faker.lorem.word());
+			await pomOnboarding.ctas.submitForReview.click();
+			await expect(pomOnboarding.inputs.website.error).toHaveText(
+				m['inputs.url.errors.invalid'](lang).toString(),
+			);
+
+			// 5. User tries upload files that are not image
+			let fileChooserPromise = pomOnboarding.page.waitForEvent('filechooser');
+			await pomOnboarding.inputs.image.input.click();
+			let fileChooser = await fileChooserPromise;
+			await fileChooser.setFiles(path.join(__dirname, './assets/sample.txt'));
+			await pomOnboarding.ctas.submitForReview.click();
+			await Promise.all([
+				expect(pomOnboarding.inputs.image.error).toHaveText(
+					m['inputs.employer.image.errors.type'](lang).toString(),
+				),
+				expect(pomOnboarding.imagePreview).toBeHidden(),
+			]);
+
+			// 5. User tries upload image that is too large
+			fileChooserPromise = pomOnboarding.page.waitForEvent('filechooser');
+			await pomOnboarding.inputs.image.input.click();
+			fileChooser = await fileChooserPromise;
+			await fileChooser.setFiles(path.join(__dirname, './assets/images/image-over-1MB.jpeg'));
+			await pomOnboarding.ctas.submitForReview.click();
+			await Promise.all([
+				expect(pomOnboarding.inputs.image.error).toHaveText(
+					m['inputs.employer.image.errors.size'](lang).toString(),
+				),
+				expect(pomOnboarding.imagePreview).toBeHidden(),
+			]);
+		},
+	);
+
+	testWithEmail(
+		'UAT-AUTH-003: User can log out during onboarding and sign up again',
 		{
 			tag: ['@uat', '@authentication'],
 		},
@@ -108,7 +186,7 @@ test.describe(() => {
 });
 
 test(
-	'UAT-AUTH-003: User can hit resend after waiting time',
+	'UAT-AUTH-004: User can hit resend after waiting time',
 	{
 		tag: ['@uat', '@authentication'],
 	},
@@ -156,7 +234,7 @@ test.describe(() => {
 	});
 
 	testWithEmail(
-		'UAT-AUTH-004: User can log in after being onboarded',
+		'UAT-AUTH-005: User can log in after being onboarded',
 		{
 			tag: ['@uat', '@authentication'],
 		},
@@ -172,7 +250,7 @@ test.describe(() => {
 	);
 
 	testWithEmail(
-		'UAT-AUTH-005: User is redirected to auth page if email link is expired',
+		'UAT-AUTH-006: User is redirected to auth page if email link is expired',
 		{
 			tag: ['@uat', '@authentication'],
 		},
