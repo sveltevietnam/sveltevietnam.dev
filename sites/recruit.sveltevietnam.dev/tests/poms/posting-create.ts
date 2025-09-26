@@ -12,14 +12,38 @@ export class PagePostingCreate extends CommonPageObjectModel {
 	public readonly form: {
 		inputs: {
 			id: Locator;
-			title: Locator;
-			type: Locator;
-			location: Locator;
-			salary: Locator;
-			applicationMethod: Locator;
-			applicationLink: Locator;
-			expiredAt: Locator;
-			description: Locator;
+			title: {
+				input: Locator;
+				error: Locator;
+			};
+			type: {
+				input: Locator;
+				error: Locator;
+			};
+			location: {
+				input: Locator;
+				error: Locator;
+			};
+			salary: {
+				input: Locator;
+				error: Locator;
+			};
+			applicationMethod: {
+				input: Locator;
+				error: Locator;
+			};
+			applicationLink: {
+				input: Locator;
+				error: Locator;
+			};
+			expiredAt: {
+				input: Locator;
+				error: Locator;
+			};
+			description: {
+				input: Locator;
+				error: Locator;
+			};
 		};
 		submit: Locator;
 	};
@@ -40,26 +64,50 @@ export class PagePostingCreate extends CommonPageObjectModel {
 		this.form = {
 			inputs: {
 				id: this.page.getByTestId('id'),
-				title: this.page.getByRole('textbox', {
-					name: m['inputs.job_posting.title.label'](this.lang).toString(),
-				}),
-				type: this.page.getByRole('combobox', {
-					name: m['inputs.job_posting.type.label'](this.lang).toString(),
-				}),
-				location: this.page.getByRole('textbox', {
-					name: m['inputs.job_posting.location.label'](this.lang).toString(),
-				}),
-				salary: this.page.getByRole('textbox', {
-					name: m['inputs.job_posting.salary.label'](this.lang).toString(),
-				}),
-				applicationMethod,
-				applicationLink,
-				expiredAt: this.page.getByLabel(
-					m['inputs.job_posting.expired_at.label'](this.lang).toString(),
-				),
-				description: this.page.getByRole('textbox', {
-					name: m['inputs.job_posting.desc.label'](this.lang).toString(),
-				}),
+				title: {
+					input: this.page.getByRole('textbox', {
+						name: m['inputs.job_posting.title.label'](this.lang).toString(),
+					}),
+					error: this.page.locator('#error-title'),
+				},
+				type: {
+					input: this.page.getByRole('combobox', {
+						name: m['inputs.job_posting.type.label'](this.lang).toString(),
+					}),
+					error: this.page.locator('#error-type'),
+				},
+				location: {
+					input: this.page.getByRole('textbox', {
+						name: m['inputs.job_posting.location.label'](this.lang).toString(),
+					}),
+					error: this.page.locator('#error-location'),
+				},
+				salary: {
+					input: this.page.getByRole('textbox', {
+						name: m['inputs.job_posting.salary.label'](this.lang).toString(),
+					}),
+					error: this.page.locator('#error-salary'),
+				},
+				applicationMethod: {
+					input: applicationMethod,
+					error: this.page.locator('#error-application-method'),
+				},
+				applicationLink: {
+					input: applicationLink,
+					error: this.page.locator('#error-application-link'),
+				},
+				expiredAt: {
+					input: this.page.getByLabel(
+						m['inputs.job_posting.expired_at.label'](this.lang).toString(),
+					),
+					error: this.page.locator('#error-expires-at'),
+				},
+				description: {
+					input: this.page.getByRole('textbox', {
+						name: m['inputs.job_posting.desc.label'](this.lang).toString(),
+					}),
+					error: this.page.locator('#error-description'),
+				},
 			},
 			submit: this.page.getByRole('button', {
 				name: m['pages.postings_upsert.form.cta'](this.lang).toString(),
@@ -68,14 +116,14 @@ export class PagePostingCreate extends CommonPageObjectModel {
 	}
 
 	async fill(data: typeof schema.jobPostings.$inferSelect) {
-		await this.form.inputs.title.fill(data.title);
-		await this.form.inputs.type.selectOption({ value: data.type });
-		await this.form.inputs.location.fill(data.location);
-		await this.form.inputs.salary.fill(data.salary);
-		await this.form.inputs.applicationMethod.selectOption({ value: data.applicationMethod });
-		await this.form.inputs.applicationLink.fill(data.applicationLink);
-		await this.form.inputs.expiredAt.fill(formatDate(data.expiredAt, '-'));
-		await this.form.inputs.description.fill(data.description);
+		await this.form.inputs.title.input.fill(data.title);
+		await this.form.inputs.type.input.selectOption({ value: data.type });
+		await this.form.inputs.location.input.fill(data.location);
+		await this.form.inputs.salary.input.fill(data.salary);
+		await this.form.inputs.applicationMethod.input.selectOption({ value: data.applicationMethod });
+		await this.form.inputs.applicationLink.input.fill(data.applicationLink);
+		await this.form.inputs.expiredAt.input.fill(formatDate(data.expiredAt, '-'));
+		await this.form.inputs.description.input.fill(data.description);
 	}
 
 	async submit(id: string): Promise<import('./posting-details').PagePostingDetails> {

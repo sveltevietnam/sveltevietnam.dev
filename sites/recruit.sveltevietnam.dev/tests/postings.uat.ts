@@ -3,6 +3,7 @@ import { expect } from '@playwright/test';
 import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
 import { eq } from 'drizzle-orm';
 
+import * as m from '../src/data/locales/generated/messages';
 import {
 	JOB_POSTING_APPLICATION_METHODS,
 	JOB_POSTING_TYPES,
@@ -145,6 +146,102 @@ testWithAuthenticatedEmployer(
 	},
 );
 
+testWithAuthenticatedEmployer(
+	'UAT-POST-003: User has to pass all input validation during posting creation',
+	async ({ page, lang }) => {
+		// User clicks "Create Posting" button and is redirected to posting creation page
+		const pomPostingList = new PagePostingList({ page, lang });
+		const pomPostingCreate = await pomPostingList.create();
+
+		// Programatically force all inputs to be non-required
+		await Promise.all([
+			pomPostingCreate.form.inputs.title.input.evaluate((el) => el.removeAttribute('required')),
+			pomPostingCreate.form.inputs.type.input.evaluate((el) => {
+				el.removeAttribute('required');
+				(el as HTMLSelectElement).selectedIndex = -1;
+			}),
+			pomPostingCreate.form.inputs.location.input.evaluate((el) => el.removeAttribute('required')),
+			pomPostingCreate.form.inputs.salary.input.evaluate((el) => el.removeAttribute('required')),
+			pomPostingCreate.form.inputs.applicationMethod.input.evaluate((el) => {
+				el.removeAttribute('required');
+				(el as HTMLSelectElement).selectedIndex = -1;
+			}),
+			pomPostingCreate.form.inputs.applicationLink.input.evaluate((el) => {
+				el.removeAttribute('required');
+				el.setAttribute('type', 'text');
+			}),
+			pomPostingCreate.form.inputs.expiredAt.input.evaluate((el) => {
+				el.removeAttribute('required');
+				el.removeAttribute('max');
+				el.removeAttribute('min');
+			}),
+			pomPostingCreate.form.inputs.description.input.evaluate((el) =>
+				el.removeAttribute('required'),
+			),
+		]);
+
+		// User tries to submit empty form & see errors for all required fields
+		await pomPostingCreate.form.submit.click();
+		await Promise.all([
+			expect(pomPostingCreate.form.inputs.title.error).toHaveText(
+				m['inputs.job_posting.title.errors.nonempty'](lang).toString(),
+			),
+			expect(pomPostingCreate.form.inputs.location.error).toHaveText(
+				m['inputs.job_posting.location.errors.nonempty'](lang).toString(),
+			),
+			expect(pomPostingCreate.form.inputs.salary.error).toHaveText(
+				m['inputs.job_posting.salary.errors.nonempty'](lang).toString(),
+			),
+			expect(pomPostingCreate.form.inputs.expiredAt.error).toHaveText(
+				m['inputs.job_posting.expired_at.errors.nonempty'](lang).toString(),
+			),
+			expect(pomPostingCreate.form.inputs.description.error).toHaveText(
+				m['inputs.job_posting.desc.errors.nonempty'](lang).toString(),
+			),
+		]);
+
+		// User tries invalid application email
+		await pomPostingCreate.form.inputs.applicationMethod.input.selectOption({ value: 'email' });
+		await pomPostingCreate.form.inputs.applicationLink.input.fill('invalid-email');
+		await pomPostingCreate.form.inputs.applicationLink.input.evaluate((el) => {
+			el.removeAttribute('required');
+			el.setAttribute('type', 'text');
+		});
+		await pomPostingCreate.form.submit.click();
+		await expect(pomPostingCreate.form.inputs.applicationLink.error).toHaveText(
+			m['inputs.email.errors.invalid'](lang).toString(),
+		);
+
+		// User tries invalid application url
+		await pomPostingCreate.form.inputs.applicationMethod.input.selectOption({ value: 'url' });
+		await pomPostingCreate.form.inputs.applicationLink.input.fill('invalid-url');
+		await pomPostingCreate.form.inputs.applicationLink.input.evaluate((el) => {
+			el.removeAttribute('required');
+			el.setAttribute('type', 'text');
+		});
+		await pomPostingCreate.form.submit.click();
+		await expect(pomPostingCreate.form.inputs.applicationLink.error).toHaveText(
+			m['inputs.url.errors.invalid'](lang).toString(),
+		);
+
+		// User tries past date for expiration
+		const pastDate = new Date(Date.now() - 24 * 60 * 60 * 1000); // 1 day ago
+		await pomPostingCreate.form.inputs.expiredAt.input.fill(formatDate(pastDate, '-'));
+		await pomPostingCreate.form.submit.click();
+		await expect(pomPostingCreate.form.inputs.expiredAt.error).toHaveText(
+			m['inputs.job_posting.expired_at.errors.min'](lang).toString(),
+		);
+
+		// User tries too far date for expiration
+		const tooFarDate = new Date(Date.now() + 200 * 24 * 60 * 60 * 1000); // 200 days from now
+		await pomPostingCreate.form.inputs.expiredAt.input.fill(formatDate(tooFarDate, '-'));
+		await pomPostingCreate.form.submit.click();
+		await expect(pomPostingCreate.form.inputs.expiredAt.error).toHaveText(
+			m['inputs.job_posting.expired_at.errors.max'](lang).toString(),
+		);
+	},
+);
+
 testWithAuthenticatedEmployer.describe(() => {
 	const testWithPosting = testWithAuthenticatedEmployer.extend<{
 		posting: (typeof schema.jobPostings)['$inferSelect'];
@@ -165,7 +262,7 @@ testWithAuthenticatedEmployer.describe(() => {
 	});
 
 	testWithPosting(
-		'UAT-POST-003: User can edit posting',
+		'UAT-POST-004: User can edit posting',
 		async ({ page, lang, testFaker: faker, employer, posting }) => {
 			// User clicks "Edit" and is redirected to posting edit page
 			let pomPostingDetails = new PagePostingDetails({ page, lang, id: posting.id });
@@ -183,7 +280,7 @@ testWithAuthenticatedEmployer.describe(() => {
 		},
 	);
 
-	testWithPosting('UAT-POST-004: User can delete posting', async ({ page, lang, posting }) => {
+	testWithPosting('UAT-POST-005: User can delete posting', async ({ page, lang, posting }) => {
 		// User clicks "Delete", confirms in dialog, and sees success alert
 		const pomPostingDetails = new PagePostingDetails({ page, lang, id: posting.id });
 		await pomPostingDetails.delete();
