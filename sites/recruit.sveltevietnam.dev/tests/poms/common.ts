@@ -49,6 +49,9 @@ export abstract class CommonPageObjectModel {
 			},
 
 			goToProfile: async () => {
+				// 0. Scroll to top to make sure account menu is visible
+				await this.page.evaluate(() => window.scrollTo(0, 0));
+
 				// 1. User opens account menu
 				await this.accountMenu.open();
 
@@ -67,6 +70,9 @@ export abstract class CommonPageObjectModel {
 			},
 
 			logout: async () => {
+				// 0. Scroll to top to make sure account menu is visible
+				await this.page.evaluate(() => window.scrollTo(0, 0));
+
 				// 1. User opens account menu
 				await this.accountMenu.open();
 
