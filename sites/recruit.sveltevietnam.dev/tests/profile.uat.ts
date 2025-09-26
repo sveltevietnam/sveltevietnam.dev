@@ -137,7 +137,7 @@ testWithAuthenticatedEmployer(
 	},
 );
 
-testWithAuthenticatedEmployer.only(
+testWithAuthenticatedEmployer(
 	'UAT-PRO-004: User can update profile information',
 	async ({ page, lang, testFaker: faker, employer, d1 }) => {
 		// User goes to profile page
