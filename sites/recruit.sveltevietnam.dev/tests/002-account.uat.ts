@@ -2,6 +2,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { expect } from '@playwright/test';
+import { eq } from 'drizzle-orm';
 
 import * as m from '../src/data/locales/generated/messages';
 
@@ -20,15 +21,18 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 testWithAuthenticatedEmployer.use({ lang: 'vi' });
 
 async function checkPostVerification(d1: D1, email: string, verified = false) {
-	const employer = await d1.query.employers.findFirst({
-		where: (table, { eq }) => eq(table.email, email.toLowerCase()),
-	});
+	const employer = await d1.transaction((tx) =>
+		tx.query.employers.findFirst({
+			where: (table, { eq }) => eq(table.email, email.toLowerCase()),
+		}),
+	);
 	expect(employer).toBeTruthy();
 	expect(employer!.emailVerified).toBe(verified);
 }
 
 testWithAuthenticatedEmployer(
-	'UAT-PRO-001: User can change email',
+	'UAT-ACC-001: User can change email',
+	{ tag: ['@uat', '@account'] },
 	async ({ page, lang, employer, testFaker: faker, mails, d1 }) => {
 		// User goes to profile page
 		const pomProfile = new PageProfile({ page, lang });
@@ -60,7 +64,8 @@ testWithAuthenticatedEmployer(
 );
 
 testWithAuthenticatedEmployer(
-	'UAT-PRO-002: User can only change email again after re-login',
+	'UAT-ACC-002: User can only change email again after re-login',
+	{ tag: ['@uat', '@account'] },
 	async ({ page, lang, employer, testFaker: faker, mails, d1 }) => {
 		const newEmail = faker.internet.email();
 
@@ -76,7 +81,7 @@ testWithAuthenticatedEmployer(
 
 		// User verifies change via email and is redirected to email change verification page
 		const pomMail = new PageMail({ page, lang, mails, d1 });
-		const pomEmailChangeVerification = await pomMail.verifyEmailChange(employer.email);
+		let pomEmailChangeVerification = await pomMail.verifyEmailChange(employer.email);
 		await pomEmailChangeVerification.match('ok');
 
 		// verify data consistency
@@ -96,10 +101,12 @@ testWithAuthenticatedEmployer(
 		const pomPostingList = await login({ email: newEmail, lang, page, mails, d1 });
 
 		// verify email is now verified in db
-		const updatedEmployer = await d1.query.employers.findFirst({
-			columns: { emailVerified: true },
-			where: (table, { eq }) => eq(table.email, newEmail.toLowerCase()),
-		});
+		const updatedEmployer = await d1.transaction((tx) =>
+			tx.query.employers.findFirst({
+				columns: { emailVerified: true },
+				where: (table, { eq }) => eq(table.email, newEmail.toLowerCase()),
+			}),
+		);
 		expect(updatedEmployer!.emailVerified).toBeTruthy();
 
 		// User goes to profile page and can now request change again
@@ -108,11 +115,19 @@ testWithAuthenticatedEmployer(
 			{ email: anotherEmail },
 			{ type: 'success', message: m['pages.profile.update_email.callout.pending'] },
 		);
+
+		// User verifies change via email and is redirected to email change verification page
+		pomEmailChangeVerification = await pomMail.verifyEmailChange(newEmail);
+		await pomEmailChangeVerification.match('ok');
+
+		// verify data consistency
+		await checkPostVerification(d1, anotherEmail, false);
 	},
 );
 
 testWithAuthenticatedEmployer(
-	"UAT-PRO-003: User cannot change email to existing ones (theirs or others')",
+	"UAT-ACC-003: User cannot change email to existing ones (theirs or others')",
+	{ tag: ['@uat', '@account'] },
 	async ({ page, lang, employer, testFaker: faker, d1 }) => {
 		// User goes to profile page
 		const pomProfile = new PageProfile({ page, lang });
@@ -126,19 +141,29 @@ testWithAuthenticatedEmployer(
 
 		// User tries someone else's email
 		const anotherEmployer = generateEmployerTestData(faker);
-		await d1
-			.insert(schema.employers)
-			.values(anotherEmployer)
-			.onConflictDoUpdate({ target: schema.employers.email, set: anotherEmployer });
+		await d1.transaction(
+			(tx) =>
+				tx
+					.insert(schema.employers)
+					.values(anotherEmployer)
+					.onConflictDoUpdate({ target: schema.employers.email, set: anotherEmployer }),
+			{ behavior: 'immediate' },
+		);
 		await pomProfile.changeEmail(
 			{ email: anotherEmployer.email },
 			{ type: 'error', message: m['inputs.email.errors.existed'] },
+		);
+
+		await d1.transaction(
+			(tx) => tx.delete(schema.employers).where(eq(schema.employers.id, anotherEmployer.id)),
+			{ behavior: 'immediate' },
 		);
 	},
 );
 
 testWithAuthenticatedEmployer(
-	'UAT-PRO-004: User can update profile information',
+	'UAT-ACC-004: User can update profile information',
+	{ tag: ['@uat', '@account'] },
 	async ({ page, lang, testFaker: faker, employer, d1 }) => {
 		// User goes to profile page
 		const pomProfile = new PageProfile({ page, lang });
@@ -157,10 +182,12 @@ testWithAuthenticatedEmployer(
 		// User reloads and verify
 		await page.reload();
 		const { image } =
-			(await d1.query.employers.findFirst({
-				columns: { image: true },
-				where: (table, { eq }) => eq(table.email, employer.email),
-			})) ?? {};
+			(await d1.transaction((tx) =>
+				tx.query.employers.findFirst({
+					columns: { image: true },
+					where: (table, { eq }) => eq(table.email, employer.email),
+				}),
+			)) ?? {};
 		expect(image).not.toBe(employer.image);
 		await pomProfile.match({
 			...newEmployerProfile,

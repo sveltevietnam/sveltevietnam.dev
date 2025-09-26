@@ -61,6 +61,7 @@ export const testWithBackend = test.extend<
 		async ({}, use) => {
 			const { d1, cwd } = getBackendConfig();
 			const orm = await getLocalORM(d1.id, d1.schema, cwd);
+			orm.$client.reconnect();
 			await use(orm);
 			orm.$client.close();
 		},
@@ -72,15 +73,17 @@ export const testWithBackend = test.extend<
 			await use({
 				getLatest: async (email, templateId, actorId) => {
 					// 1. Get the latest mail record for the email
-					const record = await d1.query.mails.findFirst({
-						where: (table, { eq, and, isNull }) =>
-							and(
-								eq(table.to, email.toLowerCase()),
-								eq(table.templateId, templateId),
-								actorId ? eq(table.actorId, actorId) : isNull(table.actorId),
-							),
-						orderBy: (table, { desc }) => [desc(table.sentAt)],
-					});
+					const record = await d1.transaction((tx) =>
+						tx.query.mails.findFirst({
+							where: (table, { eq, and, isNull }) =>
+								and(
+									eq(table.to, email.toLowerCase()),
+									eq(table.templateId, templateId),
+									actorId ? eq(table.actorId, actorId) : isNull(table.actorId),
+								),
+							orderBy: (table, { desc }) => [desc(table.sentAt)],
+						}),
+					);
 					expect(record).toBeTruthy();
 
 					// 2. Get the mail HTML content from local KV

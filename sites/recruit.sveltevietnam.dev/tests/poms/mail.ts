@@ -54,9 +54,11 @@ export class PageMail {
 
 	private async getEmployer(email: string): Promise<typeof schema.employers.$inferSelect> {
 		// Get employer DB record by email
-		const employer = await this.d1.query.employers.findFirst({
-			where: (table, { eq }) => eq(table.email, email.toLowerCase()),
-		});
+		const employer = await this.d1.transaction((tx) =>
+			tx.query.employers.findFirst({
+				where: (table, { eq }) => eq(table.email, email.toLowerCase()),
+			}),
+		);
 		expect(employer).toBeTruthy();
 		return employer!;
 	}

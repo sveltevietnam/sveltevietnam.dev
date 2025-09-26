@@ -43,7 +43,10 @@ test.describe(() => {
 
 				await use(email);
 
-				await d1.delete(schema.employers).where(eq(schema.employers.email, email));
+				await d1.transaction(
+					(tx) => tx.delete(schema.employers).where(eq(schema.employers.email, email)),
+					{ behavior: 'immediate' },
+				);
 			},
 			{ auto: true },
 		],
@@ -69,9 +72,11 @@ test.describe(() => {
 
 			// User goes to profile page and verify their data
 			const pomProfile = await pomWelcome.accountMenu.goToProfile();
-			const employer = await d1.query.employers.findFirst({
-				where: (table, { eq }) => eq(table.email, email.toLowerCase()),
-			});
+			const employer = await d1.transaction((tx) =>
+				tx.query.employers.findFirst({
+					where: (table, { eq }) => eq(table.email, email.toLowerCase()),
+				}),
+			);
 			expect(employer).not.toBeFalsy();
 			expect(employer!.email).toBe(email);
 			expect(employer!.image).toBeTruthy();
@@ -89,7 +94,7 @@ test.describe(() => {
 	);
 
 	testWithEmail(
-		'UAT-AUTH-002: User has to pass all input validation during onboarding',
+		'UAT-AUTH-002: User has to pass validation for onboarding',
 		{
 			tag: ['@uat', '@authentication'],
 		},
@@ -206,10 +211,9 @@ test(
 		await pomAuthenticate.resend('signup');
 
 		// verify that two emails are sent
-		const [{ numMails }] = await d1
-			.select({ numMails: count() })
-			.from(schema.mails)
-			.where(eq(schema.mails.to, email));
+		const [{ numMails }] = await d1.transaction((tx) =>
+			tx.select({ numMails: count() }).from(schema.mails).where(eq(schema.mails.to, email)),
+		);
 		expect(numMails).toBe(2);
 	},
 );
@@ -219,11 +223,15 @@ test.describe(() => {
 		email: [
 			async ({ page, lang, d1, workerFaker }, use) => {
 				const data = generateEmployerTestData(workerFaker);
-				const [employer] = await d1
-					.insert(schema.employers)
-					.values(data)
-					.onConflictDoUpdate({ target: schema.employers.email, set: data })
-					.returning();
+				const [employer] = await d1.transaction(
+					(tx) =>
+						tx
+							.insert(schema.employers)
+							.values(data)
+							.onConflictDoUpdate({ target: schema.employers.email, set: data })
+							.returning(),
+					{ behavior: 'immediate' },
+				);
 				expect(employer).toBeTruthy();
 
 				const pomAuthenticate = new PageAuthenticate({ page, lang });
@@ -233,7 +241,10 @@ test.describe(() => {
 
 				await use(employer.email);
 
-				await d1.delete(schema.employers).where(eq(schema.employers.id, employer.id));
+				await d1.transaction(
+					(tx) => tx.delete(schema.employers).where(eq(schema.employers.id, employer.id)),
+					{ behavior: 'immediate' },
+				);
 			},
 			{ auto: true },
 		],
@@ -256,7 +267,7 @@ test.describe(() => {
 	);
 
 	testWithEmail(
-		'UAT-AUTH-006: User is redirected to auth page if email link is expired',
+		'UAT-AUTH-006: User is redirected to auth if email is expired',
 		{
 			tag: ['@uat', '@authentication'],
 		},

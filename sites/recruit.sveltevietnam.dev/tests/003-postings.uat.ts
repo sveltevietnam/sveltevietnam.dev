@@ -57,17 +57,22 @@ function createJobPosting(options: {
 
 testWithAuthenticatedEmployer(
 	'UAT-POST-001: User sees listing grouped by status',
+	{ tag: ['@uat', '@postings'] },
 	async ({ page, lang, d1, testFaker: faker, employer }) => {
-		const postings = await d1
-			.insert(schema.jobPostings)
-			.values([
-				createJobPosting({ faker, employer, status: 'pending' }),
-				createJobPosting({ faker, employer, status: 'active' }),
-				createJobPosting({ faker, employer, status: 'expired' }),
-				createJobPosting({ faker, employer, status: 'deleted' }),
-			])
-			.onConflictDoNothing({ target: schema.jobPostings.id })
-			.returning();
+		const postings = [
+			createJobPosting({ faker, employer, status: 'pending' }),
+			createJobPosting({ faker, employer, status: 'active' }),
+			createJobPosting({ faker, employer, status: 'expired' }),
+			createJobPosting({ faker, employer, status: 'deleted' }),
+		];
+		await d1.transaction(
+			(tx) =>
+				tx
+					.insert(schema.jobPostings)
+					.values(postings)
+					.onConflictDoNothing({ target: schema.jobPostings.id }),
+			{ behavior: 'immediate' },
+		);
 		await page.reload();
 
 		const pomPostingList = new PagePostingList({ page, lang });
@@ -77,12 +82,15 @@ testWithAuthenticatedEmployer(
 			expired: `${lang}-expired.yaml`,
 		});
 
-		await d1.batch([
-			d1.delete(schema.jobPostings).where(eq(schema.jobPostings.id, postings[0].id)),
-			d1.delete(schema.jobPostings).where(eq(schema.jobPostings.id, postings[1].id)),
-			d1.delete(schema.jobPostings).where(eq(schema.jobPostings.id, postings[2].id)),
-			d1.delete(schema.jobPostings).where(eq(schema.jobPostings.id, postings[3].id)),
-		]);
+		await d1.transaction(
+			async (tx) => {
+				await tx.delete(schema.jobPostings).where(eq(schema.jobPostings.id, postings[0].id));
+				await tx.delete(schema.jobPostings).where(eq(schema.jobPostings.id, postings[1].id));
+				await tx.delete(schema.jobPostings).where(eq(schema.jobPostings.id, postings[2].id));
+				await tx.delete(schema.jobPostings).where(eq(schema.jobPostings.id, postings[3].id));
+			},
+			{ behavior: 'immediate' },
+		);
 		await page.reload();
 		await pomPostingList.match({
 			active: `${lang}-active.empty.yaml`,
@@ -92,6 +100,7 @@ testWithAuthenticatedEmployer(
 
 testWithAuthenticatedEmployer(
 	'UAT-POST-002: User can create posting',
+	{ tag: ['@uat', '@postings'] },
 	async ({ page, lang, d1, testFaker: faker, employer }) => {
 		const posting = createJobPosting({ faker, employer, status: 'pending' });
 
@@ -106,9 +115,11 @@ testWithAuthenticatedEmployer(
 		const pomPostingDetails = await pomPostingCreate.submit(posting.id);
 
 		// check data consistency
-		const dbPosting = await d1.query.jobPostings.findFirst({
-			where: (table, { eq }) => eq(table.id, posting.id),
-		});
+		const dbPosting = await d1.transaction((tx) =>
+			tx.query.jobPostings.findFirst({
+				where: (table, { eq }) => eq(table.id, posting.id),
+			}),
+		);
 		expect(dbPosting).toMatchObject({
 			id: posting.id,
 			employerId: employer.id,
@@ -142,12 +153,16 @@ testWithAuthenticatedEmployer(
 		});
 
 		// Cleanup
-		await d1.delete(schema.jobPostings).where(eq(schema.jobPostings.id, posting.id));
+		await d1.transaction(
+			(tx) => tx.delete(schema.jobPostings).where(eq(schema.jobPostings.id, posting.id)),
+			{ behavior: 'immediate' },
+		);
 	},
 );
 
 testWithAuthenticatedEmployer(
-	'UAT-POST-003: User has to pass all input validation during posting creation',
+	'UAT-POST-003: User has to pass all validation for creation',
+	{ tag: ['@uat', '@postings'] },
 	async ({ page, lang }) => {
 		// User clicks "Create Posting" button and is redirected to posting creation page
 		const pomPostingList = new PagePostingList({ page, lang });
@@ -248,7 +263,14 @@ testWithAuthenticatedEmployer.describe(() => {
 	}>({
 		posting: async ({ d1, testFaker: faker, lang, employer, page }, use) => {
 			const posting = createJobPosting({ faker, employer, status: 'pending' });
-			await d1.insert(schema.jobPostings).values(posting);
+			await d1.transaction(
+				(tx) =>
+					tx
+						.insert(schema.jobPostings)
+						.values(posting)
+						.onConflictDoNothing({ target: schema.jobPostings.id }),
+				{ behavior: 'immediate' },
+			);
 			await page.reload();
 
 			// User clicks on a posting in the list and is redirected to posting details page
@@ -257,12 +279,16 @@ testWithAuthenticatedEmployer.describe(() => {
 
 			await use(posting);
 
-			await d1.delete(schema.jobPostings).where(eq(schema.jobPostings.id, posting.id));
+			await d1.transaction(
+				(tx) => tx.delete(schema.jobPostings).where(eq(schema.jobPostings.id, posting.id)),
+				{ behavior: 'immediate' },
+			);
 		},
 	});
 
 	testWithPosting(
 		'UAT-POST-004: User can edit posting',
+		{ tag: ['@uat', '@postings'] },
 		async ({ page, lang, testFaker: faker, employer, posting }) => {
 			// User clicks "Edit" and is redirected to posting edit page
 			let pomPostingDetails = new PagePostingDetails({ page, lang, id: posting.id });
@@ -280,13 +306,17 @@ testWithAuthenticatedEmployer.describe(() => {
 		},
 	);
 
-	testWithPosting('UAT-POST-005: User can delete posting', async ({ page, lang, posting }) => {
-		// User clicks "Delete", confirms in dialog, and sees success alert
-		const pomPostingDetails = new PagePostingDetails({ page, lang, id: posting.id });
-		await pomPostingDetails.delete();
+	testWithPosting(
+		'UAT-POST-005: User can delete posting',
+		{ tag: ['@uat', '@postings'] },
+		async ({ page, lang, posting }) => {
+			// User clicks "Delete", confirms in dialog, and sees success alert
+			const pomPostingDetails = new PagePostingDetails({ page, lang, id: posting.id });
+			await pomPostingDetails.delete();
 
-		// User gets back to listing page and no longer sees the deleted posting
-		const pomPostingList = await pomPostingDetails.backToListing();
-		await pomPostingList.match(null);
-	});
+			// User gets back to listing page and no longer sees the deleted posting
+			const pomPostingList = await pomPostingDetails.backToListing();
+			await pomPostingList.match(null);
+		},
+	);
 });
