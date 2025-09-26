@@ -52,7 +52,11 @@
 	});
 	const imageFile = fileProxy(form, 'image');
 
-	let imagePreviewUri = $derived($form.image ? URL.createObjectURL($form.image) : image);
+	let imagePreviewUri = $derived(
+		$form.image && (!$errors.image || !$errors.image.length)
+			? URL.createObjectURL($form.image)
+			: image,
+	);
 </script>
 
 <form class={['space-y-10', cls]} method="POST" enctype="multipart/form-data" use:enhance {...rest}>
