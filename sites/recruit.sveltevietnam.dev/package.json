@@ -50,8 +50,15 @@
 		"vite-plugin-qrcode": "^0.3.0"
 	},
 	"dependencies": {
+		"@editorjs/delimiter": "^1.4.2",
+		"@editorjs/editorjs": "^2.31.0",
+		"@editorjs/header": "^2.8.8",
+		"@editorjs/list": "^2.0.8",
+		"@editorjs/quote": "^2.7.6",
 		"better-auth": "^1.3.7",
 		"drizzle-orm": "^0.44.5",
+		"editorjs-html": "^4.0.5",
+		"editorjs-parser": "^1.5.3",
 		"valibot": "1.1.0"
 	},
 	"volta": {

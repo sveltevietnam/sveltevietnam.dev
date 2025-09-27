@@ -1,0 +1,5 @@
+.c-callout[data-placeholder][data-empty='true']::before {
+	display: flex;
+	align-items: center;
+	padding-left: var(--callout-padding-x);
+}
