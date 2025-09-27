@@ -22,6 +22,8 @@
 </script>
 
 <script lang="ts" generics="WithEmail extends boolean = true">
+	import { RichTextEditor, type RichTextEditorProps } from '$lib/components/rich-text-editor';
+
 	let {
 		image,
 		onSuccess,
@@ -57,6 +59,15 @@
 			? URL.createObjectURL($form.image)
 			: image,
 	);
+
+	let desc: RichTextEditorProps['output'] = $state(
+		$form.description
+			? (JSON.parse($form.description) as RichTextEditorProps['output'])
+			: undefined,
+	);
+	$effect(() => {
+		$form.description = desc ? JSON.stringify(desc) : '';
+	});
 </script>
 
 <form class={['space-y-10', cls]} method="POST" enctype="multipart/form-data" use:enhance {...rest}>
@@ -190,27 +201,31 @@
 			<label class="block" for="description">
 				<T message={m['inputs.employer.desc.label']} />:
 			</label>
-			<textarea
-				class="c-text-input w-full"
+			<RichTextEditor
+				bind:output={desc}
+				lang={routing.lang}
+				i18n={{
+					placeholder: m['inputs.employer.desc.placeholder'],
+				}}
+				cache={['local', 'employer-desc-draft']}
+			/>
+			<input
+				type="text"
 				name="description"
 				id="description"
-				placeholder={m['inputs.employer.desc.placeholder'](routing.lang).toString()}
-				rows="4"
 				bind:value={$form.description}
-				{...$constraints.description}
 				{...$errors.description && {
 					'aria-invalid': 'true',
 					'aria-errormessage': 'error-description',
 				}}
-			></textarea>
-			<div class="flex items-baseline justify-between gap-4">
-				{#if $errors.description?.[0]}
-					<p class="text-xs text-red-500" id="error-description">{$errors.description[0]}</p>
-				{/if}
-				<p class="c-text-body-xs ml-auto text-right">
-					<T message={m['inputs.employer.desc.note']} />
-				</p>
-			</div>
+				hidden
+			/>
+			<p class="c-text-body-xs ml-auto text-right">
+				<T message={m['inputs.employer.desc.note']} />
+			</p>
+			{#if $errors.description?.[0]}
+				<p class="text-xs text-red-500 text-right" id="error-description">{$errors.description[0]}</p>
+			{/if}
 		</div>
 
 		<!-- terms agreement -->
