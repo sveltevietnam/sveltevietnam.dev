@@ -235,8 +235,10 @@ messages:
         heading: Thông tin chung
         posted_at: Đăng ngày
         expired_at: Hết hạn ngày
-      desc:
+      job_desc:
         heading: Mô tả công việc
+      employer_desc:
+        heading: Về {{employerName}}
       actions:
         apply: Ứng tuyển
         share:

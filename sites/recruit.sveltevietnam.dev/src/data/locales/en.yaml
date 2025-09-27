@@ -236,8 +236,10 @@ messages:
         heading: General Information
         posted_at: Posted on
         expired_at: Expires on
-      desc:
+      job_desc:
         heading: Job Description
+      employer_desc:
+        heading: About {{employerName}}
       actions:
         apply: Apply
         share:

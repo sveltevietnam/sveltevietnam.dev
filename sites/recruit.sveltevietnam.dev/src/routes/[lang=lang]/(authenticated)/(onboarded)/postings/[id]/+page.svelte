@@ -257,22 +257,34 @@
 				</section>
 			</div>
 
-			<!-- job description -->
-			<section class="py-6">
-				<h2 class="sr-only">
-					<T message={m['pages.postings_id.desc.heading']} />
-				</h2>
-				<div class="prose max-w-full" data-testid="job-description">
-					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-					{@html data.posting.description}
-				</div>
-			</section>
+			<div class="pt-10 space-y-section">
+				<!-- job description -->
+				<section class="space-y-6">
+					<h2 class="c-text-heading border-b">
+						<T message={m['pages.postings_id.job_desc.heading']} />
+					</h2>
+					<div class="prose max-w-full" data-testid="job-description">
+						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+						{@html data.posting.description}
+					</div>
+				</section>
 
-			<!-- employer description -->
-			<section class="prose max-w-full" data-testid="employer-description">
-				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-				{@html data.posting.employer.description}
-			</section>
+				<!-- employer description -->
+				{#if data.employerDescriptionHTML}
+					<section class="space-y-6">
+						<h2 class="c-text-heading border-b">
+							<T
+								message={m['pages.postings_id.employer_desc.heading']}
+								employerName={data.user!.name}
+							/>
+						</h2>
+						<div class="prose max-w-full" data-testid="employer-description">
+							<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+							{@html data.employerDescriptionHTML}
+						</div>
+					</section>
+				{/if}
+			</div>
 		</div>
 
 		<!-- sidebar -->

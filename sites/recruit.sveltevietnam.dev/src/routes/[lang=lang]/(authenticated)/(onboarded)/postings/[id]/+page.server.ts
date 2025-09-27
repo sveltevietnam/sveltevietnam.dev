@@ -7,6 +7,7 @@ import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { getBackend } from '$lib/backend/utils';
+import { parse } from '$lib/components/rich-text-editor';
 
 import type { Actions, PageServerLoad } from './$types';
 
@@ -19,8 +20,10 @@ export const load: PageServerLoad = async ({ params, parent }) => {
 	const parentData = await parent();
 
 	const schema = createJobPostingDeleteSchema();
+	const employerDescriptionHTML = parse(parentData.user?.description);
 	return {
 		...parentData,
+		employerDescriptionHTML,
 		deleteForm: await superValidate({ id }, valibot(schema)),
 		routing: {
 			breadcrumbs: b['/:lang/postings/:id']({ lang, id: [id, parentData.posting.title] }),
