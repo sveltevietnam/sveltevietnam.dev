@@ -14,7 +14,7 @@
 	const { routing } = Contexts.get();
 </script>
 
-<SingleBoxPageLayout class="max-w-readable space-y-6">
+<SingleBoxPageLayout class="max-w-readable-relaxed space-y-6">
 	<h1 class="c-text-heading-md">
 		<T message={m['pages.onboarding.heading']} />
 	</h1>

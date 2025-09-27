@@ -35,7 +35,7 @@
 	}
 </script>
 
-<SingleBoxPageLayout class="max-w-readable space-y-10">
+<SingleBoxPageLayout class="max-w-readable-relaxed space-y-10">
 	<h1 class="sr-only">
 		<T message={m['pages.profile.heading']} />
 	</h1>
