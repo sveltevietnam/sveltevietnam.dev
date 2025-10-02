@@ -57,7 +57,7 @@ messages:
         label: Employer name
         placeholder: Company ABC / Organization XYZ
       desc:
-        label: Description about employer
+        label: About employer
         placeholder: XYZ is a non-profit organization operating in the education sector...
         note:
           A brief description to help candidates learn more about your organization/company, shown
@@ -301,6 +301,33 @@ messages:
         development and maintenance of this app.
       callout: Postings from sponsors will be expedited during review and prioritized in listings.
       cta: Become a sponsor
+    rich_text_editor:
+      toolbar:
+        name: Toolbar
+        undo: Undo
+        redo: Redo
+        block:
+          name: Block Selection
+          paragraph: Paragraph
+          heading: Heading
+          numbered_list: Numbered list
+          bullet_list: Bullet list
+          check_list: Check list
+          blockquote: Blockquote
+          codeblock: Code block
+        bold: Bold
+        italic: Italic
+        underline: Underline
+        code: Inline code
+        link: Hyperlink
+        help: Help
+      floating_link_editor:
+        name: Link editor
+        edit: Edit
+        remove: Remove
+        save: Save
+        discard: Discard
+        placeholder: https://example.com...
   dialogs:
     qr:
       title: QR Code

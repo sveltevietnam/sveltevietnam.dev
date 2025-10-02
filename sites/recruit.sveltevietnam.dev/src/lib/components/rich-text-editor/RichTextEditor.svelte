@@ -1,115 +1,324 @@
 <script lang="ts" module>
-	import Delimiter from '@editorjs/delimiter';
-	import type { OutputData } from '@editorjs/editorjs';
-	import type { HeaderConfig } from '@editorjs/header';
-	import Header from '@editorjs/header';
-	import List from '@editorjs/list';
-	import Quote from '@editorjs/quote';
+	import { TOGGLE_LINK_COMMAND } from '@lexical/link';
+	import { HeadingNode } from '@lexical/rich-text';
+	import { T } from '@sveltevietnam/i18n/runtime';
 	import type { Message } from '@sveltevietnam/i18n/runtime';
+	import { Dropdown } from '@sveltevietnam/kit/components';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { FORMAT_TEXT_COMMAND, REDO_COMMAND, UNDO_COMMAND } from 'lexical';
+	import debounce from 'lodash.debounce';
+	import { onMount } from 'svelte';
+	import { type ClassValue } from 'svelte/elements';
+	import { on } from 'svelte/events';
 
-	import { Callout } from './callout';
+	import * as m from '$data/locales/generated/messages';
 
+	import { Editor, type EditorBlockState } from './editor.svelte';
+
+	export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 	export interface RichTextEditorProps {
-		/** @bindable */
-		output?: OutputData;
-		lang: string;
-		i18n: {
-			placeholder: Message<'string', never>;
-		};
 		cache?: [area: 'session' | 'local', key: string];
+		headings?: [min: HeadingLevel, max: HeadingLevel];
+		onchange?: (html: string) => void;
+		html?: string;
+	}
+
+	function getCachedHtml(cache: RichTextEditorProps['cache']): string | null {
+		if (!cache) return null;
+		const [area, key] = cache;
+		if (area === 'local' && 'localStorage' in globalThis) {
+			return localStorage.getItem(key);
+		} else if (area === 'session' && 'sessionStorage' in globalThis) {
+			return sessionStorage.getItem(key);
+		}
+		return null;
+	}
+
+	function setCachedHtml(html: string, cache: RichTextEditorProps['cache']) {
+		if (html && cache) {
+			const [area, key] = cache;
+			if (area === 'local') {
+				localStorage.setItem(key, html);
+			} else if (area === 'session') {
+				sessionStorage.setItem(key, html);
+			}
+		}
 	}
 </script>
 
 <script lang="ts">
-	import { onMount } from 'svelte';
+	let { onchange, cache, headings = [1, 6], html }: RichTextEditorProps = $props();
 
-	let { lang, i18n, output = $bindable(), cache }: RichTextEditorProps = $props();
-
-	let holder: HTMLElement;
-	let editor: import('@editorjs/editorjs').default;
-
-	async function init() {
-		const EditorJS = await import('@editorjs/editorjs').then((mod) => mod.default);
-		editor = new EditorJS({
-			data: $state.snapshot(output),
-			holder,
-			tools: {
-				callout: {
-					class: Callout,
-					inlineToolbar: true,
-				},
-				delimiter: Delimiter,
-				header: {
-					// @ts-expect-error unsupported type issue from EditorJS
-					class: Header,
-					config: {
-						levels: [3, 4, 5],
-						defaultLevel: 3,
-					} as HeaderConfig,
-				},
-				list: List,
-				quote: Quote,
-			},
-			placeholder: i18n.placeholder(lang).toString(),
-			async onReady() {
-				if (cache && !output?.blocks.length) {
-					const [area, key] = cache;
-					const storage = area === 'local' ? localStorage : sessionStorage;
-					const cached = storage.getItem(key);
-					if (cached) {
-						try {
-							editor.render(JSON.parse(cached) as OutputData);
-						} catch {
-							// ignore error
-						}
-					}
-				}
-			},
-			async onChange(api) {
-				const saved = await api.saver.save();
-				output = saved.blocks.length ? saved : undefined;
-				if (cache) {
-					const [area, key] = cache;
-					const storage = area === 'local' ? localStorage : sessionStorage;
-					storage.setItem(key, JSON.stringify(output));
-				}
-			},
-		});
-	}
+	const { routing } = Contexts.get();
+	let element: HTMLElement;
+	let editor = new Editor(html ?? getCachedHtml(cache));
 
 	onMount(() => {
-		init();
-		return function () {
-			editor?.destroy();
+		const removeTransform = editor.lexical.registerNodeTransform(HeadingNode, (node) => {
+			const level = parseInt(node.getTag().slice(1));
+			const [min, max] = headings;
+			if (level < min) {
+				node.setTag(`h${min}`);
+			} else if (level > max) {
+				node.setTag(`h${max}`);
+			}
+		});
+
+		const debouncedSetCachedHtml = debounce(setCachedHtml, 500);
+		const offChangeHtml = on(element, 'changehtml', (event) => {
+			const html = (event as CustomEvent<{ html: string }>).detail.html;
+			onchange?.(html);
+			debouncedSetCachedHtml(html, cache);
+		});
+
+		return () => {
+			removeTransform();
+			offChangeHtml();
 		};
 	});
-</script>
 
-<div
-	class="border-onehalf prose tablet:px-8 min-h-80 max-w-full border-current px-4 py-1"
-	bind:this={holder}
-	{lang}
-></div>
+	function undo() {
+		editor.lexical.dispatchCommand(UNDO_COMMAND, undefined);
+	}
 
-<style lang="postcss">
-	div {
-		:global {
-			& .ce-block__content,
-			& .ce-toolbar__content {
-				max-width: 100%;
-			}
+	function redo() {
+		editor.lexical.dispatchCommand(REDO_COMMAND, undefined);
+	}
 
-			& .cdx-list {
-				display: block;
-			}
+	function toggleBold() {
+		editor.lexical.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold');
+	}
 
-			& a {
-				text-decoration: unset;
-			}
+	function toggleItalic() {
+		editor.lexical.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic');
+	}
 
-			& .ce-delimiter::before {
-				content: '🞵🞵🞵';
-			}
+	function toggleUnderline() {
+		editor.lexical.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline');
+	}
+
+	function toggleInlineCodeBlock() {
+		editor.lexical.dispatchCommand(FORMAT_TEXT_COMMAND, 'code');
+	}
+
+	function insertLink() {
+		if (editor.inline.link === null) {
+			editor.lexical.dispatchCommand(TOGGLE_LINK_COMMAND, '');
+		} else {
+			editor.lexical.dispatchCommand(TOGGLE_LINK_COMMAND, null);
 		}
 	}
-</style>
+
+	function help() {}
+
+	let isBlockTypeMenuOpen = $state(false);
+	function isHeadingReadonly(level: HeadingLevel): boolean {
+		const [min, max] = headings;
+		return level < min || level > max;
+	}
+	function setBlockType(type: string) {
+		editor.setSelectionBlockType(type as EditorBlockState['type']);
+		isBlockTypeMenuOpen = false;
+	}
+	const BLOCKS: Record<
+		string,
+		{
+			iconClass: string;
+			readonly?: boolean;
+			label: Message<'string', never> | [Message<'string', never>, string];
+		}
+	> = {
+		paragraph: {
+			iconClass: 'i-[ph--paragraph]',
+			label: m['components.rich_text_editor.toolbar.block.paragraph'],
+		},
+		h1: {
+			iconClass: 'i-[ph--text-h-one]',
+			label: [m['components.rich_text_editor.toolbar.block.heading'], '1'],
+			readonly: isHeadingReadonly(1),
+		},
+		h2: {
+			iconClass: 'i-[ph--text-h-two]',
+			label: [m['components.rich_text_editor.toolbar.block.heading'], '2'],
+			readonly: isHeadingReadonly(2),
+		},
+		h3: {
+			iconClass: 'i-[ph--text-h-three]',
+			label: [m['components.rich_text_editor.toolbar.block.heading'], '3'],
+			readonly: isHeadingReadonly(3),
+		},
+		h4: {
+			iconClass: 'i-[ph--text-h-four]',
+			label: [m['components.rich_text_editor.toolbar.block.heading'], '4'],
+			readonly: isHeadingReadonly(4),
+		},
+		h5: {
+			iconClass: 'i-[ph--text-h-five]',
+			label: [m['components.rich_text_editor.toolbar.block.heading'], '5'],
+			readonly: isHeadingReadonly(5),
+		},
+		h6: {
+			iconClass: 'i-[ph--text-h-six]',
+			label: [m['components.rich_text_editor.toolbar.block.heading'], '6'],
+			readonly: isHeadingReadonly(6),
+		},
+		'list-bullet': {
+			iconClass: 'i-[ph--list-bullets]',
+			label: m['components.rich_text_editor.toolbar.block.bullet_list'],
+		},
+		'list-number': {
+			iconClass: 'i-[ph--list-numbers]',
+			label: m['components.rich_text_editor.toolbar.block.numbered_list'],
+		},
+		quote: {
+			iconClass: 'i-[ph--quotes]',
+			label: m['components.rich_text_editor.toolbar.block.blockquote'],
+		},
+	};
+</script>
+
+<div class="border-onehalf bg-surface relative flex flex-col-reverse border-current">
+	<!-- toolbar -->
+	<div
+		class="border-y-onehalf bg-surface-subtle z-2 sticky bottom-0 flex items-center gap-0.5 overflow-visible border-current p-0.5"
+		role="toolbar"
+		aria-labelledby="rich-text-toolbar-label"
+	>
+		<p class="sr-only" id="rich-text-toolbar-label">
+			<T message={m['components.rich_text_editor.toolbar.name']} />
+		</p>
+
+		<!-- add tooltip on hover with more info for each action -->
+		{#snippet toolbarAction(
+			iconClass: string,
+			sr: Message<'string', never>,
+			onclick: () => void,
+			active?: boolean,
+		)}
+			<button class={['c-btn c-btn--icon p-2', active && 'bg-primary/50']} {onclick} type="button">
+				<i class="i {iconClass} h-5 w-5"></i>
+				<span class="sr-only">
+					<T message={sr} />
+				</span>
+			</button>
+		{/snippet}
+		{#snippet separator(classes?: ClassValue)}
+			<div class={['bg-outline flex w-px shrink-0 self-stretch', classes]}></div>
+		{/snippet}
+
+		<!-- undo -->
+		{@render toolbarAction(
+			'i-[ph--arrow-counter-clockwise]',
+			m['components.rich_text_editor.toolbar.undo'],
+			undo,
+		)}
+		<!-- redo -->
+		{@render toolbarAction(
+			'i-[ph--arrow-clockwise]',
+			m['components.rich_text_editor.toolbar.redo'],
+			redo,
+		)}
+
+		{@render separator('ml-2')}
+
+		<Dropdown class="group w-fit " direction="up" align="left" bind:open={isBlockTypeMenuOpen}>
+			{#snippet label()}
+				{@const currentBlock = BLOCKS[editor.block.type]}
+				<span class="c-link-lazy flex items-center gap-2 px-2 py-1 transition-colors">
+					<i class="i {currentBlock.iconClass} h-5 w-5"></i>
+					<span class="sr-only">
+						<T message={m['components.rich_text_editor.toolbar.block.name']} />
+					</span>
+					<span class="" aria-hidden="true">
+						{#if Array.isArray(currentBlock.label)}
+							<T message={currentBlock.label[0]} />
+							{currentBlock.label[1]}
+						{:else}
+							<T message={currentBlock.label} />
+						{/if}
+					</span>
+					<i class="i i-[ph--caret-down] h-5 w-5 transition-transform group-open:-rotate-180"></i>
+				</span>
+			{/snippet}
+			{#snippet content()}
+				<ul class="border-outline divide-outline bg-surface mb-1 w-max divide-y border">
+					{#each Object.entries(BLOCKS).filter(([, item]) => !item.readonly) as [key, { iconClass, label }] (key)}
+						<li>
+							<button
+								class="current:text-primary current:font-bold hover:bg-primary-surface flex w-full cursor-pointer
+								items-center gap-4 px-4 py-2 -outline-offset-1"
+								type="button"
+								onclick={setBlockType.bind(null, key)}
+							>
+								<i class="i {iconClass} h-5 w-5"></i>
+								<span>
+									{#if Array.isArray(label)}
+										<T message={label[0]} />
+										{label[1]}
+									{:else}
+										<T message={label} />
+									{/if}
+								</span>
+							</button>
+						</li>
+					{/each}
+				</ul>
+			{/snippet}
+		</Dropdown>
+
+		{@render separator('mr-2')}
+
+		<!-- toggle bold -->
+		{@render toolbarAction(
+			'i-[ph--text-b-bold]',
+			m['components.rich_text_editor.toolbar.bold'],
+			toggleBold,
+			editor.inline.format.bold,
+		)}
+		<!-- toggle italic -->
+		{@render toolbarAction(
+			'i-[ph--text-italic]',
+			m['components.rich_text_editor.toolbar.italic'],
+			toggleItalic,
+			editor.inline.format.italic,
+		)}
+		<!-- toggle underline -->
+		{@render toolbarAction(
+			'i-[ph--text-underline]',
+			m['components.rich_text_editor.toolbar.underline'],
+			toggleUnderline,
+			editor.inline.format.underline,
+		)}
+		<!-- toggle inline code block -->
+		{@render toolbarAction(
+			'i-[ph--code-simple]',
+			m['components.rich_text_editor.toolbar.code'],
+			toggleInlineCodeBlock,
+			editor.inline.format.code,
+		)}
+		<!-- insert link -->
+		{@render toolbarAction(
+			'i-[ph--link-simple-horizontal]',
+			m['components.rich_text_editor.toolbar.link'],
+			insertLink,
+			editor.inline.link !== null,
+		)}
+
+		{@render separator('ml-auto')}
+		<!-- open help dialog -->
+		{@render toolbarAction(
+			'i-[ph--question-mark]',
+			m['components.rich_text_editor.toolbar.help'],
+			help,
+		)}
+	</div>
+
+	<!-- composer -->
+	<div
+		class="prose z-1 min-h-80 max-w-full p-3 outline-none"
+		bind:this={element}
+		contenteditable
+		{...editor.attach(() => routing.lang)}
+	></div>
+</div>
+

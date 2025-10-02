@@ -5,6 +5,7 @@
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { DialogConfirmation, DialogQrCode } from '@sveltevietnam/kit/dialogs';
 	import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
+	import sanitizeHtml from 'sanitize-html';
 	import { superForm } from 'sveltekit-superforms';
 
 	import { page } from '$app/state';
@@ -257,7 +258,7 @@
 				</section>
 			</div>
 
-			<div class="pt-10 space-y-section">
+			<div class="space-y-section pt-10">
 				<!-- job description -->
 				<section class="space-y-6">
 					<h2 class="c-text-heading border-b">
@@ -270,17 +271,17 @@
 				</section>
 
 				<!-- employer description -->
-				{#if data.employerDescriptionHTML}
+				{#if data.user && data.user.description}
 					<section class="space-y-6">
 						<h2 class="c-text-heading border-b">
 							<T
 								message={m['pages.postings_id.employer_desc.heading']}
-								employerName={data.user!.name}
+								employerName={data.user.name}
 							/>
 						</h2>
 						<div class="prose max-w-full" data-testid="employer-description">
 							<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-							{@html data.employerDescriptionHTML}
+							{@html sanitizeHtml(data.user.description)}
 						</div>
 					</section>
 				{/if}

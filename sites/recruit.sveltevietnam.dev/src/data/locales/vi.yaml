@@ -299,6 +299,33 @@ messages:
         trì và phát triển ứng dụng.
       callout: Đăng tuyển từ nhà tài trợ được ưu tiên xét duyệt và hiển thị trên trang việc làm.
       cta: Trở thành nhà tài trợ
+    rich_text_editor:
+      toolbar:
+        name: Thanh công cụ
+        undo: Hoàn tác (undo)
+        redo: Tái thực hiện (redo)
+        block:
+          name: Khối văn bản
+          paragraph: Đoạn văn
+          heading: Tiêu đề
+          numbered_list: Danh sách số
+          bullet_list: Danh sách chấm
+          check_list: Danh sách kiểm
+          blockquote: Trích dẫn
+          codeblock: Đoạn mã
+        bold: In đậm
+        italic: In nghiêng
+        underline: Gạch chân
+        code: In mã
+        link: Chèn đường dẫn
+        help: Trợ giúp
+      floating_link_editor:
+        name: Chỉnh sửa đường dẫn
+        edit: Chỉnh sửa
+        remove: Xoá
+        save: Lưu
+        discard: Huỷ
+        placeholder: https://example.com...
   dialogs:
     qr:
       title: Mã QR

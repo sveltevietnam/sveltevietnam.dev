@@ -4,6 +4,10 @@
  * @property {number} minScrollDelta the least amount of movement to consider a toggle (may experience jank if this is too small)
  */
 
+/**
+ * Toggles visibility of an element based on scroll direction and position.
+ * TODO: perhaps 'hidden' can be generalized to 'applied', 'triggered', etc?
+ */
 export class ScrollToggler {
 	/** @type {ScrollTogglerOptions} */
 	options;

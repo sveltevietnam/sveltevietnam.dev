@@ -301,33 +301,48 @@ importers:
 
   sites/recruit.sveltevietnam.dev:
     dependencies:
-      '@editorjs/delimiter':
-        specifier: ^1.4.2
-        version: 1.4.2
-      '@editorjs/editorjs':
-        specifier: ^2.31.0
-        version: 2.31.0
-      '@editorjs/header':
-        specifier: ^2.8.8
-        version: 2.8.8
-      '@editorjs/list':
-        specifier: ^2.0.8
-        version: 2.0.8
-      '@editorjs/quote':
-        specifier: ^2.7.6
-        version: 2.7.6
+      '@lexical/dragon':
+        specifier: ^0.36.1
+        version: 0.36.1
+      '@lexical/extension':
+        specifier: ^0.36.1
+        version: 0.36.1
+      '@lexical/history':
+        specifier: ^0.36.1
+        version: 0.36.1
+      '@lexical/html':
+        specifier: ^0.36.1
+        version: 0.36.1
+      '@lexical/link':
+        specifier: ^0.36.1
+        version: 0.36.1
+      '@lexical/list':
+        specifier: ^0.36.1
+        version: 0.36.1
+      '@lexical/rich-text':
+        specifier: ^0.36.1
+        version: 0.36.1
+      '@lexical/selection':
+        specifier: ^0.36.1
+        version: 0.36.1
+      '@lexical/utils':
+        specifier: ^0.36.1
+        version: 0.36.1
       better-auth:
         specifier: ^1.3.7
         version: 1.3.8
       drizzle-orm:
         specifier: ^0.44.5
         version: 0.44.5(@cloudflare/workers-types@4.20250903.0)(@libsql/client@0.15.14)(better-sqlite3@11.10.0)(kysely@0.28.5)
-      editorjs-html:
-        specifier: ^4.0.5
-        version: 4.0.5
-      editorjs-parser:
-        specifier: ^1.5.3
-        version: 1.5.3
+      lexical:
+        specifier: ^0.36.1
+        version: 0.36.1
+      lodash.debounce:
+        specifier: ^4.0.8
+        version: 4.0.8
+      sanitize-html:
+        specifier: ^2.17.0
+        version: 2.17.0
       valibot:
         specifier: 1.1.0
         version: 1.1.0(typescript@5.9.2)
@@ -338,6 +353,9 @@ importers:
       '@faker-js/faker':
         specifier: ^10.0.0
         version: 10.0.0
+      '@floating-ui/dom':
+        specifier: ^1.7.4
+        version: 1.7.4
       '@svelte-put/async-stack':
         specifier: ^1.5.1
         version: 1.5.1(svelte@5.38.6)
@@ -383,6 +401,12 @@ importers:
       '@total-typescript/ts-reset':
         specifier: ^0.6.1
         version: 0.6.1
+      '@types/lodash.debounce':
+        specifier: ^4.0.9
+        version: 4.0.9
+      '@types/sanitize-html':
+        specifier: ^2.16.0
+        version: 2.16.0
       '@types/umami-browser':
         specifier: ^2.13.0
         version: 2.13.0
@@ -994,12 +1018,6 @@ packages:
   '@cloudflare/workers-types@4.20250903.0':
     resolution: {integrity: sha512-F6G3MG7EZxsJ2Fgsy3eed+U2fU/XGfKqDlyY/vCL/zUqI8KuaNx8GVnxttqzktBY55HK3xe82Zpj8xujW6PfXw==}
 
-  '@codexteam/icons@0.0.5':
-    resolution: {integrity: sha512-s6H2KXhLz2rgbMZSkRm8dsMJvyUNZsEjxobBEg9ztdrb1B2H3pEzY6iTwI4XUPJWJ3c3qRKwV4TrO3J5jUdoQA==}
-
-  '@codexteam/icons@0.3.3':
-    resolution: {integrity: sha512-cp7mkZPgmBuSxigTm3Vb+DtVHYeX7qXfQd7o05vcLD8Ag5WvRlol2QSn5P10k0CDAJwmkH9nQGQLBycErS9lsQ==}
-
   '@cspotcode/source-map-support@0.8.1':
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
     engines: {node: '>=12'}
@@ -1049,36 +1067,6 @@ packages:
     engines: {bun: '>=1', deno: '>=2', node: '>=16'}
     peerDependencies:
       '@noble/ciphers': ^1.0.0
-
-  '@editorjs/caret@1.0.3':
-    resolution: {integrity: sha512-VmgwQJZgL/LQjk049JunzRV1YCa0vDi+BNEpbDmr5cp3lGZllq9QQFO1eI71ZPzvFVn3vvhb+eOif4sAEyGgbw==}
-
-  '@editorjs/delimiter@1.4.2':
-    resolution: {integrity: sha512-S8q2LpeYdYkVShLp7K8c4HLthDHBevLw+sT+iO0+SH0oMvFmld9SUon3DFzMQ2gG07EOdZGRZ958+sVxyvFjZw==}
-
-  '@editorjs/dom@0.0.5':
-    resolution: {integrity: sha512-SZ78Gwpkp3EUhjBIp0lSojeQ35V9acF8SubJsMeOH/vlOUE40GOnvvwWZnF05lO7bIB0dOHhhJy4N7IIAWxP2w==}
-
-  '@editorjs/dom@1.0.1':
-    resolution: {integrity: sha512-yLO+86MYOIUr1Jl7SQw23SYT84ggv6aJW0EIRsI3NTHYgnQzmK7Bt2n5ZFupQlB0GJqmKqA5tCue3NKQb+o7Pw==}
-
-  '@editorjs/editorjs@2.31.0':
-    resolution: {integrity: sha512-CBcIZXtPlg0dSlC5clO9OfTCmcxelj723jd4d67teFlaFJobjjxU1PmMxFJdhaRep5+nqdD0jr+fdJBqEDqt1g==}
-
-  '@editorjs/header@2.8.8':
-    resolution: {integrity: sha512-bsMSs34u2hoi0UBuRoc5EGWXIFzJiwYgkFUYQGVm63y5FU+s8zPBmVx5Ip2sw1xgs0fqfDROqmteMvvmbCy62w==}
-
-  '@editorjs/helpers@0.0.4':
-    resolution: {integrity: sha512-ieg3dzo2m1/ELze/RMNADiAiC5amXxIlVXoJ5vvXITOu/p/dPsrF+Oi3h5gBYvtGk9vg5LJUSG5YWU0tBUO1tw==}
-
-  '@editorjs/helpers@1.0.1':
-    resolution: {integrity: sha512-Lmr8ImoQvoROXtzhsIJsA1ZtXzH46DmE6O8hMjn9/AvQq62UfjREjn+Ewi6KxjIZMay2PsgDEbLlsVyNJGEaxw==}
-
-  '@editorjs/list@2.0.8':
-    resolution: {integrity: sha512-/EJNvpeJYa1YDtYa85ug9R3sbDyI5ZlMHQ2bIh5S9iPa19qXe45jk6kgcew+jMNQq3j4NS4Q6YeeFbU1QkNMWw==}
-
-  '@editorjs/quote@2.7.6':
-    resolution: {integrity: sha512-D01KUMSDj2r+6Z+xjDkQqI+y6URpeHCvj0+P4pah+GtkG040lWjFb2H4pgHFXuol2cbfyAoraYSw85fuPheCvw==}
 
   '@emnapi/core@1.5.0':
     resolution: {integrity: sha512-sbP8GzB1WDzacS8fgNPpHlp6C9VZe+SJP3F90W9rLemaQj2PzIuTEl1qDOYQf58YIpyjViI24y9aPWCjEzY2cg==}
@@ -1936,6 +1924,39 @@ packages:
   '@levischuck/tiny-cbor@0.2.11':
     resolution: {integrity: sha512-llBRm4dT4Z89aRsm6u2oEZ8tfwL/2l6BwpZ7JcyieouniDECM5AqNgr/y08zalEIvW3RSK4upYyybDcmjXqAow==}
 
+  '@lexical/clipboard@0.36.1':
+    resolution: {integrity: sha512-qwOereYfHm1MgLu4Kq+nTsHwCoHtZE/PEMrs5k3lbsNk4SEZ8MLHI/Bx9TYijh24MnJhIoWdMLdAmhIaVs/IHg==}
+
+  '@lexical/dragon@0.36.1':
+    resolution: {integrity: sha512-XIG/GnAMPQJXB+HFfHE2H+3pCeXumbL+7WcNWG18U8v4K9Zosd815ub4Cy9QR6VqWqILP9prCi+RhCrdY3RY2Q==}
+
+  '@lexical/extension@0.36.1':
+    resolution: {integrity: sha512-8QBYPda+tFpSkXZ6DFHk01gpqbri0Q8UvuivJfHsSBso6OVzub9q/7xg+0b7bezY9mjajAK8b5rqIQvhAsSlTg==}
+
+  '@lexical/history@0.36.1':
+    resolution: {integrity: sha512-3gUCS4tvhmRPkR5CLosIrLNmKIycOBFnHdek7e1Hpwh8dKPqMF2/NIBKS202ikSwnA/5mD2m6wbELmHBEdtXkg==}
+
+  '@lexical/html@0.36.1':
+    resolution: {integrity: sha512-Uk83ot7033YRJmrnERgqg7Z0wT2T2VtCTcBYTdagLq3PGrka6B8eCBpj2ALmwAANU40Cy3JyL+p83m4bldObYA==}
+
+  '@lexical/link@0.36.1':
+    resolution: {integrity: sha512-l9C4Vcm05eYeBk31oCmJBX4HX7mUSYrXW0v/5FNNabkoyA7m0HLYX7pR9truTl3E2IuWjHmeszkLMd0wKjVxyw==}
+
+  '@lexical/list@0.36.1':
+    resolution: {integrity: sha512-7/9dxrAZyCU7CpEUhOxRIDjaYIjKVt4KJrZrd2BsgQKhruSH3pdB62kyObRVXMeq1ZJiOz+u43/1DUVHTqZJrw==}
+
+  '@lexical/rich-text@0.36.1':
+    resolution: {integrity: sha512-XBTGecp60S0RdoHRYpEpwAoJFlXbd1Y4DSHdCCx2hzOIgMdlq/PE4RXXTPvqNWE7uIXFLNMkVFdlpdhcQSg8Eg==}
+
+  '@lexical/selection@0.36.1':
+    resolution: {integrity: sha512-wIZJsTneNhmB61BiOb0y6scgrS4GOiGUVoBQCpP++xfesh0Vife8Zq0oc7NaD0l0E6tvFW3CjMd8ITZ66Zg78A==}
+
+  '@lexical/table@0.36.1':
+    resolution: {integrity: sha512-7+wP0249pk+TnbzhX459Txu0JA66PXQK7zGJJLBS1f6JXycYba0hfaBhGCsTKQMOXkgCSMkVyhA2pkbRrUP+Hg==}
+
+  '@lexical/utils@0.36.1':
+    resolution: {integrity: sha512-Uv3Mr4cFktJKEcMb8NLMo1mhYzcpOkwu2oGEhsFeYgSnWSb1BrVYsDp2yfkWfI8gZzqXH1v9s82NW2Skg42RPQ==}
+
   '@libsql/client@0.15.14':
     resolution: {integrity: sha512-oXeFYcSyAsYWvpWVmynrwNwb+NHNHtMfSIVdfQTF1B9RsgDXQE5YCDP3SS0i1FA8nuLWy2trFDVwP1b2LNdNPQ==}
 
@@ -2110,6 +2131,9 @@ packages:
 
   '@poppinss/macroable@1.0.5':
     resolution: {integrity: sha512-6u61y1HHd090MEk1Av0/1btDmm2Hh/+XoJj+HgFYRh9koUPI822ybJbwLHuqjLNCiY+o1gRykg2igEqOf/VBZw==}
+
+  '@preact/signals-core@1.12.1':
+    resolution: {integrity: sha512-BwbTXpj+9QutoZLQvbttRg5x3l5468qaV2kufh+51yha1c53ep5dY4kTuZR35+3pAZxpfQerGJiQqg34ZNZ6uA==}
 
   '@publint/pack@0.1.2':
     resolution: {integrity: sha512-S+9ANAvUmjutrshV4jZjaiG8XQyuJIZ8a4utWmN/vW1sgQ9IfBnPndwkmQYw53QmouOIytT874u65HEmu6H5jw==}
@@ -3263,12 +3287,6 @@ packages:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
     engines: {node: '>=6'}
 
-  codex-notifier@1.1.2:
-    resolution: {integrity: sha512-DCp6xe/LGueJ1N5sXEwcBc3r3PyVkEEDNWCVigfvywAkeXcZMk9K41a31tkEFBW0Ptlwji6/JlAb49E3Yrxbtg==}
-
-  codex-tooltip@1.0.5:
-    resolution: {integrity: sha512-IuA8LeyLU5p1B+HyhOsqR6oxyFQ11k3i9e9aXw40CrHFTRO2Y1npNBVU3W1SvhKAbUU7R/YikUBdcYFP0RcJag==}
-
   color-convert@1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
 
@@ -3654,12 +3672,6 @@ packages:
     resolution: {integrity: sha512-L9Qe08KWTlqYMVvMcTIvMAdl1cDUubzRNYL+WfA4bLDMHe4nemKkpmYzkznE1FwLKu0EEmy6obgQKzMJrg4x9Q==}
     engines: {node: '>=14'}
     hasBin: true
-
-  editorjs-html@4.0.5:
-    resolution: {integrity: sha512-ImQYxB3fNCJcd+nJ+Vbne/6PxidO1cYByNpu9nBDStVabfjVrMW65BuR+IEZfOii8VKYH+CW/lYDb2GDlzZtDg==}
-
-  editorjs-parser@1.5.3:
-    resolution: {integrity: sha512-ypc6mku0A55ycxdTHjijy/rRtQ060bwQKyEGMDPbnEglRAR/DE/4GJNdKtMGvUWNTGT6Fe25L/AoEQ5bhasQAg==}
 
   effect@3.17.11:
     resolution: {integrity: sha512-JnRJXPP1S0dGrIWAUxqLK1d1YoxBfopOu03ybssY7GdGippPx2y7BJHeMiRqz4/kO5Uyq2GRgWw27xr+Bfq1Tw==}
@@ -4561,6 +4573,9 @@ packages:
   levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
+
+  lexical@0.36.1:
+    resolution: {integrity: sha512-VD/rxRp40IvaKGgD+AfWAEPzovm7RTEp++j0P96iaBgiUAq8tDdW3GvPwA5pLk83aQZ5IV10jzEIvzAJkLw+pA==}
 
   libphonenumber-js@1.12.15:
     resolution: {integrity: sha512-TMDCtIhWUDHh91wRC+wFuGlIzKdPzaTUHHVrIZ3vPUEoNaXFLrsIQ1ZpAeZeXApIF6rvDksMTvjrIQlLKaYxqQ==}
@@ -7332,10 +7347,6 @@ snapshots:
 
   '@cloudflare/workers-types@4.20250903.0': {}
 
-  '@codexteam/icons@0.0.5': {}
-
-  '@codexteam/icons@0.3.3': {}
-
   '@cspotcode/source-map-support@0.8.1':
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
@@ -7379,46 +7390,6 @@ snapshots:
   '@ecies/ciphers@0.2.4(@noble/ciphers@1.3.0)':
     dependencies:
       '@noble/ciphers': 1.3.0
-
-  '@editorjs/caret@1.0.3':
-    dependencies:
-      '@editorjs/dom': 1.0.1
-
-  '@editorjs/delimiter@1.4.2':
-    dependencies:
-      '@codexteam/icons': 0.3.3
-
-  '@editorjs/dom@0.0.5':
-    dependencies:
-      '@editorjs/helpers': 0.0.4
-
-  '@editorjs/dom@1.0.1':
-    dependencies:
-      '@editorjs/helpers': 1.0.1
-
-  '@editorjs/editorjs@2.31.0':
-    dependencies:
-      '@editorjs/caret': 1.0.3
-      codex-notifier: 1.1.2
-      codex-tooltip: 1.0.5
-
-  '@editorjs/header@2.8.8':
-    dependencies:
-      '@codexteam/icons': 0.0.5
-      '@editorjs/editorjs': 2.31.0
-
-  '@editorjs/helpers@0.0.4': {}
-
-  '@editorjs/helpers@1.0.1': {}
-
-  '@editorjs/list@2.0.8':
-    dependencies:
-      '@codexteam/icons': 0.3.3
-
-  '@editorjs/quote@2.7.6':
-    dependencies:
-      '@codexteam/icons': 0.3.3
-      '@editorjs/dom': 0.0.5
 
   '@emnapi/core@1.5.0':
     dependencies:
@@ -8024,6 +7995,76 @@ snapshots:
 
   '@levischuck/tiny-cbor@0.2.11': {}
 
+  '@lexical/clipboard@0.36.1':
+    dependencies:
+      '@lexical/html': 0.36.1
+      '@lexical/list': 0.36.1
+      '@lexical/selection': 0.36.1
+      '@lexical/utils': 0.36.1
+      lexical: 0.36.1
+
+  '@lexical/dragon@0.36.1':
+    dependencies:
+      '@lexical/extension': 0.36.1
+      lexical: 0.36.1
+
+  '@lexical/extension@0.36.1':
+    dependencies:
+      '@lexical/utils': 0.36.1
+      '@preact/signals-core': 1.12.1
+      lexical: 0.36.1
+
+  '@lexical/history@0.36.1':
+    dependencies:
+      '@lexical/extension': 0.36.1
+      '@lexical/utils': 0.36.1
+      lexical: 0.36.1
+
+  '@lexical/html@0.36.1':
+    dependencies:
+      '@lexical/selection': 0.36.1
+      '@lexical/utils': 0.36.1
+      lexical: 0.36.1
+
+  '@lexical/link@0.36.1':
+    dependencies:
+      '@lexical/extension': 0.36.1
+      '@lexical/utils': 0.36.1
+      lexical: 0.36.1
+
+  '@lexical/list@0.36.1':
+    dependencies:
+      '@lexical/extension': 0.36.1
+      '@lexical/selection': 0.36.1
+      '@lexical/utils': 0.36.1
+      lexical: 0.36.1
+
+  '@lexical/rich-text@0.36.1':
+    dependencies:
+      '@lexical/clipboard': 0.36.1
+      '@lexical/dragon': 0.36.1
+      '@lexical/selection': 0.36.1
+      '@lexical/utils': 0.36.1
+      lexical: 0.36.1
+
+  '@lexical/selection@0.36.1':
+    dependencies:
+      lexical: 0.36.1
+
+  '@lexical/table@0.36.1':
+    dependencies:
+      '@lexical/clipboard': 0.36.1
+      '@lexical/extension': 0.36.1
+      '@lexical/utils': 0.36.1
+      lexical: 0.36.1
+
+  '@lexical/utils@0.36.1':
+    dependencies:
+      '@lexical/list': 0.36.1
+      '@lexical/selection': 0.36.1
+      '@lexical/table': 0.36.1
+      lexical: 0.36.1
+
   '@libsql/client@0.15.14':
     dependencies:
       '@libsql/core': 0.15.14
@@ -8213,6 +8254,8 @@ snapshots:
 
   '@poppinss/macroable@1.0.5':
     optional: true
+
+  '@preact/signals-core@1.12.1': {}
 
   '@publint/pack@0.1.2': {}
 
@@ -9519,10 +9562,6 @@ snapshots:
 
   clsx@2.1.1: {}
 
-  codex-notifier@1.1.2: {}
-
-  codex-tooltip@1.0.5: {}
-
   color-convert@1.9.3:
     dependencies:
       color-name: 1.1.3
@@ -9811,10 +9850,6 @@ snapshots:
       commander: 10.0.1
       minimatch: 9.0.1
       semver: 7.7.2
-
-  editorjs-html@4.0.5: {}
-
-  editorjs-parser@1.5.3: {}
 
   effect@3.17.11:
     dependencies:
@@ -10887,6 +10922,8 @@ snapshots:
     dependencies:
       prelude-ls: 1.2.1
       type-check: 0.4.0
+
+  lexical@0.36.1: {}
 
   libphonenumber-js@1.12.15:
     optional: true
