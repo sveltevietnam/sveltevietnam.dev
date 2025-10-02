@@ -3,13 +3,22 @@
 
 	import type { DropdownProps } from '.';
 
-	let { label, content, open = $bindable(false), ...rest }: DropdownProps = $props();
+	let {
+		direction = 'down',
+		align = 'right',
+		label,
+		content,
+		open = $bindable(false),
+		...rest
+	}: DropdownProps = $props();
 </script>
 
 <details
 	bind:open
 	use:clickoutside={{ enabled: open }}
 	onclickoutside={() => (open = false)}
+	data-direction={direction}
+	data-align={align}
 	{...rest}
 >
 	<summary>{@render label?.()}</summary>
@@ -28,27 +37,57 @@
 			@supports not selector(::details-content) {
 				& div {
 					position: absolute;
+				}
+
+				&[data-direction='down'] div {
 					top: 100%;
-					right: 0;
 					margin-top: calc(1.5 * var(--spacing));
+				}
+
+				&[data-direction='up'] div {
+					bottom: 100%;
+					margin-bottom: calc(1.5 * var(--spacing));
+				}
+
+				&[data-align='left'] div {
+					left: 0;
+				}
+
+				&[data-align='right'] div {
+					right: 0;
 				}
 			}
 
 			&::details-content {
 				position: absolute;
-				top: 100%;
-				right: 0;
 
 				overflow: hidden;
 
 				block-size: 0;
-				margin-top: calc(1.5 * var(--spacing));
 
 				transition-timing-function: var(--default-transition-timing-function);
 				transition-duration: 150ms;
 				transition-property: block-size, content-visibility;
 
 				transition-behavior: allow-discrete;
+			}
+
+			&[data-direction='down']::details-content {
+				top: 100%;
+				margin-top: calc(1.5 * var(--spacing));
+			}
+
+			&[data-direction='up']::details-content {
+				bottom: 100%;
+				margin-bottom: calc(1.5 * var(--spacing));
+			}
+
+			&[data-align='left']::details-content {
+				left: 0;
+			}
+
+			&[data-align='right']::details-content {
+				right: 0;
 			}
 
 			&:open::details-content {
