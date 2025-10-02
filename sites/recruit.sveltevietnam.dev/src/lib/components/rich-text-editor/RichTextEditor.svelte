@@ -4,6 +4,7 @@
 	import { T } from '@sveltevietnam/i18n/runtime';
 	import type { Message } from '@sveltevietnam/i18n/runtime';
 	import { Dropdown } from '@sveltevietnam/kit/components';
+	import type { Status } from '@sveltevietnam/kit/constants';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { FORMAT_TEXT_COMMAND, REDO_COMMAND, UNDO_COMMAND } from 'lexical';
 	import debounce from 'lodash.debounce';
@@ -13,9 +14,9 @@
 
 	import * as m from '$data/locales/generated/messages';
 
-	import { Editor, type EditorBlockState } from './editor.svelte';
+	import { CalloutStatusDropdown, FORMAT_CALLOUT_COMMAND } from './callout';
+	import { Editor, type HeadingLevel } from './editor.svelte';
 
-	export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 	export interface RichTextEditorProps {
 		cache?: [area: 'session' | 'local', key: string];
 		headings?: [min: HeadingLevel, max: HeadingLevel];
@@ -116,9 +117,9 @@
 		const [min, max] = headings;
 		return level < min || level > max;
 	}
-	function setBlockType(type: string) {
-		editor.setSelectionBlockType(type as EditorBlockState['type']);
+	function setBlockType(type: keyof typeof BLOCKS) {
 		isBlockTypeMenuOpen = false;
+		BLOCKS[type]?.set?.();
 	}
 	const BLOCKS: Record<
 		string,
@@ -126,55 +127,84 @@
 			iconClass: string;
 			readonly?: boolean;
 			label: Message<'string', never> | [Message<'string', never>, string];
+			set?: () => void;
 		}
 	> = {
 		paragraph: {
 			iconClass: 'i-[ph--paragraph]',
 			label: m['components.rich_text_editor.toolbar.block.paragraph'],
+			set: () => editor.setSelectionBlockType('paragraph', undefined),
 		},
 		h1: {
 			iconClass: 'i-[ph--text-h-one]',
 			label: [m['components.rich_text_editor.toolbar.block.heading'], '1'],
 			readonly: isHeadingReadonly(1),
+			set: () => editor.setSelectionBlockType('heading', { level: 1 }),
 		},
 		h2: {
 			iconClass: 'i-[ph--text-h-two]',
 			label: [m['components.rich_text_editor.toolbar.block.heading'], '2'],
 			readonly: isHeadingReadonly(2),
+			set: () => editor.setSelectionBlockType('heading', { level: 2 }),
 		},
 		h3: {
 			iconClass: 'i-[ph--text-h-three]',
 			label: [m['components.rich_text_editor.toolbar.block.heading'], '3'],
 			readonly: isHeadingReadonly(3),
+			set: () => editor.setSelectionBlockType('heading', { level: 3 }),
 		},
 		h4: {
 			iconClass: 'i-[ph--text-h-four]',
 			label: [m['components.rich_text_editor.toolbar.block.heading'], '4'],
 			readonly: isHeadingReadonly(4),
+			set: () => editor.setSelectionBlockType('heading', { level: 4 }),
 		},
 		h5: {
 			iconClass: 'i-[ph--text-h-five]',
 			label: [m['components.rich_text_editor.toolbar.block.heading'], '5'],
 			readonly: isHeadingReadonly(5),
+			set: () => editor.setSelectionBlockType('heading', { level: 5 }),
 		},
 		h6: {
 			iconClass: 'i-[ph--text-h-six]',
 			label: [m['components.rich_text_editor.toolbar.block.heading'], '6'],
 			readonly: isHeadingReadonly(6),
+			set: () => editor.setSelectionBlockType('heading', { level: 6 }),
+		},
+		callout: {
+			iconClass: 'i-[ph--bell]',
+			label: m['components.rich_text_editor.toolbar.block.callout.name'],
+			set: () => editor.setSelectionBlockType('callout', { status: 'info' }),
 		},
 		'list-bullet': {
 			iconClass: 'i-[ph--list-bullets]',
 			label: m['components.rich_text_editor.toolbar.block.bullet_list'],
+			set: () => editor.setSelectionBlockType('list', { listType: 'bullet' }),
 		},
 		'list-number': {
 			iconClass: 'i-[ph--list-numbers]',
 			label: m['components.rich_text_editor.toolbar.block.numbered_list'],
+			set: () => editor.setSelectionBlockType('list', { listType: 'number' }),
 		},
 		quote: {
 			iconClass: 'i-[ph--quotes]',
 			label: m['components.rich_text_editor.toolbar.block.blockquote'],
+			set: () => editor.setSelectionBlockType('quote', undefined),
 		},
 	};
+	function handleSelectStatusDropdown(status: Status) {
+		editor.lexical.dispatchCommand(FORMAT_CALLOUT_COMMAND, { status });
+	}
+	let currentBlock = $derived.by(() => {
+		if (editor.block.type === 'heading') {
+			console.log(editor.block.props.level);
+			return BLOCKS[`h${editor.block.props.level}`];
+		}
+		if (editor.block.type === 'list') {
+			return BLOCKS[`list-${editor.block.props.listType}`];
+		}
+		return BLOCKS[editor.block.type];
+	});
 </script>
 
 <div class="border-onehalf bg-surface relative flex flex-col-reverse border-current">
@@ -221,9 +251,8 @@
 
 		{@render separator('ml-2')}
 
-		<Dropdown class="group w-fit " direction="up" align="left" bind:open={isBlockTypeMenuOpen}>
+		<Dropdown class="group w-fit" direction="up" align="left" bind:open={isBlockTypeMenuOpen}>
 			{#snippet label()}
-				{@const currentBlock = BLOCKS[editor.block.type]}
 				<span class="c-link-lazy flex items-center gap-2 px-2 py-1 transition-colors">
 					<i class="i {currentBlock.iconClass} h-5 w-5"></i>
 					<span class="sr-only">
@@ -305,6 +334,14 @@
 		)}
 
 		{@render separator('ml-auto')}
+		{#if editor.block.type === 'callout'}
+			<CalloutStatusDropdown
+				status={editor.block.props.status}
+				onselect={handleSelectStatusDropdown}
+			/>
+			{@render separator()}
+		{/if}
+
 		<!-- open help dialog -->
 		{@render toolbarAction(
 			'i-[ph--question-mark]',
@@ -315,10 +352,9 @@
 
 	<!-- composer -->
 	<div
-		class="prose z-1 min-h-80 max-w-full p-3 outline-none"
+		class="prose z-1 min-h-80 max-w-full px-4 py-3 outline-none"
 		bind:this={element}
 		contenteditable
 		{...editor.attach(() => routing.lang)}
 	></div>
 </div>
-

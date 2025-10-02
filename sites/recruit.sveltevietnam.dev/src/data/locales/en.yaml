@@ -310,6 +310,14 @@ messages:
           name: Block Selection
           paragraph: Paragraph
           heading: Heading
+          callout:
+            name: Callout
+            status:
+              name: Status
+              info: Information
+              success: Success
+              warning: Warning
+              error: Error
           numbered_list: Numbered list
           bullet_list: Bullet list
           check_list: Check list

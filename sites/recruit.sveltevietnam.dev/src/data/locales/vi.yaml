@@ -308,6 +308,14 @@ messages:
           name: Khối văn bản
           paragraph: Đoạn văn
           heading: Tiêu đề
+          callout:
+            name: Ô văn bản nổi
+            status:
+              name: Trạng thái
+              info: Thông tin
+              success: Thành công
+              warning: Cảnh báo
+              error: Báo lỗi
           numbered_list: Danh sách số
           bullet_list: Danh sách chấm
           check_list: Danh sách kiểm

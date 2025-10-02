@@ -26,6 +26,7 @@ import {
 import { $setBlocksType as setBlocksType } from '@lexical/selection';
 import { mergeRegister, $getNearestNodeOfType as getNearestNodeOfType } from '@lexical/utils';
 import type { Language } from '@sveltevietnam/i18n';
+import type { Status } from '@sveltevietnam/kit/constants';
 import {
 	createEditor,
 	type LexicalEditor,
@@ -39,6 +40,12 @@ import { createAttachmentKey } from 'svelte/attachments';
 import type { HTMLAttributes } from 'svelte/elements';
 import { createSubscriber } from 'svelte/reactivity';
 
+import {
+	$isCalloutNode as isCalloutNode,
+	$createCalloutNode as createCalloutNode,
+	CalloutNode,
+	registerCallout,
+} from './callout';
 import { registerFloatingLinkEditor } from './floating-link-editor';
 import { isSelectingLink } from './utils/is-selecting-link';
 
@@ -52,19 +59,37 @@ interface EditorInlineState {
 	link: string | null;
 }
 
-export interface EditorBlockState {
-	type:
-		| 'paragraph'
-		| 'h1'
-		| 'h2'
-		| 'h3'
-		| 'h4'
-		| 'h5'
-		| 'h6'
-		| 'list-bullet'
-		| 'list-number'
-		| 'quote';
-}
+export type BlockState<Type, Props = undefined> = undefined extends Props
+	? {
+			type: Type;
+		}
+	: {
+			type: Type;
+			props: Props;
+		};
+
+export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
+export type HeadingBlockState = BlockState<'heading', { level: HeadingLevel }>;
+export type ListBlockState = BlockState<'list', { listType: ListType }>;
+export type ParagraphBlockState = BlockState<'paragraph'>;
+export type QuoteBlockState = BlockState<'quote'>;
+export type CalloutBlockState = BlockState<'callout', { status: Status }>;
+
+export type BlockTypeToProps = {
+	heading: HeadingBlockState['props'];
+	list: ListBlockState['props'];
+	paragraph: undefined;
+	quote: undefined;
+	callout: CalloutBlockState['props'];
+};
+export type BlockType = keyof BlockTypeToProps;
+
+export type EditorBlockState =
+	| HeadingBlockState
+	| ListBlockState
+	| ParagraphBlockState
+	| QuoteBlockState
+	| CalloutBlockState;
 
 export class Editor {
 	public lexical: LexicalEditor;
@@ -83,16 +108,17 @@ export class Editor {
 	#subscribeToBlock: ReturnType<typeof createSubscriber>;
 	#block: EditorBlockState = {
 		type: 'paragraph',
+		props: undefined,
 	};
 
 	#subscribeToHtml: ReturnType<typeof createSubscriber>;
 	#html: string = '';
 
 	constructor(html?: string | null) {
-		this.#html = html;
+		this.#html = html ?? '';
 		this.lexical = createEditor({
 			namespace: 'Test',
-			nodes: [LinkNode, HeadingNode, QuoteNode, ListNode, ListItemNode],
+			nodes: [LinkNode, HeadingNode, QuoteNode, ListNode, ListItemNode, CalloutNode],
 			onError: (error: Error) => {
 				throw error;
 			},
@@ -133,17 +159,34 @@ export class Editor {
 						const top = anchor.getTopLevelElement();
 						if (top === null) return;
 						if (isHeadingNode(top)) {
-							this.#block.type = top.getTag().toLowerCase() as EditorBlockState['type'];
+							this.#block = {
+								type: 'heading',
+								props: {
+									level: parseInt(top.getTag().slice(1), 10) as HeadingLevel,
+								},
+							};
 						} else if (isListNode(top)) {
 							const parentList = getNearestNodeOfType<ListNode>(anchor, ListNode);
-							let type = parentList ? parentList.getListType() : top.getListType();
-							if (type === 'check') {
+							let listType = parentList ? parentList.getListType() : top.getListType();
+							if (listType === 'check') {
 								// don't support check list for now
-								type = 'bullet';
+								listType = 'bullet';
 							}
-							this.#block.type = `list-${type}` as EditorBlockState['type'];
+							this.#block = {
+								type: 'list',
+								props: {
+									listType,
+								},
+							};
+						} else if (isCalloutNode(top)) {
+							this.#block = {
+								type: 'callout',
+								props: {
+									status: top.getStatus() as Status,
+								},
+							};
 						} else {
-							this.#block.type = top.getType() as EditorBlockState['type'];
+							this.#block = { type: top.getType() } as EditorBlockState;
 						}
 						update();
 					} else {
@@ -226,6 +269,7 @@ export class Editor {
 						element,
 						lang,
 					}),
+					registerCallout(this.lexical),
 				);
 
 				return () => {
@@ -236,10 +280,9 @@ export class Editor {
 		};
 	}
 
-	setSelectionBlockType(type: EditorBlockState['type']): void {
-		if (type.startsWith('list')) {
-			const listType = type.slice(5) as ListType;
-			switch (listType) {
+	setSelectionBlockType<T extends BlockType>(type: T, props: BlockTypeToProps[T]): void {
+		if (type === 'list') {
+			switch ((props as ListBlockState['props']).listType) {
 				case 'number':
 					this.lexical.dispatchCommand(INSERT_ORDERED_LIST_COMMAND, undefined);
 					break;
@@ -257,14 +300,12 @@ export class Editor {
 					case 'quote':
 						return createQuoteNode();
 
-					case 'h1':
-					case 'h2':
-					case 'h3':
-					case 'h4':
-					case 'h5':
-					case 'h6': {
-						return createHeadingNode(type);
+					case 'heading': {
+						return createHeadingNode(`h${(props as HeadingBlockState['props']).level}`);
 					}
+
+					case 'callout':
+						return createCalloutNode((props as CalloutBlockState['props']).status);
 
 					case 'paragraph':
 					default:
