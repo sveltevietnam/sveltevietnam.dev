@@ -305,10 +305,10 @@
 		)}
 	</div>
 
-	<div class="prose z-1 relative max-w-full">
+	<div class="z-1 relative">
 		<!-- composer -->
 		<div
-			class="h-160 overflow-auto px-4 py-3 outline-none"
+			class="prose h-160 max-w-full overflow-auto px-4 py-3 outline-none"
 			contenteditable
 			bind:this={element}
 			{...editor.attach(() => routing.lang)}
@@ -316,7 +316,7 @@
 
 		<!-- placeholder -->
 		{#if placeholder && editor.canShowPlaceholder}
-			<p class="absolute inset-x-4 top-3 select-none">
+			<p class="text-placeholder absolute inset-x-4 top-3 select-none">
 				<T message={placeholder} />
 			</p>
 		{/if}
