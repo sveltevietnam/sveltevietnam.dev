@@ -28,6 +28,7 @@ export default defineConfig({
 			'@svelte-put/async-stack/helpers',
 			'@svelte-put/cloudflare-turnstile',
 			'sveltekit-superforms',
+			'sanitize-html',
 		],
 	},
 	plugins: [

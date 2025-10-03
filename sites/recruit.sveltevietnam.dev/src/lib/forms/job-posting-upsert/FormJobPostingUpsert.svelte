@@ -8,6 +8,7 @@
 
 	import * as m from '$data/locales/generated/messages';
 	import { VITE_PUBLIC_MODE, VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN } from '$env/static/public';
+	import { RichTextEditor } from '$lib/components/rich-text-editor';
 
 	import { createSuperFormGenericErrorHandler } from '../utils';
 
@@ -37,6 +38,8 @@
 		notifications: { toaster },
 	} = Contexts.get();
 
+	const descriptionCacheKey = 'job-desc-draft';
+
 	const { form, enhance, constraints, errors, delayed, timeout } = superForm<JobPostingUpsertInput>(
 		data as SuperValidated<JobPostingUpsertInput>,
 		{
@@ -50,6 +53,7 @@
 			onResult({ result }) {
 				if (result.type === 'redirect') {
 					toaster.success({ message: successMessage });
+					localStorage.removeItem(descriptionCacheKey);
 				}
 			},
 		},
@@ -286,19 +290,24 @@
 			<label class="block" for="description">
 				<T message={m['inputs.job_posting.desc.label']} />:
 			</label>
-			<textarea
-				class="c-text-input w-full"
+			<RichTextEditor
+				headings={[3, 5]}
+				cache={descriptionCacheKey}
+				onchange={(value) => ($form.description = value)}
+				html={data.data.description}
+				placeholder={m['inputs.job_posting.desc.placeholder']}
+			/>
+			<input
+				type="text"
 				name="description"
 				id="description"
-				placeholder={m['inputs.job_posting.desc.placeholder'](routing.lang).toString()}
-				rows="15"
 				bind:value={$form.description}
-				{...$constraints.description}
 				{...$errors.description && {
 					'aria-invalid': 'true',
 					'aria-errormessage': 'error-description',
 				}}
-			></textarea>
+				hidden
+			/>
 			{#if $errors.description?.[0]}
 				<p class={commonErrorClasses} id="error-description">
 					{$errors.description[0]}

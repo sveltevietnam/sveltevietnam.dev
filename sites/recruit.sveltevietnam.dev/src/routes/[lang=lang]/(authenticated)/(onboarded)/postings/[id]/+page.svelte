@@ -281,7 +281,7 @@
 						</h2>
 						<div class="prose max-w-full" data-testid="employer-description">
 							<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-							{@html sanitizeHtml(data.user.description)}
+							{@html sanitizeHtml(data.user.description, { allowedClasses: { p: [/callout/] } })}
 						</div>
 					</section>
 				{/if}
