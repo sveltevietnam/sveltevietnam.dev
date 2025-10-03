@@ -24,6 +24,7 @@ import {
 	$createQuoteNode as createQuoteNode,
 } from '@lexical/rich-text';
 import { $setBlocksType as setBlocksType } from '@lexical/selection';
+import { $canShowPlaceholderCurry as canShowPlaceholderCurry } from '@lexical/text';
 import { mergeRegister, $getNearestNodeOfType as getNearestNodeOfType } from '@lexical/utils';
 import type { Language } from '@sveltevietnam/i18n';
 import type { Status } from '@sveltevietnam/kit/constants';
@@ -193,6 +194,24 @@ export class Editor {
 				});
 			}, 200),
 		),
+	);
+
+	/// ========== (Lazy) reactive placeholder state ==========
+	get canShowPlaceholder(): boolean {
+		this.#subscribeToCanShowPlaceholder();
+		return this.#canShowPlaceholder;
+	}
+	#canShowPlaceholder: boolean = true;
+	#subscribeToCanShowPlaceholder = createSubscriber((update) =>
+		this.lexical.registerUpdateListener(({ editorState }) => {
+			const canShowPlaceholder = editorState.read(
+				canShowPlaceholderCurry(this.lexical.isComposing()),
+			);
+			if (this.#canShowPlaceholder !== canShowPlaceholder) {
+				this.#canShowPlaceholder = canShowPlaceholder;
+				update();
+			}
+		}),
 	);
 
 	constructor(html?: string | null) {

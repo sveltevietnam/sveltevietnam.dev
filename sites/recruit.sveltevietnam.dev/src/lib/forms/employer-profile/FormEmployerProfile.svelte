@@ -202,6 +202,7 @@
 				cache={descriptionCache}
 				onchange={(value) => ($form.description = value)}
 				html={data.data.description}
+				placeholder={m['inputs.employer.desc.placeholder']}
 			/>
 			<input
 				type="text"

@@ -18,7 +18,8 @@
 	import { Editor, type HeadingLevel } from './editor.svelte';
 
 	export interface RichTextEditorProps {
-		cache?: [area: 'session' | 'local', key: string];
+		placeholder?: Message<'string', never>;
+		cache?: readonly [area: 'session' | 'local', key: string];
 		headings?: [min: HeadingLevel, max: HeadingLevel];
 		onchange?: (html: string) => void;
 		html?: string;
@@ -48,7 +49,7 @@
 </script>
 
 <script lang="ts">
-	let { onchange, cache, headings = [1, 6], html }: RichTextEditorProps = $props();
+	let { onchange, cache, headings = [1, 6], html, placeholder }: RichTextEditorProps = $props();
 
 	const { routing } = Contexts.get();
 	let element: HTMLElement;
@@ -350,11 +351,20 @@
 		)}
 	</div>
 
-	<!-- composer -->
-	<div
-		class="prose z-1 min-h-80 max-w-full px-4 py-3 outline-none"
-		bind:this={element}
-		contenteditable
-		{...editor.attach(() => routing.lang)}
-	></div>
+	<div class="prose z-1 relative max-w-full">
+		<!-- composer -->
+		<div
+			class="h-160 overflow-auto px-4 py-3 outline-none"
+			contenteditable
+			bind:this={element}
+			{...editor.attach(() => routing.lang)}
+		></div>
+
+		<!-- placeholder -->
+		{#if placeholder && editor.canShowPlaceholder}
+			<p class="absolute inset-x-4 top-3 select-none">
+				<T message={placeholder} />
+			</p>
+		{/if}
+	</div>
 </div>
