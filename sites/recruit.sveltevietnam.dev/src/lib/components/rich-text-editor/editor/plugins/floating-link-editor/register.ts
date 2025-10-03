@@ -17,8 +17,8 @@ import { mount, unmount } from 'svelte';
 
 import * as m from '$data/locales/generated/messages';
 
-import { $getSelectedNode } from '../utils/get-selected-node';
-import { $isSelectingLink } from '../utils/is-selecting-link';
+import { $getSelectedNode } from '../../utils/get-selected-node';
+import { $isSelectingLink } from '../../utils/is-selecting-link';
 
 import { default as FloatingLinkEditor } from './FloatingLinkEditor.svelte';
 
@@ -166,5 +166,3 @@ export function registerFloatingLinkEditor(config: RegisterFloatingLinkEditorArg
 		unmountFloatingLinkEditor();
 	};
 }
-
-export { FloatingLinkEditor };

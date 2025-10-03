@@ -39,8 +39,13 @@ import { createAttachmentKey } from 'svelte/attachments';
 import type { HTMLAttributes } from 'svelte/elements';
 import { createSubscriber } from 'svelte/reactivity';
 
-import { $isCalloutNode, $createCalloutNode, CalloutNode, registerCallout } from './callout';
-import { registerFloatingLinkEditor } from './floating-link-editor';
+import {
+	$isCalloutNode,
+	$createCalloutNode,
+	CalloutNode,
+	registerCallout,
+} from './plugins/callout';
+import { registerFloatingLinkEditor } from './plugins/floating-link-editor';
 import { $isSelectingLink } from './utils/is-selecting-link';
 
 interface EditorInlineState {

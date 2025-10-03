@@ -1,13 +1,8 @@
 import { type Status } from '@sveltevietnam/kit/constants';
 import {
-	$getSelection,
-	$isRangeSelection,
 	$applyNodeReplacement,
-	COMMAND_PRIORITY_LOW,
-	createCommand,
 	ParagraphNode,
 	type EditorConfig,
-	type LexicalCommand,
 	type LexicalEditor,
 	type LexicalUpdateJSON,
 	type NodeKey,
@@ -125,23 +120,3 @@ export function $createCalloutNode(status?: Status): CalloutNode {
 export function $isCalloutNode(node: unknown): node is CalloutNode {
 	return node instanceof CalloutNode;
 }
-
-export const FORMAT_CALLOUT_COMMAND: LexicalCommand<{ status: Status }> = createCommand();
-
-export function registerCallout(editor: LexicalEditor): () => void {
-	return editor.registerCommand(
-		FORMAT_CALLOUT_COMMAND,
-		function (payload) {
-			const selection = $getSelection();
-			if (!$isRangeSelection(selection)) return false;
-			const anchor = selection.anchor.getNode();
-			const top = anchor.getTopLevelElement();
-			if (!$isCalloutNode(top)) return false;
-			top.setStatus(payload.status);
-			return true;
-		},
-		COMMAND_PRIORITY_LOW,
-	);
-}
-
-export { default as CalloutStatusDropdown } from './CalloutStatusDropdown.svelte';

@@ -12,8 +12,8 @@
 
 	import * as m from '$data/locales/generated/messages';
 
-	import { CalloutStatusDropdown, FORMAT_CALLOUT_COMMAND } from './callout';
 	import { Editor, type EditorInit, type HeadingLevel } from './editor';
+	import { CalloutStatusDropdown, FORMAT_CALLOUT_COMMAND } from './editor/plugins/callout';
 
 	export interface RichTextEditorProps extends EditorInit {
 		placeholder?: Message<'string', never>;
