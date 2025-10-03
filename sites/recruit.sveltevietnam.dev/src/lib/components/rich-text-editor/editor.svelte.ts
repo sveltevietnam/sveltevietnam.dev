@@ -92,8 +92,16 @@ export type EditorBlockState =
 	| QuoteBlockState
 	| CalloutBlockState;
 
+export interface EditorInit {
+	/** initial content as html to prefill on mount */
+	html?: string | null;
+	/** min & max heading levels to enable */
+	headings?: [min: HeadingLevel, max: HeadingLevel];
+}
+
 export class Editor {
 	public lexical: LexicalEditor;
+	#init: EditorInit;
 
 	/// ========== (Lazy) reactive inline state ==========
 	get inline(): EditorInlineState {
@@ -214,8 +222,8 @@ export class Editor {
 		}),
 	);
 
-	constructor(html?: string | null) {
-		this.#html = html ?? '';
+	constructor(init: EditorInit = {}) {
+		this.#init = init;
 		this.lexical = createEditor({
 			namespace: 'Test',
 			nodes: [LinkNode, HeadingNode, QuoteNode, ListNode, ListItemNode, CalloutNode],
@@ -238,10 +246,10 @@ export class Editor {
 			[createAttachmentKey()]: (element) => {
 				this.lexical.setRootElement(element);
 
-				if (this.#html) {
+				if (this.#init.html) {
 					this.lexical.update(() => {
 						const parser = new DOMParser();
-						const dom = parser.parseFromString(this.#html, 'text/html');
+						const dom = parser.parseFromString(this.#init.html ?? '', 'text/html');
 						const nodes = generateNodesFromDOM(this.lexical, dom);
 						insertNodes(nodes);
 					});
@@ -291,6 +299,17 @@ export class Editor {
 						lang,
 					}),
 					registerCallout(this.lexical),
+					this.#init.headings
+						? this.lexical.registerNodeTransform(HeadingNode, (node) => {
+								const level = parseInt(node.getTag().slice(1));
+								const [min, max] = this.#init.headings ?? [1, 6];
+								if (level < min) {
+									node.setTag(`h${min}`);
+								} else if (level > max) {
+									node.setTag(`h${max}`);
+								}
+							})
+						: () => {},
 				);
 			},
 		};

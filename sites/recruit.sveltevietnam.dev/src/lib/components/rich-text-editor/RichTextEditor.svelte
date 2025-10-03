@@ -1,6 +1,5 @@
 <script lang="ts" module>
 	import { TOGGLE_LINK_COMMAND } from '@lexical/link';
-	import { HeadingNode } from '@lexical/rich-text';
 	import { T } from '@sveltevietnam/i18n/runtime';
 	import type { Message } from '@sveltevietnam/i18n/runtime';
 	import { Dropdown } from '@sveltevietnam/kit/components';
@@ -15,14 +14,12 @@
 	import * as m from '$data/locales/generated/messages';
 
 	import { CalloutStatusDropdown, FORMAT_CALLOUT_COMMAND } from './callout';
-	import { Editor, type HeadingLevel } from './editor.svelte';
+	import { Editor, type EditorInit, type HeadingLevel } from './editor.svelte';
 
-	export interface RichTextEditorProps {
+	export interface RichTextEditorProps extends EditorInit {
 		placeholder?: Message<'string', never>;
 		cache?: readonly [area: 'session' | 'local', key: string];
-		headings?: [min: HeadingLevel, max: HeadingLevel];
 		onchange?: (html: string) => void;
-		html?: string;
 	}
 
 	function getCachedHtml(cache: RichTextEditorProps['cache']): string | null {
@@ -53,30 +50,18 @@
 
 	const { routing } = Contexts.get();
 	let element: HTMLElement;
-	let editor = new Editor(html ?? getCachedHtml(cache));
+	let editor = new Editor({
+		html: html ?? getCachedHtml(cache),
+		headings,
+	});
 
 	onMount(() => {
-		const removeTransform = editor.lexical.registerNodeTransform(HeadingNode, (node) => {
-			const level = parseInt(node.getTag().slice(1));
-			const [min, max] = headings;
-			if (level < min) {
-				node.setTag(`h${min}`);
-			} else if (level > max) {
-				node.setTag(`h${max}`);
-			}
-		});
-
 		const debouncedSetCachedHtml = debounce(setCachedHtml, 500);
-		const offChangeHtml = on(element, 'changehtml', (event) => {
+		return on(element, 'changehtml', (event) => {
 			const html = (event as CustomEvent<{ html: string }>).detail.html;
 			onchange?.(html);
 			debouncedSetCachedHtml(html, cache);
 		});
-
-		return () => {
-			removeTransform();
-			offChangeHtml();
-		};
 	});
 
 	function undo() {
@@ -198,7 +183,6 @@
 	}
 	let currentBlock = $derived.by(() => {
 		if (editor.block.type === 'heading') {
-			console.log(editor.block.props.level);
 			return BLOCKS[`h${editor.block.props.level}`];
 		}
 		if (editor.block.type === 'list') {
