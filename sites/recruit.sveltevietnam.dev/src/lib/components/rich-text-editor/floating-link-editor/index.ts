@@ -2,10 +2,10 @@ import { $isLinkNode as isLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link';
 import { mergeRegister } from '@lexical/utils';
 import type { Language } from '@sveltevietnam/i18n';
 import {
-	$getSelection as getSelection,
-	$isRangeSelection as isRangeSelection,
-	$findMatchingParent as findMatchingParent,
-	$isNodeSelection as isNodeSelection,
+	$getSelection,
+	$isRangeSelection,
+	$findMatchingParent,
+	$isNodeSelection,
 	CLICK_COMMAND,
 	type LexicalEditor,
 	COMMAND_PRIORITY_LOW,
@@ -17,8 +17,8 @@ import { mount, unmount } from 'svelte';
 
 import * as m from '$data/locales/generated/messages';
 
-import { getSelectedNode } from '../utils/get-selected-node';
-import { isSelectingLink } from '../utils/is-selecting-link';
+import { $getSelectedNode } from '../utils/get-selected-node';
+import { $isSelectingLink } from '../utils/is-selecting-link';
 
 import { default as FloatingLinkEditor } from './FloatingLinkEditor.svelte';
 
@@ -86,11 +86,11 @@ export function registerFloatingLinkEditor(config: RegisterFloatingLinkEditorArg
 	}
 
 	function getTrigger(): HTMLElement | null {
-		const selection = getSelection();
+		const selection = $getSelection();
 		const nativeSelection = getDOMSelection(lexical._window);
 
 		if (!selection) return null;
-		if (isNodeSelection(selection)) {
+		if ($isNodeSelection(selection)) {
 			const nodes = selection.getNodes();
 			if (nodes.length > 0) {
 				const element = lexical.getElementByKey(nodes[0].getKey());
@@ -109,10 +109,10 @@ export function registerFloatingLinkEditor(config: RegisterFloatingLinkEditorArg
 		lexical.registerCommand(
 			CLICK_COMMAND,
 			(payload) => {
-				const selection = getSelection();
-				if (isRangeSelection(selection)) {
-					const node = getSelectedNode(selection);
-					const linkNode = findMatchingParent(node, isLinkNode);
+				const selection = $getSelection();
+				if ($isRangeSelection(selection)) {
+					const node = $getSelectedNode(selection);
+					const linkNode = $findMatchingParent(node, isLinkNode);
 					if (isLinkNode(linkNode) && (payload.metaKey || payload.ctrlKey)) {
 						window.open(linkNode.getURL(), '_blank');
 						return true;
@@ -127,7 +127,7 @@ export function registerFloatingLinkEditor(config: RegisterFloatingLinkEditorArg
 		lexical.registerCommand(
 			SELECTION_CHANGE_COMMAND,
 			() => {
-				const link = isSelectingLink();
+				const link = $isSelectingLink();
 				if (link === null) {
 					unmountFloatingLinkEditor();
 					return false;

@@ -9,12 +9,12 @@ import {
 	$getSelection as getSelection,
 } from 'lexical';
 
-import { getSelectedNode } from './get-selected-node';
+import { $getSelectedNode } from './get-selected-node';
 
-export function isSelectingLink(): string | null {
+export function $isSelectingLink(): string | null {
 	const selection = getSelection();
 	if (isRangeSelection(selection)) {
-		const focusNode = getSelectedNode(selection);
+		const focusNode = $getSelectedNode(selection);
 		const focusLinkNode = findMatchingParent(focusNode, isLinkNode);
 		if (!focusLinkNode) {
 			return null;

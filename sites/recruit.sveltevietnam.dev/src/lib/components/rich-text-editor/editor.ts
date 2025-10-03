@@ -1,13 +1,10 @@
 import { registerDragonSupport } from '@lexical/dragon';
 import { namedSignals } from '@lexical/extension';
 import { createEmptyHistoryState, registerHistory } from '@lexical/history';
-import {
-	$generateNodesFromDOM as generateNodesFromDOM,
-	$generateHtmlFromNodes as generateHtmlFromNodes,
-} from '@lexical/html';
+import { $generateNodesFromDOM, $generateHtmlFromNodes } from '@lexical/html';
 import { LinkNode, registerLink } from '@lexical/link';
 import {
-	$isListNode as isListNode,
+	$isListNode,
 	ListNode,
 	registerList,
 	ListItemNode,
@@ -19,25 +16,22 @@ import {
 	HeadingNode,
 	QuoteNode,
 	registerRichText,
-	$isHeadingNode as isHeadingNode,
-	$createHeadingNode as createHeadingNode,
-	$createQuoteNode as createQuoteNode,
+	$isHeadingNode,
+	$createHeadingNode,
+	$createQuoteNode,
 } from '@lexical/rich-text';
 import { $setBlocksType as setBlocksType } from '@lexical/selection';
-import {
-	$canShowPlaceholder as canShowPlaceholder,
-	$canShowPlaceholderCurry as canShowPlaceholderCurry,
-} from '@lexical/text';
+import { $canShowPlaceholder, $canShowPlaceholderCurry } from '@lexical/text';
 import { mergeRegister, $getNearestNodeOfType as getNearestNodeOfType } from '@lexical/utils';
 import type { Language } from '@sveltevietnam/i18n';
 import type { Status } from '@sveltevietnam/kit/constants';
 import {
 	createEditor,
 	type LexicalEditor,
-	$isRangeSelection as isRangeSelection,
-	$getSelection as getSelection,
-	$createParagraphNode as createParagraphNode,
-	$insertNodes as insertNodes,
+	$isRangeSelection,
+	$getSelection,
+	$createParagraphNode,
+	$insertNodes,
 	type UpdateListener,
 } from 'lexical';
 import debounce from 'lodash.debounce';
@@ -45,14 +39,9 @@ import { createAttachmentKey } from 'svelte/attachments';
 import type { HTMLAttributes } from 'svelte/elements';
 import { createSubscriber } from 'svelte/reactivity';
 
-import {
-	$isCalloutNode as isCalloutNode,
-	$createCalloutNode as createCalloutNode,
-	CalloutNode,
-	registerCallout,
-} from './callout';
+import { $isCalloutNode, $createCalloutNode, CalloutNode, registerCallout } from './callout';
 import { registerFloatingLinkEditor } from './floating-link-editor';
-import { isSelectingLink } from './utils/is-selecting-link';
+import { $isSelectingLink } from './utils/is-selecting-link';
 
 interface EditorInlineState {
 	format: {
@@ -135,9 +124,9 @@ export class Editor {
 	#subscribeToInline = createSubscriber((update) =>
 		this.lexical.registerUpdateListener(({ editorState }) => {
 			editorState.read(() => {
-				const selection = getSelection();
-				this.#inline.link = isSelectingLink();
-				if (isRangeSelection(selection)) {
+				const selection = $getSelection();
+				this.#inline.link = $isSelectingLink();
+				if ($isRangeSelection(selection)) {
 					this.#inline.format.bold = selection.hasFormat('bold');
 					this.#inline.format.italic = selection.hasFormat('italic');
 					this.#inline.format.underline = selection.hasFormat('underline');
@@ -157,20 +146,20 @@ export class Editor {
 	#subscribeToBlock = createSubscriber((update) =>
 		this.lexical.registerUpdateListener(({ editorState }) => {
 			editorState.read(() => {
-				const selection = getSelection();
+				const selection = $getSelection();
 				// do some magic to get block type
-				if (isRangeSelection(selection)) {
+				if ($isRangeSelection(selection)) {
 					const anchor = selection.anchor.getNode();
 					const top = anchor.getTopLevelElement();
 					if (top === null) return;
-					if (isHeadingNode(top)) {
+					if ($isHeadingNode(top)) {
 						this.#block = {
 							type: 'heading',
 							props: {
 								level: parseInt(top.getTag().slice(1), 10) as HeadingLevel,
 							},
 						};
-					} else if (isListNode(top)) {
+					} else if ($isListNode(top)) {
 						const parentList = getNearestNodeOfType<ListNode>(anchor, ListNode);
 						let listType = parentList ? parentList.getListType() : top.getListType();
 						if (listType === 'check') {
@@ -183,7 +172,7 @@ export class Editor {
 								listType,
 							},
 						};
-					} else if (isCalloutNode(top)) {
+					} else if ($isCalloutNode(top)) {
 						this.#block = {
 							type: 'callout',
 							props: {
@@ -213,8 +202,8 @@ export class Editor {
 			debounce(
 				(({ editorState }) => {
 					editorState.read(() => {
-						const empty = canShowPlaceholder(this.lexical.isComposing());
-						this.#html = empty ? '' : generateHtmlFromNodes(this.lexical);
+						const empty = $canShowPlaceholder(this.lexical.isComposing());
+						this.#html = empty ? '' : $generateHtmlFromNodes(this.lexical);
 						update();
 					});
 				}) as UpdateListener,
@@ -232,7 +221,7 @@ export class Editor {
 	#subscribeToCanShowPlaceholder = createSubscriber((update) =>
 		this.lexical.registerUpdateListener(({ editorState }) => {
 			const canShowPlaceholder = editorState.read(
-				canShowPlaceholderCurry(this.lexical.isComposing()),
+				$canShowPlaceholderCurry(this.lexical.isComposing()),
 			);
 			if (this.#canShowPlaceholder !== canShowPlaceholder) {
 				this.#canShowPlaceholder = canShowPlaceholder;
@@ -270,8 +259,8 @@ export class Editor {
 					this.lexical.update(() => {
 						const parser = new DOMParser();
 						const dom = parser.parseFromString(this.#init.html ?? '', 'text/html');
-						const nodes = generateNodesFromDOM(this.lexical, dom);
-						insertNodes(nodes);
+						const nodes = $generateNodesFromDOM(this.lexical, dom);
+						$insertNodes(nodes);
 					});
 				} else if (cache) {
 					const json = cache.area.getItem(cache.key);
@@ -289,8 +278,8 @@ export class Editor {
 					this.lexical.registerUpdateListener(
 						debounce(({ editorState }) => {
 							editorState.read(() => {
-								const empty = canShowPlaceholder(this.lexical.isComposing());
-								this.#html = empty ? '' : generateHtmlFromNodes(this.lexical);
+								const empty = $canShowPlaceholder(this.lexical.isComposing());
+								this.#html = empty ? '' : $generateHtmlFromNodes(this.lexical);
 								element.dispatchEvent(
 									new CustomEvent<{ html: string }>('changehtml', {
 										detail: {
@@ -311,7 +300,7 @@ export class Editor {
 							validateUrl: function (url) {
 								try {
 									if (!url) return true;
-									// eslint-disable-next-line svelte/prefer-svelte-reactivity
+
 									new URL(url);
 									return true;
 								} catch {
@@ -375,22 +364,22 @@ export class Editor {
 		}
 
 		this.lexical.update(() => {
-			const selection = getSelection();
+			const selection = $getSelection();
 			setBlocksType(selection, () => {
 				switch (type) {
 					case 'quote':
-						return createQuoteNode();
+						return $createQuoteNode();
 
 					case 'heading': {
-						return createHeadingNode(`h${(props as HeadingBlockState['props']).level}`);
+						return $createHeadingNode(`h${(props as HeadingBlockState['props']).level}`);
 					}
 
 					case 'callout':
-						return createCalloutNode((props as CalloutBlockState['props']).status);
+						return $createCalloutNode((props as CalloutBlockState['props']).status);
 
 					case 'paragraph':
 					default:
-						return createParagraphNode();
+						return $createParagraphNode();
 				}
 			});
 		});
