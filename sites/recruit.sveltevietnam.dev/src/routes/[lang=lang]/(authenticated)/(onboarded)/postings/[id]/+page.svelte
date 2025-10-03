@@ -266,7 +266,7 @@
 					</h2>
 					<div class="prose max-w-full" data-testid="job-description">
 						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-						{@html data.posting.description}
+						{@html sanitizeHtml(data.posting.description, { allowedClasses: { p: [/callout/] } })}
 					</div>
 				</section>
 
