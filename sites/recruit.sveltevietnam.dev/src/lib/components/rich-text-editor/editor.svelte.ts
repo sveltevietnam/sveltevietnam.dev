@@ -24,7 +24,10 @@ import {
 	$createQuoteNode as createQuoteNode,
 } from '@lexical/rich-text';
 import { $setBlocksType as setBlocksType } from '@lexical/selection';
-import { $canShowPlaceholderCurry as canShowPlaceholderCurry } from '@lexical/text';
+import {
+	$canShowPlaceholder as canShowPlaceholder,
+	$canShowPlaceholderCurry as canShowPlaceholderCurry,
+} from '@lexical/text';
 import { mergeRegister, $getNearestNodeOfType as getNearestNodeOfType } from '@lexical/utils';
 import type { Language } from '@sveltevietnam/i18n';
 import type { Status } from '@sveltevietnam/kit/constants';
@@ -35,6 +38,7 @@ import {
 	$getSelection as getSelection,
 	$createParagraphNode as createParagraphNode,
 	$insertNodes as insertNodes,
+	type UpdateListener,
 } from 'lexical';
 import debounce from 'lodash.debounce';
 import { createAttachmentKey } from 'svelte/attachments';
@@ -97,6 +101,17 @@ export interface EditorInit {
 	html?: string | null;
 	/** min & max heading levels to enable */
 	headings?: [min: HeadingLevel, max: HeadingLevel];
+	/** save and restore on init, */
+	cache?:
+		| string
+		| {
+				/** default to storage */
+				area?: 'local' | 'session';
+				/** storage key */
+				key: string;
+				/** default to 500ms */
+				debounce?: number;
+		  };
 }
 
 export class Editor {
@@ -195,12 +210,16 @@ export class Editor {
 	#html: string = '';
 	#subscribeToHtml = createSubscriber((update) =>
 		this.lexical.registerUpdateListener(
-			debounce(({ editorState }) => {
-				editorState.read(() => {
-					this.#html = generateHtmlFromNodes(this.lexical);
-					update();
-				});
-			}, 200),
+			debounce(
+				(({ editorState }) => {
+					editorState.read(() => {
+						const empty = canShowPlaceholder(this.lexical.isComposing());
+						this.#html = empty ? '' : generateHtmlFromNodes(this.lexical);
+						update();
+					});
+				}) as UpdateListener,
+				200,
+			),
 		),
 	);
 
@@ -245,6 +264,7 @@ export class Editor {
 		return {
 			[createAttachmentKey()]: (element) => {
 				this.lexical.setRootElement(element);
+				const cache = resolveCacheConfig(this.#init.cache);
 
 				if (this.#init.html) {
 					this.lexical.update(() => {
@@ -253,13 +273,24 @@ export class Editor {
 						const nodes = generateNodesFromDOM(this.lexical, dom);
 						insertNodes(nodes);
 					});
+				} else if (cache) {
+					const json = cache.area.getItem(cache.key);
+					if (json) {
+						try {
+							const editorState = this.lexical.parseEditorState(json);
+							this.lexical.setEditorState(editorState);
+						} catch {
+							cache.area.removeItem(cache.key);
+						}
+					}
 				}
 
-				return mergeRegister(
+				const registrations = [
 					this.lexical.registerUpdateListener(
 						debounce(({ editorState }) => {
 							editorState.read(() => {
-								this.#html = generateHtmlFromNodes(this.lexical);
+								const empty = canShowPlaceholder(this.lexical.isComposing());
+								this.#html = empty ? '' : generateHtmlFromNodes(this.lexical);
 								element.dispatchEvent(
 									new CustomEvent<{ html: string }>('changehtml', {
 										detail: {
@@ -299,18 +330,33 @@ export class Editor {
 						lang,
 					}),
 					registerCallout(this.lexical),
-					this.#init.headings
-						? this.lexical.registerNodeTransform(HeadingNode, (node) => {
-								const level = parseInt(node.getTag().slice(1));
-								const [min, max] = this.#init.headings ?? [1, 6];
-								if (level < min) {
-									node.setTag(`h${min}`);
-								} else if (level > max) {
-									node.setTag(`h${max}`);
-								}
-							})
-						: () => {},
-				);
+				];
+
+				if (this.#init.headings) {
+					const [min, max] = this.#init.headings;
+					registrations.push(
+						this.lexical.registerNodeTransform(HeadingNode, (node) => {
+							const level = parseInt(node.getTag().slice(1));
+							if (level < min) {
+								node.setTag(`h${min}`);
+							} else if (level > max) {
+								node.setTag(`h${max}`);
+							}
+						}),
+					);
+				}
+
+				if (cache) {
+					registrations.push(
+						this.lexical.registerUpdateListener(
+							debounce(({ editorState }) => {
+								cache.area.setItem(cache.key, JSON.stringify(editorState));
+							}, cache.ms),
+						),
+					);
+				}
+
+				return mergeRegister(...registrations);
 			},
 		};
 	}
@@ -349,4 +395,22 @@ export class Editor {
 			});
 		});
 	}
+}
+
+function resolveCacheConfig(cache: EditorInit['cache']) {
+	if (!cache) return null;
+	let area = localStorage;
+	let ms = 500;
+	let key: string;
+	if (typeof cache === 'string') {
+		key = cache;
+	} else {
+		if (cache.area === 'session') {
+			area = sessionStorage;
+		}
+		ms = cache.debounce ?? 500;
+		key = cache.key;
+	}
+
+	return { area, ms, key };
 }

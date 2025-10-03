@@ -6,7 +6,6 @@
 	import type { Status } from '@sveltevietnam/kit/constants';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { FORMAT_TEXT_COMMAND, REDO_COMMAND, UNDO_COMMAND } from 'lexical';
-	import debounce from 'lodash.debounce';
 	import { onMount } from 'svelte';
 	import { type ClassValue } from 'svelte/elements';
 	import { on } from 'svelte/events';
@@ -18,30 +17,7 @@
 
 	export interface RichTextEditorProps extends EditorInit {
 		placeholder?: Message<'string', never>;
-		cache?: readonly [area: 'session' | 'local', key: string];
 		onchange?: (html: string) => void;
-	}
-
-	function getCachedHtml(cache: RichTextEditorProps['cache']): string | null {
-		if (!cache) return null;
-		const [area, key] = cache;
-		if (area === 'local' && 'localStorage' in globalThis) {
-			return localStorage.getItem(key);
-		} else if (area === 'session' && 'sessionStorage' in globalThis) {
-			return sessionStorage.getItem(key);
-		}
-		return null;
-	}
-
-	function setCachedHtml(html: string, cache: RichTextEditorProps['cache']) {
-		if (html && cache) {
-			const [area, key] = cache;
-			if (area === 'local') {
-				localStorage.setItem(key, html);
-			} else if (area === 'session') {
-				sessionStorage.setItem(key, html);
-			}
-		}
 	}
 </script>
 
@@ -50,17 +26,11 @@
 
 	const { routing } = Contexts.get();
 	let element: HTMLElement;
-	let editor = new Editor({
-		html: html ?? getCachedHtml(cache),
-		headings,
-	});
+	let editor = new Editor({ html, headings, cache });
 
 	onMount(() => {
-		const debouncedSetCachedHtml = debounce(setCachedHtml, 500);
 		return on(element, 'changehtml', (event) => {
-			const html = (event as CustomEvent<{ html: string }>).detail.html;
-			onchange?.(html);
-			debouncedSetCachedHtml(html, cache);
+			onchange?.((event as CustomEvent<{ html: string }>).detail.html);
 		});
 	});
 

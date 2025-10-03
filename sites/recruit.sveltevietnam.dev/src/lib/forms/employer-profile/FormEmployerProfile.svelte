@@ -39,7 +39,7 @@
 		notifications: { toaster },
 	} = Contexts.get();
 
-	const descriptionCache = ['local', 'employer-desc-draft'] as const;
+	const descriptionCacheKey = 'employer-desc-draft';
 
 	const { form, enhance, constraints, errors, delayed, timeout } = superForm<
 		EmployerProfileInput<true>
@@ -53,7 +53,7 @@
 		onUpdated({ form }) {
 			if (form.valid) {
 				onSuccess?.();
-				localStorage.removeItem(descriptionCache[1]);
+				localStorage.removeItem(descriptionCacheKey);
 			}
 		},
 	});
@@ -199,7 +199,7 @@
 			</label>
 			<RichTextEditor
 				headings={[3, 5]}
-				cache={descriptionCache}
+				cache={descriptionCacheKey}
 				onchange={(value) => ($form.description = value)}
 				html={data.data.description}
 				placeholder={m['inputs.employer.desc.placeholder']}
