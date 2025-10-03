@@ -94,7 +94,11 @@ export type EditorBlockState =
 export class Editor {
 	public lexical: LexicalEditor;
 
-	#subscribeToInline: ReturnType<typeof createSubscriber>;
+	/// ========== (Lazy) reactive inline state ==========
+	get inline(): EditorInlineState {
+		this.#subscribeToInline();
+		return this.#inline;
+	}
 	#inline: EditorInlineState = {
 		format: {
 			bold: false,
@@ -104,15 +108,92 @@ export class Editor {
 		},
 		link: null,
 	};
+	#subscribeToInline = createSubscriber((update) =>
+		this.lexical.registerUpdateListener(({ editorState }) => {
+			editorState.read(() => {
+				const selection = getSelection();
+				this.#inline.link = isSelectingLink();
+				if (isRangeSelection(selection)) {
+					this.#inline.format.bold = selection.hasFormat('bold');
+					this.#inline.format.italic = selection.hasFormat('italic');
+					this.#inline.format.underline = selection.hasFormat('underline');
+					this.#inline.format.code = selection.hasFormat('code');
+				}
+				update();
+			});
+		}),
+	);
 
-	#subscribeToBlock: ReturnType<typeof createSubscriber>;
-	#block: EditorBlockState = {
-		type: 'paragraph',
-		props: undefined,
-	};
+	/// ========== (Lazy) reactive block state ==========
+	get block(): EditorBlockState {
+		this.#subscribeToBlock();
+		return this.#block;
+	}
+	#block: EditorBlockState = { type: 'paragraph' };
+	#subscribeToBlock = createSubscriber((update) =>
+		this.lexical.registerUpdateListener(({ editorState }) => {
+			editorState.read(() => {
+				const selection = getSelection();
+				// do some magic to get block type
+				if (isRangeSelection(selection)) {
+					const anchor = selection.anchor.getNode();
+					const top = anchor.getTopLevelElement();
+					if (top === null) return;
+					if (isHeadingNode(top)) {
+						this.#block = {
+							type: 'heading',
+							props: {
+								level: parseInt(top.getTag().slice(1), 10) as HeadingLevel,
+							},
+						};
+					} else if (isListNode(top)) {
+						const parentList = getNearestNodeOfType<ListNode>(anchor, ListNode);
+						let listType = parentList ? parentList.getListType() : top.getListType();
+						if (listType === 'check') {
+							// don't support check list for now
+							listType = 'bullet';
+						}
+						this.#block = {
+							type: 'list',
+							props: {
+								listType,
+							},
+						};
+					} else if (isCalloutNode(top)) {
+						this.#block = {
+							type: 'callout',
+							props: {
+								status: top.getStatus() as Status,
+							},
+						};
+					} else {
+						this.#block = { type: top.getType() } as EditorBlockState;
+					}
+					update();
+				} else {
+					// TODO: handle when isNodeSelection === true?
+					this.#block.type = 'paragraph';
+				}
+			});
+		}),
+	);
 
-	#subscribeToHtml: ReturnType<typeof createSubscriber>;
+	/// ========== (Lazy) reactive output html ==========
+	get html(): string {
+		this.#subscribeToHtml();
+		return this.#html;
+	}
 	#html: string = '';
+	#subscribeToHtml = createSubscriber((update) =>
+		this.lexical.registerUpdateListener(
+			debounce(({ editorState }) => {
+				editorState.read(() => {
+					this.#html = generateHtmlFromNodes(this.lexical);
+					update();
+				});
+			}, 200),
+		),
+	);
 
 	constructor(html?: string | null) {
 		this.#html = html ?? '';
@@ -131,83 +212,6 @@ export class Editor {
 				link: 'cursor-pointer',
 			},
 		});
-
-		// subscribe to state change
-		this.#subscribeToInline = createSubscriber((update) => {
-			const off = this.lexical.registerUpdateListener(({ editorState }) => {
-				editorState.read(() => {
-					const selection = getSelection();
-					this.#inline.link = isSelectingLink();
-					if (isRangeSelection(selection)) {
-						this.#inline.format.bold = selection.hasFormat('bold');
-						this.#inline.format.italic = selection.hasFormat('italic');
-						this.#inline.format.underline = selection.hasFormat('underline');
-						this.#inline.format.code = selection.hasFormat('code');
-					}
-					update();
-				});
-			});
-			return off;
-		});
-		this.#subscribeToBlock = createSubscriber((update) => {
-			const off = this.lexical.registerUpdateListener(({ editorState }) => {
-				editorState.read(() => {
-					const selection = getSelection();
-					// do some magic to get block type
-					if (isRangeSelection(selection)) {
-						const anchor = selection.anchor.getNode();
-						const top = anchor.getTopLevelElement();
-						if (top === null) return;
-						if (isHeadingNode(top)) {
-							this.#block = {
-								type: 'heading',
-								props: {
-									level: parseInt(top.getTag().slice(1), 10) as HeadingLevel,
-								},
-							};
-						} else if (isListNode(top)) {
-							const parentList = getNearestNodeOfType<ListNode>(anchor, ListNode);
-							let listType = parentList ? parentList.getListType() : top.getListType();
-							if (listType === 'check') {
-								// don't support check list for now
-								listType = 'bullet';
-							}
-							this.#block = {
-								type: 'list',
-								props: {
-									listType,
-								},
-							};
-						} else if (isCalloutNode(top)) {
-							this.#block = {
-								type: 'callout',
-								props: {
-									status: top.getStatus() as Status,
-								},
-							};
-						} else {
-							this.#block = { type: top.getType() } as EditorBlockState;
-						}
-						update();
-					} else {
-						// TODO: handle when isNodeSelection === true?
-						this.#block.type = 'paragraph';
-					}
-				});
-			});
-			return off;
-		});
-		this.#subscribeToHtml = createSubscriber((update) => {
-			const off = this.lexical.registerUpdateListener(
-				debounce(({ editorState }) => {
-					editorState.read(() => {
-						this.#html = generateHtmlFromNodes(this.lexical);
-						update();
-					});
-				}, 200),
-			);
-			return off;
-		});
 	}
 
 	attach(lang: () => Language): HTMLAttributes<HTMLElement> {
@@ -224,23 +228,21 @@ export class Editor {
 					});
 				}
 
-				const unregisterHtmlListener = this.lexical.registerUpdateListener(
-					debounce(({ editorState }) => {
-						editorState.read(() => {
-							this.#html = generateHtmlFromNodes(this.lexical);
-							element.dispatchEvent(
-								new CustomEvent<{ html: string }>('changehtml', {
-									detail: {
-										html: this.#html,
-									},
-								}),
-							);
-						});
-					}, 200),
-				);
-
-				// registering plugins
-				const unregisterPlugins = mergeRegister(
+				return mergeRegister(
+					this.lexical.registerUpdateListener(
+						debounce(({ editorState }) => {
+							editorState.read(() => {
+								this.#html = generateHtmlFromNodes(this.lexical);
+								element.dispatchEvent(
+									new CustomEvent<{ html: string }>('changehtml', {
+										detail: {
+											html: this.#html,
+										},
+									}),
+								);
+							});
+						}, 200),
+					),
 					registerRichText(this.lexical),
 					registerDragonSupport(this.lexical),
 					registerHistory(this.lexical, createEmptyHistoryState(), 300),
@@ -271,11 +273,6 @@ export class Editor {
 					}),
 					registerCallout(this.lexical),
 				);
-
-				return () => {
-					unregisterPlugins();
-					unregisterHtmlListener();
-				};
 			},
 		};
 	}
@@ -313,20 +310,5 @@ export class Editor {
 				}
 			});
 		});
-	}
-
-	get inline(): EditorInlineState {
-		this.#subscribeToInline();
-		return this.#inline;
-	}
-
-	get block(): EditorBlockState {
-		this.#subscribeToBlock();
-		return this.#block;
-	}
-
-	get html(): string {
-		this.#subscribeToHtml();
-		return this.#html;
 	}
 }
