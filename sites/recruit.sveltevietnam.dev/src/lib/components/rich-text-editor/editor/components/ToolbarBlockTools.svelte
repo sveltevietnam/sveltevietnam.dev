@@ -65,6 +65,7 @@
 	};
 </script>
 
+<!-- TODO: add tooltip on hover with more info for each action -->
 <script lang="ts">
 	let { editor }: ToolbarBlockToolsProps = $props();
 	let open = $state(false);
