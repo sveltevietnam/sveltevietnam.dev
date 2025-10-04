@@ -52,8 +52,8 @@
 		onError: createSuperFormGenericErrorHandler(toaster),
 		onUpdated({ form }) {
 			if (form.valid) {
-				onSuccess?.();
 				localStorage.removeItem(descriptionCacheKey);
+				onSuccess?.();
 			}
 		},
 	});

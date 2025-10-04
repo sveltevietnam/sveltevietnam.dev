@@ -52,8 +52,8 @@
 			onError: createSuperFormGenericErrorHandler(toaster),
 			onResult({ result }) {
 				if (result.type === 'redirect') {
-					toaster.success({ message: successMessage });
 					localStorage.removeItem(descriptionCacheKey);
+					toaster.success({ message: successMessage });
 				}
 			},
 		},

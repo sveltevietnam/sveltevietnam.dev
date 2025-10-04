@@ -101,7 +101,7 @@ export class PageProfile extends CommonPageObjectModel {
 		await Promise.all([
 			expect(this.forms.email.input).toHaveValue(data.email),
 			expect(this.forms.info.inputs.name).toHaveValue(data.name),
-			expect(this.forms.info.inputs.description).toHaveValue(data.description),
+			expect(this.forms.info.inputs.description).toHaveText(data.description.replace(/\n/g, '')),
 			expect(this.forms.info.inputs.website).toHaveValue(data.website ?? ''),
 			expect(this.forms.info.inputs.agreement).toBeChecked(),
 			data.image
@@ -124,7 +124,11 @@ export class PageProfile extends CommonPageObjectModel {
 		// 1. User fills text-based info
 		await this.forms.info.inputs.name.fill(data.name);
 		if (data.website) await this.forms.info.inputs.website.fill(data.website);
-		await this.forms.info.inputs.description.fill(data.description);
+
+		await this.forms.info.inputs.description.press('Control+A');
+		await this.forms.info.inputs.description.press('Backspace');
+		await this.forms.info.inputs.description.pressSequentially(data.description);
+		await this.page.waitForTimeout(280); // wait for debounce of rich text editor output -> description input
 
 		// 2. User uploads image
 		const fileChooserPromise = this.page.waitForEvent('filechooser');

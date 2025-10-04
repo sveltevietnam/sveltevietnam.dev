@@ -93,7 +93,11 @@ export class PageOnboarding extends CommonPageObjectModel {
 		// 1. User fills text-based info
 		await this.inputs.name.input.fill(data.name);
 		if (data.website) await this.inputs.website.input.fill(data.website);
-		await this.inputs.description.input.fill(data.description);
+
+		await this.inputs.description.input.press('Control+A');
+		await this.inputs.description.input.press('Backspace');
+		await this.inputs.description.input.pressSequentially(data.description);
+		await this.page.waitForTimeout(280); // wait for debounce of rich text editor output -> description input
 
 		// 2. User uploads image
 		const fileChooserPromise = this.page.waitForEvent('filechooser');

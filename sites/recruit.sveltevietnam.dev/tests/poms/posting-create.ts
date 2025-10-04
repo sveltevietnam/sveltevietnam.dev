@@ -123,7 +123,11 @@ export class PagePostingCreate extends CommonPageObjectModel {
 		await this.form.inputs.applicationMethod.input.selectOption({ value: data.applicationMethod });
 		await this.form.inputs.applicationLink.input.fill(data.applicationLink);
 		await this.form.inputs.expiredAt.input.fill(formatDate(data.expiredAt, '-'));
-		await this.form.inputs.description.input.fill(data.description);
+
+		await this.form.inputs.description.input.press('Control+A');
+		await this.form.inputs.description.input.press('Backspace');
+		await this.form.inputs.description.input.pressSequentially(data.description);
+		await this.page.waitForTimeout(280); // wait for debounce of rich text editor output -> description input
 	}
 
 	async submit(id: string): Promise<import('./posting-details').PagePostingDetails> {

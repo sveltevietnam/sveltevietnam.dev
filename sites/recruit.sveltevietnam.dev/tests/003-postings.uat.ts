@@ -2,6 +2,7 @@ import type { Faker } from '@faker-js/faker';
 import { expect } from '@playwright/test';
 import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
 import { eq } from 'drizzle-orm';
+import sanitizeHtml from 'sanitize-html';
 
 import * as m from '../src/data/locales/generated/messages';
 import {
@@ -120,11 +121,17 @@ testWithAuthenticatedEmployer(
 				where: (table, { eq }) => eq(table.id, posting.id),
 			}),
 		);
-		expect(dbPosting).toMatchObject({
+		expect({
+			...dbPosting,
+			description: sanitizeHtml(dbPosting?.description ?? '', {
+				allowedTags: [],
+				allowedAttributes: {},
+			}),
+		}).toMatchObject({
 			id: posting.id,
 			employerId: employer.id,
 			title: posting.title,
-			description: posting.description,
+			description: posting.description.replace(/\n/g, ''),
 			location: posting.location,
 			salary: posting.salary,
 			type: posting.type,
@@ -190,9 +197,6 @@ testWithAuthenticatedEmployer(
 				el.removeAttribute('max');
 				el.removeAttribute('min');
 			}),
-			pomPostingCreate.form.inputs.description.input.evaluate((el) =>
-				el.removeAttribute('required'),
-			),
 		]);
 
 		// User tries to submit empty form & see errors for all required fields

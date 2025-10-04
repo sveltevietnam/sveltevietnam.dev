@@ -110,7 +110,6 @@ test.describe(() => {
 					el.removeAttribute('required');
 					el.setAttribute('type', 'text'); // make it text so that invalid url can be tested
 				}),
-				pomOnboarding.inputs.description.input.evaluate((el) => el.removeAttribute('required')),
 				pomOnboarding.inputs.image.input.evaluate((el) => {
 					el.removeAttribute('required');
 					el.removeAttribute('accept'); // make it accept all files so that invalid file can be tested
