@@ -3,19 +3,32 @@
 	import type { Message } from '@sveltevietnam/i18n/runtime';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { onMount } from 'svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
 	import { on } from 'svelte/events';
 
 	import { Editor, type EditorInit } from './editor';
 	import Toolbar from './editor/components/Toolbar.svelte';
 
-	export interface RichTextEditorProps extends EditorInit {
+	export interface RichTextEditorProps
+		extends EditorInit,
+			Omit<HTMLAttributes<HTMLElement>, 'onchange' | 'placeholder'> {
 		placeholder?: Message<'string', never>;
 		onchange?: (html: string) => void;
 	}
 </script>
 
 <script lang="ts">
-	let { onchange, cache, headings = [1, 6], html, placeholder }: RichTextEditorProps = $props();
+	let {
+		onchange,
+		cache,
+		headings = [1, 6],
+		html,
+		placeholder,
+		class: cls,
+		'aria-labelledby': ariaLabelledby,
+		id,
+		...rest
+	}: RichTextEditorProps = $props();
 
 	const { routing } = Contexts.get();
 	let element: HTMLElement;
@@ -28,13 +41,24 @@
 	});
 </script>
 
-<div class="border-onehalf bg-surface relative flex flex-col-reverse border-current">
+<div
+	class={[
+		'border-onehalf bg-surface relative flex flex-col-reverse border-current',
+		'focus-within:outline-outline-focus focus-within:border-outline-focus focus-within:outline focus-within:outline-offset-1',
+		cls,
+	]}
+	{...rest}
+>
 	<Toolbar {editor} />
 
 	<div class="z-1 relative">
 		<!-- composer -->
 		<div
-			class="prose h-160 max-w-full overflow-auto px-4 py-3 outline-none resize-y"
+			role="textbox"
+			tabindex="0"
+			{...ariaLabelledby ? { 'aria-labelledby': ariaLabelledby } : {}}
+			{...id ? { id } : {}}
+			class="prose h-160 max-w-full resize-y overflow-auto px-4 py-3 outline-none"
 			contenteditable
 			bind:this={element}
 			{...editor.attach(() => routing.lang)}

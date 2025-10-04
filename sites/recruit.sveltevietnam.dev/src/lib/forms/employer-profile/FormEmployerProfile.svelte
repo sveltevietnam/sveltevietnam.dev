@@ -194,10 +194,11 @@
 
 		<!-- description -->
 		<div class="space-y-1">
-			<label class="block" for="description">
+			<p class="block" id="description-label">
 				<T message={m['inputs.employer.desc.label']} />:
-			</label>
+			</p>
 			<RichTextEditor
+				aria-labelledby="description-label"
 				headings={[3, 5]}
 				cache={descriptionCacheKey}
 				onchange={(value) => ($form.description = value)}
@@ -207,7 +208,6 @@
 			<input
 				type="text"
 				name="description"
-				id="description"
 				bind:value={$form.description}
 				{...$errors.description && {
 					'aria-invalid': 'true',
