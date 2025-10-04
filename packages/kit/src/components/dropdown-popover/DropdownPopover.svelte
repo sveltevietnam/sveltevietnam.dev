@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { autoUpdate, computePosition, offset, shift, flip } from '@floating-ui/dom';
+	import { onMount } from 'svelte';
 
 	import type { DropdownPopoverProps } from '.';
 
@@ -22,11 +23,18 @@
 
 	let control: HTMLButtonElement;
 	let target: HTMLDivElement;
-	let cleanup = () => {};
 	function handleBeforeToggle(e: ToggleEvent) {
 		open = e.newState === 'open';
-		if (e.newState !== 'open') return cleanup();
-		cleanup = autoUpdate(control, target, async () => {
+	}
+	$effect(() => {
+		// sync the HTML and JS open state
+		if (open !== target.matches(':popover-open')) {
+			target.togglePopover(open);
+		}
+	});
+
+	onMount(() => {
+		return autoUpdate(control, target, async () => {
 			const { x, y } = await computePosition(control, target, {
 				placement,
 				middleware: [
@@ -41,12 +49,6 @@
 			target.style.left = `${x}px`;
 			target.style.top = `${y}px`;
 		});
-	}
-	$effect(() => {
-		// sync the HTML and JS open state
-		if (open !== target.matches(':popover-open')) {
-			target.togglePopover(open);
-		}
 	});
 </script>
 
