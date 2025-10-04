@@ -34,7 +34,7 @@
 	<div class="z-1 relative">
 		<!-- composer -->
 		<div
-			class="prose h-160 max-w-full overflow-auto px-4 py-3 outline-none"
+			class="prose h-160 max-w-full overflow-auto px-4 py-3 outline-none resize-y"
 			contenteditable
 			bind:this={element}
 			{...editor.attach(() => routing.lang)}
