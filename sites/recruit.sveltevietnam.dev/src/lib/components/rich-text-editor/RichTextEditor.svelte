@@ -1,10 +1,9 @@
 <script lang="ts" module>
-	import { TOGGLE_LINK_COMMAND } from '@lexical/link';
 	import { T } from '@sveltevietnam/i18n/runtime';
 	import type { Message } from '@sveltevietnam/i18n/runtime';
 	import type { Status } from '@sveltevietnam/kit/constants';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
-	import { FORMAT_TEXT_COMMAND, REDO_COMMAND, UNDO_COMMAND } from 'lexical';
+	import { REDO_COMMAND, UNDO_COMMAND } from 'lexical';
 	import { onMount } from 'svelte';
 	import { type ClassValue } from 'svelte/elements';
 	import { on } from 'svelte/events';
@@ -13,6 +12,7 @@
 
 	import { Editor, type EditorInit } from './editor';
 	import ToolbarBlockTools from './editor/components/ToolbarBlockTools.svelte';
+	import ToolbarInlineTools from './editor/components/ToolbarInlineTools.svelte';
 	import { CalloutStatusDropdown, FORMAT_CALLOUT_COMMAND } from './editor/plugins/callout';
 
 	export interface RichTextEditorProps extends EditorInit {
@@ -40,30 +40,6 @@
 
 	function redo() {
 		editor.lexical.dispatchCommand(REDO_COMMAND, undefined);
-	}
-
-	function toggleBold() {
-		editor.lexical.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold');
-	}
-
-	function toggleItalic() {
-		editor.lexical.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic');
-	}
-
-	function toggleUnderline() {
-		editor.lexical.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline');
-	}
-
-	function toggleInlineCodeBlock() {
-		editor.lexical.dispatchCommand(FORMAT_TEXT_COMMAND, 'code');
-	}
-
-	function insertLink() {
-		if (editor.inline.link === null) {
-			editor.lexical.dispatchCommand(TOGGLE_LINK_COMMAND, '');
-		} else {
-			editor.lexical.dispatchCommand(TOGGLE_LINK_COMMAND, null);
-		}
 	}
 
 	function help() {}
@@ -116,46 +92,15 @@
 		)}
 
 		{@render separator('ml-2')}
+
 		<ToolbarBlockTools {editor} />
+
 		{@render separator('mr-2')}
 
-		<!-- toggle bold -->
-		{@render toolbarAction(
-			'i-[ph--text-b-bold]',
-			m['components.rich_text_editor.toolbar.bold'],
-			toggleBold,
-			editor.inline.format.bold,
-		)}
-		<!-- toggle italic -->
-		{@render toolbarAction(
-			'i-[ph--text-italic]',
-			m['components.rich_text_editor.toolbar.italic'],
-			toggleItalic,
-			editor.inline.format.italic,
-		)}
-		<!-- toggle underline -->
-		{@render toolbarAction(
-			'i-[ph--text-underline]',
-			m['components.rich_text_editor.toolbar.underline'],
-			toggleUnderline,
-			editor.inline.format.underline,
-		)}
-		<!-- toggle inline code block -->
-		{@render toolbarAction(
-			'i-[ph--code-simple]',
-			m['components.rich_text_editor.toolbar.code'],
-			toggleInlineCodeBlock,
-			editor.inline.format.code,
-		)}
-		<!-- insert link -->
-		{@render toolbarAction(
-			'i-[ph--link-simple-horizontal]',
-			m['components.rich_text_editor.toolbar.link'],
-			insertLink,
-			editor.inline.link !== null,
-		)}
+		<ToolbarInlineTools {editor} />
 
 		{@render separator('ml-auto')}
+
 		{#if editor.block.type === 'callout'}
 			<CalloutStatusDropdown
 				status={editor.block.props.status}

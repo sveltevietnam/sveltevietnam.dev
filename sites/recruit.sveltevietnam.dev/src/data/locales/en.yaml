@@ -323,11 +323,13 @@ messages:
           check_list: Check list
           blockquote: Blockquote
           codeblock: Code block
-        bold: Bold
-        italic: Italic
-        underline: Underline
-        code: Inline code
-        link: Hyperlink
+        inline:
+          name: Inline Tools
+          bold: Bold
+          italic: Italic
+          underline: Underline
+          code: Inline code
+          link: Hyperlink
         help: Help
       floating_link_editor:
         name: Link editor

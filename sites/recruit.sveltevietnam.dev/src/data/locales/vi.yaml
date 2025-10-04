@@ -321,11 +321,13 @@ messages:
           check_list: Danh sách kiểm
           blockquote: Trích dẫn
           codeblock: Đoạn mã
-        bold: In đậm
-        italic: In nghiêng
-        underline: Gạch chân
-        code: In mã
-        link: Chèn đường dẫn
+        inline:
+          name: Công cụ văn bản
+          bold: In đậm
+          italic: In nghiêng
+          underline: Gạch chân
+          code: In mã
+          link: Chèn đường dẫn
         help: Trợ giúp
       floating_link_editor:
         name: Chỉnh sửa đường dẫn
