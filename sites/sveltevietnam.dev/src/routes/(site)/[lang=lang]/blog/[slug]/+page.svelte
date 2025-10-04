@@ -3,7 +3,7 @@
 	import { T } from '@sveltevietnam/i18n/runtime';
 	import type { Message } from '@sveltevietnam/i18n/runtime';
 	import fallback16x9 from '@sveltevietnam/kit/assets/images/fallbacks/16x9.jpg?enhanced&w=2240;1540;1088;686&imagetools';
-	import { Breadcrumbs, CopyBtn } from '@sveltevietnam/kit/components';
+	import { Breadcrumbs, CopyBtn, NotByAiBadge } from '@sveltevietnam/kit/components';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { DialogQrCode } from '@sveltevietnam/kit/dialogs';
 	import { formatRelativeTime } from '@sveltevietnam/kit/utilities/datetime';
@@ -16,7 +16,6 @@
 	import { BlogPostListItem } from '$lib/components/blog-post-list-item';
 	import { GradientBackground } from '$lib/components/gradient-background';
 	import { HintedText } from '$lib/components/hinted-text';
-	import { NotByAiBadge } from '$lib/components/not-by-ai-badge';
 	import { Person } from '$lib/components/person';
 	import { TableOfContents } from '$lib/components/table-of-contents';
 	import { TextArrowLink } from '$lib/components/text-arrow-link';
@@ -107,6 +106,7 @@
 		<div class="tablet:mt-10 desktop:mt-15 relative mt-8">
 			{#if !data.post.ai}
 				<NotByAiBadge
+					sr={m['components.not_by_ai_badge']}
 					class="absolute -left-4 -top-4"
 					--color-fg="var(--color-surface)"
 					--color-bg="var(--color-on-surface)"

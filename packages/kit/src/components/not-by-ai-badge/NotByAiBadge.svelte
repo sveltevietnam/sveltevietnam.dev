@@ -1,14 +1,13 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n/runtime';
-	import type { HTMLAnchorAttributes } from 'svelte/elements';
 
-	import * as m from '$data/locales/generated/messages';
+	import type { NotByAiBadgeProps } from '.';
 
-	let attrs: HTMLAnchorAttributes = $props();
+	let { sr, ...rest }: NotByAiBadgeProps = $props();
 </script>
 
-<a href="https://notbyai.fyi/" {...attrs}>
-	<span class="sr-only"><T message={m['components.not_by_ai_badge']} /></span>
+<a href="https://notbyai.fyi/" {...rest}>
+	<span class="sr-only"><T message={sr} /></span>
 	<svg width="131" height="42" viewBox="0 0 131 42" fill="none" xmlns="http://www.w3.org/2000/svg">
 		<path
 			d="M0.5 0.5H116C124.008 0.5 130.5 6.99187 130.5 15V41.5H15C6.99187 41.5 0.5 35.0081 0.5 27V0.5Z"
@@ -19,8 +18,14 @@
 			d="M17.9605 24.1575C21.4266 26.9643 26.3836 26.9643 29.8497 24.1575L28.5095 22.5026C25.8248 24.6766 21.9854 24.6766 19.3007 22.5026L17.9605 24.1575Z"
 			fill="var(--color-fg, var(--color-on-surface))"
 		/>
-		<path d="M19.404 20.5134V17.6365H21.5336V20.5134H19.404Z" fill="var(--color-fg, var(--color-on-surface))" />
-		<path d="M26.012 17.6365V20.5134H28.1415V17.6365H26.012Z" fill="var(--color-fg, var(--color-on-surface))" />
+		<path
+			d="M19.404 20.5134V17.6365H21.5336V20.5134H19.404Z"
+			fill="var(--color-fg, var(--color-on-surface))"
+		/>
+		<path
+			d="M26.012 17.6365V20.5134H28.1415V17.6365H26.012Z"
+			fill="var(--color-fg, var(--color-on-surface))"
+		/>
 		<path
 			fill-rule="evenodd"
 			clip-rule="evenodd"
@@ -51,9 +56,15 @@
 			d="M97.783 27.1405H101.069L99.4525 21.9916L97.783 27.1405ZM97.95 19H101.008L105.594 32.0851H102.66L101.825 29.3953H97.0537L96.1575 32.0851H93.3281L97.95 19Z"
 			fill="var(--color-fg, var(--color-on-surface))"
 		/>
-		<path d="M110.59 32.0851H107.902V19H110.59V32.0851Z" fill="var(--color-fg, var(--color-on-surface))" />
+		<path
+			d="M110.59 32.0851H107.902V19H110.59V32.0851Z"
+			fill="var(--color-fg, var(--color-on-surface))"
+		/>
 		<path d="M106.306 19H112V21.2258H106.306V19Z" fill="var(--color-fg, var(--color-on-surface))" />
-		<path d="M106.306 29.8624H112V32.0882H106.306V29.8624Z" fill="var(--color-fg, var(--color-on-surface))" />
+		<path
+			d="M106.306 29.8624H112V32.0882H106.306V29.8624Z"
+			fill="var(--color-fg, var(--color-on-surface))"
+		/>
 		<path
 			d="M42.9754 9.89597L43.9953 13.8667L45.0301 9.89597H46.0303L47.07 13.8432L48.1544 9.89597H49.0456L47.5058 14.9347H46.5799L45.5005 11.0345L44.4558 14.9347H43.5299L42 9.89597H42.9754Z"
 			fill="var(--color-fg, var(--color-on-surface))"
