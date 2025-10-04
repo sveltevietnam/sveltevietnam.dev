@@ -110,7 +110,7 @@ export interface EditorInit {
 
 export class Editor {
 	public lexical: LexicalEditor;
-	#init: EditorInit;
+	public init: EditorInit;
 
 	/// ========== (Lazy) reactive inline state ==========
 	get inline(): EditorInlineState {
@@ -236,7 +236,7 @@ export class Editor {
 	);
 
 	constructor(init: EditorInit = {}) {
-		this.#init = init;
+		this.init = init;
 		this.lexical = createEditor({
 			namespace: 'Test',
 			nodes: [LinkNode, HeadingNode, QuoteNode, ListNode, ListItemNode, CalloutNode],
@@ -258,12 +258,12 @@ export class Editor {
 		return {
 			[createAttachmentKey()]: (element) => {
 				this.lexical.setRootElement(element);
-				const cache = resolveCacheConfig(this.#init.cache);
+				const cache = resolveCacheConfig(this.init.cache);
 
-				if (this.#init.html) {
+				if (this.init.html) {
 					this.lexical.update(() => {
 						const parser = new DOMParser();
-						const dom = parser.parseFromString(this.#init.html ?? '', 'text/html');
+						const dom = parser.parseFromString(this.init.html ?? '', 'text/html');
 						const nodes = $generateNodesFromDOM(this.lexical, dom);
 						$insertNodes(nodes);
 					});
@@ -326,8 +326,8 @@ export class Editor {
 					registerCallout(this.lexical),
 				];
 
-				if (this.#init.headings) {
-					const [min, max] = this.#init.headings;
+				if (this.init.headings) {
+					const [min, max] = this.init.headings;
 					registrations.push(
 						this.lexical.registerNodeTransform(HeadingNode, (node) => {
 							const level = parseInt(node.getTag().slice(1));
