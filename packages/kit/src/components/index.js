@@ -6,4 +6,5 @@ export * from './job-posting-list/index.js';
 export * from './breadcrumbs/index.js';
 export * from './copy-btn/index.js';
 export * from './dropdown/index.js';
+export * from './dropdown-popover/index.js';
 export * from './contentful/index.js';

@@ -160,6 +160,9 @@ importers:
 
   packages/kit:
     dependencies:
+      '@floating-ui/dom':
+        specifier: ^1.7.4
+        version: 1.7.4
       '@svelte-put/async-stack':
         specifier: ^1.5.1
         version: 1.5.1(svelte@5.38.6)

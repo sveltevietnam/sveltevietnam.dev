@@ -108,6 +108,7 @@
 		"vite-imagetools": "^8.0.0"
 	},
 	"dependencies": {
+		"@floating-ui/dom": "^1.7.4",
 		"@svelte-put/async-stack": "^1.5.1",
 		"@svelte-put/clickoutside": "^4.0.0",
 		"@svelte-put/copy": "^4.0.0",
