@@ -8,3 +8,4 @@ export * from './copy-btn/index.js';
 export * from './dropdown/index.js';
 export * from './dropdown-popover/index.js';
 export * from './contentful/index.js';
+export * from './green-web-badge/index.js';

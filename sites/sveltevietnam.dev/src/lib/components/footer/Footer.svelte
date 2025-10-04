@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n/runtime';
+	import { GreenWebBadge } from '@sveltevietnam/kit/components';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import type { HTMLAttributes } from 'svelte/elements';
 
@@ -8,7 +9,6 @@
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import * as n from '$data/routes/generated/names';
-	import { GreenWebBadge } from '$lib/components/green-web-badge';
 	import { NotByAiBadge } from '$lib/components/not-by-ai-badge';
 	import { SocialLinks } from '$lib/components/social-links';
 
@@ -141,7 +141,7 @@
 
 		<section class="_badges tablet:justify-end flex flex-wrap items-end gap-4">
 			<NotByAiBadge />
-			<GreenWebBadge />
+			<GreenWebBadge domain="sveltevietnam.dev" />
 		</section>
 	</div>
 
