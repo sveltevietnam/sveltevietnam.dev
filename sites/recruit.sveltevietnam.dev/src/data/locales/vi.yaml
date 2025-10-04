@@ -336,6 +336,20 @@ messages:
         save: Lưu
         discard: Huỷ
         placeholder: https://example.com...
+      help:
+        heading: Về trình soạn thảo
+        desc:
+          Đây là trình soạn thảo được xây dựng dựa trên bộ công cụ <a href="https://lexical.dev/"
+          target="_blank" rel="noreferrer noopener external">Lexical</a>. Hiện tại, trình soạn thảo
+          chỉ cung cấp các chức năng tối thiểu cần thiết để phục vụ cho mục đích của ứng dụng này.
+          <br /> <br /> Bạn có thể sử dụng thanh công cụ ở dưới trình để hỗ trợ trong quá trình soạn
+          thảo, ví dụ như thay đổi định dạng, hoàn tác, chèn đương dẫn, v.v... <br /> <br /> Nếu bạn
+          có đề xuất cải thiện cho trình soạn thảo, vui lòng liên hệ với ban quản trị tại <a
+          href="mailto:jobs@sveltevietnam.dev">jobs@sveltevietnam.dev</a>. Bạn cũng có thể xem và
+          đóng góp vào <a
+          href="https://github.com/sveltevietnam/sveltevietnam.dev/tree/main/sites/recruit.sveltevietnam.dev/src/lib/components/rich-text-editor"
+          target="_blank" rel="noreferrer noopner external" > mã nguồn của trình soạn thảo tại
+          Github </a>.
   dialogs:
     qr:
       title: Mã QR

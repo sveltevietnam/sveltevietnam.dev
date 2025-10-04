@@ -1,6 +1,7 @@
 <script lang="ts" module>
 	import { T } from '@sveltevietnam/i18n/runtime';
 	import type { Status } from '@sveltevietnam/kit/constants';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { REDO_COMMAND, UNDO_COMMAND } from 'lexical';
 	import { type ClassValue } from 'svelte/elements';
 
@@ -9,6 +10,7 @@
 	import type { Editor } from '..';
 	import { CalloutStatusDropdown, FORMAT_CALLOUT_COMMAND } from '../plugins/callout';
 
+	import DialogHelp from './DialogHelp.svelte';
 	import ToolbarBlockTools from './ToolbarBlockTools.svelte';
 	import ToolbarIconButton from './ToolbarIconButton.svelte';
 	import ToolbarInlineTools from './ToolbarInlineTools.svelte';
@@ -21,6 +23,8 @@
 <script lang="ts">
 	let { editor }: ToolbarProps = $props();
 
+	const { dialogs } = Contexts.get();
+
 	function undo() {
 		editor.lexical.dispatchCommand(UNDO_COMMAND, undefined);
 	}
@@ -29,7 +33,9 @@
 		editor.lexical.dispatchCommand(REDO_COMMAND, undefined);
 	}
 
-	function help() {}
+	function help() {
+		dialogs.push('custom', { component: DialogHelp });
+	}
 
 	function handleSelectStatusDropdown(status: Status) {
 		editor.lexical.dispatchCommand(FORMAT_CALLOUT_COMMAND, { status });
