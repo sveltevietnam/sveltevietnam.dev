@@ -209,11 +209,11 @@
 		<Dropdown class="group w-fit" direction="up" align="left" bind:open={isBlockTypeMenuOpen}>
 			{#snippet label()}
 				<span class="c-link-lazy flex items-center gap-2 px-2 py-1 transition-colors">
-					<i class="i {currentBlock.iconClass} h-5 w-5"></i>
+					<i class="i {currentBlock.iconClass} h-5 w-5 shrink-0"></i>
 					<span class="sr-only">
 						<T message={m['components.rich_text_editor.toolbar.block.name']} />
 					</span>
-					<span class="" aria-hidden="true">
+					<span class="mobile:hidden" aria-hidden="true">
 						{#if Array.isArray(currentBlock.label)}
 							<T message={currentBlock.label[0]} />
 							{currentBlock.label[1]}

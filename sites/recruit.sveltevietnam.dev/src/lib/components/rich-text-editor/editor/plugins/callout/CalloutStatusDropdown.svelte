@@ -47,15 +47,15 @@
 	}
 </script>
 
-<Dropdown class="group w-fit" direction="up" align="left" bind:open>
+<Dropdown class="group w-fit" direction="up" align="right" bind:open>
 	{#snippet label()}
 		{@const currentStatus = OPTIONS[status]}
 		<span class="c-link-lazy flex items-center gap-2 px-2 py-1 transition-colors">
-			<i class="i {currentStatus.iconClass} h-5 w-5"></i>
+			<i class="i {currentStatus.iconClass} h-5 w-5 shrink-0"></i>
 			<span class="sr-only">
 				<T message={m['components.rich_text_editor.toolbar.block.callout.status.name']} />
 			</span>
-			<span class="" aria-hidden="true">
+			<span class="mobile:hidden" aria-hidden="true">
 				<T message={currentStatus.label} />
 			</span>
 			<i class="i i-[ph--caret-down] h-5 w-5 transition-transform group-open:-rotate-180"></i>
