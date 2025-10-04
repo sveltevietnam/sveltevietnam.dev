@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import { type Message, T } from '@sveltevietnam/i18n/runtime';
-	import { Dropdown } from '@sveltevietnam/kit/components';
+	import { DropdownPopover } from '@sveltevietnam/kit/components';
 	import type { Status } from '@sveltevietnam/kit/constants';
 
 	import * as m from '$data/locales/generated/messages';
@@ -47,7 +47,7 @@
 	}
 </script>
 
-<Dropdown class="group w-fit" direction="up" align="right" bind:open>
+<DropdownPopover class="group w-fit" placement="top-end" offset={{ mainAxis: 8, crossAxis: 4 }} bind:open>
 	{#snippet label()}
 		{@const currentStatus = OPTIONS[status]}
 		<span class="c-link-lazy flex items-center gap-2 px-2 py-1 transition-colors">
@@ -62,7 +62,7 @@
 		</span>
 	{/snippet}
 	{#snippet content()}
-		<ul class="border-outline divide-outline bg-surface mb-1 w-max divide-y border">
+		<ul class="border-outline divide-outline bg-surface w-max divide-y border">
 			{#each Object.entries(OPTIONS) as [status, { iconClass, label }] (status)}
 				<li>
 					<button
@@ -80,4 +80,4 @@
 			{/each}
 		</ul>
 	{/snippet}
-</Dropdown>
+</DropdownPopover>

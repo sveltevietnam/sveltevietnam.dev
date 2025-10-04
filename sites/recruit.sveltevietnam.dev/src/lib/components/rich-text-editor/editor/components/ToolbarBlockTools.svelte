@@ -1,7 +1,7 @@
 <script lang="ts" module>
 	import { T } from '@sveltevietnam/i18n/runtime';
 	import type { Message } from '@sveltevietnam/i18n/runtime';
-	import { Dropdown } from '@sveltevietnam/kit/components';
+	import { DropdownPopover } from '@sveltevietnam/kit/components';
 
 	import * as m from '$data/locales/generated/messages';
 
@@ -123,7 +123,7 @@
 	}
 </script>
 
-<Dropdown class="group w-fit" direction="up" align="left" bind:open>
+<DropdownPopover class="group w-fit" placement="top-start" offset={{ mainAxis: 8, crossAxis: -4 }} bind:open>
 	{#snippet label()}
 		<span class="c-link-lazy flex items-center gap-2 px-2 py-1 transition-colors">
 			<i class="i {currentBlock.iconClass} h-5 w-5 shrink-0"></i>
@@ -142,7 +142,7 @@
 		</span>
 	{/snippet}
 	{#snippet content()}
-		<ul class="border-outline divide-outline bg-surface mb-1 w-max divide-y border">
+		<ul class="border-outline divide-outline bg-surface w-max divide-y border">
 			{#each writableBlockEntries as [key, { iconClass, label }] (key)}
 				<li>
 					<button
@@ -165,4 +165,4 @@
 			{/each}
 		</ul>
 	{/snippet}
-</Dropdown>
+</DropdownPopover>
