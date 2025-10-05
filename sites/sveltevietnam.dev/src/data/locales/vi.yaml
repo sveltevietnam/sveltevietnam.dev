@@ -560,6 +560,9 @@ messages:
             Khởi động dự án cộng đồng đầu tiên, <a class="c-link"
             href="/vi/blog/chuoi-bai-viet/cong-dong-svelte">"Cộng đồng Svelte - một bức tranh đa
             sắc"</a>, khởi xướng bởi <a class="c-link" href="/vi/con-nguoi/liti-dev">Thuyết</a>
+          recruit:
+            Ra mắt nền tảng <a class="c-link" href="https://recruit.sveltevietnam.dev"
+            target="_blank">Tuyển dụng</a>, hướng đến kết nối cộng đồng với doanh nghiệp và tổ chức.
         tasks:
           publish_packages:
             Thiết lập quy trình xuất bản lên npm hệ thống thiết kế Svelte Việt Nam và các thư viện

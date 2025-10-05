@@ -562,6 +562,10 @@ messages:
             Launch the first community outreach project, <a class="c-link"
             href="/en/blog/series/people-of-svelte">"People of Svelte - a mosaic of diverse
             voices"</a>, an initiative by <a class="c-link" href="/en/people/liti-dev">Thuyet</a>
+          recruit:
+            Launch the <a class="c-link" href="https://recruit.sveltevietnam.dev"
+            target="_blank">Recruit platform</a>, connecting community with organizations and
+            businesses
         tasks:
           publish_packages:
             Establish a publication workflow to npm for the Svelte Vietnam design system and

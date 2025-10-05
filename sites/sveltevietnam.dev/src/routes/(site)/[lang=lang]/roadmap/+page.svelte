@@ -80,19 +80,20 @@
 			highlights={[
 				m['pages.roadmap.dong.highlights.v1'],
 				m['pages.roadmap.dong.highlights.people_of_svelte'],
+				m['pages.roadmap.dong.highlights.recruit'],
 			]}
 			tasks={[
 				{
 					message: m['pages.roadmap.dong.tasks.publish_packages'],
-					progress: 'planned',
-				},
-				{
-					message: m['pages.roadmap.dong.tasks.job_posting'],
-					progress: 'planned',
+					progress: 'inprogress',
 				},
 				{
 					message: m['pages.roadmap.dong.tasks.a11y'],
 					progress: 'inprogress',
+				},
+				{
+					message: m['pages.roadmap.dong.tasks.job_posting'],
+					progress: 'completed',
 				},
 				{
 					message: m['pages.roadmap.dong.tasks.umami'],
