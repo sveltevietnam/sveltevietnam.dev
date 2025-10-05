@@ -49,12 +49,16 @@ export default defineConfig<AllRoutePath, Language>({
 		},
 		defs: {
 			'/:lang': {
-				vi: 'Hồ sơ',
-				default: 'Profile',
+				vi: 'Trang chủ',
+				default: 'Home',
 			},
 			'/:lang/authenticate': {
-				vi: 'Xác thực',
+				vi: 'Đăng nhập',
 				default: 'Authenticate',
+			},
+			'/:lang/logout': {
+				vi: 'Đăng xuất',
+				default: 'Logout',
 			},
 			'/:lang/onboarding': {
 				vi: 'Hoàn thiện hồ sơ',
@@ -69,7 +73,7 @@ export default defineConfig<AllRoutePath, Language>({
 				default: 'Profile',
 			},
 			'/:lang/postings': {
-				vi: 'Bài đăng tuyển',
+				vi: 'Đăng tuyển',
 				default: 'Job Posting',
 			},
 			'/:lang/postings/:id/edit': {

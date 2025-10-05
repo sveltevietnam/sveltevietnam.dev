@@ -11,8 +11,18 @@ messages:
   or: or
   svelte_vietnam:
     name: Svelte Vietnam
+    discord: Svelte Vietnam Discord
   footer:
     version: Version
+    about:
+      heading: About
+      desc:
+        This is a free, secure, and open source recruitment platform, connecting community with
+        businesses and organizations.
+    navigation: Navigation
+    contact: Contact
+    powered_by: Powered by
+    not_by_ai: this page is written by human, not by AI
     back_to_svelte_vietnam: Back to Svelte Vietnam site
   languages:
     vietnamese: Vietnamese

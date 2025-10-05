@@ -11,8 +11,18 @@ messages:
   or: hoặc
   svelte_vietnam:
     name: Svelte Việt Nam
+    discord: Svelte Việt Nam Discord
   footer:
     version: Phiên bản
+    about:
+      heading: Về Ứng dụng
+      desc:
+        Đây là nền tảng tuyển dụng mã nguồn mở, miễn phí và bảo mật, nhằm kết nối cộng đồng với các
+        doanh nghiệp và tổ chức.
+    navigation: Điều hướng
+    contact: Liên hệ
+    powered_by: Trên nền tảng
+    not_by_ai: trang này được viết bởi con người, không phải bởi trí tuệ nhân tạo (AI)
     back_to_svelte_vietnam: Trở về trang Svelte Việt Nam
   languages:
     vietnamese: Tiếng Việt

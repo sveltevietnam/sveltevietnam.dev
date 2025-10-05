@@ -6,7 +6,9 @@
 		type LanguageMenuProps,
 		ColorSchemeMenu,
 		type ColorSchemeMenuProps,
+		Footer,
 	} from '@sveltevietnam/kit/components';
+	import { EMAILS } from '@sveltevietnam/kit/constants';
 	import { Contexts, ContextsProvider } from '@sveltevietnam/kit/contexts';
 	import { ScrollToggler } from '@sveltevietnam/kit/utilities';
 
@@ -14,6 +16,7 @@
 	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
+	import * as n from '$data/routes/generated/names';
 	import {
 		VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
 		VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN,
@@ -83,6 +86,30 @@
 		colorScheme: colorScheme.user,
 		onselect: (scheme) => (colorScheme.user = scheme),
 	});
+
+	let navigationPrimary = $derived([
+		{
+			path: p['/:lang']({ lang: routing.lang }),
+			name: n['/:lang'](routing.lang),
+		},
+		{
+			path: p['/:lang/profile']({ lang: routing.lang }),
+			name: n['/:lang/profile'](routing.lang),
+		},
+		{
+			path: p['/:lang/postings']({ lang: routing.lang }),
+			name: n['/:lang/postings'](routing.lang),
+		},
+		data.user
+			? {
+					path: p['/:lang/logout']({ lang: routing.lang }),
+					name: n['/:lang/logout'](routing.lang),
+				}
+			: {
+					path: p['/:lang/authenticate']({ lang: routing.lang }),
+					name: n['/:lang/authenticate'](routing.lang),
+				},
+	] as const);
 </script>
 
 <ContextsProvider {contexts}>
@@ -99,7 +126,9 @@
 				'tablet:bg-on-surface tablet:text-surface tablet:-translate-y-2 tablet:px-4 tablet:pb-4 tablet:pt-6 ',
 				'flex w-fit items-center gap-2 uppercase transition-transform duration-500 hover:translate-y-0 hover:duration-100',
 			]}
-			href={data.user ? p['/:lang/postings']({ lang: routing.lang }) : p['/:lang']({ lang: routing.lang })}
+			href={data.user
+				? p['/:lang/postings']({ lang: routing.lang })
+				: p['/:lang']({ lang: routing.lang })}
 		>
 			<i class="i i-sveltevietnam tablet:w-15 tablet:h-15 h-10 w-10"></i>
 			<span class="leading-4">
@@ -133,12 +162,32 @@
 
 	{@render children()}
 
-	<footer
-		class="max-w-pad c-text-body-xs mobile:flex-col border-outline flex items-center gap-4 border-t py-4"
+	<Footer
+		email={EMAILS.JOBS}
+		domain="recruit.sveltevietnam.dev"
+		{version}
+		{navigationPrimary}
+		i18n={{
+			version: m['footer.version'],
+			svelte_vietnam: m['svelte_vietnam.name'],
+			powered_by: m['footer.powered_by'],
+			not_by_ai: m['footer.not_by_ai'],
+			about: {
+				heading: m['footer.about.heading'],
+				desc: m['footer.about.desc'],
+			},
+			navigation: {
+				heading: m['footer.navigation'],
+			},
+			contact: {
+				heading: m['footer.contact'],
+				discord: m['svelte_vietnam.discord'],
+			},
+		}}
+		class={[!page.data.editUrl && 'mt-auto']}
+		data-pagefind-ignore
 	>
-		<p class="tablet:flex-1"><T message={m['footer.version']} /> {version}</p>
-		<p>{new Date().getFullYear()} © <T message={m['svelte_vietnam.name']} /></p>
-		<div class="tablet:flex-1">
+		{#snippet navigationSecondary()}
 			<a
 				class="c-link-lazy tablet:justify-end flex items-center gap-2"
 				href={VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN}
@@ -146,6 +195,6 @@
 				<i class="i i-[ph--arrow-left] h-5 w-5"></i>
 				<T message={m['footer.back_to_svelte_vietnam']} />
 			</a>
-		</div>
-	</footer>
+		{/snippet}
+	</Footer>
 </ContextsProvider>
