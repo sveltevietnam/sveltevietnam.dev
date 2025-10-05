@@ -11,3 +11,4 @@ export * from './contentful/index.js';
 export * from './green-web-badge/index.js';
 export * from './not-by-ai-badge/index.js';
 export * from './social-links/index.js';
+export * from './footer/index.js';

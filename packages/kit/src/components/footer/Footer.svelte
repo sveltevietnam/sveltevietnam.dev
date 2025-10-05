@@ -1,110 +1,66 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n/runtime';
-	import { GreenWebBadge, NotByAiBadge, SocialLinks } from '@sveltevietnam/kit/components';
-	import { EMAILS, SOCIAL_LINKS } from '@sveltevietnam/kit/constants';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
-	import type { HTMLAttributes } from 'svelte/elements';
 
-	import * as m from '$data/locales/generated/messages';
-	import * as p from '$data/routes/generated';
-	import * as n from '$data/routes/generated/names';
+	import { SOCIAL_LINKS } from '../../constants.js';
+	import { Contexts } from '../../contexts/index.js';
+	import { GreenWebBadge } from '../green-web-badge/index.js';
+	import { NotByAiBadge } from '../not-by-ai-badge/index.js';
+	import { SocialLinks } from '../social-links/index.js';
+
+	import type { FooterProps } from '.';
 
 	let {
+		email,
+		domain,
 		version,
+		i18n,
+		navigationPrimary,
+		navigationSecondary,
 		class: cls,
 		...rest
-	}: HTMLAttributes<HTMLElement> & {
-		version: string;
-	} = $props();
+	}: FooterProps = $props();
 
 	const { routing } = Contexts.get();
-
-	let primaryPages = $derived([
-		{
-			path: p['/:lang']({ lang: routing.lang }),
-			name: n['/:lang'](routing.lang),
-		},
-		{
-			path: p['/:lang/blog']({ lang: routing.lang }),
-			name: n['/:lang/blog'](),
-		},
-		{
-			path: p['/:lang/events']({ lang: routing.lang }),
-			name: n['/:lang/events'](routing.lang),
-		},
-		{
-			path: p['/:lang/jobs']({ lang: routing.lang }),
-			name: n['/:lang/jobs'](routing.lang),
-		},
-		{
-			path: p['/:lang/sponsor']({ lang: routing.lang }),
-			name: n['/:lang/sponsor'](routing.lang),
-		},
-		{
-			path: p['/:lang/people']({ lang: routing.lang }),
-			name: n['/:lang/people'](routing.lang),
-		},
-		{
-			path: p['/:lang/roadmap']({ lang: routing.lang }),
-			name: n['/:lang/roadmap'](routing.lang),
-		},
-		{
-			path: p['/:lang/design']({ lang: routing.lang }),
-			name: n['/:lang/design'](routing.lang),
-		},
-	] as const);
-	let secondaryPages = $derived([
-		{
-			path: p['/:lang/settings']({ lang: routing.lang }),
-			name: n['/:lang/settings'](routing.lang),
-		},
-		{
-			path: p['/:lang/code-of-conduct']({ lang: routing.lang }),
-			name: n['/:lang/code-of-conduct'](routing.lang),
-		},
-		{
-			path: p['/:lang/sitemap.xml']({ lang: routing.lang }),
-			name: n['/:lang/sitemap.xml'](routing.lang),
-		},
-		{
-			path: p['/:lang/rss.xml']({ lang: routing.lang }),
-			name: n['/:lang/rss.xml'](),
-		},
-	] as const);
 </script>
 
 <footer
 	class={['from-primary-surface to-surface relative bg-gradient-to-t', cls]}
-	{...rest}
-	data-sveltekit-preload-data="hover"
 	id="footer"
+	data-sveltekit-preload-data="hover"
+	{...rest}
 >
 	<div class="max-w-pad _upper border-y pb-10 pt-14">
 		<p
 			class="_name c-text-heading tablet:block tablet:text-right w-37.5 tablet:justify-self-end hidden uppercase"
 		>
-			<T message={m['svelte_vietnam.name']} />
+			<T message={i18n.svelte_vietnam} />
 		</p>
 
 		<section class="_about tablet:space-y-6 tablet:max-w-70 space-y-4">
-			<p class="c-text-title"><T message={m['components.footer.about.title']} /></p>
-			<p class="leading-relaxed"><T message={m['components.footer.about.desc']} /></p>
+			<p class="c-text-title"><T message={i18n.about.heading} /></p>
+			<p class="leading-relaxed"><T message={i18n.about.desc} /></p>
 		</section>
 
 		<section class="_pages tablet:space-y-6 space-y-4">
-			<p class="c-text-title"><T message={m['components.footer.navigation']} /></p>
-			<ul class="-mx-1 grid w-fit grid-cols-2 gap-x-4 gap-y-2">
-				{#each primaryPages as { path, name } (path)}
-					{@const current = routing.is(path)}
-					<li>
-						<a class="c-link-lazy px-1 py-1" href={path} aria-current={current}>{name}</a>
-					</li>
-				{/each}
-			</ul>
+			{#if navigationPrimary}
+				<p class="c-text-title"><T message={i18n.navigation.heading} /></p>
+				<ul class="-mx-1 grid w-fit grid-cols-2 gap-x-4 gap-y-2">
+					{#if typeof navigationPrimary === 'function'}
+						{@render navigationPrimary()}
+					{:else}
+						{#each navigationPrimary as { path, name } (path)}
+							{@const current = routing.is(path)}
+							<li>
+								<a class="c-link-lazy px-1 py-1" href={path} aria-current={current}>{name}</a>
+							</li>
+						{/each}
+					{/if}
+				</ul>
+			{/if}
 		</section>
 
 		<section class="_contacts">
-			<p class="c-text-title"><T message={m['components.footer.contact']} /></p>
+			<p class="c-text-title"><T message={i18n.contact.heading} /></p>
 			<ul
 				class="mobile:-mt-1 widescreen:-mt-1 tablet:max-widescreen:flex tablet:max-widescreen:gap-4
 				tablet:max-widescreen:items-center"
@@ -116,17 +72,13 @@
 						data-external
 					>
 						<i class="i i-[ph--discord-logo] h-6 w-6"></i>
-						<T message={m['svelte_vietnam.discord']} />
+						<T message={i18n.contact.discord} />
 					</a>
 				</li>
 				<li>
-					<a
-						class="c-link-lazy flex items-center gap-2 py-1"
-						href="mailto:{EMAILS.CONTACT}"
-						data-external
-					>
+					<a class="c-link-lazy flex items-center gap-2 py-1" href="mailto:{email}" data-external>
 						<i class="i i-[ph--envelope-simple] h-6 w-6"></i>
-						{EMAILS.CONTACT}
+						{email}
 					</a>
 				</li>
 			</ul>
@@ -137,25 +89,33 @@
 		</section>
 
 		<section class="_badges tablet:justify-end flex flex-wrap items-end gap-4">
-			<NotByAiBadge sr={m['components.not_by_ai_badge']} />
-			<GreenWebBadge domain="sveltevietnam.dev" />
+			<NotByAiBadge sr={i18n.not_by_ai} />
+			<GreenWebBadge {domain} />
 		</section>
 	</div>
 
 	<div class="_lower max-w-pad c-text-body-xs py-4">
-		<ul class="_pages-secondary tablet:justify-self-end -mx-1 flex items-center">
-			{#each secondaryPages as { path, name } (path)}
-				{@const current = routing.is(path)}
-				<li class="not-first:border-l not-first:pl-2 not-last:pr-2 border-current">
-					<a class="c-link-lazy px-1 py-1" href={path} aria-current={current}>{name}</a>
-				</li>
-			{/each}
-		</ul>
+		<div class="_pages-secondary tablet:justify-self-end -mx-1">
+			{#if navigationSecondary}
+				<ul class="flex items-center">
+					{#if typeof navigationSecondary === 'function'}
+						{@render navigationSecondary()}
+					{:else}
+						{#each navigationSecondary as { path, name } (path)}
+							{@const current = routing.is(path)}
+							<li class="not-first:border-l not-first:pl-2 not-last:pr-2 border-current">
+								<a class="c-link-lazy px-1 py-1" href={path} aria-current={current}>{name}</a>
+							</li>
+						{/each}
+					{/if}
+				</ul>
+			{/if}
+		</div>
 		<div class="_license-and-techs tablet:max-widescreen:contents flex items-center gap-1">
-			<p class="_license">{new Date().getFullYear()} © <T message={m['svelte_vietnam.name']} /></p>
+			<p class="_license">{new Date().getFullYear()} © <T message={i18n.svelte_vietnam} /></p>
 			<p class="tablet:max-widescreen:hidden">|</p>
 			<p class="_techs tablet:justify-self-end flex items-center gap-2">
-				<T message={m['components.footer.powered_by']} />
+				<T message={i18n.powered_by} />
 				<a class="c-link-lazy" href="https://www.cloudflare.com">
 					<span class="sr-only">Cloudflare</span>
 					<i class="i i-[simple-icons--cloudflareworkers] h-4 w-4"></i>
@@ -170,7 +130,7 @@
 				</a>
 			</p>
 		</div>
-		<p class="_version"><T message={m.version} /> {version}</p>
+		<p class="_version"><T message={i18n.version} /> {version}</p>
 	</div>
 </footer>
 
