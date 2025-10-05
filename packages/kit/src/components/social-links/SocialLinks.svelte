@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { SOCIAL_LINKS } from '@sveltevietnam/kit/constants';
-	import type { HTMLAttributes } from 'svelte/elements';
+	import { SOCIAL_LINKS } from '../../constants.js';
 
-	let { class: cls, ...rest }: HTMLAttributes<HTMLElement> = $props();
+	import type { SocialLinksProps } from '.';
+
+	let { class: cls, ...rest }: SocialLinksProps = $props();
 
 	const commonLinkClasses = 'c-link-icon p-2.5 flex border-onehalf rounded-full border-current';
 </script>

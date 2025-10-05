@@ -10,3 +10,4 @@ export * from './dropdown-popover/index.js';
 export * from './contentful/index.js';
 export * from './green-web-badge/index.js';
 export * from './not-by-ai-badge/index.js';
+export * from './social-links/index.js';

@@ -7,6 +7,7 @@
 		type LanguageMenuProps,
 		ColorSchemeMenu,
 		type ColorSchemeMenuProps,
+		SocialLinks,
 	} from '@sveltevietnam/kit/components';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { ScrollToggler } from '@sveltevietnam/kit/utilities';
@@ -15,7 +16,6 @@
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import { PageMenu } from '$lib/components/page-menu';
-	import { SocialLinks } from '$lib/components/social-links';
 	import { SearchDialog } from '$lib/dialogs/search-dialog';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
