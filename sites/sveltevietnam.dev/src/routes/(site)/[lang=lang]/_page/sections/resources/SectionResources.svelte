@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n/runtime';
 	import type { Message, MessageType } from '@sveltevietnam/i18n/runtime';
+	import { SOCIAL_LINKS } from '@sveltevietnam/kit/constants';
 	import { createTimeline, onScroll } from 'animejs';
 	import type { Picture } from 'vite-imagetools';
 
-	import { SOCIAL_LINKS } from '$data/links';
 	import * as m from '$data/locales/generated/messages';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 

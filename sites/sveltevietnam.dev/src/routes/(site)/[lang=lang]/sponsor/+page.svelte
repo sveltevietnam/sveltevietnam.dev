@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n/runtime';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
+	import { EMAILS, SOCIAL_LINKS } from '@sveltevietnam/kit/constants';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 
-	import { EMAILS } from '$data/emails';
-	import { SOCIAL_LINKS } from '$data/links';
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import { IntroSeparator } from '$lib/components/intro-separator';
@@ -94,7 +93,7 @@
 			<li>
 				<a
 					class="c-btn c-btn--pop flex justify-between text-left"
-					href={p['/:lang/events']({ lang: routing.lang})}
+					href={p['/:lang/events']({ lang: routing.lang })}
 				>
 					<T message={m['pages.sponsor.participate.events']} />
 				</a>
@@ -102,7 +101,7 @@
 			<li>
 				<a
 					class="c-btn c-btn--pop flex justify-between text-left"
-					href={p['/:lang/blog']({ lang: routing.lang})}
+					href={p['/:lang/blog']({ lang: routing.lang })}
 				>
 					<T message={m['pages.sponsor.participate.blog']} />
 				</a>

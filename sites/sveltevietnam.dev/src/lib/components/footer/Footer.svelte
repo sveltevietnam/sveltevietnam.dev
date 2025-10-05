@@ -1,11 +1,10 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n/runtime';
 	import { GreenWebBadge, NotByAiBadge } from '@sveltevietnam/kit/components';
+	import { EMAILS, SOCIAL_LINKS } from '@sveltevietnam/kit/constants';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import type { HTMLAttributes } from 'svelte/elements';
 
-	import { EMAILS } from '$data/emails';
-	import { SOCIAL_LINKS } from '$data/links';
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import * as n from '$data/routes/generated/names';

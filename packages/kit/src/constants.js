@@ -23,3 +23,23 @@ export const PUBLIC_COOKIE_CONFIG = {
 	...COMMON_COOKIE_CONFIG,
 	httpOnly: false,
 };
+
+export const SOCIAL_LINKS = {
+	GITHUB: 'https://github.com/sveltevietnam',
+	DISCORD: 'https://discord.sveltevietnam.dev',
+	BLUESKY: 'https://bsky.app/profile/sveltevietnam.dev',
+	FACEBOOK: 'https://facebook.com/sveltevietnam',
+	OPEN_COLLECTIVE: 'https://opencollective.com/sveltevietnam',
+	YOUTUBE: 'https://www.youtube.com/@sveltevietnam',
+};
+
+export const EMAILS = {
+	ADMIN: 'admin@sveltevietnam.dev',
+	JOBS: 'jobs@sveltevietnam.dev',
+	BLOG: 'blog@sveltevietnam.dev',
+	CONTACT: 'contact@sveltevietnam.dev',
+	COC: 'coc@sveltevietnam.dev',
+	EVENTS: 'events@sveltevietnam.dev',
+	IMPACT: 'impact@sveltevietnam.dev',
+	SPONSOR: 'sponsor@sveltevietnam.dev',
+};

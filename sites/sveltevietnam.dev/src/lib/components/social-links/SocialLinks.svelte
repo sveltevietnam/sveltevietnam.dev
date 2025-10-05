@@ -1,14 +1,13 @@
 <script lang="ts">
+	import { SOCIAL_LINKS } from '@sveltevietnam/kit/constants';
 	import type { HTMLAttributes } from 'svelte/elements';
-
-	import { SOCIAL_LINKS } from '$data/links';
 
 	let { class: cls, ...rest }: HTMLAttributes<HTMLElement> = $props();
 
 	const commonLinkClasses = 'c-link-icon p-2.5 flex border-onehalf rounded-full border-current';
 </script>
 
-<ul class={['flex flex-wrap items-center gap-3 widescreen:gap-2', cls]} {...rest}>
+<ul class={['widescreen:gap-2 flex flex-wrap items-center gap-3', cls]} {...rest}>
 	<li>
 		<a class={commonLinkClasses} href={SOCIAL_LINKS.DISCORD} data-external>
 			<span class="sr-only">Discord</span>

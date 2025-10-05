@@ -1,9 +1,7 @@
 import type { Language } from '@sveltevietnam/i18n';
+import { EMAILS, SOCIAL_LINKS } from '@sveltevietnam/kit/constants';
 import { buildStructuredTextWithLang } from '@sveltevietnam/kit/utilities/structured-data';
 import type { Organization } from 'schema-dts';
-
-import { EMAILS } from '$data/emails';
-import { SOCIAL_LINKS } from '$data/links';
 
 // TODO: extract to locale YAML files
 const locales = {

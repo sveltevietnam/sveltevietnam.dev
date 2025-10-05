@@ -2,11 +2,11 @@
 	import { T } from '@sveltevietnam/i18n/runtime';
 	import type { Message } from '@sveltevietnam/i18n/runtime';
 	import { TBA, Breadcrumbs } from '@sveltevietnam/kit/components';
+	import { EMAILS } from '@sveltevietnam/kit/constants';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { onScroll, createTimeline, stagger } from 'animejs';
 
 	import { page } from '$app/state';
-	import { EMAILS } from '$data/emails';
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import { EventListing } from '$lib/components/event-listing';
