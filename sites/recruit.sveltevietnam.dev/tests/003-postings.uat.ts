@@ -1,5 +1,6 @@
 import type { Faker } from '@faker-js/faker';
 import { expect } from '@playwright/test';
+import type { JobPostingStatus } from '@sveltevietnam/backend/data/job-postings/enums';
 import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
 import { eq } from 'drizzle-orm';
 import sanitizeHtml from 'sanitize-html';
@@ -13,6 +14,7 @@ import {
 import { testWithAuthenticatedEmployer } from './fixtures/with-authenticated-employer';
 import { schema } from './fixtures/with-backend';
 import { PagePostingDetails } from './poms/posting-details';
+import { PagePostingEdit } from './poms/posting-edit';
 import { PagePostingList } from './poms/posting-list';
 
 // Setup test
@@ -21,7 +23,7 @@ testWithAuthenticatedEmployer.use({ lang: 'vi' });
 function createJobPosting(options: {
 	faker: Faker;
 	employer: { email: string; id: string };
-	status: 'pending' | 'active' | 'expired' | 'deleted';
+	status: JobPostingStatus;
 }): (typeof schema.jobPostings)['$inferSelect'] {
 	const { faker, employer, status } = options;
 
@@ -324,3 +326,65 @@ testWithAuthenticatedEmployer.describe(() => {
 		},
 	);
 });
+
+testWithAuthenticatedEmployer(
+	'UAT-POST-006: User cannot edit expired or active posting',
+	{ tag: ['@uat', '@postings'] },
+	async ({ page, lang, d1, testFaker: faker, employer }) => {
+		// Mock posting to be active (approved)
+		const posting = createJobPosting({ faker, employer, status: 'active' });
+		await d1.transaction(
+			(tx) =>
+				tx
+					.insert(schema.jobPostings)
+					.values(posting)
+					.onConflictDoNothing({ target: schema.jobPostings.id }),
+			{ behavior: 'immediate' },
+		);
+		await page.reload();
+
+		// User clicks on a posting in the list and is redirected to posting details page
+		const pomPostingList = new PagePostingList({ page, lang });
+		await pomPostingList.goToDetailPage(posting);
+
+		// User does not see "Edit" action
+		const pomPostingDetails = new PagePostingDetails({ page, lang, id: posting.id });
+		await expect(pomPostingDetails.actions.edit).toBeHidden();
+
+		// User tries to go to edit page directly, but is redirected back to details page automatically
+		const pomPostingEdit = new PagePostingEdit({ page, lang, id: posting.id });
+		await pomPostingEdit.goto();
+		await pomPostingDetails.waitForPage();
+
+		// Mock so that posting is expired
+		await d1.transaction(
+			(tx) =>
+				tx
+					.update(schema.jobPostings)
+					.set({ expiredAt: new Date(Date.now() - 24 * 60 * 60 * 1000) }) // 1 day ago
+					.where(eq(schema.jobPostings.id, posting.id)),
+			{ behavior: 'immediate' },
+		);
+
+		// User still cannot see edit in details page or navigate to edit page if posting is expired
+		await page.reload();
+		await expect(pomPostingDetails.actions.edit).toBeHidden();
+		await pomPostingEdit.goto();
+		await pomPostingDetails.waitForPage();
+
+		// Mock posting has never been approved
+		await d1.transaction((tx) =>
+			tx
+				.update(schema.jobPostings)
+				.set({ approvedAt: null })
+				.where(eq(schema.jobPostings.id, posting.id)),
+		);
+
+		// User still cannot see edit in details page or navigate to edit page
+		// if posting is expired but never approved (still pending)
+		await page.reload();
+		await expect(pomPostingDetails.actions.edit).toBeHidden();
+		await pomPostingEdit.goto();
+		await pomPostingDetails.waitForPage();
+	},
+);
