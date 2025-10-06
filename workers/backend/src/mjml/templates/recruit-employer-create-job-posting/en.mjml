@@ -18,6 +18,10 @@
 					required. The job posting will go live on the
 					<a href="https://www.sveltevietnam.dev/en/jobs">Jobs</a> page as soon as it is approved.
 				</mj-text>
+				<mj-text>
+					Note: Approved postings cannot be edited. Please double-check the information and if any
+					changes are needed, now is the time to do so.
+				</mj-text>
 				<mj-text>Thank you,</mj-text>
 				<mj-text>Svelte Vietnam</mj-text>
 			</mj-column>

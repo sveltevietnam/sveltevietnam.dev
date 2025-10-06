@@ -20,6 +20,6 @@ export const load: LayoutServerLoad = async ({ params, locals }) => {
 			href: p['/:lang/postings/:id']({ lang, id }),
 			postedAt: posting.approvedAt,
 		},
-		expired: posting.expiredAt < new Date(),
+		editable: posting.status === 'pending',
 	};
 };

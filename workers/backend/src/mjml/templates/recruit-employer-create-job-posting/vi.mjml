@@ -18,6 +18,9 @@
 					Bài đăng tuyển sẽ có hiệu lực ngay khi được duyệt và sẽ hiển thị trên trang
 					<a href="https://www.sveltevietnam.dev/vi/viec-lam">Việc làm</a>.
 				</mj-text>
+				<mj-text>
+					Chú ý: bài đăng đã duyệt sẽ không thể sửa đổi. Vui lòng kiểm tra kỹ thông tin và sử đổi ngay bây giờ nếu cần.
+				</mj-text>
 				<mj-text>Cảm ơn bạn,</mj-text>
 				<mj-text>Svelte Việt Nam</mj-text>
 			</mj-column>

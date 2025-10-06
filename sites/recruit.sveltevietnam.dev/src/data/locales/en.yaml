@@ -241,7 +241,8 @@ messages:
     postings_id:
       pending:
         This posting is pending review from the admin team. You will be notified via email once it
-        is approved or need changes.
+        is approved or need changes. Approved postings can no longer be edited, so please review the
+        details and make any necessary changes right now.
       general:
         heading: General Information
         posted_at: Posted on

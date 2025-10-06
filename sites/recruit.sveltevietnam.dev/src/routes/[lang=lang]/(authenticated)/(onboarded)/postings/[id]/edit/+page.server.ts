@@ -13,8 +13,7 @@ export const load: PageServerLoad = async ({ params, parent }) => {
 	const { lang, id } = params;
 	const parentData = await parent();
 
-	if (parentData.expired) {
-		// prevent edit if the posting is expired
+	if (!parentData.editable) {
 		redirect(302, p['/:lang/postings/:id']({ lang, id }));
 	}
 

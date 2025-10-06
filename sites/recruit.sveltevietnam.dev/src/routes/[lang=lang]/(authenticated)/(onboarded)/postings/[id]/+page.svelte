@@ -109,8 +109,8 @@
 				{data.posting.title}
 			</h1>
 
-			{#if !data.posting.approvedAt}
-				<p class="c-callout c-callout--info" role="note">
+			{#if data.posting.status === 'pending'}
+				<p class="c-callout c-callout--warning" role="note">
 					<T message={m['pages.postings_id.pending']} />
 				</p>
 			{/if}
@@ -313,7 +313,7 @@
 							<span><T message={m['pages.postings_id.manage.delete']} /></span>
 						</button>
 					</form>
-					{#if !data.expired}
+					{#if data.editable}
 						<a
 							class="c-btn flex-1 place-content-center"
 							href={p['/:lang/postings/:id/edit']({ lang: routing.lang, id: data.posting.id })}
