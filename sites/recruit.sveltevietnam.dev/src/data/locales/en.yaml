@@ -247,6 +247,14 @@ messages:
         heading: General Information
         posted_at: Posted on
         expired_at: Expires on
+        status:
+          name: Status
+          pending: Chờ xét duyệt
+          deleted: Đã bị xoá
+          expired: Đã hết hạn
+          active:
+            Đang hiển thị tại trang <a class="c-link" href="{{mainSiteUrl}}/vi/viec-lam">Việc
+            làm</a>
       job_desc:
         heading: Job Description
       employer_desc:
@@ -269,7 +277,7 @@ messages:
           cancel: Cancel
         errors:
           unauthorized: You are not authorized to manage this posting
-        success: The posting has been deleted! You will not be able to access this page anymore.
+        success: The posting has been deleted! You will no longer be able to access this page.
     postings_upsert:
       heading:
         create: Create new job posting

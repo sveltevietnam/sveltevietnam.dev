@@ -246,6 +246,13 @@ messages:
         heading: Thông tin chung
         posted_at: Đăng ngày
         expired_at: Hết hạn ngày
+        status:
+          name: Trạng thái
+          pending: Chờ xét duyệt
+          deleted: Đã bị xoá
+          expired: Đã hết hạn
+          active:
+            Đang hiển thịtại trang <a class="c-link" href="{{mainSiteUrl}}/vi/viec-lam">Việc làm</a>
       job_desc:
         heading: Mô tả công việc
       employer_desc:

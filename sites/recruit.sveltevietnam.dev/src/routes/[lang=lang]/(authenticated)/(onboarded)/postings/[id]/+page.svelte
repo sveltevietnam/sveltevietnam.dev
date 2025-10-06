@@ -11,6 +11,7 @@
 	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
+	import { VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN } from '$env/static/public';
 	import { SponsorReminder } from '$lib/components/sponsor-reminder';
 	import { JOB_POSTING_TYPE_LABEL } from '$lib/forms/job-posting-upsert';
 	import { createSuperFormGenericErrorHandler } from '$lib/forms/utils';
@@ -89,6 +90,13 @@
 			deleteForm.requestSubmit();
 		}
 	}
+
+	const statusToColorClass = {
+		active: 'text-success-on-surface',
+		pending: 'text-warning-on-surface',
+		expired: 'text-error-on-surface',
+		deleted: 'text-error-on-surface',
+	};
 </script>
 
 <main
@@ -125,6 +133,28 @@
 					class="tablet:flex-row flex flex-col-reverse items-start justify-between gap-4 space-y-6"
 				>
 					<dl class="grid grid-cols-[auto_1fr] gap-4">
+						<!-- status -->
+						<dt>
+							<i class={['i i-[ph--pulse] h-6 w-6', statusToColorClass[data.posting.status]]}></i>
+							<span class="sr-only">
+								<T message={m['pages.postings_id.general.status.name']} />
+							</span>
+						</dt>
+						<dd class={statusToColorClass[data.posting.status]} data-testid="status-name">
+							{#if data.posting.status === 'deleted'}
+								<T message={m['pages.postings_id.general.status.deleted']} />
+							{:else if data.posting.status === 'expired'}
+								<T message={m['pages.postings_id.general.status.expired']} />
+							{:else if data.posting.status === 'pending'}
+								<T message={m['pages.postings_id.general.status.pending']} />
+							{:else}
+								<T
+									message={m['pages.postings_id.general.status.active']}
+									mainSiteUrl={VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN}
+								/>
+							{/if}
+						</dd>
+
 						<!-- employer -->
 						<dt>
 							<i class="i i-[ph--buildings] h-6 w-6"></i>
