@@ -4,7 +4,7 @@ import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
 
 import { employers } from '../../data/employers/tables';
 
-import { JOB_POSTING_TYPES, JOB_POSTING_APPLICATION_METHODS } from './enums';
+import { JOB_POSTING_TYPES, JOB_POSTING_APPLICATION_METHODS, JobPostingStatus } from './enums';
 
 export const jobPostings = sqliteTable('job_postings', {
 	// keys
@@ -41,3 +41,10 @@ export const jobPostingRelations = relations(jobPostings, ({ one }) => ({
 		references: [employers.id],
 	}),
 }));
+
+export const STATUS_SQL = sql<JobPostingStatus>`CASE
+	WHEN ${jobPostings.deletedAt} IS NOT NULL THEN 'deleted'
+	WHEN ${jobPostings.expiredAt} < (unixepoch() * 1000) THEN 'expired'
+	WHEN ${jobPostings.approvedAt} IS NULL THEN 'pending'
+	ELSE 'active'
+END`;

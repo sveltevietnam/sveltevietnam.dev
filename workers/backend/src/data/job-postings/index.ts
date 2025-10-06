@@ -16,7 +16,7 @@ import {
 	type JobPostingSelectWithEmployerResult,
 	JobPostingSelectWithEmployerSchema,
 } from './schema';
-import { jobPostings } from './tables';
+import { jobPostings, STATUS_SQL } from './tables';
 
 // FIXME: exclude soft-deleted records in all queries
 
@@ -30,6 +30,9 @@ export class JobPostingService extends RpcTarget {
 
 	async getAllByEmployerId(employerId: string): Promise<JobPostingSelectResult[]> {
 		const jobPostingsList = await this.#orm.query.jobPostings.findMany({
+			extras: {
+				status: STATUS_SQL.as('status'),
+			},
 			where: (table, { eq, and, isNull }) =>
 				and(eq(table.employerId, employerId), isNull(table.deletedAt)),
 			orderBy: (table, { desc }) => [desc(table.createdAt)],
@@ -71,6 +74,9 @@ export class JobPostingService extends RpcTarget {
 					employerId ? and(eq(table.id, id), eq(table.employerId, employerId)) : eq(table.id, id),
 					isNull(table.deletedAt),
 				),
+			extras: {
+				status: STATUS_SQL.as('status'),
+			},
 			with: {
 				employer: {
 					columns: {

@@ -3,10 +3,14 @@ import * as v from 'valibot';
 
 import { EmployerSelectSchema } from '../employers/schema';
 
+import { JOB_POSTING_STATUSES } from './enums';
 import { jobPostings } from './tables';
 
-export const JobPostingSelectSchema = createSelectSchema(jobPostings, {
-	id: v.pipe(v.string(), v.startsWith('job_')),
+export const JobPostingSelectSchema = v.object({
+	...createSelectSchema(jobPostings, {
+		id: v.pipe(v.string(), v.startsWith('job_')),
+	}).entries,
+	status: v.picklist(JOB_POSTING_STATUSES),
 });
 export type JobPostingSelectResult = v.InferOutput<typeof JobPostingSelectSchema>;
 
