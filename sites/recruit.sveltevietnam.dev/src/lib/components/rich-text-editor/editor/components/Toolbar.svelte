@@ -3,7 +3,6 @@
 	import type { Status } from '@sveltevietnam/kit/constants';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { REDO_COMMAND, UNDO_COMMAND } from 'lexical';
-	import { type ClassValue } from 'svelte/elements';
 
 	import * as m from '$data/locales/generated/messages';
 
@@ -21,6 +20,8 @@
 </script>
 
 <script lang="ts">
+	import type { ClassValue } from 'svelte/elements';
+
 	let { editor }: ToolbarProps = $props();
 
 	const { dialogs } = Contexts.get();

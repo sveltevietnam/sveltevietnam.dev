@@ -30,5 +30,5 @@
 }
 
 @utility max-w-pad-content {
-	max-width: calc(var(--pad-max-width) - (var(--pad-padding-x) * 2));
+	max-width: calc(var(--pad-max-width) - (var(--pad-min-padding-x) * 2));
 }
