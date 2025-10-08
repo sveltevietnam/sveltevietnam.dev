@@ -159,8 +159,8 @@ messages:
         heading: Tuyển dụng
         subtitle: cùng Cộng đồng Svelte Việt Nam
         desc:
-          Quản lý bài đăng tuyển dụng miễn phí tại <a class="c-link"
-          href={{mainSiteUrl}}>sveltevietnam.dev</a> — dành cho doanh nghiệp và tổ chức
+          Quản lý bài đăng tuyển dụng miễn phí tại <a class="c-link" href={{mainSiteUrl}}
+          target="_blank">sveltevietnam.dev</a> — dành cho doanh nghiệp và tổ chức
         cta: Đăng nhập / Đăng ký
         kv_alt: một người đang thay bóng đèn trên thang chữ A, hai người khác giữ thang
       catch:

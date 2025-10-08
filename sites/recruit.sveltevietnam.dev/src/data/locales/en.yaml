@@ -161,8 +161,8 @@ messages:
         heading: Recruit
         subtitle: from the Svetle Vietnam community
         desc:
-          Manage free and secure job postings at <a class="c-link"
-          href={{mainSiteUrl}}>sveltevietnam.dev</a> — for businesses and organizations
+          Manage free and secure job postings at <a class="c-link" href={{mainSiteUrl}}
+          target="_blank">sveltevietnam.dev</a> — for businesses and organizations
         cta: Sign in / Register
         kv_alt: a human replacing light bulb on a ladder while two others holding the ladder
       catch:
