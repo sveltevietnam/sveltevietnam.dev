@@ -312,8 +312,7 @@ messages:
           deleted: Đã bị xoá
           expired: Đã hết hạn
           active:
-            Đang hiển thị tại trang <a class="c-link" href="{{mainSiteUrl}}/vi/viec-lam">Việc
-            làm</a>
+            Being displayed at the <a class="c-link" href="{{mainSiteUrl}}/en/jobs">Jobs page</a>
       job_desc:
         heading: Job Description
       employer_desc:
