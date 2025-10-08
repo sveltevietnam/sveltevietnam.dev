@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { T } from '@sveltevietnam/i18n/runtime';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { createTimeline, onScroll, stagger, eases, type Timeline } from 'animejs';
 	import { onMount } from 'svelte';
 
@@ -11,7 +11,7 @@
 	import svgMesh from './images/mesh.svg?no-inline';
 
 	const settings = SettingsContext.get();
-	const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
 
 	let elSection: HTMLElement;
 

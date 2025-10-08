@@ -1,38 +1,34 @@
 <script lang="ts">
 	import { Toc } from '@svelte-put/toc';
-	import { T } from '@sveltevietnam/i18n';
+	import { T } from '@sveltevietnam/i18n/runtime';
 	import type { Message } from '@sveltevietnam/i18n/runtime';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import fallback16x9 from '@sveltevietnam/kit/assets/images/fallbacks/16x9.jpg?enhanced&w=2240;1540;1088;686&imagetools';
+	import { Breadcrumbs, CopyBtn, NotByAiBadge } from '@sveltevietnam/kit/components';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { DialogQrCode } from '@sveltevietnam/kit/dialogs';
+	import { formatRelativeTime } from '@sveltevietnam/kit/utilities/datetime';
 
 	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
-	import fallback16x9 from '$lib/assets/images/fallbacks/16x9.jpg?enhanced&w=2240;1540;1088;686&imagetools';
 	import { BlogNewsletter } from '$lib/components/blog-newsletter';
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
 	import { BlogPostListItem } from '$lib/components/blog-post-list-item';
-	import { Breadcrumbs } from '$lib/components/breadcrumbs';
-	import { CopyIconBtn } from '$lib/components/copy-icon-btn';
 	import { GradientBackground } from '$lib/components/gradient-background';
 	import { HintedText } from '$lib/components/hinted-text';
-	import { NotByAiBadge } from '$lib/components/not-by-ai-badge';
 	import { Person } from '$lib/components/person';
 	import { TableOfContents } from '$lib/components/table-of-contents';
 	import { TextArrowLink } from '$lib/components/text-arrow-link';
-	import { QrCodeDialog } from '$lib/dialogs/components/qr-code-dialog';
-	import { DialogContext } from '$lib/dialogs/context.svelte';
 	import * as pagefind from '$lib/pagefind/attributes';
 	import { SettingsContext } from '$lib/settings/context.svelte';
-	import { formatRelativeTime } from '$lib/utils/datetime';
 
 	import type { PageProps } from './$types';
 	import BlueskyComments from './_page/components/BlueskyComments.svelte';
 
 	let { data }: PageProps = $props();
 
-	const routing = RoutingContext.get();
+	const { routing, dialogs, colorScheme } = Contexts.get();
 	const settings = SettingsContext.get();
-	const dialog = DialogContext.get();
 
 	let dateFormatter = $derived(
 		new Intl.DateTimeFormat(routing.lang, {
@@ -69,9 +65,18 @@
 	});
 
 	function openQrDialog() {
-		dialog.push('custom', {
-			component: QrCodeDialog,
-			props: { data: url },
+		dialogs.push('custom', {
+			component: DialogQrCode,
+			props: {
+				data: url,
+				theme: () => colorScheme.resolved,
+				i18n: {
+					close: m.close,
+					title: m['dialogs.qr.title'],
+					desc: m['dialogs.qr.desc'],
+					download: m.download,
+				},
+			},
 		});
 	}
 
@@ -87,7 +92,13 @@
 <main {...pagefind.page({ group: 'blog', importance: 'detail' })}>
 	<!-- intro -->
 	<section class="pt-intro-pad-top max-w-pad bg-gradient-primary-intro">
-		<Breadcrumbs crumbs={data.routing.breadcrumbs} />
+		<Breadcrumbs
+			crumbs={data.routing.breadcrumbs}
+			i18n={{
+				aria: m['components.breadcrumbs.aria'],
+				home: m['components.breadcrumbs.home'],
+			}}
+		/>
 		<h1 class="c-text-heading-lg tablet:mt-10 desktop:mt-15 mt-8">
 			{data.post.title}
 		</h1>
@@ -95,6 +106,7 @@
 		<div class="tablet:mt-10 desktop:mt-15 relative mt-8">
 			{#if !data.post.ai}
 				<NotByAiBadge
+					sr={m['components.not_by_ai_badge']}
 					class="absolute -left-4 -top-4"
 					--color-fg="var(--color-surface)"
 					--color-bg="var(--color-on-surface)"
@@ -294,7 +306,11 @@
 				<ul class="flex flex-wrap gap-4">
 					{#if settings.hydrated}
 						<li>
-							<CopyIconBtn text={url} aria={m['pages.blog_slug.actions.copy'](routing.lang)} />
+							<CopyBtn
+								class="c-link-icon border-onehalf flex rounded-full border-current p-2"
+								textToCopy={url}
+								aria={m['pages.blog_slug.actions.copy']}
+							/>
 						</li>
 					{/if}
 					<li>
@@ -331,6 +347,7 @@
 					<li>
 						{#if settings.hydrated}
 							<button
+								type="button"
 								class="c-link-icon border-onehalf flex rounded-full border-current p-2"
 								onclick={openQrDialog}
 							>

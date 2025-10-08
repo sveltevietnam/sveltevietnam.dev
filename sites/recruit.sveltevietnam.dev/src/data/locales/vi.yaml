@@ -1,0 +1,434 @@
+---
+messages:
+  at: tại
+  app: Tuyển dụng
+  open: Mở
+  close: Đóng
+  menu: bảng chọn
+  continue: Tiếp tục
+  download: Tải về
+  save: Lưu
+  or: hoặc
+  svelte_vietnam:
+    name: Svelte Việt Nam
+    discord: Svelte Việt Nam Discord
+    recruit: Ứng dụng Tuyển dụng Svelte Việt Nam
+  footer:
+    version: Phiên bản
+    about:
+      heading: Về Ứng dụng
+      desc:
+        Đây là nền tảng tuyển dụng mã nguồn mở, miễn phí và bảo mật, nhằm kết nối cộng đồng với các
+        doanh nghiệp và tổ chức.
+    navigation: Điều hướng
+    contact: Liên hệ
+    powered_by: Trên nền tảng
+    not_by_ai: trang này được viết bởi con người, không phải bởi trí tuệ nhân tạo (AI)
+    back_to_svelte_vietnam: Trở về trang Svelte Việt Nam
+  languages:
+    vietnamese: Tiếng Việt
+    english: Tiếng Anh
+  color_scheme_menu:
+    aria: Bảng chọn chế độ màu
+    light: Chế độ sáng
+    dark: Chế độ tối
+    system: Mặc định
+  language_menu:
+    aria: chuyển đổi ngôn ngữ trang
+    switch_to: chuyển sang
+  errors:
+    generic: Đã có lỗi xảy ra, vui lòng thử lại sau! Xin lỗi vì sự bất tiện này.
+  inputs:
+    email:
+      label: Email
+      errors:
+        nonempty: Vui lòng nhập địa chỉ email
+        invalid: Địa chỉ email không hợp lệ
+        existed: Email đã được dùng bởi tài khoản khác
+        current: Đây đã là email hiện tại của bạn
+    name:
+      errors:
+        nonempty: Vui lòng nhập tên
+    url:
+      label: Đường dẫn
+      errors:
+        nonempty: Vui lòng nhập đường dẫn
+        invalid: Địa chỉ URL không hợp lệ
+    turnstile:
+      desc: Xác thực <em class="c-text-body-xs">(cần Javascript)</em>
+      errors:
+        nonempty: Vui lòng xác thực
+        unknown: Có lỗi xảy ra trong quá trình xác thực
+    employer:
+      email:
+        label: Email người sử dụng lao động (không công khai)
+        placeholder: human-resources@abc.com
+        note: Đây là là email đã sử dụng trong đăng ký.
+      name:
+        label: Tên người sử dụng lao động
+        placeholder: Công ty ABC / Tổ chức XYZ
+      desc:
+        label: Mô tả về người sử dụng lao động
+        placeholder: XYZ là một tổ chức phi lợi nhuận hoạt động trong lĩnh vực giáo dục...
+        note:
+          Mô tả ngắn ngắn gọn giúp ứng viên hiểu thêm về tổ chức / công ty của bạn. Mô tả này được
+          hiển thị tại trang chi tiết của bài đăng tuyển.
+        errors:
+          nonempty: Vui lòng nhập mô tả người sử dụng lao động
+      website:
+        label: Website của người sử dụng lao động (không bắt buộc)
+        placeholder: https://cong-ty-abc.com
+      image:
+        label: Hình đại diện
+        desc: 'Tối đa: <strong>1MB</strong><br /> Đề xuất: <strong>200x200</strong>'
+        errors:
+          type: Tệp tải lên phải là hình ảnh
+          size: Kích thước tệp không quá 1MB
+      agreement:
+        desc:
+          Tôi xin cam kết thông tin trên là đúng sự thật và tôi là người sử dụng lao động hoặc có
+          quyền đại diện cho người sử dụng lao động.
+        error: Vui lòng đọc và đồng ý với cam kết
+    job_posting:
+      title:
+        label: Tiêu đề công việc
+        placeholder: Lập trình viên Frontend (Svelte & SvelteKit)
+        errors:
+          nonempty: Vui lòng nhập tiêu đề công việc
+      type:
+        label: Loại hình công việc
+        options:
+          volunteer: Tình nguyện
+          internship: Thực tập
+          contract: Hợp đồng
+          part_time: Bán thời gian
+          full_time: Toàn thời gian
+        errors:
+          nonempty: Vui lòng chọn loại hình công việc
+      location:
+        label: Địa điểm làm việc
+        placeholder: Tự do (remote) / Hà Nội / Hồ Chí Minh / ...
+        errors:
+          nonempty: Vui lòng nhập địa điểm làm việc
+      salary:
+        label: Mức lương
+        placeholder: ₫20tr/tháng, $1000-$2000/tháng, không lương, ...
+        errors:
+          nonempty: Vui lòng nhập mức lương
+      application:
+        label: Phương thức ứng tuyển
+        options:
+          email:
+            label: Qua email đến nhà tuyển dụng
+            note: Khi nhấn nút “ứng tuyển", ứng viên cần tự soạn email gởi đến địa chỉ trên.
+            placeholder: career@abc.com
+          url:
+            label: Qua cổng thông tin riêng
+            note: Khi nhấn nút “ứng tuyển", ứng viên sẽ được dẫn đến cổng thông trên.
+            placeholder: https://career.abc.com/portal/...
+        errors:
+          nonempty_method: Vui lòng chọn phương thức ứng tuyển
+          nonempty_link: Vui lòng nhập địa chỉ ứng tuyển
+      expired_at:
+        label: Hạn đăng tuyển
+        note:
+          Đăng tuyển sẽ không còn hiển trên <a class="c-link"
+          href="{{mainSiteUrl}}/vi/viec-lam">trang tuyển dụng</a> sau ngày này.
+        errors:
+          nonempty: Vui lòng chọn hạn đăng tuyển
+          min: Hạn phải sau ngày hôm nay
+          max: Hạn không được quá 180 ngày
+      desc:
+        label: Mô tả công việc
+        placeholder:
+          Tìm kiếm lập trình viên Frontend có kinh nghiệm với Svelte và SvelteKit cho đội ngũ năng
+          động và sáng tạo... Các phúc lợi cho nhân viên...
+        errors:
+          nonempty: Vui lòng nhập mô tả công việc
+  pages:
+    home:
+      meta:
+        title: Tuyển dụng | Svelte Việt Nam
+        desc:
+          Quản lý bài đăng tuyển dụng miễn phí tại sveltevietnam.dev — dành cho doanh nghiệp và tổ
+          chức
+        keywords:
+          tuyển dụng, việc làm, svelte, sveltekit, cộng đồng, mã nguồn mở, svelte việt nam,
+          sveltevietnam.dev
+      intro:
+        heading: Tuyển dụng
+        subtitle: cùng Cộng đồng Svelte Việt Nam
+        desc:
+          Quản lý bài đăng tuyển dụng miễn phí tại <a class="c-link"
+          href={{mainSiteUrl}}>sveltevietnam.dev</a> — dành cho doanh nghiệp và tổ chức
+        cta: Đăng nhập / Đăng ký
+        kv_alt: một người đang thay bóng đèn trên thang chữ A, hai người khác giữ thang
+      catch:
+        heading: Bao nhiêu cho một bài đăng?
+        desc:
+          <strong>Hoàn toàn miễn phí!</strong> Thay vì lợi nhuận, ứng dụng Tuyển dụng có mục tiêu
+          kết nối cộng đồng với doanh nghiệp và tổ chức.<br /> <br />Chúng tôi chỉ hy vọng nhà tuyển
+          dụng và người sử dụng lao động cân nhắc lan rộng hoặc <a class="c-link"
+          href="https://opencollective.com/sveltevietnam" target="_blank" rel="noreferrer noopner
+          external">tài trợ cho dự án Svelte Việt Nam</a>.
+        cta: Vì sao Svelte Việt Nam cần tài trợ?
+        kv_alt: một người ngồi trên một con heo đất khổng lồ
+      about:
+        heading: Về Svelte Việt Nam
+        desc:
+          Svelte Việt Nam là cộng đồng cho bất cứ ai quan tâm đến Svelte tại Việt Nam, với mong muốn
+          tạo ra kênh thông tin bổ ích và môi  trường lành mạnh để thành viên chia sẻ kinh nghiệm,
+          giúp đỡ lẫn nhau trong hành trình phát triển phần mềm và tiếp cận mã nguồn mở.
+        cta: Xem thêm tại sveltevietnam.dev
+        kv_alt: hai người đang lắp ráp một bóng đèn khổng lồ từ nhiều mảnh ghép
+      open:
+        heading: Nguồn mở
+        desc: Ứng dụng Tuyển dụng có mã nguồn mở và hoan nghênh đóng góp hoặc phê bình từ cộng đồng.
+        cta: Xem mã nguồn tại Github
+        kv_alt: một cánh cửa mở
+    authenticate:
+      meta:
+        title: Xác thực | Tuyển dụng | Svelte Việt Nam
+        desc: Đăng nhập hoặc đăng ký để sử dụng ứng dụng Tuyển dụng từ cộng đồng Svelte Việt Nam
+      heading: Đăng nhập / Đăng ký
+      desc:
+        Quản lý bài đăng tuyển dụng tại <a class="c-link" href={{mainSiteUrl}}>sveltevietnam.dev</a>
+        — miễn phí và bảo mật — kết nối cộng đồng với doanh nghiệp và tổ chức
+      callout:
+        in: trong
+        login:
+          Vui lòng hoàn tất đăng nhập qua đường dẫn trong email vừa được gởi đến bạn (hết hiệu lực
+          {{exp}}). Nếu không nhận được email, bạn có thể nhấn “Gởi lại”
+        signup:
+          Vui lòng tiếp tục quy trình đăng ký qua hướng dẫn trong email vừa được gởi đến bạn (hết
+          hiệu lực {{exp}}). Nếu không nhận được email, bạn có thể nhấn “Gởi lại”
+      headhunter:
+        Bạn là nhà tuyển dụng độc lập? <br /> Kết nối trực tiếp với ứng viên qua <a class="c-link"
+        href="{{jobChannelUrl}}" target="_blank" rel="noreferrer noopener external">diễn đàn cộng
+        đồng</a>.
+      resend: Gởi lại
+      error:
+        token_expired: Yêu cầu đã hết hiệu lực. Vui lòng thử lại.
+        token_invalid: Yêu cầu không hợp lệ. Vui lòng thử lại.
+        generic: Đã có lỗi xảy ra. Vui lòng thử lại.
+    onboarding:
+      meta:
+        title: Hoàn thiện hồ sơ | Tuyển dụng | Svelte Việt Nam
+      heading: Hoàn thiện hồ sơ
+      desc:
+        Cảm ơn bạn đã đăng ký sử dụng ứng dụng Tuyển dụng của cộng đồng Svelte Việt Nam. Hãy điền
+        một số thông tin cần thiết dưới đây để hoàn tất quy trình đăng ký!
+      cta:
+        use_another_account: Đăng nhập vào tài khoản khác
+        submit: Yêu cầu xét duyệt
+    welcome:
+      meta:
+        title: Chào mừng | Tuyển dụng | Svelte Việt Nam
+      heading: Hồ sơ đã được duyệt
+      desc: Xin cảm ơn. Bạn có thể bắt đầu sử dụng ứng dụng ngay bây giờ!
+      cta: Tạo bài đăng tuyển
+      feedback:
+        Gởi góp ý cải thiện cho quy trình đăng ký qua <a class="c-link"
+        href="mailto:jobs@sveltevietnam.dev">jobs@sveltevietnam.dev</a> hoặc <a class="c-link"
+        href="https://discord.sveltevietnam.dev" target="_blank" rel="noreferrer noopener
+        external">Discord chính thức của Svelte Việt Nam</a>.
+    profile:
+      meta:
+        title: Hồ sơ | Tuyển dụng | Svelte Việt Nam
+      heading: Hồ sơ
+      update_email:
+        heading: Sửa đổi email
+        form:
+          email:
+            note: Email này được sử dụng để đăng nhập.
+        callout:
+          pending: Vui lòng kiểm tra email để hoàn thành yêu cầu sửa đổi email của bạn!
+          unverified:
+            Email vừa được thay đổi. Vì lý do bảo mật, vui lòng đăng xuất và đăng nhập lại trước khi
+            thay đổi email lần nữa.
+      update_info:
+        heading: Sửa đổi hồ sơ tuyển dụng
+        success: Hồ sơ đã được cập nhật!
+    email_change_verification:
+      meta:
+        title: Xác thực thay đổi email | Tuyển dụng | Svelte Việt Nam
+      heading:
+        ok: Yêu cầu đã được xác nhận
+        invalid: Yêu cầu không hợp lệ
+        expired: Yêu cầu đã hết hạn
+        unknown: Lỗi không xác định
+      desc:
+        ok: Email của bạn đã được cập nhật. Xin cảm ơn!
+        invalid:
+          Đường dẫn không hợp lệ hoặc đã bị sửa đổi. Vui lòng kiểm tra lại email được gởi đến bạn.
+        expired:
+          Yêu cầu đã quá hạn sử dụng. Vui lòng thực hiện lại sửa đổi tại <a href="{{profilePath}}"
+          class="c-link">trang quản lý tài khoản</a>.
+      reminder:
+        'Nhắc bạn: email được sử dụng để đăng nhập và quản lý tài khoản. Vui lòng không chia sẻ
+        email của bạn với ai!'
+      login: Đăng nhập
+    postings:
+      meta:
+        title: Danh sách đăng tuyển | Tuyển dụng | Svelte Việt Nam
+      heading: Bài đăng tuyển
+      active:
+        heading: Đăng tuyển hiện tại
+        desc:
+          Các bài đăng tuyển này đã được duyệt và đang hiển thị trên <a class="c-link"
+          href="{{mainSiteUrl}}/vi/viec-lam">trang việc làm</a>.
+        create: Tạo mới
+        tba:
+          desc: Chưa có bài đăng tuyển nào.
+          cta: Tạo bài đăng tuyển!
+      pending:
+        heading: Đăng tuyển chờ xét duyệt
+        desc:
+          Các bài đăng tuyển này đang chờ ban quản trị xét duyệt. Bạn sẽ nhận được email thông báo
+          khi bài đăng được duyệt hoặc cần bổ sung thông tin.
+      expired:
+        heading: Đăng tuyển đã hết hạn
+        desc:
+          Các bài đăng tuyển này không thể sửa đổi và không còn hiển thị trên <a class="c-link"
+          href="{{mainSiteUrl}}/vi/viec-lam">trang việc làm</a>.
+    postings_id:
+      meta:
+        title: Chi tiết đăng tuyển | Tuyển dụng | Svelte Việt Nam
+      pending:
+        Bài đăng tuyển đang chờ xét duyệt từ ban quản trị. Bạn sẽ nhận được email khi bài đăng được
+        duyệt hoặc cần bổ sung thông tin. Bài đăng đã duyệt sẽ không thể sửa đổi. Vui lòng kiểm tra
+        kỹ thông tin và sử đổi ngay bây giờ nếu cần.
+      general:
+        heading: Thông tin chung
+        posted_at: Đăng ngày
+        expired_at: Hết hạn ngày
+        status:
+          name: Trạng thái
+          pending: Chờ xét duyệt
+          deleted: Đã bị xoá
+          expired: Đã hết hạn
+          active:
+            Đang hiển thịtại trang <a class="c-link" href="{{mainSiteUrl}}/vi/viec-lam">Việc làm</a>
+      job_desc:
+        heading: Mô tả công việc
+      employer_desc:
+        heading: Về {{employerName}}
+      actions:
+        apply: Ứng tuyển
+        share:
+          link: Sao chép đường dẫn
+          qr: Tạo mã QR
+      manage:
+        heading: Quản lý bài đăng
+        edit: Chỉnh sửa
+        delete: Xoá
+      delete:
+        confirmation:
+          title: Cảnh báo về tác vụ này
+          desc: Đăng tuyển sẽ bị xoá vĩnh viễn và không thể khôi phục. Bạn có chắc chắn muốn xoá?
+          confirm: Xác nhận
+          cancel: Quay lại
+        errors:
+          unauthorized: Bạn không có quyền quản lý bài đăng tuyển này
+        success: Bài đăng tuyển đã được xóa! Khi rời trang này, bạn sẽ không thể truy cập lại.
+    postings_upsert:
+      meta:
+        title:
+          create: Tạo mới đăng tuyển | Tuyển dụng | Svelte Việt Nam
+          edit: Chỉnh sửa đăng tuyển | Tuyển dụng | Svelte Việt Nam
+      heading:
+        create: Tạo mới bài đăng tuyển
+        edit: Chỉnh sửa bài đăng tuyển
+      form:
+        cta: Yêu cầu xét duyệt
+      preview:
+        heading: Xem trước
+        desc:
+          Bài đăng tuyển sẽ được hiển thị tại trang <a class="c-link"
+          href="{{mainSiteUrl}}/vi/viec-lam">“Việc làm"</a> với giao diện như sau
+        callout:
+          Bài đăng tuyển nên mô tả rõ ràng về trách nhiệm công việc và phúc lợi. Đăng tuyển với
+          thông tin đầy đủ cũng sẽ giúp ban quản trị xét duyệt dễ dàng hơn.
+      support:
+        heading: Hỗ trợ
+        desc:
+          Nếu bạn cần hỗ trợ hoặc có thắc mắc, góp ý cho ứng dụng, hãy liên lạc ban quản trị qua
+          email <a class="c-link" href="mailto:jobs@sveltevietnam.dev">jobs@sveltevietnam.dev</a>
+          hoặc tại <a class="c-link" href="https://discord.sveltevietnam.dev">Discord của Svelte
+          Việt Nam</a>.
+      notifications:
+        update: Sửa đổi đã được xét duyệt và cập nhật!
+        create: Bài đăng tuyển đã được tạo thành công và đang chờ xét duyệt!
+  components:
+    account_menu:
+      aria: Quản lý tài khoản của bạn
+      profile: Hồ sơ
+      logout: Đăng xuất
+    job_posting_list:
+      posted_at: Đăng ngày
+      expired_at: Hết hạn ngày
+    breadcrumbs:
+      aria: phân cấp trang
+      home: Trang chủ
+    sponsor_reminder:
+      heading: Tài trợ
+      desc:
+        Svelte Việt Nam được xây dựng bởi cộng đồng. Hãy cân nhắc tài trợ tài chính để góp phần duy
+        trì và phát triển ứng dụng.
+      callout: Đăng tuyển từ nhà tài trợ được ưu tiên xét duyệt và hiển thị trên trang việc làm.
+      cta: Trở thành nhà tài trợ
+    rich_text_editor:
+      toolbar:
+        name: Thanh công cụ
+        undo: Hoàn tác (undo)
+        redo: Tái thực hiện (redo)
+        block:
+          name: Khối văn bản
+          paragraph: Đoạn văn
+          heading: Tiêu đề
+          callout:
+            name: Ô văn bản nổi
+            status:
+              name: Trạng thái
+              info: Thông tin
+              success: Thành công
+              warning: Cảnh báo
+              error: Báo lỗi
+          numbered_list: Danh sách số
+          bullet_list: Danh sách chấm
+          check_list: Danh sách kiểm
+          blockquote: Trích dẫn
+          codeblock: Đoạn mã
+        inline:
+          name: Công cụ văn bản
+          bold: In đậm
+          italic: In nghiêng
+          underline: Gạch chân
+          code: In mã
+          link: Chèn đường dẫn
+        help: Trợ giúp
+      floating_link_editor:
+        name: Chỉnh sửa đường dẫn
+        edit: Chỉnh sửa
+        remove: Xoá
+        save: Lưu
+        discard: Huỷ
+        placeholder: https://example.com...
+      help:
+        heading: Về trình soạn thảo
+        desc:
+          Đây là trình soạn thảo được xây dựng dựa trên bộ công cụ <a href="https://lexical.dev/"
+          target="_blank" rel="noreferrer noopener external">Lexical</a>. Hiện tại, trình soạn thảo
+          chỉ cung cấp các chức năng tối thiểu cần thiết để phục vụ cho mục đích của ứng dụng này.
+          <br /> <br /> Bạn có thể sử dụng thanh công cụ ở dưới trình để hỗ trợ trong quá trình soạn
+          thảo, ví dụ như thay đổi định dạng, hoàn tác, chèn đương dẫn, v.v... <br /> <br /> Nếu bạn
+          có đề xuất cải thiện cho trình soạn thảo, vui lòng liên hệ với ban quản trị tại <a
+          href="mailto:jobs@sveltevietnam.dev">jobs@sveltevietnam.dev</a>. Bạn cũng có thể xem và
+          đóng góp vào <a
+          href="https://github.com/sveltevietnam/sveltevietnam.dev/tree/main/sites/recruit.sveltevietnam.dev/src/lib/components/rich-text-editor"
+          target="_blank" rel="noreferrer noopner external" > mã nguồn của trình soạn thảo tại
+          Github </a>.
+  dialogs:
+    qr:
+      title: Mã QR
+      desc: Chia sẻ và quét mã này để truy cập nhanh vào trang!

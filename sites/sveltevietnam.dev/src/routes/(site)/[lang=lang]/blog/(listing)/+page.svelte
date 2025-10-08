@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { T } from '@sveltevietnam/i18n/runtime';
+	import { Breadcrumbs } from '@sveltevietnam/kit/components';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { onScroll, createTimeline, stagger } from 'animejs';
 
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import { BlogNewsletter } from '$lib/components/blog-newsletter';
 	import { BlogPostShowcase } from '$lib/components/blog-post-showcase';
-	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { GradientBackground } from '$lib/components/gradient-background';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { TextArrowLink } from '$lib/components/text-arrow-link';
@@ -19,7 +19,7 @@
 	let { data }: PageProps = $props();
 
 	const settings = SettingsContext.get();
-	const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
 
 	const commonArrowLinkClasses = 'group-hover:translate-x-1 transition-transform';
 
@@ -93,7 +93,13 @@
 	<!-- intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div class="max-w-pad space-y-10">
-			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
+			<Breadcrumbs
+				crumbs={data.routing.breadcrumbs}
+				i18n={{
+					aria: m['components.breadcrumbs.aria'],
+					home: m['components.breadcrumbs.home'],
+				}}
+			/>
 			<div class="space-y-4 text-center">
 				<h1 class="c-text-heading-page text-primary-on-surface">
 					<T message={m['pages.blog.heading']} />

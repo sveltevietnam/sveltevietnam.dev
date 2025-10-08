@@ -1,13 +1,14 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { T } from '@sveltevietnam/i18n/runtime';
+	import { Breadcrumbs } from '@sveltevietnam/kit/components';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 
+	import * as globalM from '$data/locales/generated/messages';
 	import trongnguyen24 from '$data/people/trongnguyen24';
 	import trongnguyen24Avatar from '$data/people/trongnguyen24/avatar.jpg?enhanced&w=400;100&imagetools';
 	import vnphanquang from '$data/people/vnphanquang';
 	import vnphanquangAvatar from '$data/people/vnphanquang/avatar.jpg?enhanced&w=400;100&imagetools';
 	import * as p from '$data/routes/generated';
-	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { DateTimeRangeText } from '$lib/components/date-time-range-text';
 	import { EventGallery } from '$lib/components/event-gallery';
 	import { EventTimeline } from '$lib/components/event-timeline';
@@ -36,7 +37,7 @@
 
 	let { data }: PageProps = $props();
 
-	const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
 
 	const people = $derived({
 		vnphanquang: {
@@ -66,7 +67,13 @@
 			></div>
 		</div>
 		<div class="tablet:space-y-10 max-w-pad z-1 relative space-y-8">
-			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
+			<Breadcrumbs
+				crumbs={data.routing.breadcrumbs}
+				i18n={{
+					aria: globalM['components.breadcrumbs.aria'],
+					home: globalM['components.breadcrumbs.home'],
+				}}
+			/>
 			<div class="space-y-10">
 				<h1 class="c-text-heading-page text-primary-on-surface">
 					{data.event.title}

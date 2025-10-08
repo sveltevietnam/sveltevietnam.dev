@@ -1,10 +1,7 @@
 import type { Language } from '@sveltevietnam/i18n';
+import { EMAILS, SOCIAL_LINKS } from '@sveltevietnam/kit/constants';
+import { buildStructuredTextWithLang } from '@sveltevietnam/kit/utilities/structured-data';
 import type { Organization } from 'schema-dts';
-
-import { EMAILS } from '$data/emails';
-import { SOCIAL_LINKS } from '$data/links';
-
-import { buildStructuredTextWithLang } from './utils';
 
 // TODO: extract to locale YAML files
 const locales = {
@@ -27,10 +24,10 @@ export function buildStructuredOrganization(
 	return {
 		'@type': 'Organization',
 		'@id': origin,
-		url: buildStructuredTextWithLang(lang, `${origin}/${lang}`),
+		url: buildStructuredTextWithLang({ lang, value: `${origin}/${lang}` }),
 		name: 'Svelte Việt Nam',
 		alternateName: 'Svelte Vietnam',
-		description: buildStructuredTextWithLang(lang, locale.description),
+		description: buildStructuredTextWithLang({ lang, value: locale.description }),
 		logo: {
 			'@type': 'ImageObject',
 			url: `${origin}/logo/original.png`,
@@ -40,7 +37,7 @@ export function buildStructuredOrganization(
 		contactPoint: {
 			'@type': 'ContactPoint',
 			email: EMAILS.CONTACT,
-			contactType: buildStructuredTextWithLang(lang, locale.contactPointType),
+			contactType: buildStructuredTextWithLang({ lang, value: locale.contactPointType }),
 		},
 		sameAs: [
 			SOCIAL_LINKS.GITHUB,

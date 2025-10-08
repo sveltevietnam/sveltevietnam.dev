@@ -24,14 +24,32 @@
 			"types": "./types/index.d.ts",
 			"import": "./src/contexts/index.js"
 		},
+		"./dialogs": {
+			"types": "./types/index.d.ts",
+			"import": "./src/dialogs/index.js"
+		},
 		"./hooks": {
 			"types": "./types/index.d.ts",
 			"import": "./src/hooks.js"
 		},
+		"./notifications": {
+			"types": "./types/index.d.ts",
+			"import": "./src/notifications/index.js"
+		},
 		"./utilities": {
 			"types": "./types/index.d.ts",
 			"import": "./src/utilities/index.js"
-		}
+		},
+		"./utilities/structured-data": {
+			"types": "./types/index.d.ts",
+			"import": "./src/utilities/structured-data/index.js"
+		},
+		"./utilities/datetime": {
+			"types": "./types/index.d.ts",
+			"import": "./src/utilities/datetime.js"
+		},
+		"./assets/images/logos/*.base64": "./src/assets/images/logos/*.base64",
+		"./assets/images/fallbacks/*.jpg": "./src/assets/images/fallbacks/*.jpg"
 	},
 	"publishconfig": {
 		"access": "public",
@@ -74,16 +92,32 @@
 		"format": "prettier --write --ignore-path=../../.prettierignore --config=../../prettier.config.js ."
 	},
 	"peerDependencies": {
-		"svelte": "^5.16.6"
+		"svelte": "^5.38.6",
+		"vite": "^7.1.4"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20250807.0",
-		"@sveltejs/kit": "^2.27.3",
-		"svelte": "^5.38.0",
-		"vite": "^7.1.1"
+		"@cloudflare/workers-types": "^4.20250903.0",
+		"@svelte-put/lockscroll": "^2.0.1",
+		"@sveltejs/kit": "^2.37.0",
+		"@sveltevietnam/css": "workspace:*",
+		"@tailwindcss/vite": "4.1.12",
+		"schema-dts": "^1.1.5",
+		"svelte": "^5.38.6",
+		"tailwindcss": "4.1.12",
+		"vite": "^7.1.4",
+		"vite-imagetools": "^8.0.0"
 	},
 	"dependencies": {
+		"@floating-ui/dom": "^1.7.4",
+		"@svelte-put/async-stack": "^1.5.1",
 		"@svelte-put/clickoutside": "^4.0.0",
-		"@sveltevietnam/i18n": "workspace:*"
+		"@svelte-put/copy": "^4.0.0",
+		"@svelte-put/qr": "^2.1.0",
+		"@sveltevietnam/i18n": "workspace:*",
+		"defu": "^6.1.4",
+		"valibot": "1.1.0"
+	},
+	"volta": {
+		"extends": "../../package.json"
 	}
 }

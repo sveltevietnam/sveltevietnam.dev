@@ -1,11 +1,11 @@
 <script>
   import { ChatContainer, ChatItem } from '$lib/components/chat';
   import { loadParticipants } from '$lib/components/chat/utils';
-  import { RoutingContext } from '@sveltevietnam/kit/contexts';
+  import { Contexts } from '@sveltevietnam/kit/contexts';
 
   import learning from '../images/effective-learning.jpg?format=avif';
 
-  const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
   const participants = loadParticipants(['liti-dev', 'anhtuank7c'], routing.lang);
 </script>
 

@@ -2,6 +2,7 @@ import { error, type RequestEvent } from '@sveltejs/kit';
 
 type Backend = import('@sveltevietnam/backend').default;
 
+// TODO: duplication with same function in recruit
 export function getBackend<
 	Throw extends boolean = true,
 	Returned = Throw extends true ? Backend : Backend | undefined,

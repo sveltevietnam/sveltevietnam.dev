@@ -1,8 +1,7 @@
 <script lang="ts">
 	import QR from '@svelte-put/qr/svg/QR.svelte';
-
-	import { SOCIAL_LINKS } from '$data/links';
-	import { dark } from '$data/logos';
+	import dark from '@sveltevietnam/kit/assets/images/logos/monotone-dark.base64?raw';
+	import { SOCIAL_LINKS } from '@sveltevietnam/kit/constants';
 </script>
 
 <main
@@ -17,7 +16,14 @@
 	<p>As with anything, try turning it off and on again.</p>
 	<div class="flex items-center gap-6">
 		<a class="contents" href={SOCIAL_LINKS.DISCORD} data-external>
-			<QR class="h-32 w-32" data={SOCIAL_LINKS.DISCORD} logo={dark} shape="circle" width="128" height="128" />
+			<QR
+				class="h-32 w-32"
+				data={SOCIAL_LINKS.DISCORD}
+				logo={dark}
+				shape="circle"
+				width="128"
+				height="128"
+			/>
 		</a>
 		<div class="space-y-2 text-base">
 			<p>While you are at it, join our discord for fun, yeah?</p>

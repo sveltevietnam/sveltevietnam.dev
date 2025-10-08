@@ -1,6 +1,6 @@
 packages:
-  - "packages/*"
-  - "services/*"
-  - "sites/*"
-  - "workers/*"
-
+  - 'packages/*'
+  - 'services/*'
+  - 'sites/*'
+  - 'workers/*'
+minimumReleaseAge: 4320 # 3 days in minutes

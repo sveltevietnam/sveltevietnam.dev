@@ -1,11 +1,11 @@
 import type { Language } from '@sveltevietnam/i18n';
+import { buildStructuredTextWithLang } from '@sveltevietnam/kit/utilities/structured-data';
 import type { SocialEvent } from 'schema-dts';
 
 import type { EventMetadata } from '$data/events';
 import * as p from '$data/routes/generated';
 
 import { buildStructuredOrganization } from './organization';
-import { buildStructuredTextWithLang } from './utils';
 
 export function buildStructuredEvent(
 	lang: Language,
@@ -19,11 +19,11 @@ export function buildStructuredEvent(
 	return {
 		'@type': 'SocialEvent',
 		'@id': id,
-		url: buildStructuredTextWithLang(lang, canonical),
-		mainEntityOfPage: buildStructuredTextWithLang(lang, canonical),
-		name: buildStructuredTextWithLang(lang, event.title),
-		description: buildStructuredTextWithLang(lang, event.description),
-		keywords: buildStructuredTextWithLang(lang, event.keywords),
+		url: buildStructuredTextWithLang({ lang, value: canonical }),
+		mainEntityOfPage: buildStructuredTextWithLang({ lang, value: canonical }),
+		name: buildStructuredTextWithLang({ lang, value: event.title }),
+		description: buildStructuredTextWithLang({ lang, value: event.description }),
+		keywords: buildStructuredTextWithLang({ lang, value: event.keywords }),
 		startDate: event.startDate.toISOString(),
 		endDate: event.endDate.toISOString(),
 		inLanguage: lang,

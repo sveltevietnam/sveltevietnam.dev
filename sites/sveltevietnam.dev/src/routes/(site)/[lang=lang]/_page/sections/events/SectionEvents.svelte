@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { T } from '@sveltevietnam/i18n/runtime';
+	import { TBA } from '@sveltevietnam/kit/components';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
-	import { TBA } from '$lib/components/tba';
 
-	const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
 </script>
 
 <section

@@ -1,4 +1,4 @@
-import { isUrlLocalized } from '../is-url-localized/is-url-localized';
+import { isUrlLocalized } from '../is-url-localized/is-url-localized.js';
 
 /**
  * @template {string} L

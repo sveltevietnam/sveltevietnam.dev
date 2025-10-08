@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { clickoutside } from '@svelte-put/clickoutside';
-	import { T } from '@sveltevietnam/i18n';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { T } from '@sveltevietnam/i18n/runtime';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	import * as m from '$data/locales/generated/messages';
@@ -22,7 +22,7 @@
 	} & HTMLAttributes<HTMLElement> = $props();
 
 	const settings = SettingsContext.get();
-	const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
 
 	const links = $derived([
 		{

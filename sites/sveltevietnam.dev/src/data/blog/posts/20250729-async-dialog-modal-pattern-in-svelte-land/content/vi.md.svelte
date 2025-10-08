@@ -183,7 +183,27 @@ Tại thời điểm viết bài, `enhanceDialog` là tính năng thử nghiệm
 Để đảm bảo tính đóng gói và dễ kiểm thử, mình có thể sử dụng [Svelte context](https://svelte.dev/docs/svelte/context)
 để chứa `dialogStack`.
 
-```ts title="dialog-context.svelte.ts" src="../../../../../lib/dialogs/context.svelte.ts"
+```ts title="dialog-context.svelte.js"
+import { stack } from '@svelte-put/async-stack';
+import { getContext, setContext } from 'svelte';
+
+export class DialogContext {
+	static KEY = Symbol('app:dialogs');
+
+	/**
+	 * @returns {import('@svelte-put/async-stack').Stack}
+	 */
+	static set() {
+		return setContext(DialogContext.KEY, stack().build());
+	}
+
+	/**
+	 * @returns {import('@svelte-put/async-stack').Stack}
+	 */
+	static get() {
+		return getContext(DialogContext.KEY);
+	}
+}
 ```
 
 Giải pháp có thể được mở rộng để hỗ trợ các tính năng khác. Ví dụ, hộp thoại tìm kiểm tại sveltevietnam.dev

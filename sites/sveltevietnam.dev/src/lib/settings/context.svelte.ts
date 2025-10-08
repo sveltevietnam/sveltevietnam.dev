@@ -1,7 +1,6 @@
 import type { SplashOption, Screen } from '@sveltevietnam/kit/constants';
 import { platform } from '@sveltevietnam/kit/utilities';
 import { getContext, setContext } from 'svelte';
-import type { Attachment } from 'svelte/attachments';
 import { MediaQuery } from 'svelte/reactivity';
 
 export class SettingsContext {
@@ -14,7 +13,6 @@ export class SettingsContext {
 	#tabletQuery = new MediaQuery('(width >= 48rem)'); /* 768px */
 
 	// $state
-	scrolllock = $state(false);
 	hydrated = $state<false | Date>(false);
 	splashed = $state<false | Date>(false);
 	splash = $state<SplashOption>('random');
@@ -45,18 +43,6 @@ export class SettingsContext {
 
 		this.splash = settings.splash;
 	}
-
-	toggleScrollLock(force?: boolean) {
-		this.scrolllock = force ?? !this.scrolllock;
-	}
-
-	/** lock scroll when element is mounted, release when unmounted */
-	lockScrollWhenMounted: Attachment = () => {
-		this.toggleScrollLock(true);
-		return () => {
-			this.toggleScrollLock(false);
-		};
-	};
 
 	static set(settings: { splash: SplashOption }) {
 		return setContext(SettingsContext.KEY, new SettingsContext(settings));

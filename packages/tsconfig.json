@@ -9,9 +9,19 @@
 		"module": "esnext",
 		"moduleResolution": "bundler",
 		"lib": ["esnext", "DOM", "DOM.Iterable"],
+		"verbatimModuleSyntax": true,
+		"forceConsistentCasingInFileNames": true,
+		"isolatedModules": true,
 		"allowSyntheticDefaultImports": true,
 		"noUnusedLocals": true,
-		"noUnusedParameters": true
+		"noUnusedParameters": true,
+		"plugins": [
+			{
+				"name": "typescript-svelte-plugin",
+				"enabled": true,
+				"assumeIsSvelteProject": false
+			}
+		]
 	},
 	"include": ["src/**/*"],
 	"exclude": ["node_modules"]

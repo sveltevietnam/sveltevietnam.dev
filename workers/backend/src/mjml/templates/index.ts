@@ -1,8 +1,13 @@
 import type { Language } from '@sveltevietnam/i18n';
 
 import { DEFAULT_VARS } from './constants';
+import { RecruitAdminJobPostingPendingApprovalVars } from './recruit-admin-job-posting-pending-approval';
+import type { RecruitEmployerChangeEmailVars } from './recruit-employer-change-email';
+import type { RecruitEmployerCreateJobPostingVars } from './recruit-employer-create-job-posting';
+import type { RecuirtEmployerLoginVars } from './recruit-employer-login';
+import type { RecruitEmployerOnboardVars } from './recruit-employer-onboard';
 import * as t from './types';
-import { TemplateVars as WelcomTemplateVars } from './welcome';
+import type { WelcomTemplateVars } from './welcome';
 
 export function defineTemplate(def: t.TemplateDefinition): t.TemplateDefinition {
 	return def;
@@ -14,6 +19,11 @@ const modules = import.meta.glob<t.TemplateDefinition>('./*/index.ts', {
 
 export type TemplateVarMap = {
 	welcome: WelcomTemplateVars;
+	'recruit-employer-onboard': RecruitEmployerOnboardVars;
+	'recruit-employer-login': RecuirtEmployerLoginVars;
+	'recruit-employer-change-email': RecruitEmployerChangeEmailVars;
+	'recruit-employer-create-job-posting': RecruitEmployerCreateJobPostingVars;
+	'recruit-admin-job-posting-pending-approval': RecruitAdminJobPostingPendingApprovalVars;
 };
 
 export async function loadTemplate(id: t.TemplateId, lang: Language): Promise<t.Template | null> {

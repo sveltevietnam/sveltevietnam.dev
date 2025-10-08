@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { T } from '@sveltevietnam/i18n/runtime';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	import * as m from '$data/locales/generated/messages';
@@ -17,7 +17,7 @@
 		max: number;
 	} & HTMLAttributes<HTMLElement> = $props();
 
-	const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
 </script>
 
 <nav

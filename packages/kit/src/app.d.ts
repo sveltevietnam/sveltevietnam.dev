@@ -1,11 +1,18 @@
-import { AppLocals, AppPlatform } from './types.public';
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-empty-object-type */
+/// <reference types="vite/client" />
+
+import type { AppLocals, AppPlatform } from '@sveltevietnam/kit';
 
 declare global {
-	namespace App {
-		// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-		interface Locals extends AppLocals {}
+	// @ts-expect-error
+	declare module '*&imagetools' {
+		// @ts-expect-error
+		export default import('vite-imagetools').Picture;
+	}
 
-		// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+	namespace App {
+		interface Locals extends AppLocals {}
 		interface Platform extends AppPlatform {}
 	}
 }

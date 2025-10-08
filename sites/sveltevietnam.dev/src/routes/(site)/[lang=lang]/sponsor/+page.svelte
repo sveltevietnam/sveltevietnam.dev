@@ -1,12 +1,11 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { T } from '@sveltevietnam/i18n/runtime';
+	import { Breadcrumbs } from '@sveltevietnam/kit/components';
+	import { EMAILS, SOCIAL_LINKS } from '@sveltevietnam/kit/constants';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 
-	import { EMAILS } from '$data/emails';
-	import { SOCIAL_LINKS } from '$data/links';
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
-	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import * as pagefind from '$lib/pagefind/attributes';
 
@@ -15,7 +14,7 @@
 
 	let { data }: PageProps = $props();
 
-	const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
 </script>
 
 <main {...pagefind.page()}>
@@ -25,7 +24,13 @@
 			class="max-w-pad tablet:flex-row tablet:gap-6 tablet:items-start flex flex-col justify-between"
 		>
 			<div class="tablet:space-y-8 space-y-6">
-				<Breadcrumbs crumbs={data.routing.breadcrumbs} />
+				<Breadcrumbs
+					crumbs={data.routing.breadcrumbs}
+					i18n={{
+						aria: m['components.breadcrumbs.aria'],
+						home: m['components.breadcrumbs.home'],
+					}}
+				/>
 				<div class="space-y-4">
 					<h1 class="c-text-heading-page text-primary-on-surface">
 						<T message={m['pages.sponsor.heading']} />
@@ -88,7 +93,7 @@
 			<li>
 				<a
 					class="c-btn c-btn--pop flex justify-between text-left"
-					href={p['/:lang/events']({ lang: routing.lang})}
+					href={p['/:lang/events']({ lang: routing.lang })}
 				>
 					<T message={m['pages.sponsor.participate.events']} />
 				</a>
@@ -96,7 +101,7 @@
 			<li>
 				<a
 					class="c-btn c-btn--pop flex justify-between text-left"
-					href={p['/:lang/blog']({ lang: routing.lang})}
+					href={p['/:lang/blog']({ lang: routing.lang })}
 				>
 					<T message={m['pages.sponsor.participate.blog']} />
 				</a>

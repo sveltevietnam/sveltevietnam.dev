@@ -5,7 +5,7 @@ import { COMMON_COOKIE_CONFIG, PUBLIC_COOKIE_CONFIG } from './constants';
 
 /**
  * @typedef LangServerHookOptions
- * @property {string} cookieName - name of the cookie to store the language.
+ * @property {{ name: string; domain?: string }} cookie - cookie configuration
  * @property {string | boolean} [transform] - whether to inject the placeholder in returned html with the language value. Defaults to `%language%`.
  */
 
@@ -16,7 +16,7 @@ import { COMMON_COOKIE_CONFIG, PUBLIC_COOKIE_CONFIG } from './constants';
 export const createLangServerHook = function (options) {
 	return function ({ event, resolve }) {
 		const { locals, cookies, url, platform, request } = event;
-		const { cookieName, transform } = options;
+		const { cookie, transform } = options;
 
 		// setting internal referer
 		const referer = request.headers.get('Referer');
@@ -36,7 +36,7 @@ export const createLangServerHook = function (options) {
 
 		// if user has cookie lang, keep it
 		if (!language) {
-			const cookieLang = cookies.get(cookieName);
+			const cookieLang = cookies.get(cookie.name);
 			if (
 				cookieLang &&
 				LANGUAGES.includes(/** @type {import('@sveltevietnam/i18n').Language} */ (cookieLang))
@@ -56,7 +56,10 @@ export const createLangServerHook = function (options) {
 		locals.language = language;
 
 		// setting cookies
-		cookies.set(cookieName, locals.language, COMMON_COOKIE_CONFIG);
+		cookies.set(cookie.name, locals.language, {
+			...COMMON_COOKIE_CONFIG,
+			domain: cookie.domain,
+		});
 
 		if (transform === false) return resolve(event);
 		const placeholder = typeof transform === 'string' ? transform : '%language%';
@@ -68,7 +71,7 @@ export const createLangServerHook = function (options) {
 
 /**
  * @typedef ColorSchemeServerHookOptions
- * @property {string} cookieName - name of the cookie to store the color scheme.
+ * @property {{ name: string; domain?: string }} cookie - cookie configuration
  * @property {boolean} building - usually import('$app/environment').building
  * @property {boolean | string} [transform] - whether to inject the placeholder in returned html with the color scheme value. Defaults to `%color-scheme%`.
  */
@@ -80,17 +83,20 @@ export const createLangServerHook = function (options) {
 export const createColorSchemeServerHook = function (options) {
 	return async function ({ event, resolve }) {
 		const { locals, cookies, url } = event;
-		const { cookieName, building, transform } = options;
+		const { cookie, building, transform } = options;
 
 		// setting locals
 		locals.colorScheme =
 			(!building &&
 				/** @type {import('./constants').ColorScheme} */ (url.searchParams.get('color-scheme'))) ||
-			/** @type {import('./constants').ColorScheme} */ (cookies.get(cookieName)) ||
+			/** @type {import('./constants').ColorScheme} */ (cookies.get(cookie.name)) ||
 			'system';
 
 		// setting cookies
-		cookies.set(cookieName, locals.colorScheme, PUBLIC_COOKIE_CONFIG);
+		cookies.set(cookie.name, locals.colorScheme, {
+			...PUBLIC_COOKIE_CONFIG,
+			domain: cookie.domain,
+		});
 
 		if (transform === false) return resolve(event);
 		const placeholder = typeof transform === 'string' ? transform : '%color-scheme%';
@@ -102,8 +108,8 @@ export const createColorSchemeServerHook = function (options) {
 
 /**
  * @typedef SplashServerHookOptions
- * @property {string} splashCookieName - name of the cookie to store the splash option.
- * @property {string} freshVisitCookieName - name of the cookie to store the last fresh visit timestamp.
+ * @property {{ name: string; domain?: string }} splashCookie - cookie configuration for splash option
+ * @property {{ name: string; domain?: string }} freshVisitCookie - cookie configuration for fresh visit timestamp
  * @property {boolean | string} [transform] - whether to inject the placeholder in returned html with the splash value. Defaults to `%splash%`.
  */
 
@@ -114,7 +120,7 @@ export const createColorSchemeServerHook = function (options) {
 export function createSplashServerHook(options) {
 	return async function ({ event, resolve }) {
 		const { locals, cookies, request, url } = event;
-		const { splashCookieName, freshVisitCookieName, transform } = options;
+		const { splashCookie, freshVisitCookie, transform } = options;
 
 		// setting internal referer
 		const referer = request.headers.get('Referer');
@@ -127,10 +133,14 @@ export function createSplashServerHook(options) {
 
 		// setting locals
 		locals.splash =
-			/** @type {import('./constants').SplashOption} */ (cookies.get(splashCookieName)) || 'random';
+			/** @type {import('./constants').SplashOption} */ (cookies.get(splashCookie.name)) ||
+			'random';
 
 		// setting cookies
-		cookies.set(splashCookieName, locals.splash, COMMON_COOKIE_CONFIG);
+		cookies.set(splashCookie.name, locals.splash, {
+			...COMMON_COOKIE_CONFIG,
+			domain: splashCookie.domain,
+		});
 
 		/**
 		 * take a timestamp for the last fresh visit, that is:
@@ -142,7 +152,7 @@ export function createSplashServerHook(options) {
 		 */
 		/** @type {'disabled' | 'short' | 'long' } */
 		let splash = 'disabled';
-		const lastFreshVisitAt = cookies.get(freshVisitCookieName);
+		const lastFreshVisitAt = cookies.get(freshVisitCookie.name);
 		if (!lastFreshVisitAt || !locals.internalReferer) {
 			if (locals.splash !== 'disabled') {
 				if (locals.splash === 'random') {
@@ -151,8 +161,9 @@ export function createSplashServerHook(options) {
 					splash = locals.splash;
 				}
 			}
-			cookies.set(freshVisitCookieName, Date.now().toString(), {
+			cookies.set(freshVisitCookie.name, Date.now().toString(), {
 				...COMMON_COOKIE_CONFIG,
+				domain: freshVisitCookie.domain,
 				maxAge: 150, // 2.5 minutes,
 			});
 		}

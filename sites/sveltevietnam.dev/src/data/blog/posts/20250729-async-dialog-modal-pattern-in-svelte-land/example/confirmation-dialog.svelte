@@ -22,7 +22,6 @@
 	{...enhanceDialog(item, { defaultReturnValue: 'cancel', delayResolution: 'animationend' })}
 >
 	<form class="space-y-6" method="dialog">
-		<!-- <button class="c-link-lazy absolute right-4 top-4 p-2" formmethod="dialog"> -->
 		<button class="c-link-lazy absolute right-4 top-4 p-2" formmethod="dialog">
 			<span class="sr-only">Close</span>
 			<i class="i i-[ph--x] h-6 w-6"></i>
@@ -35,7 +34,7 @@
 			<button class="c-btn c-btn--outlined" formmethod="dialog">
 				{cancel}
 			</button>
-			<button class="c-btn c-btn-primary" formmethod="dialog" value="confirm">
+			<button class="c-btn" formmethod="dialog" value="confirm">
 				{confirm}
 			</button>
 		</div>

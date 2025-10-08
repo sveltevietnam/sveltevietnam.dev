@@ -1,0 +1,6 @@
+@import 'tailwindcss';
+@import '@sveltevietnam/css/base';
+@import '@sveltevietnam/css/typography';
+@import '@svelte-put/cloudflare-turnstile/tailwind.css';
+
+@source '../../../packages/kit/src/**/*.{svelte,js}';

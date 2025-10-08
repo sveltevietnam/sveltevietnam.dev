@@ -1,6 +1,6 @@
 import { test, expect, describe } from 'vitest';
 
-import { getLangFromUrl } from './get-lang-from-url';
+import { getLangFromUrl } from './get-lang-from-url.js';
 
 const lang = 'en';
 const langs = ['en', 'ja', 'vi'];

@@ -2,11 +2,12 @@ import jwt from '@tsndr/cloudflare-worker-jwt';
 import { WorkerEntrypoint } from 'cloudflare:workers';
 import { Hono } from 'hono';
 
-import { getOrm } from '$/database/orm';
-
 import { BlueskyPostService } from './data/bluesky-posts';
+import { EmployerService } from './data/employers';
+import { JobPostingService } from './data/job-postings';
 import { MailService } from './data/mails';
 import { SubscriberService } from './data/subscribers';
+import { getOrm } from './database/orm';
 import {
 	type JwtPayload,
 	type JwtVerificationResult,
@@ -17,13 +18,18 @@ export default class extends WorkerEntrypoint<Env> {
 	#subscribers: SubscriberService;
 	#mails: MailService;
 	#blueskyPosts: BlueskyPostService;
+	#employers: EmployerService;
+	#jobPostings: JobPostingService;
 
 	constructor(ctx: ExecutionContext, env: Env) {
 		super(ctx, env);
 		const orm = getOrm(env.d1);
+		// TODO: lazy init services?
 		this.#mails = new MailService(orm, env);
 		this.#subscribers = new SubscriberService(orm, env, this.#mails);
 		this.#blueskyPosts = new BlueskyPostService(orm);
+		this.#employers = new EmployerService(orm);
+		this.#jobPostings = new JobPostingService(orm);
 	}
 
 	get healthy() {
@@ -42,8 +48,17 @@ export default class extends WorkerEntrypoint<Env> {
 		return this.#blueskyPosts;
 	}
 
+	employers() {
+		return this.#employers;
+	}
+
+	jobPostings() {
+		return this.#jobPostings;
+	}
+
+	// TODO: maybe can create a token service for verify & create/sign
 	async verify(token: string): Promise<JwtVerificationResult> {
-		const secret = this.env.MODE !== 'development' ? await this.env.secret_jwt.get() : 'secret';
+		const secret = !this.env.LOCAL ? await this.env.secret_jwt.get() : 'secret';
 		try {
 			const verifiedToken = await jwt.verify<JwtPayload>(token, secret, { throwError: true });
 			if (!verifiedToken || !verifiedToken.payload)
@@ -67,9 +82,13 @@ export default class extends WorkerEntrypoint<Env> {
 	}
 
 	override fetch(request: Request): Response | Promise<Response> {
-		return new Hono<{ Bindings: Env }>()
-			.get('/health', (c) => c.text('ok'))
-			.fetch(request, this.env, this.ctx);
+		return (
+			new Hono<{ Bindings: Env }>()
+				.get('/health', (c) => c.text('ok'))
+				// TODO: implement quick approval endpoint for admin
+				// used in email sent to admin on job posting creation
+				.fetch(request, this.env, this.ctx)
+		);
 	}
 
 	override async queue(batch: MessageBatch<Queue.Message>): Promise<void> {
@@ -78,7 +97,7 @@ export default class extends WorkerEntrypoint<Env> {
 				switch (message.body.type) {
 					case 'send-mail':
 						try {
-							await this.#mails.send(message.body.input);
+							await this.#mails.send(message.body.templateId, message.body.input);
 							message.ack();
 						} catch (e) {
 							// TODO: log error

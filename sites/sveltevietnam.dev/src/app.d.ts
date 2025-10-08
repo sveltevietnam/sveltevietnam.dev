@@ -1,5 +1,5 @@
 /// <reference types="umami-browser" />
-import type { AppLocals, AppPlatform } from '@sveltevietnam/kit';
+import type { AppLocals, AppPlatform, PageMetadata } from '@sveltevietnam/kit';
 
 declare global {
 	declare type MaybePromise<T> = T | Promise<T> | PromiseLike<T>;
@@ -30,7 +30,7 @@ declare global {
 			 * per-page page metadata setup
 			 * {@see $routes/[lang]/+layout.svelte} for defaults
 			 */
-			meta?: import('$lib/meta').PageMetadata;
+			meta?: PageMetadata;
 		}
 
 		// interface PageState {}

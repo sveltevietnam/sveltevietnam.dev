@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n';
+	import { T } from '@sveltevietnam/i18n/runtime';
+	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 
 	import * as m from '$data/locales/generated/messages';
 	import svgChimLac from '$lib/assets/images/svg/chim-lac.svg?no-inline';
 	import svgDong from '$lib/assets/images/svg/dong-thai-binh-hung-bao.svg?no-inline';
 	import svgTuChu from '$lib/assets/images/svg/tu-chu.svg?no-inline';
 	import svgTuNom from '$lib/assets/images/svg/tu-nom.svg?no-inline';
-	import { Breadcrumbs } from '$lib/components/breadcrumbs';
 	import * as pagefind from '$lib/pagefind/attributes';
 
 	import type { PageProps } from './$types';
@@ -24,7 +24,13 @@
 			gap-6"
 		>
 			<div class="tablet:space-y-8 relative space-y-6">
-				<Breadcrumbs crumbs={data.routing.breadcrumbs} />
+				<Breadcrumbs
+					crumbs={data.routing.breadcrumbs}
+					i18n={{
+						aria: m['components.breadcrumbs.aria'],
+						home: m['components.breadcrumbs.home'],
+					}}
+				/>
 				<div class="space-y-4">
 					<h1 class="c-text-heading-page text-primary-on-surface">
 						<T message={m['pages.roadmap.heading']} />
@@ -74,19 +80,20 @@
 			highlights={[
 				m['pages.roadmap.dong.highlights.v1'],
 				m['pages.roadmap.dong.highlights.people_of_svelte'],
+				m['pages.roadmap.dong.highlights.recruit'],
 			]}
 			tasks={[
 				{
 					message: m['pages.roadmap.dong.tasks.publish_packages'],
-					progress: 'planned',
-				},
-				{
-					message: m['pages.roadmap.dong.tasks.job_posting'],
-					progress: 'planned',
+					progress: 'inprogress',
 				},
 				{
 					message: m['pages.roadmap.dong.tasks.a11y'],
 					progress: 'inprogress',
+				},
+				{
+					message: m['pages.roadmap.dong.tasks.job_posting'],
+					progress: 'completed',
 				},
 				{
 					message: m['pages.roadmap.dong.tasks.umami'],

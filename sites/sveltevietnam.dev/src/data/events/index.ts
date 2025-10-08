@@ -1,8 +1,7 @@
 import type { Language } from '@sveltevietnam/i18n';
+import { formatTime } from '@sveltevietnam/kit/utilities/datetime';
 import type { Component } from 'svelte';
 import type { Picture } from 'vite-imagetools';
-
-import { formatTime } from '$lib/utils/datetime';
 
 import type * as t from './types';
 export type * from './types';

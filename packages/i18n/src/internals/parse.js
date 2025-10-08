@@ -44,6 +44,8 @@ export async function flatParseMessages(yamls) {
 	};
 }
 
+// TODO: support @import directive to include other YAML files
+// FIXME: support param with multiple occurrences
 /**
  * collect parameters
  * @param {string} message - the input string to check

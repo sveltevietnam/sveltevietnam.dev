@@ -1,12 +1,12 @@
 <script lang="ts">
 	import type AtpAgent from '@atproto/api';
-	import { T } from '@sveltevietnam/i18n';
+	import { T } from '@sveltevietnam/i18n/runtime';
+	import { formatTimeDiff } from '@sveltevietnam/kit/utilities/datetime';
 
 	import { browser } from '$app/environment';
 	import * as m from '$data/locales/generated/messages';
 	import * as bluesky from '$lib/bluesky';
 	import { Avatar } from '$lib/components/avatar';
-	import { formatTimeDiff } from '$lib/utils/datetime';
 
 	let { accountId, postId }: { accountId: string; postId: string } = $props();
 

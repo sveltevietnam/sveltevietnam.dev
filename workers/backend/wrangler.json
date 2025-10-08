@@ -9,8 +9,11 @@
 			"name": "backend",
 			"vars": {
 				"MODE": "development",
+				"LOCAL": true,
+				"MAIL_TOKEN_TTL": 120,
 				"ORIGIN": "http://localhost:5006",
 				"SITE_URL": "http://localhost:5005",
+				"RECRUIT_URL": "http://localhost:5007",
 				"AWS_REGION": "ap-northeast-1"
 			},
 			"secrets_store_secrets": [
@@ -28,6 +31,12 @@
 					"binding": "secret_ses_access_secret",
 					"store_id": "c3a8857d65d44b69aad72733c3cd44b4",
 					"secret_name": "ses_access_secret"
+				}
+			],
+			"r2_buckets": [
+				{
+					"binding": "r2",
+					"bucket_name": "sveltevietnam"
 				}
 			],
 			"d1_databases": [
@@ -54,27 +63,25 @@
 				"consumers": [
 					{
 						"queue": "sveltevietnam",
-						"max_batch_size": 10,
-						"max_batch_timeout": 5,
-						"retry_delay": 5,
-						"max_retries": 3,
+						"max_batch_size": 1,
+						"max_batch_timeout": 1,
+						"retry_delay": 0,
+						"max_retries": 0,
 						"dead_letter_queue": "sveltevietnam-dlq"
 					}
 				]
 			}
 		},
-		"production": {
+
+		"test": {
 			"name": "backend",
-			"routes": [
-				{
-					"pattern": "backend.sveltevietnam.dev",
-					"custom_domain": true
-				}
-			],
 			"vars": {
-				"MODE": "production",
-				"ORIGIN": "https://backend.sveltevietnam.dev",
-				"SITE_URL": "https://www.sveltevietnam.dev",
+				"MODE": "test",
+				"LOCAL": true,
+				"MAIL_TOKEN_TTL": 60,
+				"ORIGIN": "http://localhost:5006",
+				"SITE_URL": "http://localhost:5005",
+				"RECRUIT_URL": "http://localhost:5007",
 				"AWS_REGION": "ap-northeast-1"
 			},
 			"secrets_store_secrets": [
@@ -92,6 +99,86 @@
 					"binding": "secret_ses_access_secret",
 					"store_id": "c3a8857d65d44b69aad72733c3cd44b4",
 					"secret_name": "ses_access_secret"
+				}
+			],
+			"r2_buckets": [
+				{
+					"binding": "r2",
+					"bucket_name": "sveltevietnam-test"
+				}
+			],
+			"d1_databases": [
+				{
+					"binding": "d1",
+					"database_name": "sveltevietnam-test",
+					"database_id": "82167d9c-5f56-42a0-bec8-a5721bc4566e",
+					"migrations_dir": "./src/database/migrations"
+				}
+			],
+			"kv_namespaces": [
+				{
+					"binding": "kv_mails",
+					"id": "068c101e168d03c65bddf4ba75150fb0"
+				}
+			],
+			"queues": {
+				"producers": [
+					{
+						"queue": "sveltevietnam-test",
+						"binding": "queue"
+					}
+				],
+				"consumers": [
+					{
+						"queue": "sveltevietnam-test",
+						"max_batch_size": 1,
+						"max_batch_timeout": 1,
+						"retry_delay": 0,
+						"max_retries": 0,
+						"dead_letter_queue": "sveltevietnam-dlq-test"
+					}
+				]
+			}
+		},
+
+		"production": {
+			"name": "backend",
+			"routes": [
+				{
+					"pattern": "backend.sveltevietnam.dev",
+					"custom_domain": true
+				}
+			],
+			"vars": {
+				"MODE": "production",
+				"LOCAL": false,
+				"MAIL_TOKEN_TTL": 604800,
+				"ORIGIN": "https://backend.sveltevietnam.dev",
+				"SITE_URL": "https://www.sveltevietnam.dev",
+				"RECRUIT_URL": "https://recruit.sveltevietnam.dev",
+				"AWS_REGION": "ap-northeast-1"
+			},
+			"secrets_store_secrets": [
+				{
+					"binding": "secret_jwt",
+					"store_id": "c3a8857d65d44b69aad72733c3cd44b4",
+					"secret_name": "jwt_secret"
+				},
+				{
+					"binding": "secret_ses_access_key",
+					"store_id": "c3a8857d65d44b69aad72733c3cd44b4",
+					"secret_name": "ses_access_key"
+				},
+				{
+					"binding": "secret_ses_access_secret",
+					"store_id": "c3a8857d65d44b69aad72733c3cd44b4",
+					"secret_name": "ses_access_secret"
+				}
+			],
+			"r2_buckets": [
+				{
+					"binding": "r2",
+					"bucket_name": "sveltevietnam"
 				}
 			],
 			"d1_databases": [

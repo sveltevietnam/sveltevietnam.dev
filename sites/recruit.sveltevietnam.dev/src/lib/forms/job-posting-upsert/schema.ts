@@ -1,0 +1,106 @@
+import {
+	JOB_POSTING_TYPES,
+	JOB_POSTING_APPLICATION_METHODS,
+	type JobPostingType,
+	type JobPostingApplicationMethod,
+} from '@sveltevietnam/backend/data/job-postings/enums';
+import type { Language } from '@sveltevietnam/i18n';
+import type { Message } from '@sveltevietnam/i18n/runtime';
+import * as v from 'valibot';
+
+import * as m from '$data/locales/generated/messages';
+
+export {
+	type JobPostingType,
+	type JobPostingApplicationMethod,
+	JOB_POSTING_TYPES,
+	JOB_POSTING_APPLICATION_METHODS,
+};
+
+export const JOB_POSTING_MAX_EXPIRATION_MS = 180 * 24 * 60 * 60 * 1000; // 180 days
+
+export function createJobPostingApplicationSchema(lang: Language) {
+	return v.variant('method', [
+		v.object({
+			method: v.literal('email' satisfies JobPostingApplicationMethod),
+			link: v.pipe(
+				v.string(),
+				v.nonEmpty(m['inputs.job_posting.application.errors.nonempty_link'](lang)),
+				v.email(m['inputs.email.errors.invalid'](lang)),
+			),
+		}),
+		v.object({
+			method: v.literal('url' satisfies JobPostingApplicationMethod),
+			link: v.pipe(
+				v.string(),
+				v.nonEmpty(m['inputs.job_posting.application.errors.nonempty_link'](lang)),
+				v.url(m['inputs.url.errors.invalid'](lang)),
+			),
+		}),
+	]);
+}
+
+export function createJobPostingUpsertSchema(lang: Language) {
+	return v.objectAsync({
+		id: v.optional(v.pipe(v.string(), v.startsWith('job_'))),
+		title: v.pipe(v.string(), v.nonEmpty(m['inputs.job_posting.title.errors.nonempty'](lang))),
+		type: v.picklist(JOB_POSTING_TYPES, m['inputs.job_posting.type.errors.nonempty'](lang)),
+		location: v.pipe(
+			v.string(),
+			v.nonEmpty(m['inputs.job_posting.location.errors.nonempty'](lang)),
+		),
+		salary: v.pipe(v.string(), v.nonEmpty(m['inputs.job_posting.salary.errors.nonempty'](lang))),
+		application: createJobPostingApplicationSchema(lang),
+		expiredAt: v.pipe(
+			v.date(m['inputs.job_posting.expired_at.errors.nonempty'](lang)),
+			v.minValue(new Date(), m['inputs.job_posting.expired_at.errors.min'](lang)),
+			v.maxValue(
+				new Date(Date.now() + JOB_POSTING_MAX_EXPIRATION_MS),
+				m['inputs.job_posting.expired_at.errors.max'](lang),
+			),
+		),
+		description: v.pipe(v.string(), v.nonEmpty(m['inputs.job_posting.desc.errors.nonempty'](lang))),
+	});
+}
+
+export type JobPostingUpsertInput = v.InferInput<ReturnType<typeof createJobPostingUpsertSchema>>;
+
+export const JOB_POSTING_TYPE_LABEL: Record<JobPostingType, Message<'string', never>> = {
+	'full-time': m['inputs.job_posting.type.options.full_time'],
+	'part-time': m['inputs.job_posting.type.options.part_time'],
+	internship: m['inputs.job_posting.type.options.internship'],
+	contract: m['inputs.job_posting.type.options.contract'],
+	volunteer: m['inputs.job_posting.type.options.volunteer'],
+};
+
+export const JOB_POSTING_APPLICATION_METHOD_MESSAGES: Record<
+	JobPostingApplicationMethod,
+	{
+		label: Message<'string', never>;
+		note: Message<'string', never>;
+		link: {
+			label: Message<'string', never>;
+			iconClass: string;
+			placeholder: Message<'string', never>;
+		};
+	}
+> = {
+	email: {
+		label: m['inputs.job_posting.application.options.email.label'],
+		note: m['inputs.job_posting.application.options.email.note'],
+		link: {
+			label: m['inputs.email.label'],
+			iconClass: 'i-[ph--envelope-simple]',
+			placeholder: m['inputs.job_posting.application.options.email.placeholder'],
+		},
+	},
+	url: {
+		label: m['inputs.job_posting.application.options.url.label'],
+		note: m['inputs.job_posting.application.options.url.note'],
+		link: {
+			label: m['inputs.url.label'],
+			iconClass: 'i-[ph--globe]',
+			placeholder: m['inputs.job_posting.application.options.url.placeholder'],
+		},
+	},
+};

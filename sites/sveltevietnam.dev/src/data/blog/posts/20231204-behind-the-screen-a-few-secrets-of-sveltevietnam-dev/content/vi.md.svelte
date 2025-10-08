@@ -1,15 +1,15 @@
 <script>
   import { StackItem } from '@svelte-put/async-stack';
-	import { T } from '@sveltevietnam/i18n';
+	import { T } from '@sveltevietnam/i18n/runtime';
+  import { BaseNotification } from '@sveltevietnam/kit/notifications';
+  import { Contexts } from '@sveltevietnam/kit/contexts';
 
   import svgTuChu from '$lib/assets/images/svg/tu-chu.svg?no-inline';
   import svgTuNom from '$lib/assets/images/svg/tu-nom.svg?no-inline';
   import svgDong from '$lib/assets/images/svg/dong-thai-binh-hung-bao.svg?no-inline';
   import svgChimLac from '$lib/assets/images/svg/chim-lac.svg?no-inline';
   import * as m from '$data/locales/generated/messages';
-  import BaseNotification from '$lib/notifications/components/BaseNotification.svelte';
-  import { DiscordNewMessage } from '$lib/notifications/components/discord-new-message';
-	import { NotificationContext } from '$lib/notifications/context.svelte';
+  import { DiscordNewMessage } from '$lib/notifications/discord-new-message';
 
   import devToolsSlow3gImage from '../images/devtools-slow-3g.jpg?format=webp&imagetools';
   import disableJavascriptImage from '../images/disable-javascript.png?format=webp&imagetools';
@@ -19,7 +19,7 @@
   import emailImage from '../images/email-vi.jpg?format=webp&imagetools';
 
 	const item = new StackItem({ timeout: 0 });
-	const { toaster } = NotificationContext.get();
+  const { notifications: { toaster } } = Contexts.get();
 
   function pushDemoToast() {
     toaster.warning({

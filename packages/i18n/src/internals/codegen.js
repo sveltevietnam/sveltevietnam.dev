@@ -157,7 +157,7 @@ export function importRuntimeFactoryFunctions(proxy, string, func, snippet) {
 					),
 				),
 			),
-			factory.createStringLiteral('@sveltevietnam/i18n/runtime'),
+			factory.createStringLiteral('@sveltevietnam/i18n/runtime/factory'),
 			undefined,
 		),
 	];

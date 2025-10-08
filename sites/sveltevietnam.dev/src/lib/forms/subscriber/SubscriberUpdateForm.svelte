@@ -2,15 +2,14 @@
 	import { turnstile } from '@svelte-put/cloudflare-turnstile';
 	import { SUBSCRIPTION_CHANNELS } from '@sveltevietnam/backend/data/subscribers/channels';
 	import { LANGUAGES } from '@sveltevietnam/i18n';
-	import { T } from '@sveltevietnam/i18n';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { T } from '@sveltevietnam/i18n/runtime';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import type { HTMLFormAttributes } from 'svelte/elements';
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import { superForm } from 'sveltekit-superforms';
 
 	import * as m from '$data/locales/generated/messages';
 	import { VITE_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
-	import { NotificationContext } from '$lib/notifications/context.svelte';
 
 	import { type SubscriberUpdateInput } from './schema';
 
@@ -22,8 +21,7 @@
 <script lang="ts">
 	let { class: cls, data, action = '?/update', ...rest }: SubscriberUpdateFormProps = $props();
 
-	const noti = NotificationContext.get();
-	const routing = RoutingContext.get();
+	const { routing, notifications: { toaster } } = Contexts.get();
 
 	const { form, enhance, constraints, errors, delayed, timeout } = superForm<
 		SubscriberUpdateInput,
@@ -35,12 +33,12 @@
 		timeoutMs: 2000,
 		onResult({ result }) {
 			if (result.type === 'success') {
-				noti.toaster.success({
+				toaster.success({
 					message: m['forms.subscriber.update.success'],
 				});
 			} else if (result.type === 'error') {
 				const error = result.error as App.Error;
-				noti.toaster.error({
+				toaster.error({
 					title: `${error.code} - ${error.message}`,
 					message: m['forms.subscriber.update.errors.unknown'],
 				});
@@ -73,7 +71,7 @@
 			<!-- name -->
 			<div class="space-y-1">
 				{#if $errors.name?.[0]}
-					<p class="text-sm text-red-500" id="error-name">{$errors.name[0]}</p>
+					<p class="c-text-body-sm text-red-500" id="error-name">{$errors.name[0]}</p>
 				{/if}
 				<label class="c-text-input">
 					<span class="min-w-12"><T message={m['inputs.name.label']} />:</span>
@@ -95,7 +93,7 @@
 			<!-- email -->
 			<div class="space-y-1">
 				{#if $errors.email?.[0]}
-					<p class="text-sm text-red-500" id="error-email">{$errors.email[0]}</p>
+					<p class="c-text-body-sm text-red-500" id="error-email">{$errors.email[0]}</p>
 				{/if}
 				<label class="c-text-input">
 					<span class="min-w-12">Email:</span>

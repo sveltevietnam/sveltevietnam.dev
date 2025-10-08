@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n';
+	import { T } from '@sveltevietnam/i18n/runtime';
+	import fallback16x9 from '@sveltevietnam/kit/assets/images/fallbacks/16x9.jpg?enhanced&w=1200;600&imagetools';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { Picture } from 'vite-imagetools';
 
 	import * as m from '$data/locales/generated/messages';
-	import fallback16x9 from '$lib/assets/images/fallbacks/16x9.jpg?enhanced&w=1200;600&imagetools';
 
 	let {
 		name,

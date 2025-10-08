@@ -3,8 +3,8 @@ import { RpcTarget } from 'cloudflare:workers';
 import { eq } from 'drizzle-orm';
 import * as v from 'valibot';
 
-import { MailService } from '$/data/mails';
-import { ORM } from '$/database/orm';
+import { MailService } from '../../data/mails';
+import { ORM } from '../../database/orm';
 
 import { mergeMasks } from './channels';
 import {
@@ -17,7 +17,7 @@ import {
 	SubscriberSelectSchema,
 	type SubscriberSelectResult,
 } from './schema';
-import { subscribers } from './table';
+import { subscribers } from './tables';
 
 export class SubscriberService extends RpcTarget {
 	#env: Env;
@@ -32,17 +32,10 @@ export class SubscriberService extends RpcTarget {
 	}
 
 	async getById(id: string): Promise<SubscriberSelectResult | null> {
-		const result = await this.#orm
-			.select()
-			.from(subscribers)
-			.where(eq(subscribers.id, id))
-			.execute();
-
-		if (result.length === 0) {
-			return null;
-		}
-
-		return v.parse(SubscriberSelectSchema, result[0]);
+		const subscriber = await this.#orm.query.subscribers.findFirst({
+			where: (table, { eq }) => eq(table.id, id),
+		});
+		return subscriber ? v.parse(SubscriberSelectSchema, subscriber) : null;
 	}
 
 	async upsert(input: SubscriberUpsertInput): Promise<SubscriberUpsertResult> {
@@ -68,7 +61,7 @@ export class SubscriberService extends RpcTarget {
 				.returning({ id: subscribers.id });
 
 			// Workaround for this https://github.com/cloudflare/workers-sdk/issues/9006
-			const secret = this.#env.MODE !== 'development' ? await this.#env.secret_jwt.get() : 'secret';
+			const secret = !this.#env.LOCAL ? await this.#env.secret_jwt.get() : 'secret';
 			const date = new Date();
 			const token = await jwt.sign(
 				{
@@ -83,10 +76,9 @@ export class SubscriberService extends RpcTarget {
 				this.#env.SITE_URL,
 			).toString();
 
-			await this.#mails.queue({
+			await this.#mails.queue('welcome', {
 				lang: input.language,
-				subscriberId: id,
-				templateId: 'welcome',
+				actorId: id,
 				vars: {
 					eVerifyUrl,
 					name: input.name,

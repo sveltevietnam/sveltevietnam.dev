@@ -22,6 +22,20 @@
 			"when": 1754629989627,
 			"tag": "0002_add_verified_at_column_to_subscribers",
 			"breakpoints": true
+		},
+		{
+			"idx": 3,
+			"version": "6",
+			"when": 1756879279790,
+			"tag": "0003_rename_mails_subscriber_id_to_actor_id",
+			"breakpoints": true
+		},
+		{
+			"idx": 4,
+			"version": "6",
+			"when": 1757062481986,
+			"tag": "0004_set_mails_actor_id_nullable",
+			"breakpoints": true
 		}
 	]
 }

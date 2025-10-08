@@ -14,27 +14,46 @@
 		"./data/subscribers/channels": {
 			"types": "./src/data/subscribers/channels.ts",
 			"import": "./src/data/subscribers/channels.ts"
-		}
+		},
+		"./data/job-postings/enums": {
+			"types": "./src/data/job-postings/enums.ts",
+			"import": "./src/data/job-postings/enums.ts"
+		},
+		"./mails": {
+			"types": "./src/mjml/templates/ids.ts",
+			"import": "./src/mjml/templates/ids.ts"
+		},
+		"./db/schema": {
+			"types": "./src/database/schema.ts",
+			"import": "./src/database/schema.ts"
+		},
+		"./db/dev": {
+			"types": "./src/database/dev.ts",
+			"import": "./src/database/dev.ts"
+		},
+		"./wrangler.json": "./wrangler.json"
 	},
 	"scripts": {
 		"boot:env": "shx cp .env.example .env",
 		"dev": "vite dev --port 5006",
-		"dev:wrangler": "vite build --mode development && wrangler dev --port 5006 --local",
-		"build": "vite build",
+		"dev:wrangler": "wrangler dev --port 5006 --local",
 		"build:mjml": "mjml src/mjml/templates/**/*.mjml -o src/mjml/templates/output --config.minify=true --config.beautify=false",
+		"build": "vite build",
+		"build:test": "CLOUDFLARE_ENV=test vite build --mode test",
 		"drizzle": "dotenvx run -- drizzle-kit",
+		"drizzle:test": "dotenvx run -f .env.test -- drizzle-kit",
 		"drizzle:production": "dotenvx run -f .env.production -- drizzle-kit",
-		"preview": "pnpm run build && vite preview",
+		"preview": "vite preview",
 		"deploy": "wrangler deploy",
 		"lint": "eslint .",
 		"format": "prettier --write --ignore-path=../../.prettierignore --config=../../prettier.config.js ."
 	},
 	"devDependencies": {
-		"@aws-sdk/client-sesv2": "^3.863.0",
-		"@cloudflare/vite-plugin": "^1.11.2",
-		"@cloudflare/workers-types": "^4.20250807.0",
-		"@dotenvx/dotenvx": "^1.48.4",
-		"@libsql/client": "^0.15.10",
+		"@aws-sdk/client-sesv2": "^3.879.0",
+		"@cloudflare/vite-plugin": "^1.12.2",
+		"@cloudflare/workers-types": "^4.20250903.0",
+		"@dotenvx/dotenvx": "^1.49.0",
+		"@libsql/client": "^0.15.14",
 		"@paralleldrive/cuid2": "^2.2.2",
 		"@sveltevietnam/i18n": "workspace:*",
 		"@tsndr/cloudflare-worker-jwt": "^3.2.0",
@@ -42,15 +61,20 @@
 		"@types/mustache": "^4.2.6",
 		"aws4fetch": "^1.0.20",
 		"drizzle-kit": "^0.31.4",
-		"drizzle-orm": "^0.44.4",
+		"drizzle-orm": "^0.44.5",
 		"drizzle-valibot": "^0.4.2",
-		"hono": "^4.9.0",
+		"hono": "^4.9.6",
 		"mjml": "^4.15.3",
 		"mustache": "^4.2.0",
 		"picocolors": "^1.1.1",
-		"tiny-glob": "^0.2.9",
 		"valibot": "1.1.0",
-		"vite": "^7.1.1",
-		"wrangler": "^4.28.1"
+		"vite": "^7.1.4",
+		"wrangler": "^4.33.2"
+	},
+	"dependencies": {
+		"better-auth": "^1.3.7"
+	},
+	"volta": {
+		"extends": "../../package.json"
 	}
 }

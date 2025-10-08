@@ -1,9 +1,9 @@
 <script>
   import { StackItem } from '@svelte-put/async-stack';
-	import { T } from '@sveltevietnam/i18n';
+	import { T } from '@sveltevietnam/i18n/runtime';
+  import { BaseNotification} from '@sveltevietnam/kit/notifications';
 
   import * as m from '$data/locales/generated/messages';
-  import BaseNotification from '$lib/notifications/components/BaseNotification.svelte';
   import { SplashScreenPlayground } from '$lib/components/splash-screen-playground';
 
   import hydrationImage from '../images/hydration-en.png?format=webp&imagetools';

@@ -7,18 +7,16 @@ import { RpcTarget } from 'cloudflare:workers';
 import { eq } from 'drizzle-orm';
 import Mustache from 'mustache';
 
-import { ORM } from '$/database/orm';
-import { TemplateVarMap, type TemplateId, loadTemplate, BaseTemplateVars } from '$/mjml/templates';
-
+import { ORM } from '../../database/orm';
+import {
+	TemplateVarMap,
+	type TemplateId,
+	loadTemplate,
+	BaseTemplateVars,
+} from '../../mjml/templates';
 import { createSocials, createLogoImageUrl } from '../links';
 
-import { mails } from './table';
-
-/**
- * expiration time for html and JWT,
- * in seconds (7 days)
- */
-const TTL = 60 * 60 * 24 * 7;
+import { mails } from './tables';
 
 export type WebMail = {
 	id: string;
@@ -30,11 +28,9 @@ export type WebMail = {
 };
 
 export type SendMailInput<T extends TemplateId> = {
-	subscriberId: string;
-	templateId: T;
 	lang: Language;
 	vars: TemplateVarMap[T];
-};
+} & ({ actorId: string } | { email: string });
 
 export class MailService extends RpcTarget {
 	#orm: ORM;
@@ -68,11 +64,12 @@ export class MailService extends RpcTarget {
 		};
 	}
 
-	async queue<T extends TemplateId>(input: SendMailInput<T>): Promise<void> {
+	async queue<T extends TemplateId>(templateId: T, input: SendMailInput<T>): Promise<void> {
 		return this.#env.queue.send(
 			{
 				type: 'send-mail',
-				input: input,
+				templateId,
+				input,
 			},
 			{
 				delaySeconds: 0,
@@ -81,8 +78,8 @@ export class MailService extends RpcTarget {
 		);
 	}
 
-	async send<T extends TemplateId>(input: SendMailInput<T>): Promise<string> {
-		const { templateId, subscriberId, lang, vars } = input;
+	async send<T extends TemplateId>(templateId: T, input: SendMailInput<T>): Promise<string> {
+		const { lang, vars } = input;
 
 		// get template
 		const template = await loadTemplate(templateId, lang);
@@ -91,26 +88,54 @@ export class MailService extends RpcTarget {
 		}
 
 		// get subscriber
-		const subscriber = await this.#orm.query.subscribers.findFirst({
-			where: (subscriber, { eq }) => eq(subscriber.id, subscriberId),
-			columns: { email: true, name: true },
-		});
-		if (!subscriber) {
-			throw new Error(`Subscriber ${subscriberId} not found`);
+		let to: string | null = null;
+		let actorId: string | null = null;
+		if ('email' in input) {
+			to = input.email;
+		} else {
+			if (input.actorId.startsWith('subscriber_')) {
+				const subscriber = await this.#orm.query.subscribers.findFirst({
+					where: (subscriber, { eq }) => eq(subscriber.id, input.actorId),
+					columns: { email: true, name: true },
+				});
+				if (!subscriber) {
+					throw new Error(`Subscriber ${input.actorId} not found`);
+				}
+				to = subscriber.email;
+			} else if (input.actorId.startsWith('employer_')) {
+				const employer = await this.#orm.query.employers.findFirst({
+					where: (employer, { eq }) => eq(employer.id, input.actorId),
+					columns: { email: true, name: true },
+				});
+				if (!employer) {
+					throw new Error(`Employer ${input.actorId} not found`);
+				}
+				to = employer.email;
+			}
+
+			if (!to) {
+				throw new Error(`Cannot determine recipient email for actor ${input.actorId}`);
+			}
+			actorId = input.actorId;
 		}
 
 		// create mail record
-		const mailId = createId();
-		const { SITE_URL: siteUrl, MODE: mode, AWS_REGION: awsRegion } = this.#env;
+		const mailId = `mail_` + createId();
+		const {
+			SITE_URL: siteUrl,
+			LOCAL: local,
+			AWS_REGION: awsRegion,
+			MAIL_TOKEN_TTL: ttl,
+		} = this.#env;
 		// Workaround for this https://github.com/cloudflare/workers-sdk/issues/9006
-		const secret = mode !== 'development' ? await this.#env.secret_jwt.get() : 'secret';
+		const secret = !local ? await this.#env.secret_jwt.get() : 'secret';
 		const date = new Date();
 		const token = await jwt.sign(
 			{
-				sub: subscriberId,
+				sub: actorId ?? 'anonymous',
 				iat: Math.floor(date.getTime() / 1000),
 				iss: 'backend.sveltevietnam.dev',
-				exp: Math.floor(date.getTime() / 1000) + TTL,
+				exp: Math.floor(date.getTime() / 1000) + ttl,
 			},
 			secret,
 		);
@@ -125,14 +150,18 @@ export class MailService extends RpcTarget {
 			...vars,
 		} satisfies TemplateVarMap[T] & BaseTemplateVars);
 
-		if (mode === 'development') {
-			// skip sending email in dev mode
+		if (local) {
+			// skip sending email in local env
 			console.log('Mail web url:', `${siteUrl}/${lang}/mails/${mailId}?token=${token}`);
 		} else {
 			// send actual email with AWS SES
+			const [accessKeyId, secretAccessKey] = await Promise.all([
+				this.#env.secret_ses_access_key.get(),
+				this.#env.secret_ses_access_secret.get(),
+			]);
 			const aws = new AwsClient({
-				accessKeyId: await this.#env.secret_ses_access_key.get(),
-				secretAccessKey: await this.#env.secret_ses_access_secret.get(),
+				accessKeyId,
+				secretAccessKey,
 				region: awsRegion,
 			});
 			const response = await aws.fetch(
@@ -147,7 +176,7 @@ export class MailService extends RpcTarget {
 						ReplyToAddresses: [template.from.email],
 						FeedbackForwardingEmailAddress: template.from.email,
 						Destination: {
-							ToAddresses: [subscriber.email],
+							ToAddresses: [to],
 						},
 						Content: {
 							Simple: {
@@ -178,15 +207,15 @@ export class MailService extends RpcTarget {
 
 		// save html to kv
 		await this.#env.kv_mails.put(mailId, html, {
-			expirationTtl: TTL,
+			expirationTtl: ttl,
 		});
 
 		await this.#orm.insert(mails).values({
 			id: mailId,
-			subscriberId,
+			actorId,
 			subject: template.subject,
 			from: template.from.email,
-			to: subscriber.email,
+			to,
 			templateId,
 			sentAt: date,
 		});

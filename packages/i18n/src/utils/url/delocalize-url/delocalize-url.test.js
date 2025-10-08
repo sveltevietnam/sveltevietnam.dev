@@ -1,6 +1,6 @@
 import { test, expect, describe } from 'vitest';
 
-import { delocalizeUrl } from './delocalize-url';
+import { delocalizeUrl } from './delocalize-url.js';
 
 const lang = 'en';
 const langs = ['en', 'ja', 'vi'];

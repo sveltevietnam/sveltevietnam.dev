@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { T } from '@sveltevietnam/i18n/runtime';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { formatFullDateAndTime } from '@sveltevietnam/kit/utilities/datetime';
 
 	import * as m from '$data/locales/generated/messages';
 	import { SubscriberUpdateForm } from '$lib/forms/subscriber';
-	import { formatFullDateAndTime } from '$lib/utils/datetime';
 
 	import type { PageProps } from './$types';
 
-	const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
 
 	let { data }: PageProps = $props();
 
@@ -80,12 +80,14 @@
 		</section>
 
 		<!-- subscriber info -->
-		<section class="space-y-6">
-			<h2 class="c-text-heading border-b">
-				<T message={m['pages.mail.subscriber.heading']} />
-			</h2>
-			<SubscriberUpdateForm data={data.form} />
-		</section>
+		{#if data.form}
+			<section class="space-y-6">
+				<h2 class="c-text-heading border-b">
+					<T message={m['pages.mail.subscriber.heading']} />
+				</h2>
+				<SubscriberUpdateForm data={data.form} />
+			</section>
+		{/if}
 	</div>
 
 	<!-- mail as html -->

@@ -1,4 +1,4 @@
-import { BaseTemplateVars } from '$/mjml/templates';
+import { BaseTemplateVars } from '../mjml/templates';
 
 export function createLogoImageUrl(origin: string) {
 	return `${origin}/mails/logo.png`;

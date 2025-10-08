@@ -11,8 +11,8 @@
 		},
 		"deploy": {
 			"dependsOn": ["^build"],
-			"env": ["CLOUDFLARE_*"],
-			"outputs": ["dist/**"]
+			"env": ["VITE_*", "CLOUDFLARE_*"],
+			"outputs": ["dist/**", ".svelte-kit/**"]
 		},
 		"build": {
 			"dependsOn": ["^build"],
@@ -20,6 +20,7 @@
 			"outputs": ["dist/**", "build/**", ".svelte-kit/**"],
 			"inputs": [
 				"wrangler.json",
+				"wrangler.jsonc",
 				"*.config.js",
 				"*.config.ts",
 				"src/**/*.ts",

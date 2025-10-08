@@ -4,7 +4,7 @@ import { MediaQuery } from 'svelte/reactivity';
 /**
  * @typedef ColorSchemeContextInit
  * @property {string} [cookieName] name of the cookie used to store user preference.
- * @property {import('../constants').ColorScheme} [user] cached user's preference, defaults to 'system'.
+ * @property {import('@sveltevietnam/kit/constants').ColorScheme} [user] cached user's preference, defaults to 'system'.
  */
 
 export class ColorSchemeContext {
@@ -14,13 +14,13 @@ export class ColorSchemeContext {
 	#cookieName = undefined;
 	#preferredColorScheme = new MediaQuery('(prefers-color-scheme: dark)');
 
-	/** @type {Exclude<import('../constants').ColorScheme, 'system'>} */
+	/** @type {Exclude<import('@sveltevietnam/kit/constants').ColorScheme, 'system'>} */
 	system = $derived(this.#preferredColorScheme.current ? 'dark' : 'light');
 
-	/** @type {import('../constants').ColorScheme} */
+	/** @type {import('@sveltevietnam/kit/constants').ColorScheme} */
 	user = $state('system');
 
-	/** @type {Exclude<import('../constants').ColorScheme, 'system'>} */
+	/** @type {Exclude<import('@sveltevietnam/kit/constants').ColorScheme, 'system'>} */
 	resolved = $derived(this.user === 'system' ? this.system : this.user);
 
 	/**

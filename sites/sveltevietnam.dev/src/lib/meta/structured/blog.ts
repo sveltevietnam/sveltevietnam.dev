@@ -1,11 +1,11 @@
 import type { Language } from '@sveltevietnam/i18n';
+import { buildStructuredTextWithLang } from '@sveltevietnam/kit/utilities/structured-data';
 import type { Thing, Blog, BlogPosting, CreativeWorkSeries, CollectionPage } from 'schema-dts';
 
 import * as p from '$data/routes/generated';
 
 import { buildStructuredOrganization } from './organization';
 import { buildStructuredPerson } from './people';
-import { buildStructuredTextWithLang } from './utils';
 
 const locales = {
 	vi: {
@@ -25,7 +25,7 @@ export function buildStructuredBlog(lang: Language, origin: string): Blog {
 		'@type': 'Blog',
 		'@id': `${org['@id']}/blog`,
 		name: 'Svelte Việt Nam Blog',
-		description: buildStructuredTextWithLang(lang, locale.description),
+		description: buildStructuredTextWithLang({ lang, value: locale.description }),
 		publisher: org,
 	};
 }
@@ -41,9 +41,9 @@ export function buildStructuredBlogSeries(
 	return {
 		'@type': 'CreativeWorkSeries',
 		'@id': `${blog['@id']}/series/${series.id}`,
-		url: buildStructuredTextWithLang(lang, canonical),
-		name: buildStructuredTextWithLang(lang, series.name),
-		description: buildStructuredTextWithLang(lang, series.description),
+		url: buildStructuredTextWithLang({ lang, value: canonical }),
+		name: buildStructuredTextWithLang({ lang, value: series.name }),
+		description: buildStructuredTextWithLang({ lang, value: series.description }),
 		...(!compact && {
 			publisher,
 			isPartOf: blog,
@@ -62,10 +62,10 @@ export function buildStructuredBlogCategoryPage(
 	return {
 		'@type': 'CollectionPage',
 		'@id': `${origin}/blog/categories/${category.id}`,
-		url: buildStructuredTextWithLang(lang, canonical),
+		url: buildStructuredTextWithLang({ lang, value: canonical }),
 		...(!compact && {
-			name: buildStructuredTextWithLang(lang, category.name),
-			description: buildStructuredTextWithLang(lang, category.description),
+			name: buildStructuredTextWithLang({ lang, value: category.name }),
+			description: buildStructuredTextWithLang({ lang, value: category.description }),
 			publisher,
 			isPartOf: blog,
 		}),
@@ -79,8 +79,8 @@ export function buildStructuredBlogCategory(
 ): Thing {
 	return {
 		'@type': 'Thing',
-		description: buildStructuredTextWithLang(lang, category.description),
-		name: buildStructuredTextWithLang(lang, category.name),
+		description: buildStructuredTextWithLang({ lang, value: category.description }),
+		name: buildStructuredTextWithLang({ lang, value: category.name }),
 		mainEntityOfPage: buildStructuredBlogCategoryPage(lang, origin, category, true),
 	};
 }
@@ -97,11 +97,11 @@ export function buildStructuredBlogPost(
 	return {
 		'@type': 'BlogPosting',
 		'@id': id,
-		url: buildStructuredTextWithLang(lang, canonical),
-		mainEntityOfPage: buildStructuredTextWithLang(lang, canonical),
-		headline: buildStructuredTextWithLang(lang, post.title),
-		name: buildStructuredTextWithLang(lang, post.title),
-		description: buildStructuredTextWithLang(lang, post.description),
+		url: buildStructuredTextWithLang({ lang, value: canonical }),
+		mainEntityOfPage: buildStructuredTextWithLang({ lang, value: canonical }),
+		headline: buildStructuredTextWithLang({ lang, value: post.title }),
+		name: buildStructuredTextWithLang({ lang, value: post.title }),
+		description: buildStructuredTextWithLang({ lang, value: post.description }),
 		datePublished: post.publishedAt.toISOString(),
 		dateModified: post.updatedAt?.toISOString(),
 		...(post.thumbnail && {

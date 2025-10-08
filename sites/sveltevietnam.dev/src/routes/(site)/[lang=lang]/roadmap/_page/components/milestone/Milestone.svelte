@@ -16,7 +16,7 @@
 </script>
 
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n';
+	import { T } from '@sveltevietnam/i18n/runtime';
 	import { type Message, type MessageType } from '@sveltevietnam/i18n/runtime';
 	import type { Snippet } from 'svelte';
 

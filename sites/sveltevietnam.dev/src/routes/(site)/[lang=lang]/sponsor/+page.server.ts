@@ -27,7 +27,9 @@ export const load: PageServerLoad = async ({ params }) => {
 			description: m['pages.sponsor.desc'](lang),
 			keywords: m['pages.sponsor.keywords'](lang),
 			og: {
-				image: ogImage[lang],
+				image: {
+					src: ogImage[lang],
+				},
 			},
 		},
 	};

@@ -32,7 +32,6 @@ vite.config.ts.timestamp-*
 .env
 .env.*
 !.env.example
-!.env.test
 
 # turborepo
 .turbo

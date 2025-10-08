@@ -1,9 +1,9 @@
 import type { Language } from '@sveltevietnam/i18n';
 import type { Message } from '@sveltevietnam/i18n/runtime';
 import type { Component } from 'svelte';
-import type { HTMLAttributes } from 'svelte/elements';
+import type { HTMLDetailsAttributes } from 'svelte/elements';
 
-export interface LanguageMenuProps extends HTMLAttributes<HTMLElement> {
+export interface LanguageMenuProps extends HTMLDetailsAttributes {
 	i18n: {
 		aria: Message<'string', never>;
 		open: Message<'string', never>;
@@ -18,9 +18,9 @@ export interface LanguageMenuProps extends HTMLAttributes<HTMLElement> {
 	};
 	/** @default 'mobile' */
 	showLabel?: 'always' | 'never' | 'mobile' | 'non-mobile';
-	hydrated?: boolean;
 	lang: Language;
 	/** @bindable */
 	open?: boolean;
 }
+/** Dropdown menu for switching global language. */
 export const LanguageMenu: Component<LanguageMenuProps>;

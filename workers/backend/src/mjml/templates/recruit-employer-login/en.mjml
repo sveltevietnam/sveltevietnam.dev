@@ -1,0 +1,29 @@
+<mjml>
+	<mj-head>
+		<mj-title>{{subject}}</mj-title>
+		<mj-include path="../../includes/common-head.mjml" />
+	</mj-head>
+	<mj-body background-color="#ffffff">
+		<mj-include path="../../includes/header.mjml" />
+
+		<mj-section padding-top="0">
+			<mj-column>
+				<mj-text padding-top="0">Hello {{name}},</mj-text>
+				<mj-text>
+					Our system has received a request to log in to your account on the Svelte
+					Vietnam Recruit platform.
+				</mj-text>
+				<mj-text>
+					<strong>Only proceed if you made this request.</strong>
+					Click the button below to complete the login process:
+				</mj-text>
+				<mj-button href="{{callbackUrl}}">Login</mj-button>
+				<mj-include path="../../includes/recruit-ignore-request/en.mjml" />
+				<mj-text>Thank you,</mj-text>
+				<mj-text>Svelte Vietnam</mj-text>
+			</mj-column>
+		</mj-section>
+
+		<mj-include path="../../includes/recruit-footer/en.mjml" />
+	</mj-body>
+</mjml>

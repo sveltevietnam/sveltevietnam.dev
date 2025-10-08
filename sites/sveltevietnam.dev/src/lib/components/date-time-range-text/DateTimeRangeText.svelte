@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { formatDate, formatDateAndTime, formatTime } from '$lib/utils/datetime';
+	import { formatDate, formatDateAndTime, formatTime } from '@sveltevietnam/kit/utilities/datetime';
 
 	export let startDate: 'TBA' | Date;
 	export let endDate: 'TBA' | Date;

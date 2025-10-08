@@ -1,11 +1,11 @@
 <script>
-  import { ColorSchemeContext } from '@sveltevietnam/kit/contexts';
+  import { Contexts } from '@sveltevietnam/kit/contexts';
   import { ColorSchemeMenu } from '@sveltevietnam/kit/components';
 	import * as m from '$data/locales/generated/messages';
   import { SettingsContext } from '$lib/settings/context.svelte';
 
 	const settings = SettingsContext.get();
-  const colorScheme = ColorSchemeContext.get();
+	const { colorScheme } = Contexts.get();
 
 	const colorSchemeMenuProps = $derived({
 		i18n: {

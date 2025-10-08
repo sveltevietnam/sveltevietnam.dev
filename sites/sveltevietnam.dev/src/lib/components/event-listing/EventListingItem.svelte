@@ -1,16 +1,16 @@
 <script lang="ts" module>
-	import { T } from '@sveltevietnam/i18n';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
+	import { T } from '@sveltevietnam/i18n/runtime';
+	import fallback3x2 from '@sveltevietnam/kit/assets/images/fallbacks/3x2.jpg?enhanced&w=1200;700;400&imagetools';
+	import { CopyBtn } from '@sveltevietnam/kit/components';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { formatLongMonth, formatLongWeekDay } from '@sveltevietnam/kit/utilities/datetime';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { Picture } from 'vite-imagetools';
 
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
-	import fallback3x2 from '$lib/assets/images/fallbacks/3x2.jpg?enhanced&w=1200;700;400&imagetools';
 	import { SettingsContext } from '$lib/settings/context.svelte';
-	import { formatLongMonth, formatLongWeekDay } from '$lib/utils/datetime';
 
-	import { CopyIconBtn } from '../copy-icon-btn';
 	import { DateTimeRangeText } from '../date-time-range-text';
 	import { ListMessage } from '../list-message';
 
@@ -39,7 +39,7 @@
 	let { event, origin }: EventListingItemProps = $props();
 
 	const settings = SettingsContext.get();
-	const routing = RoutingContext.get();
+	const { routing } = Contexts.get();
 
 	const img = $derived(event.thumbnail ?? fallback3x2);
 	const path = $derived(p['/:lang/events/:slug']({ lang: routing.lang, slug: event.slug }));
@@ -92,9 +92,10 @@
 			<!-- actions -->
 			<div>
 				{#if settings.hydrated}
-					<CopyIconBtn
-						text={origin + path}
-						aria={m['components.event_listing_item.copy'](routing.lang)}
+					<CopyBtn
+						class="c-link-icon border-onehalf flex rounded-full border-current p-2"
+						textToCopy={origin + path}
+						aria={m['components.event_listing_item.copy']}
 					/>
 				{/if}
 			</div>
@@ -124,7 +125,7 @@
 					<i class="not-can-hover:hidden i i-[ph--cursor-click] text-[0.75em]"></i>
 				</a>
 			</p>
-			<dl class="text-on-surface-subtle space-y-1 text-sm">
+			<dl class="text-on-surface-subtle c-text-body-sm space-y-1">
 				<!-- location -->
 				{#if event.location}
 					<div class="flex items-start gap-2">
