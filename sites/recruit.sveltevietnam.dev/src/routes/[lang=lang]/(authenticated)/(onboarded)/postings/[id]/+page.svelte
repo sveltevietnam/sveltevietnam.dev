@@ -246,8 +246,8 @@
 								/>
 							{/if}
 						{/snippet}
-						{#if data.posting.href}
-							<a class="c-link-image" href={data.posting.href} aria-hidden="true">
+						{#if data.posting.employer.website}
+							<a class="c-link-image" href={data.posting.employer.website} aria-hidden="true">
 								{@render imageContent()}
 							</a>
 						{:else}
