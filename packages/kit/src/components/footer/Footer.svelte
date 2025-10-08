@@ -21,6 +21,12 @@
 	}: FooterProps = $props();
 
 	const { routing } = Contexts.get();
+
+	const primaryNavigationUlClass = $derived(
+		Array.isArray(navigationPrimary) && navigationPrimary.length > 3
+			? 'grid-cols-2'
+			: 'grid-cols-1',
+	);
 </script>
 
 <footer
@@ -44,18 +50,18 @@
 		<section class="_pages tablet:space-y-6 space-y-4">
 			{#if navigationPrimary}
 				<p class="c-text-title"><T message={i18n.navigation.heading} /></p>
-				<ul class="-mx-1 grid w-fit grid-cols-2 gap-x-4 gap-y-2">
-					{#if typeof navigationPrimary === 'function'}
-						{@render navigationPrimary()}
-					{:else}
+				{#if typeof navigationPrimary === 'function'}
+					{@render navigationPrimary()}
+				{:else}
+					<ul class={['-mx-1 grid w-fit gap-x-4 gap-y-2', primaryNavigationUlClass]}>
 						{#each navigationPrimary as { path, name } (path)}
 							{@const current = routing.is(path)}
 							<li>
 								<a class="c-link-lazy px-1 py-1" href={path} aria-current={current}>{name}</a>
 							</li>
 						{/each}
-					{/if}
-				</ul>
+					</ul>
+				{/if}
 			{/if}
 		</section>
 

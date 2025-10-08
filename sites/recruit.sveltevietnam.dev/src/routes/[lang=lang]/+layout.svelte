@@ -92,14 +92,16 @@
 			path: p['/:lang']({ lang: routing.lang }),
 			name: n['/:lang'](routing.lang),
 		},
-		{
-			path: p['/:lang/profile']({ lang: routing.lang }),
-			name: n['/:lang/profile'](routing.lang),
-		},
-		{
-			path: p['/:lang/postings']({ lang: routing.lang }),
-			name: n['/:lang/postings'](routing.lang),
-		},
+		...(data.user ? [
+			{
+				path: p['/:lang/profile']({ lang: routing.lang }),
+				name: n['/:lang/profile'](routing.lang),
+			},
+			{
+				path: p['/:lang/postings']({ lang: routing.lang }),
+				name: n['/:lang/postings'](routing.lang),
+			},
+		] : []),
 		data.user
 			? {
 					path: p['/:lang/logout']({ lang: routing.lang }),

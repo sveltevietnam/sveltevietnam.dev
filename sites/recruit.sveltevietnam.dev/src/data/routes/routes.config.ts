@@ -53,8 +53,8 @@ export default defineConfig<AllRoutePath, Language>({
 				default: 'Home',
 			},
 			'/:lang/authenticate': {
-				vi: 'Đăng ký',
-				default: 'Register',
+				vi: 'Đăng nhập / Đăng ký',
+				default: 'Sign in / Register',
 			},
 			'/:lang/logout': {
 				vi: 'Đăng xuất',
