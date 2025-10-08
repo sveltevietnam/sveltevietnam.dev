@@ -11,6 +11,7 @@
 	},
 	"env": {
 		"development": {
+			"name": "recruit",
 			"vars": {
 				"AUTHENTICATE_RESENT_WAITING_MS": 20000,
 				"AUTHENTICATE_EMAIL_EXPIRATION_SECONDS": 180
@@ -37,6 +38,7 @@
 		},
 
 		"test": {
+			"name": "recruit",
 			"vars": {
 				"AUTHENTICATE_RESENT_WAITING_MS": 2000,
 				"AUTHENTICATE_EMAIL_EXPIRATION_SECONDS": 1.2
@@ -63,6 +65,7 @@
 		},
 
 		"production": {
+			"name": "recruit",
 			"vars": {
 				"AUTHENTICATE_RESENT_WAITING_MS": 90000,
 				"AUTHENTICATE_EMAIL_EXPIRATION_SECONDS": 180
