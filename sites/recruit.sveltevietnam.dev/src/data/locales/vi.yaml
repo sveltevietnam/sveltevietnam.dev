@@ -145,6 +145,38 @@ messages:
         errors:
           nonempty: Vui lòng nhập mô tả công việc
   pages:
+    home:
+      intro:
+        heading: Tuyển dụng
+        subtitle: cùng Cộng đồng Svelte Việt Nam
+        desc:
+          Quản lý bài đăng tuyển dụng miễn phí tại <a class="c-link"
+          href={{mainSiteUrl}}>sveltevietnam.dev</a> — dành cho doanh nghiệp và tổ chức
+        cta: Đăng nhập / Đăng ký
+        kv_alt: một người đang thay bóng đèn trên thang chữ A, hai người khác giữ thang
+      catch:
+        heading: Bao nhiêu cho một bài đăng?
+        desc:
+          <strong>Hoàn toàn miễn phí!</strong> Thay vì lợi nhuận, ứng dụng Tuyển dụng có mục tiêu
+          kết nối cộng đồng với doanh nghiệp và tổ chức.<br /> <br />Chúng tôi chỉ hy vọng nhà tuyển
+          dụng và người sử dụng lao động cân nhắc lan rộng hoặc <a class="c-link"
+          href="https://opencollective.com/sveltevietnam" target="_blank" rel="noreferrer noopner
+          external">tài trợ cho dự án Svelte Việt Nam</a>.
+        cta: Vì sao Svelte Việt Nam cần tài trợ?
+        kv_alt: một người ngồi trên một con heo đất khổng lồ
+      about:
+        heading: Về Svelte Việt Nam
+        desc:
+          Svelte Việt Nam là cộng đồng cho bất cứ ai quan tâm đến Svelte tại Việt Nam, với mong muốn
+          tạo ra kênh thông tin bổ ích và môi  trường lành mạnh để thành viên chia sẻ kinh nghiệm,
+          giúp đỡ lẫn nhau trong hành trình phát triển phần mềm và tiếp cận mã nguồn mở.
+        cta: Xem thêm tại sveltevietnam.dev
+        kv_alt: hai người đang lắp ráp một bóng đèn khổng lồ từ nhiều mảnh ghép
+      open:
+        heading: Nguồn mở
+        desc: Ứng dụng Tuyển dụng có mã nguồn mở và hoan nghênh đóng góp hoặc phê bình từ cộng đồng.
+        cta: Xem mã nguồn tại Github
+        kv_alt: một cánh cửa mở
     authenticate:
       heading: Đăng nhập / Đăng ký
       desc:

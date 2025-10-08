@@ -147,6 +147,41 @@ messages:
         errors:
           nonempty: Job description is required
   pages:
+    home:
+      intro:
+        heading: Recruit
+        subtitle: from the Svetle Vietnam community
+        desc:
+          Manage free and secure job postings at <a class="c-link"
+          href={{mainSiteUrl}}>sveltevietnam.dev</a> — for businesses and organizations
+        cta: Sign in / Register
+        kv_alt: a human replacing light bulb on a ladder while two others holding the ladder
+      catch:
+        heading: What's the catch?
+        desc:
+          <strong>Posting jobs here is completely free</strong>. Instead of profit, the Recruit
+          application focuses on connecting community with businesses and organizations.<br /> <br
+          />Our only request is for employers and recruiters to consider spreading the word or <a
+          class="c-link" href="https://opencollective.com/sveltevietnam" target="_blank"
+          rel="noreferrer noopner external">sponsoring the Svelte Vietnam project</a>.
+        cta: Why does Svelte Vietnam need sponsorship?
+        kv_alt: a human sitting on top of a giant piggy bank
+      about:
+        heading: About Svelte Vietnam
+        desc:
+          Svelte Vietnam is an inclusive community for anyone using or learning about Svelte in
+          Vietnam. Svelte Vietnam is aspired to be a useful information channel and to promote a
+          healthy environment for members to share their experiences and help each other on their
+          journey towards software development and open-source.
+        cta: View more at sveltevietnam.dev
+        kv_alt: two people assemblying a giant lightbulb made of puzzle pieces
+      open:
+        heading: Open Source
+        desc:
+          The Recruit application is open source and welcomes contributions or criticism from the
+          community.
+        cta: View source on Github
+        kv_alt: an open door
     authenticate:
       heading: Register or Login
       desc:
