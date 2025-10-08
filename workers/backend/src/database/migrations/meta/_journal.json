@@ -36,6 +36,13 @@
 			"when": 1757062481986,
 			"tag": "0004_set_mails_actor_id_nullable",
 			"breakpoints": true
+		},
+		{
+			"idx": 5,
+			"version": "6",
+			"when": 1759902066976,
+			"tag": "0005_new_data_models_for_recruit_app",
+			"breakpoints": true
 		}
 	]
 }
