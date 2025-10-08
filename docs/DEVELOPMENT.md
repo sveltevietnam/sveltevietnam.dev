@@ -54,7 +54,9 @@ This is a monorepo managed with [pnpm] workspace and [turborepo]. The internal p
 - `/sites/*`: each project represents an isolated domain.
 - `/workers/*`: each project maintains a separate [Cloudflare worker][cloudflare.worker].
 
-See [package.json at root directory](../package.json) and in each package for available npm scripts. To run package-specific npm scripts, `cd` to package or use the `filter=...` flag at root. For example, to start the `sveltevietnam.dev` site, run:
+See [package.json at root directory](../package.json) and in each project for available npm scripts, and `README.md` in each project (if any) for additional instruction.
+
+To run package-specific npm scripts, `cd` to package or use the `filter=...` flag at root. For example, to start the `sveltevietnam.dev` site, run:
 
 ```bash
 pnpm dev --filter=sveltevietnam.dev
