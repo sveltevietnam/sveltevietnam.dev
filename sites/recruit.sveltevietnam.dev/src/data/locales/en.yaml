@@ -12,6 +12,7 @@ messages:
   svelte_vietnam:
     name: Svelte Vietnam
     discord: Svelte Vietnam Discord
+    recruit: Svelte Vietnam Recruit App
   footer:
     version: Version
     about:
@@ -148,6 +149,14 @@ messages:
           nonempty: Job description is required
   pages:
     home:
+      meta:
+        title: Recruit | Svelte Vietnam
+        desc:
+          Manage free and secure job postings at sveltevietnam.dev — for businesses and
+          organizations
+        keywords:
+          recruit, jobs, hiring, employment, svelte, sveltekit, vietnam, community, free, open
+          source, sveltevietnam.dev
       intro:
         heading: Recruit
         subtitle: from the Svetle Vietnam community
@@ -183,6 +192,9 @@ messages:
         cta: View source on Github
         kv_alt: an open door
     authenticate:
+      meta:
+        title: Authenticate | Recruit | Svelte Vietnam
+        desc: Đăng nhập hoặc đăng ký để sử dụng ứng dụng Tuyển dụng từ cộng đồng Svelte Việt Nam
       heading: Register or Login
       desc:
         Managing job postings at <a class="c-link" href={{mainSiteUrl}}>sveltevietnam.dev</a> — free
@@ -205,6 +217,8 @@ messages:
         token_invalid: Your token is invalid. Please try again.
         generic: Something went wrong. Please try again later.
     onboarding:
+      meta:
+        title: Onboarding | Recruit | Svelte Vietnam
       heading: Onboarding
       desc:
         Thank you for your interest in the Recruitment app from the Svelte Vietnam community. Please
@@ -213,6 +227,8 @@ messages:
         use_another_account: Login to another account
         submit: Submit for review
     welcome:
+      meta:
+        title: Welcome | Recruit | Svelte Vietnam
       heading: Your account is approved!
       desc: Thank you. You can start using the application immediately!
       cta: Create a job posting
@@ -222,6 +238,8 @@ messages:
         href="https://discord.sveltevietnam.dev" target="_blank" rel="noreferrer noopener
         external">Svelte Vietnam's official Discord</a>.
     profile:
+      meta:
+        title: Profile | Recruit | Svelte Vietnam
       heading: Profile
       update_email:
         heading: Update email
@@ -237,6 +255,8 @@ messages:
         heading: Update information
         success: Your profile has been updated!
     email_change_verification:
+      meta:
+        title: Email Change Verification | Recruit | Svelte Vietnam
       heading:
         ok: Your Request is Verified
         invalid: Your Request is Invalid
@@ -253,6 +273,8 @@ messages:
         'Reminder: email is used for login and account management. Please do not share with anyone!'
       login: Login
     postings:
+      meta:
+        title: Your Postings | Recruit | Svelte Vietnam
       heading: Your Postings
       pending:
         heading: Pending Postings
@@ -274,6 +296,8 @@ messages:
           These postings are read-only and no longer listed on the <a class="c-link"
           href="{{mainSiteUrl}}/en/jobs">"Jobs"</a> page.
     postings_id:
+      meta:
+        title: Posting Detail | Recruit | Svelte Vietnam
       pending:
         This posting is pending review from the admin team. You will be notified via email once it
         is approved or need changes. Approved postings can no longer be edited, so please review the
@@ -314,6 +338,10 @@ messages:
           unauthorized: You are not authorized to manage this posting
         success: The posting has been deleted! You will no longer be able to access this page.
     postings_upsert:
+      meta:
+        title:
+          create: Create Posting | Recruit | Svelte Vietnam
+          edit: Edit Posting | Recruit | Svelte Vietnam
       heading:
         create: Create new job posting
         edit: Edit job posting

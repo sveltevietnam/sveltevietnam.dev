@@ -2,6 +2,7 @@
 	import '@sveltevietnam/css/layers';
 	import { T } from '@sveltevietnam/i18n/runtime';
 	import {
+		PageMetadata,
 		LanguageMenu,
 		type LanguageMenuProps,
 		ColorSchemeMenu,
@@ -19,6 +20,7 @@
 	import * as n from '$data/routes/generated/names';
 	import {
 		VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
+		VITE_PUBLIC_ORIGIN,
 		VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN,
 	} from '$env/static/public';
 	import { AccountMenu } from '$lib/components/account-menu';
@@ -26,6 +28,13 @@
 	import '../../app.css';
 
 	import type { LayoutProps } from './$types';
+	import ogImageEn from './_local/images/og.en.jpg?url';
+	import ogImageVi from './_local/images/og.vi.jpg?url';
+
+	const ogImage = {
+		en: ogImageEn,
+		vi: ogImageVi,
+	};
 
 	let { children, data }: LayoutProps = $props();
 
@@ -92,16 +101,18 @@
 			path: p['/:lang']({ lang: routing.lang }),
 			name: n['/:lang'](routing.lang),
 		},
-		...(data.user ? [
-			{
-				path: p['/:lang/profile']({ lang: routing.lang }),
-				name: n['/:lang/profile'](routing.lang),
-			},
-			{
-				path: p['/:lang/postings']({ lang: routing.lang }),
-				name: n['/:lang/postings'](routing.lang),
-			},
-		] : []),
+		...(data.user
+			? [
+					{
+						path: p['/:lang/profile']({ lang: routing.lang }),
+						name: n['/:lang/profile'](routing.lang),
+					},
+					{
+						path: p['/:lang/postings']({ lang: routing.lang }),
+						name: n['/:lang/postings'](routing.lang),
+					},
+				]
+			: []),
 		data.user
 			? {
 					path: p['/:lang/logout']({ lang: routing.lang }),
@@ -113,6 +124,47 @@
 				},
 	] as const);
 </script>
+
+<PageMetadata
+	lang={routing.lang}
+	origin={page.url.origin}
+	breadcrumbs={page.data.routing?.breadcrumbs}
+	{version}
+	metadata={{
+		...page.data.meta,
+		...(page.data.routing && {
+			paths: {
+				default: VITE_PUBLIC_ORIGIN + page.data.routing.paths[routing.lang],
+				alternate: {
+					vi: VITE_PUBLIC_ORIGIN + page.data.routing.paths.vi,
+					en: VITE_PUBLIC_ORIGIN + page.data.routing.paths.en,
+				},
+			},
+		}),
+	}}
+	defaults={{
+		title: m['pages.home.meta.title'](routing.lang).toString(),
+		description: m['pages.home.meta.desc'](routing.lang).toString(),
+		keywords: m['pages.home.meta.keywords'](routing.lang).toString(),
+		canonical: page.url.origin + page.url.pathname,
+		og: {
+			type: 'website',
+			siteName: m['svelte_vietnam.recruit'](routing.lang).toString(),
+			image: {
+				src: page.url.origin + ogImage[routing.lang],
+				alt: m['svelte_vietnam.recruit'](routing.lang).toString(),
+				width: 1200,
+				height: 630,
+				type: 'image/jpeg',
+			},
+		},
+		twitter: {
+			card: 'summary_large_image',
+			site: '@sveltevietnam',
+			creator: '@sveltevietnam',
+		},
+	}}
+/>
 
 <ContextsProvider {contexts}>
 	<header

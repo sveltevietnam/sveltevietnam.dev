@@ -2,6 +2,7 @@ import { error, fail, redirect } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms';
 import { valibot } from 'sveltekit-superforms/adapters';
 
+import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { VITE_PRIVATE_ADMIN_EMAIL } from '$env/static/private';
@@ -28,6 +29,9 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 				vi: p['/:lang/postings/create']({ lang: 'vi' }),
 				en: p['/:lang/postings/create']({ lang: 'en' }),
 			},
+		},
+		meta: {
+			title: m['pages.postings_upsert.meta.title.create'](lang).toString(),
 		},
 	};
 };

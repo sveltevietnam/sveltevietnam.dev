@@ -2,6 +2,7 @@ import { error, fail, redirect } from '@sveltejs/kit';
 import { valibot } from 'sveltekit-superforms/adapters';
 import { superValidate, withFiles } from 'sveltekit-superforms/server';
 
+import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { uploadEmployerImage } from '$lib/data/employers';
@@ -21,6 +22,9 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 				vi: p['/:lang/onboarding']({ lang: 'vi' }),
 				en: p['/:lang/onboarding']({ lang: 'en' }),
 			},
+		},
+		meta: {
+			title: m['pages.onboarding.meta.title'](lang).toString(),
 		},
 	};
 };

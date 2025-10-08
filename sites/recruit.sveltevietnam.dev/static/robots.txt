@@ -10,5 +10,6 @@
 # site’s operator directly.
 
 User-agent: *
+Allow: /$
 Disallow: /
 

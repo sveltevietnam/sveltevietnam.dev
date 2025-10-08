@@ -1,6 +1,7 @@
 import { redirect } from '@sveltejs/kit';
 import { APIError } from 'better-auth/api';
 
+import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 
 import type { PageServerLoad } from './$types';
@@ -36,6 +37,9 @@ export const load: PageServerLoad = async ({ params, locals, request }) => {
 				vi: p['/:lang/email-change-verification/:token']({ lang: 'vi', token }),
 				en: p['/:lang/email-change-verification/:token']({ lang: 'en', token }),
 			},
+		},
+		meta: {
+			title: m['pages.email_change_verification.meta.title'](lang).toString(),
 		},
 	};
 };

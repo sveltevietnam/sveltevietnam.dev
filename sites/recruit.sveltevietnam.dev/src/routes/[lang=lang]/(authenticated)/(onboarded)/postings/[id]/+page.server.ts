@@ -29,6 +29,9 @@ export const load: PageServerLoad = async ({ params, parent }) => {
 				en: p['/:lang/postings/:id']({ lang: 'en', id }),
 			},
 		},
+		meta: {
+			title: m['pages.postings_id.meta.title'](lang).toString(),
+		},
 	};
 };
 

@@ -12,6 +12,7 @@ messages:
   svelte_vietnam:
     name: Svelte Việt Nam
     discord: Svelte Việt Nam Discord
+    recruit: Ứng dụng Tuyển dụng Svelte Việt Nam
   footer:
     version: Phiên bản
     about:
@@ -146,6 +147,14 @@ messages:
           nonempty: Vui lòng nhập mô tả công việc
   pages:
     home:
+      meta:
+        title: Tuyển dụng | Svelte Việt Nam
+        desc:
+          Quản lý bài đăng tuyển dụng miễn phí tại sveltevietnam.dev — dành cho doanh nghiệp và tổ
+          chức
+        keywords:
+          tuyển dụng, việc làm, svelte, sveltekit, cộng đồng, mã nguồn mở, svelte việt nam,
+          sveltevietnam.dev
       intro:
         heading: Tuyển dụng
         subtitle: cùng Cộng đồng Svelte Việt Nam
@@ -178,6 +187,9 @@ messages:
         cta: Xem mã nguồn tại Github
         kv_alt: một cánh cửa mở
     authenticate:
+      meta:
+        title: Xác thực | Tuyển dụng | Svelte Việt Nam
+        desc: Đăng nhập hoặc đăng ký để sử dụng ứng dụng Tuyển dụng từ cộng đồng Svelte Việt Nam
       heading: Đăng nhập / Đăng ký
       desc:
         Quản lý bài đăng tuyển dụng tại <a class="c-link" href={{mainSiteUrl}}>sveltevietnam.dev</a>
@@ -200,6 +212,8 @@ messages:
         token_invalid: Yêu cầu không hợp lệ. Vui lòng thử lại.
         generic: Đã có lỗi xảy ra. Vui lòng thử lại.
     onboarding:
+      meta:
+        title: Hoàn thiện hồ sơ | Tuyển dụng | Svelte Việt Nam
       heading: Hoàn thiện hồ sơ
       desc:
         Cảm ơn bạn đã đăng ký sử dụng ứng dụng Tuyển dụng của cộng đồng Svelte Việt Nam. Hãy điền
@@ -208,6 +222,8 @@ messages:
         use_another_account: Đăng nhập vào tài khoản khác
         submit: Yêu cầu xét duyệt
     welcome:
+      meta:
+        title: Chào mừng | Tuyển dụng | Svelte Việt Nam
       heading: Hồ sơ đã được duyệt
       desc: Xin cảm ơn. Bạn có thể bắt đầu sử dụng ứng dụng ngay bây giờ!
       cta: Tạo bài đăng tuyển
@@ -217,6 +233,8 @@ messages:
         href="https://discord.sveltevietnam.dev" target="_blank" rel="noreferrer noopener
         external">Discord chính thức của Svelte Việt Nam</a>.
     profile:
+      meta:
+        title: Hồ sơ | Tuyển dụng | Svelte Việt Nam
       heading: Hồ sơ
       update_email:
         heading: Sửa đổi email
@@ -232,6 +250,8 @@ messages:
         heading: Sửa đổi hồ sơ tuyển dụng
         success: Hồ sơ đã được cập nhật!
     email_change_verification:
+      meta:
+        title: Xác thực thay đổi email | Tuyển dụng | Svelte Việt Nam
       heading:
         ok: Yêu cầu đã được xác nhận
         invalid: Yêu cầu không hợp lệ
@@ -249,6 +269,8 @@ messages:
         email của bạn với ai!'
       login: Đăng nhập
     postings:
+      meta:
+        title: Danh sách đăng tuyển | Tuyển dụng | Svelte Việt Nam
       heading: Bài đăng tuyển
       active:
         heading: Đăng tuyển hiện tại
@@ -270,6 +292,8 @@ messages:
           Các bài đăng tuyển này không thể sửa đổi và không còn hiển thị trên <a class="c-link"
           href="{{mainSiteUrl}}/vi/viec-lam">trang việc làm</a>.
     postings_id:
+      meta:
+        title: Chi tiết đăng tuyển | Tuyển dụng | Svelte Việt Nam
       pending:
         Bài đăng tuyển đang chờ xét duyệt từ ban quản trị. Bạn sẽ nhận được email khi bài đăng được
         duyệt hoặc cần bổ sung thông tin. Bài đăng đã duyệt sẽ không thể sửa đổi. Vui lòng kiểm tra
@@ -308,6 +332,10 @@ messages:
           unauthorized: Bạn không có quyền quản lý bài đăng tuyển này
         success: Bài đăng tuyển đã được xóa! Khi rời trang này, bạn sẽ không thể truy cập lại.
     postings_upsert:
+      meta:
+        title:
+          create: Tạo mới đăng tuyển | Tuyển dụng | Svelte Việt Nam
+          edit: Chỉnh sửa đăng tuyển | Tuyển dụng | Svelte Việt Nam
       heading:
         create: Tạo mới bài đăng tuyển
         edit: Chỉnh sửa bài đăng tuyển

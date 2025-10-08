@@ -23,6 +23,10 @@ declare global {
 
 		interface PageData {
 			routing?: {
+				breadcrumbs?: {
+					path: string;
+					name: string;
+				}[];
 				paths: Record<Language, string>;
 			};
 			meta?: PageMetadata;

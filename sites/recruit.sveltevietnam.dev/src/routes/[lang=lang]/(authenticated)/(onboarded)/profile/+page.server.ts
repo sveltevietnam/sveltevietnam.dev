@@ -42,6 +42,9 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 				en: p['/:lang/profile']({ lang: 'en' }),
 			},
 		},
+		meta: {
+			title: m['pages.profile.meta.title'](lang).toString(),
+		},
 	};
 };
 

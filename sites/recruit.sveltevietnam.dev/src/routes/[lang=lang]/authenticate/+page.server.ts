@@ -62,6 +62,10 @@ export const load: PageServerLoad = async ({ params, locals, platform, url }) =>
 				en: p['/:lang/authenticate']({ lang: 'en' }) + url.search,
 			},
 		},
+		meta: {
+			title: m['pages.authenticate.meta.title'](lang).toString(),
+			description: m['pages.authenticate.meta.desc'](lang).toString(),
+		},
 	};
 };
 

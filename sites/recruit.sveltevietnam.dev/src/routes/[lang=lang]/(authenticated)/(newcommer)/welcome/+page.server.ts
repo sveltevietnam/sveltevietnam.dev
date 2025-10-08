@@ -1,3 +1,4 @@
+import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 
@@ -12,6 +13,9 @@ export const load: PageServerLoad = ({ params }) => {
 				vi: p['/:lang/welcome']({ lang: 'vi' }),
 				en: p['/:lang/welcome']({ lang: 'en' }),
 			},
+		},
+		meta: {
+			title: m['pages.welcome.meta.title'](lang).toString(),
 		},
 	};
 };

@@ -1,3 +1,4 @@
+import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { getBackend } from '$lib/backend/utils';
@@ -43,6 +44,9 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 				vi: p['/:lang/postings']({ lang: 'vi' }),
 				en: p['/:lang/postings']({ lang: 'en' }),
 			},
+		},
+		meta: {
+			title: m['pages.postings.meta.title'](lang).toString(),
 		},
 	};
 };
