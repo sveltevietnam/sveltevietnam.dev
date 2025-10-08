@@ -1,5 +1,4 @@
 <script lang="ts">
-	import '@sveltevietnam/css/layers';
 	import { T } from '@sveltevietnam/i18n/runtime';
 	import {
 		PageMetadata,

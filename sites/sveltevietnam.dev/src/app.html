@@ -57,6 +57,14 @@
 		<link rel="manifest" href="%sveltekit.assets%/site.webmanifest" />
 		<link type="text/plain" rel="author" href="%sveltekit.assets%/humans.txt" />
 
+		<!-- make sure CSS layers are defined first before any usage in styles -->
+		<style>
+			/* FIXME: find a way to load this from @sveltevietnam/css */
+			@layer theme, base, components, utilities, typography;
+			@layer utilities.components, utilities.icons;
+			@layer utilities.components.base, utilities.components.mod1, utilities.components.mod2;
+		</style>
+
 		<!-- SvelteKit Injected Header -->
 		%sveltekit.head%
 	</head>

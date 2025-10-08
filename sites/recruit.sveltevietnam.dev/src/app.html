@@ -29,6 +29,14 @@
 		<link rel="icon" type="image/svg+xml" href="%sveltekit.assets%/favicon.svg" />
 		<link rel="shortcut icon" href="%sveltekit.assets%/favicon.ico" />
 
+		<!-- make sure CSS layers are defined first before any usage in styles -->
+		<style>
+			/* FIXME: find a way to load this from @sveltevietnam/css */
+			@layer theme, base, components, utilities, typography;
+			@layer utilities.components, utilities.icons;
+			@layer utilities.components.base, utilities.components.mod1, utilities.components.mod2;
+		</style>
+
 		<!-- SvelteKit Injected Header -->
 		%sveltekit.head%
 	</head>
