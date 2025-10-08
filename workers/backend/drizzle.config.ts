@@ -11,7 +11,7 @@ type Mode = 'development' | 'test' | 'production';
 const mode = (CLOUDFLARE_ENV ?? 'development') as Mode;
 
 const local = mode === 'development' || mode === 'test';
-if (!local) {
+if (!wrangler.env[mode].vars.LOCAL && !CLOUDFLARE_ENV) {
 	throw new Error(pico.red('CLOUDFLARE_TOKEN is required in non-local mode.'));
 }
 
