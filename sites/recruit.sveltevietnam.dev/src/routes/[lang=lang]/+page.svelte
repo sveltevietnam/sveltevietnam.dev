@@ -16,7 +16,7 @@
 	const sponsorLink = $derived(
 		`${VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN}/${routing.lang}/${
 			routing.lang === 'en' ? 'sponsor' : 'tai-tro'
-		}`,
+		}#why`,
 	);
 
 	const sourceLink =
