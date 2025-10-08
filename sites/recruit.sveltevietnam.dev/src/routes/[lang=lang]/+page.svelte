@@ -20,7 +20,7 @@
 	);
 
 	const sourceLink =
-		'https://github.com/sveltevietnam/sveltevietnam.dev/tree/feat-recruit-app/sites/recruit.sveltevietnam.dev';
+		'https://github.com/sveltevietnam/sveltevietnam.dev/tree/main/sites/recruit.sveltevietnam.dev';
 </script>
 
 <main>
