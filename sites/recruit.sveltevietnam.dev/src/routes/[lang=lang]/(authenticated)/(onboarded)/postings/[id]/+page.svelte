@@ -8,6 +8,7 @@
 	import sanitizeHtml from 'sanitize-html';
 	import { superForm } from 'sveltekit-superforms';
 
+	import { invalidate } from '$app/navigation';
 	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
@@ -44,6 +45,7 @@
 		onError: createSuperFormGenericErrorHandler(toaster),
 		onResult({ result }) {
 			if (result.type === 'success') {
+				invalidate('job-posting-detail');
 				toaster.success({
 					message: m['pages.postings_id.delete.success'],
 				});
@@ -323,37 +325,45 @@
 			class="desktop:self-start desktop:sticky desktop:top-header max-w-readable-relaxed
 			desktop:max-w-96 space-y-section h-fit"
 		>
-			<section class="space-y-6">
-				<h2 class="border-outline c-text-heading border-b">
-					<T message={m['pages.postings_id.manage.heading']} />
-				</h2>
+			{#if data.posting.status !== 'deleted'}
+				<section class="space-y-6">
+					<h2 class="border-outline c-text-heading border-b">
+						<T message={m['pages.postings_id.manage.heading']} />
+					</h2>
 
-				<div class="flex gap-4">
-					<form class="contents" action="?/delete" method="POST" use:enhance bind:this={deleteForm}>
-						<input name="id" value={data.posting.id} required hidden />
-						<button
-							class="c-btn bg-error-on-surface text-error-surface border-error-on-surface flex-1 place-content-center
-							px-6"
-							type="submit"
-							data-delayed={$delayed}
-							data-timeout={$timeout}
-							onclick={confirmDelete}
+					<div class="flex gap-4">
+						<form
+							class="contents"
+							action="?/delete"
+							method="POST"
+							use:enhance
+							bind:this={deleteForm}
 						>
-							<i class="i i-[ph--trash] h-6 w-6"></i>
-							<span><T message={m['pages.postings_id.manage.delete']} /></span>
-						</button>
-					</form>
-					{#if data.editable}
-						<a
-							class="c-btn flex-1 place-content-center"
-							href={p['/:lang/postings/:id/edit']({ lang: routing.lang, id: data.posting.id })}
-						>
-							<i class="i i-[ph--pencil] h-6 w-6"></i>
-							<T message={m['pages.postings_id.manage.edit']} />
-						</a>
-					{/if}
-				</div>
-			</section>
+							<input name="id" value={data.posting.id} required hidden />
+							<button
+								class="c-btn bg-error-on-surface text-error-surface border-error-on-surface flex-1 place-content-center
+								px-6"
+								type="submit"
+								data-delayed={$delayed}
+								data-timeout={$timeout}
+								onclick={confirmDelete}
+							>
+								<i class="i i-[ph--trash] h-6 w-6"></i>
+								<span><T message={m['pages.postings_id.manage.delete']} /></span>
+							</button>
+						</form>
+						{#if data.editable}
+							<a
+								class="c-btn flex-1 place-content-center"
+								href={p['/:lang/postings/:id/edit']({ lang: routing.lang, id: data.posting.id })}
+							>
+								<i class="i i-[ph--pencil] h-6 w-6"></i>
+								<T message={m['pages.postings_id.manage.edit']} />
+							</a>
+						{/if}
+					</div>
+				</section>
+			{/if}
 
 			<SponsorReminder />
 		</div>

@@ -69,11 +69,8 @@ export class JobPostingService extends RpcTarget {
 		employerId?: string,
 	): Promise<null | JobPostingSelectWithEmployerResult> {
 		const jobPosting = await this.#orm.query.jobPostings.findFirst({
-			where: (table, { eq, and, isNull }) =>
-				and(
-					employerId ? and(eq(table.id, id), eq(table.employerId, employerId)) : eq(table.id, id),
-					isNull(table.deletedAt),
-				),
+			where: (table, { eq, and }) =>
+				employerId ? and(eq(table.id, id), eq(table.employerId, employerId)) : eq(table.id, id),
 			extras: {
 				status: STATUS_SQL.as('status'),
 			},
