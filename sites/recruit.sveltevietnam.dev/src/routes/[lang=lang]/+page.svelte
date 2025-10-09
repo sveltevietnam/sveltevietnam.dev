@@ -85,7 +85,7 @@
 		</div>
 	</section>
 
-	<div>
+	<div class="pb-section">
 		<!-- What's the catch? -->
 		<section
 			class="desktop:gap-20 tablet:max-desktop:items-end tablet:flex-row-reverse desktop:flex-row
