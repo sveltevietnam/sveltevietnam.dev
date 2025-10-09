@@ -96,20 +96,20 @@
 		"vite": "^7.1.4"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20250903.0",
+		"@cloudflare/workers-types": "^4.20251008.0",
 		"@svelte-put/lockscroll": "^2.0.1",
-		"@sveltejs/kit": "^2.37.0",
+		"@sveltejs/kit": "^2.46.4",
 		"@sveltevietnam/css": "workspace:*",
-		"@tailwindcss/vite": "4.1.12",
+		"@tailwindcss/vite": "4.1.14",
 		"schema-dts": "^1.1.5",
-		"svelte": "^5.38.6",
-		"tailwindcss": "4.1.12",
-		"vite": "^7.1.4",
-		"vite-imagetools": "^8.0.0"
+		"svelte": "^5.39.11",
+		"tailwindcss": "4.1.14",
+		"vite": "^7.1.9",
+		"vite-imagetools": "^9.0.0"
 	},
 	"dependencies": {
 		"@floating-ui/dom": "^1.7.4",
-		"@svelte-put/async-stack": "^1.5.1",
+		"@svelte-put/async-stack": "^1.5.3",
 		"@svelte-put/clickoutside": "^4.0.0",
 		"@svelte-put/copy": "^4.0.0",
 		"@svelte-put/qr": "^2.1.0",

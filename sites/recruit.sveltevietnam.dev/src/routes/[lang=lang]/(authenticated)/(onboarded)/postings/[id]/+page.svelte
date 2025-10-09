@@ -69,7 +69,7 @@
 		});
 	}
 
-	let deleteForm: HTMLFormElement;
+	let deleteForm = $state<HTMLFormElement | null >(null);
 	async function confirmDelete(e: Event) {
 		e.preventDefault();
 		const pushed = dialogs.push('custom', {
@@ -88,7 +88,7 @@
 			},
 		});
 		const result = await pushed.resolution;
-		if (result === 'confirm') {
+		if (result === 'confirm' && deleteForm) {
 			deleteForm.requestSubmit();
 		}
 	}

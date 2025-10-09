@@ -47,6 +47,12 @@ export async function defineConfig(svelteConfig, additionals = []) {
 				: {}),
 		})),
 		...additionals,
+		{
+			rules: {
+				// FIXME: reconsolidate and support this rule
+				'svelte/no-navigation-without-resolve': 'off',
+			},
+		},
 	]);
 }
 

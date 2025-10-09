@@ -60,15 +60,15 @@
 		"format": "prettier --write --ignore-path=../../.prettierignore --config=../../prettier.config.js ."
 	},
 	"dependencies": {
-		"dedent": "^1.6.0",
+		"dedent": "^1.7.0",
 		"picocolors": "^1.1.1",
 		"tiny-glob": "^0.2.9",
-		"typescript": "^5.9.2",
+		"typescript": "^5.9.3",
 		"yaml": "^2.8.1"
 	},
 	"devDependencies": {
-		"svelte": "^5.38.6",
-		"vite": "^7.1.4"
+		"svelte": "^5.39.11",
+		"vite": "^7.1.9"
 	},
 	"volta": {
 		"extends": "../../package.json"

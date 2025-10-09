@@ -1,6 +1,8 @@
 import * as codegen from './codegen/index.js';
 import * as utils from './utils.js';
 
+// TODO: evaluate possibility of using the new SvelteKit `resolve` utility
+
 /**
  * @param {import('../private.d.ts').Route[]} routes
  * @param {import('../private.d.ts').TransformOptions<string>} options
