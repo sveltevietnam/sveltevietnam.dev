@@ -11,6 +11,7 @@
 	import { EMAILS } from '@sveltevietnam/kit/constants';
 	import { Contexts, ContextsProvider } from '@sveltevietnam/kit/contexts';
 	import { ScrollToggler } from '@sveltevietnam/kit/utilities';
+	import { onMount } from 'svelte';
 
 	import { browser, version } from '$app/environment';
 	import { page } from '$app/state';
@@ -21,6 +22,9 @@
 		VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
 		VITE_PUBLIC_ORIGIN,
 		VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN,
+		VITE_PUBLIC_UMAMI,
+		VITE_PUBLIC_UMAMI_SCRIPT_URL,
+		VITE_PUBLIC_UMAMI_WEBSITE_ID,
 	} from '$env/static/public';
 	import { AccountMenu } from '$lib/components/account-menu';
 
@@ -122,6 +126,31 @@
 					name: n['/:lang/authenticate'](routing.lang),
 				},
 	] as const);
+
+	function callUmamiIdentify() {
+		const commonProperites = {
+			language: routing.lang,
+			systemColorScheme: colorScheme.system,
+			userColorScheme: colorScheme.user,
+		};
+
+		if (data.user) {
+			window.umami?.identify(data.user.id, {
+				...commonProperites,
+				name: data.user.name,
+				email: data.user.email,
+			});
+		} else {
+			window.umami?.identify(commonProperites);
+		}
+	}
+	onMount(() => {
+		if (window.umami) {
+			callUmamiIdentify();
+		} else {
+			document.getElementById('umami-script')?.addEventListener('load', callUmamiIdentify);
+		}
+	})
 </script>
 
 <PageMetadata
@@ -164,6 +193,17 @@
 		},
 	}}
 />
+
+<svelte:head>
+	{#if VITE_PUBLIC_UMAMI !== '0' && VITE_PUBLIC_UMAMI !== 'false' && !browser}
+		<script
+			id="umami-script"
+			defer
+			src={VITE_PUBLIC_UMAMI_SCRIPT_URL}
+			data-website-id={VITE_PUBLIC_UMAMI_WEBSITE_ID}
+		></script>
+	{/if}
+</svelte:head>
 
 <ContextsProvider {contexts}>
 	<header
