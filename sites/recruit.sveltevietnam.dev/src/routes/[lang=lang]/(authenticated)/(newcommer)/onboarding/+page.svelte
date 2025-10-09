@@ -28,7 +28,13 @@
 				<a class="c-btn c-btn--outlined" href={p['/:lang/logout']({ lang: routing.lang })}>
 					<span><T message={m['pages.onboarding.cta.use_another_account']} /></span>
 				</a>
-				<button class="c-btn" type="submit" data-delayed={delayed} data-timeout={timeout}>
+				<button
+					class="c-btn"
+					type="submit"
+					data-delayed={delayed}
+					data-timeout={timeout}
+					data-umami-event="submit-onboard"
+				>
 					<span><T message={m['pages.onboarding.cta.submit']} /></span>
 				</button>
 			</div>

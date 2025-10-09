@@ -1,5 +1,7 @@
 <script lang="ts" module>
+	import { LANGUAGES } from '@sveltevietnam/i18n';
 	import { T } from '@sveltevietnam/i18n/runtime';
+	import { delocalizeUrl } from '@sveltevietnam/i18n/utils';
 	import fallback1x1 from '@sveltevietnam/kit/assets/images/fallbacks/1x1.jpg?enhanced&w=w=224;112&imagetools';
 	import { Dropdown } from '@sveltevietnam/kit/components';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
@@ -23,6 +25,10 @@
 	const accountMenuItemClasses =
 		'hover:bg-primary-surface flex cursor-pointer items-center gap-4 px-4 py-2 -outline-offset-1';
 	const imageClasses = 'aspect-square h-8 w-auto overflow-hidden rounded-full';
+
+	function closeMenu() {
+		open = false;
+	}
 </script>
 
 <Dropdown bind:open {...rest} role="navigation" aria-labelledby="account-menu-label">
@@ -42,12 +48,18 @@
 	{/snippet}
 
 	{#snippet content()}
+		{@const profilePath = p['/:lang/profile']({ lang: routing.lang })}
+		{@const logoutPath = p['/:lang/logout']({ lang: routing.lang })}
+
 		<ul class="border-outline divide-outline bg-surface mt-0.5 w-max divide-y border">
 			<li>
 				<a
 					class={accountMenuItemClasses}
-					href={p['/:lang/profile']({ lang: routing.lang })}
-					onclick={() => (open = false)}
+					href={profilePath}
+					onclick={closeMenu}
+					data-umami-event="click-navigation-link"
+					data-umami-event-position="account-menu"
+					data-umami-event-path={delocalizeUrl(profilePath, LANGUAGES)}
 				>
 					<i class="i i-[ph--user] h-6 w-6"></i>
 					<T message={m['components.account_menu.profile']} />
@@ -56,8 +68,11 @@
 			<li>
 				<a
 					class={accountMenuItemClasses}
-					href={p['/:lang/logout']({ lang: routing.lang })}
-					onclick={() => (open = false)}
+					href={logoutPath}
+					onclick={closeMenu}
+					data-umami-event="click-navigation-link"
+					data-umami-event-position="account-menu"
+					data-umami-event-path={delocalizeUrl(logoutPath, LANGUAGES)}
 				>
 					<i class="i i-[ph--sign-out] h-6 w-6"></i>
 					<T message={m['components.account_menu.logout']} />

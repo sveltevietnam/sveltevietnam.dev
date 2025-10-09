@@ -1,5 +1,7 @@
 <script lang="ts">
+	import { LANGUAGES } from '@sveltevietnam/i18n';
 	import { T } from '@sveltevietnam/i18n/runtime';
+	import { delocalizeUrl } from '@sveltevietnam/i18n/utils';
 
 	import { SOCIAL_LINKS } from '../../constants.js';
 	import { Contexts } from '../../contexts/index.js';
@@ -57,7 +59,16 @@
 						{#each navigationPrimary as { path, name } (path)}
 							{@const current = routing.is(path)}
 							<li>
-								<a class="c-link-lazy px-1 py-1" href={path} aria-current={current}>{name}</a>
+								<a
+									class="c-link-lazy px-1 py-1"
+									href={path}
+									aria-current={current}
+									data-umami-event="click-navigation-link"
+									data-umami-event-position="footer"
+									data-umami-event-path={delocalizeUrl(path, LANGUAGES)}
+								>
+									{name}
+								</a>
 							</li>
 						{/each}
 					</ul>
@@ -76,6 +87,9 @@
 						class="c-link-lazy flex items-center gap-2 py-1"
 						href={SOCIAL_LINKS.DISCORD}
 						data-external
+						data-umami-event="click-social-link"
+						data-umami-event-source="discord"
+						data-umami-event-position="footer.contact"
 					>
 						<i class="i i-[ph--discord-logo] h-6 w-6"></i>
 						<T message={i18n.contact.discord} />
@@ -91,7 +105,7 @@
 		</section>
 
 		<section class="_socials self-end justify-self-start">
-			<SocialLinks />
+			<SocialLinks position="footer" />
 		</section>
 
 		<section class="_badges tablet:justify-end flex flex-wrap items-end gap-4">
@@ -110,7 +124,16 @@
 						{#each navigationSecondary as { path, name } (path)}
 							{@const current = routing.is(path)}
 							<li class="not-first:border-l not-first:pl-2 not-last:pr-2 border-current">
-								<a class="c-link-lazy px-1 py-1" href={path} aria-current={current}>{name}</a>
+								<a
+									class="c-link-lazy px-1 py-1"
+									href={path}
+									aria-current={current}
+									data-umami-event="click-navigation-link"
+									data-umami-event-position="footer"
+									data-umami-event-path={delocalizeUrl(path, LANGUAGES)}
+								>
+									{name}
+								</a>
 							</li>
 						{/each}
 					{/if}

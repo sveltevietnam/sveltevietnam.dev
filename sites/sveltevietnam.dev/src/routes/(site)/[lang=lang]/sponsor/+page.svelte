@@ -85,7 +85,14 @@
 		</p>
 		<ul class="max-w-readable-relaxed space-y-6">
 			<li>
-				<a class="c-btn c-btn--pop flex justify-between" href={SOCIAL_LINKS.DISCORD} data-external>
+				<a
+					class="c-btn c-btn--pop flex justify-between"
+					href={SOCIAL_LINKS.DISCORD}
+					data-external
+					data-umami-event="click-social-link"
+					data-umami-event-source="discord"
+					data-umami-event-position="pages.sponsor"
+				>
 					<T message={m['pages.sponsor.participate.discord']} />
 					<i class="i i-[ph--arrow-square-out] h-6 w-6"></i>
 				</a>

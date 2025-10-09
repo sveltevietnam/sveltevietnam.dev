@@ -1,5 +1,7 @@
 <script lang="ts">
+	import { LANGUAGES } from '@sveltevietnam/i18n';
 	import { T } from '@sveltevietnam/i18n/runtime';
+	import { delocalizeUrl } from '@sveltevietnam/i18n/utils';
 	import { onMount } from 'svelte';
 
 	import { type BreadcrumbsProps } from '.';
@@ -44,6 +46,9 @@
 					class={['-outline-offset-1', !current && 'c-link-lazy']}
 					aria-current={current}
 					href={path}
+					data-umami-event="click-navigation-link"
+					data-umami-event-position="breadcrumbs"
+					data-umami-event-path={delocalizeUrl(path, LANGUAGES)}
 				>
 					{#if i === 0}
 						<i class="i i-[ph--house-line] h-5 w-5"></i>

@@ -16,7 +16,11 @@
 		<h2 class="c-text-heading">
 			<T message={m['components.sponsor_reminder.heading']} />
 		</h2>
-		<a class="c-btn float-end inline-block" href="https://opencollective.com/sveltevietnam">
+		<a
+			class="c-btn float-end inline-block"
+			href="https://opencollective.com/sveltevietnam"
+			data-umami-event="click-sponsor"
+		>
 			<T message={m['components.sponsor_reminder.cta']} />
 		</a>
 	</div>

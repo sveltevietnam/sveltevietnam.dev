@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { clickoutside } from '@svelte-put/clickoutside';
+	import { LANGUAGES } from '@sveltevietnam/i18n';
 	import { T } from '@sveltevietnam/i18n/runtime';
+	import { delocalizeUrl } from '@sveltevietnam/i18n/utils';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import type { HTMLAttributes } from 'svelte/elements';
 
@@ -109,6 +111,9 @@
 							href={path}
 							aria-current={current}
 							onclick={onClickPageLink}
+							data-umami-event="click-navigation-link"
+							data-umami-event-position="page-menu"
+							data-umami-event-path={delocalizeUrl(path, LANGUAGES)}
 						>
 							<i class="i {icon} h-6 w-6"></i>
 							{name}

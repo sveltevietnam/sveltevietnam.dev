@@ -82,6 +82,9 @@
 				label={tool.label}
 				active={tool.isActive()}
 				onclick={tool.action}
+				data-umami-event="rich-text-editor"
+				data-umami-event-action={key}
+				data-umami-event-action-method="toolbar"
 			/>
 		</li>
 	{/each}

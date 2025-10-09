@@ -92,5 +92,8 @@
 		iconClass="i-[ph--question-mark]"
 		label={m['components.rich_text_editor.toolbar.help']}
 		onclick={help}
+		data-umami-event="rich-text-editor"
+		data-umami-event-action="help"
+		data-umami-event-action-method="toolbar"
 	/>
 </div>

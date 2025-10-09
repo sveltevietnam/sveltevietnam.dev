@@ -18,7 +18,7 @@
 		</button>
 	</form>
 	<div class="prose p-4">
-		<h2><T message={m['components.rich_text_editor.help.heading']} /></h2>
+		<h2 class="border-b border-outline"><T message={m['components.rich_text_editor.help.heading']} /></h2>
 		<p>
 			<T message={m['components.rich_text_editor.help.desc']} />
 		</p>

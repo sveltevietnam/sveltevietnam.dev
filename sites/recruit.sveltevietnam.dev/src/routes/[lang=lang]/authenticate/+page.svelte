@@ -103,6 +103,7 @@
 					data-delayed={$delayed}
 					data-timeout={$timeout}
 					disabled={!!rateLimited}
+					data-umami-event={result ? 'authenticate-resend' : 'authenticate-request'}
 				>
 					{#if result}
 						<T message={m['pages.authenticate.resend']} />
@@ -136,7 +137,7 @@
 				{/if}
 			</output>
 		{:else if data.error}
-			<output class="c-callout c-callout--error block" role="alert" >
+			<output class="c-callout c-callout--error block" role="alert">
 				{#if data.error === 'EXPIRED_TOKEN'}
 					<T message={m['pages.authenticate.error.token_expired']} />
 				{:else if data.error === 'INVALID_TOKEN'}

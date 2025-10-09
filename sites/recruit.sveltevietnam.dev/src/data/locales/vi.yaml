@@ -230,8 +230,9 @@ messages:
       feedback:
         Gởi góp ý cải thiện cho quy trình đăng ký qua <a class="c-link"
         href="mailto:jobs@sveltevietnam.dev">jobs@sveltevietnam.dev</a> hoặc <a class="c-link"
-        href="https://discord.sveltevietnam.dev" target="_blank" rel="noreferrer noopener
-        external">Discord chính thức của Svelte Việt Nam</a>.
+        href="https://discord.sveltevietnam.dev" target="_blank" rel="noreferrer noopener external"
+        data-umami-event="click-social-link" data-umami-event-source="discord"
+        data-umami-event-position="pages.welcome">Discord chính thức của Svelte Việt Nam</a>.
     profile:
       meta:
         title: Hồ sơ | Tuyển dụng | Svelte Việt Nam
@@ -355,8 +356,9 @@ messages:
         desc:
           Nếu bạn cần hỗ trợ hoặc có thắc mắc, góp ý cho ứng dụng, hãy liên lạc ban quản trị qua
           email <a class="c-link" href="mailto:jobs@sveltevietnam.dev">jobs@sveltevietnam.dev</a>
-          hoặc tại <a class="c-link" href="https://discord.sveltevietnam.dev">Discord của Svelte
-          Việt Nam</a>.
+          hoặc tại <a class="c-link" href="https://discord.sveltevietnam.dev"
+          data-umami-event="click-social-link" data-umami-event-source="discord"
+          data-umami-event-position="sidebar.support">Discord của Svelte Việt Nam</a>.
       notifications:
         update: Sửa đổi đã được xét duyệt và cập nhật!
         create: Bài đăng tuyển đã được tạo thành công và đang chờ xét duyệt!

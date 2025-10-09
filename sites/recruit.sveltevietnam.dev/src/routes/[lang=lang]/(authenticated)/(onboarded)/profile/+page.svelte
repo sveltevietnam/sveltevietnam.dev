@@ -72,6 +72,7 @@
 							type="submit"
 							data-delayed={$delayed}
 							data-timeout={$timeout}
+							data-umami-event="submit-change-email"
 						>
 							<i class="i i-[ph--floppy-disk] h-6 w-6"></i>
 							<T message={m.save} />
@@ -119,7 +120,13 @@
 			onSuccess={handleProfileUpdateSuccess}
 		>
 			{#snippet cta({ delayed, timeout })}
-				<button class="c-btn px-4" type="submit" data-delayed={delayed} data-timeout={timeout}>
+				<button
+					class="c-btn px-4"
+					type="submit"
+					data-delayed={delayed}
+					data-timeout={timeout}
+					data-umami-event="submit-update-profile"
+				>
 					<i class="i i-[ph--floppy-disk] h-6 w-6"></i>
 					<T message={m['save']} />
 				</button>

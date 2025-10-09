@@ -101,6 +101,7 @@
 		"@sveltejs/kit": "^2.46.4",
 		"@sveltevietnam/css": "workspace:*",
 		"@tailwindcss/vite": "4.1.14",
+		"@types/umami-browser": "^2.18.0",
 		"schema-dts": "^1.1.5",
 		"svelte": "^5.39.11",
 		"tailwindcss": "4.1.14",

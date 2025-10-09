@@ -123,7 +123,12 @@
 	}
 </script>
 
-<DropdownPopover class="group w-fit" placement="top-start" offset={{ mainAxis: 8, crossAxis: -4 }} bind:open>
+<DropdownPopover
+	class="group w-fit"
+	placement="top-start"
+	offset={{ mainAxis: 8, crossAxis: -4 }}
+	bind:open
+>
 	{#snippet label()}
 		<span class="c-link-lazy flex items-center gap-2 px-2 py-1 transition-colors">
 			<i class="i {currentBlock.iconClass} h-5 w-5 shrink-0"></i>
@@ -150,6 +155,9 @@
 						items-center gap-4 px-4 py-2 -outline-offset-1"
 						type="button"
 						onclick={setBlockType.bind(null, key)}
+						data-umami-event="rich-text-editor"
+						data-umami-event-action={key}
+						data-umami-event-action-method="toolbar"
 					>
 						<i class="i {iconClass} h-5 w-5"></i>
 						<span>

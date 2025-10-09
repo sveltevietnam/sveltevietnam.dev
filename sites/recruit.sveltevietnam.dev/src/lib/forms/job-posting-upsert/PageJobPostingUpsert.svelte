@@ -30,7 +30,8 @@
 </script>
 
 <script lang="ts">
-	let { breadcrumbs, action, posting, data, heading, successMessage }: JobPostingUpsertLayoutProps = $props();
+	let { breadcrumbs, action, posting, data, heading, successMessage }: JobPostingUpsertLayoutProps =
+		$props();
 
 	const { routing } = Contexts.get();
 
@@ -76,6 +77,7 @@
 						type="submit"
 						data-delayed={delayed}
 						data-timeout={timeout}
+						data-umami-event="submit-upsert-job-posting"
 					>
 						<span><T message={m['pages.postings_upsert.form.cta']} /></span>
 					</button>
@@ -83,7 +85,9 @@
 			</FormJobPostingUpsert>
 		</div>
 
-		<div class="desktop:self-start desktop:sticky desktop:top-header h-fit desktop:max-w-96 space-y-10">
+		<div
+			class="desktop:self-start desktop:sticky desktop:top-header desktop:max-w-96 h-fit space-y-10"
+		>
 			<!-- Preview -->
 			<section class="space-y-6">
 				<h2 class="c-text-heading border-outline border-b">

@@ -38,6 +38,16 @@
 					? 'sr-only'
 					: '',
 	);
+
+	function handleSubmit(e: SubmitEvent, key: ColorScheme) {
+		const previousColorScheme = $state.snapshot(colorScheme);
+		e.preventDefault();
+		onselect?.(key);
+		open = false;
+		if (key !== previousColorScheme && 'umami' in window) {
+			window.umami?.track('change-color-scheme', { from: previousColorScheme, to: key });
+		}
+	}
 </script>
 
 <Dropdown class={['group w-fit', cls]} {...rest}>
@@ -60,14 +70,7 @@
 			{#each Object.entries(colorSchemes) as [key, { icon, label }] (key)}
 				{@const current = colorScheme === key}
 				<li>
-					<form
-						method="GET"
-						onsubmit={(e) => {
-							e.preventDefault();
-							onselect?.(key as ColorScheme);
-							open = false;
-						}}
-					>
+					<form method="GET" onsubmit={(e) => handleSubmit(e, key as ColorScheme)}>
 						<label
 							class="current:text-primary current:font-bold hover:bg-primary-surface flex cursor-pointer items-center
 								gap-4 px-4 py-2 -outline-offset-1"

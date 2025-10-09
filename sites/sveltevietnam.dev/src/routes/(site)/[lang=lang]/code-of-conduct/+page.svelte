@@ -44,6 +44,9 @@
 						class="c-btn c-btn--pop flex items-center justify-between"
 						href={SOCIAL_LINKS.DISCORD}
 						data-external
+						data-umami-event="click-social-link"
+						data-umami-event-source="discord"
+						data-umami-event-position="pages.coc"
 					>
 						<span><T message={m['pages.coc.contact.discord']} /></span>
 						<i class="i i-[ph--arrow-square-out] h-6 w-6"></i>

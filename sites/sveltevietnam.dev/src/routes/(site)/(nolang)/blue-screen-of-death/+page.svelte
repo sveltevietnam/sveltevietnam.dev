@@ -15,7 +15,13 @@
 	</p>
 	<p>As with anything, try turning it off and on again.</p>
 	<div class="flex items-center gap-6">
-		<a class="contents" href={SOCIAL_LINKS.DISCORD} data-external>
+		<a
+			class="contents"
+			href={SOCIAL_LINKS.DISCORD} data-external
+			data-umami-event="click-social-link"
+			data-umami-event-source="discord"
+			data-umami-event-position="pages.bsod"
+		>
 			<QR
 				class="h-32 w-32"
 				data={SOCIAL_LINKS.DISCORD}

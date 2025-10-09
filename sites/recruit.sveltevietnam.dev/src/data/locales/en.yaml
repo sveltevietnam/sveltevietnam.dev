@@ -235,8 +235,9 @@ messages:
       feedback:
         Send feedback to improve the sign-up process via <a class="c-link"
         href="mailto:jobs@sveltevietnam.dev">jobs@sveltevietnam.dev</a> or <a class="c-link"
-        href="https://discord.sveltevietnam.dev" target="_blank" rel="noreferrer noopener
-        external">Svelte Vietnam's official Discord</a>.
+        href="https://discord.sveltevietnam.dev" target="_blank" rel="noreferrer noopener external"
+        data-umami-event="click-social-link" data-umami-event-source="discord"
+        data-umami-event-position="pages.welcome">Svelte Vietnam's official Discord</a>.
     profile:
       meta:
         title: Profile | Recruit | Svelte Vietnam
@@ -360,7 +361,9 @@ messages:
           If you need support or have any questions or feedback about the job posting process,
           please contact the admin team via email at <a class="c-link"
           href="mailto:jobs@sveltevietnam.dev">jobs@sveltevietnam.dev</a> or via the <a
-          class="c-link" href="https://discord.sveltevietnam.dev">Svelte Vietnam Discord</a>."
+          class="c-link" href="https://discord.sveltevietnam.dev"
+          data-umami-event="click-social-link" data-umami-event-source="discord"
+          data-umami-event-position="sidebar.support">Svelte Vietnam Discord</a>."
       notifications:
         update: Update has been approved and applied to your posting!
         create: Posting has been created and is pending admin review!

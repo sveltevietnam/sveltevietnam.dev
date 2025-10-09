@@ -134,7 +134,13 @@
 			bg-on-surface text-surface flex w-fit -translate-y-2 items-center gap-2 px-4 pb-4
 			pt-6 transition-transform duration-500 hover:translate-y-0 hover:duration-100
 			"
-			{...routing.is(linkToHome) ? {} : { href: linkToHome }}
+			{...routing.is(linkToHome)
+				? {}
+				: {
+						href: linkToHome,
+						'data-umami-event': 'click-header-logo',
+						'data-umami-event-month': new Date().getMonth() + 1,
+					}}
 		>
 			{#if routing.is(linkToHome)}
 				<svg
@@ -225,7 +231,7 @@
 						flat
 						onnavigate={() => (isMobileMenuOpen = false)}
 					/>
-					<SocialLinks class="relative z-0 justify-center" />
+					<SocialLinks class="relative z-0 justify-center" position="header" />
 				</div>
 			</div>
 		</div>

@@ -69,7 +69,7 @@
 		});
 	}
 
-	let deleteForm = $state<HTMLFormElement | null >(null);
+	let deleteForm = $state<HTMLFormElement | null>(null);
 	async function confirmDelete(e: Event) {
 		e.preventDefault();
 		const pushed = dialogs.push('custom', {
@@ -267,6 +267,7 @@
 						class="c-btn block flex-1 border-orange-600 bg-orange-600 font-bold text-gray-50"
 						href={applicationLink}
 						data-external
+						data-umami-event="click-apply-link"
 					>
 						<T message={m['pages.postings_id.actions.apply']} />
 					</a>
@@ -276,6 +277,8 @@
 						class="c-btn c-btn--outlined shrink-0 grid-cols-1 p-2"
 						aria={m['pages.postings_id.actions.share.link']}
 						textToCopy={url}
+						data-umami-event="copy-link"
+						data-umami-event-resource="job-posting"
 					/>
 
 					<!-- generate QR -->
@@ -283,6 +286,8 @@
 						class="c-btn c-btn--outlined shrink-0 grid-cols-1 p-2"
 						type="button"
 						onclick={openQrDialog}
+						data-umami-event="generate-qr"
+						data-umami-event-resource="job-posting"
 					>
 						<span class="sr-only"><T message={m['pages.postings_id.actions.share.qr']} /></span>
 						<i class="i i-[ph--qr-code] h-6 w-6"></i>
@@ -347,6 +352,7 @@
 								data-delayed={$delayed}
 								data-timeout={$timeout}
 								onclick={confirmDelete}
+								data-umami-event="click-delete-job-posting"
 							>
 								<i class="i i-[ph--trash] h-6 w-6"></i>
 								<span><T message={m['pages.postings_id.manage.delete']} /></span>
