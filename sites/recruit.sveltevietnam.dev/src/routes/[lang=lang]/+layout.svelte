@@ -150,7 +150,7 @@
 		} else {
 			document.getElementById('umami-script')?.addEventListener('load', callUmamiIdentify);
 		}
-	})
+	});
 </script>
 
 <PageMetadata
@@ -211,6 +211,7 @@
 			'max-w-pad z-header fixed flex w-full items-start justify-between transition-transform',
 			'max-tablet:py-2 max-tablet:border-b max-tablet:border-outline max-tablet:items-center',
 			scrollToggler.hidden && '-translate-y-full',
+			'mobile:bg-surface'
 		]}
 		{@attach scrollToggler.attachment}
 	>
