@@ -223,8 +223,8 @@
 			<div class="overflow-hidden">
 				<div class="_mobile-menu-content max-w-pad overflow-auto border-b py-8">
 					<div class="z-1 relative flex flex-wrap items-center justify-center gap-4">
-						<ColorSchemeMenu {...colorSchemeMenuProps} class="border border-current" />
-						<LanguageMenu {...languageMenuProps} class="border border-current" />
+						<ColorSchemeMenu {...colorSchemeMenuProps} class="border border-current p-2" />
+						<LanguageMenu {...languageMenuProps} class="border border-current p-2" />
 					</div>
 					<PageMenu
 						class="max-w-100 relative z-0 mx-auto mb-8 mt-4"
