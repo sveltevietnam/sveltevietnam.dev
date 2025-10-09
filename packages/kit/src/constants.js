@@ -31,6 +31,8 @@ export const SOCIAL_LINKS = {
 	FACEBOOK: 'https://facebook.com/sveltevietnam',
 	OPEN_COLLECTIVE: 'https://opencollective.com/sveltevietnam',
 	YOUTUBE: 'https://www.youtube.com/@sveltevietnam',
+	LINKEDIN: 'https://www.linkedin.com/groups/15545035',
+	THREADS: 'https://www.threads.com/@sveltevietnam',
 };
 
 export const EMAILS = {

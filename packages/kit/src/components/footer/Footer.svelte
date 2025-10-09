@@ -104,7 +104,7 @@
 			</ul>
 		</section>
 
-		<section class="_socials self-end justify-self-start">
+		<section class="_socials self-end justify-self-start @container w-full">
 			<SocialLinks position="footer" />
 		</section>
 
@@ -181,7 +181,7 @@
 			grid-template-areas:
 				'about pages name'
 				'contacts contacts contacts'
-				'socials badges badges';
+				'socials socials badges';
 			grid-template-columns: repeat(3, auto);
 			grid-template-rows: repeat(3, auto);
 			row-gap: calc(var(--spacing) * 8);
