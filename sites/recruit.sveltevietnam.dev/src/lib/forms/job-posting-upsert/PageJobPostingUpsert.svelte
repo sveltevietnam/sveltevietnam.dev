@@ -1,4 +1,5 @@
 <script lang="ts" module>
+	import { JOB_POSTING_TYPE_I18N } from '@sveltevietnam/backend/data/job-postings/enums';
 	import { T } from '@sveltevietnam/i18n/runtime';
 	import type { Message } from '@sveltevietnam/i18n/runtime';
 	import {
@@ -17,7 +18,6 @@
 		FormJobPostingUpsert,
 		type FormJobPostingUpsertProps,
 		type JobPostingType,
-		JOB_POSTING_TYPE_LABEL,
 	} from '$lib/forms/job-posting-upsert';
 
 	export interface JobPostingUpsertLayoutProps {
@@ -45,7 +45,7 @@
 			...previewPosting,
 			title: formData.get('title')?.toString() || previewPosting.title,
 			type:
-				JOB_POSTING_TYPE_LABEL[formData.get('type') as JobPostingType]?.(routing.lang).toString() ||
+				JOB_POSTING_TYPE_I18N[formData.get('type') as JobPostingType]?.[routing.lang] ||
 				previewPosting.type,
 			location: formData.get('location')?.toString() || previewPosting.location,
 			salary: formData.get('salary')?.toString() || previewPosting.salary,

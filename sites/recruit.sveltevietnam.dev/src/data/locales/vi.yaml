@@ -97,12 +97,6 @@ messages:
           nonempty: Vui lòng nhập tiêu đề công việc
       type:
         label: Loại hình công việc
-        options:
-          volunteer: Tình nguyện
-          internship: Thực tập
-          contract: Hợp đồng
-          part_time: Bán thời gian
-          full_time: Toàn thời gian
         errors:
           nonempty: Vui lòng chọn loại hình công việc
       location:

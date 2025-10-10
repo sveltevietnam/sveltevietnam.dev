@@ -1,8 +1,9 @@
+import { JOB_POSTING_TYPE_I18N } from '@sveltevietnam/backend/data/job-postings/enums';
+
 import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { getBackend } from '$lib/backend/utils';
-import { JOB_POSTING_TYPE_LABEL } from '$lib/forms/job-posting-upsert';
 
 import type { PageServerLoad } from './$types';
 
@@ -14,7 +15,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 			...posting,
 			href: p['/:lang/postings/:id']({ lang, id: posting.id }),
 			postedAt: posting.approvedAt,
-			type: JOB_POSTING_TYPE_LABEL[posting.type](lang).toString(),
+			type: JOB_POSTING_TYPE_I18N[posting.type][lang],
 			employer: {
 				name: user.name,
 				image: user.image,

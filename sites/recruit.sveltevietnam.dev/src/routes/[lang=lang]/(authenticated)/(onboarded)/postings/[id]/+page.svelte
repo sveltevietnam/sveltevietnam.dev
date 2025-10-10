@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { JOB_POSTING_TYPE_I18N } from '@sveltevietnam/backend/data/job-postings/enums';
 	import { T } from '@sveltevietnam/i18n/runtime';
 	import fallback1x1 from '@sveltevietnam/kit/assets/images/fallbacks/1x1.jpg?enhanced&w=w=224;112&imagetools';
 	import { Breadcrumbs, CopyBtn } from '@sveltevietnam/kit/components';
@@ -13,7 +14,6 @@
 	import * as p from '$data/routes/generated';
 	import { VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN } from '$env/static/public';
 	import { SponsorReminder } from '$lib/components/sponsor-reminder';
-	import { JOB_POSTING_TYPE_LABEL } from '$lib/forms/job-posting-upsert';
 	import { createSuperFormGenericErrorHandler } from '$lib/forms/utils';
 
 	import type { PageProps } from './$types';
@@ -28,7 +28,7 @@
 	} = Contexts.get();
 
 	let url = $derived(`${VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN }/${routing.lang}/jobs/${data.posting.id}`);
-	const typeLabelMessage = $derived(JOB_POSTING_TYPE_LABEL[data.posting.type]);
+	const typeLabel = $derived(JOB_POSTING_TYPE_I18N[data.posting.type][routing.lang]);
 	const applicationLink = $derived(
 		data.posting.applicationMethod === 'email'
 			? `mailto:${data.posting.applicationLink}`
@@ -185,7 +185,7 @@
 							</span>
 						</dt>
 						<dd data-testid="job-type">
-							{typeLabelMessage(routing.lang)}
+							{typeLabel}
 						</dd>
 
 						<!-- location -->

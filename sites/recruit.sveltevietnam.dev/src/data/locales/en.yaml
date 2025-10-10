@@ -97,12 +97,6 @@ messages:
           nonempty: Job title is required
       type:
         label: Job type
-        options:
-          volunteer: Volunteer
-          internship: Internship
-          contract: Contract
-          part_time: Part-time
-          full_time: Full-time
         errors:
           nonempty: Job type is required
       location:
