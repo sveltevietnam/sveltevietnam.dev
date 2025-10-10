@@ -1,4 +1,5 @@
 <script lang="ts" module>
+	import { JOB_POSTING_TYPE_I18N } from '@sveltevietnam/backend/data/job-postings/enums';
 	import { T, type Message } from '@sveltevietnam/i18n/runtime';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
@@ -14,7 +15,6 @@
 
 	import {
 		JOB_POSTING_APPLICATION_METHODS,
-		JOB_POSTING_TYPE_LABEL,
 		JOB_POSTING_APPLICATION_METHOD_MESSAGES,
 		type JobPostingUpsertInput,
 		type JobPostingApplicationMethod,
@@ -131,7 +131,7 @@
 			>
 				{#each JOB_POSTING_TYPES as type (type)}
 					<option value={type}>
-						<T message={JOB_POSTING_TYPE_LABEL[type]} />
+						{JOB_POSTING_TYPE_I18N[type][routing.lang]}
 					</option>
 				{/each}
 			</select>
