@@ -4,6 +4,7 @@ messages:
   version: Version
   latest: Latest
   current: Current
+  at: at
   open: Open
   close: Close
   download: Download
@@ -836,6 +837,9 @@ messages:
       pause: Pause
       short: Short
       long: Long
+    job_posting_list:
+      posted_at: Posted on
+      expired_at: Expires on
   notifications:
     sample:
       title: Sample Notification

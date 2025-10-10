@@ -1,6 +1,10 @@
+import { JOB_POSTING_TYPE_I18N } from '@sveltevietnam/backend/data/job-postings/enums';
+
 import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
+import { VITE_PUBLIC_RECRUIT_ORIGIN } from '$env/static/public';
+import { getBackend } from '$lib/backend/utils';
 import { upsert } from '$lib/forms/subscriber/server';
 
 import type { Actions, PageServerLoad } from './$types';
@@ -12,9 +16,21 @@ const ogImage = {
 	en: ogImageEn,
 };
 
-export const load: PageServerLoad = async ({ params }) => {
-	const { lang } = params;
+export const load: PageServerLoad = async (event) => {
+	const { lang } = event.params;
+
+	const postings = (await getBackend(event).jobPostings().getAllActive()).map((posting) => ({
+		...posting,
+		href: p['/:lang/jobs/:id']({ lang, id: posting.id }),
+		postedAt: posting.approvedAt,
+		type: JOB_POSTING_TYPE_I18N[posting.type][lang],
+		employer: {
+			...posting.employer,
+			image: VITE_PUBLIC_RECRUIT_ORIGIN + posting.employer.image,
+		},
+	}));
 	return {
+		postings,
 		subscribeFormData: await upsert.load(lang, 'job'),
 		routing: {
 			breadcrumbs: b['/:lang/jobs']({ lang }),
