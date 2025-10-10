@@ -11,7 +11,10 @@ export const load: PageServerLoad = async ({ params }) => {
 	const { lang } = params;
 
 	const [{ events }, { posts }] = await Promise.all([
-		loadEvents({ lang, pagination: { per: 3, page: 1 }, where: { status: 'ongoing' } }),
+		loadEvents({
+			lang,
+			where: { status: ['ongoing', 'upcoming'] },
+		}),
 		loadBlogPosts(lang, 1, 3),
 	]);
 	return {
