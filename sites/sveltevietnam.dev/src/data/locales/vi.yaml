@@ -528,6 +528,42 @@ messages:
         tba:
           desc: Chưa có công việc nào.
           subscribe: Đăng ký cập nhật công việc mới nhất!
+    jobs_id:
+      general:
+        heading: Thông tin chung
+        employerName: Người sử dụng lao động
+        type: Loại hình công việc
+        location: Địa điểm làm việc
+        salary: Mức lương
+        posted_at: Đăng ngày
+        expired_at: Hết hạn ngày
+      job_desc: Mô tả công việc
+      employer_desc: Về {{employerName}}
+      actions:
+        apply: Ứng tuyển
+        share:
+          link: Sao chép đường dẫn
+          qr: Tạo mã QR
+      connect:
+        heading: Kết nối
+        desc:
+          Tham gia <a class="c-link" href={{linkDiscord}} rel="noreferrer noopener external"
+          target="_blank" >Discord</a> hoặc <a class="c-link" href={{linkLinkedin}} rel="noreferrer
+          noopener external" target="_blank">nhóm Svelte Việt Nam tại Linkedin</a> để có thêm cơ hội
+          kết nối với doanh nghiệp, tổ chức, hoặc các nhà tuyển dụng độc lập.
+      contribute:
+        heading: Đóng góp
+        desc:
+          Svelte Việt Nam là dự án mã nguồn mở và hoan nghênh đóng góp của bạn. Tham khao <a
+          class="c-link" href={{linkGithub}} rel="noreferrer noopener external" target="_blank" >
+          Github của dự án </a> hoặc <a class="c-link" href={{linkSponsor}}>Trang Tài trợ</a> để tìm
+          hiểu thêm.
+      recruit:
+        heading: Đăng tuyển
+        desc:
+          Bạn cần tìm kiếm viên cho dự án của mình? Đăng tuyển miễn phí cùng cộng đồng Svelte Việt
+          Nam!
+        cta: Tạo bài đăng tuyển
     people:
       title: Con người | Svelte Việt Nam
       heading: Con người tại Svelte Việt Nam

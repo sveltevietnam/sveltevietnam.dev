@@ -26,7 +26,9 @@ export const load: PageServerLoad = async (event) => {
 		type: JOB_POSTING_TYPE_I18N[posting.type][lang],
 		employer: {
 			...posting.employer,
-			image: VITE_PUBLIC_RECRUIT_ORIGIN + posting.employer.image,
+			...(posting.employer.image && {
+				image: VITE_PUBLIC_RECRUIT_ORIGIN + posting.employer.image,
+			}),
 		},
 	}));
 	return {
