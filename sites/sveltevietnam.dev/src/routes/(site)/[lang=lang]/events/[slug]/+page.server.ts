@@ -45,13 +45,13 @@ export const load: PageServerLoad = async ({ params }) => {
 
 	const breadcrumbs = b['/:lang/events/:slug']({
 		lang,
-		slug: [event.slug, event.title],
+		slug: [event.href, event.title],
 	});
 	const paths = {
-		[lang]: p['/:lang/events/:slug']({ lang, slug: event.slug }),
+		[lang]: p['/:lang/events/:slug']({ lang, slug: event.href }),
 		[otherLang]: p['/:lang/events/:slug']({
 			lang: otherLang,
-			slug: otherLangMetadata?.slug ?? event.slug,
+			slug: otherLangMetadata?.href ?? event.href,
 		}),
 	} as Record<Language, string>;
 

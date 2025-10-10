@@ -1,4 +1,4 @@
-import { loadEvents } from '$data/events';
+import { getEventStatus, loadEvents, type EventMetadata } from '$data/events';
 import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
@@ -16,12 +16,25 @@ const ogImage = {
 export const load: PageServerLoad = async ({ params }) => {
 	const { lang } = params;
 
-	// TODO: sort by event status 'upcoming' | 'ongoing' | 'past'
-	const { events } = await loadEvents(lang, 1, 10);
+	const { events } = await loadEvents({ lang });
+	const upcoming: EventMetadata[] = [];
+	const ongoing: EventMetadata[] = [];
+	const past: EventMetadata[] = [];
+
+	for (const event of events) {
+		const status = getEventStatus(event);
+		if (status === 'upcoming') upcoming.push(event);
+		else if (status === 'ongoing') ongoing.push(event);
+		else past.push(event);
+	}
 
 	return {
 		subscribeFormData: await upsert.load(lang, 'event'),
-		events,
+		events: {
+			upcoming,
+			ongoing,
+			past,
+		},
 		routing: {
 			breadcrumbs: b['/:lang/events']({ lang }),
 			paths: {

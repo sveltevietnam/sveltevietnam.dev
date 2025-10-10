@@ -11,7 +11,7 @@ export const EVENT_LINKS = {
 };
 
 export default defineEventMetadata((lang) => ({
-	slug: m.slug(lang).toString(),
+	href: m.slug(lang).toString(),
 	title: m.title(lang).toString(),
 	description: m.desc(lang).toString(),
 	keywords: m.keywords(lang).toString(),

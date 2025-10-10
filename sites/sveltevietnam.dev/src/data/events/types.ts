@@ -4,15 +4,15 @@ import type { Picture } from 'vite-imagetools';
 
 export type EventMetadata = {
 	id: string;
-	slug: string;
+	href: string;
 	title: string;
 	description: string;
 	keywords: string;
-	startDate: Date;
-	endDate: Date;
+	startDate?: Date;
+	endDate?: Date;
 	location?: {
-		address: string;
-		googleMapUrl: string;
+		name: string;
+		href?: string;
 	}[];
 	livestream?: {
 		name: string;
@@ -30,3 +30,5 @@ export type EventAdditionalStructuredDataDefinition = (
 	lang: Language,
 	origin: string,
 ) => EventAdditionalStructuredData;
+
+export type EventStatus = 'past' | 'ongoing' | 'upcoming';

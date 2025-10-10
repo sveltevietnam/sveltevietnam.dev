@@ -48,15 +48,38 @@ export async function generateKitEntries(): Promise<{ lang: Language; slug: stri
 				const path = `./${id}/metadata.ts`;
 				if (!metadataModules[path]) return null;
 				const def = await metadataModules[path]();
+				if (def('en').href.startsWith('http') || def('vi').href.startsWith('http')) return null;
 				return [
-					{ lang: 'en', slug: def('en').slug.toString() },
-					{ lang: 'vi', slug: def('vi').slug.toString() },
+					{ lang: 'en', slug: def('en').href.toString() },
+					{ lang: 'vi', slug: def('vi').href.toString() },
 				];
 			}),
 		)
 	)
 		.flat()
 		.filter(Boolean);
+}
+
+export function getEventStatus(event: t.MinimalEventMetadata): t.EventStatus {
+	const now = new Date();
+	if (event.startDate && event.endDate) {
+		if (now < event.startDate) return 'upcoming';
+		if (now > event.endDate) return 'past';
+		return 'ongoing';
+	} else if (event.startDate) {
+		if (now < event.startDate) return 'upcoming';
+		return 'ongoing';
+	} else if (event.endDate) {
+		if (now > event.endDate) return 'past';
+		return 'ongoing';
+	} else {
+		return 'upcoming';
+	}
+}
+
+function compareEventsByStartDate(a: t.MinimalEventMetadata, b: t.MinimalEventMetadata): number {
+	if (a.startDate === b.startDate) return 0;
+	return (b.startDate?.getTime() ?? Infinity) - (a.startDate?.getTime() ?? Infinity);
 }
 
 export async function loadEventMetadata(
@@ -107,7 +130,7 @@ export async function loadEventBySlug(
 	const metadatas = (await Promise.all(ids.map((id) => loadEventMetadata(id, lang)))).filter(
 		Boolean,
 	);
-	const matched = metadatas.find((metadata) => metadata.slug.toString() === slug);
+	const matched = metadatas.find((metadata) => metadata.href.toString() === slug);
 	if (!matched) return null;
 	return matched;
 }
@@ -118,27 +141,41 @@ export async function loadEventContent(id: string): Promise<Component | null> {
 	return contentModules[path]();
 }
 
-export async function loadEvents(
-	lang: Language,
-	page: number,
-	per: number,
-): Promise<{
+type EventLoadOptions = {
+	lang: Language;
+	where?: {
+		status?: t.EventStatus;
+	};
+	pagination?: { per: number; page: number };
+};
+
+export async function loadEvents(options: EventLoadOptions): Promise<{
 	events: t.EventMetadata[];
 	total: number;
 }> {
+	const { lang, where, pagination } = options;
+	const metadatas = (await Promise.all(ids.map((id) => loadEventMetadata(id, lang)))).filter(
+		Boolean,
+	);
+	const matched = metadatas.filter((metadata) => {
+		if (where?.status && getEventStatus(metadata) !== where.status) return false;
+		return true;
+	});
+	let paginated = matched.sort(compareEventsByStartDate);
+	if (pagination) {
+		const { per, page } = pagination;
+		paginated = matched.slice(per * (page - 1), per * page);
+	}
+
 	return {
-		events: (
-			await Promise.all(
-				ids.slice(per * (page - 1), per * page).map((id) => loadEventMetadata(id, lang)),
-			)
-		).filter(Boolean),
+		events: paginated,
 		total: ids.length,
 	};
 }
 
 export async function loadAllEvents(lang: Language): Promise<t.EventMetadata[]> {
 	return Promise.all(ids.map((id) => loadEventMetadata(id, lang))).then((events) =>
-		events.filter(Boolean),
+		events.filter(Boolean).sort(compareEventsByStartDate),
 	);
 }
 

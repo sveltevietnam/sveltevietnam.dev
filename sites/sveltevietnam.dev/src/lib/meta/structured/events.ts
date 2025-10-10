@@ -13,7 +13,9 @@ export function buildStructuredEvent(
 	event: EventMetadata,
 	additionals?: Partial<SocialEvent> | null,
 ): SocialEvent {
-	const canonical = origin + p['/:lang/events/:slug']({ lang, slug: event.slug });
+	const canonical = event.href.startsWith('http')
+		? event.href
+		: origin + p['/:lang/events/:slug']({ lang, slug: event.href });
 	const org = buildStructuredOrganization(lang, origin);
 	const id = `${org['@id']}/events/${event.id}`;
 	return {
@@ -24,8 +26,12 @@ export function buildStructuredEvent(
 		name: buildStructuredTextWithLang({ lang, value: event.title }),
 		description: buildStructuredTextWithLang({ lang, value: event.description }),
 		keywords: buildStructuredTextWithLang({ lang, value: event.keywords }),
-		startDate: event.startDate.toISOString(),
-		endDate: event.endDate.toISOString(),
+		...(event.startDate && {
+			startDate: event.startDate.toISOString(),
+		}),
+		...(event.endDate && {
+			endDate: event.endDate.toISOString(),
+		}),
 		inLanguage: lang,
 		organizer: org,
 		...(event.thumbnail && {

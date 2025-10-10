@@ -119,6 +119,7 @@ export async function loadAllBlogPosts(lang: Language): Promise<t.ExtendedBlogPo
 	);
 }
 
+// TODO: refactor to receive params via single object
 export async function loadBlogPosts(
 	lang: Language,
 	page: number,

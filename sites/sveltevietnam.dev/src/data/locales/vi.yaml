@@ -15,6 +15,8 @@ messages:
   minutes: phút
   time: Thời gian
   location: Địa điểm
+  from: từ
+  to: đến
   svelte_vietnam:
     name: Svelte Việt Nam
     discord: Svelte Việt Nam Discord
@@ -457,6 +459,8 @@ messages:
       heading: Sự kiện
       desc: Gặp gỡ cộng đồng tại Việt Nam — chia sẻ về Svelte và open source
       view_upcoming: Xem sự kiện sắp tới
+      ongoing:
+        heading: Đang diễn ra
       upcoming:
         heading: Sự kiện sắp tới
         tba:
@@ -768,8 +772,6 @@ messages:
       email:
         heading: Về email này
         subject: Tiêu đề
-        from: Từ
-        to: Đến
         sent: Gửi
       subscriber:
         heading: Người đăng ký

@@ -3,7 +3,11 @@
 	import fallback3x2 from '@sveltevietnam/kit/assets/images/fallbacks/3x2.jpg?enhanced&w=1200;700;400&imagetools';
 	import { CopyBtn } from '@sveltevietnam/kit/components';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
-	import { formatLongMonth, formatLongWeekDay } from '@sveltevietnam/kit/utilities/datetime';
+	import {
+		formatDateAndTime,
+		formatLongMonth,
+		formatLongWeekDay,
+	} from '@sveltevietnam/kit/utilities/datetime';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { Picture } from 'vite-imagetools';
 
@@ -16,19 +20,19 @@
 
 	export type EventListingItemProps = HTMLAttributes<HTMLElement> & {
 		event: {
-			slug: string;
+			href: string;
 			title: string;
 			description: string;
 			location?: {
-				address: string;
-				googleMapUrl: string;
+				name: string;
+				href?: string;
 			}[];
 			livestream?: {
 				name: string;
 				url: string;
 			}[];
-			startDate: Date;
-			endDate: Date;
+			startDate?: Date;
+			endDate?: Date;
 			thumbnail?: Picture | string;
 		};
 		origin: string;
@@ -42,7 +46,11 @@
 	const { routing } = Contexts.get();
 
 	const img = $derived(event.thumbnail ?? fallback3x2);
-	const path = $derived(p['/:lang/events/:slug']({ lang: routing.lang, slug: event.slug }));
+	const path = $derived(
+		event.href.startsWith('http')
+			? event.href
+			: p['/:lang/events/:slug']({ lang: routing.lang, slug: event.href }),
+	);
 </script>
 
 <div class="@container">
@@ -57,35 +65,41 @@
 				'@3xl:items-start @3xl:col-start-1',
 			]}
 		>
-			<div class={['grid-rows-auto-2 grid-cols-auto-2 @xl:gap-y-2 @xl:w-full grid w-fit gap-x-2']}>
-				<p
-					class={[
-						'@xl:row-span-1 row-span-2',
-						'text-5xl font-bold leading-none tracking-widest',
-						'@xl:text-[4rem]',
-					]}
+			{#if event.startDate}
+				<div
+					class={['grid-rows-auto-2 grid-cols-auto-2 @xl:gap-y-2 @xl:w-full grid w-fit gap-x-2']}
 				>
-					{event.startDate.getDate().toString().padStart(2, '0')}
-				</p>
-				<p
-					class={[
-						'@xl:col-start-2 @xl:row-span-2 col-start-2',
-						'text-xl leading-tight tracking-wide',
-						'@xl:text-2xl @xl:[writing-mode:vertical-rl] @xl:tracking-normal',
-					]}
-				>
-					{formatLongMonth(routing.lang, event.startDate)}
-				</p>
-				<p
-					class={[
-						'@xl:col-start-1 col-start-2',
-						'text-on-surface-subtle leading-tight tracking-wide',
-						'@xl:leading-normal @xl:text-lg',
-					]}
-				>
-					{formatLongWeekDay(routing.lang, event.startDate)}
-				</p>
-			</div>
+					<p
+						class={[
+							'@xl:row-span-1 row-span-2',
+							'text-5xl font-bold leading-none tracking-widest',
+							'@xl:text-[4rem]',
+						]}
+					>
+						{event.startDate.getDate().toString().padStart(2, '0')}
+					</p>
+					<p
+						class={[
+							'@xl:col-start-2 @xl:row-span-2 col-start-2',
+							'text-xl leading-tight tracking-wide',
+							'@xl:text-2xl @xl:[writing-mode:vertical-rl] @xl:tracking-normal',
+						]}
+					>
+						{formatLongMonth(routing.lang, event.startDate)}
+					</p>
+					<p
+						class={[
+							'@xl:col-start-1 col-start-2',
+							'text-on-surface-subtle leading-tight tracking-wide',
+							'@xl:leading-normal @xl:text-lg',
+						]}
+					>
+						{formatLongWeekDay(routing.lang, event.startDate)}
+					</p>
+				</div>
+			{:else}
+				<p class="text-5xl font-bold leading-none tracking-widest">TBA</p>
+			{/if}
 
 			<div class="@xl:block bg-outline mb-6 mt-4 hidden h-1 w-full"></div>
 
@@ -103,7 +117,13 @@
 
 		<!-- thumbnail -->
 		<div class="@xl:@max-3xl:col-start-1 @xl:@max-3xl:row-start-1">
-			<a class="c-link-image" href={path}>
+			<a
+				class="c-link-image"
+				href={path}
+				{...event.href.startsWith('http')
+					? { target: '_blank', rel: 'noreferrer noopner external' }
+					: {}}
+			>
 				<span class="sr-only"><T message={m.view_more} /></span>
 				<enhanced:img
 					class="aspect-3/2 @3xl:max-w-72 h-auto"
@@ -120,7 +140,13 @@
 		<!-- content -->
 		<div class="@xl:col-span-2 @3xl:col-span-1 space-y-4">
 			<p class={['font-lora text-xl font-bold leading-normal', '@xl:text-2xl']}>
-				<a class="c-link-preserved relative" href={path}>
+				<a
+					class="c-link-preserved relative"
+					href={path}
+					{...event.href.startsWith('http')
+						? { target: '_blank', rel: 'noreferrer noopner external' }
+						: {}}
+				>
 					{event.title}
 					<i class="not-can-hover:hidden i i-[ph--cursor-click] text-[0.75em]"></i>
 				</a>
@@ -136,7 +162,11 @@
 						<dd>
 							<ListMessage items={event.location}>
 								{#snippet item(l)}
-									<a class="c-link-preserved" href={l.googleMapUrl}>{l.address}</a>
+									{#if l.href}
+										<a class="c-link-preserved" href={l.href}>{l.name}</a>
+									{:else}
+										<span>{l.name}</span>
+									{/if}
 								{/snippet}
 							</ListMessage>
 						</dd>
@@ -169,11 +199,21 @@
 						<span class="sr-only"><T message={m['time']} /></span>
 					</dt>
 					<dd>
-						<DateTimeRangeText
-							startDate={event.startDate}
-							endDate={event.endDate}
-							order="time-first"
-						/>
+						{#if event.startDate && event.endDate}
+							<DateTimeRangeText
+								startDate={event.startDate}
+								endDate={event.endDate}
+								order="time-first"
+							/>
+						{:else if event.startDate}
+							<span class="capitalize"><T message={m['from']} /></span>
+							{formatDateAndTime(event.startDate)}
+						{:else if event.endDate}
+							<span class="capitalize"><T message={m['to']} /></span>
+							{formatDateAndTime(event.endDate)}
+						{:else}
+							TBA
+						{/if}
 					</dd>
 				</div>
 			</dl>

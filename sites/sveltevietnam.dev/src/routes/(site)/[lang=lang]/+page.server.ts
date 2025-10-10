@@ -1,4 +1,5 @@
-import { loadBlogPost, ids } from '$data/blog/posts';
+import { loadBlogPosts } from '$data/blog/posts';
+import { loadEvents } from '$data/events';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
@@ -8,6 +9,11 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params }) => {
 	const { lang } = params;
+
+	const [{ events }, { posts }] = await Promise.all([
+		loadEvents({ lang, pagination: { per: 3, page: 1 }, where: { status: 'ongoing' } }),
+		loadBlogPosts(lang, 1, 3),
+	]);
 	return {
 		routing: {
 			breadcrumbs: b['/:lang']({ lang }),
@@ -16,7 +22,8 @@ export const load: PageServerLoad = async ({ params }) => {
 				en: p['/:lang']({ lang: 'en' }),
 			},
 		},
-		posts: (await Promise.all(ids.slice(0, 3).map((id) => loadBlogPost(id, lang)))).filter(Boolean),
+		events,
+		posts,
 		meta: {
 			structured: buildStructuredOrganization(lang, VITE_PUBLIC_ORIGIN),
 		},

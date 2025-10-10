@@ -13,7 +13,7 @@ type RssItem = {
 	description: string;
 	link: string;
 	guid: string;
-	pubDate: string;
+	pubDate?: string;
 	creators?: string;
 	categories?: {
 		domain: string;
@@ -31,7 +31,13 @@ export const GET: RequestHandler = async ({ params, url }) => {
 	const origin = url.origin;
 
 	const [{ events }, { posts }] = await Promise.all([
-		loadEvents(lang, 1, 100),
+		loadEvents({
+			lang,
+			pagination: {
+				per: 10,
+				page: 1,
+			},
+		}),
 		loadBlogPosts(lang, 1, 100),
 	]);
 
@@ -39,9 +45,13 @@ export const GET: RequestHandler = async ({ params, url }) => {
 		...events.map((event) => ({
 			title: event.title,
 			description: event.description,
-			link: origin + p['/:lang/events/:slug']({ lang, slug: event.slug }),
-			guid: `tag:sveltevietnam.dev,${event.startDate.getFullYear()}:event.${event.slug}`,
-			pubDate: new Date(event.startDate).toUTCString(),
+			link: event.href.startsWith('http')
+				? event.href
+				: origin + p['/:lang/events/:slug']({ lang, slug: event.href }),
+			guid: `tag:sveltevietnam.dev:event.${event.href}`,
+			...(event.startDate && {
+				pubDate: new Date(event.startDate).toUTCString(),
+			}),
 			...(event.thumbnail && {
 				image: {
 					url: origin + event.thumbnail.img.src,

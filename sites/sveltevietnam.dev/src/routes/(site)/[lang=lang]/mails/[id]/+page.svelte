@@ -53,7 +53,7 @@
 				</div>
 				<div class="border-b-onehalf col-span-2 grid grid-cols-subgrid border-dashed py-4">
 					<dt class="font-semibold">
-						<T message={m['pages.mail.email.from']} />:
+						<T message={m['from']} />:
 					</dt>
 					<dd>
 						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
@@ -63,7 +63,7 @@
 				</div>
 				<div class="border-b-onehalf col-span-2 grid grid-cols-subgrid border-dashed py-4">
 					<dt class="font-semibold">
-						<T message={m['pages.mail.email.to']} />:
+						<T message={m['to']} />:
 					</dt>
 					<dd>
 						<!-- eslint-disable-next-line svelte/no-at-html-tags -->

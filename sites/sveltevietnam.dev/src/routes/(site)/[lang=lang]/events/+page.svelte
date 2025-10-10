@@ -156,21 +156,32 @@
 		<IntroSeparator />
 	</section>
 
-	<!-- TODO: ongoing events -->
+	{#if data.events.ongoing.length}
+		<section class="max-w-pad space-y-section py-section" data-pagefind-ignore>
+			<h2 class="c-text-heading-lg border-b" id="ongoing">
+				<T message={m['pages.events.ongoing.heading']} />
+			</h2>
+			<EventListing events={data.events.ongoing} origin={page.url.origin} />
+		</section>
+	{/if}
 
 	<!-- upcoming -->
 	<section class="max-w-pad space-y-section py-section" data-pagefind-ignore>
 		<h2 class="c-text-heading-lg border-b" id="upcoming">
 			<T message={m['pages.events.upcoming.heading']} />
 		</h2>
-		<TBA class="mx-auto w-fit">
-			<p class="c-text-title-sm"><T message={m['pages.events.upcoming.tba.desc']} /></p>
-			<p>
-				<a class="c-link" href="#participate">
-					<T message={m['pages.events.upcoming.tba.subscribe']} />
-				</a>
-			</p>
-		</TBA>
+		{#if data.events.upcoming.length}
+			<EventListing events={data.events.upcoming} origin={page.url.origin} />
+		{:else}
+			<TBA class="mx-auto w-fit">
+				<p class="c-text-title-sm"><T message={m['pages.events.upcoming.tba.desc']} /></p>
+				<p>
+					<a class="c-link" href="#participate">
+						<T message={m['pages.events.upcoming.tba.subscribe']} />
+					</a>
+				</p>
+			</TBA>
+		{/if}
 	</section>
 
 	<!-- actions -->
@@ -288,7 +299,7 @@
 		<h2 class="c-text-heading-lg border-b" id="past">
 			<T message={m['pages.events.past.heading']} />
 		</h2>
-		<EventListing events={data.events} origin={page.url.origin} />
+		<EventListing events={data.events.past} origin={page.url.origin} />
 	</section>
 </main>
 

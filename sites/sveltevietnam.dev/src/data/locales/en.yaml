@@ -15,6 +15,8 @@ messages:
   minutes: minutes
   time: Time
   location: Location
+  from: From
+  to: To
   svelte_vietnam:
     name: Svelte Vietnam
     discord: Svelte Vietnam Discord
@@ -456,6 +458,8 @@ messages:
       heading: Events
       desc: Meet the community in Vietnam — discuss about the Svelte and open source ecosystem
       view_upcoming: View upcoming events
+      ongoing:
+        heading: Ongoing events
       upcoming:
         heading: Upcoming events
         tba:
@@ -765,8 +769,6 @@ messages:
       email:
         heading: About this email
         subject: Subject
-        from: From
-        to: To
         sent: Sent
       subscriber:
         heading: Subscriber Information

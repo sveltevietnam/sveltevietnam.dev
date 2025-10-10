@@ -3,7 +3,7 @@ import { defineEventAdditionalStructuredData, defineEventMetadata } from '..';
 import * as m from './locales/generated/messages';
 
 export default defineEventMetadata((lang) => ({
-	slug: m.slug(lang).toString(),
+	href: m.slug(lang).toString(),
 	title: m.title(lang).toString(),
 	description: m.desc(lang).toString(),
 	keywords: m.keywords(lang).toString(),
@@ -11,8 +11,8 @@ export default defineEventMetadata((lang) => ({
 	endDate: new Date('2024-04-20T04:00:00.000Z'),
 	location: [
 		{
-			googleMapUrl: 'https://maps.app.goo.gl/ymGh3Djmwjnb7ohu5',
-			address: m.address(lang).toString(),
+			href: 'https://maps.app.goo.gl/ymGh3Djmwjnb7ohu5',
+			name: m.address(lang).toString(),
 		},
 	],
 	people: ['trongnguyen24', 'vnphanquang'],

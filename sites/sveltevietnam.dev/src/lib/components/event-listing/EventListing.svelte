@@ -15,7 +15,7 @@
 </script>
 
 <ul class={['tablet:space-y-10 divide-outline space-y-6 divide-y divide-dashed', cls]} {...rest}>
-	{#each events as event (event.slug)}
+	{#each events as event (event.href)}
 		<li class="tablet:pb-10 pb-6">
 			<EventListingItem {event} {origin} />
 		</li>

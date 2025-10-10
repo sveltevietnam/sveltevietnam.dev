@@ -20,7 +20,7 @@
 <main class="pt-header" {...pagefind.page()}>
 	<SectionIntro />
 	<SectionResources />
-	<SectionEvents />
+	<SectionEvents events={data.events} />
 	<SectionBlog posts={data.posts} />
 	<SectionSponsor />
 </main>
