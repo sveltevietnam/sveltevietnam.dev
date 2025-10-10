@@ -14,6 +14,18 @@ export const JobPostingSelectSchema = v.object({
 });
 export type JobPostingSelectResult = v.InferOutput<typeof JobPostingSelectSchema>;
 
+export const JobPostingSelectAllActiveSchema = v.object({
+	...createSelectSchema(jobPostings, {
+		id: v.pipe(v.string(), v.startsWith('job_')),
+	}).entries,
+	employer: v.object({
+		name: EmployerSelectSchema.entries.name,
+		image: EmployerSelectSchema.entries.image,
+		website: EmployerSelectSchema.entries.website,
+	}),
+});
+export type JobPostingSelectAllActiveResult = v.InferOutput<typeof JobPostingSelectAllActiveSchema>;
+
 export const JobPostingSelectWithEmployerSchema = v.object({
 	...JobPostingSelectSchema.entries,
 	employer: v.object({
