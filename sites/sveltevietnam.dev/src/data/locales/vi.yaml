@@ -4,6 +4,7 @@ messages:
   version: Phiên bản
   latest: Mới nhất
   current: Hiện tại
+  at: tại
   open: Mở
   close: Đóng
   download: Tải về
@@ -842,6 +843,9 @@ messages:
       pause: Dừng
       short: Ngắn
       long: Dài
+    job_posting_list:
+      posted_at: Đăng ngày
+      expired_at: Hết hạn ngày
   notifications:
     sample:
       title: Thông báo mẫu
