@@ -65,14 +65,6 @@ export function createJobPostingUpsertSchema(lang: Language) {
 
 export type JobPostingUpsertInput = v.InferInput<ReturnType<typeof createJobPostingUpsertSchema>>;
 
-export const JOB_POSTING_TYPE_LABEL: Record<JobPostingType, Message<'string', never>> = {
-	'full-time': m['inputs.job_posting.type.options.full_time'],
-	'part-time': m['inputs.job_posting.type.options.part_time'],
-	internship: m['inputs.job_posting.type.options.internship'],
-	contract: m['inputs.job_posting.type.options.contract'],
-	volunteer: m['inputs.job_posting.type.options.volunteer'],
-};
-
 export const JOB_POSTING_APPLICATION_METHOD_MESSAGES: Record<
 	JobPostingApplicationMethod,
 	{
