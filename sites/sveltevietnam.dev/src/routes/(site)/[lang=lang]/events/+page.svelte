@@ -100,6 +100,11 @@
 			sponsor.revert();
 		};
 	});
+
+	const googleFormLinks = {
+		en: 'https://forms.gle/2DdoAXh1RuiiGoBJ6',
+		vi: 'https://forms.gle/BNV1Ve4WoqY9myoi7',
+	};
 </script>
 
 {#snippet actionHeading(num: number, id: string, message: Message<'string', never>)}
@@ -208,8 +213,18 @@
 				{@render actionHeading(2, 'share', m['pages.events.share.heading'])}
 				<p class="leading-relaxed">
 					<T message={m['pages.events.share.desc']} />
-					<br /><br />
-					Email
+				</p>
+				<a
+					class="c-btn c-btn--pop block w-fit"
+					href={googleFormLinks[routing.lang]}
+					data-external
+					data-umami-event="click-event-form"
+				>
+					<T message={m['pages.events.share.cta']} />
+				</a>
+				<p>
+					<T message={m['or']} />
+					email
 					<a class="c-link" href="mailto:{EMAILS.EVENTS}" data-external>
 						{EMAILS.EVENTS}
 					</a>

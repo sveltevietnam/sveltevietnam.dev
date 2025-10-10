@@ -104,7 +104,7 @@
 			</ul>
 		</section>
 
-		<section class="_socials self-end justify-self-start @container w-full">
+		<section class="_socials @container w-full self-end justify-self-start">
 			<SocialLinks position="footer" />
 		</section>
 

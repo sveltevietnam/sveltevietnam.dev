@@ -471,10 +471,10 @@ messages:
       share:
         heading: Chia sẻ
         desc:
-          Quảng bá sản phẩm, lan tỏa ý tưởng, chia sẻ dự án và kinh nghiệm của bạn trong các sự kiện
-          sắp đến.<br /></br />Liên hệ với ban quản trị thông qua email bên dưới để đăng ký trở
-          thành diễn giả hoặc đóng góp ý tưởng cho các hoạt động, buổi gặp mặt, đàm thoại tại sự
-          kiện.
+          'Quảng bá sản phẩm, lan tỏa ý tưởng, chia sẻ dự án và kinh nghiệm của bạn trong các sự
+          kiện sắp đến. Đăng ký trở thành diễn giả hoặc đóng góp ý tưởng cho các hoạt động tại sự
+          kiện sắp đến:'
+        cta: Gởi ý tưởng hoặc phản hồi
       sponsor:
         heading: Tài trợ
         desc:

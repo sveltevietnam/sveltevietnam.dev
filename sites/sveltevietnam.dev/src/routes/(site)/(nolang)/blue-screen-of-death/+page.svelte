@@ -17,7 +17,8 @@
 	<div class="flex items-center gap-6">
 		<a
 			class="contents"
-			href={SOCIAL_LINKS.DISCORD} data-external
+			href={SOCIAL_LINKS.DISCORD}
+			data-external
 			data-umami-event="click-social-link"
 			data-umami-event-source="discord"
 			data-umami-event-position="pages.bsod"

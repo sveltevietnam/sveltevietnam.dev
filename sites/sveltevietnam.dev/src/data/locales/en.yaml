@@ -470,9 +470,9 @@ messages:
       share:
         heading: Share
         desc:
-          Promote your products, spread ideas, share projects and experiences in upcoming events.<br
-          /><br />Contact the administrators via the email below to register as a speaker or
-          contribute ideas for activities, meetings, and discussions at the event.
+          'Promote your products, spread ideas, share projects and experiences in upcoming events.
+          Register as a speaker or contribute ideas for activities in upcoming events:'
+        cta: Propose to speak / Send feedback
       sponsor:
         heading: Sponsor
         desc:
