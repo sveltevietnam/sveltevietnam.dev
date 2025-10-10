@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n/runtime';
-	import { TBA, Breadcrumbs } from '@sveltevietnam/kit/components';
+	import { JobPostingList, TBA, Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { EMAILS } from '@sveltevietnam/kit/constants';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 
 	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
+	import { VITE_PUBLIC_RECRUIT_ORIGIN } from '$env/static/public';
 	import { GradientBackground } from '$lib/components/gradient-background';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { SubscriberUpsertForm } from '$lib/forms/subscriber';
@@ -60,14 +61,25 @@
 		<h2 class="c-text-heading-lg border-b" id="posting">
 			<T message={m['pages.jobs.posting.heading']} />
 		</h2>
-		<TBA class="mx-auto w-fit">
-			<p class="c-text-title-sm"><T message={m['pages.jobs.posting.tba.desc']} /></p>
-			<p>
-				<a class="c-link" href="#recruiters">
-					<T message={m['pages.jobs.posting.tba.create']} />
-				</a>
-			</p>
-		</TBA>
+		{#if data.postings.length}
+			<JobPostingList
+				postings={data.postings}
+				i18n={{
+					at: m['at'],
+					postedAt: m['components.job_posting_list.posted_at'],
+					expiredAt: m['components.job_posting_list.expired_at'],
+				}}
+			/>
+		{:else}
+			<TBA class="mx-auto w-fit">
+				<p class="c-text-title-sm"><T message={m['pages.jobs.posting.tba.desc']} /></p>
+				<p>
+					<a class="c-link" href="#recruiters">
+						<T message={m['pages.jobs.posting.tba.create']} />
+					</a>
+				</p>
+			</TBA>
+		{/if}
 	</section>
 
 	<!-- actions -->
@@ -91,11 +103,11 @@
 					<p class="leading-relaxed">
 						<T message={m['pages.jobs.recruiter.desc']} />
 					</p>
-					<!-- <a class="c-btn c-btn--pop block w-fit" href="TODO"> -->
-					<!-- 	<span> -->
-					<!-- 		<T message={m['pages.jobs.recruiter.create']} /> -->
-					<!-- 	</span> -->
-					<!-- </a> -->
+					<a class="c-btn c-btn--pop block w-fit" href="{VITE_PUBLIC_RECRUIT_ORIGIN}/{routing.lang}" target="_blank">
+						<span>
+							<T message={m['pages.jobs.recruiter.create']} />
+						</span>
+					</a>
 					<p>
 						<T message={m['pages.jobs.recruiter.email']} />
 						<a class="c-link" href="mailto:{EMAILS.JOBS}" data-external>

@@ -1,10 +1,10 @@
 import { expect, type Locator } from '@playwright/test';
+import { JOB_POSTING_TYPE_I18N } from '@sveltevietnam/backend/data/job-postings/enums';
 import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
 
 import * as m from '../../src/data/locales/generated/messages';
 import * as p from '../../src/data/routes/generated';
 import * as b from '../../src/data/routes/generated/breadcrumbs';
-import { JOB_POSTING_TYPE_LABEL } from '../../src/lib/forms/job-posting-upsert/schema';
 import { type schema } from '../fixtures/with-backend';
 
 import { CommonPageObjectModel, type CommonPageObjectModelInit } from './common';
@@ -104,9 +104,7 @@ export class PagePostingDetails extends CommonPageObjectModel {
 
 			// posting
 			expect(this.posting.title).toHaveText(posting.title),
-			expect(this.posting.type).toHaveText(
-				JOB_POSTING_TYPE_LABEL[posting.type](this.lang).toString(),
-			),
+			expect(this.posting.type).toHaveText(JOB_POSTING_TYPE_I18N[posting.type][this.lang]),
 			expect(this.posting.location).toHaveText(posting.location),
 			expect(this.posting.salary).toHaveText(posting.salary),
 			posting.approvedAt

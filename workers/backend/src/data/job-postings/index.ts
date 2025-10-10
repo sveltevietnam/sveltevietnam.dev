@@ -1,5 +1,5 @@
 import { RpcTarget } from 'cloudflare:workers';
-import { eq } from 'drizzle-orm';
+import { eq, sql } from 'drizzle-orm';
 import * as v from 'valibot';
 
 import { ORM } from '../../database/orm';
@@ -15,6 +15,8 @@ import {
 	JobPostingSelectSchema,
 	type JobPostingSelectWithEmployerResult,
 	JobPostingSelectWithEmployerSchema,
+	JobPostingSelectAllActiveResult,
+	JobPostingSelectAllActiveSchema,
 } from './schema';
 import { jobPostings, STATUS_SQL } from './tables';
 
@@ -26,6 +28,28 @@ export class JobPostingService extends RpcTarget {
 	constructor(orm: ORM) {
 		super();
 		this.#orm = orm;
+	}
+
+	async getAllActive(): Promise<JobPostingSelectAllActiveResult[]> {
+		const jobPostingsList = await this.#orm.query.jobPostings.findMany({
+			where: (table, { isNull, isNotNull, and, gt }) =>
+				and(
+					gt(table.expiredAt, sql`(unixepoch() * 1000)`),
+					isNotNull(table.approvedAt),
+					isNull(table.deletedAt),
+				),
+			with: {
+				employer: {
+					columns: {
+						image: true,
+						name: true,
+						website: true,
+					},
+				},
+			},
+			orderBy: (table, { desc }) => [desc(table.createdAt)],
+		});
+		return jobPostingsList.map((jp) => v.parse(JobPostingSelectAllActiveSchema, jp));
 	}
 
 	async getAllByEmployerId(employerId: string): Promise<JobPostingSelectResult[]> {
