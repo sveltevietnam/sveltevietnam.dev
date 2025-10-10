@@ -34,6 +34,9 @@ export default defineConfig<AllRoutePath, Language>({
 			'/:lang/jobs': {
 				vi: '/:lang/viec-lam',
 			},
+			'/:lang/jobs/:id': {
+				vi: '/:lang/viec-lam/:id',
+			},
 			'/:lang/people': {
 				vi: '/:lang/con-nguoi',
 			},
