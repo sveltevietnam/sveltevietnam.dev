@@ -1,4 +1,5 @@
 import { JOB_POSTING_TYPE_I18N } from '@sveltevietnam/backend/data/job-postings/enums';
+import type { JobPostingProps } from '@sveltevietnam/kit/components';
 
 import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
@@ -19,18 +20,23 @@ const ogImage = {
 export const load: PageServerLoad = async (event) => {
 	const { lang } = event.params;
 
-	const postings = (await getBackend(event).jobPostings().getAllActive()).map((posting) => ({
-		...posting,
-		href: p['/:lang/jobs/:id']({ lang, id: posting.id }),
-		postedAt: posting.approvedAt,
-		type: JOB_POSTING_TYPE_I18N[posting.type][lang],
-		employer: {
-			...posting.employer,
-			...(posting.employer.image && {
-				image: VITE_PUBLIC_RECRUIT_ORIGIN + posting.employer.image,
-			}),
-		},
-	}));
+	let postings: JobPostingProps['posting'][] = [];
+	const backend = getBackend(event, false);
+	if (backend) {
+		postings = (await getBackend(event).jobPostings().getAllActive()).map((posting) => ({
+			...posting,
+			href: p['/:lang/jobs/:id']({ lang, id: posting.id }),
+			postedAt: posting.approvedAt,
+			type: JOB_POSTING_TYPE_I18N[posting.type][lang],
+			employer: {
+				...posting.employer,
+				...(posting.employer.image && {
+					image: VITE_PUBLIC_RECRUIT_ORIGIN + posting.employer.image,
+				}),
+			},
+		}));
+	}
+
 	return {
 		postings,
 		subscribeFormData: await upsert.load(lang, 'job'),
