@@ -7,6 +7,7 @@
 	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
+	import { VITE_PUBLIC_RECRUIT_ORIGIN } from '$env/static/public';
 	import { GradientBackground } from '$lib/components/gradient-background';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { SubscriberUpsertForm } from '$lib/forms/subscriber';
@@ -102,11 +103,11 @@
 					<p class="leading-relaxed">
 						<T message={m['pages.jobs.recruiter.desc']} />
 					</p>
-					<!-- <a class="c-btn c-btn--pop block w-fit" href="TODO"> -->
-					<!-- 	<span> -->
-					<!-- 		<T message={m['pages.jobs.recruiter.create']} /> -->
-					<!-- 	</span> -->
-					<!-- </a> -->
+					<a class="c-btn c-btn--pop block w-fit" href={VITE_PUBLIC_RECRUIT_ORIGIN} target="_blank">
+						<span>
+							<T message={m['pages.jobs.recruiter.create']} />
+						</span>
+					</a>
 					<p>
 						<T message={m['pages.jobs.recruiter.email']} />
 						<a class="c-link" href="mailto:{EMAILS.JOBS}" data-external>
