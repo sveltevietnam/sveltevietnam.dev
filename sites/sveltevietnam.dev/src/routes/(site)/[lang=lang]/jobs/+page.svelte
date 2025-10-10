@@ -103,7 +103,7 @@
 					<p class="leading-relaxed">
 						<T message={m['pages.jobs.recruiter.desc']} />
 					</p>
-					<a class="c-btn c-btn--pop block w-fit" href={VITE_PUBLIC_RECRUIT_ORIGIN} target="_blank">
+					<a class="c-btn c-btn--pop block w-fit" href="{VITE_PUBLIC_RECRUIT_ORIGIN}/{routing.lang}" target="_blank">
 						<span>
 							<T message={m['pages.jobs.recruiter.create']} />
 						</span>
