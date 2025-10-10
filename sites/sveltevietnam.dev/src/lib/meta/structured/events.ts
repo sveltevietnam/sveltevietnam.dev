@@ -26,10 +26,10 @@ export function buildStructuredEvent(
 		name: buildStructuredTextWithLang({ lang, value: event.title }),
 		description: buildStructuredTextWithLang({ lang, value: event.description }),
 		keywords: buildStructuredTextWithLang({ lang, value: event.keywords }),
-		...(event.startDate && {
+		...(event.startDate instanceof Date && {
 			startDate: event.startDate.toISOString(),
 		}),
-		...(event.endDate && {
+		...(event.endDate instanceof Date && {
 			endDate: event.endDate.toISOString(),
 		}),
 		inLanguage: lang,

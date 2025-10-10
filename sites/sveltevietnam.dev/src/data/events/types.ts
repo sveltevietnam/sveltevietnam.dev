@@ -8,8 +8,8 @@ export type EventMetadata = {
 	title: string;
 	description: string;
 	keywords: string;
-	startDate?: Date;
-	endDate?: Date;
+	startDate?: Date | string;
+	endDate?: Date | string;
 	location?: {
 		name: string;
 		href?: string;

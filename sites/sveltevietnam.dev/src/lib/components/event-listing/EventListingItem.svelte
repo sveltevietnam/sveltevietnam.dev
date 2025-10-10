@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T, type Message } from '@sveltevietnam/i18n/runtime';
 	import fallback3x2 from '@sveltevietnam/kit/assets/images/fallbacks/3x2.jpg?enhanced&w=1200;700;400&imagetools';
 	import { CopyBtn } from '@sveltevietnam/kit/components';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
@@ -31,8 +31,8 @@
 				name: string;
 				url: string;
 			}[];
-			startDate?: Date;
-			endDate?: Date;
+			startDate?: Date | string;
+			endDate?: Date | string;
 			thumbnail?: Picture | string;
 		};
 		origin: string;
@@ -46,10 +46,9 @@
 	const { routing } = Contexts.get();
 
 	const img = $derived(event.thumbnail ?? fallback3x2);
+	const external = $derived(event.href.startsWith('http'));
 	const path = $derived(
-		event.href.startsWith('http')
-			? event.href
-			: p['/:lang/events/:slug']({ lang: routing.lang, slug: event.href }),
+		external ? event.href : p['/:lang/events/:slug']({ lang: routing.lang, slug: event.href }),
 	);
 </script>
 
@@ -65,7 +64,7 @@
 				'@3xl:items-start @3xl:col-start-1',
 			]}
 		>
-			{#if event.startDate}
+			{#if event.startDate instanceof Date}
 				<div
 					class={['grid-rows-auto-2 grid-cols-auto-2 @xl:gap-y-2 @xl:w-full grid w-fit gap-x-2']}
 				>
@@ -108,7 +107,7 @@
 				{#if settings.hydrated}
 					<CopyBtn
 						class="c-link-icon border-onehalf flex rounded-full border-current p-2"
-						textToCopy={origin + path}
+						textToCopy={event.href.startsWith('http') ? event.href : origin + path}
 						aria={m['components.event_listing_item.copy']}
 					/>
 				{/if}
@@ -120,9 +119,7 @@
 			<a
 				class="c-link-image"
 				href={path}
-				{...event.href.startsWith('http')
-					? { target: '_blank', rel: 'noreferrer noopner external' }
-					: {}}
+				{...external ? { target: '_blank', rel: 'noreferrer noopner external' } : {}}
 			>
 				<span class="sr-only"><T message={m.view_more} /></span>
 				<enhanced:img
@@ -143,9 +140,7 @@
 				<a
 					class="c-link-preserved relative"
 					href={path}
-					{...event.href.startsWith('http')
-						? { target: '_blank', rel: 'noreferrer noopner external' }
-						: {}}
+					{...external ? { target: '_blank', rel: 'noreferrer noopner external' } : {}}
 				>
 					{event.title}
 					<i class="not-can-hover:hidden i i-[ph--cursor-click] text-[0.75em]"></i>
@@ -163,7 +158,15 @@
 							<ListMessage items={event.location}>
 								{#snippet item(l)}
 									{#if l.href}
-										<a class="c-link-preserved" href={l.href}>{l.name}</a>
+										<a
+											class="c-link-preserved"
+											href={l.href}
+											{...l.href.startsWith('http')
+												? { target: '_blank', rel: 'noreferrer noopner external' }
+												: {}}
+										>
+											{l.name}
+										</a>
 									{:else}
 										<span>{l.name}</span>
 									{/if}
@@ -193,6 +196,16 @@
 				{/if}
 
 				<!-- time -->
+				{#snippet datetime(date: string | Date, prefix?: Message<'string', never>)}
+					{#if date instanceof Date}
+						{#if prefix}
+							<span class="capitalize"><T message={m['from']} /></span>
+						{/if}
+						{formatDateAndTime(date)}
+					{:else}
+						{date}
+					{/if}
+				{/snippet}
 				<div class="flex items-start gap-2">
 					<dt>
 						<i class="i i-[ph--clock] h-5 w-5"></i>
@@ -200,17 +213,21 @@
 					</dt>
 					<dd>
 						{#if event.startDate && event.endDate}
-							<DateTimeRangeText
-								startDate={event.startDate}
-								endDate={event.endDate}
-								order="time-first"
-							/>
+							{#if event.startDate instanceof Date && event.endDate instanceof Date}
+								<DateTimeRangeText
+									startDate={event.startDate}
+									endDate={event.endDate}
+									order="time-first"
+								/>
+							{:else}
+								{@render datetime(event.startDate)}
+								<span class="mx-1">—</span>
+								{@render datetime(event.endDate)}
+							{/if}
 						{:else if event.startDate}
-							<span class="capitalize"><T message={m['from']} /></span>
-							{formatDateAndTime(event.startDate)}
+							{@render datetime(event.startDate, m['from'])}
 						{:else if event.endDate}
-							<span class="capitalize"><T message={m['to']} /></span>
-							{formatDateAndTime(event.endDate)}
+							{@render datetime(event.endDate, m['to'])}
 						{:else}
 							TBA
 						{/if}

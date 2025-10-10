@@ -62,14 +62,14 @@ export async function generateKitEntries(): Promise<{ lang: Language; slug: stri
 
 export function getEventStatus(event: t.MinimalEventMetadata): t.EventStatus {
 	const now = new Date();
-	if (event.startDate && event.endDate) {
+	if (event.startDate instanceof Date && event.endDate instanceof Date) {
 		if (now < event.startDate) return 'upcoming';
 		if (now > event.endDate) return 'past';
 		return 'ongoing';
-	} else if (event.startDate) {
+	} else if (event.startDate instanceof Date) {
 		if (now < event.startDate) return 'upcoming';
 		return 'ongoing';
-	} else if (event.endDate) {
+	} else if (event.endDate instanceof Date) {
 		if (now > event.endDate) return 'past';
 		return 'ongoing';
 	} else {
@@ -79,6 +79,9 @@ export function getEventStatus(event: t.MinimalEventMetadata): t.EventStatus {
 
 function compareEventsByStartDate(a: t.MinimalEventMetadata, b: t.MinimalEventMetadata): number {
 	if (a.startDate === b.startDate) return 0;
+	if (!(a.startDate instanceof Date) && !(b.startDate instanceof Date)) return 0;
+	if (!(a.startDate instanceof Date)) return -1;
+	if (!(b.startDate instanceof Date)) return 1;
 	return (b.startDate?.getTime() ?? Infinity) - (a.startDate?.getTime() ?? Infinity);
 }
 
@@ -144,7 +147,7 @@ export async function loadEventContent(id: string): Promise<Component | null> {
 type EventLoadOptions = {
 	lang: Language;
 	where?: {
-		status?: t.EventStatus;
+		status?: t.EventStatus | t.EventStatus[];
 	};
 	pagination?: { per: number; page: number };
 };
@@ -158,7 +161,14 @@ export async function loadEvents(options: EventLoadOptions): Promise<{
 		Boolean,
 	);
 	const matched = metadatas.filter((metadata) => {
-		if (where?.status && getEventStatus(metadata) !== where.status) return false;
+		if (where?.status) {
+			const status = getEventStatus(metadata);
+			if (Array.isArray(where.status)) {
+				if (!where.status.includes(status)) return false;
+			} else {
+				if (status !== where.status) return false;
+			}
+		}
 		return true;
 	});
 	let paginated = matched.sort(compareEventsByStartDate);
