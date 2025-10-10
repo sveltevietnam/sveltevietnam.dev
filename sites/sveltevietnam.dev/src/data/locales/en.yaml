@@ -188,7 +188,7 @@ messages:
         heading: Events
         desc:
           Meet the Svelte Vietnam community. Share your ideas, products, and all thing Svelte and
-          open source
+          open source. See more at the <a class="c-link" href="/en/events">Events page</a>.
         tba:
           desc: No event is planned yet
           subscribe: Notify me about the next event!
