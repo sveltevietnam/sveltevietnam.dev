@@ -9,7 +9,6 @@
 	import { superForm } from 'sveltekit-superforms';
 
 	import { invalidate } from '$app/navigation';
-	import { page } from '$app/state';
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import { VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN } from '$env/static/public';
@@ -28,7 +27,7 @@
 		notifications: { toaster },
 	} = Contexts.get();
 
-	let url = $derived(page.url.origin + routing.paths[routing.lang]);
+	let url = $derived(VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN + routing.paths[routing.lang]);
 	const typeLabelMessage = $derived(JOB_POSTING_TYPE_LABEL[data.posting.type]);
 	const applicationLink = $derived(
 		data.posting.applicationMethod === 'email'
@@ -276,26 +275,28 @@
 						<T message={m['pages.postings_id.actions.apply']} />
 					</a>
 
-					<!-- copy link -->
-					<CopyBtn
-						class="c-btn c-btn--outlined shrink-0 grid-cols-1 p-2"
-						aria={m['pages.postings_id.actions.share.link']}
-						textToCopy={url}
-						data-umami-event="copy-link"
-						data-umami-event-resource="job-posting"
-					/>
+					{#if data.posting.status === 'active' || data.posting.status === 'expired'}
+						<!-- copy link -->
+						<CopyBtn
+							class="c-btn c-btn--outlined shrink-0 grid-cols-1 p-2"
+							aria={m['pages.postings_id.actions.share.link']}
+							textToCopy={url}
+							data-umami-event="copy-link"
+							data-umami-event-resource="job-posting"
+						/>
 
-					<!-- generate QR -->
-					<button
-						class="c-btn c-btn--outlined shrink-0 grid-cols-1 p-2"
-						type="button"
-						onclick={openQrDialog}
-						data-umami-event="generate-qr"
-						data-umami-event-resource="job-posting"
-					>
-						<span class="sr-only"><T message={m['pages.postings_id.actions.share.qr']} /></span>
-						<i class="i i-[ph--qr-code] h-6 w-6"></i>
-					</button>
+						<!-- generate QR -->
+						<button
+							class="c-btn c-btn--outlined shrink-0 grid-cols-1 p-2"
+							type="button"
+							onclick={openQrDialog}
+							data-umami-event="generate-qr"
+							data-umami-event-resource="job-posting"
+						>
+							<span class="sr-only"><T message={m['pages.postings_id.actions.share.qr']} /></span>
+							<i class="i i-[ph--qr-code] h-6 w-6"></i>
+						</button>
+					{/if}
 				</section>
 			</div>
 

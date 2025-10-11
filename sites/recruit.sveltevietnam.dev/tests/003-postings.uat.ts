@@ -155,11 +155,15 @@ testWithAuthenticatedEmployer(
 		await expect(pomPostingDetails.actions.delete).toBeVisible();
 		await expect(pomPostingDetails.actions.delete).not.toBeDisabled();
 
+		// TODO: verify share actions are hidden
+
 		// User gets back to listing page and sees the new posting in "Pending" section
 		pomPostingList = await pomPostingDetails.backToListing();
 		await pomPostingList.match({
 			pending: `${lang}-listing.yaml`,
 		});
+
+		// TODO: mock approve and check share actions are now visible
 
 		// Cleanup
 		await d1.transaction(
@@ -319,6 +323,8 @@ testWithAuthenticatedEmployer.describe(() => {
 			// User clicks "Delete", confirms in dialog, and sees success alert
 			const pomPostingDetails = new PagePostingDetails({ page, lang, id: posting.id });
 			await pomPostingDetails.delete();
+
+			// TODO: verify callout is displayed correctly
 
 			// User gets back to listing page and no longer sees the deleted posting
 			const pomPostingList = await pomPostingDetails.backToListing();
