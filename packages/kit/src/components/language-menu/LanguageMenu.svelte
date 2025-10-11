@@ -51,6 +51,9 @@
 						px-4 py-2"
 					href={routing.vi}
 					data-current={lang === 'vi'}
+					data-sveltekit-replacestate
+					data-sveltekit-keepfocus
+					data-sveltekit-noscroll
 				>
 					<!-- no need to announce this flag image -->
 					<i class="i i-flag-vn h-6"></i>
@@ -62,8 +65,11 @@
 				<a
 					class="current:text-primary current:font-bold hover:bg-primary-surface flex items-center gap-4
 						px-4 py-2"
-					data-current={lang === 'en'}
 					href={routing.en}
+					data-current={lang === 'en'}
+					data-sveltekit-replacestate
+					data-sveltekit-keepfocus
+					data-sveltekit-noscroll
 				>
 					<!-- no need to announce this flag image -->
 					<i class="i i-flag-gb h-6"></i>
