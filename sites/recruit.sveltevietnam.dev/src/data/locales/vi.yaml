@@ -124,7 +124,7 @@ messages:
             placeholder: career@abc.com
           url:
             label: Qua cổng thông tin riêng
-            note: Khi nhấn nút “ứng tuyển", ứng viên sẽ được dẫn đến cổng thông trên.
+            note: Khi nhấn nút “ứng tuyển", ứng viên sẽ được dẫn đến trang trên.
             placeholder: https://career.abc.com/portal/...
         errors:
           nonempty_method: Vui lòng chọn phương thức ứng tuyển
@@ -132,8 +132,8 @@ messages:
       expired_at:
         label: Hạn đăng tuyển
         note:
-          Đăng tuyển sẽ không còn hiển trên <a class="c-link"
-          href="{{mainSiteUrl}}/vi/viec-lam">trang tuyển dụng</a> sau ngày này.
+          Đăng tuyển sẽ không còn hiển trên <a class="c-link" href="{{mainSiteUrl}}/vi/viec-lam"
+          target="_blank">trang tuyển dụng</a> sau ngày này.
         errors:
           nonempty: Vui lòng chọn hạn đăng tuyển
           min: Hạn phải sau ngày hôm nay
