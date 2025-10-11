@@ -32,11 +32,13 @@
 	<div class="space-y-section">
 		<section class="space-y-10" aria-labelledby="active-job-postings">
 			<div class="space-y-6">
-				<div class="border-outline flex items-end justify-between gap-2 border-b">
-					<h2 class="c-text-heading" id="active-job-postings">
+				<div
+					class="flex items-end justify-between"
+				>
+					<h2 class="c-text-heading border-b border-outline flex-1" id="active-job-postings">
 						<T message={m['pages.postings.active.heading']} />
 					</h2>
-					<a class="c-btn gap-2" href={p['/:lang/postings/create']({ lang: routing.lang })}>
+					<a class="c-btn gap-2 whitespace-nowrap" href={p['/:lang/postings/create']({ lang: routing.lang })}>
 						<T message={m['pages.postings.active.create']} />
 						<i class="i i-[ph--plus] h-6 w-6"></i>
 					</a>
