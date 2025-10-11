@@ -29,8 +29,17 @@ function chunkifyContentWithParams(content, params, snippet = false) {
 		chunks.push({ type: 'literal', content });
 	} else {
 		let cursor = 0;
-		for (let i = 0; i < params.length; i++) {
-			const { start, end, name } = params[i];
+		const flatParams = params
+			.flatMap((param) =>
+				param.positions.map((pos) => ({
+					name: param.name,
+					start: pos.start,
+					end: pos.end,
+				})),
+			)
+			.sort((a, b) => a.start - b.start);
+		for (let i = 0; i < flatParams.length; i++) {
+			const { start, end, name } = flatParams[i];
 			const literal = content.slice(cursor, start);
 			if (literal) chunks.push({ type: 'literal', content: literal });
 			chunks.push({ type: 'identifier', content: name });

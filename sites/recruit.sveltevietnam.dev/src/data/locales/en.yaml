@@ -234,7 +234,7 @@ messages:
       cta: Create a job posting
       feedback:
         Send feedback to improve the sign-up process via <a class="c-link"
-        href="mailto:jobs@sveltevietnam.dev">jobs@sveltevietnam.dev</a> or <a class="c-link"
+        href="mailto:{{mail}}">{{mail}}</a> or <a class="c-link"
         href="https://discord.sveltevietnam.dev" target="_blank" rel="noreferrer noopener external"
         data-umami-event="click-social-link" data-umami-event-source="discord"
         data-umami-event-position="pages.welcome">Svelte Vietnam's official Discord</a>.
@@ -360,10 +360,10 @@ messages:
         desc:
           If you need support or have any questions or feedback about the job posting process,
           please contact the admin team via email at <a class="c-link"
-          href="mailto:jobs@sveltevietnam.dev">jobs@sveltevietnam.dev</a> or via the <a
-          class="c-link" href="https://discord.sveltevietnam.dev"
-          data-umami-event="click-social-link" data-umami-event-source="discord"
-          data-umami-event-position="sidebar.support">Svelte Vietnam Discord</a>."
+          href="mailto:{{mail}}">{{mail}}</a> or via the <a class="c-link"
+          href="https://discord.sveltevietnam.dev" data-umami-event="click-social-link"
+          data-umami-event-source="discord" data-umami-event-position="sidebar.support">Svelte
+          Vietnam Discord</a>."
       notifications:
         update: Update has been approved and applied to your posting!
         create: Posting has been created and is pending admin review!
@@ -431,8 +431,7 @@ messages:
           You may use the toolbar at the bottom of the editor to assist you in the editing process,
           such as changing text format, undoing/redoing changes, inserting links, etc. <br /> <br />
           If you have any suggestions for improving the editor, please contact the admin at <a
-          href="mailto:jobs@sveltevietnam.dev">jobs@sveltevietnam.dev</a>. You can also view and
-          contribute to the <a
+          href="mailto:{{mail}}">{{mail}}</a>. You can also view and contribute to the <a
           href="https://github.com/sveltevietnam/sveltevietnam.dev/tree/main/sites/recruit.sveltevietnam.dev/src/lib/components/rich-text-editor"
           target="_blank" rel="noreferrer noopner external" > source code of the editor at Github
           </a>.

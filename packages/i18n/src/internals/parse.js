@@ -45,15 +45,14 @@ export async function flatParseMessages(yamls) {
 }
 
 // TODO: support @import directive to include other YAML files
-// FIXME: support param with multiple occurrences
 /**
  * collect parameters
  * @param {string} message - the input string to check
  * @returns {import('./private.d.ts').MessageParameter[]} list of dynamic parameters, if any
  */
 export function parseMessageParams(message) {
-	/** @type {import('./private.d.ts').MessageParameter[]} */
-	const params = [];
+	/** @type {Record<string, import('./private.d.ts').MessageParameter>} */
+	const params = {};
 
 	let start = message.indexOf('{{');
 	while (start !== -1) {
@@ -62,9 +61,13 @@ export function parseMessageParams(message) {
 			throw new Error('Message containing invalid parameter format. Missing closing bracket "}}"');
 		}
 		const name = message.slice(start + 2, end);
-		params.push({ name, start, end: end + 2 });
+		if (params[name]) {
+			params[name].positions.push({ start, end: end + 2 });
+		} else {
+			params[name] = { name, positions: [{ start, end: end + 2 }] };
+		}
 		start = message.indexOf('{{', end);
 	}
 
-	return params;
+	return Object.values(params);
 }

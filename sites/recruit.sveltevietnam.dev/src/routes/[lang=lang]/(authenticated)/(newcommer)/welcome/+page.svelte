@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n/runtime';
+	import { EMAILS } from '@sveltevietnam/kit/constants';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 
 	import * as m from '$data/locales/generated/messages';
@@ -33,7 +34,10 @@
 		<img class="h-auto w-full" width="726" height="278" alt="" src={svgKeyVisual} />
 
 		<p class="tablet:px-10 mt-10">
-			<T message={m['pages.welcome.feedback']} />
+			<T
+				message={m['pages.welcome.feedback']}
+				mail={EMAILS.JOBS}
+			/>
 		</p>
 	</div>
 </SingleBoxPageLayout>

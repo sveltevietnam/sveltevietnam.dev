@@ -7,6 +7,7 @@
 		type JobPostingProps,
 		JobPosting,
 	} from '@sveltevietnam/kit/components';
+	import { EMAILS } from '@sveltevietnam/kit/constants';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 
 	import * as m from '$data/locales/generated/messages';
@@ -121,7 +122,7 @@
 					<T message={m['pages.postings_upsert.support.heading']} />
 				</h2>
 				<p class="leading-relaxed">
-					<T message={m['pages.postings_upsert.support.desc']} />
+					<T message={m['pages.postings_upsert.support.desc']} mail={EMAILS.JOBS} />
 				</p>
 			</section>
 		</div>
