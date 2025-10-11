@@ -359,6 +359,9 @@ importers:
       '@cloudflare/workers-types':
         specifier: ^4.20251008.0
         version: 4.20251008.0
+      '@dotenvx/dotenvx':
+        specifier: ^1.51.0
+        version: 1.51.0
       '@faker-js/faker':
         specifier: ^10.0.0
         version: 10.0.0

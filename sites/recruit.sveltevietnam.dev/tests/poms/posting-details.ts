@@ -38,7 +38,10 @@ export class PagePostingDetails extends CommonPageObjectModel {
 		delete: Locator;
 		edit: Locator;
 	};
-	public readonly pendingApprovalNote: Locator;
+	public readonly callout: {
+		pending: Locator;
+		deleted: Locator;
+	};
 
 	constructor(init: PagePostingDetailsInit) {
 		super(init);
@@ -79,9 +82,14 @@ export class PagePostingDetails extends CommonPageObjectModel {
 			}),
 		};
 
-		this.pendingApprovalNote = this.page.getByRole('note').filter({
-			hasText: m['pages.postings_id.pending'](this.lang).toString(),
-		});
+		this.callout = {
+			pending: this.page.getByRole('note').filter({
+				hasText: m['pages.postings_id.pending'](this.lang).toString(),
+			}),
+			deleted: this.page.getByRole('note').filter({
+				hasText: m['pages.postings_id.deleted'](this.lang).toString(),
+			}),
+		};
 	}
 
 	async match(data: {
@@ -181,5 +189,16 @@ export class PagePostingDetails extends CommonPageObjectModel {
 			hasText: m['pages.postings_id.delete.success'](this.lang).toString(),
 		});
 		await expect(alert).toBeVisible();
+	}
+
+	async copyLink() {
+		await expect(this.actions.copyLink).toBeVisible();
+		await this.page.context().grantPermissions(['clipboard-read', 'clipboard-write']);
+		await this.actions.copyLink.click();
+		const clipboardContent = await this.page.evaluate(() => navigator.clipboard.readText());
+		await this.page.waitForTimeout(500);
+		expect(clipboardContent).toBe(
+			process.env.VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN + `/${this.lang}/jobs/${this.id}`,
+		);
 	}
 }

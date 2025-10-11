@@ -27,7 +27,7 @@
 		notifications: { toaster },
 	} = Contexts.get();
 
-	let url = $derived(VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN + routing.paths[routing.lang]);
+	let url = $derived(`${VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN }/${routing.lang}/jobs/${data.posting.id}`);
 	const typeLabelMessage = $derived(JOB_POSTING_TYPE_LABEL[data.posting.type]);
 	const applicationLink = $derived(
 		data.posting.applicationMethod === 'email'

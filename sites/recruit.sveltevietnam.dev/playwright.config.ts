@@ -2,9 +2,13 @@ import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 
+import dotenv from '@dotenvx/dotenvx';
 import { defineConfig, devices } from '@playwright/test';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+dotenv.config({ path: path.resolve(__dirname, '.env.test') });
+
 // NOTE: Guide for installing dependencies on Arch Linux
 // https://github.com/microsoft/playwright/issues/2621#issuecomment-2083083392
 export default defineConfig({
