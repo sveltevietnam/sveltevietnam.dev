@@ -12,7 +12,7 @@ import {
 } from '../src/lib/forms/job-posting-upsert/schema';
 
 import { testWithAuthenticatedEmployer } from './fixtures/with-authenticated-employer';
-import { schema } from './fixtures/with-backend';
+import { schema, type D1 } from './fixtures/with-backend';
 import { PagePostingDetails } from './poms/posting-details';
 import { PagePostingEdit } from './poms/posting-edit';
 import { PagePostingList } from './poms/posting-list';
@@ -56,6 +56,29 @@ function createJobPosting(options: {
 	}
 
 	return posting;
+}
+
+function updateJobPostingStatus(d1: D1, id: string, status: JobPostingStatus) {
+	const fields: Partial<(typeof schema.jobPostings)['$inferInsert']> = {};
+	if (status === 'active') {
+		fields.approvedAt = new Date();
+		fields.deletedAt = null;
+		fields.expiredAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // 30 days from now
+	} else if (status === 'expired') {
+		fields.expiredAt = new Date(Date.now() - 24 * 60 * 60 * 1000); // 1 day ago
+		fields.approvedAt = new Date(Date.now() - 40 * 24 * 60 * 60 * 1000); // 40 days ago
+		fields.deletedAt = null;
+	} else if (status === 'deleted') {
+		fields.deletedAt = new Date();
+	} else {
+		fields.approvedAt = null;
+		fields.deletedAt = null;
+		fields.expiredAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // 30 days from now
+	}
+	return d1.transaction(
+		(tx) => tx.update(schema.jobPostings).set(fields).where(eq(schema.jobPostings.id, id)),
+		{ behavior: 'immediate' },
+	);
 }
 
 testWithAuthenticatedEmployer(
@@ -147,23 +170,21 @@ testWithAuthenticatedEmployer(
 		await pomPostingDetails.match({ employer, posting });
 
 		// User sees callout about posting pending approval
-		await expect(pomPostingDetails.pendingApprovalNote).toBeVisible();
+		await expect(pomPostingDetails.callout.pending).toBeVisible();
 
 		// User sees "Edit" and "Delete" actions enabled
-		await expect(pomPostingDetails.actions.edit).toBeVisible();
-		await expect(pomPostingDetails.actions.edit).not.toBeDisabled();
-		await expect(pomPostingDetails.actions.delete).toBeVisible();
-		await expect(pomPostingDetails.actions.delete).not.toBeDisabled();
-
-		// TODO: verify share actions are hidden
+		await Promise.all([
+			expect(pomPostingDetails.actions.edit).toBeVisible(),
+			expect(pomPostingDetails.actions.edit).not.toBeDisabled(),
+			expect(pomPostingDetails.actions.delete).toBeVisible(),
+			expect(pomPostingDetails.actions.delete).not.toBeDisabled(),
+		]);
 
 		// User gets back to listing page and sees the new posting in "Pending" section
 		pomPostingList = await pomPostingDetails.backToListing();
 		await pomPostingList.match({
 			pending: `${lang}-listing.yaml`,
 		});
-
-		// TODO: mock approve and check share actions are now visible
 
 		// Cleanup
 		await d1.transaction(
@@ -297,7 +318,50 @@ testWithAuthenticatedEmployer.describe(() => {
 	});
 
 	testWithPosting(
-		'UAT-POST-004: User can edit posting',
+		'UAT-POST-004: User can see share actions only if posting is approved and not deleted',
+		{ tag: ['@uat', '@postings'] },
+		async ({ page, lang, posting, d1 }) => {
+			const pomPostingDetails = new PagePostingDetails({ page, lang, id: posting.id });
+
+			// User does not see share actions (posting is not public yet)
+			await Promise.all([
+				expect(pomPostingDetails.actions.copyLink).toBeHidden(),
+				expect(pomPostingDetails.actions.generateQR).toBeHidden(),
+			]);
+
+			// Mock approval of the posting
+			await updateJobPostingStatus(d1, posting.id, 'active');
+
+			// User reloads the page and now sees share actions
+			await page.reload();
+			await Promise.all([
+				expect(pomPostingDetails.actions.copyLink).toBeVisible(),
+				expect(pomPostingDetails.actions.generateQR).toBeVisible(),
+			]);
+
+			// Mock expiration of the posting
+			await updateJobPostingStatus(d1, posting.id, 'expired');
+
+			// User reloads the page and still sees share actions
+			await page.reload();
+			await Promise.all([
+				expect(pomPostingDetails.actions.copyLink).toBeVisible(),
+				expect(pomPostingDetails.actions.generateQR).toBeVisible(),
+			]);
+
+			// Mock deletion of the posting
+			await updateJobPostingStatus(d1, posting.id, 'deleted');
+
+			// User reloads the page and no longer sees share actions
+			await page.reload();
+			await Promise.all([
+				expect(pomPostingDetails.actions.copyLink).toBeHidden(),
+				expect(pomPostingDetails.actions.generateQR).toBeHidden(),
+			]);
+		},
+	);
+	testWithPosting(
+		'UAT-POST-005: User can edit posting',
 		{ tag: ['@uat', '@postings'] },
 		async ({ page, lang, testFaker: faker, employer, posting }) => {
 			// User clicks "Edit" and is redirected to posting edit page
@@ -317,7 +381,7 @@ testWithAuthenticatedEmployer.describe(() => {
 	);
 
 	testWithPosting(
-		'UAT-POST-005: User can delete posting',
+		'UAT-POST-006: User can delete posting',
 		{ tag: ['@uat', '@postings'] },
 		async ({ page, lang, posting }) => {
 			// User clicks "Delete", confirms in dialog, and sees success alert
@@ -334,7 +398,7 @@ testWithAuthenticatedEmployer.describe(() => {
 });
 
 testWithAuthenticatedEmployer(
-	'UAT-POST-006: User cannot edit expired or active posting',
+	'UAT-POST-007: User cannot edit expired or active posting',
 	{ tag: ['@uat', '@postings'] },
 	async ({ page, lang, d1, testFaker: faker, employer }) => {
 		// Mock posting to be active (approved)
@@ -363,14 +427,7 @@ testWithAuthenticatedEmployer(
 		await pomPostingDetails.waitForPage();
 
 		// Mock so that posting is expired
-		await d1.transaction(
-			(tx) =>
-				tx
-					.update(schema.jobPostings)
-					.set({ expiredAt: new Date(Date.now() - 24 * 60 * 60 * 1000) }) // 1 day ago
-					.where(eq(schema.jobPostings.id, posting.id)),
-			{ behavior: 'immediate' },
-		);
+		await updateJobPostingStatus(d1, posting.id, 'expired');
 
 		// User still cannot see edit in details page or navigate to edit page if posting is expired
 		await page.reload();
@@ -379,12 +436,7 @@ testWithAuthenticatedEmployer(
 		await pomPostingDetails.waitForPage();
 
 		// Mock posting has never been approved
-		await d1.transaction((tx) =>
-			tx
-				.update(schema.jobPostings)
-				.set({ approvedAt: null })
-				.where(eq(schema.jobPostings.id, posting.id)),
-		);
+		await updateJobPostingStatus(d1, posting.id, 'pending');
 
 		// User still cannot see edit in details page or navigate to edit page
 		// if posting is expired but never approved (still pending)
