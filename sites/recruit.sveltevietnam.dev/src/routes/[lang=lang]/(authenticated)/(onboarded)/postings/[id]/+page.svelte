@@ -115,13 +115,17 @@
 	<div class="desktop:flex-row gap-section desktop:gap-20 flex flex-col">
 		<!-- main content -->
 		<div class="max-w-readable-relaxed flex-1 space-y-6">
-			<h1 class="c-text-heading font-bold">
+			<h1 class={['c-text-heading font-bold', data.posting.status === 'deleted' && 'line-through']}>
 				{data.posting.title}
 			</h1>
 
 			{#if data.posting.status === 'pending'}
 				<p class="c-callout c-callout--warning" role="note">
 					<T message={m['pages.postings_id.pending']} />
+				</p>
+			{:else if data.posting.status === 'deleted'}
+				<p class="c-callout c-callout--error" role="note">
+					<T message={m['pages.postings_id.deleted']} />
 				</p>
 			{/if}
 
@@ -135,27 +139,27 @@
 					class="tablet:flex-row flex flex-col-reverse items-start justify-between gap-4 space-y-6"
 				>
 					<dl class="grid grid-cols-[auto_1fr] gap-4">
-						<!-- status -->
-						<dt>
-							<i class={['i i-[ph--pulse] h-6 w-6', statusToColorClass[data.posting.status]]}></i>
-							<span class="sr-only">
-								<T message={m['pages.postings_id.general.status.name']} />
-							</span>
-						</dt>
-						<dd class={statusToColorClass[data.posting.status]} data-testid="status-name">
-							{#if data.posting.status === 'deleted'}
-								<T message={m['pages.postings_id.general.status.deleted']} />
-							{:else if data.posting.status === 'expired'}
-								<T message={m['pages.postings_id.general.status.expired']} />
-							{:else if data.posting.status === 'pending'}
-								<T message={m['pages.postings_id.general.status.pending']} />
-							{:else}
-								<T
-									message={m['pages.postings_id.general.status.active']}
-									mainSiteUrl={VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN}
-								/>
-							{/if}
-						</dd>
+						{#if data.posting.status === 'expired'}
+							<!-- status -->
+							<dt>
+								<i class={['i i-[ph--pulse] h-6 w-6', statusToColorClass[data.posting.status]]}></i>
+								<span class="sr-only">
+									<T message={m['pages.postings_id.general.status.name']} />
+								</span>
+							</dt>
+							<dd class={statusToColorClass[data.posting.status]} data-testid="status-name">
+								{#if data.posting.status === 'expired'}
+									<T message={m['pages.postings_id.general.status.expired']} />
+								{:else if data.posting.status === 'pending'}
+									<T message={m['pages.postings_id.general.status.pending']} />
+								{:else}
+									<T
+										message={m['pages.postings_id.general.status.active']}
+										mainSiteUrl={VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN}
+									/>
+								{/if}
+							</dd>
+						{/if}
 
 						<!-- employer -->
 						<dt>

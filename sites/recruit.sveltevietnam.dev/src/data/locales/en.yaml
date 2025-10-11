@@ -303,6 +303,9 @@ messages:
         This posting is pending review from the admin team. You will be notified via email once it
         is approved or need changes. Approved postings can no longer be edited, so please review the
         details and make any necessary changes right now.
+      deleted:
+        This posting has been deleted and no longer appears on any listing. You may still access
+        this page but no further action can be performed.
       general:
         heading: General Information
         posted_at: Posted on
@@ -310,7 +313,6 @@ messages:
         status:
           name: Status
           pending: Chờ xét duyệt
-          deleted: Đã bị xoá
           expired: Đã hết hạn
           active:
             Being displayed at the <a class="c-link" href="{{mainSiteUrl}}/en/jobs">Jobs page</a>
@@ -336,7 +338,7 @@ messages:
           cancel: Cancel
         errors:
           unauthorized: You are not authorized to manage this posting
-        success: The posting has been deleted! You will no longer be able to access this page.
+        success: The posting has been deleted!
     postings_upsert:
       meta:
         title:
