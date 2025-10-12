@@ -6,6 +6,7 @@
 
 	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
+	import { VITE_PUBLIC_RECRUIT_ORIGIN } from '$env/static/public';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import * as pagefind from '$lib/pagefind/attributes';
 
@@ -155,7 +156,11 @@
 			<T message={m['pages.sponsor.benefit.heading']} />
 		</h2>
 		<p class="max-w-readable-relaxed leading-relaxed">
-			<T message={m['pages.sponsor.benefit.desc']} />
+			<T
+				message={m['pages.sponsor.benefit.desc']}
+				linkOpenCollective={SOCIAL_LINKS.OPEN_COLLECTIVE}
+				linkRecruit={VITE_PUBLIC_RECRUIT_ORIGIN}
+			/>
 		</p>
 	</section>
 </main>

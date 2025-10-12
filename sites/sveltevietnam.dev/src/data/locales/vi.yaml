@@ -794,12 +794,11 @@ messages:
       benefit:
         heading: Tôi được gì khi tài trợ cho Svelte Việt nam?
         desc:
-          Nhà tài trợ sẽ được liệt kệ tại trang <a class="c-link"
-          href="https://opencollective.com/sveltevietnam">Open Collective của Svelte Việt Nam</a>,
-          cũng như trong các trang dự án và sự kiện tương ứng. Trong tương lai  gần khi trang “Việc
-          làm” đã được hoàn thiện, nhà tài trợ sẽ được ưu tiên  trong quy trình đăng tuyển dụng.
-          Ngoài ra, Svelte Việt Nam cũng dành  nhiều cơ hội riêng cho nhà tài trợ để quản bá thương
-          hiệu, tổ chức, sản  phẩm của họ trong các sự kiện của cộng đồng.
+          Nhà tài trợ sẽ được liệt kệ tại trang <a class="c-link" href={{linkOpenCollective}}
+          target="_blank" rel="noreferrer noopener external">Open Collective của Svelte Việt
+          Nam</a>, được ưu tiên trong quá trình đăng tuyển việc làm qua <a class="c-link"
+          href={{linkRecruit}} target="_blank">Ứng dụng Tuyển dụng</a>, và được tạo cơ hội để quản
+          bá thương hiệu, sản phẩm trong các sự kiện của cộng đồng.
     everify:
       title: Xác nhận email | Svelte Việt Nam
       heading: Xác nhận email

@@ -789,11 +789,11 @@ messages:
       benefit:
         heading: What do I get as a sponsor for Svelte Vietnam?
         desc:
-          Sponsors are listed at our <a class="c-link"
-          href="https://opencollective.com/sveltevietnam"> Open Collective</a>, as well as
-          associated event or project pages. In the near future when the “Jobs” page is implemented,
-          sponsors will have priority for their job posting requests. Svelte Vietnam also provides
-          opportunities during its events for sponsors to promote their brands and products.
+          Sponsors are listed at our <a class="c-link" href={{linkOpenCollective}} target="_blank"
+          rel="noreferrer noopener external">Open Collective</a> and have priority for job postings
+          via the <a class="c-link" href={{linkRecruit}} target="_blank">Recruit application</a>.
+          Svelte Vietnam also provides opportunities during its events for sponsors to promote their
+          brands and products.
     everify:
       title: Email Verification | Svelte Vietnam
       heading: Email Verification
