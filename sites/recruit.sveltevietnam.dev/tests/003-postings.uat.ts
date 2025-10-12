@@ -377,7 +377,22 @@ testWithAuthenticatedEmployer.describe(() => {
 	);
 
 	testWithPosting(
-		'UAT-POST-006: User can edit posting',
+		'UAT-POST-006: User can generate QR to posting public page',
+		{ tag: ['@uat', '@postings'] },
+		async ({ page, lang, posting, d1 }) => {
+			const pomPostingDetails = new PagePostingDetails({ page, lang, id: posting.id });
+
+			// Mock approval of the posting
+			await updateJobPostingStatus(d1, posting.id, 'active');
+
+			// User can click "Copy Link" action and has the correct link copied to clipboard
+			await page.reload();
+			await pomPostingDetails.generateQR();
+		},
+	);
+
+	testWithPosting(
+		'UAT-POST-007: User can edit posting',
 		{ tag: ['@uat', '@postings'] },
 		async ({ page, lang, testFaker: faker, employer, posting }) => {
 			// User clicks "Edit" and is redirected to posting edit page
@@ -397,7 +412,7 @@ testWithAuthenticatedEmployer.describe(() => {
 	);
 
 	testWithPosting(
-		'UAT-POST-007: User can delete posting',
+		'UAT-POST-008: User can delete posting',
 		{ tag: ['@uat', '@postings'] },
 		async ({ page, lang, posting }) => {
 			// User clicks "Delete", confirms in dialog, and sees success alert
@@ -414,7 +429,7 @@ testWithAuthenticatedEmployer.describe(() => {
 });
 
 testWithAuthenticatedEmployer(
-	'UAT-POST-008: User cannot edit expired or active posting',
+	'UAT-POST-009: User cannot edit expired or active posting',
 	{ tag: ['@uat', '@postings'] },
 	async ({ page, lang, d1, testFaker: faker, employer }) => {
 		// Mock posting to be active (approved)

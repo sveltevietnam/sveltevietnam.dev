@@ -56,6 +56,8 @@
 			width="320"
 			height="320"
 			class="mx-auto h-80 w-80 max-w-full"
+			role="img"
+			aria-label="QR"
 		></svg>
 		{#if href}
 			<a

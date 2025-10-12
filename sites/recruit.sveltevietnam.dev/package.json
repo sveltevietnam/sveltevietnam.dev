@@ -44,6 +44,7 @@
 		"@types/lodash.debounce": "^4.0.9",
 		"@types/sanitize-html": "^2.16.0",
 		"@types/umami-browser": "^2.18.0",
+		"jsqr": "^1.4.0",
 		"picocolors": "^1.1.1",
 		"svelte": "^5.39.11",
 		"sveltekit-superforms": "^2.27.2",

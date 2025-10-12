@@ -1,5 +1,6 @@
-import { expect, type Locator } from '@playwright/test';
+import { expect, type Locator, type Page } from '@playwright/test';
 import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
+import jsQR from 'jsqr';
 
 import * as m from '../../src/data/locales/generated/messages';
 import * as p from '../../src/data/routes/generated';
@@ -11,6 +12,41 @@ import { CommonPageObjectModel, type CommonPageObjectModelInit } from './common'
 
 export interface PagePostingDetailsInit extends CommonPageObjectModelInit {
 	id: string;
+}
+
+type RGBA = {
+	width: number;
+	height: number;
+	data: Uint8ClampedArray;
+};
+async function imageToRGBA(page: Page, image: Buffer | string): Promise<RGBA> {
+	let src = `data:image/png;base64,`;
+	if (Buffer.isBuffer(image)) {
+		src += image.toString('base64');
+	} else {
+		src = image;
+	}
+	return await page.evaluate(
+		({ src }) => {
+			return new Promise<RGBA>((res) => {
+				const image = new Image();
+				image.onload = () => {
+					const canvas = new OffscreenCanvas(image.width, image.height);
+					const ctx = canvas.getContext('2d');
+					if (!ctx) throw new Error('Cannot get canvas context');
+					ctx.drawImage(image, 0, 0);
+					const imageData = ctx.getImageData(0, 0, image.width, image.height);
+					res({
+						width: image.width,
+						height: image.height,
+						data: imageData.data,
+					});
+				};
+				image.src = src;
+			});
+		},
+		{ src },
+	);
 }
 
 export class PagePostingDetails extends CommonPageObjectModel {
@@ -191,14 +227,53 @@ export class PagePostingDetails extends CommonPageObjectModel {
 		await expect(alert).toBeVisible();
 	}
 
-	async copyLink() {
+	getPublicUrl() {
+		return process.env.VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN + `/${this.lang}/jobs/${this.id}`;
+	}
+
+	async copyLink(): Promise<string> {
 		await expect(this.actions.copyLink).toBeVisible();
 		await this.page.context().grantPermissions(['clipboard-read', 'clipboard-write']);
 		await this.actions.copyLink.click();
 		const clipboardContent = await this.page.evaluate(() => navigator.clipboard.readText());
 		await this.page.waitForTimeout(500);
-		expect(clipboardContent).toBe(
-			process.env.VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN + `/${this.lang}/jobs/${this.id}`,
-		);
+		expect(clipboardContent).toBe(this.getPublicUrl());
+		return clipboardContent;
+	}
+
+	async generateQR(): Promise<string> {
+		// User clicks "Generate QR" button
+		await expect(this.actions.generateQR).toBeVisible();
+		this.actions.generateQR.click();
+
+		// User sees dialog with QR code
+		const dialog = this.page.getByRole('dialog');
+		await expect(dialog).toBeVisible();
+
+		// User scans the QR code
+		const svg = dialog.getByRole('img', { name: 'QR' });
+		const buffer = await svg.screenshot();
+
+		// User expects the QR code to contain the public URL
+		let rgba = await imageToRGBA(this.page, buffer);
+		let code = jsQR(rgba.data, rgba.width, rgba.height);
+		expect(code).not.toBeNull();
+		expect(code!.data).toBe(this.getPublicUrl());
+
+		// User downloads the QR code
+		const downloadPromise = this.page.waitForEvent('download');
+		await dialog.getByRole('link', { name: m['download'](this.lang).toString() }).click();
+		const download = await downloadPromise;
+
+		// User expects the QR code to contain the public URL
+		rgba = await imageToRGBA(this.page, download.url());
+		code = jsQR(rgba.data, rgba.width, rgba.height);
+		expect(code).not.toBeNull();
+		expect(code!.data).toBe(this.getPublicUrl());
+
+		// User closes the dialog
+		await dialog.getByRole('button', { name: m['close'](this.lang).toString() }).click();
+
+		return code!.data;
 	}
 }
