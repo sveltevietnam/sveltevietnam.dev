@@ -10,6 +10,7 @@
 	import kvCatch from './_local/images/kv-catch.svg';
 	import kvIntro from './_local/images/kv-intro.svg';
 	import kvOpen from './_local/images/kv-open.svg';
+	import kvSimpleSecure from './_local/images/kv-simple-secure.svg';
 
 	const { routing } = Contexts.get();
 
@@ -76,7 +77,7 @@
 		</div>
 		<div class="translate-y-0.5">
 			<img
-				class="tablet:w-69 desktop:w-91 h-auto w-full widescreen:w-100 2xl:w-120"
+				class="tablet:w-69 desktop:w-91 widescreen:w-100 2xl:w-120 h-auto w-full"
 				src={kvIntro}
 				alt={m['pages.home.catch.kv_alt'](routing.lang).toString()}
 				width="276"
@@ -119,10 +120,48 @@
 			</div>
 		</section>
 
+		<!-- Simple and Secure -->
+		<section
+			class="max-w-pad py-section-more bg-primary-surface text-primary-on-surface space-y-10"
+			id="simple-and-secure"
+		>
+			<h2 class="c-text-heading-lg text-center">
+				<T message={m['pages.home.simple_secure.heading']} />
+			</h2>
+			<div
+				class="tablet:flex-row desktop:flex-row-reverse tablet:gap-0 flex flex-col items-center
+				justify-center gap-6"
+			>
+				<ul
+					class="tablet:space-y-4 desktop:space-y-6 tablet:text-left tablet:c-text-subtitle-page space-y-2
+					text-center"
+				>
+					<li>
+						<T message={m['pages.home.simple_secure.steps.one']} />
+					</li>
+					<li class="desktop:pl-6">
+						<T message={m['pages.home.simple_secure.steps.two']} />
+					</li>
+					<li class="desktop:pl-12">
+						<T message={m['pages.home.simple_secure.steps.three']} />
+					</li>
+				</ul>
+				<div>
+					<img
+						class="w-90 max-tablet:-scale-x-100 h-auto max-w-full"
+						src={kvSimpleSecure}
+						alt={m['pages.home.simple_secure.kv_alt'](routing.lang).toString()}
+						width="357"
+						height="362"
+					/>
+				</div>
+			</div>
+		</section>
+
 		<!-- About Svelte Vietnam -->
 		<section
-			class="desktop:gap-20 tablet:max-desktop:items-end tablet:flex-row
-			desktop:flex-row-reverse
+			class="desktop:gap-20 tablet:max-desktop:items-end tablet:flex-row-reverse
+			desktop:flex-row
 			max-w-pad py-section-more flex flex-col gap-10"
 			id="about-svelte-vietnam"
 		>
@@ -143,7 +182,7 @@
 			</div>
 			<div class="flex-1">
 				<img
-					class="tablet:max-desktop:-scale-x-100 h-auto w-full"
+					class="desktop:-scale-x-100 h-auto w-full"
 					src={kvAbout}
 					alt={m['pages.home.about.kv_alt'](routing.lang).toString()}
 					width="345"
@@ -154,7 +193,7 @@
 
 		<!-- Open source -->
 		<section
-			class="desktop:gap-20 tablet:max-desktop:items-end tablet:flex-row-reverse desktop:flex-row
+			class="desktop:gap-20 tablet:max-desktop:items-end tablet:flex-row desktop:flex-row-reverse
 			max-w-pad py-section-more flex flex-col gap-10"
 			id="open-source"
 		>

@@ -173,6 +173,13 @@ messages:
           external">tài trợ cho dự án Svelte Việt Nam</a>.
         cta: Vì sao Svelte Việt Nam cần tài trợ?
         kv_alt: một người ngồi trên một con heo đất khổng lồ
+      simple_secure:
+        heading: Đơn giản & bảo mật
+        steps:
+          one: 1. Tạo tài khoản bằng không cần mật khẩu
+          two: 2. Điền hồ sơ người sử dụng lao động
+          three: 3. Đăng tin tuyển dụng và chờ xét duyệt
+        kv_alt: một người ngồi trên một bảng ghi khổng lồ
       about:
         heading: Về Svelte Việt Nam
         desc:

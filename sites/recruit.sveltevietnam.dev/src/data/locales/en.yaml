@@ -175,6 +175,13 @@ messages:
           rel="noreferrer noopner external">sponsoring the Svelte Vietnam project</a>.
         cta: Why does Svelte Vietnam need sponsorship?
         kv_alt: a human sitting on top of a giant piggy bank
+      simple_secure:
+        heading: Simple & Secure
+        steps:
+          one: 1. Secure a passwordless account
+          two: 2. Complete your employer profile
+          three: 3. Post a job, get approved, go live
+        kv_alt: a human sitting on top of a giant clipboard
       about:
         heading: About Svelte Vietnam
         desc:
