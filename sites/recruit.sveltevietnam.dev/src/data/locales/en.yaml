@@ -188,10 +188,10 @@ messages:
         cta: View more at sveltevietnam.dev
         kv_alt: two people assemblying a giant lightbulb made of puzzle pieces
       for_all:
-        heading: One platform for all jobs
+        heading: Build your Cross-Functional Team
         desc:
           Svelte community members come from various backgrounds — engineering, design, quality
-          control, academia, etc. So do not hesitate to post any job regardless of type or level.
+          control, academia, etc. So don't hesitate to post any job regardless of type or level.
         kv_alt: three humans holding different pieces of puzzles
       open:
         heading: Open Source
