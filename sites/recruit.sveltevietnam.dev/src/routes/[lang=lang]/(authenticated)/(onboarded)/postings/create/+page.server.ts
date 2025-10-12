@@ -1,4 +1,6 @@
 import { error, fail, redirect } from '@sveltejs/kit';
+import { JOB_POSTING_TYPE_I18N } from '@sveltevietnam/backend/data/job-postings/enums';
+import { formatTimeDiff } from '@sveltevietnam/kit/utilities/datetime';
 import { superValidate } from 'sveltekit-superforms';
 import { valibot } from 'sveltekit-superforms/adapters';
 
@@ -80,8 +82,22 @@ export const actions = {
 				email: VITE_PRIVATE_ADMIN_EMAIL,
 				lang,
 				vars: {
-					employerName: employer.name,
-					jobTitle: form.data.title,
+					posting: {
+						title: form.data.title,
+						type: JOB_POSTING_TYPE_I18N[form.data.type][lang],
+						location: form.data.location,
+						salary: form.data.salary,
+						expiration: `${form.data.expiredAt.toLocaleString('en', { timeZone: 'Asia/Ho_Chi_Minh' })} (${formatTimeDiff(form.data.expiredAt, new Date())})`,
+						application: form.data.application.link,
+						description: form.data.description,
+					},
+					employer: {
+						name: employer.name,
+						email: employer.email,
+						website: employer.website,
+						image: employer.image ? VITE_PUBLIC_ORIGIN + employer.image : null,
+						description: employer.description,
+					},
 				},
 			}),
 		]);

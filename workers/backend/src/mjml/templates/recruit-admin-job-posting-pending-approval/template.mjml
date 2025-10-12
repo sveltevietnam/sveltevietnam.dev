@@ -1,0 +1,140 @@
+<mjml>
+	<mj-head>
+		<mj-title>{{subject}}</mj-title>
+		<mj-include path="../../includes/common-head.mjml" />
+		<mj-style inline="inline">
+      .desc th, .desc td {
+        padding: 0.5rem 1rem;
+        text-align: left;
+      	border: 1px solid #BFB9B2;
+				white-space: nowrap;
+      }
+
+      .c-callout {
+        padding: 0.5rem 1rem;
+     		background: #E9E3DB;
+      }
+    </mj-style>
+	</mj-head>
+	<mj-body background-color="#ffffff">
+		<mj-include path="../../includes/header.mjml" />
+
+		<mj-section padding-top="0">
+			<mj-column>
+				<mj-text padding-top="0">Hello Admin,</mj-text>
+				<mj-text>
+					A new job posting has been created by and is pending your approval.
+					Please see below for details...
+				</mj-text>
+			</mj-column>
+		</mj-section>
+
+		<mj-section padding-top="0">
+      <mj-column>
+				<mj-text line-height="1.5">
+					<h2 style="border-bottom: 1px solid #BFB9B2">General Information</h2>
+				</mj-text>
+
+        <mj-table css-class="desc">
+          <tr style="background-color: #ffeee7">
+            <th colspan="2" scope="colgroup">Employer</th>
+          </tr>
+
+          <!-- Name -->
+          <tr>
+            <th scope="row">Name</th>
+            <td>{{employer.name}}</td>
+          </tr>
+
+          <!-- Email -->
+          <tr>
+            <th scope="row">Email</th>
+            <td>{{employer.email}}</td>
+          </tr>
+
+          <!-- Website, if any -->
+					{{#employer.website}}
+						<tr>
+							<th scope="row">Website</th>
+							<td>{{employer.website}}</td>
+						</tr>
+					{{/employer.website}}
+
+          <tr style="background-color: #ffeee7">
+            <th colspan="2" scope="colgroup">Job Posting</th>
+          </tr>
+
+          <!-- Title -->
+          <tr>
+            <th scope="row">Title</th>
+            <td>{{posting.title}}</td>
+          </tr>
+
+          <!-- Type -->
+          <tr>
+            <th scope="row">Type</th>
+            <td>{{posting.type}}</td>
+          </tr>
+
+          <!-- Location -->
+          <tr>
+            <th scope="row">Location</th>
+            <td>{{posting.location}}</td>
+          </tr>
+
+          <!-- Salary -->
+          <tr>
+            <th scope="row">Salary</th>
+            <td>{{posting.salary}}</td>
+          </tr>
+
+          <!-- Expiration -->
+          <tr>
+            <th scope="row">Expiration</th>
+            <td>{{posting.expiration}}</td>
+          </tr>
+
+          <!-- Application -->
+          <tr>
+            <th scope="row">Application</th>
+            <td>{{posting.application}}</td>
+          </tr>
+        </mj-table>
+      </mj-column>
+    </mj-section>
+
+		<mj-section padding-top="0">
+			<mj-column>
+				<mj-text line-height="1.5">
+					<h2 style="border-bottom: 1px solid #BFB9B2">Job Description</h2>
+				</mj-text>
+				<mj-text>
+					{{{posting.description}}}
+				</mj-text>
+			</mj-column>
+		</mj-section>
+
+		<mj-section padding-top="0">
+			<mj-column>
+				<mj-text line-height="1.5">
+					<h2 style="border-bottom: 1px solid #BFB9B2">About {{employer.name}}</h2>
+				</mj-text>
+				<mj-text>
+					{{#employer.image}}
+						<img style="float: right" src="{{employer.image}}" width="140" height="140" />
+					{{/employer.image}}
+					{{{employer.description}}}
+				</mj-text>
+			</mj-column>
+		</mj-section>
+
+		<mj-section>
+			<mj-column>
+				<mj-text>Thank you,</mj-text>
+				<mj-text>Svelte Vietnam</mj-text>
+			</mj-column>
+		</mj-section>
+
+		<mj-include path="../../includes/admin-footer/en.mjml" />
+	</mj-body>
+</mjml>

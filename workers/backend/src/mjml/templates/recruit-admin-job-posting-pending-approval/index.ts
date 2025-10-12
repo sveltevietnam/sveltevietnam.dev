@@ -1,28 +1,31 @@
 import { defineTemplate } from '..';
 import { EMAILS } from '../constants';
 
-import en from './en.mjml';
-import vi from './vi.mjml';
+import template from './template.mjml';
 
-export default defineTemplate((lang) => ({
+export default defineTemplate(() => ({
 	from: {
 		email: EMAILS.NO_REPLY,
 	},
-	...(
-		{
-			en: {
-				subject: 'Job Posting Pending Approval  — Svelte Vietnam Community Recruit Platform',
-				html: en,
-			},
-			vi: {
-				subject: 'Đăng tuyển đang chờ xét duyệt — Nền tảng Tuyển dụng Cộng đồng Svelte Việt Nam',
-				html: vi,
-			},
-		} as const
-	)[lang],
+	subject: 'Job Posting Pending Approval  — Svelte Vietnam Community Recruit Platform',
+	html: template,
 }));
 
 export interface RecruitAdminJobPostingPendingApprovalVars {
-	employerName: string;
-	jobTitle: string;
+	posting: {
+		title: string;
+		type: string;
+		location: string;
+		salary: string;
+		expiration: string;
+		application: string;
+		description: string;
+	};
+	employer: {
+		name: string;
+		email: string;
+		website?: string | null;
+		image?: string | null;
+		description: string;
+	};
 }
