@@ -15,45 +15,40 @@ import {
 } from './utils/jwt';
 
 export default class extends WorkerEntrypoint<Env> {
-	#subscribers: SubscriberService;
-	#mails: MailService;
-	#blueskyPosts: BlueskyPostService;
-	#employers: EmployerService;
-	#jobPostings: JobPostingService;
+	#orm: ReturnType<typeof getOrm>;
+	#subscribers: SubscriberService | null = null;
+	#mails: MailService | null = null;
+	#blueskyPosts: BlueskyPostService | null = null;
+	#employers: EmployerService | null = null;
+	#jobPostings: JobPostingService | null = null;
 
 	constructor(ctx: ExecutionContext, env: Env) {
 		super(ctx, env);
-		const orm = getOrm(env.d1);
-		// TODO: lazy init services?
-		this.#mails = new MailService(orm, env);
-		this.#subscribers = new SubscriberService(orm, env, this.#mails);
-		this.#blueskyPosts = new BlueskyPostService(orm);
-		this.#employers = new EmployerService(orm);
-		this.#jobPostings = new JobPostingService(orm);
+		this.#orm = getOrm(env.d1);
 	}
 
 	get healthy() {
 		return true;
 	}
 
-	subscribers() {
-		return this.#subscribers;
+	mails() {
+		return (this.#mails ??= new MailService(this.#orm, this.env));
 	}
 
-	mails() {
-		return this.#mails;
+	subscribers() {
+		return (this.#subscribers ??= new SubscriberService(this.#orm, this.env, this.mails()));
 	}
 
 	blueskyPosts() {
-		return this.#blueskyPosts;
+		return (this.#blueskyPosts ??= new BlueskyPostService(this.#orm));
 	}
 
 	employers() {
-		return this.#employers;
+		return (this.#employers ??= new EmployerService(this.#orm));
 	}
 
 	jobPostings() {
-		return this.#jobPostings;
+		return (this.#jobPostings ??= new JobPostingService(this.#orm));
 	}
 
 	// TODO: maybe can create a token service for verify & create/sign
@@ -97,7 +92,7 @@ export default class extends WorkerEntrypoint<Env> {
 				switch (message.body.type) {
 					case 'send-mail':
 						try {
-							await this.#mails.send(message.body.templateId, message.body.input);
+							await this.mails().send(message.body.templateId, message.body.input);
 							message.ack();
 						} catch (e) {
 							// TODO: log error
