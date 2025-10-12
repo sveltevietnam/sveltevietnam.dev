@@ -297,6 +297,7 @@
 				onchange={(value) => ($form.description = value)}
 				html={data.data.description}
 				placeholder={m['inputs.job_posting.desc.placeholder']}
+				maxLength={2500}
 			/>
 			<input
 				type="text"

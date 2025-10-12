@@ -14,6 +14,7 @@
 			Omit<HTMLAttributes<HTMLElement>, 'onchange' | 'placeholder'> {
 		placeholder?: Message<'string', never>;
 		onchange?: (html: string) => void;
+		maxLength?: number;
 	}
 </script>
 
@@ -24,6 +25,7 @@
 		headings = [1, 6],
 		html,
 		placeholder,
+		maxLength,
 		class: cls,
 		'aria-labelledby': ariaLabelledby,
 		id,
@@ -32,7 +34,7 @@
 
 	const { routing } = Contexts.get();
 	let element: HTMLElement;
-	let editor = new Editor({ html, headings, cache });
+	let editor = new Editor({ html, headings, cache, maxLength });
 
 	onMount(() => {
 		return on(element, 'changehtml', (event) => {
@@ -68,6 +70,22 @@
 		{#if placeholder && editor.canShowPlaceholder}
 			<p class="text-placeholder absolute inset-x-4 top-3 select-none">
 				<T message={placeholder} />
+			</p>
+		{/if}
+
+		{#if editor.init.maxLength}
+			{@const remaining = editor.init.maxLength - editor.contentLength}
+			<p
+				class={[
+					'absolute bottom-1 right-3',
+					remaining < 50
+						? 'text-red-500'
+						: remaining < 200
+							? 'text-yellow-500'
+							: 'text-on-surface-dim',
+				]}
+			>
+				{remaining}
 			</p>
 		{/if}
 	</div>

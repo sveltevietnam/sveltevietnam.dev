@@ -20,9 +20,13 @@ import {
 	$createHeadingNode,
 	$createQuoteNode,
 } from '@lexical/rich-text';
-import { $setBlocksType as setBlocksType } from '@lexical/selection';
+import { $trimTextContentFromAnchor, $setBlocksType as setBlocksType } from '@lexical/selection';
 import { $canShowPlaceholder, $canShowPlaceholderCurry } from '@lexical/text';
-import { mergeRegister, $getNearestNodeOfType as getNearestNodeOfType } from '@lexical/utils';
+import {
+	mergeRegister,
+	$getNearestNodeOfType as getNearestNodeOfType,
+	$restoreEditorState,
+} from '@lexical/utils';
 import type { Language } from '@sveltevietnam/i18n';
 import type { Status } from '@sveltevietnam/kit/constants';
 import {
@@ -33,6 +37,9 @@ import {
 	$createParagraphNode,
 	$insertNodes,
 	type UpdateListener,
+	RootNode,
+	type EditorState,
+	$getRoot,
 } from 'lexical';
 import debounce from 'lodash.debounce';
 import { createAttachmentKey } from 'svelte/attachments';
@@ -106,11 +113,31 @@ export interface EditorInit {
 				/** default to 500ms */
 				debounce?: number;
 		  };
+	maxLength?: number;
 }
 
 export class Editor {
 	public lexical: LexicalEditor;
 	public init: EditorInit;
+
+	/// ========== (Lazy) reactive content length ==========
+	get contentLength(): number {
+		this.#subscribeToLength();
+		return this.#contentLength;
+	}
+	#contentLength: number = 0;
+	#subscribeToLength = createSubscriber((update) =>
+		this.lexical.registerUpdateListener(({ editorState }) => {
+			editorState.read(() => {
+				const root = $getRoot();
+				const length = root.getTextContentSize();
+				if (this.#contentLength !== length) {
+					this.#contentLength = length;
+					update();
+				}
+			});
+		}),
+	);
 
 	/// ========== (Lazy) reactive inline state ==========
 	get inline(): EditorInlineState {
@@ -347,6 +374,41 @@ export class Editor {
 								cache.area.setItem(cache.key, JSON.stringify(editorState));
 							}, cache.ms),
 						),
+					);
+				}
+
+				const maxLength = this.init.maxLength;
+				if (maxLength) {
+					// see: https://github.com/facebook/lexical/blob/486d1b92f7325360d234ce6354b95abfcd947c07/packages/lexical-playground/src/plugins/MaxLengthPlugin/index.tsx
+					let lastRestoredEditorState: EditorState | null = null;
+					registrations.push(
+						this.lexical.registerNodeTransform(RootNode, (rootNode) => {
+							const selection = $getSelection();
+							if (!$isRangeSelection(selection) || !selection.isCollapsed()) {
+								return;
+							}
+							const prevEditorState = this.lexical.getEditorState();
+							const prevTextContentSize = prevEditorState.read(() => rootNode.getTextContentSize());
+							const textContentSize = rootNode.getTextContentSize();
+							if (prevTextContentSize !== textContentSize) {
+								const delCount = textContentSize - maxLength;
+								const anchor = selection.anchor;
+
+								if (delCount > 0) {
+									// Restore the old editor state instead if the last
+									// text content was already at the limit.
+									if (
+										prevTextContentSize === maxLength &&
+										lastRestoredEditorState !== prevEditorState
+									) {
+										lastRestoredEditorState = prevEditorState;
+										$restoreEditorState(this.lexical, prevEditorState);
+									} else {
+										$trimTextContentFromAnchor(this.lexical, anchor, delCount);
+									}
+								}
+							}
+						}),
 					);
 				}
 
