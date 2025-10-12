@@ -1,4 +1,3 @@
-import jwt from '@tsndr/cloudflare-worker-jwt';
 import { WorkerEntrypoint } from 'cloudflare:workers';
 import { Hono } from 'hono';
 
@@ -8,11 +7,7 @@ import { JobPostingService } from './data/job-postings';
 import { MailService } from './data/mails';
 import { SubscriberService } from './data/subscribers';
 import { getOrm } from './database/orm';
-import {
-	type JwtPayload,
-	type JwtVerificationResult,
-	TOKEN_VERIFICATION_ERRORS,
-} from './utils/jwt';
+import { JwtService } from './jwt';
 
 export default class extends WorkerEntrypoint<Env> {
 	#orm: ReturnType<typeof getOrm>;
@@ -21,6 +16,7 @@ export default class extends WorkerEntrypoint<Env> {
 	#blueskyPosts: BlueskyPostService | null = null;
 	#employers: EmployerService | null = null;
 	#jobPostings: JobPostingService | null = null;
+	#jwt: JwtService | null = null;
 
 	constructor(ctx: ExecutionContext, env: Env) {
 		super(ctx, env);
@@ -31,12 +27,21 @@ export default class extends WorkerEntrypoint<Env> {
 		return true;
 	}
 
+	jwt() {
+		return (this.#jwt ??= new JwtService(this.env));
+	}
+
 	mails() {
-		return (this.#mails ??= new MailService(this.#orm, this.env));
+		return (this.#mails ??= new MailService(this.#orm, this.env, this.jwt()));
 	}
 
 	subscribers() {
-		return (this.#subscribers ??= new SubscriberService(this.#orm, this.env, this.mails()));
+		return (this.#subscribers ??= new SubscriberService(
+			this.#orm,
+			this.env,
+			this.jwt(),
+			this.mails(),
+		));
 	}
 
 	blueskyPosts() {
@@ -49,31 +54,6 @@ export default class extends WorkerEntrypoint<Env> {
 
 	jobPostings() {
 		return (this.#jobPostings ??= new JobPostingService(this.#orm));
-	}
-
-	// TODO: maybe can create a token service for verify & create/sign
-	async verify(token: string): Promise<JwtVerificationResult> {
-		const secret = !this.env.LOCAL ? await this.env.secret_jwt.get() : 'secret';
-		try {
-			const verifiedToken = await jwt.verify<JwtPayload>(token, secret, { throwError: true });
-			if (!verifiedToken || !verifiedToken.payload)
-				return {
-					success: false,
-					error: 'UNKNOWN',
-				};
-			return {
-				success: true,
-				payload: verifiedToken.payload,
-			};
-		} catch (e) {
-			if (TOKEN_VERIFICATION_ERRORS.includes((e as Error).message)) {
-				return {
-					success: false,
-					error: (e as Error).message,
-				};
-			}
-			throw e;
-		}
 	}
 
 	override fetch(request: Request): Response | Promise<Response> {

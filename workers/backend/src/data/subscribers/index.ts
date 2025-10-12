@@ -1,10 +1,10 @@
-import jwt from '@tsndr/cloudflare-worker-jwt';
 import { RpcTarget } from 'cloudflare:workers';
 import { eq } from 'drizzle-orm';
 import * as v from 'valibot';
 
 import { MailService } from '../../data/mails';
 import { ORM } from '../../database/orm';
+import { type JwtService } from '../../jwt';
 
 import { mergeMasks } from './channels';
 import {
@@ -22,12 +22,14 @@ import { subscribers } from './tables';
 export class SubscriberService extends RpcTarget {
 	#env: Env;
 	#orm: ORM;
+	#jwt: JwtService;
 	#mails: MailService;
 
-	constructor(orm: ORM, env: Env, mailService: MailService) {
+	constructor(orm: ORM, env: Env, jwtService: JwtService, mailService: MailService) {
 		super();
 		this.#orm = orm;
 		this.#env = env;
+		this.#jwt = jwtService;
 		this.#mails = mailService;
 	}
 
@@ -60,17 +62,11 @@ export class SubscriberService extends RpcTarget {
 				.values(parsed.output)
 				.returning({ id: subscribers.id });
 
-			// Workaround for this https://github.com/cloudflare/workers-sdk/issues/9006
-			const secret = !this.#env.LOCAL ? await this.#env.secret_jwt.get() : 'secret';
 			const date = new Date();
-			const token = await jwt.sign(
-				{
-					sub: id,
-					iat: Math.floor(date.getTime() / 1000),
-					iss: 'backend.sveltevietnam.dev',
-				},
-				secret,
-			);
+			const token = await this.#jwt.sign({
+				sub: id,
+				iat: Math.floor(date.getTime() / 1000),
+			});
 			const eVerifyUrl = new URL(
 				`/${input.language}/everify/${token}`,
 				this.#env.SITE_URL,

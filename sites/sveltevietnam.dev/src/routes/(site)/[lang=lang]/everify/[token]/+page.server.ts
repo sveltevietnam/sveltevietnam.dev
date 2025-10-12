@@ -11,7 +11,7 @@ export const load: PageServerLoad = async (event) => {
 	const { token } = event.params;
 	const { language } = event.locals;
 
-	const result = await backend.verify(token);
+	const result = await backend.jwt().verify<{ sub: string }>(token);
 	if (!result.success) {
 		error(404, { code: 'SV003', message: 'Token is not valid or has expired' });
 	}

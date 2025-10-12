@@ -1,13 +1,13 @@
 import type { SendEmailCommandInput } from '@aws-sdk/client-sesv2';
 import { createId } from '@paralleldrive/cuid2';
 import { Language } from '@sveltevietnam/i18n';
-import jwt from '@tsndr/cloudflare-worker-jwt';
 import { AwsClient } from 'aws4fetch';
 import { RpcTarget } from 'cloudflare:workers';
 import { eq } from 'drizzle-orm';
 import Mustache from 'mustache';
 
 import { ORM } from '../../database/orm';
+import { type JwtService } from '../../jwt';
 import {
 	TemplateVarMap,
 	type TemplateId,
@@ -35,11 +35,13 @@ export type SendMailInput<T extends TemplateId> = {
 export class MailService extends RpcTarget {
 	#orm: ORM;
 	#env: Env;
+	#jwt: JwtService;
 
-	constructor(orm: ORM, env: Env) {
+	constructor(orm: ORM, env: Env, jwt: JwtService) {
 		super();
 		this.#orm = orm;
 		this.#env = env;
+		this.#jwt = jwt;
 	}
 
 	async getWebMail(id: string): Promise<WebMail | null> {
@@ -127,18 +129,14 @@ export class MailService extends RpcTarget {
 			AWS_REGION: awsRegion,
 			MAIL_TOKEN_TTL: ttl,
 		} = this.#env;
-		// Workaround for this https://github.com/cloudflare/workers-sdk/issues/9006
-		const secret = !local ? await this.#env.secret_jwt.get() : 'secret';
+
 		const date = new Date();
-		const token = await jwt.sign(
-			{
-				sub: actorId ?? 'anonymous',
-				iat: Math.floor(date.getTime() / 1000),
-				iss: 'backend.sveltevietnam.dev',
-				exp: Math.floor(date.getTime() / 1000) + ttl,
-			},
-			secret,
-		);
+		const token = await this.#jwt.sign({
+			sub: actorId ?? 'anonymous',
+			iat: Math.floor(date.getTime() / 1000),
+			iss: 'backend.sveltevietnam.dev',
+			exp: Math.floor(date.getTime() / 1000) + ttl,
+		});
 		const socials = createSocials(siteUrl);
 		const html = Mustache.render(template.html, {
 			subject: template.subject,
