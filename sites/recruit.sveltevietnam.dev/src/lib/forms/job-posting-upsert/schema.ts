@@ -59,7 +59,12 @@ export function createJobPostingUpsertSchema(lang: Language) {
 				m['inputs.job_posting.expired_at.errors.max'](lang),
 			),
 		),
-		description: v.pipe(v.string(), v.nonEmpty(m['inputs.job_posting.desc.errors.nonempty'](lang))),
+		description: v.pipe(
+			v.string(),
+			v.nonEmpty(m['inputs.job_posting.desc.errors.nonempty'](lang)),
+			// this is an HTML field so max length should account for HTML tags
+			v.maxLength(8000, m['inputs.job_posting.desc.errors.max'](lang)({ length: '8000' })),
+		),
 	});
 }
 

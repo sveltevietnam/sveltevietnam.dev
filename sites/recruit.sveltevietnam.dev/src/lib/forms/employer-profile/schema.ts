@@ -7,7 +7,12 @@ function createEmployerProfileSchemaBase(lang: Language) {
 	return v.objectAsync({
 		name: v.pipe(v.string(), v.nonEmpty(m['inputs.name.errors.nonempty'](lang))),
 		website: v.optional(v.pipe(v.string(), v.url(m['inputs.url.errors.invalid'](lang)))),
-		description: v.pipe(v.string(), v.nonEmpty(m['inputs.employer.desc.errors.nonempty'](lang))),
+		description: v.pipe(
+			v.string(),
+			v.nonEmpty(m['inputs.employer.desc.errors.nonempty'](lang)),
+			// this is an HTML field so max length should account for HTML tags
+			v.maxLength(8000, m['inputs.employer.desc.errors.max'](lang)({ length: '8000' })),
+		),
 		image: v.optional(
 			v.pipe(
 				v.file(),

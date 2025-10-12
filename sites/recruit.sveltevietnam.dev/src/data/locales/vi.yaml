@@ -75,6 +75,7 @@ messages:
           hiển thị tại trang chi tiết của bài đăng tuyển.
         errors:
           nonempty: Vui lòng nhập mô tả người sử dụng lao động
+          max: Không được vượt quá {{length}} ký tự
       website:
         label: Website của người sử dụng lao động (không bắt buộc)
         placeholder: https://cong-ty-abc.com
@@ -139,6 +140,7 @@ messages:
           động và sáng tạo... Các phúc lợi cho nhân viên...
         errors:
           nonempty: Vui lòng nhập mô tả công việc
+          max: Không được vượt quá {{length}} ký tự
   pages:
     home:
       meta:

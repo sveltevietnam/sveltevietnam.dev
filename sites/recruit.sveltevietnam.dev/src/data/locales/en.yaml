@@ -75,6 +75,7 @@ messages:
           in the job posting detail page.
         errors:
           nonempty: Employer description is required
+          max: At most {{length}} characters
       website:
         label: Employer website (optional)
         placeholder: https://company-abc.com
@@ -141,6 +142,7 @@ messages:
           join our dynamic team... We provide the following benefits...
         errors:
           nonempty: Job description is required
+          max: At most {{length}} characters
   pages:
     home:
       meta:
