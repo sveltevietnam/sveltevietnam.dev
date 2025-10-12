@@ -188,6 +188,13 @@ messages:
           giúp đỡ lẫn nhau trong hành trình phát triển phần mềm và tiếp cận mã nguồn mở.
         cta: Xem thêm tại sveltevietnam.dev
         kv_alt: hai người đang lắp ráp một bóng đèn khổng lồ từ nhiều mảnh ghép
+      for_all:
+        heading: Một nền tảng cho tất cả công việc
+        desc:
+          'Bạn có thể tìm thấy ứng viên cho những công việc khác, không chỉ là lập trình viên. Thành
+          viên của cộng đồng Svelte đến từ mọi ngành nghề: kỹ thuật, thiết kế, kiểm thử, học thuật,
+          v.v.'
+        kv_alt: ba người cầm ba mảnh ghép lớn khác nhau
       open:
         heading: Nguồn mở
         desc: Ứng dụng Tuyển dụng có mã nguồn mở và hoan nghênh đóng góp hoặc phê bình từ cộng đồng.

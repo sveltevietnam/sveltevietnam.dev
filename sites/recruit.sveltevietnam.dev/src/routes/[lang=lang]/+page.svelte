@@ -8,6 +8,7 @@
 
 	import kvAbout from './_local/images/kv-about.svg';
 	import kvCatch from './_local/images/kv-catch.svg';
+	import kvForAll from './_local/images/kv-for-all.svg';
 	import kvIntro from './_local/images/kv-intro.svg';
 	import kvOpen from './_local/images/kv-open.svg';
 	import kvSimpleSecure from './_local/images/kv-simple-secure.svg';
@@ -189,6 +190,27 @@
 					height="228"
 				/>
 			</div>
+		</section>
+
+		<!-- For all -->
+		<section
+			class="max-w-pad py-section-more bg-primary-surface text-primary-on-surface space-y-10
+			tablet:space-y-14 desktop:space-y-16"
+			id="one-for-all"
+		>
+			<h2 class="c-text-heading-lg text-center">
+				<T message={m['pages.home.for_all.heading']} />
+			</h2>
+			<p class="tablet:c-text-subtitle-page max-w-readable mx-auto text-center leading-relaxed">
+				<T message={m['pages.home.for_all.desc']} />
+			</p>
+			<img
+				class="h-auto max-w-full w-196 mx-auto"
+				src={kvForAll}
+				alt={m['pages.home.for_all.kv_alt'](routing.lang).toString()}
+				width="345"
+				height="142"
+			/>
 		</section>
 
 		<!-- Open source -->
