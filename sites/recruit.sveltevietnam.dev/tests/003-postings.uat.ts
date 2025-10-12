@@ -58,7 +58,11 @@ function createJobPosting(options: {
 	return posting;
 }
 
-function updateJobPostingStatus(d1: D1, id: string, status: JobPostingStatus) {
+function updateJobPostingStatus(
+	d1: D1,
+	id: string,
+	status: JobPostingStatus | 'pending-and-expired',
+) {
 	const fields: Partial<(typeof schema.jobPostings)['$inferInsert']> = {};
 	if (status === 'active') {
 		fields.approvedAt = new Date();
@@ -70,6 +74,10 @@ function updateJobPostingStatus(d1: D1, id: string, status: JobPostingStatus) {
 		fields.deletedAt = null;
 	} else if (status === 'deleted') {
 		fields.deletedAt = new Date();
+	} else if (status === 'pending-and-expired') {
+		fields.approvedAt = null;
+		fields.deletedAt = null;
+		fields.expiredAt = new Date(Date.now() - 24 * 60 * 60 * 1000); // 1 day ago
 	} else {
 		fields.approvedAt = null;
 		fields.deletedAt = null;
@@ -466,8 +474,8 @@ testWithAuthenticatedEmployer(
 		await pomPostingEdit.goto();
 		await pomPostingDetails.waitForPage();
 
-		// Mock posting has never been approved
-		await updateJobPostingStatus(d1, posting.id, 'pending');
+		// Mock posting has never been approved, but is already expired
+		await updateJobPostingStatus(d1, posting.id, 'pending-and-expired');
 
 		// User still cannot see edit in details page or navigate to edit page
 		// if posting is expired but never approved (still pending)
