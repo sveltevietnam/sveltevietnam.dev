@@ -321,7 +321,7 @@ messages:
           pending: Chờ xét duyệt
           expired: Đã hết hạn
           active:
-            Đang hiển thị tại trang <a class="c-link" href="{{mainSiteUrl}}/vi/viec-lam">Việc
+            Đang hiển thị tại trang <a class="c-link" href="{{publicUrl}}" target="_blank">Việc
             làm</a>
       job_desc:
         heading: Mô tả công việc

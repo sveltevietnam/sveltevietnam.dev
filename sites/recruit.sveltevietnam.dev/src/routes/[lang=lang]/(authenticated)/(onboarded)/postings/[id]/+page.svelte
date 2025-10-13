@@ -96,7 +96,6 @@
 		active: 'text-success-on-surface',
 		pending: 'text-warning-on-surface',
 		expired: 'text-error-on-surface',
-		deleted: 'text-error-on-surface',
 	};
 </script>
 
@@ -138,7 +137,7 @@
 					class="tablet:flex-row flex flex-col-reverse items-start justify-between gap-4 space-y-6"
 				>
 					<dl class="grid grid-cols-[auto_1fr] gap-4">
-						{#if data.posting.status === 'expired'}
+						{#if data.posting.status !== 'deleted'}
 							<!-- status -->
 							<dt>
 								<i class={['i i-[ph--pulse] h-6 w-6', statusToColorClass[data.posting.status]]}></i>
@@ -154,7 +153,7 @@
 								{:else}
 									<T
 										message={m['pages.postings_id.general.status.active']}
-										mainSiteUrl={VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN}
+										publicUrl={url}
 									/>
 								{/if}
 							</dd>
