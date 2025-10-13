@@ -23,7 +23,7 @@
 	"devDependencies": {
 		"@atproto/api": "^0.17.2",
 		"@clack/prompts": "^0.11.0",
-		"@cloudflare/workers-types": "^4.20251008.0",
+		"@cloudflare/workers-types": "^4.20251011.0",
 		"@floating-ui/dom": "^1.7.4",
 		"@svelte-put/async-stack": "^1.5.3",
 		"@svelte-put/avatar": "^4.0.0",
@@ -35,7 +35,7 @@
 		"@svelte-put/popover": "^1.0.0",
 		"@svelte-put/preprocess-auto-slug": "^2.0.0",
 		"@svelte-put/preprocess-external-link": "^1.0.0",
-		"@svelte-put/qr": "^2.1.0",
+		"@svelte-put/qr": "^2.1.1",
 		"@svelte-put/shortcut": "^4.1.0",
 		"@svelte-put/toc": "^6.0.2",
 		"@sveltejs/adapter-cloudflare": "7.2.4",
