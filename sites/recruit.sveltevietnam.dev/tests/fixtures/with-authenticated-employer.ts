@@ -73,6 +73,9 @@ export const testWithAuthenticatedEmployer = mergeTests(
 
 		const pomPostingList = await login({ email: employer.email, lang, page, mails, d1 });
 		await use(page);
+		if (new URL(page.url()).origin !== process.env.VITE_PUBLIC_MODE) {
+			await pomPostingList.goto();
+		}
 		await pomPostingList.accountMenu.logout();
 
 		await d1.transaction(

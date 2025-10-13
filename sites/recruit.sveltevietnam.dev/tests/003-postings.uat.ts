@@ -503,7 +503,7 @@ testWithAuthenticatedEmployer(
 		const pomPostingList = new PagePostingList({ page, lang });
 		const pomPostingCreate = await pomPostingList.create();
 		await pomPostingCreate.fill(posting);
-		const pomPostinDetails = await pomPostingCreate.submit(posting.id);
+		await pomPostingCreate.submit(posting.id);
 
 		// Admin receives email notification and approve the posting
 		const pomMail = new PageMail({ page, lang, mails, d1 });
@@ -517,9 +517,6 @@ testWithAuthenticatedEmployer(
 			}),
 		);
 		expect(record?.approvedAt).toBeTruthy();
-
-		// Go back to recruit site to continue flow in after hooks
-		await pomPostinDetails.goto();
 
 		// Cleanup
 		await d1.transaction(
