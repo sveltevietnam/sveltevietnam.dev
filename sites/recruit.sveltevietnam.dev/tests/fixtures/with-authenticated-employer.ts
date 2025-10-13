@@ -56,28 +56,28 @@ export const testWithAuthenticatedEmployer = mergeTests(
 ).extend<{
 	employer: (typeof schema.employers)['$inferSelect'];
 }>({
-	employer: async ({ d1, testFaker: faker }, use) => {
-		const data = generateEmployerTestData(faker);
+	employer: async ({ testFaker: faker }, use) => {
+		await use(generateEmployerTestData(faker));
+	},
+	page: async ({ lang, page, employer, mails, d1 }, use) => {
 		// create employer in DB
-		const [employer] = await d1.transaction(
+		await d1.transaction(
 			(tx) =>
 				tx
 					.insert(schema.employers)
-					.values(data)
-					.onConflictDoUpdate({ target: schema.employers.email, set: data })
+					.values(employer)
+					.onConflictDoUpdate({ target: schema.employers.email, set: employer })
 					.returning(),
 			{ behavior: 'immediate' },
 		);
 
-		await use(employer);
+		const pomPostingList = await login({ email: employer.email, lang, page, mails, d1 });
+		await use(page);
+		await pomPostingList.accountMenu.logout();
+
 		await d1.transaction(
 			(tx) => tx.delete(schema.employers).where(eq(schema.employers.id, employer.id)),
 			{ behavior: 'immediate' },
 		);
-	},
-	page: async ({ lang, page, employer, mails, d1 }, use) => {
-		const pomPostingList = await login({ email: employer.email, lang, page, mails, d1 });
-		await use(page);
-		await pomPostingList.accountMenu.logout();
 	},
 });
