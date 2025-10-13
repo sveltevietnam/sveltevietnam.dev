@@ -13,6 +13,7 @@ import {
 
 import { testWithAuthenticatedEmployer } from './fixtures/with-authenticated-employer';
 import { schema, type D1 } from './fixtures/with-backend';
+import { PageMail } from './poms/mail';
 import { PagePostingDetails } from './poms/posting-details';
 import { PagePostingEdit } from './poms/posting-edit';
 import { PagePostingList } from './poms/posting-list';
@@ -483,5 +484,47 @@ testWithAuthenticatedEmployer(
 		await expect(pomPostingDetails.actions.edit).toBeHidden();
 		await pomPostingEdit.goto();
 		await pomPostingDetails.waitForPage();
+
+		// Cleanup
+		await d1.transaction(
+			(tx) => tx.delete(schema.jobPostings).where(eq(schema.jobPostings.id, posting.id)),
+			{ behavior: 'immediate' },
+		);
+	},
+);
+
+testWithAuthenticatedEmployer(
+	'UAT-POST-010: Admin can approve via email notification',
+	{ tag: ['@uat', '@postings'] },
+	async ({ page, lang, d1, testFaker: faker, employer, mails }) => {
+		const posting = createJobPosting({ faker, employer, status: 'pending' });
+
+		// Employer can create job posting, following steps as in UAT-POST-002
+		const pomPostingList = new PagePostingList({ page, lang });
+		const pomPostingCreate = await pomPostingList.create();
+		await pomPostingCreate.fill(posting);
+		const pomPostinDetails = await pomPostingCreate.submit(posting.id);
+
+		// Admin receives email notification and approve the posting
+		const pomMail = new PageMail({ page, lang, mails, d1 });
+		await pomMail.approveJobPostingAsAdmin();
+
+		// Verify database is synced
+		const record = await d1.transaction((tx) =>
+			tx.query.jobPostings.findFirst({
+				columns: { approvedAt: true },
+				where: (table, { eq }) => eq(table.id, posting.id),
+			}),
+		);
+		expect(record?.approvedAt).toBeTruthy();
+
+		// Go back to recruit site to continue flow in after hooks
+		await pomPostinDetails.goto();
+
+		// Cleanup
+		await d1.transaction(
+			(tx) => tx.delete(schema.jobPostings).where(eq(schema.jobPostings.id, posting.id)),
+			{ behavior: 'immediate' },
+		);
 	},
 );

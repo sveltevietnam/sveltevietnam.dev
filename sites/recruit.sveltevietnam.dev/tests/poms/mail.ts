@@ -1,5 +1,6 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 import type { Language } from '@sveltevietnam/i18n';
+import { EMAILS } from '@sveltevietnam/kit/constants';
 
 import type { WithBackendWorkerArgs, schema } from '../fixtures/with-backend';
 
@@ -104,5 +105,22 @@ export class PageMail {
 		});
 		await pomEmailChangeVerification.waitForPage();
 		return pomEmailChangeVerification;
+	}
+
+	public async approveJobPostingAsAdmin() {
+		// 1. Admin receives and open job posting approval email
+		await this.page.waitForTimeout(this.timeoutForBackendQueue);
+		const html = await this.mails.getLatest(
+			EMAILS.JOBS,
+			'recruit-admin-job-posting-pending-approval',
+		);
+		await this.open(html);
+
+		// 2. Admin clicks approve link in email
+		const link = this.page.getByRole('link', {
+			name: 'Approve this posting',
+		});
+		await this.click(link);
+		await this.page.waitForLoadState('networkidle');
 	}
 }
