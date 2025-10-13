@@ -173,8 +173,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0(svelte@5.39.11)
       '@svelte-put/qr':
-        specifier: ^2.1.0
-        version: 2.1.0(svelte@5.39.11)
+        specifier: ^2.1.1
+        version: 2.1.1(svelte@5.39.11)
       '@sveltevietnam/i18n':
         specifier: workspace:*
         version: link:../i18n
@@ -2607,6 +2607,11 @@ packages:
 
   '@svelte-put/qr@2.1.0':
     resolution: {integrity: sha512-7HzQjoNZI9k6J4R6tnMi0ZGtRQKIFmZqzeo2GtkKZkumtPYByuqjGcB/ApFkxfg+J5mARKezWzKiq9EDJ6htRg==}
+    peerDependencies:
+      svelte: ^5.1.0
+
+  '@svelte-put/qr@2.1.1':
+    resolution: {integrity: sha512-upkHuCn1X83oaqU63zdwY6t6thjtSydtxE2y74GNlrKre5LogGVmZ4/qaPouWmkP5JcH2frbKZsX0YCr3xUFHw==}
     peerDependencies:
       svelte: ^5.1.0
 
@@ -8952,6 +8957,11 @@ snapshots:
       zimmerframe: 1.1.4
 
   '@svelte-put/qr@2.1.0(svelte@5.39.11)':
+    dependencies:
+      headless-qr: 1.0.3
+      svelte: 5.39.11
+
+  '@svelte-put/qr@2.1.1(svelte@5.39.11)':
     dependencies:
       headless-qr: 1.0.3
       svelte: 5.39.11
