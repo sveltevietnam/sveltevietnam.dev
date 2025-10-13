@@ -53,7 +53,12 @@ export default class extends WorkerEntrypoint<Env> {
 	}
 
 	jobPostings() {
-		return (this.#jobPostings ??= new JobPostingService(this.#orm));
+		return (this.#jobPostings ??= new JobPostingService(
+			this.#orm,
+			this.env,
+			this.ctx,
+			this.mails(),
+		));
 	}
 
 	override fetch(request: Request): Response | Promise<Response> {

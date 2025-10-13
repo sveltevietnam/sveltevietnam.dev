@@ -134,7 +134,6 @@ export class MailService extends RpcTarget {
 		const token = await this.#jwt.sign({
 			sub: actorId ?? 'anonymous',
 			iat: Math.floor(date.getTime() / 1000),
-			iss: 'backend.sveltevietnam.dev',
 			exp: Math.floor(date.getTime() / 1000) + ttl,
 		});
 		const socials = createSocials(siteUrl);

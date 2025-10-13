@@ -1,9 +1,15 @@
+import { Language } from '@sveltevietnam/i18n';
+import { EMAILS } from '@sveltevietnam/kit/constants';
+import { formatTimeDiff } from '@sveltevietnam/kit/utilities/datetime';
 import { RpcTarget } from 'cloudflare:workers';
 import { eq, sql } from 'drizzle-orm';
+import { ExecutionContext } from 'hono';
 import * as v from 'valibot';
 
 import { ORM } from '../../database/orm';
+import { MailService } from '../mails';
 
+import { JOB_POSTING_TYPE_I18N } from './enums';
 import {
 	type JobPostingInsertInput,
 	type JobPostingInsertResult,
@@ -20,14 +26,18 @@ import {
 } from './schema';
 import { jobPostings, STATUS_SQL } from './tables';
 
-// FIXME: exclude soft-deleted records in all queries
-
 export class JobPostingService extends RpcTarget {
 	#orm: ORM;
+	#env: Env;
+	#ctx: ExecutionContext;
+	#mails: MailService;
 
-	constructor(orm: ORM) {
+	constructor(orm: ORM, env: Env, ctx: ExecutionContext, mails: MailService) {
 		super();
 		this.#orm = orm;
+		this.#env = env;
+		this.#ctx = ctx;
+		this.#mails = mails;
 	}
 
 	async getAllActive(): Promise<JobPostingSelectAllActiveResult[]> {
@@ -64,8 +74,12 @@ export class JobPostingService extends RpcTarget {
 		return jobPostingsList.map((jp) => v.parse(JobPostingSelectSchema, jp));
 	}
 
-	async insert(input: JobPostingInsertInput): Promise<JobPostingInsertResult> {
-		const parsed = v.safeParse(JobPostingInsertSchema, input);
+	async create(input: {
+		posting: JobPostingInsertInput;
+		lang: Language;
+		placeholderPath: string;
+	}): Promise<JobPostingInsertResult> {
+		const parsed = v.safeParse(JobPostingInsertSchema, input.posting);
 		if (!parsed.success) {
 			return {
 				success: false,
@@ -76,6 +90,60 @@ export class JobPostingService extends RpcTarget {
 			.insert(jobPostings)
 			.values(parsed.output)
 			.returning({ id: jobPostings.id });
+
+		// queue emails to employer & admin
+		this.#ctx.waitUntil(
+			(async () => {
+				const employer = await this.#orm.query.employers.findFirst({
+					columns: {
+						name: true,
+						email: true,
+						website: true,
+						image: true,
+						description: true,
+					},
+					where: (table, { eq }) => eq(table.id, parsed.output.employerId),
+				});
+				if (!employer) return;
+
+				const { RECRUIT_URL } = this.#env;
+
+				return Promise.all([
+					this.#mails.queue('recruit-employer-create-job-posting', {
+						actorId: parsed.output.employerId,
+						lang: input.lang,
+						vars: {
+							name: employer.name,
+							jobTitle: parsed.output.title,
+							jobUrl: RECRUIT_URL + input.placeholderPath.replace('placeholder', id),
+						},
+					}),
+					this.#mails.queue('recruit-admin-job-posting-pending-approval', {
+						email: EMAILS.JOBS,
+						lang: input.lang,
+						vars: {
+							posting: {
+								title: parsed.output.title,
+								type: JOB_POSTING_TYPE_I18N[parsed.output.type][input.lang],
+								location: parsed.output.location,
+								salary: parsed.output.salary,
+								expiration: `${parsed.output.expiredAt.toLocaleString('en', { timeZone: 'Asia/Ho_Chi_Minh' })} (${formatTimeDiff(parsed.output.expiredAt, new Date())})`,
+								application: parsed.output.applicationLink,
+								description: parsed.output.description,
+							},
+							employer: {
+								name: employer.name,
+								email: employer.email,
+								website: employer.website,
+								image: employer.image ? RECRUIT_URL + employer.image : null,
+								description: employer.description,
+							},
+						},
+					}),
+				]);
+			})(),
+		);
+
 		return { success: true, id };
 	}
 
@@ -136,6 +204,19 @@ export class JobPostingService extends RpcTarget {
 			.where(eq(jobPostings.id, id))
 			.returning({ id: jobPostings.id });
 		if (!result.length) return false;
+		return true;
+	}
+
+	async approveById(id: string): Promise<boolean> {
+		const result = await this.#orm
+			.update(jobPostings)
+			.set({ approvedAt: new Date() })
+			.where(eq(jobPostings.id, id))
+			.returning({ id: jobPostings.id });
+		if (!result.length) return false;
+
+		// TODO: queue email to employer
+
 		return true;
 	}
 }
