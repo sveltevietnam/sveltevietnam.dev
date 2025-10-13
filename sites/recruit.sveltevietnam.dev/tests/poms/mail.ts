@@ -17,7 +17,7 @@ export class PageMail {
 	private readonly mails: WithBackendWorkerArgs['mails'];
 	private readonly d1: WithBackendWorkerArgs['d1'];
 
-	private readonly timeoutForBackendQueue = 100;
+	private readonly timeoutForBackendQueue = 1000;
 
 	constructor(init: PageMailInit) {
 		this.lang = init.lang;

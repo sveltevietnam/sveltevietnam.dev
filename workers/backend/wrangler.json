@@ -64,7 +64,7 @@
 					{
 						"queue": "sveltevietnam",
 						"max_batch_size": 1,
-						"max_batch_timeout": 1,
+						"max_batch_timeout": 0,
 						"retry_delay": 0,
 						"max_retries": 0,
 						"dead_letter_queue": "sveltevietnam-dlq"
@@ -132,7 +132,7 @@
 					{
 						"queue": "sveltevietnam-test",
 						"max_batch_size": 1,
-						"max_batch_timeout": 1,
+						"max_batch_timeout": 0,
 						"retry_delay": 0,
 						"max_retries": 0,
 						"dead_letter_queue": "sveltevietnam-dlq-test"
