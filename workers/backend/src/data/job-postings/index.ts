@@ -218,12 +218,19 @@ export class JobPostingService extends RpcTarget {
 	}
 
 	async approveById(id: string): Promise<boolean> {
-		const result = await this.#orm
-			.update(jobPostings)
-			.set({ approvedAt: new Date() })
-			.where(eq(jobPostings.id, id))
-			.returning({ id: jobPostings.id });
-		if (!result.length) return false;
+		const posting = await this.#orm.query.jobPostings.findFirst({
+			where: (table, { eq }) => eq(table.id, id),
+			columns: { approvedAt: true },
+		});
+		if (!posting) return false;
+		if (!posting.approvedAt) {
+			const result = await this.#orm
+				.update(jobPostings)
+				.set({ approvedAt: new Date() })
+				.where(eq(jobPostings.id, id))
+				.returning({ id: jobPostings.id });
+			if (!result.length) return false;
+		}
 
 		// TODO: queue email to employer
 
