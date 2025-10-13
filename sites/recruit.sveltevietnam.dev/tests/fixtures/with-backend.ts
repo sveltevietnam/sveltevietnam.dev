@@ -42,13 +42,13 @@ export interface WithBackendWorkerArgs {
 export async function setup() {
 	const { d1, cwd } = getBackendConfig();
 	// ensure a clean database
-	deleteLocalD1(d1.id, cwd);
+	await deleteLocalD1(d1.id, cwd);
 	await pushSchema(d1.id, d1.schema, cwd);
 }
 
 export async function teardown() {
 	const { d1, cwd } = getBackendConfig();
-	deleteLocalD1(d1.id, cwd);
+	await deleteLocalD1(d1.id, cwd);
 }
 
 export const testWithBackend = test.extend<

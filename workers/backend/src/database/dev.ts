@@ -185,11 +185,10 @@ export async function pushSchema<TSchema extends Record<string, unknown>>(
  * @param {string} [cwd]
  * @return {void}
  */
-export function deleteLocalD1(databaseId: string, cwd?: string): void {
+export async function deleteLocalD1(databaseId: string, cwd?: string): Promise<void> {
 	const { path } = getLocalD1Path(databaseId, { vacuum: false, cwd });
-	if (fs.existsSync(path)) {
-		fs.rmSync(path);
-	}
+	const files = [path, path + '-shm', path + '-wal'];
+	await Promise.all(files.map((file) => fs.promises.rm(file, { force: true })));
 }
 
 export * from './utils';
