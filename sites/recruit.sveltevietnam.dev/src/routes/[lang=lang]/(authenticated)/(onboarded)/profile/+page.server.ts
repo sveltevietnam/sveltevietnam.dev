@@ -18,6 +18,7 @@ import type { Actions, PageServerLoad } from './$types';
 export const load: PageServerLoad = async ({ params, locals }) => {
 	const user = locals.user!;
 	const { lang } = params;
+	const description = await getBackend().employers().getDescriptionById(user.id);
 	return {
 		updateEmailForm: await superValidate(
 			{
@@ -29,7 +30,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 			{
 				name: user.name,
 				website: user.website ?? undefined,
-				description: user.description,
+				description: description ?? undefined,
 				agreed: true,
 			},
 			valibot(createEmployerProfileSchema(lang, false)),

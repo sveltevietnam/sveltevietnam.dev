@@ -57,4 +57,12 @@ export class EmployerService extends RpcTarget {
 		});
 		return employer ? employer.emailVerified : null;
 	}
+
+	async getDescriptionById(id: string): Promise<string | null> {
+		const employer = await this.#orm.query.employers.findFirst({
+			columns: { description: true },
+			where: (table, { eq }) => eq(table.id, id),
+		});
+		return employer ? employer.description : null;
+	}
 }

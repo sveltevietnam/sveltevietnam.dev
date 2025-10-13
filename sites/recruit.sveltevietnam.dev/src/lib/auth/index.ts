@@ -45,11 +45,13 @@ export function createEmployerAuth() {
 					type: 'string',
 					required: true,
 					defaultValue: '',
+					returned: false,
 				},
 				agreed: {
 					type: 'boolean',
 					required: true,
 					defaultValue: false,
+					returned: false,
 				},
 				onboardedAt: {
 					type: 'date',

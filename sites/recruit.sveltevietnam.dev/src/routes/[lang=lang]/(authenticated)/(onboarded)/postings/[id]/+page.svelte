@@ -27,7 +27,9 @@
 		notifications: { toaster },
 	} = Contexts.get();
 
-	let url = $derived(`${VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN }/${routing.lang}/jobs/${data.posting.id}`);
+	let url = $derived(
+		`${VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN}/${routing.lang}/jobs/${data.posting.id}`,
+	);
 	const typeLabel = $derived(JOB_POSTING_TYPE_I18N[data.posting.type][routing.lang]);
 	const applicationLink = $derived(
 		data.posting.applicationMethod === 'email'
@@ -151,10 +153,7 @@
 								{:else if data.posting.status === 'pending'}
 									<T message={m['pages.postings_id.general.status.pending']} />
 								{:else}
-									<T
-										message={m['pages.postings_id.general.status.active']}
-										publicUrl={url}
-									/>
+									<T message={m['pages.postings_id.general.status.active']} publicUrl={url} />
 								{/if}
 							</dd>
 						{/if}
@@ -312,20 +311,20 @@
 				</section>
 
 				<!-- employer description -->
-				{#if data.user && data.user.description}
-					<section class="space-y-6">
-						<h2 class="c-text-heading border-b">
-							<T
-								message={m['pages.postings_id.employer_desc.heading']}
-								employerName={data.user.name}
-							/>
-						</h2>
-						<div class="prose max-w-full" data-testid="employer-description">
-							<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-							{@html sanitizeHtml(data.user.description, { allowedClasses: { p: [/callout/] } })}
-						</div>
-					</section>
-				{/if}
+				<section class="space-y-6">
+					<h2 class="c-text-heading border-b">
+						<T
+							message={m['pages.postings_id.employer_desc.heading']}
+							employerName={data.posting.employer.name}
+						/>
+					</h2>
+					<div class="prose max-w-full" data-testid="employer-description">
+						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+						{@html sanitizeHtml(data.posting.employer.description, {
+							allowedClasses: { p: [/callout/] },
+						})}
+					</div>
+				</section>
 			</div>
 		</div>
 
