@@ -7,6 +7,7 @@ import { ExecutionContext } from 'hono';
 import * as v from 'valibot';
 
 import { ORM } from '../../database/orm';
+import { JwtService } from '../../jwt';
 import { MailService } from '../mails';
 
 import { JOB_POSTING_TYPE_I18N } from './enums';
@@ -30,13 +31,15 @@ export class JobPostingService extends RpcTarget {
 	#orm: ORM;
 	#env: Env;
 	#ctx: ExecutionContext;
+	#jwt: JwtService;
 	#mails: MailService;
 
-	constructor(orm: ORM, env: Env, ctx: ExecutionContext, mails: MailService) {
+	constructor(orm: ORM, env: Env, ctx: ExecutionContext, jwt: JwtService, mails: MailService) {
 		super();
 		this.#orm = orm;
 		this.#env = env;
 		this.#ctx = ctx;
+		this.#jwt = jwt;
 		this.#mails = mails;
 	}
 
@@ -106,7 +109,13 @@ export class JobPostingService extends RpcTarget {
 				});
 				if (!employer) return;
 
-				const { RECRUIT_URL } = this.#env;
+				const { RECRUIT_URL, ORIGIN } = this.#env;
+				const token = await this.#jwt.sign({
+					sub: 'admin',
+					posting: id,
+					iat: Math.floor(Date.now() / 1000),
+					exp: Math.floor(parsed.output.expiredAt.getTime() / 1000),
+				});
 
 				return Promise.all([
 					this.#mails.queue('recruit-employer-create-job-posting', {
@@ -138,6 +147,7 @@ export class JobPostingService extends RpcTarget {
 								image: employer.image ? RECRUIT_URL + employer.image : null,
 								description: employer.description,
 							},
+							approveEndpoint: `${ORIGIN}/qap/${token}`,
 						},
 					}),
 				]);

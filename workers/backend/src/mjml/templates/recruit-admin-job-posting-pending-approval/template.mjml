@@ -128,6 +128,15 @@
 			</mj-column>
 		</mj-section>
 
+		<mj-section padding-top="0">
+			<mj-column>
+				<mj-text>
+					If all is good, and only if so, please click the button below to approve this job posting.
+				</mj-text>
+				<mj-button href="{{approveEndpoint}}">Approve this posting</mj-button>
+			</mj-column>
+		</mj-section>
+
 		<mj-section>
 			<mj-column>
 				<mj-text>Thank you,</mj-text>

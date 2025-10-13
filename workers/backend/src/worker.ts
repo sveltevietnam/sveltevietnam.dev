@@ -57,6 +57,7 @@ export default class extends WorkerEntrypoint<Env> {
 			this.#orm,
 			this.env,
 			this.ctx,
+			this.jwt(),
 			this.mails(),
 		));
 	}
@@ -65,8 +66,20 @@ export default class extends WorkerEntrypoint<Env> {
 		return (
 			new Hono<{ Bindings: Env }>()
 				.get('/health', (c) => c.text('ok'))
-				// TODO: implement quick approval endpoint for admin
-				// used in email sent to admin on job posting creation
+				// quick approve job posting, only meant for internal use
+				.get('/qap/:token', async (c) => {
+					const { token } = c.req.param();
+					const result = await this.jwt().verify<{ posting?: string; sub?: 'admin' }>(token);
+					if (!result.success) {
+						return c.text(result.error, 400);
+					} else if (result.payload.sub !== 'admin') {
+						return c.text('Unauthorized', 401);
+					} else if (!result.payload.posting) {
+						return c.text('No posting specified', 404);
+					}
+					await this.jobPostings().approveById(result.payload.posting);
+					return c.text('Approved');
+				})
 				.fetch(request, this.env, this.ctx)
 		);
 	}

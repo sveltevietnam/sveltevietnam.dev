@@ -28,4 +28,5 @@ export interface RecruitAdminJobPostingPendingApprovalVars {
 		image?: string | null;
 		description: string;
 	};
+	approveEndpoint: string;
 }
