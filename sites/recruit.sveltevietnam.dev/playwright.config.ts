@@ -23,22 +23,24 @@ export default defineConfig({
 			pathTemplate: '{testFileDir}/__snapshots__/{testFileName}/{testName}/aria-{arg}{ext}',
 		},
 	},
-	webServer: [
-		{
-			name: 'Recruit',
-			command: 'pnpm build:test && pnpm dev:wrangler:test',
-			cwd: path.resolve(__dirname),
-			port: 5007,
-			reuseExistingServer: !process.env.CI,
-		},
-		{
-			name: 'Backend',
-			command: 'pnpm build:test && pnpm dev:wrangler',
-			cwd: path.resolve(__dirname, '../../workers/backend'),
-			port: 5006,
-			reuseExistingServer: !process.env.CI,
-		},
-	],
+	...(process.env.AUTOSERVER && {
+		webServer: [
+			{
+				name: 'Recruit',
+				command: 'pnpm build:test && pnpm dev:wrangler:test',
+				cwd: path.resolve(__dirname),
+				port: 5007,
+				reuseExistingServer: !process.env.CI,
+			},
+			{
+				name: 'Backend',
+				command: 'pnpm build:test && pnpm dev:wrangler',
+				cwd: path.resolve(__dirname, '../../workers/backend'),
+				port: 5006,
+				reuseExistingServer: !process.env.CI,
+			},
+		],
+	}),
 	projects: [
 		{
 			name: 'db-setup',

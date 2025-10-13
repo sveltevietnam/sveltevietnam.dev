@@ -37,7 +37,7 @@ cd sites/recruit.sveltevietnam.dev
 2. Run UATs using the following command.
 
 ```bash
-pnpm test:uat --retries 3
+pnpm test:uat:autoserver --retries 3
 ```
 
 > [!NOTE]
@@ -49,13 +49,37 @@ pnpm test:uat --retries 3
 Tests are implemented using [Playwright], additional setup per OS may be required, try running the
 tests and see if there is any issue. Refer to Playwright documentation for troubleshooting.
 
-When working on tests, omit the `--retries` flag to see immediate results.
+- You may omit the `--retries` flag to see immediate results,
+- It may also be helpful to start [UI Mode](https://playwright.dev/docs/test-ui-mode) using the `--ui` flag.
 
-It may also be helpful to start [UI Mode](https://playwright.dev/docs/test-ui-mode):
+#### Starting Server Manually
 
-```bash
-pnpm test:uat --ui
-```
+When writing/debugging tests, start dev servers manually in separate terminal tabs/windows.
+
+1. Build & start backend
+
+   ```bash
+   cd workers/backend
+   pnpm build:test
+   pnpm dev:wrangler
+   ```
+
+2. Build & start recruit app:
+
+   ```bash
+   cd sites/recruit.sveltevietnam.dev
+   pnpm build:test
+   pnpm dev:wrangler:test
+   ```
+
+3. Run UAT / start UI mode:
+
+   ```bash
+   cd sites/recruit.sveltevietnam.dev
+   pnpm test:uat
+   # or
+   pnpm test:uat --ui
+   ```
 
 [authentication.uat]: ./tests/001-authentication.uat.ts
 [account.uat]: ./tests/002-account.uat.ts
