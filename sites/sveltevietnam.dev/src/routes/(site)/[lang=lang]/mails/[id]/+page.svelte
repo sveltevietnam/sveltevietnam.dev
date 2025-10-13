@@ -37,7 +37,7 @@
 	class="max-w-pad pt-intro-pad-top bg-gradient-primary-intro tablet:gap-20 widescreen:gap-32 pb-section-more flex flex-wrap justify-between gap-10"
 	data-pagefind-ignore
 >
-	<div class="space-y-10 min-w-80 w-120">
+	<div class="w-140 min-w-80 space-y-10">
 		<h1 class="sr-only">{data.mail.subject}</h1>
 		<!-- mail info -->
 		<section class="space-y-6">
@@ -91,7 +91,7 @@
 	</div>
 
 	<!-- mail as html -->
-	<section class="max-w-readable-relaxed min-w-80 flex-1 space-y-6">
+	<section class="max-w-readable-relaxed min-w-120 flex-1 space-y-6">
 		<h2 class="sr-only">Mail</h2>
 		<p class="c-callout c-callout--warning">
 			<T
@@ -99,7 +99,7 @@
 				datetime={formatFullDateAndTime(routing.lang, data.expiresAt)}
 			/>
 		</p>
-		<div class="border-onehalf tablet:p-4 h-fit p-2 tablet:max-h-140 overflow-auto">
+		<div class="border-onehalf tablet:p-4 tablet:max-h-[72vh] h-fit overflow-auto p-2">
 			<iframe
 				class="h-140 max-h-none w-full"
 				srcdoc={data.srcdoc}
