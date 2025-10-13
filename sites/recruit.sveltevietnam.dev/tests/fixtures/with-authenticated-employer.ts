@@ -59,7 +59,7 @@ export const testWithAuthenticatedEmployer = mergeTests(
 	employer: async ({ testFaker: faker }, use) => {
 		await use(generateEmployerTestData(faker));
 	},
-	page: async ({ lang, page, employer, mails, d1 }, use) => {
+	page: async ({ browser, lang, employer, mails, d1 }, use) => {
 		// create employer in DB
 		await d1.transaction(
 			(tx) =>
@@ -71,13 +71,17 @@ export const testWithAuthenticatedEmployer = mergeTests(
 			{ behavior: 'immediate' },
 		);
 
+		const context = await browser.newContext();
+		const page = await context.newPage();
 		const pomPostingList = await login({ email: employer.email, lang, page, mails, d1 });
+
 		await use(page);
+
 		if (new URL(page.url()).origin !== process.env.VITE_PUBLIC_MODE) {
 			await pomPostingList.goto();
 		}
 		await pomPostingList.accountMenu.logout();
-
+		await context.close();
 		await d1.transaction(
 			(tx) => tx.delete(schema.employers).where(eq(schema.employers.id, employer.id)),
 			{ behavior: 'immediate' },
