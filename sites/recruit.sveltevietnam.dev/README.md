@@ -4,6 +4,18 @@ The Svelte Vietnam Recruit Platform
 
 ## Development
 
+### Prerequisites
+
+This document succeeds [Development Setup](../../docs/DEVELOPMENT.md); make sure you have a look
+there for more general instructions. In practice, all you should need to do is to run at project
+root:
+
+```bash
+pnpm boot
+```
+
+### Starting Dev Servers
+
 Development of this application depends on both the `sveltevietnam.dev` site and the `backend` worker.
 Run all three projects in separate terminal tabs/windows.
 
