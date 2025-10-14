@@ -1,6 +1,6 @@
 {
 	"name": "recruit.sveltevietnam.dev",
-	"version": "V1",
+	"version": "1.0.0-next",
 	"description": "Management app for job postings at sveltevietnam.dev",
 	"private": true,
 	"type": "module",

@@ -6,8 +6,6 @@ import externalLink from '@svelte-put/preprocess-external-link';
 import adapter from '@sveltejs/adapter-cloudflare';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
-import pkg from './package.json' with { type: 'json' };
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const commitHash = child_process.execSync('git rev-parse --short HEAD').toString().trim();
 
@@ -44,7 +42,7 @@ export default {
 			},
 		}),
 		version: {
-			name: `${pkg.version} (#${commitHash}@${Date.now()})`,
+			name: `V1 (#${commitHash}@${Date.now()})`,
 		},
 		alias: {
 			$routes: path.resolve(__dirname, 'src/routes'),

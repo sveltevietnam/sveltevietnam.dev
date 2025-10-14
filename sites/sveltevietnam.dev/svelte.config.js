@@ -9,8 +9,6 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { markdown } from '@sveltevietnam/markdown';
 import { normalizeSync } from 'normalize-diacritics';
 
-import pkg from './package.json' with { type: 'json' };
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const commitHash = child_process.execSync('git rev-parse --short HEAD').toString().trim();
 
@@ -73,7 +71,7 @@ export default {
 			},
 		}),
 		version: {
-			name: `${pkg.version} (#${commitHash}@${Date.now()})`,
+			name: `V1 (#${commitHash}@${Date.now()})`,
 			// pollInterval: 10_000, // every 10 seconds
 		},
 		alias: {

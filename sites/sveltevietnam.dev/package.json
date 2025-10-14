@@ -1,6 +1,6 @@
 {
 	"name": "sveltevietnam.dev",
-	"version": "V1",
+	"version": "1.0.0-next",
 	"description": "Svelte Vietnam official website",
 	"private": true,
 	"type": "module",
