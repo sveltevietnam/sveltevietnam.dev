@@ -2,7 +2,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { expect, mergeTests } from '@playwright/test';
-import { count, eq } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 
 import * as m from '../src/data/locales/generated/messages';
 
@@ -44,7 +44,10 @@ test.describe(() => {
 				await use(email);
 
 				await d1.transaction(
-					(tx) => tx.delete(schema.employers).where(eq(schema.employers.email, email)),
+					async (tx) => {
+						await tx.delete(schema.employers).where(eq(schema.employers.email, email));
+						await tx.delete(schema.mails).where(eq(schema.mails.to, email));
+					},
 					{ behavior: 'immediate' },
 				);
 			},
@@ -197,8 +200,9 @@ test(
 	{
 		tag: ['@uat', '@authentication'],
 	},
-	async ({ page, lang, d1, workerFaker }) => {
+	async ({ page, lang, workerFaker, mails }) => {
 		const email = workerFaker.internet.email().toLowerCase();
+		const numMailsBefore = await mails.getEmailCount(email, 'recruit-employer-onboard');
 
 		// User goes to authentication page, fill form, and submit
 		const pomAuthenticate = new PageAuthenticate({ page, lang });
@@ -206,14 +210,21 @@ test(
 		await pomAuthenticate.fill(email);
 		await pomAuthenticate.continue('signup');
 
+		// verify that an email has been sent
+		await page.waitForTimeout(1000);
+		let numMailsAfter = await mails.getEmailCount(email, 'recruit-employer-onboard');
+		expect(numMailsAfter).toBe(numMailsBefore + 1);
+
 		// User waits and hits resend
 		await pomAuthenticate.resend('signup');
 
-		// verify that two emails are sent
-		const [{ numMails }] = await d1.transaction((tx) =>
-			tx.select({ numMails: count() }).from(schema.mails).where(eq(schema.mails.to, email)),
-		);
-		expect(numMails).toBe(2);
+		// verify that another email has been sent
+		await page.waitForTimeout(1000);
+		numMailsAfter = await mails.getEmailCount(email, 'recruit-employer-onboard');
+		expect(numMailsAfter).toBe(numMailsBefore + 2);
+
+		// Clean up
+		await mails.clean({ email, templateId: 'recruit-employer-onboard' });
 	},
 );
 

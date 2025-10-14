@@ -85,7 +85,7 @@ export class PageMail {
 		const employer = await this.getEmployer(email);
 
 		// 1. User receives and open email
-		await this.page.waitForTimeout(this.timeoutForBackendQueue);
+		await this.page.waitForTimeout(this.timeoutForBackendQueue / 2);
 		const html = await this.mails.getLatest(email, 'recruit-employer-change-email', employer.id);
 		await this.open(html);
 

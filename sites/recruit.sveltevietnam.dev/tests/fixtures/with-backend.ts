@@ -12,6 +12,7 @@ import {
 import * as schema from '@sveltevietnam/backend/db/schema';
 import { type Id as MailTemplateId } from '@sveltevietnam/backend/mails';
 import backendWranglerConfig from '@sveltevietnam/backend/wrangler.json' with { type: 'json' };
+import { and, count, eq, type SQL } from 'drizzle-orm';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -32,6 +33,9 @@ export function getBackendConfig() {
 export type D1 = Awaited<ReturnType<typeof getLocalORM<typeof schema>>>;
 export interface Mails {
 	getLatest(email: string, templateId: MailTemplateId, actorId?: string): Promise<string>;
+	getEmailCount(email: string, templateId: MailTemplateId): Promise<number>;
+	/** exclude templateId param to clean everything */
+	clean(options?: { email?: string; templateId?: MailTemplateId }): Promise<void>;
 }
 
 export interface WithBackendWorkerArgs {
@@ -93,6 +97,24 @@ export const testWithBackend = test.extend<
 					expect(html).toBeTruthy();
 
 					return html;
+				},
+				getEmailCount: async (email, templateId) => {
+					const [{ numMails }] = await d1.transaction((tx) =>
+						tx
+							.select({ numMails: count() })
+							.from(schema.mails)
+							.where(and(eq(schema.mails.to, email), eq(schema.mails.templateId, templateId))),
+					);
+					return numMails;
+				},
+				clean: async (options = {}) => {
+					const { email, templateId } = options;
+					const where: SQL[] = [];
+					if (email) where.push(eq(schema.mails.to, email));
+					if (templateId) where.push(eq(schema.mails.templateId, templateId));
+					await d1.transaction((tx) =>
+						tx.delete(schema.mails).where(where.length ? and(...where) : undefined),
+					);
 				},
 			});
 		},
