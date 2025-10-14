@@ -80,6 +80,14 @@ export function createEmployerAuth() {
 			},
 		},
 		session: {
+			// cache currently only applies from `getSession` in hooks.server and
+			// not during signup/signin due to this issue: https://github.com/better-auth/better-auth/issues/5293
+			// specifically, the `description` field is not filtered out, so the session data is too large
+			// to be cached. Keep an eye on that issue and upgrade better-auth once it's fixed.
+			cookieCache: {
+				enabled: true,
+				maxAge: 5 * 60, // 5 minutes
+			},
 			fields: {
 				userId: 'employerId',
 				ipAddress: 'ip',
