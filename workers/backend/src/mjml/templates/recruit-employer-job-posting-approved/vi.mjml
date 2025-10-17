@@ -1,0 +1,33 @@
+<mjml>
+	<mj-head>
+		<mj-title>{{subject}}</mj-title>
+		<mj-include path="../../includes/common-head.mjml" />
+	</mj-head>
+	<mj-body background-color="#ffffff">
+		<mj-include path="../../includes/header.mjml" />
+
+		<mj-section padding-top="0">
+			<mj-column>
+				<mj-text padding-top="0">Chào {{name}},</mj-text>
+				<mj-text>
+					Đăng tuyển "{{jobTitle}}" của bạn đã được phê duyệt và hiện đang được liệt kê tại
+					<a href="{{jobPublicUrl}}">trang Việc làm</a>. Chúc bạn sớm tìm được ứng viên phù hợp!
+				</mj-text>
+				<mj-text>
+					Nếu doanh nghiệp, tổ chức của bạn sử dụng Svelte và phần mềm mã nguồn mở, hãy cân nhắc
+					tài trợ để duy trì và phát triển cộng đồng.
+				</mj-text>
+				<mj-button href="{{socials.openCollective.href}}">Tài trợ Svelte Việt Nam</mj-button>
+				<mj-text>
+					Cảm ơn bạn đã lựa chọn ứng dụng Tuyển dụng từ cộng đồng Svelte Việt Nam. Mọi góp ý về
+					quy trình đăng tuyển hoặc cải thiện về ứng dụng, vui lòng gởi về địa chỉ
+					<a href="mailto:jobs@sveltevietnam.dev">jobs@sveltevietnam.dev</a>.
+				</mj-text>
+				<mj-text>Hẹn gặp lại,</mj-text>
+				<mj-text>Svelte Việt Nam</mj-text>
+			</mj-column>
+		</mj-section>
+
+		<mj-include path="../../includes/recruit-footer/vi.mjml" />
+	</mj-body>
+</mjml>

@@ -4,6 +4,7 @@ export const ids = [
 	'recruit-employer-login',
 	'recruit-employer-change-email',
 	'recruit-employer-create-job-posting',
+	'recruit-employer-job-posting-approved',
 	'recruit-admin-job-posting-pending-approval',
 ] as const;
 

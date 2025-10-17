@@ -1,0 +1,34 @@
+<mjml>
+	<mj-head>
+		<mj-title>{{subject}}</mj-title>
+		<mj-include path="../../includes/common-head.mjml" />
+	</mj-head>
+	<mj-body background-color="#ffffff">
+		<mj-include path="../../includes/header.mjml" />
+
+		<mj-section padding-top="0">
+			<mj-column>
+				<mj-text padding-top="0">Hello {{name}},</mj-text>
+				<mj-text>
+					Your job posting "{{jobTitle}}" has been approved and is now listed
+					at the <a href="{{jobPublicUrl}}">Svelte Vietnam Jobs page</a>.
+					We hope you find the perfect candidate soon!
+				</mj-text>
+				<mj-text>
+					If your team loves Svelte and open source software, consider supporting community growth
+					and sustaining initiative like this one by sponsoring us.
+				</mj-text>
+				<mj-button href="{{socials.openCollective.href}}">Sponsor Svelte Vietnam</mj-button>
+				<mj-text>
+					Thank you for choosing the Recruit application from the Svelte Vietnam community.
+					If you have any feedback regarding the job posting process or suggestions for
+					improvements, please don't hesitate to reach out to us.
+				</mj-text>
+				<mj-text>Kindly,</mj-text>
+				<mj-text>Svelte Vietnam</mj-text>
+			</mj-column>
+		</mj-section>
+
+		<mj-include path="../../includes/recruit-footer/en.mjml" />
+	</mj-body>
+</mjml>

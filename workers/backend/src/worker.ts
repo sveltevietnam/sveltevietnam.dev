@@ -67,8 +67,8 @@ export default class extends WorkerEntrypoint<Env> {
 			new Hono<{ Bindings: Env }>()
 				.get('/health', (c) => c.text('ok'))
 				// quick approve job posting, only meant for internal use
-				.get('/qap/:token', async (c) => {
-					const { token } = c.req.param();
+				.get(':lang/qap/:token', async (c) => {
+					const { lang, token } = c.req.param();
 					const result = await this.jwt().verify<{ posting?: string; sub?: 'admin' }>(token);
 					if (!result.success) {
 						return c.text(result.error, 400);
@@ -77,7 +77,8 @@ export default class extends WorkerEntrypoint<Env> {
 					} else if (!result.payload.posting) {
 						return c.text('No posting specified', 404);
 					}
-					await this.jobPostings().approveById(result.payload.posting);
+					const rLang = lang === 'vi' ? 'vi' : 'en';
+					await this.jobPostings().approveById(result.payload.posting, rLang);
 					return c.text('Approved');
 				})
 				.fetch(request, this.env, this.ctx)

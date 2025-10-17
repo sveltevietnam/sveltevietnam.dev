@@ -11,19 +11,19 @@ export default defineTemplate((lang) => ({
 	...(
 		{
 			en: {
-				subject: 'Job Posting Pending Approval — Svelte Vietnam Community Recruit Platform',
+				subject: 'Your Job Posting is Now Live — Svelte Vietnam Community Recruit Platform',
 				html: en,
 			},
 			vi: {
-				subject: 'Đăng tuyển đang chờ xét duyệt — Nền tảng Tuyển dụng Cộng đồng Svelte Việt Nam',
+				subject: 'Đăng tuyển của bạn đã được duyệt — Nền tảng Tuyển dụng Cộng đồng Svelte Việt Nam',
 				html: vi,
 			},
 		} as const
 	)[lang],
 }));
 
-export interface RecruitEmployerCreateJobPostingVars {
+export interface RecruitEmployerCreateJobPostingApprovedVars {
 	name: string;
 	jobTitle: string;
-	jobUrl: string;
+	jobPublicUrl: string;
 }

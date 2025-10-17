@@ -147,7 +147,7 @@ export class JobPostingService extends RpcTarget {
 								image: employer.image ? RECRUIT_URL + employer.image : null,
 								description: employer.description,
 							},
-							approveEndpoint: `${ORIGIN}/qap/${token}`,
+							approveEndpoint: `${ORIGIN}/${input.lang}/qap/${token}`,
 						},
 					}),
 				]);
@@ -217,10 +217,18 @@ export class JobPostingService extends RpcTarget {
 		return true;
 	}
 
-	async approveById(id: string): Promise<boolean> {
+	async approveById(id: string, lang: Language): Promise<boolean> {
 		const posting = await this.#orm.query.jobPostings.findFirst({
 			where: (table, { eq }) => eq(table.id, id),
-			columns: { approvedAt: true },
+			columns: { approvedAt: true, title: true },
+			with: {
+				employer: {
+					columns: {
+						id: true,
+						name: true,
+					},
+				},
+			},
 		});
 		if (!posting) return false;
 		if (!posting.approvedAt) {
@@ -228,11 +236,20 @@ export class JobPostingService extends RpcTarget {
 				.update(jobPostings)
 				.set({ approvedAt: new Date() })
 				.where(eq(jobPostings.id, id))
-				.returning({ id: jobPostings.id });
+				.returning({ employerId: jobPostings.employerId });
 			if (!result.length) return false;
-		}
 
-		// TODO: queue email to employer
+			const jobPublicUrl = `${this.#env.SITE_URL}/${lang}/${lang === 'en' ? 'jobs' : 'viec-lam'}/${id}`;
+			await this.#mails.queue('recruit-employer-job-posting-approved', {
+				actorId: posting.employer.id,
+				lang,
+				vars: {
+					jobPublicUrl,
+					jobTitle: posting.title,
+					name: posting.employer.name,
+				},
+			});
+		}
 
 		return true;
 	}
