@@ -78,13 +78,15 @@
 		"lint:svelte": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"lint:es": "eslint .",
 		"lint:style": "stylelint '**/*.{svelte,css}'",
-		"format": "prettier --write --ignore-path=../../.prettierignore --config=../../prettier.config.js ."
+		"format": "prettier --write --ignore-path=../../.prettierignore --config=../../prettier.config.js .",
+		"json-schema": "node src/here-be-dragon/parser/schema/json-schema.js"
 	},
 	"peerDependencies": {
 		"svelte": "^5.38.6",
 		"vite": "^7.1.4"
 	},
 	"devDependencies": {
+		"@valibot/to-json-schema": "^1.3.0",
 		"svelte": "^5.41.0",
 		"vite": "^7.1.10"
 	},
@@ -95,6 +97,7 @@
 		"picocolors": "^1.1.1",
 		"tiny-glob": "^0.2.9",
 		"typescript": "^5.9.3",
+		"valibot": "1.1.0",
 		"yaml": "^2.8.1"
 	},
 	"volta": {
