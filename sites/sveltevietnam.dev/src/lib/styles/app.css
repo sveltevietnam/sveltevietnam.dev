@@ -27,6 +27,12 @@
 	}
 }
 
+@layer utilities {
+	:target:is(h1, h2, h3, h4, h5, h6) {
+		@apply text-info-on-surface bg-info-surface inline-block;
+	}
+}
+
 @keyframes circle-in {
 	from {
 		clip-path: circle(0% at 100% 0%);
