@@ -27,7 +27,7 @@ He's a design director skilled at crafting impactful brand identities, where his
 
 <ChatItem participant="liti-dev">
 
-<span class="sr-only">Question:</span> One funfact about you?
+<span class="sr-only">Question:</span> One fun fact about you?
 
 </ChatItem>
 <ChatItem participant="quang-design" align="right">
@@ -79,9 +79,6 @@ He's a design director skilled at crafting impactful brand identities, where his
 <span class="sr-only">Answer:</span> Definitely the  Context API which took me some time to really understand how it works.
 
 </ChatItem>
-
-
-
 <ChatItem participant="liti-dev">
 
 <span class="sr-only">Question:</span> What do you like to see more from our community?

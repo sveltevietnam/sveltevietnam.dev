@@ -12,7 +12,7 @@ export default definePerson((lang) => ({
 			description: 'Design Engineer',
 		},
 		vi: {
-			name: 'Quang Nguyen',
+			name: 'Nguyễn Quang',
 			description: 'Kĩ sư thiết kế',
 		},
 	}[lang],
