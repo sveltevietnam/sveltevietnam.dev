@@ -82,7 +82,7 @@ export const load: PageServerLoad = async (event) => {
 
 	return {
 		bluesky,
-		contentEditUrl: `https://github.com/sveltevietnam/sveltevietnam.dev/edit/v1/sites/sveltevietnam.dev/src/data/blog/posts/${post.id}/content/${lang}.md.svelte`,
+		contentEditUrl: `https://github.com/sveltevietnam/sveltevietnam.dev/edit/main/sites/sveltevietnam.dev/src/data/blog/posts/${post.id}/content/${lang}.md.svelte`,
 		lang,
 		post,
 		posts: {
