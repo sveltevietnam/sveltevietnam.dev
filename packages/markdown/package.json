@@ -60,8 +60,8 @@
 	},
 	"devDependencies": {
 		"@types/hast": "^3.0.4",
-		"@types/node": "^24.7.2",
-		"vite": "^7.1.9"
+		"@types/node": "^24.8.1",
+		"vite": "^7.1.10"
 	},
 	"peerDependencies": {
 		"svelte": "^5.16.6"
