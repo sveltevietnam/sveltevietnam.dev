@@ -1,2 +1,2 @@
-export * from './flatten-recursive-record.js';
+export * from './flatten-recursive-record';
 export * from './types.public.js';
