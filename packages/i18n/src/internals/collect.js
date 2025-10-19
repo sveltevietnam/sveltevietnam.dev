@@ -54,7 +54,7 @@ async function collectYamlByLang(cwd, dir) {
 					process.platform === 'win32'
 						? path.win32.basename(filepath, '.yaml')
 						: path.basename(filepath, '.yaml');
-				const yaml = await fs.readFile(filepath, 'utf-8');
+				const yaml = await fs.readFile(path.posix.resolve(cwd, filepath), 'utf-8');
 				return [lang, yaml];
 			}),
 		),
