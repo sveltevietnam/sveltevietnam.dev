@@ -3,7 +3,12 @@ import { vol } from 'memfs';
 import { ValiError } from 'valibot';
 import { test, expect, describe, beforeEach, vi } from 'vitest';
 
-import { ErrorCircularImport, ErrorExpectAbsolutePath, ErrorFileNotFound, parse } from './parse';
+import {
+	ErrorCircularImport,
+	ErrorExpectAbsolutePath,
+	ErrorFileNotFound,
+	parseLocale,
+} from './parse-locale';
 
 vi.mock('node:fs');
 vi.mock('node:fs/promises');
@@ -22,15 +27,15 @@ test('should throw if content does not pass schema validation', async () => {
 		  invalidContent: true
 		`,
 	});
-	await expect(parse('/app/locales/locale.yaml')).rejects.toThrow(ValiError);
+	await expect(parseLocale('/app/locales/locale.yaml')).rejects.toThrow(ValiError);
 });
 
 test('should throw if entry is relative path', async () => {
-	await expect(parse('./locales/locale.yaml')).rejects.toThrow(ErrorExpectAbsolutePath);
+	await expect(parseLocale('./locales/locale.yaml')).rejects.toThrow(ErrorExpectAbsolutePath);
 });
 
 test('should throw if entry file does not exist', async () => {
-	const rejects = expect(parse('/app/a.yaml')).rejects;
+	const rejects = expect(parseLocale('/app/a.yaml')).rejects;
 	await rejects.toThrow(ErrorFileNotFound);
 	await rejects.toThrowErrorMatchingInlineSnapshot(
 		'[ErrorFileNotFound: File not found: "/app/a.yaml"]',
@@ -58,7 +63,7 @@ describe('import directive should work', () => {
 				},
 				'/app',
 			);
-			const locale = await parse('/app/locales/locale.yaml');
+			const locale = await parseLocale('/app/locales/locale.yaml');
 			expect(locale).toEqual({
 				foo: 'bar',
 				'components.test.hello': 'world',
@@ -72,7 +77,7 @@ describe('import directive should work', () => {
 				},
 				'/app',
 			);
-			const rejects = expect(parse('/app/locales/locale.yaml')).rejects;
+			const rejects = expect(parseLocale('/app/locales/locale.yaml')).rejects;
 			await rejects.toThrow(ErrorFileNotFound);
 			await rejects.toThrowErrorMatchingInlineSnapshot(dedent`
 				[ErrorFileNotFound: File not found: "/app/locales/components/test/locale.yaml" (imported by "/app/locales/components/test/locale.yaml" at "components.test.@import")]
@@ -106,7 +111,7 @@ describe('import directive should work', () => {
 				},
 				'/app',
 			);
-			const locale = await parse('/app/locales/locale.yaml');
+			const locale = await parseLocale('/app/locales/locale.yaml');
 			expect(locale).toEqual({
 				foo: 'bar',
 				'components.test.hello': 'world',
@@ -120,7 +125,7 @@ describe('import directive should work', () => {
 				},
 				'/app',
 			);
-			const rejects = expect(parse('/app/locales/locale.yaml')).rejects;
+			const rejects = expect(parseLocale('/app/locales/locale.yaml')).rejects;
 			await rejects.toThrow(ErrorFileNotFound);
 			await rejects.toThrowErrorMatchingInlineSnapshot(dedent`
 				[ErrorFileNotFound: Imported module not found: "@package/external/components/test/locale.yaml" (imported by "/app/locales/locale.yaml" at "components.test.@import")]
@@ -144,7 +149,7 @@ describe('import directive should work', () => {
 				},
 				'/app',
 			);
-			const rejects = expect(parse('/app/locales/locale.yaml')).rejects;
+			const rejects = expect(parseLocale('/app/locales/locale.yaml')).rejects;
 			await rejects.toThrowErrorMatchingInlineSnapshot(
 				`[Error: Package subpath './components/test' is not defined by "exports" in /app/node_modules/@package/external/package.json imported from /app/locales/locale.yaml]`,
 			);
@@ -168,7 +173,7 @@ describe('import directive should work', () => {
 			},
 			'/app',
 		);
-		const locale = await parse('/app/locales/locale.yaml', {
+		const locale = await parseLocale('/app/locales/locale.yaml', {
 			directive: {
 				import: '...',
 			},
@@ -202,7 +207,7 @@ describe('import directive should work', () => {
 			},
 			'/app',
 		);
-		const rejects = expect(parse('/app/a.yaml')).rejects;
+		const rejects = expect(parseLocale('/app/a.yaml')).rejects;
 		await rejects.toThrow(ErrorCircularImport);
 		await rejects.toThrowErrorMatchingInlineSnapshot(
 			dedent`
@@ -224,7 +229,7 @@ describe('custom options should work', () => {
 			`,
 		});
 
-		const locale = await parse('/app/locales/locale.yaml', {
+		const locale = await parseLocale('/app/locales/locale.yaml', {
 			rootKey: 'root',
 		});
 		expect(locale).toEqual({ 'root.foo': 'bar' });
@@ -241,13 +246,13 @@ describe('custom options should work', () => {
 			},
 			'/app',
 		);
-		const options: Parameters<typeof parse>[1] = {
+		const options: Parameters<typeof parseLocale>[1] = {
 			deserializer: {
 				parse: ({ content }) => JSON.parse(content),
 			},
 		};
 		const deserializerParseSpy = vi.spyOn(options.deserializer!, 'parse');
-		const locale = await parse('/app/locales/locale.json', options);
+		const locale = await parseLocale('/app/locales/locale.json', options);
 		expect(locale).toEqual({ hello: 'world' });
 		expect(deserializerParseSpy).toHaveBeenCalledOnce();
 	});

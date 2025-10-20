@@ -1,4 +1,4 @@
-export interface ParseOptions {
+export interface ParseLocaleOptions {
 	/**
 	 * custom deserializer that transforms the locale source
 	 * file UTF-8 content into Javascript object.
