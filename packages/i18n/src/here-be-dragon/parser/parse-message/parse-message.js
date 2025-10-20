@@ -6,7 +6,7 @@
  * @param {string} message - the input string to check
  * @returns {import('./types.public').MessageParameter[]} list of dynamic parameters, if any
  */
-export function parseMessageParams(message) {
+export function parseMessage(message) {
 	/** @type {Record<string, import('./types.public').MessageParameter>} */
 	const params = {};
 
@@ -38,12 +38,12 @@ export function parseMessageParams(message) {
 // =======
 // Errors
 // =======
-export class ParseParamsError extends Error {
+export class ParseMessageError extends Error {
 	/**
 	 * @param {string} message
 	 * @param {string} [name]
 	 */
-	constructor(message, name = 'ParseParamsError') {
+	constructor(message, name = 'ParseMessageError') {
 		super(message);
 		this.name = name;
 	}
@@ -57,7 +57,7 @@ export const ErrorInvalidParamName = createError('ErrorInvalidParamName');
 
 /** @param {string} name */
 function createError(name) {
-	return class extends ParseParamsError {
+	return class extends ParseMessageError {
 		/** @param {string} message  */
 		constructor(message) {
 			super(message, name);

@@ -1,25 +1,21 @@
 import dedent from 'dedent';
 import { test, expect, describe } from 'vitest';
 
-import {
-	ErrorInvalidParamName,
-	ErrorMissingCloseBracker,
-	parseMessageParams,
-} from './parse-params';
+import { ErrorInvalidParamName, ErrorMissingCloseBracker, parseMessage } from './parse-message';
 import type { MessageParameter } from './types.public';
 
 const html = String.raw;
 
 test('can parse message with no param', () => {
 	const msg = 'Hello World';
-	const params = parseMessageParams(msg);
+	const params = parseMessage(msg);
 	expect(params).toEqual([]);
 });
 
 describe('can parse message with one param', () => {
 	test('with param at start', () => {
 		const msg = '{{name}} is here';
-		const params = parseMessageParams(msg);
+		const params = parseMessage(msg);
 		expect(params).toEqual([
 			{
 				name: 'name',
@@ -30,7 +26,7 @@ describe('can parse message with one param', () => {
 
 	test('with param at middle', () => {
 		const msg = 'Hello, {{name}}! Welcome.';
-		const params = parseMessageParams(msg);
+		const params = parseMessage(msg);
 		expect(params).toEqual([
 			{
 				name: 'name',
@@ -41,7 +37,7 @@ describe('can parse message with one param', () => {
 
 	test('with param at end', () => {
 		const msg = 'Goodbye, {{name}}';
-		const params = parseMessageParams(msg);
+		const params = parseMessage(msg);
 		expect(params).toEqual([
 			{
 				name: 'name',
@@ -56,7 +52,7 @@ describe('can parse message with multiple params', () => {
 		describe('at start', () => {
 			test('different names', () => {
 				const msg = '{{first}}{{second}} lorem ipsum...';
-				const params = parseMessageParams(msg);
+				const params = parseMessage(msg);
 				expect(params).toEqual([
 					{
 						name: 'first',
@@ -71,7 +67,7 @@ describe('can parse message with multiple params', () => {
 
 			test('same name', () => {
 				const msg = '{{name}}{{name}} lorem ipsum...';
-				const params = parseMessageParams(msg);
+				const params = parseMessage(msg);
 				expect(params).toEqual([
 					{
 						name: 'name',
@@ -87,7 +83,7 @@ describe('can parse message with multiple params', () => {
 		describe('at end', () => {
 			test('different names', () => {
 				const msg = 'lorem ipsum... {{first}}{{second}}';
-				const params = parseMessageParams(msg);
+				const params = parseMessage(msg);
 				expect(params).toEqual([
 					{
 						name: 'first',
@@ -102,7 +98,7 @@ describe('can parse message with multiple params', () => {
 
 			test('same name', () => {
 				const msg = 'lorem ipsum... {{name}}{{name}}';
-				const params = parseMessageParams(msg);
+				const params = parseMessage(msg);
 				expect(params).toEqual([
 					{
 						name: 'name',
@@ -118,7 +114,7 @@ describe('can parse message with multiple params', () => {
 		describe('in middle', () => {
 			test('different names', () => {
 				const msg = 'lorem {{first}}{{second}} ipsum...';
-				const params = parseMessageParams(msg);
+				const params = parseMessage(msg);
 				expect(params).toEqual([
 					{
 						name: 'first',
@@ -133,7 +129,7 @@ describe('can parse message with multiple params', () => {
 
 			test('same name', () => {
 				const msg = 'lorem {{name}}{{name}} ipsum...';
-				const params = parseMessageParams(msg);
+				const params = parseMessage(msg);
 				expect(params).toEqual([
 					{
 						name: 'name',
@@ -151,7 +147,7 @@ describe('can parse message with multiple params', () => {
 		describe('at start', () => {
 			test('different names', () => {
 				const msg = '{{first}} and {{second}} lorem ipsum...';
-				const params = parseMessageParams(msg);
+				const params = parseMessage(msg);
 				expect(params).toEqual([
 					{
 						name: 'first',
@@ -166,7 +162,7 @@ describe('can parse message with multiple params', () => {
 
 			test('same name', () => {
 				const msg = '{{name}} and {{name}} lorem ipsum...';
-				const params = parseMessageParams(msg);
+				const params = parseMessage(msg);
 				expect(params).toEqual([
 					{
 						name: 'name',
@@ -182,7 +178,7 @@ describe('can parse message with multiple params', () => {
 		describe('at end', () => {
 			test('different names', () => {
 				const msg = 'lorem ipsum... {{first}} and {{second}}';
-				const params = parseMessageParams(msg);
+				const params = parseMessage(msg);
 				expect(params).toEqual([
 					{
 						name: 'first',
@@ -197,7 +193,7 @@ describe('can parse message with multiple params', () => {
 
 			test('same name', () => {
 				const msg = 'lorem ipsum... {{name}} and {{name}}';
-				const params = parseMessageParams(msg);
+				const params = parseMessage(msg);
 				expect(params).toEqual([
 					{
 						name: 'name',
@@ -213,7 +209,7 @@ describe('can parse message with multiple params', () => {
 		describe('in middle', () => {
 			test('different names', () => {
 				const msg = 'lorem {{first}} and {{second}} ipsum...';
-				const params = parseMessageParams(msg);
+				const params = parseMessage(msg);
 				expect(params).toEqual([
 					{
 						name: 'first',
@@ -228,7 +224,7 @@ describe('can parse message with multiple params', () => {
 
 			test('same name', () => {
 				const msg = 'lorem {{name}} and {{name}} ipsum...';
-				const params = parseMessageParams(msg);
+				const params = parseMessage(msg);
 				expect(params).toEqual([
 					{
 						name: 'name',
@@ -245,7 +241,7 @@ describe('can parse message with multiple params', () => {
 
 test('can parse HTML message', () => {
 	const msg = html`<p>Hello, {{name}}! Welcome to <strong>{{site_name}}</strong>.</p>`;
-	const params = parseMessageParams(msg);
+	const params = parseMessage(msg);
 	expect(params).toEqual([
 		{
 			name: 'name',
@@ -260,7 +256,7 @@ test('can parse HTML message', () => {
 
 test('should throw if missing closing bracket', () => {
 	const msg = 'Hello, {{name! Welcome.';
-	const result = expect(() => parseMessageParams(msg));
+	const result = expect(() => parseMessage(msg));
 	result.toThrow(ErrorMissingCloseBracker);
 	result.toThrowErrorMatchingInlineSnapshot(dedent`
 		[ErrorMissingCloseBracker: Missing closing bracket "}}" for parameter "name!..." starting at position 7]
@@ -269,7 +265,7 @@ test('should throw if missing closing bracket', () => {
 
 test('should throw if parameter contains characters other an alphanumeric or _', () => {
 	const msg = 'Hello, {{na!me}}!';
-	const result = expect(() => parseMessageParams(msg));
+	const result = expect(() => parseMessage(msg));
 	result.toThrow(ErrorInvalidParamName);
 	result.toThrowErrorMatchingInlineSnapshot(dedent`
 		[ErrorInvalidParamName: Invalid parameter "na!me" at position 7. Parameter names must only contain alphanumeric characters and underscores.]
