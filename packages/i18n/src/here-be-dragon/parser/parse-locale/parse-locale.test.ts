@@ -30,6 +30,16 @@ test('should throw if content does not pass schema validation', async () => {
 	await expect(parseLocale('/app/locales/locale.yaml')).rejects.toThrow(ValiError);
 });
 
+test('empty messages should still pass', async () => {
+	vol.fromJSON({
+		'/app/locales/locale.yaml': yaml`
+		  messages: {}
+		`,
+	});
+	const locale = await parseLocale('/app/locales/locale.yaml');
+	expect(locale).toEqual({});
+});
+
 test('should throw if entry is relative path', async () => {
 	await expect(parseLocale('./locales/locale.yaml')).rejects.toThrow(ErrorExpectAbsolutePath);
 });
