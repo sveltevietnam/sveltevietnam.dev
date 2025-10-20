@@ -1,2 +1,2 @@
-export * from './parse.js';
+export * from './parse-locale.js';
 export * from './types.public.js';

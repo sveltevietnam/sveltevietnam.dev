@@ -16,16 +16,17 @@ import { LocaleSchema } from '../schema/locale.js';
 // Public API
 // ===========
 /**
+ * parse locale file into flat message map
  * @param {string} abspath - absolute path to yaml
- * @param {import('./types.public').ParseOptions} [options] - processing options
+ * @param {import('./types.public').ParseLocaleOptions} [options] - processing options
  * @returns {Promise<Record<string, string>>} - flat message map
  */
-export async function parse(abspath, options = {}) {
+export async function parseLocale(abspath, options = {}) {
 	// ---------------------
-	// 1. resolving options
+	// 1. Resolve options
 	// ---------------------
 	const rOptions =
-		/** @type {import('./types.public').ParseOptions & { __internals__: ParseInternals }} */ (
+		/** @type {import('./types.public').ParseLocaleOptions & { __internals__: ParseInternals }} */ (
 			options
 		);
 	if (!rOptions.__internals__) {
@@ -101,7 +102,7 @@ export async function parse(abspath, options = {}) {
 			}
 			importTraces.push({ file: importPath, key });
 			asyncParsing.push(
-				parse(
+				parseLocale(
 					importPath,
 					/** @type {typeof rOptions} */ ({
 						...rOptions,
@@ -115,9 +116,9 @@ export async function parse(abspath, options = {}) {
 		}
 	}
 
-	// -------------------
-	// 4. Merging results
-	// -------------------
+	// -----------------
+	// 4. Merge results
+	// -----------------
 	const parsed = await Promise.all(asyncParsing);
 	/** @type {Record<string, string>} */
 	const merged = {};
@@ -135,12 +136,12 @@ export async function parse(abspath, options = {}) {
 // =======
 // Errors
 // =======
-export class ParseError extends Error {
+export class ParseLocaleError extends Error {
 	/**
 	 * @param {string} message
 	 * @param {string} [name]
 	 */
-	constructor(message, name = 'ParseError') {
+	constructor(message, name = 'ParseLocaleError') {
 		super(message);
 		this.name = name;
 	}
@@ -155,7 +156,7 @@ export const ErrorCircularImport = createError('ErrorCircularImport');
 
 /** @param {string} name */
 function createError(name) {
-	return class extends ParseError {
+	return class extends ParseLocaleError {
 		/** @param {string} message  */
 		constructor(message) {
 			super(message, name);
