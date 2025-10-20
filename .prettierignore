@@ -6,4 +6,4 @@ pnpm-lock.yaml
 locales/*.js
 .svelte-kit/
 generated/
-
+__snapshots__/

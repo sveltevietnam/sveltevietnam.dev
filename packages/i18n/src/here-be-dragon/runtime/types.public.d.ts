@@ -1,4 +1,4 @@
-export type MessageType = 'simple' | 'with-param';
+export type MessageType = 'simple' | 'with-params';
 
 export interface MessageSimple<Key extends string> {
 	/** DO NOT USE: denote that this is a MessageSimple */
