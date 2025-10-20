@@ -2,7 +2,7 @@ import { test, expect, describe } from 'vitest';
 
 import { createMessageSimple, createMessageWithParams } from '../factory';
 
-import { isMessage } from './is-message';
+import { isMessage } from '.';
 
 test('pass for simple message', () => {
 	const message = createMessageSimple('global.hello', () => 'Hello, world!');

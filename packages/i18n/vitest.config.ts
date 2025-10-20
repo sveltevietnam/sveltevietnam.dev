@@ -7,5 +7,8 @@ export default defineConfig({
 				inline: ['import-meta-resolve'],
 			},
 		},
+		coverage: {
+			provider: 'v8',
+		},
 	},
 });

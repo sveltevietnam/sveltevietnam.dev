@@ -3,12 +3,7 @@ import { vol } from 'memfs';
 import { ValiError } from 'valibot';
 import { test, expect, describe, beforeEach, vi } from 'vitest';
 
-import {
-	ErrorCircularImport,
-	ErrorExpectAbsolutePath,
-	ErrorFileNotFound,
-	parseLocale,
-} from './parse-locale';
+import { ErrorCircularImport, ErrorExpectAbsolutePath, ErrorFileNotFound, parseLocale } from '.';
 
 vi.mock('node:fs');
 vi.mock('node:fs/promises');

@@ -31,13 +31,13 @@
 		},
 		"./runtime": {
 			"types": "./types/index.d.ts",
-			"import": "./src/runtime/index.js",
-			"default": "./src/runtime/index.js"
+			"import": "./src/here-be-dragon/runtime/index.js",
+			"default": "./src/here-be-dragon/runtime/index.js"
 		},
 		"./runtime/factory": {
 			"types": "./types/index.d.ts",
-			"import": "./src/runtime/factory.js",
-			"default": "./src/runtime/factory.js"
+			"import": "./src/here-be-dragon/runtime/factory/index.js",
+			"default": "./src/here-be-dragon/runtime/factory/index.js"
 		}
 	},
 	"publishconfig": {

@@ -1,6 +1,6 @@
 import { test, expect } from 'vitest';
 
-import { createMessageSimple, createMessageWithParams } from './factory';
+import { createMessageSimple, createMessageWithParams } from '.';
 
 test('can create simple message', () => {
 	const message = createMessageSimple('global.hello', () => 'Hello, world!');

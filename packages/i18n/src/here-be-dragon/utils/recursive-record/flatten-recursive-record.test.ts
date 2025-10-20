@@ -1,11 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { test, expect } from 'vitest';
 
-import {
-	ErrorMissingFieldWithNoFallback,
-	ErrorMissingInput,
-	flattenRecursiveRecord,
-} from './flatten-recursive-record.js';
+import { ErrorMissingFieldWithNoFallback, ErrorMissingInput, flattenRecursiveRecord } from '.';
 
 test('primitive and array should be kept by default', () => {
 	const input = { number: 1, string: 'test', boolean: true, array: [1, 2, 3] };

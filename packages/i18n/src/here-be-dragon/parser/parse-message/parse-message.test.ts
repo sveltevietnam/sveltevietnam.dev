@@ -1,8 +1,12 @@
 import dedent from 'dedent';
 import { test, expect, describe } from 'vitest';
 
-import { ErrorInvalidParamName, ErrorMissingCloseBracker, parseMessage } from './parse-message';
-import type { MessageParameter } from './types.public';
+import {
+	ErrorInvalidParamName,
+	ErrorMissingCloseBracker,
+	parseMessage,
+	type MessageParameter,
+} from '.';
 
 const html = String.raw;
 
