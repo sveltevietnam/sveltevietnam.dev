@@ -75,4 +75,9 @@
 	option {
 		background-color: var(--color-surface);
 	}
+
+	:target:is(h1, h2, h3, h4, h5, h6) {
+		color: var(--color-info-on-surface);
+		background-color: var(--color-info-surface);
+	}
 }
