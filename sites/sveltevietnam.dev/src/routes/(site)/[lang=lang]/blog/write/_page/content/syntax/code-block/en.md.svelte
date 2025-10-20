@@ -81,6 +81,6 @@ as shown in the following pattern:
 ```
 
 ...where `path/to/source.ext` can be in one of the supported languages
-(see [source code](https://github.com/sveltevietnam/sveltevietnam.dev/blob/v1/packages/markdown/src/shiki.js)).
+(see [source code](https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/packages/markdown/src/shiki.js)).
 This is particularly useful to reuse existing code snippets, e.g. to render the same code for a demo or setup,
 or to utilize editor tooling like language servers, linters, or formatters.

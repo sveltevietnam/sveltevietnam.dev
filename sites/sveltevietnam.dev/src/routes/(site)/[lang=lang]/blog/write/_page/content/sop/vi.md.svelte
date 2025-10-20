@@ -4,7 +4,7 @@
 
 1. [node.js](https://nodejs.org):
     - Phiên bản node.js cần thiết cho dự án được định nghĩa trong tệp
-      [package.json](https://github.com/sveltevietnam/sveltevietnam.dev/blob/v1/package.json) tại khóa "engines",
+      [package.json](https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/package.json) tại khóa "engines",
     - Dự án khuyến khích bạn sử dụng [volta](https://volta.sh/) để quản lý phiên bản node.js.
       Nếu đã được cài đặt, volta sẽ tự động thiết lập phiên bản phù hợp cho dự án thông qua định nghĩa trong `package.json`.
 2. [lefthook](https://lefthook.dev/installation): trình quản lý [git hook](https://git-scm.com/docs/githooks),
@@ -58,7 +58,7 @@ Nếu các bước thiết lập đã thành công, bạn có thể truy cập t
 
 <div class="c-callout c-callout--info">
 
-Bạn có thể tham khảo thêm các hướng dẫn khác dành cho lập trình viên trong tài liệu [DEVELOPMENT.md](https://github.com/sveltevietnam/sveltevietnam.dev/blob/v1/docs/DEVELOPMENT.md)
+Bạn có thể tham khảo thêm các hướng dẫn khác dành cho lập trình viên trong tài liệu [DEVELOPMENT.md](https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/DEVELOPMENT.md)
 
 </div>
 
@@ -116,7 +116,7 @@ gh pr create
 
 <div class="c-callout c-callout--info">
 
-Thao khảo thêm cách viết commit message tại [DEVELOPMENT.md - Commit Message Guidelines](https://github.com/sveltevietnam/sveltevietnam.dev/blob/v1/docs/DEVELOPMENT.md#commit-message-guidelines).
+Thao khảo thêm cách viết commit message tại [DEVELOPMENT.md - Commit Message Guidelines](https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/DEVELOPMENT.md#commit-message-guidelines).
 Quá trình thao tác với `git` và `Github` không khó nhưng bao gồm nhiều bước và có nhiều cách
 thực hiện khác nhau nên không được liệt kê chi tiết tại đây. Nếu có thắc mắc hoặc cần hỗ trợ,
 hãy liên hệ với ban quản trị qua kênh [Discord - Thảo luận - Blog](https://discord.com/channels/1066621936546877450/1164871648265125918) nhé.

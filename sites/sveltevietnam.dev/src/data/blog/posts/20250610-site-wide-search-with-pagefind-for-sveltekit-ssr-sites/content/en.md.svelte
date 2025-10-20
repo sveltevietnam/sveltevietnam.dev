@@ -60,7 +60,7 @@ Getting myself familiar with the tooling that Vite provides has helped me proble
 
 ## Vite plugin
 
-You can refer to the specific source code of the plugin mentioned [here](https://github.com/sveltevietnam/sveltevietnam.dev/blob/v1/sites/sveltevietnam.dev/src/lib/pagefind/vite.ts), or through the code snippet below (expand to view):
+You can refer to the specific source code of the plugin mentioned [here](https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/sveltevietnam.dev/src/lib/pagefind/vite.ts), or through the code snippet below (expand to view):
 
 ```ts title="pagefind/vite.ts" src="../../../../../lib/pagefind/vite.ts" collapsed
 ```

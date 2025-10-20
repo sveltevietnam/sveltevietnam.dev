@@ -4,7 +4,7 @@
 
 1. [node.js](https://nodejs.org):
     - The required node.js version for the project is defined in
-      [package.json](https://github.com/sveltevietnam/sveltevietnam.dev/blob/v1/package.json) under the "engines" key.
+      [package.json](https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/package.json) under the "engines" key.
     - It is recommended you use [volta](https://volta.sh/) to manage `node.js` versioning. If installed, volta will automatically set the appropriate version for the project based on the definition in `package.json`.
 2. [lefthook](https://lefthook.dev/installation): a [git hook](https://git-scm.com/docs/githooks) manager that automatically runs code convention & sanity checks before committing code.
 3. [pnpm](https://pnpm.io/installation): a package manager that serves as an alternative to `npm`.
@@ -112,7 +112,7 @@ gh pr create
 
 <div class="c-callout c-callout--info">
 
-Refer to [DEVELOPMENT.md - Commit Message Guidelines](https://github.com/sveltevietnam/sveltevietnam.dev/blob/v1/docs/DEVELOPMENT.md#commit-message-guidelines) for guidelines on writing commit messages. Workflow with `git`
+Refer to [DEVELOPMENT.md - Commit Message Guidelines](https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/DEVELOPMENT.md#commit-message-guidelines) for guidelines on writing commit messages. Workflow with `git`
 and Github are not particularly difficult, but require several steps and can be achieved in
 different ways, so we will not go into details here. If you need assistance or have questions,
 please contact our administrators via the [Discord - Discussion - Blog](https://discord.sveltevietnam.dev) channel.

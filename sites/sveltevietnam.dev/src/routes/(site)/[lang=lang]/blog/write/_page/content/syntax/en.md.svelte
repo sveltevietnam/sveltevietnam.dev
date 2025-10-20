@@ -8,7 +8,7 @@
 
 Post content is parsed by a custom [Svelte
 preprocessor](https://svelte.dev/docs/svelte/svelte-compiler#preprocess). Feel free to check out its
-[source code](https://github.com/sveltevietnam/sveltevietnam.dev/tree/v1/packages/markdown)
+[source code](https://github.com/sveltevietnam/sveltevietnam.dev/tree/main/packages/markdown)
 to learn more about its inner workings. In short:
 
 - most of the content is written in [Github Flavored Markdown](https://github.github.com/gfm/) syntax,
