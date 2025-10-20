@@ -57,7 +57,7 @@ export const load: PageServerLoad = async ({ params }) => {
 
 	return {
 		event,
-		editUrl: `https://github.com/sveltevietnam/sveltevietnam.dev/edit/v1/sites/sveltevietnam.dev/src/data/events/${event.id}/content.svelte`,
+		editUrl: `https://github.com/sveltevietnam/sveltevietnam.dev/edit/main/sites/sveltevietnam.dev/src/data/events/${event.id}/content.svelte`,
 		lang,
 		routing: { breadcrumbs, paths },
 		meta: {

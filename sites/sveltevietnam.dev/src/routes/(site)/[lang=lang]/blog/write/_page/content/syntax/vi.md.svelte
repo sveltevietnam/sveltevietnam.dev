@@ -7,7 +7,7 @@
 <h2 id="cu-phap">Cú pháp Markdown + Svelte trong bài viết</h2>
 
 Nội dung của bài viết được xử lý bằng một [Svelte preprocessor](https://svelte.dev/docs/svelte/svelte-compiler#preprocess) chuyên biệt.
-Bạn có thể tham khảo [mã nguồn của preprocessor này](https://github.com/sveltevietnam/sveltevietnam.dev/tree/v1/packages/markdown) để
+Bạn có thể tham khảo [mã nguồn của preprocessor này](https://github.com/sveltevietnam/sveltevietnam.dev/tree/main/packages/markdown) để
 hiểu thêm cách hoạt động của nó. Về cơ bản:
 
 - phần lớn nội dung được viết bằng cú pháp [Github Flavored Markdown](https://github.github.com/gfm/),

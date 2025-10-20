@@ -60,7 +60,7 @@ Làm quen được với bộ công cụ mà Vite cung cấp đã giúp mình gi
 
 ## Vite plugin
 
-Bạn có thể tham khảo mã nguồn cụ thể của plugin đã nêu [tại đây](https://github.com/sveltevietnam/sveltevietnam.dev/blob/v1/sites/sveltevietnam.dev/src/lib/pagefind/vite.ts), hoặc thông qua đoạn mã bên dưới (mở
+Bạn có thể tham khảo mã nguồn cụ thể của plugin đã nêu [tại đây](https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/sites/sveltevietnam.dev/src/lib/pagefind/vite.ts), hoặc thông qua đoạn mã bên dưới (mở
 rộng để xem):
 
 ```ts title="pagefind/vite.ts" src="../../../../../lib/pagefind/vite.ts" collapsed
