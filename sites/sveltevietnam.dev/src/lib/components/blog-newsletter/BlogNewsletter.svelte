@@ -19,6 +19,7 @@
 
 <div
 	class={[
+		'_container',
 		'bg-surface border-onehalf shadow-brutal-lg tablet:grid-cols-2 grid grid-cols-1 gap-6 border-current p-6',
 		'tablet:p-8 tablet:gap-8',
 		'desktop:p-10 desktop:gap-10',
@@ -27,7 +28,11 @@
 	{...rest}
 >
 	<div class="space-y-6">
-		<p class="c-text-heading-md"><T message={m['components.blog_newsletter.heading']} /></p>
+		<p class="c-text-heading-md">
+			<span class="_heading">
+				<T message={m['components.blog_newsletter.heading']} />
+			</span>
+		</p>
 		<p><T message={m['components.blog_newsletter.desc']} /></p>
 		<svg class="text-surface-variant h-22.5 desktop:h-31.25 w-auto max-w-full" inline-src="blocks">
 		</svg>
@@ -35,3 +40,10 @@
 
 	<SubscriberUpsertForm {data} action="/{routing.lang}/blog?/subscribe" />
 </div>
+
+<style lang="postcss">
+	:global(:is(h2, h3, h4):target) ~ ._container ._heading {
+		color: var(--color-info-on-surface);
+		background-color: var(--color-info-surface);
+	}
+</style>
