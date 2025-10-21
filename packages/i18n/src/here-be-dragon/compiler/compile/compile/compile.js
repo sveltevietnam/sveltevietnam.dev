@@ -1,12 +1,11 @@
-// ===========
-// Public API
-// ===========
-
 import { defineMessageFunction } from '../codegen/define-message-function.js';
 import { exportIdentifiersAsLiterals } from '../codegen/export-identifiers-as-literals.js';
 import { importFactories } from '../codegen/import-factores.js';
 import { newline, print } from '../codegen/print.js';
 
+// ===========
+// Public API
+// ===========
 /**
  * @param {import('../../../parser').Message[]} messages
  * @returns {string}

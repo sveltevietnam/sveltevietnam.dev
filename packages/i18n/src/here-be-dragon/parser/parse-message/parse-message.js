@@ -40,6 +40,12 @@ export function parseMessage(message) {
 // =======
 export class ParseMessageError extends Error {
 	/**
+	 * populate by caller of `parseMessage` to point to source of error
+	 * @type {{ file: string; key: string; } | undefined}
+	 */
+	cause;
+
+	/**
 	 * @param {string} message
 	 * @param {string} [name]
 	 */
