@@ -3,5 +3,5 @@
 
 import { createMessageWithParams } from "@sveltevietnam/i18n/runtime/factory";
 
-const _greet = createMessageWithParams("greet", /**@type {(params: Record<"name"|"unreadCount", string>) => string}*/ (params => `Hello, ${params.name}! You have ${params.unreadCount} unread messages.`));
+const _greet = /**@__PURE__*/ createMessageWithParams("greet", /**@type {(params: Record<"name"|"unreadCount", string>) => string}*/ (params => `Hello, ${params.name}! You have ${params.unreadCount} unread messages.`));
 export { _greet as "greet" };

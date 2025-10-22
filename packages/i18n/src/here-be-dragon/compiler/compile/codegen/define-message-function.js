@@ -2,6 +2,8 @@ import ts, { factory } from 'typescript';
 
 import { chunkifyContentWithParams } from './chunkify-content-with-params';
 
+// TODO: add unit test to verify treeshaking via vite build works correctly
+
 /**
  * use {@link https://ts-ast-viewer.com | AST Viewer}
  * @param {import('../../../parser').Message} message
@@ -49,6 +51,18 @@ export function defineMessageFunction(message) {
 	}
 
 	const factoryName = type === 'simple' ? 'createMessageSimple' : 'createMessageWithParams';
+	const callExpression = factory.createCallExpression(
+		factory.createIdentifier(factoryName),
+		undefined,
+		[factory.createStringLiteral(key), expression],
+	);
+	ts.addSyntheticLeadingComment(
+		callExpression,
+		ts.SyntaxKind.MultiLineCommentTrivia,
+		'*@__PURE__',
+		false,
+	);
+
 	const node = factory.createVariableStatement(
 		[],
 		factory.createVariableDeclarationList(
@@ -57,10 +71,7 @@ export function defineMessageFunction(message) {
 					factory.createIdentifier(id),
 					undefined,
 					undefined,
-					factory.createCallExpression(factory.createIdentifier(factoryName), undefined, [
-						factory.createStringLiteral(key),
-						expression,
-					]),
+					callExpression,
 				),
 			],
 			ts.NodeFlags.Const,

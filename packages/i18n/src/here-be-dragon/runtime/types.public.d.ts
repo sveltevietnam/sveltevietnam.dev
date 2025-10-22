@@ -9,7 +9,7 @@ export interface MessageSimple<Key extends string> {
 	$p: Record<never, string>;
 
 	/**
-	 * Call the message with language to get the localized string
+	 * Call the message to get the localized string
 	 * @returns The localized, unsanitized string
 	 */
 	(): string;
@@ -23,7 +23,7 @@ export interface MessageWithParams<Key extends string, Params extends string> {
 	$p: Record<Params, string>;
 
 	/**
-	 * Call the message with language and parameters to get the localized string
+	 * Call the message with parameters to get the localized string
 	 * @param params - The parameters for the message
 	 * @returns The localized, unsanitized string
 	 */

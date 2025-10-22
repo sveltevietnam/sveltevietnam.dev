@@ -3,6 +3,6 @@
 
 import { createMessageSimple } from "@sveltevietnam/i18n/runtime/factory";
 
-const _hello = createMessageSimple("hello", (() => "Hello, world!"));
-const _goodbye = createMessageSimple("goodbye", (() => "Goodbye, world!"));
+const _hello = /**@__PURE__*/ createMessageSimple("hello", (() => "Hello, world!"));
+const _goodbye = /**@__PURE__*/ createMessageSimple("goodbye", (() => "Goodbye, world!"));
 export { _hello as "hello", _goodbye as "goodbye" };

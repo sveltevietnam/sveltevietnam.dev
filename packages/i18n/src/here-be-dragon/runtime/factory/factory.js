@@ -4,6 +4,8 @@
  * @param {Key} key
  * @param {() => string} func
  * @returns {import('../types.public').MessageSimple<Key>}
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function createMessageSimple(key, func) {
 	[
@@ -28,6 +30,8 @@ export function createMessageSimple(key, func) {
  * @param {Key} key
  * @param {(params: Record<Params, string>) => string} func
  * @returns {import('../types.public').MessageWithParams<Key, Params>}
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function createMessageWithParams(key, func) {
 	[
