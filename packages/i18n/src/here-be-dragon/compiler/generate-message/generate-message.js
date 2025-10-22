@@ -25,15 +25,17 @@ export function generateMessage(message, langs) {
 		[
 			factory.createStringLiteral(key),
 			factory.createObjectLiteralExpression(
-				langs.map((lang) =>
-					factory.createPropertyAssignment(
-						factory.createIdentifier(lang),
-						factory.createElementAccessExpression(
+				langs
+					.toSorted()
+					.map((lang) =>
+						factory.createPropertyAssignment(
 							factory.createIdentifier(lang),
-							factory.createStringLiteral(key),
+							factory.createElementAccessExpression(
+								factory.createIdentifier(lang),
+								factory.createStringLiteral(key),
+							),
 						),
 					),
-				),
 				true,
 			),
 		],

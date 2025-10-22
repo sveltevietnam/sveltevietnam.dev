@@ -13,12 +13,12 @@ test('can generate empty message function', () => {
 	const message = createMessage('generated', '');
 	const { nodes } = generateMessageTarget(message);
 	const code = print(nodes, false);
-	expect(code).toMatch(js`
+	expect(code).toEqual(js`
 		/**
 		 * @returns {string}
 		 * @__NO_SIDE_EFFECTS__
 		 */
-		const _generated = () => "";
+		const _generated = () => "";\n
 	`);
 });
 
@@ -26,12 +26,12 @@ test('can generate simple message function', () => {
 	const message = createMessage('generated', 'Hello, world!');
 	const { nodes } = generateMessageTarget(message);
 	const code = print(nodes, false);
-	expect(code).toMatch(js`
+	expect(code).toEqual(js`
 		/**
 		 * @returns {string}
 		 * @__NO_SIDE_EFFECTS__
 		 */
-		const _generated = () => "Hello, world!";
+		const _generated = () => "Hello, world!";\n
 	`);
 });
 
@@ -41,7 +41,7 @@ describe('can generate with-params message function', () => {
 			const message = createMessage('generated', '{{name}}');
 			const { nodes } = generateMessageTarget(message);
 			const code = print(nodes, false);
-			expect(code).toMatch(js`
+			expect(code).toEqual(js`
 				/**
 				 * @param {{
 				    name: string;
@@ -49,7 +49,7 @@ describe('can generate with-params message function', () => {
 				 * @returns {string}
 				 * @__NO_SIDE_EFFECTS__
 				 */
-				const _generated = params => params.name;
+				const _generated = params => params.name;\n
 			`);
 		});
 
@@ -57,7 +57,7 @@ describe('can generate with-params message function', () => {
 			const message = createMessage('generated', '{{name}}, welcome!');
 			const { nodes } = generateMessageTarget(message);
 			const code = print(nodes, false);
-			expect(code).toMatch(js`
+			expect(code).toEqual(js`
 			/**
 			 * @param {{
 			    name: string;
@@ -65,7 +65,7 @@ describe('can generate with-params message function', () => {
 			 * @returns {string}
 			 * @__NO_SIDE_EFFECTS__
 			 */
-			const _generated = params => \`\${params.name}, welcome!\`;
+			const _generated = params => \`\${params.name}, welcome!\`;\n
 		`);
 		});
 
@@ -73,7 +73,7 @@ describe('can generate with-params message function', () => {
 			const message = createMessage('generated', 'Goodbye, {{name}}. See you soon!');
 			const { nodes } = generateMessageTarget(message);
 			const code = print(nodes, false);
-			expect(code).toMatch(js`
+			expect(code).toEqual(js`
 				/**
 				 * @param {{
 				    name: string;
@@ -81,7 +81,7 @@ describe('can generate with-params message function', () => {
 				 * @returns {string}
 				 * @__NO_SIDE_EFFECTS__
 				 */
-				const _generated = params => \`Goodbye, \${params.name}. See you soon!\`;
+				const _generated = params => \`Goodbye, \${params.name}. See you soon!\`;\n
 			`);
 		});
 
@@ -89,7 +89,7 @@ describe('can generate with-params message function', () => {
 			const message = createMessage('generated', 'Welcome, {{name}}');
 			const { nodes } = generateMessageTarget(message);
 			const code = print(nodes, false);
-			expect(code).toMatch(js`
+			expect(code).toEqual(js`
 				/**
 				 * @param {{
 				    name: string;
@@ -97,7 +97,7 @@ describe('can generate with-params message function', () => {
 				 * @returns {string}
 				 * @__NO_SIDE_EFFECTS__
 				 */
-				const _generated = params => \`Welcome, \${params.name}\`;
+				const _generated = params => \`Welcome, \${params.name}\`;\n
 			`);
 		});
 	});
@@ -110,7 +110,7 @@ describe('can generate with-params message function', () => {
 			);
 			const { nodes } = generateMessageTarget(message);
 			const code = print(nodes, false);
-			expect(code).toMatch(js`
+			expect(code).toEqual(js`
 				/**
 				 * @param {{
 				    first: string;
@@ -121,7 +121,7 @@ describe('can generate with-params message function', () => {
 				 * @returns {string}
 				 * @__NO_SIDE_EFFECTS__
 				 */
-				const _generated = params => \`\${params.first}\${params.second}, lorem ipsum, \${params.third}\${params.forth}\`;
+				const _generated = params => \`\${params.first}\${params.second}, lorem ipsum, \${params.third}\${params.forth}\`;\n
 			`);
 		});
 
@@ -132,7 +132,7 @@ describe('can generate with-params message function', () => {
 			);
 			const { nodes } = generateMessageTarget(message);
 			const code = print(nodes, false);
-			expect(code).toMatch(js`
+			expect(code).toEqual(js`
 				/**
 				 * @param {{
 				    first: string;
@@ -143,7 +143,7 @@ describe('can generate with-params message function', () => {
 				 * @returns {string}
 				 * @__NO_SIDE_EFFECTS__
 				 */
-				const _generated = params => \`\${params.first}, this is a \${params.second}\${params.third} message with \${params.third}\${params.second} params. \${params.forth}\`;
+				const _generated = params => \`\${params.first}, this is a \${params.second}\${params.third} message with \${params.third}\${params.second} params. \${params.forth}\`;\n
 			`);
 		});
 	});

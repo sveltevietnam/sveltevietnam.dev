@@ -43,7 +43,7 @@ export function generateMessageModule(messages, langs) {
 	return print([
 		...importFactories(Array.from(importIds)),
 		newline(),
-		...langs.map((lang) =>
+		...langs.toSorted().map((lang) =>
 			// assuming lang is ISO-compliant, so safe to use as identifier
 			factory.createImportDeclaration(
 				undefined,

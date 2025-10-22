@@ -1,1 +1,1 @@
-export * from './generate-message-index-module.js';
+export * from './generate-message-module.js';
