@@ -1,4 +1,4 @@
-import { generateMessageTargetModule } from '../../compiler/index.js';
+import { generateMessageTargetModule, generateMessageModule } from '../../compiler/index.js';
 import { parseLocale } from '../../parser/parse-locale/index.js';
 import { parseMessage } from '../../parser/parse-message/index.js';
 
@@ -146,17 +146,19 @@ export async function build(input) {
 	// ===============================
 	// 6. Putting everything together
 	// ===============================
-	/** @type {import('./types.public').Locale[]} */
-	const locales = [];
+	/** @type {import('./types.public').BuildOutput['messages']['targets']} */
+	const targets = {};
 	for (let i = 0; i < langs.length; i++) {
-		locales.push({
-			lang: langs[i],
-			source: localeFilePathPerLang[i],
-			module: modulePerLang[i],
-			messages: Object.values(keyToMessageMapPerLang[i]),
-		});
+		const lang = langs[i];
+		const module = modulePerLang[i];
+		targets[lang] = module;
 	}
-	return locales;
+
+	const index = generateMessageModule(Object.values(keyToMessageMapPerLang[0]), langs);
+
+	return {
+		messages: { targets, index },
+	};
 }
 
 // =======

@@ -60,21 +60,17 @@ test('can build', async () => {
 		'/app',
 	);
 
-	const output = await build({
+	const {
+		messages: { targets, index },
+	} = await build({
 		entries: {
 			vi: '/app/locales/vi.yaml',
 			en: '/app/locales/en.yaml',
 		},
 	});
-	const [vi, en] = output;
-
-	expect(vi).toMatchObject({ lang: 'vi', source: '/app/locales/vi.yaml' });
-	expect(vi.module).toBeDefined();
-	expect(vi.messages.map((m) => m.key)).toEqual(['greeting', 'goodbye', 'component.welcome']);
-
-	expect(en).toMatchObject({ lang: 'en', source: '/app/locales/en.yaml' });
-	expect(en.messages.map((m) => m.key)).toEqual(['greeting', 'goodbye', 'component.welcome']);
-	expect(en.module).toBeDefined();
+	await expect(targets['vi']).toMatchFileSnapshot('__snapshots__/messages/vi.js');
+	await expect(targets['en']).toMatchFileSnapshot('__snapshots__/messages/en.js');
+	await expect(index).toMatchFileSnapshot('__snapshots__/messages/index.js');
 });
 
 test('should forward parse locale error', async () => {

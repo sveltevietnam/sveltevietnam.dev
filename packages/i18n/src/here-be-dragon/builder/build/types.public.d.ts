@@ -1,4 +1,4 @@
-import type { MessageParameter, ParseLocaleOptions, Message } from '../../parser';
+import type { MessageParameter, ParseLocaleOptions } from '../../parser';
 
 export type BuildEntry = Record<string, string>;
 
@@ -19,15 +19,12 @@ export interface InconsistentParamIssue {
 	in: { file: string; params: MessageParameter[] }[];
 }
 
-export interface Locale {
-	/** filepath to the original locale file */
-	source: string;
-	/** language associated with this locale, as configured in build input */
-	lang: string;
-	/** all messages parsed from the locale file */
-	messages: Message[];
-	/** JS module output from compiler */
-	module: string;
-}
-
-export type BuildOutput = Locale[];
+export type BuildOutput = {
+	/** $i18n/messages */
+	messages: {
+		/** [lang].js */
+		targets: Record<string, string>;
+		/** index.js */
+		index: string;
+	};
+};
