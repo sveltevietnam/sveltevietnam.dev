@@ -3,8 +3,8 @@
 
 import { createMessageWithParams } from "@sveltevietnam/i18n/runtime/factory";
 
-const _notification_description = createMessageWithParams("notification.description", /**@type {(params: Record<"firstName"|"lastName"|"unreadCount", string>) => string}*/ (params => `${params.firstName} ${params.lastName} has ${params.unreadCount} unread messages.`));
-const _appointment_reminder = createMessageWithParams("appointment.reminder", /**@type {(params: Record<"title"|"lastName"|"date", string>) => string}*/ (params => `Dear ${params.title} ${params.lastName}, your appointment is on ${params.date}`));
-const _welcome_message = createMessageWithParams("welcome.message", /**@type {(params: Record<"firstName"|"lastName", string>) => string}*/ (params => `Welcome, ${params.firstName}${params.lastName}! We are glad to have you here.`));
-const _varonly = createMessageWithParams("varonly", /**@type {(params: Record<"var", string>) => string}*/ (params => params.var));
+const _notification_description = /**@__PURE__*/ createMessageWithParams("notification.description", /**@type {(params: Record<"firstName"|"lastName"|"unreadCount", string>) => string}*/ (params => `${params.firstName} ${params.lastName} has ${params.unreadCount} unread messages.`));
+const _appointment_reminder = /**@__PURE__*/ createMessageWithParams("appointment.reminder", /**@type {(params: Record<"title"|"lastName"|"date", string>) => string}*/ (params => `Dear ${params.title} ${params.lastName}, your appointment is on ${params.date}`));
+const _welcome_message = /**@__PURE__*/ createMessageWithParams("welcome.message", /**@type {(params: Record<"firstName"|"lastName", string>) => string}*/ (params => `Welcome, ${params.firstName}${params.lastName}! We are glad to have you here.`));
+const _varonly = /**@__PURE__*/ createMessageWithParams("varonly", /**@type {(params: Record<"var", string>) => string}*/ (params => params.var));
 export { _notification_description as "notification.description", _appointment_reminder as "appointment.reminder", _welcome_message as "welcome.message", _varonly as "varonly" };

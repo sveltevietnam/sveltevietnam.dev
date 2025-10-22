@@ -3,5 +3,5 @@
 
 import { createMessageSimple } from "@sveltevietnam/i18n/runtime/factory";
 
-const _global_hello = createMessageSimple("global.hello", (() => "Hello, world!"));
+const _global_hello = /**@__PURE__*/ createMessageSimple("global.hello", (() => "Hello, world!"));
 export { _global_hello as "global.hello" };
