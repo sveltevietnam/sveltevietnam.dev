@@ -3,17 +3,17 @@ import { test, expect } from 'vitest';
 
 import { createMessage } from '$tests/utils';
 
-import { generateMessageLocaleModule } from '.';
+import { generateMessageTargetModule } from '.';
 
 const js = dedent;
 
 test('empty messages should return empty string', () => {
-	expect(generateMessageLocaleModule([])).toBe('');
+	expect(generateMessageTargetModule([])).toBe('');
 });
 
 test('single message', () => {
 	const messages = [createMessage('greeting', 'Hello')];
-	const mod = generateMessageLocaleModule(messages);
+	const mod = generateMessageTargetModule(messages);
 	expect(mod).toMatch(js`
 		/**
 		 * @returns {string}
@@ -29,7 +29,7 @@ test('multiple messages', () => {
 		createMessage('greeting', 'Hello'),
 		createMessage('farewell', 'Goodbye {{name}}'),
 	];
-	const mod = generateMessageLocaleModule(messages);
+	const mod = generateMessageTargetModule(messages);
 	expect(mod).toMatch(js`
 		/**
 		 * @returns {string}

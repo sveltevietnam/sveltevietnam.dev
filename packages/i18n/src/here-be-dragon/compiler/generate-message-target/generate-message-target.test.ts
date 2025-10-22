@@ -5,13 +5,13 @@ import { createMessage } from '$tests/utils';
 
 import { print } from '../utils';
 
-import { generateMessageFunction } from '.';
+import { generateMessageTarget } from '.';
 
 const js = dedent;
 
 test('can compile empty message function', () => {
 	const message = createMessage('generated', '');
-	const { nodes } = generateMessageFunction(message);
+	const { nodes } = generateMessageTarget(message);
 	const code = print(nodes, false);
 	expect(code).toMatch(js`
 		/**
@@ -24,7 +24,7 @@ test('can compile empty message function', () => {
 
 test('can compile simple message function', () => {
 	const message = createMessage('generated', 'Hello, world!');
-	const { nodes } = generateMessageFunction(message);
+	const { nodes } = generateMessageTarget(message);
 	const code = print(nodes, false);
 	expect(code).toMatch(js`
 		/**
@@ -39,7 +39,7 @@ describe('can compile with-params message function', () => {
 	describe('single param', () => {
 		test('no text', () => {
 			const message = createMessage('generated', '{{name}}');
-			const { nodes } = generateMessageFunction(message);
+			const { nodes } = generateMessageTarget(message);
 			const code = print(nodes, false);
 			expect(code).toMatch(js`
 				/**
@@ -55,7 +55,7 @@ describe('can compile with-params message function', () => {
 
 		test('at start', () => {
 			const message = createMessage('generated', '{{name}}, welcome!');
-			const { nodes } = generateMessageFunction(message);
+			const { nodes } = generateMessageTarget(message);
 			const code = print(nodes, false);
 			expect(code).toMatch(js`
 			/**
@@ -71,7 +71,7 @@ describe('can compile with-params message function', () => {
 
 		test('at middle', () => {
 			const message = createMessage('generated', 'Goodbye, {{name}}. See you soon!');
-			const { nodes } = generateMessageFunction(message);
+			const { nodes } = generateMessageTarget(message);
 			const code = print(nodes, false);
 			expect(code).toMatch(js`
 				/**
@@ -87,7 +87,7 @@ describe('can compile with-params message function', () => {
 
 		test('at end', () => {
 			const message = createMessage('generated', 'Welcome, {{name}}');
-			const { nodes } = generateMessageFunction(message);
+			const { nodes } = generateMessageTarget(message);
 			const code = print(nodes, false);
 			expect(code).toMatch(js`
 				/**
@@ -108,7 +108,7 @@ describe('can compile with-params message function', () => {
 				'generated',
 				'{{first}}{{second}}, lorem ipsum, {{third}}{{forth}}',
 			);
-			const { nodes } = generateMessageFunction(message);
+			const { nodes } = generateMessageTarget(message);
 			const code = print(nodes, false);
 			expect(code).toMatch(js`
 				/**
@@ -130,7 +130,7 @@ describe('can compile with-params message function', () => {
 				'generated',
 				'{{first}}, this is a {{second}}{{third}} message with {{third}}{{second}} params. {{forth}}',
 			);
-			const { nodes } = generateMessageFunction(message);
+			const { nodes } = generateMessageTarget(message);
 			const code = print(nodes, false);
 			expect(code).toMatch(js`
 				/**
