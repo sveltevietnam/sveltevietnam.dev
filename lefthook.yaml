@@ -24,6 +24,7 @@ pre-commit:
           - name: others
             run: pnpm eslint --fix {staged_files}
             stage_fixed: true
+            exclude: ['*/generated/*.js', '*/__snapshots__/*.js']
             glob: '*.{js,ts}'
     - name: stylelint
       run: pnpm stylelint --fix {staged_files}

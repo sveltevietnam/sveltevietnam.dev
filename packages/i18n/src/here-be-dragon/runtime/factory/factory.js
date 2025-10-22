@@ -1,9 +1,10 @@
 /**
  * create a `MessageSimple` function, used by the internal compiler
+ * @template {string} [Lang=string]
  * @template {string} [Key=string]
  * @param {Key} key
- * @param {() => string} func
- * @returns {import('../types.public').MessageSimple<Key>}
+ * @param {(lang: Lang) => string} func
+ * @returns {import('../types.public').MessageSimple<Lang, Key>}
  *
  * @__NO_SIDE_EFFECTS__
  */
@@ -20,16 +21,17 @@ export function createMessageSimple(key, func) {
 			}),
 		});
 	});
-	return /** @type {import('../types.public').MessageSimple<Key>} */ (func);
+	return /** @type {import('../types.public').MessageSimple<Lang, Key>} */ (func);
 }
 
 /**
  * create a `MessageWithParams` function, used by the internal compiler
+ * @template {string} [Lang=string]
  * @template {string} [Key=string]
  * @template {string} [Params=string]
  * @param {Key} key
- * @param {(params: Record<Params, string>) => string} func
- * @returns {import('../types.public').MessageWithParams<Key, Params>}
+ * @param {(lang: Lang, params: Record<Params, string>) => string} func
+ * @returns {import('../types.public').MessageWithParams<Lang, Key, Params>}
  *
  * @__NO_SIDE_EFFECTS__
  */
@@ -46,5 +48,5 @@ export function createMessageWithParams(key, func) {
 			}),
 		});
 	});
-	return /** @type {import('../types.public').MessageWithParams<Key, Params>} */ (func);
+	return /** @type {import('../types.public').MessageWithParams<Lang, Key, Params>} */ (func);
 }
