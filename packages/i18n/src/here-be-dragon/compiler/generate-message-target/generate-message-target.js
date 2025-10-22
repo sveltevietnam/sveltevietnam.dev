@@ -1,5 +1,7 @@
 import ts, { factory } from 'typescript';
 
+import { getIdFromMessageKey } from '../utils.js';
+
 // ===========
 // Public API
 // ===========
@@ -12,12 +14,7 @@ import ts, { factory } from 'typescript';
 export function generateMessageTarget(message) {
 	const { params, content, key } = message;
 	const renderedContent = chunkifyContentWithParams(content, params);
-
-	// avoiding conflict with reserved keywords,
-	// just adding _ until there is a reliable upstream list
-	// of all reserved keywords
-	// @see https://github.com/microsoft/TypeScript/issues/2536
-	const id = '_' + key.replace(/\./g, '_');
+	const id = getIdFromMessageKey(key);
 
 	// ----------------
 	// Create Function
