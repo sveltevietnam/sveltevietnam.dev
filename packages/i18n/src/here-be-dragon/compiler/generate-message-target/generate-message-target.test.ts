@@ -9,7 +9,7 @@ import { generateMessageTarget } from '.';
 
 const js = dedent;
 
-test('can compile empty message function', () => {
+test('can generate empty message function', () => {
 	const message = createMessage('generated', '');
 	const { nodes } = generateMessageTarget(message);
 	const code = print(nodes, false);
@@ -22,7 +22,7 @@ test('can compile empty message function', () => {
 	`);
 });
 
-test('can compile simple message function', () => {
+test('can generate simple message function', () => {
 	const message = createMessage('generated', 'Hello, world!');
 	const { nodes } = generateMessageTarget(message);
 	const code = print(nodes, false);
@@ -35,7 +35,7 @@ test('can compile simple message function', () => {
 	`);
 });
 
-describe('can compile with-params message function', () => {
+describe('can generate with-params message function', () => {
 	describe('single param', () => {
 		test('no text', () => {
 			const message = createMessage('generated', '{{name}}');

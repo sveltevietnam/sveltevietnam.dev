@@ -1,5 +1,17 @@
 import ts, { factory } from 'typescript';
 
+/**
+ * @param {string} key
+ * @returns {string}
+ */
+export function getIdFromMessageKey(key) {
+	// avoiding conflict with reserved keywords,
+	// just adding _ until there is a reliable upstream list
+	// of all reserved keywords
+	// @see https://github.com/microsoft/TypeScript/issues/2536
+	return '_' + key.replace(/\./g, '_');
+}
+
 export const newline = () => factory.createIdentifier('\n');
 
 /**
@@ -7,7 +19,7 @@ export const newline = () => factory.createIdentifier('\n');
  * @param {boolean} [note=true]
  * @returns {string}
  */
-export function print(nodes, note) {
+export function print(nodes, note = true) {
 	/** @type {import('typescript').Node[]} */
 	const headerNodes = [];
 	if (note) {
