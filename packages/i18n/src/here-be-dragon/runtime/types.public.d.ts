@@ -1,6 +1,6 @@
 export type MessageType = 'simple' | 'with-params';
 
-export interface MessageSimple<Key extends string> {
+export interface MessageSimple<Lang extends string, Key extends string> {
 	/** DO NOT USE: denote that this is a MessageSimple */
 	$t: 'simple';
 	/** DO NOT USE: the locale key to this message **/
@@ -9,12 +9,12 @@ export interface MessageSimple<Key extends string> {
 	$p: Record<never, string>;
 
 	/**
-	 * Call the message to get the localized string
+	 * call the message function to get the localized string
 	 * @returns The localized, unsanitized string
 	 */
-	(): string;
+	(lang: Lang): string;
 }
-export interface MessageWithParams<Key extends string, Params extends string> {
+export interface MessageWithParams<Lang extends string, Key extends string, Params extends string> {
 	/** DO NOT USE: denote that this is a MessageWithParam */
 	$t: 'with-params';
 	/** DO NOT USE: the locale key to this message **/
@@ -27,9 +27,9 @@ export interface MessageWithParams<Key extends string, Params extends string> {
 	 * @param params - The parameters for the message
 	 * @returns The localized, unsanitized string
 	 */
-	(params: Record<Params, string>): string;
+	(lang: Lang, params: Record<Params, string>): string;
 }
 
-export type Message<Key extends string, Params extends string = never> =
-	| MessageSimple<Key>
-	| MessageWithParams<Key, Params>;
+export type Message<Lang extends string, Key extends string, Params extends string = never> =
+	| MessageSimple<Lang, Key>
+	| MessageWithParams<Lang, Key, Params>;

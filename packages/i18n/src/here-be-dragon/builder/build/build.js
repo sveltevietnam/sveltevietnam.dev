@@ -1,4 +1,4 @@
-import { compile } from '../../compiler/compile/index.js';
+import { generateMessageLocaleModule } from '../../compiler/index.js';
 import { parseLocale } from '../../parser/parse-locale/index.js';
 import { parseMessage } from '../../parser/parse-message/index.js';
 
@@ -140,7 +140,7 @@ export async function build(input) {
 	const modulePerLang = [];
 	for (let i = 0; i < langs.length; i++) {
 		const messages = Object.values(keyToMessageMapPerLang[i]);
-		modulePerLang.push(compile(messages));
+		modulePerLang.push(generateMessageLocaleModule(messages));
 	}
 
 	// ===============================

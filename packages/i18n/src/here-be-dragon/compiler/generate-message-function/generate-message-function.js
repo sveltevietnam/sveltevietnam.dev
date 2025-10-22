@@ -1,11 +1,106 @@
-import { factory } from 'typescript';
+import ts, { factory } from 'typescript';
 
+// ===========
+// Public API
+// ===========
+/**
+ * Generate a JS message function for a single message
+ * @param {import('../../parser').Message} message
+ * @returns {{ nodes: ts.Node[], id: string }}
+ */
+export function generateMessageFunction(message) {
+	const { params, content, key } = message;
+	const renderedContent = chunkifyContentWithParams(content, params);
+
+	// avoiding conflict with reserved keywords,
+	// just adding _ until there is a reliable upstream list
+	// of all reserved keywords
+	// @see https://github.com/microsoft/TypeScript/issues/2536
+	const id = '_' + key.replace(/\./g, '_');
+
+	// ----------------
+	// Create Function
+	// ----------------
+	const node = factory.createVariableStatement(
+		[],
+		factory.createVariableDeclarationList(
+			[
+				factory.createVariableDeclaration(
+					factory.createIdentifier(id),
+					undefined,
+					undefined,
+					factory.createArrowFunction(
+						undefined,
+						undefined,
+						params.length
+							? [
+									factory.createParameterDeclaration(
+										undefined,
+										undefined,
+										factory.createIdentifier('params'),
+										undefined,
+										undefined,
+										undefined,
+									),
+								]
+							: [],
+						undefined,
+						factory.createToken(ts.SyntaxKind.EqualsGreaterThanToken),
+						renderedContent,
+					),
+				),
+			],
+			ts.NodeFlags.Const,
+		),
+	);
+
+	// ---------------
+	// Generate JSDoc
+	// ---------------
+	/** @type {ts.JSDocTag[]} */
+	const jsdocTags = [];
+	if (params.length) {
+		jsdocTags.push(
+			factory.createJSDocParameterTag(
+				undefined,
+				factory.createIdentifier('params'),
+				false,
+				factory.createJSDocTypeExpression(
+					factory.createTypeLiteralNode(
+						params.map((param) =>
+							factory.createPropertySignature(
+								undefined,
+								factory.createIdentifier(param.name),
+								undefined,
+								factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword),
+							),
+						),
+					),
+				),
+			),
+		);
+	}
+	jsdocTags.push(
+		factory.createJSDocReturnTag(
+			undefined,
+			factory.createJSDocTypeExpression(factory.createKeywordTypeNode(ts.SyntaxKind.StringKeyword)),
+		),
+		factory.createJSDocUnknownTag(factory.createIdentifier('__NO_SIDE_EFFECTS__')),
+	);
+	const comment = factory.createJSDocComment('', jsdocTags);
+
+	return { id, nodes: [comment, node] };
+}
+
+// ==========
+// Internals
+// ==========
 /**
  * @param {string} content
- * @param {import('../../../parser/parse-message').MessageParameter[]} params
+ * @param {import('../../parser/parse-message').MessageParameter[]} params
  * @returns {import('typescript').TemplateLiteral | import('typescript').StringLiteral | import('typescript').PropertyAccessExpression | import('typescript').Identifier}
  */
-export function chunkifyContentWithParams(content, params) {
+function chunkifyContentWithParams(content, params) {
 	/** @type {ReturnType<typeof chunkifyContentWithParams>} */
 	let node = factory.createStringLiteral('');
 
