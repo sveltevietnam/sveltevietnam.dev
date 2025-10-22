@@ -4,11 +4,12 @@ import ts, { factory } from 'typescript';
 // Public API
 // ===========
 /**
- * Generate a JS message function for a single message
+ * Generate a JS message function for a single message,
+ * calling this function will resolve to the localized string
  * @param {import('../../parser').Message} message
  * @returns {{ nodes: ts.Node[], id: string }}
  */
-export function generateMessageFunction(message) {
+export function generateMessageTarget(message) {
 	const { params, content, key } = message;
 	const renderedContent = chunkifyContentWithParams(content, params);
 

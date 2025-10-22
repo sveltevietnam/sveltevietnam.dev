@@ -1,4 +1,4 @@
-import { generateMessageFunction } from '../generate-message-function/index.js';
+import { generateMessageTarget } from '../generate-message-target/index.js';
 import { print, exportIdentifiersAsLiterals } from '../utils.js';
 
 // ===========
@@ -6,24 +6,24 @@ import { print, exportIdentifiersAsLiterals } from '../utils.js';
 // ===========
 /**
  * Generate message function for each parsed message from source locale,
- * and export them via a JS module
+ * and export them via a lang-specific JS module
  * @param {import('../../parser').Message[]} messages
  * @returns {string}
  */
-export function generateMessageLocaleModule(messages) {
+export function generateMessageTargetModule(messages) {
 	if (!messages.length) return '';
 
 	/** @type {import('typescript').Node[]} */
 	const definitions = [];
 
 	/** @type {Record<string, string> } */
-	const exports = {};
+	const exportMapping = {};
 
 	for (const message of messages) {
-		const { id, nodes } = generateMessageFunction(message);
+		const { id, nodes } = generateMessageTarget(message);
 		definitions.push(...nodes);
-		exports[id] = message.key;
+		exportMapping[id] = message.key;
 	}
 
-	return print([...definitions, exportIdentifiersAsLiterals(exports)]);
+	return print([...definitions, exportIdentifiersAsLiterals(exportMapping)]);
 }
