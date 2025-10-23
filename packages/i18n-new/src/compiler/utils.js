@@ -89,7 +89,7 @@ export function importFactories(ids) {
 					),
 				),
 			),
-			factory.createStringLiteral('@sveltevietnam/i18n/runtime/factory'),
+			factory.createStringLiteral('@sveltevietnam/i18n-new/factory'),
 			undefined,
 		),
 	];
