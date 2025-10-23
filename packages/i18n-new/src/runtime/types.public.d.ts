@@ -30,6 +30,8 @@ export interface MessageWithParams<Lang extends string, Key extends string, Para
 	(lang: Lang, params: Record<Params, string>): string;
 }
 
-export type Message<Lang extends string, Key extends string, Params extends string = never> =
-	| MessageSimple<Lang, Key>
-	| MessageWithParams<Lang, Key, Params>;
+export type Message<
+	Lang extends string = string,
+	Key extends string = string,
+	Params extends string = string,
+> = MessageSimple<Lang, Key> | MessageWithParams<Lang, Key, Params>;
