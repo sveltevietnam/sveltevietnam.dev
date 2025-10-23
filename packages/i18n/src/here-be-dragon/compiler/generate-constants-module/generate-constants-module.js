@@ -17,7 +17,7 @@ import { print } from '../utils.js';
 export function generateConstantsModule(input) {
 	const nodes = [
 		generateStringArrayConstant('langs', input.langs, true),
-		generateStringArrayConstant('langs', input.keys),
+		generateStringArrayConstant('keys', input.keys),
 	];
 
 	return print(nodes);

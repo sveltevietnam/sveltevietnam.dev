@@ -27,4 +27,6 @@ export type BuildOutput = {
 		/** index.js */
 		index: string;
 	};
+	/** $i18n/constants.js */
+	constants: string;
 };
