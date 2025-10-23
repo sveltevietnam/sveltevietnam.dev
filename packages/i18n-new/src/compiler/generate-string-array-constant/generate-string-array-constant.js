@@ -19,7 +19,7 @@ export function generateStringArrayConstant(id, values, sorted) {
 	ts.addSyntheticLeadingComment(
 		expression,
 		ts.SyntaxKind.MultiLineCommentTrivia,
-		'*@const ',
+		'*@type {const}',
 		false,
 	);
 	const node = factory.createVariableStatement(

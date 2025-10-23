@@ -1,5 +1,5 @@
-import type * as m from "./messages";
 import type { LANGUAGES } from "./constants";
+import type * as m from "./messages";
 
 declare global {
   namespace I18N {
