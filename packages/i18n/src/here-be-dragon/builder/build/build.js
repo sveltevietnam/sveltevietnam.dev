@@ -1,4 +1,8 @@
-import { generateMessageTargetModule, generateMessageModule } from '../../compiler/index.js';
+import {
+	generateMessageTargetModule,
+	generateMessageModule,
+	generateConstantsModule,
+} from '../../compiler/index.js';
 import { parseLocale } from '../../parser/parse-locale/index.js';
 import { parseMessage } from '../../parser/parse-message/index.js';
 
@@ -153,11 +157,12 @@ export async function build(input) {
 		const module = modulePerLang[i];
 		targets[lang] = module;
 	}
-
 	const index = generateMessageModule(Object.values(keyToMessageMapPerLang[0]), langs);
+	const constants = generateConstantsModule({ keys, langs });
 
 	return {
 		messages: { targets, index },
+		constants,
 	};
 }
 
@@ -216,17 +221,3 @@ export class ErrorMessageParse extends BuildError {
 		this.cause = errors;
 	}
 }
-
-// // ==========
-// // Internals
-// // ==========
-// //
-// /** @param {string} name */
-// function createError(name) {
-// 	return class extends BuildError {
-// 		/** @param {string} message  */
-// 		constructor(message) {
-// 			super(message, name);
-// 		}
-// 	};
-// }
