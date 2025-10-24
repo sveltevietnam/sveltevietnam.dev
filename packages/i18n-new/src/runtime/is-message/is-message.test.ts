@@ -1,6 +1,6 @@
 import { test, expect, describe } from 'vitest';
 
-import { createMessageSimple, createMessageWithParams } from '../factory';
+import { createMessageSimple, createMessageWithParams } from '../../factory';
 
 import { isMessage } from '.';
 
