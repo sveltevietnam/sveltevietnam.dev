@@ -27,9 +27,9 @@ export async function parseLocale(abspath, options = {}) {
 	// 1. Resolve options
 	// ---------------------
 	const rOptions =
-		/** @type {import('./types.public').ParseLocaleOptions & { __internals__: ParseInternals }} */ (
-			options
-		);
+		/** @type {import('./types.public').ParseLocaleOptions & { __internals__: ParseInternals }} */ ({
+			...options,
+		});
 	if (!rOptions.__internals__) {
 		rOptions.__internals__ = { importTraces: [] };
 	}
@@ -62,6 +62,7 @@ export async function parseLocale(abspath, options = {}) {
 	}
 	const str = readFileSync(abspath, 'utf-8');
 	const deserialized = await deserializer.parse({ content: str.normalize(), file: abspath });
+	// TODO: catch error by valibot and enhance with message to include file path
 	const locale = v.parse(LocaleSchema, deserialized);
 	const messagesPerCurrentSource = flattenRecursiveRecord(locale.messages, {
 		fallback: '',
@@ -99,15 +100,12 @@ export async function parseLocale(abspath, options = {}) {
 			const importPath = decodeURIComponent(url.pathname);
 			const lastIndex = importTraces.findIndex((trace) => trace.file === importPath);
 			if (lastIndex !== -1) {
-				const circularPath = [
-					{ file: importPath, key },
-					...importTraces.slice(lastIndex).toReversed(),
-				]
+				const circularPath = [{ file: abspath, key }, ...importTraces.slice(lastIndex).toReversed()]
 					.map(({ file, key }) => `${file} (at "${key}")`)
 					.join(' <- ');
 				throw new ErrorCircularImport(`Circular import detected: ${circularPath}`);
 			}
-			importTraces.push({ file: importPath, key });
+			importTraces.push({ file: abspath, key });
 			dependencies.add(importPath);
 			asyncParsing.push(
 				parseLocale(
