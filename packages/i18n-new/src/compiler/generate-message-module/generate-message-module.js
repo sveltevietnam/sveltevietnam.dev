@@ -1,7 +1,13 @@
 import { factory } from 'typescript';
 
 import { generateMessage } from '../generate-message/index.js';
-import { print, exportIdentifiersAsLiterals, importFactories, newline } from '../utils.js';
+import {
+	print,
+	exportIdentifiersAsLiterals,
+	importFactories,
+	newline,
+	getSourceMessageType,
+} from '../utils.js';
 
 // ===========
 // Public API
@@ -10,7 +16,7 @@ import { print, exportIdentifiersAsLiterals, importFactories, newline } from '..
  * Generate a message wrapper function for each parsed message from source locale,
  * which imports and call the actual message function for each lang.
  * Put all these wrappers into the index JS module next to the locale message modules.
- * @param {Pick<import('../../parser').Message, 'key' | 'type'>[]} messages
+ * @param {import('../../parser').SourceMessage[]} messages
  * @param {string[]} langs
  * @returns {string}
  */
@@ -28,7 +34,8 @@ export function generateMessageModule(messages, langs) {
 
 	for (const message of messages) {
 		const { id, nodes } = generateMessage(message, langs);
-		switch (message.type) {
+		const type = getSourceMessageType(message);
+		switch (type) {
 			case 'simple':
 				importIds.add('createMessageSimple');
 				break;

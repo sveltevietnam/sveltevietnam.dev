@@ -5,6 +5,7 @@ import { resolve as importMetaResolve } from 'import-meta-resolve';
 import * as v from 'valibot';
 
 import { flattenRecursiveRecord } from '../../utils/recursive-record/flatten-recursive-record.js';
+import { parseMessageParams } from '../parse-message-params/index.js';
 import { LocaleSchema } from '../schema/locale.js';
 
 /**
@@ -19,7 +20,7 @@ import { LocaleSchema } from '../schema/locale.js';
  * parse locale file into flat message map
  * @param {string} abspath - absolute path to yaml
  * @param {import('./types.public').ParseLocaleOptions} [options] - processing options
- * @returns {Promise<Record<string, string>>} - flat message map
+ * @returns {Promise<import('./types.public').ParseLocaleOutput>} - flat message map
  */
 export async function parseLocale(abspath, options = {}) {
 	// ---------------------
@@ -63,7 +64,7 @@ export async function parseLocale(abspath, options = {}) {
 	const str = readFileSync(abspath, 'utf-8');
 	const deserialized = await deserializer.parse({ content: str.normalize(), file: abspath });
 	const locale = v.parse(LocaleSchema, deserialized);
-	const messages = flattenRecursiveRecord(locale.messages, {
+	const messagesPerCurrentSource = flattenRecursiveRecord(locale.messages, {
 		fallback: '',
 		rootKey,
 	});
@@ -71,9 +72,11 @@ export async function parseLocale(abspath, options = {}) {
 	// ----------------------------------------
 	// 3. Parse content for @import directives
 	// ----------------------------------------
-	/** @type {Promise<[key: string, message: string] | Record<string, string>>[]} */
+	/** @type {string[]} */
+	const dependencies = [];
+	/** @type {Promise<[Omit<import('./types.public').SourceMessage, 'params'>] | import('./types.public').ParseLocaleOutput>[]} */
 	const asyncParsing = [];
-	for (let [key, value] of Object.entries(messages)) {
+	for (let [key, value] of Object.entries(messagesPerCurrentSource)) {
 		key = key.trim();
 		value = value.trim();
 		if (key.endsWith(directiveImport)) {
@@ -101,6 +104,7 @@ export async function parseLocale(abspath, options = {}) {
 				throw new ErrorCircularImport(`Circular import detected: ${circularPath}`);
 			}
 			importTraces.push({ file: importPath, key });
+			dependencies.push(importPath);
 			asyncParsing.push(
 				parseLocale(
 					importPath,
@@ -112,25 +116,51 @@ export async function parseLocale(abspath, options = {}) {
 				),
 			);
 		} else {
-			asyncParsing.push(Promise.resolve([key, value]));
+			asyncParsing.push(
+				Promise.resolve([
+					{
+						key,
+						content: value,
+						sources: [{ file: abspath, content: value }],
+					},
+				]),
+			);
 		}
 	}
 
 	// -----------------
 	// 4. Merge results
 	// -----------------
-	const parsed = await Promise.all(asyncParsing);
-	/** @type {Record<string, string>} */
-	const merged = {};
-	for (const item of parsed) {
+	const dependencyParses = await Promise.all(asyncParsing);
+
+	/** @type {Record<string, Omit<import('./types.public').SourceMessage, 'params'>>} */
+	const mergedMap = {};
+	for (const item of dependencyParses) {
 		if (Array.isArray(item)) {
-			const [key, value] = item;
-			merged[key] = value;
+			mergedMap[item[0].key] = item[0];
 		} else {
-			Object.assign(merged, item);
+			for (const message of item.messages) {
+				const existingMessage = mergedMap[message.key];
+				if (existingMessage) {
+					existingMessage.sources.push(...message.sources);
+					existingMessage.content = message.content;
+				} else {
+					mergedMap[message.key] = message;
+				}
+			}
 		}
 	}
-	return merged;
+
+	// ----------------------------------
+	// 5. Parse params for each messages
+	// ----------------------------------
+	/** @type {import('./types.public').SourceMessage[]} */
+	const messages = Object.values(mergedMap).map((msg) => ({
+		...msg,
+		params: parseMessageParams(msg.content),
+	}));
+
+	return { messages, dependencies };
 }
 
 // =======

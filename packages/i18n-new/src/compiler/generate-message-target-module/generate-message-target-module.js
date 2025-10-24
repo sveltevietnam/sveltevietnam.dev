@@ -7,7 +7,7 @@ import { print, exportIdentifiersAsLiterals } from '../utils.js';
 /**
  * Generate message function for each parsed message from source locale,
  * and export them via a lang-specific JS module
- * @param {import('../../parser').Message[]} messages
+ * @param {import('../../parser').SourceMessage[]} messages
  * @returns {string}
  */
 export function generateMessageTargetModule(messages) {

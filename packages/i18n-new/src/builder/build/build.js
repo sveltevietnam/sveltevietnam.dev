@@ -4,7 +4,6 @@ import {
 	generateConstantsModule,
 } from '../../compiler/index.js';
 import { parseLocale } from '../../parser/parse-locale/index.js';
-import { parseMessage } from '../../parser/parse-message/index.js';
 
 // ===========
 // Public API
@@ -24,15 +23,14 @@ export async function build(input) {
 	const localePerLang = await Promise.all(
 		langs.map(async (lang) => {
 			const abspath = entries[lang];
-			const messages = await parseLocale(abspath, parseOptions);
-			return messages;
+			return await parseLocale(abspath, parseOptions);
 		}),
 	);
 
 	// ==============================================
 	// 2. Check message key consistency across langs
 	// ==============================================
-	const messageKeySets = localePerLang.map((msgs) => new Set(Object.keys(msgs)));
+	const messageKeySets = localePerLang.map((locale) => new Set(locale.messages.map((m) => m.key)));
 	/** @type {import('./types.public').InconsistentKeyIssue[]} */
 	const keyIssues = [];
 	for (let currentIndex = 0; currentIndex < messageKeySets.length - 1; currentIndex++) {
@@ -68,50 +66,20 @@ export async function build(input) {
 		);
 	}
 
-	// ==========================================
-	// 3. Parse all messages in all locale files
-	// ==========================================
-	/** @type {Record<string, import('../../parser/').Message>[]} */
-	const keyToMessageMapPerLang = [];
-	/** @type {import('../../parser/parse-message').ParseMessageError[]} */
-	const parseMessageErrors = [];
-	for (let i = 0; i < langs.length; i++) {
-		const locale = localePerLang[i];
-		/** @type {Record<string, import('../../parser/').Message>} */
-		const keyToMessage = {};
-		for (const [key, content] of Object.entries(locale)) {
-			try {
-				const params = parseMessage(content);
-				keyToMessage[key] = {
-					type: params.length ? 'with-params' : 'simple',
-					key,
-					content,
-					params,
-				};
-			} catch (e) {
-				const typedError = /** @type {import('../../parser/parse-message').ParseMessageError} */ (
-					e
-				);
-				typedError.cause = { file: localeFilePathPerLang[i], key };
-				parseMessageErrors.push(typedError);
-				continue;
-			}
-		}
-		keyToMessageMapPerLang.push(keyToMessage);
-	}
-	if (parseMessageErrors.length) {
-		throw new ErrorMessageParse(
-			'Failed to parse messages, check `error.cause` for details',
-			parseMessageErrors,
-		);
-	}
-
 	// ====================================================
 	// 4. Check message parameter consistency across langs
 	// ====================================================
+	const keyToMessageMapPerLang = localePerLang.map((locale) => {
+		/** @type {Record<string, import('../../parser/index.js').SourceMessage>} */
+		const map = {};
+		for (const message of locale.messages) {
+			map[message.key] = message;
+		}
+		return map;
+	});
 	/** @type {import('./types.public').InconsistentParamIssue[]} */
 	const paramIssues = [];
-	const keys = Object.keys(localePerLang[0]);
+	const keys = Object.keys(keyToMessageMapPerLang[0]);
 	for (const key of keys) {
 		let currentParams = keyToMessageMapPerLang[0][key].params;
 		/** @type {import('./types.public').InconsistentParamIssue['in']} */
@@ -205,19 +173,5 @@ export class ErrorInconsistentMessageParams extends BuildError {
 	constructor(message, issues) {
 		super(message, 'ErrorInconsistentMessageParams');
 		this.cause = issues;
-	}
-}
-
-export class ErrorMessageParse extends BuildError {
-	/** @type {import('../../parser/parse-message').ParseMessageError[]} */
-	cause;
-
-	/**
-	 * @param {string} message
-	 * @param {import('../../parser/parse-message').ParseMessageError[]} errors
-	 */
-	constructor(message, errors) {
-		super(message, 'ErrorMessageParse');
-		this.cause = errors;
 	}
 }

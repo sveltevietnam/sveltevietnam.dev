@@ -1,7 +1,7 @@
 import dedent from 'dedent';
 import { test, expect } from 'vitest';
 
-import { createMessage } from '$tests/utils';
+import { createSourceMessage } from '$tests/utils';
 
 import { generateMessageModule } from '.';
 
@@ -13,7 +13,7 @@ test('no message should return empty string', () => {
 });
 
 test('can generate module with only simple message', () => {
-	const messages = [createMessage('greeting', 'Hello, world!')];
+	const messages = [createSourceMessage('greeting', 'Hello, world!')];
 	const mod = generateMessageModule(messages, langs);
 	expect(mod).toEqual(js`
 		/**
@@ -33,7 +33,7 @@ test('can generate module with only simple message', () => {
 });
 
 test('can generate module with only with-params message', () => {
-	const messages = [createMessage('farewell', 'Goodbye {{name}}')];
+	const messages = [createSourceMessage('farewell', 'Goodbye {{name}}')];
 	const mod = generateMessageModule(messages, langs);
 	expect(mod).toEqual(js`
 		/**
@@ -54,8 +54,8 @@ test('can generate module with only with-params message', () => {
 
 test('can generate module with all types of message', () => {
 	const messages = [
-		createMessage('greeting', 'Hello, world!'),
-		createMessage('farewell', 'Goodbye {{name}}'),
+		createSourceMessage('greeting', 'Hello, world!'),
+		createSourceMessage('farewell', 'Goodbye {{name}}'),
 	];
 	const mod = generateMessageModule(messages, langs);
 	expect(mod).toEqual(js`

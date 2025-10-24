@@ -6,7 +6,7 @@
  * @param {string} message - the input string to check
  * @returns {import('./types.public').MessageParameter[]} list of dynamic parameters, if any
  */
-export function parseMessage(message) {
+export function parseMessageParams(message) {
 	/** @type {Record<string, import('./types.public').MessageParameter>} */
 	const params = {};
 
@@ -14,7 +14,7 @@ export function parseMessage(message) {
 	while (start !== -1) {
 		const end = message.indexOf('}}', start);
 		if (end === -1) {
-			throw new ErrorMissingCloseBracker(
+			throw new ErrorMissingCloseBracket(
 				`Missing closing bracket "}}" for parameter "${message.slice(start + 2, start + 7)}..." starting at position ${start}`,
 			);
 		}
@@ -38,7 +38,7 @@ export function parseMessage(message) {
 // =======
 // Errors
 // =======
-export class ParseMessageError extends Error {
+export class ParseMessageParamsError extends Error {
 	/**
 	 * populate by caller of `parseMessage` to point to source of error
 	 * @type {{ file: string; key: string; } | undefined}
@@ -49,12 +49,12 @@ export class ParseMessageError extends Error {
 	 * @param {string} message
 	 * @param {string} [name]
 	 */
-	constructor(message, name = 'ParseMessageError') {
+	constructor(message, name = 'ParseMessageParamsError') {
 		super(message);
 		this.name = name;
 	}
 }
-export const ErrorMissingCloseBracker = createError('ErrorMissingCloseBracker');
+export const ErrorMissingCloseBracket = createError('ErrorMissingCloseBracket');
 export const ErrorInvalidParamName = createError('ErrorInvalidParamName');
 
 // ==========
@@ -63,7 +63,7 @@ export const ErrorInvalidParamName = createError('ErrorInvalidParamName');
 
 /** @param {string} name */
 function createError(name) {
-	return class extends ParseMessageError {
+	return class extends ParseMessageParamsError {
 		/** @param {string} message  */
 		constructor(message) {
 			super(message, name);

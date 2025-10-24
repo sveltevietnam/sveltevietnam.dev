@@ -8,7 +8,7 @@ import { getIdFromMessageKey } from '../utils.js';
 /**
  * Generate a JS message function for a single message,
  * calling this function will resolve to the localized string
- * @param {import('../../parser').Message} message
+ * @param {import('../../parser').SourceMessage} message
  * @returns {{ nodes: ts.Node[], id: string }}
  */
 export function generateMessageTarget(message) {
@@ -95,7 +95,7 @@ export function generateMessageTarget(message) {
 // ==========
 /**
  * @param {string} content
- * @param {import('../../parser/parse-message').MessageParameter[]} params
+ * @param {import('../../parser').MessageParameter[]} params
  * @returns {import('typescript').TemplateLiteral | import('typescript').StringLiteral | import('typescript').PropertyAccessExpression | import('typescript').Identifier}
  */
 function chunkifyContentWithParams(content, params) {

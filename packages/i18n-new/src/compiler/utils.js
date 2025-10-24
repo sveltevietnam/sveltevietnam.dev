@@ -1,6 +1,15 @@
 import ts, { factory } from 'typescript';
 
 /**
+ * @param {import('../parser').SourceMessage} message
+ * @returns {import('../runtime').MessageType}
+ */
+export function getSourceMessageType(message) {
+	if (message.params.length) return 'with-params';
+	return 'simple';
+}
+
+/**
  * @param {string} key
  * @returns {string}
  */
