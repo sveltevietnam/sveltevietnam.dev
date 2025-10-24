@@ -1,12 +1,15 @@
 export type MessageType = 'simple' | 'with-params';
 
 export interface MessageSimple<Lang extends string, Key extends string> {
-	/** DO NOT USE: denote that this is a MessageSimple */
+	/** denote that this is a MessageSimple */
 	$t: 'simple';
-	/** DO NOT USE: the locale key to this message **/
+	/** the locale key to this message **/
 	$k: Key;
+
 	/** DO NOT USE: tying only, not available at runtime */
-	$p: Record<never, string>;
+	$$p: Record<never, string>;
+	/** DO NOT USE: tying only, not available at runtime */
+	$$l: Lang;
 
 	/**
 	 * call the message function to get the localized string
@@ -15,12 +18,15 @@ export interface MessageSimple<Lang extends string, Key extends string> {
 	(lang: Lang): string;
 }
 export interface MessageWithParams<Lang extends string, Key extends string, Params extends string> {
-	/** DO NOT USE: denote that this is a MessageWithParam */
+	/** denote that this is a MessageWithParam */
 	$t: 'with-params';
-	/** DO NOT USE: the locale key to this message **/
+	/** the locale key to this message **/
 	$k: Key;
+
 	/** DO NOT USE: tying only, not available at runtime */
-	$p: Record<Params, string>;
+	$$p: Record<never, string>;
+	/** DO NOT USE: tying only, not available at runtime */
+	$$l: Lang;
 
 	/**
 	 * Call the message with parameters to get the localized string
