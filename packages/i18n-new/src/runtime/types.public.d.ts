@@ -24,7 +24,7 @@ export interface MessageWithParams<Lang extends string, Key extends string, Para
 	$k: Key;
 
 	/** DO NOT USE: tying only, not available at runtime */
-	$$p: Record<never, string>;
+	$$p: Record<Params, string>;
 	/** DO NOT USE: tying only, not available at runtime */
 	$$l: Lang;
 
