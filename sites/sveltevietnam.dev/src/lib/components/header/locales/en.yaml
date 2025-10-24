@@ -1,0 +1,7 @@
+# ============================
+# Language: English
+# Scope:    components.header
+# ============================
+messages:
+  go_to_home_page: Go to home page
+  mobile_menu: mobile menu

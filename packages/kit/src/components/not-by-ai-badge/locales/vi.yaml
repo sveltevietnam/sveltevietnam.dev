@@ -1,0 +1,6 @@
+# =====================================
+# Language: Vietnamese
+# Scope:    components.not_by_ai_badge
+# =====================================
+messages:
+  desc: trang này được viết bởi con người, không phải bởi trí tuệ nhân tạo (AI)

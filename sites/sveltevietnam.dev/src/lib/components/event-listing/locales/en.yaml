@@ -1,0 +1,7 @@
+# ===================================
+# Language: English
+# Scope:    components.event_listing
+# ===================================
+messages:
+  copy: Copy link to event page
+  live: Live via

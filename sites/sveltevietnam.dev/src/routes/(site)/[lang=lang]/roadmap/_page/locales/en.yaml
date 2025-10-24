@@ -1,0 +1,137 @@
+# =======================
+# Language: English
+# Scope:    pages.roadmap
+# =======================
+messages:
+  title: Roadmap | Svete Vietnam
+  keywords: milestone, roadmap, plan, development
+  heading: Roadmap
+  desc: What's next for the Svelte Vietnam project
+  common:
+    milestone: Milestone
+    objective: Objective
+    task: Tasks
+    progress: Progress
+    highlight: Highlights
+  progress:
+    planned: Planned
+    inprogress: In progress
+    completed: Completed
+    delayed: Delayed
+  dong:
+    objective:
+      reduce complexity of the sveltevietnam.dev codebase and design; experiment with Svelte 5 and
+      comtemporary technologies; improve the reading and writing experience at the Svelte Vietnam
+      Blog; set up a job posting process
+    highlights:
+      v1: Exit prelease stage and launch the official version 1 of the sveltevietnam.dev site
+      people_of_svelte:
+        Launch the first community outreach project, <a class="c-link"
+        href="/en/blog/series/people-of-svelte">"People of Svelte - a mosaic of diverse voices"</a>,
+        an initiative by <a class="c-link" href="/en/people/liti-dev">Thuyet</a>
+      recruit:
+        Launch the <a class="c-link" href="https://recruit.sveltevietnam.dev"
+        target="_blank">Recruit platform</a>, connecting community with organizations and businesses
+    tasks:
+      publish_packages:
+        Establish a publication workflow to npm for the Svelte Vietnam design system and packages
+        that are currently internal, for resuability in other relevant projects
+      job_posting: Allow recruiters to create job listings directly on sveltevietnam.dev
+      a11y: Ensure design and content meet a minimum accessibility baseline
+      umami:
+        Experiment with <a class="c-link" href="https://umami.is/" rel="noreferrer noopener
+        external" target="_blank">Umami</a> for site analytics as an open source alternative to
+        Google Analytics with focus on privacy and data ownership
+      backend:
+        Consolidate backend services into a single worker, experiment with <a class="c-link"
+        href="https://developers.cloudflare.com/workers/vite-plugin/" rel="noreferrer noopener
+        external" target="_blank">vite-plugin-cloudflare</a> for a better development experience
+      people:
+        Introduce the <a class="c-link" href="/en/people">People</a> page for better indexing of
+        blog posts and event content authors
+      read_experience:
+        Improve reading experience at Blog with quick navigation and comments via Bluesky
+      write_guidelines:
+        Improve wriring experience at Blog with instructions and examples at the <a class="c-link"
+        href="/en/blog/write">Writing Guidelines</a> page
+      home_resources: List popular resources in the Svelte ecosystem on the homepage
+      svelte_5: Rebuild sveltevietnam.dev entirely with Svelte 5
+      inter_4: Upgrade the Inter font to version 4
+      tailwind_4: Simplify the styling setup, experiment with Tailwind 4.0
+      refactor: Simplify and unify the design of the entire sveltevietnam.dev website
+  tu:
+    objective:
+      prepare for the first official (pre)release of sveltevietnam.dev (v1.0.0-next), focus on
+      developing the blog page, the events page, and the necessary features and content for the
+      community to start actively participating and contributing.
+    highlights:
+      open_collective:
+        Send request to create the <a class="c-link"
+        href="https://opencollective.com/sveltevietnam">Svelte Vietnam Open Collective</a>, started
+        accepting financial donations
+      first_offline_meetup:
+        Organize <a class="c-link" href="/en/events/2024-04-spring-2024-ho-chi-minh-meetup">the
+        first offline community meetup in Ho Chi Minh city</a>
+      first_online_meetup:
+        Organize <a class="c-link" href="/en/events/202312-year-end-online-meetup">the first online
+        community meetup</a>
+      first_ui: Establish basic infrastructure and initial design for the sveltevietnam.dev website
+    tasks:
+      survey: Draft content and design for the “Svelte Vietnam Community Survey”
+      page_jobs: Introduce the <a class="c-link" href="en/jobs">Jobs</a> page with basic design
+      page_design:
+        Introduce the <a class="c-link" href="en/design">Design</a> page to document the design
+        elements of the Svelte Vietnam project
+      progressive_enhancement:
+        Support users without JavaScript access (progressive enhancement), especially for essential
+        features like multilingual navigation, theme switcher, mobile menu, and splash screen
+      page_coc:
+        Introduce the <a class="c-link" href="/en/code-of-conduct">Code of Conduct</a> page with
+        basic design
+      og: Set up custom Open Graph images for each completed page
+      blog_post:
+        Set up the process for posting or linking blog posts through Github issue and direct code
+        guide for posting
+      references:
+        Introduce the “<a class="c-link"
+        href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/TECHNICAL_REFERNCES.md">Technical
+        Reference</a>” and “<a class="c-link"
+        href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/CONTRIBUTING.md">Contributing
+        Guidelines</a>” documents
+      page_blog: Introduce the <a class="c-link" href="/en/blog">Blog</a> page with basic design
+      page_events:
+        Introduce the <a class="c-link" href="/en/events">Events</a> page with basic design
+      mailer:
+        Design infrastructure and initialize mailer service to manage user registration for email
+        notifications
+  auLac:
+    objective: initiate the project, build the infrastructure, set up a basic development process
+    highlights:
+      roadmap: Build a roadmap for the development of Svelte Vietnam
+      initiation:
+        Establish an initial Information Architecture and Brand Identity for Svelte Vietnam
+    tasks:
+      page_roadmap: Introduce the <a class="c-link" href="/en/roadmap">Roadmap</a> page
+      metadata:
+        Set up basic metadata and SEO, including sitemap.xml, Google Search Console, Google
+        Analytics
+      discord:
+        Develop websocket service and bot for Discord server, making ways to gradually add new
+        features to enrich experience for users on both Discord and the sveltevietnam.dev site
+      page_home: Introduce the <a class="c-link" href="/en">Home page</a> page with basic design
+      page_branding_repo:
+        Initiate the <a class="c-link" href="https://github.com/sveltevietnam/branding">branding
+        repository</a> to store public assets (including logo with version history) and the
+        “Branding Guidelines” document (discussing about usage of Svelte Vietnam's public assets)
+      logo:
+        Design and implement <a class="c-link" href="/en/design#logo">the official logo of Svelte
+        Vietnam</a>
+      project_reference:
+        Publish the “<a class="c-link"
+        href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/PROJECT_REFERENCES.md">Project
+        Reference</a>” document, providing an overview of the Svelte Vietnam project
+      github:
+        Setup the Svelte Vietnam Github <a class="c-link"
+        href="https://github.com/sveltevietnam">organization</a>, <a class="c-link"
+        href="https://github.com/orgs/sveltevietnam/projects/1">project</a>, and <a class="c-link"
+        href="https://github.com/sveltevietnam/sveltevietnam.dev">sveltevietnam.dev repository</a>

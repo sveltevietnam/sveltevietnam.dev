@@ -1,0 +1,33 @@
+# =====================
+# Language: Vietnamese
+# Scope:    pages.blog
+# =====================
+messages:
+  title: Blog | Svelte Việt Nam
+  keywords: blog, viết, chia sẻ, tham gia, đóng góp
+  heading: Svelte Việt Nam Blog
+  desc:
+    Nơi chia sẻ về công nghệ và con người trong hệ sinh thái Svelte. Viết về trải nghiệm của bạn với
+    Svelte hoặc cập nhật tin tức từ cộng đồng Svelte Việt Nam
+  tagline: Học để chia sẻ. Sẻ chia là học
+  category:
+    technical: Các bài viết xoay quanh vấn đề kỹ thuật trong hệ sinh thái Svelte và SvelteKit
+    insider:
+      Chia sẻ từ quản trị viên về các quyết định kỹ thuật và bài học từ quá trình xây dựng cộng đồng
+      Svelte Việt Nam và trang web sveltevietnam.dev
+  write:
+    heading: Chia sẻ bài viết của bạn!
+    desc:
+      Blog của Svelte Việt Nam là nơi dành cho các thành viên chia sẻ kiến thức, ý tưởng, cảm nhận
+      về các trải nghiệm của mình với cộng đồng Svelte trong nước và quốc tế.<br/><br/>Svelte Việt
+      Nam hoan nghênh tất cả mọi người viết bài tại blog này. Đây là cách thiết thực và trực tiếp
+      nhất mà thành viên có thể đóng góp vào sự phát triển chung của cả cộng đồng.
+    cta: Xem hướng dẫn viết bài
+    discuss:
+      Thảo luận về bài viết tại <a class="c-link" href="https://discord.sveltevietnam.dev/">Discord
+      chính thức của Svelte Việt Nam</a>.
+  resources:
+    desc:
+      Một số tài nguyên và kênh thông tin về Svelte và SvelteKit được cập nhật liên tục tại trang
+      chủ sveltevietnam.dev
+    view: Xem danh sách tài nguyên

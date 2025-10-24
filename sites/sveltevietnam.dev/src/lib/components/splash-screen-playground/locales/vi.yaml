@@ -1,0 +1,10 @@
+# ==============================================
+# Language: Vietnamese
+# Scope:    components.splash_screen_playground
+# ==============================================
+messages:
+  choose: Chọn biến thể
+  play: Chạy
+  pause: Dừng
+  short: Ngắn
+  long: Dài

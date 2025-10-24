@@ -1,0 +1,10 @@
+# =======================
+# Language: English
+# Scope:    pages.everify
+# =======================
+messages:
+  title: Email Verification | Svelte Vietnam
+  heading: Email Verification
+  already: Your email has already been verified!
+  success: Thank you, your email is now verified!
+  go_to_home: Go to homepage

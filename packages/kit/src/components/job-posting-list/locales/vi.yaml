@@ -1,0 +1,7 @@
+# ======================================
+# Language: Vietnamese
+# Scope:    components.job_posting_list
+# ======================================
+messages:
+  posted_at: Đăng ngày
+  expired_at: Hết hạn ngày

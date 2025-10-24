@@ -1,0 +1,10 @@
+# ============================================
+# Language: Vietnamese
+# Scope:    notifications.discord_new_message
+# ============================================
+messages:
+  title: Diễn đàn cộng đồng
+  message:
+    <strong>{{name}}</strong> vừa nhắn tin tại <a class="c-link"
+    href="https://discord.sveltevietnam.dev/" target="_blank" rel="noopener noreferrer">Discord của
+    Svelte Việt Nam</a>.

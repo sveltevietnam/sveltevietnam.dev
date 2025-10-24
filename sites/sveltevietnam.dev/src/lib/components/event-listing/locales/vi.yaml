@@ -1,0 +1,7 @@
+# ===================================
+# Language: Vietnamese
+# Scope:    components.event_listing
+# ===================================
+messages:
+  copy: Sao chép đường dẫn đến trang sự kiện
+  live: Trực tuyến tại

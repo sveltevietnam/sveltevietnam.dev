@@ -1,0 +1,128 @@
+# =====================
+# !! Entry point !!
+# Language: Vietnamese
+# =====================
+---
+messages:
+  '@import': '@sveltevietnam/kit/locales/vi.yaml'
+  svelte_vietnam:
+    name: Svelte Việt Nam
+    discord: Svelte Việt Nam Discord
+  languages:
+    vietnamese: Tiếng Việt
+    english: Tiếng Anh
+
+  # common
+  vietnam: Việt Nam
+  version: Phiên bản
+  latest: Mới nhất
+  current: Hiện tại
+  view_more: Xem thêm
+  explain: giải thích
+  minutes: phút
+  time: Thời gian
+  location: Địa điểm
+  search: Tìm kiếm
+  subscribe: Đăng ký
+  update: Cập nhật
+  newsletter: Bản tin
+  listing: Danh sách
+
+  inputs:
+    name:
+      label: Tên
+      errors:
+        nonempty: Vui lòng nhập tên của bạn
+    email:
+      errors:
+        nonempty: Vui lòng nhập địa chỉ email
+        invalid: Địa chỉ email không hợp lệ
+    turnstile:
+      desc: Xác thực <em class="c-text-body-xs">(cần Javascript)</em>
+      errors:
+        nonempty: Vui lòng xác thực
+        unknown: Có lỗi xảy ra trong quá trình xác thực
+    language:
+      label: Ngôn ngữ
+      errors:
+        picklist: Vui lòng chọn ngôn ngữ 'vi' hoặc 'en'
+    id:
+      errors:
+        nonempty: Vui lòng nhập ID
+
+  forms:
+    subscriber:
+      '@import': $lib/forms/subscriber/locales/vi.yaml
+
+  nofitications:
+    '@import': $lib/notifications/locales/vi.yaml
+
+  dialogs:
+    search:
+      '@import': $lib/dialogs/search-dialog/locales/vi.yaml
+
+  components:
+    blog_newsletter:
+      '@import': '$lib/components/blog-newsletter/locales/vi.yaml'
+    callout_playground:
+      '@import': '$lib/components/callout-playground/locales/vi.yaml'
+    event_listing_item:
+      '@import': '$lib/components/event-listing/locales/vi.yaml'
+    footer:
+      about:
+        title: Về chúng tôi
+        desc:
+          Svelte Việt Nam là kênh thông tin tổng hợp và cộng đồng dành cho bất cứ ai quan tâm đến sự
+          phát triển của Svelte tại Việt Nam.
+    header:
+      '@import': '$lib/components/header/locales/vi.yaml'
+    page_edit_link:
+      '@import': '$lib/components/page-edit-link/locales/vi.yaml'
+    page_menu:
+      '@import': '$lib/components/page-menu/locales/vi.yaml'
+    pagination:
+      '@import': '$lib/components/pagination/locales/vi.yaml'
+    splash_screen_playground:
+      '@import': '$lib/components/splash-screen-playground/locales/vi.yaml'
+
+  pages:
+    home:
+      '@import': '$routes/(site)/[lang=lang]/_page/locales/vi.yaml'
+    coc:
+      '@import': '$routes/(site)/[lang=lang]/code-of-conduct/_page/locales/vi.yaml'
+    blog:
+      '@import': '$routes/(site)/[lang=lang]/blog/(listing)/_page/locales/vi.yaml'
+    blog_latest:
+      '@import': '$routes/(site)/[lang=lang]/blog/(listing)/latest/_page/locales/vi.yaml'
+    blog_categories:
+      '@import': '$routes/(site)/[lang=lang]/blog/(listing)/categories/_page/locales/vi.yaml'
+    blog_series:
+      '@import': '$routes/(site)/[lang=lang]/blog/(listing)/series/_page/locales/vi.yaml'
+    blog_write:
+      '@import': '$routes/(site)/[lang=lang]/blog/write/_page/locales/vi.yaml'
+    blog_slug:
+      '@import': '$routes/(site)/[lang=lang]/blog/[slug]/_page/locales/vi.yaml'
+    design:
+      '@import': '$routes/(site)/[lang=lang]/design/_page/locales/vi.yaml'
+    events:
+      '@import': '$routes/(site)/[lang=lang]/events/_page/locales/vi.yaml'
+    everify:
+      '@import': '$routes/(site)/[lang=lang]/everify/[token]/_page/locales/vi.yaml'
+    jobs:
+      '@import': '$routes/(site)/[lang=lang]/jobs/_page/locales/vi.yaml'
+    jobs_id:
+      '@import': '$routes/(site)/[lang=lang]/jobs/[id]/_page/locales/vi.yaml'
+    mail:
+      '@import': '$routes/(site)/[lang=lang]/mails/[id]/_page/locales/vi.yaml'
+    people:
+      '@import': '$routes/(site)/[lang=lang]/people/_page/locales/vi.yaml'
+    people_id:
+      '@import': '$routes/(site)/[lang=lang]/people/[id]/_page/locales/vi.yaml'
+    roadmap:
+      '@import': '$routes/(site)/[lang=lang]/roadmap/_page/locales/vi.yaml'
+    rss:
+      '@import': '$routes/(site)/[lang=lang]/rss.xml/locales/vi.yaml'
+    settings:
+      '@import': '$routes/(site)/[lang=lang]/settings/_page/locales/vi.yaml'
+    sponsor:
+      '@import': '$routes/(site)/[lang=lang]/sponsor/_page/locales/vi.yaml'

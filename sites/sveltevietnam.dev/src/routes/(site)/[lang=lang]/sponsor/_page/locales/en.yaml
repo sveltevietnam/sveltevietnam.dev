@@ -1,0 +1,57 @@
+# =========================
+# Language: English
+# Scope:    pages.sponsor
+# =========================
+messages:
+  title: Sponsor | Svelte Vietnam
+  keywords: sponsor, contribute, finance
+  heading: Sponsor
+  desc: Sustain the Svelte Vietnam community
+  tagline: Sustain creativity
+  highlight:
+    desc:
+      'Svelte Vietnam chooses <a class="c-link" href="https://opencollective.com/sveltevietnam">Open
+      Collective</a> to receive financial contributions from sponsors (individuals or
+      organizations). Open collective provides the necessary platform and toolbox for money
+      management with high transparency: all donation and spending are made public.'
+    cta: Sponsor via Open Collective
+    contact: If you have any proposal or question, please contact
+  participate:
+    heading: Participating in the Svelte Vietnam community
+    desc:
+      If you are unable to support financially or want to contribute more directly to the Svelte
+      Vietnam community, please consider the following channels. Thank you!
+    discord: Join the conversation in our official Discord
+    events: Help organize or provide venues for community events
+    blog: Share products, ideas, experiences through Blog
+    github: Contribute to open-source projects on Github
+  why:
+    heading: Why does Svelte Vietnam need sponsorship?
+    desc:
+      'Svelte Vietnam is not a business, nor does it intend to commercialize any project or product.
+      However, money is needed if we want to build a healthy community at scale, one that can
+      encourage members to connect, share, and grow via forums and events. To better understand what
+      Svelte Vietnam is and trying to be, read the blog post <a class="c-link"
+      href="/en/blog/20231012-svelte-vietnam-from-local-to-global">“Svelte Vietnam: from Local to
+      Global”</a>.'
+    reasons:
+      opening: 'Specifically, Svelte Vietnam will use its fund for:'
+      one:
+        <strong>Maintain</strong> a stable and secure infrastructure (Cloudflare). Currently Svelte
+        Vietnam is built and paid for by individual and voluntary effort. Having dedicated funding
+        means these members will not have to paid for infrastructure cost out of their own pockets.
+      two:
+        <strong>Create</strong> high-quality content, events, and activities to promote community
+        growth and open source initiatives.
+      closing:
+        As discussed in the <a class="c-link" href="#how">previous section</a>, the list of
+        sponsors, donations, and expenses are recorded publicly by <a class="c-link"
+        href="https://opencollective.com/sveltevietnam">the Svelte Vietnam Open Collective</a>.
+  benefit:
+    heading: What do I get as a sponsor for Svelte Vietnam?
+    desc:
+      Sponsors are listed at our <a class="c-link" href={{linkOpenCollective}} target="_blank"
+      rel="noreferrer noopener external">Open Collective</a> and have priority for job postings via
+      the <a class="c-link" href={{linkRecruit}} target="_blank">Recruit application</a>. Svelte
+      Vietnam also provides opportunities during its events for sponsors to promote their brands and
+      products.

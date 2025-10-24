@@ -1,0 +1,7 @@
+# ==========================
+# Language: Vietnamese
+# Scope:    dialogs.qr_code
+# ==========================
+messages:
+  title: Mã QR
+  desc: Chia sẻ và quét mã này để truy cập nhanh vào trang!

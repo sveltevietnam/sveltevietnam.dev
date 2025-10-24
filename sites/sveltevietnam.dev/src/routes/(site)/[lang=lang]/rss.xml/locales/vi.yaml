@@ -1,0 +1,7 @@
+# =========================
+# Language: Vietnamese
+# Scope:    pages.rss
+# =========================
+messages:
+  desc: Nhận thông báo từ Svelte Việt Nam qua RSS
+  copyright: Bản quyền © {{year}} Svelte Việt Nam

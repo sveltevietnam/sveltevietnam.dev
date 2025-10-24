@@ -1,0 +1,42 @@
+# =======================
+# Language: Vietnamese
+# Scope:    pages.jobs
+# =======================
+messages:
+  title: Việc làm | Svelte Việt Nam
+  keywords: công việc, việc làm, tuyển dụng, dự án, svelte, Việt Nam
+  heading: Việc làm
+  desc: Việc làm dành cho lập trình viên Svelte tại Việt Nam — kết nối doanh nghiệp và cộng đồng
+  tagline: Kết nối doanh nghiệp và cộng đồng
+  posting:
+    heading: Đăng tuyển
+    tba:
+      desc: Chưa có công việc nào.
+      create: Tạo bài đăng tuyển ngay!
+  recruiter:
+    heading: Nhà tuyển dụng
+    desc:
+      Quy trình đăng tuyển tại Svelte Việt Nam là hoàn toàn miễn phí. Các bài đăng tuyển được phê
+      duyệt bởi ban quản trị sẽ hiển thị tại trang web này.
+    create: Tạo bài đăng tuyển
+    email: Liên hệ ban quản trị qua email
+    sponsor:
+      desc: Hãy cân nhắc tài trợ để đóng góp duy trì và phát triển cộng đồng Svelte Việt Nam!
+      link: Tại sao Svelte Việt Nam cần tài trợ?
+      cta: Trở thành nhà tài trợ
+  candidate:
+    heading: Ứng viên
+    desc:
+      Đăng ký nhận thông báo khi có cập nhật đăng tuyển hoặc thông tin về việc làm liên quan đến
+      Svelte
+    discord:
+      Tham gia thảo luận tại <a class="c-link" href="https://discord.sveltevietnam.dev/">Discord
+      chính thức của Svelte Việt Nam</a>.
+  scraping:
+    heading: Từ kênh tuyển dụng
+    desc:
+      Tính năng đang được phát triển để tự động tổng hợp việc làm từ các kênh tuyển dụng phổ biến
+      tại Việt Nam.
+    tba:
+      desc: Chưa có công việc nào.
+      subscribe: Đăng ký cập nhật công việc mới nhất!

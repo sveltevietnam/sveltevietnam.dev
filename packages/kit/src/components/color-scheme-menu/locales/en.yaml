@@ -1,0 +1,9 @@
+# =======================================
+# Language: English
+# Scope:    components.color_scheme_menu
+# =======================================
+messages:
+  aria: Color scheme menu
+  light: Light mode
+  dark: Dark mode
+  system: System default

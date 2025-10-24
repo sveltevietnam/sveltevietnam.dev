@@ -1,0 +1,9 @@
+# ================================
+# Language: Vietnamese
+# Scope:    pages.blog_categories
+# ================================
+messages:
+  title: Chủ đề | Blog | Svelte Việt Nam
+  keywords: blog, viết, chủ đề, phân loại
+  heading: Các chủ đề bài viết
+  desc: Xem danh sách đầy đủ các chủ đề bài viết tại Blog Svelte Việt Nam

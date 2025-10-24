@@ -1,0 +1,143 @@
+# =======================
+# Language: Vietnamese
+# Scope:    pages.roadmap
+# =======================
+messages:
+  title: Lộ trình | Svelte Việt Nam
+  keywords: cột mốc, lột trình, kế hoạch, phát triển
+  heading: Lộ trình
+  desc: Kế hoạch phát triển dự án Svelte Việt Nam
+  common:
+    milestone: Cột mốc
+    objective: Mục tiêu
+    task: Công việc
+    progress: Tiến độ
+    highlight: Dấu ấn
+  progress:
+    planned: Trong kế hoạch
+    inprogress: Đang tiến hành
+    completed: Hoàn thành
+    delayed: Tạm hoãn
+  dong:
+    objective:
+      tối giản hóa thiết kế trang sveltevietnam.dev; thử nghiệm Svelte 5 và cập nhật các công nghệ
+      đương thời; cải thiện trải nghiệm đọc và viết bài tại Blog Svelte Việt Nam; thiết lập quy
+      trình đăng tuyển việc làm
+    highlights:
+      v1: Giới thiệu phiên bản chính thức version 1 của trang sveltevietnam.dev
+      people_of_svelte:
+        Khởi động dự án cộng đồng đầu tiên, <a class="c-link"
+        href="/vi/blog/chuoi-bai-viet/cong-dong-svelte">"Cộng đồng Svelte - một bức tranh đa
+        sắc"</a>, khởi xướng bởi <a class="c-link" href="/vi/con-nguoi/liti-dev">Thuyết</a>
+      recruit:
+        Ra mắt nền tảng <a class="c-link" href="https://recruit.sveltevietnam.dev"
+        target="_blank">Tuyển dụng</a>, hướng đến kết nối cộng đồng với doanh nghiệp và tổ chức.
+    tasks:
+      publish_packages:
+        Thiết lập quy trình xuất bản lên npm hệ thống thiết kế Svelte Việt Nam và các thư viện nội
+        bộ hiện tại để tái sử dụng cho các dự án liên quan
+      job_posting:
+        Cho phép nhà tuyển dụng đăng tuyển / tạo liên kết trực tiếp trên nền tảng sveltevietnam.dev
+      a11y: Bảo đảm trợ năng (accessibility) tối thiểu cho thiết kế và nội dung trên trang
+      umami:
+        Thử nghiệm <a class="c-link" href="https://umami.is/" target="_blank" rel="noreferrer
+        noopener external">Umami</a> để cung cấp thống kê về lượt truy cập và người dùng trang
+        sveltevietnam.dev, bảo đảm quyền riêng tư và kiểm soát dữ liệu, thay thế Google Analytics
+      backend:
+        Thống nhất các tác vụ ở máy chủ thành một worker duy nhất, thử nghiệm <a class="c-link"
+        href="https://developers.cloudflare.com/workers/vite-plugin/" rel="noreferrer noopener
+        external" target="_blank">vite-plugin-cloudflare</a> để cải thiện quy trình phát triển
+      people:
+        Ra mắt trang <a class="c-link" href="/vi/con-nguoi">Con người</a> để cải thiện việc tra cứu
+        và liên kết tài nguyên (bài viết / đóng góp sự kiện)
+      read_experience:
+        Cải thiện trải nghiệm đọc bài tại Blog với tính năng điều hướng nhanh và hiển thị bình luận
+        từ Bluesky
+      write_guidelines:
+        Cải thiện trải nghiệm viết bài cho Blog qua hướng dẫn và ví dụ tại trang <a class="c-link"
+        href="/vi/blog/viet">Hướng dẫn viết bài</a>
+      home_resources: Liệt kê tài nguyên phổ biến của hệ sinh thái Svelte tại trang chủ
+      svelte_5: Tái xây dựng hoàn toàn sveltevietnam.dev bằng Svelte 5
+      inter_4: Nâng cấp Font chữ Inter lên phiên bản 4
+      tailwind_4: Giản lược thiết lập styling, thử nghiệm Tailwind 4.0
+      refactor: Giản lược và đồng nhất thiết kế toàn trang web sveltevietnam.dev
+  tu:
+    objective:
+      chuẩn bị cho phiên bản chính thức đầu tiên của sveltevietnam.dev (v1.0.0-next), tập trung phát
+      triển trang blog, trang sự kiện, các tính năng và nội dung cần thiết để cộng đồng có thể bắt
+      đầu tham gia và đóng góp một cách chủ động hơn.
+    highlights:
+      open_collective:
+        Gởi yêu cầu thành lập <a class="c-link" href="https://opencollective.com/sveltevietnam">Open
+        Collective</a> cho Svelte Việt Nam, bắt đầu nhận tài trợ tài chính
+      first_offline_meetup:
+        Tổ chức buổi <a class="c-link"
+        href="/vi/su-kien/202404-gap-mat-xuan-giap-thin-ho-chi-minh">gặp mặt trực tiếp đầu tiên tại
+        Tp. Hồ Chí Minh</a>
+      first_online_meetup:
+        Tổ chức buổi <a class="c-link" href="/vi/su-kien/202312-gap-nhau-truc-tuyen-cuoi-nam">gặp
+        mặt cộng đồng trực tuyến đầu tiên</a>
+      first_ui:
+        Thiết lập hạ tầng nền t���ng cơ bản và giao diện sơ khởi cho trang web sveltevietnam.dev
+    tasks:
+      survey: Sơ thảo nội dung và thiết kế cho “Khảo sát Cộng đồng Svelte Việt Nam”
+      page_jobs:
+        Ra mắt trang <a class="c-link" href="/vi/viec-lam">Việc làm</a> với thiết kế sơ khởi
+      page_design:
+        Giới thiệu nhóm trang <a class="c-link" href="/vi/thiet-ke">Thiết kế</a> ghi lại các chi
+        tiết thiết kế của Svelte Việt Nam
+      progressive_enhancement:
+        Hỗ trợ cho người dùng không truy cập được Javascript (cải tiến tăng  dần), đặc biệt đối với
+        các tính năng thiết yếu như điều hướng đa ngôn  ngữ, thay đổi chế độ giao diện, menu trên di
+        động, và màn hình chờ
+      page_coc:
+        Ra mắt trang <a class="c-link" href="/vi/quy-tac-ung-xu">Quy tắc ứng xử</a> với thiết kế sơ
+        khởi
+      og: Thiết lập hình bìa Open Graph riêng cho mỗi trang đã hoàn thiện
+      blog_post:
+        Thiết lập quy trình đăng bài hoặc liên kết bài viết thông qua Github issue và hướng dẫn code
+        trực tiếp bài viết
+      references:
+        Hoàn thiện văn bản “<a class="c-link"
+        href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/TECHNICAL_REFERNCES.md">Technical
+        Reference</a>” và “<a class="c-link"
+        href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/CONTRIBUTING.md">Contributing
+        Guidelines</a>”
+      page_blog: Ra mắt trang <a class="c-link" href="/vi/blog">Blog</a> với thiết kế sơ khởi
+      page_events:
+        Ra mắt trang <a class="c-link" href="/vi/su-kien">Sự kiện</a> với thiết kế sơ khởi
+      mailer:
+        Thiết kế hạ tầng và khởi tạo service mailer để quản lý hệ thống người dùng đăng kí nhận
+        thông báo qua email
+  auLac:
+    objective: khởi tạo dự án, xây dựng hạ tầng, thiết lập một quy trình phát triển cơ bản
+    highlights:
+      roadmap: Xây dựng một lộ trình phát triển Svelte Việt Nam
+      initiation:
+        Xây dựng cấu trúc thông tin (Information Architecture) và nhận diện thương hiệu (Brand
+        Identity) cho Svelte Việt Nam
+    tasks:
+      page_roadmap: Ra mắt trang <a class="c-link" href="/vi/lo-trinh">Lộ trình</a>
+      metadata:
+        Thiết lập metadata và SEO cơ bản, bao gồm sitemap.xml, Google Search Console, Google
+        Analytics
+      discord:
+        Thiết lập websocket service và bot cho Discord server, định hướng phát  triển dần để nâng
+        cao trải nghiệm thành viên tại cả Discord và trang web  sveltevietnam.dev
+      page_home: Ra mắt <a class="c-link" href="/vi">Trang chủ</a> với thiết kế sơ khởi
+      page_branding_repo:
+        Khởi tạo <a class="c-link" href="https://github.com/sveltevietnam/branding">branding
+        repository</a> để lưu trữ các phiên bản logo và văn bản “Branding Guidelines” (bàn về việc
+        sử dụng logo và các hình ảnh của Svelte Việt Nam)
+      logo:
+        Thiết kế và tích hợp <a class="c-link" href="/vi/thiet-ke#logo">logo chính thức của Svelte
+        Việt Nam</a>
+      project_reference:
+        Công bố văn bản “<a class="c-link"
+        href="https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/docs/PROJECT_REFERENCES.md">Project
+        Reference</a>” giới thiệu tổng quan về dự án Svelte Việt Nam
+      github:
+        Khởi tạo Github <a class="c-link" href="https://github.com/sveltevietnam">organization</a>,
+        <a class="c-link" href="https://github.com/orgs/sveltevietnam/projects/1">project</a>, và <a
+        class="c-link" href="https://github.com/sveltevietnam/sveltevietnam.dev">sveltevietnam.dev
+        repository</a>

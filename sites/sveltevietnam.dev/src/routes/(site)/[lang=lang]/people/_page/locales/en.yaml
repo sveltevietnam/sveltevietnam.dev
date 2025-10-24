@@ -1,0 +1,10 @@
+# =======================
+# Language: English
+# Scope:    pages.people
+# =======================
+messages:
+  title: People | Svelte Vietnam
+  heading: People of Svelte Vietnam
+  desc:
+    List of members that contributed to content of the sveltevietnam.dev website or were speakers at
+    Svelte Vietnam community events

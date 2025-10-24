@@ -1,0 +1,18 @@
+# =========================
+# Language: Vietnamese
+# Scope:    dialogs.search
+# =========================
+messages:
+  input:
+    label: Từ khóa
+    placeholder: Nhập từ khóa...
+    clear: Xóa
+    exit: Thoát
+  results:
+    searching: Đang tìm kiếm...
+    none: Không tìm thấy kết quả nào phù hợp với từ khóa của bạn
+    found: Tìm thấy <strong>{{count}}</strong> trang liên quan
+    clip:
+      results: Hiển thị tất cả kết quả...
+      sub_results: Hiển thị tất cả kết quả trên trang này...
+  footer: Tìm kiếm bằng <a class="c-link" href="https://pagefind.app/">Pagefind</a>

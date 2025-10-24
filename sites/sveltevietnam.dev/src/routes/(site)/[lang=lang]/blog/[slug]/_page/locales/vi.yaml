@@ -1,0 +1,64 @@
+# ===========================
+# Language: Vietnamese
+# Scope:    pages.blog_slug
+# ===========================
+messages:
+  lang:
+    original:
+      title: Ngôn ngữ gốc
+      desc: Bài viết đang được hiển thị bằng ngôn ngữ gốc.
+    manual:
+      title: Bản dịch tay
+      desc: Bài viết đã được dịch tay sang ngôn ngữ hiện tại.
+    unsupported:
+      Bài viết đang hiển thị với ngôn ngữ gốc vì chưa được dịch sang ngôn ngữ bạn đã chọn. Nếu có
+      thể, hãy tham gia <a class="c-link" href="https://github.com/sveltevietnam">Github</a> và <a
+      class="c-link" href="https://discord.sveltevietnam.dev">Discord</a> để hỗ trợ dịch bài bạn
+      nhé. Xin cảm ơn!
+  stats:
+    read_minutes: phút đọc
+    word: từ
+  outdated:
+    Cảm ơn bạn đã ghé thăm. Một chú ý nhỏ rằng bài viết được xuất bản <strong>{{age}}</strong> nên
+    một số nội dung có thể không còn đương thời nữa, đặc biệt là các chi tiết kỹ thuật.
+  actions:
+    copy: Sao chép liên kết bài viết
+  write:
+    Tham khảo <a class="c-link" href="/vi/blog/viet">"Hướng dẫn viết bài"</a>, khai bút, và bắt đầu
+    chia sẻ bạn nhé!
+  headings:
+    toc: Mục lục
+    share: Chia sẻ
+    latest: Bài viết mới
+    series: Cùng chuỗi bài viết
+  edit:
+    intro: Bạn tìm thấy lỗi chính tả hay cần đính chính nội dung?
+    cta: Sửa bài viết này tại Github
+  comments:
+    heading: Bình luận
+    loading: Đang tải bình luận từ Bluesky (cần Javascript)...
+    empty:
+      Chưa có bình luận nào. Thêm bình luận của bạn tại <a class="c-link" href="{{url}}"
+      target="_blank" rel="noreferrer noopener external">Bluesky</a>!
+    see_all: Xem đầy đủ tại
+    bluesky:
+      desc:
+        Bình luận và chia sẻ bài viết này qua <a class="c-link" href="{{url}}" target="_blank"
+        rel="noreferrer noopener external">Bluesky</a>!
+      stats:
+        like: lượt thích
+        repost: lượt đăng lại
+        reply: lượt bình luận
+        loading: Đang tải...
+      note:
+        'Ghi chú: Bình luận được sao chép từ <a class="c-link" rel="noopener noreferrer external"
+        href={{url}}>bài đăng trên Bluesky</a>. Các nội dung tích hợp như hình ảnh được lượt bỏ tại
+        đây.'
+  quick_nav:
+    aria: Điều hướng nhanh
+    share: Chia sẻ bài viết này
+    toc: Xem mục lục
+    scroll: Cuộn đến đầu bài
+    latest: Xem bài viết mới nhất
+    series: Xem bài viết cùng chuỗi
+    newsletter: Đăng ký bản tin

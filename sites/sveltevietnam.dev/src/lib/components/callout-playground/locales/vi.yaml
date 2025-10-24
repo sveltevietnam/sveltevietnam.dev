@@ -1,0 +1,16 @@
+# ========================================
+# Language: Vietnamese
+# Scope:    components.callout_playground
+# ========================================
+messages:
+  input: Tùy chỉnh
+  output: Kết quả
+  class: Lớp cần áp dụng
+  legends:
+    status: Trạng thái
+    icon: Icon <em class="text-xs">(không bắt buộc)</em>
+  sample:
+    Đây là giao diện mẫu cho “callout”, giúp bổ sung ngữ cảnh cho một số văn bản và tạo điểm nhấn để
+    lôi kéo sự chú ý của người dùng. Bạn có thể tham khảo thêm ví dụ và cách sử dụng callout tại
+    trang <a class="c-link" href="/vi/blog/viet#callout">"Blog Svelte Việt Nam - Hướng dẫn viết
+    bài"</a>.

@@ -1,0 +1,106 @@
+# =======================
+# Language: Vietnamese
+# Scope:    pages.design
+# =======================
+messages:
+  title: Thiết kế | Svelte Việt Nam
+  keywords: thiết kế, ý tưởng, chữ viết, màu sắc, hệ thống, sáng tạo, cảm hứng, logo
+  heading: Thiết kế
+  desc: Giản lược về hệ thống chữ viết, màu sắc, và logo sử dụng trong dự án Svelte Việt Nam
+  typography:
+    heading: Chữ viết
+    headers:
+      example: Ví dụ
+      desc: Mô tả
+    rows:
+      heading_page:
+        title: Chủ đề trang
+        desc: Chủ đề của trang, thường tương ứng với H1
+      heading_large:
+        title: Mục đề lớn
+        desc: Mục đề cho các phần nội dung lớn trên trang, thường tương ứng với H1, H2
+      heading_medium:
+        title: Mục đề vừa
+        desc: Mục đề cho các phần nội dung thứ cấp trên trang, thường tương ứng với H2, H3
+      heading:
+        title: Mục đề
+        desc: Mục đề cho các phần nội dung thứ cấp trên trang, thường tương ứng với H3, H4
+      title:
+        title: Tiêu đề
+        desc: Tiêu đề một thành phần, hoặc phần tử trong một danh sách
+      page_subtitle:
+        title: Phụ đề trang
+        desc: Bổ sung mô tả cho mỗi trang, dùng bên cạnh “Chủ đề trang”
+      body_medium:
+        title: Nội dung vừa
+        desc: Nội dung nổi bật, tương đối cần sự chú ý hơn so với nội dung bình thường.
+      body:
+        title: Nội dung
+        desc: Nôi dung mặc định cho hầu hết văn bản trên trang
+      body_small:
+        title: Nội dung nhỏ
+        desc: Nội dung thứ cấp, tương đối không quan trọng bằng những nội dung chính khác
+      body_smaller:
+        title: Nội dung nhỏ hơn
+        desc:
+          Nội dung thứ cấp mang tính bổ sung, không thiết yếu đối đối với các tính năng giao diện
+  sand:
+    heading: Bảng màu cát
+    desc:
+      Bảng màu “cát”, lấy ý tưởng từ bảng màu cùng tên trong hệ thống màu <a class="c-link"
+      href="https://github.com/evilmartians/harmony">Harmony (Evil Martians)</a>, được sử dụng làm
+      nền mặc định cho phần lớn nội dung — bề mặt, văn bản, đường kẻ, ...
+    footnote:
+      '* P3 — màu thuộc không gian màu P3. Độ phủ màu P3 rộng hơn sRGB. Các thiết bị cũ có thể không
+      hỗ trợ P3.'
+  colors:
+    semantic:
+      heading: Màu ngữ nghĩa
+      desc:
+        Các màu có ý nghĩa tùy thuộc vào vị trí hoặc ngữ cảnh sử dụng. Những màu này cũng thay đổi
+        tương ứng theo chế độ hiển thị (sáng và tối).
+    basic:
+      heading: Màu cơ bản
+      desc:
+        Các màu mặc định cho phần lớn nội dung — bề mặt, văn bản, đường kẻ, ... Ví dụ sau đây liệt
+        kê một số màu thường gặp.
+    status:
+      heading: Màu trạng thái
+      desc: Các màu thể hiện trạng thái ứng dụng hoặc cung cấp ngữ cảnh bổ sung cho phần tử.
+      sample:
+        desc: Ví dụ sử dụng màu <span class="{{cls}}">trạng thái-thông báo</span> trong văn bản.
+        callout:
+          Đây là giao diện mẫu cho “callout”, giúp bổ sung ngữ cảnh cho một số văn bản và tạo điểm
+          nhấn để lôi kéo sự chú ý của người dùng. Bạn có thể tham khảo thêm ví dụ và cách sử dụng
+          callout tại trang <a class="c-link" href="/vi/blog/viet#callout">"Blog Svelte Việt Nam -
+          Hướng dẫn viết bài"</a>.
+        notification:
+          title: Tiêu đề thông báo
+          desc:
+            Đây là thông báo mẫu. Thực tế thông báo sẽ được hiển thị khi người dùng thực hiện thao
+            tác hoặc hệ thống có sự thay đổi.
+  logo:
+    desc: Đôi lời về cảm hứng sáng tác và chủ đề của logo sử dụng trong dự án Svelte Việt Nam
+    credit:
+      Logo Svelte Việt Nam và giao diện đầu tiên của trang <a class="c-link"
+      href="/">sveltevietnam.dev</a> được thiết kế bởi <a class="c-link font-bold"
+      href="https://www.linkedin.com/in/trong-tran-25bb5319a/" target="_blank" rel="noreferrer
+      noopener external">Trọng </a>. Sự đóng góp của Trọng mang ý nghĩa quan trọng trong việc xây
+      dựng thương hiệu Svelte Việt Nam và giao diện của trang hiện tại.
+    inspiration:
+      heading: Cảm hứng
+      desc:
+        'Logo Svelte Việt Nam được tạo nên từ hai thành phần chính: Logo chính thức của Svelte và
+        hình ảnh chiếc nón lá mang ngôi sao - tượng trưng  cho hình ảnh cộng đồng người Việt Nam.
+        Màu sắc chính của logo  được chọn dựa trên màu sắc chính của Svelte, tạo nên tính thống nhất
+        với màu sắc biểu tượng của cộng đồng Svelte trên thế giới.'
+    alt:
+      rays: các tia sáng vũ trụ tỏa ra từ một điểm trung tâm ở giữa
+      non_la: nhiều nón lá tạo hình khối dưới ánh sáng đèn buổi tối
+    inspire: Truyền cảm hứng
+    community: Cộng đồng
+    variants:
+      heading: Các biến thể logo
+      original: Nguyên bản
+      positive: Dương bản
+      negative: Âm bản

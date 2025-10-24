@@ -1,0 +1,23 @@
+# ========================
+# Language: English
+# Scope:    notifications
+# ========================
+messages:
+  sample:
+    title: Thông báo mẫu
+    message:
+      Thông báo này sẽ tự động ẩn đi sau vài giây. Bản có thể thử rê chuột vào để tạm dừng đồng hồ
+      hẹn giờ của thông báo.
+  delayed_hydration:
+    title: Gián đoạn
+    message: Phát hiện gián đoạn do kết nối không ổn định. Xin lỗi bạn vì sự bất tiện này!
+  discord_new_message:
+    '@import': ../discord-new-message/locales/vi.yaml
+  new_site_version:
+    title: Phiên bản mới
+    message:
+      Trang web đang được cập nhật với phiên bản mới. Tải lại trang để có trải nghiệm tốt nhất bạn
+      nhé!
+  settings:
+    default: Cài đặt của bạn đã được đặt lại về mặc định.
+    saved: Cài đặt của bạn đã được lưu thành công.

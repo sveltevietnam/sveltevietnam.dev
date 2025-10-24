@@ -1,0 +1,9 @@
+# ============================
+# Language: Vietnamese
+# Scope:    pages.people_id
+# ============================
+messages:
+  events: '{{name}} đã đóng góp vào các sự kiện'
+  view_events: Xem trang sự kiện
+  posts_by: Bài viết của {{name}}
+  view_blog: Xem blog
