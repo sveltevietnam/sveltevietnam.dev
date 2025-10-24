@@ -22,6 +22,11 @@
 			"types": "./types/index.d.ts",
 			"import": "./src/utils/index.js",
 			"default": "./src/utils/index.js"
+		},
+		"./vite": {
+			"types": "./types/index.d.ts",
+			"import": "./src/vite/index.js",
+			"default": "./src/vite/index.js"
 		}
 	},
 	"publishconfig": {
