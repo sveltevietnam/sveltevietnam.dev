@@ -20,13 +20,17 @@ export interface InconsistentParamIssue {
 }
 
 export type BuildOutput = {
-	/** $i18n/messages */
-	messages: {
-		/** [lang].js */
-		targets: Record<string, string>;
-		/** index.js */
-		index: string;
+	modules: {
+		/** $i18n/messages */
+		messages: {
+			/** [lang].js */
+			targets: Record<string, string>;
+			/** index.js */
+			index: string;
+		};
+		/** $i18n/constants.js */
+		constants: string;
 	};
-	/** $i18n/constants.js */
-	constants: string;
+	/** all the source locale files that were read during process */
+	sources: string[];
 };

@@ -60,8 +60,11 @@ test('can build', async () => {
 	);
 
 	const {
-		messages: { targets, index },
-		constants,
+		modules: {
+			messages: { targets, index },
+			constants,
+		},
+		sources,
 	} = await build({
 		entries: {
 			vi: '/app/locales/vi.yaml',
@@ -72,6 +75,12 @@ test('can build', async () => {
 	await expect(targets['en']).toMatchFileSnapshot('__snapshots__/messages/en.js');
 	await expect(index).toMatchFileSnapshot('__snapshots__/messages/index.js');
 	await expect(constants).toMatchFileSnapshot('__snapshots__/constants.js');
+	expect(sources).toEqual([
+		'/app/locales/vi.yaml',
+		'/app/locales/en.yaml',
+		'/app/node_modules/@app/components/test/vi.yaml',
+		'/app/node_modules/@app/components/test/en.yaml',
+	]);
 });
 
 test('should forward parse locale error', async () => {
