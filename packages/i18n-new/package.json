@@ -63,7 +63,7 @@
 		"lint:es": "eslint .",
 		"lint:style": "stylelint '**/*.{svelte,css}'",
 		"format": "prettier --write --ignore-path=../../.prettierignore --config=../../prettier.config.js .",
-		"json-schema": "node src/here-be-dragon/parser/schema/json-schema.js"
+		"json-schema": "node src/parser/schema/json-schema.js"
 	},
 	"peerDependencies": {
 		"svelte": "^5.38.6",

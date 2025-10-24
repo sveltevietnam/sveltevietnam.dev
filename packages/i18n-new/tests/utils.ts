@@ -1,4 +1,4 @@
-import { type Message, parseMessage } from '../src/here-be-dragon/parser';
+import { type Message, parseMessage } from '../src/parser';
 
 export function createMessage(key: string, content: string): Message {
 	const params = parseMessage(content);
