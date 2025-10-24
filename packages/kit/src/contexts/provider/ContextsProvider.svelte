@@ -1,4 +1,5 @@
 <script lang="ts" module>
+	import { Provider as I18NProvider } from '@sveltevietnam/i18n-new';
 	import { setContext } from 'svelte';
 
 	import { DialogPortal } from '../../dialogs';
@@ -15,7 +16,9 @@
 	setContext('t:lang', () => contexts.routing.lang);
 </script>
 
-{@render children?.()}
+<I18NProvider lang={contexts.routing.lang}>
+	{@render children?.()}
+</I18NProvider>
 
 <svelte:document {@attach contexts.lockscroll.apply()} />
 <DialogPortal stack={contexts.dialogs} />

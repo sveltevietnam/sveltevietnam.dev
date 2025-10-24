@@ -181,6 +181,9 @@ importers:
       picocolors:
         specifier: ^1.1.1
         version: 1.1.1
+      sanitize-html:
+        specifier: ^2.17.0
+        version: 2.17.0
       tiny-glob:
         specifier: ^0.2.9
         version: 0.2.9
@@ -194,6 +197,9 @@ importers:
         specifier: ^2.8.1
         version: 2.8.1
     devDependencies:
+      '@types/sanitize-html':
+        specifier: ^2.16.0
+        version: 2.16.0
       '@valibot/to-json-schema':
         specifier: ^1.3.0
         version: 1.3.0(valibot@1.1.0(typescript@5.9.3))
@@ -227,6 +233,9 @@ importers:
       '@sveltevietnam/i18n':
         specifier: workspace:*
         version: link:../i18n
+      '@sveltevietnam/i18n-new':
+        specifier: workspace:*
+        version: link:../i18n-new
       defu:
         specifier: ^6.1.4
         version: 6.1.4
@@ -589,6 +598,9 @@ importers:
       '@sveltevietnam/i18n':
         specifier: workspace:*
         version: link:../../packages/i18n
+      '@sveltevietnam/i18n-new':
+        specifier: workspace:*
+        version: link:../../packages/i18n-new
       '@sveltevietnam/kit':
         specifier: workspace:*
         version: link:../../packages/kit
