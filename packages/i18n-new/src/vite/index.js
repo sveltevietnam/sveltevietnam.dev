@@ -74,6 +74,25 @@ async function b(config, logger) {
  */
 export async function i18n(config) {
 	const logger = createLogger();
+	/** @type {import('vite').ResolvedConfig | undefined} */
+	let rConfig = undefined;
+
+	/** @returns {Config} */
+	function resolveConfig() {
+		return {
+			...config,
+			parseOptions: {
+				...config.parseOptions,
+				import: {
+					...config.parseOptions?.import,
+					alias: [
+						...(Array.isArray(rConfig?.resolve.alias) ? rConfig.resolve.alias : []),
+						...(config.parseOptions?.import?.alias ?? []),
+					],
+				},
+			},
+		};
+	}
 
 	/**
 	 * @param {unknown} e
@@ -105,7 +124,12 @@ export async function i18n(config) {
 				},
 			};
 		},
+		configResolved(config) {
+			rConfig = config;
+		},
 		async configureServer(server) {
+			const config = resolveConfig();
+
 			/** @type {string[]} */
 			let watchFiles = [];
 			/** @param {string} filepath */
@@ -152,7 +176,7 @@ export async function i18n(config) {
 			if (this.environment.name !== 'ssr') return;
 
 			try {
-				await b(config, logger);
+				await b(resolveConfig(), logger);
 			} catch (e) {
 				handleError(e);
 			}

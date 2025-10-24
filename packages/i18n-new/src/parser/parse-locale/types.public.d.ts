@@ -11,10 +11,14 @@ export interface ParseLocaleOptions {
 	};
 	/** root key to prefix all message keys */
 	rootKey?: string;
-	/** custom directive key */
-	directive?: {
+	/** customize import behavior */
+	import?: {
 		/** @default `'@import'` */
-		import?: string;
+		directive?: string;
+		alias?: {
+			find: string | RegExp;
+			replacement: string;
+		}[];
 	};
 }
 
