@@ -133,6 +133,7 @@ export async function build(input) {
 			messages: { targets, index },
 			constants,
 		},
+		numMessages: keys.length,
 		sources: Array.from(
 			new Set([
 				...localeFilePathPerLang,
