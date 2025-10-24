@@ -1,6 +1,6 @@
 import ts, { factory } from 'typescript';
 
-import { getIdFromMessageKey, getSourceMessageType } from '../utils';
+import { getIdFromMessageKey, getSourceMessageType } from '../utils.js';
 
 // ===========
 // Public API
