@@ -96,7 +96,7 @@ export async function parseLocale(abspath, options = {}) {
 				}
 				throw e;
 			}
-			const importPath = url.pathname;
+			const importPath = decodeURIComponent(url.pathname);
 			const lastIndex = importTraces.findIndex((trace) => trace.file === importPath);
 			if (lastIndex !== -1) {
 				const circularPath = [

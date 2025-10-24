@@ -137,6 +137,43 @@ describe('import directive should work', () => {
 			`);
 		});
 
+		test('can import path with special characters', async () => {
+			vol.fromJSON(
+				{
+					'./locales/locale.yaml': yaml`
+        messages:
+          '@import': '../routes/(localized)/[lang=lang]/[[slug]]/locale.yaml'
+				`,
+					'./routes/(localized)/[lang=lang]/[[slug]]/locale.yaml': yaml`
+        messages:
+          hello: world
+				`,
+				},
+				'/app',
+			);
+			const locale = await parseLocale('/app/locales/locale.yaml');
+			expect(locale).toMatchInlineSnapshot(json`
+				{
+				  "dependencies": [
+				    "/app/routes/(localized)/[lang=lang]/[[slug]]/locale.yaml",
+				  ],
+				  "messages": [
+				    {
+				      "content": "world",
+				      "key": "hello",
+				      "params": [],
+				      "sources": [
+				        {
+				          "content": "world",
+				          "file": "/app/routes/(localized)/[lang=lang]/[[slug]]/locale.yaml",
+				        },
+				      ],
+				    },
+				  ],
+				}
+			`);
+		});
+
 		test('should throw if file not found', async () => {
 			vol.fromJSON(
 				{
