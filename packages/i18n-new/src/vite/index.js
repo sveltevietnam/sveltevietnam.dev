@@ -99,12 +99,16 @@ export async function i18n(config) {
 	 * @param {boolean} [rethrow=true]
 	 */
 	function handleError(e, rethrow = true) {
-		// TODO: implement more readable reporter for issues
 		logger.error(
 			pico.red('failed to build, please fix reported errors and run your vite command again'),
 		);
-		if (e instanceof Error && e.cause) {
+		// TODO: implement more readable reporter for issues
+		if (!(e instanceof Error)) {
+			logger.error(pico.red(`an unknown error occurred: ${e}`));
+		} else if (e.cause) {
 			logger.error(pico.red(`${e.name}'s cause: ${JSON.stringify(e.cause, null, 2)}`));
+		} else {
+			logger.error(pico.red(`${e.name}: ${e.message}`));
 		}
 		if (rethrow) throw e;
 	}
