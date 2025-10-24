@@ -35,10 +35,9 @@ export async function parseLocale(abspath, options = {}) {
 	}
 	const {
 		rootKey = '',
-		directive = {},
 		__internals__: { importTraces },
 	} = rOptions;
-	const { import: directiveImport = '@import' } = directive;
+	const { directive: importDirective = '@import', alias: importAlias = [] } = rOptions.import ?? {};
 	const deserializer = rOptions.deserializer ?? {
 		parse: async ({ content }) => {
 			const parseYAML = await import('yaml').then((mod) => mod.parse);
@@ -79,10 +78,15 @@ export async function parseLocale(abspath, options = {}) {
 	for (let [key, value] of Object.entries(messagesPerCurrentSource)) {
 		key = key.trim();
 		value = value.trim();
-		if (key.endsWith(directiveImport)) {
+		if (key.endsWith(importDirective)) {
 			/** @type {URL} */
 			let url;
 			try {
+				if (importAlias.length) {
+					for (const { find, replacement } of importAlias) {
+						value = value.replace(find, replacement);
+					}
+				}
 				url = new URL(importMetaResolve(value, new URL(abspath, 'file://').toString()));
 			} catch (e) {
 				if (/** @type {any} */ (e).code === 'ERR_MODULE_NOT_FOUND') {
@@ -110,7 +114,7 @@ export async function parseLocale(abspath, options = {}) {
 					importPath,
 					/** @type {typeof rOptions} */ ({
 						...rOptions,
-						rootKey: key.slice(0, -directiveImport.length - 1),
+						rootKey: key.slice(0, -importDirective.length - 1),
 						__internals__: structuredClone(rOptions.__internals__),
 					}),
 				),

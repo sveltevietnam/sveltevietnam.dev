@@ -285,8 +285,8 @@ describe('import directive should work', () => {
 			'/app',
 		);
 		const locale = await parseLocale('/app/locales/locale.yaml', {
-			directive: {
-				import: '...',
+			import: {
+				directive: '...',
 			},
 		});
 		expect(locale).toMatchInlineSnapshot(json`
@@ -303,6 +303,83 @@ describe('import directive should work', () => {
 			        {
 			          "content": "bar",
 			          "file": "/app/locales/locale.yaml",
+			        },
+			      ],
+			    },
+			    {
+			      "content": "world",
+			      "key": "components.test.hello",
+			      "params": [],
+			      "sources": [
+			        {
+			          "content": "world",
+			          "file": "/app/locales/components/test/locale.yaml",
+			        },
+			      ],
+			    },
+			  ],
+			}
+		`);
+	});
+
+	test('can use import alias', async () => {
+		vol.fromJSON(
+			{
+				'./locales/locale.yaml': yaml`
+        messages:
+          foo: bar
+          components:
+            test:
+              goodbye: to be overrided
+              '@import': '#components/test/locale.yaml'
+				`,
+				'./locales/components/test/locale.yaml': yaml`
+        messages:
+          hello: world
+          goodbye: to be kept
+				`,
+			},
+			'/app',
+		);
+		const locale = await parseLocale('/app/locales/locale.yaml', {
+			import: {
+				alias: [
+					{
+						find: '#components/',
+						replacement: '/app/locales/components/',
+					},
+				],
+			},
+		});
+		expect(locale).toMatchInlineSnapshot(json`
+			{
+			  "dependencies": [
+			    "/app/locales/components/test/locale.yaml",
+			  ],
+			  "messages": [
+			    {
+			      "content": "bar",
+			      "key": "foo",
+			      "params": [],
+			      "sources": [
+			        {
+			          "content": "bar",
+			          "file": "/app/locales/locale.yaml",
+			        },
+			      ],
+			    },
+			    {
+			      "content": "to be kept",
+			      "key": "components.test.goodbye",
+			      "params": [],
+			      "sources": [
+			        {
+			          "content": "to be overrided",
+			          "file": "/app/locales/locale.yaml",
+			        },
+			        {
+			          "content": "to be kept",
+			          "file": "/app/locales/components/test/locale.yaml",
 			        },
 			      ],
 			    },
