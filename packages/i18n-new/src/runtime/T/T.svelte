@@ -14,7 +14,7 @@
 			((content: string) =>
 				defaultSanitize(content, {
 					allowedAttributes: {
-						'*': ['class'],
+						'*': ['class', 'data-*'],
 						a: ['href', 'target', 'rel'],
 					},
 				})),
