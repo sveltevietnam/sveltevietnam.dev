@@ -183,9 +183,9 @@ describe('import directive should work', () => {
 			);
 			const rejects = expect(parseLocale('/app/locales/locale.yaml')).rejects;
 			await rejects.toThrow(ErrorFileNotFound);
-			await rejects.toThrowErrorMatchingInlineSnapshot(dedent`
-				[ErrorFileNotFound: File not found: "/app/locales/components/test/locale.yaml" (imported by "/app/locales/components/test/locale.yaml" at "components.test.@import")]
-			`);
+			await rejects.toThrowErrorMatchingInlineSnapshot(
+				dedent`[ErrorFileNotFound: File not found: "/app/locales/components/test/locale.yaml" (imported by "/app/locales/locale.yaml" at "components.test.@import")]`,
+			);
 		});
 	});
 
@@ -463,11 +463,9 @@ describe('import directive should work', () => {
 		await rejects.toThrow(ErrorCircularImport);
 		await rejects.toThrowErrorMatchingInlineSnapshot(
 			dedent`
-			[ErrorCircularImport: Circular import detected:
-				/app/b.yaml (at "b.a.b.@import")
-				<- /app/a.yaml (at "b.a.@import")
-				<- /app/b.yaml (at "b.@import")]
-		`.replace(/[\t\n]+/g, ' '),
+				[ErrorCircularImport: Circular import detected:
+					/app/b.yaml (at "b.a.@import") <- /app/a.yaml (at "b.@import")]
+			`.replace(/[\t\n]+/g, ' '),
 		);
 	});
 });
