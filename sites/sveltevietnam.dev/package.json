@@ -45,6 +45,7 @@
 		"@sveltevietnam/backend": "workspace:*",
 		"@sveltevietnam/css": "workspace:*",
 		"@sveltevietnam/i18n": "workspace:*",
+		"@sveltevietnam/i18n-new": "workspace:*",
 		"@sveltevietnam/kit": "workspace:*",
 		"@sveltevietnam/markdown": "workspace:*",
 		"@sveltevietnam/routes": "workspace:*",
