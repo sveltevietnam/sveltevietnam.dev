@@ -1,4 +1,4 @@
-import { generateStringArrayConstant } from '../generate-string-array-constant';
+import { generateStringArrayConstant } from '../generate-string-array-constant/index.js';
 import { print } from '../utils.js';
 
 // ===========
