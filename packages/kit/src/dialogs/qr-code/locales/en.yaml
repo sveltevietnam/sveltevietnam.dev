@@ -1,0 +1,7 @@
+# ==========================
+# Language: English
+# Scope:    dialogs.qr_code
+# ==========================
+messages:
+  title: QR Code
+  desc: Share and scan this code for quick access to this page!

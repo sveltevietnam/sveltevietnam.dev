@@ -1,0 +1,9 @@
+# ================================
+# Language: English
+# Scope:    pages.blog_latest
+# ================================
+messages:
+  title: Latest | Blog | Svete Vietnam
+  keywords: blog, write, listing
+  heading: Latest
+  desc: Browse latest blog posts from the Svelte Vietnam Blog

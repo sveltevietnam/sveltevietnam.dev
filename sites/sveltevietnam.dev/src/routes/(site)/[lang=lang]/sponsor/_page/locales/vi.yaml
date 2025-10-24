@@ -1,0 +1,56 @@
+# =========================
+# Language: Vietnamese
+# Scope:    pages.sponsor
+# =========================
+messages:
+  title: Tài trợ | Svelte Việt Nam
+  keywords: tài trợ, đóng góp, tài chính
+  heading: Tài trợ
+  desc: Duy trì và phát triển cộng đồng Svelte Việt Nam
+  tagline: Duy trì sáng tạo
+  highlight:
+    desc:
+      'Svelte Việt Nam chọn <a class="c-link" href="https://opencollective.com/sveltevietnam">Open
+      Collective</a> để nhận đóng góp tài chính từ nhà tài trợ (cá nhân hoặc tổ chức). Đây là nền
+      tảng có tính minh bạch cao: mọi đóng góp (tiền vào) và chi tiêu (tiền ra) đều là công khai.'
+    cta: Tài trợ qua Open Collective
+    contact: Nếu bạn có đề xuất hoặc thắc mắc, xin liên hệ
+  participate:
+    heading: Tham gia cộng đồng Svelte Việt Nam
+    desc:
+      Nếu bạn không có điều kiện để hỗ trợ tài chính hoặc muốn đóng góp trực tiếp hơn cho cộng đồng
+      Svelte Việt Nam, hãy xem qua các kênh dưới  đây. Xin cảm ơn!
+    discord: Thảo luận tại Discord chính thức của Svelte Việt Nam
+    events: Giúp tổ chức hoặc cung cấp địa điểm cho các sự kiện
+    blog: Chia sẻ sản phẩm, ý tưởng, kinh nghiệm qua Blog
+    github: Đóng góp vào các dự án mã nguồn mở tại Github
+  why:
+    heading: Tại sao Svelte Việt Nam cần tài trợ?
+    desc:
+      'Svelte Việt Nam không phải là một doanh nghiệp và không có dự định kinh tế hóa các dự án hay
+      sản phẩm. Tuy nhiên, Svelte Việt Nam cần có kinh phí để xây dựng một cộng đồng lành mạnh và
+      khuyến khích thành viên gắn kết, cùng phát triển thông qua các sự kiện và diễn đàn. Để hiểu rõ
+      hơn định hướng phát triển của Svelte Việt Nam, hãy đọc qua bài viết <a class="c-link"
+      href="/vi/blog/20231012-svelte-viet-nam-tu-vuon-nha-vuon-ra-the-gioi">“Svelte Việt Nam: từ
+      vườn nhà vươn ra thế giới”</a>.'
+    reasons:
+      opening: 'Cụ thể, Svelte Việt Nam sẽ sử dụng kinh phí từ quỹ tài trợ để:'
+      one:
+        Duy trì một hạ tầng ổn định (Cloudflare). Hiện tại Svelte Việt Nam được xây dựng dựa vào các
+        nỗ lực cá nhân và tài chính tự nguyện. Có kinh phí có nghĩa là thành viên sẽ không phải tự
+        chi trả cho khoản này.
+      two:
+        Sáng tạo các hoạt động và sự kiện để thành viên có thể gặp gỡ, kết nối, khuyến khích tư duy
+        cộng đồng, chia sẻ, đồng phát triển.
+      closing:
+        Như đã đề cập ở <a class="c-link" href="#how">phần trên</a>, danh sách nhà tài trợ, cũng như
+        các khoản thu, chi đều được lưu trữ một cách công khai tại <a class="c-link"
+        href="https://opencollective.com/sveltevietnam">Open Collective của Svelte Việt Nam</a>.
+  benefit:
+    heading: Tôi được gì khi tài trợ cho Svelte Việt nam?
+    desc:
+      Nhà tài trợ sẽ được liệt kệ tại trang <a class="c-link" href={{linkOpenCollective}}
+      target="_blank" rel="noreferrer noopener external">Open Collective của Svelte Việt Nam</a>,
+      được ưu tiên trong quá trình đăng tuyển việc làm qua <a class="c-link" href={{linkRecruit}}
+      target="_blank">Ứng dụng Tuyển dụng</a>, và được tạo cơ hội để quản bá thương hiệu, sản phẩm
+      trong các sự kiện của cộng đồng.

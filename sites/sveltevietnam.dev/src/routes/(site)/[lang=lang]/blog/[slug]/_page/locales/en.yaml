@@ -1,0 +1,65 @@
+# ===========================
+# Language: English
+# Scope:    pages.blog_slug
+# ===========================
+messages:
+  lang:
+    original:
+      title: Original language
+      desc: You are reading the blog post in its original language.
+    manual:
+      title: Manual translation
+      desc: You are reading a manual translation of the blog post.
+    unsupported:
+      The blog post is displayed in its original language as translation has not been provided yet.
+      If possible, please join our <a class="c-link"
+      href="https://github.com/sveltevietnam">Github</a> and <a class="c-link"
+      href="https://discord.sveltevietnam.dev">Discord</a> to help with translation. Thank you!
+  stats:
+    read_minutes: min read
+    word: words
+  outdated:
+    Thank you for stopping by. This is a friendly note that this post was published
+    <strong>{{age}}</strong> and may contain outdated information, especially technical ones.
+  actions:
+    copy: Copy blog post link to clipboard
+  write:
+    Looking to craft your own blog post? Start with the <a class="c-link"
+    href="/en/blog/write">"Writing Guide"</a>.
+  headings:
+    toc: Table of contents
+    share: Share
+    latest: Latest posts
+    series: In this series
+  edit:
+    intro: Found a typo or need to correct something?
+    cta: Edit this blog post content on Github
+  comments:
+    heading: Comments
+    loading: Loading comments from Bluesky (needs Javascript). Please hang tight...
+    empty:
+      There is no comments yet. Add yours now on <a class="c-link" href="{{url}}" target="_blank"
+      rel="noreferrer noopener external">Bluesky</a>!
+
+    see_all: See full discussion on
+    bluesky:
+      desc:
+        Give kudos, and join the conversation on <a class="c-link" href="{{url}}" target="_blank"
+        rel="noreferrer noopener external">Bluesky</a>!
+      stats:
+        like: likes
+        repost: reposts
+        reply: replies
+        loading: Loading statistics...
+      note:
+        'Note: comments are fetched directly from the <a class="c-link" rel="noopener noreferrer
+        external" href={{url}}>linked Bluesky post</a>. Embedded contents such as images are omitted
+        here.'
+  quick_nav:
+    aria: Quick navigation
+    share: Share this post
+    toc: Table of contents
+    scroll: Scroll to start
+    latest: See latest post
+    series: See posts in this series
+    newsletter: Subscribe to newsletter

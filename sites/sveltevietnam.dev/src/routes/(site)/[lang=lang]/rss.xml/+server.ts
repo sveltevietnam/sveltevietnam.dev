@@ -90,9 +90,11 @@ export const GET: RequestHandler = async ({ params, url }) => {
 		title: m['svelte_vietnam.name'](lang).toString(),
 		link: origin + p['/:lang']({ lang }),
 		lang,
-		description: m['rss.desc'](lang).toString(),
+		description: m['pages.rss.desc'](lang).toString(),
 		lastBuildDate: new Date(__BUILD_TIMESTAMP__).toUTCString(),
-		copyright: m['rss.copyright'](lang)({ year: new Date().getFullYear().toString() }).toString(),
+		copyright: m['pages.rss.copyright'](lang)({
+			year: new Date().getFullYear().toString(),
+		}).toString(),
 		image: {
 			url: `${origin}/logo/rss.png`,
 			title: m['svelte_vietnam.name'](lang).toString(),

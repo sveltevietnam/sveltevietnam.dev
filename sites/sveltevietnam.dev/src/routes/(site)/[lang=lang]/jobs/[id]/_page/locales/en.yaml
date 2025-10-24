@@ -1,0 +1,37 @@
+# =======================
+# Language: English
+# Scope:    pages.jobs_id
+# =======================
+messages:
+  general:
+    heading: General Information
+    employerName: Employer
+    type: Job type
+    location: Location
+    salary: Salary
+    posted_at: Posted on
+    expired_at: Expires on
+  job_desc: Job Description
+  employer_desc: About {{employerName}}
+  actions:
+    apply: Apply
+    share:
+      link: Copy link
+      qr: Generate QR code
+  connect:
+    heading: Stay Connected
+    desc:
+      Join <a class="c-link" href={{linkDiscord}} rel="noreferrer noopener external"
+      target="_blank">Community Discord</a> or the <a class="c-link" href={{linkLinkedin}}
+      rel="noreferrer noopener external" target="_blank">Svelte Vietnam Linkedin group</a> to stay
+      in touch with businesses, organizations, and independent recruiters.
+  contribute:
+    heading: Contribute
+    desc:
+      Svelte Vietnam is an open-source project and welcomes your contributions. Check out <a
+      class="c-link" href={{linkGithub}} rel="noreferrer noopener external" target="_blank" > Github
+      </a> or the <a class="c-link" href={{linkSponsor}}>Sponsor page</a> for ways to contribute.
+  recruit:
+    heading: Recruit
+    desc: Looking for team members? Post a job for free at Svelte Vietnam!
+    cta: Create a job posting

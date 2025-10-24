@@ -1,0 +1,10 @@
+# ==============================================
+# Language: English
+# Scope:    components.splash_screen_playground
+# ==============================================
+messages:
+  choose: Choose variant
+  play: Run
+  pause: Pause
+  short: Short
+  long: Long

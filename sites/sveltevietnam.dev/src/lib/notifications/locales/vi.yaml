@@ -1,0 +1,24 @@
+# ========================
+# Language: Vietnamese
+# Scope:    notifications
+# ========================
+messages:
+  sample:
+    title: Sample Notification
+    message:
+      This notification will automatically dismiss after a a few seconds. You may try hovering over
+      it to pause the timer!
+  delayed_hydration:
+    title: Interrupt Detected!
+    message:
+      Interrupt has been detected due to unstable network. We are sorry for this inconvenience!
+  discord_new_message:
+    '@import': ../discord-new-message/locales/en.yaml
+  new_site_version:
+    title: New Site Version
+    message:
+      A new version of the site is available. Please reload the page at your convenience for the
+      best experience.
+  settings:
+    default: Your settings have been reset to default.
+    saved: Your settings have been updated.

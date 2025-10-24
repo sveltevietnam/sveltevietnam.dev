@@ -1,0 +1,45 @@
+# =======================
+# Language: English
+# Scope:    pages.jobs
+# =======================
+messages:
+  title: Jobs | Svelte Vietnam
+  keywords:
+    job, work, employment, posting, recruitment, partner, project, collaboration, svelte, Vietnam
+  heading: Jobs
+  desc: Job board for Svelte developers in Vietnam — connecting businesses and community
+  tagline: Connecting businesses and community
+  posting:
+    heading: Postings
+    tba:
+      desc: No available job posting
+      create: Create a job posting now!
+  recruiter:
+    heading: Recruiter
+    desc:
+      The job posting process at Svelte Vietnam is completely free. Job postings approved by the
+      administrators will be displayed on this website.
+    create: Create a job posting
+    email: Contact administrators at
+    sponsor:
+      desc:
+        Please consider sponsoring to contribute to the maintenance and development of the Svelte
+        Vietnam community!
+      link: Why does Svelte Vietnam need sponsorship?
+      cta: Become a sponsor
+  candidate:
+    heading: Candidate
+    desc:
+      Register to receive notifications when there are updates to job postings or information
+      related to Svelte
+    discord:
+      Join the conversation in <a class="c-link" href="https://discord.sveltevietnam.dev/">the
+      official Svelte Vietnam Discord</a>.
+  scraping:
+    heading: From recruitment sites
+    desc:
+      We are developing a service to automatically aggregate job postings from popular recruitment
+      channels in Vietnam.
+    tba:
+      desc: No job posting found yet
+      subscribe: Subscribe to get the latest job updates!

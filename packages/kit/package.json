@@ -16,6 +16,7 @@
 			"types": "./types/index.d.ts",
 			"import": "./src/components/index.js"
 		},
+		"./components/*.yaml": "./src/components/*.yaml",
 		"./constants": {
 			"types": "./types/index.d.ts",
 			"import": "./src/constants.js"
@@ -28,10 +29,12 @@
 			"types": "./types/index.d.ts",
 			"import": "./src/dialogs/index.js"
 		},
+		"./dialogs/*.yaml": "./src/dialogs/*.yaml",
 		"./hooks": {
 			"types": "./types/index.d.ts",
 			"import": "./src/hooks.js"
 		},
+		"./locales/*.yaml": "./src/locales/*.yaml",
 		"./notifications": {
 			"types": "./types/index.d.ts",
 			"import": "./src/notifications/index.js"

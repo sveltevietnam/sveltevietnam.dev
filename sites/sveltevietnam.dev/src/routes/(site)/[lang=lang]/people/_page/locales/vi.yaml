@@ -1,0 +1,10 @@
+# =======================
+# Language: Vietnamese
+# Scope:    pages.people
+# =======================
+messages:
+  title: Con người | Svelte Việt Nam
+  heading: Con người tại Svelte Việt Nam
+  desc:
+    Danh sách các thành viên đã đóng góp nội dung cho trang web sveltevietnam.dev hoặc là diễn giả
+    tại các sự kiện của cộng đồng Svelte Việt Nam

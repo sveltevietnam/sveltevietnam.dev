@@ -1,0 +1,7 @@
+# ====================================
+# Language: Vietnamese
+# Scope:    components.page_edit_link
+# ====================================
+messages:
+  link: Sửa trang này tại Github
+  desc: sveltevietnam.dev là một dự án mã nguồn mở và hoan nghênh sự đóng góp của bạn. Xin cảm ơn!

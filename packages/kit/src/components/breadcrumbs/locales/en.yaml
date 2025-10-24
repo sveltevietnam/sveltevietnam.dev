@@ -1,0 +1,7 @@
+# =================================
+# Language: English
+# Scope:    components.breadcrumbs
+# =================================
+messages:
+  aria: breadcrumbs
+  home: Home

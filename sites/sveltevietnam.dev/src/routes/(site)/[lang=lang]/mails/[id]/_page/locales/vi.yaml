@@ -1,0 +1,15 @@
+# =======================
+# Language: Vietnamese
+# Scope:    pages.mail
+# =======================
+messages:
+  email:
+    heading: Về email này
+    subject: Tiêu đề
+    sent: Gửi
+  subscriber:
+    heading: Người đăng ký
+  expiration:
+    Trang này sẽ hết hiệu lực <strong>{{datetime}}</strong>. Quyền truy cập chỉ kéo dài trong
+    <strong>7 ngày</strong> kể từ khi email được gởi đi, để bảo vệ thông tin của bạn trong trường
+    hợp email bị đánh cắp.

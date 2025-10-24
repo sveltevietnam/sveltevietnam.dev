@@ -1,0 +1,15 @@
+# ========================================
+# Language: English
+# Scope:    components.callout_playground
+# ========================================
+messages:
+  input: Config
+  output: Result
+  class: Class names to apply
+  legends:
+    status: Status
+    icon: Icon <em class="text-xs">(optional)</em>
+  sample:
+    This is a sample “callout” that enhances a text block with some contextual meaning and helps
+    draw user's attention. See more examples and how to use it via <a class="c-link"
+    href="/en/blog/write#callout">"Svelte Vietnam Blog - Writing Guidelines"</a>.

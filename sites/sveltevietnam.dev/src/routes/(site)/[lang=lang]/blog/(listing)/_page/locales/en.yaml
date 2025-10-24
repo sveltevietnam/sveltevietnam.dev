@@ -1,0 +1,33 @@
+# =====================
+# Language: English
+# Scope:    pages.blog
+# =====================
+messages:
+  title: Blog | Svete Vietnam
+  keywords: blog, writing, sharing, involvement, contribution
+  heading: Svelte Vietnam Blog
+  desc:
+    A community-driven blog about technical insights and human stories in the Svelte ecosystem.
+    Share your Svelte experience or catch up on the latest news from Svelte Vietnam!
+  tagline: Learn to share. Sharing is learning
+  category:
+    technical: Development-focused articles about Svelte, SvelteKit, and its ecosystem
+    insider:
+      An insightful peek behind the curtain into the architecture, design decision, and lesson
+      learned from building the Svelte Vietnam community and the sveltevietnam.dev website
+  write:
+    heading: Share your blog post!
+    desc:
+      The Svelte Vietnam Blog is a place for members to share knowledge, ideas, and experiences with
+      the Svelte community in Vietnam and internationally.<br/><br/>Svelte Vietnam welcomes everyone
+      to contribute to this blog. This is the most practical and direct way that members can
+      contribute to the Svelte Vietnam community.
+    cta: See writing guide
+    discuss:
+      Join the conversation in <a class="c-link" href="https://discord.sveltevietnam.dev/">the
+      official Svelte Vietnam Discord</a>.
+  resources:
+    desc:
+      Resources and news channels about Svelte and SvelteKit are continuously updated on the
+      homepage sveltevietnam.dev
+    view: View list of resources

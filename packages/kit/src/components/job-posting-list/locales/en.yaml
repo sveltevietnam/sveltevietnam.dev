@@ -1,0 +1,7 @@
+# ======================================
+# Language: English
+# Scope:    components.job_posting_list
+# ======================================
+messages:
+  posted_at: Posted on
+  expired_at: Expires on

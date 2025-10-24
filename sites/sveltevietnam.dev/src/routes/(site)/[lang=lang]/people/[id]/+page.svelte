@@ -85,10 +85,10 @@
 			<div class="space-y-4 border-t-4 border-current pt-2">
 				<div class="flex flex-wrap items-baseline justify-between gap-4">
 					<h2 class="c-text-title" id="events">
-						<T message={m['pages.people_slug.events']} name={data.person.name} />
+						<T message={m['pages.people_id.events']} name={data.person.name} />
 					</h2>
 					<TextArrowLink class="ml-auto" href={links.events}>
-						<T message={m['pages.people_slug.view_events']} />
+						<T message={m['pages.people_id.view_events']} />
 					</TextArrowLink>
 				</div>
 			</div>
@@ -105,10 +105,10 @@
 			<div class="space-y-4 border-t-4 border-current pt-2">
 				<div class="flex flex-wrap items-baseline justify-between gap-4">
 					<h2 class="c-text-title" id="posts">
-						<T message={m['pages.people_slug.posts_by']} name={data.person.name} />
+						<T message={m['pages.people_id.posts_by']} name={data.person.name} />
 					</h2>
 					<TextArrowLink class="ml-auto" href={links.blog}>
-						<T message={m['pages.people_slug.view_blog']} />
+						<T message={m['pages.people_id.view_blog']} />
 					</TextArrowLink>
 				</div>
 			</div>

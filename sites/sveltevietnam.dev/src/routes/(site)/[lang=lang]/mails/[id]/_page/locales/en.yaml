@@ -1,0 +1,15 @@
+# =======================
+# Language: English
+# Scope:    pages.mail
+# =======================
+messages:
+  email:
+    heading: About this email
+    subject: Subject
+    sent: Sent
+  subscriber:
+    heading: Subscriber Information
+  expiration:
+    You will no longer be able to view this page after <strong>{{datetime}}</strong>. We will
+    automatically revoke access to web view <strong>7 days</strong> after the email is sent to
+    protect your information in the event your email is compromised.

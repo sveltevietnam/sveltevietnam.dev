@@ -1,0 +1,9 @@
+# ================================
+# Language: English
+# Scope:    pages.blog_categories
+# ================================
+messages:
+  title: Categories | Blog | Svete Vietnam
+  keywords: blog, write, categories, classification
+  heading: All Blog Categories
+  desc: View the complete list of all blog categories at the Svelte Vietnam Blog

@@ -1,0 +1,7 @@
+# ===================================
+# Language: Vietnamese
+# Scope:    components.language_menu
+# ===================================
+messages:
+  aria: chuyển đổi ngôn ngữ trang
+  switch_to: chuyển sang

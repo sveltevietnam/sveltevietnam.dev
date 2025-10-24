@@ -1,0 +1,129 @@
+# =====================
+# Language: Vietnamese
+# Scope:    pages.home
+# =====================
+messages:
+  title: Trang chủ | Svelte Việt Nam
+  keywords: svelte, việt nam, cộng đồng, công nghệ, mã nguồn mở
+  desc:
+    Kênh thông tin tổng hợp và cộng đồng dành cho bất cứ ai quan tâm đến sự phát triển của Svelte
+    tại Việt Nam.
+  intro:
+    heading: Svelte Việt Nam
+    subtitle: Vì một cộng đồng thân thiện và sáng tạo
+  resources:
+    heading: Bốn bước đến Svelte
+    bluesky: Cập nhật tin tức qua Bluesky
+    one:
+      step: Bước một
+      heading: Khám phá Svelte bằng thực hành
+      tutorial:
+        desc:
+          <strong>Svelte tutorial*</strong> là tài liệu hướng dẫn chính thức, giúp bạn ‘học bằng
+          hành’ — tiếp cận những khái niệm về Svelte và SvelteKit từ cơ bản đến nâng cao thông qua
+          từng bài tập nhỏ.
+        link: Xem trang Svelte Tutorial
+        footnote: '* đây là tài liệu dành cho Svelte 5 và hiện tại chỉ hỗ trợ tiếng Anh'
+      playground:
+        desc:
+          <strong>Svelte playground</strong> (REPL) là trình tương tác chính thức, giúp bạn nhanh
+          chóng thử nghiệm ý tưởng hoặc quan sát đầu ra của trình biên dịch (Svelte compiler).
+        link: Xem trang Svelte Playground
+      lab:
+        desc:
+          <strong>SvelteLab</strong> là trình tương tác nâng cao được xây dựng bởi cộng đồng, mở
+          rộng ý tưởng từ Svelte playground, hỗ trợ SvelteKit và nhiều tính năng cho dự án hoàn
+          chỉnh.
+        link: Xem trang SvelteLab
+    two:
+      step: Bước hai
+      heading: Đọc qua tài liệu Svelte & SvelteKit
+      docs:
+        desc:
+          <strong>Svelte documentation</strong> là tài liệu chính thức, hệ thống hóa các tính năng
+          của Svelte và SvelteKit một cách đầy đủ và dễ tìm kiếm, mang giá trị tham khảo cao trong
+          công việc hằng ngày.
+        link: Xem Svelte Documentation
+    three:
+      step: Bước ba
+      heading: Tham gia cộng đồng Svelte Việt Nam
+      desc:
+        <strong>Svelte Việt Nam</strong> là một dự án mã nguồn mở và là cộng đồng cho bất cứ ai quan
+        tâm đến Svelte tại Việt Nam, với mong muốn tạo ra kênh thông tin bổ ích và môi trường lành
+        mạnh để thành viên chia sẻ kinh nghiệm, giúp đỡ lẫn nhau trong hành trình phát triển phần
+        mềm và tiếp cận mã nguồn mở.
+      discord: Tham gia thảo luận tại Discord
+      github: Đóng góp vào dự án tại Github
+      note:
+        Ngoài ra, bạn có thể theo dõi <a class="c-link" href="/vi/su-kien">sự kiện của Svelte Việt
+        Nam</a> và các <a class="c-link" href="/vi/blog">bài viết tại Blog của Svelte Việt Nam
+        Blog</a>.
+    four:
+      step: Bước bốn
+      heading: Theo dõi các kênh thông tin Svelte quốc tế
+      svelte:
+        desc:
+          <strong>Svelte</strong> là dự án mã nguồn mở. Theo dõi và đóng góp vào sự phát triển của
+          Svelte qua các kênh sau.
+        github:
+          svelte: Github repository của Svelte
+          sveltekit: Github repository của SvelteKit
+          svelte_dev: Github repository của svelte.dev
+      society:
+        desc:
+          <strong>Svelte society</strong> là mạng lưới quốc tế liên kết những người quan tâm đến
+          Svelte. Svelte Society phát triển và duy trì nhiều tài nguyên quan trọng.
+        discord: Tham gia thảo luận tại Discord
+        website: Xem trang Svelte Society
+      summit:
+        desc:
+          <strong>Svelte Summit</strong> là sự kiện quốc tế về Svelte, hội tụ bảo trì viên và diễn
+          giả từ khắp nơi trên thế giới.
+        youtube: Xem sự kiện tại Youtube
+        website: Xem trang Svelte Summit
+      hack:
+        desc:
+          <strong>SvelteHack</strong> là sự kiện hackathon thường diễn ra sau các dấu mốc quan trọng
+          trong hệ sinh thái Svelte.
+        link: Xem trang SvelteHack
+      others: 'Ngoài ra, bạn còn có thể:'
+      newsletter:
+        đăng ký nhận cập nhật tin tức về Svelte hàng tháng qua “<a class="c-link"
+        href="https://svelte.substack.com/" target="_blank" rel="noreferrer noopener external"
+        data-umami-event="click-homepage-resource-link"
+        data-umami-event-url="https://svelte.substack.com/">The (Unofficial) Svelte JS
+        Newsletter</a>”,
+      madebysvelte:
+        xem hoặc chia sẻ các dự án, sản phẩm về Svelte với cộng đồng quốc tế qua trang “<a
+        class="c-link" href="https://madewithsvelte.com/" target="_blank" rel="noreferrer noopener
+        external" data-umami-event="click-homepage-resource-link"
+        data-umami-event-url="https://madewithsvelte.com/">Made by Svelte</a>”,
+      jobs:
+        theo dõi tin tức tức việc làm quốc tế qua kênh <a class="c-link"
+        href="https://discord.com/channels/457912077277855764/640884695890133012" target="_blank"
+        rel="noreferrer noopener external" data-umami-event="click-homepage-resource-link"
+        data-umami-event-url="https://discord.com/channels/457912077277855764/640884695890133012">#job-postings</a>
+        từ Discord chính thức của Svelte, hoặc qua trang “<a class="c-link"
+        href="https://sveltejobs.com/" target="_blank" rel="noreferrer noopener external"
+        data-umami-event="click-homepage-resource-link"
+        data-umami-event-url="https://sveltejobs.com/">Svelte Jobs</a>”.
+  events:
+    heading: Sự kiện
+    desc:
+      Gặp gỡ cộng đồng Svelte Việt Nam, cùng nhau chia sẻ kinh nghiệm, sản phẩm, và mọi thứ liên
+      quan đến Svelte và open source. Xem thêm tại <a class="c-link" href="/vi/su-kien">trang sự
+      kiện</a>.
+    tba:
+      desc: Chưa có sự kiện mới nào
+      subscribe: Đăng ký cập nhật sự kiện mới nhất!
+      view_past: Xem lại sự kiện đã diễn ra
+  blog:
+    heading: Bài viết
+    desc: Đọc và viết bài tại <a class="c-link" href="/vi/blog">Blog của Svelte Việt Nam</a>.
+  sponsor:
+    heading: Tài trợ
+    desc: Giúp cộng đồng Svelte Việt Nam phát triển bền vững bằng cách trở thành nhà tài trợ
+    list:
+      Các nhà tài trợ được liệt kê tại<br/><a class="c-link"
+      href="https://opencollective.com/sveltevietnam">Open Collective của Svelte Việt Nam</a>.
+    read_more: Tìm hiểu thêm!

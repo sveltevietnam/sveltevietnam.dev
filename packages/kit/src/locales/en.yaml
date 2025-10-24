@@ -1,0 +1,36 @@
+# ==============================================
+# !! Exports for all locales in this package !!
+# Language: English
+# ==============================================
+messages:
+  # prepositions
+  at: at
+  to: to
+  from: from
+  # conjunctions
+  and: and
+  or: or
+  # actions
+  open: Open
+  close: Close
+  continue: Continue
+  save: Save
+  download: Download
+  # nouns
+  menu: menu
+  dialogs:
+    qr:
+      '@import': '../dialogs/qr-code/locales/en.yaml'
+  components:
+    breadcrumbs:
+      '@import': '../components/breadcrumbs/locales/en.yaml'
+    color_scheme_menu:
+      '@import': '../components/color-scheme-menu/locales/en.yaml'
+    footer:
+      '@import': '../components/footer/locales/en.yaml'
+    job_posting_list:
+      '@import': '../components/job-posting-list/locales/en.yaml'
+    language_menu:
+      '@import': '../components/language-menu/locales/en.yaml'
+    not_by_ai_badge:
+      '@import': '../components/not-by-ai-badge/locales/en.yaml'

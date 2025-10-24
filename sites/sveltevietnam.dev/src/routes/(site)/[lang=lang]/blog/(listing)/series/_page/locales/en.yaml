@@ -1,0 +1,9 @@
+# ============================
+# Language: English
+# Scope:    pages.blog_series
+# ============================
+messages:
+  title: Series | Blog | Svelte Vietnam
+  keywords: blog, write, series, classification
+  heading: All Blog Series
+  desc: View the complete list of all blog series at the Svelte Vietnam Blog
