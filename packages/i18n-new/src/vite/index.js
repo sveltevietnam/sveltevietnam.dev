@@ -13,6 +13,7 @@ import { createLogger } from './logger.js';
  * @typedef Config
  * @property {string} input directory path containing locale source files, relative to cwd
  * @property {string} output directory path for build artifacts, relative to cwd
+ * @property {import('../parser').ParseLocaleOptions} parseOptions options for parsing locale files
  */
 
 /**
@@ -22,8 +23,14 @@ import { createLogger } from './logger.js';
  */
 async function b(config, logger) {
 	const inputDir = path.join(process.cwd(), config.input);
-	let entries = await glob('./*', { cwd: inputDir, filesOnly: true });
-	entries = entries.map((entry) => path.join(inputDir, entry));
+	let entries = (
+		await glob('./*', {
+			cwd: inputDir,
+			filesOnly: true,
+			flush: true,
+			absolute: true,
+		})
+	).filter((f) => !f.endsWith('~'));
 	if (entries.length === 0) {
 		logger.warn(`no locale entries found at ${config.input}`);
 		return [];
@@ -43,7 +50,7 @@ async function b(config, logger) {
 		},
 		sources,
 		numMessages,
-	} = await build({ entries: entryByLang });
+	} = await build({ entries: entryByLang, parseOptions: config.parseOptions });
 	const outDir = path.join(process.cwd(), config.output, 'locales');
 	await fs.mkdir(path.join(outDir, 'messages'), { recursive: true });
 	await Promise.all([
@@ -67,6 +74,22 @@ async function b(config, logger) {
  */
 export async function i18n(config) {
 	const logger = createLogger();
+
+	/**
+	 * @param {unknown} e
+	 * @param {boolean} [rethrow=true]
+	 */
+	function handleError(e, rethrow = true) {
+		// TODO: implement more readable reporter for issues
+		logger.error(
+			pico.red('failed to build, please fix reported errors and run your vite command again'),
+		);
+		if (e instanceof Error && e.cause) {
+			logger.error(pico.red(`${e.name}'s cause: ${JSON.stringify(e.cause, null, 2)}`));
+		}
+		if (rethrow) throw e;
+	}
+
 	return {
 		name: 'vite-plugin-sveltevietnam-i18n',
 		enforce: 'pre',
@@ -91,17 +114,31 @@ export async function i18n(config) {
 
 				const changepath = path.relative(process.cwd(), filepath);
 				logger.info(`detected changes at ${pico.yellow(changepath)}, rebuilding...`);
-				for (const file of watchFiles) {
-					server.watcher.unwatch(file);
-				}
 
-				watchFiles = await b(config, logger);
-				for (const file of watchFiles) {
-					server.watcher.add(file);
+				try {
+					const oldWatchFiles = watchFiles;
+					watchFiles = await b(config, logger);
+
+					const oldFileSet = new Set(watchFiles);
+					const newFileSet = new Set(oldWatchFiles);
+					const added = newFileSet.difference(oldFileSet);
+					const removed = oldFileSet.difference(newFileSet);
+					for (const file of added) {
+						server.watcher.add(path.relative(process.cwd(), file));
+					}
+					for (const file of removed) {
+						server.watcher.unwatch(file);
+					}
+				} catch (e) {
+					handleError(e, false);
 				}
 			}
 
-			watchFiles = await b(config, logger);
+			try {
+				watchFiles = await b(config, logger);
+			} catch (e) {
+				handleError(e);
+			}
 			for (const file of watchFiles) {
 				server.watcher.add(file);
 			}
@@ -113,7 +150,12 @@ export async function i18n(config) {
 		async buildStart() {
 			// skip build for 'client', assuming already done so in 'ssr'
 			if (this.environment.name !== 'ssr') return;
-			await b(config, logger);
+
+			try {
+				await b(config, logger);
+			} catch (e) {
+				handleError(e);
+			}
 		},
 	};
 }
