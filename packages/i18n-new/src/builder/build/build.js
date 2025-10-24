@@ -118,7 +118,7 @@ export async function build(input) {
 	// ===============================
 	// 6. Putting everything together
 	// ===============================
-	/** @type {import('./types.public').BuildOutput['messages']['targets']} */
+	/** @type {import('./types.public').BuildOutput['modules']['messages']['targets']} */
 	const targets = {};
 	for (let i = 0; i < langs.length; i++) {
 		const lang = langs[i];
@@ -129,8 +129,16 @@ export async function build(input) {
 	const constants = generateConstantsModule({ keys, langs });
 
 	return {
-		messages: { targets, index },
-		constants,
+		modules: {
+			messages: { targets, index },
+			constants,
+		},
+		sources: Array.from(
+			new Set([
+				...localeFilePathPerLang,
+				...localePerLang.flatMap((locale) => locale.dependencies),
+			]),
+		),
 	};
 }
 
