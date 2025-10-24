@@ -65,6 +65,7 @@ test('can build', async () => {
 			constants,
 		},
 		sources,
+		numMessages,
 	} = await build({
 		entries: {
 			vi: '/app/locales/vi.yaml',
@@ -81,6 +82,7 @@ test('can build', async () => {
 		'/app/node_modules/@app/components/test/vi.yaml',
 		'/app/node_modules/@app/components/test/en.yaml',
 	]);
+	expect(numMessages).toBe(3);
 });
 
 test('should forward parse locale error', async () => {

@@ -33,4 +33,6 @@ export type BuildOutput = {
 	};
 	/** all the source locale files that were read during process */
 	sources: string[];
+	/** total number of collected messages */
+	numMessages: number;
 };
