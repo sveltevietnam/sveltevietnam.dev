@@ -1,7 +1,7 @@
 import dedent from 'dedent';
 import { test, expect, describe } from 'vitest';
 
-import { createMessage } from '$tests/utils';
+import { createSourceMessage } from '$tests/utils';
 
 import { print } from '../utils';
 
@@ -10,7 +10,7 @@ import { generateMessageTarget } from '.';
 const js = dedent;
 
 test('can generate empty message function', () => {
-	const message = createMessage('generated', '');
+	const message = createSourceMessage('generated', '');
 	const { nodes } = generateMessageTarget(message);
 	const code = print(nodes, false);
 	expect(code).toEqual(js`
@@ -23,7 +23,7 @@ test('can generate empty message function', () => {
 });
 
 test('can generate simple message function', () => {
-	const message = createMessage('generated', 'Hello, world!');
+	const message = createSourceMessage('generated', 'Hello, world!');
 	const { nodes } = generateMessageTarget(message);
 	const code = print(nodes, false);
 	expect(code).toEqual(js`
@@ -38,7 +38,7 @@ test('can generate simple message function', () => {
 describe('can generate with-params message function', () => {
 	describe('single param', () => {
 		test('no text', () => {
-			const message = createMessage('generated', '{{name}}');
+			const message = createSourceMessage('generated', '{{name}}');
 			const { nodes } = generateMessageTarget(message);
 			const code = print(nodes, false);
 			expect(code).toEqual(js`
@@ -54,7 +54,7 @@ describe('can generate with-params message function', () => {
 		});
 
 		test('at start', () => {
-			const message = createMessage('generated', '{{name}}, welcome!');
+			const message = createSourceMessage('generated', '{{name}}, welcome!');
 			const { nodes } = generateMessageTarget(message);
 			const code = print(nodes, false);
 			expect(code).toEqual(js`
@@ -70,7 +70,7 @@ describe('can generate with-params message function', () => {
 		});
 
 		test('at middle', () => {
-			const message = createMessage('generated', 'Goodbye, {{name}}. See you soon!');
+			const message = createSourceMessage('generated', 'Goodbye, {{name}}. See you soon!');
 			const { nodes } = generateMessageTarget(message);
 			const code = print(nodes, false);
 			expect(code).toEqual(js`
@@ -86,7 +86,7 @@ describe('can generate with-params message function', () => {
 		});
 
 		test('at end', () => {
-			const message = createMessage('generated', 'Welcome, {{name}}');
+			const message = createSourceMessage('generated', 'Welcome, {{name}}');
 			const { nodes } = generateMessageTarget(message);
 			const code = print(nodes, false);
 			expect(code).toEqual(js`
@@ -104,7 +104,7 @@ describe('can generate with-params message function', () => {
 
 	describe('multiple params', () => {
 		test('consecutive at ends', () => {
-			const message = createMessage(
+			const message = createSourceMessage(
 				'generated',
 				'{{first}}{{second}}, lorem ipsum, {{third}}{{forth}}',
 			);
@@ -126,7 +126,7 @@ describe('can generate with-params message function', () => {
 		});
 
 		test('scattered', () => {
-			const message = createMessage(
+			const message = createSourceMessage(
 				'generated',
 				'{{first}}, this is a {{second}}{{third}} message with {{third}}{{second}} params. {{forth}}',
 			);

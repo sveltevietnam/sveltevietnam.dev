@@ -1,7 +1,7 @@
 import dedent from 'dedent';
 import { test, expect } from 'vitest';
 
-import { createMessage } from '$tests/utils';
+import { createSourceMessage } from '$tests/utils';
 
 import { generateMessageTargetModule } from '.';
 
@@ -12,7 +12,7 @@ test('empty messages should return empty string', () => {
 });
 
 test('single message', () => {
-	const messages = [createMessage('greeting', 'Hello')];
+	const messages = [createSourceMessage('greeting', 'Hello')];
 	const mod = generateMessageTargetModule(messages);
 	expect(mod).toEqual(js`
 		/**
@@ -29,8 +29,8 @@ test('single message', () => {
 
 test('multiple messages', () => {
 	const messages = [
-		createMessage('greeting', 'Hello'),
-		createMessage('farewell', 'Goodbye {{name}}'),
+		createSourceMessage('greeting', 'Hello'),
+		createSourceMessage('farewell', 'Goodbye {{name}}'),
 	];
 	const mod = generateMessageTargetModule(messages);
 	expect(mod).toEqual(js`

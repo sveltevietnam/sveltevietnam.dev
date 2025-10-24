@@ -2,13 +2,12 @@ import dedent from 'dedent';
 import { vol } from 'memfs';
 import { test, expect, beforeEach, vi, assert } from 'vitest';
 
-import { ErrorFileNotFound } from '../../parser';
+import { ErrorFileNotFound, ErrorMissingCloseBracket } from '../../parser';
 
 import {
 	build,
 	ErrorInconsistentMessageKeys,
 	ErrorInconsistentMessageParams,
-	ErrorMessageParse,
 	type BuildInput,
 } from '.';
 
@@ -137,7 +136,7 @@ test('should throw with inconsistent keys', async () => {
 	`);
 });
 
-test('should forward parse message error', async () => {
+test('should forward parse message params error', async () => {
 	vol.fromJSON(
 		{
 			'vi.yaml': yaml`
@@ -164,13 +163,7 @@ test('should forward parse message error', async () => {
 	} catch (e) {
 		error = e;
 	}
-	assert.instanceOf(error, ErrorMessageParse);
-	expect(error.cause).toMatchInlineSnapshot(`
-		[
-		  [ErrorMissingCloseBracker: Missing closing bracket "}}" for parameter "name!..." starting at position 10],
-		  [ErrorMissingCloseBracker: Missing closing bracket "}}" for parameter "name!..." starting at position 7],
-		]
-	`);
+	assert.instanceOf(error, ErrorMissingCloseBracket);
 });
 
 test('should throw for key with inconsistent params', async () => {

@@ -1,7 +1,6 @@
-import { type Message, parseMessage } from '../src/parser';
+import { type SourceMessage, parseMessageParams } from '../src/parser';
 
-export function createMessage(key: string, content: string): Message {
-	const params = parseMessage(content);
-	const type = params.length > 0 ? 'with-params' : 'simple';
-	return { type, key, content, params };
+export function createSourceMessage(key: string, content: string): SourceMessage {
+	const params = parseMessageParams(content);
+	return { key, content, params, sources: [{ content, file: 'generated-from-test' }] };
 }

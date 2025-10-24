@@ -3,6 +3,8 @@ import { vol } from 'memfs';
 import { ValiError } from 'valibot';
 import { test, expect, describe, beforeEach, vi } from 'vitest';
 
+import { ErrorMissingCloseBracket } from '../parse-message-params';
+
 import { ErrorCircularImport, ErrorExpectAbsolutePath, ErrorFileNotFound, parseLocale } from '.';
 
 vi.mock('node:fs');
@@ -19,7 +21,7 @@ beforeEach(() => {
 test('should throw if content does not pass schema validation', async () => {
 	vol.fromJSON({
 		'/app/locales/locale.yaml': yaml`
-		  invalidContent: true
+    invalidContent: true
 		`,
 	});
 	await expect(parseLocale('/app/locales/locale.yaml')).rejects.toThrow(ValiError);
@@ -28,18 +30,23 @@ test('should throw if content does not pass schema validation', async () => {
 test('empty messages should still pass', async () => {
 	vol.fromJSON({
 		'/app/locales/locale.yaml': yaml`
-		  messages: {}
+    messages: {}
 		`,
 	});
 	const locale = await parseLocale('/app/locales/locale.yaml');
-	expect(locale).toEqual({});
+	expect(locale).toMatchInlineSnapshot(json`
+		{
+		  "dependencies": [],
+		  "messages": [],
+		}
+	`);
 });
 
 test('should throw if entry is relative path', async () => {
 	await expect(parseLocale('./locales/locale.yaml')).rejects.toThrow(ErrorExpectAbsolutePath);
 });
 
-test('should throw if entry file does not exist', async () => {
+test('should throw if entry file does file not found', async () => {
 	const rejects = expect(parseLocale('/app/a.yaml')).rejects;
 	await rejects.toThrow(ErrorFileNotFound);
 	await rejects.toThrowErrorMatchingInlineSnapshot(
@@ -47,20 +54,33 @@ test('should throw if entry file does not exist', async () => {
 	);
 });
 
+test('should forward parse param error', async () => {
+	vol.fromJSON({
+		'/app/locales/locale.yaml': yaml`
+    messages:
+      greeting: "Hello, {{name!"
+		`,
+	});
+	const rejects = expect(parseLocale('/app/locales/locale.yaml')).rejects;
+	await rejects.toThrow(ErrorMissingCloseBracket);
+});
+
 describe('import directive should work', () => {
 	describe('from local file', () => {
 		const entry = yaml`
-		  messages:
-		    foo: bar
-		    components:
-		      test:
-		        '@import': './components/test/locale.yaml'
+    messages:
+      foo: bar
+      components:
+        test:
+          goodbye: to be overrided
+          '@import': './components/test/locale.yaml'
 		`;
 		const component = yaml`
-		  messages:
-		    hello: world
+    messages:
+      hello: world
+      goodbye: to be kept
 		`;
-		test('can import', async () => {
+		test('can import and merge', async () => {
 			vol.fromJSON(
 				{
 					'./locales/locale.yaml': entry,
@@ -69,13 +89,55 @@ describe('import directive should work', () => {
 				'/app',
 			);
 			const locale = await parseLocale('/app/locales/locale.yaml');
-			expect(locale).toEqual({
-				foo: 'bar',
-				'components.test.hello': 'world',
-			});
+			expect(locale).toMatchInlineSnapshot(json`
+				{
+				  "dependencies": [
+				    "/app/locales/components/test/locale.yaml",
+				  ],
+				  "messages": [
+				    {
+				      "content": "bar",
+				      "key": "foo",
+				      "params": [],
+				      "sources": [
+				        {
+				          "content": "bar",
+				          "file": "/app/locales/locale.yaml",
+				        },
+				      ],
+				    },
+				    {
+				      "content": "to be kept",
+				      "key": "components.test.goodbye",
+				      "params": [],
+				      "sources": [
+				        {
+				          "content": "to be overrided",
+				          "file": "/app/locales/locale.yaml",
+				        },
+				        {
+				          "content": "to be kept",
+				          "file": "/app/locales/components/test/locale.yaml",
+				        },
+				      ],
+				    },
+				    {
+				      "content": "world",
+				      "key": "components.test.hello",
+				      "params": [],
+				      "sources": [
+				        {
+				          "content": "world",
+				          "file": "/app/locales/components/test/locale.yaml",
+				        },
+				      ],
+				    },
+				  ],
+				}
+			`);
 		});
 
-		test('should throw if not exist', async () => {
+		test('should throw if file not found', async () => {
 			vol.fromJSON(
 				{
 					'./locales/locale.yaml': entry,
@@ -90,19 +152,21 @@ describe('import directive should work', () => {
 		});
 	});
 
-	describe('from absolute path', () => {
+	describe('from node module', () => {
 		const entry = yaml`
-		  messages:
-		    foo: bar
-		    components:
-		      test:
-		        '@import': '@package/external/components/test/locale.yaml'
+    messages:
+      foo: bar
+      components:
+        test:
+          goodbye: to be overrided
+          '@import': '@package/external/components/test/locale.yaml'
 		`;
 		const component = yaml`
-		  messages:
-		    hello: world
+    messages:
+      hello: world
+      goodbye: to be kept
 		`;
-		test('can import from node module', async () => {
+		test('can import and merge', async () => {
 			vol.fromJSON(
 				{
 					'./locales/locale.yaml': entry,
@@ -117,13 +181,55 @@ describe('import directive should work', () => {
 				'/app',
 			);
 			const locale = await parseLocale('/app/locales/locale.yaml');
-			expect(locale).toEqual({
-				foo: 'bar',
-				'components.test.hello': 'world',
-			});
+			expect(locale).toMatchInlineSnapshot(json`
+				{
+				  "dependencies": [
+				    "/app/node_modules/@package/external/components/test/locale.yaml",
+				  ],
+				  "messages": [
+				    {
+				      "content": "bar",
+				      "key": "foo",
+				      "params": [],
+				      "sources": [
+				        {
+				          "content": "bar",
+				          "file": "/app/locales/locale.yaml",
+				        },
+				      ],
+				    },
+				    {
+				      "content": "to be kept",
+				      "key": "components.test.goodbye",
+				      "params": [],
+				      "sources": [
+				        {
+				          "content": "to be overrided",
+				          "file": "/app/locales/locale.yaml",
+				        },
+				        {
+				          "content": "to be kept",
+				          "file": "/app/node_modules/@package/external/components/test/locale.yaml",
+				        },
+				      ],
+				    },
+				    {
+				      "content": "world",
+				      "key": "components.test.hello",
+				      "params": [],
+				      "sources": [
+				        {
+				          "content": "world",
+				          "file": "/app/node_modules/@package/external/components/test/locale.yaml",
+				        },
+				      ],
+				    },
+				  ],
+				}
+			`);
 		});
 
-		test('should throw if not found', async () => {
+		test('should throw if file not found', async () => {
 			vol.fromJSON(
 				{
 					'./locales/locale.yaml': entry,
@@ -165,15 +271,15 @@ describe('import directive should work', () => {
 		vol.fromJSON(
 			{
 				'./locales/locale.yaml': yaml`
-				  messages:
-				    foo: bar
-				    components:
-				      test:
-				        ...: './components/test/locale.yaml'
+        messages:
+          foo: bar
+          components:
+            test:
+              ...: './components/test/locale.yaml'
 				`,
 				'./locales/components/test/locale.yaml': yaml`
-				  messages:
-				    hello: world
+        messages:
+          hello: world
 				`,
 			},
 			'/app',
@@ -183,31 +289,58 @@ describe('import directive should work', () => {
 				import: '...',
 			},
 		});
-		expect(locale).toEqual({
-			foo: 'bar',
-			'components.test.hello': 'world',
-		});
+		expect(locale).toMatchInlineSnapshot(json`
+			{
+			  "dependencies": [
+			    "/app/locales/components/test/locale.yaml",
+			  ],
+			  "messages": [
+			    {
+			      "content": "bar",
+			      "key": "foo",
+			      "params": [],
+			      "sources": [
+			        {
+			          "content": "bar",
+			          "file": "/app/locales/locale.yaml",
+			        },
+			      ],
+			    },
+			    {
+			      "content": "world",
+			      "key": "components.test.hello",
+			      "params": [],
+			      "sources": [
+			        {
+			          "content": "world",
+			          "file": "/app/locales/components/test/locale.yaml",
+			        },
+			      ],
+			    },
+			  ],
+			}
+		`);
 	});
 
 	test('should throw when detecting the first cicular dependency', async () => {
 		vol.fromJSON(
 			{
 				'./a.yaml': yaml`
-				  messages:
-					  b:
-				      '@import': './b.yaml'
-						c:
-				      '@import': './c.yaml'
+        messages:
+          b:
+            '@import': './b.yaml'
+          c:
+            '@import': './c.yaml'
 				`,
 				'./b.yaml': yaml`
-				  messages:
-				    a:
-				      '@import': './a.yaml'
+        messages:
+          a:
+            '@import': './a.yaml'
 				`,
 				'./c.yaml': yaml`
-				  messages:
-				    a:
-				      '@import': './a.yaml'
+        messages:
+          a:
+            '@import': './a.yaml'
 				`,
 			},
 			'/app',
@@ -229,15 +362,32 @@ describe('custom options should work', () => {
 	test('rootKey should be applied', async () => {
 		vol.fromJSON({
 			'/app/locales/locale.yaml': yaml`
-			  messages:
-			    foo: bar
+      messages:
+        foo: bar
 			`,
 		});
 
 		const locale = await parseLocale('/app/locales/locale.yaml', {
 			rootKey: 'root',
 		});
-		expect(locale).toEqual({ 'root.foo': 'bar' });
+		expect(locale).toMatchInlineSnapshot(json`
+			{
+			  "dependencies": [],
+			  "messages": [
+			    {
+			      "content": "bar",
+			      "key": "root.foo",
+			      "params": [],
+			      "sources": [
+			        {
+			          "content": "bar",
+			          "file": "/app/locales/locale.yaml",
+			        },
+			      ],
+			    },
+			  ],
+			}
+		`);
 	});
 
 	test('custom parser should be used', async () => {
@@ -258,7 +408,24 @@ describe('custom options should work', () => {
 		};
 		const deserializerParseSpy = vi.spyOn(options.deserializer!, 'parse');
 		const locale = await parseLocale('/app/locales/locale.json', options);
-		expect(locale).toEqual({ hello: 'world' });
+		expect(locale).toMatchInlineSnapshot(json`
+			{
+			  "dependencies": [],
+			  "messages": [
+			    {
+			      "content": "world",
+			      "key": "hello",
+			      "params": [],
+			      "sources": [
+			        {
+			          "content": "world",
+			          "file": "/app/locales/locale.json",
+			        },
+			      ],
+			    },
+			  ],
+			}
+		`);
 		expect(deserializerParseSpy).toHaveBeenCalledOnce();
 	});
 });

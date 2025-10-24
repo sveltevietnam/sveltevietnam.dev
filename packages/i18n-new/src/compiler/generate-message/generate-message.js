@@ -1,17 +1,18 @@
 import ts, { factory } from 'typescript';
 
-import { getIdFromMessageKey } from '../utils';
+import { getIdFromMessageKey, getSourceMessageType } from '../utils';
 
 // ===========
 // Public API
 // ===========
 /**
- * @param {Pick<import('../../parser').Message, 'key' | 'type'>} message
+ * @param {import('../../parser').SourceMessage} message
  * @param {string[]} langs
  * @returns {{ id: string, nodes: import('typescript').Node[] }}
  */
 export function generateMessage(message, langs) {
-	const { type, key } = message;
+	const { key } = message;
+	const type = getSourceMessageType(message);
 	const id = getIdFromMessageKey(key);
 
 	let factoryName = 'createMessageSimple';
