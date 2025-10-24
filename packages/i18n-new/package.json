@@ -15,8 +15,8 @@
 		},
 		"./factory": {
 			"types": "./types/index.d.ts",
-			"import": "./src/runtime/factory/index.js",
-			"default": "./src/runtime/factory/index.js"
+			"import": "./src/factory/index.js",
+			"default": "./src/factory/index.js"
 		},
 		"./utils": {
 			"types": "./types/index.d.ts",
