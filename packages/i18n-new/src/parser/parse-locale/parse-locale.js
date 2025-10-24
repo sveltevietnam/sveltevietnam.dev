@@ -71,8 +71,8 @@ export async function parseLocale(abspath, options = {}) {
 	// ----------------------------------------
 	// 3. Parse content for @import directives
 	// ----------------------------------------
-	/** @type {string[]} */
-	const dependencies = [];
+	/** @type {Set<string>} */
+	let dependencies = new Set();
 	/** @type {Promise<[Omit<import('./types.public').SourceMessage, 'params'>] | import('./types.public').ParseLocaleOutput>[]} */
 	const asyncParsing = [];
 	for (let [key, value] of Object.entries(messagesPerCurrentSource)) {
@@ -108,7 +108,7 @@ export async function parseLocale(abspath, options = {}) {
 				throw new ErrorCircularImport(`Circular import detected: ${circularPath}`);
 			}
 			importTraces.push({ file: importPath, key });
-			dependencies.push(importPath);
+			dependencies.add(importPath);
 			asyncParsing.push(
 				parseLocale(
 					importPath,
@@ -145,6 +145,7 @@ export async function parseLocale(abspath, options = {}) {
 		} else {
 			for (const message of item.messages) {
 				const existingMessage = mergedMap[message.key];
+				dependencies = dependencies.union(item.dependencies);
 				if (existingMessage) {
 					existingMessage.sources.push(...message.sources);
 					existingMessage.content = message.content;

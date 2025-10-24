@@ -137,7 +137,7 @@ export async function build(input) {
 		sources: Array.from(
 			new Set([
 				...localeFilePathPerLang,
-				...localePerLang.flatMap((locale) => locale.dependencies),
+				...localePerLang.flatMap((locale) => Array.from(locale.dependencies)),
 			]),
 		),
 	};

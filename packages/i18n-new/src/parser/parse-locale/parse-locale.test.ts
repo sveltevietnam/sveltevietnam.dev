@@ -36,7 +36,7 @@ test('empty messages should still pass', async () => {
 	const locale = await parseLocale('/app/locales/locale.yaml');
 	expect(locale).toMatchInlineSnapshot(json`
 		{
-		  "dependencies": [],
+		  "dependencies": Set {},
 		  "messages": [],
 		}
 	`);
@@ -91,9 +91,9 @@ describe('import directive should work', () => {
 			const locale = await parseLocale('/app/locales/locale.yaml');
 			expect(locale).toMatchInlineSnapshot(json`
 				{
-				  "dependencies": [
+				  "dependencies": Set {
 				    "/app/locales/components/test/locale.yaml",
-				  ],
+				  },
 				  "messages": [
 				    {
 				      "content": "bar",
@@ -154,9 +154,9 @@ describe('import directive should work', () => {
 			const locale = await parseLocale('/app/locales/locale.yaml');
 			expect(locale).toMatchInlineSnapshot(json`
 				{
-				  "dependencies": [
+				  "dependencies": Set {
 				    "/app/routes/(localized)/[lang=lang]/[[slug]]/locale.yaml",
-				  ],
+				  },
 				  "messages": [
 				    {
 				      "content": "world",
@@ -220,9 +220,9 @@ describe('import directive should work', () => {
 			const locale = await parseLocale('/app/locales/locale.yaml');
 			expect(locale).toMatchInlineSnapshot(json`
 				{
-				  "dependencies": [
+				  "dependencies": Set {
 				    "/app/node_modules/@package/external/components/test/locale.yaml",
-				  ],
+				  },
 				  "messages": [
 				    {
 				      "content": "bar",
@@ -328,9 +328,9 @@ describe('import directive should work', () => {
 		});
 		expect(locale).toMatchInlineSnapshot(json`
 			{
-			  "dependencies": [
+			  "dependencies": Set {
 			    "/app/locales/components/test/locale.yaml",
-			  ],
+			  },
 			  "messages": [
 			    {
 			      "content": "bar",
@@ -390,9 +390,9 @@ describe('import directive should work', () => {
 		});
 		expect(locale).toMatchInlineSnapshot(json`
 			{
-			  "dependencies": [
+			  "dependencies": Set {
 			    "/app/locales/components/test/locale.yaml",
-			  ],
+			  },
 			  "messages": [
 			    {
 			      "content": "bar",
@@ -486,7 +486,7 @@ describe('custom options should work', () => {
 		});
 		expect(locale).toMatchInlineSnapshot(json`
 			{
-			  "dependencies": [],
+			  "dependencies": Set {},
 			  "messages": [
 			    {
 			      "content": "bar",
@@ -524,7 +524,7 @@ describe('custom options should work', () => {
 		const locale = await parseLocale('/app/locales/locale.json', options);
 		expect(locale).toMatchInlineSnapshot(json`
 			{
-			  "dependencies": [],
+			  "dependencies": Set {},
 			  "messages": [
 			    {
 			      "content": "world",

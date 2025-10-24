@@ -39,5 +39,5 @@ export interface ParseLocaleOutput {
 	/** collected message flat mapped by key */
 	messages: SourceMessage[];
 	/** the locale files that were imported along the way */
-	dependencies: string[];
+	dependencies: Set<string>;
 }
