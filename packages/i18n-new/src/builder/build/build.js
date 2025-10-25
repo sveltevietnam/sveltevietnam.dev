@@ -1,9 +1,12 @@
+import dedent from 'dedent';
+
 import {
 	generateMessageTargetModule,
 	generateMessageModule,
 	generateConstantsModule,
 	generateDts,
 } from '../../compiler/index.js';
+import { GENERATED_MARKER } from '../../compiler/utils.js';
 import { parseLocale } from '../../parser/parse-locale/index.js';
 
 // ===========
@@ -134,6 +137,7 @@ export async function build(input) {
 			messages: { targets, index },
 			constants,
 			dts: generateDts(mode),
+			remote: mode === 'remote' ? REMOTE_MODULE : undefined,
 		},
 		numMessages: keys.length,
 		sources: Array.from(
@@ -186,3 +190,27 @@ export class ErrorInconsistentMessageParams extends BuildError {
 		this.cause = issues;
 	}
 }
+
+// ==========
+// Internals
+// ==========
+const js = dedent;
+const REMOTE_MODULE = js`
+/** ${GENERATED_MARKER} */
+import { query } from '$app/server';
+import { createMessageQueryFn, createMessageQueryInputSchema } from '@sveltevietnam/i18n-new/factory'
+
+import { langs } from './constants';
+
+const modules = import.meta.glob(['./messages/*.js', '!./messages/index.js']);
+/**
+ * @typedef {ReturnType<import('@sveltevietnam/i18n-new/generated').$$Runtime>['mapping']} MessageMap
+ * @typedef {ReturnType<import('@sveltevietnam/i18n-new/generated').$$Runtime>['languages'][number]} Language
+ */
+export const t = query.batch(
+  /** @type {'unchecked'} */ (
+    /** @type {unknown} */ (createMessageQueryInputSchema(langs))
+  ),
+  /** @type {import('@sveltevietnam/i18n-new/factory').MessageQueryFn<MessageMap, Language>} */
+  (createMessageQueryFn(modules)),
+);`;

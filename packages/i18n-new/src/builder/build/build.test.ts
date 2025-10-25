@@ -68,6 +68,7 @@ describe('can build', () => {
 					messages: { targets, index },
 					constants,
 					dts,
+					remote,
 				},
 				sources,
 				numMessages,
@@ -83,6 +84,11 @@ describe('can build', () => {
 			await expect(index).toMatchFileSnapshot('__snapshots__/common/messages/index.js');
 			await expect(constants).toMatchFileSnapshot(`__snapshots__/${mode}/constants.js`);
 			await expect(dts).toMatchFileSnapshot(`__snapshots__/${mode}/i18n.d.ts`);
+			if (mode === 'remote') {
+				await expect(remote).toMatchFileSnapshot('__snapshots__/remote/t.remote.js');
+			} else {
+				expect(remote).toBeUndefined();
+			}
 			expect(sources).toEqual([
 				'/app/locales/vi.yaml',
 				'/app/locales/en.yaml',
