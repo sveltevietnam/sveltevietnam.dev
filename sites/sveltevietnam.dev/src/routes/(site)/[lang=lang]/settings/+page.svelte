@@ -18,7 +18,13 @@
 
 	let { data }: PageProps = $props();
 
-	const { colorScheme, notifications: { toaster } } = Contexts.get();
+	const {
+		colorScheme,
+		routing,
+		notifications: { toaster },
+	} = Contexts.get();
+
+	let languageNames = $derived(new Intl.DisplayNames([routing.lang], { type: 'language' }));
 
 	const { form, enhance, constraints, delayed, timeout } = superForm(data.form, {
 		resetForm: false,
@@ -47,16 +53,16 @@
 		system: m['pages.settings.color_scheme.system'],
 	};
 
-	const languages = {
+	const languages = $derived({
 		vi: {
-			m: m['languages.vietnamese'],
+			m: languageNames.of('vi'),
 			icon: 'i-flag-vn',
 		},
 		en: {
-			m: m['languages.english'],
+			m: languageNames.of('en'),
 			icon: 'i-flag-gb',
 		},
-	};
+	});
 
 	const mSplash = {
 		random: m['pages.settings.splash_screen.variants.random'],
@@ -85,7 +91,7 @@
 
 {#snippet checkmark()}
 	<svg
-		class="w-5.5 text-primary absolute bottom-full left-full h-auto opacity-0 peer-checked:opacity-100"
+		class="text-primary absolute bottom-full left-full h-auto w-5.5 opacity-0 peer-checked:opacity-100"
 		xmlns="http://www.w3.org/2000/svg"
 		width="22"
 		height="23"
@@ -137,7 +143,7 @@
 	</section>
 
 	<form
-		class="max-w-pad py-section space-y-15 relative"
+		class="max-w-pad py-section relative space-y-15"
 		method="POST"
 		action="?/settings"
 		use:enhance
@@ -159,7 +165,7 @@
 							{...$constraints.colorScheme}
 						/>
 						<span
-							class="border-onehalf border-outline peer-checked:border-primary duration-400 relative block p-2 group-hover:border-current group-hover:duration-75"
+							class="border-onehalf border-outline peer-checked:border-primary relative block p-2 duration-400 group-hover:border-current group-hover:duration-75"
 						>
 							<ColorSchemeSkeleton class="w-50" {scheme} />
 						</span>
@@ -180,8 +186,8 @@
 			<div class="flex flex-wrap gap-10">
 				{#each Object.entries(languages) as [lang, { icon, m }] (lang)}
 					<label
-						class="has-checked:border-primary border-onehalf border-outline has-checked:duration-75
-						duration-400 group relative flex cursor-pointer items-center gap-4 p-4 hover:border-current"
+						class="has-checked:border-primary border-onehalf border-outline group
+						relative flex cursor-pointer items-center gap-4 p-4 duration-400 hover:border-current has-checked:duration-75"
 					>
 						<input
 							class="peer sr-only"
@@ -192,9 +198,7 @@
 							{...$constraints.language}
 						/>
 						<i class="i {icon} h-6"></i>
-						<span data-pagefind-body>
-							<T message={m} />
-						</span>
+						<span data-pagefind-body>{m}</span>
 						{@render checkmark()}
 					</label>
 				{/each}
@@ -209,9 +213,9 @@
 			<div class="flex flex-wrap gap-6">
 				{#each SPLASH_OPTIONS as variant (variant)}
 					<label
-						class="has-checked:border-primary border-onehalf border-outline has-checked:duration-75
-						duration-400 min-w-34 group relative block cursor-pointer gap-4 px-6 py-3
-						text-center hover:border-current"
+						class="has-checked:border-primary border-onehalf border-outline group
+						relative block min-w-34 cursor-pointer gap-4 px-6 py-3 text-center duration-400
+						hover:border-current has-checked:duration-75"
 					>
 						<input
 							class="peer sr-only"
@@ -240,7 +244,7 @@
 			border-t py-6"
 		>
 			<div
-				class="from-surface h-15 absolute bottom-full mb-px w-full bg-gradient-to-t from-20% to-transparent"
+				class="from-surface absolute bottom-full mb-px h-15 w-full bg-gradient-to-t from-20% to-transparent"
 			></div>
 
 			<label class="c-btn c-btn--outlined w-33" data-delayed={$delayed} data-timeout={$timeout}>

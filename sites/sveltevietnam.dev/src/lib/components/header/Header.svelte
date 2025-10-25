@@ -73,8 +73,6 @@
 			open: m.open,
 			menu: m.menu,
 			switchTo: m['components.language_menu.switch_to'],
-			vietnamese: m['languages.vietnamese'],
-			english: m['languages.english'],
 		},
 		routing: {
 			vi: routing.paths.vi,

@@ -22,6 +22,8 @@
 					? 'sr-only'
 					: '',
 	);
+
+	let languageNames = $derived(new Intl.DisplayNames([lang], { type: 'language' }));
 </script>
 
 <Dropdown class={['group w-fit', cls]} {...rest}>
@@ -34,9 +36,9 @@
 			</span>
 			<span class={labelClass} aria-hidden="true">
 				{#if lang === 'vi'}
-					<T message={i18n.vietnamese} />
+					{languageNames.of('vi')}
 				{:else}
-					<T message={i18n.english} />
+					{languageNames.of('en')}
 				{/if}
 			</span>
 			<i class="i i-[ph--caret-down] h-5 w-5 transition-transform group-open:-rotate-180"></i>
@@ -58,7 +60,7 @@
 					<!-- no need to announce this flag image -->
 					<i class="i i-flag-vn h-6"></i>
 					<span class="sr-only"><T message={i18n.switchTo} /></span>
-					<span><T message={i18n.vietnamese} /></span>
+					<span>{languageNames.of('vi')}</span>
 				</a>
 			</li>
 			<li>
@@ -74,7 +76,7 @@
 					<!-- no need to announce this flag image -->
 					<i class="i i-flag-gb h-6"></i>
 					<span class="sr-only"><T message={i18n.switchTo} /></span>
-					<span><T message={i18n.english} /></span>
+					<span>{languageNames.of('en')}</span>
 				</a>
 			</li>
 		</ul>

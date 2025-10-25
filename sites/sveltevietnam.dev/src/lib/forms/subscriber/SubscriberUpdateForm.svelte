@@ -21,7 +21,10 @@
 <script lang="ts">
 	let { class: cls, data, action = '?/update', ...rest }: SubscriberUpdateFormProps = $props();
 
-	const { routing, notifications: { toaster } } = Contexts.get();
+	const {
+		routing,
+		notifications: { toaster },
+	} = Contexts.get();
 
 	const { form, enhance, constraints, errors, delayed, timeout } = superForm<
 		SubscriberUpdateInput,
@@ -46,14 +49,12 @@
 		},
 	});
 
+	let languageNames = $derived(new Intl.DisplayNames([routing.lang], { type: 'language' }));
+
 	const channelMessages = {
 		job: m['forms.subscriber.update.inputs.channels.job'],
 		blog: m['forms.subscriber.update.inputs.channels.blog'],
 		event: m['forms.subscriber.update.inputs.channels.event'],
-	};
-	const languageMessages = {
-		vi: m['languages.vietnamese'],
-		en: m['languages.english'],
 	};
 	const commonFieldsetClasses = 'border-onehalf space-y-4 pb-4 px-2 tablet:px-4 pt-0';
 </script>
@@ -129,9 +130,7 @@
 								value={lang}
 								bind:group={$form.language}
 							/>
-							<span>
-								<T message={languageMessages[lang]} />
-							</span>
+							<span>{languageNames.of(lang)}</span>
 						</label>
 					</li>
 				{/each}

@@ -8,9 +8,6 @@ messages:
   svelte_vietnam:
     name: Svelte Vietnam
     discord: Svelte Vietnam Discord
-  languages:
-    vietnamese: Vietnamese
-    english: English
 
   # common
   vietnam: Vietnam

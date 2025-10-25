@@ -9,8 +9,6 @@ export interface LanguageMenuProps extends HTMLDetailsAttributes {
 		open: Message<'string', never>;
 		menu: Message<'string', never>;
 		switchTo: Message<'string', never>;
-		vietnamese: Message<'string', never>;
-		english: Message<'string', never>;
 	};
 	routing: {
 		vi: string;
