@@ -67,6 +67,7 @@ describe('can build', () => {
 				modules: {
 					messages: { targets, index },
 					constants,
+					dts,
 				},
 				sources,
 				numMessages,
@@ -81,6 +82,7 @@ describe('can build', () => {
 			await expect(targets['en']).toMatchFileSnapshot('__snapshots__/common/messages/en.js');
 			await expect(index).toMatchFileSnapshot('__snapshots__/common/messages/index.js');
 			await expect(constants).toMatchFileSnapshot(`__snapshots__/${mode}/constants.js`);
+			await expect(dts).toMatchFileSnapshot(`__snapshots__/${mode}/i18n.d.ts`);
 			expect(sources).toEqual([
 				'/app/locales/vi.yaml',
 				'/app/locales/en.yaml',

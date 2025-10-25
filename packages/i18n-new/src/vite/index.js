@@ -53,7 +53,7 @@ async function b(config, logger) {
 		...Object.entries(targets).map(([lang, module]) =>
 			fs.writeFile(path.join(outDir, 'messages', `${lang}.js`), module, 'utf-8'),
 		),
-		dts && fs.writeFile(path.join(outDir, 'i18n.d.ts'), dts, 'utf-8'),
+		fs.writeFile(path.join(outDir, 'i18n.d.ts'), dts, 'utf-8'),
 	]);
 
 	logger.success(

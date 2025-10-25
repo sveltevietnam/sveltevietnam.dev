@@ -35,7 +35,7 @@ export type BuildOutput = {
 		/** $i18n/constants.js */
 		constants: string;
 		/** $i18n/i18n.d.ts */
-		dts?: string;
+		dts: string;
 	};
 	/** all the source locale files that were read during process */
 	sources: string[];

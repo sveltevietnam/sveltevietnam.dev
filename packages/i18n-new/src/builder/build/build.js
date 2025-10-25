@@ -129,16 +129,11 @@ export async function build(input) {
 	const index = generateMessageModule(Object.values(keyToMessageMapPerLang[0]), langs);
 	const constants = generateConstantsModule({ keys, langs, mode });
 
-	let dts = '';
-	if (mode === 'remote') {
-		dts = generateDts(mode);
-	}
-
 	return {
 		modules: {
 			messages: { targets, index },
 			constants,
-			dts,
+			dts: generateDts(mode),
 		},
 		numMessages: keys.length,
 		sources: Array.from(

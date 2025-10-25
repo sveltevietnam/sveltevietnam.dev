@@ -16,9 +16,11 @@ export function generateDts(mode) {
 			factory.createImportClause(
 				ts.SyntaxKind.TypeKeyword,
 				undefined,
-				factory.createNamespaceImport(factory.createIdentifier('m')),
+				factory.createNamedImports([
+					factory.createImportSpecifier(false, undefined, factory.createIdentifier('langs')),
+				]),
 			),
-			factory.createStringLiteral('./messages'),
+			factory.createStringLiteral('./constants'),
 			undefined,
 		),
 		factory.createImportDeclaration(
@@ -26,11 +28,9 @@ export function generateDts(mode) {
 			factory.createImportClause(
 				ts.SyntaxKind.TypeKeyword,
 				undefined,
-				factory.createNamedImports([
-					factory.createImportSpecifier(false, undefined, factory.createIdentifier('langs')),
-				]),
+				factory.createNamespaceImport(factory.createIdentifier('m')),
 			),
-			factory.createStringLiteral('./constants'),
+			factory.createStringLiteral('./messages'),
 			undefined,
 		),
 		factory.createModuleDeclaration(
