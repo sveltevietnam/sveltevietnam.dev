@@ -15,11 +15,11 @@ test('can generate', () => {
 		declare module "@sveltevietnam/i18n-new/generated" {
 		    export interface $$Runtime {
 		        (): {
-		            mode: "static";
+		            mode: "static" as const;
 		            mapping: typeof m;
 		            languages: typeof langs;
 		        };
 		    }
-		}\n
+		}
 	`);
 });
