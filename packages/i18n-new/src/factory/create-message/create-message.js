@@ -4,7 +4,7 @@
  * @template {string} [Key=string]
  * @param {Key} key
  * @param {Record<Lang, () => string>} targets
- * @returns {import('../runtime/types.public').MessageSimple<Lang, Key>}
+ * @returns {import('../../runtime/types.public').MessageSimple<Lang, Key>}
  *
  * @__NO_SIDE_EFFECTS__
  */
@@ -22,7 +22,7 @@ export function createMessageSimple(key, targets) {
 			}),
 		});
 	});
-	return /** @type {import('../runtime/types.public').MessageSimple<Lang, Key>} */ (translate);
+	return /** @type {import('../../runtime/types.public').MessageSimple<Lang, Key>} */ (translate);
 }
 
 /**
@@ -32,7 +32,7 @@ export function createMessageSimple(key, targets) {
  * @template {string} [Params=string]
  * @param {Key} key
  * @param {Record<Lang, (params: Record<Params, string>) => string>} targets
- * @returns {import('../runtime/types.public').MessageWithParams<Lang, Key, Params>}
+ * @returns {import('../../runtime/types.public').MessageWithParams<Lang, Key, Params>}
  *
  * @__NO_SIDE_EFFECTS__
  */
@@ -52,7 +52,7 @@ export function createMessageWithParams(key, targets) {
 			}),
 		});
 	});
-	return /** @type {import('../runtime/types.public').MessageWithParams<Lang, Key, Params>} */ (
+	return /** @type {import('../../runtime/types.public').MessageWithParams<Lang, Key, Params>} */ (
 		translate
 	);
 }

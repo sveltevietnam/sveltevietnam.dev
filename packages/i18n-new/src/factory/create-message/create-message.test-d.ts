@@ -1,6 +1,6 @@
 import { test, expectTypeOf } from 'vitest';
 
-import { type MessageSimple, type MessageWithParams } from '../runtime/types.public';
+import { type MessageSimple, type MessageWithParams } from '../../runtime/types.public';
 
 import { createMessageSimple, createMessageWithParams } from '.';
 
