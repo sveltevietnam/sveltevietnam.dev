@@ -10,14 +10,7 @@ import { build } from '../builder/index.js';
 import { createLogger } from './logger.js';
 
 /**
- * @typedef Config
- * @property {string} input directory path containing locale source files, relative to cwd
- * @property {string} output directory path for build artifacts, relative to cwd
- * @property {import('../parser').ParseLocaleOptions} [parseOptions] options for parsing locale files
- */
-
-/**
- * @param {Config} config
+ * @param {import('./types.public').Config} config
  * @param {import('./logger.js').CustomLogger} logger
  * @returns {Promise<string[]>} source files to watch for changes
  */
@@ -50,7 +43,7 @@ async function b(config, logger) {
 		},
 		sources,
 		numMessages,
-	} = await build({ entries: entryByLang, parseOptions: config.parseOptions });
+	} = await build({ entries: entryByLang, parseOptions: config.parseOptions, mode: config.mode });
 	const outDir = path.join(process.cwd(), config.output);
 	await fs.mkdir(path.join(outDir, 'messages'), { recursive: true });
 	await Promise.all([
@@ -69,7 +62,7 @@ async function b(config, logger) {
 }
 
 /**
- * @param {Config} config
+ * @param {import('./types.public').Config} config
  * @returns {Promise<import('vite').Plugin>}
  */
 export async function i18n(config) {
@@ -77,7 +70,7 @@ export async function i18n(config) {
 	/** @type {import('vite').ResolvedConfig | undefined} */
 	let rConfig = undefined;
 
-	/** @returns {Config} */
+	/** @returns {import('./types.public').Config} */
 	function resolveConfig() {
 		return {
 			...config,
@@ -187,3 +180,5 @@ export async function i18n(config) {
 		},
 	};
 }
+
+export * from './types.public.js';

@@ -2,10 +2,14 @@ import type { MessageParameter, ParseLocaleOptions } from '../../parser';
 
 export type BuildEntry = Record<string, string>;
 
+export type BuildMode = 'static' | 'remote';
+
 export interface BuildInput {
 	/** absolute path to locale file per language mapping */
 	entries: Record<string, string>;
 	parseOptions?: ParseLocaleOptions;
+	/** @default 'static' */
+	mode?: BuildMode;
 }
 
 export interface InconsistentKeyIssue {

@@ -1,6 +1,6 @@
 import dedent from 'dedent';
 import { vol } from 'memfs';
-import { test, expect, beforeEach, vi, assert } from 'vitest';
+import { test, expect, describe, beforeEach, vi, assert } from 'vitest';
 
 import { ErrorFileNotFound, ErrorMissingCloseBracket } from '../../parser';
 
@@ -22,67 +22,74 @@ beforeEach(() => {
 	vol.reset();
 });
 
-test('can build', async () => {
-	vol.fromJSON(
-		{
-			'./locales/vi.yaml': yaml`
-      messages:
-        greeting: Xin chào, {{name}}!
-        goodbye: Tạm biệt!
-        component:
-          '@import': '@app/components/test/vi.yaml'
-			`,
-			'./locales/en.yaml': yaml`
-      messages:
-        greeting: Hello, {{name}}!
-        goodbye: Goodbye!
-        component:
-          '@import': '@app/components/test/en.yaml'
-			`,
-			'./node_modules/@app/components/test/vi.yaml': yaml`
-      messages:
-        welcome: Chào mừng {{name}}!
-			`,
-			'./node_modules/@app/components/test/en.yaml': yaml`
-      messages:
-        welcome: Welcome {{name}}!
-			`,
-			'./node_modules/@app/components/package.json': json`
+describe('can build', () => {
+	beforeEach(() => {
+		vol.fromJSON(
 			{
-				"name": "@app/components",
-				"exports": {
-					"./test/*.yaml": "./test/*.yaml"
+				'./locales/vi.yaml': yaml`
+        messages:
+          greeting: Xin chào, {{name}}!
+          goodbye: Tạm biệt!
+          component:
+            '@import': '@app/components/test/vi.yaml'
+			  `,
+				'./locales/en.yaml': yaml`
+        messages:
+          greeting: Hello, {{name}}!
+          goodbye: Goodbye!
+          component:
+            '@import': '@app/components/test/en.yaml'
+			  `,
+				'./node_modules/@app/components/test/vi.yaml': yaml`
+        messages:
+          welcome: Chào mừng {{name}}!
+			  `,
+				'./node_modules/@app/components/test/en.yaml': yaml`
+        messages:
+          welcome: Welcome {{name}}!
+			  `,
+				'./node_modules/@app/components/package.json': json`
+				{
+					"name": "@app/components",
+					"exports": {
+						"./test/*.yaml": "./test/*.yaml"
+					}
 				}
-			}
-			`,
-		},
-		'/app',
-	);
-
-	const {
-		modules: {
-			messages: { targets, index },
-			constants,
-		},
-		sources,
-		numMessages,
-	} = await build({
-		entries: {
-			vi: '/app/locales/vi.yaml',
-			en: '/app/locales/en.yaml',
-		},
+				`,
+			},
+			'/app',
+		);
 	});
-	await expect(targets['vi']).toMatchFileSnapshot('__snapshots__/messages/vi.js');
-	await expect(targets['en']).toMatchFileSnapshot('__snapshots__/messages/en.js');
-	await expect(index).toMatchFileSnapshot('__snapshots__/messages/index.js');
-	await expect(constants).toMatchFileSnapshot('__snapshots__/constants.js');
-	expect(sources).toEqual([
-		'/app/locales/vi.yaml',
-		'/app/locales/en.yaml',
-		'/app/node_modules/@app/components/test/vi.yaml',
-		'/app/node_modules/@app/components/test/en.yaml',
-	]);
-	expect(numMessages).toBe(3);
+
+	['static', 'remote'].forEach((mode) => {
+		test(`${mode} mode`, async () => {
+			const {
+				modules: {
+					messages: { targets, index },
+					constants,
+				},
+				sources,
+				numMessages,
+			} = await build({
+				entries: {
+					vi: '/app/locales/vi.yaml',
+					en: '/app/locales/en.yaml',
+				},
+				mode: 'static',
+			});
+			await expect(targets['vi']).toMatchFileSnapshot('__snapshots__/common/messages/vi.js');
+			await expect(targets['en']).toMatchFileSnapshot('__snapshots__/common/messages/en.js');
+			await expect(index).toMatchFileSnapshot('__snapshots__/common/messages/index.js');
+			await expect(constants).toMatchFileSnapshot('__snapshots__/static/constants.js');
+			expect(sources).toEqual([
+				'/app/locales/vi.yaml',
+				'/app/locales/en.yaml',
+				'/app/node_modules/@app/components/test/vi.yaml',
+				'/app/node_modules/@app/components/test/en.yaml',
+			]);
+			expect(numMessages).toBe(3);
+		});
+	});
 });
 
 test('should forward parse locale error', async () => {

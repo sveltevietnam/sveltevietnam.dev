@@ -13,7 +13,7 @@ import { parseLocale } from '../../parser/parse-locale/index.js';
  * @returns {Promise<import('./types.public').BuildOutput>}
  */
 export async function build(input) {
-	const { entries, parseOptions } = input;
+	const { entries, parseOptions, mode = 'static' } = input;
 
 	// ===================================
 	// 1. Parse all locales at the same time
@@ -126,7 +126,7 @@ export async function build(input) {
 		targets[lang] = module;
 	}
 	const index = generateMessageModule(Object.values(keyToMessageMapPerLang[0]), langs);
-	const constants = generateConstantsModule({ keys, langs });
+	const constants = generateConstantsModule({ keys, langs, mode });
 
 	return {
 		modules: {

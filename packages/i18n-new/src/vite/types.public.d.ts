@@ -1,0 +1,19 @@
+import type { BuildMode } from 'src/builder';
+import type { ParseLocaleOptions } from 'src/parser';
+
+export interface Config {
+	/** directory path containing locale source files, relative to cwd */
+	input: string;
+	/** directory path for build artifacts, relative to cwd */
+	output: string;
+	/**
+	 * build mode
+	 *
+	 * @remark remote mode is currently experimental, support fetching messages from `query.batch` remote function
+	 *
+	 * @default 'static'
+	 */
+	mode?: BuildMode;
+	/** optional options passed while parsing locale source files */
+	parseOptions?: ParseLocaleOptions;
+}
