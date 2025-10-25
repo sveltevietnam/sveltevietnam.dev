@@ -13,6 +13,16 @@
 			"import": "./src/runtime/index.js",
 			"default": "./src/runtime/index.js"
 		},
+		"./generated": {
+			"types": "./types/index.d.ts",
+			"import": "./src/runtime/generated.js",
+			"default": "./src/runtime/generated.js"
+		},
+		"./remote": {
+			"types": "./types/index.d.ts",
+			"import": "./src/runtime/remote/index.js",
+			"default": "./src/runtime/remote/index.js"
+		},
 		"./factory": {
 			"types": "./types/index.d.ts",
 			"import": "./src/factory/index.js",
@@ -71,7 +81,7 @@
 		"json-schema": "node src/parser/schema/json-schema.js"
 	},
 	"peerDependencies": {
-		"svelte": "^5.38.6",
+		"svelte": "^5.41.0",
 		"vite": "^7.1.4"
 	},
 	"devDependencies": {
