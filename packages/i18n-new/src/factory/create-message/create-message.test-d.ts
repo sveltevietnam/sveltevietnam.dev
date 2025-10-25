@@ -2,7 +2,7 @@ import { test, expectTypeOf } from 'vitest';
 
 import { type MessageSimple, type MessageWithParams } from '../runtime/types.public';
 
-import { createMessageSimple, createMessageWithParams } from './factory';
+import { createMessageSimple, createMessageWithParams } from '.';
 
 test('can create simple message', () => {
 	const message = createMessageSimple('global.hello', {
