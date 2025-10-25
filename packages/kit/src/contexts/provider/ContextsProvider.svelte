@@ -16,10 +16,10 @@
 	setContext('t:lang', () => contexts.routing.lang);
 </script>
 
+<svelte:document {@attach contexts.lockscroll.apply()} />
+
 <I18NProvider lang={contexts.routing.lang}>
 	{@render children?.()}
+	<DialogPortal stack={contexts.dialogs} />
+	<NotificationPortal stack={contexts.notifications.stack} />
 </I18NProvider>
-
-<svelte:document {@attach contexts.lockscroll.apply()} />
-<DialogPortal stack={contexts.dialogs} />
-<NotificationPortal stack={contexts.notifications.stack} />

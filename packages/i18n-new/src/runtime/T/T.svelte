@@ -1,39 +1,26 @@
 <script lang="ts" module>
-	// @ts-expect-error alias set up by vite plugin
-	import { mode } from '$i18n/constants.js';
+	import type { $$Runtime } from '@sveltevietnam/i18n-new/generated';
 
-	if (mode === 'remote') {
-		console.warn(
-			'\x1b[43m sveltevietnam/i18n-new ⚠ \x1b[0m',
-			'\x1b[33m Looks like "remote" mode is enabled but you are still using the static T component. You can switch to remote T from @sveltevietnam/i18n-new/remote. Please refer to the documentation for more information. \x1b[0m',
-		);
-	}
+	import { Context } from '../context';
+	import type { Message } from '../types.public';
+
+	import type { RemoteTProps, StaticTProps } from '.';
+
+	type MessageMap = ReturnType<$$Runtime>['mapping'];
+	type Key = keyof MessageMap;
 </script>
 
-<script lang="ts" generics="M extends Message">
-	import defaultSanitize from 'sanitize-html';
+<!-- eslint-disable-next-line @typescript-eslint/no-explicit-any -->
+<script lang="ts" generics="K extends Key, M extends Message">
+	let { key, message, lang, sanitize, ...params }: RemoteTProps<K> & StaticTProps<M> = $props();
 
-	import type { Message, StaticTProps } from '..';
-	import { I18NContext } from '../Provider/context.js';
+	const { t } = Context.get();
 
-	let { message, lang, sanitize, ...params }: StaticTProps<M> = $props();
-	const context = I18NContext.get();
+	let options = $derived({ lang, sanitize });
 
-	let rLang = $derived<string>(lang ?? context.lang());
-	let rSanitize = $derived(
-		sanitize ??
-			context.sanitize ??
-			((content: string) =>
-				defaultSanitize(content, {
-					allowedAttributes: {
-						'*': ['class', 'data-*'],
-						a: ['href', 'target', 'rel'],
-					},
-				})),
-	);
-
-	let translated = $derived(message(rLang, params as M['$$p']));
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	let translated = $derived((t as any)({ key, message, params, options }));
 </script>
 
 <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-{@html rSanitize(translated)}
+{@html typeof translated === 'string' ? translated : await translated}

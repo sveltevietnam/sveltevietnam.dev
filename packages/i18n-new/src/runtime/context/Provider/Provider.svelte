@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { I18NContext } from './context.js';
+	import { Context } from '../context/index.svelte.js';
 
 	import type { ProviderProps } from '.';
 
 	let { children, lang, sanitize }: ProviderProps = $props();
 
-	I18NContext.set({ lang: () => lang, sanitize });
+	Context.set(() => ({ lang, sanitize }));
 </script>
 
 {@render children()}

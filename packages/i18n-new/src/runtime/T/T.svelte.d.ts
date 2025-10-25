@@ -1,10 +1,20 @@
-import type { Message, StaticTProps } from '..';
+import type { $$Runtime } from '@sveltevietnam/i18n-new/generated';
+
+import type { Message } from '../types.public';
+
+import type { StaticTProps, RemoteTProps } from '.';
 
 interface $$IsomorphicComponent {
-	new <M extends Message>(
-		options: import('svelte').ComponentConstructorOptions<StaticTProps<M>>,
-	): import('svelte').SvelteComponent<StaticTProps<M>>;
+	new <K extends keyof ReturnType<$$Runtime>['mapping'], M extends Message>(
+		options: import('svelte').ComponentConstructorOptions<
+			ReturnType<$$Runtime>['mode'] extends 'static' ? StaticTProps<M> : RemoteTProps<K>
+		>,
+	): import('svelte').SvelteComponent<
+		ReturnType<$$Runtime>['mode'] extends 'static' ? StaticTProps<M> : RemoteTProps<K>
+	>;
 }
 declare const T: $$IsomorphicComponent;
-type T<M extends Message> = InstanceType<typeof T<M>>;
+type T<K extends keyof ReturnType<$$Runtime>['mapping'], M extends Message> = InstanceType<
+	typeof T<K, M>
+>;
 export default T;
