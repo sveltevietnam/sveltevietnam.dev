@@ -15,7 +15,7 @@ test('can generate', () => {
 		declare module "@sveltevietnam/i18n-new/generated" {
 		    export interface $$Runtime {
 		        (): {
-		            mode: "static" as const;
+		            mode: "static";
 		            mapping: typeof m;
 		            languages: typeof langs;
 		        };

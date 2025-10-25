@@ -19,7 +19,7 @@ export function generateDts(mode) {
 		declare module "@sveltevietnam/i18n-new/generated" {
 		    export interface $$Runtime {
 		        (): {
-		            mode: "${mode}" as const;
+		            mode: "${mode}";
 		            mapping: typeof m;
 		            languages: typeof langs;
 		        };
