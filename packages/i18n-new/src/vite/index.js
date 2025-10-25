@@ -51,7 +51,7 @@ async function b(config, logger) {
 		sources,
 		numMessages,
 	} = await build({ entries: entryByLang, parseOptions: config.parseOptions });
-	const outDir = path.join(process.cwd(), config.output, 'locales');
+	const outDir = path.join(process.cwd(), config.output);
 	await fs.mkdir(path.join(outDir, 'messages'), { recursive: true });
 	await Promise.all([
 		fs.writeFile(path.join(outDir, 'constants.js'), constants, 'utf-8'),
