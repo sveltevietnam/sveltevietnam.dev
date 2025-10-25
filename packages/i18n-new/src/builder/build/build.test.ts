@@ -61,7 +61,7 @@ describe('can build', () => {
 		);
 	});
 
-	['static', 'remote'].forEach((mode) => {
+	(['static', 'remote'] as const).forEach((mode) => {
 		test(`${mode} mode`, async () => {
 			const {
 				modules: {
@@ -75,12 +75,12 @@ describe('can build', () => {
 					vi: '/app/locales/vi.yaml',
 					en: '/app/locales/en.yaml',
 				},
-				mode: 'static',
+				mode,
 			});
 			await expect(targets['vi']).toMatchFileSnapshot('__snapshots__/common/messages/vi.js');
 			await expect(targets['en']).toMatchFileSnapshot('__snapshots__/common/messages/en.js');
 			await expect(index).toMatchFileSnapshot('__snapshots__/common/messages/index.js');
-			await expect(constants).toMatchFileSnapshot('__snapshots__/static/constants.js');
+			await expect(constants).toMatchFileSnapshot(`__snapshots__/${mode}/constants.js`);
 			expect(sources).toEqual([
 				'/app/locales/vi.yaml',
 				'/app/locales/en.yaml',
