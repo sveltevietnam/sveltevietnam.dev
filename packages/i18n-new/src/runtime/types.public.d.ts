@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export type MessageType = 'simple' | 'with-params';
 
 export interface MessageSimple<Lang extends string, Key extends string> {
@@ -37,7 +38,7 @@ export interface MessageWithParams<Lang extends string, Key extends string, Para
 }
 
 export type Message<
-	Lang extends string = string,
-	Key extends string = string,
-	Params extends string = string,
+	Lang extends string = any,
+	Key extends string = any,
+	Params extends string = any,
 > = MessageSimple<Lang, Key> | MessageWithParams<Lang, Key, Params>;

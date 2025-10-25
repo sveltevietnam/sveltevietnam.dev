@@ -2,7 +2,7 @@
 
 import type { Message } from '../types.public';
 
-export type MessageProps<L extends string, K extends string, P extends string> = {
+export type MessageProps<M extends Message> = {
 	/**
 	 * the message to render, typically imported from your generated i18n module,
 	 * if the message is defined with parameters, pass them as additional props
@@ -18,41 +18,41 @@ export type MessageProps<L extends string, K extends string, P extends string> =
 	 * <T message={m['key.to.message.with.params']} foo="bar" />
 	 * ```
 	 */
-	message: Message<L, K, P>;
+	message: M;
 	/**
 	 * customize how message content is sanitized before rendering
 	 * if not provided, will inherit from the nearest `Provider` in the component tree,
 	 * otherwise, default to `sanitize-html` package
 	 */
 	sanitize?: (content: string) => string;
-	lang?: L;
-} & Record<P, string>;
+	lang?: M['$$l'];
+} & M['$$p'];
 
-declare class __sveltets_Render<L extends string, K extends string, P extends string> {
-	props(): MessageProps<L, K, P>;
+declare class __sveltets_Render<M extends Message> {
+	props(): MessageProps<M>;
 	events(): {};
 	slots(): {};
 	bindings(): '';
 	exports(): {};
 }
 interface $$IsomorphicComponent {
-	new <L extends string, K extends string, P extends string>(
+	new <M extends Message>(
 		options: import('svelte').ComponentConstructorOptions<
-			ReturnType<__sveltets_Render<L, K, P>['props']>
+			ReturnType<__sveltets_Render<M>['props']>
 		>,
 	): import('svelte').SvelteComponent<
-		ReturnType<__sveltets_Render<L, K, P>['props']>,
-		ReturnType<__sveltets_Render<L, K, P>['events']>,
-		ReturnType<__sveltets_Render<L, K, P>['slots']>
+		ReturnType<__sveltets_Render<M>['props']>,
+		ReturnType<__sveltets_Render<M>['events']>,
+		ReturnType<__sveltets_Render<M>['slots']>
 	> & {
-		$$bindings?: ReturnType<__sveltets_Render<L, K, P>['bindings']>;
-	} & ReturnType<__sveltets_Render<L, K, P>['exports']>;
-	<L extends string, K extends string, P extends string>(
+		$$bindings?: ReturnType<__sveltets_Render<M>['bindings']>;
+	} & ReturnType<__sveltets_Render<M>['exports']>;
+	<M extends Message>(
 		internal: unknown,
-		props: ReturnType<__sveltets_Render<L, K, P>['props']> & {},
-	): ReturnType<__sveltets_Render<L, K, P>['exports']>;
-	z_$$bindings?: ReturnType<__sveltets_Render<string, string, string>['bindings']>;
+		props: ReturnType<__sveltets_Render<M>['props']> & {},
+	): ReturnType<__sveltets_Render<M>['exports']>;
+	z_$$bindings?: ReturnType<__sveltets_Render<Message>['bindings']>;
 }
 declare const T: $$IsomorphicComponent;
-type T<L extends string, K extends string, P extends string> = InstanceType<typeof T<L, K, P>>;
+type T<M extends Message> = InstanceType<typeof T<M>>;
 export default T;
