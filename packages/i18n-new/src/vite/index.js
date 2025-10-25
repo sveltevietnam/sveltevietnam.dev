@@ -13,7 +13,7 @@ import { createLogger } from './logger.js';
  * @typedef Config
  * @property {string} input directory path containing locale source files, relative to cwd
  * @property {string} output directory path for build artifacts, relative to cwd
- * @property {import('../parser').ParseLocaleOptions} parseOptions options for parsing locale files
+ * @property {import('../parser').ParseLocaleOptions} [parseOptions] options for parsing locale files
  */
 
 /**
