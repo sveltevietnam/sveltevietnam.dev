@@ -2,6 +2,7 @@ import {
 	generateMessageTargetModule,
 	generateMessageModule,
 	generateConstantsModule,
+	generateDts,
 } from '../../compiler/index.js';
 import { parseLocale } from '../../parser/parse-locale/index.js';
 
@@ -128,10 +129,16 @@ export async function build(input) {
 	const index = generateMessageModule(Object.values(keyToMessageMapPerLang[0]), langs);
 	const constants = generateConstantsModule({ keys, langs, mode });
 
+	let dts = '';
+	if (mode === 'remote') {
+		dts = generateDts(mode);
+	}
+
 	return {
 		modules: {
 			messages: { targets, index },
 			constants,
+			dts,
 		},
 		numMessages: keys.length,
 		sources: Array.from(

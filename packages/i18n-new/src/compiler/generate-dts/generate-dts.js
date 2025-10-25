@@ -1,6 +1,6 @@
 import ts, { factory } from 'typescript';
 
-import { print } from '../utils';
+import { print } from '../utils.js';
 
 // ===========
 // Public API
