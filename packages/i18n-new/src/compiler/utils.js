@@ -18,7 +18,14 @@ export function getIdFromMessageKey(key) {
 	// just adding _ until there is a reliable upstream list
 	// of all reserved keywords
 	// @see https://github.com/microsoft/TypeScript/issues/2536
-	return '_' + key.replace(/\./g, '_');
+	return (
+		'_' +
+		key
+			// key already containing _ should be escaped to avoid conflict
+			// for example: `pages.write.title`, and `pages_write.title` will otherwise resolve to same id
+			.replace(/_/g, '__')
+			.replace(/\./g, '_')
+	);
 }
 
 export const newline = () => factory.createIdentifier('\n');

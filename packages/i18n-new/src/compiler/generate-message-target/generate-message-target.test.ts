@@ -35,6 +35,19 @@ test('can generate simple message function', () => {
 	`);
 });
 
+test('should corectly escape _ in key', () => {
+	const message = createSourceMessage('key_with_underscore', 'Key with underscore');
+	const { nodes } = generateMessageTarget(message);
+	const code = print(nodes, false);
+	expect(code).toEqual(js`
+		/**
+		 * @returns {string}
+		 * @__NO_SIDE_EFFECTS__
+		 */
+		const _key__with__underscore = () => "Key with underscore";\n
+	`);
+});
+
 describe('can generate with-params message function', () => {
 	describe('single param', () => {
 		test('no text', () => {
