@@ -67,7 +67,6 @@ export default defineConfig({
 		i18n({
 			input: 'src/lib/i18n/locales',
 			output: 'src/lib/i18n/generated',
-			mode: 'remote',
 		}),
 		routes(routesConfig),
 		sveltekit(),

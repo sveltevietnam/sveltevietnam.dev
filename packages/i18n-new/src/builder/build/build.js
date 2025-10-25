@@ -17,7 +17,7 @@ import { parseLocale } from '../../parser/parse-locale/index.js';
  * @returns {Promise<import('./types.public').BuildOutput>}
  */
 export async function build(input) {
-	const { entries, parseOptions, mode = 'static' } = input;
+	const { entries, parseOptions, mode = 'remote' } = input;
 
 	// ===================================
 	// 1. Parse all locales at the same time

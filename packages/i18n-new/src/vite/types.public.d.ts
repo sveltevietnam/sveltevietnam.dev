@@ -11,7 +11,7 @@ export interface Config {
 	 *
 	 * @remark remote mode is currently experimental, support fetching messages from `query.batch` remote function
 	 *
-	 * @default 'static'
+	 * @default 'remote'
 	 */
 	mode?: BuildMode;
 	/** optional options passed while parsing locale source files */
