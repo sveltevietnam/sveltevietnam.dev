@@ -83,7 +83,7 @@ describe('can build', () => {
 			await expect(targets['en']).toMatchFileSnapshot('__snapshots__/common/messages/en.js');
 			await expect(index).toMatchFileSnapshot('__snapshots__/common/messages/index.js');
 			await expect(constants).toMatchFileSnapshot(`__snapshots__/${mode}/constants.js`);
-			await expect(dts).toMatchFileSnapshot(`__snapshots__/${mode}/i18n.d.ts`);
+			await expect(dts).toMatchFileSnapshot(`__snapshots__/${mode}/i18n.d.ts.snap`);
 			if (mode === 'remote') {
 				await expect(remote).toMatchFileSnapshot('__snapshots__/remote/t.remote.js');
 			} else {
