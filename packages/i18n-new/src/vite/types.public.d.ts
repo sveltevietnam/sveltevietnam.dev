@@ -1,5 +1,5 @@
-import type { BuildMode } from 'src/builder';
-import type { ParseLocaleOptions } from 'src/parser';
+import type { BuildMode } from '../builder';
+import type { ParseLocaleOptions } from '../parser';
 
 export interface Config {
 	/** directory path containing locale source files, relative to cwd */
