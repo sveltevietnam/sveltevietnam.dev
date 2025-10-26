@@ -67,7 +67,7 @@
 		"yaml": "^2.8.1"
 	},
 	"devDependencies": {
-		"svelte": "^5.41.0",
+		"svelte": "^5.42.2",
 		"vite": "^7.1.10"
 	},
 	"volta": {

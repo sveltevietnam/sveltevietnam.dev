@@ -97,12 +97,12 @@
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20251011.0",
 		"@svelte-put/lockscroll": "^2.0.1",
-		"@sveltejs/kit": "^2.47.1",
+		"@sveltejs/kit": "^2.47.3",
 		"@sveltevietnam/css": "workspace:*",
 		"@tailwindcss/vite": "4.1.14",
 		"@types/umami-browser": "^2.18.0",
 		"schema-dts": "^1.1.5",
-		"svelte": "^5.41.0",
+		"svelte": "^5.42.2",
 		"tailwindcss": "4.1.14",
 		"vite": "^7.1.10",
 		"vite-imagetools": "^9.0.0"
