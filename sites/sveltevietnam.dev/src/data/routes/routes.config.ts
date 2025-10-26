@@ -120,7 +120,7 @@ export default defineConfig<AllRoutePath, Language>({
 				vi: 'Sơ đồ trang',
 				default: 'Sitemap',
 			},
-			'/:lang/rss.xml': 'XSS',
+			'/:lang/rss.xml': 'RSS',
 		},
 	},
 });
