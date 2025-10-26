@@ -277,7 +277,7 @@
 						<!-- copy link -->
 						<CopyBtn
 							class="c-btn c-btn--outlined shrink-0 grid-cols-1 p-2"
-							aria={m['pages.postings_id.actions.share.link']}
+							aria="pages.postings_id.actions.share.link"
 							textToCopy={url}
 							data-umami-event="copy-link"
 							data-umami-event-resource="job-posting"

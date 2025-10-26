@@ -108,7 +108,7 @@
 					<CopyBtn
 						class="c-link-icon border-onehalf flex rounded-full border-current p-2"
 						textToCopy={event.href.startsWith('http') ? event.href : origin + path}
-						aria={m['components.event_listing_item.copy']}
+						aria="components.event_listing_item.copy"
 					/>
 				{/if}
 			</div>

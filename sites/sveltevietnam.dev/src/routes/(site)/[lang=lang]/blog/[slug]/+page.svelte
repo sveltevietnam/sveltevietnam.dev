@@ -309,7 +309,7 @@
 							<CopyBtn
 								class="c-link-icon border-onehalf flex rounded-full border-current p-2"
 								textToCopy={url}
-								aria={m['pages.blog_slug.actions.copy']}
+								aria="pages.blog_slug.actions.copy"
 							/>
 						</li>
 					{/if}
