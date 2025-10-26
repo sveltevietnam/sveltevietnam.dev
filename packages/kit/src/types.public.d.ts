@@ -4,8 +4,9 @@ import {
 	CacheStorage,
 	Cache,
 } from '@cloudflare/workers-types';
-import type { Language } from '@sveltevietnam/i18n';
 import type { Thing } from 'schema-dts';
+
+import type { Language } from '@sveltevietnam/kit/constants';
 
 import type { ColorScheme, SplashOption } from './constants';
 

@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { LANGUAGES } from '@sveltevietnam/i18n';
 	import { T } from '@sveltevietnam/i18n/runtime';
 	import { delocalizeUrl } from '@sveltevietnam/i18n/utils';
 	import { onMount } from 'svelte';
+
+	import { LANGUAGES } from '@sveltevietnam/kit/constants';
 
 	import { type BreadcrumbsProps } from '.';
 

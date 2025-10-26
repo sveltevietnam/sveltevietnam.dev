@@ -1,6 +1,6 @@
 import type { Faker } from '@faker-js/faker';
 import { mergeTests, type Page } from '@playwright/test';
-import type { Language } from '@sveltevietnam/i18n';
+import type { Language } from '@sveltevietnam/kit/constants';
 import { eq } from 'drizzle-orm';
 
 import { PagePostingList } from '../poms/posting-list';

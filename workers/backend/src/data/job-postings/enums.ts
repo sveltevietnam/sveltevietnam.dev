@@ -1,4 +1,4 @@
-import { Language } from '@sveltevietnam/i18n';
+import type { Language } from '@sveltevietnam/kit/constants';
 
 export const JOB_POSTING_TYPES = [
 	'full-time',

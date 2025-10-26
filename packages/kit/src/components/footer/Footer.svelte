@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { LANGUAGES } from '@sveltevietnam/i18n';
 	import { T } from '@sveltevietnam/i18n/runtime';
 	import { delocalizeUrl } from '@sveltevietnam/i18n/utils';
+
+	import { LANGUAGES } from '@sveltevietnam/kit/constants';
 
 	import { SOCIAL_LINKS } from '../../constants.js';
 	import { Contexts } from '../../contexts/index.js';
@@ -37,9 +38,9 @@
 	data-sveltekit-preload-data="hover"
 	{...rest}
 >
-	<div class="max-w-pad _upper border-y pb-10 pt-14">
+	<div class="max-w-pad _upper border-y pt-14 pb-10">
 		<p
-			class="_name c-text-heading tablet:block tablet:text-right w-37.5 tablet:justify-self-end hidden uppercase"
+			class="_name c-text-heading tablet:block tablet:text-right tablet:justify-self-end hidden w-37.5 uppercase"
 		>
 			<T message={i18n.svelte_vietnam} />
 		</p>
@@ -123,7 +124,7 @@
 					{:else}
 						{#each navigationSecondary as { path, name } (path)}
 							{@const current = routing.is(path)}
-							<li class="not-first:border-l not-first:pl-2 not-last:pr-2 border-current">
+							<li class="border-current not-first:border-l not-first:pl-2 not-last:pr-2">
 								<a
 									class="c-link-lazy px-1 py-1"
 									href={path}

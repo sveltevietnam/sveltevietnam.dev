@@ -1,7 +1,8 @@
-import type { Language } from '@sveltevietnam/i18n';
 import type { Message } from '@sveltevietnam/i18n/runtime';
 import type { Component } from 'svelte';
 import type { HTMLDetailsAttributes } from 'svelte/elements';
+
+import type { Language } from '../../constants';
 
 export interface LanguageMenuProps extends HTMLDetailsAttributes {
 	i18n: {

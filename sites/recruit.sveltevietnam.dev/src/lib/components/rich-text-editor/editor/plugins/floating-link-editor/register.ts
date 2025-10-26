@@ -1,6 +1,6 @@
 import { $isLinkNode as isLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link';
 import { mergeRegister } from '@lexical/utils';
-import type { Language } from '@sveltevietnam/i18n';
+import type { Language } from '@sveltevietnam/kit/constants';
 import {
 	$getSelection,
 	$isRangeSelection,

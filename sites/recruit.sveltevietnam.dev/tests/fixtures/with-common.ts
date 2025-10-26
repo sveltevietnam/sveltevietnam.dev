@@ -1,5 +1,5 @@
 import { test as base } from '@playwright/test';
-import type { Language } from '@sveltevietnam/i18n';
+import type { Language } from '@sveltevietnam/kit/constants';
 
 import wranglerConfig from '../../wrangler.json' with { type: 'json' };
 

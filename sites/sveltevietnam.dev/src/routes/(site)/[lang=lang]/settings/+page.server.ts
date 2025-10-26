@@ -1,5 +1,5 @@
 import { fail, redirect } from '@sveltejs/kit';
-import { LANGUAGES } from '@sveltevietnam/i18n';
+import { LANGUAGES } from '@sveltevietnam/kit/constants';
 import {
 	COLOR_SCHEMES,
 	COMMON_COOKIE_CONFIG,

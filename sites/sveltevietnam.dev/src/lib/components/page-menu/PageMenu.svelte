@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { clickoutside } from '@svelte-put/clickoutside';
-	import { LANGUAGES } from '@sveltevietnam/i18n';
 	import { T } from '@sveltevietnam/i18n/runtime';
 	import { delocalizeUrl } from '@sveltevietnam/i18n/utils';
+	import { LANGUAGES } from '@sveltevietnam/kit/constants';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import type { HTMLAttributes } from 'svelte/elements';
 
@@ -95,7 +95,7 @@
 		</label>
 	{/if}
 	<div
-		class={['_menu bg-surface absolute right-0 top-full mt-1.5 w-max', flat ? 'contents' : 'grid']}
+		class={['_menu bg-surface absolute top-full right-0 mt-1.5 w-max', flat ? 'contents' : 'grid']}
 		inert={settings.hydrated && !flat && !open}
 	>
 		<div class="overflow-hidden">

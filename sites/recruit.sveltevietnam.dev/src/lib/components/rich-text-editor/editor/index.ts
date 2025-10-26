@@ -27,8 +27,7 @@ import {
 	$getNearestNodeOfType as getNearestNodeOfType,
 	$restoreEditorState,
 } from '@lexical/utils';
-import type { Language } from '@sveltevietnam/i18n';
-import type { Status } from '@sveltevietnam/kit/constants';
+import type { Status, Language } from '@sveltevietnam/kit/constants';
 import {
 	createEditor,
 	type LexicalEditor,

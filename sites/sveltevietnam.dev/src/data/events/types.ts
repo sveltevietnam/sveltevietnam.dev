@@ -1,4 +1,4 @@
-import type { Language } from '@sveltevietnam/i18n';
+import type { Language } from '@sveltevietnam/kit/constants';
 import type { SocialEvent } from 'schema-dts';
 import type { Picture } from 'vite-imagetools';
 

@@ -3,7 +3,7 @@ import {
 	employerSessions,
 	employerAuthVerifications,
 } from '@sveltevietnam/backend/db/schema';
-import type { Language } from '@sveltevietnam/i18n';
+import type { Language } from '@sveltevietnam/kit/constants';
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { magicLink } from 'better-auth/plugins';

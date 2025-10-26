@@ -1,4 +1,4 @@
-import { LANGUAGES } from '@sveltevietnam/i18n';
+import { LANGUAGES } from '@sveltevietnam/kit/constants';
 import { toW3CDate } from '@sveltevietnam/kit/utilities/datetime';
 import Mustache from 'mustache';
 

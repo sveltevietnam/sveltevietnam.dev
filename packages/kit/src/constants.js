@@ -45,3 +45,6 @@ export const EMAILS = {
 	IMPACT: 'impact@sveltevietnam.dev',
 	SPONSOR: 'sponsor@sveltevietnam.dev',
 };
+
+export const LANGUAGES = /** @type {const} */ (['en', 'vi']);
+/** @typedef {(typeof LANGUAGES)[number]} Language */

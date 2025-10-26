@@ -1,5 +1,5 @@
 import { expect, type Locator, type Page } from '@playwright/test';
-import type { Language } from '@sveltevietnam/i18n';
+import type { Language } from '@sveltevietnam/kit/constants';
 
 import * as m from '../../src/data/locales/generated/messages';
 import { getWranglerVars } from '../utils';

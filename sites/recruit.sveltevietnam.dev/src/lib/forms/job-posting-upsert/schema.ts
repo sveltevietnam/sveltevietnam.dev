@@ -4,8 +4,8 @@ import {
 	type JobPostingType,
 	type JobPostingApplicationMethod,
 } from '@sveltevietnam/backend/data/job-postings/enums';
-import type { Language } from '@sveltevietnam/i18n';
 import type { Message } from '@sveltevietnam/i18n/runtime';
+import type { Language } from '@sveltevietnam/kit/constants';
 import * as v from 'valibot';
 
 import * as m from '$data/locales/generated/messages';

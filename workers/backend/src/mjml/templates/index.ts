@@ -1,4 +1,4 @@
-import type { Language } from '@sveltevietnam/i18n';
+import type { Language } from '@sveltevietnam/kit/constants';
 
 import { DEFAULT_VARS } from './constants';
 import { RecruitAdminJobPostingPendingApprovalVars } from './recruit-admin-job-posting-pending-approval';

@@ -1,5 +1,5 @@
 import { fail, error, redirect } from '@sveltejs/kit';
-import type { Language } from '@sveltevietnam/i18n';
+import type { Language } from '@sveltevietnam/kit/constants';
 import {
 	createTurnstileValibotClientSchema,
 	createTurnstileValibotServerSchema,

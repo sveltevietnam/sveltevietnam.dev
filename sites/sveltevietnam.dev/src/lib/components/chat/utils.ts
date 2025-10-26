@@ -1,4 +1,4 @@
-import type { Language } from '@sveltevietnam/i18n';
+import type { Language } from '@sveltevietnam/kit/constants';
 
 import { loadPerson } from '$data/people';
 import * as p from '$data/routes/generated';
