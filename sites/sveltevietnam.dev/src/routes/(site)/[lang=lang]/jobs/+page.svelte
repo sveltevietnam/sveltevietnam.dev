@@ -62,14 +62,7 @@
 			<T message={m['pages.jobs.posting.heading']} />
 		</h2>
 		{#if data.postings.length}
-			<JobPostingList
-				postings={data.postings}
-				i18n={{
-					at: m['at'],
-					postedAt: m['components.job_posting_list.posted_at'],
-					expiredAt: m['components.job_posting_list.expired_at'],
-				}}
-			/>
+			<JobPostingList postings={data.postings} />
 		{:else}
 			<TBA class="mx-auto w-fit">
 				<p class="c-text-title-sm"><T message={m['pages.jobs.posting.tba.desc']} /></p>
@@ -103,7 +96,11 @@
 					<p class="leading-relaxed">
 						<T message={m['pages.jobs.recruiter.desc']} />
 					</p>
-					<a class="c-btn c-btn--pop block w-fit" href="{VITE_PUBLIC_RECRUIT_ORIGIN}/{routing.lang}" target="_blank">
+					<a
+						class="c-btn c-btn--pop block w-fit"
+						href="{VITE_PUBLIC_RECRUIT_ORIGIN}/{routing.lang}"
+						target="_blank"
+					>
 						<span>
 							<T message={m['pages.jobs.recruiter.create']} />
 						</span>
@@ -121,7 +118,7 @@
 						<T message={m['pages.jobs.recruiter.sponsor.desc']} />
 					</p>
 					<a
-						class="c-link mb-2 mt-6 block w-fit"
+						class="c-link mt-6 mb-2 block w-fit"
 						href="{p['/:lang/sponsor']({ lang: routing.lang })}#why"
 					>
 						<T message={m['pages.jobs.recruiter.sponsor.link']} />

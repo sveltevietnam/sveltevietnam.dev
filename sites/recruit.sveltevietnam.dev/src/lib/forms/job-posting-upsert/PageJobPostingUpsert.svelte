@@ -100,14 +100,7 @@
 						mainSiteUrl={VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN}
 					/>:
 				</p>
-				<JobPosting
-					posting={previewPosting}
-					i18n={{
-						at: m['at'],
-						postedAt: m['components.job_posting_list.posted_at'],
-						expiredAt: m['components.job_posting_list.expired_at'],
-					}}
-				/>
+				<JobPosting posting={previewPosting} />
 				<p class="c-callout c-callout--info c-callout--icon-bulb leading-relaxed">
 					<T message={m['pages.postings_upsert.preview.callout']} />
 				</p>

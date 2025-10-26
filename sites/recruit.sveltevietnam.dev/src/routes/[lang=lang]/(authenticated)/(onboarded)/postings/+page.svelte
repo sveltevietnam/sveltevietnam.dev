@@ -32,13 +32,14 @@
 	<div class="space-y-section">
 		<section class="space-y-10" aria-labelledby="active-job-postings">
 			<div class="space-y-6">
-				<div
-					class="flex items-end justify-between"
-				>
-					<h2 class="c-text-heading border-b border-outline flex-1" id="active-job-postings">
+				<div class="flex items-end justify-between">
+					<h2 class="c-text-heading border-outline flex-1 border-b" id="active-job-postings">
 						<T message={m['pages.postings.active.heading']} />
 					</h2>
-					<a class="c-btn gap-2 whitespace-nowrap" href={p['/:lang/postings/create']({ lang: routing.lang })}>
+					<a
+						class="c-btn gap-2 whitespace-nowrap"
+						href={p['/:lang/postings/create']({ lang: routing.lang })}
+					>
 						<T message={m['pages.postings.active.create']} />
 						<i class="i i-[ph--plus] h-6 w-6"></i>
 					</a>
@@ -53,14 +54,7 @@
 			</div>
 
 			{#if data.active.length > 0}
-				<JobPostingList
-					postings={data.active}
-					i18n={{
-						at: m['at'],
-						postedAt: m['components.job_posting_list.posted_at'],
-						expiredAt: m['components.job_posting_list.expired_at'],
-					}}
-				/>
+				<JobPostingList postings={data.active} />
 			{:else}
 				<TBA class="mx-auto w-fit" role="note">
 					<p class="c-text-title-sm"><T message={m['pages.postings.active.tba.desc']} /></p>
@@ -83,14 +77,7 @@
 						<T message={m['pages.postings.pending.desc']} />
 					</p>
 				</div>
-				<JobPostingList
-					postings={data.pending}
-					i18n={{
-						at: m['at'],
-						postedAt: m['components.job_posting_list.posted_at'],
-						expiredAt: m['components.job_posting_list.expired_at'],
-					}}
-				/>
+				<JobPostingList postings={data.pending} />
 			</section>
 		{/if}
 
@@ -107,14 +94,7 @@
 						/>
 					</p>
 				</div>
-				<JobPostingList
-					postings={data.expired}
-					i18n={{
-						at: m['at'],
-						postedAt: m['components.job_posting_list.posted_at'],
-						expiredAt: m['components.job_posting_list.expired_at'],
-					}}
-				/>
+				<JobPostingList postings={data.expired} />
 			</section>
 		{/if}
 	</div>
