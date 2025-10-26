@@ -51,7 +51,7 @@ messages:
     subscriber:
       '@import': $lib/forms/subscriber/locales/en.yaml
 
-  nofitications:
+  notifications:
     '@import': $lib/notifications/locales/en.yaml
 
   dialogs:
