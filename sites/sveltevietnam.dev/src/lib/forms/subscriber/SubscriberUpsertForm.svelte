@@ -21,7 +21,7 @@
 <script lang="ts">
 	let { class: cls, data, action = '?/subscribe', ...rest }: SubscriberUpsertFormProps = $props();
 
-	const { routing, notifications: { toaster } } = Contexts.get();
+	const { routing, notifications: { toaster }, i18n: { t } } = Contexts.get();
 
 	let all = $state(false);
 
@@ -43,7 +43,7 @@
 					defaultChannels: data.data.channels,
 				});
 				toaster.success({
-					message: m['forms.subscriber.upsert.success'],
+					message: t({ key: 'forms.subscriber.upsert.success' }),
 				});
 			} else if (result.type === 'error') {
 				const error = result.error as App.Error;
@@ -56,7 +56,7 @@
 				});
 				toaster.error({
 					title: `${error.code} - ${error.message}`,
-					message: m['forms.subscriber.upsert.errors.unknown'],
+					message: t({ key: 'forms.subscriber.upsert.errors.unknown' }),
 				});
 			}
 		},

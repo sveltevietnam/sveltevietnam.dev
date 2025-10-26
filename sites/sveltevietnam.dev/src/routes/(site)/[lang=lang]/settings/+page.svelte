@@ -22,6 +22,7 @@
 		colorScheme,
 		routing,
 		notifications: { toaster },
+		i18n: { t },
 	} = Contexts.get();
 
 	let languageNames = $derived(new Intl.DisplayNames([routing.lang], { type: 'language' }));
@@ -40,8 +41,8 @@
 				colorScheme.user = $form.colorScheme;
 				toaster.success({
 					message: data.default
-						? m['notifications.settings.default']
-						: m['notifications.settings.saved'],
+						? t({ key: 'notifications.settings.default' })
+						: t({ key: 'notifications.settings.saved' }),
 				});
 			}
 		},
@@ -83,7 +84,7 @@
 				colorScheme.user = $form.colorScheme;
 			}
 			toaster.success({
-				message: m['notifications.settings.saved'],
+				message: t({ key: 'notifications.settings.saved' }),
 			});
 		}
 	});

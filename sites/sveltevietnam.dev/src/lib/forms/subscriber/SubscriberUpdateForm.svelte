@@ -1,14 +1,13 @@
 <script lang="ts" module>
 	import { turnstile } from '@svelte-put/cloudflare-turnstile';
 	import { SUBSCRIPTION_CHANNELS } from '@sveltevietnam/backend/data/subscribers/channels';
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
 	import { LANGUAGES } from '@sveltevietnam/kit/constants';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import type { HTMLFormAttributes } from 'svelte/elements';
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import { superForm } from 'sveltekit-superforms';
 
-	import * as m from '$data/locales/generated/messages';
 	import { VITE_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
 
 	import { type SubscriberUpdateInput } from './schema';
@@ -24,6 +23,7 @@
 	const {
 		routing,
 		notifications: { toaster },
+		i18n: { t },
 	} = Contexts.get();
 
 	const { form, enhance, constraints, errors, delayed, timeout } = superForm<
@@ -37,13 +37,13 @@
 		onResult({ result }) {
 			if (result.type === 'success') {
 				toaster.success({
-					message: m['forms.subscriber.update.success'],
+					message: t({ key: 'forms.subscriber.update.success' }),
 				});
 			} else if (result.type === 'error') {
 				const error = result.error as App.Error;
 				toaster.error({
 					title: `${error.code} - ${error.message}`,
-					message: m['forms.subscriber.update.errors.unknown'],
+					message: t({ key: 'forms.subscriber.update.errors.unknown' }),
 				});
 			}
 		},
@@ -52,10 +52,10 @@
 	let languageNames = $derived(new Intl.DisplayNames([routing.lang], { type: 'language' }));
 
 	const channelMessages = {
-		job: m['forms.subscriber.update.inputs.channels.job'],
-		blog: m['forms.subscriber.update.inputs.channels.blog'],
-		event: m['forms.subscriber.update.inputs.channels.event'],
-	};
+		job: 'forms.subscriber.update.inputs.channels.job',
+		blog: 'forms.subscriber.update.inputs.channels.blog',
+		event: 'forms.subscriber.update.inputs.channels.event',
+	} as const;
 	const commonFieldsetClasses = 'border-onehalf space-y-4 pb-4 px-2 tablet:px-4 pt-0';
 </script>
 
@@ -66,7 +66,7 @@
 		<!-- personal information -->
 		<fieldset class={commonFieldsetClasses}>
 			<legend>
-				<T message={m['forms.subscriber.update.inputs.personal.heading']} />
+				<T key="forms.subscriber.update.inputs.personal.heading" />
 			</legend>
 
 			<!-- name -->
@@ -75,7 +75,7 @@
 					<p class="c-text-body-sm text-red-500" id="error-name">{$errors.name[0]}</p>
 				{/if}
 				<label class="c-text-input">
-					<span class="min-w-12"><T message={m['inputs.name.label']} />:</span>
+					<span class="min-w-12"><T key="inputs.name.label" />:</span>
 					<input
 						class=" w-full"
 						type="text"
@@ -116,9 +116,9 @@
 		<!-- languages -->
 		<fieldset class={commonFieldsetClasses}>
 			<legend>
-				<T message={m['forms.subscriber.update.inputs.language.heading']} />
+				<T key="forms.subscriber.update.inputs.language.heading" />
 			</legend>
-			<p><T message={m['forms.subscriber.update.inputs.language.desc']} />:</p>
+			<p><T key="forms.subscriber.update.inputs.language.desc" />:</p>
 			<ul class="flex items-center gap-10 pl-2">
 				{#each LANGUAGES as lang (lang)}
 					<li>
@@ -140,9 +140,9 @@
 		<!-- notification channels -->
 		<fieldset class={commonFieldsetClasses}>
 			<legend>
-				<T message={m['forms.subscriber.update.inputs.channels.heading']} />
+				<T key="forms.subscriber.update.inputs.channels.heading" />
 			</legend>
-			<p><T message={m['forms.subscriber.update.inputs.channels.desc']} />:</p>
+			<p><T key="forms.subscriber.update.inputs.channels.desc" />:</p>
 			<ul class="space-y-2 pl-2">
 				{#each SUBSCRIPTION_CHANNELS as channel (channel)}
 					<li>
@@ -156,7 +156,7 @@
 								multiple
 							/>
 							<span>
-								<T message={channelMessages[channel]} />
+								<T key={channelMessages[channel]} />
 							</span>
 						</label>
 					</li>
@@ -167,7 +167,7 @@
 		<!-- cloudflare turnstile -->
 		<div class="space-y-1">
 			<div class="c-text-body-sm flex items-baseline justify-between gap-6">
-				<p><T message={m['inputs.turnstile.desc']} />:</p>
+				<p><T key="inputs.turnstile.desc" />:</p>
 				{#if $errors.turnstile?.[0]}
 					<p class="max-w-readable-tight text-right text-red-500">
 						{$errors.turnstile[0]}
@@ -193,6 +193,6 @@
 		data-delayed={$delayed}
 		data-timeout={$timeout}
 	>
-		<span><T message={m.update} /></span>
+		<span><T key="update" /></span>
 	</button>
 </form>

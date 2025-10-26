@@ -19,6 +19,7 @@ import { highlighter, transformer } from './shiki.js';
 // NOTE:
 // Currently not working:
 // - if there is props spread, i.e <element {...props} />,
+// - dynamic attributes containing space, without quotes, i.e <element attr={call(arg1, arg2)} />
 
 /**
  * parse markdown in Svelte

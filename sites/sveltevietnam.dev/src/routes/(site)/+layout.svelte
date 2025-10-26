@@ -41,7 +41,7 @@
 		}),
 		i18n: () => ({ lang: data.settings.language }),
 	});
-	const { routing, colorScheme, notifications: { toaster } } = contexts;
+	const { routing, colorScheme, notifications: { toaster }, i18n: { t } } = contexts;
 	const settings = SettingsContext.set(data.settings);
 	SearchContext.set(page.url.origin);
 
@@ -79,8 +79,8 @@
 				});
 			}
 			toaster.info({
-				title: m['notifications.delayed_hydration.title'],
-				message: m['notifications.delayed_hydration.message'],
+				title: t({ key: 'notifications.delayed_hydration.title' }),
+				message: t({ key: 'notifications.delayed_hydration.message' })
 			});
 		}
 

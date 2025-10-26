@@ -19,7 +19,7 @@
 
 	let { data }: PageProps = $props();
 
-	const { routing } = Contexts.get();
+	const { routing, i18n: { t } } = Contexts.get();
 
 	const MARK_CLASSES = {
 		info: 'text-info-on-surface bg-info-surface',
@@ -278,7 +278,7 @@
 								</p>
 								<BaseNotification
 									class="_noti"
-									title={m['pages.design.colors.status.sample.notification.title']}
+									title={await t({ key: 'pages.design.colors.status.sample.notification.title' })}
 									{status}
 									{item}
 								>
