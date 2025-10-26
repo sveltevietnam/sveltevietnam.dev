@@ -1,11 +1,11 @@
-import type { Message } from '../../runtime';
+import type { InferType, InferParams, Message } from '../../runtime/types.public';
 
 export type MessageTargetMap<
-	MessageMap extends Record<string, Message>,
-	Key extends keyof MessageMap,
+	Mapping extends Record<string, Message>,
+	Key extends keyof Mapping,
 > = Record<
 	Key,
-	MessageMap[Key]['$t'] extends 'with-params'
-		? (params: MessageMap[Key]['$$p']) => string
+	InferType<Mapping[Key]> extends 'with-params'
+		? (params: InferParams<Mapping[Key]>) => string
 		: () => string
 >;

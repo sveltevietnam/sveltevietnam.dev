@@ -6,34 +6,34 @@ import type {
 	StringSchema,
 } from 'valibot';
 
-import type { Message } from '@sveltevietnam/i18n-new';
+import type { InferType, InferParams, Message } from '../../runtime/types.public';
 
 export type MessageQueryInput<
-	MessageMap extends Record<string, Message>,
+	Mapping extends Record<string, Message>,
 	Language extends string,
-	Key extends keyof MessageMap,
+	Key extends keyof Mapping,
 > = {
 	lang: Language;
 	key: Key;
-} & (MessageMap[Key]['$t'] extends 'with-params'
+} & (InferType<Mapping[Key]> extends 'with-params'
 	? {
-			params: MessageMap[Key]['$$p'];
+			params: InferParams<Mapping[Key]>;
 		}
 	: Record<never, never>);
 
 export function createMessageQueryFn<
-	MessageMap extends Record<string, Message>,
-	Language extends string,
+	Mapping extends Record<string, Message> = import('@sveltevietnam/i18n-new/generated').Mapping,
+	Language extends string = import('@sveltevietnam/i18n-new/generated').Language,
 >(
 	modules: Record<string, () => Promise<unknown>>,
-): <Key extends keyof MessageMap>(
-	inputs: MessageQueryInput<MessageMap, Language, Key>[],
-) => Promise<(input: MessageQueryInput<MessageMap, Language, Key>) => string>;
+): <Key extends keyof Mapping>(
+	inputs: MessageQueryInput<Mapping, Language, Key>[],
+) => Promise<(input: MessageQueryInput<Mapping, Language, Key>) => string>;
 
 export type MessageQueryFn<
-	MessageMap extends Record<string, Message>,
-	Language extends string,
-> = ReturnType<typeof createMessageQueryFn<MessageMap, Language>>;
+	Mapping extends Record<string, Message> = import('@sveltevietnam/i18n-new/generated').Mapping,
+	Language extends string = import('@sveltevietnam/i18n-new/generated').Language,
+> = ReturnType<typeof createMessageQueryFn<Mapping, Language>>;
 
 export function createMessageQueryInputSchema<Language extends string>(
 	languages: ReadonlyArray<Language>,

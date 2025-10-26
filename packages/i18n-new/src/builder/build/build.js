@@ -203,14 +203,10 @@ import { createMessageQueryFn, createMessageQueryInputSchema } from '@svelteviet
 import { langs } from './constants';
 
 const modules = import.meta.glob(['./messages/*.js', '!./messages/index.js']);
-/**
- * @typedef {ReturnType<import('@sveltevietnam/i18n-new/generated').$$Runtime>['mapping']} MessageMap
- * @typedef {ReturnType<import('@sveltevietnam/i18n-new/generated').$$Runtime>['languages'][number]} Language
- */
+
 export const t = query.batch(
-  /** @type {'unchecked'} */ (
-    /** @type {unknown} */ (createMessageQueryInputSchema(langs))
-  ),
-  /** @type {import('@sveltevietnam/i18n-new/factory').MessageQueryFn<MessageMap, Language>} */
-  (createMessageQueryFn(modules)),
+	/** @type {'unchecked'} */ (
+		/** @type {unknown} */ (createMessageQueryInputSchema(langs))
+	),
+	createMessageQueryFn(modules),
 );`;
