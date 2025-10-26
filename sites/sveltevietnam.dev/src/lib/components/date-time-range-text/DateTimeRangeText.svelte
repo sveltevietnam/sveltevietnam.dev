@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { formatDate, formatDateAndTime, formatTime } from '@sveltevietnam/kit/utilities/datetime';
 
-	export let startDate: 'TBA' | Date;
-	export let endDate: 'TBA' | Date;
+	export let startDate: string | Date = 'TBA';
+	export let endDate: string | Date = 'TBA';
 	export let order: 'date-first' | 'time-first' = 'date-first';
 	let cls = '';
 	export { cls as class };
@@ -49,4 +49,3 @@
 		{/if}
 	{/if}
 </span>
-
