@@ -1,6 +1,6 @@
-import type { $$Runtime } from '@sveltevietnam/i18n-new/generated';
+import { Key, Mapping } from '@sveltevietnam/i18n-new/generated';
 
-import type { Message } from '../types.public';
+import type { InferLanguage, InferParams, InferType, Message } from '../types.public';
 
 export type SharedTProps = {
 	/**
@@ -11,7 +11,7 @@ export type SharedTProps = {
 	sanitize?: (content: string) => string;
 };
 
-export type StaticTProps<M extends Message> = {
+export type StaticTProps<M extends Message> = SharedTProps & {
 	/**
 	 * the message to render, typically imported from your generated i18n module,
 	 * if the message is defined with parameters, pass them as additional props
@@ -29,11 +29,10 @@ export type StaticTProps<M extends Message> = {
 	 */
 	message: M;
 	/** ad-hoc lang override, otherwise inherit from nearest `Provider` */
-	lang?: M['$$l'];
-} & M['$$p'] &
-	SharedTProps;
+	lang?: InferLanguage<M>;
+} & (InferType<M> extends 'with-params' ? { params: InferParams<M> } : Record<never, never>);
 
-export type RemoteTProps<K extends NonNullable<keyof ReturnType<$$Runtime>['mapping']>> = {
+export type RemoteTProps<K extends Key> = SharedTProps & {
 	/**
 	 * key to the message to fetch, type of this key should
 	 * be automatically augmented  via the generated `<output-dir>/i18n.d.ts` file
@@ -41,6 +40,7 @@ export type RemoteTProps<K extends NonNullable<keyof ReturnType<$$Runtime>['mapp
 	 */
 	key: K;
 	/** ad-hoc lang override, otherwise inherit from nearest `Provider` */
-	lang?: ReturnType<$$Runtime>['languages'][number];
-} & ReturnType<$$Runtime>['mapping'][K]['$$p'] &
-	SharedTProps;
+	lang?: InferLanguage<Mapping[K]>;
+} & (InferType<Mapping[K]> extends 'with-params'
+		? { params: InferParams<Mapping[K]> }
+		: Record<never, never>);

@@ -1,18 +1,22 @@
 <script lang="ts" module>
-	import type { $$Runtime } from '@sveltevietnam/i18n-new/generated';
+	import type { Key } from '@sveltevietnam/i18n-new/generated';
 
 	import { Context } from '../context';
 	import type { Message } from '../types.public';
 
 	import type { RemoteTProps, StaticTProps } from '.';
-
-	type MessageMap = ReturnType<$$Runtime>['mapping'];
-	type Key = keyof MessageMap;
 </script>
 
 <!-- eslint-disable-next-line @typescript-eslint/no-explicit-any -->
 <script lang="ts" generics="K extends Key, M extends Message">
-	let { key, message, lang, sanitize, ...params }: RemoteTProps<K> & StaticTProps<M> = $props();
+	let {
+		key,
+		message,
+		lang,
+		sanitize,
+		params,
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	}: StaticTProps<M> & RemoteTProps<K> & { params: any } = $props();
 
 	const { t } = Context.get();
 
