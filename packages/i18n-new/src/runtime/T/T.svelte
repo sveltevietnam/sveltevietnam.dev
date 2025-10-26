@@ -23,8 +23,9 @@
 	let options = $derived({ lang, sanitize });
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	let translated = $derived((t as any)({ key, message, params, options }));
+	let maybeFetched = $derived((t as any)({ key, message, params, options }));
+	let translated = $derived(typeof maybeFetched === 'string' ? maybeFetched : await maybeFetched);
 </script>
 
 <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-{@html typeof translated === 'string' ? translated : await translated}
+{@html translated}
