@@ -17,13 +17,7 @@
 <main
 	class="max-w-pad mt-header pt-section pb-section-more tablet:space-y-8 desktop:space-y-10 flex-1 space-y-6"
 >
-	<Breadcrumbs
-		crumbs={data.routing.breadcrumbs}
-		i18n={{
-			aria: m['components.breadcrumbs.aria'],
-			home: m['components.breadcrumbs.home'],
-		}}
-	/>
+	<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 
 	<h1 class="sr-only">
 		<T message={m['pages.postings.heading']} />

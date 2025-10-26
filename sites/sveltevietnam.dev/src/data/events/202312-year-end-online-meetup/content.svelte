@@ -3,7 +3,6 @@
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 
-	import * as globalM from '$data/locales/generated/messages';
 	import vnphanquangDef from '$data/people/vnphanquang';
 	import vnphanquangAvatar from '$data/people/vnphanquang/avatar.jpg?enhanced&w=400;100&imagetools';
 	import * as p from '$data/routes/generated';
@@ -34,13 +33,7 @@
 	<!-- Intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div class="tablet:space-y-8 max-w-pad space-y-6">
-			<Breadcrumbs
-				crumbs={data.routing.breadcrumbs}
-				i18n={{
-					aria: globalM['components.breadcrumbs.aria'],
-					home: globalM['components.breadcrumbs.home'],
-				}}
-			/>
+			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 			<div class="space-y-6">
 				<h1 class="c-text-heading-page text-primary-on-surface">
 					{data.event.title}
@@ -59,10 +52,10 @@
 			<T message={m['recap.heading']} />
 		</h2>
 		<div class="flex flex-wrap items-start gap-10 leading-relaxed">
-			<p class="flex-5 min-w-[min(40ch,100%)]">
+			<p class="min-w-[min(40ch,100%)] flex-5">
 				<T message={m['recap.desc']} />
 			</p>
-			<p class="c-callout c-callout--success c-callout--icon-trophy flex-4 min-w-[min(32ch,100%)]">
+			<p class="c-callout c-callout--success c-callout--icon-trophy min-w-[min(32ch,100%)] flex-4">
 				<T message={m['recap.shoutout']} />
 			</p>
 		</div>

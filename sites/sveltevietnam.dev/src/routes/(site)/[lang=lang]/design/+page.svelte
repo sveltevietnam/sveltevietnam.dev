@@ -44,13 +44,7 @@
 	<!-- intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div class="max-w-pad tablet:space-y-8 space-y-6">
-			<Breadcrumbs
-				crumbs={data.routing.breadcrumbs}
-				i18n={{
-					aria: m['components.breadcrumbs.aria'],
-					home: m['components.breadcrumbs.home'],
-				}}
-			/>
+			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 			<div class="space-y-4">
 				<h1 class="c-text-heading-page text-primary-on-surface">
 					<T message={m['pages.design.heading']} />
@@ -172,21 +166,21 @@
 			{#each colors as color (color.code)}
 				<li
 					class={[
-						'w-50 mobile relative space-y-1 py-6 text-center',
+						'mobile relative w-50 space-y-1 py-6 text-center',
 						color.code > 500 ? 'text-sand-50' : 'text-sand-950',
 						color.class,
 					]}
 				>
 					{#if color.p3}
 						<p
-							class="c-text-body-xs border-onehalf absolute right-2 top-2 border-current px-2 py-0.5 font-bold"
+							class="c-text-body-xs border-onehalf absolute top-2 right-2 border-current px-2 py-0.5 font-bold"
 						>
 							P3
 						</p>
 					{/if}
 					<p class="c-text-body-sm">sand-{color.code}</p>
 					<div>
-						<p class="font-lora text-4xl font-bold leading-none">{color.apca.value}</p>
+						<p class="font-lora text-4xl leading-none font-bold">{color.apca.value}</p>
 						<p class="c-text-body-xs">
 							to <strong>{color.apca.to}</strong>
 						</p>
@@ -235,7 +229,7 @@
 			<div class="space-y-6">
 				<div class="_texture tablet:p-10 desktop:p-20 overflow-auto border p-6">
 					<div
-						class="border-onehalf shadow-brutal w-133 min-w-133 bg-surface relative mx-auto border-current p-6"
+						class="border-onehalf shadow-brutal bg-surface relative mx-auto w-133 min-w-133 border-current p-6"
 					>
 						<BlogPostListItem post={data.sampleBlogPost} />
 						{@render annotationMarker(1, 'absolute bottom-1/4 right-6')}
@@ -264,8 +258,8 @@
 					<div class="relative flex translate-y-px justify-end">
 						{#each STATUSES as value (value)}
 							<label
-								class="has-checked:text-on-surface text-on-surface-subtle _texture not-has-checked:bg-none! has-checked:border-b-surface has-checked:border-outline
-								has-checked:border-b-2 tablet:px-6 cursor-pointer border border-transparent px-4 pb-1.5 pt-2"
+								class="has-checked:text-on-surface text-on-surface-subtle _texture has-checked:border-b-surface has-checked:border-outline tablet:px-6
+								cursor-pointer border border-transparent px-4 pt-2 pb-1.5 not-has-checked:bg-none! has-checked:border-b-2"
 							>
 								<input class="sr-only" type="radio" name="status" {value} bind:group={status} />
 								<span class="capitalize">{value}</span>
@@ -274,10 +268,10 @@
 					</div>
 					<div class="_texture tablet:p-10 desktop:p-20 overflow-auto border p-6">
 						<div
-							class="border-onehalf shadow-brutal w-180 min-w-180 bg-surface relative mx-auto border-current p-6"
+							class="border-onehalf shadow-brutal bg-surface relative mx-auto w-180 min-w-180 border-current p-6"
 						>
 							<div class="space-y-6">
-								<p class="font-lora text-5xl font-normal capitalize leading-normal">{status}</p>
+								<p class="font-lora text-5xl leading-normal font-normal capitalize">{status}</p>
 								<p><T message={m['pages.design.colors.status.sample.desc']} cls={markCls} /></p>
 								<p class="c-callout {calloutCls}">
 									<T message={m['pages.design.colors.status.sample.callout']} />
@@ -356,9 +350,9 @@
 				<div
 					class="mobile:grid-rows-subgrid tablet:grid-cols-1 mobile:col-span-2 grid grid-cols-2 justify-between gap-6"
 				>
-					<svg class="w-30 h-30 shrink-0" inline-src="svelte"></svg>
+					<svg class="h-30 w-30 shrink-0" inline-src="svelte"></svg>
 					<img
-						class="w-37 h-auto"
+						class="h-auto w-37"
 						src={imgNonLa}
 						alt={m['pages.design.logo.alt.non_la'](routing.lang)}
 						width="148"

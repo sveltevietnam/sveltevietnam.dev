@@ -31,13 +31,7 @@
 			class="max-w-pad tablet:flex-row tablet:gap-6 tablet:items-start flex flex-col justify-between"
 		>
 			<div class="tablet:space-y-8 space-y-6">
-				<Breadcrumbs
-					crumbs={data.routing.breadcrumbs}
-					i18n={{
-						aria: m['components.breadcrumbs.aria'],
-						home: m['components.breadcrumbs.home'],
-					}}
-				/>
+				<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 				<div class="space-y-4">
 					<h1 class="c-text-heading-page text-primary-on-surface">
 						<T message={m['pages.blog_write.heading']} />
@@ -48,7 +42,7 @@
 				</div>
 			</div>
 			<img
-				class="max-tablet:self-end tablet:w-64 w-50 h-auto"
+				class="max-tablet:self-end tablet:w-64 h-auto w-50"
 				src={imgIntro}
 				width="320"
 				height="320"

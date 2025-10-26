@@ -111,7 +111,7 @@
 	<h2 class="c-text-heading-md flex items-center gap-4 border-b pb-1" {id}>
 		<span
 			class="font-lora desktop:text-2xl desktop:w-10 desktop:h-10 flex h-8 w-8
-			items-center justify-center rounded-full border border-current text-xl font-bold leading-normal"
+			items-center justify-center rounded-full border border-current text-xl leading-normal font-bold"
 			>{num}</span
 		>
 		<T {message} />
@@ -125,13 +125,7 @@
 			class="max-w-pad tablet:flex-row tablet:gap-6 tablet:items-start flex flex-col justify-between"
 		>
 			<div class="tablet:space-y-8 space-y-6">
-				<Breadcrumbs
-					crumbs={data.routing.breadcrumbs}
-					i18n={{
-						aria: m['components.breadcrumbs.aria'],
-						home: m['components.breadcrumbs.home'],
-					}}
-				/>
+				<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 				<div class="space-y-4">
 					<h1 class="c-text-heading-page text-primary-on-surface">
 						<T message={m['pages.events.heading']} />
@@ -199,7 +193,7 @@
 			</div>
 			<div class="flex flex-1 items-end justify-center gap-10">
 				<svg
-					class="text-primary h-54 desktop:h-75 w-auto"
+					class="text-primary desktop:h-75 h-54 w-auto"
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
 					viewBox="0 0 402 300"
@@ -243,7 +237,7 @@
 			</div>
 			<div class="flex flex-1 justify-center">
 				<svg
-					class="text-primary h-50 desktop:h-75 w-auto"
+					class="text-primary desktop:h-75 h-50 w-auto"
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
 					viewBox="0 0 400 300"
@@ -279,7 +273,7 @@
 			</div>
 			<div class="flex flex-1 justify-center">
 				<svg
-					class="text-primary h-45.5 desktop:h-75.5 w-auto"
+					class="text-primary desktop:h-75.5 h-45.5 w-auto"
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
 					viewBox="0 0 235 182"

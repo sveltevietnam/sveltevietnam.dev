@@ -92,13 +92,7 @@
 <main {...pagefind.page({ group: 'blog', importance: 'detail' })}>
 	<!-- intro -->
 	<section class="pt-intro-pad-top max-w-pad bg-gradient-primary-intro">
-		<Breadcrumbs
-			crumbs={data.routing.breadcrumbs}
-			i18n={{
-				aria: m['components.breadcrumbs.aria'],
-				home: m['components.breadcrumbs.home'],
-			}}
-		/>
+		<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 		<h1 class="c-text-heading-lg tablet:mt-10 desktop:mt-15 mt-8">
 			{data.post.title}
 		</h1>
@@ -106,7 +100,7 @@
 		<div class="tablet:mt-10 desktop:mt-15 relative mt-8">
 			{#if !data.post.ai}
 				<NotByAiBadge
-					class="absolute -left-4 -top-4"
+					class="absolute -top-4 -left-4"
 					--color-fg="var(--color-surface)"
 					--color-bg="var(--color-on-surface)"
 				/>
@@ -208,14 +202,14 @@
 						'i-[ph--list-magnifying-glass]',
 					)}
 				</li>
-				<li class="-translate-1/2 absolute left-1/2 top-0">
+				<li class="absolute top-0 left-1/2 -translate-1/2">
 					<a
 						class="c-link-lazy bg-on-surface relative flex flex-col items-center justify-end gap-2 rounded-full p-2"
 						href="#content"
 						style:--active-color="var(--color-primary)"
 					>
 						<span
-							class="bg-surface -z-1 absolute -left-1 -right-1 bottom-0 top-1/2 h-[calc(50%+0.25rem)] rounded-b-full"
+							class="bg-surface absolute top-1/2 -right-1 bottom-0 -left-1 -z-1 h-[calc(50%+0.25rem)] rounded-b-full"
 						></span>
 						<i class="i i-[ph--caret-up] h-6 w-6"></i>
 						<span class="sr-only">

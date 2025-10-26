@@ -3,7 +3,6 @@
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 
-	import * as globalM from '$data/locales/generated/messages';
 	import trongnguyen24 from '$data/people/trongnguyen24';
 	import trongnguyen24Avatar from '$data/people/trongnguyen24/avatar.jpg?enhanced&w=400;100&imagetools';
 	import vnphanquang from '$data/people/vnphanquang';
@@ -66,14 +65,8 @@
 				class="from-primary-surface/80 to-surface absolute inset-0 bg-gradient-to-b from-20% to-90%"
 			></div>
 		</div>
-		<div class="tablet:space-y-10 max-w-pad z-1 relative space-y-8">
-			<Breadcrumbs
-				crumbs={data.routing.breadcrumbs}
-				i18n={{
-					aria: globalM['components.breadcrumbs.aria'],
-					home: globalM['components.breadcrumbs.home'],
-				}}
-			/>
+		<div class="tablet:space-y-10 max-w-pad relative z-1 space-y-8">
+			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 			<div class="space-y-10">
 				<h1 class="c-text-heading-page text-primary-on-surface">
 					{data.event.title}
@@ -101,19 +94,19 @@
 				</div>
 			</div>
 		</div>
-		<IntroSeparator class="z-1 mt-section-more relative" />
+		<IntroSeparator class="mt-section-more relative z-1" />
 	</section>
 
 	<!-- Recap -->
-	<section class="z-1 pb-section pt-section-more max-w-pad relative space-y-6">
+	<section class="pb-section pt-section-more max-w-pad relative z-1 space-y-6">
 		<h2 class="c-text-heading-lg border-b" id="recap">
 			<T message={m['recap.heading']} />
 		</h2>
 		<div class="flex flex-wrap items-start gap-10 leading-relaxed">
-			<p class="flex-5 min-w-[min(40ch,100%)]">
+			<p class="min-w-[min(40ch,100%)] flex-5">
 				<T message={m['recap.desc']} />
 			</p>
-			<p class="c-callout c-callout--success c-callout--icon-trophy flex-4 min-w-[min(32ch,100%)]">
+			<p class="c-callout c-callout--success c-callout--icon-trophy min-w-[min(32ch,100%)] flex-4">
 				<T message={m['recap.shoutout']} />
 			</p>
 		</div>
@@ -121,7 +114,7 @@
 
 	<!-- Timeline -->
 	<div class="py-section relative z-0">
-		<div class="-top-section-more -bottom-section-more absolute left-0 right-0 z-0">
+		<div class="-top-section-more -bottom-section-more absolute right-0 left-0 z-0">
 			<enhanced:img
 				class="h-full w-full object-cover object-right"
 				src={imgMiddleBg}
@@ -133,7 +126,7 @@
 				class="from-surface via-surface/85 to-surface absolute inset-0 bg-gradient-to-b from-5% via-50% to-95%"
 			></div>
 		</div>
-		<section class="max-w-pad z-1 relative space-y-8">
+		<section class="max-w-pad relative z-1 space-y-8">
 			<h2 class="c-text-heading-lg border-b" id="timeline">
 				<T message={m['timeline.heading']} />
 			</h2>
@@ -282,7 +275,7 @@
 	</div>
 
 	<!-- Frequently Asked Questions -->
-	<section class="py-section max-w-pad z-1 relative space-y-8">
+	<section class="py-section max-w-pad relative z-1 space-y-8">
 		<h2 class="c-text-heading-lg border-b" id="faq">
 			<T message={m['faq.heading']} />
 		</h2>
@@ -296,7 +289,7 @@
 	</section>
 
 	<!-- Images -->
-	<section class="pt-section pb-section-more tablet:space-y-15 max-w-pad z-1 relative space-y-10">
+	<section class="pt-section pb-section-more tablet:space-y-15 max-w-pad relative z-1 space-y-10">
 		<h2 class="c-text-heading-lg border-b" id="images">
 			<T message={m['images.heading']} />
 		</h2>
@@ -382,7 +375,7 @@
 	</section>
 </main>
 
-<div class="h-200 desktop:h-160 -z-px absolute bottom-0 left-0 right-0">
+<div class="desktop:h-160 -z-px absolute right-0 bottom-0 left-0 h-200">
 	<enhanced:img
 		class="h-full w-full object-cover object-top"
 		src={imgFooterBg}

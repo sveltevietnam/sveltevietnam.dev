@@ -93,13 +93,7 @@
 	<!-- intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div class="max-w-pad space-y-10">
-			<Breadcrumbs
-				crumbs={data.routing.breadcrumbs}
-				i18n={{
-					aria: m['components.breadcrumbs.aria'],
-					home: m['components.breadcrumbs.home'],
-				}}
-			/>
+			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 			<div class="space-y-4 text-center">
 				<h1 class="c-text-heading-page text-primary-on-surface">
 					<T message={m['pages.blog.heading']} />

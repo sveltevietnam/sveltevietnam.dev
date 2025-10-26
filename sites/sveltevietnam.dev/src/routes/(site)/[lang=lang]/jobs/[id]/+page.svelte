@@ -46,13 +46,7 @@
 <main
 	class="max-w-pad mt-header pt-section pb-section-more tablet:space-y-8 desktop:space-y-10 flex-1 space-y-6"
 >
-	<Breadcrumbs
-		crumbs={data.routing.breadcrumbs}
-		i18n={{
-			aria: m['components.breadcrumbs.aria'],
-			home: m['components.breadcrumbs.home'],
-		}}
-	/>
+	<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 
 	<div class="desktop:flex-row gap-section desktop:gap-20 flex flex-col">
 		<!-- main content -->
@@ -282,7 +276,11 @@
 					<T message={m['pages.jobs_id.recruit.desc']} />
 				</p>
 				<div class="pt-2">
-					<a class="c-btn c-btn--pop" href="{VITE_PUBLIC_RECRUIT_ORIGIN}/{routing.lang}" target="_blank">
+					<a
+						class="c-btn c-btn--pop"
+						href="{VITE_PUBLIC_RECRUIT_ORIGIN}/{routing.lang}"
+						target="_blank"
+					>
 						<T message={m['pages.jobs_id.recruit.cta']} />
 					</a>
 				</div>
