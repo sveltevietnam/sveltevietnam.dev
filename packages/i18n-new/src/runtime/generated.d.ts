@@ -13,3 +13,8 @@ export interface $$Runtime {
 		languages: string[];
 	};
 }
+
+export type Mode = ReturnType<$$Runtime>['mode'];
+export type Language = ReturnType<$$Runtime>['languages'][number];
+export type Mapping = ReturnType<$$Runtime>['mapping'];
+export type Key = keyof Mapping;
