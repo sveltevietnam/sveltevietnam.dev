@@ -459,6 +459,9 @@ importers:
       '@sveltevietnam/i18n':
         specifier: workspace:*
         version: link:../../packages/i18n
+      '@sveltevietnam/i18n-new':
+        specifier: workspace:*
+        version: link:../../packages/i18n-new
       '@sveltevietnam/kit':
         specifier: workspace:*
         version: link:../../packages/kit
