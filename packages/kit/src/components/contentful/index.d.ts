@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-empty-object-type */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import type { Message } from '@sveltevietnam/i18n/runtime';
+import type { InferParams, InferType } from '@sveltevietnam/i18n-new';
+import type { Key, Mapping } from '@sveltevietnam/i18n-new/generated';
 import type { Snippet } from 'svelte';
 
 interface SnippetProp {
@@ -9,26 +10,26 @@ interface SnippetProp {
 	params?: any;
 }
 
-interface ExtendedHTMLProp<Attributes extends Record<string, any>> {
-	content: string | Message<'string', never>;
-	attributes?: Attributes;
+interface ExtendedHTMLProp<A extends Record<string, any>, K extends Key = Key> {
+	content: string | TProp<K>;
+	attributes?: A;
 }
 
-export type ContentfulProp<Attributes extends Record<string, any>> =
-	| string
-	| Message<'string', never>
-	| SnippetProp
-	| ExtendedHTMLProp<Attributes>;
+type TProp<K extends Key> = {
+	key: K;
+} & (InferType<Mapping[K]> extends 'with-params'
+	? { params: InferParams<Mapping[K]> }
+	: Record<never, never>);
 
-export type ContentfulProps<Attributes extends Record<string, any>> = {
-	prop: ContentfulProp<Attributes>;
+export type ContentfulProps<A extends Record<string, any>, K extends Key = Key> = {
+	content: string | ['snippet', SnippetProp] | ['html', ExtendedHTMLProp<A>] | ['t', TProp<K>];
 	tag: keyof HTMLElementTagNameMap;
-} & Attributes;
+} & A;
 
 /// mimic output of svelte-package to support generics
 
-declare class __sveltets_Render<Attributes extends Record<string, any>> {
-	props(): ContentfulProps<Attributes>;
+declare class __sveltets_Render<A extends Record<string, any>, K extends Key = Key> {
+	props(): ContentfulProps<A, K>;
 	events(): {} & {
 		[evt: string]: CustomEvent<any>;
 	};
@@ -38,23 +39,13 @@ declare class __sveltets_Render<Attributes extends Record<string, any>> {
 }
 
 interface $$IsomorphicComponent {
-	new <Attributes extends Record<string, any>>(
-		options: import('svelte').ComponentConstructorOptions<
-			ReturnType<__sveltets_Render<Attributes>['props']>
-		>,
-	): import('svelte').SvelteComponent<
-		ReturnType<__sveltets_Render<Attributes>['props']>,
-		ReturnType<__sveltets_Render<Attributes>['events']>,
-		ReturnType<__sveltets_Render<Attributes>['slots']>
-	> & {
-		$$bindings?: ReturnType<__sveltets_Render<Attributes>['bindings']>;
-	} & ReturnType<__sveltets_Render<Attributes>['exports']>;
-	<_Attributes extends Record<string, any>>(
+	new <A extends Record<string, any>, K extends Key = Key>(
+		options: import('svelte').ComponentConstructorOptions<ContentfulProps<A, K>>,
+	): import('svelte').SvelteComponent<ContentfulProps<A, K>>;
+	<A extends Record<string, any>, K extends Key = Key>(
 		internal: unknown,
-		props: {
-			$$events?: ReturnType<__sveltets_Render<_Attributes>['events']>;
-		},
-	): ReturnType<__sveltets_Render<_Attributes>['exports']>;
-	z_$$bindings?: ReturnType<__sveltets_Render<any>['bindings']>;
+		props: ContentfulProps<A, K>,
+	): {};
+	z_$$bindings?: '';
 }
 export const Contentful: $$IsomorphicComponent;
