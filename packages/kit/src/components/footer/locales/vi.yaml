@@ -3,6 +3,8 @@
 # Scope:    components.footer
 # =============================
 messages:
-  navigation: Điều hướng
-  contact: Liên hệ
+  navigation:
+    heading: Điều hướng
+  contact:
+    heading: Liên hệ
   powered_by: Trên nền tảng

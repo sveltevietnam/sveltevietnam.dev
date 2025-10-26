@@ -253,23 +253,6 @@
 		domain="recruit.sveltevietnam.dev"
 		{version}
 		{navigationPrimary}
-		i18n={{
-			version: m['footer.version'],
-			svelte_vietnam: m['svelte_vietnam.name'],
-			powered_by: m['footer.powered_by'],
-			not_by_ai: m['footer.not_by_ai'],
-			about: {
-				heading: m['footer.about.heading'],
-				desc: m['footer.about.desc'],
-			},
-			navigation: {
-				heading: m['footer.navigation'],
-			},
-			contact: {
-				heading: m['footer.contact'],
-				discord: m['svelte_vietnam.discord'],
-			},
-		}}
 		class={[!page.data.editUrl && 'mt-auto']}
 		data-pagefind-ignore
 	>

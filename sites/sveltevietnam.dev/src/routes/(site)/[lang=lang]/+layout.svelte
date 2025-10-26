@@ -6,7 +6,6 @@
 
 	import { version } from '$app/environment';
 	import { navigating, page } from '$app/state';
-	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import * as n from '$data/routes/generated/names';
 	import { Header } from '$lib/components/header';
@@ -90,23 +89,6 @@
 	{version}
 	{navigationPrimary}
 	{navigationSecondary}
-	i18n={{
-		version: m.version,
-		svelte_vietnam: m['svelte_vietnam.name'],
-		powered_by: m['components.footer.powered_by'],
-		not_by_ai: m['components.not_by_ai_badge'],
-		about: {
-			heading: m['components.footer.about.title'],
-			desc: m['components.footer.about.desc'],
-		},
-		navigation: {
-			heading: m['components.footer.navigation'],
-		},
-		contact: {
-			heading: m['components.footer.contact'],
-			discord: m['svelte_vietnam.discord'],
-		},
-	}}
 	class={[!page.data.editUrl && 'mt-auto']}
 	data-pagefind-ignore
 />

@@ -3,6 +3,8 @@
 # Scope:    components.footer
 # ============================
 messages:
-  navigation: Navigation
-  contact: Contact
+  navigation:
+    heading: Navigation
+  contact:
+    heading: Contact
   powered_by: Powered by

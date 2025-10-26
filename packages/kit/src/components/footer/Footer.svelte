@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
 	import { delocalizeUrl } from '@sveltevietnam/i18n-new/utils';
 
 	import { LANGUAGES } from '@sveltevietnam/kit/constants';
@@ -16,7 +16,6 @@
 		email,
 		domain,
 		version,
-		i18n,
 		navigationPrimary,
 		navigationSecondary,
 		class: cls,
@@ -42,17 +41,17 @@
 		<p
 			class="_name c-text-heading tablet:block tablet:text-right tablet:justify-self-end hidden w-37.5 uppercase"
 		>
-			<T message={i18n.svelte_vietnam} />
+			<T key="svelte_vietnam.name" />
 		</p>
 
 		<section class="_about tablet:space-y-6 tablet:max-w-70 space-y-4">
-			<p class="c-text-title"><T message={i18n.about.heading} /></p>
-			<p class="leading-relaxed"><T message={i18n.about.desc} /></p>
+			<p class="c-text-title"><T key="components.footer.about.title" /></p>
+			<p class="leading-relaxed"><T key="components.footer.about.desc" /></p>
 		</section>
 
 		<section class="_pages tablet:space-y-6 space-y-4">
 			{#if navigationPrimary}
-				<p class="c-text-title"><T message={i18n.navigation.heading} /></p>
+				<p class="c-text-title"><T key="components.footer.navigation.heading" /></p>
 				{#if typeof navigationPrimary === 'function'}
 					{@render navigationPrimary()}
 				{:else}
@@ -78,7 +77,7 @@
 		</section>
 
 		<section class="_contacts">
-			<p class="c-text-title"><T message={i18n.contact.heading} /></p>
+			<p class="c-text-title"><T key="components.footer.contact.heading" /></p>
 			<ul
 				class="mobile:-mt-1 widescreen:-mt-1 tablet:max-widescreen:flex tablet:max-widescreen:gap-4
 				tablet:max-widescreen:items-center"
@@ -93,7 +92,7 @@
 						data-umami-event-position="footer.contact"
 					>
 						<i class="i i-[ph--discord-logo] h-6 w-6"></i>
-						<T message={i18n.contact.discord} />
+						<T key="svelte_vietnam.discord" />
 					</a>
 				</li>
 				<li>
@@ -142,10 +141,10 @@
 			{/if}
 		</div>
 		<div class="_license-and-techs tablet:max-widescreen:contents flex items-center gap-1">
-			<p class="_license">{new Date().getFullYear()} © <T message={i18n.svelte_vietnam} /></p>
+			<p class="_license">{new Date().getFullYear()} © <T key="svelte_vietnam.name" /></p>
 			<p class="tablet:max-widescreen:hidden">|</p>
 			<p class="_techs tablet:justify-self-end flex items-center gap-2">
-				<T message={i18n.powered_by} />
+				<T key="components.footer.powered_by" />
 				<a class="c-link-lazy" href="https://www.cloudflare.com">
 					<span class="sr-only">Cloudflare</span>
 					<i class="i i-[simple-icons--cloudflareworkers] h-4 w-4"></i>
@@ -160,7 +159,7 @@
 				</a>
 			</p>
 		</div>
-		<p class="_version"><T message={i18n.version} /> {version}</p>
+		<p class="_version"><T key="version" /> {version}</p>
 	</div>
 </footer>
 
