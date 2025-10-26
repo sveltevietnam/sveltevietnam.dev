@@ -2,17 +2,18 @@
 	import type { StackItemProps } from '@svelte-put/async-stack';
 	import { enhanceDialog } from '@svelte-put/async-stack/helpers';
 	import { shortcut } from '@svelte-put/shortcut';
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import sanitize from 'sanitize-html';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 
-	import * as m from '$data/locales/generated/messages';
 	import { SearchContext } from '$lib/search/context.svelte';
 
 	let { item }: StackItemProps = $props();
-	const { routing } = Contexts.get();
+	const {
+		i18n: { t },
+	} = Contexts.get();
 	const search = SearchContext.get();
 
 	let queryEl: HTMLInputElement;
@@ -41,44 +42,47 @@
 
 <dialog
 	{...enhanceDialog(item, { delayResolution: 'animationend' })}
-	class="c-dialog bg-surface-subtle mt-header mobile:m-0 mobile:w-full max-w-screen mobile:h-full
-	mobile:shadow-none tablet:max-h-[80vh] max-h-screen p-0"
+	class="c-dialog bg-surface-subtle mt-header mobile:m-0 mobile:w-full mobile:h-full mobile:shadow-none
+	tablet:max-h-[80vh] max-h-screen max-w-screen p-0"
 	bind:this={dialog}
 	use:shortcut={{
 		trigger: { key: 'k', modifier: ['ctrl', 'meta'], callback: closeDialog },
 	}}
-	aria-label={m.search.toString()}
+	aria-labelledby="search-dialog-label"
 >
-	<search class="min-h-50 w-150 flex h-full max-w-full flex-col">
+	<p class="sr-only" id="search-dialog-label">
+		<T key="search" />
+	</p>
+	<search class="flex h-full min-h-50 w-150 max-w-full flex-col">
 		<!-- query -->
 		<form class="border-outline relative flex max-w-full items-center gap-2 border-b p-4">
 			<label class="c-text-input bg-surface relative min-w-0 flex-1">
 				<span class="sr-only">
-					<T message={m['dialogs.search.input.label']} />
+					<T key="dialogs.search.input.label" />
 				</span>
 				<i class="i i-[ph--magnifying-glass] h-6 w-6"></i>
 				<input
 					type="text"
-					placeholder={m['dialogs.search.input.placeholder'](routing.lang).toString()}
+					placeholder={await t({ key: 'dialogs.search.input.placeholder' })}
 					bind:value={search.query}
 					bind:this={queryEl}
 				/>
 				{#if search.query}
 					<button
-						class="c-btn c-btn--icon absolute right-2 top-1/2 -translate-y-1/2"
+						class="c-btn c-btn--icon absolute top-1/2 right-2 -translate-y-1/2"
 						type="button"
 						onclick={clear}
 						transition:fade={{ duration: 150 }}
 					>
 						<span class="sr-only">
-							<T message={m['dialogs.search.input.clear']} />
+							<T key="dialogs.search.input.clear" />
 						</span>
 						<i class="i i-[ph--x] h-6 w-6"></i>
 					</button>
 				{/if}
 			</label>
 			<button class="c-btn c-btn--outlined mobile:block hidden" formmethod="dialog">
-				<span><T message={m['dialogs.search.input.exit']} /></span>
+				<span><T key="dialogs.search.input.exit" /></span>
 			</button>
 		</form>
 
@@ -86,13 +90,16 @@
 		<output class="tablet:min-h-[20vh] flex flex-1 flex-col">
 			{#if search.results}
 				{#await search.results}
-					<p class="p-4"><T message={m['dialogs.search.results.searching']} /></p>
+					<p class="p-4"><T key="dialogs.search.results.searching" /></p>
 				{:then results}
 					{#if results.length}
 						{@const maybeClippedResults = search.clip.results ? results.slice(0, 3) : results}
 						<div class="tablet:max-h-[60vh] space-y-4 overflow-auto p-4">
 							<p>
-								<T message={m['dialogs.search.results.found']} count={results.length.toString()} />
+								<T
+									key="dialogs.search.results.found"
+									params={{ count: results.length.toString() }}
+								/>
 							</p>
 							<ul class="space-y-6">
 								{#each maybeClippedResults as result (result.id)}
@@ -112,7 +119,7 @@
 											{#each subResults as subResult (subResult.id)}
 												<li class="_subresult relative">
 													<a
-														class={['pl-13 block space-y-2 border-b py-3 pr-6', commonItemClasses]}
+														class={['block space-y-2 border-b py-3 pr-6 pl-13', commonItemClasses]}
 														href={subResult.url}
 														onclick={closeDialog}
 													>
@@ -129,7 +136,7 @@
 										{#if search.clip.subResults[result.id]}
 											<label
 												class={[
-													'c-text-body-sm text-on-surface-dim pl-13 relative block w-full cursor-pointer border-b py-2 pr-6',
+													'c-text-body-sm text-on-surface-dim relative block w-full cursor-pointer border-b py-2 pr-6 pl-13',
 													commonItemClasses,
 												]}
 											>
@@ -140,7 +147,7 @@
 													onclick={(e) => e.stopPropagation()}
 												/>
 												<span>
-													<T message={m['dialogs.search.results.clip.sub_results']} />
+													<T key="dialogs.search.results.clip.sub_results" />
 												</span>
 											</label>
 										{/if}
@@ -156,21 +163,21 @@
 								>
 									<input class="sr-only" type="checkbox" bind:checked={search.clip.results} />
 									<span>
-										<T message={m['dialogs.search.results.clip.results']} />
+										<T key="dialogs.search.results.clip.results" />
 									</span>
 								</label>
 							{/if}
 						</div>
 					{:else}
 						<p class="p-4">
-							<T message={m['dialogs.search.results.none']} />
+							<T key="dialogs.search.results.none" />
 						</p>
 					{/if}
 				{/await}
 			{:else}
 				<div class="p-4">
 					<svg
-						class="my-7.5 text-surface-variant mx-auto h-auto w-1/2 justify-self-center opacity-40"
+						class="text-surface-variant mx-auto my-7.5 h-auto w-1/2 justify-self-center opacity-40"
 						inline-src="blocks"
 						aria-hidden="true"
 					>
@@ -181,7 +188,7 @@
 
 		<div class="border-outline border-t p-4 py-2">
 			<p class="c-text-body-sm text-right">
-				<T message={m['dialogs.search.footer']} />
+				<T key="dialogs.search.footer" />
 			</p>
 		</div>
 	</search>
