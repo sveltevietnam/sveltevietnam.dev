@@ -21,7 +21,7 @@
 
 <BaseNotification
 	{...rest}
-	title={await t({ key: 'notifications.discord_new_message.title' })}
+	title={t({ key: 'notifications.discord_new_message.title' })}
 	status="info"
 >
 	{#snippet icon()}

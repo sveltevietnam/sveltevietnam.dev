@@ -278,7 +278,7 @@
 								</p>
 								<BaseNotification
 									class="_noti"
-									title={await t({ key: 'pages.design.colors.status.sample.notification.title' })}
+									title={t({ key: 'pages.design.colors.status.sample.notification.title' })}
 									{status}
 									{item}
 								>
