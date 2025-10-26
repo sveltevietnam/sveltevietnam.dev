@@ -110,7 +110,7 @@
 		</section>
 
 		<section class="_badges tablet:justify-end flex flex-wrap items-end gap-4">
-			<NotByAiBadge sr={i18n.not_by_ai} />
+			<NotByAiBadge />
 			<GreenWebBadge {domain} />
 		</section>
 	</div>

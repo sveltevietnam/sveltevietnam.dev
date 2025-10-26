@@ -106,7 +106,6 @@
 		<div class="tablet:mt-10 desktop:mt-15 relative mt-8">
 			{#if !data.post.ai}
 				<NotByAiBadge
-					sr={m['components.not_by_ai_badge']}
 					class="absolute -left-4 -top-4"
 					--color-fg="var(--color-surface)"
 					--color-bg="var(--color-on-surface)"
