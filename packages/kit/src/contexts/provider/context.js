@@ -1,3 +1,4 @@
+import { Context as I18NContext } from '@sveltevietnam/i18n-new';
 import { setContext, getContext } from 'svelte';
 
 import { DialogContext } from '../../dialogs/index.js';
@@ -10,6 +11,7 @@ import { RoutingContext } from '../routing.svelte';
  * @typedef ContextsInit
  * @property {() => import('../routing.svelte').RoutingContextInit} routing
  * @property {() => import('../color-scheme.svelte').ColorSchemeContextInit} colorScheme
+ * @property {() => import('@sveltevietnam/i18n-new').ContextInit} i18n
  */
 
 /**
@@ -28,6 +30,8 @@ export class Contexts {
 	dialogs;
 	/** @type {Omit<ReturnType<typeof import('@sveltevietnam/kit/notifications').NotificationContext.set>, '#private'>} */
 	notifications;
+	/** @type {I18NContext} */
+	i18n;
 
 	/**
 	 * @param {ContextsInit} init
@@ -38,6 +42,7 @@ export class Contexts {
 		this.colorScheme = ColorSchemeContext.set(init.colorScheme);
 		this.dialogs = DialogContext.set();
 		this.notifications = NotificationContext.set();
+		this.i18n = I18NContext.set(init.i18n);
 	}
 
 	/**

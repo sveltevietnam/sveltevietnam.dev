@@ -39,6 +39,7 @@
 			cookieName: VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
 			user: data.settings.colorScheme,
 		}),
+		i18n: () => ({ lang: data.settings.language }),
 	});
 	const { routing, colorScheme, notifications: { toaster } } = contexts;
 	const settings = SettingsContext.set(data.settings);
