@@ -1,16 +1,10 @@
-import type { Message } from '@sveltevietnam/i18n/runtime';
 import type { Component } from 'svelte';
 import type { HTMLDetailsAttributes } from 'svelte/elements';
 
 import type { Language } from '../../constants';
 
+/** assuming locales have been imported */
 export interface LanguageMenuProps extends HTMLDetailsAttributes {
-	i18n: {
-		aria: Message<'string', never>;
-		open: Message<'string', never>;
-		menu: Message<'string', never>;
-		switchTo: Message<'string', never>;
-	};
 	routing: {
 		vi: string;
 		en: string;

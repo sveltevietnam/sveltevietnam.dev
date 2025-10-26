@@ -72,12 +72,6 @@
 
 	const languageMenuProps: LanguageMenuProps = $derived({
 		showLabel: 'non-mobile',
-		i18n: {
-			aria: m['language_menu.aria'],
-			open: m.open,
-			menu: m.menu,
-			switchTo: m['language_menu.switch_to'],
-		},
 		routing: routing.paths,
 		hydrated: !!browser,
 		lang: data.settings.language,

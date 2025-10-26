@@ -68,12 +68,6 @@
 	}
 
 	const languageMenuProps: LanguageMenuProps = $derived({
-		i18n: {
-			aria: m['components.language_menu.aria'],
-			open: m.open,
-			menu: m.menu,
-			switchTo: m['components.language_menu.switch_to'],
-		},
 		routing: {
 			vi: routing.paths.vi,
 			en: routing.paths.en,
