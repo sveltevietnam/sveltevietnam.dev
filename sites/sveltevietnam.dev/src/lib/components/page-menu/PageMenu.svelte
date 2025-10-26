@@ -1,12 +1,11 @@
 <script lang="ts">
 	import { clickoutside } from '@svelte-put/clickoutside';
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
 	import { delocalizeUrl } from '@sveltevietnam/i18n-new/utils';
 	import { LANGUAGES } from '@sveltevietnam/kit/constants';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import type { HTMLAttributes } from 'svelte/elements';
 
-	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import * as n from '$data/routes/generated/names';
 	import { SettingsContext } from '$lib/settings/context.svelte';
@@ -72,7 +71,7 @@
 
 <nav
 	class={['relative', !flat && 'w-fit', cls]}
-	aria-label={m['components.page_menu.aria'](routing.lang)}
+	aria-labelledby="page-menu-label"
 	data-sveltekit-noscroll
 	data-sveltekit-preload-data="hover"
 	use:clickoutside={{ enabled: open }}
@@ -87,9 +86,8 @@
 		>
 			<input class="peer sr-only" type="checkbox" name="page-menu" bind:checked={open} />
 			<i class="i i-[ph--compass] h-6 w-6"></i>
-			<span class="sr-only">
-				<T message={m.open} />
-				<T message={m.menu} />
+			<span class="sr-only" id="page-menu-label">
+				<T key="components.page_menu.aria" />
 			</span>
 			<i class="i i-[ph--caret-down] h-5 w-5 transition-transform peer-checked:-rotate-180"></i>
 		</label>
