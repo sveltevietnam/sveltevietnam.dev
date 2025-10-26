@@ -1,8 +1,6 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
 	import type { HTMLAttributes } from 'svelte/elements';
-
-	import * as m from '$data/locales/generated/messages';
 
 	let {
 		variant = 'short',
@@ -39,7 +37,7 @@
 <div {...rest}>
 	<div class="mobile:flex-col mb-4 flex w-full items-center gap-4">
 		<div class="flex flex-1 items-center gap-3">
-			<p><T message={m['components.splash_screen_playground.choose']} />:</p>
+			<p><T key="components.splash_screen_playground.choose" />:</p>
 			<label class="flex items-center gap-1">
 				<input
 					class="c-radio"
@@ -49,7 +47,7 @@
 					value="short"
 					id="splash-variant-short"
 				/>
-				<span><T message={m['components.splash_screen_playground.short']} /></span>
+				<span><T key="components.splash_screen_playground.short" /></span>
 			</label>
 			<label class="flex items-center gap-1">
 				<input
@@ -60,14 +58,14 @@
 					value="long"
 					id="splash-variant-long"
 				/>
-				<span><T message={m['components.splash_screen_playground.long']} /></span>
+				<span><T key="components.splash_screen_playground.long" /></span>
 			</label>
 		</div>
 		<button class="c-btn px-6" onclick={toggle} type="button">
 			{#if playState === 'paused'}
-				<T message={m['components.splash_screen_playground.play']} />
+				<T key="components.splash_screen_playground.play" />
 			{:else}
-				<T message={m['components.splash_screen_playground.pause']} />
+				<T key="components.splash_screen_playground.pause" />
 			{/if}
 		</button>
 	</div>
@@ -77,14 +75,14 @@
 				data-variant={variant}
 				data-play-state={playState}
 				onanimationend={onAnimationEnd}
-				class="splash-screen bg-surface h-100 tablet:h-125 flex w-full items-center justify-center"
+				class="splash-screen bg-surface tablet:h-125 flex h-100 w-full items-center justify-center"
 				{...rest}
 			>
 				<div class="_logo-wrapper">
-					<div class="_logo w-26 h-26 i i-sveltevietnam -mr-2 block"></div>
+					<div class="_logo i i-sveltevietnam -mr-2 block h-26 w-26"></div>
 				</div>
 				<div class="_title pl-2.5">
-					<svg class="w-44.5 h-19.5"  inline-src="splash-svelte-vietnam"></svg>
+					<svg class="h-19.5 w-44.5" inline-src="splash-svelte-vietnam"></svg>
 				</div>
 			</div>
 		{/key}
