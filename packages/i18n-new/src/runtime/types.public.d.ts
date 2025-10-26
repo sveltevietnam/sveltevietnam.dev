@@ -42,3 +42,24 @@ export type Message<
 	Key extends string = any,
 	Params extends string = any,
 > = MessageSimple<Lang, Key> | MessageWithParams<Lang, Key, Params>;
+
+/**
+ * extract the union of key from a generated mapping that matches specific type of message
+ *
+ * @example
+ * ```ts
+ * import type { InferKey } from '@sveltevietnam/i18n-new';
+ * import type { Mapping } from '@sveltevietnam/i18n-new/generated';
+ *
+ * type AllKey = InferKey<Mapping>;
+ * type KeyForMessageSimple = InferKey<Mapping, 'simple'>;
+ * type KeyForMessageWithParams = InferKey<Mapping, 'with-params'>;
+ * ```
+ */
+export type InferKey<
+	M extends Record<string, Message>,
+	T extends MessageType = MessageType,
+> = Extract<M[keyof M], { $t: T }>['$k'];
+export type InferType<M extends Message> = M['$t'];
+export type InferParams<M extends Message> = M['$$p'];
+export type InferLanguage<M extends Message> = M['$$l'];
