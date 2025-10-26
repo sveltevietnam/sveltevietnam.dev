@@ -1,11 +1,10 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
 
 	import type { ColorScheme } from '../../constants';
 	import { Dropdown } from '../dropdown';
 
 	let {
-		i18n,
 		open = $bindable(false),
 		showLabel = 'mobile',
 		colorScheme = 'system',
@@ -17,15 +16,15 @@
 	let colorSchemes = $derived({
 		light: {
 			icon: 'i-[ph--sun]',
-			label: i18n.light,
+			i18nKey: 'components.color_scheme_menu.light',
 		},
 		dark: {
 			icon: 'i-[ph--moon]',
-			label: i18n.dark,
+			i18nKey: 'components.color_scheme_menu.dark',
 		},
 		system: {
 			icon: 'i-[ph--desktop]',
-			label: i18n.system,
+			i18nKey: 'components.color_scheme_menu.system',
 		},
 	});
 
@@ -50,16 +49,15 @@
 	}
 </script>
 
-<Dropdown class={['group w-fit', cls]} {...rest}>
+<Dropdown class={['group w-fit', cls]} {...rest} aria-labelledby="color-scheme-menu-label">
 	{#snippet label()}
 		<span class="c-link-lazy flex items-center gap-2 transition-colors">
 			<i class="i i-[ph--palette] h-6 w-6"></i>
-			<span class="sr-only">
-				<T message={i18n.open} />
-				<T message={i18n.aria} />
+			<span class="sr-only" id="color-scheme-menu-label">
+				<T key="components.color_scheme_menu.aria" />
 			</span>
 			<span class={labelClass} aria-hidden="true">
-				<T message={colorSchemes[colorScheme].label} />
+				<T key={colorSchemes[colorScheme].i18nKey} />
 			</span>
 			<i class="i i-[ph--caret-down] h-5 w-5 transition-transform group-open:-rotate-180"></i>
 		</span>
@@ -67,7 +65,7 @@
 
 	{#snippet content()}
 		<ul class="border-outline divide-outline bg-surface w-max divide-y border">
-			{#each Object.entries(colorSchemes) as [key, { icon, label }] (key)}
+			{#each Object.entries(colorSchemes) as [key, { icon, i18nKey }] (key)}
 				{@const current = colorScheme === key}
 				<li>
 					<form method="GET" onsubmit={(e) => handleSubmit(e, key as ColorScheme)}>
@@ -78,7 +76,7 @@
 						>
 							<input class="sr-only" type="submit" name="color-scheme" value={key} />
 							<i class="i {icon} h-6 w-6"></i>
-							<span><T message={label} /></span>
+							<span><T key={i18nKey} /></span>
 							{#if current}
 								<span class="sr-only">current</span>
 							{/if}
