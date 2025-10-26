@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Context } from '../context/index.svelte.js';
 
-	import type { ProviderProps } from '.';
+	import type { ProviderProps } from './Provider.svelte.d.ts';
 
 	let { children, lang, sanitize }: ProviderProps = $props();
 

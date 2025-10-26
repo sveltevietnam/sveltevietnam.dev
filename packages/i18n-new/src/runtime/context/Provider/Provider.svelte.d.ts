@@ -1,10 +1,8 @@
 import type { Component, Snippet } from 'svelte';
 
-import { $$Runtime } from '@sveltevietnam/i18n-new/generated';
-
 /** context provider for i18n */
 export interface ProviderProps<
-	Language extends string = ReturnType<$$Runtime>['languages'][number],
+	Language extends string = import('@sveltevietnam/i18n-new/generated').Language,
 > {
 	/**
 	 * the current language of the app,
@@ -19,3 +17,4 @@ export interface ProviderProps<
 	children: Snippet;
 }
 export const Provider: Component<ProviderProps>;
+export default Provider;

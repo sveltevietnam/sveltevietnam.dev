@@ -18,9 +18,9 @@ function defaultSanitize(content) {
 }
 
 /**
- * @template {'static' | 'remote'} [Mode=ReturnType<import('@sveltevietnam/i18n-new/generated').$$Runtime>['mode']]
- * @template {string} [Language=ReturnType<import('@sveltevietnam/i18n-new/generated').$$Runtime>['languages'][number]]
- * @template {Record<string, import('@sveltevietnam/i18n-new').Message>} [Mapping=ReturnType<import('@sveltevietnam/i18n-new/generated').$$Runtime>['mapping']]
+ * @template {'static' | 'remote'} [Mode=import('@sveltevietnam/i18n-new/generated').Mode]
+ * @template {string} [Language=import('@sveltevietnam/i18n-new/generated').Language]
+ * @template {Record<string, import('@sveltevietnam/i18n-new').Message>} [Mapping=import('@sveltevietnam/i18n-new/generated').Mapping]
  */
 export class Context {
 	static KEY = Symbol('i18n');

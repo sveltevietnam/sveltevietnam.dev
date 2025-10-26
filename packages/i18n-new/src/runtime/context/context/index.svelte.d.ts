@@ -1,16 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { $$Runtime } from '@sveltevietnam/i18n-new/generated';
-
-import { MessageSimple, MessageWithParams } from '../../types.public';
+import type {
+	Message,
+	MessageSimple,
+	MessageWithParams,
+	InferKey,
+	InferParams,
+	InferLanguage,
+} from '../../types.public';
 
 export class Context<
-	Mode extends 'static' | 'remote' = ReturnType<$$Runtime>['mode'],
-	Language extends string = ReturnType<$$Runtime>['languages'][number],
-	Mapping extends Record<
-		string,
-		import('@sveltevietnam/i18n-new').Message
-	> = ReturnType<$$Runtime>['mapping'],
+	Mode extends 'static' | 'remote' = import('@sveltevietnam/i18n-new/generated').Mode,
+	Language extends string = import('@sveltevietnam/i18n-new/generated').Language,
+	Mapping extends Record<string, Message> = import('@sveltevietnam/i18n-new/generated').Mapping,
 > {
 	constructor(init: () => ContextInit<Language>);
 	lang: Language;
@@ -20,7 +22,9 @@ export class Context<
 	static set(init: () => ContextInit): Context;
 }
 
-export interface ContextInit<Language extends string = ReturnType<$$Runtime>['languages'][number]> {
+export interface ContextInit<
+	Language extends string = import('@sveltevietnam/i18n-new/generated').Language,
+> {
 	lang: Language;
 	sanitize?: (content: string) => string;
 }
@@ -31,19 +35,16 @@ export interface TranslateOptions<Language extends string> {
 }
 
 export interface RemoteTranslate<
-	Language extends string = ReturnType<$$Runtime>['languages'][number],
-	Mapping extends Record<
-		string,
-		import('@sveltevietnam/i18n-new').Message
-	> = ReturnType<$$Runtime>['mapping'],
+	Language extends string = import('@sveltevietnam/i18n-new/generated').Language,
+	Mapping extends Record<string, Message> = import('@sveltevietnam/i18n-new/generated').Mapping,
 > {
-	<K extends NonNullable<Extract<Mapping[keyof Mapping], { $t: 'simple' }>['$t']>>(input: {
+	<K extends InferKey<Mapping, 'simple'>>(input: {
 		key: K;
 		options?: Partial<TranslateOptions<Language>>;
 	}): Promise<string>;
-	<K extends NonNullable<Extract<Mapping[keyof Mapping], { $t: 'with-params' }>['$t']>>(input: {
+	<K extends InferKey<Mapping, 'with-params'>>(input: {
 		key: K;
-		params: Mapping[K]['$$p'];
+		params: InferParams<Mapping[K]>;
 		options?: Partial<TranslateOptions<Language>>;
 	}): Promise<string>;
 }
@@ -51,11 +52,11 @@ export interface RemoteTranslate<
 export interface StaticTranslate {
 	<M extends MessageSimple<any, any>>(input: {
 		message: M;
-		options?: Partial<TranslateOptions<M['$$l']>>;
+		options?: Partial<TranslateOptions<InferLanguage<M>>>;
 	}): string;
 	<M extends MessageWithParams<any, any, any>>(input: {
 		message: M;
-		params: M['$$p'];
-		options?: Partial<TranslateOptions<M['$$l']>>;
+		params: InferParams<M>;
+		options?: Partial<TranslateOptions<InferLanguage<M>>>;
 	}): string;
 }
