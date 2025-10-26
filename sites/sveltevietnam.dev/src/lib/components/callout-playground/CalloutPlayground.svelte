@@ -1,7 +1,5 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
-
-	import * as m from '$data/locales/generated/messages';
+	import { T } from '@sveltevietnam/i18n-new';
 
 	const STATUSES = {
 		Info: 'c-callout--info',
@@ -22,15 +20,15 @@
 </script>
 
 <div class="flex flex-wrap">
-	<fieldset class="border border-current p-4 tablet:p-6 min-w-40 w-full sm:max-w-60">
+	<fieldset class="tablet:p-6 w-full min-w-40 border border-current p-4 sm:max-w-60">
 		<legend class="font-bold">
-			<T message={m['components.callout_playground.input']} />
+			<T key="components.callout_playground.input" />
 		</legend>
 
 		<div class="space-y-4">
 			<fieldset>
 				<legend>
-					<T message={m['components.callout_playground.legends.status']} />:
+					<T key="components.callout_playground.legends.status" />:
 				</legend>
 				<select class="c-select w-full" bind:value={status}>
 					{#each Object.keys(STATUSES) as key (key)}
@@ -41,7 +39,7 @@
 
 			<fieldset>
 				<legend>
-					<T message={m['components.callout_playground.legends.icon']} />:
+					<T key="components.callout_playground.legends.icon" />:
 				</legend>
 				<select class="c-select w-full" bind:value={icon}>
 					<option value={undefined}>None</option>
@@ -53,13 +51,13 @@
 		</div>
 	</fieldset>
 
-	<fieldset class="border border-current p-4 tablet:p-6 flex-1 min-w-80 pb-8 tablet:pb-10">
-		<legend class="font-bold ml-auto">
-			<T message={m['components.callout_playground.output']} />
+	<fieldset class="tablet:p-6 tablet:pb-10 min-w-80 flex-1 border border-current p-4 pb-8">
+		<legend class="ml-auto font-bold">
+			<T key="components.callout_playground.output" />
 		</legend>
 
 		<p class="prose mt-0!">
-			=> <T message={m['components.callout_playground.class']} />:
+			=> <T key="components.callout_playground.class" />:
 			<code>
 				c-callout
 				{STATUSES[status]}
@@ -69,7 +67,7 @@
 			</code>.
 		</p>
 		<p class={['not-prose c-callout', STATUSES[status], icon && ICONS[icon]]}>
-			<T message={m['components.callout_playground.sample']} />
+			<T key="components.callout_playground.sample" />
 		</p>
 	</fieldset>
 </div>
