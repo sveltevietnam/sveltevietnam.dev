@@ -1,13 +1,12 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
-	import type { Message } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
+	import type { Key } from '@sveltevietnam/i18n-new/generated';
 	import { TBA, Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { EMAILS } from '@sveltevietnam/kit/constants';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { onScroll, createTimeline, stagger } from 'animejs';
 
 	import { page } from '$app/state';
-	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import { EventListing } from '$lib/components/event-listing';
 	import { IntroSeparator } from '$lib/components/intro-separator';
@@ -107,14 +106,14 @@
 	};
 </script>
 
-{#snippet actionHeading(num: number, id: string, message: Message<'string', never>)}
+{#snippet actionHeading(num: number, id: string, tKey: Key)}
 	<h2 class="c-text-heading-md flex items-center gap-4 border-b pb-1" {id}>
 		<span
 			class="font-lora desktop:text-2xl desktop:w-10 desktop:h-10 flex h-8 w-8
 			items-center justify-center rounded-full border border-current text-xl leading-normal font-bold"
 			>{num}</span
 		>
-		<T {message} />
+		<T key={tKey} />
 	</h2>
 {/snippet}
 
@@ -128,12 +127,12 @@
 				<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 				<div class="space-y-4">
 					<h1 class="c-text-heading-page text-primary-on-surface">
-						<T message={m['pages.events.heading']} />
+						<T key="pages.events.heading" />
 					</h1>
-					<p class="c-text-subtitle-page max-w-readable"><T message={m['pages.events.desc']} /></p>
+					<p class="c-text-subtitle-page max-w-readable"><T key="pages.events.desc" /></p>
 				</div>
 				<a class="c-btn c-btn--pop block w-fit" href="#upcoming"
-					><T message={m['pages.events.view_upcoming']} /></a
+					><T key="pages.events.view_upcoming" /></a
 				>
 			</div>
 			<img
@@ -153,7 +152,7 @@
 	{#if data.events.ongoing.length}
 		<section class="max-w-pad space-y-section py-section" data-pagefind-ignore>
 			<h2 class="c-text-heading-lg border-b" id="ongoing">
-				<T message={m['pages.events.ongoing.heading']} />
+				<T key="pages.events.ongoing.heading" />
 			</h2>
 			<EventListing events={data.events.ongoing} origin={page.url.origin} />
 		</section>
@@ -162,16 +161,16 @@
 	<!-- upcoming -->
 	<section class="max-w-pad space-y-section py-section" data-pagefind-ignore>
 		<h2 class="c-text-heading-lg border-b" id="upcoming">
-			<T message={m['pages.events.upcoming.heading']} />
+			<T key="pages.events.upcoming.heading" />
 		</h2>
 		{#if data.events.upcoming.length}
 			<EventListing events={data.events.upcoming} origin={page.url.origin} />
 		{:else}
 			<TBA class="mx-auto w-fit">
-				<p class="c-text-title-sm"><T message={m['pages.events.upcoming.tba.desc']} /></p>
+				<p class="c-text-title-sm"><T key="pages.events.upcoming.tba.desc" /></p>
 				<p>
 					<a class="c-link" href="#participate">
-						<T message={m['pages.events.upcoming.tba.subscribe']} />
+						<T key="pages.events.upcoming.tba.subscribe" />
 					</a>
 				</p>
 			</TBA>
@@ -186,10 +185,10 @@
 			bind:this={elParticipate}
 		>
 			<div class="flex-1 space-y-6">
-				{@render actionHeading(1, 'participate', m['pages.events.participate.heading'])}
-				<p class="leading-relaxed"><T message={m['pages.events.participate.desc']} /></p>
+				{@render actionHeading(1, 'participate', 'pages.events.participate.heading')}
+				<p class="leading-relaxed"><T key="pages.events.participate.desc" /></p>
 				<SubscriberUpsertForm data={data.subscribeFormData} />
-				<p><T message={m['pages.events.participate.discord']} /></p>
+				<p><T key="pages.events.participate.discord" /></p>
 			</div>
 			<div class="flex flex-1 items-end justify-center gap-10">
 				<svg
@@ -215,9 +214,9 @@
 			bind:this={elShare}
 		>
 			<div class="flex-1 space-y-6">
-				{@render actionHeading(2, 'share', m['pages.events.share.heading'])}
+				{@render actionHeading(2, 'share', 'pages.events.share.heading')}
 				<p class="leading-relaxed">
-					<T message={m['pages.events.share.desc']} />
+					<T key="pages.events.share.desc" />
 				</p>
 				<a
 					class="c-btn c-btn--pop block w-fit"
@@ -225,10 +224,10 @@
 					data-external
 					data-umami-event="click-event-form"
 				>
-					<T message={m['pages.events.share.cta']} />
+					<T key="pages.events.share.cta" />
 				</a>
 				<p>
-					<T message={m['or']} />
+					<T key="or" />
 					email
 					<a class="c-link" href="mailto:{EMAILS.EVENTS}" data-external>
 						{EMAILS.EVENTS}
@@ -254,20 +253,20 @@
 			bind:this={elSponsor}
 		>
 			<div class="flex-1 space-y-6">
-				{@render actionHeading(3, 'sponsor', m['pages.events.sponsor.heading'])}
-				<p class="leading-relaxed"><T message={m['pages.events.sponsor.desc']} /></p>
+				{@render actionHeading(3, 'sponsor', 'pages.events.sponsor.heading')}
+				<p class="leading-relaxed"><T key="pages.events.sponsor.desc" /></p>
 				<div class="space-y-2">
 					<a
 						class="c-link c-text-body-xs block w-fit"
 						href="{p['/:lang/sponsor']({ lang: routing.lang })}#why"
 					>
-						<T message={m['pages.events.sponsor.why']} />
+						<T key="pages.events.sponsor.why" />
 					</a>
 					<a
 						class="c-btn c-btn--pop block w-fit"
 						href={p['/:lang/sponsor']({ lang: routing.lang })}
 					>
-						<T message={m['pages.events.sponsor.cta']} />
+						<T key="pages.events.sponsor.cta" />
 					</a>
 				</div>
 			</div>
@@ -291,7 +290,7 @@
 	<!-- past -->
 	<section class="max-w-pad tablet:space-y-15 py-section space-y-8" data-pagefind-ignore>
 		<h2 class="c-text-heading-lg border-b" id="past">
-			<T message={m['pages.events.past.heading']} />
+			<T key="pages.events.past.heading" />
 		</h2>
 		<EventListing events={data.events.past} origin={page.url.origin} />
 	</section>
