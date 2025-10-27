@@ -73,9 +73,10 @@
 		});
 	}
 
-	let containerEl: HTMLDivElement;
+	let containerEl: HTMLDivElement | undefined = $state(undefined);
 	let showQuickNav = $state(false);
 	function onScroll() {
+		if (!containerEl) return;
 		showQuickNav = window.scrollY > containerEl.offsetTop;
 	}
 </script>
