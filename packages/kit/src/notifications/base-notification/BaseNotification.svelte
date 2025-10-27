@@ -38,7 +38,7 @@
 		<span class="sr-only">Dismiss</span>
 	</button>
 
-	<div class="rounded-inherit relative flex items-start gap-4 overflow-hidden p-4">
+	<div class="rounded-inherit relative flex items-start gap-4 overflow-hidden p-4 pr-10">
 		{#if typeof icon === 'function'}
 			{@render icon()}
 		{:else}
