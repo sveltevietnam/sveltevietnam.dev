@@ -33,12 +33,8 @@
 	{...rest}
 >
 	<!-- x button to dismiss -->
-	<button
-		onclick={dismiss}
-		class="absolute top-0 right-0 z-2 flex translate-x-1/2 -translate-y-1/2 cursor-pointer
-		rounded-full border border-current bg-inherit p-1.5"
-	>
-		<i class="i i-[ph--x] h-3.5 w-3.5"></i>
+	<button onclick={dismiss} class="absolute top-1 right-1 z-2 flex cursor-pointer p-2">
+		<i class="i i-[ph--x] h-5 w-5"></i>
 		<span class="sr-only">Dismiss</span>
 	</button>
 
@@ -46,7 +42,7 @@
 		{#if typeof icon === 'function'}
 			{@render icon()}
 		{:else}
-			<div class="i {icon ? await icon : iconClass} h-6 w-6 shrink-0"></div>
+			<div class="i {icon ?? iconClass} h-6 w-6 shrink-0"></div>
 		{/if}
 
 		<div class="w-full leading-normal">
@@ -55,7 +51,7 @@
 					{@render title()}
 				{:else}
 					<p class={['mb-2 border-b pb-1 font-bold', status && 'border-current']}>
-						{title ? await title : (status ? status[0].toUpperCase() + status.slice(1) : '')}
+						{title ? await title : status ? status[0].toUpperCase() + status.slice(1) : ''}
 					</p>
 				{/if}
 			{/if}

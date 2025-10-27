@@ -7,7 +7,7 @@ export interface BaseNotificationProps<T = any>
 	extends Omit<HTMLAttributes<HTMLElement>, 'title'>,
 		StackItemProps<T> {
 	title?: null | Promise<string> | string | Snippet;
-	icon?: Promise<string> | string | Snippet;
+	icon?: string | Snippet;
 	status?: 'info' | 'success' | 'warning' | 'error';
 }
 
