@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { onScroll, createTimeline, stagger } from 'animejs';
 
-	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import { BlogNewsletter } from '$lib/components/blog-newsletter';
 	import { BlogPostShowcase } from '$lib/components/blog-post-showcase';
@@ -19,7 +18,7 @@
 	let { data }: PageProps = $props();
 
 	const settings = SettingsContext.get();
-	const { routing } = Contexts.get();
+	const { routing, i18n: { t } } = Contexts.get();
 
 	const commonArrowLinkClasses = 'group-hover:translate-x-1 transition-transform';
 
@@ -72,15 +71,15 @@
 	description,
 }: {
 	id: string;
-	category: string;
+	category: string | Promise<string>;
 	href: string;
 	description?: string;
 })}
 	<div class="space-y-4 border-t-4 border-current pt-2">
 		<div class="flex items-center justify-between">
-			<h2 class="c-text-title uppercase" {id}>{category}</h2>
+			<h2 class="c-text-title uppercase" {id}>{await category}</h2>
 			<TextArrowLink {href}>
-				<T message={m.view_more} />
+				<T key="view_more" />
 			</TextArrowLink>
 		</div>
 		{#if description}
@@ -96,9 +95,9 @@
 			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 			<div class="space-y-4 text-center">
 				<h1 class="c-text-heading-page text-primary-on-surface">
-					<T message={m['pages.blog.heading']} />
+					<T key="pages.blog.heading" />
 				</h1>
-				<p class="c-text-subtitle-page"><T message={m['pages.blog.tagline']} /></p>
+				<p class="c-text-subtitle-page"><T key="pages.blog.tagline" /></p>
 			</div>
 		</div>
 		<IntroSeparator variant="pen" />
@@ -108,7 +107,7 @@
 	<section class="max-w-pad py-section tablet:space-y-8 space-y-6" data-pagefind-ignore>
 		{@render listingHeader({
 			id: 'latest',
-			category: m['latest'](routing.lang),
+			category: t({ key: 'latest' }),
 			href: p['/:lang/blog/latest']({ lang: routing.lang }),
 		})}
 		<BlogPostShowcase posts={data.posts.latest}></BlogPostShowcase>
@@ -147,7 +146,7 @@
 				<div class="flex-1 space-y-6">
 					<div class="tablet:justify-between tablet:items-end mobile:flex-col flex flex-1 gap-6">
 						<h2 class="c-text-heading-md" id="write">
-							<T message={m['pages.blog.write.heading']} />
+							<T key="pages.blog.write.heading" />
 						</h2>
 						<div class="flex items-end gap-4">
 							{#each ['h-8', 'h-14', 'h-6', 'h-7'] as cls (cls)}
@@ -164,15 +163,15 @@
 							{/each}
 						</div>
 					</div>
-					<p><T message={m['pages.blog.write.desc']} /></p>
+					<p><T key="pages.blog.write.desc" /></p>
 					<a
 						class="c-btn c-btn--pop w-fit text-left"
 						href={p['/:lang/blog/write']({ lang: routing.lang })}
 					>
 						<i class="i i-[ph--pencil-simple] h-6 w-6"></i>
-						<span><T message={m['pages.blog.write.cta']} /></span>
+						<span><T key="pages.blog.write.cta" /></span>
 					</a>
-					<p><T message={m['pages.blog.write.discuss']} /></p>
+					<p><T key="pages.blog.write.discuss" /></p>
 					<div class="tablet:gap-8 desktop:gap-10 flex items-end gap-4">
 						<div class="_body bg-surface-variant h-6 flex-1 origin-left"></div>
 						<div class="_body bg-surface-variant h-8 w-8 origin-left"></div>
@@ -221,13 +220,13 @@
 			<div
 				class="shadow-brutal bg-surface flex items-start justify-between border-2 border-current"
 			>
-				<p class="p-4 pl-6 leading-relaxed"><T message={m['pages.blog.resources.desc']} /></p>
+				<p class="p-4 pl-6 leading-relaxed"><T key="pages.blog.resources.desc" /></p>
 				<a
 					class="tablet:self-stretch desktop:p-4 bg-secondary mobile:shadow-brutal shadow-on-surface group grid
 					place-items-center p-8 text-white"
 					href="{p['/:lang']({ lang: routing.lang })}#resources"
 				>
-					<span class="sr-only"><T message={m['pages.blog.resources.view']} /></span>
+					<span class="sr-only"><T key="pages.blog.resources.view" /></span>
 					<i class="i i-[ph--arrow-right] h-6 w-6 {commonArrowLinkClasses}"></i>
 				</a>
 			</div>
@@ -254,7 +253,7 @@
 	<GradientBackground>
 		<section class="max-w-pad pt-section pb-section-more" data-pagefind-ignore>
 			<h2 class="sr-only" id="newsletter">
-				<T message={m.newsletter} />
+				<T key="newsletter" />
 			</h2>
 			<BlogNewsletter data={data.subscribeFormData} />
 		</section>
