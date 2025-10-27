@@ -4,6 +4,8 @@
 	import { Context } from '../context';
 	import type { Message } from '../types.public';
 
+	import MaybeHtml from './MaybeHtml.svelte';
+
 	import type { RemoteTProps, StaticTProps } from '.';
 </script>
 
@@ -24,8 +26,6 @@
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	let maybeFetched = $derived((t as any)({ key, message, params, options }));
-	let translated = $derived(typeof maybeFetched === 'string' ? maybeFetched : await maybeFetched);
 </script>
 
-<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-{@html translated}
+<MaybeHtml content={typeof maybeFetched === 'string' ? maybeFetched : await maybeFetched} />
