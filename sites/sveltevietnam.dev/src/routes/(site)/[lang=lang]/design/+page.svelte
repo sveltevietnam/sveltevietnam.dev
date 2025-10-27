@@ -1,13 +1,12 @@
 <script lang="ts">
 	import { StackItem } from '@svelte-put/async-stack';
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { STATUSES, type Status } from '@sveltevietnam/kit/constants';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { BaseNotification } from '@sveltevietnam/kit/notifications';
 
 	import { asset } from '$app/paths';
-	import * as m from '$data/locales/generated/messages';
 	import { BlogPostListItem } from '$lib/components/blog-post-list-item';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import * as pagefind from '$lib/pagefind/attributes';
@@ -19,7 +18,9 @@
 
 	let { data }: PageProps = $props();
 
-	const { routing, i18n: { t } } = Contexts.get();
+	const {
+		i18n: { t },
+	} = Contexts.get();
 
 	const MARK_CLASSES = {
 		info: 'text-info-on-surface bg-info-surface',
@@ -47,10 +48,10 @@
 			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 			<div class="space-y-4">
 				<h1 class="c-text-heading-page text-primary-on-surface">
-					<T message={m['pages.design.heading']} />
+					<T key="pages.design.heading" />
 				</h1>
 				<p class="c-text-subtitle-page">
-					<T message={m['pages.design.desc']} />
+					<T key="pages.design.desc" />
 				</p>
 			</div>
 		</div>
@@ -60,95 +61,95 @@
 	<!-- typography  -->
 	<section class="max-w-pad py-section space-y-10">
 		<h2 class="c-text-heading-lg border-b" id="typography">
-			<T message={m['pages.design.typography.heading']} />
+			<T key="pages.design.typography.heading" />
 		</h2>
 		<table class="border-outline w-full border-collapse border" aria-labelledby="typography">
 			<thead>
 				<tr class="bg-surface-variant text-left *:w-1/2 *:border *:px-3 *:py-2">
-					<th scope="col"><T message={m['pages.design.typography.headers.example']} /></th>
-					<th scope="col"><T message={m['pages.design.typography.headers.desc']} /></th>
+					<th scope="col"><T key="pages.design.typography.headers.example" /></th>
+					<th scope="col"><T key="pages.design.typography.headers.desc" /></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr class="*:border *:px-3 *:py-2">
 					<td>
 						<span class="c-text-heading-page text-primary-on-surface">
-							<T message={m['pages.design.typography.rows.heading_page.title']} />
+							<T key="pages.design.typography.rows.heading_page.title" />
 						</span>
 					</td>
-					<td><T message={m['pages.design.typography.rows.heading_page.desc']} /></td>
+					<td><T key="pages.design.typography.rows.heading_page.desc" /></td>
 				</tr>
 				<tr class="*:border *:px-3 *:py-2">
 					<td>
 						<span class="c-text-heading-lg">
-							<T message={m['pages.design.typography.rows.heading_large.title']} />
+							<T key="pages.design.typography.rows.heading_large.title" />
 						</span>
 					</td>
-					<td><T message={m['pages.design.typography.rows.heading_large.desc']} /></td>
+					<td><T key="pages.design.typography.rows.heading_large.desc" /></td>
 				</tr>
 				<tr class="*:border *:px-3 *:py-2">
 					<td>
 						<span class="c-text-heading-md">
-							<T message={m['pages.design.typography.rows.heading_medium.title']} />
+							<T key="pages.design.typography.rows.heading_medium.title" />
 						</span>
 					</td>
-					<td><T message={m['pages.design.typography.rows.heading_medium.desc']} /></td>
+					<td><T key="pages.design.typography.rows.heading_medium.desc" /></td>
 				</tr>
 				<tr class="*:border *:px-3 *:py-2">
 					<td>
 						<span class="c-text-heading">
-							<T message={m['pages.design.typography.rows.heading.title']} />
+							<T key="pages.design.typography.rows.heading.title" />
 						</span>
 					</td>
-					<td><T message={m['pages.design.typography.rows.heading.desc']} /></td>
+					<td><T key="pages.design.typography.rows.heading.desc" /></td>
 				</tr>
 				<tr class="*:border *:px-3 *:py-2">
 					<td>
 						<span class="c-text-title">
-							<T message={m['pages.design.typography.rows.title.title']} />
+							<T key="pages.design.typography.rows.title.title" />
 						</span>
 					</td>
-					<td><T message={m['pages.design.typography.rows.title.desc']} /></td>
+					<td><T key="pages.design.typography.rows.title.desc" /></td>
 				</tr>
 				<tr class="*:border *:px-3 *:py-2">
 					<td>
 						<span class="c-text-subtitle-page">
-							<T message={m['pages.design.typography.rows.page_subtitle.title']} />
+							<T key="pages.design.typography.rows.page_subtitle.title" />
 						</span>
 					</td>
-					<td><T message={m['pages.design.typography.rows.page_subtitle.desc']} /></td>
+					<td><T key="pages.design.typography.rows.page_subtitle.desc" /></td>
 				</tr>
 				<tr class="*:border *:px-3 *:py-2">
 					<td>
 						<span class="c-text-body-md">
-							<T message={m['pages.design.typography.rows.body_medium.title']} />
+							<T key="pages.design.typography.rows.body_medium.title" />
 						</span>
 					</td>
-					<td><T message={m['pages.design.typography.rows.body_medium.desc']} /></td>
+					<td><T key="pages.design.typography.rows.body_medium.desc" /></td>
 				</tr>
 				<tr class="*:border *:px-3 *:py-2">
 					<td>
 						<span class="c-text-body">
-							<T message={m['pages.design.typography.rows.body.title']} />
+							<T key="pages.design.typography.rows.body.title" />
 						</span>
 					</td>
-					<td><T message={m['pages.design.typography.rows.body.desc']} /></td>
+					<td><T key="pages.design.typography.rows.body.desc" /></td>
 				</tr>
 				<tr class="*:border *:px-3 *:py-2">
 					<td>
 						<span class="c-text-body-sm">
-							<T message={m['pages.design.typography.rows.body_small.title']} />
+							<T key="pages.design.typography.rows.body_small.title" />
 						</span>
 					</td>
-					<td><T message={m['pages.design.typography.rows.body_small.desc']} /></td>
+					<td><T key="pages.design.typography.rows.body_small.desc" /></td>
 				</tr>
 				<tr class="*:border *:px-3 *:py-2">
 					<td>
 						<span class="c-text-body-xs">
-							<T message={m['pages.design.typography.rows.body_smaller.title']} />
+							<T key="pages.design.typography.rows.body_smaller.title" />
 						</span>
 					</td>
-					<td><T message={m['pages.design.typography.rows.body_smaller.desc']} /></td>
+					<td><T key="pages.design.typography.rows.body_smaller.desc" /></td>
 				</tr>
 			</tbody>
 		</table>
@@ -157,10 +158,10 @@
 	<!-- Sand color palette -->
 	<section class="max-w-pad py-section space-y-6">
 		<h2 class="c-text-heading-lg border-b" id="sand-palette">
-			<T message={m['pages.design.sand.heading']} />
+			<T key="pages.design.sand.heading" />
 		</h2>
 		<p>
-			<T message={m['pages.design.sand.desc']} />
+			<T key="pages.design.sand.desc" />
 		</p>
 		<ul class="mobile:justify-center flex flex-wrap">
 			{#each colors as color (color.code)}
@@ -190,7 +191,7 @@
 			{/each}
 		</ul>
 		<p class="c-text-body-sm italic">
-			<T message={m['pages.design.sand.footnote']} />
+			<T key="pages.design.sand.footnote" />
 		</p>
 	</section>
 
@@ -198,9 +199,9 @@
 	<section class="max-w-pad space-y-10">
 		<div class="space-y-6">
 			<h2 class="c-text-heading-lg border-b" id="semantic-colors">
-				<T message={m['pages.design.colors.semantic.heading']} />
+				<T key="pages.design.colors.semantic.heading" />
 			</h2>
-			<p><T message={m['pages.design.colors.semantic.desc']} /></p>
+			<p><T key="pages.design.colors.semantic.desc" /></p>
 		</div>
 
 		{#snippet annotationMarker(num: number, cls: string)}
@@ -223,9 +224,9 @@
 		<!-- Basic colors -->
 		<section class="space-y-6">
 			<h3 class="c-text-heading-md border-b font-normal" id="basic-colors">
-				<T message={m['pages.design.colors.basic.heading']} />
+				<T key="pages.design.colors.basic.heading" />
 			</h3>
-			<p><T message={m['pages.design.colors.basic.desc']} /></p>
+			<p><T key="pages.design.colors.basic.desc" /></p>
 			<div class="space-y-6">
 				<div class="_texture tablet:p-10 desktop:p-20 overflow-auto border p-6">
 					<div
@@ -250,9 +251,9 @@
 		<!-- Status colors -->
 		<section class="space-y-6">
 			<h3 class="c-text-heading-md border-b font-normal" id="status-colors">
-				<T message={m['pages.design.colors.status.heading']} />
+				<T key="pages.design.colors.status.heading" />
 			</h3>
-			<p><T message={m['pages.design.colors.status.desc']} /></p>
+			<p><T key="pages.design.colors.status.desc" /></p>
 			<div class="space-y-6">
 				<div>
 					<div class="relative flex translate-y-px justify-end">
@@ -272,9 +273,9 @@
 						>
 							<div class="space-y-6">
 								<p class="font-lora text-5xl leading-normal font-normal capitalize">{status}</p>
-								<p><T message={m['pages.design.colors.status.sample.desc']} cls={markCls} /></p>
+								<p><T key="pages.design.colors.status.sample.desc" params={{ cls: markCls }} /></p>
 								<p class="c-callout {calloutCls}">
-									<T message={m['pages.design.colors.status.sample.callout']} />
+									<T key="pages.design.colors.status.sample.callout" />
 								</p>
 								<BaseNotification
 									class="_noti"
@@ -282,7 +283,7 @@
 									{status}
 									{item}
 								>
-									<p><T message={m['pages.design.colors.status.sample.notification.desc']} /></p>
+									<p><T key="pages.design.colors.status.sample.notification.desc" /></p>
 								</BaseNotification>
 							</div>
 							{@render annotationMarker(1, 'absolute top-32 right-1/3')}
@@ -305,17 +306,17 @@
 		<div class="space-y-6">
 			<h2 class="c-text-heading-lg border-b" id="logo">Logo</h2>
 			<p>
-				<T message={m['pages.design.logo.desc']} />
+				<T key="pages.design.logo.desc" />
 			</p>
 			<p class="c-callout c-callout--success c-callout--icon-trophy">
-				<T message={m['pages.design.logo.credit']} />
+				<T key="pages.design.logo.credit" />
 			</p>
 		</div>
 
 		<!-- Inspiration -->
 		<section class="space-y-6">
 			<h3 class="c-text-heading-md border-b font-normal" id="logo-inspiration">
-				<T message={m['pages.design.logo.inspiration.heading']} />
+				<T key="pages.design.logo.inspiration.heading" />
 			</h3>
 			<p>
 				<img
@@ -325,13 +326,13 @@
 					alt=""
 					src={asset('/favicon.svg')}
 				/>
-				<T message={m['pages.design.logo.inspiration.desc']} />
+				<T key="pages.design.logo.inspiration.desc" />
 			</p>
 			<div class="tablet:grid-cols-[auto_auto_auto] grid w-fit grid-cols-2 gap-6">
 				<img
 					class="h-auto w-44"
 					src={imgRays}
-					alt={m['pages.design.logo.alt.rays'](routing.lang)}
+					alt={await t({ key: 'pages.design.logo.alt.rays' })}
 					width="177"
 					height="264"
 					fetchpriority="low"
@@ -340,12 +341,12 @@
 				/>
 				<div class="tablet:w-fit flex w-full flex-col gap-6 text-center">
 					<p class="tablet:p-6 border border-current px-2 py-4">
-						<T message={m['pages.design.logo.inspire']} />
+						<T key="pages.design.logo.inspire" />
 					</p>
 					<p class="tablet:p-6 border border-current px-2 py-4">
-						<T message={m['pages.design.logo.community']} />
+						<T key="pages.design.logo.community" />
 					</p>
-					<p class="tablet:p-6 border border-current px-2 py-4"><T message={m['vietnam']} /></p>
+					<p class="tablet:p-6 border border-current px-2 py-4"><T key="vietnam" /></p>
 				</div>
 				<div
 					class="mobile:grid-rows-subgrid tablet:grid-cols-1 mobile:col-span-2 grid grid-cols-2 justify-between gap-6"
@@ -354,7 +355,7 @@
 					<img
 						class="h-auto w-37"
 						src={imgNonLa}
-						alt={m['pages.design.logo.alt.non_la'](routing.lang)}
+						alt={await t({ key: 'pages.design.logo.alt.non_la' })}
 						width="148"
 						height="121"
 						fetchpriority="low"
@@ -368,35 +369,35 @@
 		<!-- Variants -->
 		<section class="space-y-8">
 			<h3 class="c-text-heading-md border-b font-normal" id="logo-variants">
-				<T message={m['pages.design.logo.variants.heading']} />
+				<T key="pages.design.logo.variants.heading" />
 			</h3>
 			<ul class="mobile:justify-center flex flex-wrap gap-x-10 gap-y-6">
 				<li class="w-fit space-y-2">
 					<div class="bg-sand-50 text-svelte flex items-center gap-3 border border-b px-5 py-4">
 						<div class="i i-sveltevietnam h-18 w-18"></div>
 						<p class="c-text-title-sm max-w-25 uppercase">
-							<T message={m['svelte_vietnam.name']} />
+							<T key="svelte_vietnam.name" />
 						</p>
 					</div>
-					<p><T message={m['pages.design.logo.variants.original']} /></p>
+					<p><T key="pages.design.logo.variants.original" /></p>
 				</li>
 				<li class="w-fit space-y-2">
 					<div class="bg-sand-50 text-sand-950 flex items-center gap-3 border border-b px-5 py-4">
 						<div class="i i-sveltevietnam h-18 w-18"></div>
 						<p class="c-text-title-sm max-w-25 uppercase">
-							<T message={m['svelte_vietnam.name']} />
+							<T key="svelte_vietnam.name" />
 						</p>
 					</div>
-					<p><T message={m['pages.design.logo.variants.positive']} /></p>
+					<p><T key="pages.design.logo.variants.positive" /></p>
 				</li>
 				<li class="w-fit space-y-2">
 					<div class="bg-sand-950 text-sand-50 flex items-center gap-3 border border-b px-5 py-4">
 						<div class="i i-sveltevietnam h-18 w-18"></div>
 						<p class="c-text-title-sm max-w-25 uppercase">
-							<T message={m['svelte_vietnam.name']} />
+							<T key="svelte_vietnam.name" />
 						</p>
 					</div>
-					<p><T message={m['pages.design.logo.variants.negative']} /></p>
+					<p><T key="pages.design.logo.variants.negative" /></p>
 				</li>
 			</ul>
 		</section>
