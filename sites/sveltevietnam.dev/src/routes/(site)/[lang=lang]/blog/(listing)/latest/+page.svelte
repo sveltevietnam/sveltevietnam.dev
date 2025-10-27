@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
 
 	import { page } from '$app/state';
-	import * as m from '$data/locales/generated/messages';
 	import { BlogListingIntro } from '$lib/components/blog-listing-intro';
 	import { BlogNewsletter } from '$lib/components/blog-newsletter';
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
@@ -25,20 +24,17 @@
 <main {...pagefind.page({ group: 'blog', importance: 'listing' })}>
 	<BlogListingIntro breadcrumbs={data.routing.breadcrumbs}>
 		{#snippet heading()}
-			<T message={m['pages.blog_latest.heading']} />
+			<T key="pages.blog_latest.heading" />
 		{/snippet}
 
 		{#snippet description()}
-			<T message={m['pages.blog_latest.desc']} />
+			<T key="pages.blog_latest.desc" />
 		{/snippet}
 	</BlogListingIntro>
 
-	<section
-		class="py-section max-w-pad desktop:space-y-10 space-y-8"
-		data-pagefind-ignore
-	>
+	<section class="py-section max-w-pad desktop:space-y-10 space-y-8" data-pagefind-ignore>
 		<h2 class="sr-only" id="listing">
-			<T message={m.listing} />
+			<T key="listing" />
 		</h2>
 		<BlogPostCommonList posts={data.posts} />
 		{#if data.pagination.max > 1}
@@ -49,7 +45,7 @@
 	<GradientBackground pattern="jigsaw">
 		<section class="max-w-pad pt-section pb-section-more" data-pagefind-ignore>
 			<h2 class="sr-only" id="newsletter">
-				<T message={m.newsletter} />
+				<T key="newsletter" />
 			</h2>
 			<BlogNewsletter data={data.subscribeFormData} />
 		</section>
