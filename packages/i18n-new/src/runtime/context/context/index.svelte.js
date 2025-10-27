@@ -31,7 +31,7 @@ export class Context {
 	sanitize = $state(defaultSanitize);
 
 	/** @type {import('./index.svelte').Context<Mode, Language, Mapping>['t']} */
-	t = $derived(
+	t =
 		/** @type {(input: any) => any} */
 		(
 			(input) => {
@@ -70,8 +70,7 @@ export class Context {
 					.then((mod) => mod.t({ key, lang: rLang, params }))
 					.then((text) => rSanitize(text));
 			}
-		),
-	);
+		);
 
 	/** @param {() => import('./index.svelte').ContextInit<Language>} init */
 	constructor(init) {
