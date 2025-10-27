@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 
 	import { page } from '$app/state';
-	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
 	import { EventListing } from '$lib/components/event-listing';
@@ -79,10 +78,10 @@
 			<div class="space-y-4 border-t-4 border-current pt-2">
 				<div class="flex flex-wrap items-baseline justify-between gap-4">
 					<h2 class="c-text-title" id="events">
-						<T message={m['pages.people_id.events']} name={data.person.name} />
+						<T key="pages.people_id.events" params={{ name: data.person.name }} />
 					</h2>
 					<TextArrowLink class="ml-auto" href={links.events}>
-						<T message={m['pages.people_id.view_events']} />
+						<T key="pages.people_id.view_events" />
 					</TextArrowLink>
 				</div>
 			</div>
@@ -99,10 +98,10 @@
 			<div class="space-y-4 border-t-4 border-current pt-2">
 				<div class="flex flex-wrap items-baseline justify-between gap-4">
 					<h2 class="c-text-title" id="posts">
-						<T message={m['pages.people_id.posts_by']} name={data.person.name} />
+						<T key="pages.people_id.posts_by" params={{ name: data.person.name }} />
 					</h2>
 					<TextArrowLink class="ml-auto" href={links.blog}>
-						<T message={m['pages.people_id.view_blog']} />
+						<T key="pages.people_id.view_blog" />
 					</TextArrowLink>
 				</div>
 			</div>

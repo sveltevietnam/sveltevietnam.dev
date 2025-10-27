@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
 	import fallback1x1 from '@sveltevietnam/kit/assets/images/fallbacks/1x1.jpg?enhanced&w=w=640;320&imagetools';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 
-	import * as m from '$data/locales/generated/messages';
 	import type { Person } from '$data/people';
 	import * as p from '$data/routes/generated';
 	import { IntroSeparator } from '$lib/components/intro-separator';
@@ -41,7 +40,7 @@
 					{href}
 				>
 					<span class="sr-only">
-						<T message={m.view_more} />
+						<T key="view_more" />
 					</span>
 					<div
 						class={[
@@ -75,7 +74,7 @@
 				class="text-surface bg-on-surface hover:bg-primary-on-surface relative translate-px self-end px-4 py-2 transition-colors @2xl:absolute @2xl:right-0 @2xl:bottom-0"
 				{href}
 			>
-				<T message={m.view_more} />
+				<T key="view_more" />
 			</TextArrowLink>
 		</article>
 	</div>
@@ -88,10 +87,10 @@
 			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 			<div class="space-y-4">
 				<h1 class="c-text-heading-lg text-primary-on-surface font-bold">
-					<T message={m['pages.people.heading']}></T>
+					<T key="pages.people.heading"></T>
 				</h1>
 				<p class="c-text-subtitle-page max-w-readable leading-relaxed">
-					<T message={m['pages.people.desc']}></T>
+					<T key="pages.people.desc"></T>
 				</p>
 			</div>
 		</div>
@@ -101,7 +100,7 @@
 	<!-- listing -->
 	<section class="max-w-pad py-section-more">
 		<h2 class="sr-only" id="listing">
-			<T message={m.listing} />
+			<T key="listing" />
 		</h2>
 		<ul class="divide-outline max-w-200 divide-y">
 			{#each data.people as person (person.id)}
