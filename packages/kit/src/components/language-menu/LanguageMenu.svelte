@@ -43,6 +43,8 @@
 		</span>
 	{/snippet}
 
+	<!-- FIXME: switching lang currently causes dialog & notification to fail. Forcing reload for now! -->
+
 	{#snippet content()}
 		<ul class="border-outline divide-outline bg-surface w-max divide-y border">
 			<li>
@@ -51,6 +53,7 @@
 						px-4 py-2"
 					href={routing.vi}
 					data-current={lang === 'vi'}
+					data-sveltekit-reload
 					data-sveltekit-replacestate
 					data-sveltekit-keepfocus
 					data-sveltekit-noscroll
@@ -67,6 +70,7 @@
 						px-4 py-2"
 					href={routing.en}
 					data-current={lang === 'en'}
+					data-sveltekit-reload
 					data-sveltekit-replacestate
 					data-sveltekit-keepfocus
 					data-sveltekit-noscroll
