@@ -14,7 +14,7 @@ export type SharedTProps = {
 export type StaticTProps<M extends Message> = SharedTProps & {
 	/**
 	 * the message to render, typically imported from your generated i18n module,
-	 * if the message is defined with parameters, pass them as additional props
+	 * if the message is defined with parameters, pass them via the `params` prop
 	 *
 	 * @example
 	 * ```svelte
@@ -37,6 +37,8 @@ export type RemoteTProps<K extends Key> = SharedTProps & {
 	 * key to the message to fetch, type of this key should
 	 * be automatically augmented  via the generated `<output-dir>/i18n.d.ts` file
 	 * after the vite plugin has run
+	 *
+	 * if the message is defined with parameters, pass them via the `params` prop
 	 */
 	key: K;
 	/** ad-hoc lang override, otherwise inherit from nearest `Provider` */
