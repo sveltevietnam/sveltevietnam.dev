@@ -51,7 +51,7 @@
 		"svelte": "^5.42.2",
 		"sveltekit-superforms": "^2.27.4",
 		"tailwindcss": "4.1.14",
-		"vite": "^7.1.10",
+		"vite": "^7.1.12",
 		"vite-imagetools": "^9.0.0",
 		"vite-node": "^3.2.4",
 		"vite-plugin-qrcode": "^0.3.0"
