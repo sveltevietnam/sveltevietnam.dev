@@ -1,14 +1,13 @@
 <script lang="ts" module>
 	import { turnstile } from '@svelte-put/cloudflare-turnstile';
 	import { SUBSCRIPTION_CHANNELS } from '@sveltevietnam/backend/data/subscribers/channels';
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { onMount } from 'svelte';
 	import type { ChangeEventHandler, HTMLFormAttributes } from 'svelte/elements';
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import { superForm } from 'sveltekit-superforms';
 
-	import * as m from '$data/locales/generated/messages';
 	import { VITE_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
 
 	import { type SubscribeUpsertInput } from './schema';
@@ -21,7 +20,11 @@
 <script lang="ts">
 	let { class: cls, data, action = '?/subscribe', ...rest }: SubscriberUpsertFormProps = $props();
 
-	const { routing, notifications: { toaster }, i18n: { t } } = Contexts.get();
+	const {
+		routing,
+		notifications: { toaster },
+		i18n: { t },
+	} = Contexts.get();
 
 	let all = $state(false);
 
@@ -81,7 +84,7 @@
 				<p class="c-text-body-sm text-red-500" id="error-name">{$errors.name[0]}</p>
 			{/if}
 			<label class="c-text-input">
-				<span class="min-w-12"><T message={m['inputs.name.label']} />:</span>
+				<span class="min-w-12"><T key="inputs.name.label" />:</span>
 				<input
 					class=" w-full"
 					type="text"
@@ -117,9 +120,9 @@
 		</div>
 		<div class="space-y-1">
 			<div class="c-text-body-sm flex items-baseline justify-between gap-6">
-				<p class=""><T message={m['inputs.turnstile.desc']} />:</p>
+				<p class=""><T key="inputs.turnstile.desc" />:</p>
 				{#if $errors.turnstile?.[0]}
-					<p class="max-w-readable-tight text-right c-text-body-sm text-red-500">
+					<p class="max-w-readable-tight c-text-body-sm text-right text-red-500">
 						{$errors.turnstile[0]}
 					</p>
 				{/if}
@@ -151,7 +154,7 @@
 		<label class="flex cursor-pointer items-center gap-3">
 			<input class="c-checkbox" type="checkbox" onchange={handleCheckAll} bind:checked={all} />
 			<span>
-				<T message={m['forms.subscriber.upsert.all']} />
+				<T key="forms.subscriber.upsert.all" />
 			</span>
 		</label>
 	</div>
@@ -161,6 +164,6 @@
 		data-delayed={$delayed}
 		data-timeout={$timeout}
 	>
-		<span><T message={m.subscribe} /></span>
+		<span><T key="subscribe" /></span>
 	</button>
 </form>
