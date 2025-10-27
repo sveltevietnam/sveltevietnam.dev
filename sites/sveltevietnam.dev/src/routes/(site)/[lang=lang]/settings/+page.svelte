@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
+	import type { Key } from '@sveltevietnam/i18n-new/generated';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { COLOR_SCHEMES, SPLASH_OPTIONS } from '@sveltevietnam/kit/constants';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
@@ -7,7 +8,6 @@
 
 	import { beforeNavigate } from '$app/navigation';
 	import { page } from '$app/state';
-	import * as m from '$data/locales/generated/messages';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { SplashScreenPlayground } from '$lib/components/splash-screen-playground';
 	import * as pagefind from '$lib/pagefind/attributes';
@@ -49,10 +49,10 @@
 	});
 
 	const mColorScheme = {
-		light: m['pages.settings.color_scheme.light'],
-		dark: m['pages.settings.color_scheme.dark'],
-		system: m['pages.settings.color_scheme.system'],
-	};
+		light: 'pages.settings.color_scheme.light',
+		dark: 'pages.settings.color_scheme.dark',
+		system: 'pages.settings.color_scheme.system',
+	} as const satisfies Record<string, Key>;
 
 	const languages = $derived({
 		vi: {
@@ -66,11 +66,11 @@
 	});
 
 	const mSplash = {
-		random: m['pages.settings.splash_screen.variants.random'],
-		short: m['pages.settings.splash_screen.variants.short'],
-		long: m['pages.settings.splash_screen.variants.long'],
-		disabled: m['pages.settings.splash_screen.variants.disabled'],
-	};
+		random: 'pages.settings.splash_screen.variants.random',
+		short: 'pages.settings.splash_screen.variants.short',
+		long: 'pages.settings.splash_screen.variants.long',
+		disabled: 'pages.settings.splash_screen.variants.disabled',
+	} as const satisfies Record<string, Key>;
 
 	beforeNavigate(({ from, to, type }) => {
 		if (
@@ -116,10 +116,10 @@
 				<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 				<div class="space-y-4">
 					<h1 class="c-text-heading-page text-primary-on-surface">
-						<T message={m['pages.settings.heading']} />
+						<T key="pages.settings.heading" />
 					</h1>
 					<p class="c-text-subtitle-page max-w-readable">
-						<T message={m['pages.settings.desc']} />
+						<T key="pages.settings.desc" />
 					</p>
 				</div>
 			</div>
@@ -146,7 +146,7 @@
 		<!-- Color scheme -->
 		<section class="space-y-10" data-pagefind-body>
 			<h2 class="c-text-heading border-b" id="color-scheme">
-				<T message={m['pages.settings.color_scheme.heading']} />
+				<T key="pages.settings.color_scheme.heading" />
 			</h2>
 			<div class="flex flex-wrap gap-10">
 				{#each COLOR_SCHEMES as scheme (scheme)}
@@ -165,7 +165,7 @@
 							<ColorSchemeSkeleton class="w-50" {scheme} />
 						</span>
 						<span class="peer-checked:text-primary mt-2 block">
-							<T message={mColorScheme[scheme]} />
+							<T key={mColorScheme[scheme]} />
 						</span>
 						{@render checkmark()}
 					</label>
@@ -176,7 +176,7 @@
 		<!-- Language -->
 		<section class="space-y-10" data-pagefind-body>
 			<h2 class="c-text-heading border-b" id="language">
-				<T message={m['pages.settings.language.heading']} />
+				<T key="pages.settings.language.heading" />
 			</h2>
 			<div class="flex flex-wrap gap-10">
 				{#each Object.entries(languages) as [lang, { icon, m }] (lang)}
@@ -203,7 +203,7 @@
 		<!-- Splash screen -->
 		<section class="space-y-10" data-pagefind-body>
 			<h2 class="c-text-heading border-b" id="splash-screen">
-				<T message={m['pages.settings.splash_screen.heading']} />
+				<T key="pages.settings.splash_screen.heading" />
 			</h2>
 			<div class="flex flex-wrap gap-6">
 				{#each SPLASH_OPTIONS as variant (variant)}
@@ -221,14 +221,14 @@
 							{...$constraints.splash}
 						/>
 						<span data-pagefind-body>
-							<T message={mSplash[variant]} />
+							<T key={mSplash[variant]} />
 						</span>
 						{@render checkmark()}
 					</label>
 				{/each}
 			</div>
 			<p data-pagefind-body>
-				<T message={m['pages.settings.splash_screen.desc']} />
+				<T key="pages.settings.splash_screen.desc" />
 			</p>
 			<SplashScreenPlayground />
 		</section>
@@ -245,11 +245,11 @@
 			<label class="c-btn c-btn--outlined w-33" data-delayed={$delayed} data-timeout={$timeout}>
 				<input value="1" name="default" type="submit" class="sr-only" />
 				<span>
-					<T message={m['pages.settings.ctas.default']} />
+					<T key="pages.settings.ctas.default" />
 				</span>
 			</label>
 			<button class="c-btn w-33" type="submit" data-delayed={$delayed} data-timeout={$timeout}>
-				<span><T message={m['pages.settings.ctas.save']} /></span>
+				<span><T key="pages.settings.ctas.save" /></span>
 			</button>
 		</div>
 	</form>
