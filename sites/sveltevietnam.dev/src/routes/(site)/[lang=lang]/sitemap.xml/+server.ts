@@ -59,17 +59,20 @@ export const GET: RequestHandler = async ({ params }) => {
 				href: VITE_PUBLIC_ORIGIN + path({ lang: l }),
 			})),
 		})),
-		...events.map((event) => ({
-			loc: VITE_PUBLIC_ORIGIN + p['/:lang/events/:slug']({ lang, slug: event.id }),
-			...(event.startDate instanceof Date && {
-				lastmod: toW3CDate(event.startDate),
-			}),
-			priority: 0.9,
-			alternates: LANGUAGES.map((l) => ({
-				hreflang: l,
-				href: VITE_PUBLIC_ORIGIN + p['/:lang/events/:slug']({ lang: l, slug: event.id }),
+		...events
+			// exclude events hosted on external sites
+			.filter((event) => !event.href.startsWith('http'))
+			.map((event) => ({
+				loc: VITE_PUBLIC_ORIGIN + p['/:lang/events/:slug']({ lang, slug: event.href }),
+				...(event.startDate instanceof Date && {
+					lastmod: toW3CDate(event.startDate),
+				}),
+				priority: 0.9,
+				alternates: LANGUAGES.map((l) => ({
+					hreflang: l,
+					href: VITE_PUBLIC_ORIGIN + p['/:lang/events/:slug']({ lang: l, slug: event.href }),
+				})),
 			})),
-		})),
 		...blogPosts.map((post) => ({
 			loc: VITE_PUBLIC_ORIGIN + p['/:lang/blog/:slug']({ lang, slug: post.slug }),
 			lastmod: toW3CDate(post.updatedAt || post.publishedAt),
