@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { Toc } from '@svelte-put/toc';
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 
-	import * as m from '$data/locales/generated/messages';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { TableOfContents } from '$lib/components/table-of-contents';
 	import * as pagefind from '$lib/pagefind/attributes';
@@ -34,10 +33,10 @@
 				<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 				<div class="space-y-4">
 					<h1 class="c-text-heading-page text-primary-on-surface">
-						<T message={m['pages.blog_write.heading']} />
+						<T key="pages.blog_write.heading" />
 					</h1>
 					<p class="c-text-subtitle-page max-w-readable">
-						<T message={m['pages.blog_write.desc']} />
+						<T key="pages.blog_write.desc" />
 					</p>
 				</div>
 			</div>
@@ -64,7 +63,7 @@
 			<section
 				class="top-header mobile:border-onehalf mobile:border-dashed mobile:border-tertiary mobile:-mx-3 mobile:p-3 space-y-6 lg:sticky"
 			>
-				<h2 class="c-text-heading lg:border-b"><T message={m['pages.blog_write.toc']} /></h2>
+				<h2 class="c-text-heading lg:border-b"><T key="pages.blog_write.toc" /></h2>
 				<TableOfContents {toc} />
 			</section>
 			<hr class="mt-10 lg:hidden" />
