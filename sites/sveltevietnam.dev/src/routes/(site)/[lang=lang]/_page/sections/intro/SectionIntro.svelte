@@ -1,12 +1,17 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n-new';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { createTimeline, onScroll, stagger, eases, type Timeline } from 'animejs';
 	import { onMount } from 'svelte';
 
+	import { SplitText } from '$lib/components/split-text';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import svgMesh from './images/mesh.svg?no-inline';
 
+	const {
+		i18n: { t },
+	} = Contexts.get();
 	const settings = SettingsContext.get();
 
 	let elSection: HTMLElement;
@@ -132,7 +137,7 @@
 				class="font-lora tablet:text-2xl desktop:text-3xl text-center text-lg leading-tight font-medium select-text"
 				bind:this={elSubtitle}
 			>
-				<T key="pages.home.intro.subtitle" />
+				<SplitText text={await t({ key: 'pages.home.intro.subtitle' })} />
 			</p>
 			<svg
 				class="tablet:h-20 desktop:h-25 h-15 w-auto shrink-0"
