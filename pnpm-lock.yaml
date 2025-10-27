@@ -598,9 +598,6 @@ importers:
       '@sveltevietnam/css':
         specifier: workspace:*
         version: link:../../packages/css
-      '@sveltevietnam/i18n':
-        specifier: workspace:*
-        version: link:../../packages/i18n
       '@sveltevietnam/i18n-new':
         specifier: workspace:*
         version: link:../../packages/i18n-new

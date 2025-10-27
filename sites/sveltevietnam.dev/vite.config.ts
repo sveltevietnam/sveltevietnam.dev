@@ -4,7 +4,6 @@ import { inlineSvg } from '@svelte-put/inline-svg/vite';
 import { enhancedImages } from '@sveltejs/enhanced-img';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { css } from '@sveltevietnam/css/vite';
-// import { i18n } from '@sveltevietnam/i18n/vite';
 import { i18n } from '@sveltevietnam/i18n-new/vite';
 import { routes } from '@sveltevietnam/routes/vite';
 import tailwindcss from '@tailwindcss/vite';
@@ -63,7 +62,6 @@ export default defineConfig({
 		enhancedImages(),
 		css(),
 		tailwindcss(),
-		// i18n({ input: 'src/**/locales' }),
 		i18n({
 			input: 'src/lib/i18n/locales',
 			output: 'src/lib/i18n/generated',
