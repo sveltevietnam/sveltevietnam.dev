@@ -3,6 +3,7 @@
 	"name": "sveltevietnam",
 	"account_id": "b749b5068031c54e0dddf71d07ea1004",
 	"compatibility_date": "2025-04-28",
+	"compatibility_flags": ["nodejs_compat"],
 	"services": [
 		{
 			"binding": "backend",
