@@ -1,6 +1,6 @@
-import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
+import * as m from '$lib/i18n/generated/messages';
 
 import type { PageServerLoad } from './$types';
 import ogImageEn from './_page/og-roadmap.en.jpg?url';

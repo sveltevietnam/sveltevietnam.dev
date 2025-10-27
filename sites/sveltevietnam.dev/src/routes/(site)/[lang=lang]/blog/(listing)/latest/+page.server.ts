@@ -1,7 +1,7 @@
 import { loadBlogPosts } from '$data/blog/posts';
-import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
+import * as m from '$lib/i18n/generated/messages';
 import { getPaginationFromUrl } from '$lib/utils/url';
 
 import type { PageServerLoad } from './$types';

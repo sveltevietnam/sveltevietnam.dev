@@ -1,8 +1,8 @@
 import { getEventStatus, loadEvents, type EventMetadata } from '$data/events';
-import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { upsert } from '$lib/forms/subscriber/server';
+import * as m from '$lib/i18n/generated/messages';
 
 import type { Actions, PageServerLoad } from './$types';
 import ogImageEn from './_page/og-events.en.jpg?url';

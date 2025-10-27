@@ -10,7 +10,6 @@ import { valibot } from 'sveltekit-superforms/adapters';
 import { superValidate } from 'sveltekit-superforms/server';
 import * as v from 'valibot';
 
-import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { VITE_PRIVATE_COOKIE_NAME_LANGUAGE } from '$env/static/private';
@@ -18,6 +17,7 @@ import {
 	VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
 	VITE_PUBLIC_COOKIE_NAME_SPLASH,
 } from '$env/static/public';
+import * as m from '$lib/i18n/generated/messages';
 
 import type { Actions, PageServerLoad } from './$types';
 import ogImageEn from './_page/images/og-settings.en.jpg?url';

@@ -1,11 +1,11 @@
 import { loadBlogCategory } from '$data/blog/categories';
 import { searchBlogPosts, loadBlogPosts } from '$data/blog/posts';
 import { loadBlogSeries } from '$data/blog/series';
-import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 import { upsert } from '$lib/forms/subscriber/server';
+import * as m from '$lib/i18n/generated/messages';
 import { buildStructuredBlog } from '$lib/meta/structured/blog';
 
 import type { Actions, PageServerLoad } from './$types';
