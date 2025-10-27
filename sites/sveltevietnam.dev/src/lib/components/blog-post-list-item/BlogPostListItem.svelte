@@ -1,11 +1,10 @@
 <script lang="ts" module>
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
 	import fallback16x9 from '@sveltevietnam/kit/assets/images/fallbacks/16x9.jpg?enhanced&w=1540;1088;686&imagetools';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { Picture } from 'vite-imagetools';
 
-	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 
 	type ScreenScopedVar<T extends string> = {
@@ -67,7 +66,7 @@
 	{...rest}
 >
 	<a class="c-link-image shrink-0" {href}>
-		<span class="sr-only"><T message={m.view_more} /></span>
+		<span class="sr-only"><T key="view_more" /></span>
 		<enhanced:img
 			class={[
 				'aspect-video max-w-full',
@@ -118,7 +117,7 @@
 				</a>
 			</p>
 		</div>
-		<div class="c-text-body-sm flex items-center gap-2 flex-wrap">
+		<div class="c-text-body-sm flex flex-wrap items-center gap-2">
 			<p class="">
 				{#each post.authors as { name, id }, i (id)}
 					<a

@@ -8,7 +8,6 @@
   import svgTuNom from '$lib/assets/images/svg/tu-nom.svg?no-inline';
   import svgDong from '$lib/assets/images/svg/dong-thai-binh-hung-bao.svg?no-inline';
   import svgChimLac from '$lib/assets/images/svg/chim-lac.svg?no-inline';
-  import * as m from '$data/locales/generated/messages';
   import { DiscordNewMessage } from '$lib/notifications/discord-new-message';
 
   import devToolsSlow3gImage from '../images/devtools-slow-3g.jpg?format=webp&imagetools';

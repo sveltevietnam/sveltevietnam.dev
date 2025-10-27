@@ -1,8 +1,6 @@
 <script lang="ts" generics="T">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
 	import type { Snippet } from 'svelte';
-
-	import * as m from '$data/locales/generated/messages';
 
 	let {
 		items,
@@ -20,7 +18,7 @@
 				{#if items.length > 2}
 					,
 				{/if}
-				<T message={m.and} />&nbsp;
+				<T key="and" />&nbsp;
 			</span>
 		{:else}
 			<span>,&nbsp;</span>

@@ -5,7 +5,6 @@
 
 	import { browser, dev, version } from '$app/environment';
 	import { page } from '$app/state';
-	import * as m from '$data/locales/generated/messages';
 	import {
 		VITE_PUBLIC_ORIGIN,
 		VITE_PUBLIC_UMAMI,
@@ -15,6 +14,7 @@
 	} from '$env/static/public';
 	import ogImageEn from '$lib/assets/images/fallbacks/og.en.jpg?url';
 	import ogImageVi from '$lib/assets/images/fallbacks/og.vi.jpg?url';
+	import * as m from '$lib/i18n/generated/messages';
 	import { SearchContext } from '$lib/search/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
@@ -41,7 +41,12 @@
 		}),
 		i18n: () => ({ lang: data.settings.language }),
 	});
-	const { routing, colorScheme, notifications: { toaster }, i18n: { t } } = contexts;
+	const {
+		routing,
+		colorScheme,
+		notifications: { toaster },
+		i18n: { t },
+	} = contexts;
 	const settings = SettingsContext.set(data.settings);
 	SearchContext.set(page.url.origin);
 
@@ -80,7 +85,7 @@
 			}
 			toaster.info({
 				title: t({ key: 'notifications.delayed_hydration.title' }),
-				message: t({ key: 'notifications.delayed_hydration.message' })
+				message: t({ key: 'notifications.delayed_hydration.message' }),
 			});
 		}
 
@@ -113,16 +118,16 @@
 		}),
 	}}
 	defaults={{
-		title: m['svelte_vietnam.name'](routing.lang).toString(),
-		description: m['pages.home.desc'](routing.lang).toString(),
-		keywords: m['pages.home.keywords'](routing.lang).toString(),
+		title: m['svelte_vietnam.name'](routing.lang),
+		description: m['pages.home.desc'](routing.lang),
+		keywords: m['pages.home.keywords'](routing.lang),
 		canonical: page.url.origin + page.url.pathname,
 		og: {
 			type: 'website',
-			siteName: m['svelte_vietnam.name'](routing.lang).toString(),
+			siteName: m['svelte_vietnam.name'](routing.lang),
 			image: {
 				src: page.url.origin + ogImage[routing.lang],
-				alt: m['svelte_vietnam.name'](routing.lang).toString(),
+				alt: m['svelte_vietnam.name'](routing.lang),
 				width: 1200,
 				height: 630,
 				type: 'image/jpeg',

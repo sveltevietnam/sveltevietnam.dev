@@ -4,7 +4,6 @@
   import { BaseNotification} from '@sveltevietnam/kit/notifications';
   import { Contexts } from '@sveltevietnam/kit/contexts';
 
-  import * as m from '$data/locales/generated/messages';
   import { SplashScreenPlayground } from '$lib/components/splash-screen-playground';
 
   import hydrationImage from '../images/hydration-vi.png?format=webp&imagetools';

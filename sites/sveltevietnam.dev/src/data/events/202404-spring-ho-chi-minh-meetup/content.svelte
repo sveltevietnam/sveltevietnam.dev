@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 
@@ -32,7 +32,6 @@
 	import imgFooterBg from './images/footer-bg.jpg?enhanced&w=2048;1440;720&imagetools';
 	import imgHeaderBg from './images/header-bg.jpg?enhanced&w=2048;1440;720&imagetools';
 	import imgMiddleBg from './images/middle-bg.jpg?enhanced&w=2048;1440;720&imagetools';
-	import * as m from './locales/generated/messages';
 
 	let { data }: PageProps = $props();
 
@@ -79,13 +78,13 @@
 						<p>
 							<ListMessage items={data.event.location}>
 								{#snippet item(l)}
-									<a class="c-link-preserved" href={l.googleMapUrl}>{l.address}</a>
+									<a class="c-link-preserved" href={l.href}>{l.name}</a>
 								{/snippet}
 							</ListMessage>
 						</p>
 					{/if}
 					<p>
-						<T message={m['hosted_by']} />
+						<T key="events.202404_spring_hcm.hosted_by" />
 						<a class="c-link-preserved" href="https://www.designveloper.com">
 							<img src={dsvLogoImage} alt="" height="24" width="24" class="inline-block" />
 							<span>Designveloper</span>
@@ -100,14 +99,14 @@
 	<!-- Recap -->
 	<section class="pb-section pt-section-more max-w-pad relative z-1 space-y-6">
 		<h2 class="c-text-heading-lg border-b" id="recap">
-			<T message={m['recap.heading']} />
+			<T key="events.202404_spring_hcm.recap.heading" />
 		</h2>
 		<div class="flex flex-wrap items-start gap-10 leading-relaxed">
 			<p class="min-w-[min(40ch,100%)] flex-5">
-				<T message={m['recap.desc']} />
+				<T key="events.202404_spring_hcm.recap.desc" />
 			</p>
 			<p class="c-callout c-callout--success c-callout--icon-trophy min-w-[min(32ch,100%)] flex-4">
-				<T message={m['recap.shoutout']} />
+				<T key="events.202404_spring_hcm.recap.shoutout" />
 			</p>
 		</div>
 	</section>
@@ -128,7 +127,7 @@
 		</div>
 		<section class="max-w-pad relative z-1 space-y-8">
 			<h2 class="c-text-heading-lg border-b" id="timeline">
-				<T message={m['timeline.heading']} />
+				<T key="events.202404_spring_hcm.timeline.heading" />
 			</h2>
 			<dl class="space-y-2">
 				<!-- location -->
@@ -140,7 +139,7 @@
 						<dd>
 							<ListMessage items={data.event.location}>
 								{#snippet item(l)}
-									<a class="c-link-preserved" href={l.googleMapUrl}>{l.address}</a>
+									<a class="c-link-preserved" href={l.href}>{l.name}</a>
 								{/snippet}
 							</ListMessage>
 						</dd>
@@ -167,24 +166,24 @@
 			<EventTimeline.List>
 				<EventTimeline.Item startDate={data.event.startDate} offsetMinutes={0} numMinutes={15}>
 					{#snippet heading()}
-						<T message={m['timeline.intro.heading']} />
+						<T key="events.202404_spring_hcm.timeline.intro.heading" />
 					{/snippet}
 					{#snippet content()}
 						<p class="leading-relaxed">
-							<T message={m['timeline.intro.desc']} />
+							<T key="events.202404_spring_hcm.timeline.intro.desc" />
 						</p>
 					{/snippet}
 				</EventTimeline.Item>
 
 				<EventTimeline.Item startDate={data.event.startDate} offsetMinutes={15} numMinutes={25}>
 					{#snippet heading()}
-						<T message={m['timeline.sharings.pretext']} />: "<T
-							message={m['timeline.sharings.one.title']}
+						<T key="events.202404_spring_hcm.timeline.sharings.pretext" />: "<T
+							key="events.202404_spring_hcm.timeline.sharings.one.title"
 						/>"
 					{/snippet}
 					{#snippet content()}
 						<p class="leading-relaxed">
-							<T message={m['timeline.sharings.one.desc']} />
+							<T key="events.202404_spring_hcm.timeline.sharings.one.desc" />
 						</p>
 						<Person
 							name={people.vnphanquang.name}
@@ -200,13 +199,13 @@
 
 				<EventTimeline.Item startDate={data.event.startDate} offsetMinutes={40} numMinutes={25}>
 					{#snippet heading()}
-						<T message={m['timeline.sharings.pretext']} />: "<T
-							message={m['timeline.sharings.two.title']}
+						<T key="events.202404_spring_hcm.timeline.sharings.pretext" />: "<T
+							key="events.202404_spring_hcm.timeline.sharings.two.title"
 						/>"
 					{/snippet}
 					{#snippet content()}
 						<p class="leading-relaxed">
-							<T message={m['timeline.sharings.two.desc']} />
+							<T key="events.202404_spring_hcm.timeline.sharings.two.desc" />
 						</p>
 						<Person
 							name={people.trongnguyen24.name}
@@ -222,11 +221,11 @@
 
 				<EventTimeline.Item startDate={data.event.startDate} offsetMinutes={65} numMinutes={15}>
 					{#snippet heading()}
-						<T message={m['timeline.qna.pretext']} />: "<T message={m['timeline.qna.one.title']} />"
+						<T key="events.202404_spring_hcm.timeline.qna.pretext" />: "<T key="events.202404_spring_hcm.timeline.qna.one.title" />"
 					{/snippet}
 					{#snippet content()}
 						<p class="leading-relaxed">
-							<T message={m['timeline.qna.one.desc']} />
+							<T key="events.202404_spring_hcm.timeline.qna.one.desc" />
 						</p>
 						<Person
 							name={people.vnphanquang.name}
@@ -242,32 +241,32 @@
 
 				<EventTimeline.Item startDate={data.event.startDate} offsetMinutes={80} numMinutes={15}>
 					{#snippet heading()}
-						<T message={m['timeline.break']} />
+						<T key="events.202404_spring_hcm.timeline.break" />
 					{/snippet}
 				</EventTimeline.Item>
 
 				<EventTimeline.Item startDate={data.event.startDate} offsetMinutes={95} numMinutes={10}>
 					{#snippet heading()}
-						<T message={m['timeline.discussions.pretext']} />: "<T
-							message={m['timeline.discussions.one.title']}
+						<T key="events.202404_spring_hcm.timeline.discussions.pretext" />: "<T
+							key="events.202404_spring_hcm.timeline.discussions.one.title"
 						/>"
 					{/snippet}
 					{#snippet content()}
 						<p class="leading-relaxed">
-							<T message={m['timeline.discussions.one.desc']} />
+							<T key="events.202404_spring_hcm.timeline.discussions.one.desc" />
 						</p>
 					{/snippet}
 				</EventTimeline.Item>
 
 				<EventTimeline.Item startDate={data.event.startDate} offsetMinutes={105} numMinutes={10}>
 					{#snippet heading()}
-						<T message={m['timeline.discussions.two']} />
+						<T key="events.202404_spring_hcm.timeline.discussions.two" />
 					{/snippet}
 				</EventTimeline.Item>
 
 				<EventTimeline.Item startDate={data.event.startDate} offsetMinutes={115} numMinutes={5}>
 					{#snippet heading()}
-						<T message={m['timeline.closing']} />
+						<T key="events.202404_spring_hcm.timeline.closing" />
 					{/snippet}
 				</EventTimeline.Item>
 			</EventTimeline.List>
@@ -277,52 +276,52 @@
 	<!-- Frequently Asked Questions -->
 	<section class="py-section max-w-pad relative z-1 space-y-8">
 		<h2 class="c-text-heading-lg border-b" id="faq">
-			<T message={m['faq.heading']} />
+			<T key="events.202404_spring_hcm.faq.heading" />
 		</h2>
 		<FAQ.List>
-			<FAQ.Item question={m['faq.why_need_ticket.q']} answer={m['faq.why_need_ticket.a']} />
-			<FAQ.Item question={m['faq.come_without_ticket.q']} answer={m['faq.come_without_ticket.a']} />
-			<FAQ.Item question={m['faq.time_and_location.q']} answer={m['faq.time_and_location.a']} />
-			<FAQ.Item question={m['faq.what_to_bring.q']} answer={m['faq.what_to_bring.a']} />
-			<FAQ.Item question={m['faq.why_need_ticket.q']} answer={m['faq.why_need_ticket.a']} />
+			<FAQ.Item question="events.202404_spring_hcm.faq.why_need_ticket.q" answer="events.202404_spring_hcm.faq.why_need_ticket.a" />
+			<FAQ.Item question="events.202404_spring_hcm.faq.come_without_ticket.q" answer="events.202404_spring_hcm.faq.come_without_ticket.a" />
+			<FAQ.Item question="events.202404_spring_hcm.faq.time_and_location.q" answer="events.202404_spring_hcm.faq.time_and_location.a" />
+			<FAQ.Item question="events.202404_spring_hcm.faq.what_to_bring.q" answer="events.202404_spring_hcm.faq.what_to_bring.a" />
+			<FAQ.Item question="events.202404_spring_hcm.faq.why_need_ticket.q" answer="events.202404_spring_hcm.faq.why_need_ticket.a" />
 		</FAQ.List>
 	</section>
 
 	<!-- Images -->
 	<section class="pt-section pb-section-more tablet:space-y-15 max-w-pad relative z-1 space-y-10">
 		<h2 class="c-text-heading-lg border-b" id="images">
-			<T message={m['images.heading']} />
+			<T key="events.202404_spring_hcm.images.heading" />
 		</h2>
 
 		<EventGallery.Container>
 			{#snippet biggerImages()}
 				<EventGallery.Image src={imgEventGroup} alt="">
 					{#snippet caption()}
-						<T message={m['images.captions.group']} />
+						<T key="events.202404_spring_hcm.images.captions.group" />
 					{/snippet}
 				</EventGallery.Image>
 
 				<EventGallery.Image src={imgSharingTrongnguyen24Closing} alt="">
 					{#snippet caption()}
-						<T message={m['images.captions.sharings.trongnguyen24.closing']} />
+						<T key="events.202404_spring_hcm.images.captions.sharings.trongnguyen24.closing" />
 					{/snippet}
 				</EventGallery.Image>
 
 				<EventGallery.Image src={imgEventSettingsLeft} alt="">
 					{#snippet caption()}
-						<T message={m['images.captions.settings.left']} />
+						<T key="events.202404_spring_hcm.images.captions.settings.left" />
 					{/snippet}
 				</EventGallery.Image>
 
 				<EventGallery.Image src={imgEventQuizWinners} alt="">
 					{#snippet caption()}
-						<T message={m['images.captions.quiz_winners']} />
+						<T key="events.202404_spring_hcm.images.captions.quiz_winners" />
 					{/snippet}
 				</EventGallery.Image>
 
 				<EventGallery.Image src={imgSharingVnphanquang} alt="">
 					{#snippet caption()}
-						<T message={m['images.captions.sharings.vnphanquang']} />
+						<T key="events.202404_spring_hcm.images.captions.sharings.vnphanquang" />
 					{/snippet}
 				</EventGallery.Image>
 			{/snippet}
@@ -330,31 +329,31 @@
 			{#snippet smallerImages()}
 				<EventGallery.Image src={imgStandee} alt="">
 					{#snippet caption()}
-						<T message={m['images.captions.standee']} />
+						<T key="events.202404_spring_hcm.images.captions.standee" />
 					{/snippet}
 				</EventGallery.Image>
 
 				<EventGallery.Image class="overflow-hidden rounded-xl" src={imgEventTicket} alt="">
 					{#snippet caption()}
-						<T message={m['images.captions.ticket']} />
+						<T key="events.202404_spring_hcm.images.captions.ticket" />
 					{/snippet}
 				</EventGallery.Image>
 
 				<EventGallery.Image src={imgEventSettingsRight} alt="">
 					{#snippet caption()}
-						<T message={m['images.captions.settings.right']} />
+						<T key="events.202404_spring_hcm.images.captions.settings.right" />
 					{/snippet}
 				</EventGallery.Image>
 
 				<EventGallery.Image src={imgSharingTrongnguyen24Opening} alt="">
 					{#snippet caption()}
-						<T message={m['images.captions.sharings.trongnguyen24.opening']} />
+						<T key="events.202404_spring_hcm.images.captions.sharings.trongnguyen24.opening" />
 					{/snippet}
 				</EventGallery.Image>
 
 				<EventGallery.Image src={imgEventEarlyMembers} alt="">
 					{#snippet caption()}
-						<T message={m['images.captions.early_members']} />
+						<T key="events.202404_spring_hcm.images.captions.early_members" />
 					{/snippet}
 				</EventGallery.Image>
 			{/snippet}
@@ -363,10 +362,10 @@
 
 	<section class="py-section max-w-pad space-y-8 text-center">
 		<p class="leading-relaxed">
-			<T message={m['credits']} />
+			<T key="events.202404_spring_hcm.credits" />
 		</p>
 		<p class="c-text-title-sm">
-			<T message={m['hosted_by']} />
+			<T key="events.202404_spring_hcm.hosted_by" />
 			<a class="c-link-preserved" href="https://www.designveloper.com">
 				<img src={dsvLogoImage} alt="" height="24" width="24" class="inline-block" />
 				<span>Designveloper</span>

@@ -1,20 +1,12 @@
 <script>
   import { Contexts } from '@sveltevietnam/kit/contexts';
   import { ColorSchemeMenu } from '@sveltevietnam/kit/components';
-	import * as m from '$data/locales/generated/messages';
   import { SettingsContext } from '$lib/settings/context.svelte';
 
 	const settings = SettingsContext.get();
 	const { colorScheme } = Contexts.get();
 
 	const colorSchemeMenuProps = $derived({
-		i18n: {
-			aria: m['components.color_scheme_menu.aria'],
-			open: m.open,
-			light: m['components.color_scheme_menu.light'],
-			dark: m['components.color_scheme_menu.dark'],
-			system: m['components.color_scheme_menu.system'],
-		},
 		hydrated: !!settings.hydrated,
 		colorScheme: colorScheme.user,
     alwaysShowLabel: true,
@@ -45,7 +37,7 @@ Perhaps one of the most common applications of Svelte action that I use is handl
 </p>
 
 <div class="border not-prose relative z-popup float-right inline-block ml-4 mt-4">
-  <ColorSchemeMenu {...colorSchemeMenuProps} />
+  <ColorSchemeMenu class="p-2" {...colorSchemeMenuProps} showLabel="always" />
 </div>
 
 </div>

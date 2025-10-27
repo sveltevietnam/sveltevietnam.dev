@@ -4,7 +4,6 @@
   import { Contexts } from '@sveltevietnam/kit/contexts';
   import { BaseNotification} from '@sveltevietnam/kit/notifications';
 
-  import * as m from '$data/locales/generated/messages';
   import svgTuChu from '$lib/assets/images/svg/tu-chu.svg?no-inline';
   import svgTuNom from '$lib/assets/images/svg/tu-nom.svg?no-inline';
   import svgDong from '$lib/assets/images/svg/dong-thai-binh-hung-bao.svg?no-inline';

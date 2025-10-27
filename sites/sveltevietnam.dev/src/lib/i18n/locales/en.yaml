@@ -82,6 +82,12 @@ messages:
     splash_screen_playground:
       '@import': '$lib/components/splash-screen-playground/locales/en.yaml'
 
+  events:
+    202312_year_end_online:
+      '@import': '$data/events/202312-year-end-online-meetup/locales/en.yaml'
+    202404_spring_hcm:
+      '@import': '$data/events/202404-spring-ho-chi-minh-meetup/locales/en.yaml'
+
   pages:
     home:
       '@import': '$routes/(site)/[lang=lang]/_page/locales/en.yaml'
