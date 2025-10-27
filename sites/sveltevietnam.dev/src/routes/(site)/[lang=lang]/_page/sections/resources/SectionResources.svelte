@@ -1,11 +1,10 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
-	import type { Message, MessageType } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
+	import type { Key } from '@sveltevietnam/i18n-new/generated';
 	import { SOCIAL_LINKS } from '@sveltevietnam/kit/constants';
 	import { createTimeline, onScroll } from 'animejs';
 	import type { Picture } from 'vite-imagetools';
 
-	import * as m from '$data/locales/generated/messages';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 
 	import StepContainer from './components/StepContainer.svelte';
@@ -96,12 +95,12 @@
 	});
 </script>
 
-{#snippet step(message: Message<'string', never>)}
+{#snippet step(key: Key)}
 	<div class="isolate">
 		<p
-			class="_border-gradient bg-surface c-text-body-xs relative w-fit px-3 py-1.5 uppercase leading-tight tracking-widest"
+			class="_border-gradient bg-surface c-text-body-xs relative w-fit px-3 py-1.5 leading-tight tracking-widest uppercase"
 		>
-			<T {message} />
+			<T {key} />
 		</p>
 	</div>
 	<!-- <p -->
@@ -122,23 +121,23 @@
 	image,
 	footnote,
 }: {
-	description: Message<MessageType, never>;
-	links: { message: Message<MessageType, never>; href: string; class?: string }[];
+	description: Key;
+	links: { key: Key; href: string; class?: string }[];
 	linksClasses?: string;
 	image:
-		| { message: Message<MessageType, never>; href: string; src: Picture; class?: string }
+		| { key: Key; href: string; src: Picture; class?: string }
 		| { src: string; width: number; height: number };
-	footnote?: Message<MessageType, never>;
+	footnote?: Key;
 })}
 	<div
 		class="tablet:gap-8 desktop:gap-10 mobile:flex-col odd:tablet:flex-row-reverse group flex gap-6"
 	>
 		<div class="tablet:space-y-6 mobile:contents flex-1">
 			<p class="mobile:order-1 drop-cap leading-relaxed">
-				<T message={description} />
+				<T key={description} />
 			</p>
 			<div class="mobile:order-3 flex flex-col gap-6 {linksClasses}">
-				{#each links as { message, href, class: cls } (href)}
+				{#each links as { key, href, class: cls } (href)}
 					<a
 						class={['c-btn c-btn--pop', cls]}
 						{href}
@@ -146,14 +145,14 @@
 						data-umami-event="click-homepage-resource-link"
 						data-umami-event-url={href}
 					>
-						<span><T {message} /></span>
+						<span><T {key} /></span>
 						<i class="i i-[ph--arrow-square-out] h-6 w-6"></i>
 					</a>
 				{/each}
 			</div>
 			{#if footnote}
 				<p class="mobile:order-4">
-					<em><T message={footnote} /></em>
+					<em><T key={footnote} /></em>
 				</p>
 			{/if}
 		</div>
@@ -182,7 +181,7 @@
 					aria-hidden="true"
 					tabindex="-1"
 				>
-					<span class="sr-only"><T message={image.message} /></span>
+					<span class="sr-only"><T key={image.key} /></span>
 					<enhanced:img
 						src={image.src}
 						alt=""
@@ -202,11 +201,11 @@
 	bind:this={elResources}
 >
 	<h2 class="c-text-heading-lg text-center" id="resources">
-		<T message={m['pages.home.resources.heading']} />
+		<T key="pages.home.resources.heading" />
 	</h2>
 	<svg
-		class="_cursor z-popup transform-3d absolute left-1/2 top-0 m-auto block h-10 w-10
-		origin-top-left opacity-0 drop-shadow"
+		class="_cursor z-popup absolute top-0 left-1/2 m-auto block h-10 w-10 origin-top-left
+		opacity-0 drop-shadow transform-3d"
 		xmlns="http://www.w3.org/2000/svg"
 		width="40"
 		height="40"
@@ -226,95 +225,95 @@
 	<StepContainer class="tablet:max-desktop:pb-32">
 		<div class="relative flex items-center justify-between gap-4">
 			<div class="space-y-4">
-				{@render step(m['pages.home.resources.one.step'])}
+				{@render step('pages.home.resources.one.step')}
 				<h3 class="c-text-heading-md pr-30" id="step-1">
-					<T message={m['pages.home.resources.one.heading']} />
+					<T key="pages.home.resources.one.heading" />
 				</h3>
 			</div>
 			<svg
-				class="mobile:absolute mobile:-top-2 mobile:-right-2 w-25 h-auto shrink-0"
+				class="mobile:absolute mobile:-top-2 mobile:-right-2 h-auto w-25 shrink-0"
 				inline-src="./images/box"
 			></svg>
 		</div>
 
 		{@render resource({
-			description: m['pages.home.resources.one.tutorial.desc'],
+			description: 'pages.home.resources.one.tutorial.desc',
 			links: [
 				{
-					message: m['pages.home.resources.one.tutorial.link'],
+					key: 'pages.home.resources.one.tutorial.link',
 					href: 'https://svelte.dev/tutorial',
 					class: '_click-point',
 				},
 			],
 			linksClasses: 'w-fit',
 			image: {
-				message: m['pages.home.resources.one.tutorial.link'],
+				key: 'pages.home.resources.one.tutorial.link',
 				href: 'https://svelte.dev/tutorial',
 				src: screenshotTutorial,
 			},
-			footnote: m['pages.home.resources.one.tutorial.footnote'],
+			footnote: 'pages.home.resources.one.tutorial.footnote',
 		})}
 
 		{@render resource({
-			description: m['pages.home.resources.one.playground.desc'],
+			description: 'pages.home.resources.one.playground.desc',
 			links: [
 				{
-					message: m['pages.home.resources.one.playground.link'],
+					key: 'pages.home.resources.one.playground.link',
 					href: 'https://svelte.dev/playground',
 					class: '_click-point',
 				},
 			],
 			linksClasses: 'w-fit',
 			image: {
-				message: m['pages.home.resources.one.playground.link'],
+				key: 'pages.home.resources.one.playground.link',
 				href: 'https://svelte.dev/playground',
 				src: screenshotPlayground,
 			},
 		})}
 
 		{@render resource({
-			description: m['pages.home.resources.one.lab.desc'],
+			description: 'pages.home.resources.one.lab.desc',
 			links: [
 				{
-					message: m['pages.home.resources.one.lab.link'],
+					key: 'pages.home.resources.one.lab.link',
 					href: 'https://www.sveltelab.dev/',
 					class: '_click-point',
 				},
 			],
 			linksClasses: 'ml-auto w-fit',
 			image: {
-				message: m['pages.home.resources.one.lab.link'],
+				key: 'pages.home.resources.one.lab.link',
 				href: 'https://www.sveltelab.dev/',
 				src: screenshotLab,
 			},
 		})}
 
 		<svg
-			class="w-39.5 tablet:absolute desktop:left-6 desktop:bottom-6 widescreen:left-10
-				widescreen:bottom-10 bottom-2 left-2 h-auto"
+			class="tablet:absolute desktop:left-6 desktop:bottom-6 widescreen:left-10 widescreen:bottom-10
+				bottom-2 left-2 h-auto w-39.5"
 			inline-src="./images/rect-washer"
 		></svg>
 	</StepContainer>
 
 	<StepContainer>
 		<div class="mobile:flex-col relative flex items-center justify-between gap-4">
-			<svg class="h-18 mobile:self-start w-auto shrink-0" inline-src="./images/book"></svg>
+			<svg class="mobile:self-start h-18 w-auto shrink-0" inline-src="./images/book"></svg>
 			<div class="mobile:-mt-10 flex flex-col items-end gap-4">
-				{@render step(m['pages.home.resources.two.step'])}
+				{@render step('pages.home.resources.two.step')}
 				<h3 class="c-text-heading-md text-right" id="step-2">
-					<T message={m['pages.home.resources.two.heading']} />
+					<T key="pages.home.resources.two.heading" />
 				</h3>
 			</div>
 		</div>
 
 		{@render resource({
-			description: m['pages.home.resources.two.docs.desc'],
+			description: 'pages.home.resources.two.docs.desc',
 			links: [
-				{ message: m['pages.home.resources.two.docs.link'], href: 'https://svelte.dev/docs' },
+				{ key: 'pages.home.resources.two.docs.link', href: 'https://svelte.dev/docs' },
 			],
 			linksClasses: 'w-fit',
 			image: {
-				message: m['pages.home.resources.two.docs.link'],
+				key: 'pages.home.resources.two.docs.link',
 				href: 'https://svelte.dev/docs',
 				src: screenshotDocs,
 				class: '_click-point',
@@ -324,61 +323,61 @@
 
 	<StepContainer>
 		<div class="space-y-4">
-			{@render step(m['pages.home.resources.three.step'])}
+			{@render step('pages.home.resources.three.step')}
 			<h3 class="c-text-heading-md text-right" id="step-3">
-				<T message={m['pages.home.resources.three.heading']} />
+				<T key="pages.home.resources.three.heading" />
 			</h3>
 		</div>
 
 		{@render resource({
-			description: m['pages.home.resources.three.desc'],
+			description: 'pages.home.resources.three.desc',
 			links: [
 				{
-					message: m['pages.home.resources.three.discord'],
+					key: 'pages.home.resources.three.discord',
 					href: SOCIAL_LINKS.DISCORD,
 					class: '_click-point',
 				},
-				{ message: m['pages.home.resources.bluesky'], href: SOCIAL_LINKS.BLUESKY },
-				{ message: m['pages.home.resources.three.github'], href: SOCIAL_LINKS.GITHUB },
+				{ key: 'pages.home.resources.bluesky', href: SOCIAL_LINKS.BLUESKY },
+				{ key: 'pages.home.resources.three.github', href: SOCIAL_LINKS.GITHUB },
 			],
 			image: { src: svgPuzzle, width: 291, height: 159 },
 		})}
-		<p class="-mt-4"><T message={m['pages.home.resources.three.note']} /></p>
+		<p class="-mt-4"><T key="pages.home.resources.three.note" /></p>
 	</StepContainer>
 
 	<StepContainer>
 		<div class="flex items-start justify-between gap-4">
 			<svg class="h-20 w-20 shrink-0" inline-src="./images/svelte-society-logo"></svg>
 			<div class="flex flex-col items-end gap-4">
-				{@render step(m['pages.home.resources.four.step'])}
+				{@render step('pages.home.resources.four.step')}
 				<h3 class="c-text-heading-md text-right" id="step-4">
-					<T message={m['pages.home.resources.four.heading']} />
+					<T key="pages.home.resources.four.heading" />
 				</h3>
 			</div>
 		</div>
 
 		{@render resource({
-			description: m['pages.home.resources.four.svelte.desc'],
+			description: 'pages.home.resources.four.svelte.desc',
 			links: [
 				{
-					message: m['pages.home.resources.four.svelte.github.svelte'],
+					key: 'pages.home.resources.four.svelte.github.svelte',
 					href: 'https://github.com/sveltejs/svelte',
 				},
 				{
-					message: m['pages.home.resources.four.svelte.github.sveltekit'],
+					key: 'pages.home.resources.four.svelte.github.sveltekit',
 					href: 'https://github.com/sveltejs/kit',
 				},
 				{
-					message: m['pages.home.resources.four.svelte.github.svelte_dev'],
+					key: 'pages.home.resources.four.svelte.github.svelte_dev',
 					href: 'https://github.com/sveltejs/svelte.dev',
 				},
 				{
-					message: m['pages.home.resources.bluesky'],
+					key: 'pages.home.resources.bluesky',
 					href: 'https://bsky.app/profile/svelte.dev',
 				},
 			],
 			image: {
-				message: m['pages.home.resources.four.svelte.github.svelte'],
+				key: 'pages.home.resources.four.svelte.github.svelte',
 				href: 'https://github.com/sveltejs',
 				src: screenshotGithub,
 				class: '_click-point',
@@ -386,23 +385,23 @@
 		})}
 
 		{@render resource({
-			description: m['pages.home.resources.four.society.desc'],
+			description: 'pages.home.resources.four.society.desc',
 			links: [
 				{
-					message: m['pages.home.resources.four.society.discord'],
+					key: 'pages.home.resources.four.society.discord',
 					href: 'https://svelte.dev/chat',
 				},
 				{
-					message: m['pages.home.resources.bluesky'],
+					key: 'pages.home.resources.bluesky',
 					href: 'https://bsky.app/profile/sveltesociety.dev',
 				},
 				{
-					message: m['pages.home.resources.four.society.website'],
+					key: 'pages.home.resources.four.society.website',
 					href: 'https://www.sveltesociety.dev/',
 				},
 			],
 			image: {
-				message: m['pages.home.resources.four.society.website'],
+				key: 'pages.home.resources.four.society.website',
 				href: 'https://www.sveltesociety.dev/',
 				src: screenshotSociety,
 				class: '_click-point',
@@ -410,19 +409,19 @@
 		})}
 
 		{@render resource({
-			description: m['pages.home.resources.four.summit.desc'],
+			description: 'pages.home.resources.four.summit.desc',
 			links: [
 				{
-					message: m['pages.home.resources.four.summit.youtube'],
+					key: 'pages.home.resources.four.summit.youtube',
 					href: 'https://www.youtube.com/@SvelteSociety',
 				},
 				{
-					message: m['pages.home.resources.four.summit.website'],
+					key: 'pages.home.resources.four.summit.website',
 					href: 'https://www.sveltesummit.com/',
 				},
 			],
 			image: {
-				message: m['pages.home.resources.four.summit.website'],
+				key: 'pages.home.resources.four.summit.website',
 				href: 'https://www.sveltesummit.com/',
 				src: screenshotSummit,
 				class: '_click-point',
@@ -430,15 +429,15 @@
 		})}
 
 		{@render resource({
-			description: m['pages.home.resources.four.hack.desc'],
+			description: 'pages.home.resources.four.hack.desc',
 			links: [
 				{
-					message: m['pages.home.resources.four.hack.link'],
+					key: 'pages.home.resources.four.hack.link',
 					href: 'https://hack.sveltesociety.dev',
 				},
 			],
 			image: {
-				message: m['pages.home.resources.four.hack.link'],
+				key: 'pages.home.resources.four.hack.link',
 				href: 'https://hack.sveltesociety.dev',
 				src: screenshotHack,
 				class: '_click-point',
@@ -448,11 +447,11 @@
 		<div class="bg-outline h-px w-full"></div>
 
 		<section class="prose max-w-readable-relaxed leading-relaxed">
-			<p><T message={m['pages.home.resources.four.others']} /></p>
+			<p><T key="pages.home.resources.four.others" /></p>
 			<ul>
-				<li><T message={m['pages.home.resources.four.newsletter']} /></li>
-				<li><T message={m['pages.home.resources.four.madebysvelte']} /></li>
-				<li class="_click-point"><T message={m['pages.home.resources.four.jobs']} /></li>
+				<li><T key="pages.home.resources.four.newsletter" /></li>
+				<li><T key="pages.home.resources.four.madebysvelte" /></li>
+				<li class="_click-point"><T key="pages.home.resources.four.jobs" /></li>
 			</ul>
 		</section>
 	</StepContainer>
