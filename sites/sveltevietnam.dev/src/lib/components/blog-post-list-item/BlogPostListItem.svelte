@@ -118,7 +118,7 @@
 				</a>
 			</p>
 		</div>
-		<div class="c-text-body-sm flex items-center gap-2">
+		<div class="c-text-body-sm flex items-center gap-2 flex-wrap">
 			<p class="">
 				{#each post.authors as { name, id }, i (id)}
 					<a
