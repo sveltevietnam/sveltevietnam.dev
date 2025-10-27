@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Toc } from '@svelte-put/toc';
-	import { T } from '@sveltevietnam/i18n/runtime';
-	import type { Message } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
+	import type { Key } from '@sveltevietnam/i18n-new/generated';
 	import fallback16x9 from '@sveltevietnam/kit/assets/images/fallbacks/16x9.jpg?enhanced&w=2240;1540;1088;686&imagetools';
 	import { Breadcrumbs, CopyBtn, NotByAiBadge } from '@sveltevietnam/kit/components';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
@@ -9,7 +9,6 @@
 	import { formatRelativeTime } from '@sveltevietnam/kit/utilities/datetime';
 
 	import { page } from '$app/state';
-	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import { BlogNewsletter } from '$lib/components/blog-newsletter';
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
@@ -70,12 +69,6 @@
 			props: {
 				data: url,
 				theme: () => colorScheme.resolved,
-				i18n: {
-					close: m.close,
-					title: m['dialogs.qr.title'],
-					desc: m['dialogs.qr.desc'],
-					download: m.download,
-				},
 			},
 		});
 	}
@@ -134,20 +127,20 @@
 				<div class="space-y-2">
 					<p>
 						{#if data.post.translation === 'manual'}
-							<T message={m['pages.blog_slug.lang.manual.title']} />
+							<T key="pages.blog_slug.lang.manual.title" />
 						{:else}
-							<T message={m['pages.blog_slug.lang.original.title']} />
+							<T key="pages.blog_slug.lang.original.title" />
 						{/if}
 						<HintedText class="ml-1 cursor-help">
 							<i class="i i-[ph--info] h-5 w-5"></i>
 							<span class="sr-only">
-								<T message={m['explain']} />
+								<T key="explain" />
 							</span>
 							{#snippet hint()}
 								{#if data.post.translation === 'manual'}
-									<T message={m['pages.blog_slug.lang.manual.desc']} />
+									<T key="pages.blog_slug.lang.manual.desc" />
 								{:else}
-									<T message={m['pages.blog_slug.lang.original.desc']} />
+									<T key="pages.blog_slug.lang.original.desc" />
 								{/if}
 							{/snippet}
 						</HintedText>
@@ -155,12 +148,12 @@
 					<p>
 						<span>
 							{data.post.readMinutes}
-							<T message={m['pages.blog_slug.stats.read_minutes']} />
+							<T key="pages.blog_slug.stats.read_minutes" />
 						</span>,
 						<span>
 							~
 							{data.post.numWords}
-							<T message={m['pages.blog_slug.stats.word']} />
+							<T key="pages.blog_slug.stats.word" />
 						</span>
 					</p>
 				</div>
@@ -179,26 +172,29 @@
 				'bg-on-surface text-surface tablet:border-surface tablet:border-onehalf mobile:justify-evenly _quick-nav flex items-center px-2',
 				showQuickNav ? 'translate-y-0' : 'translate-y-16',
 			]}
-			aria-label={m['pages.blog_slug.quick_nav.aria'](routing.lang)}
+			aria-labelledby="quick-nav-label"
 		>
-			{#snippet inlink(href: string, message: Message<'string', never>, iconClass: string)}
+			<span class="sr-only" id="quick-nav-label">
+				<T key="pages.blog_slug.quick_nav.aria" />
+			</span>
+			{#snippet inlink(href: string, tKey: Key, iconClass: string)}
 				<a
 					class="c-link-lazy flex flex-col items-center justify-end gap-2 p-2"
 					{href}
 					style:--active-color="var(--color-primary)"
 				>
 					<i class={['i h-6 w-6', iconClass]}></i>
-					<span class="sr-only"> <T {message} /> </span>
+					<span class="sr-only"> <T key={tKey} /> </span>
 				</a>
 			{/snippet}
 			<ul class="contents">
 				<li>
-					{@render inlink('#share', m['pages.blog_slug.quick_nav.share'], 'i-[ph--share-fat]')}
+					{@render inlink('#share', 'pages.blog_slug.quick_nav.share', 'i-[ph--share-fat]')}
 				</li>
 				<li class="pr-8">
 					{@render inlink(
 						'#toc',
-						m['pages.blog_slug.quick_nav.toc'],
+						'pages.blog_slug.quick_nav.toc',
 						'i-[ph--list-magnifying-glass]',
 					)}
 				</li>
@@ -213,7 +209,7 @@
 						></span>
 						<i class="i i-[ph--caret-up] h-6 w-6"></i>
 						<span class="sr-only">
-							<T message={m['pages.blog_slug.quick_nav.scroll']} />
+							<T key="pages.blog_slug.quick_nav.scroll" />
 						</span>
 					</a>
 				</li>
@@ -221,17 +217,17 @@
 					{#if data.posts.inSeries?.length}
 						{@render inlink(
 							'#in-this-series',
-							m['pages.blog_slug.quick_nav.series'],
+							'pages.blog_slug.quick_nav.series',
 							'i-[ph--files]',
 						)}
 					{:else}
-						{@render inlink('#latest-post', m['pages.blog_slug.quick_nav.latest'], 'i-[ph--files]')}
+						{@render inlink('#latest-post', 'pages.blog_slug.quick_nav.latest', 'i-[ph--files]')}
 					{/if}
 				</li>
 				<li>
 					{@render inlink(
 						'#newsletter',
-						m['pages.blog_slug.quick_nav.newsletter'],
+						'pages.blog_slug.quick_nav.newsletter',
 						'i-[ph--newspaper-clipping]',
 					)}
 				</li>
@@ -251,7 +247,7 @@
 					class="tablet:sticky top-header mobile:border-onehalf mobile:border-dashed mobile:border-tertiary mobile:-mx-3 mobile:p-3 space-y-6"
 				>
 					<h2 class="c-text-heading border-outline border-b" id="toc">
-						<T message={m['pages.blog_slug.headings.toc']} />
+						<T key="pages.blog_slug.headings.toc" />
 					</h2>
 					<TableOfContents {toc} />
 				</section>
@@ -262,7 +258,7 @@
 		<section class="_content prose max-w-readable-relaxed" id="content">
 			{#if outdated}
 				<p class="c-callout c-callout--warning">
-					<T message={m['pages.blog_slug.outdated']} age={outdated} />
+					<T key="pages.blog_slug.outdated" params={{age: outdated}} />
 				</p>
 			{/if}
 			{#if data.content}
@@ -273,7 +269,7 @@
 				{/key}
 			{/if}
 			<p class="c-text-body-sm mt-6 border-t pt-2">
-				<T message={m['pages.blog_slug.edit.intro']} />
+				<T key="pages.blog_slug.edit.intro" />
 				<a
 					class="c-link"
 					href={data.contentEditUrl}
@@ -282,7 +278,7 @@
 					data-umami-event-url={data.contentEditUrl}
 					data-umami-event-type="post"
 				>
-					<T message={m['pages.blog_slug.edit.cta']} />
+					<T key="pages.blog_slug.edit.cta" />
 				</a>
 			</p>
 		</section>
@@ -294,7 +290,7 @@
 				data-pagefind-ignore
 			>
 				<h2 class="c-text-heading border-b" id="share">
-					<T message={m['pages.blog_slug.headings.share']} />
+					<T key="pages.blog_slug.headings.share" />
 				</h2>
 				<ul class="flex flex-wrap gap-4">
 					{#if settings.hydrated}
@@ -351,7 +347,7 @@
 					</li>
 				</ul>
 				<p class="border-onehalf shadow-brutal-sm border-current p-4">
-					<T message={m['pages.blog_slug.write']} />
+					<T key="pages.blog_slug.write" />
 				</p>
 			</section>
 		</div>
@@ -360,7 +356,7 @@
 		{#if data.posts.latest}
 			<section class="_latest space-y-6" data-pagefind-ignore>
 				<h2 class="c-text-heading border-b" id="latest-post">
-					<T message={m['pages.blog_slug.headings.latest']} />
+					<T key="pages.blog_slug.headings.latest" />
 				</h2>
 				<BlogPostListItem post={data.posts.latest} />
 			</section>
@@ -376,7 +372,7 @@
 	<GradientBackground pattern="jigsaw">
 		<section class="max-w-pad pt-section pb-section-more" data-pagefind-ignore>
 			<h2 class="sr-only" id="newsletter">
-				<T message={m.newsletter} />
+				<T key="newsletter" />
 			</h2>
 			<BlogNewsletter data={data.subscribeFormData} />
 		</section>
@@ -388,10 +384,10 @@
 			<div class="space-y-4 border-t-4 border-current pt-2">
 				<div class="flex flex-wrap items-baseline justify-between gap-4">
 					<h2 class="c-text-title uppercase" id="in-this-series">
-						<T message={m['pages.blog_slug.headings.series']} />
+						<T key="pages.blog_slug.headings.series" />
 					</h2>
 					<TextArrowLink href={p['/:lang/blog']({ lang: routing.lang })}>
-						<T message={m.view_more} />
+						<T key="view_more" />
 					</TextArrowLink>
 				</div>
 			</div>
