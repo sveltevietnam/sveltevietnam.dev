@@ -2,7 +2,7 @@
 	import { enhanceDialog } from '@svelte-put/async-stack/helpers';
 	import { createQrPngDataUrl } from '@svelte-put/qr';
 	import { qr, type SvgQRParameter } from '@svelte-put/qr/svg';
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
 	import { onMount } from 'svelte';
 
 	import dark from '../../assets/images/logos/monotone-dark.base64?raw';
@@ -16,7 +16,6 @@
 		filename = 'qr.png',
 		class: cls,
 		theme,
-		i18n,
 		...rest
 	}: DialogQrCodeProps = $props();
 
@@ -45,11 +44,11 @@
 >
 	<form class="space-y-6" method="dialog">
 		<button class="c-link-lazy absolute right-4 top-4 p-2" formmethod="dialog">
-			<span class="sr-only"><T message={i18n.close} /></span>
+			<span class="sr-only"><T key="close" /></span>
 			<i class="i i-[ph--x] h-6 w-6"></i>
 		</button>
-		<p class="c-text-title border-b"><T message={i18n.title} /></p>
-		<p><T message={i18n.desc} /></p>
+		<p class="c-text-title border-b"><T key="dialogs.qr.title" /></p>
+		<p><T key="dialos.qr.desc" /></p>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			use:qr={config}
@@ -65,7 +64,7 @@
 				download={filename}
 				{href}
 			>
-				<T message={i18n.download} />
+				<T key="download" />
 			</a>
 		{/if}
 	</form>
