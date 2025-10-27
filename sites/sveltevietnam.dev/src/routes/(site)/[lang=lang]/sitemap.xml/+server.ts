@@ -60,12 +60,14 @@ export const GET: RequestHandler = async ({ params }) => {
 			})),
 		})),
 		...events.map((event) => ({
-			loc: VITE_PUBLIC_ORIGIN + p['/:lang/events/:slug']({ lang, slug: event.slug }),
-			lastmod: toW3CDate(event.startDate),
+			loc: VITE_PUBLIC_ORIGIN + p['/:lang/events/:slug']({ lang, slug: event.id }),
+			...(event.startDate instanceof Date && {
+				lastmod: toW3CDate(event.startDate),
+			}),
 			priority: 0.9,
 			alternates: LANGUAGES.map((l) => ({
 				hreflang: l,
-				href: VITE_PUBLIC_ORIGIN + p['/:lang/events/:slug']({ lang: l, slug: event.slug }),
+				href: VITE_PUBLIC_ORIGIN + p['/:lang/events/:slug']({ lang: l, slug: event.id }),
 			})),
 		})),
 		...blogPosts.map((post) => ({
