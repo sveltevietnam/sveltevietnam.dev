@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { EMAILS, SOCIAL_LINKS } from '@sveltevietnam/kit/constants';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 
-	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import { VITE_PUBLIC_RECRUIT_ORIGIN } from '$env/static/public';
 	import { IntroSeparator } from '$lib/components/intro-separator';
@@ -28,10 +27,10 @@
 				<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 				<div class="space-y-4">
 					<h1 class="c-text-heading-page text-primary-on-surface">
-						<T message={m['pages.sponsor.heading']} />
+						<T key="pages.sponsor.heading" />
 					</h1>
 					<p class="c-text-subtitle-page max-w-readable-relaxed">
-						<T message={m['pages.sponsor.desc']} />
+						<T key="pages.sponsor.desc" />
 					</p>
 				</div>
 			</div>
@@ -55,14 +54,14 @@
 		>
 			<h2 class="c-text-heading-lg border-b" id="how">Open Collective</h2>
 			<p class="max-w-readable-relaxed leading-relaxed">
-				<T message={m['pages.sponsor.highlight.desc']} />
+				<T key="pages.sponsor.highlight.desc" />
 			</p>
 			<a class="c-btn c-btn--pop block w-fit" href={SOCIAL_LINKS.OPEN_COLLECTIVE} data-external>
-				<T message={m['pages.sponsor.highlight.cta']} />
+				<T key="pages.sponsor.highlight.cta" />
 				<i class="i i-[ph--arrow-square-out] h-6 w-6"></i>
 			</a>
 			<p>
-				<T message={m['pages.sponsor.highlight.contact']} />
+				<T key="pages.sponsor.highlight.contact" />
 				<a class="c-link" href="mailto:{EMAILS.SPONSOR}" rel="noopener noreferrer"
 					>{EMAILS.SPONSOR}</a
 				>.
@@ -73,10 +72,10 @@
 	<!-- Participate -->
 	<section class="py-section max-w-pad space-y-6">
 		<h2 class="c-text-heading-lg border-b" id="participate">
-			<T message={m['pages.sponsor.participate.heading']} />
+			<T key="pages.sponsor.participate.heading" />
 		</h2>
 		<p class="max-w-readable-relaxed leading-relaxed">
-			<T message={m['pages.sponsor.participate.desc']} />
+			<T key="pages.sponsor.participate.desc" />
 		</p>
 		<ul class="max-w-readable-relaxed space-y-6">
 			<li>
@@ -88,7 +87,7 @@
 					data-umami-event-source="discord"
 					data-umami-event-position="pages.sponsor"
 				>
-					<T message={m['pages.sponsor.participate.discord']} />
+					<T key="pages.sponsor.participate.discord" />
 					<i class="i i-[ph--arrow-square-out] h-6 w-6"></i>
 				</a>
 			</li>
@@ -97,7 +96,7 @@
 					class="c-btn c-btn--pop flex justify-between text-left"
 					href={p['/:lang/events']({ lang: routing.lang })}
 				>
-					<T message={m['pages.sponsor.participate.events']} />
+					<T key="pages.sponsor.participate.events" />
 				</a>
 			</li>
 			<li>
@@ -105,7 +104,7 @@
 					class="c-btn c-btn--pop flex justify-between text-left"
 					href={p['/:lang/blog']({ lang: routing.lang })}
 				>
-					<T message={m['pages.sponsor.participate.blog']} />
+					<T key="pages.sponsor.participate.blog" />
 				</a>
 			</li>
 			<li>
@@ -114,7 +113,7 @@
 					href={SOCIAL_LINKS.GITHUB}
 					data-external
 				>
-					<T message={m['pages.sponsor.participate.github']} />
+					<T key="pages.sponsor.participate.github" />
 					<i class="i i-[ph--arrow-square-out] h-6 w-6"></i>
 				</a>
 			</li>
@@ -124,36 +123,38 @@
 	<!-- Why -->
 	<section class="max-w-pad bg-gradient-primary py-section space-y-6">
 		<h2 class="c-text-heading-lg border-b" id="why">
-			<T message={m['pages.sponsor.why.heading']} />
+			<T key="pages.sponsor.why.heading" />
 		</h2>
 		<p class="max-w-readable-relaxed leading-relaxed">
-			<T message={m['pages.sponsor.why.desc']} />
+			<T key="pages.sponsor.why.desc" />
 			<br /><br />
-			<T message={m['pages.sponsor.why.reasons.opening']} />
+			<T key="pages.sponsor.why.reasons.opening" />
 		</p>
 		<ul class="max-w-readable-relaxed list-disc pl-6 leading-relaxed">
 			<li>
-				<T message={m['pages.sponsor.why.reasons.one']} />
+				<T key="pages.sponsor.why.reasons.one" />
 			</li>
 			<li>
-				<T message={m['pages.sponsor.why.reasons.two']} />
+				<T key="pages.sponsor.why.reasons.two" />
 			</li>
 		</ul>
 		<p class="max-w-readable-relaxed leading-relaxed">
-			<T message={m['pages.sponsor.why.reasons.closing']} />
+			<T key="pages.sponsor.why.reasons.closing" />
 		</p>
 	</section>
 
 	<!-- Benefits -->
 	<section class="py-section max-w-pad space-y-6">
 		<h2 class="c-text-heading-lg border-b" id="benefits">
-			<T message={m['pages.sponsor.benefit.heading']} />
+			<T key="pages.sponsor.benefit.heading" />
 		</h2>
 		<p class="max-w-readable-relaxed leading-relaxed">
 			<T
-				message={m['pages.sponsor.benefit.desc']}
-				linkOpenCollective={SOCIAL_LINKS.OPEN_COLLECTIVE}
-				linkRecruit={VITE_PUBLIC_RECRUIT_ORIGIN}
+				key="pages.sponsor.benefit.desc"
+				params={{
+					linkOpenCollective: SOCIAL_LINKS.OPEN_COLLECTIVE,
+					linkRecruit: VITE_PUBLIC_RECRUIT_ORIGIN,
+				}}
 			/>
 		</p>
 	</section>
