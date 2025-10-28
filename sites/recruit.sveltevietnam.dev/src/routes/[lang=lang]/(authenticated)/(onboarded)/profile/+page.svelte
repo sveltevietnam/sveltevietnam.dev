@@ -12,6 +12,7 @@
 	let { data }: PageProps = $props();
 
 	const {
+		routing,
 		notifications: { toaster },
 		i18n: { t },
 	} = Contexts.get();
@@ -27,7 +28,7 @@
 		multipleSubmits: 'prevent',
 		delayMs: 500,
 		timeoutMs: 2000,
-		onError: createSuperFormGenericErrorHandler(toaster),
+		onError: createSuperFormGenericErrorHandler(toaster, routing.lang),
 	});
 
 	function handleProfileUpdateSuccess() {

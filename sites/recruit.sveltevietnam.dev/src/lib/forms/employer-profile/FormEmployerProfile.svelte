@@ -48,7 +48,7 @@
 		multipleSubmits: 'prevent',
 		delayMs: 500,
 		timeoutMs: 2000,
-		onError: createSuperFormGenericErrorHandler(toaster),
+		onError: createSuperFormGenericErrorHandler(toaster, routing.lang),
 		onUpdated({ form }) {
 			if (form.valid) {
 				localStorage.removeItem(descriptionCacheKey);
