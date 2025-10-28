@@ -1,0 +1,9 @@
+# ==================
+# !! Entry point !!
+# Language: English
+# ==================
+messages:
+  '@import': '@sveltevietnam/kit/locales/en.yaml'
+  app: Recruit
+  svelte_vietnam:
+    recruit: Svelte Vietnam Recruit App

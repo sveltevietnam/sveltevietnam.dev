@@ -1,0 +1,9 @@
+# =====================
+# !! Entry point !!
+# Language: Vietnamese
+# =====================
+messages:
+  '@import': '@sveltevietnam/kit/locales/vi.yaml'
+  app: Tuyển dụng
+  svelte_vietnam:
+    recruit: Ứng dụng Tuyển dụng Svelte Việt Nam
