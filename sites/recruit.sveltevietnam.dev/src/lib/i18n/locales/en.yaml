@@ -12,6 +12,7 @@ messages:
     account_menu:
       '@import': '$lib/components/account-menu/locales/en.yaml'
     footer:
+      back_to_svelte_vietnam: Back to Svelte Vietnam site
       about:
         heading: About
         desc:
