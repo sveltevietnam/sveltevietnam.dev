@@ -1,7 +1,7 @@
 import { expect, type Locator } from '@playwright/test';
 
-import * as m from '../../src/data/locales/generated/messages';
 import * as p from '../../src/data/routes/generated';
+import * as m from '../../src/lib/i18n/generated/messages';
 
 import { CommonPageObjectModel, type CommonPageObjectModelInit } from './common';
 
@@ -21,18 +21,18 @@ export class PagePostingList extends CommonPageObjectModel {
 		this.path = p['/:lang/postings']({ lang: this.lang });
 		this.ctas = {
 			create: this.page.getByRole('link', {
-				name: m['pages.postings.active.create'](this.lang).toString(),
+				name: m['pages.postings.active.create'](this.lang),
 			}),
 		};
 		this.sections = {
 			active: this.page.getByRole('region', {
-				name: m['pages.postings.active.heading'](this.lang).toString(),
+				name: m['pages.postings.active.heading'](this.lang),
 			}),
 			pending: this.page.getByRole('region', {
-				name: m['pages.postings.pending.heading'](this.lang).toString(),
+				name: m['pages.postings.pending.heading'](this.lang),
 			}),
 			expired: this.page.getByRole('region', {
-				name: m['pages.postings.expired.heading'](this.lang).toString(),
+				name: m['pages.postings.expired.heading'](this.lang),
 			}),
 		};
 	}

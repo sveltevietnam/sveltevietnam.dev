@@ -1,8 +1,8 @@
 import { expect, type Locator } from '@playwright/test';
 import { formatRelativeTime } from '@sveltevietnam/kit/utilities/datetime';
 
-import * as m from '../../src/data/locales/generated/messages';
 import * as p from '../../src/data/routes/generated';
+import * as m from '../../src/lib/i18n/generated/messages';
 
 import { CommonPageObjectModel, type CommonPageObjectModelInit } from './common';
 
@@ -23,15 +23,15 @@ export class PageAuthenticate extends CommonPageObjectModel {
 		this.path = p['/:lang/authenticate']({ lang: this.lang });
 		this.inputs = {
 			email: this.page.getByRole('textbox', {
-				name: m['inputs.email.label'](this.lang).toString(),
+				name: m['inputs.email.label'](this.lang),
 			}),
 		};
 		this.ctas = {
 			continue: this.page.getByRole('button', {
-				name: m['continue'](this.lang).toString(),
+				name: m['continue'](this.lang),
 			}),
 			resend: this.page.getByRole('button', {
-				name: m['pages.authenticate.resend'](this.lang).toString(),
+				name: m['pages.authenticate.resend'](this.lang),
 			}),
 		};
 	}
@@ -74,15 +74,15 @@ export class PageAuthenticate extends CommonPageObjectModel {
 		await expect(output).toBeVisible();
 		if (authType === 'login') {
 			await expect(output).toContainText(
-				m['pages.authenticate.callout.login'](this.lang)({
+				m['pages.authenticate.callout.login'](this.lang, {
 					exp: formatRelativeTime(this.lang, this.vars.AUTHENTICATE_RESENT_WAITING_MS),
-				}).toString(),
+				}),
 			);
 		} else {
 			await expect(output).toContainText(
-				m['pages.authenticate.callout.signup'](this.lang)({
+				m['pages.authenticate.callout.signup'](this.lang, {
 					exp: formatRelativeTime(this.lang, this.vars.AUTHENTICATE_RESENT_WAITING_MS),
-				}).toString(),
+				}),
 			);
 		}
 	}
@@ -91,17 +91,11 @@ export class PageAuthenticate extends CommonPageObjectModel {
 		const output = this.page.getByRole('alert');
 		await expect(output).toBeVisible();
 		if (error === 'EXPIRED_TOKEN') {
-			await expect(output).toContainText(
-				m['pages.authenticate.error.token_expired'](this.lang).toString(),
-			);
+			await expect(output).toContainText(m['pages.authenticate.error.token_expired'](this.lang));
 		} else if (error === 'INVALID_TOKEN') {
-			await expect(output).toContainText(
-				m['pages.authenticate.error.token_invalid'](this.lang).toString(),
-			);
+			await expect(output).toContainText(m['pages.authenticate.error.token_invalid'](this.lang));
 		} else {
-			await expect(output).toContainText(
-				m['pages.authenticate.error.generic'](this.lang).toString(),
-			);
+			await expect(output).toContainText(m['pages.authenticate.error.generic'](this.lang));
 		}
 	}
 }

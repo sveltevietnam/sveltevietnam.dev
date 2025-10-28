@@ -1,7 +1,7 @@
 import type { Locator } from '@playwright/test';
 
-import * as m from '../../src/data/locales/generated/messages';
 import * as p from '../../src/data/routes/generated';
+import * as m from '../../src/lib/i18n/generated/messages';
 
 import { CommonPageObjectModel, type CommonPageObjectModelInit } from './common';
 
@@ -16,7 +16,7 @@ export class PageWelcome extends CommonPageObjectModel {
 		this.path = p['/:lang/welcome']({ lang: this.lang });
 		this.ctas = {
 			create: this.page.getByRole('link', {
-				name: m['pages.welcome.cta'](this.lang).toString(),
+				name: m['pages.welcome.cta'](this.lang),
 			}),
 		};
 	}
