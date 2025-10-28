@@ -21,3 +21,110 @@ messages:
       '@import': '$lib/components/rich-text-editor/locales/vi.yaml'
     sponsor_reminder:
       '@import': '$lib/components/sponsor-reminder/locales/vi.yaml'
+
+  errors:
+    generic: Đã có lỗi xảy ra, vui lòng thử lại sau! Xin lỗi vì sự bất tiện này.
+
+  inputs:
+    email:
+      label: Email
+      errors:
+        nonempty: Vui lòng nhập địa chỉ email
+        invalid: Địa chỉ email không hợp lệ
+        existed: Email đã được dùng bởi tài khoản khác
+        current: Đây đã là email hiện tại của bạn
+    name:
+      errors:
+        nonempty: Vui lòng nhập tên
+    url:
+      label: Đường dẫn
+      errors:
+        nonempty: Vui lòng nhập đường dẫn
+        invalid: Địa chỉ URL không hợp lệ
+    turnstile:
+      desc: Xác thực <em class="c-text-body-xs">(cần Javascript)</em>
+      errors:
+        nonempty: Vui lòng xác thực
+        unknown: Có lỗi xảy ra trong quá trình xác thực
+    employer:
+      email:
+        label: Email người sử dụng lao động (không công khai)
+        placeholder: human-resources@abc.com
+        note: Đây là là email đã sử dụng trong đăng ký.
+      name:
+        label: Tên người sử dụng lao động
+        placeholder: Công ty ABC / Tổ chức XYZ
+      desc:
+        label: Mô tả về người sử dụng lao động
+        placeholder: XYZ là một tổ chức phi lợi nhuận hoạt động trong lĩnh vực giáo dục...
+        note:
+          Mô tả ngắn ngắn gọn giúp ứng viên hiểu thêm về tổ chức / công ty của bạn. Mô tả này được
+          hiển thị tại trang chi tiết của bài đăng tuyển.
+        errors:
+          nonempty: Vui lòng nhập mô tả người sử dụng lao động
+          max: Không được vượt quá {{length}} ký tự
+      website:
+        label: Website của người sử dụng lao động (không bắt buộc)
+        placeholder: https://cong-ty-abc.com
+      image:
+        label: Hình đại diện
+        desc: 'Tối đa: <strong>1MB</strong><br /> Đề xuất: <strong>200x200</strong>'
+        errors:
+          type: Tệp tải lên phải là hình ảnh
+          size: Kích thước tệp không quá 1MB
+      agreement:
+        desc:
+          Tôi xin cam kết thông tin trên là đúng sự thật và tôi là người sử dụng lao động hoặc có
+          quyền đại diện cho người sử dụng lao động.
+        error: Vui lòng đọc và đồng ý với cam kết
+    job_posting:
+      title:
+        label: Tiêu đề công việc
+        placeholder: Lập trình viên Frontend (Svelte & SvelteKit)
+        errors:
+          nonempty: Vui lòng nhập tiêu đề công việc
+      type:
+        label: Loại hình công việc
+        errors:
+          nonempty: Vui lòng chọn loại hình công việc
+      location:
+        label: Địa điểm làm việc
+        placeholder: Tự do (remote) / Hà Nội / Hồ Chí Minh / ...
+        errors:
+          nonempty: Vui lòng nhập địa điểm làm việc
+      salary:
+        label: Mức lương
+        placeholder: ₫20tr/tháng, $1000-$2000/tháng, không lương, ...
+        errors:
+          nonempty: Vui lòng nhập mức lương
+      application:
+        label: Phương thức ứng tuyển
+        options:
+          email:
+            label: Qua email đến nhà tuyển dụng
+            note: Khi nhấn nút “ứng tuyển", ứng viên cần tự soạn email gởi đến địa chỉ trên.
+            placeholder: career@abc.com
+          url:
+            label: Qua cổng thông tin riêng
+            note: Khi nhấn nút “ứng tuyển", ứng viên sẽ được dẫn đến trang trên.
+            placeholder: https://career.abc.com/portal/...
+        errors:
+          nonempty_method: Vui lòng chọn phương thức ứng tuyển
+          nonempty_link: Vui lòng nhập địa chỉ ứng tuyển
+      expired_at:
+        label: Hạn đăng tuyển
+        note:
+          Đăng tuyển sẽ không còn hiển trên <a class="c-link" href="{{mainSiteUrl}}/vi/viec-lam"
+          target="_blank">trang tuyển dụng</a> sau ngày này.
+        errors:
+          nonempty: Vui lòng chọn hạn đăng tuyển
+          min: Hạn phải sau ngày hôm nay
+          max: Hạn không được quá 180 ngày
+      desc:
+        label: Mô tả công việc
+        placeholder:
+          Tìm kiếm lập trình viên Frontend có kinh nghiệm với Svelte và SvelteKit cho đội ngũ năng
+          động và sáng tạo... Các phúc lợi cho nhân viên...
+        errors:
+          nonempty: Vui lòng nhập mô tả công việc
+          max: Không được vượt quá {{length}} ký tự
