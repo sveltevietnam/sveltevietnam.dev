@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-object-type */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import type { InferParams, InferType } from '@sveltevietnam/i18n-new';
-import type { Key, Mapping } from '@sveltevietnam/i18n-new/generated';
+import type { KeySimple } from '@sveltevietnam/i18n-new/generated';
 import type { Snippet } from 'svelte';
 
 interface SnippetProp {
@@ -10,26 +9,20 @@ interface SnippetProp {
 	params?: any;
 }
 
-interface ExtendedHTMLProp<A extends Record<string, any>, K extends Key = Key> {
-	content: string | TProp<K>;
+interface ExtendedHTMLProp<A extends Record<string, any>> {
+	content: string | ['t', KeySimple];
 	attributes?: A;
 }
 
-type TProp<K extends Key> = {
-	key: K;
-} & (InferType<Mapping[K]> extends 'with-params'
-	? { params: InferParams<Mapping[K]> }
-	: Record<never, never>);
-
-export type ContentfulProps<A extends Record<string, any>, K extends Key = Key> = {
-	content: string | ['snippet', SnippetProp] | ['html', ExtendedHTMLProp<A>] | ['t', TProp<K>];
+export type ContentfulProps<A extends Record<string, any>> = {
+	content: string | ['snippet', SnippetProp] | ['extend', ExtendedHTMLProp<A>] | ['t', KeySimple];
 	tag: keyof HTMLElementTagNameMap;
 } & A;
 
 /// mimic output of svelte-package to support generics
 
-declare class __sveltets_Render<A extends Record<string, any>, K extends Key = Key> {
-	props(): ContentfulProps<A, K>;
+declare class __sveltets_Render<A extends Record<string, any>> {
+	props(): ContentfulProps<A>;
 	events(): {} & {
 		[evt: string]: CustomEvent<any>;
 	};
@@ -39,13 +32,10 @@ declare class __sveltets_Render<A extends Record<string, any>, K extends Key = K
 }
 
 interface $$IsomorphicComponent {
-	new <A extends Record<string, any>, K extends Key = Key>(
-		options: import('svelte').ComponentConstructorOptions<ContentfulProps<A, K>>,
-	): import('svelte').SvelteComponent<ContentfulProps<A, K>>;
-	<A extends Record<string, any>, K extends Key = Key>(
-		internal: unknown,
-		props: ContentfulProps<A, K>,
-	): {};
+	new <A extends Record<string, any>>(
+		options: import('svelte').ComponentConstructorOptions<ContentfulProps<A>>,
+	): import('svelte').SvelteComponent<ContentfulProps<A>>;
+	<A extends Record<string, any>>(internal: unknown, props: ContentfulProps<A>): {};
 	z_$$bindings?: '';
 }
 export const Contentful: $$IsomorphicComponent;

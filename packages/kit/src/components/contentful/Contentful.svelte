@@ -14,15 +14,15 @@
 {:else if prop[0] === 'snippet'}
 	{@const { snippet, params } = prop[1]}
 	{@render snippet(params)}
-{:else if prop[0] === 'html'}
+{:else if prop[0] === 'extend'}
 	{@const { content, attributes = {} } = prop[1]}
 	<svelte:element this={tag} {...rest} {...attributes}>
 		{#if typeof content === 'string'}
 			{content}
 		{:else}
-			<T {...content} />
+			<T key={prop[1]} />
 		{/if}
 	</svelte:element>
 {:else}
-	<T {...prop[1]} />
+	<T key={prop[1]} />
 {/if}
