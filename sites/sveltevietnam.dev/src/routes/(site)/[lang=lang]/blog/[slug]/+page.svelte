@@ -193,11 +193,7 @@
 					{@render inlink('#share', 'pages.blog_slug.quick_nav.share', 'i-[ph--share-fat]')}
 				</li>
 				<li class="pr-8">
-					{@render inlink(
-						'#toc',
-						'pages.blog_slug.quick_nav.toc',
-						'i-[ph--list-magnifying-glass]',
-					)}
+					{@render inlink('#toc', 'pages.blog_slug.quick_nav.toc', 'i-[ph--list-magnifying-glass]')}
 				</li>
 				<li class="absolute top-0 left-1/2 -translate-1/2">
 					<a
@@ -216,11 +212,7 @@
 				</li>
 				<li class="pl-8">
 					{#if data.posts.inSeries?.length}
-						{@render inlink(
-							'#in-this-series',
-							'pages.blog_slug.quick_nav.series',
-							'i-[ph--files]',
-						)}
+						{@render inlink('#in-this-series', 'pages.blog_slug.quick_nav.series', 'i-[ph--files]')}
 					{:else}
 						{@render inlink('#latest-post', 'pages.blog_slug.quick_nav.latest', 'i-[ph--files]')}
 					{/if}
@@ -250,7 +242,9 @@
 					<h2 class="c-text-heading border-outline border-b" id="toc">
 						<T key="pages.blog_slug.headings.toc" />
 					</h2>
-					<TableOfContents {toc} />
+					{#key routing.lang}
+						<TableOfContents {toc} />
+					{/key}
 				</section>
 			{/if}
 		</div>
@@ -259,7 +253,7 @@
 		<section class="_content prose max-w-readable-relaxed" id="content">
 			{#if outdated}
 				<p class="c-callout c-callout--warning">
-					<T key="pages.blog_slug.outdated" params={{age: outdated}} />
+					<T key="pages.blog_slug.outdated" params={{ age: outdated }} />
 				</p>
 			{/if}
 			{#if data.content}
