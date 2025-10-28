@@ -7,3 +7,11 @@ messages:
   app: Tuyển dụng
   svelte_vietnam:
     recruit: Ứng dụng Tuyển dụng Svelte Việt Nam
+
+  components:
+    footer:
+      about:
+        heading: Về ứng dụng
+        desc:
+          Đây là nền tảng tuyển dụng mã nguồn mở, miễn phí và bảo mật, nhằm kết nối cộng đồng với
+          các doanh nghiệp và tổ chức.

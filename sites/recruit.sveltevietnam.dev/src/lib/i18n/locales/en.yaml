@@ -7,3 +7,11 @@ messages:
   app: Recruit
   svelte_vietnam:
     recruit: Svelte Vietnam Recruit App
+
+  components:
+    footer:
+      about:
+        heading: About
+        desc:
+          This is a free, secure, and open source recruitment platform, connecting community with
+          businesses and organizations.
