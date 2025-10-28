@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 
-	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import { SingleBoxPageLayout } from '$lib/components/single-box-page-layout';
 
@@ -19,42 +18,45 @@
 		<div class="tablet:px-10 space-y-6">
 			<h1 class="c-text-heading-md">
 				{#if data.status === 'ok'}
-					<T message={m['pages.email_change_verification.heading.ok']} />
+					<T key="pages.email_change_verification.heading.ok" />
 				{:else if data.status === 'invalid'}
-					<T message={m['pages.email_change_verification.heading.invalid']} />
+					<T key="pages.email_change_verification.heading.invalid" />
 				{:else if data.status === 'expired'}
-					<T message={m['pages.email_change_verification.heading.expired']} />
+					<T key="pages.email_change_verification.heading.expired" />
 				{:else}
-					<T message={m['pages.email_change_verification.heading.unknown']} />
+					<T key="pages.email_change_verification.heading.unknown" />
 				{/if}
 			</h1>
 
 			<p data-testid="result">
 				{#if data.status === 'ok'}
-					<T message={m['pages.email_change_verification.desc.ok']} />
+					<T key="pages.email_change_verification.desc.ok" />
 				{:else if data.status === 'invalid'}
-					<T message={m['pages.email_change_verification.desc.invalid']} />
+					<T key="pages.email_change_verification.desc.invalid" />
 				{:else if data.status === 'expired'}
 					<T
-						message={m['pages.email_change_verification.desc.expired']}
-						profilePath={p['/:lang/profile']({ lang: routing.lang })}
+						key="pages.email_change_verification.desc.expired"
+						params={{ profilePath: p['/:lang/profile']({ lang: routing.lang }) }}
 					/>
 				{:else}
-					<T message={m['errors.generic']} />
+					<T key="errors.generic" />
 				{/if}
 			</p>
 		</div>
 
 		{#if !data.user && data.status === 'ok'}
-			<a class="c-btn c-btn--pop block w-fit mx-auto" href={p['/:lang/authenticate']({ lang: routing.lang })}>
-				<T message={m['pages.email_change_verification.login']} />
+			<a
+				class="c-btn c-btn--pop mx-auto block w-fit"
+				href={p['/:lang/authenticate']({ lang: routing.lang })}
+			>
+				<T key="pages.email_change_verification.login" />
 			</a>
 		{/if}
 
 		<img class="h-auto w-full" width="726" height="292" alt="" src={svgKeyVisual} />
 
 		<p class="tablet:px-10 mt-10">
-			<T message={m['pages.email_change_verification.reminder']} />
+			<T key="pages.email_change_verification.reminder" />
 		</p>
 	</div>
 </SingleBoxPageLayout>
