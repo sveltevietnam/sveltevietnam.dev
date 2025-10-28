@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import { T } from '@sveltevietnam/i18n-new';
-	import type { Key } from '@sveltevietnam/i18n-new/generated';
+	import type { KeySimple } from '@sveltevietnam/i18n-new/generated';
 	import { DropdownPopover } from '@sveltevietnam/kit/components';
 
 	import type { Editor, HeadingLevel } from '..';
@@ -13,7 +13,7 @@
 		string,
 		{
 			iconClass: string;
-			label: Key | [Key, string];
+			label: KeySimple | [KeySimple, string];
 		}
 	> = {
 		paragraph: {

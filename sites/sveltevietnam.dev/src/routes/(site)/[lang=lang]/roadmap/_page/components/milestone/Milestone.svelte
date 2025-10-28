@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import { T } from '@sveltevietnam/i18n-new';
-	import type { Key } from '@sveltevietnam/i18n-new/generated';
+	import type { KeySimple } from '@sveltevietnam/i18n-new/generated';
 	import type { Snippet } from 'svelte';
 
 	import { Tasks } from '../tasks';
@@ -10,10 +10,10 @@
 		id: string;
 		current?: boolean;
 		name: string;
-		objective?: Key;
-		highlights?: Key[];
+		objective?: KeySimple;
+		highlights?: KeySimple[];
 		tasks: {
-			tKey: Key;
+			tKey: KeySimple;
 			progress: TasksRowProps['progress'];
 		}[];
 		children?: Snippet<[]>;

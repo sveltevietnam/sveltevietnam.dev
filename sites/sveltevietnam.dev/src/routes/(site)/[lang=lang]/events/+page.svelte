@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n-new';
-	import type { Key } from '@sveltevietnam/i18n-new/generated';
+	import type { KeySimple } from '@sveltevietnam/i18n-new/generated';
 	import { TBA, Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { EMAILS } from '@sveltevietnam/kit/constants';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
@@ -106,7 +106,7 @@
 	};
 </script>
 
-{#snippet actionHeading(num: number, id: string, tKey: Key)}
+{#snippet actionHeading(num: number, id: string, tKey: KeySimple)}
 	<h2 class="c-text-heading-md flex items-center gap-4 border-b pb-1" {id}>
 		<span
 			class="font-lora desktop:text-2xl desktop:w-10 desktop:h-10 flex h-8 w-8

@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import { TOGGLE_LINK_COMMAND } from '@lexical/link';
-	import type { Key } from '@sveltevietnam/i18n-new/generated';
+	import type { KeySimple } from '@sveltevietnam/i18n-new/generated';
 	import { FORMAT_TEXT_COMMAND } from 'lexical';
 
 	import type { Editor } from '..';
@@ -43,7 +43,7 @@
 		string,
 		{
 			iconClass: string;
-			label: Key;
+			label: KeySimple;
 			action: () => void;
 			isActive: () => boolean;
 		}

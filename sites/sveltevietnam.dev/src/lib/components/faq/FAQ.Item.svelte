@@ -1,12 +1,12 @@
 <script lang="ts" module>
 	import { T } from '@sveltevietnam/i18n-new';
-	import type { Key } from '@sveltevietnam/i18n-new/generated';
+	import type { KeySimple } from '@sveltevietnam/i18n-new/generated';
 	import type { Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	export type FAQItemProps = HTMLAttributes<HTMLLIElement> & {
-		question: Key | Snippet<[]>;
-		answer: Key | Snippet<[]>;
+		question: KeySimple | Snippet<[]>;
+		answer: KeySimple | Snippet<[]>;
 	};
 </script>
 

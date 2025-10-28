@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Toc } from '@svelte-put/toc';
 	import { T } from '@sveltevietnam/i18n-new';
-	import type { Key } from '@sveltevietnam/i18n-new/generated';
+	import type { KeySimple } from '@sveltevietnam/i18n-new/generated';
 	import fallback16x9 from '@sveltevietnam/kit/assets/images/fallbacks/16x9.jpg?enhanced&w=2240;1540;1088;686&imagetools';
 	import { Breadcrumbs, CopyBtn, NotByAiBadge } from '@sveltevietnam/kit/components';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
@@ -178,7 +178,7 @@
 			<span class="sr-only" id="quick-nav-label">
 				<T key="pages.blog_slug.quick_nav.aria" />
 			</span>
-			{#snippet inlink(href: string, tKey: Key, iconClass: string)}
+			{#snippet inlink(href: string, tKey: KeySimple, iconClass: string)}
 				<a
 					class="c-link-lazy flex flex-col items-center justify-end gap-2 p-2"
 					{href}

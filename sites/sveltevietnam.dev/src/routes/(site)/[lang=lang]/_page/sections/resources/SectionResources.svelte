@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n-new';
-	import type { Key } from '@sveltevietnam/i18n-new/generated';
+	import type { KeySimple } from '@sveltevietnam/i18n-new/generated';
 	import { SOCIAL_LINKS } from '@sveltevietnam/kit/constants';
 	import { createTimeline, onScroll } from 'animejs';
 	import type { Picture } from 'vite-imagetools';
@@ -95,7 +95,7 @@
 	});
 </script>
 
-{#snippet step(key: Key)}
+{#snippet step(key: KeySimple)}
 	<div class="isolate">
 		<p
 			class="_border-gradient bg-surface c-text-body-xs relative w-fit px-3 py-1.5 leading-tight tracking-widest uppercase"
@@ -121,13 +121,13 @@
 	image,
 	footnote,
 }: {
-	description: Key;
-	links: { key: Key; href: string; class?: string }[];
+	description: KeySimple;
+	links: { key: KeySimple; href: string; class?: string }[];
 	linksClasses?: string;
 	image:
-		| { key: Key; href: string; src: Picture; class?: string }
+		| { key: KeySimple; href: string; src: Picture; class?: string }
 		| { src: string; width: number; height: number };
-	footnote?: Key;
+	footnote?: KeySimple;
 })}
 	<div
 		class="tablet:gap-8 desktop:gap-10 mobile:flex-col odd:tablet:flex-row-reverse group flex gap-6"
@@ -308,9 +308,7 @@
 
 		{@render resource({
 			description: 'pages.home.resources.two.docs.desc',
-			links: [
-				{ key: 'pages.home.resources.two.docs.link', href: 'https://svelte.dev/docs' },
-			],
+			links: [{ key: 'pages.home.resources.two.docs.link', href: 'https://svelte.dev/docs' }],
 			linksClasses: 'w-fit',
 			image: {
 				key: 'pages.home.resources.two.docs.link',

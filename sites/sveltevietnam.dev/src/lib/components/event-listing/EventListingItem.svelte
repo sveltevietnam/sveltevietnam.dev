@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import { T } from '@sveltevietnam/i18n-new';
-	import type { Key } from '@sveltevietnam/i18n-new/generated';
+	import type { KeySimple } from '@sveltevietnam/i18n-new/generated';
 	import fallback3x2 from '@sveltevietnam/kit/assets/images/fallbacks/3x2.jpg?enhanced&w=1200;700;400&imagetools';
 	import { CopyBtn } from '@sveltevietnam/kit/components';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
@@ -196,7 +196,7 @@
 				{/if}
 
 				<!-- time -->
-				{#snippet datetime(date: string | Date, prefix?: Key)}
+				{#snippet datetime(date: string | Date, prefix?: KeySimple)}
 					{#if date instanceof Date}
 						{#if prefix}
 							<span class="capitalize"><T key={prefix} /></span>

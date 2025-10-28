@@ -1,7 +1,7 @@
 <script lang="ts" module>
 	import { autoUpdate, computePosition, shift, flip, offset } from '@floating-ui/dom';
 	import { T } from '@sveltevietnam/i18n-new';
-	import type { Key } from '@sveltevietnam/i18n-new/generated';
+	import type { KeySimple } from '@sveltevietnam/i18n-new/generated';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { onMount } from 'svelte';
 
@@ -117,7 +117,7 @@
 		</p>
 	{/if}
 
-	{#snippet action(iconClass: string, sr: Key, onclick: () => void)}
+	{#snippet action(iconClass: string, sr: KeySimple, onclick: () => void)}
 		<button class="c-btn c-btn--icon p-1.5" type="button" {onclick}>
 			<i class="i {iconClass} h-5 w-5"></i>
 			<span class="sr-only">

@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import { T } from '@sveltevietnam/i18n-new';
-	import type { Key } from '@sveltevietnam/i18n-new/generated';
+	import type { KeySimple } from '@sveltevietnam/i18n-new/generated';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { onMount } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
@@ -12,7 +12,7 @@
 	export interface RichTextEditorProps
 		extends EditorInit,
 			Omit<HTMLAttributes<HTMLElement>, 'onchange' | 'placeholder'> {
-		placeholder?: Key;
+		placeholder?: KeySimple;
 		onchange?: (html: string) => void;
 		maxLength?: number;
 	}
