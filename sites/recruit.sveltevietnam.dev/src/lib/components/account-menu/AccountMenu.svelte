@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
 	import { delocalizeUrl } from '@sveltevietnam/i18n-new/utils';
 	import fallback1x1 from '@sveltevietnam/kit/assets/images/fallbacks/1x1.jpg?enhanced&w=w=224;112&imagetools';
 	import { Dropdown } from '@sveltevietnam/kit/components';
@@ -7,7 +7,6 @@
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import type { HTMLDetailsAttributes } from 'svelte/elements';
 
-	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 
 	interface AccountMenuProps extends HTMLDetailsAttributes {
@@ -34,7 +33,7 @@
 <Dropdown bind:open {...rest} role="navigation" aria-labelledby="account-menu-label">
 	{#snippet label()}
 		<span class="sr-only" id="account-menu-label">
-			<T message={m['components.account_menu.aria']} />
+			<T key="components.account_menu.aria" />
 		</span>
 		{#if image}
 			<img class={imageClasses} src={image} alt="" width="32" height="32" />
@@ -62,7 +61,7 @@
 					data-umami-event-path={delocalizeUrl(profilePath, LANGUAGES)}
 				>
 					<i class="i i-[ph--user] h-6 w-6"></i>
-					<T message={m['components.account_menu.profile']} />
+					<T key="components.account_menu.profile" />
 				</a>
 			</li>
 			<li>
@@ -75,7 +74,7 @@
 					data-umami-event-path={delocalizeUrl(logoutPath, LANGUAGES)}
 				>
 					<i class="i i-[ph--sign-out] h-6 w-6"></i>
-					<T message={m['components.account_menu.logout']} />
+					<T key="components.account_menu.logout" />
 				</a>
 			</li>
 		</ul>
