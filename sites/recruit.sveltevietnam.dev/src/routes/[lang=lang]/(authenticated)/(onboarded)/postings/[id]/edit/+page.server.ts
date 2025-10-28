@@ -2,11 +2,11 @@ import { error, fail, redirect } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms';
 import { valibot } from 'sveltekit-superforms/adapters';
 
-import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { getBackend } from '$lib/backend/utils';
 import { createJobPostingUpsertSchema } from '$lib/forms/job-posting-upsert';
+import * as m from '$lib/i18n/generated/messages';
 
 import type { PageServerLoad } from './$types';
 
@@ -39,7 +39,7 @@ export const load: PageServerLoad = async ({ params, parent }) => {
 			},
 		},
 		meta: {
-			title: m['pages.postings_upsert.meta.title.edit'](lang).toString(),
+			title: m['pages.postings_upsert.meta.title.edit'](lang),
 		},
 	};
 };
