@@ -21,6 +21,11 @@ export default {
 		}),
 		vitePreprocess(),
 	],
+	compilerOptions: {
+		experimental: {
+			async: true,
+		},
+	},
 	kit: {
 		env: {
 			publicPrefix: 'VITE_PUBLIC_',
@@ -47,6 +52,9 @@ export default {
 		alias: {
 			$routes: path.resolve(__dirname, 'src/routes'),
 			$data: path.resolve(__dirname, 'src/data'),
+		},
+		experimental: {
+			remoteFunctions: true,
 		},
 	},
 	vitePlugin: {
