@@ -45,7 +45,7 @@
 		</p>
 
 		<section class="_about tablet:space-y-6 tablet:max-w-70 space-y-4">
-			<p class="c-text-title"><T key="components.footer.about.title" /></p>
+			<p class="c-text-title"><T key="components.footer.about.heading" /></p>
 			<p class="leading-relaxed"><T key="components.footer.about.desc" /></p>
 		</section>
 

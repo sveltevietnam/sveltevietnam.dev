@@ -58,7 +58,7 @@ messages:
       '@import': '$lib/components/event-listing/locales/en.yaml'
     footer:
       about:
-        title: About Us
+        heading: About Us
         desc:
           Svelte Vietnam is a a go-to information center, and an inclusive community for anyone
           interested in the adoption of Svelte in Vietnam.
