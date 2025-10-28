@@ -1,7 +1,9 @@
 <script lang="ts" module>
 	import { autoUpdate, computePosition, shift, flip, offset } from '@floating-ui/dom';
-	import { T, type Message } from '@sveltevietnam/i18n/runtime';
-	import { getContext, onMount } from 'svelte';
+	import { T } from '@sveltevietnam/i18n-new';
+	import type { Key } from '@sveltevietnam/i18n-new/generated';
+	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { onMount } from 'svelte';
 
 	export interface FloatingLinkEditorProps {
 		trigger: HTMLElement;
@@ -12,14 +14,6 @@
 		ondiscard?: (text: string) => void;
 		onremoved?: (text: string) => void;
 		onclosed?: (text: string) => void;
-		i18n: {
-			name: Message<'string', never>;
-			edit: Message<'string', never>;
-			remove: Message<'string', never>;
-			save: Message<'string', never>;
-			discard: Message<'string', never>;
-			placeholder: Message<'string', never>;
-		};
 	}
 </script>
 
@@ -31,11 +25,12 @@
 		onremoved,
 		onclosed,
 		ondiscard,
-		i18n,
 		trigger,
 	}: FloatingLinkEditorProps = $props();
 
-	let getLang = getContext<() => string>('t:lang');
+	const {
+		i18n: { t },
+	} = Contexts.get();
 	let value = $state(initialValue);
 
 	let popover: HTMLElement;
@@ -95,7 +90,7 @@
 </script>
 
 <div
-	class="border-onehalf bg-surface shadow-brutal max-w-screen invisible absolute min-h-10 min-w-40 border-current"
+	class="border-onehalf bg-surface shadow-brutal invisible absolute min-h-10 max-w-screen min-w-40 border-current"
 	popover="manual"
 	bind:this={popover}
 	ontoggle={handleToggle}
@@ -103,42 +98,58 @@
 	aria-labelledby="floating-link-editor-label"
 >
 	<p class="sr-only" id="floating-link-editor-label">
-		<T message={i18n.name} />
+		<T key="components.rich_text_editor.floating_link_editor.name" />
 	</p>
 
 	{#if editing}
 		<input
 			bind:this={input}
-			placeholder={i18n.placeholder(getLang()).toString()}
-			class="w-100 block max-w-full py-2 pl-3 pr-20"
+			placeholder={await t({ key: 'components.rich_text_editor.floating_link_editor.placeholder' })}
+			class="block w-100 max-w-full py-2 pr-20 pl-3"
 			type="text"
 			bind:value
 		/>
 	{:else}
-		<p class="py-2 pl-3 pr-20">
+		<p class="py-2 pr-20 pl-3">
 			<a class="c-link" href={value} target="_blank" rel="noreferrer noopener external">
 				{value}
 			</a>
 		</p>
 	{/if}
 
-	{#snippet action(iconClass: string, sr: Message<'string', never>, onclick: () => void)}
+	{#snippet action(iconClass: string, sr: Key, onclick: () => void)}
 		<button class="c-btn c-btn--icon p-1.5" type="button" {onclick}>
 			<i class="i {iconClass} h-5 w-5"></i>
 			<span class="sr-only">
-				<T message={sr} />
+				<T key={sr} />
 			</span>
 		</button>
 	{/snippet}
 
 	<!-- actions -->
-	<div class="absolute right-1 top-1/2 flex -translate-y-1/2 gap-0.5">
+	<div class="absolute top-1/2 right-1 flex -translate-y-1/2 gap-0.5">
 		{#if editing}
-			{@render action('i-[ph--check]', i18n.save, handleSave)}
-			{@render action('i-[ph--x]', i18n.discard, handleDiscard)}
+			{@render action(
+				'i-[ph--check]',
+				'components.rich_text_editor.floating_link_editor.save',
+				handleSave,
+			)}
+			{@render action(
+				'i-[ph--x]',
+				'components.rich_text_editor.floating_link_editor.discard',
+				handleDiscard,
+			)}
 		{:else}
-			{@render action('i-[ph--pencil-simple]', i18n.edit, handleEdit)}
-			{@render action('i-[ph--trash]', i18n.remove, handleRemove)}
+			{@render action(
+				'i-[ph--pencil-simple]',
+				'components.rich_text_editor.floating_link_editor.edit',
+				handleEdit,
+			)}
+			{@render action(
+				'i-[ph--trash]',
+				'components.rich_text_editor.floating_link_editor.remove',
+				handleRemove,
+			)}
 		{/if}
 	</div>
 </div>

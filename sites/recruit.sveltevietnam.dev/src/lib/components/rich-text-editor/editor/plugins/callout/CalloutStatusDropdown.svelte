@@ -1,9 +1,8 @@
 <script lang="ts" module>
-	import { type Message, T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
+	import type { Key } from '@sveltevietnam/i18n-new/generated';
 	import { DropdownPopover } from '@sveltevietnam/kit/components';
 	import type { Status } from '@sveltevietnam/kit/constants';
-
-	import * as m from '$data/locales/generated/messages';
 
 	export interface CalloutStatusDropdownProps {
 		status: Status;
@@ -20,24 +19,24 @@
 		Status,
 		{
 			iconClass: string;
-			label: Message<'string', never>;
+			label: Key;
 		}
 	> = {
 		info: {
 			iconClass: 'i-[ph--info]',
-			label: m['components.rich_text_editor.toolbar.block.callout.status.info'],
+			label: 'components.rich_text_editor.toolbar.block.callout.status.info',
 		},
 		warning: {
 			iconClass: 'i-[ph--warning]',
-			label: m['components.rich_text_editor.toolbar.block.callout.status.warning'],
+			label: 'components.rich_text_editor.toolbar.block.callout.status.warning',
 		},
 		success: {
 			iconClass: 'i-[ph--check-circle]',
-			label: m['components.rich_text_editor.toolbar.block.callout.status.success'],
+			label: 'components.rich_text_editor.toolbar.block.callout.status.success',
 		},
 		error: {
 			iconClass: 'i-[ph--warning-octagon]',
-			label: m['components.rich_text_editor.toolbar.block.callout.status.error'],
+			label: 'components.rich_text_editor.toolbar.block.callout.status.error',
 		},
 	};
 
@@ -47,16 +46,21 @@
 	}
 </script>
 
-<DropdownPopover class="group w-fit" placement="top-end" offset={{ mainAxis: 8, crossAxis: 4 }} bind:open>
+<DropdownPopover
+	class="group w-fit"
+	placement="top-end"
+	offset={{ mainAxis: 8, crossAxis: 4 }}
+	bind:open
+>
 	{#snippet label()}
 		{@const currentStatus = OPTIONS[status]}
 		<span class="c-link-lazy flex items-center gap-2 px-2 py-1 transition-colors">
 			<i class="i {currentStatus.iconClass} h-5 w-5 shrink-0"></i>
 			<span class="sr-only">
-				<T message={m['components.rich_text_editor.toolbar.block.callout.status.name']} />
+				<T key="components.rich_text_editor.toolbar.block.callout.status.name" />
 			</span>
 			<span class="mobile:hidden" aria-hidden="true">
-				<T message={currentStatus.label} />
+				<T key={currentStatus.label} />
 			</span>
 			<i class="i i-[ph--caret-down] h-5 w-5 transition-transform group-open:-rotate-180"></i>
 		</span>
@@ -73,7 +77,7 @@
 					>
 						<i class="i {iconClass} h-5 w-5"></i>
 						<span>
-							<T message={label} />
+							<T key={label} />
 						</span>
 					</button>
 				</li>

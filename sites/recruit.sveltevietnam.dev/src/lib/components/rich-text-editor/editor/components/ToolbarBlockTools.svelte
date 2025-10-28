@@ -1,9 +1,7 @@
 <script lang="ts" module>
-	import { T } from '@sveltevietnam/i18n/runtime';
-	import type { Message } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
+	import type { Key } from '@sveltevietnam/i18n-new/generated';
 	import { DropdownPopover } from '@sveltevietnam/kit/components';
-
-	import * as m from '$data/locales/generated/messages';
 
 	import type { Editor, HeadingLevel } from '..';
 
@@ -15,52 +13,52 @@
 		string,
 		{
 			iconClass: string;
-			label: Message<'string', never> | [Message<'string', never>, string];
+			label: Key | [Key, string];
 		}
 	> = {
 		paragraph: {
 			iconClass: 'i-[ph--paragraph]',
-			label: m['components.rich_text_editor.toolbar.block.paragraph'],
+			label: 'components.rich_text_editor.toolbar.block.paragraph',
 		},
 		h1: {
 			iconClass: 'i-[ph--text-h-one]',
-			label: [m['components.rich_text_editor.toolbar.block.heading'], '1'],
+			label: ['components.rich_text_editor.toolbar.block.heading', '1'],
 		},
 		h2: {
 			iconClass: 'i-[ph--text-h-two]',
-			label: [m['components.rich_text_editor.toolbar.block.heading'], '2'],
+			label: ['components.rich_text_editor.toolbar.block.heading', '2'],
 		},
 		h3: {
 			iconClass: 'i-[ph--text-h-three]',
-			label: [m['components.rich_text_editor.toolbar.block.heading'], '3'],
+			label: ['components.rich_text_editor.toolbar.block.heading', '3'],
 		},
 		h4: {
 			iconClass: 'i-[ph--text-h-four]',
-			label: [m['components.rich_text_editor.toolbar.block.heading'], '4'],
+			label: ['components.rich_text_editor.toolbar.block.heading', '4'],
 		},
 		h5: {
 			iconClass: 'i-[ph--text-h-five]',
-			label: [m['components.rich_text_editor.toolbar.block.heading'], '5'],
+			label: ['components.rich_text_editor.toolbar.block.heading', '5'],
 		},
 		h6: {
 			iconClass: 'i-[ph--text-h-six]',
-			label: [m['components.rich_text_editor.toolbar.block.heading'], '6'],
+			label: ['components.rich_text_editor.toolbar.block.heading', '6'],
 		},
 		callout: {
 			iconClass: 'i-[ph--bell]',
-			label: m['components.rich_text_editor.toolbar.block.callout.name'],
+			label: 'components.rich_text_editor.toolbar.block.callout.name',
 		},
 		'list-bullet': {
 			iconClass: 'i-[ph--list-bullets]',
-			label: m['components.rich_text_editor.toolbar.block.bullet_list'],
+			label: 'components.rich_text_editor.toolbar.block.bullet_list',
 		},
 		'list-number': {
 			iconClass: 'i-[ph--list-numbers]',
-			label: m['components.rich_text_editor.toolbar.block.numbered_list'],
+			label: 'components.rich_text_editor.toolbar.block.numbered_list',
 		},
 		quote: {
 			iconClass: 'i-[ph--quotes]',
-			label: m['components.rich_text_editor.toolbar.block.blockquote'],
+			label: 'components.rich_text_editor.toolbar.block.blockquote',
 		},
 	};
 </script>
@@ -133,14 +131,14 @@
 		<span class="c-link-lazy flex items-center gap-2 px-2 py-1 transition-colors">
 			<i class="i {currentBlock.iconClass} h-5 w-5 shrink-0"></i>
 			<span class="sr-only">
-				<T message={m['components.rich_text_editor.toolbar.block.name']} />
+				<T key="components.rich_text_editor.toolbar.block.name" />
 			</span>
 			<span class="mobile:hidden" aria-hidden="true">
 				{#if Array.isArray(currentBlock.label)}
-					<T message={currentBlock.label[0]} />
+					<T key={currentBlock.label[0]} />
 					{currentBlock.label[1]}
 				{:else}
-					<T message={currentBlock.label} />
+					<T key={currentBlock.label} />
 				{/if}
 			</span>
 			<i class="i i-[ph--caret-down] h-5 w-5 transition-transform group-open:-rotate-180"></i>
@@ -162,10 +160,10 @@
 						<i class="i {iconClass} h-5 w-5"></i>
 						<span>
 							{#if Array.isArray(label)}
-								<T message={label[0]} />
+								<T key={label[0]} />
 								{label[1]}
 							{:else}
-								<T message={label} />
+								<T key={label} />
 							{/if}
 						</span>
 					</button>

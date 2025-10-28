@@ -1,8 +1,7 @@
 <script lang="ts" module>
 	import { TOGGLE_LINK_COMMAND } from '@lexical/link';
+	import type { Key } from '@sveltevietnam/i18n-new/generated';
 	import { FORMAT_TEXT_COMMAND } from 'lexical';
-
-	import * as m from '$data/locales/generated/messages';
 
 	import type { Editor } from '..';
 
@@ -40,34 +39,42 @@
 		}
 	}
 
-	let tools = {
+	let tools: Record<
+		string,
+		{
+			iconClass: string;
+			label: Key;
+			action: () => void;
+			isActive: () => boolean;
+		}
+	> = {
 		bold: {
 			iconClass: 'i-[ph--text-b-bold]',
-			label: m['components.rich_text_editor.toolbar.inline.bold'],
+			label: 'components.rich_text_editor.toolbar.inline.bold',
 			action: toggleBold,
 			isActive: () => editor.inline.format.bold,
 		},
 		italic: {
 			iconClass: 'i-[ph--text-italic]',
-			label: m['components.rich_text_editor.toolbar.inline.italic'],
+			label: 'components.rich_text_editor.toolbar.inline.italic',
 			action: toggleItalic,
 			isActive: () => editor.inline.format.italic,
 		},
 		underline: {
 			iconClass: 'i-[ph--text-underline]',
-			label: m['components.rich_text_editor.toolbar.inline.underline'],
+			label: 'components.rich_text_editor.toolbar.inline.underline',
 			action: toggleUnderline,
 			isActive: () => editor.inline.format.underline,
 		},
 		code: {
 			iconClass: 'i-[ph--code-simple]',
-			label: m['components.rich_text_editor.toolbar.inline.code'],
+			label: 'components.rich_text_editor.toolbar.inline.code',
 			action: toggleInlineCodeBlock,
 			isActive: () => editor.inline.format.code,
 		},
 		link: {
 			iconClass: 'i-[ph--link-simple-horizontal]',
-			label: m['components.rich_text_editor.toolbar.inline.link'],
+			label: 'components.rich_text_editor.toolbar.inline.link',
 			action: insertLink,
 			isActive: () => editor.inline.link !== null,
 		},
