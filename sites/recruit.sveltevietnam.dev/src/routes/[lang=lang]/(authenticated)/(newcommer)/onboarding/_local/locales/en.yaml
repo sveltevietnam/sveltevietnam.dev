@@ -1,0 +1,14 @@
+# ===========================
+# Language: English
+# Scope:    pages.onboarding
+# ===========================
+messages:
+  meta:
+    title: Onboarding | Recruit | Svelte Vietnam
+  heading: Onboarding
+  desc:
+    Thank you for your interest in the Recruitment app from the Svelte Vietnam community. Please
+    fill in some necessary information below to complete the registration process!
+  cta:
+    use_another_account: Login to another account
+    submit: Submit for review

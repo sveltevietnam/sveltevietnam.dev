@@ -1,0 +1,33 @@
+# ================================
+# Language: English
+# Scope:    pages.postings_upsert
+# ================================
+messages:
+  meta:
+    title:
+      create: Create Posting | Recruit | Svelte Vietnam
+      edit: Edit Posting | Recruit | Svelte Vietnam
+  heading:
+    create: Create new job posting
+    edit: Edit job posting
+  form:
+    cta: Submit for review
+  preview:
+    heading: Preview
+    desc:
+      This job posting will be displayed at the <a class="c-link"
+      href="{{mainSiteUrl}}/en/jobs">"Jobs"</a> page as
+    callout:
+      Postings should describe responsibilities and benefits with clarity. Comprehensive postings
+      can also help streamline the admin review process.
+  support:
+    heading: Support
+    desc:
+      If you need support or have any questions or feedback about the job posting process, please
+      contact the admin team via email at <a class="c-link" href="mailto:{{mail}}">{{mail}}</a> or
+      via the <a class="c-link" href="https://discord.sveltevietnam.dev"
+      data-umami-event="click-social-link" data-umami-event-source="discord"
+      data-umami-event-position="sidebar.support">Svelte Vietnam Discord</a>."
+  notifications:
+    update: Update has been approved and applied to your posting!
+    create: Posting has been created and is pending admin review!

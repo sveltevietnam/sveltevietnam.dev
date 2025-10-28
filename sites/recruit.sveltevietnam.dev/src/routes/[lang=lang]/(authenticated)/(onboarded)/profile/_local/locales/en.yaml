@@ -1,0 +1,21 @@
+# ========================
+# Language: English
+# Scope:    pages.profile
+# ========================
+messages:
+  meta:
+    title: Profile | Recruit | Svelte Vietnam
+  heading: Profile
+  update_email:
+    heading: Update email
+    form:
+      email:
+        note: This email is used for login.
+    callout:
+      pending: Please verify the change via a link sent to your new email.
+      unverified:
+        Your email has just been changed. For security reasons, please logout and log in again if
+        you wish to change your email again.
+  update_info:
+    heading: Update information
+    success: Your profile has been updated!

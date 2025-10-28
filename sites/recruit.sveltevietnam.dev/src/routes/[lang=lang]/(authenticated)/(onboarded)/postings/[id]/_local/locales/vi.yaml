@@ -1,0 +1,46 @@
+# ============================
+# Language: Vietnamese
+# Scope:    pages.postings_id
+# ============================
+messages:
+  meta:
+    title: Chi tiết đăng tuyển | Tuyển dụng | Svelte Việt Nam
+  pending:
+    Bài đăng tuyển đang chờ xét duyệt từ ban quản trị. Bạn sẽ nhận được email khi bài đăng được
+    duyệt hoặc cần bổ sung thông tin. Bài đăng đã duyệt sẽ không thể sửa đổi. Vui lòng kiểm tra kỹ
+    thông tin và sử đổi ngay bây giờ nếu cần.
+  deleted:
+    Bài đăng đã bị xoá và sẽ không còn hiển thị tại các trang khác. Bạn vẫn có thể truy cập trang
+    này nhưng không thể thực hiện thêm thao tác nào khác.
+  general:
+    heading: Thông tin chung
+    posted_at: Đăng ngày
+    expired_at: Hết hạn ngày
+    status:
+      name: Trạng thái
+      pending: Chờ xét duyệt
+      expired: Đã hết hạn
+      active:
+        Đang hiển thị tại trang <a class="c-link" href="{{publicUrl}}" target="_blank">Việc làm</a>
+  job_desc:
+    heading: Mô tả công việc
+  employer_desc:
+    heading: Về {{employerName}}
+  actions:
+    apply: Ứng tuyển
+    share:
+      link: Sao chép đường dẫn
+      qr: Tạo mã QR
+  manage:
+    heading: Quản lý bài đăng
+    edit: Chỉnh sửa
+    delete: Xoá
+  delete:
+    confirmation:
+      title: Cảnh báo về tác vụ này
+      desc: Đăng tuyển sẽ bị xoá vĩnh viễn và không thể khôi phục. Bạn có chắc chắn muốn xoá?
+      confirm: Xác nhận
+      cancel: Quay lại
+    errors:
+      unauthorized: Bạn không có quyền quản lý bài đăng tuyển này
+    success: Bài đăng tuyển đã được xóa!

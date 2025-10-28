@@ -22,6 +22,26 @@ messages:
     sponsor_reminder:
       '@import': '$lib/components/sponsor-reminder/locales/en.yaml'
 
+  pages:
+    home:
+      '@import': '$routes/[lang=lang]/_local/locales/en.yaml'
+    authenticate:
+      '@import': '$routes/[lang=lang]/authenticate/_local/locales/en.yaml'
+    email_change_verification:
+      '@import': '$routes/[lang=lang]/email-change-verification/[token]/_local/locales/en.yaml'
+    onboarding:
+      '@import': '$routes/[lang=lang]/(authenticated)/(newcommer)/onboarding/_local/locales/en.yaml'
+    welcome:
+      '@import': '$routes/[lang=lang]/(authenticated)/(newcommer)/welcome/_local/locales/en.yaml'
+    profile:
+      '@import': '$routes/[lang=lang]/(authenticated)/(onboarded)/profile/_local/locales/en.yaml'
+    postings:
+      '@import': '$routes/[lang=lang]/(authenticated)/(onboarded)/postings/_local/locales/en.yaml'
+    postings_id:
+      '@import': '$routes/[lang=lang]/(authenticated)/(onboarded)/postings/[id]/_local/locales/en.yaml'
+    postings_upsert:
+      '@import': '$routes/[lang=lang]/(authenticated)/(onboarded)/postings/create/_local/locales/en.yaml'
+
   errors:
     generic: Something went wrong, please try again later! We are sorry for the inconvenience.
 

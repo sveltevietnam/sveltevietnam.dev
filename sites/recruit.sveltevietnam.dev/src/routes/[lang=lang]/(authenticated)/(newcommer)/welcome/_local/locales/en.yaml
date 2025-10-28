@@ -1,0 +1,16 @@
+# ========================
+# Language: English
+# Scope:    pages.welcome
+# ========================
+messages:
+  meta:
+    title: Welcome | Recruit | Svelte Vietnam
+  heading: Your account is approved!
+  desc: Thank you. You can start using the application immediately!
+  cta: Create a job posting
+  feedback:
+    Send feedback to improve the sign-up process via <a class="c-link"
+    href="mailto:{{mail}}">{{mail}}</a> or <a class="c-link"
+    href="https://discord.sveltevietnam.dev" target="_blank" rel="noreferrer noopener external"
+    data-umami-event="click-social-link" data-umami-event-source="discord"
+    data-umami-event-position="pages.welcome">Svelte Vietnam's official Discord</a>.

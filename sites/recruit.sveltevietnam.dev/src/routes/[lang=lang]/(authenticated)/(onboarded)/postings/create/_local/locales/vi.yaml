@@ -1,0 +1,33 @@
+# ================================
+# Language: Vietnamese
+# Scope:    pages.postings_upsert
+# ================================
+messages:
+  meta:
+    title:
+      create: Tạo mới đăng tuyển | Tuyển dụng | Svelte Việt Nam
+      edit: Chỉnh sửa đăng tuyển | Tuyển dụng | Svelte Việt Nam
+  heading:
+    create: Tạo mới bài đăng tuyển
+    edit: Chỉnh sửa bài đăng tuyển
+  form:
+    cta: Yêu cầu xét duyệt
+  preview:
+    heading: Xem trước
+    desc:
+      Bài đăng tuyển sẽ được hiển thị tại trang <a class="c-link"
+      href="{{mainSiteUrl}}/vi/viec-lam">“Việc làm"</a> với giao diện như sau
+    callout:
+      Bài đăng tuyển nên mô tả rõ ràng về trách nhiệm công việc và phúc lợi. Đăng tuyển với thông
+      tin đầy đủ cũng sẽ giúp ban quản trị xét duyệt dễ dàng hơn.
+  support:
+    heading: Hỗ trợ
+    desc:
+      Nếu bạn cần hỗ trợ hoặc có thắc mắc, góp ý cho ứng dụng, hãy liên lạc ban quản trị qua email
+      <a class="c-link" href="mailto:{{mail}}">{{mail}}</a> hoặc tại <a class="c-link"
+      href="https://discord.sveltevietnam.dev" data-umami-event="click-social-link"
+      data-umami-event-source="discord" data-umami-event-position="sidebar.support">Discord của
+      Svelte Việt Nam</a>.
+  notifications:
+    update: Sửa đổi đã được xét duyệt và cập nhật!
+    create: Bài đăng tuyển đã được tạo thành công và đang chờ xét duyệt!

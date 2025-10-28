@@ -22,6 +22,26 @@ messages:
     sponsor_reminder:
       '@import': '$lib/components/sponsor-reminder/locales/vi.yaml'
 
+  pages:
+    home:
+      '@import': '$routes/[lang=lang]/_local/locales/vi.yaml'
+    authenticate:
+      '@import': '$routes/[lang=lang]/authenticate/_local/locales/vi.yaml'
+    email_change_verification:
+      '@import': '$routes/[lang=lang]/email-change-verification/[token]/_local/locales/vi.yaml'
+    onboarding:
+      '@import': '$routes/[lang=lang]/(authenticated)/(newcommer)/onboarding/_local/locales/vi.yaml'
+    welcome:
+      '@import': '$routes/[lang=lang]/(authenticated)/(newcommer)/welcome/_local/locales/vi.yaml'
+    profile:
+      '@import': '$routes/[lang=lang]/(authenticated)/(onboarded)/profile/_local/locales/vi.yaml'
+    postings:
+      '@import': '$routes/[lang=lang]/(authenticated)/(onboarded)/postings/_local/locales/vi.yaml'
+    postings_id:
+      '@import': '$routes/[lang=lang]/(authenticated)/(onboarded)/postings/[id]/_local/locales/vi.yaml'
+    postings_upsert:
+      '@import': '$routes/[lang=lang]/(authenticated)/(onboarded)/postings/create/_local/locales/vi.yaml'
+
   errors:
     generic: Đã có lỗi xảy ra, vui lòng thử lại sau! Xin lỗi vì sự bất tiện này.
 
