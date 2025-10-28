@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 
-	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import { SingleBoxPageLayout } from '$lib/components/single-box-page-layout';
 	import { FormEmployerProfile } from '$lib/forms/employer-profile';
@@ -16,17 +15,17 @@
 
 <SingleBoxPageLayout class="max-w-readable-relaxed space-y-6">
 	<h1 class="c-text-heading-md">
-		<T message={m['pages.onboarding.heading']} />
+		<T key="pages.onboarding.heading" />
 	</h1>
 	<p class="leading-relaxed">
-		<T message={m['pages.onboarding.desc']} />
+		<T key="pages.onboarding.desc" />
 	</p>
 
 	<FormEmployerProfile data={data.form} action="?/onboard">
 		{#snippet cta({ delayed, timeout })}
 			<div class="flex gap-6">
 				<a class="c-btn c-btn--outlined" href={p['/:lang/logout']({ lang: routing.lang })}>
-					<span><T message={m['pages.onboarding.cta.use_another_account']} /></span>
+					<span><T key="pages.onboarding.cta.use_another_account" /></span>
 				</a>
 				<button
 					class="c-btn"
@@ -35,7 +34,7 @@
 					data-timeout={timeout}
 					data-umami-event="submit-onboard"
 				>
-					<span><T message={m['pages.onboarding.cta.submit']} /></span>
+					<span><T key="pages.onboarding.cta.submit" /></span>
 				</button>
 			</div>
 		{/snippet}

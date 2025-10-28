@@ -2,11 +2,11 @@ import { error, fail, redirect } from '@sveltejs/kit';
 import { valibot } from 'sveltekit-superforms/adapters';
 import { superValidate, withFiles } from 'sveltekit-superforms/server';
 
-import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { uploadEmployerImage } from '$lib/data/employers';
 import { createEmployerProfileSchema } from '$lib/forms/employer-profile';
+import * as m from '$lib/i18n/generated/messages';
 
 import type { Actions, PageServerLoad } from './$types';
 
@@ -24,7 +24,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 			},
 		},
 		meta: {
-			title: m['pages.onboarding.meta.title'](lang).toString(),
+			title: m['pages.onboarding.meta.title'](lang),
 		},
 	};
 };
