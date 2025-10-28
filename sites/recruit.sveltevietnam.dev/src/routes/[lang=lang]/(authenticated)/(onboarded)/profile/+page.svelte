@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { superForm } from 'sveltekit-superforms';
 
-	import * as m from '$data/locales/generated/messages';
 	import { SingleBoxPageLayout } from '$lib/components/single-box-page-layout';
 	import { FormEmployerProfile } from '$lib/forms/employer-profile';
 	import { createSuperFormGenericErrorHandler } from '$lib/forms/utils';
@@ -14,6 +13,7 @@
 
 	const {
 		notifications: { toaster },
+		i18n: { t },
 	} = Contexts.get();
 
 	const { form, enhance, constraints, errors, delayed, timeout, message } = superForm<
@@ -31,18 +31,18 @@
 	});
 
 	function handleProfileUpdateSuccess() {
-		toaster.success({ message: m['pages.profile.update_info.success'] });
+		toaster.success({ message: t({ key: 'pages.profile.update_info.success' }) });
 	}
 </script>
 
 <SingleBoxPageLayout class="max-w-readable-relaxed space-y-10">
 	<h1 class="sr-only">
-		<T message={m['pages.profile.heading']} />
+		<T key="pages.profile.heading" />
 	</h1>
 
 	<section class="space-y-6" aria-labelledby="update-email">
 		<h2 class="c-text-heading border-outline border-b" id="update-email">
-			<T message={m['pages.profile.update_email.heading']} />
+			<T key="pages.profile.update_email.heading" />
 		</h2>
 
 		{#if !$message || $message === 'error'}
@@ -50,7 +50,7 @@
 				<!-- combined email input & submit button -->
 				<div class="space-y-1">
 					<p>
-						<T message={m['inputs.employer.email.label']} />:
+						<T key="inputs.employer.email.label" />:
 					</p>
 					<div class="flex items-stretch">
 						<label class="c-text-input flex-1">
@@ -75,7 +75,7 @@
 							data-umami-event="submit-change-email"
 						>
 							<i class="i i-[ph--floppy-disk] h-6 w-6"></i>
-							<T message={m.save} />
+							<T key="save" />
 						</button>
 					</div>
 					<div class="c-text-body-sm flex items-baseline justify-between gap-4">
@@ -83,7 +83,7 @@
 							<p class="text-red-500" id="error-email">{$errors.email[0]}</p>
 						{/if}
 						<p class="ml-auto">
-							<T message={m['pages.profile.update_email.form.email.note']} />
+							<T key="pages.profile.update_email.form.email.note" />
 						</p>
 					</div>
 				</div>
@@ -93,15 +93,15 @@
 		{#if $message}
 			{#if $message === 'pending'}
 				<p class="c-callout c-callout--info" role="alert">
-					<T message={m['pages.profile.update_email.callout.pending']} />
+					<T key="pages.profile.update_email.callout.pending" />
 				</p>
 			{:else if $message === 'unverified'}
 				<p class="c-callout c-callout--warning" role="alert">
-					<T message={m['pages.profile.update_email.callout.unverified']} />
+					<T key="pages.profile.update_email.callout.unverified" />
 				</p>
 			{:else}
 				<p class="c-callout c-callout--error" role="alert">
-					<T message={m['errors.generic']} />
+					<T key="errors.generic" />
 				</p>
 			{/if}
 		{/if}
@@ -109,7 +109,7 @@
 
 	<section class="space-y-6" aria-labelledby="update-info">
 		<h2 class="c-text-heading border-outline border-b" id="update-info">
-			<T message={m['pages.profile.update_info.heading']} />
+			<T key="pages.profile.update_info.heading" />
 		</h2>
 
 		<FormEmployerProfile
@@ -128,7 +128,7 @@
 					data-umami-event="submit-update-profile"
 				>
 					<i class="i i-[ph--floppy-disk] h-6 w-6"></i>
-					<T message={m['save']} />
+					<T key="save" />
 				</button>
 			{/snippet}
 		</FormEmployerProfile>
