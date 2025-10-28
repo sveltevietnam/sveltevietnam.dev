@@ -3,6 +3,13 @@
 # Language: Vietnamese
 # ==============================================
 messages:
+  vietnam: Việt Nam
+  svelte_vietnam:
+    name: Svelte Việt Nam
+    discord: Svelte Việt Nam Discord
+  # adjectives
+  latest: Mới nhất
+  current: Hiện tại
   # prepositions
   at: tại
   from: từ
@@ -16,7 +23,10 @@ messages:
   continue: Tiếp tục
   save: Lưu
   download: Tải về
+  search: Tìm kiếm
+  update: Cập nhật
   # nouns
+  version: Phiên bản
   menu: bảng chọn
   dialogs:
     qr:

@@ -5,23 +5,14 @@
 ---
 messages:
   '@import': '@sveltevietnam/kit/locales/vi.yaml'
-  svelte_vietnam:
-    name: Svelte Việt Nam
-    discord: Svelte Việt Nam Discord
 
   # common
-  vietnam: Việt Nam
-  version: Phiên bản
-  latest: Mới nhất
-  current: Hiện tại
   view_more: Xem thêm
   explain: giải thích
   minutes: phút
   time: Thời gian
   location: Địa điểm
-  search: Tìm kiếm
   subscribe: Đăng ký
-  update: Cập nhật
   newsletter: Bản tin
   listing: Danh sách
 

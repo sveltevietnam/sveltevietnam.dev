@@ -3,6 +3,13 @@
 # Language: English
 # ==============================================
 messages:
+  vietnam: Vietnam
+  svelte_vietnam:
+    name: Svelte Vietnam
+    discord: Svelte Vietnam Discord
+  # adjectives
+  latest: Latest
+  current: Current
   # prepositions
   at: at
   to: to
@@ -16,7 +23,10 @@ messages:
   continue: Continue
   save: Save
   download: Download
+  search: Search
+  update: Update
   # nouns
+  version: Version
   menu: menu
   dialogs:
     qr:
