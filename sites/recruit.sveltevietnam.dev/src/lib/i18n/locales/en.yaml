@@ -9,9 +9,15 @@ messages:
     recruit: Svelte Vietnam Recruit App
 
   components:
+    account_menu:
+      '@import': '$lib/components/account-menu/locales/en.yaml'
     footer:
       about:
         heading: About
         desc:
           This is a free, secure, and open source recruitment platform, connecting community with
           businesses and organizations.
+    rich_text_editor:
+      '@import': '$lib/components/rich-text-editor/locales/en.yaml'
+    sponsor_reminder:
+      '@import': '$lib/components/sponsor-reminder/locales/en.yaml'
