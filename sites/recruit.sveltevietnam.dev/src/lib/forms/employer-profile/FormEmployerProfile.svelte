@@ -1,11 +1,9 @@
 <script lang="ts" module>
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n-new';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import type { Snippet } from 'svelte';
 	import type { HTMLFormAttributes } from 'svelte/elements';
 	import { superForm, fileProxy, type SuperValidated } from 'sveltekit-superforms';
-
-	import * as m from '$data/locales/generated/messages';
 
 	import { createSuperFormGenericErrorHandler } from '../utils';
 
@@ -37,6 +35,7 @@
 	const {
 		routing,
 		notifications: { toaster },
+		i18n: { t },
 	} = Contexts.get();
 
 	const descriptionCacheKey = 'employer-desc-draft';
@@ -72,14 +71,14 @@
 		{#if withEmail}
 			<div class="space-y-1">
 				<label class="block" for="email">
-					<T message={m['inputs.employer.email.label']} />:
+					<T key="inputs.employer.email.label" />:
 				</label>
 				<input
 					class="c-text-input w-full"
 					type="email"
 					name="email"
 					id="email"
-					placeholder={m['inputs.employer.email.placeholder'](routing.lang).toString()}
+					placeholder={await t({ key: 'inputs.employer.email.placeholder' })}
 					bind:value={$form.email}
 					{...$constraints.email}
 					{...$errors.email && {
@@ -92,7 +91,7 @@
 						<p class="text-xs text-red-500" id="error-email">{$errors.email[0]}</p>
 					{/if}
 					<p class="c-text-body-xs ml-auto">
-						<T message={m['inputs.employer.email.note']} />
+						<T key="inputs.employer.email.note" />
 					</p>
 				</div>
 			</div>
@@ -103,14 +102,14 @@
 				<!-- name -->
 				<div class="space-y-1">
 					<label class="block" for="name">
-						<T message={m['inputs.employer.name.label']} />:
+						<T key="inputs.employer.name.label" />:
 					</label>
 					<input
 						class="c-text-input w-full"
 						type="name"
 						name="name"
 						id="name"
-						placeholder={m['inputs.employer.name.placeholder'](routing.lang).toString()}
+						placeholder={await t({ key: 'inputs.employer.name.placeholder' })}
 						bind:value={$form.name}
 						{...$constraints.name}
 						{...$errors.name && {
@@ -126,14 +125,14 @@
 				<!-- website -->
 				<div class="space-y-1">
 					<label class="block" for="website">
-						<T message={m['inputs.employer.website.label']} />:
+						<T key="inputs.employer.website.label" />:
 					</label>
 					<input
 						class="c-text-input w-full"
 						type="url"
 						name="website"
 						id="website"
-						placeholder={m['inputs.employer.website.placeholder'](routing.lang).toString()}
+						placeholder={await t({ key: 'inputs.employer.website.placeholder' })}
 						bind:value={$form.website}
 						{...$constraints.website}
 						{...$errors.website && {
@@ -152,7 +151,7 @@
 			<!-- image -->
 			<div class="w-32 space-y-1">
 				<label class="flex cursor-pointer flex-col gap-1" data-testid="image">
-					<span><T message={m['inputs.employer.image.label']} />:</span>
+					<span><T key="inputs.employer.image.label" />:</span>
 					<span
 						class={[
 							'border-onehalf c-text-body-xs grid aspect-square h-auto w-full place-items-center border-current text-center',
@@ -169,7 +168,7 @@
 								src={imagePreviewUri}
 							/>
 						{:else}
-							<T message={m['inputs.employer.image.desc']} />
+							<T key="inputs.employer.image.desc" />
 						{/if}
 					</span>
 					<input
@@ -195,7 +194,7 @@
 		<!-- description -->
 		<div class="space-y-1">
 			<p class="block" id="description-label">
-				<T message={m['inputs.employer.desc.label']} />:
+				<T key="inputs.employer.desc.label" />:
 			</p>
 			<RichTextEditor
 				aria-labelledby="description-label"
@@ -203,7 +202,7 @@
 				cache={descriptionCacheKey}
 				onchange={(value) => ($form.description = value)}
 				html={data.data.description}
-				placeholder={m['inputs.employer.desc.placeholder']}
+				placeholder="inputs.employer.desc.placeholder"
 				maxLength={2000}
 			/>
 			<input
@@ -217,7 +216,7 @@
 				hidden
 			/>
 			<p class="c-text-body-xs ml-auto text-right">
-				<T message={m['inputs.employer.desc.note']} />
+				<T key="inputs.employer.desc.note" />
 			</p>
 			{#if $errors.description?.[0]}
 				<p class="text-right text-xs text-red-500" id="error-description">
@@ -245,7 +244,7 @@
 					}}
 				/>
 				<label for="agreed">
-					<T message={m['inputs.employer.agreement.desc']} />
+					<T key="inputs.employer.agreement.desc" />
 				</label>
 			</div>
 		</div>
