@@ -4,25 +4,27 @@
 
 	import type { ContentfulProps } from '.';
 
-	let { prop, tag, ...rest }: ContentfulProps<Attributes> = $props();
+	let { content, tag, ...rest }: ContentfulProps<Attributes> = $props();
 </script>
 
-{#if typeof prop === 'string'}
+{#if typeof content === 'string'}
 	<svelte:element this={tag} {...rest}>
-		{prop}
+		{content}
 	</svelte:element>
-{:else if prop[0] === 'snippet'}
-	{@const { snippet, params } = prop[1]}
+{:else if content[0] === 'snippet'}
+	{@const { snippet, params } = content[1]}
 	{@render snippet(params)}
-{:else if prop[0] === 'extend'}
-	{@const { content, attributes = {} } = prop[1]}
+{:else if content[0] === 'extend'}
+	{@const { content: extendedContent, attributes = {} } = content[1]}
 	<svelte:element this={tag} {...rest} {...attributes}>
-		{#if typeof content === 'string'}
-			{content}
+		{#if typeof extendedContent === 'string'}
+			{extendedContent}
 		{:else}
-			<T key={prop[1]} />
+			<T key={extendedContent[1]} />
 		{/if}
 	</svelte:element>
 {:else}
-	<T key={prop[1]} />
+	<svelte:element this={tag} {...rest}>
+		<T key={content[1]} />
+	</svelte:element>
 {/if}
