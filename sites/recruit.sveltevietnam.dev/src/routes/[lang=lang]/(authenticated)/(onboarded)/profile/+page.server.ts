@@ -5,6 +5,7 @@ import * as v from 'valibot';
 
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
+import { clearSessionDataCookie } from '$lib/auth';
 import { getBackend } from '$lib/backend/utils';
 import { uploadEmployerImage } from '$lib/data/employers';
 import {
@@ -98,6 +99,7 @@ export const actions: Actions = {
 			return message(form, 'error');
 		}
 
+		clearSessionDataCookie();
 		return message(form, 'pending');
 	},
 	'update-info': async (event) => {
@@ -129,6 +131,7 @@ export const actions: Actions = {
 			error(500, { code: 'SV001', message: 'Error from backend' });
 		}
 
+		clearSessionDataCookie();
 		return withFiles({ form });
 	},
 };

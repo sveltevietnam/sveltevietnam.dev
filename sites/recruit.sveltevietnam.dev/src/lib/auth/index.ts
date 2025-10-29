@@ -16,6 +16,17 @@ import { VITE_PRIVATE_BETTER_AUTH_SECRET } from '$env/static/private';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 import { getBackend } from '$lib/backend/utils';
 
+const COOKIE_PREFIX = 'rba'; // recruit-better-auth
+export function getSessionDataCookieName() {
+	return `${COOKIE_PREFIX}.session_data`;
+}
+export function clearSessionDataCookie() {
+	const event = getRequestEvent();
+	event.cookies.delete(getSessionDataCookieName(), {
+		path: '/',
+	});
+}
+
 export function createEmployerAuth() {
 	const event = getRequestEvent();
 	const d1 = event.platform?.env?.d1;
@@ -126,6 +137,7 @@ export function createEmployerAuth() {
 		],
 		telemetry: { enabled: false },
 		advanced: {
+			cookiePrefix: COOKIE_PREFIX,
 			database: {
 				generateId: false,
 			},

@@ -4,6 +4,7 @@ import { superValidate, withFiles } from 'sveltekit-superforms/server';
 
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
+import { clearSessionDataCookie } from '$lib/auth';
 import { uploadEmployerImage } from '$lib/data/employers';
 import { createEmployerProfileSchema } from '$lib/forms/employer-profile';
 import * as m from '$lib/i18n/generated/messages';
@@ -50,7 +51,7 @@ export const actions: Actions = {
 		const { image, ...update } = form.data;
 		const id = locals.user.id;
 
-		const { status } = await locals.auth.api.updateUser({
+		const response = await locals.auth.api.updateUser({
 			body: {
 				...update,
 				image: image ? await uploadEmployerImage(id, image) : undefined,
@@ -58,12 +59,14 @@ export const actions: Actions = {
 			},
 			headers: request.headers,
 			request,
+			asResponse: true,
 		});
-		if (!status) {
+		if (!response.ok) {
 			// TODO: error logging
 			error(500, { code: 'SV001', message: 'Error from backend' });
 		}
 
+		clearSessionDataCookie();
 		redirect(302, p['/:lang/welcome']({ lang: language }));
 	},
 };
