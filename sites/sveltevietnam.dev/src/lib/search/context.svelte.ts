@@ -27,11 +27,15 @@ export class SearchContext {
 	results = $derived.by<Promise<SearchResult[]> | null>(() => {
 		if (!this.#pagefind || !this.query) return null;
 		const results = this.#pagefind
-			.search(this.query, {
-				sort: {
-					weight: 'asc',
+			.debouncedSearch(
+				this.query,
+				{
+					sort: {
+						weight: 'asc',
+					},
 				},
-			})
+				100,
+			)
 			.then((searched) =>
 				Promise.all(
 					(searched?.results ?? []).map(async (result) => {
