@@ -1,4 +1,7 @@
 import { expect, type Locator } from '@playwright/test';
+import type { MessageSimple } from '@sveltevietnam/i18n-new';
+import type { Language } from '@sveltevietnam/i18n-new/generated';
+import type { KeySimple } from '@sveltevietnam/i18n-new/generated';
 import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
 
 import * as p from '../../src/data/routes/generated';
@@ -47,7 +50,8 @@ export class PagePostingCreate extends CommonPageObjectModel {
 		};
 		submit: Locator;
 	};
-	public readonly successMessage = m['pages.postings_upsert.notifications.create'];
+	public readonly successMessage: MessageSimple<Language, KeySimple> =
+		m['pages.postings_upsert.notifications.create'];
 
 	constructor(init: CommonPageObjectModelInit) {
 		super(init);
