@@ -105,15 +105,15 @@
 		"format": "prettier --write --ignore-path=../../.prettierignore --config=../../prettier.config.js ."
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20251011.0",
+		"@cloudflare/workers-types": "^4.20251014.0",
 		"@svelte-put/lockscroll": "^2.0.1",
-		"@sveltejs/kit": "^2.48.2",
+		"@sveltejs/kit": "^2.48.3",
 		"@sveltevietnam/css": "workspace:*",
-		"@tailwindcss/vite": "4.1.14",
+		"@tailwindcss/vite": "4.1.16",
 		"@types/umami-browser": "^2.18.0",
 		"schema-dts": "^1.1.5",
-		"svelte": "^5.42.3",
-		"tailwindcss": "4.1.14",
+		"svelte": "^5.43.0",
+		"tailwindcss": "4.1.16",
 		"vite": "^7.1.12",
 		"vite-imagetools": "^9.0.0"
 	},
