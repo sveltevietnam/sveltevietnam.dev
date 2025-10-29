@@ -89,9 +89,11 @@
 		<!-- results -->
 		<output class="tablet:min-h-[20vh] flex flex-1 flex-col">
 			{#if search.results}
-				{#await search.results}
-					<p class="p-4"><T key="dialogs.search.results.searching" /></p>
-				{:then results}
+				<svelte:boundary>
+					{@const results = await search.results}
+					{#snippet pending()}
+						<p class="p-4"><T key="dialogs.search.results.searching" /></p>
+					{/snippet}
 					{#if results.length}
 						{@const maybeClippedResults = search.clip.results ? results.slice(0, 3) : results}
 						<div class="tablet:max-h-[60vh] space-y-4 overflow-auto p-4">
@@ -173,7 +175,7 @@
 							<T key="dialogs.search.results.none" />
 						</p>
 					{/if}
-				{/await}
+				</svelte:boundary>
 			{:else}
 				<div class="p-4">
 					<svg
