@@ -141,9 +141,12 @@ export class PagePostingCreate extends CommonPageObjectModel {
 		const promises: Promise<unknown>[] = [];
 
 		// User sees alert of success creation
-		const alert = this.page.getByRole('alert').filter({
-			hasText: this.successMessage(this.lang),
-		});
+		const alert = this.page
+			.getByRole('alert')
+			.filter({
+				hasText: this.successMessage(this.lang),
+			})
+			.first();
 		promises.push(expect(alert).toBeVisible());
 
 		// User is redirected to posting details page

@@ -65,7 +65,7 @@ export class PageProfile extends CommonPageObjectModel {
 				save: sectionEmail.getByRole('button', {
 					name: m['save'](this.lang),
 				}),
-				alert: sectionEmail.getByRole('alert'),
+				alert: sectionEmail.getByRole('alert').first(),
 				error: sectionEmail.locator('#error-email'),
 			},
 			info: {
@@ -143,9 +143,12 @@ export class PageProfile extends CommonPageObjectModel {
 
 	async saveInfo(message: MessageSimple<Language, KeySimple>): Promise<void> {
 		await this.forms.info.save.click();
-		const alert = this.page.getByRole('alert').filter({
-			hasText: message(this.lang),
-		});
+		const alert = this.page
+			.getByRole('alert')
+			.filter({
+				hasText: message(this.lang),
+			})
+			.first();
 		await expect(alert).toBeVisible();
 	}
 }

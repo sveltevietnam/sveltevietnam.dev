@@ -70,7 +70,7 @@ export class PageAuthenticate extends CommonPageObjectModel {
 	}
 
 	private async expectOutput(authType: 'login' | 'signup') {
-		const output = this.page.getByRole('alert');
+		const output = this.page.getByRole('alert').first();
 		await expect(output).toBeVisible();
 		if (authType === 'login') {
 			await expect(output).toContainText(
@@ -88,7 +88,7 @@ export class PageAuthenticate extends CommonPageObjectModel {
 	}
 
 	public async expectError(error: 'EXPIRED_TOKEN' | 'INVALID_TOKEN' | 'UNKNOWN') {
-		const output = this.page.getByRole('alert');
+		const output = this.page.getByRole('alert').first();
 		await expect(output).toBeVisible();
 		if (error === 'EXPIRED_TOKEN') {
 			await expect(output).toContainText(m['pages.authenticate.error.token_expired'](this.lang));

@@ -219,9 +219,12 @@ export class PagePostingDetails extends CommonPageObjectModel {
 		confirmButton.click();
 
 		// User sees alert of success deletion
-		const alert = this.page.getByRole('alert').filter({
-			hasText: m['pages.postings_id.delete.success'](this.lang),
-		});
+		const alert = this.page
+			.getByRole('alert')
+			.filter({
+				hasText: m['pages.postings_id.delete.success'](this.lang),
+			})
+			.first();
 		await expect(alert).toBeVisible();
 	}
 
