@@ -83,7 +83,7 @@
 						<span class="sr-only">Bluesky</span>
 					</a>
 					<p class="font-bold">
-						<T key="pages.blog_slug.comments.bluesky.desc" url={postUrl} />
+						<T key="pages.blog_slug.comments.bluesky.desc" params={{ url: postUrl }} />
 					</p>
 					{#await threadPromise}
 						<p><T key="pages.blog_slug.comments.bluesky.stats.loading" /></p>
@@ -96,7 +96,7 @@
 						)}
 						{#if thread.replies.length}
 							<p class="c-text-body-sm border-outline col-span-2 border-t pt-4 leading-relaxed">
-								<T key="pages.blog_slug.comments.bluesky.note" url={postUrl} />
+								<T key="pages.blog_slug.comments.bluesky.note" params={{ url: postUrl }} />
 							</p>
 						{/if}
 					{/await}
@@ -139,7 +139,7 @@
 			{@const postUrl = `${profileUrl}/post/${thread.id}`}
 			<li>
 				<article class={['relative flex items-start gap-3', hasNext && 'pb-4']}>
-					<div class="bg-surface relative z-1 shrink-0 p-1">
+					<div class="bg-surface z-px relative shrink-0 p-1">
 						<a href={profileUrl} data-external>
 							<Avatar
 								class="h-10 w-10 rounded-full"
@@ -182,7 +182,7 @@
 						<div class="bg-outline-subtle absolute top-5.5 right-full z-0 h-0.5 w-9"></div>
 					{/if}
 					{#if level > 1 && i === aggregated.replies.length - 1}
-						<div class="bg-surface absolute top-6 -left-9.5 z-1 h-full w-0.5"></div>
+						<div class="bg-surface z-px absolute top-6 -left-9.5 h-full w-0.5"></div>
 					{/if}
 				</article>
 			</li>
