@@ -1,20 +1,18 @@
 - region "Đăng tuyển chờ xét duyệt":
-    - heading "Đăng tuyển chờ xét duyệt" [level=2]
-    - paragraph:
-        Các bài đăng tuyển này đang chờ ban quản trị xét duyệt. Bạn sẽ nhận được email thông báo khi
-        bài đăng được duyệt hoặc cần bổ sung thông tin.
-    - list:
-        - listitem:
-            - article:
-                - paragraph:
-                    - link "International Markets Representative":
-                        - /url: /vi/bai-dang-tuyen/job_kHYfi2vheu_LJDxPbA1ea
-                - paragraph:
-                    - strong: Bán thời gian
-                    - text: tại
-                    - link "Tremblay, Metz and Walker":
-                        - /url: https://suburban-strategy.biz/
-                        - strong: Tremblay, Metz and Walker
-                - paragraph: Dareshire, Uruguay
-                - paragraph: /\d+ USD \/ tháng/
-                - paragraph: /Hết hạn ngày \d+\.\d+\.\d+/
+  - heading "Đăng tuyển chờ xét duyệt" [level=2]
+  - paragraph: Các bài đăng tuyển này đang chờ ban quản trị xét duyệt. Bạn sẽ nhận được email thông báo khi bài đăng được duyệt hoặc cần bổ sung thông tin.
+  - list:
+    - listitem:
+      - article:
+        - paragraph:
+          - link "Global Operations Engineer":
+            - /url: /vi/bai-dang-tuyen/job_B3U8ZFemD5j2GvEGWlVfO
+        - paragraph:
+          - strong: Thực tập
+          - text: tại
+          - link "Shields - Hermiston":
+            - /url: https://salty-freezing.org
+            - strong: Shields - Hermiston
+        - paragraph: Avisfurt, Yemen
+        - paragraph: /\d+ USD \/ tháng/
+        - paragraph: /Hết hạn ngày \d+\.\d+\.\d+/

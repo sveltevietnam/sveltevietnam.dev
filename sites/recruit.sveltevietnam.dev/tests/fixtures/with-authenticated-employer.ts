@@ -37,7 +37,7 @@ export function generateEmployerTestData(faker: Faker): (typeof schema.employers
 	return {
 		id: 'employer_' + faker.string.nanoid(),
 		email: faker.internet.email().toLowerCase(),
-		image: faker.image.urlLoremFlickr({ category: 'business' }),
+		image: faker.image.url(),
 		emailVerified: true,
 		name: faker.company.name(),
 		description: faker.lorem.paragraphs(3),
