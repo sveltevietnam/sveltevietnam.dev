@@ -18,14 +18,16 @@ import { createLogger } from './logger.js';
 async function b(root, config, logger) {
 	const inputDir = path.join(root, config.input);
 	let entries = (
-		await glob('./*', {
+		await glob('*', {
 			cwd: inputDir,
-			dot: false,
 			filesOnly: true,
 			flush: true,
 			absolute: true,
 		})
-	).filter((f) => !f.endsWith('~'));
+	)
+		// for whatever reason, the dot option from tiny-glob does not yield consistent results here
+		// so filter dot files manually
+		.filter((f) => !path.basename(f).startsWith('.'));
 	if (entries.length === 0) {
 		logger.warn(`no locale entries found at ${config.input}`);
 		return [];
