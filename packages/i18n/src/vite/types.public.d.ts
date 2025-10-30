@@ -2,9 +2,9 @@ import type { BuildMode } from '../builder';
 import type { ParseLocaleOptions } from '../parser';
 
 export interface Config {
-	/** directory path containing locale source files, relative to cwd */
+	/** directory path containing locale source files, relative to vite project root */
 	input: string;
-	/** directory path for build artifacts, relative to cwd */
+	/** directory path for build artifacts, relative to vite project root */
 	output: string;
 	/**
 	 * build mode
