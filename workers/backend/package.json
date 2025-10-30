@@ -57,7 +57,6 @@
 		"@dotenvx/dotenvx": "^1.51.0",
 		"@libsql/client": "^0.15.15",
 		"@paralleldrive/cuid2": "2.3.1",
-		"@sveltevietnam/i18n": "workspace:*",
 		"@sveltevietnam/kit": "workspace:*",
 		"@tsndr/cloudflare-worker-jwt": "^3.2.0",
 		"@types/mjml": "^4.7.4",
