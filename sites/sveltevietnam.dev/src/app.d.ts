@@ -24,7 +24,7 @@ declare global {
 					path: string;
 					name: string;
 				}[];
-				paths: Record<import('@sveltevietnam/i18n').Language, string>;
+				paths: Record<import('@sveltevietnam/kit/constants').Language, string>;
 			};
 			/**
 			 * per-page page metadata setup

@@ -2,8 +2,8 @@ import { getContext, setContext } from 'svelte';
 
 /**
  * @typedef RoutingContextInit
- * @property {Record<import('@sveltevietnam/i18n').Language, string>} paths
- * @property {import('@sveltevietnam/i18n').Language} lang
+ * @property {Record<import('@sveltevietnam/kit/constants').Language, string>} paths
+ * @property {import('@sveltevietnam/kit/constants').Language} lang
  */
 
 export class RoutingContext {
