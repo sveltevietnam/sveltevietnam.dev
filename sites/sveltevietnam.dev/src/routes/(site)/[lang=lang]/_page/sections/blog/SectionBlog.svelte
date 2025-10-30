@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n-new';
+	import { T } from '@sveltevietnam/i18n';
 
 	import { BlogPostShowcase } from '$lib/components/blog-post-showcase';
 

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-object-type */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import type { KeySimple } from '@sveltevietnam/i18n-new/generated';
+import type { KeySimple } from '@sveltevietnam/i18n/generated';
 import type { Snippet } from 'svelte';
 
 interface SnippetProp {

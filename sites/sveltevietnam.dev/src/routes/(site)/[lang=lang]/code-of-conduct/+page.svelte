@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n-new';
+	import { T } from '@sveltevietnam/i18n';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { EMAILS, SOCIAL_LINKS } from '@sveltevietnam/kit/constants';
 

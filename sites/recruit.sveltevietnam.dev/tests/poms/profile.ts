@@ -1,6 +1,6 @@
 import { type Locator, expect } from '@playwright/test';
-import type { MessageSimple } from '@sveltevietnam/i18n-new';
-import type { Language, KeySimple } from '@sveltevietnam/i18n-new/generated';
+import type { MessageSimple } from '@sveltevietnam/i18n';
+import type { Language, KeySimple } from '@sveltevietnam/i18n/generated';
 
 import * as p from '../../src/data/routes/generated';
 import * as m from '../../src/lib/i18n/generated/messages';

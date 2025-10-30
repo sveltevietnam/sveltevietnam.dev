@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n-new';
-	import type { Key } from '@sveltevietnam/i18n-new/generated';
+	import { T } from '@sveltevietnam/i18n';
+	import type { Key } from '@sveltevietnam/i18n/generated';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { COLOR_SCHEMES, SPLASH_OPTIONS } from '@sveltevietnam/kit/constants';
 	import { Contexts } from '@sveltevietnam/kit/contexts';

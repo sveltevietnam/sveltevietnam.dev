@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { JOB_POSTING_TYPE_I18N } from '@sveltevietnam/backend/data/job-postings/enums';
-	import { T } from '@sveltevietnam/i18n-new';
+	import { T } from '@sveltevietnam/i18n';
 	import fallback1x1 from '@sveltevietnam/kit/assets/images/fallbacks/1x1.jpg?enhanced&w=w=224;112&imagetools';
 	import { Breadcrumbs, CopyBtn } from '@sveltevietnam/kit/components';
 	import { Contexts } from '@sveltevietnam/kit/contexts';

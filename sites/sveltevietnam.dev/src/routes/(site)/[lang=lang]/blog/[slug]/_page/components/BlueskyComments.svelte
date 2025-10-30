@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type AtpAgent from '@atproto/api';
-	import { T } from '@sveltevietnam/i18n-new';
+	import { T } from '@sveltevietnam/i18n';
 	import { formatTimeDiff } from '@sveltevietnam/kit/utilities/datetime';
 
 	import { browser } from '$app/environment';

@@ -1,7 +1,7 @@
 <script lang="ts" module>
 	import { turnstile } from '@svelte-put/cloudflare-turnstile';
 	import { SUBSCRIPTION_CHANNELS } from '@sveltevietnam/backend/data/subscribers/channels';
-	import { T } from '@sveltevietnam/i18n-new';
+	import { T } from '@sveltevietnam/i18n';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { onMount } from 'svelte';
 	import type { ChangeEventHandler, HTMLFormAttributes } from 'svelte/elements';

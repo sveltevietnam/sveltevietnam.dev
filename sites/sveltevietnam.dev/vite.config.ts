@@ -4,7 +4,7 @@ import { inlineSvg } from '@svelte-put/inline-svg/vite';
 import { enhancedImages } from '@sveltejs/enhanced-img';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { css } from '@sveltevietnam/css/vite';
-import { i18n } from '@sveltevietnam/i18n-new/vite';
+import { i18n } from '@sveltevietnam/i18n/vite';
 import { routes } from '@sveltevietnam/routes/vite';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';

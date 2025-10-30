@@ -1,7 +1,7 @@
 <script lang="ts" module>
 	import { JOB_POSTING_TYPE_I18N } from '@sveltevietnam/backend/data/job-postings/enums';
-	import { T } from '@sveltevietnam/i18n-new';
-	import type { KeySimple } from '@sveltevietnam/i18n-new/generated';
+	import { T } from '@sveltevietnam/i18n';
+	import type { KeySimple } from '@sveltevietnam/i18n/generated';
 	import {
 		Breadcrumbs,
 		type BreadcrumbsProps,

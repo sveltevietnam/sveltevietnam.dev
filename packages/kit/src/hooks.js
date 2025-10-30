@@ -1,4 +1,4 @@
-import { getLangFromUrl } from '@sveltevietnam/i18n-new/utils';
+import { getLangFromUrl } from '@sveltevietnam/i18n/utils';
 
 import { LANGUAGES } from '@sveltevietnam/kit/constants';
 

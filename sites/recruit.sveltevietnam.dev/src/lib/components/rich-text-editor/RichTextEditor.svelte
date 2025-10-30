@@ -1,6 +1,6 @@
 <script lang="ts" module>
-	import { T } from '@sveltevietnam/i18n-new';
-	import type { KeySimple } from '@sveltevietnam/i18n-new/generated';
+	import { T } from '@sveltevietnam/i18n';
+	import type { KeySimple } from '@sveltevietnam/i18n/generated';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { onMount } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { StackItem } from '@svelte-put/async-stack';
 	import { shortcut, type ShortcutEventDetail } from '@svelte-put/shortcut';
-	import { T } from '@sveltevietnam/i18n-new';
+	import { T } from '@sveltevietnam/i18n';
 	import {
 		LanguageMenu,
 		type LanguageMenuProps,

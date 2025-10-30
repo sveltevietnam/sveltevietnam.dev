@@ -1,6 +1,6 @@
 <script lang="ts" module>
-	import { T } from '@sveltevietnam/i18n-new';
-	import { delocalizeUrl } from '@sveltevietnam/i18n-new/utils';
+	import { T } from '@sveltevietnam/i18n';
+	import { delocalizeUrl } from '@sveltevietnam/i18n/utils';
 	import fallback1x1 from '@sveltevietnam/kit/assets/images/fallbacks/1x1.jpg?enhanced&w=w=224;112&imagetools';
 	import { Dropdown } from '@sveltevietnam/kit/components';
 	import { LANGUAGES } from '@sveltevietnam/kit/constants';

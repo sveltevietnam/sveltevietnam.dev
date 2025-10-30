@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n-new';
+	import { T } from '@sveltevietnam/i18n';
 	import fallback1x1 from '@sveltevietnam/kit/assets/images/fallbacks/1x1.jpg?enhanced&w=w=224;112&imagetools';
 	import { Breadcrumbs, CopyBtn } from '@sveltevietnam/kit/components';
 	import { SOCIAL_LINKS } from '@sveltevietnam/kit/constants';

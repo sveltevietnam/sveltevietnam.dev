@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Toc } from '@svelte-put/toc';
-	import { T } from '@sveltevietnam/i18n-new';
+	import { T } from '@sveltevietnam/i18n';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 
 	import { IntroSeparator } from '$lib/components/intro-separator';

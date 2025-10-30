@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import { T } from '@sveltevietnam/i18n-new';
+	import { T } from '@sveltevietnam/i18n';
 	import type { Status } from '@sveltevietnam/kit/constants';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { REDO_COMMAND, UNDO_COMMAND } from 'lexical';

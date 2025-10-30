@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n-new';
+	import { T } from '@sveltevietnam/i18n';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { createTimeline, onScroll, stagger, eases, type Timeline } from 'animejs';
 	import { onMount } from 'svelte';

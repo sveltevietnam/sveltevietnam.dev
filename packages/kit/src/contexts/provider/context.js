@@ -1,4 +1,4 @@
-import { Context as I18NContext } from '@sveltevietnam/i18n-new';
+import { Context as I18NContext } from '@sveltevietnam/i18n';
 import { setContext, getContext } from 'svelte';
 
 import { DialogContext } from '../../dialogs/index.js';
@@ -11,7 +11,7 @@ import { RoutingContext } from '../routing.svelte';
  * @typedef ContextsInit
  * @property {() => import('../routing.svelte').RoutingContextInit} routing
  * @property {() => import('../color-scheme.svelte').ColorSchemeContextInit} colorScheme
- * @property {() => import('@sveltevietnam/i18n-new').ContextInit} i18n
+ * @property {() => import('@sveltevietnam/i18n').ContextInit} i18n
  */
 
 /**

@@ -4,7 +4,7 @@ import {
 	type JobPostingType,
 	type JobPostingApplicationMethod,
 } from '@sveltevietnam/backend/data/job-postings/enums';
-import type { KeySimple } from '@sveltevietnam/i18n-new/generated';
+import type { KeySimple } from '@sveltevietnam/i18n/generated';
 import type { Language } from '@sveltevietnam/kit/constants';
 import * as v from 'valibot';
 

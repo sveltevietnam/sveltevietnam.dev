@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { clickoutside } from '@svelte-put/clickoutside';
-	import { T } from '@sveltevietnam/i18n-new';
-	import { delocalizeUrl } from '@sveltevietnam/i18n-new/utils';
+	import { T } from '@sveltevietnam/i18n';
+	import { delocalizeUrl } from '@sveltevietnam/i18n/utils';
 	import { LANGUAGES } from '@sveltevietnam/kit/constants';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import type { HTMLAttributes } from 'svelte/elements';

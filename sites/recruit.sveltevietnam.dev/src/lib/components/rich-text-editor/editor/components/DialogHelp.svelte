@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { StackItemProps } from '@svelte-put/async-stack';
 	import { enhanceDialog } from '@svelte-put/async-stack/helpers';
-	import { T } from '@sveltevietnam/i18n-new';
+	import { T } from '@sveltevietnam/i18n';
 	import { EMAILS } from '@sveltevietnam/kit/constants';
 
 	let { item }: StackItemProps<void> = $props();

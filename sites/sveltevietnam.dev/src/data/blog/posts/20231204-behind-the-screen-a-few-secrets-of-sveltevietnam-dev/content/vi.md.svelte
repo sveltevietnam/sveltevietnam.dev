@@ -1,6 +1,6 @@
 <script>
   import { StackItem } from '@svelte-put/async-stack';
-	import { T } from '@sveltevietnam/i18n-new';
+	import { T } from '@sveltevietnam/i18n';
   import { BaseNotification } from '@sveltevietnam/kit/notifications';
   import { Contexts } from '@sveltevietnam/kit/contexts';
 

@@ -1,4 +1,4 @@
-import type { KeySimple } from '@sveltevietnam/i18n-new/generated';
+import type { KeySimple } from '@sveltevietnam/i18n/generated';
 import type { Component } from 'svelte';
 import type { HTMLButtonAttributes } from 'svelte/elements';
 

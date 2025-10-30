@@ -37,7 +37,7 @@
 		"@sveltejs/vite-plugin-svelte": "^6.2.1",
 		"@sveltevietnam/backend": "workspace:*",
 		"@sveltevietnam/css": "workspace:*",
-		"@sveltevietnam/i18n-new": "workspace:*",
+		"@sveltevietnam/i18n": "workspace:*",
 		"@sveltevietnam/kit": "workspace:*",
 		"@sveltevietnam/routes": "workspace:*",
 		"@tailwindcss/vite": "4.1.16",

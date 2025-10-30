@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n-new';
-	import type { KeySimple } from '@sveltevietnam/i18n-new/generated';
+	import { T } from '@sveltevietnam/i18n';
+	import type { KeySimple } from '@sveltevietnam/i18n/generated';
 	import { SOCIAL_LINKS } from '@sveltevietnam/kit/constants';
 	import { createTimeline, onScroll } from 'animejs';
 	import type { Picture } from 'vite-imagetools';

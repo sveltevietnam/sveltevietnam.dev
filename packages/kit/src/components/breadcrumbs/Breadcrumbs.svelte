@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n-new';
-	import { delocalizeUrl } from '@sveltevietnam/i18n-new/utils';
+	import { T } from '@sveltevietnam/i18n';
+	import { delocalizeUrl } from '@sveltevietnam/i18n/utils';
 	import { onMount } from 'svelte';
 
 	import { LANGUAGES } from '@sveltevietnam/kit/constants';

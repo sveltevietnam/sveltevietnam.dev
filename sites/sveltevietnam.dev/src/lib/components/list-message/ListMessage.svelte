@@ -1,5 +1,5 @@
 <script lang="ts" generics="T">
-	import { T } from '@sveltevietnam/i18n-new';
+	import { T } from '@sveltevietnam/i18n';
 	import type { Snippet } from 'svelte';
 
 	let {

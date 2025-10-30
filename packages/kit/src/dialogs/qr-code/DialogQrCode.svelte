@@ -2,7 +2,7 @@
 	import { enhanceDialog } from '@svelte-put/async-stack/helpers';
 	import { createQrPngDataUrl } from '@svelte-put/qr';
 	import { qr, type SvgQRParameter } from '@svelte-put/qr/svg';
-	import { T } from '@sveltevietnam/i18n-new';
+	import { T } from '@sveltevietnam/i18n';
 	import { onMount } from 'svelte';
 
 	import dark from '../../assets/images/logos/monotone-dark.base64?raw';

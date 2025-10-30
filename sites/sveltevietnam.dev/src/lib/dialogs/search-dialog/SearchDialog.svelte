@@ -2,7 +2,7 @@
 	import type { StackItemProps } from '@svelte-put/async-stack';
 	import { enhanceDialog } from '@svelte-put/async-stack/helpers';
 	import { shortcut } from '@svelte-put/shortcut';
-	import { T } from '@sveltevietnam/i18n-new';
+	import { T } from '@sveltevietnam/i18n';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import sanitize from 'sanitize-html';
 	import { onMount } from 'svelte';
