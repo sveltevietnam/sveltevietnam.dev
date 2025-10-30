@@ -1,13 +1,17 @@
 import { build, type Rollup } from 'vite';
 import { test, expect } from 'vitest';
 
+import { defineTestConfig } from '../utils';
+
 import config from './vite.config';
 
 test('output can be tree-shaken', async () => {
-	const { output } = (await build({
-		...config,
-		root: import.meta.dirname,
-	})) as Rollup.RollupOutput;
+	const { output } = (await build(
+		defineTestConfig({
+			...config,
+			root: import.meta.dirname,
+		}),
+	)) as Rollup.RollupOutput;
 	const module = (
 		output.find((f) => f.name === 'index' && f.fileName.endsWith('.js')) as Rollup.OutputChunk
 	).code;
