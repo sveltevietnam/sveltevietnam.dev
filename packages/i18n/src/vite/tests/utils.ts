@@ -4,6 +4,7 @@ export function defineTestConfig(adhoc: UserConfig): UserConfig {
 	return defu(
 		adhoc,
 		defineConfig({
+			logLevel: 'silent',
 			build: {
 				write: false,
 			},

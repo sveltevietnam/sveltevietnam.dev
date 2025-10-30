@@ -6,15 +6,15 @@ import { defineTestConfig } from '../utils';
 import config from './vite.config';
 
 test('missing input should print warning', async () => {
-	const spiedConsoleWarn = vi.spyOn(console, 'warn');
+	const consoleWarnSpy = vi.spyOn(console, 'warn');
 	await build(
 		defineTestConfig({
 			...config,
 			root: import.meta.dirname,
 		}),
 	);
-	expect(spiedConsoleWarn).toHaveBeenCalledWith(
+	expect(consoleWarnSpy).toHaveBeenCalledWith(
 		' sveltevietnam/i18n  ⚠ no locale entries found at ./i18n/locales',
 	);
-	spiedConsoleWarn.mockRestore();
+	consoleWarnSpy.mockRestore();
 });

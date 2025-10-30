@@ -179,8 +179,11 @@ export async function i18n(config) {
 			server.watcher.on('add', onUpdate);
 			server.watcher.on('change', onUpdate);
 			server.watcher.on('unlink', onUpdate);
+
+			logger.success('i18n watcher initialized');
 		},
 		async buildStart() {
+			logger.info('building i18n resources...');
 			// in SvelteKit, skip build for 'client', assuming already done so in 'ssr'
 			if (inSvelteKitProject && this.environment.name !== 'ssr') return;
 
