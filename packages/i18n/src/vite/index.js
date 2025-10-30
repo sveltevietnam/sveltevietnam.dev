@@ -70,6 +70,7 @@ async function b(config, logger) {
  * @returns {Promise<import('vite').Plugin>}
  */
 export async function i18n(config) {
+	let inSvelteKitProject = true;
 	const logger = createLogger();
 	/** @type {import('vite').ResolvedConfig | undefined} */
 	let rConfig = undefined;
@@ -127,6 +128,9 @@ export async function i18n(config) {
 		},
 		configResolved(config) {
 			rConfig = config;
+			inSvelteKitProject = !!config.plugins.find((p1) =>
+				p1.name.startsWith('vite-plugin-sveltekit'),
+			);
 		},
 		async configureServer(server) {
 			const config = resolveConfig();
@@ -173,8 +177,8 @@ export async function i18n(config) {
 			server.watcher.on('unlink', onUpdate);
 		},
 		async buildStart() {
-			// skip build for 'client', assuming already done so in 'ssr'
-			if (this.environment.name !== 'ssr') return;
+			// in SvelteKit, skip build for 'client', assuming already done so in 'ssr'
+			if (inSvelteKitProject && this.environment.name !== 'ssr') return;
 
 			try {
 				await b(resolveConfig(), logger);
