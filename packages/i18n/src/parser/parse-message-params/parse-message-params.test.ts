@@ -10,6 +10,8 @@ import {
 
 const html = String.raw;
 
+// TODO: add test case for space in bracket
+
 test('can parse message with no param', () => {
 	const msg = 'Hello World';
 	const params = parseMessageParams(msg);

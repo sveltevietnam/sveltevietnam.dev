@@ -1,0 +1,7 @@
+messages:
+  simple:
+    used: en - SIMPLE_KEEP
+    unused: en - SIMPLE_REMOVE
+  with_params:
+    used: en - PARAMS_KEEP - {{var}}
+    unused: en - PARAMS_REMOVE - {{var}}
