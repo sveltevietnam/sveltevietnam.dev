@@ -20,12 +20,15 @@
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	}: StaticTProps<M> & RemoteTProps<K> & { params: any } = $props();
 
-	const { t } = Context.get();
+	const context = Context.get();
+	if (!context) {
+		throw new Error("T component must live within a `import('@sveltevietnam/i18n').Context`");
+	}
 
 	let options = $derived({ lang, sanitize });
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	let maybeFetched = $derived((t as any)({ key, message, params, options }));
+	let maybeFetched = $derived((context.t as any)({ key, message, params, options }));
 </script>
 
 <MaybeHtml content={typeof maybeFetched === 'string' ? maybeFetched : await maybeFetched} />

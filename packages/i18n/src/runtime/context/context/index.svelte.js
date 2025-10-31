@@ -25,10 +25,13 @@ function defaultSanitize(content) {
 export class Context {
 	static KEY = Symbol('i18n');
 
+	/** @type {() => import('./index.svelte').ContextInit<Language>} */
+	#getter = () => ({ lang: /** @type {Language} */ ('en') });
+
 	/** @type {import('./index.svelte').Context<Mode, Language, Mapping>['lang']} */
-	lang = $state(/** @type {Language} */ ('en'));
+	lang = $derived.by(() => this.#getter().lang);
 	/** @type {import('./index.svelte').Context<Mode, Language, Mapping>['sanitize']} */
-	sanitize = $state(defaultSanitize);
+	sanitize = $derived.by(() => this.#getter().sanitize ?? defaultSanitize);
 
 	/** @type {import('./index.svelte').Context<Mode, Language, Mapping>['t']} */
 	t =
@@ -74,20 +77,7 @@ export class Context {
 
 	/** @param {() => import('./index.svelte').ContextInit<Language>} init */
 	constructor(init) {
-		// run in both SSR and browser
-		this.#update(init());
-
-		//  update in browser
-		$effect(() => {
-			this.#update(init());
-		});
-	}
-
-	/** @param {import('./index.svelte').ContextInit<Language>} init */
-	#update(init) {
-		const { lang, sanitize } = init;
-		this.lang = lang;
-		this.sanitize = sanitize ?? defaultSanitize;
+		this.#getter = init;
 	}
 
 	/**

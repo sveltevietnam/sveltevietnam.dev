@@ -7,6 +7,8 @@ node_modules
 
 # testing
 coverage
+__screenshots__/
+test-results/
 
 # misc
 .DS_Store

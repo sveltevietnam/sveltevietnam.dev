@@ -74,8 +74,9 @@
 		"lint:style": "stylelint '**/*.{svelte,css}'",
 		"format": "prettier --write --ignore-path=../../.prettierignore --config=../../prettier.config.js .",
 		"json-schema": "node src/parser/schema/json-schema.js",
-		"test:node": "vitest run --project node --coverage",
-		"test:browser": "vitest run --project browser --coverage"
+		"test:buildtime": "vitest run --project buildtime",
+		"test:runtime:ssr": "vitest run --project runtime-ssr",
+		"test:runtime:browser": "vitest run --project runtime-browser --browser.headless"
 	},
 	"devDependencies": {
 		"@sveltejs/vite-plugin-svelte": "^6.2.1",

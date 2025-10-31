@@ -15,9 +15,10 @@ export class Context<
 	Mapping extends Record<string, Message> = import('@sveltevietnam/i18n/generated').Mapping,
 > {
 	constructor(init: () => ContextInit<Language>);
-	lang: Language;
-	t: Mode extends 'static' ? StaticTranslate : RemoteTranslate<Language, Mapping>;
-	sanitize: (content: string) => string;
+	readonly lang: Language;
+	readonly t: Mode extends 'static' ? StaticTranslate : RemoteTranslate<Language, Mapping>;
+	readonly sanitize: (content: string) => string;
+	static readonly KEY: unique symbol;
 	static get(): Context;
 	static set(init: () => ContextInit): Context;
 }
