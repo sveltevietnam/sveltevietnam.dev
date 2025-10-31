@@ -10,15 +10,21 @@ import { MediaQuery } from 'svelte/reactivity';
 export class ColorSchemeContext {
 	static KEY = Symbol('app:color-scheme');
 
+	/** @type {() => ColorSchemeContextInit} */
+	#getter = () => ({
+		cookieName: undefined,
+		user: 'system',
+	});
+
 	/** @type {string | undefined} */
-	#cookieName = undefined;
+	#cookieName = $derived.by(() => this.#getter().cookieName);
 	#preferredColorScheme = new MediaQuery('(prefers-color-scheme: dark)');
 
 	/** @type {Exclude<import('@sveltevietnam/kit/constants').ColorScheme, 'system'>} */
 	system = $derived(this.#preferredColorScheme.current ? 'dark' : 'light');
 
 	/** @type {import('@sveltevietnam/kit/constants').ColorScheme} */
-	user = $state('system');
+	user = $derived.by(() => this.#getter().user ?? 'system');
 
 	/** @type {Exclude<import('@sveltevietnam/kit/constants').ColorScheme, 'system'>} */
 	resolved = $derived(this.user === 'system' ? this.system : this.user);
@@ -27,14 +33,7 @@ export class ColorSchemeContext {
 	 * @param {() => ColorSchemeContextInit} init
 	 */
 	constructor(init) {
-		// run in both SSR and browser
-		this.#update(init());
-
-		// update in browser
-		$effect(() => {
-			this.#update(init());
-		});
-
+		this.#getter = init;
 		$effect(() => {
 			if ('window' in globalThis) {
 				document.documentElement.dataset.colorScheme = this.user;
@@ -43,15 +42,6 @@ export class ColorSchemeContext {
 				}
 			}
 		});
-	}
-
-	/**
-	 * @param {ColorSchemeContextInit} init
-	 */
-	#update(init) {
-		const { cookieName, user } = init;
-		this.#cookieName = cookieName;
-		this.user = user || 'system';
 	}
 
 	/**
