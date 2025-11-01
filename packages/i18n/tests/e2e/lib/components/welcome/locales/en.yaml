@@ -1,0 +1,2 @@
+messages:
+  greet: Hello {{name}}!

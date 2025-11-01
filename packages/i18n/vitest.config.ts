@@ -30,6 +30,7 @@ function mockRuntimeGeneratedModules(): Plugin {
 export default defineConfig({
 	plugins: [tsconfigPaths(), svelte()],
 	test: {
+		exclude: ['tests/e2e/**/test.ts'],
 		projects: [
 			{
 				extends: true,

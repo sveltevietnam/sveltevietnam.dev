@@ -1,0 +1,8 @@
+messages:
+  select_language: Chọn ngôn ngữ
+  key: Khóa
+  translation: Dịch
+  components:
+    welcome:
+      '@import': '../../components/welcome/locales/vi.yaml'
+  goodbye: Tạm biệt!
