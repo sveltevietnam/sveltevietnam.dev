@@ -27,6 +27,14 @@ Contribution and discussion are welcome.
 
 See [CONTRIBUTING] on how you can contribute to the Svelte Vietnam project, or jump right to [DEVELOPMENT] if you are keen on running the site on your local machine.
 
+## Packages
+
+This monorepo includes the following packages that are available for public use (via NPM registry):
+
+| Package                            | Description                           | Version                       | Changelog                          |
+| ---------------------------------- | ------------------------------------- | ----------------------------- | ---------------------------------- |
+| [@sveltevietnam/i18n][github.i18n] | component & utilities for async-stack | [![npm.i18n.badge]][npm.i18n] | [Changelog][github.i18n.changelog] |
+
 <!-- LOCAL -->
 
 [license.badge]: https://img.shields.io/badge/license-MIT-blue.svg
@@ -44,3 +52,10 @@ See [CONTRIBUTING] on how you can contribute to the Svelte Vietnam project, or j
 [socials.bluesky.badge]: https://img.shields.io/static/v1?label=&message=sveltevietnam&color=1DA1F2&logoColor=white&style=for-the-badge&logo=bluesky
 [socials.madewithsvelte]: https://madewithsvelte.com/p/svelte-vietnam/shield-link
 [socials.madewithsvelte.badge]: https://madewithsvelte.com/storage/repo-shields/4786-shield.svg
+
+<!-- PACKAGES -->
+
+[github.i18n]: https://github.com/sveltevietnam/sveltevietnam.dev/tree/main/packages/i18n
+[github.i18n.changelog]: https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/packages/i18n/CHANGELOG.md
+[npm.i18n.badge]: https://img.shields.io/npm/v/@sveltevietnam/i18n
+[npm.i18n]: https://www.npmjs.com/package/@sveltevietnam/i18n
