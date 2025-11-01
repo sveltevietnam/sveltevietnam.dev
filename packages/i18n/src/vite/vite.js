@@ -136,6 +136,11 @@ export async function i18n(config) {
 						},
 					],
 				},
+				optimizeDeps: {
+					// prevent Vite from trying to pre-bundle these generated files,
+					// this does mean exclude them from resolution during dev / build
+					exclude: ['$i18n/constants.js', '$i18n/t.remote.js'],
+				},
 			};
 		},
 		configResolved(config) {
