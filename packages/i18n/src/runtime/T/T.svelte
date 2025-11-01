@@ -26,9 +26,10 @@
 	}
 
 	let options = $derived({ lang, sanitize });
-
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	let maybeFetched = $derived((context.t as any)({ key, message, params, options }));
+	let maybePromise = $derived<string | Promise<string>>(
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		(context.t as any)({ key, message, params, options }),
+	);
 </script>
 
-<MaybeHtml content={typeof maybeFetched === 'string' ? maybeFetched : await maybeFetched} />
+<MaybeHtml content={await maybePromise} />

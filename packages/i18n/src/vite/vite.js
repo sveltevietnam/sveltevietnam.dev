@@ -122,6 +122,14 @@ export async function i18n(config) {
 			return {
 				resolve: {
 					alias: [
+						...(config.mode === 'static'
+							? [
+									{
+										find: /^@sveltevietnam\/i18n$/,
+										replacement: '@sveltevietnam/i18n/static',
+									},
+								]
+							: []),
 						{
 							find: '$i18n',
 							replacement: path.join(uConfig.root ?? process.cwd(), config.output),
@@ -179,11 +187,8 @@ export async function i18n(config) {
 			server.watcher.on('add', onUpdate);
 			server.watcher.on('change', onUpdate);
 			server.watcher.on('unlink', onUpdate);
-
-			logger.success('i18n watcher initialized');
 		},
 		async buildStart() {
-			logger.info('building i18n resources...');
 			// in SvelteKit, skip build for 'client', assuming already done so in 'ssr'
 			if (inSvelteKitProject && this.environment.name !== 'ssr') return;
 

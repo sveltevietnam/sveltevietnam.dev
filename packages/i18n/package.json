@@ -13,6 +13,11 @@
 			"import": "./src/runtime/index.js",
 			"default": "./src/runtime/index.js"
 		},
+		"./static": {
+			"types": "./types/index.d.ts",
+			"import": "./src/runtime/static.js",
+			"default": "./src/runtime/static.js"
+		},
 		"./generated": {
 			"types": "./types/index.d.ts",
 			"import": "./src/runtime/generated.js",
