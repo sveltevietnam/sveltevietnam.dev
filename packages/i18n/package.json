@@ -45,7 +45,13 @@
 	},
 	"files": [
 		"src",
-		"types"
+		"types",
+		"CHANGELOG.md",
+		"!**/tests",
+		"!**/*.test.ts",
+		"!**/*.test.js",
+		"!**/__screenshots__",
+		"!**/__snapshots__"
 	],
 	"license": {
 		"type": "MIT",
