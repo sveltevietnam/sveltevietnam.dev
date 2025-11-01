@@ -1,4 +1,4 @@
-import type { Language } from '@sveltevietnam/i18n';
+import type { Language } from '@sveltevietnam/kit/constants';
 import { buildStructuredTextWithLang } from '@sveltevietnam/kit/utilities/structured-data';
 import type { Person } from 'schema-dts';
 

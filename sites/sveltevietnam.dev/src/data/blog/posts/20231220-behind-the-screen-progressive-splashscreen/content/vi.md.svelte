@@ -1,9 +1,9 @@
 <script>
   import { StackItem } from '@svelte-put/async-stack';
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n';
   import { BaseNotification} from '@sveltevietnam/kit/notifications';
+  import { Contexts } from '@sveltevietnam/kit/contexts';
 
-  import * as m from '$data/locales/generated/messages';
   import { SplashScreenPlayground } from '$lib/components/splash-screen-playground';
 
   import hydrationImage from '../images/hydration-vi.png?format=webp&imagetools';
@@ -15,10 +15,7 @@
   import hydrationAfterSplashImage from '../images/hydration-after-splash.png?format=webp&imagetools';
 
 	const item = new StackItem({ timeout: 0 });
-  const delayedHydration = {
-    title: m['notifications.new_site_version.title'],
-    message: m['notifications.new_site_version.message'],
-  };
+  const { i18n: { t } } = Contexts.get();
 </script>
 
 <div class="c-callout c-callout--info">
@@ -250,8 +247,8 @@ Ngoài ra, trong tình huống này, ta không thể tránh được việc tran
 
 <div class="not-prose">
 
-<BaseNotification status="info" title={delayedHydration.title} item={item}>
-  <p><T message={delayedHydration.message} /></p>
+<BaseNotification class="demo-noti" status="info" title="{t({ key: 'notifications.delayed_hydration.title' })}" item={item}>
+  <p><T key="notifications.delayed_hydration.message" /></p>
 </BaseNotification>
 
 </div>

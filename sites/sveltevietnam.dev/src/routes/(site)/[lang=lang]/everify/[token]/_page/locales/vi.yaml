@@ -1,0 +1,10 @@
+# =======================
+# Language: Vietnamese
+# Scope:    pages.everify
+# =======================
+messages:
+  title: Xác nhận email | Svelte Việt Nam
+  heading: Xác nhận email
+  already: Email đã được xác nhận!
+  success: Cảm ơn bạn, email đã được xác nhận thành công!
+  go_to_home: Về trang chủ

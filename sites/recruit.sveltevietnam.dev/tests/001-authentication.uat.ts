@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { expect, mergeTests } from '@playwright/test';
 import { eq } from 'drizzle-orm';
 
-import * as m from '../src/data/locales/generated/messages';
+import * as m from '../src/lib/i18n/generated/messages';
 
 import { generateEmployerTestData } from './fixtures/with-authenticated-employer';
 import { testWithBackend, schema } from './fixtures/with-backend';
@@ -125,14 +125,12 @@ test.describe(() => {
 
 			// 3. User sees validation errors for all required fields
 			await Promise.all([
-				expect(pomOnboarding.inputs.name.error).toHaveText(
-					m['inputs.name.errors.nonempty'](lang).toString(),
-				),
+				expect(pomOnboarding.inputs.name.error).toHaveText(m['inputs.name.errors.nonempty'](lang)),
 				expect(pomOnboarding.inputs.description.error).toHaveText(
-					m['inputs.employer.desc.errors.nonempty'](lang).toString(),
+					m['inputs.employer.desc.errors.nonempty'](lang),
 				),
 				expect(pomOnboarding.inputs.agreement.error).toHaveText(
-					m['inputs.employer.agreement.error'](lang).toString(),
+					m['inputs.employer.agreement.error'](lang),
 				),
 			]);
 
@@ -140,7 +138,7 @@ test.describe(() => {
 			await pomOnboarding.inputs.website.input.fill(faker.lorem.word());
 			await pomOnboarding.ctas.submitForReview.click();
 			await expect(pomOnboarding.inputs.website.error).toHaveText(
-				m['inputs.url.errors.invalid'](lang).toString(),
+				m['inputs.url.errors.invalid'](lang),
 			);
 
 			// 5. User tries upload files that are not image
@@ -151,7 +149,7 @@ test.describe(() => {
 			await pomOnboarding.ctas.submitForReview.click();
 			await Promise.all([
 				expect(pomOnboarding.inputs.image.error).toHaveText(
-					m['inputs.employer.image.errors.type'](lang).toString(),
+					m['inputs.employer.image.errors.type'](lang),
 				),
 				expect(pomOnboarding.imagePreview).toBeHidden(),
 			]);
@@ -164,7 +162,7 @@ test.describe(() => {
 			await pomOnboarding.ctas.submitForReview.click();
 			await Promise.all([
 				expect(pomOnboarding.inputs.image.error).toHaveText(
-					m['inputs.employer.image.errors.size'](lang).toString(),
+					m['inputs.employer.image.errors.size'](lang),
 				),
 				expect(pomOnboarding.imagePreview).toBeHidden(),
 			]);

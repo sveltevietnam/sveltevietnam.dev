@@ -3,7 +3,7 @@ import {
 	employerSessions,
 	employerAuthVerifications,
 } from '@sveltevietnam/backend/db/schema';
-import type { Language } from '@sveltevietnam/i18n';
+import type { Language } from '@sveltevietnam/kit/constants';
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { magicLink } from 'better-auth/plugins';
@@ -15,6 +15,17 @@ import * as p from '$data/routes/generated';
 import { VITE_PRIVATE_BETTER_AUTH_SECRET } from '$env/static/private';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 import { getBackend } from '$lib/backend/utils';
+
+const COOKIE_PREFIX = 'rba'; // recruit-better-auth
+export function getSessionDataCookieName() {
+	return `${COOKIE_PREFIX}.session_data`;
+}
+export function clearSessionDataCookie() {
+	const event = getRequestEvent();
+	event.cookies.delete(getSessionDataCookieName(), {
+		path: '/',
+	});
+}
 
 export function createEmployerAuth() {
 	const event = getRequestEvent();
@@ -126,6 +137,7 @@ export function createEmployerAuth() {
 		],
 		telemetry: { enabled: false },
 		advanced: {
+			cookiePrefix: COOKIE_PREFIX,
 			database: {
 				generateId: false,
 			},

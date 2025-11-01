@@ -1,7 +1,7 @@
 import { expect, type Locator } from '@playwright/test';
 
-import * as m from '../../src/data/locales/generated/messages';
 import * as p from '../../src/data/routes/generated';
+import * as m from '../../src/lib/i18n/generated/messages';
 
 import { CommonPageObjectModel, type CommonPageObjectModelInit } from './common';
 
@@ -31,30 +31,28 @@ export class PageEmailChangeVerification extends CommonPageObjectModel {
 			case 'ok':
 				promises.push(
 					expect(this.heading).toHaveText(
-						m['pages.email_change_verification.heading.ok'](this.lang).toString(),
+						m['pages.email_change_verification.heading.ok'](this.lang),
 					),
-					expect(this.result).toHaveText(
-						m['pages.email_change_verification.desc.ok'](this.lang).toString(),
-					),
+					expect(this.result).toHaveText(m['pages.email_change_verification.desc.ok'](this.lang)),
 				);
 				break;
 			case 'invalid':
 				promises.push(
 					expect(this.heading).toHaveText(
-						m['pages.email_change_verification.heading.invalid'](this.lang).toString(),
+						m['pages.email_change_verification.heading.invalid'](this.lang),
 					),
 					expect(this.result).toHaveText(
-						m['pages.email_change_verification.desc.invalid'](this.lang).toString(),
+						m['pages.email_change_verification.desc.invalid'](this.lang),
 					),
 				);
 				break;
 			case 'expired':
 				promises.push(
 					expect(this.heading).toHaveText(
-						m['pages.email_change_verification.heading.expired'](this.lang).toString(),
+						m['pages.email_change_verification.heading.expired'](this.lang),
 					),
 					expect(this.result).toHaveText(
-						m['pages.email_change_verification.desc.expired'](this.lang).toString(),
+						m['pages.email_change_verification.desc.expired'](this.lang, { profilePath: '' }),
 					),
 				);
 				break;
@@ -62,9 +60,9 @@ export class PageEmailChangeVerification extends CommonPageObjectModel {
 			default:
 				promises.push(
 					expect(this.heading).toHaveText(
-						m['pages.email_change_verification.heading.unknown'](this.lang).toString(),
+						m['pages.email_change_verification.heading.unknown'](this.lang),
 					),
-					expect(this.result).toHaveText(m['errors.generic'](this.lang).toString()),
+					expect(this.result).toHaveText(m['errors.generic'](this.lang)),
 				);
 				break;
 		}

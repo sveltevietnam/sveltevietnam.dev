@@ -1,6 +1,6 @@
 /// <reference types="umami-browser" />
-import type { Language } from '@sveltevietnam/i18n';
 import type { AppLocals, AppPlatform, PageMetadata } from '@sveltevietnam/kit';
+import type { Language } from '@sveltevietnam/kit/constants';
 
 declare global {
 	declare type MaybePromise<T> = T | Promise<T> | PromiseLike<T>;

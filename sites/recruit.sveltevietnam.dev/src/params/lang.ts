@@ -1,6 +1,5 @@
 import type { ParamMatcher } from '@sveltejs/kit';
-import type { Language } from '@sveltevietnam/i18n';
-import { LANGUAGES } from '@sveltevietnam/i18n';
+import { LANGUAGES, type Language } from '@sveltevietnam/kit/constants';
 
 export const match = ((param: string): param is Language => {
 	return LANGUAGES.includes(param);

@@ -1,7 +1,7 @@
 import { expect, type Locator } from '@playwright/test';
 
-import * as m from '../../src/data/locales/generated/messages';
 import * as p from '../../src/data/routes/generated';
+import * as m from '../../src/lib/i18n/generated/messages';
 
 import { CommonPageObjectModel, type CommonPageObjectModelInit } from './common';
 
@@ -51,25 +51,25 @@ export class PageOnboarding extends CommonPageObjectModel {
 		this.inputs = {
 			name: {
 				input: this.page.getByRole('textbox', {
-					name: m['inputs.employer.name.label'](this.lang).toString(),
+					name: m['inputs.employer.name.label'](this.lang),
 				}),
 				error: this.page.locator('#error-name'),
 			},
 			website: {
 				input: this.page.getByRole('textbox', {
-					name: m['inputs.employer.website.label'](this.lang).toString(),
+					name: m['inputs.employer.website.label'](this.lang),
 				}),
 				error: this.page.locator('#error-website'),
 			},
 			description: {
 				input: this.page.getByRole('textbox', {
-					name: m['inputs.employer.desc.label'](this.lang).toString(),
+					name: m['inputs.employer.desc.label'](this.lang),
 				}),
 				error: this.page.locator('#error-description'),
 			},
 			agreement: {
 				input: this.page.getByRole('checkbox', {
-					name: m['inputs.employer.agreement.desc'](this.lang).toString(),
+					name: m['inputs.employer.agreement.desc'](this.lang),
 				}),
 				error: this.page.locator('#error-agreed'),
 			},
@@ -81,10 +81,10 @@ export class PageOnboarding extends CommonPageObjectModel {
 		this.imagePreview = this.page.getByTestId('image-preview');
 		this.ctas = {
 			submitForReview: this.page.getByRole('button', {
-				name: m['pages.onboarding.cta.submit'](this.lang).toString(),
+				name: m['pages.onboarding.cta.submit'](this.lang),
 			}),
 			useAnotherAccount: this.page.getByRole('link', {
-				name: m['pages.onboarding.cta.use_another_account'](this.lang).toString(),
+				name: m['pages.onboarding.cta.use_another_account'](this.lang),
 			}),
 		};
 	}

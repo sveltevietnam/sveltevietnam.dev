@@ -1,0 +1,8 @@
+# ===================================
+# Language: Vietnamese
+# Scope:    components.language_menu
+# ===================================
+messages:
+  aria: Quản lý tài khoản của bạn
+  profile: Hồ sơ
+  logout: Đăng xuất

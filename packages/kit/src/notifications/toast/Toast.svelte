@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
-
 	import { BaseNotification } from '../base-notification/index.js';
 
 	import type { ToastProps } from '.';
@@ -10,10 +8,10 @@
 
 <BaseNotification {...rest}>
 	<p>
-		{#if typeof message === 'string'}
-			{message}
+		{#if typeof message === 'function'}
+			{@render message()}
 		{:else}
-			<T {message} />
+			{await message}
 		{/if}
 	</p>
 </BaseNotification>

@@ -1,0 +1,7 @@
+# =========================
+# Language: English
+# Scope:    pages.rss
+# =========================
+messages:
+  desc: Subscribe to the RSS feed to get updates from Svelte Vietnam
+  copyright: Copyright © {{year}} Svelte Vietnam

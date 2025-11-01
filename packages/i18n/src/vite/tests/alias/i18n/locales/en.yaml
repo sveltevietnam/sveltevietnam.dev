@@ -1,0 +1,2 @@
+messages:
+  '@import': '$components/test/locales/en.yaml'

@@ -1,11 +1,10 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n';
 	import { JobPostingList, TBA, Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { EMAILS } from '@sveltevietnam/kit/constants';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 
 	import { page } from '$app/state';
-	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import { VITE_PUBLIC_RECRUIT_ORIGIN } from '$env/static/public';
 	import { GradientBackground } from '$lib/components/gradient-background';
@@ -28,18 +27,12 @@
 			class="max-w-pad tablet:flex-row tablet:gap-6 tablet:items-start flex flex-col justify-between"
 		>
 			<div class="tablet:space-y-8 space-y-6">
-				<Breadcrumbs
-					crumbs={data.routing.breadcrumbs}
-					i18n={{
-						aria: m['components.breadcrumbs.aria'],
-						home: m['components.breadcrumbs.home'],
-					}}
-				/>
+				<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 				<div class="space-y-4">
 					<h1 class="c-text-heading-page text-primary-on-surface">
-						<T message={m['pages.jobs.heading']} />
+						<T key="pages.jobs.heading" />
 					</h1>
-					<p class="c-text-subtitle-page max-w-readable"><T message={m['pages.jobs.desc']} /></p>
+					<p class="c-text-subtitle-page max-w-readable"><T key="pages.jobs.desc" /></p>
 				</div>
 			</div>
 			<img
@@ -59,23 +52,16 @@
 	<!-- posting -->
 	<section class="max-w-pad py-section tablet:space-y-10 space-y-8">
 		<h2 class="c-text-heading-lg border-b" id="posting">
-			<T message={m['pages.jobs.posting.heading']} />
+			<T key="pages.jobs.posting.heading" />
 		</h2>
 		{#if data.postings.length}
-			<JobPostingList
-				postings={data.postings}
-				i18n={{
-					at: m['at'],
-					postedAt: m['components.job_posting_list.posted_at'],
-					expiredAt: m['components.job_posting_list.expired_at'],
-				}}
-			/>
+			<JobPostingList postings={data.postings} />
 		{:else}
 			<TBA class="mx-auto w-fit">
-				<p class="c-text-title-sm"><T message={m['pages.jobs.posting.tba.desc']} /></p>
+				<p class="c-text-title-sm"><T key="pages.jobs.posting.tba.desc" /></p>
 				<p>
 					<a class="c-link" href="#recruiters">
-						<T message={m['pages.jobs.posting.tba.create']} />
+						<T key="pages.jobs.posting.tba.create" />
 					</a>
 				</p>
 			</TBA>
@@ -98,18 +84,22 @@
 			>
 				<div class="space-y-6">
 					<h2 class="c-text-heading border-outline border-b" id="recruiters">
-						<T message={m['pages.jobs.recruiter.heading']} />
+						<T key="pages.jobs.recruiter.heading" />
 					</h2>
 					<p class="leading-relaxed">
-						<T message={m['pages.jobs.recruiter.desc']} />
+						<T key="pages.jobs.recruiter.desc" />
 					</p>
-					<a class="c-btn c-btn--pop block w-fit" href="{VITE_PUBLIC_RECRUIT_ORIGIN}/{routing.lang}" target="_blank">
+					<a
+						class="c-btn c-btn--pop block w-fit"
+						href="{VITE_PUBLIC_RECRUIT_ORIGIN}/{routing.lang}"
+						target="_blank"
+					>
 						<span>
-							<T message={m['pages.jobs.recruiter.create']} />
+							<T key="pages.jobs.recruiter.create" />
 						</span>
 					</a>
 					<p>
-						<T message={m['pages.jobs.recruiter.email']} />
+						<T key="pages.jobs.recruiter.email" />
 						<a class="c-link" href="mailto:{EMAILS.JOBS}" data-external>
 							{EMAILS.JOBS}
 						</a>
@@ -118,19 +108,19 @@
 				<hr class="text-outline border-outline" />
 				<div class="flex flex-col items-end text-right">
 					<p>
-						<T message={m['pages.jobs.recruiter.sponsor.desc']} />
+						<T key="pages.jobs.recruiter.sponsor.desc" />
 					</p>
 					<a
-						class="c-link mb-2 mt-6 block w-fit"
+						class="c-link mt-6 mb-2 block w-fit"
 						href="{p['/:lang/sponsor']({ lang: routing.lang })}#why"
 					>
-						<T message={m['pages.jobs.recruiter.sponsor.link']} />
+						<T key="pages.jobs.recruiter.sponsor.link" />
 					</a>
 					<a
 						class="c-btn c-btn--pop block w-fit"
 						href="{p['/:lang/sponsor']({ lang: routing.lang })}#how"
 					>
-						<T message={m['pages.jobs.recruiter.sponsor.cta']} />
+						<T key="pages.jobs.recruiter.sponsor.cta" />
 					</a>
 				</div>
 			</section>
@@ -145,14 +135,14 @@
 				]}
 			>
 				<h2 class="c-text-heading border-b" id="candidates">
-					<T message={m['pages.jobs.candidate.heading']} />
+					<T key="pages.jobs.candidate.heading" />
 				</h2>
 				<p class="leading-relaxed">
-					<T message={m['pages.jobs.candidate.desc']} />
+					<T key="pages.jobs.candidate.desc" />
 				</p>
 				<SubscriberUpsertForm data={data.subscribeFormData} />
 				<p>
-					<T message={m['pages.jobs.candidate.discord']} />
+					<T key="pages.jobs.candidate.discord" />
 				</p>
 			</section>
 		</div>
@@ -162,15 +152,15 @@
 	<section class="max-w-pad py-section tablet:space-y-10 space-y-8">
 		<div class="space-y-6">
 			<h2 class="c-text-heading-lg border-b" id="scraping">
-				<T message={m['pages.jobs.scraping.heading']} />
+				<T key="pages.jobs.scraping.heading" />
 			</h2>
-			<p><T message={m['pages.jobs.scraping.desc']} /></p>
+			<p><T key="pages.jobs.scraping.desc" /></p>
 		</div>
 		<TBA class="mx-auto w-fit">
-			<p class="c-text-title-sm"><T message={m['pages.jobs.scraping.tba.desc']} /></p>
+			<p class="c-text-title-sm"><T key="pages.jobs.scraping.tba.desc" /></p>
 			<p>
 				<a class="c-link" href="#candidates">
-					<T message={m['pages.jobs.scraping.tba.subscribe']} />
+					<T key="pages.jobs.scraping.tba.subscribe" />
 				</a>
 			</p>
 		</TBA>

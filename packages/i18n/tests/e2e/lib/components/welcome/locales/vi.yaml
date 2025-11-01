@@ -1,0 +1,2 @@
+messages:
+  greet: Xin chào {{name}}!

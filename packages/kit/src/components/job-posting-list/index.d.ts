@@ -1,4 +1,3 @@
-import type { Message } from '@sveltevietnam/i18n/runtime';
 import type { Component } from 'svelte';
 import type { ClassValue, HTMLAttributes } from 'svelte/elements';
 
@@ -18,21 +17,13 @@ export interface JobPostingData {
 	};
 }
 
-export interface JobPostingI18N {
-	at: Message<'string', never>;
-	postedAt: Message<'string', never>;
-	expiredAt: Message<'string', never>;
-}
-
 export interface JobPostingProps extends HTMLAttributes<HTMLElement> {
 	posting: JobPostingData;
-	i18n: JobPostingI18N;
 	containerClass?: ClassValue;
 }
 
 export interface JobPostingListProps extends HTMLAttributes<HTMLUListElement> {
 	postings: JobPostingData[];
-	i18n: JobPostingI18N;
 }
 
 /** non-paginated list of job postings */

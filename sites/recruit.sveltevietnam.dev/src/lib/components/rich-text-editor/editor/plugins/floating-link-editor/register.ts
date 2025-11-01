@@ -1,6 +1,6 @@
 import { $isLinkNode as isLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link';
 import { mergeRegister } from '@lexical/utils';
-import type { Language } from '@sveltevietnam/i18n';
+import type { Language } from '@sveltevietnam/kit/constants';
 import {
 	$getSelection,
 	$isRangeSelection,
@@ -14,8 +14,6 @@ import {
 	COMMAND_PRIORITY_CRITICAL,
 } from 'lexical';
 import { mount, unmount } from 'svelte';
-
-import * as m from '$data/locales/generated/messages';
 
 import { $getSelectedNode } from '../../utils/get-selected-node';
 import { $isSelectingLink } from '../../utils/is-selecting-link';
@@ -52,14 +50,6 @@ export function registerFloatingLinkEditor(config: RegisterFloatingLinkEditorArg
 				trigger,
 				editing,
 				initialValue,
-				i18n: {
-					name: m['components.rich_text_editor.floating_link_editor.name'],
-					discard: m['components.rich_text_editor.floating_link_editor.discard'],
-					edit: m['components.rich_text_editor.floating_link_editor.edit'],
-					remove: m['components.rich_text_editor.floating_link_editor.remove'],
-					save: m['components.rich_text_editor.floating_link_editor.save'],
-					placeholder: m['components.rich_text_editor.floating_link_editor.placeholder'],
-				},
 				onremoved: () => {
 					if (initialValue) lexical.dispatchCommand(TOGGLE_LINK_COMMAND, null);
 				},

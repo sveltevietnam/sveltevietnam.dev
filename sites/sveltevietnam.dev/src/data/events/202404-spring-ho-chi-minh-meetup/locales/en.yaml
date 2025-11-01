@@ -1,12 +1,8 @@
----
+# ===================================
+# Language: English
+# Scope:    events.202404_spring_hcm
+# ===================================
 messages:
-  slug: 202404-spring-ho-chi-minh-meetup
-  title: Spring 2024 Ho Chi Minh Meetup
-  desc:
-    The first offline meetup for the Svelte Vietnam community in Hồ Chí Minh city, hosted by
-    Designveloper
-  keywords: event, community, meetup, Ho Chi Minh
-  address: Designveloper, 6th floor, 55 Pho Duc Chinh, Dist. 1, Ho Chi Minh City
   hosted_by: Hosted by
   recap:
     heading: Recap

@@ -1,0 +1,53 @@
+# ======================================
+# Language: English
+# Scope:    components.rich_text_editor
+# ======================================
+messages:
+  toolbar:
+    name: Toolbar
+    undo: Undo
+    redo: Redo
+    block:
+      name: Block Selection
+      paragraph: Paragraph
+      heading: Heading
+      callout:
+        name: Callout
+        status:
+          name: Status
+          info: Information
+          success: Success
+          warning: Warning
+          error: Error
+      numbered_list: Numbered list
+      bullet_list: Bullet list
+      check_list: Check list
+      blockquote: Blockquote
+      codeblock: Code block
+    inline:
+      name: Inline Tools
+      bold: Bold
+      italic: Italic
+      underline: Underline
+      code: Inline code
+      link: Hyperlink
+    help: Help
+  floating_link_editor:
+    name: Link editor
+    edit: Edit
+    remove: Remove
+    save: Save
+    discard: Discard
+    placeholder: https://example.com...
+  help:
+    heading: About this editor
+    desc:
+      This is a rich text editor built with <a href="https://lexical.dev/" target="_blank"
+      rel="noreferrer noopener external">Lexical</a>. At the moment, the editor provides only a
+      minimal set of features necessary to serve the purpose of this application. <br /> <br /> You
+      may use the toolbar at the bottom of the editor to assist you in the editing process, such as
+      changing text format, undoing/redoing changes, inserting links, etc. <br /> <br /> If you have
+      any suggestions for improving the editor, please contact the admin at <a
+      href="mailto:{{mail}}">{{mail}}</a>. You can also view and contribute to the <a
+      href="https://github.com/sveltevietnam/sveltevietnam.dev/tree/main/sites/recruit.sveltevietnam.dev/src/lib/components/rich-text-editor"
+      target="_blank" rel="noreferrer noopner external" > source code of the editor at Github </a>.

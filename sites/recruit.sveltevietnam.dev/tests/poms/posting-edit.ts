@@ -1,5 +1,5 @@
-import * as m from '../../src/data/locales/generated/messages';
 import * as p from '../../src/data/routes/generated';
+import * as m from '../../src/lib/i18n/generated/messages';
 
 import { type CommonPageObjectModelInit } from './common';
 import { PagePostingCreate } from './posting-create';

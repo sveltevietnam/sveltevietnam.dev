@@ -1,5 +1,4 @@
 <script lang="ts">
-	import * as m from '$data/locales/generated/messages';
 	import { PageJobPostingUpsert } from '$lib/forms/job-posting-upsert';
 
 	import type { PageProps } from './$types';
@@ -8,7 +7,7 @@
 </script>
 
 <PageJobPostingUpsert
-	heading={m['pages.postings_upsert.heading.create']}
+	headingTKey="pages.postings_upsert.heading.create"
 	data={data.form}
 	breadcrumbs={data.routing.breadcrumbs}
 	action="?/create"
@@ -23,5 +22,5 @@
 		location: '<job_location>',
 		salary: '<job_salary>',
 	}}
-	successMessage={m['pages.postings_upsert.notifications.create']}
+	successTKey="pages.postings_upsert.notifications.create"
 />

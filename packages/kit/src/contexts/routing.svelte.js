@@ -2,18 +2,24 @@ import { getContext, setContext } from 'svelte';
 
 /**
  * @typedef RoutingContextInit
- * @property {Record<import('@sveltevietnam/i18n').Language, string>} paths
- * @property {import('@sveltevietnam/i18n').Language} lang
+ * @property {Record<import('@sveltevietnam/kit/constants').Language, string>} paths
+ * @property {import('@sveltevietnam/kit/constants').Language} lang
  */
 
 export class RoutingContext {
 	static KEY = Symbol('app:routing');
 
+	/** @type {() => RoutingContextInit} */
+	#getter = () => ({
+		paths: { en: '/en', vi: '/vi' },
+		lang: 'en',
+	});
+
 	/** @type {RoutingContextInit['paths']} */
-	paths = $state({ en: '/en', vi: '/vi' });
+	paths = $derived.by(() => this.#getter().paths);
 
 	/** @type {RoutingContextInit['lang']} */
-	lang = $state('en');
+	lang = $derived.by(() => this.#getter().lang);
 
 	/** @type string */
 	current = $derived(this.paths[this.lang]);
@@ -22,28 +28,12 @@ export class RoutingContext {
 	 * @param {() => RoutingContextInit} init
 	 */
 	constructor(init) {
-		// run in both SSR and browser
-		this.#update(init());
-
-		//  update in browser
-		$effect(() => {
-			this.#update(init());
-		});
-
+		this.#getter = init;
 		$effect(() => {
 			if ('window' in globalThis) {
 				document.documentElement.lang = this.lang;
 			}
 		});
-	}
-
-	/**
-	 * @param {RoutingContextInit} init
-	 */
-	#update(init) {
-		const { lang, paths } = init;
-		this.lang = lang;
-		this.paths = paths;
 	}
 
 	/**

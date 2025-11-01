@@ -1,6 +1,6 @@
 import type { SendEmailCommandInput } from '@aws-sdk/client-sesv2';
 import { createId } from '@paralleldrive/cuid2';
-import { Language } from '@sveltevietnam/i18n';
+import type { Language } from '@sveltevietnam/kit/constants';
 import { AwsClient } from 'aws4fetch';
 import { RpcTarget } from 'cloudflare:workers';
 import { eq } from 'drizzle-orm';

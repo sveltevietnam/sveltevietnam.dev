@@ -1,17 +1,9 @@
-import type { Message } from '@sveltevietnam/i18n/runtime';
 import type { Component } from 'svelte';
 import type { HTMLDetailsAttributes } from 'svelte/elements';
 
 import type { ColorScheme } from '@sveltevietnam/kit/constants';
 
 export interface ColorSchemeMenuProps extends Omit<HTMLDetailsAttributes, 'onselect'> {
-	i18n: {
-		aria: Message<'string', never>;
-		open: Message<'string', never>;
-		light: Message<'string', never>;
-		dark: Message<'string', never>;
-		system: Message<'string', never>;
-	};
 	/** @default 'mobile' */
 	showLabel?: 'always' | 'never' | 'mobile' | 'non-mobile';
 	colorScheme?: ColorScheme;

@@ -1,0 +1,46 @@
+# ==============================================
+# !! Exports for all locales in this package !!
+# Language: Vietnamese
+# ==============================================
+messages:
+  vietnam: Việt Nam
+  svelte_vietnam:
+    name: Svelte Việt Nam
+    discord: Svelte Việt Nam Discord
+  # adjectives
+  latest: Mới nhất
+  current: Hiện tại
+  # prepositions
+  at: tại
+  from: từ
+  to: đến
+  # conjunctions
+  and: và
+  or: hoặc
+  # actions
+  open: Mở
+  close: Đóng
+  continue: Tiếp tục
+  save: Lưu
+  download: Tải về
+  search: Tìm kiếm
+  update: Cập nhật
+  # nouns
+  version: Phiên bản
+  menu: bảng chọn
+  dialogs:
+    qr:
+      '@import': '../dialogs/qr-code/locales/vi.yaml'
+  components:
+    breadcrumbs:
+      '@import': '../components/breadcrumbs/locales/vi.yaml'
+    color_scheme_menu:
+      '@import': '../components/color-scheme-menu/locales/vi.yaml'
+    footer:
+      '@import': '../components/footer/locales/vi.yaml'
+    job_posting_list:
+      '@import': '../components/job-posting-list/locales/vi.yaml'
+    language_menu:
+      '@import': '../components/language-menu/locales/vi.yaml'
+    not_by_ai_badge:
+      '@import': '../components/not-by-ai-badge/locales/vi.yaml'

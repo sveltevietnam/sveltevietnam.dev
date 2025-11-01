@@ -1,4 +1,4 @@
-import type { Language } from '@sveltevietnam/i18n';
+import type { Language } from '@sveltevietnam/kit/constants';
 import { defineConfig } from '@sveltevietnam/routes/vite';
 
 import type { AllRoutePath } from './generated/types';

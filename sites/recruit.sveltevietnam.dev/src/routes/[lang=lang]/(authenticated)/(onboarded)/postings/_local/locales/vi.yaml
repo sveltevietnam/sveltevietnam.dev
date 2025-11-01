@@ -1,0 +1,27 @@
+# =========================
+# Language: Vietnamese
+# Scope:    pages.postings
+# =========================
+messages:
+  meta:
+    title: Danh sách đăng tuyển | Tuyển dụng | Svelte Việt Nam
+  heading: Bài đăng tuyển
+  active:
+    heading: Đăng tuyển hiện tại
+    desc:
+      Các bài đăng tuyển này đã được duyệt và đang hiển thị trên <a class="c-link"
+      href="{{mainSiteUrl}}/vi/viec-lam">trang việc làm</a>.
+    create: Tạo mới
+    tba:
+      desc: Chưa có bài đăng tuyển nào.
+      cta: Tạo bài đăng tuyển!
+  pending:
+    heading: Đăng tuyển chờ xét duyệt
+    desc:
+      Các bài đăng tuyển này đang chờ ban quản trị xét duyệt. Bạn sẽ nhận được email thông báo khi
+      bài đăng được duyệt hoặc cần bổ sung thông tin.
+  expired:
+    heading: Đăng tuyển đã hết hạn
+    desc:
+      Các bài đăng tuyển này không thể sửa đổi và không còn hiển thị trên <a class="c-link"
+      href="{{mainSiteUrl}}/vi/viec-lam">trang việc làm</a>.

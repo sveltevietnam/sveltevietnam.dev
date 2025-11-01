@@ -1,0 +1,10 @@
+# ===========================
+# Language: Vietnamese
+# Scope:    pages.blog_write
+# ===========================
+messages:
+  title: Viết bài | Blog | Svelte Việt Nam
+  keywords: viết, bài viết, blog, chia sẻ, đóng góp, tham gia, hướng dẫn
+  heading: Viết bài
+  desc: Sơ lược quy trình và hướng dẫn viết bài cho Blog Svelte Việt Nam
+  toc: Mục lục

@@ -1,5 +1,5 @@
 import { createId } from '@paralleldrive/cuid2';
-import { LANGUAGES } from '@sveltevietnam/i18n';
+import { LANGUAGES } from '@sveltevietnam/kit/constants';
 import { sql } from 'drizzle-orm';
 import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
 

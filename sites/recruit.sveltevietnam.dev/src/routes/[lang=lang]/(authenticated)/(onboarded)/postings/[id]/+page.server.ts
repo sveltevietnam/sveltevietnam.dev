@@ -3,10 +3,10 @@ import { fail, superValidate } from 'sveltekit-superforms';
 import { valibot } from 'sveltekit-superforms/adapters';
 import * as v from 'valibot';
 
-import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { getBackend } from '$lib/backend/utils';
+import * as m from '$lib/i18n/generated/messages';
 
 import type { Actions, PageServerLoad } from './$types';
 
@@ -30,7 +30,7 @@ export const load: PageServerLoad = async ({ params, parent }) => {
 			},
 		},
 		meta: {
-			title: m['pages.postings_id.meta.title'](lang).toString(),
+			title: m['pages.postings_id.meta.title'](lang),
 		},
 	};
 };

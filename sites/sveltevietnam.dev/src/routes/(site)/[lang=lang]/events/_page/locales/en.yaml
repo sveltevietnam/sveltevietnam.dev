@@ -1,0 +1,38 @@
+# =======================
+# Language: English
+# Scope:    pages.events
+# =======================
+messages:
+  title: Events | Svete Vietnam
+  keywords: event, meetup, sharing
+  heading: Events
+  desc: Meet the community in Vietnam — discuss about the Svelte and open source ecosystem
+  view_upcoming: View upcoming events
+  ongoing:
+    heading: Ongoing events
+  upcoming:
+    heading: Upcoming events
+    tba:
+      desc: No event is planned yet.
+      subscribe: Notify me about the next event
+  participate:
+    heading: Participate
+    desc: Register to receive updates about the events of the Svelte Vietnam community
+    discord:
+      Join the conversation in <a class="c-link" href="https://discord.sveltevietnam.dev/">the
+      official Svelte Vietnam Discord</a>.
+  share:
+    heading: Share
+    desc:
+      'Promote your products, spread ideas, share projects and experiences in upcoming events.
+      Register as a speaker or contribute ideas for activities in upcoming events:'
+    cta: Propose to speak / Send feedback
+  sponsor:
+    heading: Sponsor
+    desc:
+      Sponsor and/or help organizing events, competition, and activities that nurture a healthy
+      Svelte and open source community in Vietnam.
+    why: Why does Svelte Vietnam need sponsorship?
+    cta: Become a sponsor
+  past:
+    heading: Past events

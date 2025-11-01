@@ -1,7 +1,7 @@
 import { expect, type Locator, type Page } from '@playwright/test';
-import type { Language } from '@sveltevietnam/i18n';
+import type { Language } from '@sveltevietnam/kit/constants';
 
-import * as m from '../../src/data/locales/generated/messages';
+import * as m from '../../src/lib/i18n/generated/messages';
 import { getWranglerVars } from '../utils';
 
 export interface CommonPageObjectModelInit {
@@ -31,7 +31,7 @@ export abstract class CommonPageObjectModel {
 
 		this.accountMenu = {
 			locator: this.page.getByRole('navigation', {
-				name: m['components.account_menu.aria'](this.lang).toString(),
+				name: m['components.account_menu.aria'](this.lang),
 			}),
 
 			checkOpenState: async (expected) => {
@@ -57,7 +57,7 @@ export abstract class CommonPageObjectModel {
 
 				// 2. User clicks "Profile" link in account menu
 				const link = this.accountMenu.locator.getByRole('link', {
-					name: m['components.account_menu.profile'](this.lang).toString(),
+					name: m['components.account_menu.profile'](this.lang),
 				});
 				link.click();
 
@@ -78,7 +78,7 @@ export abstract class CommonPageObjectModel {
 
 				// 2. User clicks "Logout" link in account menu
 				const link = this.accountMenu.locator.getByRole('link', {
-					name: m['components.account_menu.logout'](this.lang).toString(),
+					name: m['components.account_menu.logout'](this.lang),
 				});
 				link.click();
 

@@ -1,0 +1,56 @@
+# =====================
+# Language: Vietnamese
+# Scope:    pages.home
+# =====================
+messages:
+  meta:
+    title: Tuyển dụng | Svelte Việt Nam
+    desc:
+      Quản lý bài đăng tuyển dụng miễn phí tại sveltevietnam.dev — dành cho doanh nghiệp và tổ chức
+    keywords:
+      tuyển dụng, việc làm, svelte, sveltekit, cộng đồng, mã nguồn mở, svelte việt nam,
+      sveltevietnam.dev
+  intro:
+    heading: Tuyển dụng
+    subtitle: cùng Cộng đồng Svelte Việt Nam
+    desc:
+      Quản lý bài đăng tuyển dụng miễn phí tại <a class="c-link" href={{mainSiteUrl}}
+      target="_blank">sveltevietnam.dev</a> — dành cho doanh nghiệp và tổ chức
+    cta: Đăng nhập / Đăng ký
+    kv_alt: một người đang thay bóng đèn trên thang chữ A, hai người khác giữ thang
+  catch:
+    heading: Bao nhiêu cho một bài đăng?
+    desc:
+      <strong>Hoàn toàn miễn phí!</strong> Thay vì lợi nhuận, ứng dụng Tuyển dụng có mục tiêu kết
+      nối cộng đồng với doanh nghiệp và tổ chức.<br /> <br />Chúng tôi chỉ hy vọng nhà tuyển dụng và
+      người sử dụng lao động cân nhắc lan rộng hoặc <a class="c-link"
+      href="https://opencollective.com/sveltevietnam" target="_blank" rel="noreferrer noopner
+      external">tài trợ cho dự án Svelte Việt Nam</a>.
+    cta: Vì sao Svelte Việt Nam cần tài trợ?
+    kv_alt: một người ngồi trên một con heo đất khổng lồ
+  simple_secure:
+    heading: Đơn giản & bảo mật
+    steps:
+      one: 1. Tạo tài khoản bằng không cần mật khẩu
+      two: 2. Điền hồ sơ người sử dụng lao động
+      three: 3. Đăng tin tuyển dụng và chờ xét duyệt
+    kv_alt: một người ngồi trên một bảng ghi khổng lồ
+  about:
+    heading: Về Svelte Việt Nam
+    desc:
+      Svelte Việt Nam là cộng đồng cho bất cứ ai quan tâm đến Svelte tại Việt Nam, với mong muốn tạo
+      ra kênh thông tin bổ ích và môi  trường lành mạnh để thành viên chia sẻ kinh nghiệm, giúp đỡ
+      lẫn nhau trong hành trình phát triển phần mềm và tiếp cận mã nguồn mở.
+    cta: Xem thêm tại sveltevietnam.dev
+    kv_alt: hai người đang lắp ráp một bóng đèn khổng lồ từ nhiều mảnh ghép
+  for_all:
+    heading: Đúng người, đúng việc
+    desc:
+      'Bạn có thể tìm thấy ứng viên cho những công việc khác, không chỉ là lập trình viên. Thành
+      viên của cộng đồng Svelte đến từ mọi ngành nghề: kỹ thuật, thiết kế, kiểm thử, học thuật, v.v.'
+    kv_alt: ba người cầm ba mảnh ghép lớn khác nhau
+  open:
+    heading: Nguồn mở
+    desc: Ứng dụng Tuyển dụng có mã nguồn mở và hoan nghênh đóng góp hoặc phê bình từ cộng đồng.
+    cta: Xem mã nguồn tại Github
+    kv_alt: một cánh cửa mở

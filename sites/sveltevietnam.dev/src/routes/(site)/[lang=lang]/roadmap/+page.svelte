@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 
-	import * as m from '$data/locales/generated/messages';
 	import svgChimLac from '$lib/assets/images/svg/chim-lac.svg?no-inline';
 	import svgDong from '$lib/assets/images/svg/dong-thai-binh-hung-bao.svg?no-inline';
 	import svgTuChu from '$lib/assets/images/svg/tu-chu.svg?no-inline';
@@ -20,28 +19,22 @@
 	<!-- Intro -->
 	<section class="pt-intro-pad-top bg-gradient-primary-intro desktop:pb-20 relative pb-10">
 		<div
-			class="max-w-pad max-tablet:flex-col tablet:items-start z-1 relative flex justify-between
+			class="max-w-pad max-tablet:flex-col tablet:items-start relative z-1 flex justify-between
 			gap-6"
 		>
 			<div class="tablet:space-y-8 relative space-y-6">
-				<Breadcrumbs
-					crumbs={data.routing.breadcrumbs}
-					i18n={{
-						aria: m['components.breadcrumbs.aria'],
-						home: m['components.breadcrumbs.home'],
-					}}
-				/>
+				<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 				<div class="space-y-4">
 					<h1 class="c-text-heading-page text-primary-on-surface">
-						<T message={m['pages.roadmap.heading']} />
+						<T key="pages.roadmap.heading" />
 					</h1>
 					<p class="c-text-subtitle-page max-w-readable-relaxed">
-						<T message={m['pages.roadmap.desc']} />
+						<T key="pages.roadmap.desc" />
 					</p>
 				</div>
 			</div>
 			<img
-				class="w-70 tablet:w-100 desktop:w-128 max-tablet:self-end h-auto"
+				class="tablet:w-100 desktop:w-128 max-tablet:self-end h-auto w-70"
 				src={environmentProtectionSvg}
 				width="280"
 				height="280"
@@ -52,19 +45,19 @@
 		</div>
 		<div class="absolute inset-0 z-0">
 			<div
-				class="_road bg-primary-on-surface desktop:h-118 tablet:h-81 tablet:bottom-2 h-82
-				desktop:bottom-8 absolute inset-x-0 bottom-9"
+				class="_road bg-primary-on-surface desktop:h-118 tablet:h-81 tablet:bottom-2 desktop:bottom-8
+				absolute inset-x-0 bottom-9 h-82"
 			></div>
 			<div
 				class="desktop:w-25 bg-secondary desktop:left-16/100 desktop:top-68/100 tablet:top-80/100
-				tablet:left-10/100 2xl:left-25/100 2xl:top-65/100 top-73/100 left-7/100 absolute aspect-square
-				h-auto w-14 rounded-full"
+				tablet:left-10/100 absolute top-73/100 left-7/100 aspect-square h-auto w-14
+				rounded-full 2xl:top-65/100 2xl:left-25/100"
 			>
 				<!-- large circle -->
 			</div>
 			<div
 				class="desktop:w-14 bg-secondary desktop:left-46/100 desktop:top-50/100 tablet:left-40/100
-				tablet:top-60/100 top-44/100 left-74/100 absolute aspect-square h-auto w-8 rounded-full"
+				tablet:top-60/100 absolute top-44/100 left-74/100 aspect-square h-auto w-8 rounded-full"
 			>
 				<!-- small circle -->
 			</div>
@@ -76,69 +69,69 @@
 		<Milestone
 			id="dong"
 			name="Đồng"
-			objective={m['pages.roadmap.dong.objective']}
+			objective="pages.roadmap.dong.objective"
 			highlights={[
-				m['pages.roadmap.dong.highlights.v1'],
-				m['pages.roadmap.dong.highlights.people_of_svelte'],
-				m['pages.roadmap.dong.highlights.recruit'],
+				'pages.roadmap.dong.highlights.v1',
+				'pages.roadmap.dong.highlights.people_of_svelte',
+				'pages.roadmap.dong.highlights.recruit',
 			]}
 			tasks={[
 				{
-					message: m['pages.roadmap.dong.tasks.publish_packages'],
+					tKey: 'pages.roadmap.dong.tasks.publish_packages',
 					progress: 'inprogress',
 				},
 				{
-					message: m['pages.roadmap.dong.tasks.a11y'],
+					tKey: 'pages.roadmap.dong.tasks.a11y',
 					progress: 'inprogress',
 				},
 				{
-					message: m['pages.roadmap.dong.tasks.job_posting'],
+					tKey: 'pages.roadmap.dong.tasks.job_posting',
 					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.dong.tasks.umami'],
+					tKey: 'pages.roadmap.dong.tasks.umami',
 					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.dong.tasks.backend'],
+					tKey: 'pages.roadmap.dong.tasks.backend',
 					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.dong.tasks.people'],
+					tKey: 'pages.roadmap.dong.tasks.people',
 					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.dong.tasks.read_experience'],
+					tKey: 'pages.roadmap.dong.tasks.read_experience',
 					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.dong.tasks.write_guidelines'],
+					tKey: 'pages.roadmap.dong.tasks.write_guidelines',
 					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.dong.tasks.home_resources'],
+					tKey: 'pages.roadmap.dong.tasks.home_resources',
 					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.dong.tasks.svelte_5'],
+					tKey: 'pages.roadmap.dong.tasks.svelte_5',
 					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.dong.tasks.inter_4'],
+					tKey: 'pages.roadmap.dong.tasks.inter_4',
 					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.dong.tasks.tailwind_4'],
+					tKey: 'pages.roadmap.dong.tasks.tailwind_4',
 					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.dong.tasks.refactor'],
+					tKey: 'pages.roadmap.dong.tasks.refactor',
 					progress: 'completed',
 				},
 			]}
 			current
 		>
-			<div class="opacity-4 max-w-pad -z-1 top-90 tablet:top-72 absolute inset-x-0">
+			<div class="max-w-pad tablet:top-72 absolute inset-x-0 top-90 -z-1 opacity-4">
 				<img
 					class="ml-auto"
 					alt="Đồng Thái Bình Hưng Bảo"
@@ -156,58 +149,58 @@
 		<Milestone
 			id="tu"
 			name="Tự"
-			objective={m['pages.roadmap.tu.objective']}
+			objective="pages.roadmap.tu.objective"
 			highlights={[
-				m['pages.roadmap.tu.highlights.open_collective'],
-				m['pages.roadmap.tu.highlights.first_offline_meetup'],
-				m['pages.roadmap.tu.highlights.first_online_meetup'],
-				m['pages.roadmap.tu.highlights.first_ui'],
+				'pages.roadmap.tu.highlights.open_collective',
+				'pages.roadmap.tu.highlights.first_offline_meetup',
+				'pages.roadmap.tu.highlights.first_online_meetup',
+				'pages.roadmap.tu.highlights.first_ui',
 			]}
 			tasks={[
 				{
-					message: m['pages.roadmap.tu.tasks.survey'],
+					tKey: 'pages.roadmap.tu.tasks.survey',
 					progress: 'delayed',
 				},
 				{
-					message: m['pages.roadmap.tu.tasks.page_jobs'],
+					tKey: 'pages.roadmap.tu.tasks.page_jobs',
 					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.tu.tasks.page_design'],
+					tKey: 'pages.roadmap.tu.tasks.page_design',
 					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.tu.tasks.progressive_enhancement'],
+					tKey: 'pages.roadmap.tu.tasks.progressive_enhancement',
 					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.tu.tasks.page_coc'],
+					tKey: 'pages.roadmap.tu.tasks.page_coc',
 					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.tu.tasks.og'],
+					tKey: 'pages.roadmap.tu.tasks.og',
 					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.tu.tasks.references'],
+					tKey: 'pages.roadmap.tu.tasks.references',
 					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.tu.tasks.page_blog'],
+					tKey: 'pages.roadmap.tu.tasks.page_blog',
 					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.tu.tasks.page_events'],
+					tKey: 'pages.roadmap.tu.tasks.page_events',
 					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.tu.tasks.mailer'],
+					tKey: 'pages.roadmap.tu.tasks.mailer',
 					progress: 'completed',
 				},
 			]}
 		>
-			<div class="opacity-4 max-w-pad -z-1 top-94 tablet:top-80 absolute inset-x-0">
-				<div class="tablet:gap-10 max-tablet:flex-col max-w-256 ml-auto flex gap-5">
+			<div class="max-w-pad tablet:top-80 absolute inset-x-0 top-94 -z-1 opacity-4">
+				<div class="tablet:gap-10 max-tablet:flex-col ml-auto flex max-w-256 gap-5">
 					<img
 						class="w-full flex-1"
 						alt="Chữ"
@@ -236,49 +229,49 @@
 		<Milestone
 			id="au-lac"
 			name="Âu Lạc"
-			objective={m['pages.roadmap.auLac.objective']}
+			objective="pages.roadmap.auLac.objective"
 			highlights={[
-				m['pages.roadmap.auLac.highlights.roadmap'],
-				m['pages.roadmap.auLac.highlights.initiation'],
+				'pages.roadmap.auLac.highlights.roadmap',
+				'pages.roadmap.auLac.highlights.initiation',
 			]}
 			tasks={[
 				{
-					message: m['pages.roadmap.auLac.tasks.page_roadmap'],
+					tKey: 'pages.roadmap.auLac.tasks.page_roadmap',
 					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.auLac.tasks.metadata'],
+					tKey: 'pages.roadmap.auLac.tasks.metadata',
 					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.auLac.tasks.discord'],
+					tKey: 'pages.roadmap.auLac.tasks.discord',
 					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.auLac.tasks.page_home'],
+					tKey: 'pages.roadmap.auLac.tasks.page_home',
 					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.auLac.tasks.page_branding_repo'],
+					tKey: 'pages.roadmap.auLac.tasks.page_branding_repo',
 					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.auLac.tasks.logo'],
+					tKey: 'pages.roadmap.auLac.tasks.logo',
 					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.auLac.tasks.project_reference'],
+					tKey: 'pages.roadmap.auLac.tasks.project_reference',
 					progress: 'completed',
 				},
 				{
-					message: m['pages.roadmap.auLac.tasks.github'],
+					tKey: 'pages.roadmap.auLac.tasks.github',
 					progress: 'completed',
 				},
 			]}
 		>
-			<div class="opacity-4 max-w-pad -z-1 absolute inset-x-0 top-60">
+			<div class="max-w-pad absolute inset-x-0 top-60 -z-1 opacity-4">
 				<img
-					class="max-w-256 ml-auto h-auto w-full"
+					class="ml-auto h-auto w-full max-w-256"
 					alt="Chim Lạc"
 					src={svgChimLac}
 					width="375"

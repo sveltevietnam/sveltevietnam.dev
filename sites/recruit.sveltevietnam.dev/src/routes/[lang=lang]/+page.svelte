@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 
-	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import { VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN } from '$env/static/public';
 
@@ -13,7 +12,10 @@
 	import kvOpen from './_local/images/kv-open.svg';
 	import kvSimpleSecure from './_local/images/kv-simple-secure.svg';
 
-	const { routing } = Contexts.get();
+	const {
+		routing,
+		i18n: { t },
+	} = Contexts.get();
 
 	const sponsorLink = $derived(
 		`${VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN}/${routing.lang}/${
@@ -33,24 +35,25 @@
 		<div class=" tablet:pt-40 desktop:pt-60 flex-1 pt-24">
 			<div class="max-w-readable tablet:space-y-8 desktop:space-y-10 mx-auto space-y-6">
 				<h1 class="desktop:space-y-4 space-y-2">
-					<span class="c-text-heading-page block"
-						><T message={m['pages.home.intro.heading']} /></span
-					>
-					<span class="c-text-heading block"><T message={m['pages.home.intro.subtitle']} /></span>
+					<span class="c-text-heading-page block"><T key="pages.home.intro.heading" /></span>
+					<span class="c-text-heading block"><T key="pages.home.intro.subtitle" /></span>
 				</h1>
 				<p>
-					<T message={m['pages.home.intro.desc']} mainSiteUrl={VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN} />
+					<T
+						key="pages.home.intro.desc"
+						params={{ mainSiteUrl: VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN }}
+					/>
 				</p>
 				<div class="mobile:ml-auto relative w-fit">
 					<a
 						class="c-btn c-btn--pop block w-fit"
 						href={p['/:lang/authenticate']({ lang: routing.lang })}
 					>
-						<T message={m['pages.home.intro.cta']} />
+						<T key="pages.home.intro.cta" />
 					</a>
 					<svg
-						class="text-on-surface-dim mobile:hidden w-50 tablet:w-62 absolute left-full top-full
-						h-auto translate-y-6"
+						class="text-on-surface-dim mobile:hidden tablet:w-62 absolute top-full left-full h-auto
+						w-50 translate-y-6"
 						xmlns="http://www.w3.org/2000/svg"
 						width="200"
 						height="64"
@@ -78,9 +81,9 @@
 		</div>
 		<div class="translate-y-0.5">
 			<img
-				class="tablet:w-69 desktop:w-91 widescreen:w-100 2xl:w-120 h-auto w-full"
+				class="tablet:w-69 desktop:w-91 widescreen:w-100 h-auto w-full 2xl:w-120"
 				src={kvIntro}
-				alt={m['pages.home.catch.kv_alt'](routing.lang).toString()}
+				alt={await t({ key: 'pages.home.intro.kv_alt' })}
 				width="276"
 				height="601"
 			/>
@@ -96,10 +99,10 @@
 		>
 			<div class="tablet:space-y-8 desktop:space-y-10 flex-1 space-y-6">
 				<h2 class="c-text-heading-lg">
-					<T message={m['pages.home.catch.heading']} />
+					<T key="pages.home.catch.heading" />
 				</h2>
 				<p>
-					<T message={m['pages.home.catch.desc']} />
+					<T key="pages.home.catch.desc" />
 				</p>
 				<a
 					class="c-btn c-btn--pop block w-fit"
@@ -107,14 +110,14 @@
 					target="_blank"
 					rel="noopener noreferrer external"
 				>
-					<T message={m['pages.home.catch.cta']} />
+					<T key="pages.home.catch.cta" />
 				</a>
 			</div>
 			<div class="flex-1">
 				<img
 					class="tablet:max-desktop:-scale-x-100 h-auto w-full"
 					src={kvCatch}
-					alt={m['pages.home.catch.kv_alt'](routing.lang).toString()}
+					alt={await t({ key: 'pages.home.catch.kv_alt' })}
 					width="345"
 					height="293"
 				/>
@@ -127,7 +130,7 @@
 			id="simple-and-secure"
 		>
 			<h2 class="c-text-heading-lg text-center">
-				<T message={m['pages.home.simple_secure.heading']} />
+				<T key="pages.home.simple_secure.heading" />
 			</h2>
 			<div
 				class="tablet:flex-row desktop:flex-row-reverse tablet:gap-0 flex flex-col items-center
@@ -138,20 +141,20 @@
 					text-center"
 				>
 					<li>
-						<T message={m['pages.home.simple_secure.steps.one']} />
+						<T key="pages.home.simple_secure.steps.one" />
 					</li>
 					<li class="desktop:pl-6">
-						<T message={m['pages.home.simple_secure.steps.two']} />
+						<T key="pages.home.simple_secure.steps.two" />
 					</li>
 					<li class="desktop:pl-12">
-						<T message={m['pages.home.simple_secure.steps.three']} />
+						<T key="pages.home.simple_secure.steps.three" />
 					</li>
 				</ul>
 				<div>
 					<img
-						class="w-90 max-tablet:-scale-x-100 h-auto max-w-full"
+						class="max-tablet:-scale-x-100 h-auto w-90 max-w-full"
 						src={kvSimpleSecure}
-						alt={m['pages.home.simple_secure.kv_alt'](routing.lang).toString()}
+						alt={await t({ key: 'pages.home.simple_secure.kv_alt' })}
 						width="357"
 						height="362"
 					/>
@@ -168,24 +171,24 @@
 		>
 			<div class="tablet:space-y-8 desktop:space-y-10 flex-1 space-y-6">
 				<h2 class="c-text-heading-lg">
-					<T message={m['pages.home.about.heading']} />
+					<T key="pages.home.about.heading" />
 				</h2>
 				<p>
-					<T message={m['pages.home.about.desc']} />
+					<T key="pages.home.about.desc" />
 				</p>
 				<a
 					class="c-btn c-btn--pop block w-fit"
 					href="{VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN}/{routing.lang}"
 					target="_blank"
 				>
-					<T message={m['pages.home.about.cta']} />
+					<T key="pages.home.about.cta" />
 				</a>
 			</div>
 			<div class="flex-1">
 				<img
 					class="desktop:-scale-x-100 h-auto w-full"
 					src={kvAbout}
-					alt={m['pages.home.about.kv_alt'](routing.lang).toString()}
+					alt={await t({ key: 'pages.home.about.kv_alt' })}
 					width="345"
 					height="228"
 				/>
@@ -194,20 +197,20 @@
 
 		<!-- For all -->
 		<section
-			class="max-w-pad py-section-more bg-primary-surface text-primary-on-surface space-y-10
-			tablet:space-y-14 desktop:space-y-16"
+			class="max-w-pad py-section-more bg-primary-surface text-primary-on-surface tablet:space-y-14
+			desktop:space-y-16 space-y-10"
 			id="one-for-all"
 		>
 			<h2 class="c-text-heading-lg text-center">
-				<T message={m['pages.home.for_all.heading']} />
+				<T key="pages.home.for_all.heading" />
 			</h2>
 			<p class="tablet:c-text-subtitle-page max-w-readable mx-auto text-center leading-relaxed">
-				<T message={m['pages.home.for_all.desc']} />
+				<T key="pages.home.for_all.desc" />
 			</p>
 			<img
-				class="h-auto max-w-full w-196 mx-auto"
+				class="mx-auto h-auto w-196 max-w-full"
 				src={kvForAll}
-				alt={m['pages.home.for_all.kv_alt'](routing.lang).toString()}
+				alt={await t({ key: 'pages.home.for_all.kv_alt' })}
 				width="345"
 				height="142"
 			/>
@@ -221,10 +224,10 @@
 		>
 			<div class="tablet:space-y-8 desktop:space-y-10 flex-1 space-y-6">
 				<h2 class="c-text-heading-lg">
-					<T message={m['pages.home.open.heading']} />
+					<T key="pages.home.open.heading" />
 				</h2>
 				<p>
-					<T message={m['pages.home.open.desc']} />
+					<T key="pages.home.open.desc" />
 				</p>
 				<a
 					class="c-btn c-btn--pop block w-fit"
@@ -232,14 +235,14 @@
 					target="_blank"
 					rel="noopener noreferrer external"
 				>
-					<T message={m['pages.home.open.cta']} />
+					<T key="pages.home.open.cta" />
 				</a>
 			</div>
 			<div class="flex-1">
 				<img
 					class="h-auto w-full"
 					src={kvOpen}
-					alt={m['pages.home.open.kv_alt'](routing.lang).toString()}
+					alt={await t({ key: 'pages.home.open.kv_alt' })}
 					width="343"
 					height="291"
 				/>

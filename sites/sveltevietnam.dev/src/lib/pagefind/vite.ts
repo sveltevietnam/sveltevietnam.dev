@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 
-import { LANGUAGES } from '@sveltevietnam/i18n';
+import { LANGUAGES } from '@sveltevietnam/kit/constants';
 import { XMLParser } from 'fast-xml-parser';
 import * as lib from 'pagefind';
 import pico from 'picocolors';

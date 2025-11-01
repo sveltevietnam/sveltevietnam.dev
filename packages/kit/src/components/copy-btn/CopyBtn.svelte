@@ -1,16 +1,11 @@
 <script lang="ts">
 	import { copy } from '@svelte-put/copy';
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n';
 	import { fly } from 'svelte/transition';
 
 	import { type CopyBtnProps } from '.';
 
-	let {
-		textToCopy,
-		aria,
-		iconClass = 'i-[ph--link]',
-		...rest
-	}: CopyBtnProps = $props();
+	let { textToCopy, aria, iconClass = 'i-[ph--link]', ...rest }: CopyBtnProps = $props();
 
 	let copyTimeoutId: ReturnType<typeof setTimeout>;
 	let copied = $state(false);
@@ -37,7 +32,7 @@
 	{...rest}
 >
 	<span class="sr-only">
-		<T message={aria} />
+		<T key={aria} />
 	</span>
 	{#if copied}
 		<i class="i i-[ph--clipboard-text] h-6 w-6" in:fly={{ duration: 200, y: 10 }}></i>

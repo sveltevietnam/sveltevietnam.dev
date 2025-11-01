@@ -1,0 +1,2 @@
+messages:
+  foo: bar {{unclosed_var

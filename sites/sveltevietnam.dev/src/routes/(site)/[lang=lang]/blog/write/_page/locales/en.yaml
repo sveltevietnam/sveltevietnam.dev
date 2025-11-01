@@ -1,0 +1,10 @@
+# ===========================
+# Language: English
+# Scope:    pages.blog_write
+# ===========================
+messages:
+  title: Write | Blog | Svelte Vietnam
+  keywords: blog, write, contribution, sharing, tutorial
+  heading: Writing Guide
+  desc: Guidelines and recommendations for authoring blog posts on the Svelte Vietnam Blog
+  toc: Table of contents

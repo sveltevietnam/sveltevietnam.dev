@@ -1,6 +1,6 @@
 <script>
   import { StackItem } from '@svelte-put/async-stack';
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n';
   import { BaseNotification } from '@sveltevietnam/kit/notifications';
   import { Contexts } from '@sveltevietnam/kit/contexts';
 
@@ -8,7 +8,6 @@
   import svgTuNom from '$lib/assets/images/svg/tu-nom.svg?no-inline';
   import svgDong from '$lib/assets/images/svg/dong-thai-binh-hung-bao.svg?no-inline';
   import svgChimLac from '$lib/assets/images/svg/chim-lac.svg?no-inline';
-  import * as m from '$data/locales/generated/messages';
   import { DiscordNewMessage } from '$lib/notifications/discord-new-message';
 
   import devToolsSlow3gImage from '../images/devtools-slow-3g.jpg?format=webp&imagetools';
@@ -19,25 +18,14 @@
   import emailImage from '../images/email-vi.jpg?format=webp&imagetools';
 
 	const item = new StackItem({ timeout: 0 });
-  const { notifications: { toaster } } = Contexts.get();
+  const { notifications: { toaster }, i18n: { t } } = Contexts.get();
 
   function pushDemoToast() {
     toaster.warning({
-      title: m['notifications.sample.title'],
-      message: m['notifications.sample.title'],
+      title: t({ key: 'notifications.sample.title' }),
+      message: t({ key: 'notifications.sample.message' }),
     });
   }
-
-  const notiLocales = {
-    delayedHydration: {
-      title: m['notifications.delayed_hydration.title'],
-      message: m['notifications.delayed_hydration.message'],
-    },
-    newSiteVersion: {
-      title: m['notifications.new_site_version.title'],
-      message: m['notifications.new_site_version.message'],
-    },
-  };
 </script>
 
 <div class="c-callout c-callout--info">
@@ -82,8 +70,8 @@ Khi có một phiên bản mới được triển khai thành công đến máy 
 
 <div class="not-prose">
 
-<BaseNotification class="demo-noti" status="info" title={notiLocales.newSiteVersion.title} item={item}>
-  <p><T message={notiLocales.newSiteVersion.message} /></p>
+<BaseNotification class="demo-noti" status="info" title="{t({ key: 'notifications.new_site_version.title' })}" item={item}>
+  <p><T key="notifications.new_site_version.message" /></p>
 </BaseNotification>
 
 </div>
@@ -108,8 +96,8 @@ Khi bạn mở trang web trên các thiết bị hoặc với môi trường gi�
 
 <div class="not-prose">
 
-<BaseNotification class="demo-noti" status="info" title={notiLocales.delayedHydration.title} item={item}>
-  <p><T message={notiLocales.delayedHydration.message} /></p>
+<BaseNotification class="demo-noti" status="info" title="{t({ key: 'notifications.delayed_hydration.title' })}" item={item}>
+  <p><T key="notifications.delayed_hydration.message" /></p>
 </BaseNotification>
 
 </div>

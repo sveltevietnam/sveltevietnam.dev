@@ -3,15 +3,16 @@ import { valibot } from 'sveltekit-superforms/adapters';
 import { message, superValidate, withFiles } from 'sveltekit-superforms/server';
 import * as v from 'valibot';
 
-import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
+import { clearSessionDataCookie } from '$lib/auth';
 import { getBackend } from '$lib/backend/utils';
 import { uploadEmployerImage } from '$lib/data/employers';
 import {
 	createEmployerProfileSchema,
 	createEmployerEmailSchema,
 } from '$lib/forms/employer-profile';
+import * as m from '$lib/i18n/generated/messages';
 
 import type { Actions, PageServerLoad } from './$types';
 
@@ -44,7 +45,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 			},
 		},
 		meta: {
-			title: m['pages.profile.meta.title'](lang).toString(),
+			title: m['pages.profile.meta.title'](lang),
 		},
 	};
 };
@@ -98,6 +99,7 @@ export const actions: Actions = {
 			return message(form, 'error');
 		}
 
+		clearSessionDataCookie();
 		return message(form, 'pending');
 	},
 	'update-info': async (event) => {
@@ -129,6 +131,7 @@ export const actions: Actions = {
 			error(500, { code: 'SV001', message: 'Error from backend' });
 		}
 
+		clearSessionDataCookie();
 		return withFiles({ form });
 	},
 };

@@ -1,6 +1,5 @@
 import { expect, type Locator, type Page } from '@playwright/test';
-import type { Language } from '@sveltevietnam/i18n';
-import { EMAILS } from '@sveltevietnam/kit/constants';
+import { EMAILS, type Language } from '@sveltevietnam/kit/constants';
 
 import type { WithBackendWorkerArgs, schema } from '../fixtures/with-backend';
 

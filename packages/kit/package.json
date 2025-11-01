@@ -10,43 +10,56 @@
 	"exports": {
 		".": {
 			"types": "./types/index.d.ts",
-			"import": "./src/index.js"
+			"import": "./src/index.js",
+			"default": "./src/index.js"
 		},
 		"./components": {
 			"types": "./types/index.d.ts",
-			"import": "./src/components/index.js"
+			"import": "./src/components/index.js",
+			"default": "./src/components/index.js"
 		},
+		"./components/*.yaml": "./src/components/*.yaml",
 		"./constants": {
 			"types": "./types/index.d.ts",
-			"import": "./src/constants.js"
+			"import": "./src/constants.js",
+			"default": "./src/constants.js"
 		},
 		"./contexts": {
 			"types": "./types/index.d.ts",
-			"import": "./src/contexts/index.js"
+			"import": "./src/contexts/index.js",
+			"default": "./src/contexts/index.js"
 		},
 		"./dialogs": {
 			"types": "./types/index.d.ts",
-			"import": "./src/dialogs/index.js"
+			"import": "./src/dialogs/index.js",
+			"default": "./src/dialogs/index.js"
 		},
+		"./dialogs/*.yaml": "./src/dialogs/*.yaml",
 		"./hooks": {
 			"types": "./types/index.d.ts",
-			"import": "./src/hooks.js"
+			"import": "./src/hooks.js",
+			"default": "./src/hooks.js"
 		},
+		"./locales/*.yaml": "./src/locales/*.yaml",
 		"./notifications": {
 			"types": "./types/index.d.ts",
-			"import": "./src/notifications/index.js"
+			"import": "./src/notifications/index.js",
+			"default": "./src/notifications/index.js"
 		},
 		"./utilities": {
 			"types": "./types/index.d.ts",
-			"import": "./src/utilities/index.js"
+			"import": "./src/utilities/index.js",
+			"default": "./src/utilities/index.js"
 		},
 		"./utilities/structured-data": {
 			"types": "./types/index.d.ts",
-			"import": "./src/utilities/structured-data/index.js"
+			"import": "./src/utilities/structured-data/index.js",
+			"default": "./src/utilities/structured-data/index.js"
 		},
 		"./utilities/datetime": {
 			"types": "./types/index.d.ts",
-			"import": "./src/utilities/datetime.js"
+			"import": "./src/utilities/datetime.js",
+			"default": "./src/utilities/datetime.js"
 		},
 		"./assets/images/logos/*.base64": "./src/assets/images/logos/*.base64",
 		"./assets/images/fallbacks/*.jpg": "./src/assets/images/fallbacks/*.jpg"
@@ -92,16 +105,16 @@
 		"format": "prettier --write --ignore-path=../../.prettierignore --config=../../prettier.config.js ."
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20251011.0",
+		"@cloudflare/workers-types": "^4.20251014.0",
 		"@svelte-put/lockscroll": "^2.0.1",
-		"@sveltejs/kit": "^2.46.4",
+		"@sveltejs/kit": "^2.48.4",
 		"@sveltevietnam/css": "workspace:*",
-		"@tailwindcss/vite": "4.1.14",
+		"@tailwindcss/vite": "4.1.16",
 		"@types/umami-browser": "^2.18.0",
 		"schema-dts": "^1.1.5",
-		"svelte": "^5.39.11",
-		"tailwindcss": "4.1.14",
-		"vite": "^7.1.9",
+		"svelte": "^5.43.0",
+		"tailwindcss": "4.1.16",
+		"vite": "^7.1.12",
 		"vite-imagetools": "^9.0.0"
 	},
 	"dependencies": {

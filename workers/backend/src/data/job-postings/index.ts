@@ -1,4 +1,4 @@
-import { Language } from '@sveltevietnam/i18n';
+import type { Language } from '@sveltevietnam/kit/constants';
 import { EMAILS } from '@sveltevietnam/kit/constants';
 import { formatTimeDiff } from '@sveltevietnam/kit/utilities/datetime';
 import { RpcTarget } from 'cloudflare:workers';

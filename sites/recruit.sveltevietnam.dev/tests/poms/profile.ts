@@ -1,19 +1,20 @@
 import { type Locator, expect } from '@playwright/test';
-import type { Message } from '@sveltevietnam/i18n/runtime';
+import type { MessageSimple } from '@sveltevietnam/i18n';
+import type { Language, KeySimple } from '@sveltevietnam/i18n/generated';
 
-import * as m from '../../src/data/locales/generated/messages';
 import * as p from '../../src/data/routes/generated';
+import * as m from '../../src/lib/i18n/generated/messages';
 
 import { CommonPageObjectModel, type CommonPageObjectModelInit } from './common';
 
 type ChangeEmailOutput =
 	| {
 			type: 'success';
-			message: Message<'string', never>;
+			message: MessageSimple<Language, KeySimple>;
 	  }
 	| {
 			type: 'error';
-			message: Message<'string', never>;
+			message: MessageSimple<Language, KeySimple>;
 	  };
 
 export interface UpdateInfoFormData {
@@ -50,42 +51,42 @@ export class PageProfile extends CommonPageObjectModel {
 		this.path = p['/:lang/profile']({ lang: this.lang });
 
 		const sectionEmail = this.page.getByRole('region', {
-			name: m['pages.profile.update_email.heading'](this.lang).toString(),
+			name: m['pages.profile.update_email.heading'](this.lang),
 		});
 		const sectionInfo = this.page.getByRole('region', {
-			name: m['pages.profile.update_info.heading'](this.lang).toString(),
+			name: m['pages.profile.update_info.heading'](this.lang),
 		});
 
 		this.forms = {
 			email: {
 				input: sectionEmail.getByRole('textbox', {
-					name: m['inputs.email.label'](this.lang).toString(),
+					name: m['inputs.email.label'](this.lang),
 				}),
 				save: sectionEmail.getByRole('button', {
-					name: m['save'](this.lang).toString(),
+					name: m['save'](this.lang),
 				}),
-				alert: sectionEmail.getByRole('alert'),
+				alert: sectionEmail.getByRole('alert').first(),
 				error: sectionEmail.locator('#error-email'),
 			},
 			info: {
 				inputs: {
 					name: sectionInfo.getByRole('textbox', {
-						name: m['inputs.employer.name.label'](this.lang).toString(),
+						name: m['inputs.employer.name.label'](this.lang),
 					}),
 					website: sectionInfo.getByRole('textbox', {
-						name: m['inputs.employer.website.label'](this.lang).toString(),
+						name: m['inputs.employer.website.label'](this.lang),
 					}),
 					description: sectionInfo.getByRole('textbox', {
-						name: m['inputs.employer.desc.label'](this.lang).toString(),
+						name: m['inputs.employer.desc.label'](this.lang),
 					}),
 					agreement: sectionInfo.getByRole('checkbox', {
-						name: m['inputs.employer.agreement.desc'](this.lang).toString(),
+						name: m['inputs.employer.agreement.desc'](this.lang),
 					}),
 					image: sectionInfo.getByTestId('image'),
 				},
 				imagePreview: sectionInfo.getByTestId('image-preview'),
 				save: sectionInfo.getByRole('button', {
-					name: m['save'](this.lang).toString(),
+					name: m['save'](this.lang),
 				}),
 			},
 		};
@@ -114,9 +115,9 @@ export class PageProfile extends CommonPageObjectModel {
 		await this.forms.email.input.fill(data.email);
 		await this.forms.email.save.click();
 		if (output.type === 'success') {
-			await expect(this.forms.email.alert).toHaveText(output.message(this.lang).toString());
+			await expect(this.forms.email.alert).toHaveText(output.message(this.lang));
 		} else {
-			await expect(this.forms.email.error).toHaveText(output.message(this.lang).toString());
+			await expect(this.forms.email.error).toHaveText(output.message(this.lang));
 		}
 	}
 
@@ -140,11 +141,14 @@ export class PageProfile extends CommonPageObjectModel {
 		await this.forms.info.inputs.agreement.check();
 	}
 
-	async saveInfo(message: Message<'string', never>): Promise<void> {
+	async saveInfo(message: MessageSimple<Language, KeySimple>): Promise<void> {
 		await this.forms.info.save.click();
-		const alert = this.page.getByRole('alert').filter({
-			hasText: message(this.lang).toString(),
-		});
+		const alert = this.page
+			.getByRole('alert')
+			.filter({
+				hasText: message(this.lang),
+			})
+			.first();
 		await expect(alert).toBeVisible();
 	}
 }

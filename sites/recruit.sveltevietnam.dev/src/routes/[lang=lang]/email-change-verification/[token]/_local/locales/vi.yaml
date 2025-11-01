@@ -1,0 +1,23 @@
+# ==========================================
+# Language: Vietnamese
+# Scope:    pages.email_change_verification
+# ==========================================
+messages:
+  meta:
+    title: Xác thực thay đổi email | Tuyển dụng | Svelte Việt Nam
+  heading:
+    ok: Yêu cầu đã được xác nhận
+    invalid: Yêu cầu không hợp lệ
+    expired: Yêu cầu đã hết hạn
+    unknown: Lỗi không xác định
+  desc:
+    ok: Email của bạn đã được cập nhật. Xin cảm ơn!
+    invalid:
+      Đường dẫn không hợp lệ hoặc đã bị sửa đổi. Vui lòng kiểm tra lại email được gởi đến bạn.
+    expired:
+      Yêu cầu đã quá hạn sử dụng. Vui lòng thực hiện lại sửa đổi tại <a href="{{profilePath}}"
+      class="c-link">trang quản lý tài khoản</a>.
+  reminder:
+    'Nhắc bạn: email được sử dụng để đăng nhập và quản lý tài khoản. Vui lòng không chia sẻ email
+    của bạn với ai!'
+  login: Đăng nhập

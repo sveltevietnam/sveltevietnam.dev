@@ -1,10 +1,8 @@
 <script lang="ts" module>
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n';
 	import type { Status } from '@sveltevietnam/kit/constants';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { REDO_COMMAND, UNDO_COMMAND } from 'lexical';
-
-	import * as m from '$data/locales/generated/messages';
 
 	import type { Editor } from '..';
 	import { CalloutStatusDropdown, FORMAT_CALLOUT_COMMAND } from '../plugins/callout';
@@ -44,12 +42,12 @@
 </script>
 
 <div
-	class="border-y-onehalf bg-surface-subtle z-2 max-w-pad-content sticky bottom-0 flex items-center gap-0.5 overflow-auto border-current p-0.5"
+	class="border-y-onehalf bg-surface-subtle max-w-pad-content sticky bottom-0 z-2 flex items-center gap-0.5 overflow-auto border-current p-0.5"
 	role="toolbar"
 	aria-labelledby="rich-text-toolbar-label"
 >
 	<p class="sr-only" id="rich-text-toolbar-label">
-		<T message={m['components.rich_text_editor.toolbar.name']} />
+		<T key="components.rich_text_editor.toolbar.name" />
 	</p>
 
 	{#snippet separator(classes?: ClassValue)}
@@ -59,13 +57,13 @@
 	<!-- undo -->
 	<ToolbarIconButton
 		iconClass="i-[ph--arrow-counter-clockwise]"
-		label={m['components.rich_text_editor.toolbar.undo']}
+		label="components.rich_text_editor.toolbar.undo"
 		onclick={undo}
 	/>
 	<!-- redo -->
 	<ToolbarIconButton
 		iconClass="i-[ph--arrow-clockwise]"
-		label={m['components.rich_text_editor.toolbar.redo']}
+		label="components.rich_text_editor.toolbar.redo"
 		onclick={redo}
 	/>
 
@@ -90,7 +88,7 @@
 	<!-- open help dialog -->
 	<ToolbarIconButton
 		iconClass="i-[ph--question-mark]"
-		label={m['components.rich_text_editor.toolbar.help']}
+		label="components.rich_text_editor.toolbar.help"
 		onclick={help}
 		data-umami-event="rich-text-editor"
 		data-umami-event-action="help"

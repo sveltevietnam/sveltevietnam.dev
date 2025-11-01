@@ -1,10 +1,9 @@
-import { type Message, type MessageType } from '@sveltevietnam/i18n/runtime';
-import type { Component } from 'svelte';
+import type { Component, Snippet } from 'svelte';
 
 import { type BaseNotificationProps } from '@sveltevietnam/kit/notifications';
 
 export interface ToastProps extends BaseNotificationProps {
-	message: string | Message<MessageType, never>;
+	message: Promise<string> | string | Snippet;
 }
 
 export const Toast: Component<ToastProps>;

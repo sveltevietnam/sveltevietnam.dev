@@ -1,5 +1,6 @@
-import { LANGUAGES } from '@sveltevietnam/i18n';
 import { getLangFromUrl } from '@sveltevietnam/i18n/utils';
+
+import { LANGUAGES } from '@sveltevietnam/kit/constants';
 
 import { COMMON_COOKIE_CONFIG, PUBLIC_COOKIE_CONFIG } from './constants';
 
@@ -39,9 +40,11 @@ export const createLangServerHook = function (options) {
 			const cookieLang = cookies.get(cookie.name);
 			if (
 				cookieLang &&
-				LANGUAGES.includes(/** @type {import('@sveltevietnam/i18n').Language} */ (cookieLang))
+				LANGUAGES.includes(
+					/** @type {import('@sveltevietnam/kit/constants').Language} */ (cookieLang),
+				)
 			) {
-				language = /** @type {import('@sveltevietnam/i18n').Language} */ (cookieLang);
+				language = /** @type {import('@sveltevietnam/kit/constants').Language} */ (cookieLang);
 			}
 		}
 

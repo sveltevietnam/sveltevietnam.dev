@@ -1,8 +1,8 @@
 import { error } from '@sveltejs/kit';
 
-import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import { getBackend } from '$lib/backend/utils';
+import * as m from '$lib/i18n/generated/messages';
 
 import type { PageServerLoad } from './$types';
 

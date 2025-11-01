@@ -24,6 +24,7 @@ pre-commit:
           - name: others
             run: pnpm eslint --fix {staged_files}
             stage_fixed: true
+            exclude: ['*/generated/*.js', '*/__snapshots__/*.js']
             glob: '*.{js,ts}'
     - name: stylelint
       run: pnpm stylelint --fix {staged_files}
@@ -33,5 +34,5 @@ pre-commit:
     - name: prettier
       run: pnpm prettier --write {staged_files}
       stage_fixed: true
-      glob: '*.{js,ts,css,json,md,yaml}'
+      glob: '*.{js,ts,css,json,md,yaml,svelte}'
       exclude: [pnpm-lock.yaml]

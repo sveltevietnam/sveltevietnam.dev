@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n';
 	import {
 		PageMetadata,
 		LanguageMenu,
@@ -15,7 +15,6 @@
 
 	import { browser, version } from '$app/environment';
 	import { page } from '$app/state';
-	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import * as n from '$data/routes/generated/names';
 	import {
@@ -27,6 +26,7 @@
 		VITE_PUBLIC_UMAMI_WEBSITE_ID,
 	} from '$env/static/public';
 	import { AccountMenu } from '$lib/components/account-menu';
+	import * as m from '$lib/i18n/generated/messages';
 
 	import '../../app.css';
 
@@ -53,6 +53,7 @@
 			cookieName: VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
 			user: data.settings.colorScheme,
 		}),
+		i18n: () => ({ lang: data.settings.language }),
 	});
 	const { routing, colorScheme } = contexts;
 
@@ -72,14 +73,6 @@
 
 	const languageMenuProps: LanguageMenuProps = $derived({
 		showLabel: 'non-mobile',
-		i18n: {
-			aria: m['language_menu.aria'],
-			open: m.open,
-			menu: m.menu,
-			switchTo: m['language_menu.switch_to'],
-			vietnamese: m['languages.vietnamese'],
-			english: m['languages.english'],
-		},
 		routing: routing.paths,
 		hydrated: !!browser,
 		lang: data.settings.language,
@@ -87,13 +80,6 @@
 
 	const colorSchemeMenuProps: ColorSchemeMenuProps = $derived({
 		showLabel: 'non-mobile',
-		i18n: {
-			aria: m['color_scheme_menu.aria'],
-			open: m.open,
-			light: m['color_scheme_menu.light'],
-			dark: m['color_scheme_menu.dark'],
-			system: m['color_scheme_menu.system'],
-		},
 		hydrated: !!browser,
 		colorScheme: colorScheme.user,
 		onselect: (scheme) => (colorScheme.user = scheme),
@@ -171,16 +157,16 @@
 		}),
 	}}
 	defaults={{
-		title: m['pages.home.meta.title'](routing.lang).toString(),
-		description: m['pages.home.meta.desc'](routing.lang).toString(),
-		keywords: m['pages.home.meta.keywords'](routing.lang).toString(),
+		title: m['pages.home.meta.title'](routing.lang),
+		description: m['pages.home.meta.desc'](routing.lang),
+		keywords: m['pages.home.meta.keywords'](routing.lang),
 		canonical: page.url.origin + page.url.pathname,
 		og: {
 			type: 'website',
-			siteName: m['svelte_vietnam.recruit'](routing.lang).toString(),
+			siteName: m['svelte_vietnam.recruit'](routing.lang),
 			image: {
 				src: page.url.origin + ogImage[routing.lang],
-				alt: m['svelte_vietnam.recruit'](routing.lang).toString(),
+				alt: m['svelte_vietnam.recruit'](routing.lang),
 				width: 1200,
 				height: 630,
 				type: 'image/jpeg',
@@ -211,7 +197,7 @@
 			'max-w-pad z-header fixed flex w-full items-start justify-between transition-transform',
 			'max-tablet:py-2 max-tablet:border-b max-tablet:border-outline max-tablet:items-center',
 			scrollToggler.hidden && '-translate-y-full',
-			'mobile:bg-surface'
+			'mobile:bg-surface',
 		]}
 		{@attach scrollToggler.attachment}
 	>
@@ -227,11 +213,11 @@
 			<i class="i i-sveltevietnam tablet:w-15 tablet:h-15 h-10 w-10"></i>
 			<span class="leading-4">
 				<span class="font-lora max-tablet:whitespace-nowrap c-text-body-sm tablet:c-text-title-sm"
-					><T message={m['svelte_vietnam.name']} /></span
+					><T key="svelte_vietnam.name" /></span
 				>
 				<br />
 				<span class="c-text-body-xs tablet:c-text-body tracking-wide">
-					— <T message={m['app']} />
+					— <T key="app" />
 				</span>
 			</span>
 		</a>
@@ -239,8 +225,8 @@
 			class="tablet:gap-5 tablet:border-x tablet:border-b tablet:px-6 tablet:py-5 relative flex w-fit items-center gap-2"
 		>
 			<div
-				class="toolbar-backdrop -z-1 bg-surface opacity-(--toolbar-backdrop-opacity) absolute
-				inset-0"
+				class="toolbar-backdrop bg-surface absolute inset-0 -z-1
+				opacity-(--toolbar-backdrop-opacity)"
 				style:--toolbar-backdrop-opacity={toolbarBackdropOpacity}
 			>
 				<!-- backdrop -->
@@ -261,23 +247,6 @@
 		domain="recruit.sveltevietnam.dev"
 		{version}
 		{navigationPrimary}
-		i18n={{
-			version: m['footer.version'],
-			svelte_vietnam: m['svelte_vietnam.name'],
-			powered_by: m['footer.powered_by'],
-			not_by_ai: m['footer.not_by_ai'],
-			about: {
-				heading: m['footer.about.heading'],
-				desc: m['footer.about.desc'],
-			},
-			navigation: {
-				heading: m['footer.navigation'],
-			},
-			contact: {
-				heading: m['footer.contact'],
-				discord: m['svelte_vietnam.discord'],
-			},
-		}}
 		class={[!page.data.editUrl && 'mt-auto']}
 		data-pagefind-ignore
 	>
@@ -287,7 +256,7 @@
 				href={VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN}
 			>
 				<i class="i i-[ph--arrow-left] h-5 w-5"></i>
-				<T message={m['footer.back_to_svelte_vietnam']} />
+				<T key="components.footer.back_to_svelte_vietnam" />
 			</a>
 		{/snippet}
 	</Footer>

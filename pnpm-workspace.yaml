@@ -1,5 +1,6 @@
 packages:
   - 'packages/*'
+  - 'packages/i18n/tests/e2e/*'
   - 'services/*'
   - 'sites/*'
   - 'workers/*'

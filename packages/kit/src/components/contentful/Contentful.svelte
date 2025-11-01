@@ -1,31 +1,30 @@
 <!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script lang="ts" generics="Attributes extends Record<string, any>">
-	import { T } from '@sveltevietnam/i18n/runtime';
-	import { isMessage } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n';
 
 	import type { ContentfulProps } from '.';
 
-	let { prop, tag, ...rest }: ContentfulProps<Attributes> = $props();
+	let { content, tag, ...rest }: ContentfulProps<Attributes> = $props();
 </script>
 
-{#if isMessage(prop)}
+{#if typeof content === 'string'}
 	<svelte:element this={tag} {...rest}>
-		<T message={prop} />
+		{content}
 	</svelte:element>
-{:else if typeof prop === 'string'}
-	<svelte:element this={tag} {...rest}>
-		{prop}
-	</svelte:element>
-{:else if 'content' in prop}
-	{@const { content, attributes = {} } = prop}
+{:else if content[0] === 'snippet'}
+	{@const { snippet, params } = content[1]}
+	{@render snippet(params)}
+{:else if content[0] === 'extend'}
+	{@const { content: extendedContent, attributes = {} } = content[1]}
 	<svelte:element this={tag} {...rest} {...attributes}>
-		{#if isMessage(content)}
-			<T message={content} />
+		{#if typeof extendedContent === 'string'}
+			{extendedContent}
 		{:else}
-			{content}
+			<T key={extendedContent[1]} />
 		{/if}
 	</svelte:element>
 {:else}
-	{@const { snippet, params } = prop}
-	{@render snippet(params)}
+	<svelte:element this={tag} {...rest}>
+		<T key={content[1]} />
+	</svelte:element>
 {/if}

@@ -1,0 +1,29 @@
+# =============================
+# Language: Vietnamese
+# Scope:    pages.authenticate
+# =============================
+messages:
+  meta:
+    title: Xác thực | Tuyển dụng | Svelte Việt Nam
+    desc: Đăng nhập hoặc đăng ký để sử dụng ứng dụng Tuyển dụng từ cộng đồng Svelte Việt Nam
+  heading: Đăng nhập / Đăng ký
+  desc:
+    Quản lý bài đăng tuyển dụng tại <a class="c-link" href={{mainSiteUrl}}>sveltevietnam.dev</a> —
+    miễn phí và bảo mật — kết nối cộng đồng với doanh nghiệp và tổ chức
+  callout:
+    in: trong
+    login:
+      Vui lòng hoàn tất đăng nhập qua đường dẫn trong email vừa được gởi đến bạn (hết hiệu lực
+      {{exp}}). Nếu không nhận được email, bạn có thể nhấn “Gởi lại”
+    signup:
+      Vui lòng tiếp tục quy trình đăng ký qua hướng dẫn trong email vừa được gởi đến bạn (hết hiệu
+      lực {{exp}}). Nếu không nhận được email, bạn có thể nhấn “Gởi lại”
+  headhunter:
+    Bạn là nhà tuyển dụng độc lập? <br /> Kết nối trực tiếp với ứng viên qua <a class="c-link"
+    href="{{jobChannelUrl}}" target="_blank" rel="noreferrer noopener external">diễn đàn cộng
+    đồng</a>.
+  resend: Gởi lại
+  error:
+    token_expired: Yêu cầu đã hết hiệu lực. Vui lòng thử lại.
+    token_invalid: Yêu cầu không hợp lệ. Vui lòng thử lại.
+    generic: Đã có lỗi xảy ra. Vui lòng thử lại.

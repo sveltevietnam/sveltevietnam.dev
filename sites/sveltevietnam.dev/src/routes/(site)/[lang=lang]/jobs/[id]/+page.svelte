@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n';
 	import fallback1x1 from '@sveltevietnam/kit/assets/images/fallbacks/1x1.jpg?enhanced&w=w=224;112&imagetools';
 	import { Breadcrumbs, CopyBtn } from '@sveltevietnam/kit/components';
 	import { SOCIAL_LINKS } from '@sveltevietnam/kit/constants';
@@ -9,7 +9,6 @@
 	import sanitizeHtml from 'sanitize-html';
 
 	import { page } from '$app/state';
-	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import { VITE_PUBLIC_RECRUIT_ORIGIN } from '$env/static/public';
 
@@ -32,12 +31,6 @@
 			props: {
 				data: url,
 				theme: () => colorScheme.resolved,
-				i18n: {
-					close: m.close,
-					title: m['dialogs.qr.title'],
-					desc: m['dialogs.qr.desc'],
-					download: m.download,
-				},
 			},
 		});
 	}
@@ -46,13 +39,7 @@
 <main
 	class="max-w-pad mt-header pt-section pb-section-more tablet:space-y-8 desktop:space-y-10 flex-1 space-y-6"
 >
-	<Breadcrumbs
-		crumbs={data.routing.breadcrumbs}
-		i18n={{
-			aria: m['components.breadcrumbs.aria'],
-			home: m['components.breadcrumbs.home'],
-		}}
-	/>
+	<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 
 	<div class="desktop:flex-row gap-section desktop:gap-20 flex flex-col">
 		<!-- main content -->
@@ -63,7 +50,7 @@
 
 			<div class="border-outline border p-4">
 				<h2 class="sr-only">
-					<T message={m['pages.jobs_id.general.heading']} />
+					<T key="pages.jobs_id.general.heading" />
 				</h2>
 
 				<!-- general information -->
@@ -75,7 +62,7 @@
 						<dt>
 							<i class="i i-[ph--buildings] h-6 w-6"></i>
 							<span class="sr-only">
-								<T message={m['pages.jobs_id.general.employerName']} />
+								<T key="pages.jobs_id.general.employerName" />
 							</span>
 						</dt>
 						<dd class="font-medium">
@@ -92,7 +79,7 @@
 						<dt>
 							<i class="i i-[ph--suitcase] h-6 w-6"></i>
 							<span class="sr-only">
-								<T message={m['pages.jobs_id.general.type']} />
+								<T key="pages.jobs_id.general.type" />
 							</span>
 						</dt>
 						<dd>
@@ -103,7 +90,7 @@
 						<dt>
 							<i class="i i-[ph--map-pin] h-6 w-6"></i>
 							<span class="sr-only">
-								<T message={m['pages.jobs_id.general.location']} />
+								<T key="pages.jobs_id.general.location" />
 							</span>
 						</dt>
 						<dd>
@@ -114,7 +101,7 @@
 						<dt>
 							<i class="i i-[ph--money] h-6 w-6"></i>
 							<span class="sr-only">
-								<T message={m['pages.jobs_id.general.salary']} />
+								<T key="pages.jobs_id.general.salary" />
 							</span>
 						</dt>
 						<dd>
@@ -127,7 +114,7 @@
 								<i class="i i-[ph--calendar-blank] h-6 w-6"></i>
 							</dt>
 							<dd>
-								<T message={m['pages.jobs_id.general.posted_at']} />
+								<T key="pages.jobs_id.general.posted_at" />
 								{formatDate(data.posting.approvedAt)}
 							</dd>
 						{/if}
@@ -137,7 +124,7 @@
 							<i class="i i-[ph--calendar-x] h-6 w-6"></i>
 						</dt>
 						<dd>
-							<T message={m['pages.jobs_id.general.expired_at']} />
+							<T key="pages.jobs_id.general.expired_at" />
 							{formatDate(data.posting.expiredAt)}
 						</dd>
 					</dl>
@@ -182,13 +169,13 @@
 						data-external
 						data-umami-event="click-apply-link"
 					>
-						<T message={m['pages.jobs_id.actions.apply']} />
+						<T key="pages.jobs_id.actions.apply" />
 					</a>
 
 					<!-- copy link -->
 					<CopyBtn
 						class="c-btn c-btn--outlined shrink-0 grid-cols-1 p-2"
-						aria={m['pages.jobs_id.actions.share.link']}
+						aria="pages.jobs_id.actions.share.link"
 						textToCopy={url}
 						data-umami-event="copy-link"
 						data-umami-event-resource="job-posting"
@@ -202,7 +189,7 @@
 						data-umami-event="generate-qr"
 						data-umami-event-resource="job-posting"
 					>
-						<span class="sr-only"><T message={m['pages.jobs_id.actions.share.qr']} /></span>
+						<span class="sr-only"><T key="pages.jobs_id.actions.share.qr" /></span>
 						<i class="i i-[ph--qr-code] h-6 w-6"></i>
 					</button>
 				</section>
@@ -212,7 +199,7 @@
 				<!-- job description -->
 				<section class="space-y-6">
 					<h2 class="c-text-heading border-b">
-						<T message={m['pages.jobs_id.job_desc']} />
+						<T key="pages.jobs_id.job_desc" />
 					</h2>
 					<div class="prose max-w-full">
 						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
@@ -225,8 +212,8 @@
 					<section class="space-y-6">
 						<h2 class="c-text-heading border-b">
 							<T
-								message={m['pages.jobs_id.employer_desc']}
-								employerName={data.posting.employer.name}
+								key="pages.jobs_id.employer_desc"
+								params={{ employerName: data.posting.employer.name }}
 							/>
 						</h2>
 						<div class="prose max-w-full">
@@ -248,13 +235,15 @@
 			<!-- Connect -->
 			<section class="space-y-6">
 				<h2 class="border-outline c-text-heading border-b">
-					<T message={m['pages.jobs_id.connect.heading']} />
+					<T key="pages.jobs_id.connect.heading" />
 				</h2>
 				<p class="leading-relaxed">
 					<T
-						message={m['pages.jobs_id.connect.desc']}
-						linkDiscord={SOCIAL_LINKS.DISCORD}
-						linkLinkedin={SOCIAL_LINKS.LINKEDIN}
+						key="pages.jobs_id.connect.desc"
+						params={{
+							linkDiscord: SOCIAL_LINKS.DISCORD,
+							linkLinkedin: SOCIAL_LINKS.LINKEDIN,
+						}}
 					/>
 				</p>
 			</section>
@@ -262,13 +251,15 @@
 			<!-- Contribute -->
 			<section class="space-y-6">
 				<h2 class="border-outline c-text-heading border-b">
-					<T message={m['pages.jobs_id.contribute.heading']} />
+					<T key="pages.jobs_id.contribute.heading" />
 				</h2>
 				<p class="leading-relaxed">
 					<T
-						message={m['pages.jobs_id.contribute.desc']}
-						linkGithub={SOCIAL_LINKS.GITHUB}
-						linkSponsor={p['/:lang/sponsor']({ lang: routing.lang })}
+						key="pages.jobs_id.contribute.desc"
+						params={{
+							linkGithub: SOCIAL_LINKS.GITHUB,
+							linkSponsor: p['/:lang/sponsor']({ lang: routing.lang }),
+						}}
 					/>
 				</p>
 			</section>
@@ -276,14 +267,18 @@
 			<!-- Recruit -->
 			<section class="space-y-6">
 				<h2 class="border-outline c-text-heading border-b">
-					<T message={m['pages.jobs_id.recruit.heading']} />
+					<T key="pages.jobs_id.recruit.heading" />
 				</h2>
 				<p class="leading-relaxed">
-					<T message={m['pages.jobs_id.recruit.desc']} />
+					<T key="pages.jobs_id.recruit.desc" />
 				</p>
 				<div class="pt-2">
-					<a class="c-btn c-btn--pop" href="{VITE_PUBLIC_RECRUIT_ORIGIN}/{routing.lang}" target="_blank">
-						<T message={m['pages.jobs_id.recruit.cta']} />
+					<a
+						class="c-btn c-btn--pop"
+						href="{VITE_PUBLIC_RECRUIT_ORIGIN}/{routing.lang}"
+						target="_blank"
+					>
+						<T key="pages.jobs_id.recruit.cta" />
 					</a>
 				</div>
 			</section>

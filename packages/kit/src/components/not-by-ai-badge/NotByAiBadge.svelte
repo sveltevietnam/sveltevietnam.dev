@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n';
 
 	import type { NotByAiBadgeProps } from '.';
 
-	let { sr, ...rest }: NotByAiBadgeProps = $props();
+	let attrs: NotByAiBadgeProps = $props();
 </script>
 
-<a href="https://notbyai.fyi/" {...rest}>
-	<span class="sr-only"><T message={sr} /></span>
+<a href="https://notbyai.fyi/" {...attrs}>
+	<span class="sr-only"><T key="components.not_by_ai_badge.desc" /></span>
 	<svg width="131" height="42" viewBox="0 0 131 42" fill="none" xmlns="http://www.w3.org/2000/svg">
 		<path
 			d="M0.5 0.5H116C124.008 0.5 130.5 6.99187 130.5 15V41.5H15C6.99187 41.5 0.5 35.0081 0.5 27V0.5Z"

@@ -1,12 +1,13 @@
 <script lang="ts">
-	import { LANGUAGES } from '@sveltevietnam/i18n';
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n';
 	import { delocalizeUrl } from '@sveltevietnam/i18n/utils';
 	import { onMount } from 'svelte';
 
+	import { LANGUAGES } from '@sveltevietnam/kit/constants';
+
 	import { type BreadcrumbsProps } from '.';
 
-	let { crumbs, scrollIndicator = 'blur', i18n, ...rest }: BreadcrumbsProps = $props();
+	let { crumbs, scrollIndicator = 'blur', ...rest }: BreadcrumbsProps = $props();
 
 	let scrollableLeft = $state(true);
 	let scrollableRight = $state(true);
@@ -32,7 +33,7 @@
 	{...rest}
 >
 	<p class="sr-only" id="breadcrumbs-label">
-		<T message={i18n.aria} />
+		<T key="components.breadcrumbs.aria" />
 	</p>
 	<ol
 		class="scrollbar-hidden flex items-center gap-2 overflow-auto border border-transparent"
@@ -53,7 +54,7 @@
 					{#if i === 0}
 						<i class="i i-[ph--house-line] h-5 w-5"></i>
 						<span class="sr-only">
-							<T message={i18n.home} />
+							<T key="components.breadcrumbs.home" />
 						</span>
 					{:else}
 						<span class="whitespace-nowrap">{name}</span>

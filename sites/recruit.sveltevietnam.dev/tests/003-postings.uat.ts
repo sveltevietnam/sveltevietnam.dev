@@ -5,11 +5,11 @@ import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
 import { eq } from 'drizzle-orm';
 import sanitizeHtml from 'sanitize-html';
 
-import * as m from '../src/data/locales/generated/messages';
 import {
 	JOB_POSTING_APPLICATION_METHODS,
 	JOB_POSTING_TYPES,
 } from '../src/lib/forms/job-posting-upsert/schema';
+import * as m from '../src/lib/i18n/generated/messages';
 
 import { testWithAuthenticatedEmployer } from './fixtures/with-authenticated-employer';
 import { schema, type D1 } from './fixtures/with-backend';
@@ -239,19 +239,19 @@ testWithAuthenticatedEmployer(
 		await pomPostingCreate.form.submit.click();
 		await Promise.all([
 			expect(pomPostingCreate.form.inputs.title.error).toHaveText(
-				m['inputs.job_posting.title.errors.nonempty'](lang).toString(),
+				m['inputs.job_posting.title.errors.nonempty'](lang),
 			),
 			expect(pomPostingCreate.form.inputs.location.error).toHaveText(
-				m['inputs.job_posting.location.errors.nonempty'](lang).toString(),
+				m['inputs.job_posting.location.errors.nonempty'](lang),
 			),
 			expect(pomPostingCreate.form.inputs.salary.error).toHaveText(
-				m['inputs.job_posting.salary.errors.nonempty'](lang).toString(),
+				m['inputs.job_posting.salary.errors.nonempty'](lang),
 			),
 			expect(pomPostingCreate.form.inputs.expiredAt.error).toHaveText(
-				m['inputs.job_posting.expired_at.errors.nonempty'](lang).toString(),
+				m['inputs.job_posting.expired_at.errors.nonempty'](lang),
 			),
 			expect(pomPostingCreate.form.inputs.description.error).toHaveText(
-				m['inputs.job_posting.desc.errors.nonempty'](lang).toString(),
+				m['inputs.job_posting.desc.errors.nonempty'](lang),
 			),
 		]);
 
@@ -264,7 +264,7 @@ testWithAuthenticatedEmployer(
 		});
 		await pomPostingCreate.form.submit.click();
 		await expect(pomPostingCreate.form.inputs.applicationLink.error).toHaveText(
-			m['inputs.email.errors.invalid'](lang).toString(),
+			m['inputs.email.errors.invalid'](lang),
 		);
 
 		// User tries invalid application url
@@ -276,7 +276,7 @@ testWithAuthenticatedEmployer(
 		});
 		await pomPostingCreate.form.submit.click();
 		await expect(pomPostingCreate.form.inputs.applicationLink.error).toHaveText(
-			m['inputs.url.errors.invalid'](lang).toString(),
+			m['inputs.url.errors.invalid'](lang),
 		);
 
 		// User tries past date for expiration
@@ -284,7 +284,7 @@ testWithAuthenticatedEmployer(
 		await pomPostingCreate.form.inputs.expiredAt.input.fill(formatDate(pastDate, '-'));
 		await pomPostingCreate.form.submit.click();
 		await expect(pomPostingCreate.form.inputs.expiredAt.error).toHaveText(
-			m['inputs.job_posting.expired_at.errors.min'](lang).toString(),
+			m['inputs.job_posting.expired_at.errors.min'](lang),
 		);
 
 		// User tries too far date for expiration
@@ -292,7 +292,7 @@ testWithAuthenticatedEmployer(
 		await pomPostingCreate.form.inputs.expiredAt.input.fill(formatDate(tooFarDate, '-'));
 		await pomPostingCreate.form.submit.click();
 		await expect(pomPostingCreate.form.inputs.expiredAt.error).toHaveText(
-			m['inputs.job_posting.expired_at.errors.max'](lang).toString(),
+			m['inputs.job_posting.expired_at.errors.max'](lang),
 		);
 	},
 );

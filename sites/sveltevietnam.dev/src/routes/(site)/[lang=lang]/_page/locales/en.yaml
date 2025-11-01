@@ -1,0 +1,128 @@
+# =====================
+# Language: English
+# Scope:    pages.home
+# =====================
+messages:
+  title: Home | Svelte Vietnam
+  keywords: svelte, vietnam, community, technology, open-source
+  desc: An inclusive community and go-to information hub for people of Svelte in Vietnam
+  intro:
+    heading: Svelte Vietnam
+    subtitle: Building an inclusive and innovative community
+  resources:
+    heading: Four Steps to Svelte
+    bluesky: Get updates via Bluesky
+    one:
+      step: Step one
+      heading: Discover Svelte Hands on
+      tutorial:
+        desc:
+          <strong>Svelte tutorial*</strong> is an official guide that helps you ‘learn by doing’ —
+          get hands-on with Svelte and SvelteKit concepts from basic to advanced through small
+          exercises.
+        link: See Svelte Tutorial page
+        footnote: '* this is a guide for Svelte 5 and currently only supports English'
+      playground:
+        desc:
+          <strong>Svelte playground</strong> (REPL) is an official interactive editor that helps you
+          quickly test ideas or observe the output from the Svelte compiler.
+        link: See Svelte Playground
+      lab:
+        desc:
+          <strong>SvelteLab</strong> is an advanced interactive editor built by the community,
+          extending ideas from Svelte playground, supporting SvelteKit and many features for a
+          complete fullstack project.
+        link: See SvelteLab
+    two:
+      step: Step two
+      heading: Read the Svelte & SvelteKit documentation
+      docs:
+        desc:
+          <strong>Svelte documentation</strong> is the official catalogue for features and public
+          interfaces of Svelte and SvelteKit, organized in a comprehensive and searchable manner -
+          the first-stop reference in your daily work with Svelte.
+        link: See Svelte Documentation
+    three:
+      step: Step three
+      heading: Join the Svelte Vietnam community
+      desc:
+        <strong>Svelte Vietnam</strong> is an open-source project and inclusive community for anyone
+        using or learning about Svelte in Vietnam. Svelte Vietnam is aspired to be a useful
+        information channel and to promote a healthy environment for members to share their
+        experiences and help each other on their journey towards software development and
+        open-source.
+      discord: Join community forum on Discord
+      github: Contribute to the project on Github
+      note:
+        You can also follow news about <a class="c-link" href="/en/events">events from Svelte
+        Vietnam</a> or <a class="c-link" href="/en/blog">articles from the Svelte Vietnam Blog</a>.
+    four:
+      step: Step four
+      heading: Get news from the international Svelte community
+      svelte:
+        desc:
+          <strong>Svelte</strong> is an open-source project. Follow and contribute to the
+          development of Svelte through the following channels.
+        github:
+          svelte: Github repository of Svelte
+          sveltekit: Github repository of SvelteKit
+          svelte_dev: Github repository of svelte.dev
+      society:
+        desc:
+          <strong>Svelte society</strong> is a volunteer global network connecting Svelte
+          enthusiasts. Svelte Society oversees many important resources for the community.
+        discord: Join community forum on Discord
+        website: See the Svelte Society website
+      summit:
+        desc:
+          <strong>Svelte Summit</strong> is an international conference event about Svelte,
+          gathering maintainers and speakers from all around the world.
+        youtube: Watch events on Youtube
+        website: See the Svelte Summit website
+      hack:
+        desc:
+          <strong>SvelteHack</strong> is a hackathon event that usually takes place after important
+          milestones in the Svelte ecosystem.
+        link: See the SvelteHack website
+      others: 'You can also:'
+      newsletter:
+        subscribe to the monthly news update about Svelte via “<a class="c-link"
+        href="https://svelte.substack.com/" target="_blank" rel="noreferrer noopener external"
+        data-umami-event="click-homepage-resource-link"
+        data-umami-event-url="https://svelte.substack.com/">The (Unofficial) Svelte JS
+        Newsletter</a>”,
+      madebysvelte:
+        browse or share libraries and products via “<a class="c-link"
+        href="https://madewithsvelte.com/" target="_blank" rel="noreferrer noopener external"
+        data-umami-event="click-homepage-resource-link"
+        data-umami-event-url="https://madewithsvelte.com/">Made by Svelte</a>”,
+      jobs:
+        follow news about jobs via the <a class="c-link"
+        href="https://discord.com/channels/457912077277855764/640884695890133012" target="_blank"
+        rel="noreferrer noopener external" data-umami-event="click-homepage-resource-link"
+        data-umami-event-url="https://discord.com/channels/457912077277855764/640884695890133012">#job-postings</a>
+        channel in the official Svelte Discord, or via “<a class="c-link"
+        href="https://sveltejobs.com/" target="_blank" rel="noreferrer noopener external"
+        data-umami-event="click-homepage-resource-link"
+        data-umami-event-url="https://sveltejobs.com/">Svelte Jobs</a>”.
+  events:
+    heading: Events
+    desc:
+      Meet the Svelte Vietnam community. Share your ideas, products, and all thing Svelte and open
+      source. See more at the <a class="c-link" href="/en/events">Events page</a>.
+    tba:
+      desc: No event is planned yet
+      subscribe: Notify me about the next event!
+      view_past: View past events
+  blog:
+    heading: Recent Posts
+    desc:
+      Read and write about your Svelte expreience at the <a class="c-link" href="/en/blog">Svelte
+      Vietnam Blog</a>.
+  sponsor:
+    heading: Sponsor
+    desc: Help sustain the community and support its growth by becoming a sponsor
+    list:
+      Sponsors are listed at the<br /><a class="c-link"
+      href="https://opencollective.com/sveltevietnam">Svelte Vietnam Collective</a>.
+    read_more: Read more!

@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { expect } from '@playwright/test';
 import { eq } from 'drizzle-orm';
 
-import * as m from '../src/data/locales/generated/messages';
+import * as m from '../src/lib/i18n/generated/messages';
 
 import {
 	generateEmployerTestData,

@@ -1,4 +1,3 @@
-
 /**
  * unpack target language property of var
  * @example

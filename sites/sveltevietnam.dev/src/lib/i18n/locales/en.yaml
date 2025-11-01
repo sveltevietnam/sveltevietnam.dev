@@ -1,0 +1,122 @@
+# ==================
+# !! Entry point !!
+# Language: English
+# ==================
+---
+messages:
+  '@import': '@sveltevietnam/kit/locales/en.yaml'
+
+  # common
+  view_more: View more
+  explain: Explain
+  minutes: minutes
+  time: Time
+  location: Location
+  subscribe: Subscribe
+  newsletter: Newsletter
+  listing: Listing
+
+  inputs:
+    name:
+      label: Name
+      errors:
+        nonempty: Name is required
+    email:
+      errors:
+        nonempty: Email is required
+        invalid: Email is badly formated
+    turnstile:
+      desc: Verify <em class="c-text-body-xs">(requires Javascript)</em>
+      errors:
+        nonempty: Turnstile is required
+        unknown: Something went wrong with Turnstile
+    language:
+      label: Language
+      errors:
+        picklist: Must select one of ['vi', 'en']
+    id:
+      errors:
+        nonempty: ID is required
+
+  forms:
+    subscriber:
+      '@import': $lib/forms/subscriber/locales/en.yaml
+
+  notifications:
+    '@import': $lib/notifications/locales/en.yaml
+
+  dialogs:
+    search:
+      '@import': $lib/dialogs/search-dialog/locales/en.yaml
+
+  components:
+    blog_newsletter:
+      '@import': '$lib/components/blog-newsletter/locales/en.yaml'
+    callout_playground:
+      '@import': '$lib/components/callout-playground/locales/en.yaml'
+    event_listing_item:
+      '@import': '$lib/components/event-listing/locales/en.yaml'
+    footer:
+      about:
+        heading: About Us
+        desc:
+          Svelte Vietnam is a a go-to information center, and an inclusive community for anyone
+          interested in the adoption of Svelte in Vietnam.
+    header:
+      '@import': '$lib/components/header/locales/en.yaml'
+    page_edit_link:
+      '@import': '$lib/components/page-edit-link/locales/en.yaml'
+    page_menu:
+      '@import': '$lib/components/page-menu/locales/en.yaml'
+    pagination:
+      '@import': '$lib/components/pagination/locales/en.yaml'
+    splash_screen_playground:
+      '@import': '$lib/components/splash-screen-playground/locales/en.yaml'
+
+  events:
+    202312_year_end_online:
+      '@import': '$data/events/202312-year-end-online-meetup/locales/en.yaml'
+    202404_spring_hcm:
+      '@import': '$data/events/202404-spring-ho-chi-minh-meetup/locales/en.yaml'
+
+  pages:
+    home:
+      '@import': '$routes/(site)/[lang=lang]/_page/locales/en.yaml'
+    coc:
+      '@import': '$routes/(site)/[lang=lang]/code-of-conduct/_page/locales/en.yaml'
+    blog:
+      '@import': '$routes/(site)/[lang=lang]/blog/(listing)/_page/locales/en.yaml'
+    blog_latest:
+      '@import': '$routes/(site)/[lang=lang]/blog/(listing)/latest/_page/locales/en.yaml'
+    blog_categories:
+      '@import': '$routes/(site)/[lang=lang]/blog/(listing)/categories/_page/locales/en.yaml'
+    blog_series:
+      '@import': '$routes/(site)/[lang=lang]/blog/(listing)/series/_page/locales/en.yaml'
+    blog_write:
+      '@import': '$routes/(site)/[lang=lang]/blog/write/_page/locales/en.yaml'
+    blog_slug:
+      '@import': '$routes/(site)/[lang=lang]/blog/[slug]/_page/locales/en.yaml'
+    design:
+      '@import': '$routes/(site)/[lang=lang]/design/_page/locales/en.yaml'
+    events:
+      '@import': '$routes/(site)/[lang=lang]/events/_page/locales/en.yaml'
+    everify:
+      '@import': '$routes/(site)/[lang=lang]/everify/[token]/_page/locales/en.yaml'
+    jobs:
+      '@import': '$routes/(site)/[lang=lang]/jobs/_page/locales/en.yaml'
+    jobs_id:
+      '@import': '$routes/(site)/[lang=lang]/jobs/[id]/_page/locales/en.yaml'
+    mail:
+      '@import': '$routes/(site)/[lang=lang]/mails/[id]/_page/locales/en.yaml'
+    people:
+      '@import': '$routes/(site)/[lang=lang]/people/_page/locales/en.yaml'
+    people_id:
+      '@import': '$routes/(site)/[lang=lang]/people/[id]/_page/locales/en.yaml'
+    roadmap:
+      '@import': '$routes/(site)/[lang=lang]/roadmap/_page/locales/en.yaml'
+    rss:
+      '@import': '$routes/(site)/[lang=lang]/rss.xml/locales/en.yaml'
+    settings:
+      '@import': '$routes/(site)/[lang=lang]/settings/_page/locales/en.yaml'
+    sponsor:
+      '@import': '$routes/(site)/[lang=lang]/sponsor/_page/locales/en.yaml'

@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import type { HTMLAttributes } from 'svelte/elements';
 
-	import * as m from '$data/locales/generated/messages';
 	import { SubscriberUpsertForm, type SubscriberUpsertFormProps } from '$lib/forms/subscriber';
 
 	const { routing } = Contexts.get();
@@ -30,11 +29,11 @@
 	<div class="space-y-6">
 		<p class="c-text-heading-md">
 			<span class="_heading">
-				<T message={m['components.blog_newsletter.heading']} />
+				<T key="components.blog_newsletter.heading" />
 			</span>
 		</p>
-		<p><T message={m['components.blog_newsletter.desc']} /></p>
-		<svg class="text-surface-variant h-22.5 desktop:h-31.25 w-auto max-w-full" inline-src="blocks">
+		<p><T key="components.blog_newsletter.desc" /></p>
+		<svg class="text-surface-variant desktop:h-31.25 h-22.5 w-auto max-w-full" inline-src="blocks">
 		</svg>
 	</div>
 

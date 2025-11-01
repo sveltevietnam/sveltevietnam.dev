@@ -1,0 +1,11 @@
+# ===============================
+# Language: English
+# Scope:    components.pagination
+# ===============================
+messages:
+  aria: pagination
+  number: page number
+  page: Page
+  of: of
+  previous: to previous page
+  next: to next page

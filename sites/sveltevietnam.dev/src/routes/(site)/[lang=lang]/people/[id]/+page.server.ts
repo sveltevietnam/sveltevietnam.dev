@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import type { Language } from '@sveltevietnam/i18n';
+import type { Language } from '@sveltevietnam/kit/constants';
 
 import { searchBlogPosts } from '$data/blog/posts';
 import { loadEventsByPersonId } from '$data/events';

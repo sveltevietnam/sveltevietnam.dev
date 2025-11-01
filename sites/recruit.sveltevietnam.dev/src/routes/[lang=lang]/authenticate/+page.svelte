@@ -1,11 +1,10 @@
 <script lang="ts">
 	import { turnstile } from '@svelte-put/cloudflare-turnstile';
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { formatRelativeTime } from '@sveltevietnam/kit/utilities/datetime';
 	import { superForm } from 'sveltekit-superforms';
 
-	import * as m from '$data/locales/generated/messages';
 	import {
 		VITE_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY,
 		VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN,
@@ -38,7 +37,7 @@
 		multipleSubmits: 'prevent',
 		delayMs: 500,
 		timeoutMs: 2000,
-		onError: createSuperFormGenericErrorHandler(toaster),
+		onError: createSuperFormGenericErrorHandler(toaster, routing.lang),
 	});
 
 	let result = $derived($message);
@@ -50,16 +49,16 @@
 
 <SingleBoxPageLayout class="max-w-readable-tight space-y-6">
 	<h1 class="c-text-heading-lg">
-		<T message={m['pages.authenticate.heading']} />
+		<T key="pages.authenticate.heading" />
 	</h1>
 	<p>
-		<T message={m['pages.authenticate.desc']} mainSiteUrl={VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN} />
+		<T key="pages.authenticate.desc" params={{ mainSiteUrl: VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN }} />
 	</p>
 	<form class="space-y-6" use:enhance method="POST">
 		<!-- cloudflare-turnstile -->
 		<div class="space-y-1">
 			<div class="c-text-body-sm flex items-baseline justify-between gap-6">
-				<p class=""><T message={m['inputs.turnstile.desc']} />:</p>
+				<p class=""><T key="inputs.turnstile.desc" />:</p>
 				{#if $errors.turnstile?.[0]}
 					<p class="max-w-readable-tight c-text-body-sm text-right text-red-500">
 						{$errors.turnstile[0]}
@@ -106,9 +105,9 @@
 					data-umami-event={result ? 'authenticate-resend' : 'authenticate-request'}
 				>
 					{#if result}
-						<T message={m['pages.authenticate.resend']} />
+						<T key="pages.authenticate.resend" />
 					{:else}
-						<T message={m.continue} />
+						<T key="continue" />
 					{/if}
 				</button>
 			</div>
@@ -120,17 +119,17 @@
 			<output class="c-callout c-callout--info block" role="alert">
 				{#if result.type === 'signup'}
 					<T
-						message={m['pages.authenticate.callout.signup']}
-						exp={formatRelativeTime(routing.lang, data.resentWaitingMs)}
+						key="pages.authenticate.callout.signup"
+						params={{ exp: formatRelativeTime(routing.lang, data.resentWaitingMs) }}
 					/>
 				{:else if result.type === 'login'}
 					<T
-						message={m['pages.authenticate.callout.login']}
-						exp={formatRelativeTime(routing.lang, data.resentWaitingMs)}
+						key="pages.authenticate.callout.login"
+						params={{ exp: formatRelativeTime(routing.lang, data.resentWaitingMs) }}
 					/>
 				{/if}
 				{#if rateLimited}
-					<T message={m['pages.authenticate.callout.in']} />
+					<T key="pages.authenticate.callout.in" />
 					<strong>
 						<Countdown endAt={result.sentAgainAt} onEnd={handleRateLimitEnd} />
 					</strong>
@@ -139,11 +138,11 @@
 		{:else if data.error}
 			<output class="c-callout c-callout--error block" role="alert">
 				{#if data.error === 'EXPIRED_TOKEN'}
-					<T message={m['pages.authenticate.error.token_expired']} />
+					<T key="pages.authenticate.error.token_expired" />
 				{:else if data.error === 'INVALID_TOKEN'}
-					<T message={m['pages.authenticate.error.token_invalid']} />
+					<T key="pages.authenticate.error.token_invalid" />
 				{:else}
-					<T message={m['pages.authenticate.error.generic']} />
+					<T key="pages.authenticate.error.generic" />
 				{/if}
 			</output>
 		{/if}
@@ -151,14 +150,14 @@
 	<div class="flex items-center gap-2">
 		<div class="bg-outline h-px flex-1"></div>
 		<p class="text-on-surface-dim">
-			<T message={m.or} />
+			<T key="or" />
 		</p>
 		<div class="bg-outline h-px flex-1"></div>
 	</div>
 	<p>
 		<T
-			message={m['pages.authenticate.headhunter']}
-			jobChannelUrl="https://discord.sveltevietnam.dev"
+			key="pages.authenticate.headhunter"
+			params={{ jobChannelUrl: 'https://discord.sveltevietnam.dev' }}
 		/>
 	</p>
 </SingleBoxPageLayout>

@@ -1,25 +1,25 @@
 - region "Đăng tuyển hiện tại":
-    - heading "Đăng tuyển hiện tại" [level=2]
-    - link "Tạo mới":
-        - /url: /vi/bai-dang-tuyen/tao-moi
-    - paragraph:
-        - text: Các bài đăng tuyển này đã được duyệt và đang hiển thị trên
-        - link "trang việc làm":
-            - /url: http://localhost:5005/vi/viec-lam
-        - text: .
-    - list:
-        - listitem:
-            - article:
-                - paragraph:
-                    - link "Global Response Planner":
-                        - /url: /vi/bai-dang-tuyen/job_qXiQaWzC_SHmORvNHTnzs
-                - paragraph:
-                    - strong: Thực tập
-                    - text: tại
-                    - link "Tremblay, Metz and Walker":
-                        - /url: https://suburban-strategy.biz/
-                        - strong: Tremblay, Metz and Walker
-                - paragraph: Axelmouth, Kiribati
-                - paragraph: /\d+ USD \/ tháng/
-                - paragraph: /Đăng ngày \d+\.\d+\.\d+/
-                - paragraph: /Hết hạn ngày \d+\.\d+\.\d+/
+  - heading "Đăng tuyển hiện tại" [level=2]
+  - link "Tạo mới":
+    - /url: /vi/bai-dang-tuyen/tao-moi
+  - paragraph:
+    - text: Các bài đăng tuyển này đã được duyệt và đang hiển thị trên
+    - link "trang việc làm":
+      - /url: http://localhost:5005/vi/viec-lam
+    - text: .
+  - list:
+    - listitem:
+      - article:
+        - paragraph:
+          - link "Senior Solutions Strategist":
+            - /url: /vi/bai-dang-tuyen/job_ORvNHTnzsh1P7LC3xJ-Nr
+        - paragraph:
+          - strong: Toàn thời gian
+          - text: tại
+          - link "Shields - Hermiston":
+            - /url: https://salty-freezing.org
+            - strong: Shields - Hermiston
+        - paragraph: Thielcester, Singapore
+        - paragraph: /\d+ USD \/ tháng/
+        - paragraph: /Đăng ngày \d+\.\d+\.\d+/
+        - paragraph: /Hết hạn ngày \d+\.\d+\.\d+/

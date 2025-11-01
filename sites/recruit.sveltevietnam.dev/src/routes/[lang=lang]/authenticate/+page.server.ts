@@ -1,5 +1,5 @@
 import { fail, error, redirect } from '@sveltejs/kit';
-import type { Language } from '@sveltevietnam/i18n';
+import type { Language } from '@sveltevietnam/kit/constants';
 import {
 	createTurnstileValibotClientSchema,
 	createTurnstileValibotServerSchema,
@@ -8,12 +8,12 @@ import { superValidate, message } from 'sveltekit-superforms';
 import { valibot } from 'sveltekit-superforms/adapters';
 import * as v from 'valibot';
 
-import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { VITE_PRIVATE_CLOUDFLARE_TURNSTILE_SECRET_KEY } from '$env/static/private';
 import { VITE_PUBLIC_MODE } from '$env/static/public';
 import { getBackend } from '$lib/backend/utils';
+import * as m from '$lib/i18n/generated/messages';
 
 import type { Actions, PageServerLoad } from './$types';
 
@@ -63,8 +63,8 @@ export const load: PageServerLoad = async ({ params, locals, platform, url }) =>
 			},
 		},
 		meta: {
-			title: m['pages.authenticate.meta.title'](lang).toString(),
-			description: m['pages.authenticate.meta.desc'](lang).toString(),
+			title: m['pages.authenticate.meta.title'](lang),
+			description: m['pages.authenticate.meta.desc'](lang),
 		},
 	};
 };

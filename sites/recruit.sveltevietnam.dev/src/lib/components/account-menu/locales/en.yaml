@@ -1,0 +1,8 @@
+# ===================================
+# Language: English
+# Scope:    components.language_menu
+# ===================================
+messages:
+  aria: Manage your account
+  profile: Profile
+  logout: Logout

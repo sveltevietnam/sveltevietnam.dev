@@ -1,0 +1,9 @@
+# =======================================
+# Language: Vietnamese
+# Scope:    components.color_scheme_menu
+# =======================================
+messages:
+  aria: Bảng chọn chế độ màu
+  light: Chế độ sáng
+  dark: Chế độ tối
+  system: Mặc định

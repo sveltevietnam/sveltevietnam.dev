@@ -62,4 +62,6 @@ export default defineConfig({
 			},
 		},
 	],
+	forbidOnly: !!process.env.CI,
+	retries: process.env.CI ? 3 : 0,
 });

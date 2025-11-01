@@ -2,8 +2,8 @@ import Mustache from 'mustache';
 
 import { loadBlogPosts } from '$data/blog/posts';
 import { loadEvents } from '$data/events';
-import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
+import * as m from '$lib/i18n/generated/messages';
 
 import type { RequestHandler } from './$types';
 import template from './rss.template.xml?raw';
@@ -87,15 +87,15 @@ export const GET: RequestHandler = async ({ params, url }) => {
 	];
 
 	const xml = Mustache.render(template, {
-		title: m['svelte_vietnam.name'](lang).toString(),
+		title: m['svelte_vietnam.name'](lang),
 		link: origin + p['/:lang']({ lang }),
 		lang,
-		description: m['rss.desc'](lang).toString(),
+		description: m['pages.rss.desc'](lang),
 		lastBuildDate: new Date(__BUILD_TIMESTAMP__).toUTCString(),
-		copyright: m['rss.copyright'](lang)({ year: new Date().getFullYear().toString() }).toString(),
+		copyright: m['pages.rss.copyright'](lang, { year: new Date().getFullYear().toString() }),
 		image: {
 			url: `${origin}/logo/rss.png`,
-			title: m['svelte_vietnam.name'](lang).toString(),
+			title: m['svelte_vietnam.name'](lang),
 			width: 144,
 			height: 144,
 		},

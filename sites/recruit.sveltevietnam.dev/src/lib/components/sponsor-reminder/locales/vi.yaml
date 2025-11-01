@@ -1,0 +1,11 @@
+# ======================================
+# Language: Vietnamese
+# Scope:    components.sponsor_reminder
+# ======================================
+messages:
+  heading: Tài trợ
+  desc:
+    Svelte Việt Nam được xây dựng bởi cộng đồng. Hãy cân nhắc tài trợ tài chính để góp phần duy trì
+    và phát triển ứng dụng.
+  callout: Đăng tuyển từ nhà tài trợ được ưu tiên xét duyệt và hiển thị trên trang việc làm.
+  cta: Trở thành nhà tài trợ

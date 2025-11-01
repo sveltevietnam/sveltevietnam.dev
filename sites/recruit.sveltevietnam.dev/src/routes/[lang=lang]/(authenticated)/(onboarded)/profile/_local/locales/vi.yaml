@@ -1,0 +1,21 @@
+# ========================
+# Language: Vietnamese
+# Scope:    pages.profile
+# ========================
+messages:
+  meta:
+    title: Hồ sơ | Tuyển dụng | Svelte Việt Nam
+  heading: Hồ sơ
+  update_email:
+    heading: Sửa đổi email
+    form:
+      email:
+        note: Email này được sử dụng để đăng nhập.
+    callout:
+      pending: Vui lòng kiểm tra email để hoàn thành yêu cầu sửa đổi email của bạn!
+      unverified:
+        Email vừa được thay đổi. Vì lý do bảo mật, vui lòng đăng xuất và đăng nhập lại trước khi
+        thay đổi email lần nữa.
+  update_info:
+    heading: Sửa đổi hồ sơ tuyển dụng
+    success: Hồ sơ đã được cập nhật!

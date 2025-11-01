@@ -62,7 +62,10 @@ export default defineConfig({
 		enhancedImages(),
 		css(),
 		tailwindcss(),
-		i18n({ input: 'src/**/locales' }),
+		i18n({
+			input: 'src/lib/i18n/locales',
+			output: 'src/lib/i18n/generated',
+		}),
 		routes(routesConfig),
 		sveltekit(),
 	],

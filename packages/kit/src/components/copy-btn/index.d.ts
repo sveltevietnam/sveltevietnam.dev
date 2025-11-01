@@ -1,10 +1,10 @@
-import type { Message } from '@sveltevietnam/i18n/runtime';
+import type { KeySimple } from '@sveltevietnam/i18n/generated';
 import type { Component } from 'svelte';
 import type { HTMLButtonAttributes } from 'svelte/elements';
 
 export interface CopyBtnProps extends HTMLButtonAttributes {
 	textToCopy: string;
-	aria: Message<'string', never>;
+	aria: KeySimple;
 	iconClass?: string;
 }
 

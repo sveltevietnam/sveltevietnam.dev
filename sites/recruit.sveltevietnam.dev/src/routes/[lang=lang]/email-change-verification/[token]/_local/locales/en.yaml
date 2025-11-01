@@ -1,0 +1,22 @@
+# ==========================================
+# Language: English
+# Scope:    pages.email_change_verification
+# ==========================================
+messages:
+  meta:
+    title: Email Change Verification | Recruit | Svelte Vietnam
+  heading:
+    ok: Your Request is Verified
+    invalid: Your Request is Invalid
+    expired: Your Request Has Expired
+    unknown: Unknown Error
+  desc:
+    ok: Your email has been updated successfully. Thank you!
+    invalid:
+      The URL is not valid or has been tampered with. Please check again the email sent to you.
+    expired:
+      Your request is no longer valid. Please submit another one via the <a href="{{profilePath}}"
+      class="c-link">account management page</a>.
+  reminder:
+    'Reminder: email is used for login and account management. Please do not share with anyone!'
+  login: Login

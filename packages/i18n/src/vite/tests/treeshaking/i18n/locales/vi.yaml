@@ -1,0 +1,7 @@
+messages:
+  simple:
+    used: vi - SIMPLE_KEEP
+    unused: vi - SIMPLE_REMOVE
+  with_params:
+    used: vi - PARAMS_KEEP - {{var}}
+    unused: vi - PARAMS_REMOVE - {{var}}

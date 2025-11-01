@@ -1,7 +1,7 @@
-import type { Language } from '@sveltevietnam/i18n';
+import type { Language } from '@sveltevietnam/kit/constants';
 import * as v from 'valibot';
 
-import * as m from '$data/locales/generated/messages';
+import * as m from '$lib/i18n/generated/messages';
 
 function createEmployerProfileSchemaBase(lang: Language) {
 	return v.objectAsync({
@@ -11,7 +11,7 @@ function createEmployerProfileSchemaBase(lang: Language) {
 			v.string(),
 			v.nonEmpty(m['inputs.employer.desc.errors.nonempty'](lang)),
 			// this is an HTML field so max length should account for HTML tags
-			v.maxLength(8000, m['inputs.employer.desc.errors.max'](lang)({ length: '8000' })),
+			v.maxLength(8000, m['inputs.employer.desc.errors.max'](lang, { length: '8000' })),
 		),
 		image: v.optional(
 			v.pipe(

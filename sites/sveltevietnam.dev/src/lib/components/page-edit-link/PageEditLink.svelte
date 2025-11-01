@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n';
 	import type { HTMLAttributes } from 'svelte/elements';
 
-	import * as m from '$data/locales/generated/messages';
 	import { HintedText } from '$lib/components/hinted-text';
 
 	let {
@@ -23,13 +22,13 @@
 		data-umami-event-url={href}
 		data-umami-event-type="page"
 	>
-		<T message={m['components.page_edit_link.link']} />
+		<T key="components.page_edit_link.link" />
 	</a>
 	<HintedText class="ml-1 cursor-help">
-		<span class="sr-only"><T message={m['explain']} /></span>
+		<span class="sr-only"><T key="explain" /></span>
 		<i class="i i-[ph--info] h-5 w-5"></i>
 		{#snippet hint()}
-			<span><T message={m['components.page_edit_link.desc']} /></span>
+			<span><T key="components.page_edit_link.desc" /></span>
 		{/snippet}
 	</HintedText>
 </p>

@@ -1,9 +1,8 @@
 import { SUBSCRIPTION_CHANNELS } from '@sveltevietnam/backend/data/subscribers/channels';
-import { LANGUAGES } from '@sveltevietnam/i18n';
-import type { Language } from '@sveltevietnam/i18n';
+import { LANGUAGES, type Language } from '@sveltevietnam/kit/constants';
 import * as v from 'valibot';
 
-import * as m from '$data/locales/generated/messages';
+import * as m from '$lib/i18n/generated/messages';
 
 export const createSubcriberUpsertSchema = (lang: Language) => {
 	return v.object({

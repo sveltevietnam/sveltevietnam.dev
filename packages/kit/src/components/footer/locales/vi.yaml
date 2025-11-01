@@ -1,0 +1,10 @@
+# =============================
+# Language: Vietnamese
+# Scope:    components.footer
+# =============================
+messages:
+  navigation:
+    heading: Điều hướng
+  contact:
+    heading: Liên hệ
+  powered_by: Trên nền tảng

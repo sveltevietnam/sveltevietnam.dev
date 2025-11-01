@@ -1,13 +1,13 @@
 <script lang="ts" module>
 	import { JOB_POSTING_TYPE_I18N } from '@sveltevietnam/backend/data/job-postings/enums';
-	import { T, type Message } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n';
+	import type { KeySimple } from '@sveltevietnam/i18n/generated';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
 	import type { Snippet } from 'svelte';
 	import type { HTMLFormAttributes } from 'svelte/elements';
 	import { superForm, type SuperValidated, dateProxy } from 'sveltekit-superforms';
 
-	import * as m from '$data/locales/generated/messages';
 	import { VITE_PUBLIC_MODE, VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN } from '$env/static/public';
 	import { RichTextEditor } from '$lib/components/rich-text-editor';
 
@@ -26,16 +26,17 @@
 		data: SuperValidated<JobPostingUpsertInput>;
 		cta: Snippet<[{ delayed: boolean; timeout: boolean }]>;
 		action: string;
-		successMessage: Message<'string', never>;
+		successTKey: KeySimple;
 	}
 </script>
 
 <script lang="ts">
-	let { data, cta, class: cls, successMessage, ...rest }: FormJobPostingUpsertProps = $props();
+	let { data, cta, class: cls, successTKey, ...rest }: FormJobPostingUpsertProps = $props();
 
 	const {
 		routing,
 		notifications: { toaster },
+		i18n: { t },
 	} = Contexts.get();
 
 	const descriptionCacheKey = 'job-desc-draft';
@@ -49,11 +50,11 @@
 			multipleSubmits: 'prevent',
 			delayMs: 500,
 			timeoutMs: 2000,
-			onError: createSuperFormGenericErrorHandler(toaster),
+			onError: createSuperFormGenericErrorHandler(toaster, routing.lang),
 			onResult({ result }) {
 				if (result.type === 'redirect') {
 					localStorage.removeItem(descriptionCacheKey);
-					toaster.success({ message: successMessage });
+					toaster.success({ message: t({ key: successTKey }) });
 				}
 			},
 		},
@@ -91,14 +92,14 @@
 		<!-- title -->
 		<div class="space-y-1">
 			<label class="block" for="title">
-				<T message={m['inputs.job_posting.title.label']} />:
+				<T key="inputs.job_posting.title.label" />:
 			</label>
 			<input
 				class="c-text-input w-full"
 				type="title"
 				name="title"
 				id="title"
-				placeholder={m['inputs.job_posting.title.placeholder'](routing.lang).toString()}
+				placeholder={await t({ key: 'inputs.job_posting.title.placeholder' })}
 				bind:value={$form.title}
 				{...$constraints.title}
 				{...$errors.title && {
@@ -116,7 +117,7 @@
 		<!-- type -->
 		<div class="space-y-1">
 			<label class="block" for="type">
-				<T message={m['inputs.job_posting.type.label']} />:
+				<T key="inputs.job_posting.type.label" />:
 			</label>
 			<select
 				class="c-select w-full"
@@ -145,14 +146,14 @@
 		<!-- location -->
 		<div class="space-y-1">
 			<label class="block" for="location">
-				<T message={m['inputs.job_posting.location.label']} />:
+				<T key="inputs.job_posting.location.label" />:
 			</label>
 			<input
 				class="c-text-input w-full"
 				type="location"
 				name="location"
 				id="location"
-				placeholder={m['inputs.job_posting.location.placeholder'](routing.lang).toString()}
+				placeholder={await t({ key: 'inputs.job_posting.location.placeholder' })}
 				bind:value={$form.location}
 				{...$constraints.location}
 				{...$errors.location && {
@@ -170,14 +171,14 @@
 		<!-- salary -->
 		<div class="space-y-1">
 			<label class="block" for="salary">
-				<T message={m['inputs.job_posting.salary.label']} />:
+				<T key="inputs.job_posting.salary.label" />:
 			</label>
 			<input
 				class="c-text-input w-full"
 				type="salary"
 				name="salary"
 				id="salary"
-				placeholder={m['inputs.job_posting.salary.placeholder'](routing.lang).toString()}
+				placeholder={await t({ key: 'inputs.job_posting.salary.placeholder' })}
 				bind:value={$form.salary}
 				{...$constraints.salary}
 				{...$errors.salary && {
@@ -196,7 +197,7 @@
 		<fieldset>
 			<div class="space-y-1">
 				<label class="block" for="application-method">
-					<T message={m['inputs.job_posting.application.label']} />:
+					<T key="inputs.job_posting.application.label" />:
 				</label>
 				<select
 					class="c-select w-full"
@@ -211,7 +212,7 @@
 				>
 					{#each JOB_POSTING_APPLICATION_METHODS as method (method)}
 						<option value={method}>
-							<T message={JOB_POSTING_APPLICATION_METHOD_MESSAGES[method].label} />
+							<T key={JOB_POSTING_APPLICATION_METHOD_MESSAGES[method].label} />
 						</option>
 					{/each}
 				</select>
@@ -222,21 +223,21 @@
 						</p>
 					{/if}
 					<p class="c-text-body-xs ml-auto">
-						<T message={applicationMessages.note} />
+						<T key={applicationMessages.note} />
 					</p>
 				</div>
 			</div>
-			<div class="relative pl-6 pt-2">
+			<div class="relative pt-2 pl-6">
 				<div class="absolute bottom-1/2 left-2 h-12 w-4 border-b border-l border-current"></div>
 				<label class="c-text-input">
 					<span class="flex items-center gap-2">
 						<i class={['i h-6 w-6', applicationMessages.link.iconClass]}></i>
-						<T message={applicationMessages.link.label} />
+						<T key={applicationMessages.link.label} />
 					</span>
 					<input
 						type={$form.application.method}
 						name="applicationLink"
-						placeholder={applicationMessages.link.placeholder(routing.lang).toString()}
+						placeholder={await t({ key: applicationMessages.link.placeholder })}
 						bind:value={$form.application.link}
 						{...$constraints.application?.link}
 						{...$errors.application?.link && {
@@ -256,7 +257,7 @@
 		<!-- expired-at -->
 		<div class="space-y-1">
 			<label class="block" for="expires-at">
-				<T message={m['inputs.job_posting.expired_at.label']} />:
+				<T key="inputs.job_posting.expired_at.label" />:
 			</label>
 			<input
 				class="c-text-input w-full"
@@ -274,8 +275,8 @@
 			/>
 			<p class="c-text-body-xs ml-auto text-right">
 				<T
-					message={m['inputs.job_posting.expired_at.note']}
-					mainSiteUrl={VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN}
+					key="inputs.job_posting.expired_at.note"
+					params={{ mainSiteUrl: VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN }}
 				/>
 			</p>
 			{#if $errors.expiredAt?.[0]}
@@ -288,7 +289,7 @@
 		<!-- description -->
 		<div class="space-y-1">
 			<p class="block" id="description-label">
-				<T message={m['inputs.job_posting.desc.label']} />:
+				<T key="inputs.job_posting.desc.label" />:
 			</p>
 			<RichTextEditor
 				aria-labelledby="description-label"
@@ -296,7 +297,7 @@
 				cache={descriptionCacheKey}
 				onchange={(value) => ($form.description = value)}
 				html={data.data.description}
-				placeholder={m['inputs.job_posting.desc.placeholder']}
+				placeholder="inputs.job_posting.desc.placeholder"
 				maxLength={2500}
 			/>
 			<input

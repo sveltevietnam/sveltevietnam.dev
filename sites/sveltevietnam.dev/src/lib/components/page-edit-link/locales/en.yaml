@@ -1,0 +1,7 @@
+# ====================================
+# Language: English
+# Scope:    components.page_edit_link
+# ====================================
+messages:
+  link: Edit this page on Github
+  desc: sveltevietnam.dev is an open source project and welcomes your contributions. Thank you!

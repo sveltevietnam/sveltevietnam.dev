@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n';
 
 	import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
 
@@ -7,7 +7,7 @@
 
 	import type { JobPostingProps } from '.';
 
-	let { i18n, posting, class: cls, containerClass, ...rest }: JobPostingProps = $props();
+	let { posting, class: cls, containerClass, ...rest }: JobPostingProps = $props();
 
 	const imageContainerClasses = '@md:row-span-4 shrink-0';
 </script>
@@ -15,8 +15,8 @@
 <div class={['@container', containerClass]}>
 	<article
 		class={[
-			'@md:gap-y-2 @md:gap-x-6 grid grid-cols-[auto_1fr] grid-rows-[auto_auto_auto_auto] gap-4',
-			'@md:p-6 border-outline border p-4',
+			'grid grid-cols-[auto_1fr] grid-rows-[auto_auto_auto_auto] gap-4 @md:gap-x-6 @md:gap-y-2',
+			'border-outline border p-4 @md:p-6',
 			cls,
 		]}
 		{...rest}
@@ -41,7 +41,7 @@
 		{/if}
 
 		<!-- title -->
-		<p class="c-text-title-sm @max-md:col-span-2 font-bold">
+		<p class="c-text-title-sm font-bold @max-md:col-span-2">
 			{#snippet titleContent()}
 				{posting.title}
 			{/snippet}
@@ -57,10 +57,10 @@
 		</p>
 
 		<!-- job type & employer name -->
-		<p class="@max-md:col-start-2 @max-md:row-start-1 self-center">
+		<p class="self-center @max-md:col-start-2 @max-md:row-start-1">
 			<strong>{posting.type}</strong>
 			<br class="@md:hidden" />
-			<T message={i18n.at} />
+			<T key="at" />
 			{#if posting.employer.website}
 				<a class="c-link-preserved" href={posting.employer.website} data-external>
 					<strong>{posting.employer.name}</strong>
@@ -71,7 +71,7 @@
 		</p>
 
 		<!-- location & salary -->
-		<div class="@max-md:col-span-2 flex flex-wrap gap-x-6 gap-y-2">
+		<div class="flex flex-wrap gap-x-6 gap-y-2 @max-md:col-span-2">
 			<p class="flex items-center gap-2">
 				<i class="i i-[ph--map-pin] h-6 w-6"></i>
 				<span>{posting.location}</span>
@@ -84,18 +84,18 @@
 
 		<!-- dates -->
 		<div
-			class="text-on-surface-subtle border-outline c-text-body-sm @max-md:col-span-2 flex flex-wrap
-			items-center justify-between gap-x-4
-			gap-y-2 border-t pt-1"
+			class="text-on-surface-subtle border-outline c-text-body-sm flex flex-wrap items-center
+			justify-between gap-x-4 gap-y-2
+			border-t pt-1 @max-md:col-span-2"
 		>
 			{#if posting.postedAt}
 				<p>
-					<T message={i18n.postedAt} />
+					<T key="components.job_posting_list.posted_at" />
 					{formatDate(posting.postedAt)}
 				</p>
 			{/if}
 			<p>
-				<T message={i18n.expiredAt} />
+				<T key="components.job_posting_list.expired_at" />
 				{formatDate(posting.expiredAt)}
 			</p>
 		</div>

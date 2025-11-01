@@ -1,0 +1,29 @@
+# =============================
+# Language: English
+# Scope:    pages.authenticate
+# =============================
+messages:
+  meta:
+    title: Authenticate | Recruit | Svelte Vietnam
+    desc: Đăng nhập hoặc đăng ký để sử dụng ứng dụng Tuyển dụng từ cộng đồng Svelte Việt Nam
+  heading: Register or Login
+  desc:
+    Managing job postings at <a class="c-link" href={{mainSiteUrl}}>sveltevietnam.dev</a> — free and
+    secure — connecting community with businesses and organizations.
+  callout:
+    in: in
+    login:
+      Please finish logging in via the link sent to your email (valid {{exp}}). If you do not
+      receive any email, you may click "Resend"
+    signup:
+      Please continue the sign-up process following instructions in the email sent to you (valid
+      {{exp}}). If you do not receive any email, you may click "Resend"
+  headhunter:
+    Independent recruiter or headhunter? <br /> Connect directly with candidates via our <a
+    class="c-link" href="{{jobChannelUrl}}" target="_blank" rel="noreferrer noopener
+    external">community forum</a>.
+  resend: Resend
+  error:
+    token_expired: Your token has expired. Please try again.
+    token_invalid: Your token is invalid. Please try again.
+    generic: Something went wrong. Please try again later.

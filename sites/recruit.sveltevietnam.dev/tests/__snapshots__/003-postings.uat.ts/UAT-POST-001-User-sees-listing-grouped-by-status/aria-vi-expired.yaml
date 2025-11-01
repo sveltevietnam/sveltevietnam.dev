@@ -1,22 +1,22 @@
 - region "Đăng tuyển đã hết hạn":
-    - heading "Đăng tuyển đã hết hạn" [level=2]
-    - paragraph:
-        - text: Các bài đăng tuyển này không thể sửa đổi và không còn hiển thị trên
-        - link "trang việc làm":
-            - /url: http://localhost:5005/vi/viec-lam
-        - text: .
-    - list:
-        - listitem:
-            - article:
-                - paragraph:
-                    - link "Corporate Mobility Assistant":
-                        - /url: /vi/bai-dang-tuyen/job_DnvE41WosWXc654QO7CJh
-                - paragraph:
-                    - strong: Tình nguyện
-                    - text: tại
-                    - link "Tremblay, Metz and Walker":
-                        - /url: https://suburban-strategy.biz/
-                        - strong: Tremblay, Metz and Walker
-                - paragraph: McCulloughworth, Guinea
-                - paragraph: /\d+ USD \/ tháng/
-                - paragraph: /Hết hạn ngày \d+\.\d+\.\d+/
+  - heading "Đăng tuyển đã hết hạn" [level=2]
+  - paragraph:
+    - text: Các bài đăng tuyển này không thể sửa đổi và không còn hiển thị trên
+    - link "trang việc làm":
+      - /url: http://localhost:5005/vi/viec-lam
+    - text: .
+  - list:
+    - listitem:
+      - article:
+        - paragraph:
+          - link "International Brand Assistant":
+            - /url: /vi/bai-dang-tuyen/job_lRK6vjoUjWDiFN53rl8C5
+        - paragraph:
+          - strong: Toàn thời gian
+          - text: tại
+          - link "Shields - Hermiston":
+            - /url: https://salty-freezing.org
+            - strong: Shields - Hermiston
+        - paragraph: Morarview, Ukraine
+        - paragraph: /\d+ USD \/ tháng/
+        - paragraph: /Hết hạn ngày \d+\.\d+\.\d+/

@@ -1,6 +1,6 @@
 <script lang="ts" module>
-	import { T } from '@sveltevietnam/i18n/runtime';
-	import type { Message } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n';
+	import type { KeySimple } from '@sveltevietnam/i18n/generated';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { onMount } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
@@ -12,7 +12,7 @@
 	export interface RichTextEditorProps
 		extends EditorInit,
 			Omit<HTMLAttributes<HTMLElement>, 'onchange' | 'placeholder'> {
-		placeholder?: Message<'string', never>;
+		placeholder?: KeySimple;
 		onchange?: (html: string) => void;
 		maxLength?: number;
 	}
@@ -53,7 +53,7 @@
 >
 	<Toolbar {editor} />
 
-	<div class="z-1 relative">
+	<div class="relative z-1">
 		<!-- composer -->
 		<div
 			role="textbox"
@@ -69,7 +69,7 @@
 		<!-- placeholder -->
 		{#if placeholder && editor.canShowPlaceholder}
 			<p class="text-placeholder absolute inset-x-4 top-3 select-none">
-				<T message={placeholder} />
+				<T key={placeholder} />
 			</p>
 		{/if}
 
@@ -77,7 +77,7 @@
 			{@const remaining = editor.init.maxLength - editor.contentLength}
 			<p
 				class={[
-					'absolute bottom-1 right-3',
+					'absolute right-3 bottom-1',
 					remaining < 50
 						? 'text-red-500'
 						: remaining < 200

@@ -1,0 +1,153 @@
+# ==================
+# !! Entry point !!
+# Language: English
+# ==================
+messages:
+  '@import': '@sveltevietnam/kit/locales/en.yaml'
+  app: Recruit
+  svelte_vietnam:
+    recruit: Svelte Vietnam Recruit App
+
+  components:
+    account_menu:
+      '@import': '$lib/components/account-menu/locales/en.yaml'
+    footer:
+      back_to_svelte_vietnam: Back to Svelte Vietnam site
+      about:
+        heading: About
+        desc:
+          This is a free, secure, and open source recruitment platform, connecting community with
+          businesses and organizations.
+    rich_text_editor:
+      '@import': '$lib/components/rich-text-editor/locales/en.yaml'
+    sponsor_reminder:
+      '@import': '$lib/components/sponsor-reminder/locales/en.yaml'
+
+  pages:
+    home:
+      '@import': '$routes/[lang=lang]/_local/locales/en.yaml'
+    authenticate:
+      '@import': '$routes/[lang=lang]/authenticate/_local/locales/en.yaml'
+    email_change_verification:
+      '@import': '$routes/[lang=lang]/email-change-verification/[token]/_local/locales/en.yaml'
+    onboarding:
+      '@import': '$routes/[lang=lang]/(authenticated)/(newcommer)/onboarding/_local/locales/en.yaml'
+    welcome:
+      '@import': '$routes/[lang=lang]/(authenticated)/(newcommer)/welcome/_local/locales/en.yaml'
+    profile:
+      '@import': '$routes/[lang=lang]/(authenticated)/(onboarded)/profile/_local/locales/en.yaml'
+    postings:
+      '@import': '$routes/[lang=lang]/(authenticated)/(onboarded)/postings/_local/locales/en.yaml'
+    postings_id:
+      '@import': '$routes/[lang=lang]/(authenticated)/(onboarded)/postings/[id]/_local/locales/en.yaml'
+    postings_upsert:
+      '@import': '$routes/[lang=lang]/(authenticated)/(onboarded)/postings/create/_local/locales/en.yaml'
+
+  errors:
+    generic: Something went wrong, please try again later! We are sorry for the inconvenience.
+
+  inputs:
+    email:
+      label: Email
+      errors:
+        nonempty: Email is required
+        invalid: Email is badly formated
+        existed: Email is used by another account
+        current: This is already your current email
+    name:
+      errors:
+        nonempty: Name is required
+    url:
+      label: URL
+      errors:
+        nonempty: URL is required
+        invalid: URL is badly formated
+    turnstile:
+      desc: Verify <em class="c-text-body-xs">(requires Javascript)</em>
+      errors:
+        nonempty: Turnstile is required
+        unknown: Something went wrong with Turnstile
+    employer:
+      email:
+        label: Employer email (not public)
+        placeholder: human-resources@abc.com
+        note: This is the email you used to sign up.
+      name:
+        label: Employer name
+        placeholder: Company ABC / Organization XYZ
+      desc:
+        label: Employer description
+        placeholder: XYZ is a non-profit organization operating in the education sector...
+        note:
+          A brief introduction to help candidates learn more about your organization/company, shown
+          in the job posting detail page.
+        errors:
+          nonempty: Employer description is required
+          max: At most {{length}} characters
+      website:
+        label: Employer website (optional)
+        placeholder: https://company-abc.com
+      image:
+        label: Profile picture
+        desc: 'Maximum: <strong></strong>1MB</strong><br /> Recommended: <strong>200x200</strong>'
+        errors:
+          type: File must be an image
+          size: File must be less than 1MB
+      agreement:
+        desc:
+          I hereby declare that the information provided above is true and correct, and that I am
+          the employer or authorized to represent this employer.
+        error: You must agree to the terms
+    job_posting:
+      title:
+        label: Job title
+        placeholder: Frontend Developer (Svelte & SvelteKit)
+        errors:
+          nonempty: Job title is required
+      type:
+        label: Job type
+        errors:
+          nonempty: Job type is required
+      location:
+        label: Work location
+        placeholder: Remote / Ha Noi / Ho Chi Minh City / ...
+        errors:
+          nonempty: Work location is required
+      salary:
+        label: Salary range
+        placeholder: $1000 - $2000 / 20M - 40M VND / Unpaid / ...
+        errors:
+          nonempty: Salary range is required
+      application:
+        label: Application method
+        options:
+          email:
+            label: Via email to recruiter
+            placeholder: career@abc.com
+            note:
+              When clicking "Apply", the candidate needs to compose an email to the specified
+              address.
+          url:
+            label: Via employer's portal
+            placeholder: https://career.abc.com/portal/...
+            note: When clicking "Apply", the candidate will be redirected to the linked url.
+        errors:
+          nonempty_method: Application method is required
+          nonempty_link: Application link is required
+      expired_at:
+        label: Application deadline
+        note:
+          Posting will no longer be listed on the <a class="c-link" href="{{mainSiteUrl}}/en/jobs"
+          target="_blank">Jobs page</a> after this date.
+        errors:
+          nonempty: Application deadline is required
+          min: Deadline must be later than today
+          max: Deadline must be at most 180 days
+      desc:
+        label: Job description
+        placeholder:
+          We are looking for a skilled Frontend Developer with experience in Svelte and SvelteKit to
+          join our dynamic team... We provide the following benefits...
+        errors:
+          nonempty: Job description is required
+          max: At most {{length}} characters

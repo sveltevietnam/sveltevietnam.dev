@@ -1,0 +1,7 @@
+# =====================================
+# Language: English
+# Scope:    components.blog_newsletter
+# =====================================
+messages:
+  heading: The Svelte Vietnam Blog Newsletter
+  desc: Subscribe to receive notification for new blog post from Svelte Vietnam

@@ -15,8 +15,8 @@
 	setContext('t:lang', () => contexts.routing.lang);
 </script>
 
-{@render children?.()}
-
 <svelte:document {@attach contexts.lockscroll.apply()} />
+
+{@render children?.()}
 <DialogPortal stack={contexts.dialogs} />
 <NotificationPortal stack={contexts.notifications.stack} />

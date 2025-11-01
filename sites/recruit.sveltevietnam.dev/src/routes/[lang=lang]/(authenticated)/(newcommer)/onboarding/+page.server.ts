@@ -2,11 +2,12 @@ import { error, fail, redirect } from '@sveltejs/kit';
 import { valibot } from 'sveltekit-superforms/adapters';
 import { superValidate, withFiles } from 'sveltekit-superforms/server';
 
-import * as m from '$data/locales/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
+import { clearSessionDataCookie } from '$lib/auth';
 import { uploadEmployerImage } from '$lib/data/employers';
 import { createEmployerProfileSchema } from '$lib/forms/employer-profile';
+import * as m from '$lib/i18n/generated/messages';
 
 import type { Actions, PageServerLoad } from './$types';
 
@@ -24,7 +25,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 			},
 		},
 		meta: {
-			title: m['pages.onboarding.meta.title'](lang).toString(),
+			title: m['pages.onboarding.meta.title'](lang),
 		},
 	};
 };
@@ -50,7 +51,7 @@ export const actions: Actions = {
 		const { image, ...update } = form.data;
 		const id = locals.user.id;
 
-		const { status } = await locals.auth.api.updateUser({
+		const response = await locals.auth.api.updateUser({
 			body: {
 				...update,
 				image: image ? await uploadEmployerImage(id, image) : undefined,
@@ -58,12 +59,14 @@ export const actions: Actions = {
 			},
 			headers: request.headers,
 			request,
+			asResponse: true,
 		});
-		if (!status) {
+		if (!response.ok) {
 			// TODO: error logging
 			error(500, { code: 'SV001', message: 'Error from backend' });
 		}
 
+		clearSessionDataCookie();
 		redirect(302, p['/:lang/welcome']({ lang: language }));
 	},
 };

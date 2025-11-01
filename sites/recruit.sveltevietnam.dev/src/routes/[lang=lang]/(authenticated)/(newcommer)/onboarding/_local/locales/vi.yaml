@@ -1,0 +1,14 @@
+# ===========================
+# Language: Vietnamese
+# Scope:    pages.onboarding
+# ===========================
+messages:
+  meta:
+    title: Hoàn thiện hồ sơ | Tuyển dụng | Svelte Việt Nam
+  heading: Hoàn thiện hồ sơ
+  desc:
+    Cảm ơn bạn đã đăng ký sử dụng ứng dụng Tuyển dụng của cộng đồng Svelte Việt Nam. Hãy điền một số
+    thông tin cần thiết dưới đây để hoàn tất quy trình đăng ký!
+  cta:
+    use_another_account: Đăng nhập vào tài khoản khác
+    submit: Yêu cầu xét duyệt

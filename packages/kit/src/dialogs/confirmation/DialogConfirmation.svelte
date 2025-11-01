@@ -13,26 +13,37 @@
 	{...enhanceDialog(item, { defaultReturnValue: 'cancel', delayResolution: 'animationend' })}
 >
 	<form class="space-y-6" method="dialog">
-		<button class="c-link-lazy absolute right-4 top-4 p-2" formmethod="dialog">
+		<button class="c-link-lazy absolute top-4 right-4 p-2" formmethod="dialog">
 			<span class="sr-only">Close</span>
 			<i class="i i-[ph--x] h-6 w-6"></i>
 		</button>
 
 		{#if title}
-			<Contentful prop={title} tag="p" class="c-text-title border-outline border-b" />
+			<Contentful content={title} tag="p" class="c-text-title border-outline border-b" />
 		{/if}
 
 		{#if description}
-			<Contentful prop={description} tag="p" />
+			<Contentful content={description} tag="p" />
 		{/if}
 
 		<div class="flex flex-wrap justify-end gap-4">
 			{#if cancel}
-				<Contentful prop={cancel} tag="button" class="c-btn c-btn--outlined" formmethod="dialog" />
+				<Contentful
+					content={cancel}
+					tag="button"
+					class="c-btn c-btn--outlined"
+					formmethod="dialog"
+				/>
 			{/if}
 
 			{#if confirm}
-				<Contentful prop={confirm} tag="button" class="c-btn" formmethod="dialog" value="confirm" />
+				<Contentful
+					content={confirm}
+					tag="button"
+					class="c-btn"
+					formmethod="dialog"
+					value="confirm"
+				/>
 			{/if}
 		</div>
 	</form>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { JOB_POSTING_TYPE_I18N } from '@sveltevietnam/backend/data/job-postings/enums';
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n';
 	import fallback1x1 from '@sveltevietnam/kit/assets/images/fallbacks/1x1.jpg?enhanced&w=w=224;112&imagetools';
 	import { Breadcrumbs, CopyBtn } from '@sveltevietnam/kit/components';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
@@ -10,7 +10,6 @@
 	import { superForm } from 'sveltekit-superforms';
 
 	import { invalidate } from '$app/navigation';
-	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import { VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN } from '$env/static/public';
 	import { SponsorReminder } from '$lib/components/sponsor-reminder';
@@ -25,6 +24,7 @@
 		dialogs,
 		colorScheme,
 		notifications: { toaster },
+		i18n: { t },
 	} = Contexts.get();
 
 	let url = $derived(
@@ -43,12 +43,12 @@
 		multipleSubmits: 'prevent',
 		delayMs: 500,
 		timeoutMs: 2000,
-		onError: createSuperFormGenericErrorHandler(toaster),
+		onError: createSuperFormGenericErrorHandler(toaster, routing.lang),
 		onResult({ result }) {
 			if (result.type === 'success') {
 				invalidate('job-posting-detail');
 				toaster.success({
-					message: m['pages.postings_id.delete.success'],
+					message: t({ key: 'pages.postings_id.delete.success' }),
 				});
 			}
 		},
@@ -60,12 +60,6 @@
 			props: {
 				data: url,
 				theme: () => colorScheme.resolved,
-				i18n: {
-					close: m.close,
-					title: m['dialogs.qr.title'],
-					desc: m['dialogs.qr.desc'],
-					download: m.download,
-				},
 			},
 		});
 	}
@@ -76,16 +70,19 @@
 		const pushed = dialogs.push('custom', {
 			component: DialogConfirmation,
 			props: {
-				title: m['pages.postings_id.delete.confirmation.title'],
-				description: m['pages.postings_id.delete.confirmation.desc'],
-				cancel: m['pages.postings_id.delete.confirmation.cancel'],
-				confirm: {
-					content: m['pages.postings_id.delete.confirmation.confirm'],
-					attributes: {
-						class:
-							'c-btn c-btn--outlined bg-error-on-surface border-error-on-surface text-error-surface',
+				title: ['t', 'pages.postings_id.delete.confirmation.title'],
+				description: ['t', 'pages.postings_id.delete.confirmation.desc'],
+				cancel: ['t', 'pages.postings_id.delete.confirmation.cancel'],
+				confirm: [
+					'extend',
+					{
+						content: ['t', 'pages.postings_id.delete.confirmation.confirm'],
+						attributes: {
+							class:
+								'c-btn c-btn--outlined bg-error-on-surface border-error-on-surface text-error-surface',
+						},
 					},
-				},
+				],
 			},
 		});
 		const result = await pushed.resolution;
@@ -104,13 +101,7 @@
 <main
 	class="max-w-pad mt-header pt-section pb-section-more tablet:space-y-8 desktop:space-y-10 flex-1 space-y-6"
 >
-	<Breadcrumbs
-		crumbs={data.routing.breadcrumbs}
-		i18n={{
-			aria: m['components.breadcrumbs.aria'],
-			home: m['components.breadcrumbs.home'],
-		}}
-	/>
+	<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 
 	<div class="desktop:flex-row gap-section desktop:gap-20 flex flex-col">
 		<!-- main content -->
@@ -121,17 +112,17 @@
 
 			{#if data.posting.status === 'pending'}
 				<p class="c-callout c-callout--warning" role="note">
-					<T message={m['pages.postings_id.pending']} />
+					<T key="pages.postings_id.pending" />
 				</p>
 			{:else if data.posting.status === 'deleted'}
 				<p class="c-callout c-callout--error" role="note">
-					<T message={m['pages.postings_id.deleted']} />
+					<T key="pages.postings_id.deleted" />
 				</p>
 			{/if}
 
 			<div class="border-outline border p-4">
 				<h2 class="sr-only">
-					<T message={m['pages.postings_id.general.heading']} />
+					<T key="pages.postings_id.general.heading" />
 				</h2>
 
 				<!-- general information -->
@@ -144,16 +135,16 @@
 							<dt>
 								<i class={['i i-[ph--pulse] h-6 w-6', statusToColorClass[data.posting.status]]}></i>
 								<span class="sr-only">
-									<T message={m['pages.postings_id.general.status.name']} />
+									<T key="pages.postings_id.general.status.name" />
 								</span>
 							</dt>
 							<dd class={statusToColorClass[data.posting.status]} data-testid="status-name">
 								{#if data.posting.status === 'expired'}
-									<T message={m['pages.postings_id.general.status.expired']} />
+									<T key="pages.postings_id.general.status.expired" />
 								{:else if data.posting.status === 'pending'}
-									<T message={m['pages.postings_id.general.status.pending']} />
+									<T key="pages.postings_id.general.status.pending" />
 								{:else}
-									<T message={m['pages.postings_id.general.status.active']} publicUrl={url} />
+									<T key="pages.postings_id.general.status.active" params={{ publicUrl: url }} />
 								{/if}
 							</dd>
 						{/if}
@@ -162,7 +153,7 @@
 						<dt>
 							<i class="i i-[ph--buildings] h-6 w-6"></i>
 							<span class="sr-only">
-								<T message={m['inputs.employer.name.label']} />
+								<T key="inputs.employer.name.label" />
 							</span>
 						</dt>
 						<dd class="font-medium" data-testid="employer-name">
@@ -179,7 +170,7 @@
 						<dt>
 							<i class="i i-[ph--suitcase] h-6 w-6"></i>
 							<span class="sr-only">
-								<T message={m['inputs.job_posting.type.label']} />
+								<T key="inputs.job_posting.type.label" />
 							</span>
 						</dt>
 						<dd data-testid="job-type">
@@ -190,7 +181,7 @@
 						<dt>
 							<i class="i i-[ph--map-pin] h-6 w-6"></i>
 							<span class="sr-only">
-								<T message={m['inputs.job_posting.location.label']} />
+								<T key="inputs.job_posting.location.label" />
 							</span>
 						</dt>
 						<dd data-testid="job-location">
@@ -201,7 +192,7 @@
 						<dt>
 							<i class="i i-[ph--money] h-6 w-6"></i>
 							<span class="sr-only">
-								<T message={m['inputs.job_posting.salary.label']} />
+								<T key="inputs.job_posting.salary.label" />
 							</span>
 						</dt>
 						<dd data-testid="job-salary">
@@ -214,7 +205,7 @@
 								<i class="i i-[ph--calendar-blank] h-6 w-6"></i>
 							</dt>
 							<dd data-testid="job-posted-at">
-								<T message={m['pages.postings_id.general.posted_at']} />
+								<T key="pages.postings_id.general.posted_at" />
 								{formatDate(data.posting.postedAt)}
 							</dd>
 						{/if}
@@ -224,7 +215,7 @@
 							<i class="i i-[ph--calendar-x] h-6 w-6"></i>
 						</dt>
 						<dd data-testid="job-expired-at">
-							<T message={m['pages.postings_id.general.expired_at']} />
+							<T key="pages.postings_id.general.expired_at" />
 							{formatDate(data.posting.expiredAt)}
 						</dd>
 					</dl>
@@ -270,14 +261,14 @@
 						data-external
 						data-umami-event="click-apply-link"
 					>
-						<T message={m['pages.postings_id.actions.apply']} />
+						<T key="pages.postings_id.actions.apply" />
 					</a>
 
 					{#if data.posting.status === 'active' || data.posting.status === 'expired'}
 						<!-- copy link -->
 						<CopyBtn
 							class="c-btn c-btn--outlined shrink-0 grid-cols-1 p-2"
-							aria={m['pages.postings_id.actions.share.link']}
+							aria="pages.postings_id.actions.share.link"
 							textToCopy={url}
 							data-umami-event="copy-link"
 							data-umami-event-resource="job-posting"
@@ -291,7 +282,7 @@
 							data-umami-event="generate-qr"
 							data-umami-event-resource="job-posting"
 						>
-							<span class="sr-only"><T message={m['pages.postings_id.actions.share.qr']} /></span>
+							<span class="sr-only"><T key="pages.postings_id.actions.share.qr" /></span>
 							<i class="i i-[ph--qr-code] h-6 w-6"></i>
 						</button>
 					{/if}
@@ -302,7 +293,7 @@
 				<!-- job description -->
 				<section class="space-y-6">
 					<h2 class="c-text-heading border-b">
-						<T message={m['pages.postings_id.job_desc.heading']} />
+						<T key="pages.postings_id.job_desc.heading" />
 					</h2>
 					<div class="prose max-w-full" data-testid="job-description">
 						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
@@ -314,8 +305,8 @@
 				<section class="space-y-6">
 					<h2 class="c-text-heading border-b">
 						<T
-							message={m['pages.postings_id.employer_desc.heading']}
-							employerName={data.posting.employer.name}
+							key="pages.postings_id.employer_desc.heading"
+							params={{ employerName: data.posting.employer.name }}
 						/>
 					</h2>
 					<div class="prose max-w-full" data-testid="employer-description">
@@ -336,7 +327,7 @@
 			{#if data.posting.status !== 'deleted'}
 				<section class="space-y-6">
 					<h2 class="border-outline c-text-heading border-b">
-						<T message={m['pages.postings_id.manage.heading']} />
+						<T key="pages.postings_id.manage.heading" />
 					</h2>
 
 					<div class="flex gap-4">
@@ -358,7 +349,7 @@
 								data-umami-event="click-delete-job-posting"
 							>
 								<i class="i i-[ph--trash] h-6 w-6"></i>
-								<span><T message={m['pages.postings_id.manage.delete']} /></span>
+								<span><T key="pages.postings_id.manage.delete" /></span>
 							</button>
 						</form>
 						{#if data.editable}
@@ -367,7 +358,7 @@
 								href={p['/:lang/postings/:id/edit']({ lang: routing.lang, id: data.posting.id })}
 							>
 								<i class="i i-[ph--pencil] h-6 w-6"></i>
-								<T message={m['pages.postings_id.manage.edit']} />
+								<T key="pages.postings_id.manage.edit" />
 							</a>
 						{/if}
 					</div>

@@ -1,0 +1,39 @@
+# =======================
+# Language: Vietnamese
+# Scope:    pages.events
+# =======================
+messages:
+  title: Sự kiện | Svelte Việt Nam
+  keywords: sự kiện, gặp mặt, chia sẻ
+  heading: Sự kiện
+  desc: Gặp gỡ cộng đồng tại Việt Nam — chia sẻ về Svelte và open source
+  view_upcoming: Xem sự kiện sắp tới
+  ongoing:
+    heading: Đang diễn ra
+  upcoming:
+    heading: Sự kiện sắp tới
+    tba:
+      desc: Chưa có sự kiện mới nào.
+      subscribe: Đăng ký nhận thông báo khi có sự kiện mới!
+  participate:
+    heading: Tham gia
+    desc: Đăng kí nhận thông tin cập nhật về sự kiện của cộng đồng Svelte Việt Nam
+    discord:
+      Thảo luận về sự kiện tại <a class="c-link" href="https://discord.sveltevietnam.dev/">Discord
+      chính thức của Svelte Việt Nam</a>.
+  share:
+    heading: Chia sẻ
+    desc:
+      'Quảng bá sản phẩm, lan tỏa ý tưởng, chia sẻ dự án và kinh nghiệm của bạn trong các sự kiện
+      sắp đến. Đăng ký trở thành diễn giả hoặc đóng góp ý tưởng cho các hoạt động tại sự kiện sắp
+      đến:'
+    cta: Gởi ý tưởng hoặc phản hồi
+  sponsor:
+    heading: Tài trợ
+    desc:
+      Tài trợ cho sự kiện bằng cách đóng góp tài chính hoặc hỗ trợ công tác tổ chức tại các buổi gặp
+      mặt, cuộc thi, hoạt động của cộng đồng Svelte Việt Nam.
+    why: Tại sao Svelte Việt Nam cần tài trợ?
+    cta: Trở thành nhà tài trợ
+  past:
+    heading: Sự kiện đã diễn ra

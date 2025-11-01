@@ -3,9 +3,9 @@ import { JOB_POSTING_TYPE_I18N } from '@sveltevietnam/backend/data/job-postings/
 import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
 import jsQR from 'jsqr';
 
-import * as m from '../../src/data/locales/generated/messages';
 import * as p from '../../src/data/routes/generated';
 import * as b from '../../src/data/routes/generated/breadcrumbs';
+import * as m from '../../src/lib/i18n/generated/messages';
 import { type schema } from '../fixtures/with-backend';
 
 import { CommonPageObjectModel, type CommonPageObjectModelInit } from './common';
@@ -102,28 +102,28 @@ export class PagePostingDetails extends CommonPageObjectModel {
 
 		this.actions = {
 			apply: this.page.getByRole('button', {
-				name: m['pages.postings_id.actions.apply'](this.lang).toString(),
+				name: m['pages.postings_id.actions.apply'](this.lang),
 			}),
 			copyLink: this.page.getByRole('button', {
-				name: m['pages.postings_id.actions.share.link'](this.lang).toString(),
+				name: m['pages.postings_id.actions.share.link'](this.lang),
 			}),
 			generateQR: this.page.getByRole('button', {
-				name: m['pages.postings_id.actions.share.qr'](this.lang).toString(),
+				name: m['pages.postings_id.actions.share.qr'](this.lang),
 			}),
 			delete: this.page.getByRole('button', {
-				name: m['pages.postings_id.manage.delete'](this.lang).toString(),
+				name: m['pages.postings_id.manage.delete'](this.lang),
 			}),
 			edit: this.page.getByRole('link', {
-				name: m['pages.postings_id.manage.edit'](this.lang).toString(),
+				name: m['pages.postings_id.manage.edit'](this.lang),
 			}),
 		};
 
 		this.callout = {
 			pending: this.page.getByRole('note').filter({
-				hasText: m['pages.postings_id.pending'](this.lang).toString(),
+				hasText: m['pages.postings_id.pending'](this.lang),
 			}),
 			deleted: this.page.getByRole('note').filter({
-				hasText: m['pages.postings_id.deleted'](this.lang).toString(),
+				hasText: m['pages.postings_id.deleted'](this.lang),
 			}),
 		};
 	}
@@ -153,11 +153,11 @@ export class PagePostingDetails extends CommonPageObjectModel {
 			expect(this.posting.salary).toHaveText(posting.salary),
 			posting.approvedAt
 				? expect(this.posting.postedAt).toHaveText(
-						`${m['pages.postings_id.general.posted_at'](this.lang).toString()} ${formatDate(posting.approvedAt)}`,
+						`${m['pages.postings_id.general.posted_at'](this.lang)} ${formatDate(posting.approvedAt)}`,
 					)
 				: expect(this.posting.postedAt).toBeHidden(),
 			expect(this.posting.expiredAt).toHaveText(
-				`${m['pages.postings_id.general.expired_at'](this.lang).toString()} ${formatDate(posting.expiredAt)}`,
+				`${m['pages.postings_id.general.expired_at'](this.lang)} ${formatDate(posting.expiredAt)}`,
 			),
 			posting.description && expect(this.posting.description).toHaveText(/\w+/),
 		]);
@@ -165,7 +165,7 @@ export class PagePostingDetails extends CommonPageObjectModel {
 
 	async backToListing(): Promise<import('./posting-list').PagePostingList> {
 		const breadcrumbs = this.page.getByRole('navigation', {
-			name: m['components.breadcrumbs.aria'](this.lang).toString(),
+			name: m['components.breadcrumbs.aria'](this.lang),
 		});
 		await expect(breadcrumbs).toBeVisible();
 		const link = breadcrumbs.getByRole('link', {
@@ -199,7 +199,7 @@ export class PagePostingDetails extends CommonPageObjectModel {
 
 		// User clicks "cancel"
 		const cancelButton = dialog.getByRole('button', {
-			name: m['pages.postings_id.delete.confirmation.cancel'](this.lang).toString(),
+			name: m['pages.postings_id.delete.confirmation.cancel'](this.lang),
 		});
 		await expect(cancelButton).toBeVisible();
 		cancelButton.click();
@@ -213,15 +213,18 @@ export class PagePostingDetails extends CommonPageObjectModel {
 
 		// User clicks "confirm"
 		const confirmButton = dialog.getByRole('button', {
-			name: m['pages.postings_id.delete.confirmation.confirm'](this.lang).toString(),
+			name: m['pages.postings_id.delete.confirmation.confirm'](this.lang),
 		});
 		await expect(confirmButton).toBeVisible();
 		confirmButton.click();
 
 		// User sees alert of success deletion
-		const alert = this.page.getByRole('alert').filter({
-			hasText: m['pages.postings_id.delete.success'](this.lang).toString(),
-		});
+		const alert = this.page
+			.getByRole('alert')
+			.filter({
+				hasText: m['pages.postings_id.delete.success'](this.lang),
+			})
+			.first();
 		await expect(alert).toBeVisible();
 	}
 
@@ -260,7 +263,7 @@ export class PagePostingDetails extends CommonPageObjectModel {
 
 		// User downloads the QR code
 		const downloadPromise = this.page.waitForEvent('download');
-		await dialog.getByRole('link', { name: m['download'](this.lang).toString() }).click();
+		await dialog.getByRole('link', { name: m['download'](this.lang) }).click();
 		const download = await downloadPromise;
 
 		// User expects the QR code to contain the public URL
@@ -270,7 +273,7 @@ export class PagePostingDetails extends CommonPageObjectModel {
 		expect(code!.data).toBe(this.getPublicUrl());
 
 		// User closes the dialog
-		await dialog.getByRole('button', { name: m['close'](this.lang).toString() }).click();
+		await dialog.getByRole('button', { name: m['close'](this.lang) }).click();
 
 		return code!.data;
 	}

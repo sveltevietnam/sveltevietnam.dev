@@ -1,0 +1,27 @@
+# =========================
+# Language: English
+# Scope:    pages.postings
+# =========================
+messages:
+  meta:
+    title: Your Postings | Recruit | Svelte Vietnam
+  heading: Your Postings
+  pending:
+    heading: Pending Postings
+    desc:
+      These postings are under review by the admin team. You will be notified via email once they
+      are approved or need changes.
+  active:
+    heading: Active Postings
+    desc:
+      These postings are appproved and live on the <a class="c-link"
+      href="{{mainSiteUrl}}/en/jobs">"Jobs"</a> page.
+    create: Create
+    tba:
+      desc: No active postings yet.
+      cta: Create a job posting!
+  expired:
+    heading: Expired Postings
+    desc:
+      These postings are read-only and no longer listed on the <a class="c-link"
+      href="{{mainSiteUrl}}/en/jobs">"Jobs"</a> page.

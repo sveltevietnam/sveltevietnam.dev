@@ -1,6 +1,6 @@
 import type { Faker } from '@faker-js/faker';
 import { mergeTests, type Page } from '@playwright/test';
-import type { Language } from '@sveltevietnam/i18n';
+import type { Language } from '@sveltevietnam/kit/constants';
 import { eq } from 'drizzle-orm';
 
 import { PagePostingList } from '../poms/posting-list';
@@ -37,7 +37,7 @@ export function generateEmployerTestData(faker: Faker): (typeof schema.employers
 	return {
 		id: 'employer_' + faker.string.nanoid(),
 		email: faker.internet.email().toLowerCase(),
-		image: faker.image.urlLoremFlickr({ category: 'business' }),
+		image: faker.image.url(),
 		emailVerified: true,
 		name: faker.company.name(),
 		description: faker.lorem.paragraphs(3),

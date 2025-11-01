@@ -1,9 +1,6 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { T } from '@sveltevietnam/i18n';
 	import type { HTMLAttributes } from 'svelte/elements';
-
-	import * as m from '$data/locales/generated/messages';
 
 	let {
 		url,
@@ -16,18 +13,14 @@
 		current: number;
 		max: number;
 	} & HTMLAttributes<HTMLElement> = $props();
-
-	const { routing } = Contexts.get();
 </script>
 
-<nav
-	class={['flex w-fit items-center gap-4', cls]}
-	aria-label={m['components.pagination.aria'](routing.lang)}
-	{...rest}
->
+<nav class={['flex w-fit items-center gap-4', cls]} aria-labelledby="pagination-label" {...rest}>
+	<p class="sr-only"><T key="components.pagination.aria" /></p>
 	<form class="flex items-center gap-2" method="GET" action={url.toString()}>
-		<p><T message={m['components.pagination.page']} /></p>
-		<label class="sr-only" for="page"><T message={m['components.pagination.number']} /></label>
+		<p><T key="components.pagination.page" /></p>
+		<label class="sr-only" for="page"><T key="components.pagination.number" /></label>
+
 		<input
 			class="appearance-none border border-current px-2 py-1"
 			style:width="{1.75 + 1.5 * max.toString().length}ch"
@@ -39,16 +32,16 @@
 			id="page"
 			value={current}
 		/>
-		<p><T message={m['components.pagination.of']} /> <strong>{max}</strong></p>
+		<p><T key="components.pagination.of" /> <strong>{max}</strong></p>
 	</form>
 	<form class="flex items-center gap-2" method="GET" action={url.toString()}>
 		<label
 			class={[
 				'c-link-lazy cursor-pointer border border-current px-1.5 py-1',
-				'has-disabled:cursor-not-allowed has-disabled:text-placeholder',
+				'has-disabled:text-placeholder has-disabled:cursor-not-allowed',
 			]}
 		>
-			<span class="sr-only"><T message={m['components.pagination.previous']} /></span>
+			<span class="sr-only"><T key="components.pagination.previous" /></span>
 			<i class="i i-[ph--caret-left] h-5 w-5"></i>
 			<input
 				class="sr-only"
@@ -61,10 +54,10 @@
 		<label
 			class={[
 				'c-link-lazy cursor-pointer border border-current px-1.5 py-1',
-				'has-disabled:cursor-not-allowed has-disabled:text-placeholder',
+				'has-disabled:text-placeholder has-disabled:cursor-not-allowed',
 			]}
 		>
-			<span class="sr-only"><T message={m['components.pagination.next']} /></span>
+			<span class="sr-only"><T key="components.pagination.next" /></span>
 			<i class="i i-[ph--caret-right] h-5 w-5"></i>
 			<input
 				class="sr-only"

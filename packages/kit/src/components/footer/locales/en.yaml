@@ -1,0 +1,10 @@
+# ============================
+# Language: English
+# Scope:    components.footer
+# ============================
+messages:
+  navigation:
+    heading: Navigation
+  contact:
+    heading: Contact
+  powered_by: Powered by

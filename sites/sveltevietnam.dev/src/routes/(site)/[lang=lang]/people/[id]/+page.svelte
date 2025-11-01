@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 
 	import { page } from '$app/state';
-	import * as m from '$data/locales/generated/messages';
 	import * as p from '$data/routes/generated';
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
 	import { EventListing } from '$lib/components/event-listing';
@@ -39,17 +38,11 @@
 		<div class="max-w-pad tablet:gap-10 tablet:flex-row flex flex-col">
 			<div
 				class={[
-					'z-1 tablet:space-y-8 pt-intro-pad-top relative flex-1 space-y-6',
+					'tablet:space-y-8 pt-intro-pad-top relative z-1 flex-1 space-y-6',
 					!data.person.popImage && 'pb-section',
 				]}
 			>
-				<Breadcrumbs
-					crumbs={data.routing.breadcrumbs}
-					i18n={{
-						aria: m['components.breadcrumbs.aria'],
-						home: m['components.breadcrumbs.home'],
-					}}
-				/>
+				<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 				<div class="space-y-4">
 					<h1 class="c-text-heading-lg text-primary-on-surface font-bold">
 						{data.person.name}
@@ -60,12 +53,12 @@
 			</div>
 			{#if data.person.popImage}
 				<div
-					class="tablet:pt-intro-pad-top tablet:px-6 desktop:px-10 can-hover:grayscale duration-400
-					self-end transition-[filter] group-hover:filter-none group-hover:duration-100"
+					class="tablet:pt-intro-pad-top tablet:px-6 desktop:px-10 can-hover:grayscale self-end
+					transition-[filter] duration-400 group-hover:filter-none group-hover:duration-100"
 				>
 					<enhanced:img
 						class="tablet:w-70 desktop:w-80 can-hover:translate-y-6 can-hover:scale-90
-						duration-400 relative h-auto w-60 transition-transform
+						relative h-auto w-60 transition-transform duration-400
 						group-hover:translate-y-0 group-hover:scale-100 group-hover:duration-75"
 						src={data.person.popImage}
 						alt=""
@@ -73,7 +66,7 @@
 				</div>
 			{/if}
 		</div>
-		<IntroSeparator variant="full" class="z-2 relative" />
+		<IntroSeparator variant="full" class="relative z-2" />
 	</section>
 
 	<!-- contribute to these events -->
@@ -85,10 +78,10 @@
 			<div class="space-y-4 border-t-4 border-current pt-2">
 				<div class="flex flex-wrap items-baseline justify-between gap-4">
 					<h2 class="c-text-title" id="events">
-						<T message={m['pages.people_slug.events']} name={data.person.name} />
+						<T key="pages.people_id.events" params={{ name: data.person.name }} />
 					</h2>
 					<TextArrowLink class="ml-auto" href={links.events}>
-						<T message={m['pages.people_slug.view_events']} />
+						<T key="pages.people_id.view_events" />
 					</TextArrowLink>
 				</div>
 			</div>
@@ -105,10 +98,10 @@
 			<div class="space-y-4 border-t-4 border-current pt-2">
 				<div class="flex flex-wrap items-baseline justify-between gap-4">
 					<h2 class="c-text-title" id="posts">
-						<T message={m['pages.people_slug.posts_by']} name={data.person.name} />
+						<T key="pages.people_id.posts_by" params={{ name: data.person.name }} />
 					</h2>
 					<TextArrowLink class="ml-auto" href={links.blog}>
-						<T message={m['pages.people_slug.view_blog']} />
+						<T key="pages.people_id.view_blog" />
 					</TextArrowLink>
 				</div>
 			</div>

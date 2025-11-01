@@ -1,23 +1,31 @@
 {
 	"name": "@sveltevietnam/i18n",
-	"version": "1.0.0-next",
+	"version": "0.0.0",
 	"description": "i18n automation for sveltevietnam.dev projects",
-	"private": true,
-	"module": "src/index.js",
-	"main": "src/index.js",
+	"module": "src/runtime/index.js",
+	"main": "src/runtime/index.js",
 	"types": "types/index.d.ts",
 	"type": "module",
-	"bin": "./src/cli.js",
 	"exports": {
 		".": {
 			"types": "./types/index.d.ts",
-			"import": "./src/index.js",
-			"default": "./src/index.js"
+			"import": "./src/runtime/index.js",
+			"default": "./src/runtime/index.js"
 		},
-		"./language": {
+		"./static": {
 			"types": "./types/index.d.ts",
-			"import": "./src/language.js",
-			"default": "./src/language.js"
+			"import": "./src/runtime/static.js",
+			"default": "./src/runtime/static.js"
+		},
+		"./generated": {
+			"types": "./types/index.d.ts",
+			"import": "./src/runtime/generated.js",
+			"default": "./src/runtime/generated.js"
+		},
+		"./factory": {
+			"types": "./types/index.d.ts",
+			"import": "./src/factory/index.js",
+			"default": "./src/factory/index.js"
 		},
 		"./utils": {
 			"types": "./types/index.d.ts",
@@ -26,18 +34,8 @@
 		},
 		"./vite": {
 			"types": "./types/index.d.ts",
-			"import": "./src/vite.js",
-			"default": "./src/vite.js"
-		},
-		"./runtime": {
-			"types": "./types/index.d.ts",
-			"import": "./src/runtime/index.js",
-			"default": "./src/runtime/index.js"
-		},
-		"./runtime/factory": {
-			"types": "./types/index.d.ts",
-			"import": "./src/runtime/factory.js",
-			"default": "./src/runtime/factory.js"
+			"import": "./src/vite/index.js",
+			"default": "./src/vite/index.js"
 		}
 	},
 	"publishconfig": {
@@ -46,15 +44,28 @@
 	},
 	"files": [
 		"src",
-		"types"
+		"types",
+		"CHANGELOG.md",
+		"!**/tests",
+		"!**/*.test.ts",
+		"!**/*.test.js",
+		"!**/__screenshots__",
+		"!**/__snapshots__"
 	],
-	"license": "mit",
+	"license": {
+		"type": "MIT",
+		"url": "https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/LICENSE"
+	},
 	"author": {
 		"email": "developers@sveltevietnam.dev",
 		"name": "Svelte Vietnam",
 		"url": "https://github.com/sveltevietnam"
 	},
 	"homepage": "https://www.sveltevietnam.dev",
+	"funding": {
+		"type": "opencollective",
+		"url": "https://opencollective.com/sveltevietnam"
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/sveltevietnam/sveltevietnam.dev.git",
@@ -78,23 +89,33 @@
 		"lint:svelte": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"lint:es": "eslint .",
 		"lint:style": "stylelint '**/*.{svelte,css}'",
-		"format": "prettier --write --ignore-path=../../.prettierignore --config=../../prettier.config.js ."
-	},
-	"peerDependencies": {
-		"svelte": "^5.38.6",
-		"vite": "^7.1.4"
+		"format": "prettier --write --ignore-path=../../.prettierignore --config=../../prettier.config.js .",
+		"json-schema": "node src/parser/schema/json-schema.js",
+		"test:unit:buildtime": "vitest run --project buildtime",
+		"test:unit:runtime:ssr": "vitest run --project runtime-ssr",
+		"test:unit:runtime:browser": "vitest run --project runtime-browser --browser.headless",
+		"test:unit": "vitest run --browser.headless --coverage",
+		"test:e2e": "pnpm -r --workspace-concurrency 1 --filter=\"./tests/**\" test",
+		"test": "run-p test:unit test:e2e"
 	},
 	"devDependencies": {
-		"svelte": "^5.39.11",
-		"vite": "^7.1.9"
+		"@sveltejs/vite-plugin-svelte": "^6.2.1",
+		"@types/sanitize-html": "^2.16.0",
+		"@valibot/to-json-schema": "^1.3.0",
+		"svelte": "^5.43.0",
+		"vite": "^7.1.12",
+		"vite-tsconfig-paths": "^5.1.4"
 	},
 	"dependencies": {
 		"@clack/prompts": "^0.11.0",
-		"commander": "^14.0.1",
+		"commander": "^14.0.2",
 		"dedent": "^1.7.0",
+		"import-meta-resolve": "^4.2.0",
 		"picocolors": "^1.1.1",
+		"sanitize-html": "^2.17.0",
 		"tiny-glob": "^0.2.9",
 		"typescript": "^5.9.3",
+		"valibot": "1.1.0",
 		"yaml": "^2.8.1"
 	},
 	"volta": {

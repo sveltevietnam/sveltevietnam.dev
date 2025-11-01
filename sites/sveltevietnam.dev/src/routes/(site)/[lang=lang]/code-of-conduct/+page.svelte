@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { EMAILS, SOCIAL_LINKS } from '@sveltevietnam/kit/constants';
 
-	import * as m from '$data/locales/generated/messages';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import * as pagefind from '$lib/pagefind/attributes';
 
@@ -16,28 +15,22 @@
 	<!-- intro -->
 	<section class="space-y-section pt-intro-pad-top bg-gradient-primary-intro">
 		<div class="max-w-pad tablet:space-y-8 w-full space-y-6">
-			<Breadcrumbs
-				crumbs={data.routing.breadcrumbs}
-				i18n={{
-					aria: m['components.breadcrumbs.aria'],
-					home: m['components.breadcrumbs.home'],
-				}}
-			/>
+			<Breadcrumbs crumbs={data.routing.breadcrumbs} />
 			<h1
 				class="c-text-heading-page text-primary-on-surface flex items-center justify-center uppercase"
 			>
-				<T message={m['pages.coc.heading']} />
+				<T key="pages.coc.heading" />
 			</h1>
 		</div>
 		<IntroSeparator variant="flag" />
 	</section>
 
 	<section class="max-w-pad py-section">
-		<h2 class="sr-only" id="description"><T message={m['pages.coc.heading']} /></h2>
+		<h2 class="sr-only" id="description"><T key="pages.coc.heading" /></h2>
 		<div
 			class="tablet:p-8 desktop:p-10 shadow-brutal-lg border-onehalf w-fit space-y-6 border-current p-6"
 		>
-			<p class="max-w-readable-relaxed leading-relaxed"><T message={m['pages.coc.message']} /></p>
+			<p class="max-w-readable-relaxed leading-relaxed"><T key="pages.coc.message" /></p>
 			<ul class="w-fit space-y-6">
 				<li>
 					<a
@@ -48,7 +41,7 @@
 						data-umami-event-source="discord"
 						data-umami-event-position="pages.coc"
 					>
-						<span><T message={m['pages.coc.contact.discord']} /></span>
+						<span><T key="pages.coc.contact.discord" /></span>
 						<i class="i i-[ph--arrow-square-out] h-6 w-6"></i>
 					</a>
 				</li>
@@ -58,7 +51,7 @@
 						href="mailto:{EMAILS.COC}"
 						data-external
 					>
-						<span><T message={m['pages.coc.contact.email']} /> {EMAILS.COC}</span>
+						<span><T key="pages.coc.contact.email" /> {EMAILS.COC}</span>
 						<i class="i i-[ph--arrow-square-out] h-6 w-6"></i>
 					</a>
 				</li>
@@ -68,19 +61,19 @@
 
 	<section class="max-w-pad bg-primary-surface py-section space-y-6">
 		<h2 class="c-text-heading-lg border-b" id="excerpt">
-			<T message={m['pages.coc.excerpt.heading']} />
+			<T key="pages.coc.excerpt.heading" />
 		</h2>
 		<p class="max-w-readable-relaxed leading-relaxed">
-			<T message={m['pages.coc.excerpt.desc']} />
+			<T key="pages.coc.excerpt.desc" />
 		</p>
 		<blockquote class="tablet:px-10 desktop:px-12 px-6" cite="https://sveltesociety.dev/about">
 			<p class="max-w-readable-relaxed relative leading-relaxed">
 				{@render quotes('absolute right-full -top-3 -translate-x-1.5')}
-				<T message={m['pages.coc.excerpt.content']} />
+				<T key="pages.coc.excerpt.content" />
 				{@render quotes('absolute -scale-100 left-full -bottom-3')}
 			</p>
 			<footer class="text-on-surface-subtle mt-5">
-				<cite class="not-italic"><T message={m['pages.coc.excerpt.citation']} /></cite>
+				<cite class="not-italic"><T key="pages.coc.excerpt.citation" /></cite>
 			</footer>
 		</blockquote>
 	</section>

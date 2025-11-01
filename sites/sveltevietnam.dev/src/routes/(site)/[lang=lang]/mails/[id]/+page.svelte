@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n/runtime';
+	import { T } from '@sveltevietnam/i18n';
 	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { formatFullDateAndTime } from '@sveltevietnam/kit/utilities/datetime';
 
-	import * as m from '$data/locales/generated/messages';
 	import { SubscriberUpdateForm } from '$lib/forms/subscriber';
 
 	import type { PageProps } from './$types';
@@ -42,28 +41,28 @@
 		<!-- mail info -->
 		<section class="space-y-6">
 			<h2 class="c-text-heading border-b">
-				<T message={m['pages.mail.email.heading']} />
+				<T key="pages.mail.email.heading" />
 			</h2>
 			<dl class="grid grid-cols-[auto_1fr] gap-x-4">
 				<div class="border-b-onehalf col-span-2 grid grid-cols-subgrid border-dashed py-4">
 					<dt class="font-semibold">
-						<T message={m['pages.mail.email.subject']} />:
+						<T key="pages.mail.email.subject" />:
 					</dt>
 					<dd>{data.mail.subject}</dd>
 				</div>
 				<div class="border-b-onehalf col-span-2 grid grid-cols-subgrid border-dashed py-4">
 					<dt class="font-semibold">
-						<T message={m['from']} />:
+						<T key="from" />:
 					</dt>
 					<dd>
 						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 						{@html '<!--email_off-->'}{data.mail.from}{@html '<!--/email_off-->'}
-						(<T message={m['svelte_vietnam.name']} />)
+						(<T key="svelte_vietnam.name" />)
 					</dd>
 				</div>
 				<div class="border-b-onehalf col-span-2 grid grid-cols-subgrid border-dashed py-4">
 					<dt class="font-semibold">
-						<T message={m['to']} />:
+						<T key="to" />:
 					</dt>
 					<dd>
 						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
@@ -72,7 +71,7 @@
 				</div>
 				<div class="col-span-2 grid grid-cols-subgrid py-4">
 					<dt class="font-semibold">
-						<T message={m['pages.mail.email.sent']} />:
+						<T key="pages.mail.email.sent" />:
 					</dt>
 					<dd>{formatFullDateAndTime(routing.lang, data.mail.sentAt)}</dd>
 				</div>
@@ -83,7 +82,7 @@
 		{#if data.form}
 			<section class="space-y-6">
 				<h2 class="c-text-heading border-b">
-					<T message={m['pages.mail.subscriber.heading']} />
+					<T key="pages.mail.subscriber.heading" />
 				</h2>
 				<SubscriberUpdateForm data={data.form} />
 			</section>
@@ -95,8 +94,8 @@
 		<h2 class="sr-only">Mail</h2>
 		<p class="c-callout c-callout--warning">
 			<T
-				message={m['pages.mail.expiration']}
-				datetime={formatFullDateAndTime(routing.lang, data.expiresAt)}
+				key="pages.mail.expiration"
+				params={{ datetime: formatFullDateAndTime(routing.lang, data.expiresAt) }}
 			/>
 		</p>
 		<div class="border-onehalf tablet:p-4 tablet:max-h-[72vh] h-fit overflow-auto p-2">
