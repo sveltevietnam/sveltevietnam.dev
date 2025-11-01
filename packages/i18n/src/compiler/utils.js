@@ -30,6 +30,15 @@ export function getIdFromMessageKey(key) {
 	);
 }
 
+/**
+ * replace any non-alphanumeric character with underscore
+ * @param {string} lang
+ * @returns {string}
+ */
+export function normalizeLangIdentifier(lang) {
+	return lang.replace(/[^a-zA-Z0-9]/g, '_');
+}
+
 export const newline = () => factory.createIdentifier('\n');
 
 /**

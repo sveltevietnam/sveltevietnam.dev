@@ -1,6 +1,6 @@
 import ts, { factory } from 'typescript';
 
-import { getIdFromMessageKey, getSourceMessageType } from '../utils.js';
+import { getIdFromMessageKey, getSourceMessageType, normalizeLangIdentifier } from '../utils.js';
 
 // ===========
 // Public API
@@ -30,9 +30,9 @@ export function generateMessage(message, langs) {
 					.toSorted()
 					.map((lang) =>
 						factory.createPropertyAssignment(
-							factory.createIdentifier(lang),
+							factory.createStringLiteral(lang),
 							factory.createElementAccessExpression(
-								factory.createIdentifier(lang),
+								factory.createIdentifier(normalizeLangIdentifier(lang)),
 								factory.createStringLiteral(key),
 							),
 						),

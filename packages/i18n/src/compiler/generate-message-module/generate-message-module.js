@@ -7,6 +7,7 @@ import {
 	importFactories,
 	newline,
 	getSourceMessageType,
+	normalizeLangIdentifier,
 } from '../utils.js';
 
 // ===========
@@ -57,7 +58,7 @@ export function generateMessageModule(messages, langs) {
 				factory.createImportClause(
 					undefined,
 					undefined,
-					factory.createNamespaceImport(factory.createIdentifier(lang)),
+					factory.createNamespaceImport(factory.createIdentifier(normalizeLangIdentifier(lang))),
 				),
 				factory.createStringLiteral(`./${lang}.js`),
 				undefined,
