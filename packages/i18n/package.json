@@ -57,6 +57,10 @@
 		"url": "https://github.com/sveltevietnam"
 	},
 	"homepage": "https://www.sveltevietnam.dev",
+	"funding": {
+		"type": "opencollective",
+		"url": "https://opencollective.com/sveltevietnam"
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/sveltevietnam/sveltevietnam.dev.git",
