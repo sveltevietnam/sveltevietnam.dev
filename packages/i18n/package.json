@@ -1,7 +1,7 @@
 {
 	"name": "@sveltevietnam/i18n",
 	"version": "0.1.0",
-	"description": "i18n automation for sveltevietnam.dev projects",
+	"description": "composable and minimal i18n solution for Svelte & SvelteKit",
 	"module": "src/runtime/index.js",
 	"main": "src/runtime/index.js",
 	"types": "types/index.d.ts",
