@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.2
+
+### Patch Changes
+
+- [`4d010d0`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/4d010d03f3ca26ee23d500cbb77d2ddaae0636e1) Thanks [@vnphanquang](https://github.com/vnphanquang)! - add missing svelte export conditions
+
+- [`cc3cf9c`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/cc3cf9c9eee30b821e8dceff2d0b57771d8f2282) Thanks [@vnphanquang](https://github.com/vnphanquang)! - exclude '$i18n/\*' imports from being prebundling
+
 ## 0.1.1
 
 ### Patch Changes
