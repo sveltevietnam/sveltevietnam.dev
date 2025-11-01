@@ -1,6 +1,6 @@
 {
 	"name": "@sveltevietnam/i18n",
-	"version": "0.0.0",
+	"version": "0.1.0",
 	"description": "i18n automation for sveltevietnam.dev projects",
 	"module": "src/runtime/index.js",
 	"main": "src/runtime/index.js",
