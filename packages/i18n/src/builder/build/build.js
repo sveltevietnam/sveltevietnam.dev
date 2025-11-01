@@ -137,7 +137,7 @@ export async function build(input) {
 			messages: { targets, index },
 			constants,
 			dts: generateDts(mode),
-			remote: mode === 'remote' ? REMOTE_MODULE : undefined,
+			remote: mode === 'remote' ? REMOTE_MODULE : '',
 		},
 		numMessages: keys.length,
 		sources: Array.from(

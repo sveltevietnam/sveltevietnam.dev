@@ -59,7 +59,7 @@ async function b(root, config, logger) {
 			fs.writeFile(path.join(outDir, 'messages', `${lang}.js`), module, 'utf-8'),
 		),
 		fs.writeFile(path.join(outDir, 'i18n.d.ts'), dts, 'utf-8'),
-		remote && fs.writeFile(path.join(outDir, 't.remote.js'), remote, 'utf-8'),
+		fs.writeFile(path.join(outDir, 't.remote.js'), remote, 'utf-8'),
 	]);
 
 	logger.success(

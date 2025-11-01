@@ -36,8 +36,8 @@ export type BuildOutput = {
 		constants: string;
 		/** $i18n/i18n.d.ts */
 		dts: string;
-		/** $i18n/t.remote.js */
-		remote?: string;
+		/** $i18n/t.remote.js, empty in 'static' mode, only populated in 'remote' mode */
+		remote: string;
 	};
 	/** all the source locale files that were read during process */
 	sources: string[];
