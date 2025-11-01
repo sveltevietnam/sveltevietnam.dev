@@ -47,7 +47,10 @@
 		"src",
 		"types"
 	],
-	"license": "mit",
+	"license": {
+		"type": "MIT",
+		"url": "https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/LICENSE"
+	},
 	"author": {
 		"email": "developers@sveltevietnam.dev",
 		"name": "Svelte Vietnam",
