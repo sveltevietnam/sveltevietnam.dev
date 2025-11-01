@@ -14,7 +14,7 @@ export interface ProviderProps<
 	 * @default import('sanitize-html').default
 	 */
 	sanitize?: (content: string) => string;
-	children: Snippet;
+	children?: Snippet;
 }
 export const Provider: Component<ProviderProps>;
 export default Provider;
