@@ -11,7 +11,7 @@ import { mode } from '$i18n/constants.js';
 function defaultSanitize(content) {
 	return sanitizeHtml(content, {
 		allowedAttributes: {
-			'*': ['class', 'data-*'],
+			'*': ['class', 'id', 'data-*'],
 			a: ['href', 'target', 'rel'],
 		},
 	});
