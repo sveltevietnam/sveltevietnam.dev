@@ -49,7 +49,7 @@ and more...
 ```bash
 npm install --save-dev @sveltevietnam/i18n
 yarn add --dev @sveltevietnam/i18n
-pnpm add --save-dev @sveltevietnam/i18n
+pnpm add -D @sveltevietnam/i18n
 ```
 
 ### 2. Use the Vite Plugin
