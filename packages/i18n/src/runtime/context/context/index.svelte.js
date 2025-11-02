@@ -70,7 +70,7 @@ export class Context {
 
 				// @ts-expect-error alias set up by vite plugin
 				return import('$i18n/t.remote.js')
-					.then((mod) => mod.t({ key, lang: rLang, params }))
+					.then((mod) => mod.query({ key, lang: rLang, params }))
 					.then((text) => rSanitize(text));
 			}
 		);

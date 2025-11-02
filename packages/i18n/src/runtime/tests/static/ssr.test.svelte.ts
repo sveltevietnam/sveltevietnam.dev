@@ -15,7 +15,7 @@ vi.mock('$i18n/constants.js', () => ({
 	mode: 'static',
 }));
 vi.mock('$i18n/t.remote.js', () => ({
-	t: remoteT,
+	query: remoteT,
 }));
 
 // ======

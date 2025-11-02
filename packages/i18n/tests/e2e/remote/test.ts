@@ -12,7 +12,7 @@ test('user can see translated messages', async ({ page }) => {
 	await pom.expect('en');
 
 	// user changes language to Vietnamese
-	const responsePromise = page.waitForResponse(/_app\/remote\/\w*\/t/);
+	const responsePromise = page.waitForResponse(/_app\/remote\/\w*\/query/);
 	await pom.changeLanguage('vi');
 	await responsePromise;
 
