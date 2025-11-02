@@ -1,13 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
-import type {
-	Message,
-	MessageSimple,
-	MessageWithParams,
-	InferKey,
-	InferParams,
-	InferLanguage,
-} from '../../types.public';
+import type { Message, InferParams, InferLanguage, InferType } from '../../types.public';
 
 export class Context<
 	Mode extends 'static' | 'remote' = import('@sveltevietnam/i18n/generated').Mode,
@@ -39,25 +30,27 @@ export interface RemoteTranslate<
 	Language extends string = import('@sveltevietnam/i18n/generated').Language,
 	Mapping extends Record<string, Message> = import('@sveltevietnam/i18n/generated').Mapping,
 > {
-	<K extends InferKey<Mapping, 'simple'>>(input: {
-		key: K;
-		options?: Partial<TranslateOptions<Language>>;
-	}): Promise<string>;
-	<K extends InferKey<Mapping, 'with-params'>>(input: {
-		key: K;
-		params: InferParams<Mapping[K]>;
-		options?: Partial<TranslateOptions<Language>>;
-	}): Promise<string>;
+	<Key extends keyof Mapping>(
+		input: {
+			key: Key;
+			options?: Partial<TranslateOptions<Language>>;
+		} & (InferType<Mapping[Key]> extends 'with-params'
+			? {
+					params: InferParams<Mapping[Key]>;
+				}
+			: Record<never, never>),
+	): Promise<string>;
 }
 
 export interface StaticTranslate {
-	<M extends MessageSimple<any, any>>(input: {
-		message: M;
-		options?: Partial<TranslateOptions<InferLanguage<M>>>;
-	}): string;
-	<M extends MessageWithParams<any, any, any>>(input: {
-		message: M;
-		params: InferParams<M>;
-		options?: Partial<TranslateOptions<InferLanguage<M>>>;
-	}): string;
+	<M extends Message>(
+		input: {
+			message: M;
+			options?: Partial<TranslateOptions<InferLanguage<M>>>;
+		} & (InferType<M> extends 'with-params'
+			? {
+					params: InferParams<M>;
+				}
+			: Record<never, never>),
+	): string;
 }
