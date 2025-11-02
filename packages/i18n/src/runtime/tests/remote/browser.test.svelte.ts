@@ -17,6 +17,7 @@ vi.mock('@sveltevietnam/i18n/generated/constants', () => ({
 }));
 vi.mock('@sveltevietnam/i18n/generated/t.remote', () => ({
 	query: remoteT,
+	prerender: remoteT,
 }));
 
 afterEach(() => {
@@ -61,7 +62,7 @@ test('throw if not in context', async () => {
 });
 
 test('throw if message and key is missing', async () => {
-	const context = new Context(() => ({ lang: 'en' }));
+	const context = new Context<'remote'>(() => ({ lang: 'en' }));
 	const tSpy = vi.spyOn(context, 't').mockImplementationOnce((args) => {
 		try {
 			return context.t(args);
@@ -69,7 +70,7 @@ test('throw if message and key is missing', async () => {
 			expect((e as Error).message).toBe(
 				'(sveltevietnam/i18n) ✘ T component in "remote" mode requires "key" prop',
 			);
-			return 'error';
+			return Promise.resolve('error');
 		}
 	});
 	render(T, {

@@ -13,7 +13,8 @@ vi.mock('@sveltevietnam/i18n/generated/constants', () => ({
 	mode: 'static',
 }));
 vi.mock('@sveltevietnam/i18n/generated/t.remote', () => ({
-	t: vi.fn(),
+	prerender: vi.fn(),
+	query: vi.fn(),
 }));
 
 // ======
@@ -26,7 +27,7 @@ test('throw if not in context', async () => {
 });
 
 test('throw if message is missing', async () => {
-	const context = new Context(() => ({ lang: 'en' }));
+	const context = new Context<'static'>(() => ({ lang: 'en' }));
 	const tSpy = vi.spyOn(context, 't').mockImplementationOnce((args) => {
 		try {
 			return context.t(args);

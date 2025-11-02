@@ -16,6 +16,7 @@ vi.mock('@sveltevietnam/i18n/generated/constants', () => ({
 }));
 vi.mock('@sveltevietnam/i18n/generated/t.remote', () => ({
 	query: remoteT,
+	prerender: remoteT,
 }));
 
 // ======
@@ -44,7 +45,8 @@ test('throw if message is missing', async () => {
 describe('can still with message', () => {
 	test('simple message', async () => {
 		const { body } = await render(InProvider, {
-			props: { tProp: { message: messages.simple }, lang: 'en' },
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			props: { tProp: { message: messages.simple } as any, lang: 'en' },
 		});
 		expect(body).toContain(messages.simple('en'));
 	});
