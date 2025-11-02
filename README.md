@@ -31,9 +31,9 @@ See [CONTRIBUTING] on how you can contribute to the Svelte Vietnam project, or j
 
 This monorepo includes the following packages that are available for public use (via NPM registry):
 
-| Package                            | Description                           | Version                       | Changelog                          |
-| ---------------------------------- | ------------------------------------- | ----------------------------- | ---------------------------------- |
-| [@sveltevietnam/i18n][github.i18n] | component & utilities for async-stack | [![npm.i18n.badge]][npm.i18n] | [Changelog][github.i18n.changelog] |
+| Package                            | Description                                            | Version                       | Changelog                          |
+| ---------------------------------- | ------------------------------------------------------ | ----------------------------- | ---------------------------------- |
+| [@sveltevietnam/i18n][github.i18n] | compact & composable i18n solution for Svelte projects | [![npm.i18n.badge]][npm.i18n] | [Changelog][github.i18n.changelog] |
 
 <!-- LOCAL -->
 
