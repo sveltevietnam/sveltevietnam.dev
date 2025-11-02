@@ -107,9 +107,9 @@ for example:
 ```
 lib/
 	i18n/
-		locales/	  <- input folder
-			en.yaml	  <- messages in English
-			vi.yaml	  <- messages in Vietnamese
+		locales/			<- input folder
+			en.yaml			<- messages in English
+			vi.yaml			<- messages in Vietnamese
 		generated/	  <- output folder
 ```
 
@@ -157,6 +157,8 @@ possible.
 
 ### Using `t` function from context
 
+Internally, `T` component uses a `t` function from the i18n context, which you also have access to:
+
 ```svelte
 <script lang="ts">
 	import { Context } from '@sveltevietnam/i18n';
@@ -192,7 +194,10 @@ override the current language from context.
 
 ```svelte
 <T key="key.to.your.message" lang="en" />
-{await t({ key: 'key.to.your.message', lang: 'en' })}
+{await t({
+	key: 'string_with_params',
+	params: { name: 'world' }, // inferred from key
+})}
 ```
 
 ### Using Static Messages
@@ -208,6 +213,23 @@ const message = m['key.to.your.message'];
 
 > [!NOTE]
 > When importing static messages, always use wildcard (`* as m`) to facilitate tree-shaking.
+
+### Using Remote Functions
+
+In "remote" mode, `t` internally calls the generated remote function, which you can also import and
+use directly:
+
+```typescript
+import { query } from '@sveltevietnam/i18n/generated/t.remote';
+
+const translated = await query({
+	lang: 'en',
+	key: 'string_with_params',
+	params: { name: 'world' }, // inferred from key
+});
+```
+
+Similar to `t`, you will need to handle html string yourself.
 
 ## Remote vs Static Mode
 
