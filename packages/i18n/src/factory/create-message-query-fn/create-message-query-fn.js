@@ -1,4 +1,3 @@
-import { object, string, picklist, optional, record } from 'valibot';
 /**
  * @template {Record<string, import('../../runtime').Message>} MessageMap
  * @template {string} Language
@@ -8,13 +7,13 @@ import { object, string, picklist, optional, record } from 'valibot';
 export function createMessageQueryFn(modules) {
 	return async function (inputs) {
 		const langs = [...new Set(inputs.map((q) => q.lang))];
-		/** @type {Record<Language, import('./types.private').MessageTargetMap<MessageMap, keyof MessageMap>>} */
+		/** @type {Record<Language, import('../types.private').MessageTargetMap<MessageMap, keyof MessageMap>>} */
 		const messageMapPerLang = Object.fromEntries(
 			await Promise.all(
 				langs.map(async (lang) => {
 					const mod = modules[`./messages/${lang}.js`];
 					const messageMap =
-						/** @type {import('./types.private').MessageTargetMap<MessageMap, keyof MessageMap>} */ (
+						/** @type {import('../types.private').MessageTargetMap<MessageMap, keyof MessageMap>} */ (
 							await mod()
 						);
 					return [lang, messageMap];
@@ -26,17 +25,4 @@ export function createMessageQueryFn(modules) {
 			return messageMapPerLang[input.lang][input.key](/** @type {any} */ (input).params || {});
 		};
 	};
-}
-
-/**
- * @template {string} Language
- * @param {ReadonlyArray<Language>} languages
- * @returns {import('.').MessageQueryInputSchema<Language>}
- */
-export function createMessageQueryInputSchema(languages) {
-	return object({
-		key: string(),
-		lang: picklist(languages),
-		params: optional(record(string(), string())),
-	});
 }
