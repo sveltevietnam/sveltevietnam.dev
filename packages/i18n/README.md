@@ -285,6 +285,43 @@ Customization is permissible via the `sanitize` parameter to `Provider`, `T` com
 {t({ key: 'key.to.message', sanitize: customSanitize })}
 ```
 
+## Output Modules
+
+When running the Vite plugin, the `output` option specifies the directory that will host the
+following modules:
+
+```tree
+<output>/				<- e.g. ./src/lib/i18n/generated
+	messages/
+    index.js
+		[lang].js
+	i18n.d.ts
+	constants.js
+  t.remote.js
+```
+
+- `messages/[lang].js`: each contain language-specific "message targets".
+- `messages/index.js`: contains static "messages".
+  This is the module that `@sveltevietnam/i18n/generated/messages` aliases to.
+  See [Using Static Messages](#using-static-messages) for some more information.
+- `constants.js`: contains some helpful constants like languages, keys, current mode,
+  can be imported as `@sveltevietnam/i18n/generated/constants`.
+  See [Using Remote Functions](#using-remote-functions) for some more information.
+- `i18n.d.ts`: module augmentation for on-demand typing support.
+- `t.remote.js`: contains the remote function implementation for translation,
+  can be imported as `@sveltevietnam/i18n/generated/t.remote`.
+
+Although importing from `@sveltevietnam/i18n/generated` is most convenient, you can also opt to
+import directly from the output directory. For example, in SvelteKit, that may look like:
+
+```typescript
+import { langs } from '$lib/i18n/generated/constants';
+import * as m from '$lib/i18n/generated/messages';
+import { query } from '$lib/i18n/generated/t.remote';
+```
+
+This is helpful if you are reusing code in non-vite context, e.g. in Playwright tests.
+
 ## Why YAML?
 
 This package was originally built to facilitate internationalization for the
