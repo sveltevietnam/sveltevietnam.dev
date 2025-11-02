@@ -1,8 +1,7 @@
+import * as m from '@sveltevietnam/i18n/generated/messages';
 import type { Language } from '@sveltevietnam/kit/constants';
 import type { Toaster } from '@sveltevietnam/kit/notifications';
 import type { superForm } from 'sveltekit-superforms';
-
-import * as m from '$lib/i18n/generated/messages';
 
 type SuperFormErrorHandler = NonNullable<Parameters<typeof superForm>[1]>['onError'];
 

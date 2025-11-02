@@ -1,7 +1,6 @@
+import * as m from '@sveltevietnam/i18n/generated/messages';
 import type { Language } from '@sveltevietnam/kit/constants';
 import * as v from 'valibot';
-
-import * as m from '$lib/i18n/generated/messages';
 
 function createEmployerProfileSchemaBase(lang: Language) {
 	return v.objectAsync({

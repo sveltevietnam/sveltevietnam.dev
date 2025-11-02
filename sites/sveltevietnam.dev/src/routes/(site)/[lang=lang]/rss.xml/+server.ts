@@ -1,9 +1,9 @@
+import * as m from '@sveltevietnam/i18n/generated/messages';
 import Mustache from 'mustache';
 
 import { loadBlogPosts } from '$data/blog/posts';
 import { loadEvents } from '$data/events';
 import * as p from '$data/routes/generated';
-import * as m from '$lib/i18n/generated/messages';
 
 import type { RequestHandler } from './$types';
 import template from './rss.template.xml?raw';

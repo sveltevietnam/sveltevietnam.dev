@@ -1,4 +1,5 @@
 import { fail, error, redirect } from '@sveltejs/kit';
+import * as m from '@sveltevietnam/i18n/generated/messages';
 import { valibot } from 'sveltekit-superforms/adapters';
 import { message, superValidate, withFiles } from 'sveltekit-superforms/server';
 import * as v from 'valibot';
@@ -12,7 +13,6 @@ import {
 	createEmployerProfileSchema,
 	createEmployerEmailSchema,
 } from '$lib/forms/employer-profile';
-import * as m from '$lib/i18n/generated/messages';
 
 import type { Actions, PageServerLoad } from './$types';
 

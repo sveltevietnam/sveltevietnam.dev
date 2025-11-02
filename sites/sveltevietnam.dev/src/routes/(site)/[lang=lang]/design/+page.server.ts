@@ -1,7 +1,8 @@
+import * as m from '@sveltevietnam/i18n/generated/messages';
+
 import { loadBlogPost } from '$data/blog/posts';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
-import * as m from '$lib/i18n/generated/messages';
 
 import type { PageServerLoad } from './$types';
 import ogImageEn from './_page/images/og-design.en.jpg?url';

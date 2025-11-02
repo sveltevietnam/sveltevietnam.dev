@@ -1,4 +1,5 @@
 <script lang="ts">
+	import * as m from '@sveltevietnam/i18n/generated/messages';
 	import { PageMetadata } from '@sveltevietnam/kit/components';
 	import { Contexts, ContextsProvider } from '@sveltevietnam/kit/contexts';
 	import { onMount } from 'svelte';
@@ -14,7 +15,6 @@
 	} from '$env/static/public';
 	import ogImageEn from '$lib/assets/images/fallbacks/og.en.jpg?url';
 	import ogImageVi from '$lib/assets/images/fallbacks/og.vi.jpg?url';
-	import * as m from '$lib/i18n/generated/messages';
 	import { SearchContext } from '$lib/search/context.svelte';
 	import { SettingsContext } from '$lib/settings/context.svelte';
 

@@ -1,4 +1,5 @@
 import { JOB_POSTING_TYPE_I18N } from '@sveltevietnam/backend/data/job-postings/enums';
+import * as m from '@sveltevietnam/i18n/generated/messages';
 import type { JobPostingProps } from '@sveltevietnam/kit/components';
 
 import * as p from '$data/routes/generated';
@@ -6,7 +7,6 @@ import * as b from '$data/routes/generated/breadcrumbs';
 import { VITE_PUBLIC_RECRUIT_ORIGIN } from '$env/static/public';
 import { getBackend } from '$lib/backend/utils';
 import { upsert } from '$lib/forms/subscriber/server';
-import * as m from '$lib/i18n/generated/messages';
 
 import type { Actions, PageServerLoad } from './$types';
 import ogImageEn from './_page/images/og-jobs.en.jpg?url';

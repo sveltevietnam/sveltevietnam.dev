@@ -1,4 +1,5 @@
 import { fail, error, redirect } from '@sveltejs/kit';
+import * as m from '@sveltevietnam/i18n/generated/messages';
 import type { Language } from '@sveltevietnam/kit/constants';
 import {
 	createTurnstileValibotClientSchema,
@@ -13,7 +14,6 @@ import * as b from '$data/routes/generated/breadcrumbs';
 import { VITE_PRIVATE_CLOUDFLARE_TURNSTILE_SECRET_KEY } from '$env/static/private';
 import { VITE_PUBLIC_MODE } from '$env/static/public';
 import { getBackend } from '$lib/backend/utils';
-import * as m from '$lib/i18n/generated/messages';
 
 import type { Actions, PageServerLoad } from './$types';
 

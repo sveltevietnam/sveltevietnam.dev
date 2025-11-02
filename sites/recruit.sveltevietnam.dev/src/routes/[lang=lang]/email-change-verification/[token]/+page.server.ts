@@ -1,8 +1,8 @@
 import { redirect } from '@sveltejs/kit';
+import * as m from '@sveltevietnam/i18n/generated/messages';
 import { APIError } from 'better-auth/api';
 
 import * as p from '$data/routes/generated';
-import * as m from '$lib/i18n/generated/messages';
 
 import type { PageServerLoad } from './$types';
 

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import * as m from '@sveltevietnam/i18n/generated/messages';
 	import {
 		PageMetadata,
 		LanguageMenu,
@@ -26,7 +27,6 @@
 		VITE_PUBLIC_UMAMI_WEBSITE_ID,
 	} from '$env/static/public';
 	import { AccountMenu } from '$lib/components/account-menu';
-	import * as m from '$lib/i18n/generated/messages';
 
 	import '../../app.css';
 
@@ -225,7 +225,7 @@
 			class="tablet:gap-5 tablet:border-x tablet:border-b tablet:px-6 tablet:py-5 relative flex w-fit items-center gap-2"
 		>
 			<div
-				class="toolbar-backdrop bg-surface absolute inset-0 -z-1
+				class="toolbar-backdrop bg-surface -z-px absolute inset-0
 				opacity-(--toolbar-backdrop-opacity)"
 				style:--toolbar-backdrop-opacity={toolbarBackdropOpacity}
 			>

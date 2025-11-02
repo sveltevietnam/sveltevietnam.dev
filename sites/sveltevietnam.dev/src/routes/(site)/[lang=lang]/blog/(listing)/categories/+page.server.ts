@@ -1,7 +1,8 @@
+import * as m from '@sveltevietnam/i18n/generated/messages';
+
 import { loadBlogCategory, ids } from '$data/blog/categories';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
-import * as m from '$lib/i18n/generated/messages';
 
 import type { PageServerLoad } from './$types';
 import ogImageEn from './_page/og-blog-categories.en.jpg?url';

@@ -8,6 +8,8 @@ import type { KeySimple } from '@sveltevietnam/i18n/generated';
 import type { Language } from '@sveltevietnam/kit/constants';
 import * as v from 'valibot';
 
+// referencing output modules directly because this is also imported
+// by UAT tests, which live outside of Vite
 import * as m from '$lib/i18n/generated/messages';
 
 export {

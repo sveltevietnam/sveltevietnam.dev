@@ -1,6 +1,7 @@
 import type { RequestEvent } from '@sveltejs/kit';
 import { error, fail } from '@sveltejs/kit';
 import type { SubscriptionChannel } from '@sveltevietnam/backend/data/subscribers/channels';
+import * as m from '@sveltevietnam/i18n/generated/messages';
 import type { Language } from '@sveltevietnam/kit/constants';
 import { validateCloudflareToken } from '@sveltevietnam/kit/utilities';
 import { valibot } from 'sveltekit-superforms/adapters';
@@ -8,7 +9,6 @@ import { setError, superValidate } from 'sveltekit-superforms/server';
 
 import { VITE_PRIVATE_CLOUDFLARE_TURNSTILE_SECRET_KEY } from '$env/static/private';
 import { getBackend } from '$lib/backend/utils';
-import * as m from '$lib/i18n/generated/messages';
 
 import {
 	createSubcriberUpsertSchema,

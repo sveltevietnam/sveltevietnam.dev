@@ -1,4 +1,5 @@
 import { fail, redirect } from '@sveltejs/kit';
+import * as m from '@sveltevietnam/i18n/generated/messages';
 import { LANGUAGES } from '@sveltevietnam/kit/constants';
 import {
 	COLOR_SCHEMES,
@@ -17,7 +18,6 @@ import {
 	VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
 	VITE_PUBLIC_COOKIE_NAME_SPLASH,
 } from '$env/static/public';
-import * as m from '$lib/i18n/generated/messages';
 
 import type { Actions, PageServerLoad } from './$types';
 import ogImageEn from './_page/images/og-settings.en.jpg?url';
