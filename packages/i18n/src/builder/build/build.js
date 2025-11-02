@@ -197,8 +197,12 @@ export class ErrorInconsistentMessageParams extends BuildError {
 const js = dedent;
 const REMOTE_MODULE = js`
 /** ${GENERATED_MARKER} */
-import { query as createQuery } from '$app/server';
-import { createMessageQueryFn, createMessageQueryInputSchema } from '@sveltevietnam/i18n/factory'
+import { query as createQuery, prerender as createPrerender } from '$app/server';
+import {
+	createMessagePrerenderFn,
+	createMessageQueryFn,
+	createMessageQueryInputSchema,
+} from '@sveltevietnam/i18n/factory'
 
 import { langs } from './constants';
 
@@ -209,4 +213,11 @@ export const query = createQuery.batch(
 		/** @type {unknown} */ (createMessageQueryInputSchema(langs))
 	),
 	createMessageQueryFn(modules),
+);
+export const prerender = createPrerender(
+	/** @type {'unchecked'} */ (
+		/** @type {unknown} */ (createMessageQueryInputSchema(langs))
+	),
+	createMessagePrerenderFn(modules),
+	{ dynamic: true }
 );`;
