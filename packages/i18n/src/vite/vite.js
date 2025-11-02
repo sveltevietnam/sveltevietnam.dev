@@ -131,15 +131,18 @@ export async function i18n(config) {
 								]
 							: []),
 						{
-							find: '$i18n',
+							find: '@sveltevietnam/i18n/generated',
 							replacement: path.join(uConfig.root ?? process.cwd(), config.output),
 						},
 					],
 				},
 				optimizeDeps: {
 					// prevent Vite from trying to pre-bundle these generated files,
-					// this does mean exclude them from resolution during dev / build
-					exclude: ['$i18n/constants.js', '$i18n/t.remote.js'],
+					// this doesn't mean exclude them from resolution during dev / build
+					exclude: [
+						'@sveltevietnam/i18n/generated/constants',
+						'@sveltevietnam/i18n/generated/t.remote',
+					],
 				},
 			};
 		},

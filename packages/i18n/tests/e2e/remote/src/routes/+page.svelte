@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { T, Provider } from '@sveltevietnam/i18n';
 	import type { Language } from '@sveltevietnam/i18n/generated';
-
-	import { langs } from '$lib/i18n/generated/constants';
-	import * as m from '$lib/i18n/generated/messages';
+	import { langs } from '@sveltevietnam/i18n/generated/constants';
+	import * as m from '@sveltevietnam/i18n/generated/messages';
 
 	let lang = $state<Language>('en');
 	let languageNames = $derived(new Intl.DisplayNames([lang], { type: 'language' }));

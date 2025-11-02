@@ -19,7 +19,7 @@ export type StaticTProps<M extends Message> = SharedTProps & {
 	 * @example
 	 * ```svelte
 	 * <script lang="ts">
-	 *  import * as m from '$i18n/messages';
+	 *  import * as m from '@sveltevietnam/i18n/generated/messages';
 	 * </script>
 	 *
 	 * <T message={m['key.to.simple.message']} />

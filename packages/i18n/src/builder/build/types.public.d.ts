@@ -25,18 +25,18 @@ export interface InconsistentParamIssue {
 
 export type BuildOutput = {
 	modules: {
-		/** $i18n/messages */
+		/** `@sveltevietnam/i18n/generated/messages` */
 		messages: {
 			/** [lang].js */
 			targets: Record<string, string>;
 			/** index.js */
 			index: string;
 		};
-		/** $i18n/constants.js */
+		/** `@sveltevietnam/i18n/generated/constants` */
 		constants: string;
-		/** $i18n/i18n.d.ts */
+		/** `@sveltevietnam/i18n/generated/i18n.d.ts` */
 		dts: string;
-		/** $i18n/t.remote.js, empty in 'static' mode, only populated in 'remote' mode */
+		/** `@sveltevietnam/i18n/generated/t.remote`, empty in 'static' mode, only populated in 'remote' mode */
 		remote: string;
 	};
 	/** all the source locale files that were read during process */

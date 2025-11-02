@@ -24,5 +24,8 @@ export function generateDts(mode) {
 		            languages: typeof langs;
 		        };
 		    }
+		}
+		declare module "@sveltevietnam/i18n/generated/messages" {
+		    export * from "./messages";
 		}`;
 }

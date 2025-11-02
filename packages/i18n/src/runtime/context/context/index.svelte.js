@@ -1,8 +1,7 @@
 import sanitizeHtml from 'sanitize-html';
 import { getContext, setContext } from 'svelte';
 
-// @ts-expect-error alias set up by vite plugin
-import { mode } from '$i18n/constants.js';
+import { mode } from '@sveltevietnam/i18n/generated/constants';
 
 /**
  * @param {string} content
@@ -68,8 +67,7 @@ export class Context {
 					return rSanitize(message(rLang, params));
 				}
 
-				// @ts-expect-error alias set up by vite plugin
-				return import('$i18n/t.remote.js')
+				return import('@sveltevietnam/i18n/generated/t.remote')
 					.then((mod) => mod.query({ key, lang: rLang, params }))
 					.then((text) => rSanitize(text));
 			}

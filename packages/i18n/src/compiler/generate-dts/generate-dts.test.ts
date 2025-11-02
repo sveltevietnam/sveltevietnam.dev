@@ -21,5 +21,8 @@ test('can generate', () => {
 		        };
 		    }
 		}
+		declare module "@sveltevietnam/i18n/generated/messages" {
+		    export * from "./messages";
+		}
 	`);
 });

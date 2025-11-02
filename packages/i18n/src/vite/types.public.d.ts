@@ -2,9 +2,16 @@ import type { BuildMode } from '../builder';
 import type { ParseLocaleOptions } from '../parser';
 
 export interface Config {
-	/** directory path containing locale source files, relative to vite project root */
+	/**
+	 * directory path containing locale source files, relative to vite project root
+	 * @example './src/lib/i18n/locales'
+	 */
 	input: string;
-	/** directory path for build artifacts, relative to vite project root */
+	/**
+	 * directory path for build artifacts, relative to vite project root,
+	 * can be safely added to .gitignore
+	 * @example './src/lib/i18n/generated'
+	 */
 	output: string;
 	/**
 	 * build mode

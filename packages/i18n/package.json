@@ -21,8 +21,23 @@
 		},
 		"./generated": {
 			"types": "./types/index.d.ts",
-			"import": "./src/runtime/generated.js",
-			"default": "./src/runtime/generated.js"
+			"import": "./src/$generated/index.js",
+			"default": "./src/$generated/index.js"
+		},
+		"./generated/constants": {
+			"types": "./types/index.d.ts",
+			"import": "./src/$generated/constants/index.js",
+			"default": "./src/$generated/constants/index.js"
+		},
+		"./generated/messages": {
+			"types": "./types/index.d.ts",
+			"import": "./src/$generated/messages/index.js",
+			"default": "./src/$generated/messages/index.js"
+		},
+		"./generated/t.remote": {
+			"types": "./types/index.d.ts",
+			"import": "./src/$generated/t.remote/index.js",
+			"default": "./src/$generated/t.remote/index.js"
 		},
 		"./factory": {
 			"types": "./types/index.d.ts",

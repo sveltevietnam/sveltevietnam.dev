@@ -11,17 +11,20 @@ function mockRuntimeGeneratedModules(): Plugin {
 			return {
 				build: {
 					rollupOptions: {
-						external: ['$i18n/constants.js', '$i18n/t.remote.js'],
+						external: [
+							'@sveltevietnam/i18n/generated/constants',
+							'@sveltevietnam/i18n/generated/t.remote',
+						],
 					},
 				},
 			};
 		},
 		resolveId(id) {
-			if (id === '$i18n/constants.js') {
-				return '$i18n/constants.js';
+			if (id === '@sveltevietnam/i18n/generated/constants') {
+				return '@sveltevietnam/i18n/generated/constants';
 			}
-			if (id === '$i18n/t.remote.js') {
-				return '$i18n/t.remote.js';
+			if (id === '@sveltevietnam/i18n/generated/t.remote') {
+				return '@sveltevietnam/i18n/generated/t.remote';
 			}
 		},
 	};

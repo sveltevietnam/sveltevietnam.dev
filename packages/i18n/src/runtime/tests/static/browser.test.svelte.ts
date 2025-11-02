@@ -9,10 +9,10 @@ const messages = createMinimalMessageSet();
 // ============================
 // Mocks for generated modules
 // ============================
-vi.mock('$i18n/constants.js', () => ({
+vi.mock('@sveltevietnam/i18n/generated/constants', () => ({
 	mode: 'static',
 }));
-vi.mock('$i18n/t.remote.js', () => ({
+vi.mock('@sveltevietnam/i18n/generated/t.remote', () => ({
 	t: vi.fn(),
 }));
 

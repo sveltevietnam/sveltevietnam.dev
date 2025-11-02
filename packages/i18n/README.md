@@ -202,7 +202,7 @@ you can import and use the generated messages directly:
 
 ```typescript
 // in server, or isolated modules
-import * as m from '$lib/i18n/generated/messages'; // or where you defined as output
+import * as m from '@sveltevietnam/i18n/generated/messages';
 const message = m['key.to.your.message'];
 ```
 
@@ -241,7 +241,7 @@ from the generated modules instead:
 ```svelte
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
-	import * as m from '$lib/i18n/generated/messages'; // or where you defined as output
+	import * as m from '@sveltevietnam/i18n/generated/messages'; // or where you defined as output
 </script>
 
 <T message={m['key.to.your.message']} />

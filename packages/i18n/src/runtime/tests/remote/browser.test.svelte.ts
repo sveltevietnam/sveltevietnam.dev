@@ -12,10 +12,10 @@ const remoteT = mockRemoteT();
 // ============================
 // Mocks for generated modules
 // ============================
-vi.mock('$i18n/constants.js', () => ({
+vi.mock('@sveltevietnam/i18n/generated/constants', () => ({
 	mode: 'remote',
 }));
-vi.mock('$i18n/t.remote.js', () => ({
+vi.mock('@sveltevietnam/i18n/generated/t.remote', () => ({
 	query: remoteT,
 }));
 

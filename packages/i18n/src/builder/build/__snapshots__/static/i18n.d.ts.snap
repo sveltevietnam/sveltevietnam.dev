@@ -12,3 +12,6 @@ declare module "@sveltevietnam/i18n/generated" {
         };
     }
 }
+declare module "@sveltevietnam/i18n/generated/messages" {
+    export * from "./messages";
+}
