@@ -32,6 +32,9 @@ function mockRuntimeGeneratedModules(): Plugin {
 
 export default defineConfig({
 	plugins: [tsconfigPaths(), svelte()],
+	optimizeDeps: {
+		exclude: ['@sveltevietnam/i18n/generated/constants', '@sveltevietnam/i18n/generated/t.remote'],
+	},
 	test: {
 		exclude: ['tests/e2e/**/test.ts'],
 		projects: [
