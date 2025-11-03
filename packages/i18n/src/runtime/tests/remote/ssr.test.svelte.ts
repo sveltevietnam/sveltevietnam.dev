@@ -74,8 +74,8 @@ describe('can still render with message, but recieve warning', () => {
 	});
 });
 
-describe('can render with key', () => {
-	test('simple message', async () => {
+describe('can render key simple', () => {
+	test('with lang from context', async () => {
 		const { body } = await render(InProvider, {
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			props: { tProp: { key: messages.simple.$k }, lang: 'en' } as any,
@@ -85,13 +85,46 @@ describe('can render with key', () => {
 		remoteT.mockClear();
 	});
 
-	test('message with params', async () => {
+	test('with lang from prop', async () => {
 		const { body } = await render(InProvider, {
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			props: { tProp: { key: messages.withParams.$k }, lang: 'en' } as any,
+			props: { tProp: { key: messages.simple.$k, lang: 'vi' }, lang: 'en' } as any,
 		});
-		expect(body).toContain(messages.simple('en'));
+		expect(body).toContain(messages.simple('vi'));
 		expect(remoteT).toHaveBeenCalledOnce();
 		remoteT.mockClear();
 	});
+});
+
+describe('can render key with params', () => {
+	test('with lang from context', async () => {
+		const { body } = await render(InProvider, {
+			props: {
+				tProp: { key: messages.withParams.$k, params: { name: 'foobar' } },
+				lang: 'en',
+				// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			} as any,
+		});
+		expect(body).toContain(messages.withParams('en', { name: 'foobar' }));
+		expect(remoteT).toHaveBeenCalledOnce();
+		remoteT.mockClear();
+	});
+
+	test('with lang from prop', async () => {
+		const { body } = await render(InProvider, {
+			props: {
+				tProp: { key: messages.withParams.$k, lang: 'vi', params: { name: 'foobar' } },
+				lang: 'en',
+				// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			} as any,
+		});
+		expect(body).toContain(messages.withParams('vi', { name: 'foobar' }));
+		expect(remoteT).toHaveBeenCalledOnce();
+		remoteT.mockClear();
+	});
+});
+
+describe('can santize', () => {
+	test.todo('by default', async () => {});
+	test.todo('via santize prop', async () => {});
 });

@@ -42,8 +42,8 @@ test('throw if message is missing', async () => {
 	);
 });
 
-describe('can still with message', () => {
-	test('simple message', async () => {
+describe('can render simple message', () => {
+	test('with lang from context', async () => {
 		const { body } = await render(InProvider, {
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			props: { tProp: { message: messages.simple } as any, lang: 'en' },
@@ -51,7 +51,17 @@ describe('can still with message', () => {
 		expect(body).toContain(messages.simple('en'));
 	});
 
-	test('message with params', async () => {
+	test('with lang from prop', async () => {
+		const { body } = await render(InProvider, {
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			props: { tProp: { message: messages.simple, lang: 'vi' } as any, lang: 'en' },
+		});
+		expect(body).toContain(messages.simple('vi'));
+	});
+});
+
+describe('can render message with params', () => {
+	test('with lang from context', async () => {
 		const { body } = await render(InProvider, {
 			props: {
 				// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -61,4 +71,20 @@ describe('can still with message', () => {
 		});
 		expect(body).toContain(messages.withParams('en', { name: 'foobar' }));
 	});
+
+	test('with lang from prop', async () => {
+		const { body } = await render(InProvider, {
+			props: {
+				// eslint-disable-next-line @typescript-eslint/no-explicit-any
+				tProp: { message: messages.withParams, lang: 'vi', params: { name: 'foobar' } } as any,
+				lang: 'en',
+			},
+		});
+		expect(body).toContain(messages.withParams('vi', { name: 'foobar' }));
+	});
+});
+
+describe('can santize', () => {
+	test.todo('by default', async () => {});
+	test.todo('via santize prop', async () => {});
 });
