@@ -326,9 +326,6 @@ importers:
       shiki:
         specifier: ^3.14.0
         version: 3.14.0
-      svelte:
-        specifier: ^5.16.6
-        version: 5.43.2
       svelte-parse-markup:
         specifier: ^0.1.5
         version: 0.1.5(svelte@5.43.2)
