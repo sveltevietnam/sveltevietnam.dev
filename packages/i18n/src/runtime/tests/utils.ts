@@ -7,9 +7,9 @@ export function createMinimalMessageSet() {
 		en: () => 'Hello',
 		vi: () => 'Xin chào',
 	});
-	const messageWithParams = createMessageWithParams('greet', {
-		en: (params: { name: string }) => `Hello, ${params.name}!`,
-		vi: (params: { name: string }) => `Xin chào, ${params.name}!`,
+	const messageWithParams = createMessageWithParams('goodbye', {
+		en: (params: { name: string }) => `Goodbye, ${params.name}!`,
+		vi: (params: { name: string }) => `Tạm biệt, ${params.name}!`,
 	});
 	return {
 		simple: messageSimple,

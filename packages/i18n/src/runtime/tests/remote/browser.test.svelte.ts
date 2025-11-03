@@ -3,11 +3,13 @@ import { render } from 'vitest-browser-svelte';
 
 import type { Message } from '../..';
 import { T } from '../../T';
-import { Context } from '../../context';
+import { Context, type ContextInit } from '../../context';
 import { createMinimalMessageSet, mockRemoteT } from '../utils';
 
 const messages = createMinimalMessageSet();
-const remoteT = mockRemoteT();
+const remoteQuery = mockRemoteT();
+const remotePrerender = mockRemoteT();
+const defaultRemote = remoteQuery; // FIXME: change to prerender when all working
 
 // ============================
 // Mocks for generated modules
@@ -16,46 +18,69 @@ vi.mock('@sveltevietnam/i18n/generated/constants', () => ({
 	mode: 'remote',
 }));
 vi.mock('@sveltevietnam/i18n/generated/t.remote', () => ({
-	query: remoteT,
-	prerender: remoteT,
+	query: remoteQuery,
+	prerender: remotePrerender,
 }));
-
-afterEach(() => {
-	remoteT.mockClear();
-});
 
 // ===========================================
 // helper to render message and check results
 // ===========================================
 async function r(
-	props: { message?: Message; key?: string; params?: Record<string, string>; lang?: 'en' | 'vi' },
+	contextInit: ContextInit<'remote', 'en' | 'vi'> & {
+		remote?: 'query' | 'prerender' | typeof defaultRemote;
+	},
+	props: {
+		message?: Message;
+		key?: string;
+		params?: Record<string, string>;
+		lang?: 'en' | 'vi';
+		remote?: 'query' | 'prerender' | typeof defaultRemote;
+	},
 	expects: { en: string; vi: string },
 ) {
-	let lang = $state('en');
-	const context = new Context(() => ({ lang }));
+	let remote = defaultRemote;
+	const customRemote = contextInit.remote ?? props.remote;
+	if (customRemote) {
+		if (customRemote === 'query') {
+			remote = remoteQuery;
+		} else if (customRemote === 'prerender') {
+			remote = remotePrerender;
+		} else {
+			remote = customRemote;
+		}
+	}
+
+	let lang = $state<'en' | 'vi'>(contextInit.lang);
+	const context = new Context(() => ({ ...contextInit, lang }));
 	// initial render
 	const screen = render(T, {
 		props,
 		context: new Map([[Context.KEY, context]]),
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	} as any);
-	await expect
-		.element(screen.getByText(props.lang ? expects[props.lang] : expects.en))
-		.toBeVisible();
+
+	function getExpected() {
+		return typeof customRemote === 'function'
+			? customRemote()
+			: props.lang
+				? expects[props.lang]
+				: expects[lang];
+	}
+
+	await expect.element(screen.getByText(getExpected())).toBeVisible();
 
 	// change language
-	lang = 'vi';
-	await expect
-		.element(screen.getByText(props.lang ? expects[props.lang] : expects.vi))
-		.toBeVisible();
-	lang = 'en';
-	await expect
-		.element(screen.getByText(props.lang ? expects[props.lang] : expects.en))
-		.toBeVisible();
+	lang = lang === 'en' ? 'vi' : 'en';
+	await expect.element(screen.getByText(getExpected())).toBeVisible();
+	lang = lang === 'en' ? 'vi' : 'en';
+	await expect.element(screen.getByText(getExpected())).toBeVisible();
 
 	if ('key' in props) {
-		expect(remoteT).toHaveBeenCalledTimes(props.lang ? 1 : 3);
+		expect(remote).toHaveBeenCalledTimes(
+			(props.lang ? 1 : 3) + (typeof customRemote === 'function' ? 3 : 0),
+		);
 	}
+	remote.mockClear();
 }
 
 // ======
@@ -97,11 +122,16 @@ test('throw if message and key is missing', async () => {
 
 describe('can still render with message', () => {
 	test('simple message', async () => {
-		await r({ message: messages.simple }, { en: messages.simple('en'), vi: messages.simple('vi') });
+		await r(
+			{ lang: 'en' },
+			{ message: messages.simple },
+			{ en: messages.simple('en'), vi: messages.simple('vi') },
+		);
 	});
 
 	test('message with params', async () => {
 		await r(
+			{ lang: 'en' },
 			{ message: messages.withParams, params: { name: 'foobar' } },
 			{
 				en: messages.withParams('en', { name: 'foobar' }),
@@ -113,11 +143,16 @@ describe('can still render with message', () => {
 
 describe('can render with key simple', () => {
 	test('with lang from context', async () => {
-		await r({ key: messages.simple.$k }, { en: messages.simple('en'), vi: messages.simple('vi') });
+		await r(
+			{ lang: 'en' },
+			{ key: messages.simple.$k },
+			{ en: messages.simple('en'), vi: messages.simple('vi') },
+		);
 	});
 
 	test('with lang from prop', async () => {
 		await r(
+			{ lang: 'en' },
 			{ key: messages.simple.$k, lang: 'vi' },
 			{ en: messages.simple('en'), vi: messages.simple('vi') },
 		);
@@ -127,6 +162,7 @@ describe('can render with key simple', () => {
 describe('can render with key with params', () => {
 	test('with lang from context', async () => {
 		await r(
+			{ lang: 'en' },
 			{ key: messages.withParams.$k, params: { name: 'foobar' } },
 			{
 				en: messages.withParams('en', { name: 'foobar' }),
@@ -137,7 +173,92 @@ describe('can render with key with params', () => {
 
 	test('with lang from prop', async () => {
 		await r(
+			{ lang: 'en' },
 			{ key: messages.withParams.$k, params: { name: 'foobar' }, lang: 'vi' },
+			{
+				en: messages.withParams('en', { name: 'foobar' }),
+				vi: messages.withParams('vi', { name: 'foobar' }),
+			},
+		);
+	});
+});
+
+describe('as remote as function', () => {
+	const rendered = 'from custom remote';
+	const remote = vi.fn().mockImplementation(() => rendered);
+
+	afterEach(() => {
+		remote.mockClear();
+	});
+
+	test('via context', async () => {
+		await r(
+			{ lang: 'en', remote },
+			{ key: messages.withParams.$k, params: { name: 'foobar' }, lang: 'vi' },
+			{
+				en: messages.withParams('en', { name: 'foobar' }),
+				vi: messages.withParams('vi', { name: 'foobar' }),
+			},
+		);
+	});
+
+	test('via prop', async () => {
+		await r(
+			{ lang: 'en' },
+			{ key: messages.withParams.$k, params: { name: 'foobar' }, lang: 'vi', remote },
+			{
+				en: messages.withParams('en', { name: 'foobar' }),
+				vi: messages.withParams('vi', { name: 'foobar' }),
+			},
+		);
+	});
+});
+
+describe(`custom remote as "query"`, () => {
+	test('via context', async () => {
+		await r(
+			{ lang: 'en', remote: 'query' },
+			{ key: messages.withParams.$k, params: { name: 'foobar' }, lang: 'vi' },
+			{
+				en: messages.withParams('en', { name: 'foobar' }),
+				vi: messages.withParams('vi', { name: 'foobar' }),
+			},
+		);
+	});
+
+	test('via prop', async () => {
+		await r(
+			{ lang: 'en' },
+			{ key: messages.withParams.$k, params: { name: 'foobar' }, lang: 'vi', remote: 'query' },
+			{
+				en: messages.withParams('en', { name: 'foobar' }),
+				vi: messages.withParams('vi', { name: 'foobar' }),
+			},
+		);
+	});
+});
+
+describe(`custom remote as "prerender"`, () => {
+	test('via context', async () => {
+		await r(
+			{ lang: 'en', remote: 'prerender' },
+			{ key: messages.withParams.$k, params: { name: 'foobar' }, lang: 'vi' },
+			{
+				en: messages.withParams('en', { name: 'foobar' }),
+				vi: messages.withParams('vi', { name: 'foobar' }),
+			},
+		);
+	});
+
+	test('via prop', async () => {
+		await r(
+			{ lang: 'en' },
+			{
+				key: messages.withParams.$k,
+				params: { name: 'foobar' },
+				lang: 'vi',
+				remote: 'prerender',
+			},
 			{
 				en: messages.withParams('en', { name: 'foobar' }),
 				vi: messages.withParams('vi', { name: 'foobar' }),

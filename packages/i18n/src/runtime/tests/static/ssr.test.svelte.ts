@@ -35,7 +35,7 @@ test('throw if message is missing', async () => {
 	await expect(
 		render(InProvider, {
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			props: { tProp: {} as any, lang: 'en' },
+			props: { t: {} as any, context: { lang: 'en' } },
 		}),
 	).rejects.toThrowError(
 		'(sveltevietnam/i18n) ✘ T component in "static" mode requires "message" prop',
@@ -46,7 +46,7 @@ describe('can render simple message', () => {
 	test('with lang from context', async () => {
 		const { body } = await render(InProvider, {
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			props: { tProp: { message: messages.simple } as any, lang: 'en' },
+			props: { t: { message: messages.simple } as any, context: { lang: 'en' } },
 		});
 		expect(body).toContain(messages.simple('en'));
 	});
@@ -54,7 +54,7 @@ describe('can render simple message', () => {
 	test('with lang from prop', async () => {
 		const { body } = await render(InProvider, {
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			props: { tProp: { message: messages.simple, lang: 'vi' } as any, lang: 'en' },
+			props: { t: { message: messages.simple, lang: 'vi' } as any, context: { lang: 'en' } },
 		});
 		expect(body).toContain(messages.simple('vi'));
 	});
@@ -65,8 +65,8 @@ describe('can render message with params', () => {
 		const { body } = await render(InProvider, {
 			props: {
 				// eslint-disable-next-line @typescript-eslint/no-explicit-any
-				tProp: { message: messages.withParams, params: { name: 'foobar' } } as any,
-				lang: 'en',
+				t: { message: messages.withParams, params: { name: 'foobar' } } as any,
+				context: { lang: 'en' },
 			},
 		});
 		expect(body).toContain(messages.withParams('en', { name: 'foobar' }));
@@ -76,8 +76,8 @@ describe('can render message with params', () => {
 		const { body } = await render(InProvider, {
 			props: {
 				// eslint-disable-next-line @typescript-eslint/no-explicit-any
-				tProp: { message: messages.withParams, lang: 'vi', params: { name: 'foobar' } } as any,
-				lang: 'en',
+				t: { message: messages.withParams, lang: 'vi', params: { name: 'foobar' } } as any,
+				context: { lang: 'en' },
 			},
 		});
 		expect(body).toContain(messages.withParams('vi', { name: 'foobar' }));

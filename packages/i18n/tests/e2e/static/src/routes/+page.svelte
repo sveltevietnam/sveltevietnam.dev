@@ -30,9 +30,9 @@
 		<tbody>
 			<tr>
 				<th scope="row">{m['components.welcome.greet'].$k}</th>
-				<td data-testid={m['components.welcome.greet'].$k}
-					><T message={m['components.welcome.greet']} params={{ name: 'Hoàng' }} /></td
-				>
+				<td data-testid={m['components.welcome.greet'].$k}>
+					<T message={m['components.welcome.greet']} params={{ name: 'Hoàng' }} />
+				</td>
 			</tr>
 			<tr>
 				<th scope="row">{m['goodbye'].$k}</th>

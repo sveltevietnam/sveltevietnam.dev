@@ -2,17 +2,17 @@
 	import type { ComponentProps } from 'svelte';
 
 	import { T } from '../T';
-	import { Provider } from '../context';
+	import { Provider, type ContextInit } from '../context';
 
 	let {
-		lang,
-		tProp,
+		context,
+		t,
 	}: {
-		lang: 'en' | 'vi';
-		tProp: ComponentProps<typeof T>;
+		context: ContextInit;
+		t: ComponentProps<typeof T>;
 	} = $props();
 </script>
 
-<Provider {lang}>
-	<T {...tProp} />
+<Provider {...context}>
+	<T {...t} />
 </Provider>

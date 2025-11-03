@@ -14,9 +14,10 @@
 	let {
 		key,
 		message,
-		lang,
-		sanitize,
 		params,
+		lang,
+		remote,
+		sanitize,
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	}: StaticTProps<M> & RemoteTProps<K> & { params: any } = $props();
 
@@ -25,7 +26,7 @@
 		throw new Error("T component must live within a `import('@sveltevietnam/i18n').Context`");
 	}
 
-	let options = $derived({ lang, sanitize });
+	let options = $derived({ lang, sanitize, remote });
 	let maybePromise = $derived<string | Promise<string>>(
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		(context.t as any)({ key, message, params, options }),

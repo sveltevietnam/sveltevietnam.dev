@@ -24,13 +24,22 @@ function defaultSanitize(content) {
 export class Context {
 	static KEY = Symbol('i18n');
 
-	/** @type {() => import('./index.svelte').ContextInit<Language>} */
-	#getter = () => ({ lang: /** @type {Language} */ ('en') });
+	#getter = () =>
+		/** @type {import('./index.svelte').ContextInit<Mode, Language, Mapping>} */ ({
+			lang: /** @type {Language} */ ('en'),
+		});
 
 	/** @type {import('./index.svelte').Context<Mode, Language, Mapping>['lang']} */
 	lang = $derived.by(() => this.#getter().lang);
 	/** @type {import('./index.svelte').Context<Mode, Language, Mapping>['sanitize']} */
 	sanitize = $derived.by(() => this.#getter().sanitize ?? defaultSanitize);
+	/** @type {import('./index.svelte').TranslateOptions<'remote', Language, Mapping>['remote']} */
+	remote = $derived.by(
+		() =>
+			/** @type {import('./index.svelte').ContextInit<'remote', Language, Mapping>} */ (
+				this.#getter()
+			).remote ?? 'query', // FIXME: change default to `prerender` once it is working
+	);
 
 	/** @type {import('./index.svelte').Context<Mode, Language, Mapping>['t']} */
 	t =
@@ -59,7 +68,7 @@ export class Context {
 				}
 
 				const { lang, sanitize } =
-					/** @type {import('./index.svelte').TranslateOptions<Language>} */ (options ?? {});
+					/** @type {import('./index.svelte').TranslateOptions<Mode, Language>} */ (options ?? {});
 				const rLang = lang ?? this.lang;
 				const rSanitize = sanitize ?? this.sanitize;
 
@@ -67,13 +76,22 @@ export class Context {
 					return rSanitize(message(rLang, params));
 				}
 
-				return import('@sveltevietnam/i18n/generated/t.remote')
-					.then((mod) => mod.query({ key, lang: rLang, params }))
+				/** @type {typeof this.remote} */
+				const rRemote = options.remote ?? this.remote;
+				const loadFn =
+					typeof rRemote === 'string'
+						? import('@sveltevietnam/i18n/generated/t.remote').then(
+								(mod) => mod[/** @type {'prerender' | 'query'} */ (rRemote)],
+							)
+						: Promise.resolve(rRemote);
+
+				return loadFn
+					.then((fn) => fn({ key, lang: rLang, params }))
 					.then((text) => rSanitize(text));
 			}
 		);
 
-	/** @param {() => import('./index.svelte').ContextInit<Language>} init */
+	/** @param {() => import('./index.svelte').ContextInit<Mode, Language, Mapping>} init */
 	constructor(init) {
 		this.#getter = init;
 	}
@@ -83,7 +101,7 @@ export class Context {
 	 * @returns {import('./index.svelte').Context}
 	 */
 	static set(init) {
-		return setContext(Context.KEY, new Context(init));
+		return setContext(Context.KEY, /** @type {any} */ (new Context(init)));
 	}
 
 	/** @returns {import('./index.svelte').Context} */

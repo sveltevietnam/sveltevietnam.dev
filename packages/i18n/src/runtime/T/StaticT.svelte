@@ -21,7 +21,7 @@
 	let options = $derived({ lang, sanitize });
 	let translated = $derived(
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		context.t({ message, params, options } as any),
+		(context.t as any)({ message, params, options }),
 	);
 </script>
 

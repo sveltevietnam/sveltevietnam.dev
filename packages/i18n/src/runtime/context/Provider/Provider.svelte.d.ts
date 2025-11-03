@@ -1,20 +1,30 @@
-import type { Component, Snippet } from 'svelte';
+/* eslint-disable @typescript-eslint/no-empty-object-type */
+import type { Snippet } from 'svelte';
+
+import type { Language, Mode, Mapping } from '@sveltevietnam/i18n/generated';
+
+import type { ContextInit } from '../../context';
 
 /** context provider for i18n */
-export interface ProviderProps<
-	Language extends string = import('@sveltevietnam/i18n/generated').Language,
-> {
-	/**
-	 * the current language of the app,
-	 * updates to this prop should propagate to all `T.svelte` instances
-	 */
-	lang: Language;
-	/**
-	 * a custom `sanitize` function to sanitize the message content before rendering,
-	 * @default import('sanitize-html').default
-	 */
-	sanitize?: (content: string) => string;
+export type ProviderProps<
+	Mo extends 'static' | 'remote' = Mode,
+	L extends string = Language,
+> = ContextInit<Mo, L, Mapping> & {
 	children?: Snippet;
+};
+
+interface $$IsomorphicComponent {
+	new <Mo extends 'static' | 'remote' = Mode, L extends string = Language>(
+		options: import('svelte').ComponentConstructorOptions<ProviderProps<Mo, L>>,
+	): import('svelte').SvelteComponent<ProviderProps<Mo, L>>;
+	<Mo extends 'static' | 'remote' = Mode, L extends string = Language>(
+		internal: unknown,
+		props: ProviderProps<Mo, L>,
+	): {};
+	z_$$bindings?: '';
 }
-export const Provider: Component<ProviderProps>;
+declare const Provider: $$IsomorphicComponent;
+type Provider<Mo extends 'static' | 'remote' = Mode, L extends string = Language> = InstanceType<
+	typeof Provider<Mo, L>
+>;
 export default Provider;
