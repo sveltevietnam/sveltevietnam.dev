@@ -9,7 +9,7 @@ import { createMinimalMessageSet, mockRemoteT } from '../utils';
 const messages = createMinimalMessageSet();
 const remoteQuery = mockRemoteT();
 const remotePrerender = mockRemoteT();
-const defaultRemote = remoteQuery; // FIXME: change to prerender when all working
+const defaultRemote = remotePrerender;
 
 // ============================
 // Mocks for generated modules

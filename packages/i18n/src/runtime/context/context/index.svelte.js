@@ -38,7 +38,7 @@ export class Context {
 		() =>
 			/** @type {import('./index.svelte').ContextInit<'remote', Language, Mapping>} */ (
 				this.#getter()
-			).remote ?? 'query', // FIXME: change default to `prerender` once it is working
+			).remote ?? 'prerender',
 	);
 
 	/** @type {import('./index.svelte').Context<Mode, Language, Mapping>['t']} */
