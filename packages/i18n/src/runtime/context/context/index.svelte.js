@@ -77,7 +77,7 @@ export class Context {
 				}
 
 				/** @type {typeof this.remote} */
-				const rRemote = options.remote ?? this.remote;
+				const rRemote = options?.remote ?? this.remote;
 				const loadFn =
 					typeof rRemote === 'string'
 						? import('@sveltevietnam/i18n/generated/t.remote').then(
