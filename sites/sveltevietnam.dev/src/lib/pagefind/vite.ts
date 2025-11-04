@@ -1,12 +1,11 @@
-import child_process from 'node:child_process';
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import process from 'node:process';
 
 import { LANGUAGES } from '@sveltevietnam/kit/constants';
 import { XMLParser } from 'fast-xml-parser';
 import * as lib from 'pagefind';
 import pico from 'picocolors';
+import { preview } from 'vite';
 
 import { createLogger } from './logger';
 
@@ -49,25 +48,6 @@ async function generate(
 			await Promise.all(EXCLUDE_PATHS.map((filepath) => fs.rm(path.join(dir, filepath))));
 		}),
 	);
-}
-
-async function startPreview(onSpawn: (child: child_process.ChildProcess) => void): Promise<string> {
-	return new Promise<string>((resolve) => {
-		const child = child_process.spawn('pnpm', ['vite', 'preview'], {
-			stdio: 'overlapped',
-		});
-		onSpawn(child);
-		child.stdout.on('data', (data) => {
-			const output: string = data
-				.toString()
-				// eslint-disable-next-line no-control-regex
-				.replace(/\u001b\[.*?m/g, '');
-			const match = output.match(/https?:\/\/localhost:\d+\//)?.[0];
-			if (match) {
-				resolve(match);
-			}
-		});
-	});
 }
 
 async function fetchHTMLs(url: string, paths: string[]): Promise<[string, string][]> {
@@ -157,21 +137,25 @@ function pagefind_build(pluginConfig: PagefindViteConfig = {}): import('vite').P
 					return;
 				}
 				const startTimestamp = Date.now();
-				const children: child_process.ChildProcess[] = [];
-				process.on('exit', () => {
-					if (verbose) {
-						logger.info('Cleaning up resources by vite-plugin-pagefind...');
-					}
-					for (const child of children) {
-						if (child.exitCode === null) {
-							child.kill();
-						}
-					}
-				});
+				// const children: child_process.ChildProcess[] = [];
+				// process.on('exit', () => {
+				// 	if (verbose) {
+				// 		logger.info('Cleaning up resources by vite-plugin-pagefind...');
+				// 	}
+				// 	for (const child of children) {
+				// 		if (child.exitCode === null) {
+				// 			const ok = process.kill(child.pid!);
+				// 			if (!ok) {
+				// 				logger.error('Failed to terminate preview server, please terminate it manually.');
+				// 			}
+				// 		}
+				// 	}
+				// });
 				if (verbose) {
 					logger.info('Starting preview server...');
 				}
-				const url = await startPreview((child) => children.push(child));
+				const server = await preview();
+				const url = `http://localhost:${server.config.preview.port}/`;
 				if (verbose) {
 					logger.info(`Preview server started at ${pico.yellow(url)}`);
 				}
@@ -231,11 +215,7 @@ function pagefind_build(pluginConfig: PagefindViteConfig = {}): import('vite').P
 				});
 				logger.success(`Pagefind indexed in ${pico.yellow(Date.now() - startTimestamp + 'ms')}`);
 
-				for (const child of children) {
-					if (child.exitCode === null) {
-						child.kill();
-					}
-				}
+				await server.close();
 			},
 		},
 	};
