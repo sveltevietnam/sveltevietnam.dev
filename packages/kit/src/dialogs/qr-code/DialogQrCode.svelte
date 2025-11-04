@@ -10,14 +10,7 @@
 
 	import type { DialogQrCodeProps } from '.';
 
-	let {
-		item,
-		data,
-		filename = 'qr.png',
-		class: cls,
-		theme,
-		...rest
-	}: DialogQrCodeProps = $props();
+	let { item, data, filename = 'qr.png', class: cls, theme, ...rest }: DialogQrCodeProps = $props();
 
 	let config: SvgQRParameter = $derived({
 		data,
@@ -43,12 +36,12 @@
 	{...rest}
 >
 	<form class="space-y-6" method="dialog">
-		<button class="c-link-lazy absolute right-4 top-4 p-2" formmethod="dialog">
+		<button class="c-link-lazy absolute top-4 right-4 p-2" formmethod="dialog">
 			<span class="sr-only"><T key="close" /></span>
 			<i class="i i-[ph--x] h-6 w-6"></i>
 		</button>
 		<p class="c-text-title border-b"><T key="dialogs.qr.title" /></p>
-		<p><T key="dialos.qr.desc" /></p>
+		<p><T key="dialogs.qr.desc" /></p>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			use:qr={config}
@@ -59,11 +52,7 @@
 			aria-label="QR"
 		></svg>
 		{#if href}
-			<a
-				class="c-btn mx-auto block"
-				download={filename}
-				{href}
-			>
+			<a class="c-btn mx-auto block" download={filename} {href}>
 				<T key="download" />
 			</a>
 		{/if}
