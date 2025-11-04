@@ -39,7 +39,7 @@ async function r(
 	expects: { en: string; vi: string },
 ) {
 	let remote = defaultRemote;
-	const customRemote = contextInit.remote ?? props.remote;
+	const customRemote = props.remote ?? contextInit.remote;
 	if (customRemote) {
 		if (customRemote === 'query') {
 			remote = remoteQuery;
@@ -183,7 +183,7 @@ describe('can render with key with params', () => {
 	});
 });
 
-describe('as remote as function', () => {
+describe('custom remote as function', () => {
 	const rendered = 'from custom remote';
 	const remote = vi.fn().mockImplementation(() => rendered);
 
@@ -265,6 +265,22 @@ describe(`custom remote as "prerender"`, () => {
 			},
 		);
 	});
+});
+
+test('custom remote prop should take precedence over context', async () => {
+	await r(
+		{ lang: 'en', remote: 'prerender' },
+		{
+			key: messages.withParams.$k,
+			params: { name: 'foobar' },
+			lang: 'vi',
+			remote: 'query',
+		},
+		{
+			en: messages.withParams('en', { name: 'foobar' }),
+			vi: messages.withParams('vi', { name: 'foobar' }),
+		},
+	);
 });
 
 describe('can santize', () => {

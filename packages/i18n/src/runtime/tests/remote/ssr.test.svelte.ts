@@ -165,6 +165,24 @@ describe('can custom remote function', () => {
 		});
 	});
 
+	test('prop should take precedence over context', async () => {
+		const rendered = 'from custom remote';
+		const remote = vi.fn().mockImplementation(() => rendered);
+		const { body } = await render(InProvider, {
+			props: {
+				t: {
+					key: messages.withParams.$k,
+					params: { name: 'foobar' },
+					remote,
+					// eslint-disable-next-line @typescript-eslint/no-explicit-any
+				} as any,
+				// eslint-disable-next-line @typescript-eslint/no-explicit-any
+				context: { lang: 'en', remote: 'prerender' } as any,
+			},
+		});
+		expect(body).toContain(rendered);
+	});
+
 	for (const remote of ['query', 'prerender'] as const) {
 		describe(`as "${remote}"`, () => {
 			test('via context', async () => {
