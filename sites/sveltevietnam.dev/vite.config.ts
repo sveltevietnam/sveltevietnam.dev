@@ -45,7 +45,7 @@ export default defineConfig({
 		],
 	},
 	plugins: [
-		pagefind(),
+		pagefind({ verbose: !process.env.CI }),
 		qrcode(),
 		inlineSvg(
 			[
