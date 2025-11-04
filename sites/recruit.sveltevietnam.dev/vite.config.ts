@@ -30,7 +30,6 @@ export default defineConfig({
 			'@svelte-put/async-stack',
 			'@svelte-put/async-stack/helpers',
 			'@svelte-put/cloudflare-turnstile',
-			'@svelte-put/lockscroll',
 			'defu',
 			'sveltekit-superforms',
 			'sanitize-html',

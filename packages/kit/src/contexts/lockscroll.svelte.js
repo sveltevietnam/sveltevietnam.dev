@@ -1,12 +1,36 @@
-import { lockscroll } from '@svelte-put/lockscroll';
 import { getContext, setContext } from 'svelte';
-import { fromAction } from 'svelte/attachments';
+
+/**
+ * @param {HTMLElement} node
+ */
+function lock(node) {
+	const scrollBarWidth = window.innerWidth - document.body.clientWidth;
+	node.style.paddingRight = `${scrollBarWidth}px`;
+	node.style.overflow = 'hidden';
+}
+
+/**
+ * @param {HTMLElement} node
+ */
+function unlock(node) {
+	node.style.overflow = '';
+	node.style.paddingRight = '';
+}
 
 export class LockScrollContext {
 	static KEY = Symbol('app:lockscroll');
 
 	// $state
 	scrolllock = $state(false);
+
+	/**
+	 * @param {boolean} [scrolllock]
+	 */
+	constructor(scrolllock) {
+		if (scrolllock !== undefined) {
+			this.scrolllock = scrolllock;
+		}
+	}
 
 	/**
 	 * @param {boolean} [force]
@@ -31,11 +55,19 @@ export class LockScrollContext {
 	 * apply lockscroll on this scroll container (usually svelte:document for global lock)
 	 * @returns {import('svelte/attachments').Attachment<HTMLElement | Document>}
 	 */
-	apply = () =>
-		fromAction(
-			/** @type {import('svelte/action').Action<HTMLElement | Document, boolean>} */ (lockscroll),
-			() => this.scrolllock,
+	apply = () => (node) => {
+		let rNode = /** @type {HTMLElement} */ (
+			node.isSameNode(document) ? document.documentElement : node
 		);
+		if (this.scrolllock) {
+			lock(rNode);
+		} else {
+			unlock(rNode);
+		}
+		return () => {
+			unlock(rNode);
+		};
+	};
 
 	/**
 	 * @returns {LockScrollContext}

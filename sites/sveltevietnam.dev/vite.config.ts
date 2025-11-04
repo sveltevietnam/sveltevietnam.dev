@@ -26,7 +26,6 @@ export default defineConfig({
 		include: [
 			'@atproto/api',
 			'@floating-ui/dom',
-			'@svelte-put/lockscroll',
 			'@svelte-put/toc',
 			'@svelte-put/async-stack',
 			'@svelte-put/async-stack/helpers',
