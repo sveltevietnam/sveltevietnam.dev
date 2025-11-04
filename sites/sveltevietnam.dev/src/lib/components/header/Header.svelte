@@ -78,20 +78,7 @@
 	const colorSchemeMenuProps: ColorSchemeMenuProps = $derived({
 		hydrated: !!settings.hydrated,
 		colorScheme: colorScheme.user,
-		onselect: async function (scheme) {
-			if (!document.startViewTransition) {
-				colorScheme.user = scheme;
-				return;
-			}
-
-			const transition = document.startViewTransition(() => {
-				colorScheme.user = scheme;
-				document.documentElement.classList.toggle('in-theme-transition', true);
-			});
-
-			await transition.finished;
-			document.documentElement.classList.toggle('in-theme-transition', false);
-		},
+		onselect: (scheme) => (colorScheme.user = scheme),
 	});
 </script>
 

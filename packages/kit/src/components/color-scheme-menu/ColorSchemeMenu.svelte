@@ -38,10 +38,26 @@
 					: '',
 	);
 
+	async function update(key: ColorScheme) {
+		if (!onselect) return;
+		if (!document.startViewTransition) {
+			onselect(key);
+			return;
+		}
+
+		const transition = document.startViewTransition(() => {
+			onselect(key);
+			document.documentElement.classList.toggle('in-theme-transition', true);
+		});
+
+		await transition.finished;
+		document.documentElement.classList.toggle('in-theme-transition', false);
+	}
+
 	function handleSubmit(e: SubmitEvent, key: ColorScheme) {
 		const previousColorScheme = $state.snapshot(colorScheme);
 		e.preventDefault();
-		onselect?.(key);
+		update(key);
 		open = false;
 		if (key !== previousColorScheme && 'umami' in window) {
 			window.umami?.track('change-color-scheme', { from: previousColorScheme, to: key });
@@ -92,3 +108,37 @@
 		</ul>
 	{/snippet}
 </Dropdown>
+
+<style lang="postcss">
+	:global {
+		:root.in-theme-transition {
+			&::view-transition-old(root) {
+				animation-delay: 600ms;
+			}
+
+			&::view-transition-new(root) {
+				animation: circle-in 600ms var(--default-transition-timing-function);
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				&::view-transition-old(root) {
+					animation-duration: 0ms;
+				}
+
+				&::view-transition-new(root) {
+					animation-duration: 0ms;
+				}
+			}
+		}
+
+		@keyframes circle-in {
+			from {
+				clip-path: circle(0% at 100% 0%);
+			}
+
+			to {
+				clip-path: circle(140% at 100% 0%);
+			}
+		}
+	}
+</style>
