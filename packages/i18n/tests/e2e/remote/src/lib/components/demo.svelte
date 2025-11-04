@@ -4,11 +4,13 @@
 	import { langs } from '@sveltevietnam/i18n/generated/constants';
 	import * as m from '@sveltevietnam/i18n/generated/messages';
 
+	let { remote }: { remote: 'query' | 'prerender' } = $props();
+
 	let lang = $state<Language>('en');
 	let languageNames = $derived(new Intl.DisplayNames([lang], { type: 'language' }));
 </script>
 
-<Provider {lang}>
+<Provider {lang} {remote}>
 	<fieldset>
 		<label for="select-lang">
 			<T key="select_language" />:

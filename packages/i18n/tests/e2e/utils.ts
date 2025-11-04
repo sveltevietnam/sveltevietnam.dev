@@ -38,6 +38,7 @@ const greet = m['components.welcome.greet'];
 const goodbye = m['goodbye'];
 
 export class PageObjectModel {
+	readonly path: string;
 	readonly page: Page;
 	readonly selectLang: Locator;
 	readonly thKey: Locator;
@@ -50,7 +51,8 @@ export class PageObjectModel {
 		}
 	>;
 
-	constructor(page: Page) {
+	constructor(page: Page, path = '/') {
+		this.path = path;
 		this.page = page;
 		this.selectLang = page.getByTestId('select-lang');
 		this.thKey = page.getByTestId('key');
@@ -69,7 +71,7 @@ export class PageObjectModel {
 	}
 
 	goto() {
-		return this.page.goto('/');
+		return this.page.goto(this.path);
 	}
 
 	changeLanguage(lang: (typeof langs)[number]) {
