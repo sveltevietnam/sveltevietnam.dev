@@ -25,7 +25,7 @@
 	let languageNames = $derived(new Intl.DisplayNames([lang], { type: 'language' }));
 </script>
 
-<Dropdown class={['group w-fit', cls]} {...rest} aria-labelledby="language-menu-label">
+<Dropdown class={['group w-fit', cls]} {...rest} aria-labelledby="language-menu-label" bind:open>
 	{#snippet label()}
 		<span class="c-link-lazy flex items-center gap-2 transition-colors">
 			<i class="i i-[ph--translate] h-6 w-6"></i>

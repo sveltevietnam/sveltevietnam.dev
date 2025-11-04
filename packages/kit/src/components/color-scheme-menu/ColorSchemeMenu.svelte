@@ -49,7 +49,12 @@
 	}
 </script>
 
-<Dropdown class={['group w-fit', cls]} {...rest} aria-labelledby="color-scheme-menu-label">
+<Dropdown
+	class={['group w-fit', cls]}
+	{...rest}
+	aria-labelledby="color-scheme-menu-label"
+	bind:open
+>
 	{#snippet label()}
 		<span class="c-link-lazy flex items-center gap-2 transition-colors">
 			<i class="i i-[ph--palette] h-6 w-6"></i>
