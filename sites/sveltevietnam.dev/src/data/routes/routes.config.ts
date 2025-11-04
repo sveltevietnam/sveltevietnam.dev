@@ -5,7 +5,7 @@ import type { AllRoutePath } from './generated/types';
 
 export default defineConfig<AllRoutePath, Language>({
 	outdir: 'src/data/routes/generated',
-	debug: true,
+	debug: !process.env.CI,
 	exclude: ['/'],
 	localization: {
 		param: 'lang',
