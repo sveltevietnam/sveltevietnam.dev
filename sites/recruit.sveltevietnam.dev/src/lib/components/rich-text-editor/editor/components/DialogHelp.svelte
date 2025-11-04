@@ -7,7 +7,7 @@
 	let { item }: StackItemProps<void> = $props();
 </script>
 
-<dialog class="c-dialog" {...enhanceDialog(item, { delayResolution: 'animationend' })}>
+<dialog class="c-dialog" {...enhanceDialog(item)}>
 	<form method="dialog">
 		<button class="c-link-lazy absolute top-4 right-4 p-2" formmethod="dialog">
 			<span class="sr-only">

@@ -30,11 +30,7 @@
 	});
 </script>
 
-<dialog
-	class={['c-dialog', cls]}
-	{...enhanceDialog(item, { delayResolution: 'animationend' })}
-	{...rest}
->
+<dialog class={['c-dialog', cls]} {...enhanceDialog(item)} {...rest}>
 	<form class="space-y-6" method="dialog">
 		<button class="c-link-lazy absolute top-4 right-4 p-2" formmethod="dialog">
 			<span class="sr-only"><T key="close" /></span>

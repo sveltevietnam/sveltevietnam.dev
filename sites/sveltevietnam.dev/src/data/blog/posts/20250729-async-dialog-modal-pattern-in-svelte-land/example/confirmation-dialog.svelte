@@ -17,12 +17,9 @@
 	// but you may also call item.resolve(...) to do it programmatically.
 </script>
 
-<dialog
-	class="c-dialog"
-	{...enhanceDialog(item, { defaultReturnValue: 'cancel', delayResolution: 'animationend' })}
->
+<dialog class="c-dialog" {...enhanceDialog(item, { defaultReturnValue: 'cancel' })}>
 	<form class="space-y-6" method="dialog">
-		<button class="c-link-lazy absolute right-4 top-4 p-2" formmethod="dialog">
+		<button class="c-link-lazy absolute top-4 right-4 p-2" formmethod="dialog">
 			<span class="sr-only">Close</span>
 			<i class="i i-[ph--x] h-6 w-6"></i>
 		</button>

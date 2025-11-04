@@ -4,10 +4,6 @@
  */
 @utility c-dialog {
 	@layer components {
-		inset: 0;
-
-		display: block; /* required for animation to work */
-
 		margin: auto;
 		padding: calc(var(--spacing) * 6);
 		border: 2px solid var(--color-outline);
@@ -15,19 +11,42 @@
 		background-color: var(--color-surface);
 		box-shadow: var(--shadow-brutal);
 
-		animation-name: fly-out-down;
-		animation-duration: 150ms;
-		animation-timing-function: var(--default-transition-timing-function);
-		animation-fill-mode: forwards;
+		transition-timing-function: var(--default-transition-timing-function);
+		transition-duration: 200ms;
+		transition-property: transform, opacity, overlay, display;
+
+		transition-behavior: allow-discrete;
 
 		&::backdrop {
-			opacity: 0.8;
-			background-color: var(--color-surface);
+			transition-timing-function: var(--default-transition-timing-function);
+			transition-duration: 200ms;
+			transition-property: opacity, background-color, overlay, display;
+
+			transition-behavior: allow-discrete;
 		}
 
-		&[open] {
-			animation-name: fly-in-up;
-			animation-duration: 200ms;
+		&:is([open], :open) {
+			transform: translateY(0);
+			opacity: 1;
+			transition-duration: 150ms;
+
+			&::backdrop {
+				opacity: 0.8;
+				background-color: var(--color-surface);
+				transition-duration: 150ms;
+			}
+		}
+
+		@starting-style {
+			&:is([open], :open) {
+				transform: translateY(2rem);
+				opacity: 0;
+
+				&::backdrop {
+					opacity: 0;
+					background-color: transparent;
+				}
+			}
 		}
 	}
 }

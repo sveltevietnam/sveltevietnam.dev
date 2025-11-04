@@ -41,7 +41,7 @@
 </script>
 
 <dialog
-	{...enhanceDialog(item, { delayResolution: 'animationend' })}
+	{...enhanceDialog(item)}
 	class="c-dialog bg-surface-subtle mt-header mobile:m-0 mobile:w-full mobile:h-full mobile:shadow-none
 	tablet:max-h-[80vh] max-h-screen max-w-screen p-0"
 	bind:this={dialog}

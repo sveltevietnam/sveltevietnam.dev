@@ -8,10 +8,7 @@
 	let { item, title, description, confirm, cancel }: DialogConfirmationProps = $props();
 </script>
 
-<dialog
-	class="c-dialog"
-	{...enhanceDialog(item, { defaultReturnValue: 'cancel', delayResolution: 'animationend' })}
->
+<dialog class="c-dialog" {...enhanceDialog(item, { defaultReturnValue: 'cancel' })}>
 	<form class="space-y-6" method="dialog">
 		<button class="c-link-lazy absolute top-4 right-4 p-2" formmethod="dialog">
 			<span class="sr-only">Close</span>
