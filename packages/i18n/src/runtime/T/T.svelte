@@ -26,10 +26,9 @@
 		throw new Error("T component must live within a `import('@sveltevietnam/i18n').Context`");
 	}
 
-	let options = $derived({ lang, sanitize, remote });
 	let maybePromise = $derived<string | Promise<string>>(
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		(context.t as any)({ key, message, params, options }),
+		(context.t as any)({ key, message, params, lang, sanitize, remote }),
 	);
 </script>
 

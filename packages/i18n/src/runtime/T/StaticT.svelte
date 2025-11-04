@@ -18,10 +18,9 @@
 		throw new Error("T component must live within a `import('@sveltevietnam/i18n').Context`");
 	}
 
-	let options = $derived({ lang, sanitize });
 	let translated = $derived(
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		(context.t as any)({ message, params, options }),
+		(context.t as any)({ message, params, lang, sanitize }),
 	);
 </script>
 

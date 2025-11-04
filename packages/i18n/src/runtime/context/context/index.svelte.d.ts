@@ -86,17 +86,16 @@ export interface StaticTranslate<Ma extends Record<string, Message> = Mapping> {
 			 * ```
 			 */
 			message: Me;
-			/** optional ad-hoc override from context */
-			options?: Partial<TranslateOptions<'static', InferLanguage<Me>, Ma>>;
-		} & (InferType<Me> extends 'with-params'
-			? {
-					/**
-					 * parameters to inject into message. You are seeing this because you have
-					 * passed in a message field with `MessageWithParams` interface.
-					 */
-					params: InferParams<Me>;
-				}
-			: Record<never, never>),
+		} & Partial<TranslateOptions<'static', InferLanguage<Me>, Ma>> &
+			(InferType<Me> extends 'with-params'
+				? {
+						/**
+						 * parameters to inject into message. You are seeing this because you have
+						 * passed in a message field with `MessageWithParams` interface.
+						 */
+						params: InferParams<Me>;
+					}
+				: Record<never, never>),
 	): string;
 }
 
@@ -110,7 +109,7 @@ export interface RemoteTranslate<
 			/**
 			 * key to the message to fetch, type of this key should key should be automatically augmented
 			 * via the generated `<output-dir>/i18n.d.ts` file after the vite plugin has run;
-			 * if the message is defined with parameters, pass them via the `params` prop
+			 * if the message is defined with parameters, pass them via the `params` field
 			 *
 			 * @example
 			 * ```svelte
@@ -125,17 +124,16 @@ export interface RemoteTranslate<
 			 * ```
 			 */
 			key: Key;
-			/** optional ad-hoc override from context */
-			options?: Partial<TranslateOptions<'remote', L, Ma>>;
-		} & (InferType<Ma[Key]> extends 'with-params'
-			? {
-					/**
-					 * parameters to inject into message. You are seeing this because you have
-					 * passed in a key that refer to a message with `MessageWithParams` interface.
-					 */
-					params: InferParams<Ma[Key]>;
-				}
-			: Record<never, never>),
+		} & Partial<TranslateOptions<'remote', L, Ma>> &
+			(InferType<Ma[Key]> extends 'with-params'
+				? {
+						/**
+						 * parameters to inject into message. You are seeing this because you have
+						 * passed in a key that refer to a message with `MessageWithParams` interface.
+						 */
+						params: InferParams<Ma[Key]>;
+					}
+				: Record<never, never>),
 	): Promise<string>;
 }
 

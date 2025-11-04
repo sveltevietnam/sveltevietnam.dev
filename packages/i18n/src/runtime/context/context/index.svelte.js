@@ -46,7 +46,7 @@ export class Context {
 		/** @type {(input: any) => any} */
 		(
 			(input) => {
-				const { key, message, params, options } = input || {};
+				const { key, message, params, lang, sanitize, remote } = input || {};
 				if (mode === 'static' && !message) {
 					throw new Error(
 						'(sveltevietnam/i18n) ✘ T component in "static" mode requires "message" prop',
@@ -67,8 +67,6 @@ export class Context {
 					}
 				}
 
-				const { lang, sanitize } =
-					/** @type {import('./index.svelte').TranslateOptions<Mode, Language>} */ (options ?? {});
 				const rLang = lang ?? this.lang;
 				const rSanitize = sanitize ?? this.sanitize;
 
@@ -77,7 +75,7 @@ export class Context {
 				}
 
 				/** @type {typeof this.remote} */
-				const rRemote = options?.remote ?? this.remote;
+				const rRemote = remote ?? this.remote;
 				const loadFn =
 					typeof rRemote === 'string'
 						? import('@sveltevietnam/i18n/generated/t.remote').then(

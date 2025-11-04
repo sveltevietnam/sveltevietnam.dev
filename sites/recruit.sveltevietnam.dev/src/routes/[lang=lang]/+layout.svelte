@@ -53,7 +53,10 @@
 			cookieName: VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
 			user: data.settings.colorScheme,
 		}),
-		i18n: () => ({ lang: data.settings.language }),
+		i18n: () => ({
+			lang: data.settings.language,
+			remote: 'prerender',
+		}),
 	});
 	const { routing, colorScheme } = contexts;
 

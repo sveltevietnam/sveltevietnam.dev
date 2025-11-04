@@ -45,10 +45,8 @@ test('throw if message is missing', async () => {
 	expect(tSpy).toHaveBeenCalledWith({
 		message: undefined,
 		key: undefined,
-		options: {
-			lang: undefined,
-			sanitize: undefined,
-		},
+		lang: undefined,
+		sanitize: undefined,
 		params: undefined,
 	});
 	tSpy.mockReset();
