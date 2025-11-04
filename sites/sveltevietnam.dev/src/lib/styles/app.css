@@ -9,11 +9,11 @@
 
 :root.in-theme-transition {
 	&::view-transition-old(root) {
-		animation-delay: 400ms;
+		animation-delay: 600ms;
 	}
 
 	&::view-transition-new(root) {
-		animation: circle-in 400ms var(--default-transition-timing-function);
+		animation: circle-in 600ms var(--default-transition-timing-function);
 	}
 
 	@media (prefers-reduced-motion: reduce) {
