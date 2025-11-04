@@ -62,8 +62,8 @@ import { defineConfig } from 'vite';
 export default defineConfig({
 	plugins: [
 		i18n({
-			input: './src/lib/i18n/locales',
-			output: './src/lib/i18n/generated',
+			input: './src/lib/i18n/locales', // where your locale files live (en.yaml, vi.yaml, etc)
+			output: './src/lib/i18n/generated', // where generated modules live
 		}),
 		sveltekit(),
 	],
@@ -96,7 +96,7 @@ export default {
 ```
 
 > [!NOTE]
-> If you cannot enable the experimental features, you can still use the package in "static" mode.
+> If you cannot use above experimental features, you can still use the package in "static" mode.
 > See [Remote vs Static Mode](#remote-vs-static-mode) for details.
 
 ### 4. Define Locales
@@ -121,7 +121,7 @@ messages: ...
 
 ### 5. Configure I18N Provider
 
-Configure the i18n provider where appropriate, e.g., in `src/routes/+layout.svelte`:
+Configure i18n provider where appropriate, e.g., in `src/routes/+layout.svelte`:
 
 ```svelte
 <script lang="ts">
@@ -139,8 +139,8 @@ Configure the i18n provider where appropriate, e.g., in `src/routes/+layout.svel
 
 ## Translating Messages
 
-There are several ways to translate your messages, and using `T` component is recommended whenever
-possible.
+There are several ways to translate your messages, and using `T` component is **recommended whenever
+possible**.
 
 ### Using `T` Component
 
@@ -153,7 +153,7 @@ possible.
 ```
 
 > [!NOTE]
-> Typing should be inferred. If your message requires parameters, additional `params` prop is expected.
+> Typing should be inferred. If your message specs contains parameters, additional `params` prop is expected.
 
 ### Using `t` function from context
 
@@ -169,10 +169,12 @@ Internally, `T` component uses a `t` function from the i18n context, which you a
 {await t({ key: 'key.to.your.message' })}
 ```
 
+The interface of `t` input mirrors that of `T` prop:
+
 > [!IMPORTANT]
 > A few things to note:
 >
-> - In the default "remote" mode, `t` is asynchronous (calls remote function internally).
+> - In the default ["remote" mode](#remote-mode), `t` is asynchronous (calls remote function internally).
 > - You will need to handle html string yourself, i.e using {@html ...}.
 
 This is helpful when you are translating non-html messages for attributes, e.g.,
@@ -212,17 +214,18 @@ const message = m['key.to.your.message'];
 ```
 
 > [!NOTE]
-> When importing static messages, always use wildcard (`* as m`) to facilitate tree-shaking.
+> When importing static messages, always use wildcard (`* as m`) to better facilitate tree-shaking.
 
 ### Using Remote Functions
 
-In "remote" mode, `t` internally calls the generated remote function, which you can also import and
+In ["remote" mode](#remote-mode), `t` internally calls the generated remote function, which you can also import and
 use directly:
 
 ```typescript
-import { query } from '@sveltevietnam/i18n/generated/t.remote';
+import { query, prerender } from '@sveltevietnam/i18n/generated/t.remote';
 
 const translated = await query({
+	// or prerender
 	lang: 'en',
 	key: 'string_with_params',
 	params: { name: 'world' }, // inferred from key
@@ -231,16 +234,61 @@ const translated = await query({
 
 Similar to `t`, you will need to handle html string yourself.
 
+## Choose your Remote Function
+
+In ["remote" mode](#remote-mode), `Provider`, `T`, and `t` accept a `remote` parameter that
+specifies which remote function to fetch translation from. `remote` can be:
+
+- `prerender`: uses SvelteKit [prerender](https://svelte.dev/docs/kit/remote-functions#query.batch)
+  via the generated `prerender` function at `<output-dir>/t.remote.js`. This is the default and
+  usually what you want if you've turned on `prerendering` for your page(s),
+- `query`: uses SvelteKit [query.batch](svelte.dev/docs/kit/remote-functions#query.batch) via the
+  generated `query` function at `<output-dir>/t.remote.js`. This can batch multiple translation
+  requests but may not be able to utilize cache,
+- your own: import yours in some `.remote.{js,ts}` and pass it here to provide an implementation
+  that works for your setup. The generated modules are at your disposal.
+-
+
+### Global Remote Function
+
+```svelte
+<script lang="ts">
+	import { Provider } from '@sveltevietnam/i18n';
+	let lang = $state<Language>('vi');
+</script>
+
+<Provider {lang} remote="prerender">
+	<!--
+		unless specified otherwise, all children T and t will fetch from
+		import('@sveltevietnam/i18n/generated/t.remote').prerender
+	-->
+</Provider>
+```
+
+### Remote Function per Translation
+
+```svelte
+<script lang="ts">
+	import { T, Context } from '@sveltevietnam/i18n';
+	const { t } = Context.get();
+</script>
+
+<!-- these use whatever remote function specified in provider -->
+<T key="key.to.message" />
+{await t({ key: 'key.to.message' })}
+
+<!-- these overrides to use prerender function -->
+<T key="key.to.message" remote="query" />
+{await t({ key: 'key.to.message', remote: 'query' })}
+```
+
 ## Remote vs Static Mode
 
 ### Remote Mode
 
 By default, the package builds in `"remote"` mode and assumes you have enabled experimental features
 as discussed in [Configure Svelte & SvelteKit](3-configure-svelte--sveltekit). This leverages
-Svelte & SvelteKit capabilities for optimization. i.e translations are:
-
-- lazily fetched only when and where needed,
-- batched together to minimize network requests.
+Svelte & SvelteKit capabilities for optimization. i.e translations are lazily fetched only when and where needed.
 
 ### Static Mode
 
@@ -308,8 +356,8 @@ following modules:
   can be imported as `@sveltevietnam/i18n/generated/constants`.
   See [Using Remote Functions](#using-remote-functions) for some more information.
 - `i18n.d.ts`: module augmentation for on-demand typing support.
-- `t.remote.js`: contains the remote function implementation for translation,
-  can be imported as `@sveltevietnam/i18n/generated/t.remote`.
+- `t.remote.js`: contains the remote functions for translation,
+  can be imported from `@sveltevietnam/i18n/generated/t.remote`.
 
 Although importing from `@sveltevietnam/i18n/generated` is most convenient, you can also opt to
 import directly from the output directory. For example, in SvelteKit, that may look like:
