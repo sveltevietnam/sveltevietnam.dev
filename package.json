@@ -60,7 +60,7 @@
 		"vitest-browser-svelte": "^2.0.1",
 		"wrangler": "^4.45.1"
 	},
-	"packageManager": "pnpm@10.11.0",
+	"packageManager": "pnpm@10.20.0",
 	"pnpm": {
 		"onlyBuiltDependencies": [
 			"@tailwindcss/oxide",
