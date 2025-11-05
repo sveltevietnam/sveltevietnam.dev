@@ -55,7 +55,7 @@
 		}),
 		i18n: () => ({
 			lang: data.settings.language,
-			remote: 'query',
+			remote: routing.is(p['/:lang']({ lang: data.settings.language })) ? 'prerender' : 'query',
 		}),
 	});
 	const { routing, colorScheme } = contexts;
