@@ -1,9 +1,14 @@
 <script lang="ts">
 	import { JOB_POSTING_TYPE_I18N } from '@sveltevietnam/backend/data/job-postings/enums';
-	import { T } from '@sveltevietnam/i18n';
+	import { Context, T } from '@sveltevietnam/i18n';
 	import fallback1x1 from '@sveltevietnam/kit/assets/images/fallbacks/1x1.jpg?enhanced&w=w=224;112&imagetools';
 	import { Breadcrumbs, CopyBtn } from '@sveltevietnam/kit/components';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import {
+		ColorSchemeContext,
+		DialogContext,
+		NotificationContext,
+		RoutingContext,
+	} from '@sveltevietnam/kit/contexts';
 	import { DialogConfirmation, DialogQrCode } from '@sveltevietnam/kit/dialogs';
 	import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
 	import sanitizeHtml from 'sanitize-html';
@@ -19,13 +24,11 @@
 
 	let { data }: PageProps = $props();
 
-	const {
-		routing,
-		dialogs,
-		colorScheme,
-		notifications: { toaster },
-		i18n: { t },
-	} = Contexts.get();
+	const routing = RoutingContext.get();
+	const { toaster } = NotificationContext.get();
+	const colorScheme = ColorSchemeContext.get();
+	const { t } = Context.get();
+	const dialogs = DialogContext.get();
 
 	let url = $derived(
 		`${VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN}/${routing.lang}/jobs/${data.posting.id}`,

@@ -5,7 +5,7 @@
 	import { LANGUAGES } from '@sveltevietnam/kit/constants';
 
 	import { SOCIAL_LINKS } from '../../constants.js';
-	import { Contexts } from '../../contexts/index.js';
+	import { RoutingContext } from '../../contexts/index.js';
 	import { GreenWebBadge } from '../green-web-badge/index.js';
 	import { NotByAiBadge } from '../not-by-ai-badge/index.js';
 	import { SocialLinks } from '../social-links/index.js';
@@ -22,7 +22,7 @@
 		...rest
 	}: FooterProps = $props();
 
-	const { routing } = Contexts.get();
+	const routing = RoutingContext.get();
 
 	const primaryNavigationUlClass = $derived(
 		Array.isArray(navigationPrimary) && navigationPrimary.length > 3

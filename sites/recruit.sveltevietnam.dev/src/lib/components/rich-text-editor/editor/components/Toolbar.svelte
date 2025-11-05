@@ -1,7 +1,7 @@
 <script lang="ts" module>
 	import { T } from '@sveltevietnam/i18n';
 	import type { Status } from '@sveltevietnam/kit/constants';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { DialogContext } from '@sveltevietnam/kit/contexts';
 	import { REDO_COMMAND, UNDO_COMMAND } from 'lexical';
 
 	import type { Editor } from '..';
@@ -22,7 +22,7 @@
 
 	let { editor }: ToolbarProps = $props();
 
-	const { dialogs } = Contexts.get();
+	const dialogs = DialogContext.get();
 
 	function undo() {
 		editor.lexical.dispatchCommand(UNDO_COMMAND, undefined);

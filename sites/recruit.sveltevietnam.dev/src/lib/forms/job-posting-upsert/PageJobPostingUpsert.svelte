@@ -9,7 +9,7 @@
 		JobPosting,
 	} from '@sveltevietnam/kit/components';
 	import { EMAILS } from '@sveltevietnam/kit/constants';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import { VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN } from '$env/static/public';
 	import { SponsorReminder } from '$lib/components/sponsor-reminder';
@@ -39,7 +39,7 @@
 		successTKey,
 	}: JobPostingUpsertLayoutProps = $props();
 
-	const { routing } = Contexts.get();
+	const routing = RoutingContext.get();
 
 	let previewPosting: Omit<JobPostingProps['posting'], 'href'> = $state(posting);
 

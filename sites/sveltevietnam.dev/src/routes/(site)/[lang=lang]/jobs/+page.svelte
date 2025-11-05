@@ -2,7 +2,7 @@
 	import { T } from '@sveltevietnam/i18n';
 	import { JobPostingList, TBA, Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { EMAILS } from '@sveltevietnam/kit/constants';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import { page } from '$app/state';
 	import * as p from '$data/routes/generated';
@@ -17,7 +17,7 @@
 
 	let { data }: PageProps = $props();
 
-	const { routing } = Contexts.get();
+	const routing = RoutingContext.get();
 </script>
 
 <main {...pagefind.page({ group: 'jobs' })}>

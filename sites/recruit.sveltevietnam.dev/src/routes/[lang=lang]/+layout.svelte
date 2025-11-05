@@ -10,7 +10,7 @@
 		Footer,
 	} from '@sveltevietnam/kit/components';
 	import { EMAILS } from '@sveltevietnam/kit/constants';
-	import { Contexts, ContextsProvider } from '@sveltevietnam/kit/contexts';
+	import { createContexts, Provider } from '@sveltevietnam/kit/contexts';
 	import { ScrollToggler } from '@sveltevietnam/kit/utilities';
 	import { onMount } from 'svelte';
 
@@ -41,7 +41,7 @@
 
 	let { children, data }: LayoutProps = $props();
 
-	const contexts = Contexts.set({
+	const contexts = createContexts({
 		routing: () => ({
 			lang: data.settings.language,
 			paths: page.data.routing?.paths ?? {
@@ -194,7 +194,7 @@
 	{/if}
 </svelte:head>
 
-<ContextsProvider {contexts}>
+<Provider {contexts}>
 	<header
 		class={[
 			'max-w-pad z-header fixed flex w-full items-start justify-between transition-transform',
@@ -263,4 +263,4 @@
 			</a>
 		{/snippet}
 	</Footer>
-</ContextsProvider>
+</Provider>

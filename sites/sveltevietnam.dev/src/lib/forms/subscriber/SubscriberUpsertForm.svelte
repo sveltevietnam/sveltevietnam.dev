@@ -1,8 +1,8 @@
 <script lang="ts" module>
 	import { turnstile } from '@svelte-put/cloudflare-turnstile';
 	import { SUBSCRIPTION_CHANNELS } from '@sveltevietnam/backend/data/subscribers/channels';
-	import { T } from '@sveltevietnam/i18n';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { Context, T } from '@sveltevietnam/i18n';
+	import { RoutingContext, NotificationContext } from '@sveltevietnam/kit/contexts';
 	import { onMount } from 'svelte';
 	import type { ChangeEventHandler, HTMLFormAttributes } from 'svelte/elements';
 	import type { SuperValidated } from 'sveltekit-superforms';
@@ -20,11 +20,9 @@
 <script lang="ts">
 	let { class: cls, data, action = '?/subscribe', ...rest }: SubscriberUpsertFormProps = $props();
 
-	const {
-		routing,
-		notifications: { toaster },
-		i18n: { t },
-	} = Contexts.get();
+	const routing = RoutingContext.get();
+	const { toaster } = NotificationContext.get();
+	const { t } = Context.get();
 
 	let all = $state(false);
 

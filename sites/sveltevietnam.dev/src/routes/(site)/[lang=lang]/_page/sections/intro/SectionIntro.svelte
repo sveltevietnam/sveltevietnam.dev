@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { Context, T } from '@sveltevietnam/i18n';
 	import { createTimeline, onScroll, stagger, eases, type Timeline } from 'animejs';
 	import { onMount } from 'svelte';
 
@@ -9,9 +8,7 @@
 
 	import svgMesh from './images/mesh.svg?no-inline';
 
-	const {
-		i18n: { t },
-	} = Contexts.get();
+	const { t } = Context.get();
 	const settings = SettingsContext.get();
 
 	let elSection: HTMLElement;

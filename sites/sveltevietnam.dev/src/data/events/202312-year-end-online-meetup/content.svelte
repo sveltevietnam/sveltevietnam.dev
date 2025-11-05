@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import vnphanquangDef from '$data/people/vnphanquang';
 	import vnphanquangAvatar from '$data/people/vnphanquang/avatar.jpg?enhanced&w=400;100&imagetools';
@@ -23,7 +23,7 @@
 
 	let { data }: PageProps = $props();
 
-	const { routing } = Contexts.get();
+	const routing = RoutingContext.get();
 
 	const vnphanquang = $derived(vnphanquangDef(routing.lang));
 </script>
@@ -158,7 +158,9 @@
 			<EventTimeline.Item startDate={data.event.startDate} offsetMinutes={90} numMinutes={20}>
 				{#snippet heading()}
 					<a class="c-link" href={EVENT_LINKS.VIDEO2}>
-						<T key="events.202312_year_end_online.timeline.videos.pretext" />: "<T key="events.202312_year_end_online.timeline.videos.two" />"
+						<T key="events.202312_year_end_online.timeline.videos.pretext" />: "<T
+							key="events.202312_year_end_online.timeline.videos.two"
+						/>"
 					</a>
 				{/snippet}
 				{#snippet content()}
@@ -214,7 +216,9 @@
 
 				<EventGallery.Image src={imgVideo2Thumbnail} alt="">
 					{#snippet caption()}
-						<T key="events.202312_year_end_online.images.video_thumbnail" />: "<T key="events.202312_year_end_online.timeline.videos.two" />"
+						<T key="events.202312_year_end_online.images.video_thumbnail" />: "<T
+							key="events.202312_year_end_online.timeline.videos.two"
+						/>"
 					{/snippet}
 				</EventGallery.Image>
 			{/snippet}

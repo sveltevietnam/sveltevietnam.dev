@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import * as p from '$data/routes/generated';
 
@@ -8,7 +8,7 @@
 
 	let { data }: PageProps = $props();
 
-	const { routing } = Contexts.get();
+	const routing = RoutingContext.get();
 </script>
 
 <main

@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 	import { TBA } from '@sveltevietnam/kit/components';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import { page } from '$app/state';
 	import type { EventMetadata } from '$data/events';
 	import * as p from '$data/routes/generated';
 	import EventListing from '$lib/components/event-listing/EventListing.svelte';
 
-	const { routing } = Contexts.get();
+	const routing = RoutingContext.get();
 
 	let {
 		events,

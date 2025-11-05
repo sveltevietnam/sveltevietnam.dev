@@ -1,7 +1,7 @@
 <script lang="ts" module>
 	import { T } from '@sveltevietnam/i18n';
 	import type { KeySimple } from '@sveltevietnam/i18n/generated';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { onMount } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { on } from 'svelte/events';
@@ -32,7 +32,7 @@
 		...rest
 	}: RichTextEditorProps = $props();
 
-	const { routing } = Contexts.get();
+	const routing = RoutingContext.get();
 	let element: HTMLElement;
 	let editor = new Editor({ html, headings, cache, maxLength });
 

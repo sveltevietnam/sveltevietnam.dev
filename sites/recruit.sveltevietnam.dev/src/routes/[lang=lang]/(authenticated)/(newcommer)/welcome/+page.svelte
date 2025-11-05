@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 	import { EMAILS } from '@sveltevietnam/kit/constants';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import * as p from '$data/routes/generated';
 	import { SingleBoxPageLayout } from '$lib/components/single-box-page-layout';
 
 	import svgKeyVisual from './_local/images/key-visual.svg';
 
-	const { routing } = Contexts.get();
+	const routing = RoutingContext.get();
 </script>
 
 <SingleBoxPageLayout class="max-w-readable">

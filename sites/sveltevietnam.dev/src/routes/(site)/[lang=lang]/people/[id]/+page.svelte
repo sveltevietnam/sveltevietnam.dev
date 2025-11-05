@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import { page } from '$app/state';
 	import * as p from '$data/routes/generated';
@@ -17,7 +17,7 @@
 
 	let { data }: PageProps = $props();
 
-	const { routing } = Contexts.get();
+	const routing = RoutingContext.get();
 
 	let paginationUrl = $derived.by(() => {
 		// eslint-disable-next-line svelte/prefer-svelte-reactivity

@@ -9,7 +9,12 @@
 		type ColorSchemeMenuProps,
 		SocialLinks,
 	} from '@sveltevietnam/kit/components';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import {
+		ColorSchemeContext,
+		DialogContext,
+		LockScrollContext,
+		RoutingContext,
+	} from '@sveltevietnam/kit/contexts';
 	import { ScrollToggler } from '@sveltevietnam/kit/utilities';
 	import type { HTMLAttributes } from 'svelte/elements';
 
@@ -20,7 +25,10 @@
 
 	const isPrideMonth = new Date().getMonth() === 5; // June is Pride Month
 
-	const { routing, colorScheme, dialogs, lockscroll } = Contexts.get();
+	const routing = RoutingContext.get();
+	const colorScheme = ColorSchemeContext.get();
+	const dialogs = DialogContext.get();
+	const lockscroll = LockScrollContext.get();
 	const settings = SettingsContext.get();
 
 	let { class: cls, ...rest }: HTMLAttributes<HTMLElement> = $props();

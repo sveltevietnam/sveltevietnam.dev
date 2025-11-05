@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { Context, T } from '@sveltevietnam/i18n';
+	import { NotificationContext, RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { superForm } from 'sveltekit-superforms';
 
 	import { SingleBoxPageLayout } from '$lib/components/single-box-page-layout';
@@ -11,11 +11,9 @@
 
 	let { data }: PageProps = $props();
 
-	const {
-		routing,
-		notifications: { toaster },
-		i18n: { t },
-	} = Contexts.get();
+	const routing = RoutingContext.get();
+	const { toaster } = NotificationContext.get();
+	const { t } = Context.get();
 
 	const { form, enhance, constraints, errors, delayed, timeout, message } = superForm<
 		{

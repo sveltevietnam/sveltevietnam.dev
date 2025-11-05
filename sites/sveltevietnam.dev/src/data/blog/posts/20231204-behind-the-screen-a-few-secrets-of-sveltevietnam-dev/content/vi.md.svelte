@@ -1,8 +1,8 @@
 <script>
   import { StackItem } from '@svelte-put/async-stack';
-	import { T } from '@sveltevietnam/i18n';
+	import { T, Context } from '@sveltevietnam/i18n';
   import { BaseNotification } from '@sveltevietnam/kit/notifications';
-  import { Contexts } from '@sveltevietnam/kit/contexts';
+  import { NotificationContext } from '@sveltevietnam/kit/contexts';
 
   import svgTuChu from '$lib/assets/images/svg/tu-chu.svg?no-inline';
   import svgTuNom from '$lib/assets/images/svg/tu-nom.svg?no-inline';
@@ -18,7 +18,8 @@
   import emailImage from '../images/email-vi.jpg?format=webp&imagetools';
 
 	const item = new StackItem({ timeout: 0 });
-  const { notifications: { toaster }, i18n: { t } } = Contexts.get();
+  const { toaster } = NotificationContext.get();
+  const { t } = Context.get();
 
   function pushDemoToast() {
     toaster.warning({

@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { StackItem } from '@svelte-put/async-stack';
-	import { T } from '@sveltevietnam/i18n';
+	import { Context, T } from '@sveltevietnam/i18n';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { STATUSES, type Status } from '@sveltevietnam/kit/constants';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { BaseNotification } from '@sveltevietnam/kit/notifications';
 
 	import { asset } from '$app/paths';
@@ -18,9 +17,7 @@
 
 	let { data }: PageProps = $props();
 
-	const {
-		i18n: { t },
-	} = Contexts.get();
+	const { t } = Context.get();
 
 	const MARK_CLASSES = {
 		info: 'text-info-on-surface bg-info-surface',

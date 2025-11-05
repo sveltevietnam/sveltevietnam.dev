@@ -4,7 +4,7 @@
 	import type { KeySimple } from '@sveltevietnam/i18n/generated';
 	import fallback16x9 from '@sveltevietnam/kit/assets/images/fallbacks/16x9.jpg?enhanced&w=2240;1540;1088;686&imagetools';
 	import { Breadcrumbs, CopyBtn, NotByAiBadge } from '@sveltevietnam/kit/components';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { ColorSchemeContext, DialogContext, RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { DialogQrCode } from '@sveltevietnam/kit/dialogs';
 	import { formatRelativeTime } from '@sveltevietnam/kit/utilities/datetime';
 
@@ -26,7 +26,9 @@
 
 	let { data }: PageProps = $props();
 
-	const { routing, dialogs, colorScheme } = Contexts.get();
+	const routing = RoutingContext.get();
+	const dialogs = DialogContext.get();
+	const colorScheme = ColorSchemeContext.get();
 	const settings = SettingsContext.get();
 
 	let dateFormatter = $derived(

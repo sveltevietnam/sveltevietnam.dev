@@ -3,7 +3,7 @@
 	import { T } from '@sveltevietnam/i18n';
 	import { delocalizeUrl } from '@sveltevietnam/i18n/utils';
 	import { LANGUAGES } from '@sveltevietnam/kit/constants';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	import * as p from '$data/routes/generated';
@@ -23,7 +23,7 @@
 	} & HTMLAttributes<HTMLElement> = $props();
 
 	const settings = SettingsContext.get();
-	const { routing } = Contexts.get();
+	const routing = RoutingContext.get();
 
 	const links = $derived([
 		{

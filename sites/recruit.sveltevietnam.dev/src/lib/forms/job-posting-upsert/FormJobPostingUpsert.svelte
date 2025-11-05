@@ -1,8 +1,8 @@
 <script lang="ts" module>
 	import { JOB_POSTING_TYPE_I18N } from '@sveltevietnam/backend/data/job-postings/enums';
-	import { T } from '@sveltevietnam/i18n';
+	import { Context, T } from '@sveltevietnam/i18n';
 	import type { KeySimple } from '@sveltevietnam/i18n/generated';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { NotificationContext, RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
 	import type { Snippet } from 'svelte';
 	import type { HTMLFormAttributes } from 'svelte/elements';
@@ -33,11 +33,9 @@
 <script lang="ts">
 	let { data, cta, class: cls, successTKey, ...rest }: FormJobPostingUpsertProps = $props();
 
-	const {
-		routing,
-		notifications: { toaster },
-		i18n: { t },
-	} = Contexts.get();
+	const routing = RoutingContext.get();
+	const { toaster } = NotificationContext.get();
+	const { t } = Context.get();
 
 	const descriptionCacheKey = 'job-desc-draft';
 

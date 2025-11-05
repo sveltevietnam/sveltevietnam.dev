@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { Context, T } from '@sveltevietnam/i18n';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import * as p from '$data/routes/generated';
 	import { VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN } from '$env/static/public';
@@ -12,10 +12,8 @@
 	import kvOpen from './_local/images/kv-open.svg';
 	import kvSimpleSecure from './_local/images/kv-simple-secure.svg';
 
-	const {
-		routing,
-		i18n: { t },
-	} = Contexts.get();
+	const { t } = Context.get();
+	const routing = RoutingContext.get();
 
 	const sponsorLink = $derived(
 		`${VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN}/${routing.lang}/${

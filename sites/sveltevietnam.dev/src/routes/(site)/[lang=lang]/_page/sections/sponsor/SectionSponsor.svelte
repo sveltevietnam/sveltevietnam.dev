@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 	import { TBA } from '@sveltevietnam/kit/components';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import * as p from '$data/routes/generated';
 
-	const { routing } = Contexts.get();
+	const routing = RoutingContext.get();
 </script>
 
 <section

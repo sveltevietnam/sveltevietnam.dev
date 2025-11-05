@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Footer } from '@sveltevietnam/kit/components';
 	import { EMAILS } from '@sveltevietnam/kit/constants';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { onMount } from 'svelte';
 
 	import { version } from '$app/environment';
@@ -14,7 +14,7 @@
 
 	let { children } = $props();
 
-	const { routing } = Contexts.get();
+	const routing = RoutingContext.get();
 
 	onMount(async () => {
 		(await import('$lib/easter/ascii-pho')).default();

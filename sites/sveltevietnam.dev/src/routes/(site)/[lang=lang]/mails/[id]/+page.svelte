@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { formatFullDateAndTime } from '@sveltevietnam/kit/utilities/datetime';
 
 	import { SubscriberUpdateForm } from '$lib/forms/subscriber';
 
 	import type { PageProps } from './$types';
 
-	const { routing } = Contexts.get();
+	const routing = RoutingContext.get();
 
 	let { data }: PageProps = $props();
 

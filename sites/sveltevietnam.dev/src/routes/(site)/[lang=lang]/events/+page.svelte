@@ -3,7 +3,7 @@
 	import type { KeySimple } from '@sveltevietnam/i18n/generated';
 	import { TBA, Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { EMAILS } from '@sveltevietnam/kit/constants';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { onScroll, createTimeline, stagger } from 'animejs';
 
 	import { page } from '$app/state';
@@ -18,7 +18,7 @@
 
 	let { data }: PageProps = $props();
 
-	const { routing } = Contexts.get();
+	const routing = RoutingContext.get();
 
 	let elParticipate: HTMLElement;
 	let elSmallCircle: SVGCircleElement;

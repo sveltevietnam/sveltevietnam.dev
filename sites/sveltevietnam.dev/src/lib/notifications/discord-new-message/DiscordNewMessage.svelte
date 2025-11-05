@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { Context, T } from '@sveltevietnam/i18n';
 	import { BaseNotification, type BaseNotificationProps } from '@sveltevietnam/kit/notifications';
 
 	import { Avatar } from '$lib/components/avatar';
@@ -14,9 +13,7 @@
 		name: string;
 	} = $props();
 
-	const {
-		i18n: { t },
-	} = Contexts.get();
+	const { t } = Context.get();
 </script>
 
 <BaseNotification

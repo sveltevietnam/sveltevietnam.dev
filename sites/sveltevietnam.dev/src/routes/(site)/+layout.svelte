@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as m from '@sveltevietnam/i18n/generated/messages';
 	import { PageMetadata } from '@sveltevietnam/kit/components';
-	import { Contexts, ContextsProvider } from '@sveltevietnam/kit/contexts';
+	import { Provider, createContexts } from '@sveltevietnam/kit/contexts';
 	import { onMount } from 'svelte';
 
 	import { browser, dev, version } from '$app/environment';
@@ -27,7 +27,7 @@
 		vi: ogImageVi,
 	};
 
-	const contexts = Contexts.set({
+	const contexts = createContexts({
 		routing: () => ({
 			lang: data.settings.language,
 			paths: page.data.routing?.paths ?? {
@@ -46,6 +46,7 @@
 			remote: 'query',
 		}),
 	});
+
 	const {
 		routing,
 		colorScheme,
@@ -157,6 +158,6 @@
 	{/if}
 </svelte:head>
 
-<ContextsProvider {contexts}>
+<Provider {contexts}>
 	{@render children()}
-</ContextsProvider>
+</Provider>

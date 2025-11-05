@@ -1,6 +1,6 @@
 <script lang="ts" module>
-	import { T } from '@sveltevietnam/i18n';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { Context, T } from '@sveltevietnam/i18n';
+	import { NotificationContext, RoutingContext } from '@sveltevietnam/kit/contexts';
 	import type { Snippet } from 'svelte';
 	import type { HTMLFormAttributes } from 'svelte/elements';
 	import { superForm, fileProxy, type SuperValidated } from 'sveltekit-superforms';
@@ -32,11 +32,9 @@
 		...rest
 	}: FormEmployerProfileProps<WithEmail> = $props();
 
-	const {
-		routing,
-		notifications: { toaster },
-		i18n: { t },
-	} = Contexts.get();
+	const routing = RoutingContext.get();
+	const { toaster } = NotificationContext.get();
+	const t = Context.get();
 
 	const descriptionCacheKey = 'employer-desc-draft';
 

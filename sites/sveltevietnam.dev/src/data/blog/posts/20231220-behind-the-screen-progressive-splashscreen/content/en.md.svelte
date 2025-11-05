@@ -1,8 +1,7 @@
 <script>
   import { StackItem } from '@svelte-put/async-stack';
-	import { T } from '@sveltevietnam/i18n';
+	import { T, Context } from '@sveltevietnam/i18n';
   import { BaseNotification} from '@sveltevietnam/kit/notifications';
-  import { Contexts } from '@sveltevietnam/kit/contexts';
 
   import { SplashScreenPlayground } from '$lib/components/splash-screen-playground';
 
@@ -15,7 +14,7 @@
   import hydrationAfterSplashImage from '../images/hydration-after-splash.png?format=webp&imagetools';
 
 	const item = new StackItem({ timeout: 0 });
-  const { i18n: { t } } = Contexts.get();
+  const { t } = Context.get();
 </script>
 
 <div class="c-callout c-callout--info">

@@ -1,7 +1,7 @@
 <script lang="ts" module>
 	import { T } from '@sveltevietnam/i18n';
 	import fallback16x9 from '@sveltevietnam/kit/assets/images/fallbacks/16x9.jpg?enhanced&w=1540;1088;686&imagetools';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { Picture } from 'vite-imagetools';
 
@@ -40,7 +40,7 @@
 		...rest
 	}: BlogPostListItemProps = $props();
 
-	const { routing } = Contexts.get();
+	const routing = RoutingContext.get();
 
 	let dateFormatter = $derived(
 		new Intl.DateTimeFormat(routing.lang, {

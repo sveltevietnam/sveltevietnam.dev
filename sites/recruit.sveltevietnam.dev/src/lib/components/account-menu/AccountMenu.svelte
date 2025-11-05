@@ -4,7 +4,7 @@
 	import fallback1x1 from '@sveltevietnam/kit/assets/images/fallbacks/1x1.jpg?enhanced&w=w=224;112&imagetools';
 	import { Dropdown } from '@sveltevietnam/kit/components';
 	import { LANGUAGES } from '@sveltevietnam/kit/constants';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import type { HTMLDetailsAttributes } from 'svelte/elements';
 
 	import * as p from '$data/routes/generated';
@@ -19,7 +19,7 @@
 <script lang="ts">
 	let { image, open = $bindable(false), ...rest }: AccountMenuProps = $props();
 
-	const { routing } = Contexts.get();
+	const routing = RoutingContext.get();
 
 	const accountMenuItemClasses =
 		'hover:bg-primary-surface flex cursor-pointer items-center gap-4 px-4 py-2 -outline-offset-1';

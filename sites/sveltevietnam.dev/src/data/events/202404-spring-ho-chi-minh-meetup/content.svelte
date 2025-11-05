@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import trongnguyen24 from '$data/people/trongnguyen24';
 	import trongnguyen24Avatar from '$data/people/trongnguyen24/avatar.jpg?enhanced&w=400;100&imagetools';
@@ -35,7 +35,7 @@
 
 	let { data }: PageProps = $props();
 
-	const { routing } = Contexts.get();
+	const routing = RoutingContext.get();
 
 	const people = $derived({
 		vnphanquang: {
@@ -221,7 +221,9 @@
 
 				<EventTimeline.Item startDate={data.event.startDate} offsetMinutes={65} numMinutes={15}>
 					{#snippet heading()}
-						<T key="events.202404_spring_hcm.timeline.qna.pretext" />: "<T key="events.202404_spring_hcm.timeline.qna.one.title" />"
+						<T key="events.202404_spring_hcm.timeline.qna.pretext" />: "<T
+							key="events.202404_spring_hcm.timeline.qna.one.title"
+						/>"
 					{/snippet}
 					{#snippet content()}
 						<p class="leading-relaxed">
@@ -279,11 +281,26 @@
 			<T key="events.202404_spring_hcm.faq.heading" />
 		</h2>
 		<FAQ.List>
-			<FAQ.Item question="events.202404_spring_hcm.faq.why_need_ticket.q" answer="events.202404_spring_hcm.faq.why_need_ticket.a" />
-			<FAQ.Item question="events.202404_spring_hcm.faq.come_without_ticket.q" answer="events.202404_spring_hcm.faq.come_without_ticket.a" />
-			<FAQ.Item question="events.202404_spring_hcm.faq.time_and_location.q" answer="events.202404_spring_hcm.faq.time_and_location.a" />
-			<FAQ.Item question="events.202404_spring_hcm.faq.what_to_bring.q" answer="events.202404_spring_hcm.faq.what_to_bring.a" />
-			<FAQ.Item question="events.202404_spring_hcm.faq.why_need_ticket.q" answer="events.202404_spring_hcm.faq.why_need_ticket.a" />
+			<FAQ.Item
+				question="events.202404_spring_hcm.faq.why_need_ticket.q"
+				answer="events.202404_spring_hcm.faq.why_need_ticket.a"
+			/>
+			<FAQ.Item
+				question="events.202404_spring_hcm.faq.come_without_ticket.q"
+				answer="events.202404_spring_hcm.faq.come_without_ticket.a"
+			/>
+			<FAQ.Item
+				question="events.202404_spring_hcm.faq.time_and_location.q"
+				answer="events.202404_spring_hcm.faq.time_and_location.a"
+			/>
+			<FAQ.Item
+				question="events.202404_spring_hcm.faq.what_to_bring.q"
+				answer="events.202404_spring_hcm.faq.what_to_bring.a"
+			/>
+			<FAQ.Item
+				question="events.202404_spring_hcm.faq.why_need_ticket.q"
+				answer="events.202404_spring_hcm.faq.why_need_ticket.a"
+			/>
 		</FAQ.List>
 	</section>
 

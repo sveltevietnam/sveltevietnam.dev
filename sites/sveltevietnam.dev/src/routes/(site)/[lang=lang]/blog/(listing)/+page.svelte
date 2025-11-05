@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n';
+	import { Context, T } from '@sveltevietnam/i18n';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { onScroll, createTimeline, stagger } from 'animejs';
 
 	import * as p from '$data/routes/generated';
@@ -18,7 +18,8 @@
 	let { data }: PageProps = $props();
 
 	const settings = SettingsContext.get();
-	const { routing, i18n: { t } } = Contexts.get();
+	const routing = RoutingContext.get();
+	const { t } = Context.get();
 
 	const commonArrowLinkClasses = 'group-hover:translate-x-1 transition-transform';
 

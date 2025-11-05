@@ -1,10 +1,10 @@
 <script>
-  import { Contexts } from '@sveltevietnam/kit/contexts';
+  import { ColorSchemeContext } from '@sveltevietnam/kit/contexts';
   import { ColorSchemeMenu } from '@sveltevietnam/kit/components';
   import { SettingsContext } from '$lib/settings/context.svelte';
 
 	const settings = SettingsContext.get();
-	const { colorScheme } = Contexts.get();
+	const colorScheme = ColorSchemeContext.get();
 
 	const colorSchemeMenuProps = $derived({
 		hydrated: !!settings.hydrated,

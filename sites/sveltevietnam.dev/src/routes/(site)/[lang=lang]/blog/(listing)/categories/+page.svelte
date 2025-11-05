@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import * as p from '$data/routes/generated';
 	import { BlogListingIntro } from '$lib/components/blog-listing-intro';
@@ -11,7 +11,7 @@
 
 	let { data }: PageProps = $props();
 
-	const { routing } = Contexts.get();
+	const routing = RoutingContext.get();
 </script>
 
 <main {...pagefind.page({ group: 'blog', importance: 'other' })}>
@@ -35,7 +35,7 @@
 					lang: routing.lang,
 					slug: category.slug,
 				})}
-				<li class="not-last:pb-8 tablet:not-last:pb-10 @container">
+				<li class="tablet:not-last:pb-10 @container not-last:pb-8">
 					<BlogPostCollectionListItem
 						type="category"
 						name={category.name}

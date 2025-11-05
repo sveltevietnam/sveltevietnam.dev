@@ -3,7 +3,7 @@
 	import fallback1x1 from '@sveltevietnam/kit/assets/images/fallbacks/1x1.jpg?enhanced&w=w=224;112&imagetools';
 	import { Breadcrumbs, CopyBtn } from '@sveltevietnam/kit/components';
 	import { SOCIAL_LINKS } from '@sveltevietnam/kit/constants';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { ColorSchemeContext, DialogContext, RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { DialogQrCode } from '@sveltevietnam/kit/dialogs';
 	import { formatDate } from '@sveltevietnam/kit/utilities/datetime';
 	import sanitizeHtml from 'sanitize-html';
@@ -16,7 +16,9 @@
 
 	let { data }: PageProps = $props();
 
-	const { routing, dialogs, colorScheme } = Contexts.get();
+	const routing = RoutingContext.get();
+	const dialogs = DialogContext.get();
+	const colorScheme = ColorSchemeContext.get();
 
 	let url = $derived(page.url.origin + routing.paths[routing.lang]);
 	const applicationLink = $derived(

@@ -2,7 +2,7 @@
 	import { T } from '@sveltevietnam/i18n';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { EMAILS, SOCIAL_LINKS } from '@sveltevietnam/kit/constants';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import * as p from '$data/routes/generated';
 	import { VITE_PUBLIC_RECRUIT_ORIGIN } from '$env/static/public';
@@ -14,7 +14,7 @@
 
 	let { data }: PageProps = $props();
 
-	const { routing } = Contexts.get();
+	const routing = RoutingContext.get();
 </script>
 
 <main {...pagefind.page()}>

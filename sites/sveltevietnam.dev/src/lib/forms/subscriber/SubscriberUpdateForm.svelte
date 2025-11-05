@@ -1,9 +1,9 @@
 <script lang="ts" module>
 	import { turnstile } from '@svelte-put/cloudflare-turnstile';
 	import { SUBSCRIPTION_CHANNELS } from '@sveltevietnam/backend/data/subscribers/channels';
-	import { T } from '@sveltevietnam/i18n';
+	import { Context, T } from '@sveltevietnam/i18n';
 	import { LANGUAGES } from '@sveltevietnam/kit/constants';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { NotificationContext, RoutingContext } from '@sveltevietnam/kit/contexts';
 	import type { HTMLFormAttributes } from 'svelte/elements';
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import { superForm } from 'sveltekit-superforms';
@@ -20,11 +20,9 @@
 <script lang="ts">
 	let { class: cls, data, action = '?/update', ...rest }: SubscriberUpdateFormProps = $props();
 
-	const {
-		routing,
-		notifications: { toaster },
-		i18n: { t },
-	} = Contexts.get();
+	const { t } = Context.get();
+	const { toaster } = NotificationContext.get();
+	const routing = RoutingContext.get();
 
 	const { form, enhance, constraints, errors, delayed, timeout } = superForm<
 		SubscriberUpdateInput,

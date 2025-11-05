@@ -3,7 +3,7 @@
 	import type { KeySimple } from '@sveltevietnam/i18n/generated';
 	import fallback3x2 from '@sveltevietnam/kit/assets/images/fallbacks/3x2.jpg?enhanced&w=1200;700;400&imagetools';
 	import { CopyBtn } from '@sveltevietnam/kit/components';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import {
 		formatDateAndTime,
 		formatLongMonth,
@@ -43,7 +43,7 @@
 	let { event, origin }: EventListingItemProps = $props();
 
 	const settings = SettingsContext.get();
-	const { routing } = Contexts.get();
+	const routing = RoutingContext.get();
 
 	const img = $derived(event.thumbnail ?? fallback3x2);
 	const external = $derived(event.href.startsWith('http'));

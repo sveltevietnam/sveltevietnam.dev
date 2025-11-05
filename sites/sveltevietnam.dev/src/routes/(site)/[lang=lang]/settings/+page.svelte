@@ -1,9 +1,13 @@
 <script lang="ts">
-	import { T } from '@sveltevietnam/i18n';
+	import { Context, T } from '@sveltevietnam/i18n';
 	import type { Key } from '@sveltevietnam/i18n/generated';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { COLOR_SCHEMES, SPLASH_OPTIONS } from '@sveltevietnam/kit/constants';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import {
+		ColorSchemeContext,
+		NotificationContext,
+		RoutingContext,
+	} from '@sveltevietnam/kit/contexts';
 	import { superForm } from 'sveltekit-superforms';
 
 	import { beforeNavigate } from '$app/navigation';
@@ -18,12 +22,10 @@
 
 	let { data }: PageProps = $props();
 
-	const {
-		colorScheme,
-		routing,
-		notifications: { toaster },
-		i18n: { t },
-	} = Contexts.get();
+	const colorScheme = ColorSchemeContext.get();
+	const routing = RoutingContext.get();
+	const { toaster } = NotificationContext.get();
+	const { t } = Context.get();
 
 	let languageNames = $derived(new Intl.DisplayNames([routing.lang], { type: 'language' }));
 

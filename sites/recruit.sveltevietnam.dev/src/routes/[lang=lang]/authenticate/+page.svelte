@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { turnstile } from '@svelte-put/cloudflare-turnstile';
 	import { T } from '@sveltevietnam/i18n';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
+	import { NotificationContext, RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { formatRelativeTime } from '@sveltevietnam/kit/utilities/datetime';
 	import { superForm } from 'sveltekit-superforms';
 
@@ -17,10 +17,8 @@
 
 	let { data }: PageProps = $props();
 
-	const {
-		routing,
-		notifications: { toaster },
-	} = Contexts.get();
+	const { toaster } = NotificationContext.get();
+	const routing = RoutingContext.get();
 
 	const { form, enhance, constraints, errors, delayed, timeout, message } = superForm<
 		{
