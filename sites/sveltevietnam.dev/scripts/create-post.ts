@@ -123,6 +123,7 @@ const post = await p.group(
 					'Enter the number of days (or exact date as YYYY-MM-DD) after which this post may be considered outdated (optional):',
 				validate: (str) => {
 					str = str.trim();
+					if (!str) return undefined;
 					if (!isNaN(Number(str))) return undefined;
 					if (!isNaN(new Date(str).getTime())) return undefined;
 					return 'Input must be a number or a date as YYYY-MM-DD.';
