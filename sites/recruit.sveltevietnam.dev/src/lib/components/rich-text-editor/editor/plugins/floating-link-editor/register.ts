@@ -1,5 +1,6 @@
 import { $isLinkNode as isLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link';
 import { mergeRegister } from '@lexical/utils';
+import * as m from '@sveltevietnam/i18n/generated/messages';
 import type { Language } from '@sveltevietnam/kit/constants';
 import {
 	$getSelection,
@@ -42,14 +43,22 @@ export function registerFloatingLinkEditor(config: RegisterFloatingLinkEditorArg
 		editing,
 		initialValue,
 	}: MountFloatingLinkEditorArgs) {
+		const l = lang();
 		floatingLinkEditorComponentInstace = mount(FloatingLinkEditor, {
 			target: editorElement ?? document.body,
 			anchor: editorElement,
-			context: new Map([['t:lang', lang]]),
 			props: {
 				trigger,
 				editing,
 				initialValue,
+				i18n: {
+					aria: m['components.rich_text_editor.floating_link_editor.name'](l),
+					discard: m['components.rich_text_editor.floating_link_editor.discard'](l),
+					edit: m['components.rich_text_editor.floating_link_editor.edit'](l),
+					remove: m['components.rich_text_editor.floating_link_editor.remove'](l),
+					save: m['components.rich_text_editor.floating_link_editor.save'](l),
+					placeholder: m['components.rich_text_editor.floating_link_editor.placeholder'](l),
+				},
 				onremoved: () => {
 					if (initialValue) lexical.dispatchCommand(TOGGLE_LINK_COMMAND, null);
 				},

@@ -1,8 +1,5 @@
 <script lang="ts" module>
 	import { autoUpdate, computePosition, shift, flip, offset } from '@floating-ui/dom';
-	import { T } from '@sveltevietnam/i18n';
-	import type { KeySimple } from '@sveltevietnam/i18n/generated';
-	import { Contexts } from '@sveltevietnam/kit/contexts';
 	import { onMount } from 'svelte';
 
 	export interface FloatingLinkEditorProps {
@@ -14,6 +11,14 @@
 		ondiscard?: (text: string) => void;
 		onremoved?: (text: string) => void;
 		onclosed?: (text: string) => void;
+		i18n: {
+			aria: string;
+			placeholder: string;
+			edit: string;
+			remove: string;
+			save: string;
+			discard: string;
+		};
 	}
 </script>
 
@@ -26,11 +31,9 @@
 		onclosed,
 		ondiscard,
 		trigger,
+		i18n,
 	}: FloatingLinkEditorProps = $props();
 
-	const {
-		i18n: { t },
-	} = Contexts.get();
 	let value = $state(initialValue);
 
 	let popover: HTMLElement;
@@ -46,7 +49,8 @@
 		onremoved?.(value);
 	}
 
-	function handleSave() {
+	function handleSave(event: Event) {
+		event.preventDefault();
 		editing = false;
 		onsaved?.(value);
 	}
@@ -95,61 +99,45 @@
 	bind:this={popover}
 	ontoggle={handleToggle}
 	role="dialog"
-	aria-labelledby="floating-link-editor-label"
+	aria-label={i18n.aria}
 >
-	<p class="sr-only" id="floating-link-editor-label">
-		<T key="components.rich_text_editor.floating_link_editor.name" />
-	</p>
-
-	{#if editing}
-		<input
-			bind:this={input}
-			placeholder={await t({ key: 'components.rich_text_editor.floating_link_editor.placeholder' })}
-			class="block w-100 max-w-full py-2 pr-20 pl-3"
-			type="text"
-			bind:value
-		/>
-	{:else}
-		<p class="py-2 pr-20 pl-3">
-			<a class="c-link" href={value} target="_blank" rel="noreferrer noopener external">
-				{value}
-			</a>
-		</p>
-	{/if}
-
-	{#snippet action(iconClass: string, sr: KeySimple, onclick: () => void)}
-		<button class="c-btn c-btn--icon p-1.5" type="button" {onclick}>
-			<i class="i {iconClass} h-5 w-5"></i>
-			<span class="sr-only">
-				<T key={sr} />
-			</span>
-		</button>
-	{/snippet}
-
-	<!-- actions -->
-	<div class="absolute top-1/2 right-1 flex -translate-y-1/2 gap-0.5">
+	<form onsubmit={handleSave}>
 		{#if editing}
-			{@render action(
-				'i-[ph--check]',
-				'components.rich_text_editor.floating_link_editor.save',
-				handleSave,
-			)}
-			{@render action(
-				'i-[ph--x]',
-				'components.rich_text_editor.floating_link_editor.discard',
-				handleDiscard,
-			)}
+			<input
+				bind:this={input}
+				class="block w-100 max-w-full py-2 pr-20 pl-3"
+				placeholder={i18n.placeholder}
+				type="url"
+				bind:value
+			/>
 		{:else}
-			{@render action(
-				'i-[ph--pencil-simple]',
-				'components.rich_text_editor.floating_link_editor.edit',
-				handleEdit,
-			)}
-			{@render action(
-				'i-[ph--trash]',
-				'components.rich_text_editor.floating_link_editor.remove',
-				handleRemove,
-			)}
+			<p class="py-2 pr-20 pl-3">
+				<a class="c-link" href={value} target="_blank" rel="noreferrer noopener external">
+					{value}
+				</a>
+			</p>
 		{/if}
-	</div>
+
+		<div class="absolute top-1/2 right-1 flex -translate-y-1/2 gap-0.5">
+			{#if editing}
+				<button class="c-btn c-btn--icon p-1.5" type="submit">
+					<i class="i i-[ph--check] h-5 w-5"></i>
+					<span class="sr-only">{i18n.save}</span>
+				</button>
+				<button class="c-btn c-btn--icon p-1.5" type="button" onclick={handleDiscard}>
+					<i class="i i-[ph--x] h-5 w-5"></i>
+					<span class="sr-only">{i18n.discard}</span>
+				</button>
+			{:else}
+				<button class="c-btn c-btn--icon p-1.5" type="button" onclick={handleEdit}>
+					<i class="i i-[ph--pencil-simple] h-5 w-5"></i>
+					<span class="sr-only">{i18n.edit}</span>
+				</button>
+				<button class="c-btn c-btn--icon p-1.5" type="button" onclick={handleRemove}>
+					<i class="i i-[ph--trash] h-5 w-5"></i>
+					<span class="sr-only">{i18n.remove}</span>
+				</button>
+			{/if}
+		</div>
+	</form>
 </div>
