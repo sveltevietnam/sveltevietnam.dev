@@ -1,3 +1,4 @@
+import child_process from 'node:child_process';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
@@ -215,7 +216,9 @@ function pagefind_build(pluginConfig: PagefindViteConfig = {}): import('vite').P
 				});
 				logger.success(`Pagefind indexed in ${pico.yellow(Date.now() - startTimestamp + 'ms')}`);
 
-				await server.close();
+				// FIXME: force kill process on preview port, temporary workaround because server.close hangs
+				child_process.execSync(`kill -9 $(lsof -t -i:${server.config.preview.port})`);
+				// await server.close();
 			},
 		},
 	};
