@@ -32,6 +32,10 @@
 	const commonItemClasses =
 		'interactive border-b-outline hover:outline-outline-focus hover:outline';
 
+	// FIXME: if this is awaited within markup,
+	// rendering fail in production build, as of svelte@5.43.3 & @sveltejs/kit@2.48.4
+	const searchInputPlaceholder = await t({ key: 'dialogs.search.input.placeholder' });
+
 	onMount(() => {
 		window.dispatchEvent(new CustomEvent('searchopen', { detail: { query: search.query } }));
 		item.resolution.then(() => {
@@ -63,7 +67,7 @@
 				<i class="i i-[ph--magnifying-glass] h-6 w-6"></i>
 				<input
 					type="text"
-					placeholder={await t({ key: 'dialogs.search.input.placeholder' })}
+					placeholder={searchInputPlaceholder}
 					bind:value={search.query}
 					bind:this={queryEl}
 				/>
