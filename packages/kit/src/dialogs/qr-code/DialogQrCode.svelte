@@ -3,7 +3,6 @@
 	import { createQrPngDataUrl } from '@svelte-put/qr';
 	import { qr, type SvgQRParameter } from '@svelte-put/qr/svg';
 	import { T } from '@sveltevietnam/i18n';
-	import { onMount } from 'svelte';
 
 	import dark from '../../assets/images/logos/monotone-dark.base64?raw';
 	import light from '../../assets/images/logos/monotone-light.base64?raw';
@@ -17,17 +16,15 @@
 		shape: 'circle',
 		logo: theme() === 'dark' ? dark : light,
 	});
-	let href = $state('');
-
-	onMount(async () => {
-		href = await createQrPngDataUrl({
+	let href = $derived(
+		await createQrPngDataUrl({
 			...config,
 			logo: light,
 			width: 500,
 			height: 500,
 			backgroundFill: 'white',
-		});
-	});
+		}),
+	);
 </script>
 
 <dialog class={['c-dialog', cls]} {...enhanceDialog(item)} {...rest}>
@@ -47,10 +44,8 @@
 			role="img"
 			aria-label="QR"
 		></svg>
-		{#if href}
-			<a class="c-btn mx-auto block" download={filename} {href}>
-				<T key="download" />
-			</a>
-		{/if}
+		<a class="c-btn mx-auto block" download={filename} {href}>
+			<T key="download" />
+		</a>
 	</form>
 </dialog>
