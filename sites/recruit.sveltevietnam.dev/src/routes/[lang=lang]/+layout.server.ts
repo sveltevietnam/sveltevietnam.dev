@@ -2,6 +2,7 @@ import { resolve } from '$app/paths';
 
 import type { LayoutServerLoad } from './$types';
 
+export const prerender = false;
 export const load: LayoutServerLoad = async ({ locals, params, route }) => {
 	return {
 		user: locals.user,

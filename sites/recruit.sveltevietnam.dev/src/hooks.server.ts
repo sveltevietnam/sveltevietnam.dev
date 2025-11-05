@@ -19,6 +19,9 @@ export const handle = sequence(
 		},
 	}),
 	async ({ event, resolve }) => {
+		// skip homepage
+		if (event.route.id === '/[lang=lang]') return resolve(event);
+
 		// initialize auth
 		const auth = createEmployerAuth();
 		event.locals.auth = auth;

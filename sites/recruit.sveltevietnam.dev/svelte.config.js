@@ -31,6 +31,11 @@ export default {
 			publicPrefix: 'VITE_PUBLIC_',
 			privatePrefix: 'VITE_PRIVATE_',
 		},
+		prerender: {
+			crawl: false,
+			origin: 'https://recruit.sveltevietnam.dev',
+			entries: ['/en', '/vi'],
+		},
 		adapter: adapter({
 			config: path.join(__dirname, 'wrangler.json'),
 			platformProxy: {

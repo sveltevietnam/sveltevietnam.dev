@@ -3,6 +3,7 @@ import * as b from '$data/routes/generated/breadcrumbs';
 
 import type { PageServerLoad } from './$types';
 
+export const prerender = true;
 export const load: PageServerLoad = ({ params }) => {
 	const { lang } = params;
 	return {
