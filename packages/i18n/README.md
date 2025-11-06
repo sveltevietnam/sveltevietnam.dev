@@ -9,6 +9,8 @@ by leveraging:
 - [Vite Plugin API](https://vite.dev/guide/api-plugin),
 - [tree-shakeable](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking) ES modules.
 
+See more in the "[Internationalisation with Remote Function — A Proof of Concept](https://sveltevietnam.dev/en/blog/20251105-internationalisation-with-remote-function-a-proof-of-concept)" blog post.
+
 ## Introduction
 
 This package allows the following pattern:
@@ -178,7 +180,7 @@ The interface of `t` input mirrors that of `T` prop:
 > A few things to note:
 >
 > - In the default ["remote" mode](#remote-mode), `t` is asynchronous (calls remote function internally).
-> - You will need to handle html string yourself, i.e using {@html ...}.
+> - You will need to handle html string yourself, i.e using `{@html ...}`.
 
 This is helpful when you are translating non-html messages for attributes, e.g.,
 
@@ -199,25 +201,22 @@ override the current language from context.
 
 ```svelte
 <T key="key.to.your.message" lang="en" />
-{await t({
-	key: 'string_with_params',
-	params: { name: 'world' }, // inferred from key
-})}
+{await t({ key: 'key.to.your.message', lang: 'en' })}
 ```
 
 ### Using Static Messages
 
 Sometimes translation happens outside of i18n context for `T` and `t`, in which case
-you can import and use the generated messages directly:
+you can import and use the generated static messages directly:
 
 ```typescript
-// in server, or isolated modules
+// in server, or some isolated modules
 import * as m from '@sveltevietnam/i18n/generated/messages';
 const message = m['key.to.your.message'];
 ```
 
 > [!NOTE]
-> When importing static messages, always use wildcard (`* as m`) to better facilitate tree-shaking.
+> When importing static messages, use the wildcard import syntax (`* as m`) to better facilitate tree-shaking.
 
 ### Using Remote Functions
 
@@ -239,8 +238,8 @@ Similar to `t`, you will need to handle html string yourself.
 
 ## Choose your Remote Function
 
-In ["remote" mode](#remote-mode), `Provider`, `T`, and `t` accept a `remote` parameter that
-specifies which remote function to fetch translation from. `remote` can be:
+In ["remote" mode](#remote-mode), `Provider`, `T`, and `t` accept a `remote` parameter (required on
+provider) that specifies which remote function to fetch translation from. `remote` can be:
 
 - `prerender`: uses SvelteKit [prerender](https://svelte.dev/docs/kit/remote-functions#query.batch)
   via the generated `prerender` function at `<output-dir>/t.remote.js`. This is usually what you want
@@ -248,7 +247,7 @@ specifies which remote function to fetch translation from. `remote` can be:
 - `query`: uses SvelteKit [query.batch](svelte.dev/docs/kit/remote-functions#query.batch) via the
   generated `query` function at `<output-dir>/t.remote.js`. This can batch multiple translation
   requests but may not be able to utilize cache,
-- your own: import yours in some `.remote.{js,ts}` and pass it here to provide an implementation
+- your own: import yours from some `.remote.{js,ts}` and pass it here to provide an implementation
   that works for your setup. The generated modules are at your disposal.
 
 ### Global Remote Function
@@ -268,7 +267,7 @@ specifies which remote function to fetch translation from. `remote` can be:
 ```
 
 > [!NOTE]
-> Context may also be set programmatically via the imported Context class
+> Context may also be set programmatically via the imported Context class, i.e `Context.set`.
 
 ### Remote Function per Translation
 
@@ -297,7 +296,7 @@ Svelte & SvelteKit capabilities for optimization. i.e translations are lazily fe
 
 ### Static Mode
 
-In cases, however, you don't have access to those features, the package can still run in in `"static"` mode.
+In cases, however, you don't have access to those features, the package can still run in `"static"` mode.
 This also helps if your project is not using SvelteKit (assuming Svelte+Vite).
 
 Start by passing `mode: 'static'` to vite plugin config:
@@ -381,6 +380,11 @@ Locale files can import other locale files via the special `@import` directive, 
 [Introduction](#introduction). This allows you to break down your locale files into smaller,
 manageable pieces, and even reuse locale files from other packages.
 
+> [!IMPORTANT]
+> The `@sveltevietnam/i18n` Vite plugin, however, expects a single entry locale file per language.
+> Using multiple instances of the plugin is feasible but not recommended as type augmentation
+> may not work as expected. If you do this, proceed with caution.
+
 Import aliases inherit from other vite plugins including `$lib` from SvelteKit or others you've
 configured in `svelte.config.js`. Customization is possible via option to the `i18n` vite plugin.
 
@@ -410,6 +414,8 @@ i18n({
 	},
 });
 ```
+
+Feedback and contributions are welcome. Start at [CONTRIBUTING.md](https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/CONTRIBUTING.md).
 
 [svelte.async]: https://svelte.dev/docs/svelte/await-expressions
 [sveltekit.remote]: https://svelte.dev/docs/kit/remote-functions
