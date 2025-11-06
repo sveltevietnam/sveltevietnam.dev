@@ -89,103 +89,90 @@
 
 		<!-- results -->
 		<output class="tablet:min-h-[20vh] flex flex-1 flex-col">
-			{#if search.results}
-				<svelte:boundary>
-					{@const results = await search.results}
-					{#snippet pending()}
-						<p class="p-4"><T key="dialogs.search.results.searching" /></p>
-					{/snippet}
-					{#if results.length}
-						{@const maybeClippedResults = search.clip.results ? results.slice(0, 3) : results}
-						<div class="tablet:max-h-[60vh] space-y-4 overflow-auto p-4">
-							<p>
-								<T
-									key="dialogs.search.results.found"
-									params={{ count: results.length.toString() }}
-								/>
-							</p>
-							<ul class="space-y-6">
-								{#each maybeClippedResults as result (result.id)}
-									{@const subResults = search.clip.subResults[result.id]
-										? result.subResults.slice(0, 3)
-										: result.subResults}
-									<li class="bg-surface border-outline border border-b-0">
-										<a
-											class={['flex items-center gap-4 border-b p-3', commonItemClasses]}
-											href={result.url}
-											onclick={closeDialog}
-										>
-											<i class="i i-[ph--file-text] h-6 w-6"></i>
-											<strong>{result.title}</strong>
-										</a>
-										<ul class="">
-											{#each subResults as subResult (subResult.id)}
-												<li class="_subresult relative">
-													<a
-														class={['block space-y-2 border-b py-3 pr-6 pl-13', commonItemClasses]}
-														href={subResult.url}
-														onclick={closeDialog}
-													>
-														<p class="c-text-body-sm font-medium">{subResult.title}</p>
-														<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-														<p class="c-text-body-xs text-on-surface-dim leading-relaxed">
-															<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-															{@html sanitize(subResult.excerpt)}
-														</p>
-													</a>
-												</li>
-											{/each}
-										</ul>
-										{#if search.clip.subResults[result.id]}
-											<label
-												class={[
-													'c-text-body-sm text-on-surface-dim relative block w-full cursor-pointer border-b py-2 pr-6 pl-13',
-													commonItemClasses,
-												]}
-											>
-												<input
-													class="sr-only"
-													type="checkbox"
-													bind:checked={search.clip.subResults[result.id]}
-													onclick={(e) => e.stopPropagation()}
-												/>
-												<span>
-													<T key="dialogs.search.results.clip.sub_results" />
-												</span>
-											</label>
-										{/if}
-									</li>
-								{/each}
-							</ul>
-							{#if search.clip.results}
-								<label
-									class={[
-										'c-text-body-sm bg-surface border-outline block cursor-pointer border p-2 text-center',
-										commonItemClasses,
-									]}
+			{#if search.searching}
+				<p class="p-4"><T key="dialogs.search.results.searching" /></p>
+			{:else if search.results?.length}
+				{@const maybeClippedResults = search.clip.results
+					? search.results.slice(0, 3)
+					: search.results}
+				<div class="tablet:max-h-[60vh] space-y-4 overflow-auto p-4">
+					<p>
+						<T
+							key="dialogs.search.results.found"
+							params={{ count: search.results.length.toString() }}
+						/>
+					</p>
+					<ul class="space-y-6">
+						{#each maybeClippedResults as result (result.id)}
+							{@const subResults = search.clip?.subResults?.[result.id]
+								? (result.subResults?.slice?.(0, 3) ?? [])
+								: result.subResults}
+							<li class="bg-surface border-outline border border-b-0">
+								<a
+									class={['flex items-center gap-4 border-b p-3', commonItemClasses]}
+									href={result.url}
+									onclick={closeDialog}
 								>
-									<input class="sr-only" type="checkbox" bind:checked={search.clip.results} />
-									<span>
-										<T key="dialogs.search.results.clip.results" />
-									</span>
-								</label>
-							{/if}
-						</div>
-					{:else}
-						<p class="p-4">
-							<T key="dialogs.search.results.none" />
-						</p>
+									<i class="i i-[ph--file-text] h-6 w-6"></i>
+									<strong>{result.title}</strong>
+								</a>
+								<ul class="">
+									{#each subResults as subResult (subResult.id)}
+										<li class="_subresult relative">
+											<a
+												class={['block space-y-2 border-b py-3 pr-6 pl-13', commonItemClasses]}
+												href={subResult.url}
+												onclick={closeDialog}
+											>
+												<p class="c-text-body-sm font-medium">{subResult.title}</p>
+												<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+												<p class="c-text-body-xs text-on-surface-dim leading-relaxed">
+													<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+													{@html sanitize(subResult.excerpt)}
+												</p>
+											</a>
+										</li>
+									{/each}
+								</ul>
+								{#if search.clip.subResults[result.id]}
+									<label
+										class={[
+											'c-text-body-sm text-on-surface-dim relative block w-full cursor-pointer border-b py-2 pr-6 pl-13',
+											commonItemClasses,
+										]}
+									>
+										<input
+											class="sr-only"
+											type="checkbox"
+											bind:checked={search.clip.subResults[result.id]}
+											onclick={(e) => e.stopPropagation()}
+										/>
+										<span>
+											<T key="dialogs.search.results.clip.sub_results" />
+										</span>
+									</label>
+								{/if}
+							</li>
+						{/each}
+					</ul>
+					{#if search.clip.results}
+						<label
+							class={[
+								'c-text-body-sm bg-surface border-outline block cursor-pointer border p-2 text-center',
+								commonItemClasses,
+							]}
+						>
+							<input class="sr-only" type="checkbox" bind:checked={search.clip.results} />
+							<span>
+								<T key="dialogs.search.results.clip.results" />
+							</span>
+						</label>
 					{/if}
-				</svelte:boundary>
-			{:else}
-				<div class="p-4">
-					<svg
-						class="text-surface-variant mx-auto my-7.5 h-auto w-1/2 justify-self-center opacity-40"
-						inline-src="blocks"
-						aria-hidden="true"
-					>
-					</svg>
 				</div>
+			{:else}
+				<p class="p-4">
+					<T key="dialogs.search.results.none" />
+				</p>
 			{/if}
 		</output>
 

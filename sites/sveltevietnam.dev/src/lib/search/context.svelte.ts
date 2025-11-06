@@ -24,44 +24,13 @@ export class SearchContext {
 
 	#pagefind = $state<import('@pagefind').default | null>(null);
 	query = $state<string>('');
-	results = $derived.by<Promise<SearchResult[]> | null>(() => {
-		if (!this.#pagefind || !this.query) return null;
-		const results = this.#pagefind
-			.debouncedSearch(
-				this.query,
-				{
-					sort: {
-						weight: 'asc',
-					},
-				},
-				100,
-			)
-			.then((searched) =>
-				Promise.all(
-					(searched?.results ?? []).map(async (result) => {
-						const data = await result.data();
-						return {
-							id: result.id,
-							title: data.meta.title,
-							url: data.url,
-							subResults: data.sub_results.map((sub) => ({
-								id: sub.anchor?.id ?? sub.url,
-								url: sub.url,
-								title: sub.title.startsWith('#') ? sub.title.slice(1) : sub.title,
-								excerpt: sub.excerpt,
-							})),
-						};
-					}),
-				),
-			);
-		return results;
-	});
-
+	results = $state<SearchResult[] | null>(null);
 	/** whether to clip the results (show only the first 3) */
 	clip = $state<SearchClip>({
 		results: false,
 		subResults: {},
 	});
+	searching = $state<boolean>(false);
 
 	constructor(origin: string) {
 		if (browser) {
@@ -85,16 +54,53 @@ export class SearchContext {
 			});
 		}
 
+		// FIXME: would be great if can avoid $effect here
 		$effect(() => {
-			if (!this.results) return;
-			this.results.then((results) => {
-				this.clip = {
-					results: results.length > 3,
-					subResults: Object.fromEntries(
-						results.map((result) => [result.id, result.subResults.length > 3]),
-					),
-				};
-			});
+			if (!this.#pagefind || !this.query) return;
+			this.searching = true;
+			this.#pagefind
+				.debouncedSearch(
+					this.query,
+					{
+						sort: {
+							weight: 'asc',
+						},
+					},
+					100,
+				)
+				.then(async (searched) => {
+					if (!searched?.results?.length) {
+						this.results = null;
+						this.clip = {
+							results: false,
+							subResults: {},
+						};
+						return;
+					}
+					this.results = await Promise.all(
+						(searched?.results ?? []).map(async (result) => {
+							const data = await result.data();
+							return {
+								id: result.id,
+								title: data.meta.title,
+								url: data.url,
+								subResults: data.sub_results.map((sub) => ({
+									id: sub.anchor?.id ?? sub.url,
+									url: sub.url,
+									title: sub.title.startsWith('#') ? sub.title.slice(1) : sub.title,
+									excerpt: sub.excerpt,
+								})),
+							};
+						}),
+					);
+					this.clip = {
+						results: this.results.length > 3,
+						subResults: Object.fromEntries(
+							this.results.map((result) => [result.id, result.subResults.length > 3]),
+						),
+					};
+					this.searching = false;
+				});
 		});
 	}
 
