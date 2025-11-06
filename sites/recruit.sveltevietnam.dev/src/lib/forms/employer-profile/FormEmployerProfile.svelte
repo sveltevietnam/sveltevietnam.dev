@@ -34,7 +34,7 @@
 
 	const routing = RoutingContext.get();
 	const { toaster } = NotificationContext.get();
-	const t = Context.get();
+	const { t } = Context.get();
 
 	const descriptionCacheKey = 'employer-desc-draft';
 
