@@ -11,6 +11,10 @@ by leveraging:
 
 See more in the "[Internationalisation with Remote Function — A Proof of Concept](https://sveltevietnam.dev/en/blog/20251105-internationalisation-with-remote-function-a-proof-of-concept)" blog post.
 
+## Changelog
+
+See [CHANGELOG.md](https://github.com/sveltevietnam/sveltevietnam.dev/blob/main/packages/i18n/CHANGELOG.md).
+
 ## Introduction
 
 This package allows the following pattern:
