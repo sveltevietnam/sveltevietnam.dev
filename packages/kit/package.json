@@ -111,7 +111,7 @@
 		"@tailwindcss/vite": "4.1.16",
 		"@types/umami-browser": "^2.18.0",
 		"schema-dts": "^1.1.5",
-		"svelte": "5.43.3",
+		"svelte": "5.43.4",
 		"tailwindcss": "4.1.16",
 		"vite": "^7.1.12",
 		"vite-imagetools": "^9.0.0"
