@@ -5,9 +5,9 @@
 A homebrew i18n solution for Svelte applications, built for type-safety, composability, and optimization,
 by leveraging:
 
-- [tree-shakeable](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking) ES modules,
 - [SvelteKit remote function][sveltekit.remote],
-- [Vite Plugin API](https://vite.dev/guide/api-plugin)
+- [Vite Plugin API](https://vite.dev/guide/api-plugin),
+- [tree-shakeable](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking) ES modules.
 
 ## Introduction
 
@@ -134,8 +134,11 @@ Configure i18n provider where appropriate, e.g., in `src/routes/+layout.svelte`:
 	// change to lang will propagate to translations automatically
 </script>
 
-<Provider {lang}>... your app here ...</Provider>
+<Provider {lang} remote="prerender">... your app here ...</Provider>
 ```
+
+> [!NOTE]
+> See "[Choose your Remote Function](#choose-your-remote-function)" for more details on how to specify the `remote` prop.
 
 ## Translating Messages
 
@@ -240,14 +243,13 @@ In ["remote" mode](#remote-mode), `Provider`, `T`, and `t` accept a `remote` par
 specifies which remote function to fetch translation from. `remote` can be:
 
 - `prerender`: uses SvelteKit [prerender](https://svelte.dev/docs/kit/remote-functions#query.batch)
-  via the generated `prerender` function at `<output-dir>/t.remote.js`. This is the default and
-  usually what you want if you've turned on `prerendering` for your page(s),
+  via the generated `prerender` function at `<output-dir>/t.remote.js`. This is usually what you want
+  if you've turned on `prerendering` for your page(s),
 - `query`: uses SvelteKit [query.batch](svelte.dev/docs/kit/remote-functions#query.batch) via the
   generated `query` function at `<output-dir>/t.remote.js`. This can batch multiple translation
   requests but may not be able to utilize cache,
 - your own: import yours in some `.remote.{js,ts}` and pass it here to provide an implementation
   that works for your setup. The generated modules are at your disposal.
--
 
 ### Global Remote Function
 
@@ -264,6 +266,9 @@ specifies which remote function to fetch translation from. `remote` can be:
 	-->
 </Provider>
 ```
+
+> [!NOTE]
+> Context may also be set programmatically via the imported Context class
 
 ### Remote Function per Translation
 
@@ -370,7 +375,16 @@ import { query } from '$lib/i18n/generated/t.remote';
 
 This is helpful if you are reusing code in non-vite context, e.g. in Playwright tests.
 
-## Why YAML?
+## Composability
+
+Locale files can import other locale files via the special `@import` directive, as seen in
+[Introduction](#introduction). This allows you to break down your locale files into smaller,
+manageable pieces, and even reuse locale files from other packages.
+
+Import aliases inherit from other vite plugins including `$lib` from SvelteKit or others you've
+configured in `svelte.config.js`. Customization is possible via option to the `i18n` vite plugin.
+
+### Why YAML?
 
 This package was originally built to facilitate internationalization for the
 [sveltevietnam.dev](https://sveltevietnam.dev) site, which has not yet require complex features

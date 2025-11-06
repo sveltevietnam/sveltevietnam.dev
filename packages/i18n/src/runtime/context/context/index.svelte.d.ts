@@ -28,13 +28,15 @@ export type ContextInit<
 	Mo extends 'static' | 'remote' = Mode,
 	L extends string = Language,
 	Ma extends Record<string, Message> = Mapping,
-> = Partial<Omit<TranslateOptions<Mo, L, Ma>, 'lang'>> & {
+> = Partial<Pick<TranslateOptions<Mo, L, Ma>, 'sanitize'>> & {
 	/**
 	 * the current language of the app,
 	 * updates to this prop should propagate to all `T.svelte` instances
 	 */
 	lang: L;
-};
+} & (Mo extends 'remote'
+		? Pick<TranslateOptions<'remote', L, Ma>, 'remote'>
+		: Record<never, never>);
 
 /** options to `t` function from i18n context */
 export type TranslateOptions<

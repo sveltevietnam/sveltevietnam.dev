@@ -91,6 +91,7 @@ export class Context {
 
 	/** @param {() => import('./index.svelte').ContextInit<Mode, Language, Mapping>} init */
 	constructor(init) {
+		// FIXME: throw if lang / remote is not provided
 		this.#getter = init;
 	}
 
