@@ -12,7 +12,7 @@ export const load: PageServerLoad = async (event) => {
 	if (!token) {
 		error(401, { code: 'SV002', message: 'Unauthorized access' });
 	}
-	const backend = getBackend(event);
+	const backend = getBackend();
 	const result = await backend.jwt().verify<{ sub: string; exp: number }>(token);
 	if (!result.success) {
 		error(401, {

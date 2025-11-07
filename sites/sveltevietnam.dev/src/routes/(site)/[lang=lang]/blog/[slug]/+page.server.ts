@@ -69,7 +69,7 @@ export const load: PageServerLoad = async (event) => {
 	} as Record<Language, string>;
 
 	let bluesky: null | { accountId: string; postId: string } = null;
-	const backend = getBackend(event, false);
+	const backend = getBackend({ throwOnDisconnected: false });
 	if (backend) {
 		const linkage = await backend.blueskyPosts().getByPostId(post.id);
 		if (linkage) {

@@ -1,12 +1,24 @@
 import { error, type RequestEvent } from '@sveltejs/kit';
 
+import { getRequestEvent } from '$app/server';
+
 type Backend = import('@sveltevietnam/backend').default;
 
-// TODO: duplication with same function in recruit
+interface BaseOptions {
+	event?: RequestEvent;
+}
+
+interface GetBackendOptions<Throw extends boolean> extends BaseOptions {
+	throwOnDisconnected?: Throw;
+}
+
+// TODO: duplication with same function in main site
 export function getBackend<
 	Throw extends boolean = true,
 	Returned = Throw extends true ? Backend : Backend | undefined,
->(event: RequestEvent, throwOnDisconnected: Throw = true as Throw): Returned {
+>(options?: GetBackendOptions<Throw>): Returned {
+	const event = options?.event ?? getRequestEvent();
+	const throwOnDisconnected = options?.throwOnDisconnected ?? (true as Throw);
 	const { platform } = event;
 	const backend = platform?.env?.backend;
 	if (!backend) {

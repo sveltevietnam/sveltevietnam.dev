@@ -10,7 +10,7 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
 	const { lang, id } = event.params;
-	const posting = await getBackend(event).jobPostings().getById(id);
+	const posting = await getBackend().jobPostings().getById(id);
 	if (!posting || !(posting.status === 'active' || posting.status === 'expired')) {
 		// TODO: assign a unique code to this error
 		error(404, {

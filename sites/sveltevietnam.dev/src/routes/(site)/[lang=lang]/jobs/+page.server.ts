@@ -21,9 +21,9 @@ export const load: PageServerLoad = async (event) => {
 	const { lang } = event.params;
 
 	let postings: JobPostingProps['posting'][] = [];
-	const backend = getBackend(event, false);
+	const backend = getBackend({ throwOnDisconnected: false });
 	if (backend) {
-		postings = (await getBackend(event).jobPostings().getAllActive()).map((posting) => ({
+		postings = (await backend.jobPostings().getAllActive()).map((posting) => ({
 			...posting,
 			href: p['/:lang/jobs/:id']({ lang, id: posting.id }),
 			postedAt: posting.approvedAt,

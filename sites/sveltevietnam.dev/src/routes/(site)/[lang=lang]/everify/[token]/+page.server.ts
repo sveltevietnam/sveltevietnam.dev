@@ -7,7 +7,7 @@ import { getBackend } from '$lib/backend/utils';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
-	const backend = getBackend(event);
+	const backend = getBackend();
 	const { token } = event.params;
 	const { language } = event.locals;
 
