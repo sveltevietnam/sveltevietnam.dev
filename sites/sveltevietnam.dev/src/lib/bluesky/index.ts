@@ -1,11 +1,5 @@
-import { AtpAgent, AppBskyFeedDefs } from '@atproto/api';
-
-export function createAtpAgent(fetch: typeof globalThis.fetch): AtpAgent {
-	return new AtpAgent({
-		service: 'https://public.api.bsky.app',
-		fetch,
-	});
-}
+// use @atproto/api for typing to avoid the unnecessary dependencies in final bundle
+import type { AppBskyFeedDefs, $Typed } from '@atproto/api';
 
 export type AggregatedPost = {
 	stats: {
@@ -13,26 +7,35 @@ export type AggregatedPost = {
 		repost: number;
 		reply: number;
 	};
-	post: AppBskyFeedDefs.ThreadViewPost['post'];
+	post: $Typed<AppBskyFeedDefs.ThreadViewPost>['post'];
 	id: string;
-	replies: AppBskyFeedDefs.ThreadViewPost[];
+	replies: $Typed<AppBskyFeedDefs.ThreadViewPost>[];
 	hasMoreReplies: boolean;
 };
 
-export async function getPostThread(
-	agent: AtpAgent,
-	accountId: string,
-	postId: string,
-	depth?: number,
-): Promise<AppBskyFeedDefs.ThreadViewPost> {
-	const uri = buildPostUri(accountId, postId, 'at');
-	const response = await agent.app.bsky.feed.getPostThread({ uri, depth, parentHeight: 0 });
-	if (!response.success) {
+export async function getPostThread(input: {
+	accountId: string;
+	postId: string;
+	depth?: number;
+}): Promise<$Typed<AppBskyFeedDefs.ThreadViewPost>> {
+	// construct request url
+	const { accountId, postId, depth } = input;
+	const url = new URL('https://api.bsky.app/xrpc/app.bsky.feed.getPostThread');
+	url.searchParams.set('uri', buildPostUri(accountId, postId, 'at'));
+	url.searchParams.set('parentHeight', '0');
+	if (depth) url.searchParams.set('depth', depth.toString());
+
+	// fetch thread
+	const response = await fetch(url);
+	if (!response.ok) {
 		// TODO: log error
 		throw new Error('Failed to fetch post thread');
 	}
-	const thread = response.data.thread;
-	if (!AppBskyFeedDefs.isThreadViewPost(thread)) {
+
+	// guard response type
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const thread = ((await response.json()) as any).thread as $Typed<AppBskyFeedDefs.ThreadViewPost>;
+	if (thread.$type !== 'app.bsky.feed.defs#threadViewPost') {
 		throw new Error('Expected thread view post');
 	}
 
@@ -40,7 +43,7 @@ export async function getPostThread(
 }
 
 export function aggregatePostThread(
-	thread: AppBskyFeedDefs.ThreadViewPost,
+	thread: $Typed<AppBskyFeedDefs.ThreadViewPost>,
 	maxReplies = 20,
 ): AggregatedPost {
 	return {
@@ -51,9 +54,9 @@ export function aggregatePostThread(
 		},
 		post: thread.post,
 		id: thread.post.uri.split('/')[4],
-		replies: (thread.replies?.slice(0, maxReplies) ?? []).filter((reply) =>
-			AppBskyFeedDefs.isThreadViewPost(reply),
-		),
+		replies: (thread.replies?.slice(0, maxReplies) ?? []).filter(
+			(reply) => reply.$type === 'app.bsky.feed.defs#threadViewPost',
+		) as $Typed<AppBskyFeedDefs.ThreadViewPost>[],
 		hasMoreReplies: (thread.replies?.length ?? 0) > maxReplies,
 	};
 }

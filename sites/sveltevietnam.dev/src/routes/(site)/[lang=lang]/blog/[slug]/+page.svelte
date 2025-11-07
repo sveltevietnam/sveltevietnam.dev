@@ -23,6 +23,7 @@
 
 	import type { PageProps } from './$types';
 	import BlueskyComments from './_page/components/BlueskyComments.svelte';
+	import { getBlueskyPostLinkage } from './_page/remotes';
 
 	let { data }: PageProps = $props();
 
@@ -361,9 +362,7 @@
 	</div>
 
 	<!-- Bluesky comments -->
-	{#if data.bluesky}
-		<BlueskyComments {...data.bluesky} />
-	{/if}
+	<BlueskyComments linkage={await getBlueskyPostLinkage(data.post.id)} />
 
 	<!-- newsletter -->
 	<GradientBackground pattern="jigsaw">

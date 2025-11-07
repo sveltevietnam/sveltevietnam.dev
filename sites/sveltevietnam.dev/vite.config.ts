@@ -24,7 +24,6 @@ export default defineConfig({
 		 * @see {@link https://github.com/sveltejs/kit/issues/11793}
 		 */
 		include: [
-			'@atproto/api',
 			'@floating-ui/dom',
 			'@svelte-put/toc',
 			'@svelte-put/async-stack',

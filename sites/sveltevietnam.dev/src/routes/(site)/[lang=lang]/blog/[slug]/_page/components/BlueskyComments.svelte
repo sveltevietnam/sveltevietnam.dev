@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type AtpAgent from '@atproto/api';
 	import { T } from '@sveltevietnam/i18n';
 	import { formatTimeDiff } from '@sveltevietnam/kit/utilities/datetime';
 
@@ -7,7 +6,9 @@
 	import * as bluesky from '$lib/bluesky';
 	import { Avatar } from '$lib/components/avatar';
 
-	let { accountId, postId }: { accountId: string; postId: string } = $props();
+	import type { BlueskyPostLinkage } from '../remotes';
+
+	let { linkage }: { linkage?: BlueskyPostLinkage | null } = $props();
 
 	const BLUESKY_STATS_CONFIG = {
 		reply: {
@@ -23,88 +24,90 @@
 			tKey: 'pages.blog_slug.comments.bluesky.stats.like',
 		},
 	} as const;
-
-	let agent: AtpAgent | null = null;
-	let postUrl = $derived(bluesky.buildPostUri(accountId, postId, 'http'));
-	let threadPromise: Promise<bluesky.AggregatedPost> = $derived.by(async () => {
-		if (!browser) return new Promise(() => {});
-		if (!agent) agent = bluesky.createAtpAgent(fetch);
-		return bluesky.aggregatePostThread(await bluesky.getPostThread(agent, accountId, postId));
-	});
 </script>
 
-<section class="max-w-pad py-section mobile:overflow-auto space-y-10" data-pagefind-ignore>
-	<h2 class="c-text-heading border-outline border-b" id="comments">
-		<T key="pages.blog_slug.comments.heading" />
-	</h2>
-	<div
-		class="tablet:items-start tablet:gap-8 desktop:gap-10 widescreen:gap-20 tablet:flex-row relative flex flex-col-reverse gap-10"
-	>
-		<!-- replies -->
-		<div class="flex-1 space-y-6">
-			{#await threadPromise}
-				<p><T key="pages.blog_slug.comments.loading" /></p>
-			{:then thread}
-				{#if thread.replies.length}
-					{@render blueskyReplies(thread)}
-					{#if thread.hasMoreReplies}
-						<p class="border-outline border-t pt-1 text-right">
-							<T key="pages.blog_slug.comments.see_all" />
-							<a class="c-link" href={postUrl} data-external> Bluesky </a>
-						</p>
-					{/if}
-				{:else}
-					<p><T key="pages.blog_slug.comments.empty" params={{ url: postUrl }} /></p>
-				{/if}
-			{/await}
-		</div>
-
-		<!-- stats & banner -->
-		<div class="tablet:sticky tablet:top-header">
-			<article class="tablet:w-64 widescreen:w-80 @container relative 2xl:w-96">
-				<div
-					class={[
-						'group grid grid-cols-[auto_1fr] items-center',
-						'gap-4 p-4 @sm:gap-x-6 @sm:p-6 @md:gap-x-10 @md:p-8',
-						'border-onehalf bg-surface shadow-brutal border-current',
-						'interactive',
-					]}
-				>
-					<a
-						class={[
-							'block shrink-0',
-							'i i-[simple-icons--bluesky] h-14 w-14 @xs:h-18 @xs:w-18',
-							'group-hover:text-tertiary transition-[rotate,color] duration-(--duration) ease-(--easing) group-hover:-rotate-20',
-							'@xs:row-span-2',
-						]}
-						href={postUrl}
-						data-external
-					>
-						<span class="sr-only">Bluesky</span>
-					</a>
-					<p class="font-bold">
-						<T key="pages.blog_slug.comments.bluesky.desc" params={{ url: postUrl }} />
-					</p>
-					{#await threadPromise}
-						<p><T key="pages.blog_slug.comments.bluesky.stats.loading" /></p>
-					{:then thread}
-						{@render blueskyStats(
-							thread.stats.like,
-							thread.stats.repost,
-							thread.stats.reply,
-							postUrl,
-						)}
-						{#if thread.replies.length}
-							<p class="c-text-body-sm border-outline col-span-2 border-t pt-4 leading-relaxed">
-								<T key="pages.blog_slug.comments.bluesky.note" params={{ url: postUrl }} />
+{#if linkage}
+	{@const postUrl = bluesky.buildPostUri(linkage.accountId, linkage.postId, 'http')}
+	{@const threadPromise = browser
+		? bluesky.getPostThread(linkage).then(bluesky.aggregatePostThread)
+		: new Promise<bluesky.AggregatedPost>(() => {})}
+	<section class="max-w-pad py-section mobile:overflow-auto space-y-10" data-pagefind-ignore>
+		<h2 class="c-text-heading border-outline border-b" id="comments">
+			<T key="pages.blog_slug.comments.heading" />
+		</h2>
+		<div
+			class="tablet:items-start tablet:gap-8 desktop:gap-10 widescreen:gap-20 tablet:flex-row relative flex flex-col-reverse gap-10"
+		>
+			<!-- replies -->
+			<div class="max-h-[min(75vh,50rem)] flex-1 space-y-6 overflow-auto">
+				<svelte:boundary>
+					{@const thread = await threadPromise}
+					{#snippet pending()}
+						<p><T key="pages.blog_slug.comments.loading" /></p>
+					{/snippet}
+					{#if thread.replies.length}
+						{@render blueskyReplies(thread)}
+						{#if thread.hasMoreReplies}
+							<p class="border-outline border-t pt-1 text-right">
+								<T key="pages.blog_slug.comments.see_all" />
+								<a class="c-link" href={postUrl} data-external> Bluesky </a>
 							</p>
 						{/if}
-					{/await}
-				</div>
-			</article>
+					{:else}
+						<p><T key="pages.blog_slug.comments.empty" params={{ url: postUrl }} /></p>
+					{/if}
+				</svelte:boundary>
+			</div>
+
+			<!-- stats & banner -->
+			<div class="tablet:sticky tablet:top-header">
+				<article class="tablet:w-64 widescreen:w-80 @container relative 2xl:w-96">
+					<div
+						class={[
+							'group grid grid-cols-[auto_1fr] items-center',
+							'gap-4 p-4 @sm:gap-x-6 @sm:p-6 @md:gap-x-10 @md:p-8',
+							'border-onehalf bg-surface shadow-brutal border-current',
+							'interactive',
+						]}
+					>
+						<a
+							class={[
+								'block shrink-0',
+								'i i-[simple-icons--bluesky] h-14 w-14 @xs:h-18 @xs:w-18',
+								'group-hover:text-tertiary transition-[rotate,color] duration-(--duration) ease-(--easing) group-hover:-rotate-20',
+								'@xs:row-span-2',
+							]}
+							href={postUrl}
+							data-external
+						>
+							<span class="sr-only">Bluesky</span>
+						</a>
+						<p class="font-bold">
+							<T key="pages.blog_slug.comments.bluesky.desc" params={{ url: postUrl }} />
+						</p>
+						<svelte:boundary>
+							{@const thread = await threadPromise}
+							{#snippet pending()}
+								<p><T key="pages.blog_slug.comments.bluesky.stats.loading" /></p>
+							{/snippet}
+							{@render blueskyStats(
+								thread.stats.like,
+								thread.stats.repost,
+								thread.stats.reply,
+								postUrl,
+							)}
+							{#if thread.replies.length}
+								<p class="c-text-body-sm border-outline col-span-2 border-t pt-4 leading-relaxed">
+									<T key="pages.blog_slug.comments.bluesky.note" params={{ url: postUrl }} />
+								</p>
+							{/if}
+						</svelte:boundary>
+					</div>
+				</article>
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
+{/if}
 
 {#snippet blueskyStats(like: number, repost: number, reply: number, url: string, small?: boolean)}
 	{@const stats = { like, repost, reply }}

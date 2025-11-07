@@ -38,7 +38,7 @@ messages:
     heading: Comments
     loading: Loading comments from Bluesky (needs Javascript). Please hang tight...
     empty:
-      There is no comments yet. Add yours now on <a class="c-link" href="{{url}}" target="_blank"
+      There is no comment yet. Add yours now on <a class="c-link" href="{{url}}" target="_blank"
       rel="noreferrer noopener external">Bluesky</a>!
 
     see_all: See full discussion on

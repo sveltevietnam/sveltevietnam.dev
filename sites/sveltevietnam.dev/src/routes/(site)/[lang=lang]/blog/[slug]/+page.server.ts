@@ -14,7 +14,6 @@ import { loadPersonAvatar } from '$data/people';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
-import { getBackend } from '$lib/backend/utils';
 import { buildStructuredBlogPost } from '$lib/meta/structured/blog';
 
 import ogImageEn from '../(listing)/_page/og-blog.en.jpg?url';
@@ -68,20 +67,7 @@ export const load: PageServerLoad = async (event) => {
 		}),
 	} as Record<Language, string>;
 
-	let bluesky: null | { accountId: string; postId: string } = null;
-	const backend = getBackend({ throwOnDisconnected: false });
-	if (backend) {
-		const linkage = await backend.blueskyPosts().getByPostId(post.id);
-		if (linkage) {
-			bluesky = {
-				postId: linkage.blueskyPostId,
-				accountId: linkage.blueskyAccountId,
-			};
-		}
-	}
-
 	return {
-		bluesky,
 		contentEditUrl: `https://github.com/sveltevietnam/sveltevietnam.dev/edit/main/sites/sveltevietnam.dev/src/data/blog/posts/${post.id}/content/${lang}.md.svelte`,
 		lang,
 		post,
