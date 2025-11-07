@@ -1,17 +1,22 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import { page } from '$app/state';
+	import { searchBlogPosts } from '$data/blog/posts';
 	import { BlogListingIntro } from '$lib/components/blog-listing-intro';
 	import { BlogNewsletter } from '$lib/components/blog-newsletter';
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
 	import { GradientBackground } from '$lib/components/gradient-background';
 	import { Pagination } from '$lib/components/pagination';
 	import * as pagefind from '$lib/pagefind/attributes';
+	import { getPaginationFromUrl } from '$lib/utils/url';
 
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
+
+	const routing = RoutingContext.get();
 
 	let paginationUrl = $derived.by(() => {
 		// eslint-disable-next-line svelte/prefer-svelte-reactivity
@@ -19,6 +24,11 @@
 		url.hash = 'listing';
 		return url;
 	});
+	let pagination = $derived(getPaginationFromUrl(page.url));
+	let searched = $derived(
+		await searchBlogPosts({ where: { seriesId: data.series.id }, pagination, lang: routing.lang }),
+	);
+	let maxPage = $derived(Math.ceil(searched.total / pagination.per));
 </script>
 
 <main {...pagefind.page({ group: 'blog', importance: 'listing' })}>
@@ -32,9 +42,9 @@
 		<h2 class="sr-only" id="listing">
 			<T key="listing" />
 		</h2>
-		<BlogPostCommonList posts={data.posts} />
-		{#if data.pagination.max > 1}
-			<Pagination class="ml-auto" url={paginationUrl} {...data.pagination} />
+		<BlogPostCommonList posts={searched.posts} />
+		{#if maxPage > 1}
+			<Pagination class="ml-auto" current={pagination.page} max={maxPage} url={paginationUrl} />
 		{/if}
 	</section>
 

@@ -3,9 +3,11 @@
 	import { Context, T } from '@sveltevietnam/i18n';
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { STATUSES, type Status } from '@sveltevietnam/kit/constants';
+	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { BaseNotification } from '@sveltevietnam/kit/notifications';
 
 	import { asset } from '$app/paths';
+	import { getBlogPostById } from '$data/blog/posts';
 	import { BlogPostListItem } from '$lib/components/blog-post-list-item';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import * as pagefind from '$lib/pagefind/attributes';
@@ -18,6 +20,7 @@
 	let { data }: PageProps = $props();
 
 	const { t } = Context.get();
+	const routing = RoutingContext.get();
 
 	const MARK_CLASSES = {
 		info: 'text-info-on-surface bg-info-surface',
@@ -229,7 +232,12 @@
 					<div
 						class="border-onehalf shadow-brutal bg-surface relative mx-auto w-133 min-w-133 border-current p-6"
 					>
-						<BlogPostListItem post={data.sampleBlogPost} />
+						<BlogPostListItem
+							post={await getBlogPostById({
+								id: '20250425-mini-snippet-reactive-extension-storage-wxt',
+								lang: routing.lang,
+							})}
+						/>
 						{@render annotationMarker(1, 'absolute bottom-1/4 right-6')}
 						{@render annotationMarker(2, 'absolute bottom-1/6 right-32')}
 						{@render annotationMarker(3, 'absolute bottom-6 left-4')}

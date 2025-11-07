@@ -1,7 +1,7 @@
 import * as m from '@sveltevietnam/i18n/generated/messages';
 import Mustache from 'mustache';
 
-import { loadBlogPosts } from '$data/blog/posts';
+import { listBlogPosts } from '$data/blog/posts';
 import { loadEvents } from '$data/events';
 import * as p from '$data/routes/generated';
 
@@ -38,7 +38,7 @@ export const GET: RequestHandler = async ({ params, url }) => {
 				page: 1,
 			},
 		}),
-		loadBlogPosts(lang, 1, 100),
+		listBlogPosts({ lang, page: 1, per: 100 }),
 	]);
 
 	const items: RssItem[] = [

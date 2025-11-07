@@ -1,6 +1,5 @@
 import * as m from '@sveltevietnam/i18n/generated/messages';
 
-import { loadBlogCategory, ids } from '$data/blog/categories';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 
@@ -15,13 +14,7 @@ const ogImage = {
 
 export const load: PageServerLoad = async ({ params }) => {
 	const { lang } = params;
-
-	const categories = (
-		await Promise.all(ids.map((id) => loadBlogCategory(id, lang, { thumbnail: true })))
-	).filter(Boolean);
-
 	return {
-		categories,
 		routing: {
 			breadcrumbs: b['/:lang/blog/categories']({ lang }),
 			paths: {

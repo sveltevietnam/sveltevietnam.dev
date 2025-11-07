@@ -1,9 +1,7 @@
 import * as m from '@sveltevietnam/i18n/generated/messages';
 
-import { loadBlogPosts } from '$data/blog/posts';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
-import { getPaginationFromUrl } from '$lib/utils/url';
 
 import type { PageServerLoad } from './$types';
 import ogImageEn from './_page/og-blog-latest.en.jpg?url';
@@ -14,16 +12,9 @@ const ogImage = {
 	en: ogImageEn,
 };
 
-export const load: PageServerLoad = async ({ params, url }) => {
+export const load: PageServerLoad = async ({ params }) => {
 	const { lang } = params;
-	const pagination = getPaginationFromUrl(url);
-	const { posts, total } = await loadBlogPosts(lang, pagination.current, pagination.per);
 	return {
-		posts,
-		pagination: {
-			...pagination,
-			max: Math.ceil(total / pagination.per),
-		},
 		routing: {
 			breadcrumbs: b['/:lang/blog/latest']({ lang }),
 			paths: {

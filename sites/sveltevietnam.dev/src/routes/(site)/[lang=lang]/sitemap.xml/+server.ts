@@ -2,9 +2,9 @@ import { LANGUAGES } from '@sveltevietnam/kit/constants';
 import { toW3CDate } from '@sveltevietnam/kit/utilities/datetime';
 import Mustache from 'mustache';
 
-import { loadAllBlogCategories } from '$data/blog/categories';
-import { loadAllBlogPosts } from '$data/blog/posts';
-import { loadAllBlogSeries } from '$data/blog/series';
+import { listBlogCategories } from '$data/blog/categories';
+import { listBlogPosts } from '$data/blog/posts';
+import { listBlogSeries } from '$data/blog/series';
 import { loadAllEvents } from '$data/events';
 import { loadAllPeople } from '$data/people';
 import * as p from '$data/routes/generated';
@@ -27,10 +27,16 @@ type SiteMapUrl = {
 
 export const GET: RequestHandler = async ({ params }) => {
 	const { lang } = params;
-	const [blogPosts, blogSeries, blogCategories, events, people] = await Promise.all([
-		loadAllBlogPosts(lang),
-		loadAllBlogSeries(lang),
-		loadAllBlogCategories(lang),
+	const [
+		{ posts: blogPosts },
+		{ series: blogSeries },
+		{ categories: blogCategories },
+		events,
+		people,
+	] = await Promise.all([
+		listBlogPosts({ lang, page: 1, per: 100 }),
+		listBlogSeries({ lang, page: 1, per: 100 }),
+		listBlogCategories({ lang, page: 1, per: 100 }),
 		loadAllEvents(lang),
 		loadAllPeople(lang),
 	]);

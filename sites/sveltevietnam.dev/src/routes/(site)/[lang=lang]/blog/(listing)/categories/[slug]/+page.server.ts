@@ -1,39 +1,20 @@
-import { error } from '@sveltejs/kit';
 import type { Language } from '@sveltevietnam/kit/constants';
 
-import { loadBlogCategory, loadBlogCategoryBySlug } from '$data/blog/categories';
-import { searchBlogPosts } from '$data/blog/posts';
+import { getBlogCategoryBySlug } from '$data/blog/categories';
+import { loadBlogCategory } from '$data/blog/categories/entries';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 import { buildStructuredBlogCategoryPage } from '$lib/meta/structured/blog';
-import { getPaginationFromUrl } from '$lib/utils/url';
 
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ url, params }) => {
-	const { lang } = params;
-	const category = await loadBlogCategoryBySlug(params.slug, lang, { ogImage: true });
-	if (!category) {
-		// TODO: assign a unique code to this error
-		error(404, { message: 'Category not found', code: 'SV000' });
-	}
+export const load: PageServerLoad = async ({ params }) => {
+	const { lang, slug } = params;
+	const category = await getBlogCategoryBySlug({ slug, optionalModules: { ogImage: true } });
 
 	const otherLang = lang === 'en' ? 'vi' : 'en';
-	const pagination = getPaginationFromUrl(url);
-	const [{ posts, total }, otherLangMetadata] = await Promise.all([
-		searchBlogPosts({
-			lang,
-			where: {
-				categoryId: category.id,
-			},
-			pagination: {
-				page: pagination.current,
-				per: pagination.per,
-			},
-		}),
-		loadBlogCategory(category.id, otherLang),
-	]);
+	const [otherLangMetadata] = await Promise.all([loadBlogCategory(category.id, otherLang)]);
 
 	const breadcrumbs = b['/:lang/blog/categories/:slug']({
 		lang,
@@ -49,12 +30,7 @@ export const load: PageServerLoad = async ({ url, params }) => {
 
 	return {
 		category,
-		posts,
 		routing: { breadcrumbs, paths },
-		pagination: {
-			...pagination,
-			max: Math.ceil(total / pagination.per),
-		},
 		meta: {
 			og: {
 				image: {

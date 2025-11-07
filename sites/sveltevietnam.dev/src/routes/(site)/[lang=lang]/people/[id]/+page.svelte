@@ -4,6 +4,7 @@
 	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import { page } from '$app/state';
+	import { searchBlogPosts } from '$data/blog/posts';
 	import * as p from '$data/routes/generated';
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
 	import { EventListing } from '$lib/components/event-listing';
@@ -12,6 +13,7 @@
 	import { PersonLinks } from '$lib/components/person-links';
 	import { TextArrowLink } from '$lib/components/text-arrow-link';
 	import * as pagefind from '$lib/pagefind/attributes';
+	import { getPaginationFromUrl } from '$lib/utils/url';
 
 	import type { PageProps } from './$types';
 
@@ -25,6 +27,15 @@
 		url.hash = 'posts';
 		return url;
 	});
+	let pagination = $derived(getPaginationFromUrl(page.url));
+	let searched = $derived(
+		await searchBlogPosts({
+			where: { authorId: data.person.id },
+			pagination,
+			lang: routing.lang,
+		}),
+	);
+	let maxPage = $derived(Math.ceil(searched.total / pagination.per));
 
 	const links = $derived({
 		events: p['/:lang/events']({ lang: routing.lang }),
@@ -90,7 +101,7 @@
 	{/if}
 
 	<!-- appear as author to these posts -->
-	{#if data.posts.length}
+	{#if searched.posts.length}
 		<section
 			class="py-section max-w-pad desktop:space-y-15 tablet:space-y-10 space-y-8"
 			data-pagefind-ignore
@@ -105,9 +116,9 @@
 					</TextArrowLink>
 				</div>
 			</div>
-			<BlogPostCommonList posts={data.posts} />
-			{#if data.pagination.max > 1}
-				<Pagination class="ml-auto" url={paginationUrl} {...data.pagination}></Pagination>
+			<BlogPostCommonList posts={searched.posts} />
+			{#if maxPage > 1}
+				<Pagination class="ml-auto" current={pagination.page} max={maxPage} url={paginationUrl} />
 			{/if}
 		</section>
 	{/if}

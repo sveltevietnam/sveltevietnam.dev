@@ -3,7 +3,7 @@ import { defineBlogPostMetadata } from '..';
 export default defineBlogPostMetadata((lang) => ({
 	publishedAt: new Date('2025-11-05'),
 	authors: ['vnphanquang'],
-	categories: ['svelte-and-kit'],
+	categories: ['svelte-and-kit', 'insider'],
 	series: [],
 	...(
 		{

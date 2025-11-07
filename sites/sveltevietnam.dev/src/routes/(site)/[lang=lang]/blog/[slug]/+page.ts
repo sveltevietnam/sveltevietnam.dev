@@ -1,4 +1,4 @@
-import { loadBlogPostContent } from '$data/blog/posts';
+import { loadBlogPostContent } from '$data/blog/posts/entries';
 
 import type { PageLoad } from './$types';
 

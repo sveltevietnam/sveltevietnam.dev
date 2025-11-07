@@ -8,10 +8,14 @@ export type BlueskyPostLinkage = {
 	postId: string;
 };
 
-export const getBlueskyPostLinkage = query(v.string(), async (blogId) => {
-	const backend = getBackend();
+const GetBlueskyPostLinkageSchema = v.object({
+	postId: v.string(),
+});
+
+export const getBlueskyPostLinkage = query(GetBlueskyPostLinkageSchema, async ({ postId }) => {
+	const backend = getBackend({ throwOnDisconnected: false });
 	if (!backend) return null;
-	const linkage = await backend.blueskyPosts().getByPostId(blogId);
+	const linkage = await backend.blueskyPosts().getByPostId(postId);
 	if (!linkage) return null;
 	return {
 		postId: linkage.blueskyPostId,

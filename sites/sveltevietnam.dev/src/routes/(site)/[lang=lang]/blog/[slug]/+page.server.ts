@@ -1,15 +1,11 @@
-import { error } from '@sveltejs/kit';
 import type { Language } from '@sveltevietnam/kit/constants';
 
+import { getBlogPostBySlug } from '$data/blog/posts';
 import {
-	loadBlogPostBySlug,
-	loadBlogPostMetadata,
-	ids,
-	loadBlogPost,
-	searchPostsInSameSeries,
-	loadBlogPostOgImage,
 	generateKitEntries,
-} from '$data/blog/posts';
+	loadBlogPostMetadata,
+	loadBlogPostOgImage,
+} from '$data/blog/posts/entries';
 import { loadPersonAvatar } from '$data/people';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
@@ -32,21 +28,10 @@ export const entries: EntryGenerator = () => {
 
 export const load: PageServerLoad = async (event) => {
 	const { lang, slug } = event.params;
-	const post = await loadBlogPostBySlug(slug, lang);
-	if (!post) {
-		// TODO: assign a unique code to this error
-		error(404, { message: 'Post not found', code: 'SV000' });
-	}
+	const post = await getBlogPostBySlug({ slug });
 
-	const latestPostId = ids[0] === post.id ? ids[1] : ids[0];
 	const otherLang = lang === 'en' ? 'vi' : 'en';
-	const [latest, inSeries, otherLangMetadata, ogImage] = await Promise.all([
-		loadBlogPost(latestPostId, lang),
-		searchPostsInSameSeries(
-			lang,
-			post.id,
-			post.series.map((s) => s.id),
-		),
+	const [otherLangMetadata, ogImage] = await Promise.all([
 		loadBlogPostMetadata(post.id, otherLang),
 		loadBlogPostOgImage(post.id),
 		...post.authors.map(async (author) => {
@@ -71,10 +56,6 @@ export const load: PageServerLoad = async (event) => {
 		contentEditUrl: `https://github.com/sveltevietnam/sveltevietnam.dev/edit/main/sites/sveltevietnam.dev/src/data/blog/posts/${post.id}/content/${lang}.md.svelte`,
 		lang,
 		post,
-		posts: {
-			latest,
-			inSeries,
-		},
 		routing: { breadcrumbs, paths },
 		meta: {
 			structured: buildStructuredBlogPost(lang, VITE_PUBLIC_ORIGIN, post),

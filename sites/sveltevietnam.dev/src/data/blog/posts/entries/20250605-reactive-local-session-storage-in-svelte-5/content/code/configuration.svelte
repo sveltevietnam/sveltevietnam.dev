@@ -1,6 +1,6 @@
-<fieldset class="not-prose overflow-auto border border-outline p-4 max-w-full min-w-0">
+<fieldset class="not-prose border-outline max-w-full min-w-0 overflow-auto border p-4">
 	<legend>Configuration</legend>
-	<table class="border-collapse c-text-body-sm w-full">
+	<table class="c-text-body-sm w-full border-collapse">
 		<thead>
 			<tr class="bg-surface-subtle">
 				<th class="w-20" scope="col">Key</th>
@@ -51,7 +51,8 @@
 </fieldset>
 
 <style lang="postcss">
-	td, th {
+	td,
+	th {
 		padding: 0.5rem 1rem;
 		border: 1px solid var(--color-outline);
 		vertical-align: middle;

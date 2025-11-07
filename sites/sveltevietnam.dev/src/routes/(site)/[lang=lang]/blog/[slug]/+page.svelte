@@ -9,6 +9,11 @@
 	import { formatRelativeTime } from '@sveltevietnam/kit/utilities/datetime';
 
 	import { page } from '$app/state';
+	import {
+		getAdjacentPostsFromSameSeries,
+		getBlogPostNextToRead,
+		getBlueskyPostLinkage,
+	} from '$data/blog/posts';
 	import * as p from '$data/routes/generated';
 	import { BlogNewsletter } from '$lib/components/blog-newsletter';
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
@@ -23,7 +28,6 @@
 
 	import type { PageProps } from './$types';
 	import BlueskyComments from './_page/components/BlueskyComments.svelte';
-	import { getBlueskyPostLinkage } from './_page/remotes';
 
 	let { data }: PageProps = $props();
 
@@ -82,6 +86,14 @@
 		if (!containerEl) return;
 		showQuickNav = window.scrollY > containerEl.offsetTop;
 	}
+
+	const adjacentPostsInSameSeries = $derived(
+		await getAdjacentPostsFromSameSeries({ postId: data.post.id, lang: routing.lang }),
+	);
+	const blueskyLinkage = $derived(getBlueskyPostLinkage({ postId: data.post.id }));
+	const nextPostToRead = $derived(
+		await getBlogPostNextToRead({ postId: data.post.id, lang: routing.lang }),
+	);
 </script>
 
 <svelte:window onscroll={onScroll} />
@@ -214,7 +226,7 @@
 					</a>
 				</li>
 				<li class="pl-8">
-					{#if data.posts.inSeries?.length}
+					{#if (await adjacentPostsInSameSeries).length}
 						{@render inlink('#in-this-series', 'pages.blog_slug.quick_nav.series', 'i-[ph--files]')}
 					{:else}
 						{@render inlink('#latest-post', 'pages.blog_slug.quick_nav.latest', 'i-[ph--files]')}
@@ -351,18 +363,20 @@
 		</div>
 
 		<!-- latest blog post -->
-		{#if data.posts.latest}
+		{#if nextPostToRead}
 			<section class="_latest space-y-6" data-pagefind-ignore>
 				<h2 class="c-text-heading border-b" id="latest-post">
 					<T key="pages.blog_slug.headings.latest" />
 				</h2>
-				<BlogPostListItem post={data.posts.latest} />
+				<BlogPostListItem post={nextPostToRead} />
 			</section>
 		{/if}
 	</div>
 
 	<!-- Bluesky comments -->
-	<BlueskyComments linkage={await getBlueskyPostLinkage(data.post.id)} />
+	{#if blueskyLinkage.current}
+		<BlueskyComments linkage={blueskyLinkage.current} />
+	{/if}
 
 	<!-- newsletter -->
 	<GradientBackground pattern="jigsaw">
@@ -375,7 +389,7 @@
 	</GradientBackground>
 
 	<!-- blog posts in same series -->
-	{#if data.posts.inSeries?.length}
+	{#if adjacentPostsInSameSeries.length}
 		<section class="py-section max-w-pad space-y-8" data-pagefind-ignore>
 			<div class="space-y-4 border-t-4 border-current pt-2">
 				<div class="flex flex-wrap items-baseline justify-between gap-4">
@@ -387,7 +401,7 @@
 					</TextArrowLink>
 				</div>
 			</div>
-			<BlogPostCommonList posts={data.posts.inSeries} flat />
+			<BlogPostCommonList posts={adjacentPostsInSameSeries} flat />
 		</section>
 	{/if}
 </main>

@@ -4,6 +4,9 @@
 	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { onScroll, createTimeline, stagger } from 'animejs';
 
+	import { getBlogCategoryById } from '$data/blog/categories';
+	import { listBlogPosts, searchBlogPosts } from '$data/blog/posts';
+	import { getBlogSeriesById } from '$data/blog/series/remotes';
 	import * as p from '$data/routes/generated';
 	import { BlogNewsletter } from '$lib/components/blog-newsletter';
 	import { BlogPostShowcase } from '$lib/components/blog-post-showcase';
@@ -63,6 +66,31 @@
 
 		return () => timeline.revert();
 	});
+
+	let latest = $derived(await listBlogPosts({ page: 1, per: 4, lang: routing.lang }));
+	let peopleOfSvelte = $derived(
+		searchBlogPosts({
+			lang: routing.lang,
+			where: { seriesId: 'people-of-svelte' },
+			pagination: { page: 1, per: 3 },
+		}),
+	);
+	let svelteAndKit = $derived(
+		searchBlogPosts({
+			lang: routing.lang,
+			where: { categoryId: 'svelte-and-kit' },
+			pagination: { page: 1, per: 3 },
+			excludedIds: latest.posts.map((post) => post.id),
+		}),
+	);
+	let insider = $derived(
+		searchBlogPosts({
+			lang: routing.lang,
+			where: { categoryId: 'insider' },
+			pagination: { page: 1, per: 3 },
+			// excludedIds: ...
+		}),
+	);
 </script>
 
 {#snippet listingHeader({
@@ -111,7 +139,7 @@
 			category: t({ key: 'latest' }),
 			href: p['/:lang/blog/latest']({ lang: routing.lang }),
 		})}
-		<BlogPostShowcase posts={data.posts.latest}></BlogPostShowcase>
+		<BlogPostShowcase posts={latest.posts}></BlogPostShowcase>
 	</section>
 
 	<!-- write -->
@@ -183,35 +211,39 @@
 		</section>
 	</GradientBackground>
 
-	{#if data.series.peopleOfSvelte && data.posts.peopleOfSvelte.length}
+	{#if (await peopleOfSvelte).posts.length}
+		{@const { posts } = await peopleOfSvelte}
+		{@const series = await getBlogSeriesById({ id: 'people-of-svelte', lang: routing.lang })}
 		<!-- people-of-svelte -->
 		<section class="max-w-pad py-section tablet:space-y-8 space-y-6" data-pagefind-ignore>
 			{@render listingHeader({
-				id: 'people-of-svelte',
-				category: data.series.peopleOfSvelte.name,
+				id: series.id,
+				category: series.name,
 				href: p['/:lang/blog/series/:slug']({
 					lang: routing.lang,
-					slug: data.series.peopleOfSvelte.slug,
+					slug: series.slug,
 				}),
-				description: data.series.peopleOfSvelte.description,
+				description: series.description,
 			})}
-			<BlogPostShowcase posts={data.posts.peopleOfSvelte}></BlogPostShowcase>
+			<BlogPostShowcase {posts}></BlogPostShowcase>
 		</section>
 	{/if}
 
-	{#if data.categories.svelteAndKit && data.posts.svelteAndKit.length}
+	{#if (await svelteAndKit).posts.length}
+		{@const { posts } = await svelteAndKit}
+		{@const category = await getBlogCategoryById({ id: 'svelte-and-kit', lang: routing.lang })}
 		<!-- svelte-and-kit -->
 		<section class="max-w-pad py-section tablet:space-y-8 space-y-6" data-pagefind-ignore>
 			{@render listingHeader({
-				id: 'svelte-and-kit',
-				category: data.categories.svelteAndKit.name,
+				id: category.id,
+				category: category.name,
 				href: p['/:lang/blog/categories/:slug']({
 					lang: routing.lang,
-					slug: data.categories.svelteAndKit.slug,
+					slug: category.slug,
 				}),
-				description: data.categories.svelteAndKit.description,
+				description: category.description,
 			})}
-			<BlogPostShowcase posts={data.posts.svelteAndKit}></BlogPostShowcase>
+			<BlogPostShowcase {posts}></BlogPostShowcase>
 		</section>
 	{/if}
 
@@ -234,19 +266,21 @@
 		</section>
 	</GradientBackground>
 
-	{#if data.categories.insider && data.posts.insider.length}
+	{#if (await insider).posts.length}
+		{@const { posts } = await insider}
+		{@const category = await getBlogCategoryById({ id: 'insider', lang: routing.lang })}
 		<!-- insider -->
 		<section class="max-w-pad py-section tablet:space-y-8 space-y-6" data-pagefind-ignore>
 			{@render listingHeader({
-				id: 'insider',
-				category: data.categories.insider.name,
+				id: category.id,
+				category: category.name,
 				href: p['/:lang/blog/categories/:slug']({
 					lang: routing.lang,
-					slug: data.categories.insider.slug,
+					slug: category.slug,
 				}),
-				description: data.categories.insider.description,
+				description: category.description,
 			})}
-			<BlogPostShowcase posts={data.posts.insider} flat></BlogPostShowcase>
+			<BlogPostShowcase {posts}></BlogPostShowcase>
 		</section>
 	{/if}
 

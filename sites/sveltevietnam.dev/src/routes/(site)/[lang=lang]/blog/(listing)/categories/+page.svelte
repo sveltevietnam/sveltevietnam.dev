@@ -2,6 +2,7 @@
 	import { T } from '@sveltevietnam/i18n';
 	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
+	import { listBlogCategories } from '$data/blog/categories';
 	import * as p from '$data/routes/generated';
 	import { BlogListingIntro } from '$lib/components/blog-listing-intro';
 	import { BlogPostCollectionListItem } from '$lib/components/blog-post-collection-list-item';
@@ -12,6 +13,14 @@
 	let { data }: PageProps = $props();
 
 	const routing = RoutingContext.get();
+	const listed = $derived(
+		listBlogCategories({
+			page: 1,
+			per: 100,
+			lang: routing.lang,
+			optionalModules: { thumbnail: true },
+		}),
+	);
 </script>
 
 <main {...pagefind.page({ group: 'blog', importance: 'other' })}>
@@ -30,7 +39,7 @@
 			<T key="listing" />
 		</h2>
 		<ul class="tablet:space-y-10 space-y-8 divide-y">
-			{#each data.categories as category (category.id)}
+			{#each (await listed).categories as category (category.id)}
 				{@const href = p['/:lang/blog/categories/:slug']({
 					lang: routing.lang,
 					slug: category.slug,

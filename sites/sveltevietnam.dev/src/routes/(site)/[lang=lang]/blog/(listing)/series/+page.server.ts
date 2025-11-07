@@ -1,6 +1,5 @@
 import * as m from '@sveltevietnam/i18n/generated/messages';
 
-import { loadBlogSeries, ids } from '$data/blog/series';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 
@@ -15,12 +14,7 @@ const ogImage = {
 
 export const load: PageServerLoad = async ({ params }) => {
 	const { lang } = params;
-	const series = (
-		await Promise.all(ids.map((id) => loadBlogSeries(id, lang, { thumbnail: true })))
-	).filter(Boolean);
-
 	return {
-		series,
 		routing: {
 			breadcrumbs: b['/:lang/blog/series']({ lang }),
 			paths: {
