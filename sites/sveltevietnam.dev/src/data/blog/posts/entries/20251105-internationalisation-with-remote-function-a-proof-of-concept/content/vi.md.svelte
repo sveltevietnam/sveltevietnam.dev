@@ -11,7 +11,7 @@ những năm qua. Gần đây, mình đã giành thời gian cải thiện, tố
 [Async Svelte][svelte.await] và [Remote function][sveltekit.remote] là hai tính năng mới đang được
 phát triển bởi team Svelte. Bài viết này chia sẽ về kết quả thử nghiệm của mình.
 
-## Code Demo
+## Demo Code
 
 Giải pháp mình giới thiệu ở đây đã được đóng gói thành thư viện [@sveltevietnam/i18n]. Bạn có thể
 thử sử dụng bằng cách làm theo hướng dẫn tại
@@ -94,28 +94,29 @@ Nhiệm vụ của [@sveltevietnam/i18n] là thỏa mãn được các tiêu ch�
 <div class="c-callout c-callout--info">
 
 Trang bạn đang đọc hiện đang sử dụng thực tế thư viện [@sveltevietnam/i18n] đã nêu.
-Bạn có thể và thử thay đổi trang và quan sát network từ devtools để xem remote function
+Bạn có thể thử thay đổi trang và quan sát tab network trong devtools để xem remote function
 hoạt động và dữ liệu trả về như thế nào.
 
 </div>
 
 ## Lợi thế của Remote function
 
-Xử lý dữ liệu i18n bao gốm hai việc chính:
+Xử lý dữ liệu i18n bao gồm hai việc chính:
 
 1. định nghĩa các văn bản (message) cần tải, và
 2. định nghĩa ngôn ngữ cần tải cho từng văn bản (bản dịch cho văn bản đó).
 
-Hầu hết các giải pháp mình thấy thường bắt bạn phải định nghĩa thủ công cả hai việc trên cho từng
-trang, hoặc là tự động tải toàn bộ ngay từ đầu. Trong các dự án lớn và phát triển lâu năm, việc này
-dẫn đến khó bảo trì hoặc tải quá nhiều dữ liệu không cần thiết đến người dùng. Thư viện Paraglide
+Hầu hết các giải pháp mình thấy thường đòi hỏi phải định nghĩa thủ công cả hai việc trên cho từng
+trang, hoặc là tự động tải toàn bộ ngay từ đầu. Trong các dự án lớn, phát triển lâu năm, việc này
+dẫn đến khó bảo trì hoặc phải tải quá nhiều dữ liệu không cần thiết đến người dùng. Thư viện Paraglide
 đề xuất giải pháp bằng cách tận dụng ES module và [tree-shaking](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking)
 để tải văn bản khi cần thiết. Mình nghĩ đó là hướng phát triển rất tốt. Tuy nhiên với mỗi văn bản,
-Paraglide vẫn sẽ phải tải hết tất cả ngôn ngữ.
+Paraglide vẫn sẽ phải tải hết tất cả các bản dịch.
 
 Mình nghĩ rằng Remote function sẽ giúp lấp được khoảng trống này. Về lý thuyết, nó sẽ giúp tối ưu hóa
-việc tải dự liệu, chỉ tải văn bản và ngôn ngữ cần thiết. Ví dụ, trang sau chỉ tải duy nhất văn bản `hello`
-và ngôn ngữ `vi`:
+việc tải dự liệu, chỉ tải văn bản và ngôn ngữ cần thiết. Ví dụ, trang sau chỉ tải duy nhất
+bản dịch tiếng Việt cho văn bản `hello`:
+
 
 ```svelte title="src/routes/vi/+page.svelte"
 <script lang="ts">
@@ -129,7 +130,7 @@ và ngôn ngữ `vi`:
 
 Bằng cách này, client bundle sẽ không bị phình to trong dự án lớn. Tuy nhiên, server của bạn sẽ phải
 giữ tất cả các bản dịch để tham chiếu tại thời gian thực (runtime) và trả về cho phía người dùng.
-Ngoài ra, việc này sẽ bao gôm một số chi phí giao tiếp mạng và đóng gói dự liệu. Hiệu năng và số lượng
+Ngoài ra, việc này sẽ bao gôm một số chi phí giao tiếp mạng và đóng gói dữ liệu. Hiệu năng và số lượng
 dữ liệu thực tế như thế nào khi so sánh với các giải pháp khác vẫn cần được đo đạc và đánh giá thêm.
 
 </div>
@@ -139,8 +140,8 @@ dữ liệu thực tế như thế nào khi so sánh với các giải pháp kh�
 Thư viện hiện tại hỗ trợ sử dụng hai kiểu remote function,
 [query.batch](https://svelte.dev/docs/kit/remote-functions#query.batch) và
 [prerender](https://svelte.dev/docs/kit/remote-functions#prerender). Bạn có thể định nghĩa toàn cục
-qua context, hoặc cục bộ cho mỗi văn bản, thông qua thuộc tính `remote` như đã nêu tại ví dụ
-ở phần [Code Demo](#code-demo). Ngoài ra, bạn có thể cung cấp hàm remote tùy chỉnh tại đây.
+qua context, hoặc cục bộ cho mỗi văn bản, thông qua thuộc tính `remote` như có thể thấy ở phần
+[Demo Code](#demo-code). Ngoài ra, bạn cũng có thể cung cấp hàm remote tùy chỉnh qua thuộc tính đó
 
 `query.batch` sẽ nhóm nhiều yêu cầu (request) thành một để giảm thiểu số lần gọi. Tuy nhiên, `query`
 khó tận dụng cache và không sử dụng được trên các trang có bật tính năng `prerender`. Ngược lại,
@@ -149,7 +150,7 @@ cho mỗi văn bản. Sử dụng kiểu remote function nào sẽ tùy thuộc 
 
 ## Vite Plugin & Code Generation
 
-Phần lớn công việc để [@sveltevietnam/i18n] có thể hoạt động được như đã nêu là nhờ một Vite plugin.
+Phần lớn công việc giúp cho [@sveltevietnam/i18n] có thể hoạt động được như đã nêu là nhờ một Vite plugin.
 Plugin này chịu trách nhiệm thu thập tất cả tệp locale tại thời gian build và xây dụng ra các module
 chứa văn bản và dữ liệu mô tả cần thiết cho runtime.
 
@@ -236,6 +237,7 @@ Có một vài ý tưởng mình muốn thử nghiệm thêm cho [@sveltevietnam
 - mã hóa văn bản để tăng tính bảo mật,
 - tận dụng Vite plugin hoặc Svelte preprocessor để phân tích và thu thập dự liệu sử dụng văn
   bản trong quá trình build, phát hiện văn bản không sử dụng,
+- đề xuất phương pháp kiểm thử phù hợp,
 - đo lường và kiểm chuẩn (benchmark)
 
 

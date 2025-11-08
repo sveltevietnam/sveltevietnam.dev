@@ -143,7 +143,7 @@ the `remote` prop, as seen in [Presenting the Code](#presenting-the-code) sectio
 
 `query.batch` allows a single request to fetch multiple messages at once, which is great to avoid making
 n+1 requests. However, such request is hard to cache, and `query` can't be used on prerendered
-pages. `prerender`, on the other hand, enables caching at multiple level (CDN, browser), but right now each message
+pages. `prerender`, on the other hand, enables caching at multiple layers (CDN, browser), but right now each message
 will fire off its own request.
 
 <div class="c-callout c-callout--success c-callout--icon-bulb">
