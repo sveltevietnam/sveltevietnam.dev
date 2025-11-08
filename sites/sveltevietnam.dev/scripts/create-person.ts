@@ -7,7 +7,7 @@ import * as p from '@clack/prompts';
 import dedent from 'dedent';
 import pico from 'picocolors';
 
-import { ids } from '../src/data/people';
+import { ids } from '../src/data/people/entries';
 
 import {
 	validateTextField,

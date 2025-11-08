@@ -8,9 +8,9 @@ import dedent from 'dedent';
 import { normalize } from 'normalize-diacritics';
 import pico from 'picocolors';
 
-import { ids as categoryIds, loadBlogCategory } from '../src/data/blog/categories';
-import { ids as seriesIds, loadBlogSeries } from '../src/data/blog/series';
-import { ids as authorIds, loadPerson } from '../src/data/people';
+import { ids as categoryIds, loadBlogCategory } from '../src/data/blog/categories/entries';
+import { ids as seriesIds, loadBlogSeries } from '../src/data/blog/series/entries';
+import { ids as authorIds, loadPerson } from '../src/data/people/entries';
 
 import { validateTextField, onCancel, escapeQuotes } from './helpers';
 
