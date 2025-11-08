@@ -1,5 +1,12 @@
 # @sveltevietnam/kit
 
+## 1.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`1f366db`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/1f366dbb2f11fc12dfac71f986e302b59a49f5b6)]:
+  - @sveltevietnam/i18n@0.2.1
+
 ## 1.0.3
 
 ### Patch Changes

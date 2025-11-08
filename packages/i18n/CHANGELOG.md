@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1
+
+### Patch Changes
+
+- [`1f366db`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/1f366dbb2f11fc12dfac71f986e302b59a49f5b6) Thanks [@vnphanquang](https://github.com/vnphanquang)! - remove `MaybeHtml` proxy, await directly in script tag, avoid hydration mismatch issue in production build
+
 ## 0.2.0
 
 ### Minor Changes
