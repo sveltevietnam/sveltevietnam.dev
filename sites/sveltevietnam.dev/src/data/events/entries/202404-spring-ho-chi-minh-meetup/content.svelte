@@ -3,10 +3,10 @@
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
-	import trongnguyen24 from '$data/people/trongnguyen24';
-	import trongnguyen24Avatar from '$data/people/trongnguyen24/avatar.jpg?enhanced&w=400;100&imagetools';
-	import vnphanquang from '$data/people/vnphanquang';
-	import vnphanquangAvatar from '$data/people/vnphanquang/avatar.jpg?enhanced&w=400;100&imagetools';
+	import trongnguyen24 from '$data/people/entries/trongnguyen24';
+	import trongnguyen24Avatar from '$data/people/entries/trongnguyen24/avatar.jpg?enhanced&w=400;100&imagetools';
+	import vnphanquang from '$data/people/entries/vnphanquang';
+	import vnphanquangAvatar from '$data/people/entries/vnphanquang/avatar.jpg?enhanced&w=400;100&imagetools';
 	import * as p from '$data/routes/generated';
 	import { DateTimeRangeText } from '$lib/components/date-time-range-text';
 	import { EventGallery } from '$lib/components/event-gallery';
@@ -16,7 +16,7 @@
 	import { ListMessage } from '$lib/components/list-message';
 	import { Person } from '$lib/components/person';
 
-	import type { PageProps } from '../../../routes/(site)/[lang=lang]/events/[slug]/$types';
+	import type { PageProps } from '../../../../routes/(site)/[lang=lang]/events/[slug]/$types';
 
 	import dsvLogoImage from './images/designveloper_logo.webp';
 	import imgEventTicket from './images/event/e-ticket.jpg?enhanced&w=1200;630&imagetools';

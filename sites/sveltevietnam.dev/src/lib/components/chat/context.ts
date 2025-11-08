@@ -7,10 +7,8 @@ export interface ChatParticipant {
 	avatar?: Picture | string;
 	href?: string;
 }
-export type ChatParticipantMap = Record<string, ChatParticipant | null>;
 export type ChatDisplay = 'bubble' | 'box';
 export interface ChatContext {
-	participants?: ChatParticipantMap;
 	display?: ChatDisplay;
 }
 

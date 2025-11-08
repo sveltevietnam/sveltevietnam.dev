@@ -11,7 +11,7 @@ data definition for a blog post is located at `sites/sveltevietnam.dev/src/data/
 For example, the metadata for the post ["Come for Svelte, Stay for the
 Web"](/en/blog/20240420-come-for-svelte-stay-for-the-web) is defined as follows:
 
-```ts title="20240420-come-for-svelte-stay-for-the-web" src="../../../../../../../../data/blog/posts/20240420-come-for-svelte-stay-for-the-web/metadata.ts"
+```ts title="20240420-come-for-svelte-stay-for-the-web" src="../../../../../../../../data/blog/posts/entries/20240420-come-for-svelte-stay-for-the-web/metadata.ts"
 ```
 
 Once you have completed the writing process (step 1 -> 4), make sure you revisit the corresponding
@@ -33,6 +33,6 @@ Post"](#directory-structure-of-a-post). Some guidelines and recommendations are 
 Author data is defined at `sites/sveltevietnam.dev/src/data/people/:id/index.ts`. For example, data
 for ["Quang Phan"](/en/people/vnphanquang) is defined as follows:
 
-```ts title="20240420-come-for-svelte-stay-for-the-web" src="../../../../../../../../data/people/vnphanquang/index.ts"
+```ts title="20240420-come-for-svelte-stay-for-the-web" src="../../../../../../../../data/people/entries/vnphanquang/index.ts"
 ```
 

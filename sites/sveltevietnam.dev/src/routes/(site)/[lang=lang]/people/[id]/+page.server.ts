@@ -1,7 +1,6 @@
-import { error } from '@sveltejs/kit';
 import type { Language } from '@sveltevietnam/kit/constants';
 
-import { loadPerson } from '$data/people';
+import { getPersonById } from '$data/people';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
@@ -18,12 +17,8 @@ const ogImage = {
 };
 
 export const load: PageServerLoad = async ({ params }) => {
-	const { lang } = params;
-	const person = await loadPerson(params.id, lang, true);
-	if (!person) {
-		// TODO: assign a unique code to this error
-		error(404, { message: 'Author not found', code: 'SV000' });
-	}
+	const { lang, id } = params;
+	const person = await getPersonById({ id, lang, optionalModules: { ogImage: true } });
 
 	const otherLang = lang === 'en' ? 'vi' : 'en';
 

@@ -6,7 +6,7 @@ import {
 	loadBlogPostMetadata,
 	loadBlogPostOgImage,
 } from '$data/blog/posts/entries';
-import { loadPersonAvatar } from '$data/people';
+import { loadPersonAvatar } from '$data/people/entries';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';

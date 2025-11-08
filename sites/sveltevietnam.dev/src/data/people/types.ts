@@ -15,7 +15,7 @@ export type Person = {
 	ogImage?: string;
 };
 
-export type MinimalPerson = Omit<Person, 'id' | 'avatar' | 'popImage' | 'ogImage'>;
+export type MinimalPerson = Omit<Person, 'id'>;
 export type PersonDefinition = (lang: Language) => MinimalPerson;
 
 export type PersonOptionalModules = {

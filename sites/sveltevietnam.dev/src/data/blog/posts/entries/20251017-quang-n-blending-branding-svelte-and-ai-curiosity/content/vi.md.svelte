@@ -1,10 +1,8 @@
 <script>
   import { ChatContainer, ChatItem } from '$lib/components/chat';
-  import { loadParticipants } from '$lib/components/chat/utils';
   import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	const routing = RoutingContext.get();
-  const participants = loadParticipants(['liti-dev','quang-design'], routing.lang);
 </script>
 
 Quang là một người điềm tĩnh, bình thản - kiểu người không vội vàng lên tiếng - nhưng khi đã nói, thì đó là những lời rất sâu sắc.
@@ -12,7 +10,7 @@ Quang hiện tại là Design Director. Công việc của anh vượt xa yếu 
 
 ## Hỏi nhanh đáp gọn
 
-<ChatContainer class="py-2 *:max-w-4/5 flex flex-col mobile:gap-2" participants={participants}>
+<ChatContainer class="py-2 *:max-w-4/5 flex flex-col mobile:gap-2">
 <ChatItem participant="liti-dev">
 
 <span class="sr-only">Câu hỏi:</span> Bạn biết đến Svelte hoặc cộng đồng này như thế nào?

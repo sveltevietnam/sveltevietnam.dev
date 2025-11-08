@@ -1,10 +1,8 @@
 <script>
   import { ChatContainer, ChatItem } from '$lib/components/chat';
-  import { loadParticipants } from '$lib/components/chat/utils';
   import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	const routing = RoutingContext.get();
-  const participants = loadParticipants(['liti-dev','quang-design'], routing.lang);
 </script>
 
 My first impression about Quang was someone who's calm and composed - the kind of person who doesn't rush to speak - but when he does, it's thoughtful.
@@ -12,7 +10,7 @@ He's a design director skilled at crafting impactful brand identities, where his
 
 ## Firechat with Quang N.
 
-<ChatContainer class="py-2 *:max-w-4/5 flex flex-col mobile:gap-2" participants={participants}>
+<ChatContainer class="py-2 *:max-w-4/5 flex flex-col mobile:gap-2">
 <ChatItem participant="liti-dev">
 
 <span class="sr-only">Question:</span> How did you first discover Svelte or this community?

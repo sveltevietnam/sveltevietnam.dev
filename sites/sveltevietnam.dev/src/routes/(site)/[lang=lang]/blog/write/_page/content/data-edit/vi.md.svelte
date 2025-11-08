@@ -10,7 +10,7 @@ Như đã đề cập tại muc ["Cấu trúc mã nguyền bài viết"](#cau-tr
 tại têp `sites/sveltevietnam.dev/src/data/blog/posts/:id/metadata.ts`. Ví dụ, dữ liệu của bài viết
 ["Đến với web thông qua Svelte"](/vi/blog/20240420-den-voi-web-thong-qua-svelte) được định nghĩa như sau:
 
-```ts title="20240420-come-for-svelte-stay-for-the-web" src="../../../../../../../../data/blog/posts/20240420-come-for-svelte-stay-for-the-web/metadata.ts"
+```ts title="20240420-come-for-svelte-stay-for-the-web" src="../../../../../../../../data/blog/posts/entries/20240420-come-for-svelte-stay-for-the-web/metadata.ts"
 ```
 
 Khi bạn đã hoàn thành nội dung bài viết, hãy quay trở lại tệp `.../metadata.ts` tương ứng và cập nhật
@@ -33,6 +33,6 @@ Dữ liệu tác giả được định nghĩa tại tệp
 `sites/sveltevietnam.dev/src/data/people/:id/index.ts`.
 Ví dụ, dữ liệu của ["Phan Quang"](/vi/con-nguoi/vnphanquang) được định nghĩa như sau:
 
-```ts title="20240420-come-for-svelte-stay-for-the-web" src="../../../../../../../../data/people/vnphanquang/index.ts"
+```ts title="20240420-come-for-svelte-stay-for-the-web" src="../../../../../../../../data/people/entries/vnphanquang/index.ts"
 ```
 

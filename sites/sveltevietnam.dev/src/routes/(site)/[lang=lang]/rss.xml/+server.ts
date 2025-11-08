@@ -31,7 +31,7 @@ export const GET: RequestHandler = async ({ params, url }) => {
 	const origin = url.origin;
 
 	const [{ events }, { posts }] = await Promise.all([
-		listEvents({ lang, per: 10, page: 1 }),
+		listEvents({ lang, per: 10, page: 1, optionalModules: { thumbnail: true } }),
 		listBlogPosts({ lang, page: 1, per: 100 }),
 	]);
 

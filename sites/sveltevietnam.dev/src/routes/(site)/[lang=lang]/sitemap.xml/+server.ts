@@ -6,7 +6,7 @@ import { listBlogCategories } from '$data/blog/categories';
 import { listBlogPosts } from '$data/blog/posts';
 import { listBlogSeries } from '$data/blog/series';
 import { listEvents } from '$data/events';
-import { loadAllPeople } from '$data/people';
+import { listPeople } from '$data/people';
 import * as p from '$data/routes/generated';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
 
@@ -32,13 +32,13 @@ export const GET: RequestHandler = async ({ params }) => {
 		{ series: blogSeries },
 		{ categories: blogCategories },
 		{ events },
-		people,
+		{ people },
 	] = await Promise.all([
 		listBlogPosts({ lang, page: 1, per: 100 }),
 		listBlogSeries({ lang, page: 1, per: 100 }),
 		listBlogCategories({ lang, page: 1, per: 100 }),
 		listEvents({ lang, page: 1, per: 100 }),
-		loadAllPeople(lang),
+		listPeople({ lang, page: 1, per: 100 }),
 	]);
 
 	const urls: SiteMapUrl[] = [

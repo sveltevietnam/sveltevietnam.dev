@@ -1,6 +1,5 @@
 import * as m from '@sveltevietnam/i18n/generated/messages';
 
-import { loadPerson, ids } from '$data/people';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 
@@ -23,16 +22,6 @@ export const load: PageServerLoad = async ({ params }) => {
 				en: p['/:lang/people']({ lang: 'en' }),
 			},
 		},
-		people: (
-			await Promise.all(
-				ids.map((id) =>
-					loadPerson(id, lang, {
-						popImage: true,
-						avatar: true,
-					}),
-				),
-			)
-		).filter(Boolean),
 		meta: {
 			title: m['pages.people.title'](lang),
 			description: m['pages.people.desc'](lang),

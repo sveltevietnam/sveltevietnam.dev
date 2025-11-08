@@ -1,12 +1,10 @@
 <script>
   import { ChatContainer, ChatItem } from '$lib/components/chat';
-  import { loadParticipants } from '$lib/components/chat/utils';
   import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
   import summarizer from '../images/summarizer.png?format=avif';
 
 	const routing = RoutingContext.get();
-  const participants = loadParticipants(['liti-dev', 'trongnguyen24'], routing.lang);
 </script>
 
 When I first connected with Nguyen Le, I was struck by two things: his modesty and the flicker of passion behind every word he typed. There’s a deep sincerity in how he talks about design, web development, and the Svelte community. This is the kind of energy that reminds me that tech is, at its core, deeply human.
@@ -21,7 +19,7 @@ That “something” turned out to be Svelte. Thanks to a Fireship video (I’m 
 
 ## Firechat with Nguyen Le
 
-<ChatContainer class="py-2 *:max-w-4/5 flex flex-col mobile:gap-2" participants={participants}>
+<ChatContainer class="py-2 *:max-w-4/5 flex flex-col mobile:gap-2">
 <ChatItem participant="liti-dev">
 
 <span class="sr-only">Question:</span> One fun fact about you?

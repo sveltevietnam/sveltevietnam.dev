@@ -1,12 +1,10 @@
 <script>
   import { ChatContainer, ChatItem } from '$lib/components/chat';
-  import { loadParticipants } from '$lib/components/chat/utils';
   import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
   import learning from '../images/effective-learning.jpg?format=avif';
 
 	const routing = RoutingContext.get();
-  const participants = loadParticipants(['liti-dev', 'anhtuank7c'], routing.lang);
 </script>
 
 When I first met Tuan Nguyen, I noticed I was speaking with a strategist, a systems thinker, and someone who’s been coding for over 15 years. What keeps him going isn't just the thrill of new tech, but the joy of solving diverse problems and turning ideas into working solutions.
@@ -32,7 +30,7 @@ Knowing where you are, being curious, having a growth plan, and most importantly
 
 ## Firechat with Tuan Nguyen
 
-<ChatContainer class="py-2 *:max-w-4/5 flex flex-col mobile:gap-2" participants={participants}>
+<ChatContainer class="py-2 *:max-w-4/5 flex flex-col mobile:gap-2">
 <ChatItem participant="liti-dev">
 
 <span class="sr-only">Question:</span> How did you first discover Svelte or this community?

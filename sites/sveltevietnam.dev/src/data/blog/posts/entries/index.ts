@@ -4,7 +4,7 @@ import type { Picture } from 'vite-imagetools';
 
 import { loadBlogCategory } from '$data/blog/categories/entries';
 import { loadBlogSeries } from '$data/blog/series/entries';
-import { loadPerson } from '$data/people';
+import { loadPerson } from '$data/people/entries';
 
 import type * as t from '../types';
 

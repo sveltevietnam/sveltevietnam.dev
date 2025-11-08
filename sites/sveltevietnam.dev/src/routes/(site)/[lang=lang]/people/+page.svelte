@@ -5,6 +5,7 @@
 	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
 	import type { Person } from '$data/people';
+	import { listPeople } from '$data/people';
 	import * as p from '$data/routes/generated';
 	import { IntroSeparator } from '$lib/components/intro-separator';
 	import { PersonLinks } from '$lib/components/person-links';
@@ -16,6 +17,14 @@
 	let { data }: PageProps = $props();
 
 	const routing = RoutingContext.get();
+
+	const listed = $derived(
+		await listPeople({
+			optionalModules: { popImage: true, thumbnail: true },
+			page: 1,
+			per: 100,
+		}),
+	);
 </script>
 
 {#snippet PersonListItem(person: Person)}
@@ -103,7 +112,7 @@
 			<T key="listing" />
 		</h2>
 		<ul class="divide-outline max-w-200 divide-y">
-			{#each data.people as person (person.id)}
+			{#each listed.people as person (person.id)}
 				<li
 					class="tablet:items-center tablet:gap-10 flex items-start gap-6 not-last:mb-10 not-last:pb-10"
 				>

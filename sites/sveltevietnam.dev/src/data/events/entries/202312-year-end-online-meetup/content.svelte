@@ -3,8 +3,8 @@
 	import { Breadcrumbs } from '@sveltevietnam/kit/components';
 	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 
-	import vnphanquangDef from '$data/people/vnphanquang';
-	import vnphanquangAvatar from '$data/people/vnphanquang/avatar.jpg?enhanced&w=400;100&imagetools';
+	import vnphanquangDef from '$data/people/entries/vnphanquang';
+	import vnphanquangAvatar from '$data/people/entries/vnphanquang/avatar.jpg?enhanced&w=400;100&imagetools';
 	import * as p from '$data/routes/generated';
 	import { DateTimeRangeText } from '$lib/components/date-time-range-text';
 	import { EventGallery } from '$lib/components/event-gallery';
@@ -13,7 +13,7 @@
 	import { ListMessage } from '$lib/components/list-message';
 	import { Person } from '$lib/components/person';
 
-	import type { PageProps } from '../../../routes/(site)/[lang=lang]/events/[slug]/$types';
+	import type { PageProps } from '../../../../routes/(site)/[lang=lang]/events/[slug]/$types';
 
 	import imgVideo2Thumbnail from './images/a-few-secrets-of-sveltevietnamdev.jpg?enhanced&w=1200;630&imagetools';
 	import imgLivestreamMoment from './images/livestream-moment.jpg?enhanced&w=1200;630&imagetools';
