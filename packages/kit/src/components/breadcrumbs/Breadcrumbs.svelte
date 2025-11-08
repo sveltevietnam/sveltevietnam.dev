@@ -13,9 +13,10 @@
 	let scrollableRight = $state(true);
 	let scrollable = $state(false);
 
-	let ol: HTMLOListElement;
+	let ol: HTMLOListElement | undefined = $state(undefined);
 	const PAD = 10;
 	function checkScrollable() {
+		if (!ol) return;
 		scrollable = ol.scrollWidth > ol.offsetWidth;
 		scrollableLeft = ol.scrollLeft > PAD;
 		scrollableRight = ol.scrollLeft + ol.offsetWidth < ol.scrollWidth - PAD;
