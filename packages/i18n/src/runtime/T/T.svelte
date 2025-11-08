@@ -1,10 +1,8 @@
 <script lang="ts" module>
 	import type { Key } from '@sveltevietnam/i18n/generated';
 
-	import { Context } from '../context';
+	import { Context, type RemoteTranslate } from '../context';
 	import type { Message } from '../types.public';
-
-	import MaybeHtml from './MaybeHtml.svelte';
 
 	import type { RemoteTProps, StaticTProps } from '.';
 </script>
@@ -25,11 +23,13 @@
 	if (!context) {
 		throw new Error("T component must live within a `import('@sveltevietnam/i18n').Context`");
 	}
+	let t = $derived(context.t as RemoteTranslate);
 
-	let maybePromise = $derived<string | Promise<string>>(
+	let translated = $derived<string>(
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		(context.t as any)({ key, message, params, lang, sanitize, remote }),
+		await t({ key, message, params, lang, sanitize, remote } as any),
 	);
 </script>
 
-<MaybeHtml content={await maybePromise} />
+<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+{@html translated}
