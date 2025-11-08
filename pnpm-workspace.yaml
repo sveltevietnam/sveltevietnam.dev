@@ -5,3 +5,7 @@ packages:
   - 'sites/*'
   - 'workers/*'
 minimumReleaseAge: 4320 # 3 days in minutes
+minimumReleaseAgeExclude:
+  - svelte
+  - '@sveltejs/kit'
+  - '@sveltejs/adapter-cloudflare'
