@@ -31,3 +31,8 @@ export function onCancel() {
 export function escapeQuotes(str: string): string {
 	return str.replace(/'/g, "\\'");
 }
+
+export function normalizeDiacritics(str: string): string {
+	return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+

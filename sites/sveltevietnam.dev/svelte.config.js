@@ -7,7 +7,6 @@ import externalLink from '@svelte-put/preprocess-external-link';
 import adapter from '@sveltejs/adapter-cloudflare';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { markdown } from '@sveltevietnam/markdown';
-import { normalizeSync } from 'normalize-diacritics';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const commitHash = child_process.execSync('git rev-parse --short HEAD').toString().trim();
@@ -27,7 +26,7 @@ export default {
 		autoSlug((defaultOptions) => ({
 			tags: ['h2', 'h3', 'h4', 'h5', 'h6'],
 			files: ({ filename }) => filename.endsWith('.md.svelte'),
-			slug: ({ generated }) => normalizeSync(generated),
+			slug: ({ generated }) => generated.normalize("NFD").replace(/[\u0300-\u036f]/g, ""),
 			anchor: {
 				content: '#',
 				position: 'prepend',

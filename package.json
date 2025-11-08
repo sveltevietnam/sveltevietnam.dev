@@ -66,7 +66,6 @@
 			"@tailwindcss/oxide",
 			"better-sqlite3",
 			"esbuild",
-			"normalize-diacritics",
 			"sharp",
 			"unrs-resolver",
 			"workerd"

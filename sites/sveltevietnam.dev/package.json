@@ -54,7 +54,6 @@
 		"@types/umami-browser": "^2.18.0",
 		"dedent": "^1.7.0",
 		"fast-xml-parser": "^5.3.0",
-		"normalize-diacritics": "^5.0.0",
 		"pagefind": "^1.4.0",
 		"picocolors": "^1.1.1",
 		"schema-dts": "^1.1.5",

@@ -639,9 +639,6 @@ importers:
       fast-xml-parser:
         specifier: ^5.3.0
         version: 5.3.0
-      normalize-diacritics:
-        specifier: ^5.0.0
-        version: 5.0.0
       pagefind:
         specifier: ^1.4.0
         version: 1.4.0
@@ -5368,10 +5365,6 @@ packages:
     resolution: {integrity: sha512-taM24ViiimT/XntxbPyJQzCG+p4EKOpgD3mxFwW38mGjVUrfERQOeY4EDHjdnptttfHuHQXFx+lTP08Q+mLa/w==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     hasBin: true
-
-  normalize-diacritics@5.0.0:
-    resolution: {integrity: sha512-t6czCJOpbAtckN1wCC2qPWnO3GQvNANb9bcUNbiOLEqojVuP31+ELIs5KhEG8jyz0TH7iD9BWxWz8O3ic2/rMQ==}
-    engines: {node: '>= 14.x', npm: '>= 6.x'}
 
   normalize-package-data@2.5.0:
     resolution: {integrity: sha512-/5CMN3T0R4XTj4DcGaexo+roZSdSFW/0AOOTROrjxzCG1wrWXEsGbRKevjlIL+ZDE4sZlJr5ED4YW0yqmkK+eA==}
@@ -12328,10 +12321,6 @@ snapshots:
   nopt@7.2.1:
     dependencies:
       abbrev: 2.0.0
-
-  normalize-diacritics@5.0.0:
-    dependencies:
-      tslib: 2.8.1
 
   normalize-package-data@2.5.0:
     dependencies:

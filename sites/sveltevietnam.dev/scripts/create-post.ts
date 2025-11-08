@@ -5,14 +5,13 @@ import process from 'node:process';
 
 import * as p from '@clack/prompts';
 import dedent from 'dedent';
-import { normalize } from 'normalize-diacritics';
 import pico from 'picocolors';
 
 import { ids as categoryIds, loadBlogCategory } from '../src/data/blog/categories/entries';
 import { ids as seriesIds, loadBlogSeries } from '../src/data/blog/series/entries';
 import { ids as authorIds, loadPerson } from '../src/data/people/entries';
 
-import { validateTextField, onCancel, escapeQuotes } from './helpers';
+import { validateTextField, onCancel, escapeQuotes, normalizeDiacritics } from './helpers';
 
 const cwd = process.cwd();
 
@@ -158,7 +157,7 @@ const slug = {
 	en:
 		date_slug +
 		'-' +
-		(await normalize(post.title.en))
+		(await normalizeDiacritics(post.title.en))
 			.trim()
 			.replace(/[^a-zA-Z0-9]/g, '-')
 			.replace(/-+/g, '-')
@@ -168,7 +167,7 @@ const slug = {
 	vi:
 		date_slug +
 		'-' +
-		(await normalize(post.title.vi))
+		(await normalizeDiacritics(post.title.vi))
 			.trim()
 			.replace(/[^a-zA-Z0-9]/g, '-')
 			.replace(/-+/g, '-')
