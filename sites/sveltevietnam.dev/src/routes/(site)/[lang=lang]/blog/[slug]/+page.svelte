@@ -8,6 +8,7 @@
 	import { DialogQrCode } from '@sveltevietnam/kit/dialogs';
 	import { formatRelativeTime } from '@sveltevietnam/kit/utilities/datetime';
 
+	import { browser } from '$app/environment';
 	import { page } from '$app/state';
 	import {
 		getAdjacentPostsFromSameSeries,
@@ -90,7 +91,6 @@
 	const adjacentPostsInSameSeries = $derived(
 		await getAdjacentPostsFromSameSeries({ postId: data.post.id, lang: routing.lang }),
 	);
-	const blueskyLinkage = $derived(getBlueskyPostLinkage({ postId: data.post.id }));
 	const nextPostToRead = $derived(
 		await getBlogPostNextToRead({ postId: data.post.id, lang: routing.lang }),
 	);
@@ -374,8 +374,13 @@
 	</div>
 
 	<!-- Bluesky comments -->
-	{#if blueskyLinkage.current}
-		<BlueskyComments linkage={blueskyLinkage.current} />
+	{#if browser}
+		{@const linkage = await getBlueskyPostLinkage({
+			postId: data.post.id,
+		})}
+		{#if linkage}
+			<BlueskyComments {linkage} />
+		{/if}
 	{/if}
 
 	<!-- newsletter -->
