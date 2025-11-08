@@ -226,7 +226,7 @@
 					</a>
 				</li>
 				<li class="pl-8">
-					{#if (await adjacentPostsInSameSeries).length}
+					{#if adjacentPostsInSameSeries.length}
 						{@render inlink('#in-this-series', 'pages.blog_slug.quick_nav.series', 'i-[ph--files]')}
 					{:else}
 						{@render inlink('#latest-post', 'pages.blog_slug.quick_nav.latest', 'i-[ph--files]')}

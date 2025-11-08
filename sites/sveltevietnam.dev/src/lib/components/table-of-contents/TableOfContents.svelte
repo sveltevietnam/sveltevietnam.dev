@@ -1,6 +1,5 @@
 <script lang="ts" module>
 	import type { Toc, TocItem } from '@svelte-put/toc';
-	import debounce from 'lodash.debounce';
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	export type TocNode = {
@@ -71,29 +70,16 @@
 	}: HTMLAttributes<HTMLUListElement> & {
 		toc: Toc;
 	} = $props();
-
-	let nodes = $state<TocNode[]>([]);
-
-	const update = debounce((items: TocItem[]) => {
-		nodes = buildTocNodes(items);
-	}, 100);
-	$effect(() => {
-		const items = Array.from(toc.items.values());
-		update(items);
-	});
 </script>
 
 {#snippet sNode(toc: Toc, node: TocNode)}
 	<li>
 		<!-- svelte-ignore a11y_missing_attribute -->
-		<a
-			use:toc.actions.link={node.item}
-			class="c-link-lazy current:text-link block py-1 capitalize"
-		>
+		<a use:toc.actions.link={node.item} class="c-link-lazy current:text-link block py-1 capitalize">
 			<!-- textContent injected by toc -->
 		</a>
 		{#if node.children.length > 0}
-			<ul class="ml-4 pl-4 border-l border-outline">
+			<ul class="border-outline ml-4 border-l pl-4">
 				{#each node.children as child (child.item.id)}
 					{@render sNode(toc, child)}
 				{/each}
@@ -103,8 +89,7 @@
 {/snippet}
 
 <ul class={['tablet:max-h-[70vh] overflow-auto', cls]} {...rest}>
-	{#each nodes as node (node.item.id)}
+	{#each buildTocNodes(Array.from(toc.items.values())) as node (node.item.id)}
 		{@render sNode(toc, node)}
 	{/each}
 </ul>
-
