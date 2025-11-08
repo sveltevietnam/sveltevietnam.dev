@@ -19,6 +19,7 @@ export type EventMetadata = {
 		url: string;
 	}[];
 	thumbnail?: Picture;
+	ogImage?: string;
 	/** list of ids linking members that contributed to this event  */
 	people?: string[];
 };
@@ -32,3 +33,8 @@ export type EventAdditionalStructuredDataDefinition = (
 ) => EventAdditionalStructuredData;
 
 export type EventStatus = 'past' | 'ongoing' | 'upcoming';
+
+export type EventOptionalModules = {
+	thumbnail?: boolean;
+	ogImage?: boolean;
+};

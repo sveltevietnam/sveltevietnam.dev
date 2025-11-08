@@ -7,6 +7,7 @@
 	import { onScroll, createTimeline, stagger } from 'animejs';
 
 	import { page } from '$app/state';
+	import { searchEvents } from '$data/events';
 	import * as p from '$data/routes/generated';
 	import { EventListing } from '$lib/components/event-listing';
 	import { IntroSeparator } from '$lib/components/intro-separator';
@@ -104,6 +105,33 @@
 		en: 'https://forms.gle/2DdoAXh1RuiiGoBJ6',
 		vi: 'https://forms.gle/BNV1Ve4WoqY9myoi7',
 	};
+
+	// TODO: handle pagination / dedicated search page once
+	// we have more a sufficient number of events
+	const ongoing = $derived(
+		searchEvents({
+			where: { status: ['ongoing'] },
+			lang: routing.lang,
+			pagination: { page: 1, per: 10 },
+			optionalModules: { thumbnail: true },
+		}),
+	);
+	const upcoming = $derived(
+		searchEvents({
+			where: { status: ['upcoming'] },
+			lang: routing.lang,
+			pagination: { page: 1, per: 10 },
+			optionalModules: { thumbnail: true },
+		}),
+	);
+	const past = $derived(
+		searchEvents({
+			where: { status: ['past'] },
+			lang: routing.lang,
+			pagination: { page: 1, per: 20 },
+			optionalModules: { thumbnail: true },
+		}),
+	);
 </script>
 
 {#snippet actionHeading(num: number, id: string, tKey: KeySimple)}
@@ -149,12 +177,12 @@
 		<IntroSeparator />
 	</section>
 
-	{#if data.events.ongoing.length}
+	{#if (await ongoing).events.length}
 		<section class="max-w-pad space-y-section py-section" data-pagefind-ignore>
 			<h2 class="c-text-heading-lg border-b" id="ongoing">
 				<T key="pages.events.ongoing.heading" />
 			</h2>
-			<EventListing events={data.events.ongoing} origin={page.url.origin} />
+			<EventListing events={(await ongoing).events} origin={page.url.origin} />
 		</section>
 	{/if}
 
@@ -163,8 +191,8 @@
 		<h2 class="c-text-heading-lg border-b" id="upcoming">
 			<T key="pages.events.upcoming.heading" />
 		</h2>
-		{#if data.events.upcoming.length}
-			<EventListing events={data.events.upcoming} origin={page.url.origin} />
+		{#if (await upcoming).events.length}
+			<EventListing events={(await upcoming).events} origin={page.url.origin} />
 		{:else}
 			<TBA class="mx-auto w-fit">
 				<p class="c-text-title-sm"><T key="pages.events.upcoming.tba.desc" /></p>
@@ -288,12 +316,14 @@
 	</div>
 
 	<!-- past -->
-	<section class="max-w-pad tablet:space-y-15 py-section space-y-8" data-pagefind-ignore>
-		<h2 class="c-text-heading-lg border-b" id="past">
-			<T key="pages.events.past.heading" />
-		</h2>
-		<EventListing events={data.events.past} origin={page.url.origin} />
-	</section>
+	{#if (await past).events.length}
+		<section class="max-w-pad tablet:space-y-15 py-section space-y-8" data-pagefind-ignore>
+			<h2 class="c-text-heading-lg border-b" id="past">
+				<T key="pages.events.past.heading" />
+			</h2>
+			<EventListing events={(await past).events} origin={page.url.origin} />
+		</section>
+	{/if}
 </main>
 
 <style lang="postcss">

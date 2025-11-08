@@ -2,7 +2,7 @@ import * as m from '@sveltevietnam/i18n/generated/messages';
 import Mustache from 'mustache';
 
 import { listBlogPosts } from '$data/blog/posts';
-import { loadEvents } from '$data/events';
+import { listEvents } from '$data/events';
 import * as p from '$data/routes/generated';
 
 import type { RequestHandler } from './$types';
@@ -31,13 +31,7 @@ export const GET: RequestHandler = async ({ params, url }) => {
 	const origin = url.origin;
 
 	const [{ events }, { posts }] = await Promise.all([
-		loadEvents({
-			lang,
-			pagination: {
-				per: 10,
-				page: 1,
-			},
-		}),
+		listEvents({ lang, per: 10, page: 1 }),
 		listBlogPosts({ lang, page: 1, per: 100 }),
 	]);
 

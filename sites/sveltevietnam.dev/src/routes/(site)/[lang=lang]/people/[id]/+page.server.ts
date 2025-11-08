@@ -1,7 +1,6 @@
 import { error } from '@sveltejs/kit';
 import type { Language } from '@sveltevietnam/kit/constants';
 
-import { loadEventsByPersonId } from '$data/events';
 import { loadPerson } from '$data/people';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
@@ -27,7 +26,6 @@ export const load: PageServerLoad = async ({ params }) => {
 	}
 
 	const otherLang = lang === 'en' ? 'vi' : 'en';
-	const [{ events }] = await Promise.all([loadEventsByPersonId(lang, person.id, 1, 4)]);
 
 	const breadcrumbs = b['/:lang/people/:id']({
 		lang,
@@ -40,7 +38,6 @@ export const load: PageServerLoad = async ({ params }) => {
 
 	return {
 		person,
-		events,
 		routing: { breadcrumbs, paths },
 		meta: {
 			structured: buildStructuredPerson(lang, VITE_PUBLIC_ORIGIN, person),

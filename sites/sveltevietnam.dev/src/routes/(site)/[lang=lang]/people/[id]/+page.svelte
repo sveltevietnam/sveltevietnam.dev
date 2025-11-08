@@ -5,6 +5,7 @@
 
 	import { page } from '$app/state';
 	import { searchBlogPosts } from '$data/blog/posts';
+	import { searchEvents } from '$data/events';
 	import * as p from '$data/routes/generated';
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
 	import { EventListing } from '$lib/components/event-listing';
@@ -28,14 +29,24 @@
 		return url;
 	});
 	let pagination = $derived(getPaginationFromUrl(page.url));
-	let searched = $derived(
+	let postSearch = $derived(
 		await searchBlogPosts({
 			where: { authorId: data.person.id },
 			pagination,
 			lang: routing.lang,
 		}),
 	);
-	let maxPage = $derived(Math.ceil(searched.total / pagination.per));
+	let maxPage = $derived(Math.ceil(postSearch.total / pagination.per));
+
+	// TODO: handle pagination / dedicated search page once
+	// we have more a sufficient number of events
+	const eventSearch = $derived(
+		searchEvents({
+			pagination: { page: 1, per: 20 },
+			where: { people: [data.person.id] },
+			optionalModules: { thumbnail: true },
+		}),
+	);
 
 	const links = $derived({
 		events: p['/:lang/events']({ lang: routing.lang }),
@@ -81,7 +92,7 @@
 	</section>
 
 	<!-- contribute to these events -->
-	{#if data.events.length}
+	{#if (await eventSearch).events.length}
 		<section
 			class="py-section max-w-pad desktop:space-y-15 tablet:space-y-10 space-y-8"
 			data-pagefind-ignore
@@ -96,12 +107,12 @@
 					</TextArrowLink>
 				</div>
 			</div>
-			<EventListing events={data.events} origin={page.url.origin} />
+			<EventListing events={(await eventSearch).events} origin={page.url.origin} />
 		</section>
 	{/if}
 
 	<!-- appear as author to these posts -->
-	{#if searched.posts.length}
+	{#if postSearch.posts.length}
 		<section
 			class="py-section max-w-pad desktop:space-y-15 tablet:space-y-10 space-y-8"
 			data-pagefind-ignore
@@ -116,7 +127,7 @@
 					</TextArrowLink>
 				</div>
 			</div>
-			<BlogPostCommonList posts={searched.posts} />
+			<BlogPostCommonList posts={postSearch.posts} />
 			{#if maxPage > 1}
 				<Pagination class="ml-auto" current={pagination.page} max={maxPage} url={paginationUrl} />
 			{/if}

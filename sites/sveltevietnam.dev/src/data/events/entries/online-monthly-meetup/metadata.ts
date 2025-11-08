@@ -5,6 +5,7 @@ const EVENT_DISCUSS_CHANNEL_LINK =
 
 export default defineEventMetadata((lang) => ({
 	href: EVENT_DISCUSS_CHANNEL_LINK,
+	people: ['quang-design', 'liti-dev', 'vnphanquang'],
 	title:
 		lang === 'en'
 			? 'Monthly Casual Community Online Meetup'

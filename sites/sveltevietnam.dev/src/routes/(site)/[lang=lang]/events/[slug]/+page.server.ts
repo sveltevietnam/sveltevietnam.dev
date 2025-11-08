@@ -1,13 +1,11 @@
-import { error } from '@sveltejs/kit';
 import type { Language } from '@sveltevietnam/kit/constants';
 
+import { getEventBySlug } from '$data/events';
 import {
 	generateKitEntries,
 	loadEventAdditionalStructuredData,
-	loadEventBySlug,
 	loadEventMetadata,
-	loadEventOgImage,
-} from '$data/events';
+} from '$data/events/entries';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
@@ -28,18 +26,13 @@ export const entries: EntryGenerator = () => {
 };
 
 export const load: PageServerLoad = async ({ params }) => {
-	const { lang } = params;
+	const { lang, slug } = params;
 	const otherLang = lang === 'en' ? 'vi' : 'en';
 
-	const event = await loadEventBySlug(params.slug, lang);
-	if (!event) {
-		// TODO: assign a unique code to this error
-		error(404, { message: 'Event not found', code: 'SV000' });
-	}
+	const event = await getEventBySlug({ slug, lang, optionalModules: { ogImage: true } });
 
-	const [otherLangMetadata, ogImage, additionalStructuredData] = await Promise.all([
+	const [otherLangMetadata, additionalStructuredData] = await Promise.all([
 		loadEventMetadata(event.id, otherLang),
-		loadEventOgImage(event.id),
 		loadEventAdditionalStructuredData(event.id, lang, VITE_PUBLIC_ORIGIN),
 	]);
 
@@ -67,7 +60,7 @@ export const load: PageServerLoad = async ({ params }) => {
 			keywords: event.keywords,
 			og: {
 				image: {
-					src: ogImage ?? ogImageFallback[lang],
+					src: event.ogImage ?? ogImageFallback[lang],
 				},
 			},
 		},

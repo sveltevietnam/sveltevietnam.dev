@@ -20,8 +20,7 @@ const BlogPostSearchOptionsSchema = v.object({
 
 export const searchBlogPosts = query(BlogPostSearchOptionsSchema, async (options) => {
 	const { locals } = getRequestEvent();
-	const { where, pagination, excludedIds } = options;
-	const lang = options.lang ?? locals.language;
+	const { where, pagination, excludedIds, lang = locals.language } = options;
 
 	const metadatas = (await Promise.all(ids.map((id) => loadBlogPostMetadata(id, lang)))).filter(
 		Boolean,

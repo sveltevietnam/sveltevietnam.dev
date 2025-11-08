@@ -29,16 +29,25 @@ export async function loadBlogCategory(
 	const path = `./${id}/index.ts`;
 	if (!modules[path]) return null;
 	const def = await modules[path]();
+	const category = def(lang);
 
-	const [thumbnail, ogImage] = await Promise.all([
+	// eslint-disable-next-line prefer-const
+	let { thumbnail, ogImage, ...rest } = category;
+	[thumbnail, ogImage] = await Promise.all([
 		optionalModules === true || optionalModules?.thumbnail
-			? loadBlogCategoryThumbnail(id)
+			? thumbnail
+				? thumbnail
+				: loadBlogCategoryThumbnail(id)
 			: undefined,
-		optionalModules === true || optionalModules?.ogImage ? loadBlogCategoryOgImage(id) : undefined,
+		optionalModules === true || optionalModules?.ogImage
+			? ogImage
+				? ogImage
+				: loadBlogCategoryOgImage(id)
+			: undefined,
 	]);
 
 	return {
-		...def(lang),
+		...rest,
 		id: id,
 		thumbnail,
 		ogImage,

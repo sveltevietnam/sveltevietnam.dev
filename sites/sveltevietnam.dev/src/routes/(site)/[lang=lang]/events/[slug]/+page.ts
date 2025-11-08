@@ -1,4 +1,4 @@
-import { loadEventContent } from '$data/events';
+import { loadEventContent } from '$data/events/entries';
 
 import type { PageLoad } from './$types';
 

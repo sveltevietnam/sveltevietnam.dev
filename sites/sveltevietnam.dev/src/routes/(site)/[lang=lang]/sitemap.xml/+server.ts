@@ -5,7 +5,7 @@ import Mustache from 'mustache';
 import { listBlogCategories } from '$data/blog/categories';
 import { listBlogPosts } from '$data/blog/posts';
 import { listBlogSeries } from '$data/blog/series';
-import { loadAllEvents } from '$data/events';
+import { listEvents } from '$data/events';
 import { loadAllPeople } from '$data/people';
 import * as p from '$data/routes/generated';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
@@ -31,13 +31,13 @@ export const GET: RequestHandler = async ({ params }) => {
 		{ posts: blogPosts },
 		{ series: blogSeries },
 		{ categories: blogCategories },
-		events,
+		{ events },
 		people,
 	] = await Promise.all([
 		listBlogPosts({ lang, page: 1, per: 100 }),
 		listBlogSeries({ lang, page: 1, per: 100 }),
 		listBlogCategories({ lang, page: 1, per: 100 }),
-		loadAllEvents(lang),
+		listEvents({ lang, page: 1, per: 100 }),
 		loadAllPeople(lang),
 	]);
 
