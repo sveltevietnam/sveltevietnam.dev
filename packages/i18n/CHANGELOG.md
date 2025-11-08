@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.2
+
+### Patch Changes
+
+- [`73a50b3`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/73a50b32a89ac33e713be7867938621e5a31d22c) Thanks [@vnphanquang](https://github.com/vnphanquang)! - revert #1f366dbb2f11fc12dfac71f986e302b59a49f5b6, keep `MaybeHtml` proxy for now, otherwise cause another kind of destructive issue at runtime
+
 ## 0.2.1
 
 ### Patch Changes
