@@ -59,8 +59,8 @@
 			<ul class="space-y-2">
 				{#each highlights as highlight, i (i)}
 					<li class="flex items-start gap-2">
-						<i class="i i-[ph--confetti] h-6 w-6"></i>
-						<T key={highlight} />
+						<i class="i i-[ph--confetti] h-6 w-6 shrink-0"></i>
+						<span><T key={highlight} /></span>
 					</li>
 				{/each}
 			</ul>
