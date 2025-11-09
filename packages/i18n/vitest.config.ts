@@ -1,7 +1,8 @@
+import path from 'node:path';
+
 import { svelte } from '@sveltejs/vite-plugin-svelte';
 import { playwright } from '@vitest/browser-playwright';
 import type { Plugin } from 'vite';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig } from 'vitest/config';
 
 function mockRuntimeGeneratedModules(): Plugin {
@@ -31,7 +32,15 @@ function mockRuntimeGeneratedModules(): Plugin {
 }
 
 export default defineConfig({
-	plugins: [tsconfigPaths(), svelte()],
+	plugins: [svelte()],
+	resolve: {
+		alias: [
+			{
+				find: '$tests',
+				replacement: path.resolve(__dirname, './tests'),
+			},
+		],
+	},
 	optimizeDeps: {
 		exclude: ['@sveltevietnam/i18n/generated/constants', '@sveltevietnam/i18n/generated/t.remote'],
 	},
