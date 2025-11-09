@@ -7,7 +7,7 @@
 	"scripts": {
 		"boot:env": "run-p boot:env:*",
 		"boot:env:dev": "shx cp .env.example .env",
-		"boot:env:test": "shx cp .env.example .env.test && shx sed -i 's/development/test/g' .env.test",
+		"boot:env:test": "shx cp .env.example .env.test && shx sed -i \"s/development/test/g\" .env.test",
 		"dev": "vite dev --port 5007",
 		"dev:wrangler": "wrangler dev --port 5007 --persist-to=../../workers/backend/.wrangler/state",
 		"dev:wrangler:test": "wrangler dev --port 5007 --persist-to=../../workers/backend/.wrangler/state --env test",
