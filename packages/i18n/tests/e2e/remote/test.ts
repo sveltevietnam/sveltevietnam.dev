@@ -2,8 +2,10 @@ import { test } from '@playwright/test';
 
 import { PageObjectModel } from '../utils';
 
+import * as m from './src/lib/i18n/generated/messages';
+
 test('on ssr-ed page, user can see translated messages', async ({ page }) => {
-	const pom = new PageObjectModel(page, '/query');
+	const pom = new PageObjectModel(page, m, '/query');
 
 	// user goes to the app
 	await pom.goto();
@@ -21,7 +23,7 @@ test('on ssr-ed page, user can see translated messages', async ({ page }) => {
 });
 
 test('on prerendered page, user can see translated messages', async ({ page }) => {
-	const pom = new PageObjectModel(page, '/prerender');
+	const pom = new PageObjectModel(page, m, '/prerender');
 
 	// user goes to the app
 	await pom.goto();
