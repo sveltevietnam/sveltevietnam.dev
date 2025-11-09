@@ -75,12 +75,7 @@ export default defineConfig({
 					name: 'buildtime',
 					environment: 'node',
 					include: ['**/*.test.ts', '**/test.ts'],
-					exclude: ['**/*.test.svelte.ts'],
-					server: {
-						deps: {
-							inline: ['import-meta-resolve'],
-						},
-					},
+					exclude: ['**/*.test.svelte.ts', '**/node_modules/**'],
 				},
 			},
 		],
