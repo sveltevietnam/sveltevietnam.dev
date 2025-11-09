@@ -1,0 +1,44 @@
+name: '@sveltevietnam/i18n Tests'
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'packages/i18n/**.js'
+      - 'packages/i18n/**.ts'
+      - '.github/workflows/i18n-test.yaml'
+  pull_request:
+  workflow_dispatch:
+
+env:
+  CI: true
+jobs:
+  test:
+    if: github.repository == 'sveltevietnam/sveltevietnam.dev' # prevents this action from running on forks
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+      - name: Setup node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --ignore-scripts --frozen-lockfile
+      - name: Install playwright
+        run: pnpm exec playwright install --with-deps
+      - name: Run unit tests
+        working-directory: packages/i18n
+        run: pnpm ci:test:unit
+      - name: Run e2e tests
+        working-directory: packages/i18n
+        run: pnpm test:e2e

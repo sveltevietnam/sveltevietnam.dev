@@ -114,7 +114,8 @@
 		"test:unit:runtime:browser": "vitest run --project runtime-browser --browser.headless",
 		"test:unit": "vitest run --browser.headless --coverage",
 		"test:e2e": "pnpm -r --workspace-concurrency 1 --filter=\"./tests/**\" test",
-		"test": "run-p test:unit test:e2e"
+		"test": "run-p test:unit test:e2e",
+		"ci:test:unit": "vitest run --browser.headless --coverage --reporter=junit --outputFile=./coverage/junit.xml"
 	},
 	"devDependencies": {
 		"@sveltejs/vite-plugin-svelte": "^6.2.1",
