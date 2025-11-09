@@ -1,4 +1,4 @@
-import type { MessageParameter } from '../parse-message-params';
+import type { MessageParameter } from '../parse-message-params/types.public';
 
 export interface ParseLocaleOptions {
 	/**

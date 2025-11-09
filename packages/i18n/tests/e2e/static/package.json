@@ -6,7 +6,8 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
-		"test": "playwright test"
+		"test": "playwright test",
+		"test:dev": "cross-env DEV=true playwright test"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^7.0.0",

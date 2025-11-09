@@ -14,7 +14,7 @@ test('missing input should print warning', async () => {
 		}),
 	);
 	expect(consoleWarnSpy).toHaveBeenCalledWith(
-		' sveltevietnam/i18n  ⚠ no locale entries found at ./i18n/locales',
+		expect.stringContaining('no locale entries found at ./i18n/locales'),
 	);
 	consoleWarnSpy.mockRestore();
 });

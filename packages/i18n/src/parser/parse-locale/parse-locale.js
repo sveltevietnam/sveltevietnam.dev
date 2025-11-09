@@ -1,5 +1,7 @@
 import { readFileSync, existsSync } from 'node:fs';
-import { isAbsolute } from 'node:path/posix';
+import os from 'node:os';
+import { isAbsolute, win32 } from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 import { resolve as importMetaResolve } from 'import-meta-resolve';
 import * as v from 'valibot';
@@ -51,6 +53,9 @@ export async function parseLocale(abspath, options = {}) {
 	if (!isAbsolute(abspath)) {
 		throw new ErrorExpectAbsolutePath(`Expect absolute path but received relative: "${abspath}"`);
 	}
+	if (os.platform() === 'win32') {
+		abspath = win32.resolve(abspath);
+	}
 	const existed = existsSync(abspath);
 	if (!existed) {
 		let message = `File not found: "${abspath}"`;
@@ -88,7 +93,7 @@ export async function parseLocale(abspath, options = {}) {
 						value = value.replace(find, replacement);
 					}
 				}
-				url = new URL(importMetaResolve(value, new URL(abspath, 'file://').toString()));
+				url = new URL(importMetaResolve(value, pathToFileURL(abspath).toString()));
 			} catch (e) {
 				if (/** @type {any} */ (e).code === 'ERR_MODULE_NOT_FOUND') {
 					throw new ErrorFileNotFound(
@@ -97,7 +102,10 @@ export async function parseLocale(abspath, options = {}) {
 				}
 				throw e;
 			}
-			const importPath = decodeURIComponent(url.pathname);
+			let importPath = decodeURIComponent(url.pathname);
+			if (os.platform() === 'win32' && importPath.startsWith('/')) {
+				importPath = win32.resolve(importPath.slice(1));
+			}
 			const lastIndex = importTraces.findIndex((trace) => trace.file === importPath);
 			if (lastIndex !== -1) {
 				const circularPath = [{ file: abspath, key }, ...importTraces.slice(lastIndex).toReversed()]

@@ -1,5 +1,5 @@
 import type { Message } from '../../runtime/types.public';
-import type { MessageQueryInput } from '../create-message-query-fn';
+import type { MessageQueryInput } from '../create-message-query-fn/create-message-query-fn';
 
 export function createMessagePrerenderFn<
 	Mapping extends Record<string, Message> = import('@sveltevietnam/i18n/generated').Mapping,

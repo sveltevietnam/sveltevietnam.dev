@@ -3,7 +3,7 @@ import type { Snippet } from 'svelte';
 
 import type { Language, Mode, Mapping } from '@sveltevietnam/i18n/generated';
 
-import type { ContextInit } from '../../context';
+import type { ContextInit } from '../context/index.svelte';
 
 /** context provider for i18n */
 export type ProviderProps<

@@ -1,5 +1,5 @@
 import fs from 'node:fs/promises';
-import path from 'node:path/posix';
+import path from 'node:path';
 import process from 'node:process';
 
 import pico from 'picocolors';

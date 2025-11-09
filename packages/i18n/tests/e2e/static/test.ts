@@ -2,8 +2,10 @@ import { test } from '@playwright/test';
 
 import { PageObjectModel } from '../utils';
 
+import * as m from './src/lib/i18n/generated/messages';
+
 test('user can see translated messages', async ({ page }) => {
-	const pom = new PageObjectModel(page);
+	const pom = new PageObjectModel(page, m);
 
 	// user goes to the app
 	await pom.goto();

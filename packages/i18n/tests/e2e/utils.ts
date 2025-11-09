@@ -9,15 +9,14 @@ import {
 	type PlaywrightTestConfig,
 } from '@playwright/test';
 
-import type { langs } from './static/src/lib/i18n/generated/constants';
-import * as m from './static/src/lib/i18n/generated/messages';
+import type { MessageSimple, MessageWithParams } from '../../src/runtime';
 
 export function definePlaywrightConfig(): PlaywrightTestConfig {
 	return _definePlaywrightConfig({
 		testMatch: 'test.ts',
 		webServer: {
-			command: process.env.DEV ? 'pnpm dev' : 'pnpm build && pnpm preview',
-			port: process.env.DEV ? 5173 : 4173,
+			command: process.env.DEV === 'true' ? 'pnpm dev' : 'pnpm build && pnpm preview',
+			port: process.env.DEV === 'true' ? 5173 : 4173,
 		},
 		projects: [
 			{
@@ -34,9 +33,6 @@ export function definePlaywrightConfig(): PlaywrightTestConfig {
 	});
 }
 
-const greet = m['components.welcome.greet'];
-const goodbye = m['goodbye'];
-
 export class PageObjectModel {
 	readonly path: string;
 	readonly page: Page;
@@ -50,22 +46,29 @@ export class PageObjectModel {
 			translation: Locator;
 		}
 	>;
+	private readonly m: {
+		key: MessageSimple<string, 'key'>;
+		translation: MessageSimple<string, 'translation'>;
+		goodbye: MessageSimple<string, 'goodbye'>;
+		'components.welcome.greet': MessageWithParams<string, 'components.welcome.greet', 'name'>;
+	};
 
-	constructor(page: Page, path = '/') {
+	constructor(page: Page, mapping: typeof this.m, path = '/') {
 		this.path = path;
+		this.m = mapping;
 		this.page = page;
 		this.selectLang = page.getByTestId('select-lang');
 		this.thKey = page.getByTestId('key');
 		this.thTranslation = page.getByTestId('translation');
 
 		this.messages = {
-			[greet.$k]: {
-				key: page.getByRole('rowheader', { name: greet.$k }),
-				translation: page.getByTestId(greet.$k),
+			[this.m['components.welcome.greet'].$k]: {
+				key: page.getByRole('rowheader', { name: this.m['components.welcome.greet'].$k }),
+				translation: page.getByTestId(this.m['components.welcome.greet'].$k),
 			},
-			[goodbye.$k]: {
-				key: page.getByRole('rowheader', { name: goodbye.$k }),
-				translation: page.getByTestId(goodbye.$k),
+			[this.m['goodbye'].$k]: {
+				key: page.getByRole('rowheader', { name: this.m['goodbye'].$k }),
+				translation: page.getByTestId(this.m['goodbye'].$k),
 			},
 		};
 	}
@@ -74,19 +77,21 @@ export class PageObjectModel {
 		return this.page.goto(this.path);
 	}
 
-	changeLanguage(lang: (typeof langs)[number]) {
+	changeLanguage(lang: string) {
 		return this.selectLang.selectOption(lang);
 	}
 
-	expect(lang: (typeof langs)[number]) {
+	expect(lang: string) {
 		return Promise.all([
 			expect(this.selectLang).toHaveValue(lang),
-			expect(this.thKey).toHaveText(m['key'](lang)),
-			expect(this.thTranslation).toHaveText(m['translation'](lang)),
-			expect(this.messages[greet.$k].key).toBeVisible(),
-			expect(this.messages[greet.$k].translation).toHaveText(greet(lang, { name: 'Hoàng' })),
-			expect(this.messages[goodbye.$k].key).toBeVisible(),
-			expect(this.messages[goodbye.$k].translation).toHaveText(goodbye(lang)),
+			expect(this.thKey).toHaveText(this.m['key'](lang)),
+			expect(this.thTranslation).toHaveText(this.m['translation'](lang)),
+			expect(this.messages[this.m['components.welcome.greet'].$k].key).toBeVisible(),
+			expect(this.messages[this.m['components.welcome.greet'].$k].translation).toHaveText(
+				this.m['components.welcome.greet'](lang, { name: 'Hoàng' }),
+			),
+			expect(this.messages[this.m['goodbye'].$k].key).toBeVisible(),
+			expect(this.messages[this.m['goodbye'].$k].translation).toHaveText(this.m['goodbye'](lang)),
 		]);
 	}
 }
