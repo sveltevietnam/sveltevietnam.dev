@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.3
+
+### Patch Changes
+
+- [#360](https://github.com/sveltevietnam/sveltevietnam.dev/pull/360) [`edd9859`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/edd98595efa8edb38980fdefb8b5e5151c4d5e97) Thanks [@vnphanquang](https://github.com/vnphanquang)! - (internal) be more explicit in type import paths to support `dts-buddy` on windows
+
+- [#360](https://github.com/sveltevietnam/sveltevietnam.dev/pull/360) [`e6f9b0f`](https://github.com/sveltevietnam/sveltevietnam.dev/commit/e6f9b0f78e0d4a8f042b30e619da6963477e857f) Thanks [@vnphanquang](https://github.com/vnphanquang)! - resolve paths correctly on windows
+
 ## 0.2.2
 
 ### Patch Changes
