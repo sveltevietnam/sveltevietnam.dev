@@ -41,7 +41,7 @@
 		"dev:wrangler": "wrangler dev --port 5006 --local",
 		"build:mjml": "mjml src/mjml/templates/**/*.mjml -o src/mjml/templates/output --config.minify=true --config.beautify=false",
 		"build": "vite build",
-		"build:test": "CLOUDFLARE_ENV=test vite build --mode test",
+		"build:test": "cross-env CLOUDFLARE_ENV=test vite build --mode test",
 		"drizzle": "dotenvx run -- drizzle-kit",
 		"drizzle:test": "dotenvx run -f .env.test -- drizzle-kit",
 		"drizzle:production": "dotenvx run -f .env.production -- drizzle-kit",
