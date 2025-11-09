@@ -10,10 +10,14 @@ const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
 afterEach(() => {
 	expect(consoleErrorSpy).toHaveBeenCalledWith(
-		' sveltevietnam/i18n  ✘ failed to build, please fix reported errors and run your vite command again',
+		expect.stringContaining(
+			'failed to build, please fix reported errors and run your vite command again',
+		),
 	);
 	expect(consoleErrorSpy).toHaveBeenCalledWith(
-		' sveltevietnam/i18n  ✘ ErrorMissingCloseBracket: Missing closing bracket "}}" for parameter "unclo..." starting at position 4',
+		expect.stringContaining(
+			'ErrorMissingCloseBracket: Missing closing bracket "}}" for parameter "unclo..." starting at position 4',
+		),
 	);
 	consoleErrorSpy.mockClear();
 });

@@ -2,6 +2,8 @@ import dedent from 'dedent';
 import { vol } from 'memfs';
 import { test, expect, describe, beforeEach, vi, assert } from 'vitest';
 
+import { crosspath } from '$tests/utils';
+
 import { ErrorFileNotFound, ErrorMissingCloseBracket } from '../../parser';
 
 import {
@@ -15,7 +17,7 @@ vi.mock('node:fs');
 vi.mock('node:fs/promises');
 
 const yaml = dedent;
-const json = dedent;
+const json = dedent.withOptions({ escapeSpecialCharacters: false });
 
 beforeEach(() => {
 	// reset the state of in-memory fs
@@ -88,8 +90,8 @@ describe('can build', () => {
 			expect(sources).toEqual([
 				'/app/locales/vi.yaml',
 				'/app/locales/en.yaml',
-				'/app/node_modules/@app/components/test/vi.yaml',
-				'/app/node_modules/@app/components/test/en.yaml',
+				crosspath('/app/node_modules/@app/components/test/vi.yaml'),
+				crosspath('/app/node_modules/@app/components/test/en.yaml'),
 			]);
 			expect(numMessages).toBe(3);
 		});
