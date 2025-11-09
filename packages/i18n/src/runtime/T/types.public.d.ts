@@ -1,6 +1,6 @@
 import { Key, Mapping } from '@sveltevietnam/i18n/generated';
 
-import type { TranslateOptions } from '../context';
+import type { TranslateOptions } from '../context/context/index.svelte';
 import type { InferLanguage, InferParams, InferType, Message } from '../types.public';
 
 /** props to `T` component in "static" mode */

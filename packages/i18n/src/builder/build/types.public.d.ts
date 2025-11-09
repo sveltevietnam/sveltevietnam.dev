@@ -1,4 +1,5 @@
-import type { MessageParameter, ParseLocaleOptions } from '../../parser';
+import type { ParseLocaleOptions } from '../../parser/parse-locale/types.public';
+import type { MessageParameter } from '../../parser/parse-message-params/types.public';
 
 export type BuildEntry = Record<string, string>;
 

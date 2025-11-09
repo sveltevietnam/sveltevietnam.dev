@@ -1,5 +1,5 @@
-import type { BuildMode } from '../builder';
-import type { ParseLocaleOptions } from '../parser';
+import type { BuildMode } from '../builder/build/types.public';
+import type { ParseLocaleOptions } from '../parser/parse-locale/types.public';
 
 export interface Config {
 	/**
