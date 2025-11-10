@@ -5,9 +5,9 @@
 	import { page } from '$app/state';
 	import { searchBlogPosts } from '$data/blog/posts';
 	import { BlogListingIntro } from '$lib/components/blog-listing-intro';
-	// import { BlogNewsletter } from '$lib/components/blog-newsletter';
+	import { BlogNewsletter } from '$lib/components/blog-newsletter';
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
-	// import { GradientBackground } from '$lib/components/gradient-background';
+	import { GradientBackground } from '$lib/components/gradient-background';
 	import { Pagination } from '$lib/components/pagination';
 	import * as pagefind from '$lib/pagefind/attributes';
 	import { getPaginationFromUrl } from '$lib/utils/url';
@@ -52,12 +52,12 @@
 		{/if}
 	</section>
 
-	<!-- <GradientBackground pattern="jigsaw"> -->
-	<!-- 	<section class="max-w-pad pt-section pb-section-more" data-pagefind-ignore> -->
-	<!-- 		<h2 class="sr-only" id="newsletter"> -->
-	<!-- 			<T key="newsletter" /> -->
-	<!-- 		</h2> -->
-	<!-- 		<BlogNewsletter data={data.subscribeFormData} /> -->
-	<!-- 	</section> -->
-	<!-- </GradientBackground> -->
+	<GradientBackground pattern="jigsaw">
+		<section class="max-w-pad pt-section pb-section-more" data-pagefind-ignore>
+			<h2 class="sr-only" id="newsletter">
+				<T key="newsletter" />
+			</h2>
+			<BlogNewsletter />
+		</section>
+	</GradientBackground>
 </main>

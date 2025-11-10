@@ -2,9 +2,8 @@ import * as m from '@sveltevietnam/i18n/generated/messages';
 
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
-import { upsert } from '$lib/forms/subscriber/server';
 
-import type { Actions, PageServerLoad } from './$types';
+import type { PageServerLoad } from './$types';
 import ogImageEn from './_page/og-events.en.jpg?url';
 import ogImageVi from './_page/og-events.vi.jpg?url';
 
@@ -17,7 +16,6 @@ export const load: PageServerLoad = async ({ params }) => {
 	const { lang } = params;
 
 	return {
-		subscribeFormData: await upsert.load(lang, 'event'),
 		routing: {
 			breadcrumbs: b['/:lang/events']({ lang }),
 			paths: {
@@ -37,5 +35,3 @@ export const load: PageServerLoad = async ({ params }) => {
 		},
 	};
 };
-
-export const actions: Actions = { subscribe: upsert.action };

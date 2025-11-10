@@ -9,7 +9,7 @@
 	import { VITE_PUBLIC_RECRUIT_ORIGIN } from '$env/static/public';
 	import { GradientBackground } from '$lib/components/gradient-background';
 	import { IntroSeparator } from '$lib/components/intro-separator';
-	import { SubscriberUpsertForm } from '$lib/forms/subscriber';
+	import { SubscribeForm } from '$lib/forms/subscribe';
 	import * as pagefind from '$lib/pagefind/attributes';
 
 	import type { PageProps } from './$types';
@@ -140,7 +140,7 @@
 				<p class="leading-relaxed">
 					<T key="pages.jobs.candidate.desc" />
 				</p>
-				<SubscriberUpsertForm data={data.subscribeFormData} />
+				<SubscribeForm channels={['job']} />
 				<p>
 					<T key="pages.jobs.candidate.discord" />
 				</p>

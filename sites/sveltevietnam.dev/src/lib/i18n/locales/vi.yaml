@@ -39,6 +39,8 @@ messages:
         nonempty: Vui lòng nhập ID
 
   forms:
+    subscribe:
+      '@import': $lib/forms/subscribe/locales/vi.yaml
     subscriber:
       '@import': $lib/forms/subscriber/locales/vi.yaml
 

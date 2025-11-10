@@ -6,9 +6,8 @@ import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { VITE_PUBLIC_RECRUIT_ORIGIN } from '$env/static/public';
 import { getBackend } from '$lib/backend/utils';
-import { upsert } from '$lib/forms/subscriber/server';
 
-import type { Actions, PageServerLoad } from './$types';
+import type { PageServerLoad } from './$types';
 import ogImageEn from './_page/images/og-jobs.en.jpg?url';
 import ogImageVi from './_page/images/og-jobs.vi.jpg?url';
 
@@ -39,7 +38,6 @@ export const load: PageServerLoad = async (event) => {
 
 	return {
 		postings,
-		subscribeFormData: await upsert.load(lang, 'job'),
 		routing: {
 			breadcrumbs: b['/:lang/jobs']({ lang }),
 			paths: {
@@ -59,5 +57,3 @@ export const load: PageServerLoad = async (event) => {
 		},
 	};
 };
-
-export const actions: Actions = { subscribe: upsert.action };

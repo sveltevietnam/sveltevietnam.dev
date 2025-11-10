@@ -11,7 +11,7 @@
 	import * as p from '$data/routes/generated';
 	import { EventListing } from '$lib/components/event-listing';
 	import { IntroSeparator } from '$lib/components/intro-separator';
-	import { SubscriberUpsertForm } from '$lib/forms/subscriber';
+	import { SubscribeForm } from '$lib/forms/subscribe';
 	import * as pagefind from '$lib/pagefind/attributes';
 
 	import type { PageProps } from './$types';
@@ -215,7 +215,7 @@
 			<div class="flex-1 space-y-6">
 				{@render actionHeading(1, 'participate', 'pages.events.participate.heading')}
 				<p class="leading-relaxed"><T key="pages.events.participate.desc" /></p>
-				<SubscriberUpsertForm data={data.subscribeFormData} />
+				<SubscribeForm channels={['event']} />
 				<p><T key="pages.events.participate.discord" /></p>
 			</div>
 			<div class="flex flex-1 items-end justify-center gap-10">

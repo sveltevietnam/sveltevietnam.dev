@@ -16,10 +16,10 @@
 		getBlueskyPostLinkage,
 	} from '$data/blog/posts';
 	import * as p from '$data/routes/generated';
-	// import { BlogNewsletter } from '$lib/components/blog-newsletter';
+	import { BlogNewsletter } from '$lib/components/blog-newsletter';
 	import { BlogPostCommonList } from '$lib/components/blog-post-common-list';
 	import { BlogPostListItem } from '$lib/components/blog-post-list-item';
-	// import { GradientBackground } from '$lib/components/gradient-background';
+	import { GradientBackground } from '$lib/components/gradient-background';
 	import { HintedText } from '$lib/components/hinted-text';
 	import { Person } from '$lib/components/person';
 	import { TableOfContents } from '$lib/components/table-of-contents';
@@ -384,14 +384,14 @@
 	{/if}
 
 	<!-- newsletter -->
-	<!-- <GradientBackground pattern="jigsaw"> -->
-	<!-- 	<section class="max-w-pad pt-section pb-section-more" data-pagefind-ignore> -->
-	<!-- 		<h2 class="sr-only" id="newsletter"> -->
-	<!-- 			<T key="newsletter" /> -->
-	<!-- 		</h2> -->
-	<!-- 		<BlogNewsletter data={data.subscribeFormData} /> -->
-	<!-- 	</section> -->
-	<!-- </GradientBackground> -->
+	<GradientBackground pattern="jigsaw">
+		<section class="max-w-pad pt-section pb-section-more" data-pagefind-ignore>
+			<h2 class="sr-only" id="newsletter">
+				<T key="newsletter" />
+			</h2>
+			<BlogNewsletter />
+		</section>
+	</GradientBackground>
 
 	<!-- blog posts in same series -->
 	{#if adjacentPostsInSameSeries.length}

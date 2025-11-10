@@ -8,7 +8,7 @@
 	import { listBlogPosts, searchBlogPosts } from '$data/blog/posts';
 	import { getBlogSeriesById } from '$data/blog/series/remotes';
 	import * as p from '$data/routes/generated';
-	// import { BlogNewsletter } from '$lib/components/blog-newsletter';
+	import { BlogNewsletter } from '$lib/components/blog-newsletter';
 	import { BlogPostShowcase } from '$lib/components/blog-post-showcase';
 	import { GradientBackground } from '$lib/components/gradient-background';
 	import { IntroSeparator } from '$lib/components/intro-separator';
@@ -285,12 +285,12 @@
 	{/if}
 
 	<!-- newsletter  -->
-	<!-- <GradientBackground> -->
-	<!-- 	<section class="max-w-pad pt-section pb-section-more" data-pagefind-ignore> -->
-	<!-- 		<h2 class="sr-only" id="newsletter"> -->
-	<!-- 			<T key="newsletter" /> -->
-	<!-- 		</h2> -->
-	<!-- 		<BlogNewsletter data={data.subscribeFormData} /> -->
-	<!-- 	</section> -->
-	<!-- </GradientBackground> -->
+	<GradientBackground>
+		<section class="max-w-pad pt-section pb-section-more" data-pagefind-ignore>
+			<h2 class="sr-only" id="newsletter">
+				<T key="newsletter" />
+			</h2>
+			<BlogNewsletter />
+		</section>
+	</GradientBackground>
 </main>

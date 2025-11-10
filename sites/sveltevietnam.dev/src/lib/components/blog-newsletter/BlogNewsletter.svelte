@@ -1,19 +1,10 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
-	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import type { HTMLAttributes } from 'svelte/elements';
 
-	import { SubscriberUpsertForm, type SubscriberUpsertFormProps } from '$lib/forms/subscriber';
+	import { SubscribeForm } from '$lib/forms/subscribe';
 
-	const routing = RoutingContext.get();
-
-	let {
-		class: cls,
-		data,
-		...rest
-	}: HTMLAttributes<HTMLElement> & {
-		data: SubscriberUpsertFormProps['data'];
-	} = $props();
+	let { class: cls, ...rest }: HTMLAttributes<HTMLElement> = $props();
 </script>
 
 <div
@@ -37,7 +28,7 @@
 		</svg>
 	</div>
 
-	<SubscriberUpsertForm {data} action="/{routing.lang}/blog?/subscribe" />
+	<SubscribeForm channels={['blog']} />
 </div>
 
 <style lang="postcss">

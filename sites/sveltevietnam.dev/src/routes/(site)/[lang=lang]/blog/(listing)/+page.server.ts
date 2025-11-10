@@ -3,10 +3,9 @@ import * as m from '@sveltevietnam/i18n/generated/messages';
 import * as p from '$data/routes/generated';
 import * as b from '$data/routes/generated/breadcrumbs';
 import { VITE_PUBLIC_ORIGIN } from '$env/static/public';
-import { upsert } from '$lib/forms/subscriber/server';
 import { buildStructuredBlog } from '$lib/meta/structured/blog';
 
-import type { Actions, PageServerLoad } from './$types';
+import type { PageServerLoad } from './$types';
 import ogImageEn from './_page/og-blog.en.jpg?url';
 import ogImageVi from './_page/og-blog.vi.jpg?url';
 
@@ -38,5 +37,3 @@ export const load: PageServerLoad = async ({ params }) => {
 		},
 	};
 };
-
-export const actions: Actions = { subscribe: upsert.action };
