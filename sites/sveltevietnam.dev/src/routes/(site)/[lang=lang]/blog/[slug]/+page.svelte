@@ -89,10 +89,10 @@
 	}
 
 	const adjacentPostsInSameSeries = $derived(
-		await getAdjacentPostsFromSameSeries({ postId: data.post.id, lang: routing.lang }),
+		getAdjacentPostsFromSameSeries({ postId: data.post.id, lang: routing.lang }),
 	);
 	const nextPostToRead = $derived(
-		await getBlogPostNextToRead({ postId: data.post.id, lang: routing.lang }),
+		getBlogPostNextToRead({ postId: data.post.id, lang: routing.lang }),
 	);
 </script>
 
@@ -226,7 +226,7 @@
 					</a>
 				</li>
 				<li class="pl-8">
-					{#if adjacentPostsInSameSeries.length}
+					{#if (await adjacentPostsInSameSeries).length}
 						{@render inlink('#in-this-series', 'pages.blog_slug.quick_nav.series', 'i-[ph--files]')}
 					{:else}
 						{@render inlink('#latest-post', 'pages.blog_slug.quick_nav.latest', 'i-[ph--files]')}
@@ -363,12 +363,12 @@
 		</div>
 
 		<!-- latest blog post -->
-		{#if nextPostToRead}
+		{#if await nextPostToRead}
 			<section class="_latest space-y-6" data-pagefind-ignore>
 				<h2 class="c-text-heading border-b" id="latest-post">
 					<T key="pages.blog_slug.headings.latest" />
 				</h2>
-				<BlogPostListItem post={nextPostToRead} />
+				<BlogPostListItem post={await nextPostToRead} />
 			</section>
 		{/if}
 	</div>
@@ -394,7 +394,7 @@
 	</GradientBackground>
 
 	<!-- blog posts in same series -->
-	{#if adjacentPostsInSameSeries.length}
+	{#if (await adjacentPostsInSameSeries).length}
 		<section class="py-section max-w-pad space-y-8" data-pagefind-ignore>
 			<div class="space-y-4 border-t-4 border-current pt-2">
 				<div class="flex flex-wrap items-baseline justify-between gap-4">
@@ -406,7 +406,7 @@
 					</TextArrowLink>
 				</div>
 			</div>
-			<BlogPostCommonList posts={adjacentPostsInSameSeries} flat />
+			<BlogPostCommonList posts={await adjacentPostsInSameSeries} flat />
 		</section>
 	{/if}
 </main>
