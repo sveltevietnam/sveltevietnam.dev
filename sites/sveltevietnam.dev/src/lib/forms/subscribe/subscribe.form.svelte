@@ -66,7 +66,7 @@
 					channels: subscribe.fields.channels.value(),
 				});
 				toaster.success({
-					message: t({ key: 'forms.subscriber.upsert.success' }),
+					message: t({ key: 'forms.subscribe.success' }),
 				});
 			}
 		} catch (error) {
@@ -79,7 +79,7 @@
 				});
 				toaster.error({
 					title: `${appError.code} - ${appError.message}`,
-					message: t({ key: 'forms.subscriber.upsert.errors.unknown' }),
+					message: t({ key: 'forms.subscribe.errors.unknown' }),
 				});
 			}
 		}
@@ -149,7 +149,7 @@
 			<label class="flex cursor-pointer items-center gap-3">
 				<input class="c-checkbox" type="checkbox" onchange={handleCheckAll} />
 				<span>
-					<T key="forms.subscriber.upsert.all" />
+					<T key="forms.subscribe.all" />
 				</span>
 			</label>
 		</div>

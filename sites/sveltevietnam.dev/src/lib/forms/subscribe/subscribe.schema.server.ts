@@ -19,11 +19,8 @@ export function createSubscribeSchema() {
 			v.toLowerCase(),
 		),
 		channels: v.pipe(
-			v.array(
-				v.picklist(SUBSCRIPTION_CHANNELS),
-				m['forms.subscriber.upsert.errors.channels'](lang),
-			),
-			v.minLength(1, m['forms.subscriber.upsert.errors.channels'](lang)),
+			v.array(v.picklist(SUBSCRIPTION_CHANNELS), m['forms.subscribe.errors.channels'](lang)),
+			v.minLength(1, m['forms.subscribe.errors.channels'](lang)),
 		),
 		turnstile: createTurnstileValibotServerSchema({
 			secret: VITE_PRIVATE_CLOUDFLARE_TURNSTILE_SECRET_KEY,

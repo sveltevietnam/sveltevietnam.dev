@@ -3,9 +3,8 @@
 # Scope:    forms.subscribe
 # ===========================
 messages:
-  subscribe:
-    all: Send me other news from Svelte Vietnam
-    success: You are subscribed. Thank you!
-    errors:
-      channels: Must select at least one of ['blog', 'event', 'job']
-      unknown: Unable to subscribe. Please try again later. We are sorry for the inconvenience.
+  all: Send me other news from Svelte Vietnam
+  success: You are subscribed. Thank you!
+  errors:
+    channels: Must select at least one of ['blog', 'event', 'job']
+    unknown: Unable to subscribe. Please try again later. We are sorry for the inconvenience.
