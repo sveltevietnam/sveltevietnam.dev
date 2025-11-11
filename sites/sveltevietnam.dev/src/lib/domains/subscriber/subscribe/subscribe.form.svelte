@@ -10,11 +10,10 @@
 	} from '@sveltevietnam/backend/data/subscribers/channels';
 	import { Context, T } from '@sveltevietnam/i18n';
 	import { RoutingContext, NotificationContext } from '@sveltevietnam/kit/contexts';
-	import { onMount } from 'svelte';
 	import type { ChangeEventHandler, HTMLFormAttributes } from 'svelte/elements';
 
 	import { VITE_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
-	import Issues from '$lib/forms/common/Issues.svelte';
+	import Issues from '$lib/domains/common/FormIssues.svelte';
 
 	import { subscribe } from './subscribe.remote';
 
@@ -28,6 +27,9 @@
 	const routing = RoutingContext.get();
 	const { toaster } = NotificationContext.get();
 	const { t } = Context.get();
+
+	// set initial value
+	subscribe.fields.channels.set(initialChannels);
 
 	// handle turnstile
 	let turnstileWidgetId: string | undefined = undefined;
@@ -47,10 +49,6 @@
 			e.currentTarget.checked ? [...SUBSCRIPTION_CHANNELS] : initialChannels,
 		);
 	};
-
-	onMount(() => {
-		subscribe.fields.channels.set(initialChannels);
-	});
 </script>
 
 <form
@@ -66,7 +64,7 @@
 					channels: subscribe.fields.channels.value(),
 				});
 				toaster.success({
-					message: t({ key: 'forms.subscribe.success' }),
+					message: t({ key: 'domains.subscriber.subscribe.success' }),
 				});
 			}
 		} catch (error) {
@@ -79,7 +77,7 @@
 				});
 				toaster.error({
 					title: `${appError.code} - ${appError.message}`,
-					message: t({ key: 'forms.subscribe.errors.unknown' }),
+					message: t({ key: 'domains.subscriber.subscribe.errors.unknown' }),
 				});
 			}
 		}
@@ -149,7 +147,7 @@
 			<label class="flex cursor-pointer items-center gap-3">
 				<input class="c-checkbox" type="checkbox" onchange={handleCheckAll} />
 				<span>
-					<T key="forms.subscribe.all" />
+					<T key="domains.subscriber.subscribe.all" />
 				</span>
 			</label>
 		</div>

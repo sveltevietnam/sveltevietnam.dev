@@ -1,11 +1,10 @@
-# ===========================
+# =======================================
 # Language: Vietnamese
-# Scope:    forms.subscribe
-# ===========================
+# Scope:    domains.subscriber.subscribe
+# =======================================
 messages:
   all: Nhận tất cả thông báo từ Svelte Việt Nam
   success: Đăng ký thành công. Cảm ơn bạn!
   errors:
-    channels: Vui lòng cung chọn 'blog', 'event', hoặc 'job'
     unknown:
       Có lỗi xảy ra trong quá trình đăng ký. Vui lòng thử lại sau. Xin lỗi vì sự bất tiện này.

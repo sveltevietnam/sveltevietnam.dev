@@ -2,7 +2,7 @@
 	import { T } from '@sveltevietnam/i18n';
 	import type { HTMLAttributes } from 'svelte/elements';
 
-	import { SubscribeForm } from '$lib/forms/subscribe';
+	import { SubscribeForm } from '$lib/domains/subscriber/subscribe';
 
 	let { class: cls, ...rest }: HTMLAttributes<HTMLElement> = $props();
 </script>

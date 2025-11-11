@@ -6,7 +6,7 @@ messages:
   email:
     heading: About this email
     subject: Subject
-    sent: Sent
+    sent_at: Sent at
   subscriber:
     heading: Subscriber Information
   expiration:

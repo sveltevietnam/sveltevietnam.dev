@@ -11,7 +11,7 @@
 	import * as p from '$data/routes/generated';
 	import { EventListing } from '$lib/components/event-listing';
 	import { IntroSeparator } from '$lib/components/intro-separator';
-	import { SubscribeForm } from '$lib/forms/subscribe';
+	import { SubscribeForm } from '$lib/domains/subscriber/subscribe';
 	import * as pagefind from '$lib/pagefind/attributes';
 
 	import type { PageProps } from './$types';

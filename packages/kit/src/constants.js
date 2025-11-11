@@ -44,6 +44,7 @@ export const EMAILS = {
 	EVENTS: 'events@sveltevietnam.dev',
 	IMPACT: 'impact@sveltevietnam.dev',
 	SPONSOR: 'sponsor@sveltevietnam.dev',
+	DONOTSPAM: 'donotspam@sveltevietnam.dev',
 };
 
 export const LANGUAGES = /** @type {const} */ (['en', 'vi']);

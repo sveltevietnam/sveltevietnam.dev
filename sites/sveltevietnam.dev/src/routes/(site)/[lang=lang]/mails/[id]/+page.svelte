@@ -1,15 +1,14 @@
 <script lang="ts">
 	import { T } from '@sveltevietnam/i18n';
+	import { EMAILS } from '@sveltevietnam/kit/constants';
 	import { RoutingContext } from '@sveltevietnam/kit/contexts';
 	import { formatFullDateAndTime } from '@sveltevietnam/kit/utilities/datetime';
 
-	import { SubscriberUpdateForm } from '$lib/forms/subscriber';
-
-	import type { PageProps } from './$types';
+	import { browser } from '$app/environment';
+	import { getWebMail } from '$lib/domains/mail/functions.remote';
+	import { UpdateSubscriptionForm } from '$lib/domains/subscriber/update-subscription';
 
 	const routing = RoutingContext.get();
-
-	let { data }: PageProps = $props();
 
 	let iframe: HTMLIFrameElement | null = null;
 	function handleIframeLoad(e: Event) {
@@ -28,16 +27,18 @@
 			}
 		}, 0);
 	}
+
+	let mail = $derived(await getWebMail());
 </script>
 
 <svelte:window onresize={onWindowResize} />
 
 <main
-	class="max-w-pad pt-intro-pad-top bg-gradient-primary-intro tablet:gap-20 widescreen:gap-32 pb-section-more flex flex-wrap justify-between gap-10"
+	class="max-w-pad pt-intro-pad-top bg-gradient-primary-intro tablet:gap-20 widescreen:gap-24 pb-section-more flex flex-wrap justify-between gap-10"
 	data-pagefind-ignore
 >
-	<div class="w-140 min-w-80 space-y-10">
-		<h1 class="sr-only">{data.mail.subject}</h1>
+	<div class="min-w-80 flex-1 space-y-10">
+		<h1 class="sr-only">{mail.subject}</h1>
 		<!-- mail info -->
 		<section class="space-y-6">
 			<h2 class="c-text-heading border-b">
@@ -48,43 +49,41 @@
 					<dt class="font-semibold">
 						<T key="pages.mail.email.subject" />:
 					</dt>
-					<dd>{data.mail.subject}</dd>
+					<dd>{mail.subject}</dd>
 				</div>
 				<div class="border-b-onehalf col-span-2 grid grid-cols-subgrid border-dashed py-4">
-					<dt class="font-semibold">
+					<dt class="font-semibold capitalize">
 						<T key="from" />:
 					</dt>
 					<dd>
-						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-						{@html '<!--email_off-->'}{data.mail.from}{@html '<!--/email_off-->'}
+						{browser ? mail.from : EMAILS.DONOTSPAM}
 						(<T key="svelte_vietnam.name" />)
 					</dd>
 				</div>
 				<div class="border-b-onehalf col-span-2 grid grid-cols-subgrid border-dashed py-4">
-					<dt class="font-semibold">
+					<dt class="font-semibold capitalize">
 						<T key="to" />:
 					</dt>
 					<dd>
-						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-						{@html '<!--email_off-->'}{data.mail.to}{@html '<!--/email_off-->'}
+						{browser ? mail.to : EMAILS.DONOTSPAM}
 					</dd>
 				</div>
 				<div class="col-span-2 grid grid-cols-subgrid py-4">
 					<dt class="font-semibold">
-						<T key="pages.mail.email.sent" />:
+						<T key="pages.mail.email.sent_at" />:
 					</dt>
-					<dd>{formatFullDateAndTime(routing.lang, data.mail.sentAt)}</dd>
+					<dd>{formatFullDateAndTime(routing.lang, mail.sentAt)}</dd>
 				</div>
 			</dl>
 		</section>
 
 		<!-- subscriber info -->
-		{#if data.form}
+		{#if mail.actorId.startsWith('subscriber_')}
 			<section class="space-y-6">
 				<h2 class="c-text-heading border-b">
 					<T key="pages.mail.subscriber.heading" />
 				</h2>
-				<SubscriberUpdateForm data={data.form} />
+				<UpdateSubscriptionForm subscriberId={mail.actorId} />
 			</section>
 		{/if}
 	</div>
@@ -95,14 +94,14 @@
 		<p class="c-callout c-callout--warning">
 			<T
 				key="pages.mail.expiration"
-				params={{ datetime: formatFullDateAndTime(routing.lang, data.expiresAt) }}
+				params={{ datetime: formatFullDateAndTime(routing.lang, mail.expiredAt) }}
 			/>
 		</p>
 		<div class="border-onehalf tablet:p-4 tablet:max-h-[72vh] h-fit overflow-auto p-2">
 			<iframe
 				class="h-140 max-h-none w-full"
-				srcdoc={data.srcdoc}
-				title={data.mail.subject}
+				srcdoc={mail.html}
+				title={mail.subject}
 				onload={handleIframeLoad}
 			></iframe>
 		</div>

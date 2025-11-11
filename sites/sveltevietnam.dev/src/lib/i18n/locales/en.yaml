@@ -37,12 +37,17 @@ messages:
     id:
       errors:
         nonempty: ID is required
+    subscription_channels:
+      errors:
+        picklist: Must select at least one of ['blog', 'event', 'job']
+        nonempty: Must select at least one subscription channel
 
-  forms:
-    subscribe:
-      '@import': $lib/forms/subscribe/locales/en.yaml
+  domains:
     subscriber:
-      '@import': $lib/forms/subscriber/locales/en.yaml
+      subscribe:
+        '@import': $lib/domains/subscriber/subscribe/locales/en.yaml
+      update_subscription:
+        '@import': $lib/domains/subscriber/update-subscription/locales/en.yaml
 
   notifications:
     '@import': $lib/notifications/locales/en.yaml

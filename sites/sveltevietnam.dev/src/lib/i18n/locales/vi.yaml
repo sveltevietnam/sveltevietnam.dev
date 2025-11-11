@@ -37,12 +37,17 @@ messages:
     id:
       errors:
         nonempty: Vui lòng nhập ID
+    subscription_channels:
+      errors:
+        picklist: Vui lòng cung chọn 'blog', 'event', hoặc 'job'
+        nonempty: Vui lòng cung chọn ít nhất một trong các kênh thông tin
 
-  forms:
-    subscribe:
-      '@import': $lib/forms/subscribe/locales/vi.yaml
+  domains:
     subscriber:
-      '@import': $lib/forms/subscriber/locales/vi.yaml
+      subscribe:
+        '@import': $lib/domains/subscriber/subscribe/locales/vi.yaml
+      update_subscription:
+        '@import': $lib/domains/subscriber/update-subscription/locales/vi.yaml
 
   notifications:
     '@import': $lib/notifications/locales/vi.yaml

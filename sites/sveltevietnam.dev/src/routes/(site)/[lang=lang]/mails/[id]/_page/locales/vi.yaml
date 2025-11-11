@@ -6,7 +6,7 @@ messages:
   email:
     heading: Về email này
     subject: Tiêu đề
-    sent: Gửi
+    sent_at: Gửi lúc
   subscriber:
     heading: Người đăng ký
   expiration:

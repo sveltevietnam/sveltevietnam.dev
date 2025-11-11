@@ -9,7 +9,7 @@
 	import { VITE_PUBLIC_RECRUIT_ORIGIN } from '$env/static/public';
 	import { GradientBackground } from '$lib/components/gradient-background';
 	import { IntroSeparator } from '$lib/components/intro-separator';
-	import { SubscribeForm } from '$lib/forms/subscribe';
+	import { SubscribeForm } from '$lib/domains/subscriber/subscribe';
 	import * as pagefind from '$lib/pagefind/attributes';
 
 	import type { PageProps } from './$types';

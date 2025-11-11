@@ -1,16 +1,18 @@
 import { SUBSCRIPTION_CHANNELS } from '@sveltevietnam/backend/data/subscribers/channels';
 import * as m from '@sveltevietnam/i18n/generated/messages';
+import { LANGUAGES } from '@sveltevietnam/kit/constants';
 import { createTurnstileValibotServerSchema } from '@sveltevietnam/kit/utilities';
 import * as v from 'valibot';
 
 import { getRequestEvent } from '$app/server';
 import { VITE_PRIVATE_CLOUDFLARE_TURNSTILE_SECRET_KEY } from '$env/static/private';
 
-export function createSubscribeSchema() {
+export function createUpdateSubscriptionSchema() {
 	const { getClientAddress, locals } = getRequestEvent();
 	const lang = locals.language;
 
 	return v.objectAsync({
+		id: v.pipe(v.string(), v.nonEmpty(m['inputs.id.errors.nonempty'](lang))),
 		name: v.pipe(v.string(), v.nonEmpty(m['inputs.name.errors.nonempty'](lang))),
 		email: v.pipe(
 			v.string(),
@@ -18,9 +20,10 @@ export function createSubscribeSchema() {
 			v.email(m['inputs.email.errors.invalid'](lang)),
 			v.toLowerCase(),
 		),
-		channels: v.pipe(
-			v.array(v.picklist(SUBSCRIPTION_CHANNELS), m['forms.subscribe.errors.channels'](lang)),
-			v.minLength(1, m['forms.subscribe.errors.channels'](lang)),
+		language: v.picklist(LANGUAGES, m['inputs.language.errors.picklist'](lang)),
+		channels: v.array(
+			v.picklist(SUBSCRIPTION_CHANNELS),
+			m['inputs.subscription_channels.errors.picklist'](lang),
 		),
 		turnstile: createTurnstileValibotServerSchema({
 			secret: VITE_PRIVATE_CLOUDFLARE_TURNSTILE_SECRET_KEY,
@@ -33,6 +36,6 @@ export function createSubscribeSchema() {
 	});
 }
 
-export type SubscribeSchema = ReturnType<typeof createSubscribeSchema>;
-export type SubscribeInput = v.InferInput<SubscribeSchema>;
-export type SubscribeOutput = v.InferOutput<SubscribeSchema>;
+export type UpdateSubscriptionSchema = ReturnType<typeof createUpdateSubscriptionSchema>;
+export type UpdateSubscriptionInput = v.InferInput<UpdateSubscriptionSchema>;
+export type UpdateSubscriptionOutput = v.InferOutput<UpdateSubscriptionSchema>;
