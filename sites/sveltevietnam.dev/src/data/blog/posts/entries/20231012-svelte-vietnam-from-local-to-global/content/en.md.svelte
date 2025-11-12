@@ -8,6 +8,12 @@ My objective then was not to replace React, but to restructure and apply optimiz
 
 Back to 2022, this was an important year for Svelte. [Rich Harris](https://github.com/Rich-Harris) had quit his full-time job to [join Vercel](https://vercel.com/blog/vercel-welcomes-rich-harris-creator-of-svelte), followed by [Simon](https://github.com/dummdidumm). These two with other members from the Svelte core team really pushed forward development of [Svelte Kit](https://svelte.dev/blog/sveltekit-beta), an innovative metaframework for Svelte (think Next for React or Nuxt for Vue). The Svelte community, during all of this, had been expanding quickly both in breadth and depth ([Svelte Discord](https://svelte.dev/chat), [Svelte Society](https://sveltesociety.dev/), [Svelte Radio](https://www.svelteradio.com/), [Svelte Summit](https://www.sveltesummit.com/), [Svelte Sirens](https://sveltesirens.dev/), and many more local communities around the world). In December, [Svelte Kit 1.0](https://svelte.dev/blog/announcing-sveltekit-1.0) was finally and officially released. All signs led towards an unprecedented global interest growth and adoption of Svelte. In Vietnam where I was based, the local Svelte community at this time was fragmented or hardly present. This is the reason why the Svelte Vietnam project was created.
 
+<div class="c-callout c-callout--info c-callout--icon-megaphone">
+
+Checkout "[Svelte Origins](https://www.youtube.com/watch?v=kMlkCYL9qo0)" and "[Vite: The Documentary](https://www.youtube.com/watch?v=bmWQqAKLgT4&t=395s)" for an interesting documentary view on the history of Svelte and Vite.
+
+</div>
+
 [^1]: Snowpack is no longer maintained. [Vite](https://vitejs.dev/), which came from the Vue community, has become somewhat of a standard. Today, Vite and Svelte communities have a strong connection similar to how Snowpack and Svelte used to do.
 
 ## An Open Source Project
@@ -20,7 +26,7 @@ Svelte Vietnam is open source and will always encourage its members to participa
 
 ## A Community
 
-Svelte Vietnam is a community for anyone interested in Svelte and open source. We have an official [Discord](https://discord.sveltevietnam.dev/) as the main communication platform, as well as the [Svelte Vietnam Blog](/en/blog) as a place for members to share in the form of writing. In the future, Svelte Vietnam plans to organize online and offline meetups, and events with formats learned from Svelte Summit and other communities. Through these channels, my hope is that members will have opportunities to connect and share their experience and knowledge.
+Svelte Vietnam is a community for anyone interested in Svelte and open source. We have an official [Discord](https://discord.sveltevietnam.dev/) as the main communication platform, as well as [Svelte Vietnam Blog](/en/blog) as a place for members to share in the form of writing. In the future, Svelte Vietnam plans to organize online and offline meetups, and events with formats learned from Svelte Summit and other communities. Through these channels, my hope is that members will have opportunities to connect and share their experience and knowledge.
 
 ### Collaboration. Not Competition
 
@@ -28,7 +34,7 @@ Svelte Vietnam does not intend to compete with other communities in Vietnam like
 
 Svelte Vietnam always welcomes members from other communities, and encourage our members to join them and come back with suggestion or criticism against our own community.
 
-Building a community is no easy task. You might wonder why we are creating yet another community instead of just being part of the existing ones: we need something to connect, that is the reason. I have seen members in the same team having conflict, listened to a backend dev arguing with a frontend one. If disagreements can exist in such cases, a Svelte dev and a C++ dev might not be able to empathize at all, even if we put them in the same room right next to each other (I know, one should not be just a Svelte or C++ dev, but you get what I’m trying to say). Svelte is simply a vehicle for members in our community to better connect. From there, we can take the conversation to the web platform, software engineering, open source, and much more beyond our community.
+Building a community is no easy task. You might wonder why we are creating yet another community instead of just being part of the existing ones: we need something to connect, that is the reason. I have seen members in the same team having conflict, listened to a backend dev arguing with a frontend one. If disagreements can exist in such cases, a Svelte dev and a C++ dev might not be able to empathize at all, even if we put them in the same room right next to each other (I know, one should not be just a Svelte or C++ dev, but you get what I’m trying to say). Svelte is simply a vehicle for members in our community to better connect. From there, we can take conversation to the web platform, software engineering, open source, and much more beyond our community.
 
 ## A Social Experiment
 
