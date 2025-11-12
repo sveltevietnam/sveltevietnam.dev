@@ -9,7 +9,7 @@
 		type SubscriptionChannel,
 	} from '@sveltevietnam/backend/data/subscribers/channels';
 	import { Context, T } from '@sveltevietnam/i18n';
-	import { RoutingContext, NotificationContext } from '@sveltevietnam/kit/contexts';
+	import { RoutingContext, NotificationContext, LoadingContext } from '@sveltevietnam/kit/contexts';
 	import type { ChangeEventHandler, HTMLFormAttributes } from 'svelte/elements';
 
 	import { VITE_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
@@ -27,6 +27,7 @@
 	const routing = RoutingContext.get();
 	const { toaster } = NotificationContext.get();
 	const { t } = Context.get();
+	const globalLoading = LoadingContext.getGlobal();
 
 	// set initial value
 	subscribe.fields.channels.set(initialChannels);
@@ -56,8 +57,10 @@
 	{...rest}
 	{...subscribe.enhance(async ({ submit }) => {
 		try {
+			const unload = globalLoading.load();
 			await submit();
 			resetTurnstile();
+			unload();
 			if (subscribe.result?.success) {
 				window.umami?.track('subscribe-newsletter-success', {
 					action: subscribe.result.action,

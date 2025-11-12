@@ -40,6 +40,11 @@
 			"import": "./src/hooks.js",
 			"default": "./src/hooks.js"
 		},
+		"./layouts": {
+			"types": "./types/index.d.ts",
+			"import": "./src/layouts/index.js",
+			"default": "./src/layouts/index.js"
+		},
 		"./locales/*.yaml": "./src/locales/*.yaml",
 		"./notifications": {
 			"types": "./types/index.d.ts",

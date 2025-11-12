@@ -5,12 +5,11 @@
 	import { onMount } from 'svelte';
 
 	import { version } from '$app/environment';
-	import { navigating, page } from '$app/state';
+	import { page } from '$app/state';
 	import * as p from '$data/routes/generated';
 	import * as n from '$data/routes/generated/names';
 	import { Header } from '$lib/components/header';
 	import { PageEditLink } from '$lib/components/page-edit-link';
-	import { PageLoadIndicator } from '$lib/components/page-load-indicator';
 
 	let { children } = $props();
 
@@ -73,10 +72,6 @@
 		},
 	] as const);
 </script>
-
-{#await navigating.complete}
-	<PageLoadIndicator />
-{/await}
 
 <Header data-pagefind-ignore />
 {@render children()}

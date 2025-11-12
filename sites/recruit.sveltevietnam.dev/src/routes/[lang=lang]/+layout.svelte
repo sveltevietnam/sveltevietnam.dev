@@ -10,12 +10,13 @@
 		Footer,
 	} from '@sveltevietnam/kit/components';
 	import { EMAILS } from '@sveltevietnam/kit/constants';
-	import { createContexts, Provider } from '@sveltevietnam/kit/contexts';
+	import { createContexts } from '@sveltevietnam/kit/contexts';
+	import { CommonLayout } from '@sveltevietnam/kit/layouts';
 	import { ScrollToggler } from '@sveltevietnam/kit/utilities';
 	import { onMount } from 'svelte';
 
 	import { browser, version } from '$app/environment';
-	import { page } from '$app/state';
+	import { navigating, page } from '$app/state';
 	import * as p from '$data/routes/generated';
 	import * as n from '$data/routes/generated/names';
 	import {
@@ -57,6 +58,7 @@
 			lang: data.settings.language,
 			remote: routing.is(p['/:lang']({ lang: data.settings.language })) ? 'prerender' : 'query',
 		}),
+		globalLoading: () => [navigating.complete],
 	});
 	const { routing, colorScheme } = contexts;
 
@@ -194,7 +196,7 @@
 	{/if}
 </svelte:head>
 
-<Provider {contexts}>
+<CommonLayout {...contexts}>
 	<header
 		class={[
 			'max-w-pad z-header fixed flex w-full items-start justify-between transition-transform',
@@ -263,4 +265,4 @@
 			</a>
 		{/snippet}
 	</Footer>
-</Provider>
+</CommonLayout>

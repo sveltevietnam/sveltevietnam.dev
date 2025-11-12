@@ -21,23 +21,18 @@
 		p.target = 1;
 	});
 
-	let percentage = $derived(p.current * 100)
+	let percentage = $derived(p.current * 100);
 </script>
 
 <div
-	class="z-notification fixed left-0 right-0 top-0 h-0.5 w-full"
+	class="z-notification fixed top-0 right-0 left-0 h-0.5 w-full"
 	style="--percentage: {percentage}%"
 >
-	<progress
-		max="100"
-		value={percentage}
-		aria-label="page loading indicator"
-		class="sr-only"
-	>
+	<progress max="100" value={percentage} aria-label="page loading indicator" class="sr-only">
 		{percentage}%
 	</progress>
 	<div
-		class="absolute left-0 top-0 h-full bg-gradient-to-r from-primary via-secondary to-tertiary"
+		class="from-primary via-secondary to-tertiary absolute top-0 left-0 h-full bg-linear-to-r"
 		style:width="var(--percentage)"
 		aria-disabled="true"
 	></div>

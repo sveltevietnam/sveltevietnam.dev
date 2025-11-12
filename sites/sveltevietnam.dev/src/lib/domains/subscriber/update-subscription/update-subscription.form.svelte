@@ -11,7 +11,7 @@
 	import { Context, T } from '@sveltevietnam/i18n';
 	import type { KeySimple } from '@sveltevietnam/i18n/generated';
 	import { LANGUAGES } from '@sveltevietnam/kit/constants';
-	import { RoutingContext, NotificationContext } from '@sveltevietnam/kit/contexts';
+	import { RoutingContext, NotificationContext, LoadingContext } from '@sveltevietnam/kit/contexts';
 	import type { HTMLFormAttributes } from 'svelte/elements';
 
 	import { VITE_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY } from '$env/static/public';
@@ -29,6 +29,7 @@
 	const routing = RoutingContext.get();
 	const { toaster } = NotificationContext.get();
 	const { t } = Context.get();
+	const globalLoading = LoadingContext.getGlobal();
 
 	// fetch subscription value & set form initial value
 	const subscription = await getSubscription(subscriberId);
@@ -61,8 +62,10 @@
 	{...rest}
 	{...updateSubscription.enhance(async ({ submit }) => {
 		try {
+			const unload = globalLoading.load();
 			await submit();
 			resetTurnstile();
+			unload();
 			if (updateSubscription.result?.success) {
 				window.umami?.track('update-subscription-success');
 				toaster.success({

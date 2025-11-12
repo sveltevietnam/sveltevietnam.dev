@@ -1,11 +1,12 @@
 <script lang="ts">
 	import * as m from '@sveltevietnam/i18n/generated/messages';
 	import { PageMetadata } from '@sveltevietnam/kit/components';
-	import { Provider, createContexts } from '@sveltevietnam/kit/contexts';
+	import { createContexts } from '@sveltevietnam/kit/contexts';
+	import { CommonLayout } from '@sveltevietnam/kit/layouts';
 	import { onMount } from 'svelte';
 
 	import { browser, dev, version } from '$app/environment';
-	import { page } from '$app/state';
+	import { navigating, page } from '$app/state';
 	import {
 		VITE_PUBLIC_ORIGIN,
 		VITE_PUBLIC_UMAMI,
@@ -45,14 +46,15 @@
 			// with the custom pagefind vite plugin. Once that's resolved, maybe enable prerender again
 			remote: 'query',
 		}),
+		globalLoading: () => [navigating.complete],
 	});
-
 	const {
 		routing,
 		colorScheme,
 		notifications: { toaster },
 		i18n: { t },
 	} = contexts;
+
 	const settings = SettingsContext.set(data.settings);
 	SearchContext.set(page.url.origin);
 
@@ -158,6 +160,6 @@
 	{/if}
 </svelte:head>
 
-<Provider {contexts}>
+<CommonLayout {...contexts}>
 	{@render children()}
-</Provider>
+</CommonLayout>
