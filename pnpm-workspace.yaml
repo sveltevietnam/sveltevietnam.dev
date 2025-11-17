@@ -18,3 +18,5 @@ minimumReleaseAgeExclude:
   - '@sveltejs/adapter-cloudflare'
   - '@sveltejs/enhanced-image'
 trustPolicy: no-downgrade
+trustPolicyExclude:
+  - chokidar@4.0.3
