@@ -61,19 +61,9 @@
 		"vitest-browser-svelte": "^2.0.1",
 		"wrangler": "^4.45.1"
 	},
-	"packageManager": "pnpm@10.20.0",
-	"pnpm": {
-		"onlyBuiltDependencies": [
-			"@tailwindcss/oxide",
-			"better-sqlite3",
-			"esbuild",
-			"sharp",
-			"unrs-resolver",
-			"workerd"
-		]
-	},
+	"packageManager": "pnpm@10.22.0",
 	"engines": {
-		"pnpm": ">=10.0.0",
+		"pnpm": ">=10.22.0",
 		"node": ">=22.0.0"
 	},
 	"volta": {

@@ -4,10 +4,17 @@ packages:
   - services/*
   - sites/*
   - workers/*
-
+onlyBuiltDependencies:
+  - '@tailwindcss/oxide'
+  - better-sqlite3
+  - esbuild
+  - sharp
+  - unrs-resolver
+  - workerd
 minimumReleaseAge: 4320 # 3 days in minutes
 minimumReleaseAgeExclude:
   - svelte
   - '@sveltejs/kit'
   - '@sveltejs/adapter-cloudflare'
+  - '@sveltejs/enhanced-image'
 trustPolicy: no-downgrade
