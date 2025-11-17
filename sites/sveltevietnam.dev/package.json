@@ -21,7 +21,7 @@
 	"devDependencies": {
 		"@atproto/api": "^0.17.5",
 		"@clack/prompts": "^0.11.0",
-		"@cloudflare/workers-types": "^4.20251014.0",
+		"@cloudflare/workers-types": "^4.20251113.0",
 		"@floating-ui/dom": "^1.7.4",
 		"@svelte-put/async-stack": "^1.5.3",
 		"@svelte-put/avatar": "^4.0.0",
