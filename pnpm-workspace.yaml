@@ -20,3 +20,7 @@ minimumReleaseAgeExclude:
 trustPolicy: no-downgrade
 trustPolicyExclude:
   - chokidar@4.0.3
+updateConfig:
+  ignoreDependencies:
+    # do not upgrade until this issue is fixed: https://github.com/paralleldrive/cuid2/issues/112
+    - '@paralleldrive/cuid2'
