@@ -54,7 +54,7 @@
 		"@aws-sdk/client-sesv2": "^3.919.0",
 		"@cloudflare/vite-plugin": "^1.14.2",
 		"@cloudflare/workers-types": "^4.20251113.0",
-		"@dotenvx/dotenvx": "^1.51.0",
+		"@dotenvx/dotenvx": "^1.51.1",
 		"@libsql/client": "^0.15.15",
 		"@paralleldrive/cuid2": "2.3.1",
 		"@sveltevietnam/kit": "workspace:*",

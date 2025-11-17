@@ -60,7 +60,7 @@
 	},
 	"devDependencies": {
 		"@types/hast": "^3.0.4",
-		"@types/node": "^24.9.2",
+		"@types/node": "^24.10.1",
 		"vite": "^7.2.2"
 	},
 	"dependencies": {
