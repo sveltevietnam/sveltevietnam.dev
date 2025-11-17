@@ -118,7 +118,7 @@
 		"schema-dts": "^1.1.5",
 		"svelte": "5.43.8",
 		"tailwindcss": "4.1.16",
-		"vite": "^7.1.12",
+		"vite": "^7.2.2",
 		"vite-imagetools": "^9.0.0"
 	},
 	"dependencies": {
