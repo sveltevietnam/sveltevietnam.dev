@@ -25,7 +25,7 @@
 </script>
 
 <div
-	class="z-notification fixed top-0 right-0 left-0 h-0.5 w-full"
+	class="z-notification fixed top-0 right-0 left-0 h-1 w-full"
 	style="--percentage: {percentage}%"
 >
 	<progress max="100" value={percentage} aria-label="page loading indicator" class="sr-only">
