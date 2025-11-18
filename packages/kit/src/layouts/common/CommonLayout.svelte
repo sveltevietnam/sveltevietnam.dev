@@ -10,7 +10,7 @@
 
 <svelte:document {@attach lockscroll?.apply()} />
 
-{#await globalLoading?.done()}
+{#await globalLoading?.done}
 	<LoadingBar />
 {/await}
 

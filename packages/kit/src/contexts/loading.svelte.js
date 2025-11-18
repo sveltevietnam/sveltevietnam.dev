@@ -14,7 +14,7 @@ export class LoadingContext {
 	#autoTriggers = () => [];
 	/** @type {Promise<any>} */
 	#manual = $state(Promise.resolve());
-	done = $derived(() => Promise.all([...this.#autoTriggers().filter(Boolean), this.#manual]));
+	done = $derived(Promise.all([...this.#autoTriggers().filter(Boolean), this.#manual]));
 
 	/**
 	 * @param {LoadingAutoTriggers} autoTriggers
