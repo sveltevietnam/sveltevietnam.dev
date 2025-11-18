@@ -157,7 +157,7 @@ const slug = {
 	en:
 		date_slug +
 		'-' +
-		(await normalizeDiacritics(post.title.en))
+		normalizeDiacritics(post.title.en)
 			.trim()
 			.replace(/[^a-zA-Z0-9]/g, '-')
 			.replace(/-+/g, '-')
@@ -167,7 +167,7 @@ const slug = {
 	vi:
 		date_slug +
 		'-' +
-		(await normalizeDiacritics(post.title.vi))
+		normalizeDiacritics(post.title.vi)
 			.trim()
 			.replace(/[^a-zA-Z0-9]/g, '-')
 			.replace(/-+/g, '-')
@@ -176,7 +176,7 @@ const slug = {
 			.toLowerCase(),
 };
 
-const dirpath = path.join(cwd, 'src/data/blog/posts', slug.en);
+const dirpath = path.join(cwd, 'src/data/blog/posts/entries', slug.en);
 const content_dirpath = path.join(dirpath, 'content');
 await fs.mkdir(content_dirpath, { recursive: true });
 const metadata_path = path.join(dirpath, 'metadata.ts');

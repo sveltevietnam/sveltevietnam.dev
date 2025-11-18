@@ -9,6 +9,7 @@ import { getContext, setContext } from 'svelte';
  */
 export class LoadingContext {
 	static KEY = Symbol('pageload');
+
 	/** @type {LoadingAutoTriggers} */
 	#autoTriggers = () => [];
 	/** @type {Promise<any>} */

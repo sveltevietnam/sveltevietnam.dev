@@ -123,7 +123,7 @@ const spinner = p.spinner();
 spinner.start('Creating person artifacts...');
 
 const cwd = process.cwd();
-const dirpath = path.join(cwd, 'src/data/people', person.id.trim());
+const dirpath = path.join(cwd, 'src/data/people/entries', person.id.trim());
 const index_path = path.join(dirpath, 'index.ts');
 await fs.mkdir(dirpath, { recursive: true });
 const index = dedent`
