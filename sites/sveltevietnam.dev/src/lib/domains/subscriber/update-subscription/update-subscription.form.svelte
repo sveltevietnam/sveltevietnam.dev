@@ -61,11 +61,10 @@
 	class={['space-y-6', cls]}
 	{...rest}
 	{...updateSubscription.enhance(async ({ submit }) => {
+		const unload = globalLoading.load();
 		try {
-			const unload = globalLoading.load();
 			await submit();
 			resetTurnstile();
-			unload();
 			if (updateSubscription.result?.success) {
 				window.umami?.track('update-subscription-success');
 				toaster.success({
@@ -85,6 +84,8 @@
 					message: t({ key: 'domains.subscriber.update_subscription.errors.unknown' }),
 				});
 			}
+		} finally {
+			unload();
 		}
 	})}
 >

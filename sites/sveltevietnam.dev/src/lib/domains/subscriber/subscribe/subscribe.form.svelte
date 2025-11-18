@@ -56,11 +56,10 @@
 	class={['space-y-6', cls]}
 	{...rest}
 	{...subscribe.enhance(async ({ submit }) => {
+		const unload = globalLoading.load();
 		try {
-			const unload = globalLoading.load();
 			await submit();
 			resetTurnstile();
-			unload();
 			if (subscribe.result?.success) {
 				window.umami?.track('subscribe-newsletter-success', {
 					action: subscribe.result.action,
@@ -83,6 +82,8 @@
 					message: t({ key: 'domains.subscriber.subscribe.errors.unknown' }),
 				});
 			}
+		} finally {
+			unload();
 		}
 	})}
 >
