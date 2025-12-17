@@ -23,7 +23,7 @@
 			<mj-column>
 				<mj-text padding-top="0">Hello Admin,</mj-text>
 				<mj-text>
-					A new job posting has been created by and is pending your approval.
+					A new job posting has been created by {{employer.name}} and is pending your approval.
 					Please see below for details...
 				</mj-text>
 			</mj-column>
