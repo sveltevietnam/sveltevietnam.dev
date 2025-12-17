@@ -40,7 +40,8 @@
 		}),
 		colorScheme: () => ({
 			cookieName: VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
-			cookieDomain: getCookieDomain(VITE_PUBLIC_MODE),
+			// lock color-scheme cookie to www because it is progressively set on the client
+			cookieDomain: getCookieDomain(VITE_PUBLIC_MODE, 'www'),
 			user: data.settings.colorScheme,
 		}),
 		i18n: () => ({

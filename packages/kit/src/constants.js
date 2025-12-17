@@ -26,10 +26,12 @@ export const PUBLIC_COOKIE_CONFIG = {
 
 /**
  * @param {string} mode
+ * @param {string} [subdomain]
  * @returns {string | undefined}
  */
-export function getCookieDomain(mode) {
-	return mode === 'production' ? 'sveltevietnam.dev' : undefined;
+export function getCookieDomain(mode, subdomain) {
+	const domain = mode === 'production' ? 'sveltevietnam.dev' : undefined;
+	return domain ? (subdomain ? `.${subdomain}.${domain}` : `.${domain}`) : undefined;
 }
 
 export const SOCIAL_LINKS = {
