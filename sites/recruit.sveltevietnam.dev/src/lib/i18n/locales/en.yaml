@@ -125,12 +125,11 @@ messages:
             label: Via email to recruiter
             placeholder: career@abc.com
             note:
-              When clicking "Apply", the candidate needs to compose an email to the specified
-              address.
+              When clicking "Apply", candidate needs to compose an email to the specified address.
           url:
             label: Via employer's portal
             placeholder: https://career.abc.com/portal/...
-            note: When clicking "Apply", the candidate will be redirected to the linked url.
+            note: When clicking "Apply", candidate will be redirected to the linked url.
         errors:
           nonempty_method: Application method is required
           nonempty_link: Application link is required
