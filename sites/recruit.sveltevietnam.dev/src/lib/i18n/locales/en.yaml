@@ -87,6 +87,7 @@ messages:
       website:
         label: Employer website (optional)
         placeholder: https://company-abc.com
+        note: Website helps speed up admin review and builds trust with candidates.
       image:
         label: Profile picture
         desc: 'Maximum: <strong></strong>1MB</strong><br /> Recommended: <strong>200x200</strong>'

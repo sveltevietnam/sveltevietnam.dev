@@ -138,6 +138,9 @@
 							'aria-errormessage': 'error-website',
 						}}
 					/>
+					<p class="c-text-body-xs ml-auto text-right">
+						<T key="inputs.employer.website.note" />
+					</p>
 					{#if $errors.website?.[0]}
 						<p class="text-right text-xs text-red-500" id="error-website">
 							{$errors.website[0]}
