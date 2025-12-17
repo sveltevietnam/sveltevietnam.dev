@@ -4,7 +4,6 @@ min_version: 1.11.3
 pre-commit:
   follow: true
   piped: true
-  skip: [merge, rebase]
   jobs:
     - name: eslint
       group:
