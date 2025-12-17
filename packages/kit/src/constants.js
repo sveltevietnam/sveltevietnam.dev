@@ -24,6 +24,14 @@ export const PUBLIC_COOKIE_CONFIG = {
 	httpOnly: false,
 };
 
+/**
+ * @param {string} mode
+ * @returns {string | undefined}
+ */
+export function getCookieDomain(mode) {
+	return mode === 'production' ? 'sveltevietnam.dev' : undefined;
+}
+
 export const SOCIAL_LINKS = {
 	GITHUB: 'https://github.com/sveltevietnam',
 	DISCORD: 'https://discord.sveltevietnam.dev',

@@ -1,4 +1,5 @@
 import { sequence } from '@sveltejs/kit/hooks';
+import { getCookieDomain } from '@sveltevietnam/kit/constants';
 import {
 	createLangServerHook,
 	createSplashServerHook,
@@ -16,7 +17,7 @@ import {
 	VITE_PUBLIC_MODE,
 } from '$env/static/public';
 
-const cookieDomain = VITE_PUBLIC_MODE === 'production' ? 'sveltevietnam.dev' : undefined;
+const cookieDomain = getCookieDomain(VITE_PUBLIC_MODE);
 
 export const handle = sequence(
 	createLangServerHook({

@@ -1,5 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
+import { getCookieDomain } from '@sveltevietnam/kit/constants';
 import { createLangServerHook, createColorSchemeServerHook } from '@sveltevietnam/kit/hooks';
 import { svelteKitHandler } from 'better-auth/svelte-kit';
 
@@ -9,7 +10,7 @@ import { VITE_PRIVATE_COOKIE_NAME_LANGUAGE } from '$env/static/private';
 import { VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME, VITE_PUBLIC_MODE } from '$env/static/public';
 import { createEmployerAuth } from '$lib/auth';
 
-const cookieDomain = VITE_PUBLIC_MODE === 'production' ? 'sveltevietnam.dev' : undefined;
+const cookieDomain = getCookieDomain(VITE_PUBLIC_MODE);
 
 export const handle = sequence(
 	createLangServerHook({

@@ -4,6 +4,7 @@ import { MediaQuery } from 'svelte/reactivity';
 /**
  * @typedef ColorSchemeContextInit
  * @property {string} [cookieName] name of the cookie used to store user preference.
+ * @property {string} [cookieDomain] domain of the cookie used to store user preference.
  * @property {import('@sveltevietnam/kit/constants').ColorScheme} [user] cached user's preference, defaults to 'system'.
  */
 
@@ -13,11 +14,13 @@ export class ColorSchemeContext {
 	/** @type {() => ColorSchemeContextInit} */
 	#getter = () => ({
 		cookieName: undefined,
+		cookieDomain: undefined,
 		user: 'system',
 	});
 
 	/** @type {string | undefined} */
 	#cookieName = $derived.by(() => this.#getter().cookieName);
+	#cookieDomain = $derived.by(() => this.#getter().cookieDomain);
 	#preferredColorScheme = new MediaQuery('(prefers-color-scheme: dark)');
 
 	/** @type {Exclude<import('@sveltevietnam/kit/constants').ColorScheme, 'system'>} */
@@ -38,7 +41,7 @@ export class ColorSchemeContext {
 			if ('window' in globalThis) {
 				document.documentElement.dataset.colorScheme = this.user;
 				if (this.#cookieName) {
-					document.cookie = `${this.#cookieName}=${this.user}; path=/; SameSite=Lax; Secure; Max-Age=604800`;
+					document.cookie = `${this.#cookieName}=${this.user}${this.#cookieDomain ? `; ${this.#cookieDomain}` : ''}; path=/; SameSite=Lax; Secure; Max-Age=604800`;
 				}
 			}
 		});

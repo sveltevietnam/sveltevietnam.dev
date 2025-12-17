@@ -9,7 +9,7 @@
 		type ColorSchemeMenuProps,
 		Footer,
 	} from '@sveltevietnam/kit/components';
-	import { EMAILS } from '@sveltevietnam/kit/constants';
+	import { EMAILS, getCookieDomain } from '@sveltevietnam/kit/constants';
 	import { createContexts } from '@sveltevietnam/kit/contexts';
 	import { CommonLayout } from '@sveltevietnam/kit/layouts';
 	import { ScrollToggler } from '@sveltevietnam/kit/utilities';
@@ -21,6 +21,7 @@
 	import * as n from '$data/routes/generated/names';
 	import {
 		VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
+		VITE_PUBLIC_MODE,
 		VITE_PUBLIC_ORIGIN,
 		VITE_PUBLIC_SVELTE_VIETNAM_ORIGIN,
 		VITE_PUBLIC_UMAMI,
@@ -52,6 +53,7 @@
 		}),
 		colorScheme: () => ({
 			cookieName: VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
+			cookieDomain: getCookieDomain(VITE_PUBLIC_MODE),
 			user: data.settings.colorScheme,
 		}),
 		i18n: () => ({
