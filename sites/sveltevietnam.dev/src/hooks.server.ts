@@ -30,7 +30,7 @@ export const handle = sequence(
 		building,
 		cookie: {
 			name: VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
-			domain: cookieDomain,
+			domain: getCookieDomain(VITE_PUBLIC_MODE, 'www'),
 		},
 	}),
 	createSplashServerHook({
