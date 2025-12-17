@@ -17,7 +17,7 @@ import {
 	VITE_PUBLIC_MODE,
 } from '$env/static/public';
 
-const cookieDomain = getCookieDomain(VITE_PUBLIC_MODE);
+const cookieDomain = getCookieDomain({ mode: VITE_PUBLIC_MODE });
 
 export const handle = sequence(
 	createLangServerHook({
@@ -30,7 +30,6 @@ export const handle = sequence(
 		building,
 		cookie: {
 			name: VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
-			domain: getCookieDomain(VITE_PUBLIC_MODE, 'www'),
 		},
 	}),
 	createSplashServerHook({

@@ -14,7 +14,7 @@ export const handle = sequence(
 	createLangServerHook({
 		cookie: {
 			name: VITE_PRIVATE_COOKIE_NAME_LANGUAGE,
-			domain: getCookieDomain(VITE_PUBLIC_MODE),
+			domain: getCookieDomain({ mode: VITE_PUBLIC_MODE }),
 		},
 	}),
 	async ({ event, resolve }) => {
@@ -41,9 +41,6 @@ export const handle = sequence(
 	},
 	createColorSchemeServerHook({
 		building,
-		cookie: {
-			name: VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
-			domain: getCookieDomain(VITE_PUBLIC_MODE, 'recruit'),
-		},
+		cookie: { name: VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME },
 	}),
 );

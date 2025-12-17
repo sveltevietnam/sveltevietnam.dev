@@ -25,13 +25,16 @@ export const PUBLIC_COOKIE_CONFIG = {
 };
 
 /**
- * @param {string} mode
- * @param {string} [subdomain]
+ * @param {{ mode: string; subdomain?: string }} config
  * @returns {string | undefined}
  */
-export function getCookieDomain(mode, subdomain) {
+export function getCookieDomain(config) {
+	const { mode, subdomain } = config;
 	const domain = mode === 'production' ? 'sveltevietnam.dev' : undefined;
-	return domain ? (subdomain ? `.${subdomain}.${domain}` : `.${domain}`) : undefined;
+	if (domain) {
+		return subdomain ? `${subdomain}.${domain}` : domain;
+	}
+	return undefined;
 }
 
 export const SOCIAL_LINKS = {

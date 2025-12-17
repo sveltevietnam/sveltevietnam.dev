@@ -1,7 +1,6 @@
 <script lang="ts">
 	import * as m from '@sveltevietnam/i18n/generated/messages';
 	import { PageMetadata } from '@sveltevietnam/kit/components';
-	import { getCookieDomain } from '@sveltevietnam/kit/constants';
 	import { createContexts } from '@sveltevietnam/kit/contexts';
 	import { CommonLayout } from '@sveltevietnam/kit/layouts';
 	import { onMount } from 'svelte';
@@ -14,7 +13,6 @@
 		VITE_PUBLIC_UMAMI_WEBSITE_ID,
 		VITE_PUBLIC_UMAMI_SCRIPT_URL,
 		VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
-		VITE_PUBLIC_MODE,
 	} from '$env/static/public';
 	import ogImageEn from '$lib/assets/images/fallbacks/og.en.jpg?url';
 	import ogImageVi from '$lib/assets/images/fallbacks/og.vi.jpg?url';
@@ -40,8 +38,6 @@
 		}),
 		colorScheme: () => ({
 			cookieName: VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME,
-			// lock color-scheme cookie to www because it is progressively set on the client
-			cookieDomain: getCookieDomain(VITE_PUBLIC_MODE, 'www'),
 			user: data.settings.colorScheme,
 		}),
 		i18n: () => ({
