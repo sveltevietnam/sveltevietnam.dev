@@ -31,10 +31,10 @@
 	);
 </script>
 
+<!-- FIXME: turn on preload when async & remote-function hits stable -->
 <footer
 	class={['from-primary-surface to-surface relative bg-gradient-to-t', cls]}
 	id="footer"
-	data-sveltekit-preload-data="hover"
 	{...rest}
 >
 	<div class="max-w-pad _upper border-y pt-14 pb-10">

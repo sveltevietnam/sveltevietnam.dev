@@ -42,6 +42,7 @@
 	</head>
 	<body>
 		<!-- SvelteKit Hydrated Content -->
-		<div class="contents" data-sveltekit-preload-data="hover">%sveltekit.body%</div>
+		<!-- FIXME: turn on preload when async & remote-function hits stable -->
+		<div class="contents">%sveltekit.body%</div>
 	</body>
 </html>

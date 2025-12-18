@@ -69,11 +69,11 @@
 	}
 </script>
 
+<!-- FIXME: turn on preload when async & remote-function hits stable -->
 <nav
 	class={['relative', !flat && 'w-fit', cls]}
 	aria-labelledby="page-menu-label"
 	data-sveltekit-noscroll
-	data-sveltekit-preload-data="hover"
 	use:clickoutside={{ enabled: open }}
 	onclickoutside={() => (open = false)}
 	{...rest}
