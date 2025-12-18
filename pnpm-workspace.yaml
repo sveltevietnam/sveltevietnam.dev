@@ -22,6 +22,9 @@ trustPolicyExclude:
   - chokidar@4.0.3
   - '@iconify/tools@4.1.4'
   - undici@6.22.0
+  - libsql@0.5.22 # dependency of @libsql/client
+  - '@noble/ciphers@2.0.1' # dependency of better-auth
+  - semver@5.7.2 # dependency of npm-run-all
 updateConfig:
   ignoreDependencies:
     # do not upgrade until this issue is fixed: https://github.com/paralleldrive/cuid2/issues/112
