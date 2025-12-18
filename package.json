@@ -23,8 +23,8 @@
 		"ci:publish": "changeset publish && pnpm install"
 	},
 	"devDependencies": {
-		"@changesets/changelog-github": "^0.5.1",
-		"@changesets/cli": "^2.29.7",
+		"@changesets/changelog-github": "^0.5.2",
+		"@changesets/cli": "^2.29.8",
 		"@playwright/test": "^1.57.0",
 		"@types/eslint": "^9.6.1",
 		"@types/node": "^24.10.1",
