@@ -17,6 +17,10 @@ export const handle = sequence(
 			domain: getCookieDomain({ mode: VITE_PUBLIC_MODE }),
 		},
 	}),
+	createColorSchemeServerHook({
+		building,
+		cookie: { name: VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME },
+	}),
 	async ({ event, resolve }) => {
 		// skip homepage
 		if (event.route.id === '/[lang=lang]') return resolve(event);
@@ -39,8 +43,4 @@ export const handle = sequence(
 		}
 		return svelteKitHandler({ event, resolve, auth, building });
 	},
-	createColorSchemeServerHook({
-		building,
-		cookie: { name: VITE_PUBLIC_COOKIE_NAME_COLOR_SCHEME },
-	}),
 );
