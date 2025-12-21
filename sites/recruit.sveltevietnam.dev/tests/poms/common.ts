@@ -95,9 +95,18 @@ export abstract class CommonPageObjectModel {
 
 	public async goto() {
 		await this.page.goto(this.path);
+		await this.hydrated();
 	}
 
 	public async waitForPage() {
 		await this.page.waitForURL(this.path);
+		await this.hydrated();
+	}
+
+	public async hydrated() {
+		// wait for hydration to complete before proceeding
+		// a possible delay may only be observed during initial page load
+		// on subsequent navigations, this attribute should already be present
+		await expect(this.page.locator(':root')).toHaveAttribute('hydrated');
 	}
 }
