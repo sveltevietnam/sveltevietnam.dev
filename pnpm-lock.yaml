@@ -719,8 +719,8 @@ importers:
         specifier: ^0.4.2
         version: 0.4.2(drizzle-orm@0.44.7(@cloudflare/workers-types@4.20251113.0)(@libsql/client@0.15.15)(better-sqlite3@11.10.0)(kysely@0.28.8))(valibot@1.2.0(typescript@5.9.3))
       hono:
-        specifier: ^4.10.6
-        version: 4.10.6
+        specifier: ^4.11.1
+        version: 4.11.1
       mjml:
         specifier: ^4.18.0
         version: 4.18.0
@@ -5038,8 +5038,8 @@ packages:
   headless-qr@1.0.3:
     resolution: {integrity: sha512-HHVwf1i++Ho2vFstHxAdfP0OjB7Di44nGXbh3VXciuzwkuFb1oeFDCrfOLjFgHip/Kbc/wq2GOaSTiKQ81K/Yg==}
 
-  hono@4.10.6:
-    resolution: {integrity: sha512-BIdolzGpDO9MQ4nu3AUuDwHZZ+KViNm+EZ75Ae55eMXMqLVhDFqEMXxtUe9Qh8hjL+pIna/frs2j6Y2yD5Ua/g==}
+  hono@4.11.1:
+    resolution: {integrity: sha512-KsFcH0xxHes0J4zaQgWbYwmz3UPOOskdqZmItstUG93+Wk1ePBLkLGwbP9zlmh1BFUiL8Qp+Xfu9P7feJWpGNg==}
     engines: {node: '>=16.9.0'}
 
   hookified@1.14.0:
@@ -12024,7 +12024,7 @@ snapshots:
 
   headless-qr@1.0.3: {}
 
-  hono@4.10.6: {}
+  hono@4.11.1: {}
 
   hookified@1.14.0: {}
 
