@@ -71,23 +71,8 @@ export function createEmployerAuth() {
 			},
 			changeEmail: {
 				enabled: true,
-				sendChangeEmailVerification: async ({ user, newEmail, token }, request) => {
-					const headers = Object.fromEntries(request!.headers.entries());
-					const lang = headers['x-auth-lang'] as Language;
-					await getBackend()
-						.mails()
-						.queue('recruit-employer-change-email' as const, {
-							actorId: user.id,
-							lang,
-							vars: {
-								name: user.name,
-								newEmail,
-								callbackUrl:
-									VITE_PUBLIC_ORIGIN +
-									p['/:lang/email-change-verification/:token']({ lang, token }),
-							},
-						});
-				},
+				// TODO: potential added security by confirming with old email first
+				// sendChangeEmailConfirmation: async ({ user, newEmail, token }, request) => {},
 			},
 		},
 		session: {
@@ -106,14 +91,44 @@ export function createEmployerAuth() {
 		},
 		emailVerification: {
 			expiresIn: emailExpiresIn,
+			sendVerificationEmail: async ({ user, token }, request) => {
+				const headers = Object.fromEntries(request!.headers.entries());
+				const lang = headers['x-auth-lang'] as Language;
+				if (!lang) {
+					throw new Error('Language header is missing');
+				}
+				await getBackend()
+					.mails()
+					.queue('recruit-employer-change-email' as const, {
+						actorId: user.id,
+						lang,
+						vars: {
+							name: user.name,
+							newEmail: user.email,
+							callbackUrl:
+								VITE_PUBLIC_ORIGIN + p['/:lang/email-change-verification/:token']({ lang, token }),
+						},
+					});
+			},
 		},
 		plugins: [
 			magicLink({
 				expiresIn: emailExpiresIn,
-				sendMagicLink: async ({ url, email }, request) => {
-					const headers = Object.fromEntries(request!.headers.entries());
-					const lang = headers['x-auth-lang'] as Language;
-					const type = headers['x-auth-type'] === 'signup' ? 'signup' : 'login';
+				sendMagicLink: async ({ url, email }, context) => {
+					// extract and assert request headers
+					const headers = context?.request?.headers.entries();
+					if (!headers) {
+						throw new Error('Missing request context');
+					}
+					const entries = Object.fromEntries(headers);
+					for (const key of ['x-auth-lang', 'x-auth-type']) {
+						if (!entries[key]) {
+							throw new Error(`Missing ${key} header`);
+						}
+					}
+
+					const lang = entries['x-auth-lang'] as Language;
+					const type = entries['x-auth-type'] === 'signup' ? 'signup' : 'login';
 
 					const backend = getBackend();
 					const mails = backend.mails();
@@ -125,10 +140,13 @@ export function createEmployerAuth() {
 							vars: { callbackUrl: url },
 						});
 					} else {
+						if (!entries['x-auth-name']) {
+							throw new Error('Missing x-auth-name header');
+						}
 						await mails.queue('recruit-employer-login' as const, {
 							lang,
 							actorId: (await employers.getIdByEmail(email))!,
-							vars: { name: headers['x-auth-name']!, callbackUrl: url },
+							vars: { name: entries['x-auth-name']!, callbackUrl: url },
 						});
 					}
 				},

@@ -8,7 +8,6 @@ import * as m from '../src/lib/i18n/generated/messages';
 
 import {
 	generateEmployerTestData,
-	login,
 	testWithAuthenticatedEmployer,
 } from './fixtures/with-authenticated-employer';
 import { type D1, schema } from './fixtures/with-backend';
@@ -59,74 +58,12 @@ testWithAuthenticatedEmployer(
 		await pomEmailChangeVerification.match('ok');
 
 		// verify data consistency
-		await checkPostVerification(d1, newEmail, false);
+		await checkPostVerification(d1, newEmail, true);
 	},
 );
 
 testWithAuthenticatedEmployer(
-	'UAT-ACC-002: User can only change email again after re-login',
-	{ tag: ['@uat', '@account'] },
-	async ({ page, lang, employer, testFaker: faker, mails, d1 }) => {
-		const newEmail = faker.internet.email();
-
-		// User goes to profile page
-		let pomProfile = new PageProfile({ page, lang });
-		await pomProfile.accountMenu.goToProfile();
-
-		// User fills in the form and submits
-		await pomProfile.changeEmail(
-			{ email: newEmail },
-			{ type: 'success', message: m['pages.profile.update_email.callout.pending'] },
-		);
-
-		// User verifies change via email and is redirected to email change verification page
-		const pomMail = new PageMail({ page, lang, mails, d1 });
-		let pomEmailChangeVerification = await pomMail.verifyEmailChange(employer.email);
-		await pomEmailChangeVerification.match('ok');
-
-		// verify data consistency
-		await checkPostVerification(d1, newEmail, false);
-
-		// User goes to profile page and try changing email again
-		const anotherEmail = faker.internet.email();
-		await pomEmailChangeVerification.accountMenu.goToProfile();
-		await page.reload();
-		await pomProfile.changeEmail(
-			{ email: anotherEmail },
-			{ type: 'success', message: m['pages.profile.update_email.callout.unverified'] },
-		);
-
-		// User logs out and logs in again
-		await pomProfile.accountMenu.logout();
-		const pomPostingList = await login({ email: newEmail, lang, page, mails, d1 });
-
-		// verify email is now verified in db
-		const updatedEmployer = await d1.transaction((tx) =>
-			tx.query.employers.findFirst({
-				columns: { emailVerified: true },
-				where: (table, { eq }) => eq(table.email, newEmail.toLowerCase()),
-			}),
-		);
-		expect(updatedEmployer!.emailVerified).toBeTruthy();
-
-		// User goes to profile page and can now request change again
-		pomProfile = await pomPostingList.accountMenu.goToProfile();
-		await pomProfile.changeEmail(
-			{ email: anotherEmail },
-			{ type: 'success', message: m['pages.profile.update_email.callout.pending'] },
-		);
-
-		// User verifies change via email and is redirected to email change verification page
-		pomEmailChangeVerification = await pomMail.verifyEmailChange(newEmail);
-		await pomEmailChangeVerification.match('ok');
-
-		// verify data consistency
-		await checkPostVerification(d1, anotherEmail, false);
-	},
-);
-
-testWithAuthenticatedEmployer(
-	"UAT-ACC-003: User cannot change email to existing ones (theirs or others')",
+	"UAT-ACC-002: User cannot change email to existing ones (theirs or others')",
 	{ tag: ['@uat', '@account'] },
 	async ({ page, lang, employer, testFaker: faker, d1 }) => {
 		// User goes to profile page
@@ -162,7 +99,7 @@ testWithAuthenticatedEmployer(
 );
 
 testWithAuthenticatedEmployer(
-	'UAT-ACC-004: User can update profile information',
+	'UAT-ACC-003: User can update profile information',
 	{ tag: ['@uat', '@account'] },
 	async ({ page, lang, testFaker: faker, employer, d1 }) => {
 		// User goes to profile page

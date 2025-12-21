@@ -73,9 +73,6 @@
 		"valibot": "1.2.0",
 		"vite": "^7.3.0"
 	},
-	"dependencies": {
-		"better-auth": "^1.3.34"
-	},
 	"volta": {
 		"extends": "../../package.json"
 	}
