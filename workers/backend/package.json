@@ -39,6 +39,7 @@
 		"boot:env:test": "shx cp .env.example .env.test && shx sed -i 's/development/test/g' .env.test",
 		"dev": "vite dev --port 5006",
 		"dev:wrangler": "wrangler dev --port 5006 --local",
+		"dev:wrangler:test": "cross-env CLOUDFLARE_ENV=test wrangler dev --port 5006 --local",
 		"build:mjml": "mjml src/mjml/templates/**/*.mjml -o src/mjml/templates/output --config.minify=true --config.beautify=false",
 		"build": "vite build",
 		"build:test": "cross-env CLOUDFLARE_ENV=test vite build --mode test",
@@ -52,8 +53,8 @@
 	},
 	"devDependencies": {
 		"@aws-sdk/client-sesv2": "^3.956.0",
-		"@cloudflare/vite-plugin": "^1.14.2",
-		"@cloudflare/workers-types": "^4.20251113.0",
+		"@cloudflare/vite-plugin": "^1.19.0",
+		"@cloudflare/workers-types": "^4.20251221.0",
 		"@dotenvx/dotenvx": "^1.51.2",
 		"@libsql/client": "^0.15.15",
 		"@paralleldrive/cuid2": "2.3.1",

@@ -58,7 +58,7 @@
 		"typescript-svelte-plugin": "^0.3.50",
 		"vitest": "^4.0.16",
 		"vitest-browser-svelte": "^2.0.1",
-		"wrangler": "^4.47.0"
+		"wrangler": "^4.56.0"
 	},
 	"packageManager": "pnpm@10.22.0",
 	"engines": {
