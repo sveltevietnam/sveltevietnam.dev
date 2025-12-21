@@ -111,12 +111,12 @@
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20251221.0",
-		"@sveltejs/kit": "2.48.5",
+		"@sveltejs/kit": "2.49.2",
 		"@sveltevietnam/css": "workspace:*",
 		"@tailwindcss/vite": "4.1.18",
 		"@types/umami-browser": "^2.18.0",
 		"schema-dts": "^1.1.5",
-		"svelte": "5.43.12",
+		"svelte": "5.46.0",
 		"tailwindcss": "4.1.18",
 		"vite": "^7.3.0",
 		"vite-imagetools": "^9.0.2"
