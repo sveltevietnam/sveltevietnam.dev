@@ -23,7 +23,7 @@ export const handle = sequence(
 	}),
 	async ({ event, resolve }) => {
 		// skip homepage
-		if (event.route.id === '/[lang=lang]') return resolve(event);
+		if (event.route.id === '/' || event.route.id === '/[lang=lang]') return resolve(event);
 
 		// initialize auth
 		const auth = createEmployerAuth();
