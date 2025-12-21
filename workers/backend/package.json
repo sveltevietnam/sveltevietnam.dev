@@ -51,7 +51,7 @@
 		"format": "prettier --write --ignore-path=../../.prettierignore --config=../../prettier.config.js ."
 	},
 	"devDependencies": {
-		"@aws-sdk/client-sesv2": "^3.931.0",
+		"@aws-sdk/client-sesv2": "^3.956.0",
 		"@cloudflare/vite-plugin": "^1.14.2",
 		"@cloudflare/workers-types": "^4.20251113.0",
 		"@dotenvx/dotenvx": "^1.51.2",
