@@ -698,8 +698,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/kit
       '@tsndr/cloudflare-worker-jwt':
-        specifier: ^3.2.0
-        version: 3.2.0
+        specifier: ^3.2.1
+        version: 3.2.1
       '@types/mjml':
         specifier: ^4.7.4
         version: 4.7.4
@@ -3469,8 +3469,8 @@ packages:
   '@total-typescript/ts-reset@0.6.1':
     resolution: {integrity: sha512-cka47fVSo6lfQDIATYqb/vO1nvFfbPw7uWLayIXIhGETj0wcOOlrlkobOMDNQOFr9QOafegUPq13V2+6vtD7yg==}
 
-  '@tsndr/cloudflare-worker-jwt@3.2.0':
-    resolution: {integrity: sha512-y45452JzKxFDfCUHNGrdgIcrJTkYa6xtrKtCQTjKj+hjzw8dOHF9R0uGuU8WxvCCMi4sMzZ1KREnZTsTy7DsiQ==}
+  '@tsndr/cloudflare-worker-jwt@3.2.1':
+    resolution: {integrity: sha512-1AfDEgu7DTbU0sXDSOKh4D5t7+RJ0dIRRaDmoX3LFeW0AxQdunuqTQ7AVGwNJqOnxrbxiruyvX01cf9HHqEvXQ==}
 
   '@tybys/wasm-util@0.10.1':
     resolution: {integrity: sha512-9tTaPJLSiejZKx+Bmog4uSubteqTvFrVrURwkmHixBo0G4seD0zUxp98E1DzUBJxLQ3NPwXrGKDiVjwx/DpPsg==}
@@ -10242,7 +10242,7 @@ snapshots:
 
   '@total-typescript/ts-reset@0.6.1': {}
 
-  '@tsndr/cloudflare-worker-jwt@3.2.0': {}
+  '@tsndr/cloudflare-worker-jwt@3.2.1': {}
 
   '@tybys/wasm-util@0.10.1':
     dependencies:
