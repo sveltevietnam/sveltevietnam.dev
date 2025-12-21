@@ -32,7 +32,7 @@
 		"@svelte-put/inline-svg": "^4.0.2",
 		"@svelte-put/preprocess-external-link": "^1.0.0",
 		"@sveltejs/adapter-cloudflare": "^7.2.4",
-		"@sveltejs/enhanced-img": "^0.8.5",
+		"@sveltejs/enhanced-img": "^0.9.2",
 		"@sveltejs/kit": "2.48.5",
 		"@sveltejs/vite-plugin-svelte": "^6.2.1",
 		"@sveltevietnam/backend": "workspace:*",
