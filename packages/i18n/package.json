@@ -125,7 +125,7 @@
 		"vite": "^7.2.2"
 	},
 	"dependencies": {
-		"dedent": "^1.7.0",
+		"dedent": "^1.7.1",
 		"import-meta-resolve": "^4.2.0",
 		"picocolors": "^1.1.1",
 		"sanitize-html": "^2.17.0",

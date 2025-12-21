@@ -60,7 +60,7 @@
 		"format": "prettier --write --ignore-path=../../.prettierignore --config=../../prettier.config.js ."
 	},
 	"dependencies": {
-		"dedent": "^1.7.0",
+		"dedent": "^1.7.1",
 		"picocolors": "^1.1.1",
 		"tiny-glob": "^0.2.9",
 		"typescript": "^5.9.3",

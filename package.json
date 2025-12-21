@@ -34,7 +34,7 @@
 		"@vitest/ui": "^4.0.16",
 		"@vnphanquang/eslint-config": "^4.1.0",
 		"cross-env": "^10.1.0",
-		"dedent": "^1.7.0",
+		"dedent": "^1.7.1",
 		"defu": "^6.1.4",
 		"dts-buddy": "^0.6.2",
 		"eslint": "^9.39.2",

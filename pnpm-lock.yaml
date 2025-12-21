@@ -42,8 +42,8 @@ importers:
         specifier: ^10.1.0
         version: 10.1.0
       dedent:
-        specifier: ^1.7.0
-        version: 1.7.0
+        specifier: ^1.7.1
+        version: 1.7.1
       defu:
         specifier: ^6.1.4
         version: 6.1.4
@@ -151,8 +151,8 @@ importers:
   packages/i18n:
     dependencies:
       dedent:
-        specifier: ^1.7.0
-        version: 1.7.0
+        specifier: ^1.7.1
+        version: 1.7.1
       import-meta-resolve:
         specifier: ^4.2.0
         version: 4.2.0
@@ -346,8 +346,8 @@ importers:
   packages/routes:
     dependencies:
       dedent:
-        specifier: ^1.7.0
-        version: 1.7.0
+        specifier: ^1.7.1
+        version: 1.7.1
       picocolors:
         specifier: ^1.1.1
         version: 1.1.1
@@ -631,8 +631,8 @@ importers:
         specifier: ^2.18.0
         version: 2.18.0
       dedent:
-        specifier: ^1.7.0
-        version: 1.7.0
+        specifier: ^1.7.1
+        version: 1.7.1
       fast-xml-parser:
         specifier: ^5.3.2
         version: 5.3.2
@@ -4270,8 +4270,8 @@ packages:
   dedent-js@1.0.1:
     resolution: {integrity: sha512-OUepMozQULMLUmhxS95Vudo0jb0UchLimi3+pQ2plj61Fcy8axbP9hbiD4Sz6DPqn6XG3kfmziVfQ1rSys5AJQ==}
 
-  dedent@1.7.0:
-    resolution: {integrity: sha512-HGFtf8yhuhGhqO07SV79tRp+br4MnbdjeVxotpn1QBl30pcLLCQjX5b2295ll0fv8RKDKsmWYrl05usHM9CewQ==}
+  dedent@1.7.1:
+    resolution: {integrity: sha512-9JmrhGZpOlEgOLdQgSm0zxFaYoQon408V1v49aqTWuXENVlnCuY9JBZcXZiCsZQWDjTm5Qf/nIvAy77mXDAjEg==}
     peerDependencies:
       babel-plugin-macros: ^3.1.0
     peerDependenciesMeta:
@@ -11101,7 +11101,7 @@ snapshots:
 
   dedent-js@1.0.1: {}
 
-  dedent@1.7.0: {}
+  dedent@1.7.1: {}
 
   deep-extend@0.6.0:
     optional: true
