@@ -169,8 +169,8 @@ importers:
         specifier: ^5.9.3
         version: 5.9.3
       valibot:
-        specifier: 1.1.0
-        version: 1.1.0(typescript@5.9.3)
+        specifier: 1.2.0
+        version: 1.2.0(typescript@5.9.3)
       yaml:
         specifier: ^2.8.2
         version: 2.8.2
@@ -182,8 +182,8 @@ importers:
         specifier: ^2.16.0
         version: 2.16.0
       '@valibot/to-json-schema':
-        specifier: ^1.3.0
-        version: 1.3.0(valibot@1.1.0(typescript@5.9.3))
+        specifier: ^1.5.0
+        version: 1.5.0(valibot@1.2.0(typescript@5.9.3))
       svelte:
         specifier: 5.43.12
         version: 5.43.12
@@ -251,8 +251,8 @@ importers:
         specifier: ^6.1.4
         version: 6.1.4
       valibot:
-        specifier: 1.1.0
-        version: 1.1.0(typescript@5.9.3)
+        specifier: 1.2.0
+        version: 1.2.0(typescript@5.9.3)
     devDependencies:
       '@cloudflare/workers-types':
         specifier: ^4.20251113.0
@@ -416,8 +416,8 @@ importers:
         specifier: ^2.17.0
         version: 2.17.0
       valibot:
-        specifier: 1.1.0
-        version: 1.1.0(typescript@5.9.3)
+        specifier: 1.2.0
+        version: 1.2.0(typescript@5.9.3)
     devDependencies:
       '@cloudflare/workers-types':
         specifier: ^4.20251113.0
@@ -528,8 +528,8 @@ importers:
         specifier: ^2.17.0
         version: 2.17.0
       valibot:
-        specifier: 1.1.0
-        version: 1.1.0(typescript@5.9.3)
+        specifier: 1.2.0
+        version: 1.2.0(typescript@5.9.3)
     devDependencies:
       '@atproto/api':
         specifier: ^0.18.0
@@ -717,7 +717,7 @@ importers:
         version: 0.44.7(@cloudflare/workers-types@4.20251113.0)(@libsql/client@0.15.15)(better-sqlite3@11.10.0)(kysely@0.28.8)
       drizzle-valibot:
         specifier: ^0.4.2
-        version: 0.4.2(drizzle-orm@0.44.7(@cloudflare/workers-types@4.20251113.0)(@libsql/client@0.15.15)(better-sqlite3@11.10.0)(kysely@0.28.8))(valibot@1.1.0(typescript@5.9.3))
+        version: 0.4.2(drizzle-orm@0.44.7(@cloudflare/workers-types@4.20251113.0)(@libsql/client@0.15.15)(better-sqlite3@11.10.0)(kysely@0.28.8))(valibot@1.2.0(typescript@5.9.3))
       hono:
         specifier: ^4.10.6
         version: 4.10.6
@@ -731,8 +731,8 @@ importers:
         specifier: ^1.1.1
         version: 1.1.1
       valibot:
-        specifier: 1.1.0
-        version: 1.1.0(typescript@5.9.3)
+        specifier: 1.2.0
+        version: 1.2.0(typescript@5.9.3)
       vite:
         specifier: ^7.2.2
         version: 7.2.2(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.2)
@@ -3726,10 +3726,10 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@valibot/to-json-schema@1.3.0':
-    resolution: {integrity: sha512-82Vv6x7sOYhv5YmTRgSppSqj1nn2pMCk5BqCMGWYp0V/fq+qirrbGncqZAtZ09/lrO40ne/7z8ejwE728aVreg==}
+  '@valibot/to-json-schema@1.5.0':
+    resolution: {integrity: sha512-GE7DmSr1C2UCWPiV0upRH6mv0cCPsqYGs819fb6srCS1tWhyXrkGGe+zxUiwzn/L1BOfADH4sNjY/YHCuP8phQ==}
     peerDependencies:
-      valibot: ^1.1.0
+      valibot: ^1.2.0
 
   '@vinejs/compiler@3.0.0':
     resolution: {integrity: sha512-v9Lsv59nR56+bmy2p0+czjZxsLHwaibJ+SV5iK9JJfehlJMa501jUJQqqz4X/OqKXrxtE3uTQmSqjUqzF3B2mw==}
@@ -7144,8 +7144,8 @@ packages:
       typescript:
         optional: true
 
-  valibot@1.1.0:
-    resolution: {integrity: sha512-Nk8lX30Qhu+9txPYTwM0cFlWLdPFsFr6LblzqIySfbZph9+BFsAHsNvHOymEviUepeIW6KFHzpX8TKhbptBXXw==}
+  valibot@1.2.0:
+    resolution: {integrity: sha512-mm1rxUsmOxzrwnX5arGS+U4T25RdvpPjPN4yR0u9pUBov9+zGVtO84tif1eY4r6zWxVxu3KzIyknJy3rxfRZZg==}
     peerDependencies:
       typescript: '>=5'
     peerDependenciesMeta:
@@ -10486,9 +10486,9 @@ snapshots:
   '@unrs/resolver-binding-win32-x64-msvc@1.11.1':
     optional: true
 
-  '@valibot/to-json-schema@1.3.0(valibot@1.1.0(typescript@5.9.3))':
+  '@valibot/to-json-schema@1.5.0(valibot@1.2.0(typescript@5.9.3))':
     dependencies:
-      valibot: 1.1.0(typescript@5.9.3)
+      valibot: 1.2.0(typescript@5.9.3)
 
   '@vinejs/compiler@3.0.0':
     optional: true
@@ -11207,10 +11207,10 @@ snapshots:
       better-sqlite3: 11.10.0
       kysely: 0.28.8
 
-  drizzle-valibot@0.4.2(drizzle-orm@0.44.7(@cloudflare/workers-types@4.20251113.0)(@libsql/client@0.15.15)(better-sqlite3@11.10.0)(kysely@0.28.8))(valibot@1.1.0(typescript@5.9.3)):
+  drizzle-valibot@0.4.2(drizzle-orm@0.44.7(@cloudflare/workers-types@4.20251113.0)(@libsql/client@0.15.15)(better-sqlite3@11.10.0)(kysely@0.28.8))(valibot@1.2.0(typescript@5.9.3)):
     dependencies:
       drizzle-orm: 0.44.7(@cloudflare/workers-types@4.20251113.0)(@libsql/client@0.15.15)(better-sqlite3@11.10.0)(kysely@0.28.8)
-      valibot: 1.1.0(typescript@5.9.3)
+      valibot: 1.2.0(typescript@5.9.3)
 
   dts-buddy@0.6.2(typescript@5.9.3):
     dependencies:
@@ -14377,7 +14377,7 @@ snapshots:
       json-schema-to-ts: 3.1.1
       superstruct: 2.0.2
       typebox: 1.0.43
-      valibot: 1.1.0(typescript@5.9.3)
+      valibot: 1.2.0(typescript@5.9.3)
       yup: 1.7.1
       zod: 4.1.12
     transitivePeerDependencies:
@@ -14696,7 +14696,7 @@ snapshots:
       typescript: 5.9.3
     optional: true
 
-  valibot@1.1.0(typescript@5.9.3):
+  valibot@1.2.0(typescript@5.9.3):
     optionalDependencies:
       typescript: 5.9.3
 
