@@ -16,5 +16,6 @@ export default {
 				tabWidth: 2,
 			},
 		},
+		{ files: '**/*.jsonc', options: { trailingComma: 'none' } },
 	],
 };
