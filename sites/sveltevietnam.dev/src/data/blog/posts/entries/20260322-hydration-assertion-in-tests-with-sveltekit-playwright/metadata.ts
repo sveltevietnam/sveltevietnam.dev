@@ -14,7 +14,6 @@ export default defineBlogPostMetadata((lang) => ({
 					'Detect problematic page load early and reduce flakiness by checking and waiting for hydration in Playwright E2E/UAT tests',
 				keywords: 'hydration,testing,uat,e2e,qc',
 				translation: 'original',
-				// TODO: update these information once you finish writing
 				readMinutes: 8,
 				numWords: 1000,
 			},
@@ -25,9 +24,8 @@ export default defineBlogPostMetadata((lang) => ({
 					'Phát hiện sớm lỗi tải trang và tăng tính ổn định trong kiểm thử với Playwright và SvelteKit bằng cách chờ hydration',
 				keywords: 'hydration,testing,uat,e2e,qc, kiểm thử',
 				translation: 'manual',
-				// TODO: update these information once you finish writing
-				readMinutes: 0,
-				numWords: 0,
+				readMinutes: 8,
+				numWords: 1200,
 			},
 		} as const
 	)[lang],

@@ -17,7 +17,7 @@ Add to app code a signal for hydration:
 
   // :::highlight
   // :::focus
-  onMount(() => {2
+  onMount(() => {
     document.documentElement.toggleAttribute('hydrated', true);
   });
   // :::

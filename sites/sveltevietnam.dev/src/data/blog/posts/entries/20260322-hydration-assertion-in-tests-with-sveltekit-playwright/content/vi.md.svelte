@@ -16,7 +16,7 @@ Trong mã nguồn của ứng dụng, đánh dầu khi hydration đã hoàn tấ
 
   // :::highlight
   // :::focus
-  onMount(() => {2
+  onMount(() => {
     document.documentElement.toggleAttribute('hydrated', true);
   });
   // :::
