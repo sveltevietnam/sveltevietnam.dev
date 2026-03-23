@@ -78,7 +78,7 @@ test('flaky counter test due to hydration', async ({ page }) => {
   const incrementBtn = page.getByRole('button', { name: 'Increment' });
   await incrementBtn.click();
 
-  // Có thể thất bại với "Expected: 1, Received: 0"
+  // Có thể thất bại tại đây
   await expect(page.getByText('Count is 1')).toBeVisible();
 });
 ```

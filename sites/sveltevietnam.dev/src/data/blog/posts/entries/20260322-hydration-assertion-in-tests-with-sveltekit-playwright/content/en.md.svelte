@@ -71,7 +71,7 @@ test('flaky counter test due to hydration', async ({ page }) => {
   const incrementBtn = page.getByRole('button', { name: 'Increment' });
   await incrementBtn.click();
 
-  // This might fail intermittently with "Expected: 1, Received: 0"
+  // This might fail intermittently
   await expect(page.getByText('Count is 1')).toBeVisible();
 });
 ```
