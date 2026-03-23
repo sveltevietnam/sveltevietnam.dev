@@ -17,6 +17,8 @@ export const highlighter = await createHighlighterCore({
 		import('shiki/langs/shellscript.mjs'),
 		import('shiki/langs/markdown.mjs'),
 		import('shiki/langs/yaml.mjs'),
+		import('shiki/langs/lisp.mjs'),
+		import('shiki/langs/lua.mjs'),
 	],
 	engine: createOnigurumaEngine(import('shiki/wasm')),
 });

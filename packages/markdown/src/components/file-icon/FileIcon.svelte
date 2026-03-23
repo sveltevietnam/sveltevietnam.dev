@@ -14,6 +14,8 @@
 		bash: 'i-[simple-icons--gnometerminal]',
 		sh: 'i-[simple-icons--gnometerminal]',
 		yaml: 'i-[simple-icons--yaml]',
+		lua: 'i-[simple-icons--lua]',
+		lisp: 'i-[simple-icons--commonlisp]',
 	};
 	const iconClass = $derived(langToIconClass[lang] || 'i-[ph--code-block]');
 </script>
