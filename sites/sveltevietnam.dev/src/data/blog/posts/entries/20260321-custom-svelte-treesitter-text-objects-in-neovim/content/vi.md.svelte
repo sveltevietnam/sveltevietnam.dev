@@ -103,10 +103,10 @@ require("mini.ai").setup({
     }),
     j = spec_treesitter({
       a = {
-        "@block.outer",
+        "@svelte.block.outer",
       },
       i = {
-        "@block.inner",
+        "@svelte.block.inner",
       },
     }),
   },
