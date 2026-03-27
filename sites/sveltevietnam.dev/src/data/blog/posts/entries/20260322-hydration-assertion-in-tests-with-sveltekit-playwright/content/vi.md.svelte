@@ -98,6 +98,19 @@ test('flaky counter test due to hydration', async ({ page }) => {
 <button on:click={increment}>Increment</button>
 ```
 
+<div class="c-callout c-callout--info c-callout--icon-bulb">
+
+Tính bất ổn có thể được phát hiện bằng chạy test song song hoặc lặp lại. Ta có thể tận dụng những
+tham số CLI như `--repeat-each` hoặc `--workers` của Playwright cho việc này. Xem thêm
+tài liệu về [Parallelism](https://playwright.dev/docs/test-parallel) và [CLI](https://playwright.dev/docs/test-cli).
+Ví dụ:
+
+```bash
+pnpm playwright test -g "UAT-001" --repeat-each 10 --workers 2 # chạy test case UAT-001 10 lần song song trên 2 worker
+```
+
+</div>
+
 ## Kiểm tra hydration trong test
 
 Để cải thiện tính ổn định, mình thường chỉ cho Playwright chờ hydration xong rồi mới đi thực thi các

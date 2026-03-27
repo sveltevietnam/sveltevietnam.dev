@@ -92,6 +92,18 @@ The test object could be:
 <button on:click={increment}>Increment</button>
 ```
 
+<div class="c-callout c-callout--info c-callout--icon-bulb">
+
+Flaky tests often surface when run in parallel with others, or repeated multiple times. The `--repeat-each` and `--workers` CLI options may be helpful here.
+See Playwright's [Parallelism](https://playwright.dev/docs/test-parallel) and [CLI](https://playwright.dev/docs/test-cli) docs for more
+information. For example:
+
+```bash
+pnpm playwright test -g "UAT-001" --repeat-each 10 --workers 2 # run the UAT-001 test case 10 times across 2 parallel workers
+```
+
+</div>
+
 ## Hydration Assertion in Test
 
 To avoid the aforementioned flakiness, I often just tell Playwright to wait for hydration to complete
