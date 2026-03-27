@@ -1,6 +1,6 @@
 {
 	"name": "@sveltevietnam/kit",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"description": "reusable bits for Svelte Vietnam projects",
 	"private": true,
 	"main": "src/index.js",

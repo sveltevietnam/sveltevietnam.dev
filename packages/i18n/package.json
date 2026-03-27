@@ -1,6 +1,6 @@
 {
 	"name": "@sveltevietnam/i18n",
-	"version": "0.2.3",
+	"version": "0.2.4",
 	"description": "composable and minimal i18n solution for Svelte & SvelteKit",
 	"module": "src/runtime/index.js",
 	"main": "src/runtime/index.js",
